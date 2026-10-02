@@ -9,11 +9,10 @@ import { Pool, type QueryResult, type QueryResultRow } from 'pg';
 //
 // The pool is cached on the Node global so dev hot-reloads don't exhaust
 // connections (same pattern the old Mongo client used).
-
-const connectionString = process.env.DATABASE_URL;
-if (!connectionString) {
-  throw new Error('DATABASE_URL is not set. Add it to .env.local (server-only).');
-}
+//
+// The pool is created lazily on first use, not at import time, so `next build`
+// (which imports route modules to collect page data) works without
+// DATABASE_URL — e.g. on Vercel, where env vars may be runtime-only.
 
 declare global {
   // eslint-disable-next-line no-var
@@ -21,6 +20,10 @@ declare global {
 }
 
 function makePool(): Pool {
+  const connectionString = process.env.DATABASE_URL;
+  if (!connectionString) {
+    throw new Error('DATABASE_URL is not set. Add it to .env.local (server-only).');
+  }
   return new Pool({
     connectionString,
     // Prisma Postgres requires TLS. It uses a managed cert; we don't pin a CA.
@@ -31,13 +34,8 @@ function makePool(): Pool {
   });
 }
 
-const pool: Pool =
-  process.env.NODE_ENV === 'development'
-    ? (global._pgPool ??= makePool())
-    : (global._pgPool ??= makePool());
-
 export function getPool(): Pool {
-  return pool;
+  return (global._pgPool ??= makePool());
 }
 
 /** Run a parameterized query. Thin wrapper so callers don't import `pool` directly. */
@@ -45,5 +43,5 @@ export async function query<T extends QueryResultRow = QueryResultRow>(
   text: string,
   params: unknown[] = [],
 ): Promise<QueryResult<T>> {
-  return pool.query<T>(text, params as never[]);
+  return getPool().query<T>(text, params as never[]);
 }
