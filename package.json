@@ -17,7 +17,7 @@
     "seed:admin": "node migration/seed-admin.mjs"
   },
   "engines": {
-    "node": ">=18.18.0 <21"
+    "node": "24.x"
   },
   "dependencies": {
     "@prisma/client": "^7.10.0",
