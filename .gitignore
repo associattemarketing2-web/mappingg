@@ -1,0 +1,25 @@
+# dependencies
+/node_modules
+/migration/node_modules
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# env — NEVER commit real secrets
+.env
+.env.local
+.env*.local
+
+# secrets / data backups that may contain private info
+/migration/backup/leads.json
+/migration/backup/pins_history.json
+
+# misc
+.DS_Store
+*.pem
+npm-debug.log*
+next-env.d.ts

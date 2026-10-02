@@ -1,0 +1,18 @@
+[
+  {
+    "_id": "c565adf8-850c-4085-a9aa-e0c3f51ecc0e",
+    "id": "c565adf8-850c-4085-a9aa-e0c3f51ecc0e",
+    "email": "admin@mappingg.com",
+    "password_hash": "$2a$12$edQWYk8RkxNpp0jShD1O9uUIjJx5dbZrgePVgO/CkCu85/qT5CsbS",
+    "role": "admin",
+    "created_at": "2026-09-29T08:16:57.863Z"
+  },
+  {
+    "_id": "5196edc5-c355-4cbd-bec2-f076eaf40e3a",
+    "id": "5196edc5-c355-4cbd-bec2-f076eaf40e3a",
+    "email": "associattemarketing@gmail.com",
+    "password_hash": "$2a$12$Lmoz5sPwOJLBAjhp4Ej9vu8QLuppQUJKmSM9RMKlIiTDKngtCEJXG",
+    "role": "admin",
+    "created_at": "2026-09-29T10:25:50.380Z"
+  }
+]

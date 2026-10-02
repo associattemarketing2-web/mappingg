@@ -1,0 +1,113 @@
+/* Buyer / developer / partner dashboards. Scoped under .dsh, same palette as
+   the super-admin (.adm2) so the product feels like one system. */
+.dsh {
+  --fg: #1b2a24; --muted: #6b746e; --line: #e6e2d8; --bg: #f4f6f4; --card: #fff;
+  --forest: #0f5c47; --forest-deep: #0a4535; --accent-50: #e8f2e1;
+  --s-available: #2f7a3c; --s-sold: #a9532d; --s-construction: #c9861f; --s-upcoming: #7d837f;
+  --radius: 16px; --shadow: 0 10px 30px -22px rgba(16,36,30,.5);
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: var(--font); color: var(--fg); background: var(--bg); min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+.dsh *, .dsh *::before, .dsh *::after { box-sizing: border-box; }
+.dsh a { color: inherit; text-decoration: none; }
+.dsh h1, .dsh h2, .dsh p { margin: 0; }
+
+.dsh-top { position: sticky; top: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 62px; padding: 0 22px; background: #fff; border-bottom: 1px solid var(--line); }
+.dsh-brand { display: flex; align-items: center; gap: 10px; }
+.dsh-brand .mark { width: 28px; height: 40px; flex-shrink: 0; display: inline-block; background: url('/img/mappingg-icon-mark.png') center/contain no-repeat; }
+.dsh-brand b { font-size: 18px; font-weight: 800; letter-spacing: -.03em; color: #0b4a3b; }
+.dsh-brand b em { font-style: normal; color: #b0924f; }
+.dsh-brand small { display: block; font-size: 10.5px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
+.dsh-top-right { display: flex; align-items: center; gap: 10px; }
+.dsh-chip { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px 5px 5px; border-radius: 999px; border: 1px solid var(--line); background: #fff; }
+.dsh-chip .who { width: 28px; height: 28px; border-radius: 50%; background: var(--forest); color: #fff; display: grid; place-items: center; font-size: 11px; font-weight: 700; }
+.dsh-chip .who-meta { line-height: 1.2; }
+.dsh-chip .who-meta b { display: block; font-size: 12.5px; }
+.dsh-chip .who-meta small { font-size: 10.5px; color: var(--muted); }
+
+.dsh-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 16px; border-radius: 999px; font: 600 13.5px var(--font); cursor: pointer; border: 1px solid transparent; white-space: nowrap; transition: .15s; }
+.dsh-btn.primary { background: var(--forest); color: #fff; }
+.dsh-btn.primary:hover { background: var(--forest-deep); }
+.dsh-btn.ghost { background: #fff; border-color: var(--line); color: var(--fg); }
+.dsh-btn.ghost:hover { background: var(--bg); }
+
+.dsh-content { max-width: 1180px; margin: 0 auto; padding: 24px; display: flex; flex-direction: column; gap: 18px; }
+
+.dsh-hero { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 26px; border-radius: var(--radius); background: linear-gradient(135deg, #0f5c47, #0a4535); color: #fff; box-shadow: var(--shadow); }
+.dsh-hero h1 { font-size: 26px; letter-spacing: -.02em; margin: 10px 0 6px; }
+.dsh-hero p { color: rgba(255,255,255,.82); max-width: 620px; font-size: 14.5px; line-height: 1.55; }
+.dsh-hero .dsh-btn.primary { background: #fff; color: var(--forest); }
+.dsh-role { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border-radius: 999px; background: rgba(255,255,255,.14); font-size: 12px; font-weight: 600; }
+
+.dsh-notice { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; border-radius: 12px; background: #fdf3df; border: 1px solid #f0d9a6; color: #6b4d12; font-size: 14px; line-height: 1.5; }
+.dsh-notice i { margin-top: 3px; }
+
+.dsh-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.dsh-stat { display: flex; flex-direction: column; gap: 4px; padding: 18px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); }
+.dsh-stat i { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--accent-50); color: var(--forest); margin-bottom: 6px; }
+.dsh-stat b { font-size: 24px; letter-spacing: -.02em; }
+.dsh-stat span { font-size: 12.5px; color: var(--muted); }
+
+.dsh-grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 18px; align-items: start; }
+.dsh-side { display: flex; flex-direction: column; gap: 18px; }
+.dsh-card { padding: 20px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); }
+.dsh-card h2 { display: flex; align-items: center; gap: 10px; font-size: 16px; letter-spacing: -.01em; margin-bottom: 14px; }
+.dsh-card h2 i { color: var(--forest); font-size: 14px; }
+
+.dsh-projects { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.dsh-projects li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+.dsh-projects li:first-child { border-top: none; padding-top: 0; }
+.dsh-projects .meta b { display: block; font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dsh-projects .meta small { display: block; font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dsh-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--s-upcoming); }
+.dsh-dot.s-available { background: var(--s-available); }
+.dsh-dot.s-under_construction { background: var(--s-construction); }
+.dsh-dot.s-sold { background: var(--s-sold); }
+.dsh-status { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.dsh-link { font-size: 12.5px; font-weight: 600; color: var(--forest) !important; white-space: nowrap; }
+.dsh-link i { font-size: 10px; margin-left: 2px; }
+.dsh-empty { color: var(--muted); font-size: 14px; line-height: 1.55; }
+
+.dsh-field { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 13.5px; }
+.dsh-card h2 + .dsh-field { border-top: none; padding-top: 0; }
+.dsh-field span { color: var(--muted); }
+.dsh-field b { font-weight: 600; text-align: right; overflow-wrap: anywhere; }
+
+.dsh-actions { display: flex; flex-direction: column; gap: 8px; }
+.dsh-actions a { display: flex; align-items: center; gap: 10px; padding: 11px 12px; border-radius: 10px; background: var(--bg); font-size: 13.5px; font-weight: 600; transition: .15s; }
+.dsh-actions a:hover { background: var(--accent-50); color: var(--forest); }
+.dsh-actions i { width: 16px; color: var(--forest); }
+
+@media (max-width: 960px) {
+  .dsh-grid { grid-template-columns: 1fr; }
+  .dsh-stats { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .dsh-top { padding: 0 16px; }
+  .dsh-content { padding: 16px; }
+  .dsh-chip .who-meta { display: none; }
+  .dsh-hero { flex-direction: column; align-items: flex-start; padding: 20px; }
+  .dsh-hero h1 { font-size: 22px; }
+  .dsh-projects li { grid-template-columns: auto minmax(0, 1fr) auto; }
+  .dsh-projects .dsh-status { display: none; }
+}
+
+/* ---- Under review / not approved (developer & agent accounts) ---- */
+.dsh-review { max-width: 760px; }
+.dsh-review-card { padding: 28px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.dsh-review-icon { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; font-size: 26px; background: #fdf3df; color: #b7791f; }
+.dsh-review-card.is-rejected .dsh-review-icon { background: #fde8e4; color: #b4432c; }
+.dsh-review-card .dsh-role { background: var(--accent-50); color: var(--forest); }
+.dsh-review-card h1 { font-size: 22px; letter-spacing: -.02em; }
+.dsh-review-card p { color: var(--muted); font-size: 14.5px; line-height: 1.6; max-width: 560px; }
+.dsh-review-small { font-size: 13px !important; }
+.dsh-review-reason { width: 100%; max-width: 560px; text-align: left; padding: 12px 14px; border-radius: 12px; background: #fdf1ee; border: 1px solid #f5c9bf; display: flex; flex-direction: column; gap: 4px; font-size: 14px; }
+.dsh-review-reason b { font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: #b4432c; }
+.dsh-steps { list-style: none; margin: 8px 0 4px; padding: 0; display: flex; flex-direction: column; gap: 8px; text-align: left; width: 100%; max-width: 420px; }
+.dsh-steps li { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); font-size: 13.5px; color: var(--muted); }
+.dsh-steps li i { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; background: var(--bg); }
+.dsh-steps li.done { color: var(--fg); } .dsh-steps li.done i { background: var(--forest); color: #fff; }
+.dsh-steps li.now { color: var(--fg); border-color: #f0d9a6; background: #fffaf0; font-weight: 600; } .dsh-steps li.now i { background: #f5c451; color: #5c4210; }
+.dsh-review-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+@media (max-width: 600px) { .dsh-review-card { padding: 20px; } .dsh-review-card h1 { font-size: 19px; } }

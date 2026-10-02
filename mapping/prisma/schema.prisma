@@ -1,0 +1,55 @@
+// Prisma schema of record for the Mappingg Postgres database.
+//
+// The application does NOT use the generated Prisma Client at runtime — the data
+// layer (lib/mongo-compat.ts) talks to Postgres through a small pg pool so it can
+// reproduce the old MongoDB/JSONB query shapes. This schema exists so the tables
+// are documented and browsable in Prisma Studio (`npx prisma studio`) and so the
+// schema can be managed with Prisma tooling. It mirrors migration/pg-schema.sql.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// --- generic document tables (id text pk, doc jsonb) ---
+model pins                { id String @id; doc Json @default("{}") }
+model infra_markers       { id String @id; doc Json @default("{}") }
+model roads               { id String @id; doc Json @default("{}") }
+model area_boundaries     { id String @id; doc Json @default("{}") }
+model infra_types         { id String @id; doc Json @default("{}") }
+model map_settings        { id String @id; doc Json @default("{}") }
+model leads               { id String @id; doc Json @default("{}") }
+model pins_history        { id String @id; doc Json @default("{}") }
+model users               { id String @id; doc Json @default("{}") }
+model builders            { id String @id; doc Json @default("{}") }
+model submission_links    { id String @id; doc Json @default("{}") }
+model project_submissions { id String @id; doc Json @default("{}") }
+model submission_events   { id String @id; doc Json @default("{}") }
+model projects            { id String @id; doc Json @default("{}") }
+model counters            { id String @id; doc Json @default("{}") }
+model posts               { id String @id; doc Json @default("{}") }
+model contact_leads       { id String @id; doc Json @default("{}") }
+
+// --- binary blob tables ---
+model backups {
+  id         String   @id @default(uuid()) @db.Uuid
+  filename   String
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  reason     String   @default("manual")
+  size       Int      @default(0)
+  counts     Json     @default("{}")
+  gz         Bytes
+}
+
+model partners_media {
+  id           String   @id @default(uuid()) @db.Uuid
+  filename     String
+  content_type String   @default("application/octet-stream")
+  metadata     Json     @default("{}")
+  upload_date  DateTime @default(now()) @db.Timestamptz(6)
+  data         Bytes
+}

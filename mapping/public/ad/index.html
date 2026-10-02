@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mappingg · 20s Walkthrough Ad</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#0f5c47; --forest-deep:#0a4535; --accent:#2f7a3c;
+    --water:#2d6fa3; --gold:#b0924f; --earth:#a9532d; --construction:#e0b25e;
+    --paper:#fbfaf6; --ink:#1d2b26; --line:#e7e3d9;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#060606;display:flex;align-items:center;justify-content:center;min-height:100vh;
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;overflow:hidden}
+
+  .stage{position:relative;width:1080px;height:1080px;overflow:hidden;transform-origin:center center;
+    background:radial-gradient(130% 120% at 30% 0%, #11684f 0%, var(--forest) 45%, var(--forest-deep) 100%)}
+
+  .glow{position:absolute;border-radius:50%;filter:blur(70px);opacity:.45;mix-blend-mode:screen}
+  .glow.g1{width:540px;height:540px;left:-140px;top:-90px;background:#2f7a3c;animation:drift1 12s ease-in-out infinite}
+  .glow.g2{width:480px;height:480px;right:-140px;bottom:-70px;background:#2d6fa3;animation:drift2 12s ease-in-out infinite}
+  @keyframes drift1{50%{transform:translate(70px,50px)}}
+  @keyframes drift2{50%{transform:translate(-60px,-50px)}}
+
+  /* ---------- top brand strip (persists during browser scenes) ---------- */
+  .topbar{position:absolute;top:46px;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:16px;
+    opacity:0;animation:barShow .6s ease 2.9s forwards}
+  .topbar .mk{width:46px;height:46px}
+  .topbar .wd{font-size:40px;font-weight:800;color:#fff;letter-spacing:-1px}
+  .topbar .wd b{color:#f6d58f}
+  @keyframes barShow{to{opacity:1}}
+
+  /* ---------- browser mock ---------- */
+  .browser{position:absolute;left:70px;right:70px;top:150px;height:720px;border-radius:26px;overflow:hidden;
+    background:#fff;box-shadow:0 50px 90px rgba(0,0,0,.45), 0 0 0 10px rgba(255,255,255,.1);
+    opacity:0;transform:scale(.95)}
+  .browser.on{animation:brIn .7s cubic-bezier(.2,1,.3,1) 2.9s forwards}
+  @keyframes brIn{to{opacity:1;transform:scale(1)}}
+  .bbar{height:62px;background:#eef1ee;display:flex;align-items:center;gap:16px;padding:0 22px;border-bottom:1px solid #e2e6e2}
+  .dots{display:flex;gap:9px}
+  .dots i{width:15px;height:15px;border-radius:50%;display:block}
+  .dots i:nth-child(1){background:#ff5f57}.dots i:nth-child(2){background:#febc2e}.dots i:nth-child(3){background:#28c840}
+  .url{flex:1;height:38px;background:#fff;border-radius:19px;display:flex;align-items:center;gap:10px;padding:0 18px;color:#4a564f;font-weight:600;font-size:22px;border:1px solid #e0e4e0}
+  .url .lock{color:#2f7a3c;font-size:18px}
+  .bbody{position:relative;height:calc(100% - 62px);overflow:hidden;background:#f6f4ee}
+  /* screenshot layers */
+  .shot{position:absolute;inset:0;background-size:cover;background-position:top center;opacity:0}
+  .shot.home{background-image:url('home.png');animation:homeShot 20s linear forwards}
+  .shot.map{background-image:url('map.png');background-position:center;animation:mapShot 20s linear forwards}
+  @keyframes homeShot{0%{opacity:0}16%{opacity:1}36%{opacity:1}40%{opacity:0}100%{opacity:0}}
+  @keyframes mapShot{0%{opacity:0}38%{opacity:0}42%{opacity:1}100%{opacity:1}}
+
+  /* slow ken-burns zoom on map for life */
+  .shot.map{transform:scale(1.02)}
+
+  /* ---------- pin pulse rings on map ---------- */
+  .pulse{position:absolute;width:26px;height:26px;border-radius:50%;border:3px solid #fff;opacity:0}
+  .ring{position:absolute;width:26px;height:26px;border-radius:50%;border:3px solid #2f7a3c;transform:translate(-50%,-50%)}
+  .pz{position:absolute;transform:translate(-50%,-50%);opacity:0}
+  .pz::before,.pz::after{content:"";position:absolute;left:50%;top:50%;width:20px;height:20px;border-radius:50%;
+    transform:translate(-50%,-50%);border:3px solid var(--accent)}
+  .pz::after{animation:ripple 1.8s ease-out infinite}
+  @keyframes ripple{0%{width:16px;height:16px;opacity:.9}100%{width:120px;height:120px;opacity:0}}
+  #pzA{left:46%;top:44%;animation:pzShow 20s linear forwards}
+  #pzB{left:58%;top:56%;animation:pzShow2 20s linear forwards}
+  #pzC{left:38%;top:62%;animation:pzShow3 20s linear forwards}
+  @keyframes pzShow{0%,46%{opacity:0}50%{opacity:1}88%{opacity:1}92%{opacity:0}100%{opacity:0}}
+  @keyframes pzShow2{0%,50%{opacity:0}54%{opacity:1}88%{opacity:1}92%{opacity:0}}
+  @keyframes pzShow3{0%,52%{opacity:0}56%{opacity:1}88%{opacity:1}92%{opacity:0}}
+
+  /* ---------- typed search chip (home scene) ---------- */
+  .typebox{position:absolute;left:50%;top:360px;transform:translateX(-50%);
+    background:#fff;border-radius:999px;box-shadow:0 18px 40px rgba(0,0,0,.25);
+    display:flex;align-items:center;gap:14px;padding:16px 26px;opacity:0;z-index:5}
+  .typebox .mag{color:#2f7a3c;font-size:26px}
+  .typebox .txt{font-size:30px;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;border-right:3px solid #2f7a3c}
+  .typebox.on{animation:tbLife 20s linear forwards}
+  .typebox.on .txt{width:0;animation:typeit 1.6s steps(16) 5.5s forwards, caretoff .1s linear 7.3s forwards}
+  @keyframes tbLife{0%,25%{opacity:0;transform:translateX(-50%) translateY(12px)}27%{opacity:1;transform:translateX(-50%) translateY(0)}37%{opacity:1}40%{opacity:0;transform:translateX(-50%) translateY(-8px)}100%{opacity:0}}
+  @keyframes typeit{to{width:11ch}}
+  @keyframes caretoff{to{border-color:transparent}}
+
+  /* ---------- property detail card (map scene) ---------- */
+  .card{position:absolute;left:50%;bottom:36px;transform:translate(-50%,120%);width:560px;
+    background:#fff;border-radius:22px;box-shadow:0 30px 60px rgba(0,0,0,.35);overflow:hidden;z-index:6;opacity:0}
+  .card.on{animation:cardUp .7s cubic-bezier(.2,1.2,.3,1) 13.6s forwards, cardDown .5s ease 17.6s forwards}
+  @keyframes cardUp{0%{opacity:0;transform:translate(-50%,120%)}100%{opacity:1;transform:translate(-50%,0)}}
+  @keyframes cardDown{to{opacity:0;transform:translate(-50%,40%)}}
+  .card .top{display:flex;align-items:center;gap:14px;padding:20px 24px 10px}
+  .card .st{font-size:16px;font-weight:800;color:#fff;background:var(--construction);padding:6px 14px;border-radius:999px;letter-spacing:.3px}
+  .card .nm{font-size:30px;font-weight:800;color:var(--ink);line-height:1.1}
+  .card .loc{font-size:19px;font-weight:600;color:#6b746e;padding:0 24px}
+  .card .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px 24px}
+  .card .cell{background:#f6f4ee;border-radius:14px;padding:12px 16px}
+  .card .cell small{display:block;font-size:15px;font-weight:600;color:#8a8375}
+  .card .cell b{font-size:24px;font-weight:800;color:var(--ink)}
+  .card .cell b.price{color:var(--forest)}
+  .card .rera{display:flex;align-items:center;gap:12px;margin:0 24px 20px;background:#e8f3ec;border:1px solid #cfe6d5;
+    border-radius:14px;padding:12px 16px;color:var(--forest);font-weight:800;font-size:20px}
+  .card .rera .tick{width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px}
+
+  /* ---------- caption chips ---------- */
+  .cap{position:absolute;left:50%;bottom:36px;transform:translateX(-50%);text-align:center;
+    font-size:38px;font-weight:800;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.45);opacity:0;width:900px}
+  .cap b{color:#f6d58f}
+  #capHome{animation:capA 20s linear forwards}
+  #capMap{animation:capB 20s linear forwards}
+  @keyframes capA{0%,15%{opacity:0}18%{opacity:1}36%{opacity:1}40%{opacity:0}100%{opacity:0}}
+  @keyframes capB{0%,42%{opacity:0}45%{opacity:1}66%{opacity:1}69%{opacity:0}100%{opacity:0}}
+
+  /* ---------- animated cursor ---------- */
+  .cursor{position:absolute;width:42px;height:42px;left:0;top:0;z-index:30;opacity:0;
+    filter:drop-shadow(0 4px 6px rgba(0,0,0,.4));animation:cursorPath 20s ease-in-out forwards}
+  .cursor svg{width:100%;height:100%}
+  @keyframes cursorPath{
+    0%{opacity:0;transform:translate(560px,560px)}
+    14%{opacity:0;transform:translate(560px,560px)}
+    16%{opacity:1;transform:translate(560px,520px)}
+    27%{transform:translate(540px,372px)}            /* over search */
+    34%{transform:translate(540px,372px)}
+    38%{transform:translate(690px,470px) scale(.86)}  /* click explore */
+    40%{transform:translate(690px,470px) scale(1)}
+    46%{opacity:1;transform:translate(560px,500px)}
+    52%{transform:translate(500px,470px)}             /* over pin A */
+    56%{transform:translate(500px,470px) scale(.84)}  /* click pin */
+    58%{transform:translate(500px,470px) scale(1)}
+    66%{transform:translate(540px,560px)}
+    70%{opacity:0;transform:translate(540px,620px)}
+    100%{opacity:0}
+  }
+
+  /* ---------- SCENE 1 intro ---------- */
+  #intro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    animation:introHide 3s ease forwards;z-index:40}
+  @keyframes introHide{0%{opacity:1}80%{opacity:1}100%{opacity:0;visibility:hidden}}
+  .ipin{width:150px;height:150px;position:relative;margin-bottom:30px;animation:drop .9s cubic-bezier(.2,1.4,.4,1) .15s both}
+  .ipin svg{width:100%;height:100%;filter:drop-shadow(0 18px 30px rgba(0,0,0,.35))}
+  .ipin .png{position:absolute;left:50%;top:40%;width:40px;height:40px;transform:translate(-50%,-50%);border-radius:50%;background:#fff;opacity:.6;animation:ping 1.6s ease-out .9s infinite}
+  @keyframes ping{100%{transform:translate(-50%,-50%) scale(3.2);opacity:0}}
+  .iword{font-size:94px;font-weight:800;color:#fff;letter-spacing:-2px;opacity:0;animation:rise .7s ease .7s both}
+  .iword b{color:#f6d58f}
+  .isub{margin-top:14px;font-size:32px;font-weight:600;color:#cfe9d9;opacity:0;animation:rise .7s ease 1s both}
+  @keyframes drop{0%{transform:translateY(-220px) scale(.6);opacity:0}70%{opacity:1}100%{transform:translateY(0) scale(1);opacity:1}}
+  @keyframes rise{0%{transform:translateY(26px);opacity:0}100%{transform:translateY(0);opacity:1}}
+
+  /* ---------- SCENE 5 CTA ---------- */
+  #cta{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    opacity:0;z-index:40;animation:ctaShow 2.4s ease 17.9s forwards}
+  @keyframes ctaShow{0%{opacity:0}12%{opacity:1}100%{opacity:1}}
+  .cpin{width:120px;height:120px;margin-bottom:22px;animation:drop .8s cubic-bezier(.2,1.4,.4,1) 18s both}
+  .cpin svg{width:100%;height:100%;filter:drop-shadow(0 16px 26px rgba(0,0,0,.35))}
+  .cbig{font-size:78px;font-weight:800;color:#fff;letter-spacing:-1px;text-align:center;opacity:0;animation:rise .6s ease 18.15s both}
+  .cbig b{color:#f6d58f}
+  .csub{margin-top:16px;font-size:34px;font-weight:600;color:#cfe9d9;opacity:0;animation:rise .6s ease 18.4s both}
+  .curl{margin-top:40px;font-size:42px;font-weight:800;color:var(--forest);background:#f6d58f;padding:20px 50px;border-radius:999px;box-shadow:0 20px 40px rgba(0,0,0,.3);opacity:0;animation:pop .6s cubic-bezier(.2,1.5,.4,1) 18.7s both}
+  @keyframes pop{0%{opacity:0;transform:scale(.6)}100%{opacity:1;transform:scale(1)}}
+  .cfree{margin-top:24px;font-size:26px;font-weight:600;color:#cfe9d9;opacity:0;animation:rise .6s ease 19.1s both}
+
+  .prog{position:absolute;left:0;bottom:0;height:0;width:0}
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+
+  <!-- persistent brand strip -->
+  <div class="topbar">
+    <svg class="mk" viewBox="0 0 100 120"><path d="M50 2C25 2 6 21 6 46c0 31 44 72 44 72s44-41 44-72C94 21 75 2 50 2z" fill="#f6d58f"/><circle cx="50" cy="46" r="17" fill="#0f5c47"/></svg>
+    <div class="wd">Mapping<b>g</b></div>
+  </div>
+
+  <!-- browser mock -->
+  <div class="browser on" id="browser">
+    <div class="bbar">
+      <div class="dots"><i></i><i></i><i></i></div>
+      <div class="url"><span class="lock">🔒</span> mappingg.com</div>
+    </div>
+    <div class="bbody">
+      <div class="shot home"></div>
+      <div class="shot map"></div>
+
+      <!-- pin pulses -->
+      <div class="pz" id="pzA"></div>
+      <div class="pz" id="pzB"></div>
+      <div class="pz" id="pzC"></div>
+
+      <!-- typed search -->
+      <div class="typebox on"><span class="mag">🔍</span><span class="txt">Kharadi, Pune</span></div>
+
+      <!-- property detail card -->
+      <div class="card on">
+        <div class="top">
+          <span class="st">Under Construction</span>
+          <div class="nm">Riverfront Residences</div>
+        </div>
+        <div class="loc">Mundhwa – Kharadi, Pune</div>
+        <div class="grid">
+          <div class="cell"><small>Starting price</small><b class="price">₹1.35 Cr</b></div>
+          <div class="cell"><small>Configuration</small><b>3 BHK</b></div>
+          <div class="cell"><small>Carpet area</small><b>1180 sq.ft</b></div>
+          <div class="cell"><small>Possession</small><b>Dec 2026</b></div>
+        </div>
+        <div class="rera"><span class="tick">✓</span> MahaRERA verified · P52100012345</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- captions -->
+  <div class="cap" id="capHome">Search any area, project or <b>budget</b></div>
+  <div class="cap" id="capMap">Every live project on <b>one map</b> · color-coded by status</div>
+
+  <!-- cursor -->
+  <div class="cursor">
+    <svg viewBox="0 0 24 24"><path d="M4 2l16 8-7 2-2 7z" fill="#fff" stroke="#1d2b26" stroke-width="1.3" stroke-linejoin="round"/></svg>
+  </div>
+
+  <!-- SCENE 1 intro -->
+  <div id="intro">
+    <div class="ipin"><span class="png"></span>
+      <svg viewBox="0 0 100 120"><path d="M50 2C25 2 6 21 6 46c0 31 44 72 44 72s44-41 44-72C94 21 75 2 50 2z" fill="#f6d58f"/><circle cx="50" cy="46" r="17" fill="#0f5c47"/></svg>
+    </div>
+    <div class="iword">Mapping<b>g</b></div>
+    <div class="isub">Every property project, mapped &amp; verified</div>
+  </div>
+
+  <!-- SCENE 5 CTA -->
+  <div id="cta">
+    <div class="cpin"><svg viewBox="0 0 100 120"><path d="M50 2C25 2 6 21 6 46c0 31 44 72 44 72s44-41 44-72C94 21 75 2 50 2z" fill="#f6d58f"/><circle cx="50" cy="46" r="17" fill="#0f5c47"/></svg></div>
+    <div class="cbig">Find your home<br>in <b>minutes</b></div>
+    <div class="csub">Pune's live property map — explore it live</div>
+    <div class="curl">mappingg.com</div>
+    <div class="cfree">First 3 searches on us · no sign-up to start</div>
+  </div>
+</div>
+
+<script>
+  function fit(){
+    const s=document.getElementById('stage'), pad=24;
+    const k=Math.min((innerWidth-pad)/1080,(innerHeight-pad)/1080);
+    s.style.transform='scale('+k+')';
+  }
+  addEventListener('resize',fit); fit();
+  // loop the full 20s walkthrough for continuous preview
+  setTimeout(()=>location.reload(), 20400);
+</script>
+</body>
+</html>

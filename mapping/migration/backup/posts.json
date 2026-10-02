@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "3b1038f9-0cb6-4be3-b7fb-fb4897d4bcfd",
+    "id": "3b1038f9-0cb6-4be3-b7fb-fb4897d4bcfd",
+    "slug": "welcome-to-the-mappingg-blog",
+    "title": "Welcome to the Mappingg Blog",
+    "excerpt": "Insights and guides for buying property in Pune.",
+    "content": "<h2>Hello</h2><p>This is our first post. Explore the <a href=\"/map\">live map</a>.</p>",
+    "cover_image": "",
+    "tags": [
+      "Pune",
+      "Guide"
+    ],
+    "author": "Mappingg Team",
+    "status": "published",
+    "seo_title": "",
+    "seo_description": "",
+    "created_at": "2026-09-30T09:04:07.821Z",
+    "updated_at": "2026-09-30T09:04:07.821Z",
+    "published_at": "2026-09-30T09:04:07.821Z"
+  }
+]

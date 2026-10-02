@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "eee88cb0-f5cf-422c-a787-c4d87e8e8dec",
+    "source": "admin",
+    "status": "in_review",
+    "country": "India",
+    "currency": "INR",
+    "area_unit": "sq ft",
+    "price_unit": "Crore",
+    "id": "eee88cb0-f5cf-422c-a787-c4d87e8e8dec",
+    "created_at": "2026-10-01T07:51:09.506Z",
+    "updated_at": "2026-10-01T07:51:09.506Z",
+    "ref_code": "MAP-SUB-00001",
+    "flags": {},
+    "has_unpublished_changes": false
+  },
+  {
+    "_id": "298d1812-2ce1-4d2f-b995-aae0f2b88b4b",
+    "source": "admin",
+    "status": "in_review",
+    "country": "India",
+    "currency": "INR",
+    "area_unit": "sq ft",
+    "price_unit": "Crore",
+    "id": "298d1812-2ce1-4d2f-b995-aae0f2b88b4b",
+    "created_at": "2026-10-01T07:51:47.755Z",
+    "updated_at": "2026-10-01T07:51:47.755Z",
+    "ref_code": "MAP-SUB-00002",
+    "flags": {},
+    "has_unpublished_changes": false
+  }
+]
