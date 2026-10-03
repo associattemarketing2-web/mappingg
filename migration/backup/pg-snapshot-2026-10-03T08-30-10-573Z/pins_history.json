@@ -1,0 +1,30 @@
+[
+  {
+    "_id": "d8a243ff-3539-44ae-8167-4e02268303bb",
+    "id": "d8a243ff-3539-44ae-8167-4e02268303bb",
+    "pin_id": "151a1cc3-3010-49df-adcf-1f3629b31da8",
+    "row_data": {
+      "id": "151a1cc3-3010-49df-adcf-1f3629b31da8",
+      "lat": 18.55,
+      "lng": 73.95,
+      "type": "Residential",
+      "image": null,
+      "price": "₹90L",
+      "title": "Smoke Tower One",
+      "hidden": true,
+      "status": "upcoming",
+      "location": "Kharadi, Pune",
+      "rejected": false,
+      "developer": "Smoke Developers One",
+      "created_at": "2026-10-02T07:58:24.817Z",
+      "updated_at": "2026-10-02T07:58:24.817Z",
+      "description": "",
+      "configuration": "",
+      "owner_user_id": "3ac78d97-065a-4fac-8ae0-0b02edaf33ea",
+      "pending_review": true
+    },
+    "operation": "update",
+    "changed_at": "2026-10-02T07:58:25.931Z",
+    "history_id": "f6b5d90c-53d3-43cb-9368-69f77117859a"
+  }
+]
