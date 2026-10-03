@@ -167,12 +167,17 @@ a.adm-chip { padding: 7px 12px; }
 .crm-search:focus { outline: none; border-color: var(--forest); box-shadow: 0 0 0 3px rgba(15,92,71,.12); }
 
 .crm-table td { vertical-align: middle; }
+/* Long emails, org names, RERA numbers and URLs wrap inside their cell instead
+   of forcing the table wider than its panel (which spilled out / caused a
+   horizontal scrollbar on tablet/laptop widths). */
+.crm-table td, .crm-table th { overflow-wrap: anywhere; word-break: break-word; }
 .crm-row { cursor: pointer; }
 .crm-row:hover { background: var(--bg); }
 .crm-ini { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--accent-50); color: var(--forest); font-weight: 700; font-size: 12.5px; flex-shrink: 0; }
-.crm-id { display: inline-flex; flex-direction: column; line-height: 1.25; }
-.crm-id small { color: var(--muted); font-size: 12px; }
-.t-title { display: flex; align-items: center; gap: 10px; }
+.crm-id { display: inline-flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+.crm-id small { color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+.crm-id b { overflow-wrap: anywhere; }
+.t-title { display: flex; align-items: center; gap: 10px; min-width: 0; }
 
 .crm-pill { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; }
 .crm-pill.new { background: var(--water-50); color: var(--water); }
@@ -207,8 +212,25 @@ a.adm-chip { padding: 7px 12px; }
 @media (max-width: 760px) {
   .crm-stats { grid-template-columns: repeat(3, 1fr); }
   .crm-tools { flex-wrap: wrap; }
+  .crm-search { flex: 1; min-width: 0; }
 }
 @media (max-width: 480px) { .crm-stats { grid-template-columns: repeat(2, 1fr); } }
+
+/* Phones: the 6-column Accounts / Leads tables can't fit side-by-side, so stack
+   each row into a compact card. No horizontal scrollbar, nothing hidden — the
+   full record is one tap away in the drawer. Targets .crm-table specifically
+   (the plain .adm-table already stacks via its own rule above). */
+@media (max-width: 600px) {
+  .crm-table, .crm-table tbody, .crm-table tr, .crm-table td { display: block; width: 100%; }
+  .crm-table thead { display: none; }
+  .crm-table tr { position: relative; padding: 12px 46px 12px 0; border-bottom: 1px solid var(--line); }
+  .crm-table tr:last-child { border-bottom: none; }
+  .crm-table td { border: none; padding: 2px 0; }
+  /* Keep the avatar beside the name (td:block would otherwise stack them). */
+  .crm-table td.t-title { display: flex; margin-bottom: 4px; }
+  /* The trailing "Open" button cell floats to the top-right of the card. */
+  .crm-table td:last-child { position: absolute; top: 12px; right: 0; width: auto; padding: 0; }
+}
 
 /* ---- Backups tab ---- */
 .bk-hero { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }

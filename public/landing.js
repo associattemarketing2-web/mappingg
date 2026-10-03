@@ -465,7 +465,27 @@
     var q = new URLSearchParams(location.search);
     if (q.get('admin') === '1') openModal('signin', null, 'Sign in to open the admin dashboard.');
     else if (q.get('signin') === '1') openModal('signin');
+    // Surface a failed Google sign-in (redirected back here by the OAuth callback).
+    var oauthErr = q.get('error');
+    if (oauthErr) {
+      var messages = {
+        google_not_configured: 'Google sign-in isn’t set up yet.',
+        google_denied: 'Google sign-in was cancelled.',
+        google_unverified: 'That Google account’s email isn’t verified.',
+        oauth_state: 'Your sign-in session expired — please try again.',
+        google_failed: 'Couldn’t sign in with Google — please try again.',
+      };
+      toast(messages[oauthErr] || 'Sign-in failed — please try again.', 'fa-triangle-exclamation');
+    }
   } catch (e) {}
+
+  // "Continue with Google" → hand off to the server-side OAuth start route,
+  // which redirects to Google's consent screen (PKCE + state set there).
+  var googleBtn = document.querySelector('.btn-google');
+  if (googleBtn) googleBtn.addEventListener('click', function () {
+    googleBtn.disabled = true;
+    window.location.href = '/api/auth/google/start';
+  });
 
   /* ---------- Globe ---------- */
   // Builds the on-globe UI: zoom in/out buttons and a readable legend showing

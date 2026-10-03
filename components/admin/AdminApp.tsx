@@ -579,6 +579,11 @@ interface Lead {
   message?: string; source?: string; status: 'new' | 'contacted' | 'won' | 'lost';
   notes?: string; created_at?: string; updated_at?: string;
 }
+// Cap how many lead rows hit the DOM at once so the table stays fast even with
+// thousands of leads. Counts/filters still run over the full set; the admin
+// narrows with search/status to reach older rows.
+const LEADS_RENDER_CAP = 300;
+
 const LEAD_STAGES: { key: Lead['status']; label: string }[] = [
   { key: 'new', label: 'New' },
   { key: 'contacted', label: 'Contacted' },
@@ -604,15 +609,30 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
   const [notes, setNotes] = useState('');
   const [busy, setBusy] = useState(false);
 
-  async function load() {
-    setLoading(true);
+  const [live, setLive] = useState(false);
+
+  // `silent` refreshes (triggered by the real-time stream) skip the spinner so
+  // the table doesn't flash while the admin is reading it.
+  async function load(silent = false) {
+    if (!silent) setLoading(true);
     try {
       const r = await fetch('/api/admin/leads', { credentials: 'same-origin' });
       const b = await r.json();
       setLeads(Array.isArray(b.data) ? b.data : []);
-    } catch { flash('Could not load leads', true); } finally { setLoading(false); }
+    } catch { if (!silent) flash('Could not load leads', true); } finally { if (!silent) setLoading(false); }
   }
   useEffect(() => { load(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Near-real-time updates via SSE: refetch when the server signals the
+  // contact_leads table changed. EventSource auto-reconnects on drop; we refetch
+  // authoritative data so no duplicate rows/notifications can appear.
+  useEffect(() => {
+    const es = new EventSource('/api/admin/leads/stream', { withCredentials: true });
+    es.addEventListener('ready', () => setLive(true));
+    es.addEventListener('changed', () => { void load(true); });
+    es.onerror = () => setLive(false); // EventSource will retry automatically
+    return () => es.close();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const counts = {
     all: leads.length,
@@ -677,8 +697,11 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
         <div className="adm-panel-head">
           <h3>Leads {list.length ? `(${list.length})` : ''}</h3>
           <div className="crm-tools">
+            <span className="crm-live" title={live ? 'Live — updates automatically' : 'Reconnecting…'} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 12, color: live ? '#2f7a3c' : '#9a6a00' }}>
+              <i className="fas fa-circle" style={{ fontSize: 8, color: live ? '#2f7a3c' : '#c9861f' }} /> {live ? 'Live' : 'Offline'}
+            </span>
             <input className="crm-search" placeholder="Search name, email, phone…" value={q} onChange={(e) => setQ(e.target.value)} />
-            <button className="adm-btn ghost sm" onClick={load}><i className="fas fa-rotate" /> Refresh</button>
+            <button className="adm-btn ghost sm" onClick={() => load()}><i className="fas fa-rotate" /> Refresh</button>
           </div>
         </div>
         {loading ? (
@@ -689,7 +712,7 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
           <table className="adm-table crm-table">
             <thead><tr><th>Lead</th><th>Topic</th><th>Status</th><th>Received</th><th></th></tr></thead>
             <tbody>
-              {list.map((l) => (
+              {list.slice(0, LEADS_RENDER_CAP).map((l) => (
                 <tr key={l.id} className="crm-row" onClick={() => open(l)}>
                   <td className="t-title">
                     <span className="crm-ini">{initials(l)}</span>
@@ -703,6 +726,11 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
               ))}
             </tbody>
           </table>
+        )}
+        {!loading && list.length > LEADS_RENDER_CAP && (
+          <div className="adm-empty" style={{ padding: '12px 0' }}>
+            <p>Showing the first {LEADS_RENDER_CAP} of {list.length}. Use search or a status filter to narrow down.</p>
+          </div>
         )}
       </div>
 
