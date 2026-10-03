@@ -411,3 +411,58 @@ a.adm-chip { padding: 7px 12px; }
 .viz-heat-legend i { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
 .viz-heat-legend small { margin-left: 8px; color: #898781; }
 @media (max-width: 760px) { .day-stats { grid-template-columns: 1fr 1fr; } }
+
+/* ===================== Leads sources · accounts by type & location ===================== */
+.crm-tools { flex-wrap: wrap; }
+.crm-select { padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font: inherit; font-size: 13.5px; color: var(--fg); max-width: 240px; }
+.crm-select:focus { outline: none; border-color: var(--forest); box-shadow: 0 0 0 3px rgba(15,92,71,.12); }
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.link-btn { border: none; background: none; padding: 0; font: inherit; color: var(--forest); font-weight: 600; text-decoration: underline; cursor: pointer; }
+
+/* Lead source switch: Map enquiries | Contact form */
+.lead-src { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.lead-src button { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 12px; border: 1px solid var(--line); background: #fff; font: 600 14px var(--font); color: var(--fg); cursor: pointer; }
+.lead-src button i { color: var(--muted); }
+.lead-src button.on { border-color: var(--forest); color: var(--forest); box-shadow: 0 0 0 3px rgba(15,92,71,.12); }
+.lead-src button.on i { color: var(--forest); }
+.lead-src .n, .adm-seg .n { display: inline-block; min-width: 22px; padding: 1px 7px; border-radius: 999px; background: var(--bg); color: var(--muted); font-size: 12px; font-weight: 700; text-align: center; }
+
+/* Type filter + per-type downloads */
+.adm-filterbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+.adm-seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.adm-seg button { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font: 600 12.5px var(--font); color: var(--muted); cursor: pointer; }
+.adm-seg button:hover { border-color: var(--forest); }
+.adm-seg button.on { background: var(--forest); border-color: var(--forest); color: #fff; }
+.adm-seg button.on .n { background: rgba(255,255,255,.2); color: #fff; }
+.dl-group { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.dl-group .lbl { font-size: 12px; font-weight: 600; color: var(--muted); margin-right: 2px; }
+
+/* Location tags in tables */
+.loc-tags { display: inline-flex; flex-wrap: wrap; gap: 4px; }
+.loc-tag { display: inline-block; padding: 2px 8px; border-radius: 999px; background: var(--water-50); color: var(--water); font-size: 12px; font-weight: 600; white-space: nowrap; }
+
+/* Accounts: location summary + one section per type */
+.loc-summary summary { cursor: pointer; font-weight: 600; font-size: 14px; padding: 4px 0; }
+.loc-summary summary i { color: var(--water); margin-right: 4px; }
+.loc-summary summary .muted { font-weight: 400; font-size: 12.5px; }
+.loc-summary-body { max-height: 300px; overflow-y: auto; margin-top: 8px; border: 1px solid var(--line); border-radius: 12px; }
+.loc-summary-body thead th { position: sticky; top: 0; background: var(--card); }
+.crm-table th.num, .crm-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.crm-row.on td { background: var(--accent-50); }
+.acc-section { margin-top: 16px; }
+.acc-section h3 i { color: var(--muted); margin-right: 4px; }
+.acc-section h3 .muted { font-weight: 500; }
+@media (max-width: 720px) {
+  .crm-select, .crm-search { flex: 1 1 100%; max-width: none; min-width: 0; }
+  .adm-filterbar { flex-direction: column; align-items: stretch; }
+}
+/* The location summary is a small number grid: keep it a real table on phones
+   (the other CRM tables turn into cards below 600px). */
+@media (max-width: 600px) {
+  .crm-table.loc-table { display: table; width: 100%; }
+  .crm-table.loc-table thead { display: table-header-group; }
+  .crm-table.loc-table tbody { display: table-row-group; }
+  .crm-table.loc-table tr { display: table-row; position: static; padding: 0; }
+  .crm-table.loc-table th, .crm-table.loc-table td { display: table-cell; position: static; width: auto; padding: 8px 5px; border-bottom: 1px solid var(--line); font-size: 13px; }
+  .crm-table.loc-table th { font-size: 10.5px; white-space: nowrap; word-break: normal; overflow-wrap: normal; }
+}

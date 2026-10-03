@@ -10,7 +10,7 @@ export const dynamic = 'force-dynamic';
 // Developers get a deliberately simpler editor than the super-admin: only the
 // tools they need. These advanced pin fields are hidden in the sidebar…
 const DEV_EDITOR_CSS = `
-  #wrap-field-visibility, #wrap-pin-size, #wrap-public, #wrap-custom-fields { display: none !important; }
+  #wrap-field-visibility, #sec-public-card, #wrap-pin-size, #wrap-public, #wrap-custom-fields, #wrap-highlight { display: none !important; }
 `;
 
 // …and the toolbar is pruned to Add project, Lock/Unlock markers and Satellite.

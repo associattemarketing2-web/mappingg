@@ -235,6 +235,8 @@ export async function runDbOp(op: DbOp, isAuthed: boolean, opts: RunDbOpts = {})
             doc.pending_review = true;
             doc.rejected = false;
             doc.hidden = true;
+            // Highlighting (blinking pin) is a super-admin choice only.
+            doc.highlighted = false;
           }
           doc._id = String(doc.id);
           return doc as AnyDoc;
@@ -260,6 +262,8 @@ export async function runDbOp(op: DbOp, isAuthed: boolean, opts: RunDbOpts = {})
           // never be reassigned by the client.
           query.owner_user_id = opts.developerId;
           delete patch.owner_user_id;
+          // Developers can't turn highlighting on or off; the admin's setting stays.
+          delete patch.highlighted;
           patch.pending_review = true;
           patch.rejected = false;
           patch.hidden = true;

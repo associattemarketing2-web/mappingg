@@ -573,11 +573,72 @@ function EmployeesPanel({ flash }: { flash: (m: string, e?: boolean) => void }) 
   );
 }
 
+/* ---------------------- Shared: people, locations, CSV ---------------------- */
+// The three kinds of public user (and of map enquirer), in the admin's order.
+const PEOPLE_ROLES = ['buyer', 'agent', 'developer'] as const;
+type PersonRole = (typeof PEOPLE_ROLES)[number];
+const ROLE_META: Record<PersonRole, { label: string; short: string; icon: string; file: string }> = {
+  buyer: { label: 'Buyer / Investor', short: 'Buyers', icon: 'fa-house-chimney', file: 'buyers-investors' },
+  agent: { label: 'Agent / Channel Partner', short: 'Agents', icon: 'fa-handshake', file: 'agents-channel-partners' },
+  developer: { label: 'Developer / Builder', short: 'Developers', icon: 'fa-building', file: 'developers-builders' },
+};
+
+// Location filter: '' = every location, NO_LOCATION = rows without one.
+const NO_LOCATION = '__none';
+type Located = { locations?: string[] };
+const matchesLocation = (it: Located, loc: string) =>
+  !loc || (loc === NO_LOCATION ? !it.locations?.length : !!it.locations?.includes(loc));
+/** [location, count] pairs across items, busiest first. */
+function locationCounts(items: Located[]): [string, number][] {
+  const m = new Map<string, number>();
+  for (const it of items) for (const l of it.locations || []) m.set(l, (m.get(l) || 0) + 1);
+  return Array.from(m.entries()).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+}
+function LocationSelect({ items, value, onChange }: { items: Located[]; value: string; onChange: (v: string) => void }) {
+  const opts = locationCounts(items);
+  const none = items.filter((it) => !it.locations?.length).length;
+  return (
+    <select className="crm-select" aria-label="Filter by location" value={value} onChange={(e) => onChange(e.target.value)}>
+      <option value="">All locations</option>
+      {opts.map(([l, n]) => <option key={l} value={l}>{l} ({n})</option>)}
+      {none > 0 && <option value={NO_LOCATION}>No location given ({none})</option>}
+    </select>
+  );
+}
+const locationLabel = (loc: string) => (loc === NO_LOCATION ? 'no-location' : loc);
+
+// Spreadsheet-safe CSV: a UTF-8 BOM so Excel shows ₹ and accents, every cell
+// quoted, and a leading ' on cells that would otherwise run as a formula.
+function downloadCsv(filename: string, head: string[], rows: unknown[][]) {
+  const cell = (v: unknown) => {
+    let s = v == null ? '' : Array.isArray(v) ? v.join(', ') : String(v);
+    if (/^[=+\-@\t\r]/.test(s)) s = `'${s}`;
+    return `"${s.replace(/"/g, '""')}"`;
+  };
+  const csv = '﻿' + [head, ...rows].map((r) => r.map(cell).join(',')).join('\r\n');
+  const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+const fileSlug = (...parts: string[]) =>
+  ['mappingg', ...parts, new Date().toISOString().slice(0, 10)]
+    .map((p) => p.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''))
+    .filter(Boolean).join('-') + '.csv';
+const csvDate = (d?: string | null) => (d ? new Date(d).toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '');
+
 /* ------------------------------ Leads / CRM ------------------------------ */
+// Two sources: "Enquire" requests from project cards on the live map (from
+// buyers/investors, agents and developers) and Contact-form messages.
+type LeadSource = 'map' | 'contact';
 interface Lead {
   id: string; name: string; email?: string; phone?: string; subject?: string;
   message?: string; source?: string; status: 'new' | 'contacted' | 'won' | 'lost';
   notes?: string; created_at?: string; updated_at?: string;
+  // Map enquiries only:
+  role?: PersonRole; pin_id?: string; locations?: string[];
+  project?: { id: string; title: string; number: number | null; location: string } | null;
 }
 // Cap how many lead rows hit the DOM at once so the table stays fast even with
 // thousands of leads. Counts/filters still run over the full set; the admin
@@ -599,12 +660,18 @@ const leadWhen = (d?: string) => {
   if (s < 86400 * 30) return `${Math.floor(s / 86400)} d ago`;
   return new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
 };
+const projectName = (l: Lead) =>
+  l.project ? `${l.project.title || 'Untitled project'}${l.project.number != null ? ` #${l.project.number}` : ''}` : '';
+const stageLabel = (s: Lead['status']) => LEAD_STAGES.find((x) => x.key === s)?.label || s;
 
 function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
-  const [leads, setLeads] = useState<Lead[]>([]);
+  const [bySource, setBySource] = useState<Record<LeadSource, Lead[]>>({ map: [], contact: [] });
+  const [source, setSource] = useState<LeadSource>('map');
   const [loading, setLoading] = useState(true);
   const [q, setQ] = useState('');
   const [filter, setFilter] = useState<'all' | Lead['status']>('all');
+  const [role, setRole] = useState<'all' | PersonRole>('all');
+  const [loc, setLoc] = useState('');
   const [sel, setSel] = useState<Lead | null>(null);
   const [notes, setNotes] = useState('');
   const [busy, setBusy] = useState(false);
@@ -616,15 +683,15 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
   async function load(silent = false) {
     if (!silent) setLoading(true);
     try {
-      const r = await fetch('/api/admin/leads', { credentials: 'same-origin' });
-      const b = await r.json();
-      setLeads(Array.isArray(b.data) ? b.data : []);
+      const get = (s: LeadSource) => fetch(`/api/admin/leads?source=${s}`, { credentials: 'same-origin' }).then((r) => r.json());
+      const [m, c] = await Promise.all([get('map'), get('contact')]);
+      setBySource({ map: Array.isArray(m.data) ? m.data : [], contact: Array.isArray(c.data) ? c.data : [] });
     } catch { if (!silent) flash('Could not load leads', true); } finally { if (!silent) setLoading(false); }
   }
   useEffect(() => { load(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Near-real-time updates via SSE: refetch when the server signals the
-  // contact_leads table changed. EventSource auto-reconnects on drop; we refetch
+  // Near-real-time updates via SSE: refetch when the server signals a lead
+  // table changed. EventSource auto-reconnects on drop; we refetch
   // authoritative data so no duplicate rows/notifications can appear.
   useEffect(() => {
     const es = new EventSource('/api/admin/leads/stream', { withCredentials: true });
@@ -634,31 +701,54 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
     return () => es.close();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  function switchSource(s: LeadSource) {
+    setSource(s); setRole('all'); setLoc(''); setFilter('all'); setQ('');
+  }
+
+  const isMap = source === 'map';
+  const all = bySource[source];
+  // Type + location narrow everything below (status chips, table, downloads).
+  const scoped = all.filter((l) => (!isMap || role === 'all' || l.role === role) && (!isMap || matchesLocation(l, loc)));
   const counts = {
-    all: leads.length,
-    new: leads.filter((l) => l.status === 'new').length,
-    contacted: leads.filter((l) => l.status === 'contacted').length,
-    won: leads.filter((l) => l.status === 'won').length,
-    lost: leads.filter((l) => l.status === 'lost').length,
+    all: scoped.length,
+    new: scoped.filter((l) => l.status === 'new').length,
+    contacted: scoped.filter((l) => l.status === 'contacted').length,
+    won: scoped.filter((l) => l.status === 'won').length,
+    lost: scoped.filter((l) => l.status === 'lost').length,
   };
   const term = q.trim().toLowerCase();
-  const list = leads.filter((l) =>
-    (filter === 'all' || l.status === filter) &&
-    (!term || [l.name, l.email, l.phone, l.subject, l.message].some((x) => (x || '').toLowerCase().includes(term))),
-  );
+  const matchesSearch = (l: Lead) => !term || [l.name, l.email, l.phone, l.subject, l.message, l.project?.title, l.project?.location]
+    .some((x) => (x || '').toLowerCase().includes(term));
+  const list = scoped.filter((l) => (filter === 'all' || l.status === filter) && matchesSearch(l));
+  // Downloads follow the location / status / search filters, split by type.
+  const forDownload = (r: PersonRole) => all.filter((l) => l.role === r && matchesLocation(l, loc) && (filter === 'all' || l.status === filter) && matchesSearch(l));
+
+  function downloadMap(r: PersonRole) {
+    const rows = forDownload(r);
+    downloadCsv(fileSlug('map-enquiries', ROLE_META[r].file, loc ? locationLabel(loc) : ''),
+      ['Name', 'Email', 'WhatsApp', 'Type', 'Project', 'Project no.', 'Project location', 'Locality', 'Status', 'Notes', 'Received'],
+      rows.map((l) => [l.name, l.email, l.phone, ROLE_META[r].label, l.project?.title, l.project?.number, l.project?.location, l.locations, stageLabel(l.status), l.notes, csvDate(l.created_at)]));
+  }
+  function downloadContact() {
+    downloadCsv(fileSlug('contact-leads'),
+      ['Name', 'Email', 'Phone', 'Topic', 'Message', 'Status', 'Notes', 'Received'],
+      list.map((l) => [l.name, l.email, l.phone, l.subject, l.message, stageLabel(l.status), l.notes, csvDate(l.created_at)]));
+  }
 
   function open(l: Lead) { setSel(l); setNotes(l.notes || ''); }
+  const replace = (id: string, next: Lead | null) =>
+    setBySource((b) => ({ ...b, [source]: next ? b[source].map((x) => (x.id === id ? next : x)) : b[source].filter((x) => x.id !== id) }));
 
   async function patch(id: string, body: Record<string, unknown>) {
     setBusy(true);
     try {
       const r = await fetch('/api/admin/leads', {
         method: 'PATCH', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin',
-        body: JSON.stringify({ id, ...body }),
+        body: JSON.stringify({ id, source, ...body }),
       });
       const b = await r.json();
       if (!r.ok) throw new Error(b?.error?.message || 'Failed');
-      setLeads((ls) => ls.map((x) => (x.id === id ? b.data : x)));
+      replace(id, b.data);
       setSel((s) => (s && s.id === id ? b.data : s));
       return true;
     } catch (e) { flash(e instanceof Error ? e.message : 'Failed', true); return false; } finally { setBusy(false); }
@@ -673,18 +763,28 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
   async function remove(l: Lead) {
     if (!confirm(`Delete lead from ${l.name}? This cannot be undone.`)) return;
     try {
-      const r = await fetch(`/api/admin/leads?id=${encodeURIComponent(l.id)}`, { method: 'DELETE', credentials: 'same-origin' });
+      const r = await fetch(`/api/admin/leads?source=${source}&id=${encodeURIComponent(l.id)}`, { method: 'DELETE', credentials: 'same-origin' });
       if (!r.ok) throw new Error();
-      setLeads((ls) => ls.filter((x) => x.id !== l.id));
+      replace(l.id, null);
       if (sel?.id === l.id) setSel(null);
       flash('Lead deleted');
     } catch { flash('Delete failed', true); }
   }
 
   const initials = (l: Lead) => (l.name || l.email || '?').slice(0, 2).toUpperCase();
+  const roleCount = (r: PersonRole) => bySource.map.filter((l) => l.role === r && matchesLocation(l, loc)).length;
 
   return (
     <>
+      <div className="lead-src" role="tablist" aria-label="Lead source">
+        <button role="tab" aria-selected={isMap} className={isMap ? 'on' : ''} onClick={() => switchSource('map')}>
+          <i className="fas fa-map-location-dot" /> Map enquiries <span className="n">{bySource.map.length}</span>
+        </button>
+        <button role="tab" aria-selected={!isMap} className={!isMap ? 'on' : ''} onClick={() => switchSource('contact')}>
+          <i className="fas fa-envelope" /> Contact form <span className="n">{bySource.contact.length}</span>
+        </button>
+      </div>
+
       <div className="crm-stats">
         {([['all', 'Total'], ['new', 'New'], ['contacted', 'Contacted'], ['won', 'Won'], ['lost', 'Lost']] as const).map(([k, lbl]) => (
           <button key={k} className={`crm-stat${filter === k ? ' on' : ''} s-${k}`} onClick={() => setFilter(k as typeof filter)}>
@@ -695,41 +795,89 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
 
       <div className="adm-panel">
         <div className="adm-panel-head">
-          <h3>Leads {list.length ? `(${list.length})` : ''}</h3>
+          <h3>{isMap ? 'Map enquiries' : 'Contact leads'} {list.length ? `(${list.length})` : ''}</h3>
           <div className="crm-tools">
             <span className="crm-live" title={live ? 'Live — updates automatically' : 'Reconnecting…'} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 12, color: live ? '#2f7a3c' : '#9a6a00' }}>
               <i className="fas fa-circle" style={{ fontSize: 8, color: live ? '#2f7a3c' : '#c9861f' }} /> {live ? 'Live' : 'Offline'}
             </span>
-            <input className="crm-search" placeholder="Search name, email, phone…" value={q} onChange={(e) => setQ(e.target.value)} />
+            <input className="crm-search" placeholder={isMap ? 'Search name, email, phone, project…' : 'Search name, email, phone…'} value={q} onChange={(e) => setQ(e.target.value)} />
+            {isMap && <LocationSelect items={bySource.map} value={loc} onChange={setLoc} />}
             <button className="adm-btn ghost sm" onClick={() => load()}><i className="fas fa-rotate" /> Refresh</button>
           </div>
         </div>
+
+        {isMap && (
+          <div className="adm-filterbar">
+            <div className="adm-seg" role="group" aria-label="Enquirer type">
+              <button className={role === 'all' ? 'on' : ''} onClick={() => setRole('all')}>All types <span className="n">{bySource.map.filter((l) => matchesLocation(l, loc)).length}</span></button>
+              {PEOPLE_ROLES.map((r) => (
+                <button key={r} className={role === r ? 'on' : ''} onClick={() => setRole(r)}>
+                  <i className={`fas ${ROLE_META[r].icon}`} /> {ROLE_META[r].label} <span className="n">{roleCount(r)}</span>
+                </button>
+              ))}
+            </div>
+            <div className="dl-group">
+              <span className="lbl"><i className="fas fa-download" /> Download</span>
+              {PEOPLE_ROLES.map((r) => (
+                <button key={r} className="adm-btn ghost sm" disabled={!forDownload(r).length} onClick={() => downloadMap(r)} title={`Download ${ROLE_META[r].label} enquiries as CSV`}>
+                  {ROLE_META[r].short} ({forDownload(r).length})
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+        {!isMap && (
+          <div className="adm-filterbar">
+            <span className="muted" style={{ fontSize: 13 }}>Messages sent from the website&apos;s Contact page.</span>
+            <button className="adm-btn ghost sm" disabled={!list.length} onClick={downloadContact}><i className="fas fa-file-csv" /> Download CSV ({list.length})</button>
+          </div>
+        )}
+
         {loading ? (
           <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>
         ) : list.length === 0 ? (
-          <div className="adm-empty"><i className="fas fa-address-book" /><p>No leads yet. Submissions from the Contact form appear here.</p></div>
+          <div className="adm-empty">
+            <i className={`fas ${isMap ? 'fa-map-location-dot' : 'fa-address-book'}`} />
+            <p>{all.length === 0
+              ? (isMap ? 'No map enquiries yet. When someone taps Enquire on a project card on the live map, it appears here.' : 'No leads yet. Submissions from the Contact form appear here.')
+              : 'Nothing matches these filters.'}</p>
+          </div>
         ) : (
-          <table className="adm-table crm-table">
-            <thead><tr><th>Lead</th><th>Topic</th><th>Status</th><th>Received</th><th></th></tr></thead>
-            <tbody>
-              {list.slice(0, LEADS_RENDER_CAP).map((l) => (
-                <tr key={l.id} className="crm-row" onClick={() => open(l)}>
-                  <td className="t-title">
-                    <span className="crm-ini">{initials(l)}</span>
-                    <span className="crm-id"><b>{l.name}</b><small>{l.email || l.phone || '—'}</small></span>
-                  </td>
-                  <td>{l.subject || '—'}</td>
-                  <td><span className={`crm-pill ${l.status}`}>{LEAD_STAGES.find((s) => s.key === l.status)?.label}</span></td>
-                  <td className="muted">{leadWhen(l.created_at)}</td>
-                  <td><button className="adm-btn ghost sm" onClick={(e) => { e.stopPropagation(); open(l); }}>Open</button></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="table-scroll">
+            <table className="adm-table crm-table">
+              <thead>
+                {isMap
+                  ? <tr><th>Lead</th><th>Type</th><th>Project</th><th>Location</th><th>Status</th><th>Received</th><th></th></tr>
+                  : <tr><th>Lead</th><th>Topic</th><th>Status</th><th>Received</th><th></th></tr>}
+              </thead>
+              <tbody>
+                {list.slice(0, LEADS_RENDER_CAP).map((l) => (
+                  <tr key={l.id} className="crm-row" onClick={() => open(l)}>
+                    <td className="t-title">
+                      <span className="crm-ini">{initials(l)}</span>
+                      <span className="crm-id"><b>{l.name}</b><small>{l.email || l.phone || '—'}</small></span>
+                    </td>
+                    {isMap ? (
+                      <>
+                        <td><i className={`fas ${ROLE_META[l.role || 'buyer'].icon}`} style={{ color: 'var(--muted)', marginRight: 6 }} />{ROLE_META[l.role || 'buyer'].label}</td>
+                        <td>{projectName(l) || <span className="muted">Project removed</span>}</td>
+                        <td>{l.locations?.length ? <span className="loc-tags">{l.locations.map((x) => <span className="loc-tag" key={x}>{x}</span>)}</span> : <span className="muted">—</span>}</td>
+                      </>
+                    ) : (
+                      <td>{l.subject || '—'}</td>
+                    )}
+                    <td><span className={`crm-pill ${l.status}`}>{stageLabel(l.status)}</span></td>
+                    <td className="muted">{leadWhen(l.created_at)}</td>
+                    <td><button className="adm-btn ghost sm" onClick={(e) => { e.stopPropagation(); open(l); }}>Open</button></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
         {!loading && list.length > LEADS_RENDER_CAP && (
           <div className="adm-empty" style={{ padding: '12px 0' }}>
-            <p>Showing the first {LEADS_RENDER_CAP} of {list.length}. Use search or a status filter to narrow down.</p>
+            <p>Showing the first {LEADS_RENDER_CAP} of {list.length}. Use search or a filter to narrow down.</p>
           </div>
         )}
       </div>
@@ -738,7 +886,7 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
         <div className="crm-drawer-overlay" onClick={() => setSel(null)}>
           <aside className="crm-drawer" onClick={(e) => e.stopPropagation()}>
             <div className="crm-drawer-head">
-              <div className="crm-id big"><span className="crm-ini">{initials(sel)}</span><span><b>{sel.name}</b><small>{sel.subject}</small></span></div>
+              <div className="crm-id big"><span className="crm-ini">{initials(sel)}</span><span><b>{sel.name}</b><small>{isMap ? ROLE_META[sel.role || 'buyer'].label : sel.subject}</small></span></div>
               <button className="adm-btn ghost sm" onClick={() => setSel(null)}><i className="fas fa-xmark" /></button>
             </div>
 
@@ -752,11 +900,31 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
 
             <div className="crm-contact">
               {sel.email && <a className="adm-btn ghost sm" href={`mailto:${sel.email}`}><i className="fas fa-envelope" /> {sel.email}</a>}
-              {sel.phone && <a className="adm-btn ghost sm" href={`tel:${sel.phone}`}><i className="fas fa-phone" /> {sel.phone}</a>}
+              {sel.phone && <a className="adm-btn ghost sm" href={`tel:${sel.phone.replace(/\s/g, '')}`}><i className="fas fa-phone" /> {sel.phone}</a>}
               {sel.phone && <a className="adm-btn ghost sm" target="_blank" rel="noopener" href={`https://wa.me/${sel.phone.replace(/\D/g, '')}`}><i className="fab fa-whatsapp" /> WhatsApp</a>}
             </div>
 
-            <div className="crm-block"><h4>Message</h4><p className="crm-msg">{sel.message || '—'}</p></div>
+            {isMap ? (
+              <div className="crm-block">
+                <h4>Asked about</h4>
+                {sel.project ? (
+                  <table className="adm-table">
+                    <tbody>
+                      <tr><td className="muted">Project</td><td>{projectName(sel)}</td></tr>
+                      <tr><td className="muted">Location</td><td>{sel.project.location || '—'}</td></tr>
+                      <tr><td className="muted">Enquirer type</td><td>{ROLE_META[sel.role || 'buyer'].label}</td></tr>
+                    </tbody>
+                  </table>
+                ) : <p className="crm-msg">This project has since been removed from the map.</p>}
+                {sel.project && (
+                  <div className="adm-actions" style={{ marginTop: 8 }}>
+                    <a className="adm-btn ghost sm" href={`/map?pin=${encodeURIComponent(sel.project.id)}`} target="_blank" rel="noopener"><i className="fas fa-map-location-dot" /> View on map</a>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="crm-block"><h4>Message</h4><p className="crm-msg">{sel.message || '—'}</p></div>
+            )}
             <div className="crm-block">
               <h4>Internal notes</h4>
               <textarea className="crm-notes" rows={4} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Add a note for your team…" />
@@ -765,7 +933,7 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
                 <button className="adm-btn danger sm" onClick={() => remove(sel)}><i className="fas fa-trash" /> Delete</button>
               </div>
             </div>
-            <p className="crm-meta">Received {leadWhen(sel.created_at)} · via {sel.source || 'contact form'}</p>
+            <p className="crm-meta">Received {leadWhen(sel.created_at)} · via {isMap ? 'Enquire on the live map' : (sel.source || 'contact form')}</p>
           </aside>
         </div>
       )}
@@ -780,12 +948,10 @@ interface Account {
   role: 'buyer' | 'developer' | 'agent'; verified?: boolean; notes?: string;
   verification?: 'pending' | 'approved' | 'rejected'; verification_note?: string; verified_at?: string | null; verified_by?: string | null;
   profile?: Record<string, string>; created_at?: string; updated_at?: string;
+  // Buyer: preferred areas · agent: areas they work in · developer: where their projects are.
+  locations?: string[];
 }
-const ACCOUNT_ROLES: Record<Account['role'], { label: string; icon: string }> = {
-  buyer: { label: 'Buyer / Investor', icon: 'fa-house-chimney' },
-  developer: { label: 'Developer / Builder', icon: 'fa-building' },
-  agent: { label: 'Agent / Channel Partner', icon: 'fa-handshake' },
-};
+const ACCOUNT_ROLES = ROLE_META;
 // Sign-up form fields per role, in form order, with readable labels.
 const PROFILE_FIELDS: Record<Account['role'], [string, string][]> = {
   buyer: [['area', 'Preferred area'], ['configuration', 'Configuration'], ['budget', 'Budget'], ['timeline', 'Planning to buy'], ['purpose', 'Buying for']],
@@ -807,6 +973,7 @@ function AccountsPanel({ flash, isOwner, onPendingChange }: {
   const [loading, setLoading] = useState(true);
   const [q, setQ] = useState('');
   const [filter, setFilter] = useState<'all' | Account['role'] | 'pending' | 'rejected'>('all');
+  const [loc, setLoc] = useState('');
   const [rejectReason, setRejectReason] = useState('');
   const [rejecting, setRejecting] = useState(false);
   const [sel, setSel] = useState<Account | null>(null);
@@ -826,21 +993,38 @@ function AccountsPanel({ flash, isOwner, onPendingChange }: {
   useEffect(() => { load(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const isPending = (a: Account) => statusOf(a) === 'pending';
+  // The location filter narrows every count, section and download below.
+  const scoped = rows.filter((a) => matchesLocation(a, loc));
   const counts = {
-    all: rows.length,
-    buyer: rows.filter((a) => a.role === 'buyer').length,
-    developer: rows.filter((a) => a.role === 'developer').length,
-    agent: rows.filter((a) => a.role === 'agent').length,
-    pending: rows.filter(isPending).length,
-    rejected: rows.filter((a) => statusOf(a) === 'rejected').length,
+    all: scoped.length,
+    buyer: scoped.filter((a) => a.role === 'buyer').length,
+    developer: scoped.filter((a) => a.role === 'developer').length,
+    agent: scoped.filter((a) => a.role === 'agent').length,
+    pending: scoped.filter(isPending).length,
+    rejected: scoped.filter((a) => statusOf(a) === 'rejected').length,
   };
-  useEffect(() => { if (!loading) onPendingChange?.(counts.pending); }, [counts.pending, loading]); // eslint-disable-line react-hooks/exhaustive-deps
+  const pendingTotal = rows.filter(isPending).length;
+  useEffect(() => { if (!loading) onPendingChange?.(pendingTotal); }, [pendingTotal, loading]); // eslint-disable-line react-hooks/exhaustive-deps
   const queue = rows.filter(isPending).sort((a, b) => String(a.created_at || '').localeCompare(String(b.created_at || '')));
   const term = q.trim().toLowerCase();
-  const list = rows.filter((a) =>
-    (filter === 'all' || (filter === 'pending' || filter === 'rejected' ? statusOf(a) === filter : a.role === filter)) &&
-    (!term || [a.name, a.email, a.mobile, ...Object.values(a.profile || {})].some((x) => String(x || '').toLowerCase().includes(term))),
+  const matchesSearch = (a: Account) =>
+    !term || [a.name, a.email, a.mobile, ...(a.locations || []), ...Object.values(a.profile || {})].some((x) => String(x || '').toLowerCase().includes(term));
+  const list = scoped.filter((a) =>
+    (filter === 'all' || (filter === 'pending' || filter === 'rejected' ? statusOf(a) === filter : a.role === filter)) && matchesSearch(a),
   );
+  // One section per account type; a type filter shows just that one.
+  const sections = (PEOPLE_ROLES as readonly Account['role'][])
+    .filter((r) => filter === 'all' || filter === r || list.some((a) => a.role === r))
+    .map((r) => ({ role: r, rows: list.filter((a) => a.role === r) }));
+  // Location-wise summary across all accounts (search applies, type/status don't).
+  const searched = rows.filter(matchesSearch);
+  const byLocation = [
+    ...locationCounts(searched).map(([l]) => l),
+    ...(searched.some((a) => !a.locations?.length) ? [NO_LOCATION] : []),
+  ].map((l) => {
+    const inLoc = searched.filter((a) => matchesLocation(a, l));
+    return { loc: l, buyer: inLoc.filter((a) => a.role === 'buyer').length, agent: inLoc.filter((a) => a.role === 'agent').length, developer: inLoc.filter((a) => a.role === 'developer').length, total: inLoc.length };
+  });
 
   function open(a: Account) { setSel(a); setNotes(a.notes || ''); setNewPass(''); setRejectReason(''); setRejecting(false); }
 
@@ -883,16 +1067,30 @@ function AccountsPanel({ flash, isOwner, onPendingChange }: {
     } catch { flash('Delete failed', true); }
   }
 
-  function exportCsv() {
-    const keys = ['area', 'configuration', 'budget', 'timeline', 'purpose', 'company', 'designation', 'activeProjects', 'reraProject', 'website', 'agency', 'reraAgent', 'areas'];
-    const head = ['Name', 'Email', 'WhatsApp', 'Type', 'Status', 'Signed up', ...keys];
-    const esc = (v: unknown) => `"${String(v ?? '').replace(/"/g, '""')}"`;
-    const lines = list.map((a) => [a.name, a.email, a.mobile, ACCOUNT_ROLES[a.role]?.label, ({ pending: 'Pending', approved: 'Verified', rejected: 'Rejected' } as const)[statusOf(a)], a.created_at, ...keys.map((k) => a.profile?.[k])].map(esc).join(','));
-    const url = URL.createObjectURL(new Blob([[head.map(esc).join(','), ...lines].join('\n')], { type: 'text/csv' }));
-    const link = document.createElement('a');
-    link.href = url; link.download = `mappingg-accounts-${new Date().toISOString().slice(0, 10)}.csv`; link.click();
-    URL.revokeObjectURL(url);
+  const statusText = (a: Account) => (a.role === 'buyer' ? 'Active' : ({ pending: 'Pending', approved: 'Verified', rejected: 'Rejected' } as const)[statusOf(a)]);
+  // One file per account type, with that type's own sign-up fields as columns.
+  // Follows the location / search filters on screen.
+  function downloadRole(role: Account['role']) {
+    const fields = PROFILE_FIELDS[role];
+    const rows = list.filter((a) => a.role === role);
+    downloadCsv(fileSlug('accounts', ACCOUNT_ROLES[role].file, loc ? locationLabel(loc) : ''),
+      ['Name', 'Email', 'WhatsApp', 'Type', 'Status', role === 'developer' ? 'Project locations' : 'Locations', ...fields.map(([, lbl]) => lbl), 'Signed up', 'Notes'],
+      rows.map((a) => [a.name, a.email, a.mobile, ACCOUNT_ROLES[role].label, statusText(a), a.locations, ...fields.map(([k]) => a.profile?.[k]), csvDate(a.created_at), a.notes]));
   }
+  function downloadAll() {
+    const keys = ['area', 'configuration', 'budget', 'timeline', 'purpose', 'company', 'designation', 'activeProjects', 'reraProject', 'website', 'agency', 'reraAgent', 'areas'];
+    downloadCsv(fileSlug('accounts', 'all', loc ? locationLabel(loc) : ''),
+      ['Name', 'Email', 'WhatsApp', 'Type', 'Status', 'Locations', 'Signed up', ...keys],
+      list.map((a) => [a.name, a.email, a.mobile, ACCOUNT_ROLES[a.role]?.label, statusText(a), a.locations, csvDate(a.created_at), ...keys.map((k) => a.profile?.[k])]));
+  }
+  // Short per-type summary for the table: what matters most when scanning.
+  const detailOf = (a: Account) => {
+    const p = a.profile || {};
+    const parts = a.role === 'buyer' ? [p.budget, p.configuration]
+      : a.role === 'agent' ? [p.agency, p.reraAgent && `RERA ${p.reraAgent}`]
+        : [p.company, p.reraProject && `RERA ${p.reraProject}`];
+    return parts.filter(Boolean).join(' · ');
+  };
 
   const initials = (a: Account) => (a.name || a.email || '?').slice(0, 2).toUpperCase();
   const statusPill = (a: Account) => {
@@ -938,36 +1136,77 @@ function AccountsPanel({ flash, isOwner, onPendingChange }: {
         <div className="adm-panel-head">
           <h3>Accounts {list.length ? `(${list.length})` : ''}</h3>
           <div className="crm-tools">
-            <input className="crm-search" placeholder="Search name, email, phone, company, RERA…" value={q} onChange={(e) => setQ(e.target.value)} />
-            <button className="adm-btn ghost sm" onClick={exportCsv} disabled={!list.length}><i className="fas fa-file-csv" /> Export</button>
+            <input className="crm-search" placeholder="Search name, email, phone, company, area, RERA…" value={q} onChange={(e) => setQ(e.target.value)} />
+            <LocationSelect items={rows} value={loc} onChange={setLoc} />
+            <button className="adm-btn ghost sm" onClick={downloadAll} disabled={!list.length}><i className="fas fa-file-csv" /> Download all</button>
             <button className="adm-btn ghost sm" onClick={load}><i className="fas fa-rotate" /> Refresh</button>
           </div>
         </div>
         {loading ? (
           <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>
-        ) : list.length === 0 ? (
+        ) : rows.length === 0 ? (
           <div className="adm-empty"><i className="fas fa-users" /><p>No accounts here yet. Buyers, developers and partners who sign up on the site appear here.</p></div>
         ) : (
-          <table className="adm-table crm-table">
-            <thead><tr><th>Account</th><th>Type</th><th>Company / area</th><th>Status</th><th>Signed up</th><th></th></tr></thead>
-            <tbody>
-              {list.map((a) => (
-                <tr key={a.id} className="crm-row" onClick={() => open(a)}>
-                  <td className="t-title">
-                    <span className="crm-ini">{initials(a)}</span>
-                    <span className="crm-id"><b>{a.name || '—'}</b><small>{a.email}{a.mobile ? ` · ${a.mobile}` : ''}</small></span>
-                  </td>
-                  <td><i className={`fas ${ACCOUNT_ROLES[a.role]?.icon}`} style={{ color: 'var(--muted)', marginRight: 6 }} />{ACCOUNT_ROLES[a.role]?.label || a.role}</td>
-                  <td>{orgOf(a) || <span className="muted">—</span>}</td>
-                  <td>{statusPill(a)}</td>
-                  <td className="muted">{leadWhen(a.created_at)}</td>
-                  <td><button className="adm-btn ghost sm" onClick={(e) => { e.stopPropagation(); open(a); }}>Open</button></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <details className="loc-summary" open={byLocation.length <= 12}>
+            <summary><i className="fas fa-location-dot" /> Accounts by location <span className="muted">· {byLocation.length} location{byLocation.length === 1 ? '' : 's'} · click one to filter</span></summary>
+            <div className="table-scroll loc-summary-body">
+              <table className="adm-table crm-table loc-table">
+                <thead><tr><th>Location</th>{PEOPLE_ROLES.map((r) => <th key={r} className="num">{ACCOUNT_ROLES[r].short}</th>)}<th className="num">Total</th></tr></thead>
+                <tbody>
+                  {byLocation.map((x) => (
+                    <tr key={x.loc} className={`crm-row${loc === x.loc ? ' on' : ''}`} onClick={() => setLoc(loc === x.loc ? '' : x.loc)} aria-selected={loc === x.loc}>
+                      <td>{x.loc === NO_LOCATION ? <span className="muted">No location given</span> : <b>{x.loc}</b>}</td>
+                      {PEOPLE_ROLES.map((r) => <td key={r} className="num">{x[r] || <span className="muted">0</span>}</td>)}
+                      <td className="num"><b>{x.total}</b></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </details>
+        )}
+        {!loading && rows.length > 0 && (loc || term) && (
+          <p className="adm-hint" style={{ marginTop: 10 }}>
+            Showing {loc ? <b>{loc === NO_LOCATION ? 'accounts with no location' : loc}</b> : 'all locations'}{term ? <> matching &ldquo;{q.trim()}&rdquo;</> : null}.{' '}
+            <button className="link-btn" onClick={() => { setLoc(''); setQ(''); }}>Clear filters</button>
+          </p>
         )}
       </div>
+
+      {!loading && rows.length > 0 && sections.map(({ role, rows: secRows }) => (
+        <div className="adm-panel acc-section" key={role}>
+          <div className="adm-panel-head">
+            <h3><i className={`fas ${ACCOUNT_ROLES[role].icon}`} /> {ACCOUNT_ROLES[role].label} <span className="muted">({secRows.length})</span></h3>
+            <button className="adm-btn ghost sm" disabled={!secRows.length} onClick={() => downloadRole(role)} title={`Download ${ACCOUNT_ROLES[role].label} accounts as CSV`}>
+              <i className="fas fa-file-csv" /> Download {ACCOUNT_ROLES[role].short} CSV
+            </button>
+          </div>
+          {secRows.length === 0 ? (
+            <div className="adm-empty" style={{ padding: '18px 0' }}><p>No {ACCOUNT_ROLES[role].label.toLowerCase()} accounts {loc || term ? 'match these filters' : 'yet'}.</p></div>
+          ) : (
+            <div className="table-scroll">
+              <table className="adm-table crm-table">
+                <thead><tr><th>Account</th><th>{role === 'developer' ? 'Project locations' : role === 'agent' ? 'Works in' : 'Preferred area'}</th><th>Details</th><th>Status</th><th>Signed up</th><th></th></tr></thead>
+                <tbody>
+                  {secRows.map((a) => (
+                    <tr key={a.id} className="crm-row" onClick={() => open(a)}>
+                      <td className="t-title">
+                        <span className="crm-ini">{initials(a)}</span>
+                        <span className="crm-id"><b>{a.name || '—'}</b><small>{a.email}{a.mobile ? ` · ${a.mobile}` : ''}</small></span>
+                      </td>
+                      <td>{a.locations?.length ? <span className="loc-tags">{a.locations.map((x) => <span className="loc-tag" key={x}>{x}</span>)}</span> : <span className="muted">—</span>}</td>
+                      <td>{detailOf(a) || <span className="muted">—</span>}</td>
+                      <td>{statusPill(a)}</td>
+                      <td className="muted">{leadWhen(a.created_at)}</td>
+                      <td><button className="adm-btn ghost sm" onClick={(e) => { e.stopPropagation(); open(a); }}>Open</button></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      ))}
 
       {sel && (
         <div className="crm-drawer-overlay" onClick={() => setSel(null)}>
@@ -990,6 +1229,9 @@ function AccountsPanel({ flash, isOwner, onPendingChange }: {
                   {PROFILE_FIELDS[sel.role]?.map(([k, lbl]) => (
                     <tr key={k}><td className="muted">{lbl}</td><td>{sel.profile?.[k] || '—'}</td></tr>
                   ))}
+                  {sel.role === 'developer' && (
+                    <tr><td className="muted">Project locations</td><td>{sel.locations?.length ? sel.locations.join(', ') : '—'}</td></tr>
+                  )}
                   <tr><td className="muted">Signed up</td><td>{sel.created_at ? new Date(sel.created_at).toLocaleString('en-IN') : '—'}</td></tr>
                 </tbody>
               </table>

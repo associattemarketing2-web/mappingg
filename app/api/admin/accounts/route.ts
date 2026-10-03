@@ -5,6 +5,7 @@ import { getDb } from '@/lib/mongodb';
 import { PUBLIC_ROLES, getCurrentUser } from '@/lib/auth';
 import { needsVerification, verificationOf } from '@/lib/verification';
 import { hasPermission } from '@/lib/staff';
+import { localitiesOf, localitiesOfAll } from '@/lib/locality';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -25,7 +26,24 @@ export async function GET() {
   if (!(await hasPermission('accounts'))) return unauthorized();
   const db = await getDb();
   const rows = await db.collection<AnyDoc>('users').find(ROLE_FILTER).sort({ created_at: -1 }).limit(10000).toArray();
-  return NextResponse.json({ data: rows.map(clean) });
+
+  // Locations for the location-wise view: a buyer's preferred area, an agent's
+  // working areas, and for a developer the locations of their projects on the map.
+  const devIds = rows.filter((r) => r.role === 'developer').map((r) => String(r.id));
+  const devPins = devIds.length
+    ? await db.collection<AnyDoc>('pins').find({ owner_user_id: { $in: devIds } }, { projection: { owner_user_id: 1, location: 1 } }).toArray()
+    : [];
+  const pinLocs = new Map<string, unknown[]>();
+  for (const p of devPins) {
+    const k = String(p.owner_user_id);
+    pinLocs.set(k, [...(pinLocs.get(k) || []), p.location]);
+  }
+  const locationsOf = (r: AnyDoc) =>
+    r.role === 'buyer' ? localitiesOf(r.profile?.area)
+      : r.role === 'agent' ? localitiesOf(r.profile?.areas)
+        : localitiesOfAll(pinLocs.get(String(r.id)) || []);
+
+  return NextResponse.json({ data: rows.map((r) => ({ ...clean(r), locations: locationsOf(r) })) });
 }
 
 const patchSchema = z.object({

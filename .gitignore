@@ -17,6 +17,9 @@
 # secrets / data backups that may contain private info
 /migration/backup/leads.json
 /migration/backup/pins_history.json
+# timestamped snapshots written by `npm run sync:supabase` (large; stay local)
+/migration/backup/supabase-*/
+/migration/backup/pg-snapshot-*/
 
 # misc
 .DS_Store
