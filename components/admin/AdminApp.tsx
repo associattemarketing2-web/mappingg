@@ -164,7 +164,7 @@ function DashboardPanel({ onGo }: { onGo: (t: string) => void }) {
             <button onClick={() => onGo('map')}><i className="fas fa-map-location-dot" /><span><b>Map editor</b><small>Add & edit project pins</small></span></button>
             <button onClick={() => onGo('leads')}><i className="fas fa-address-book" /><span><b>Leads</b><small>Reply to enquiries</small></span></button>
             <button onClick={() => onGo('blogs')}><i className="fas fa-newspaper" /><span><b>Blogs</b><small>Write SEO articles</small></span></button>
-            <a href="/s-admin/submissions"><i className="fas fa-location-dot" /><span><b>Developer submissions</b><small>Review & publish to the map</small></span></a>
+            <a href="/dashboard/s-admin/submissions"><i className="fas fa-location-dot" /><span><b>Developer submissions</b><small>Review & publish to the map</small></span></a>
             <a href="/map" target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /><span><b>Live site</b><small>See what visitors see</small></span></a>
           </div>
         </div>
@@ -185,7 +185,7 @@ function DashboardPanel({ onGo }: { onGo: (t: string) => void }) {
 function MapPanel() {
   return (
     <div className="adm-panel" style={{ padding: 0, overflow: 'hidden' }}>
-      <iframe title="Map editor" src="/s-admin/map" className="adm-frame" />
+      <iframe title="Map editor" src="/dashboard/s-admin/map" className="adm-frame" />
     </div>
   );
 }
@@ -1340,10 +1340,16 @@ export default function AdminApp({ user }: { user: AdminUser }) {
   }, [menuOpen]);
 
   // "Lock to this panel": remember on THIS device that the installed app should
-  // open straight to /s-admin (handled by <LockRedirect/> in the root layout).
+  // open straight to /dashboard/s-admin (handled by <LockRedirect/> in the root
+  // layout). Older devices may still have the pre-move '/s-admin' value stored —
+  // that path now redirects to /dashboard/s-admin, so it keeps working.
+  const LOCK_PANEL = '/dashboard/s-admin';
   const [locked, setLocked] = useState(false);
   useEffect(() => {
-    try { setLocked(localStorage.getItem('mg_lock_panel') === '/s-admin'); } catch {}
+    try {
+      const v = localStorage.getItem('mg_lock_panel');
+      setLocked(v === LOCK_PANEL || v === '/s-admin');
+    } catch {}
   }, []);
   function toggleLock() {
     try {
@@ -1352,9 +1358,9 @@ export default function AdminApp({ user }: { user: AdminUser }) {
         setLocked(false);
         flash('Unlocked — the app opens normally now.');
       } else {
-        localStorage.setItem('mg_lock_panel', '/s-admin');
+        localStorage.setItem('mg_lock_panel', LOCK_PANEL);
         setLocked(true);
-        flash('Locked — the installed app will open straight to s-admin.');
+        flash('Locked — the installed app will open straight to the super-admin.');
       }
     } catch {
       flash('Could not change the lock on this device.', true);

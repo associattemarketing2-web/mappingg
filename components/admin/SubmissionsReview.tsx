@@ -50,7 +50,7 @@ export default function SubmissionsReview() {
   return (
     <div style={{ maxWidth: 860, margin: '0 auto', padding: '28px 20px', fontFamily: 'system-ui, sans-serif' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
-        <a href="/s-admin" style={{ color: '#0f5c47', textDecoration: 'none', fontWeight: 700 }}>← Admin</a>
+        <a href="/dashboard/s-admin" style={{ color: '#0f5c47', textDecoration: 'none', fontWeight: 700 }}>← Admin</a>
         <h1 style={{ fontSize: 22, margin: 0, color: '#0f2e24' }}>Developer submissions</h1>
       </div>
       <p style={{ color: '#4a5a54', fontSize: 14, marginTop: 0 }}>

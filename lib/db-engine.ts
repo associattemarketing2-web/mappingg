@@ -263,6 +263,12 @@ export async function runDbOp(op: DbOp, isAuthed: boolean, opts: RunDbOpts = {})
           patch.pending_review = true;
           patch.rejected = false;
           patch.hidden = true;
+        } else if (op.table === 'pins' && patch.hidden === false) {
+          // Staff publishing a pin from the Map Editor ("Show on public map")
+          // doubles as approving a developer's pending submission: making it
+          // public clears the review flags so it goes live and leaves the queue.
+          patch.pending_review = false;
+          patch.rejected = false;
         }
 
         // History capture for pins (mirrors the original DB trigger).

@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import '@/app/s-admin/admin.css';
+import '@/app/dashboard/s-admin/admin.css';
 import { getCurrentUser, homePathFor, isStaffRole } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
 import { getSeoProjects } from '@/lib/seo-data';
@@ -12,15 +12,15 @@ export const dynamic = 'force-dynamic';
 
 // Per-role dashboards at a consistent URL:
 //   /dashboard/developer · /dashboard/agent · /dashboard/buyer
-// Staff hitting /dashboard/s-admin (or any /dashboard/*) are sent to the
-// super-admin app, which keeps its own /s-admin URL. The account's actual role
-// is the source of truth: if the URL role doesn't match, we redirect to theirs.
+// The super-admin is the static sibling route /dashboard/s-admin; staff who hit a
+// per-role URL are sent there. The account's actual role is the source of truth:
+// if the URL role doesn't match, we redirect to theirs.
 export default async function DashboardRolePage({ params }: { params: { role: string } }) {
   const session = await getCurrentUser();
   if (!session) redirect('/?signin=1');
 
-  // Staff never use the public /dashboard/* URLs for their own panel.
-  if (isStaffRole(session.role)) redirect('/s-admin');
+  // Staff never use the per-role URLs; send them to the super-admin.
+  if (isStaffRole(session.role)) redirect('/dashboard/s-admin');
 
   const db = await getDb();
   const doc = await db.collection('users').findOne({ email: session.email.toLowerCase() });

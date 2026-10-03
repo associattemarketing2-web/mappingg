@@ -161,7 +161,7 @@ export default function DeveloperApp({ user }: { user: DevUser }) {
               </div>
             </div>
           )}
-          {tab === 'intake' && <div className="adm-content" style={{ padding: 0, maxWidth: 820 }}><DeveloperProjects /></div>}
+          {tab === 'intake' && <DeveloperProjects />}
           {tab === 'profile' && (
             <ProfileForm
               email={user.email}

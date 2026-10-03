@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getCurrentUser, homePathFor } from '@/lib/auth';
+import { createSessionToken, getCurrentUser, homePathFor, setSessionCookie } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
 import { verificationOf } from '@/lib/verification';
 
@@ -9,6 +9,11 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ session: null });
+
+  // Rolling session: every time we confirm a valid session, re-issue the cookie
+  // with a fresh expiry. This endpoint is polled by the app, so an active user
+  // effectively stays signed in until they explicitly log out.
+  try { setSessionCookie(await createSessionToken(user)); } catch { /* non-fatal */ }
 
   // Name / verification status for the header chip; the JWT only carries id+email+role.
   let name = '', verified = true;

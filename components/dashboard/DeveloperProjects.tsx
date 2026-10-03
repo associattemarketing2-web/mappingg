@@ -2,10 +2,12 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-// A developer's own projects: a list scoped to this account (server enforces it
-// via owner_user_id) plus an "Add project" form and a bulk Excel/CSV upload.
-// New or bulk-uploaded projects go to the admin review queue and appear on the
-// public map only once approved.
+// A developer's own projects intake — the same tabbed layout the super-admin
+// intake uses (stat tiles, a filterable projects table, an add form and a bulk
+// Excel/CSV upload), but every row is scoped to this account (the server enforces
+// it via owner_user_id). New or edited projects go to the admin review queue and
+// appear on the public map only once approved — a developer can never approve,
+// publish, or see anyone else's projects here.
 interface MyProject {
   id: string;
   title: string;
@@ -174,16 +176,36 @@ function sheetToProjects(aoa: unknown[][]): { rows: DevProjectInput[]; skipped: 
   return { rows, skipped };
 }
 
+/* -------------------------------- Component ------------------------------- */
+const FILTERS = [
+  { key: 'review', label: 'To review' },
+  { key: 'live', label: 'Live on map' },
+  { key: 'rejected', label: 'Rejected' },
+  { key: 'all', label: 'All' },
+] as const;
+type FilterKey = (typeof FILTERS)[number]['key'];
+
+const fmtWhen = (d?: string) => {
+  if (!d) return '—';
+  const s = (Date.now() - new Date(d).getTime()) / 1000;
+  if (s < 60) return 'just now';
+  if (s < 3600) return `${Math.floor(s / 60)} min ago`;
+  if (s < 86400) return `${Math.floor(s / 3600)} h ago`;
+  if (s < 86400 * 30) return `${Math.floor(s / 86400)} d ago`;
+  return new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+};
+
 export default function DeveloperProjects() {
   const [items, setItems] = useState<MyProject[] | null>(null);
-  const [open, setOpen] = useState(false);
+  const [view, setView] = useState<'list' | 'form' | 'bulk'>('list');
   const [editId, setEditId] = useState<string | null>(null);
   const [form, setForm] = useState({ ...EMPTY });
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
+  const [filter, setFilter] = useState<FilterKey>('all');
+  const [q, setQ] = useState('');
 
   // Bulk upload state
-  const [bulkOpen, setBulkOpen] = useState(false);
   const [parsing, setParsing] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [parsed, setParsed] = useState<{ name: string; rows: DevProjectInput[]; skipped: number } | null>(null);
@@ -199,7 +221,7 @@ export default function DeveloperProjects() {
   useEffect(() => { load(); }, []);
 
   function startAdd() {
-    setEditId(null); setForm({ ...EMPTY }); setMsg(null); setBulkOpen(false); setOpen(true);
+    setEditId(null); setForm({ ...EMPTY }); setMsg(null); setView('form');
   }
   function startEdit(p: MyProject) {
     setEditId(p.id);
@@ -208,7 +230,10 @@ export default function DeveloperProjects() {
       price: p.price, configuration: p.configuration, description: p.description,
       lat: p.lat != null ? String(p.lat) : '', lng: p.lng != null ? String(p.lng) : '',
     });
-    setMsg(null); setBulkOpen(false); setOpen(true);
+    setMsg(null); setView('form');
+  }
+  function startBulk() {
+    setMsg(null); setParsed(null); setView('bulk');
   }
 
   async function submit(e: React.FormEvent) {
@@ -233,7 +258,7 @@ export default function DeveloperProjects() {
         setMsg({ ok: true, text: editId
           ? 'Saved! Your changes go back to our team for review before they appear on the map.'
           : 'Submitted! Our team will review it and publish it to the map shortly.' });
-        setForm({ ...EMPTY }); setOpen(false); setEditId(null); load();
+        setForm({ ...EMPTY }); setEditId(null); setView('list'); load();
       }
     } catch { setMsg({ ok: false, text: 'Network error. Please try again.' }); }
     finally { setBusy(false); }
@@ -251,11 +276,6 @@ export default function DeveloperProjects() {
 
   const set = (k: keyof typeof EMPTY) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
-
-  /* ----------------------------- Bulk upload ----------------------------- */
-  function startBulk() {
-    setOpen(false); setEditId(null); setMsg(null); setParsed(null); setBulkOpen((v) => !v);
-  }
 
   async function onFile(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -292,102 +312,51 @@ export default function DeveloperProjects() {
       else {
         const n = b?.data?.inserted ?? parsed.rows.length;
         setMsg({ ok: true, text: `Uploaded ${n} project${n === 1 ? '' : 's'}! Our team will review them before they appear on the map.` });
-        setParsed(null); setBulkOpen(false); load();
+        setParsed(null); setView('list'); setFilter('review'); load();
       }
     } catch { setMsg({ ok: false, text: 'Network error. Please try again.' }); }
     finally { setUploading(false); }
   }
 
   const counts = {
-    total: items?.length ?? 0,
-    pending: items?.filter((p) => p.review === 'pending').length ?? 0,
+    all: items?.length ?? 0,
+    review: items?.filter((p) => p.review === 'pending').length ?? 0,
     live: items?.filter((p) => p.review === 'live').length ?? 0,
+    rejected: items?.filter((p) => p.review === 'rejected').length ?? 0,
   };
+  const tiles = [
+    { icon: 'fa-hourglass-half', v: counts.review, l: 'Waiting for review' },
+    { icon: 'fa-map-location-dot', v: counts.live, l: 'Live on the map' },
+    { icon: 'fa-circle-xmark', v: counts.rejected, l: 'Not approved' },
+    { icon: 'fa-building', v: counts.all, l: 'Your projects' },
+  ];
 
-  return (
-    <section className="dsh-card">
-      <h2 style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-        <i className="fas fa-location-dot" /> Your projects
-        <span style={{ marginLeft: 'auto', display: 'inline-flex', gap: 8 }}>
-          <button className="dsh-btn" style={{ fontSize: 13 }} onClick={startBulk}>
-            <i className={`fas ${bulkOpen ? 'fa-xmark' : 'fa-file-arrow-up'}`} /> {bulkOpen ? 'Close' : 'Bulk upload'}
-          </button>
-          <button className="dsh-btn primary" style={{ fontSize: 13 }} onClick={() => (open ? setOpen(false) : startAdd())}>
-            <i className={`fas ${open ? 'fa-xmark' : 'fa-plus'}`} /> {open ? 'Close' : 'Add project'}
-          </button>
-        </span>
-      </h2>
+  const term = q.trim().toLowerCase();
+  const list = (items || []).filter((p) => {
+    const inFilter = filter === 'all'
+      || (filter === 'review' && p.review === 'pending')
+      || (filter === 'live' && p.review === 'live')
+      || (filter === 'rejected' && p.review === 'rejected');
+    const inTerm = !term || [p.title, p.location, p.type, p.price, p.configuration].some((x) => (x || '').toLowerCase().includes(term));
+    return inFilter && inTerm;
+  });
 
-      <p className="dsh-empty" style={{ margin: '0 0 10px' }}>
-        {counts.total} total · {counts.pending} pending review · {counts.live} live on the map
-      </p>
+  const notice = msg && (
+    <div className="dsh-notice" style={{ background: msg.ok ? '#e6f6ee' : '#fdecec', color: msg.ok ? '#0f7a4a' : '#b42318' }}>
+      <i className={`fas ${msg.ok ? 'fa-circle-check' : 'fa-triangle-exclamation'}`} /> <span>{msg.text}</span>
+    </div>
+  );
 
-      {msg && (
-        <div className="dsh-notice" style={{ background: msg.ok ? '#e6f6ee' : '#fdecec', color: msg.ok ? '#0f7a4a' : '#b42318' }}>
-          <i className={`fas ${msg.ok ? 'fa-circle-check' : 'fa-triangle-exclamation'}`} /> <span>{msg.text}</span>
+  /* ------------------------------ Add / edit ----------------------------- */
+  if (view === 'form') {
+    return (
+      <div className="adm-panel">
+        <div className="adm-panel-head">
+          <h3>{editId ? 'Edit project' : 'Add project'}</h3>
+          <button className="adm-btn ghost sm" onClick={() => { setView('list'); setEditId(null); }}><i className="fas fa-arrow-left" /> Back</button>
         </div>
-      )}
-
-      {bulkOpen && (
-        <div className="dpf" style={{ display: 'grid', gap: 12, margin: '6px 0 14px', padding: 14, border: '1px solid #e6e3da', borderRadius: 12, background: '#fafaf7' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-            <b style={{ fontSize: 14 }}><i className="fas fa-file-excel" style={{ color: '#1d7a46', marginRight: 6 }} /> Upload many projects at once</b>
-            <a className="dsh-link" href={TEMPLATE_URL} download>
-              <i className="fas fa-download" /> Download Excel template
-            </a>
-          </div>
-          <small style={{ color: '#6b7a74' }}>
-            Fill the template (or export your own Excel/CSV), then upload it here. Every project goes to our team for review before it appears on the map.
-          </small>
-
-          <label className="dsh-btn" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, cursor: 'pointer', width: 'fit-content' }}>
-            <i className="fas fa-folder-open" /> {parsing ? 'Reading file…' : 'Choose Excel / CSV file'}
-            <input ref={fileRef} type="file" accept=".xlsx,.xls,.csv" hidden disabled={parsing || uploading} onChange={onFile} />
-          </label>
-
-          {parsed && (
-            <div style={{ display: 'grid', gap: 10 }}>
-              <div className="dsh-empty" style={{ margin: 0 }}>
-                <b>{parsed.name}</b> — {parsed.rows.length} project{parsed.rows.length === 1 ? '' : 's'} ready
-                {parsed.skipped ? ` · ${parsed.skipped} row${parsed.skipped === 1 ? '' : 's'} skipped (no project name)` : ''}
-              </div>
-              <div style={{ maxHeight: 260, overflow: 'auto', border: '1px solid #e6e3da', borderRadius: 10 }}>
-                <table className="dsh-bulk-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
-                  <thead>
-                    <tr style={{ textAlign: 'left', background: '#f1efe8' }}>
-                      <th style={{ padding: '6px 10px' }}>Project</th>
-                      <th style={{ padding: '6px 10px' }}>Location</th>
-                      <th style={{ padding: '6px 10px' }}>Type</th>
-                      <th style={{ padding: '6px 10px' }}>Pin</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {parsed.rows.slice(0, 50).map((p, i) => (
-                      <tr key={i} style={{ borderTop: '1px solid #eee' }}>
-                        <td style={{ padding: '6px 10px' }}>{p.title}</td>
-                        <td style={{ padding: '6px 10px' }}>{p.location || '—'}</td>
-                        <td style={{ padding: '6px 10px' }}>{p.type}</td>
-                        <td style={{ padding: '6px 10px', color: p.lat != null ? '#0f7a4a' : '#9a5b00' }}>
-                          {p.lat != null ? 'On map' : 'Set on review'}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                {parsed.rows.length > 50 && (
-                  <p className="dsh-empty" style={{ margin: 0, padding: '8px 10px' }}>…and {parsed.rows.length - 50} more.</p>
-                )}
-              </div>
-              <button className="dsh-btn primary" disabled={uploading} onClick={submitBulk} style={{ width: 'fit-content' }}>
-                {uploading ? 'Uploading…' : `Submit ${parsed.rows.length} for review`}
-              </button>
-            </div>
-          )}
-        </div>
-      )}
-
-      {open && (
-        <form onSubmit={submit} className="dpf" style={{ display: 'grid', gap: 10, margin: '6px 0 14px' }}>
+        {notice}
+        <form onSubmit={submit} className="dpf" style={{ display: 'grid', gap: 10, marginTop: 6 }}>
           <input placeholder="Project name *" value={form.title} onChange={set('title')} required maxLength={160} />
           <input placeholder="Location (e.g. Kharadi, Pune)" value={form.location} onChange={set('location')} maxLength={160} />
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
@@ -403,49 +372,146 @@ export default function DeveloperProjects() {
             <input placeholder="Longitude (optional)" value={form.lng} onChange={set('lng')} inputMode="decimal" />
           </div>
           <textarea placeholder="Short description" value={form.description} onChange={set('description')} rows={3} maxLength={4000} />
-          <button type="submit" className="dsh-btn primary" disabled={busy}>
+          <button type="submit" className="adm-btn primary" disabled={busy} style={{ width: 'fit-content' }}>
             {busy ? 'Saving…' : editId ? 'Save changes' : 'Submit for review'}
           </button>
           <small style={{ color: '#6b7a74' }}>
             Tip: adding latitude &amp; longitude places your project precisely on the map. Our team can also set it during review.
           </small>
         </form>
-      )}
+      </div>
+    );
+  }
 
-      {items === null ? (
-        <p className="dsh-empty">Loading your projects…</p>
-      ) : items.length === 0 ? (
-        <p className="dsh-empty">You haven&apos;t added any projects yet. Click <b>Add project</b> to list your first one, or <b>Bulk upload</b> an Excel/CSV.</p>
-      ) : (
-        <ul className="dsh-projects">
-          {items.map((p) => {
-            const badge = REVIEW_BADGE[p.review];
-            return (
-              <li key={p.id}>
-                <span className={`dsh-dot s-${(p.status || '').toLowerCase()}`} aria-hidden="true" />
-                <div className="meta">
-                  <b>{p.title}</b>
-                  <small>{[p.location, p.type].filter(Boolean).join(' · ') || '—'}</small>
-                </div>
-                <span style={{ background: badge.bg, color: badge.fg, padding: '3px 10px', borderRadius: 999, fontSize: 12, fontWeight: 700 }}>
-                  {badge.label}
-                </span>
-                <span style={{ display: 'inline-flex', gap: 8, alignItems: 'center' }}>
-                  {p.review === 'live' && (
-                    <a className="dsh-link" href={`/map?pin=${encodeURIComponent(p.id)}`}>View <i className="fas fa-arrow-right" /></a>
-                  )}
-                  <button type="button" className="dsh-link" style={{ background: 'none', border: 0, cursor: 'pointer', padding: 0 }} onClick={() => startEdit(p)} aria-label={`Edit ${p.title}`}>
-                    <i className="fas fa-pen" /> Edit
-                  </button>
-                  <button type="button" className="dsh-link" style={{ background: 'none', border: 0, cursor: 'pointer', padding: 0, color: '#b42318' }} onClick={() => remove(p)} aria-label={`Delete ${p.title}`}>
-                    <i className="fas fa-trash" />
-                  </button>
-                </span>
-              </li>
-            );
-          })}
-        </ul>
-      )}
-    </section>
+  /* ------------------------------ Bulk upload ---------------------------- */
+  if (view === 'bulk') {
+    return (
+      <div className="adm-panel">
+        <div className="adm-panel-head">
+          <h3>Bulk upload</h3>
+          <button className="adm-btn ghost sm" onClick={() => { setView('list'); setParsed(null); }}><i className="fas fa-arrow-left" /> Back</button>
+        </div>
+        {notice}
+        <p className="muted" style={{ margin: '4px 0 14px' }}>
+          Import many projects from an Excel or CSV. Every project goes to our team for review before it appears on the map.
+        </p>
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center', marginBottom: 14 }}>
+          <a className="adm-btn ghost" href={TEMPLATE_URL} download><i className="fas fa-download" /> Download Excel template</a>
+          <label className="adm-btn primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}>
+            <i className="fas fa-folder-open" /> {parsing ? 'Reading file…' : 'Choose Excel / CSV file'}
+            <input ref={fileRef} type="file" accept=".xlsx,.xls,.csv" hidden disabled={parsing || uploading} onChange={onFile} />
+          </label>
+        </div>
+
+        {parsed && (
+          <div style={{ display: 'grid', gap: 10 }}>
+            <p className="muted" style={{ margin: 0 }}>
+              <b>{parsed.name}</b> — {parsed.rows.length} project{parsed.rows.length === 1 ? '' : 's'} ready
+              {parsed.skipped ? ` · ${parsed.skipped} row${parsed.skipped === 1 ? '' : 's'} skipped (no project name)` : ''}
+            </p>
+            <div style={{ maxHeight: 320, overflow: 'auto', border: '1px solid #e6e3da', borderRadius: 10 }}>
+              <table className="adm-table">
+                <thead><tr><th>Project</th><th>Location</th><th>Type</th><th>Map pin</th></tr></thead>
+                <tbody>
+                  {parsed.rows.slice(0, 50).map((p, i) => (
+                    <tr key={i}>
+                      <td className="t-title">{p.title}</td>
+                      <td>{p.location || '—'}</td>
+                      <td>{p.type}</td>
+                      <td><span className="adm-badge" style={{ color: p.lat != null ? '#0f7a4a' : '#9a5b00' }}>{p.lat != null ? 'On map' : 'Set on review'}</span></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {parsed.rows.length > 50 && <p className="muted" style={{ margin: 0, padding: '8px 10px' }}>…and {parsed.rows.length - 50} more.</p>}
+            </div>
+            <button className="adm-btn primary" disabled={uploading} onClick={submitBulk} style={{ width: 'fit-content' }}>
+              {uploading ? 'Uploading…' : `Submit ${parsed.rows.length} for review`}
+            </button>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  /* -------------------------------- List --------------------------------- */
+  return (
+    <>
+      <div className="adm-cards">
+        {tiles.map((t) => (
+          <div className="adm-stat" key={t.l}>
+            <div className="ic"><i className={`fas ${t.icon}`} /></div>
+            <b>{items === null ? '…' : t.v}</b>
+            <span>{t.l}</span>
+          </div>
+        ))}
+      </div>
+
+      {notice}
+
+      <div className="adm-panel" style={{ marginTop: 16 }}>
+        <div className="adm-panel-head">
+          <h3>Projects intake</h3>
+          <div className="adm-actions">
+            <button className="adm-btn ghost sm" onClick={startBulk}><i className="fas fa-file-arrow-up" /> Bulk upload</button>
+            <button className="adm-btn primary sm" onClick={startAdd}><i className="fas fa-plus" /> Add project</button>
+          </div>
+        </div>
+
+        <p className="muted" style={{ margin: '0 0 12px', fontSize: 13 }}>
+          Nothing goes live until our team reviews &amp; publishes it. You only see your own projects here.
+        </p>
+
+        <div className="crm-stats" style={{ marginBottom: 14 }}>
+          {FILTERS.map((f) => (
+            <button key={f.key} className={`crm-stat${filter === f.key ? ' on' : ''}`} onClick={() => setFilter(f.key)}>
+              <div className="v">{f.key === 'all' ? counts.all : counts[f.key]}</div>
+              <div className="l">{f.label}</div>
+            </button>
+          ))}
+        </div>
+
+        <div className="crm-tools" style={{ marginBottom: 12 }}>
+          <input className="crm-search" placeholder="Search project, location, type…" value={q} onChange={(e) => setQ(e.target.value)} />
+          <button className="adm-btn ghost sm" onClick={() => load()}><i className="fas fa-rotate" /> Refresh</button>
+        </div>
+
+        {items === null ? (
+          <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading your projects…</p></div>
+        ) : list.length === 0 ? (
+          <div className="adm-empty">
+            <i className="fas fa-location-dot" />
+            <p>{counts.all === 0
+              ? 'No projects yet. Click “Add project” to list your first one, or “Bulk upload” an Excel/CSV.'
+              : 'No projects match this filter.'}</p>
+          </div>
+        ) : (
+          <table className="adm-table">
+            <thead><tr><th>Project</th><th>Location</th><th>Type</th><th>Status</th><th>Updated</th><th>Actions</th></tr></thead>
+            <tbody>
+              {list.map((p) => {
+                const badge = REVIEW_BADGE[p.review];
+                return (
+                  <tr key={p.id}>
+                    <td className="t-title">{p.title || 'Untitled'}<small>{p.price || p.configuration || ''}</small></td>
+                    <td>{p.location || '—'}</td>
+                    <td>{p.type || '—'}</td>
+                    <td><span className="adm-badge" style={{ background: badge.bg, color: badge.fg }}>{badge.label}</span></td>
+                    <td className="muted">{fmtWhen(p.created_at)}</td>
+                    <td><div className="adm-actions">
+                      {p.review === 'live' && (
+                        <a className="adm-btn ghost sm" href={`/map?pin=${encodeURIComponent(p.id)}`} target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /></a>
+                      )}
+                      <button className="adm-btn ghost sm" onClick={() => startEdit(p)}><i className="fas fa-pen" /> Edit</button>
+                      <button className="adm-btn danger sm" onClick={() => remove(p)}><i className="fas fa-trash" /></button>
+                    </div></td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
+      </div>
+    </>
   );
 }

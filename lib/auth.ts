@@ -9,7 +9,10 @@ import { SignJWT, jwtVerify } from 'jose';
 //   and is not sent cross-site (CSRF-mitigating).
 
 export const SESSION_COOKIE = 'mg_session';
-const SESSION_MAX_AGE = 60 * 60 * 8; // 8 hours, mirrors a typical admin session.
+// Stay signed in until an explicit sign-out: a long-lived session so users don't
+// have to log in again and again. The cookie + JWT both last this long and are
+// only cleared by logout (clearSessionCookie).
+const SESSION_MAX_AGE = 60 * 60 * 24 * 60; // 60 days
 
 function secret(): Uint8Array {
   const s = process.env.AUTH_SECRET;
@@ -89,7 +92,7 @@ export async function getStaffUser(): Promise<SessionUser | null> {
 /** Where a signed-in user lands: staff → super-admin; everyone else → their own
  *  role dashboard at a consistent /dashboard/<role> URL. */
 export function homePathFor(role?: string): string {
-  if (isStaffRole(role)) return '/s-admin';
+  if (isStaffRole(role)) return '/dashboard/s-admin';
   if (role === 'developer') return '/dashboard/developer';
   if (role === 'agent') return '/dashboard/agent';
   return '/dashboard/buyer';

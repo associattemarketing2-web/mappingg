@@ -21,8 +21,9 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // Never let search engines index the super-admin.
-        source: '/s-admin',
+        // Never let search engines index the dashboards (super-admin now lives at
+        // /dashboard/s-admin) or the old /s-admin path that redirects to it.
+        source: '/:path(dashboard|dashboard/.*|s-admin|s-admin/.*)',
         headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
       },
       {
