@@ -42,6 +42,24 @@ function statusOf(p: PinDoc): 'pending' | 'rejected' | 'live' {
   return 'live';
 }
 
+// Build a review-pending, owner-stamped pin from a validated create payload.
+function buildPin(d: z.infer<typeof createSchema>, ownerId: string, company: string, now: string): PinDoc {
+  const id = randomUUID();
+  return {
+    _id: id, id,
+    title: d.title, location: d.location, type: d.type, status: d.status,
+    price: d.price, configuration: d.configuration, description: d.description,
+    image: d.image || null, developer: company,
+    ...(d.lat != null ? { lat: d.lat } : {}), ...(d.lng != null ? { lng: d.lng } : {}),
+    owner_user_id: ownerId,
+    pending_review: true, rejected: false, hidden: true, // not on the public map until approved
+    created_at: now, updated_at: now,
+  };
+}
+
+// Up to 500 projects can be bulk-uploaded from an Excel/CSV in one request.
+const bulkSchema = z.object({ projects: z.array(createSchema).min(1).max(500) });
+
 export async function GET() {
   const user = await developer();
   if (!user) return NextResponse.json({ error: { message: 'Not authorized' } }, { status: 401 });
@@ -70,32 +88,35 @@ export async function POST(req: NextRequest) {
   const user = await developer();
   if (!user) return NextResponse.json({ error: { message: 'Not authorized' } }, { status: 401 });
 
-  const parsed = createSchema.safeParse(await req.json().catch(() => null));
-  if (!parsed.success) {
-    return NextResponse.json({ error: { message: 'Please fill in a project name and the details.' } }, { status: 400 });
-  }
-  const d = parsed.data;
+  const raw = await req.json().catch(() => null);
 
   const db = await getDb();
   // Stamp the developer's company (from their profile) as the pin's developer.
   const me = await db.collection('users').findOne({ id: user.id }, { projection: { profile: 1 } });
   const company = String((me?.profile as Record<string, string> | undefined)?.company || '');
-
-  const id = randomUUID();
   const now = new Date().toISOString();
-  const doc: PinDoc = {
-    _id: id, id,
-    title: d.title, location: d.location, type: d.type, status: d.status,
-    price: d.price, configuration: d.configuration, description: d.description,
-    image: d.image || null, developer: company,
-    ...(d.lat != null ? { lat: d.lat } : {}), ...(d.lng != null ? { lng: d.lng } : {}),
-    owner_user_id: user.id,
-    pending_review: true, rejected: false, hidden: true, // not on the public map until approved
-    created_at: now, updated_at: now,
-  };
+
+  // Bulk mode: { projects: [...] } from the Excel/CSV uploader. Every row is
+  // owner-scoped and held for review, exactly like a single add.
+  if (raw && typeof raw === 'object' && Array.isArray((raw as { projects?: unknown }).projects)) {
+    const parsed = bulkSchema.safeParse(raw);
+    if (!parsed.success) {
+      return NextResponse.json({ error: { message: 'Some rows are missing a project name or have invalid details. Please check the file and try again.' } }, { status: 400 });
+    }
+    const docs = parsed.data.projects.map((d) => buildPin(d, user.id, company, now));
+    await db.collection<PinDoc>('pins').insertMany(docs);
+    return NextResponse.json({ data: { inserted: docs.length, review: 'pending' } }, { status: 201, headers: { 'Cache-Control': 'private, no-store' } });
+  }
+
+  // Single add.
+  const parsed = createSchema.safeParse(raw);
+  if (!parsed.success) {
+    return NextResponse.json({ error: { message: 'Please fill in a project name and the details.' } }, { status: 400 });
+  }
+  const doc = buildPin(parsed.data, user.id, company, now);
   await db.collection<PinDoc>('pins').insertOne(doc);
 
-  return NextResponse.json({ data: { id, review: 'pending' } }, { status: 201, headers: { 'Cache-Control': 'private, no-store' } });
+  return NextResponse.json({ data: { id: doc.id, review: 'pending' } }, { status: 201, headers: { 'Cache-Control': 'private, no-store' } });
 }
 
 const editSchema = createSchema.partial().extend({ id: z.string().min(1) });
