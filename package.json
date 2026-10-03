@@ -12,6 +12,7 @@
     "import:pg": "node migration/import-postgres.mjs",
     "db:studio": "prisma studio",
     "backup:supabase": "node migration/backup-supabase.mjs",
+    "sync:supabase": "node migration/sync-supabase-to-pg.mjs",
     "import:mongo": "node migration/import-mongodb.mjs",
     "db:indexes": "node migration/create-indexes.mjs",
     "seed:admin": "node migration/seed-admin.mjs"

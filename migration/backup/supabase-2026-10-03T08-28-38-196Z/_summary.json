@@ -1,0 +1,13 @@
+{
+  "takenAt": "2026-10-03T08:28:56.436Z",
+  "counts": {
+    "pins": 224,
+    "infra_markers": 15,
+    "roads": 11,
+    "map_settings": 1,
+    "infra_types": 1,
+    "area_boundaries": 4,
+    "leads": 0,
+    "pins_history": "ERROR: HTTP 400: {\"code\":\"42703\",\"details\":null,\"hint\":null,\"message\":\"column pins_history.id does not exist\"}"
+  }
+}
