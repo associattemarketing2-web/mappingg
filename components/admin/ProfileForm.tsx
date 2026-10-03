@@ -11,6 +11,14 @@ const PERM_LABELS: Record<string, string> = {
   settings: 'Settings',
 };
 
+const ROLE_LABELS: Record<string, string> = {
+  admin: 'Super admin (full access)',
+  employee: 'Employee',
+  developer: 'Developer / Builder',
+  agent: 'Agent / Channel partner',
+  buyer: 'Buyer / Investor',
+};
+
 export default function ProfileForm({
   email,
   role,
@@ -27,6 +35,7 @@ export default function ProfileForm({
   onProfileSaved?: (p: { name: string; avatar: string }) => void;
 }) {
   const isOwner = role === 'admin';
+  const isStaff = role === 'admin' || role === 'employee';
   const [name, setName] = useState(initialName);
   const [avatar, setAvatar] = useState(initialAvatar);
   const [savingProfile, setSavingProfile] = useState(false);
@@ -142,20 +151,22 @@ export default function ProfileForm({
         <div className="adm-panel-head"><h3>Account</h3></div>
         <div className="adm-grid2">
           <div className="adm-field"><label>Email</label><input value={email} disabled /></div>
-          <div className="adm-field"><label>Role</label><input value={isOwner ? 'Super admin (full access)' : 'Employee'} disabled /></div>
+          <div className="adm-field"><label>Role</label><input value={ROLE_LABELS[role] || role} disabled /></div>
         </div>
-        <div className="adm-field">
-          <label>Access</label>
-          <div className="adm-perm-badges">
-            {isOwner ? (
-              <span className="adm-badge ok">All areas</span>
-            ) : permissions.length ? (
-              permissions.map((p) => <span key={p} className="adm-badge muted">{PERM_LABELS[p] || p}</span>)
-            ) : (
-              <span className="adm-badge muted">Dashboard only</span>
-            )}
+        {isStaff && (
+          <div className="adm-field">
+            <label>Access</label>
+            <div className="adm-perm-badges">
+              {isOwner ? (
+                <span className="adm-badge ok">All areas</span>
+              ) : permissions.length ? (
+                permissions.map((p) => <span key={p} className="adm-badge muted">{PERM_LABELS[p] || p}</span>)
+              ) : (
+                <span className="adm-badge muted">Dashboard only</span>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       <form className="adm-panel" onSubmit={changePassword}>

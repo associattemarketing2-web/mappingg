@@ -86,9 +86,11 @@ export async function getStaffUser(): Promise<SessionUser | null> {
   return user && isStaffRole(user.role) ? user : null;
 }
 
-/** Where a signed-in user lands: staff → super-admin, buyers → the live map, developers/agents → their dashboard. */
+/** Where a signed-in user lands: staff → super-admin; everyone else → their own
+ *  role dashboard at a consistent /dashboard/<role> URL. */
 export function homePathFor(role?: string): string {
   if (isStaffRole(role)) return '/s-admin';
-  if (role === 'buyer') return '/map';
-  return '/dashboard';
+  if (role === 'developer') return '/dashboard/developer';
+  if (role === 'agent') return '/dashboard/agent';
+  return '/dashboard/buyer';
 }

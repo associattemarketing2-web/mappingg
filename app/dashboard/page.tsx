@@ -1,61 +1,13 @@
 import { redirect } from 'next/navigation';
-import '@/app/s-admin/admin.css';
 import { getCurrentUser, homePathFor } from '@/lib/auth';
-import { getDb } from '@/lib/mongodb';
-import { getSeoProjects } from '@/lib/seo-data';
-import RoleDashboard, { type DashboardAccount } from '@/components/dashboard/RoleDashboard';
-import DeveloperApp from '@/components/dashboard/DeveloperApp';
-import ReviewScreen from '@/components/dashboard/ReviewScreen';
-import { verificationOf } from '@/lib/verification';
 
 export const dynamic = 'force-dynamic';
 
-// Dashboards for developers and channel partners; the account's role decides
-// which one renders. Staff go to the super-admin, buyers to the live map only,
-// guests to the sign-in modal.
+// Dispatcher: send a signed-in user to their canonical dashboard URL
+//   staff → /s-admin ·  developer/agent/buyer → /dashboard/<role>
+// The actual dashboards render in /dashboard/[role]; guests get the sign-in modal.
 export default async function DashboardPage() {
   const session = await getCurrentUser();
   if (!session) redirect('/?signin=1');
-  const home = homePathFor(session.role);
-  if (home !== '/dashboard') redirect(home);
-
-  const db = await getDb();
-  const doc = await db.collection('users').findOne({ email: session.email.toLowerCase() });
-  if (!doc) redirect('/?signin=1');
-
-  const role = (['buyer', 'developer', 'agent'] as const).find((r) => r === doc.role) || 'buyer';
-
-  // Developers and agents only get their dashboard once the super admin has
-  // approved them; until then they see their submitted details and status.
-  const status = verificationOf(doc);
-  if (role !== 'buyer' && status !== 'approved') {
-    return (
-      <ReviewScreen
-        account={{
-          name: String(doc.name || ''), email: String(doc.email || ''), mobile: String(doc.mobile || ''),
-          role, status, note: String(doc.verification_note || ''), created_at: String(doc.created_at || ''),
-          profile: (doc.profile as Record<string, string>) || {},
-        }}
-      />
-    );
-  }
-
-  // Approved developers get the full s-admin-style control panel (Dashboard,
-  // Map Editor, Projects Intake, Backup) — scoped to their own projects.
-  if (role === 'developer') {
-    return <DeveloperApp user={{ email: String(doc.email || ''), name: String(doc.name || '') }} />;
-  }
-
-  const account: DashboardAccount = {
-    name: String(doc.name || ''),
-    email: String(doc.email || ''),
-    mobile: String(doc.mobile || ''),
-    role,
-    verified: status === 'approved',
-    created_at: String(doc.created_at || ''),
-    profile: (doc.profile as Record<string, string>) || {},
-  };
-
-  const projects = await getSeoProjects();
-  return <RoleDashboard account={account} projects={projects} />;
+  redirect(homePathFor(session.role));
 }

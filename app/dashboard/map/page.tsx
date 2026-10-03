@@ -23,6 +23,10 @@ export default async function DeveloperMapEditor() {
 
   return (
     <>
+      {/* Tell db-shim.js this is the developer's own editor, so a developer
+          session counts as signed-in here (writes stay owner-scoped + held for
+          review server-side). Must run before the legacy bundle boots. */}
+      <script dangerouslySetInnerHTML={{ __html: 'window.MAPPINGG_DEV_EDIT=true;' }} />
       <LegacyPreloads slug="team-editor" />
       <LegacyApp slug="team-editor" />
     </>

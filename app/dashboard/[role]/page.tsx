@@ -1,10 +1,67 @@
 import { redirect } from 'next/navigation';
+import '@/app/s-admin/admin.css';
+import { getCurrentUser, homePathFor, isStaffRole } from '@/lib/auth';
+import { getDb } from '@/lib/mongodb';
+import { getSeoProjects } from '@/lib/seo-data';
+import RoleDashboard, { type DashboardAccount } from '@/components/dashboard/RoleDashboard';
+import DeveloperApp from '@/components/dashboard/DeveloperApp';
+import ReviewScreen from '@/components/dashboard/ReviewScreen';
+import { verificationOf } from '@/lib/verification';
 
-// Clean role aliases — /dashboard/developer, /dashboard/buyer, /dashboard/agent —
-// all resolve to the single adaptive dashboard, which renders the right view
-// from the signed-in account's actual role (the source of truth for access).
 export const dynamic = 'force-dynamic';
 
-export default function DashboardRoleAlias() {
-  redirect('/dashboard');
+// Per-role dashboards at a consistent URL:
+//   /dashboard/developer · /dashboard/agent · /dashboard/buyer
+// Staff hitting /dashboard/s-admin (or any /dashboard/*) are sent to the
+// super-admin app, which keeps its own /s-admin URL. The account's actual role
+// is the source of truth: if the URL role doesn't match, we redirect to theirs.
+export default async function DashboardRolePage({ params }: { params: { role: string } }) {
+  const session = await getCurrentUser();
+  if (!session) redirect('/?signin=1');
+
+  // Staff never use the public /dashboard/* URLs for their own panel.
+  if (isStaffRole(session.role)) redirect('/s-admin');
+
+  const db = await getDb();
+  const doc = await db.collection('users').findOne({ email: session.email.toLowerCase() });
+  if (!doc) redirect('/?signin=1');
+
+  const role = (['buyer', 'developer', 'agent'] as const).find((r) => r === doc.role) || 'buyer';
+  // Canonical URL is /dashboard/<actual role>. Anything else (wrong role in the
+  // URL, or /dashboard/s-admin for a non-staff account) goes to the right one.
+  if (params.role !== role) redirect(homePathFor(doc.role as string));
+
+  // Developers and agents only get their dashboard once the super admin has
+  // approved them; until then they see their submitted details and status.
+  const status = verificationOf(doc);
+  if (role !== 'buyer' && status !== 'approved') {
+    return (
+      <ReviewScreen
+        account={{
+          name: String(doc.name || ''), email: String(doc.email || ''), mobile: String(doc.mobile || ''),
+          role, status, note: String(doc.verification_note || ''), created_at: String(doc.created_at || ''),
+          profile: (doc.profile as Record<string, string>) || {},
+        }}
+      />
+    );
+  }
+
+  // Approved developers get the full s-admin-style control panel (Dashboard,
+  // Map Editor, Projects Intake) — scoped to their own projects.
+  if (role === 'developer') {
+    return <DeveloperApp user={{ email: String(doc.email || ''), name: String(doc.name || '') }} />;
+  }
+
+  const account: DashboardAccount = {
+    name: String(doc.name || ''),
+    email: String(doc.email || ''),
+    mobile: String(doc.mobile || ''),
+    role,
+    verified: status === 'approved',
+    created_at: String(doc.created_at || ''),
+    profile: (doc.profile as Record<string, string>) || {},
+  };
+
+  const projects = await getSeoProjects();
+  return <RoleDashboard account={account} projects={projects} />;
 }

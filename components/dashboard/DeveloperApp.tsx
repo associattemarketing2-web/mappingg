@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import DeveloperProjects from './DeveloperProjects';
+import ProfileForm from '@/components/admin/ProfileForm';
 
 // Developer control panel — the SAME shell/design as the super-admin (reuses
 // admin.css: adm2 / adm2-top / adm2-tabs / adm-content), but with only the tabs
@@ -19,7 +20,9 @@ const TABS = [
   { key: 'intake', label: 'Projects Intake', icon: 'fa-location-dot' },
 ] as const;
 
-type TabKey = (typeof TABS)[number]['key'];
+// 'profile' lives in the top-right account menu, not the tab row (same as the
+// super-admin), so it isn't part of TABS.
+type TabKey = (typeof TABS)[number]['key'] | 'profile';
 
 interface MyProject {
   id: string; title: string; location: string; status: string; type: string;
@@ -78,6 +81,15 @@ export default function DeveloperApp({ user }: { user: DevUser }) {
   // switching back is instant (same pattern as the super-admin).
   const [warmMap, setWarmMap] = useState(false);
   useEffect(() => { if (tab === 'map') setWarmMap(true); }, [tab]);
+  // Name + avatar shown in the top-right chip; the Profile tab can change them.
+  const [displayName, setDisplayName] = useState(user.name || '');
+  const [avatar, setAvatar] = useState('');
+  useEffect(() => {
+    fetch('/api/admin/profile', { credentials: 'same-origin' })
+      .then((r) => r.json())
+      .then((b) => { if (b?.data) { setDisplayName(b.data.name || user.name || ''); setAvatar(b.data.avatar || ''); } })
+      .catch(() => {});
+  }, [user.name]);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -94,7 +106,7 @@ export default function DeveloperApp({ user }: { user: DevUser }) {
     router.push('/'); router.refresh();
   }
 
-  const initials = (user.name || user.email || '?').slice(0, 2).toUpperCase();
+  const initials = (displayName || user.email || '?').slice(0, 2).toUpperCase();
   const fullBleed = tab === 'map';
 
   return (
@@ -107,12 +119,19 @@ export default function DeveloperApp({ user }: { user: DevUser }) {
         <div className="adm2-top-right" ref={menuRef}>
           <a className="adm-chip" href="/" target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /> View site</a>
           <button className="adm-chip" onClick={() => setMenuOpen((v) => !v)}>
-            <span className="who">{initials}</span>
-            <span className="who-meta"><b>{user.name || user.email.split('@')[0]}</b><small>Developer</small></span>
+            <span className="who">
+              {avatar
+                // eslint-disable-next-line @next/next/no-img-element
+                ? <img src={avatar} alt="" />
+                : initials}
+            </span>
+            <span className="who-meta"><b>{displayName || user.email.split('@')[0]}</b><small>Developer</small></span>
             <i className="fas fa-chevron-down" />
           </button>
           {menuOpen && (
             <div className="adm2-menu">
+              <button className={tab === 'profile' ? 'on' : ''} onClick={() => { setTab('profile'); setMenuOpen(false); }}><i className="fas fa-user" /> Profile</button>
+              <div className="adm2-menu-sep" />
               <button onClick={logout}><i className="fas fa-right-from-bracket" /> Sign out</button>
             </div>
           )}
@@ -143,6 +162,15 @@ export default function DeveloperApp({ user }: { user: DevUser }) {
             </div>
           )}
           {tab === 'intake' && <div className="adm-content" style={{ padding: 0, maxWidth: 820 }}><DeveloperProjects /></div>}
+          {tab === 'profile' && (
+            <ProfileForm
+              email={user.email}
+              role="developer"
+              name={displayName}
+              avatar={avatar}
+              onProfileSaved={({ name, avatar: a }) => { setDisplayName(name); setAvatar(a); }}
+            />
+          )}
         </div>
       </main>
     </div>

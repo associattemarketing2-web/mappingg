@@ -185,10 +185,15 @@
     return fetch('/api/auth/session', { credentials: 'same-origin' })
       .then(function (r) { return r.json(); })
       .then(function (b) {
-        // Only staff sessions unlock admin mode; buyer/developer/agent accounts browse as visitors.
+        // Staff sessions unlock admin mode everywhere. A developer's own Map
+        // Editor page sets window.MAPPINGG_DEV_EDIT so the developer counts as
+        // signed-in there too (their writes are owner-scoped + held for review by
+        // /api/db). On the public map that flag is absent, so buyer/developer/
+        // agent accounts still browse as visitors.
         var s = (b && b.session) ? b.session : null;
         var r = s && s.user && s.user.role;
-        self._session = (r === 'admin' || r === 'employee') ? s : null;
+        var devEdit = (typeof window !== 'undefined' && window.MAPPINGG_DEV_EDIT && r === 'developer');
+        self._session = (r === 'admin' || r === 'employee' || devEdit) ? s : null;
         self._loaded = true;
         return self._session;
       })
