@@ -11,7 +11,8 @@ export const dynamic = 'force-dynamic';
 // Public self-sign-up for buyers, developers and channel partners. Staff roles
 // (admin / employee) can never be created here — only via seed-admin or the
 // Employees tab. Each role keeps its own profile fields from the sign-up form.
-const str = (max = 120) => z.string().trim().max(max).optional().default('');
+// Every field is required — the form marks them all mandatory too.
+const req = (max = 120) => z.string().trim().min(1).max(max);
 
 const base = z.object({
   name: z.string().trim().min(1).max(120),
@@ -24,21 +25,21 @@ const schema = z.discriminatedUnion('role', [
   base.extend({
     role: z.literal('buyer'),
     profile: z.object({
-      area: str(), configuration: str(), budget: str(), timeline: str(), purpose: str(),
-    }).default({}),
+      area: req(), configuration: req(), budget: req(), timeline: req(), purpose: req(),
+    }),
   }),
   base.extend({
     role: z.literal('developer'),
     profile: z.object({
-      company: z.string().trim().min(1).max(160), designation: str(), activeProjects: str(),
-      reraProject: z.string().trim().min(4).max(40), website: str(300),
+      company: req(160), designation: req(), activeProjects: req(),
+      reraProject: z.string().trim().min(4).max(40), website: req(300),
     }),
   }),
   base.extend({
     role: z.literal('agent'),
     profile: z.object({
-      agency: z.string().trim().min(1).max(160),
-      reraAgent: z.string().trim().min(4).max(40), areas: z.string().trim().min(1).max(300),
+      agency: req(160),
+      reraAgent: z.string().trim().min(4).max(40), areas: req(300),
     }),
   }),
 ]);

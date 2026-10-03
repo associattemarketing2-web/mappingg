@@ -1,8 +1,10 @@
 import { redirect } from 'next/navigation';
+import '@/app/s-admin/admin.css';
 import { getCurrentUser, homePathFor } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
 import { getSeoProjects } from '@/lib/seo-data';
 import RoleDashboard, { type DashboardAccount } from '@/components/dashboard/RoleDashboard';
+import DeveloperApp from '@/components/dashboard/DeveloperApp';
 import ReviewScreen from '@/components/dashboard/ReviewScreen';
 import { verificationOf } from '@/lib/verification';
 
@@ -36,6 +38,12 @@ export default async function DashboardPage() {
         }}
       />
     );
+  }
+
+  // Approved developers get the full s-admin-style control panel (Dashboard,
+  // Map Editor, Projects Intake, Backup) — scoped to their own projects.
+  if (role === 'developer') {
+    return <DeveloperApp user={{ email: String(doc.email || ''), name: String(doc.name || '') }} />;
   }
 
   const account: DashboardAccount = {

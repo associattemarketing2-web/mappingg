@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { getStaffUser } from '@/lib/auth';
+import { getCurrentUser, getStaffUser } from '@/lib/auth';
 import { runDbOp, type DbOp } from '@/lib/db-engine';
 import { withMediaUrls } from '@/lib/pin-media';
 
@@ -50,8 +50,16 @@ function invalid(details?: unknown) {
 }
 
 async function handle(op: DbOp) {
-  const user = await getStaffUser();
-  const result = await runDbOp(op, !!user);
+  const staff = await getStaffUser();
+  const current = staff ? null : await getCurrentUser();
+  // A signed-in developer is scoped to their own pins everywhere: they see only
+  // their projects on the live map and in the map editor, and any pin they
+  // create/edit/delete is owner-stamped and held for super-admin review. Buyers,
+  // agents and anonymous visitors are unaffected.
+  const developerId = current?.role === 'developer' ? current.id : undefined;
+  const scopedPins = !!developerId && op.table === 'pins';
+
+  const result = await runDbOp(op, !!staff, { developerId });
   // Stored images (pin logos, brochures, infra icons) go out as cacheable URLs, not inline base64.
   let data = result.data ? withMediaUrls(op.table, result.data) : result.data;
   // History lists only show each entry's number/name; the stored copy keeps its
@@ -59,8 +67,9 @@ async function handle(op: DbOp) {
   if (op.table === 'pins_history' && op.action === 'select' && data) data = withoutHistoryImages(data);
   const res = NextResponse.json({ data, error: result.error }, { status: result.status });
 
-  // Cache only anonymous reads of public tables. Everything else stays private.
-  if (op.action === 'select' && PUBLIC_TABLES.has(op.table) && !user) {
+  // Cache only shared, non-personalised reads of public tables. A developer's
+  // owner-scoped pins are personal, so they are never publicly cached.
+  if (op.action === 'select' && PUBLIC_TABLES.has(op.table) && !staff && !scopedPins) {
     res.headers.set('Cache-Control', 'public, max-age=15, s-maxage=30, stale-while-revalidate=300');
   } else {
     res.headers.set('Cache-Control', 'private, no-store');

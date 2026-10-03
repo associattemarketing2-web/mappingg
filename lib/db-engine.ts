@@ -121,7 +121,7 @@ function buildProjection(columns?: string): Record<string, 0 | 1> | undefined {
   return proj;
 }
 
-function authorize(op: DbOp, isAuthed: boolean): DbResult | null {
+function authorize(op: DbOp, isAuthed: boolean, developerId?: string): DbResult | null {
   const { table, action } = op;
 
   if (action === 'select') {
@@ -133,6 +133,12 @@ function authorize(op: DbOp, isAuthed: boolean): DbResult | null {
 
   // Writes:
   if (table === 'leads' && action === 'insert') return null; // public lead capture
+  // A developer may create/edit/delete ONLY their own pins (ownership and the
+  // pending-review/hidden flags are forced server-side below, and every write
+  // is scoped to their owner_user_id). No other table, and no blind upsert.
+  if (developerId && table === 'pins' && (action === 'insert' || action === 'update' || action === 'delete')) {
+    return null;
+  }
   if (!CLIENT_WRITABLE.has(table)) return err('Table is not writable', 403);
   if (!isAuthed) return err('Not authorized', 401);
   return null;
@@ -156,17 +162,30 @@ async function captureHistory(
   });
 }
 
-export async function runDbOp(op: DbOp, isAuthed: boolean): Promise<DbResult> {
-  const denied = authorize(op, isAuthed);
+export interface RunDbOpts {
+  // When set, every `pins` operation is scoped to this developer:
+  //  - select  → only their own pins (incl. hidden / pending-review ones);
+  //  - insert  → stamped with their owner_user_id + forced pending/hidden;
+  //  - update/delete → restricted to rows they own.
+  // Used so a developer sees and edits only their own projects — on the live
+  // map and in the map editor — while everything else stays untouched.
+  developerId?: string;
+}
+
+export async function runDbOp(op: DbOp, isAuthed: boolean, opts: RunDbOpts = {}): Promise<DbResult> {
+  const denied = authorize(op, isAuthed, opts.developerId);
   if (denied) return denied;
 
+  const devPins = !!opts.developerId && op.table === 'pins';
   const db = await getDb();
   const coll = getColl(db, op.table);
 
   try {
     switch (op.action) {
       case 'select': {
-        const canCache = PUBLIC_READ.has(op.table);
+        // Developer-scoped pin reads are per-user, so never served from the
+        // shared public cache.
+        const canCache = PUBLIC_READ.has(op.table) && !devPins;
         const key = canCache ? cacheKey(op, isAuthed) : '';
         if (canCache) {
           const hit = readCache.get(key);
@@ -176,8 +195,16 @@ export async function runDbOp(op: DbOp, isAuthed: boolean): Promise<DbResult> {
         }
 
         const query = buildQuery(op.filters);
-        // Pins switched off in the editor ("Show on public map") are staff-only.
-        if (op.table === 'pins' && !isAuthed) query.hidden = { $ne: true };
+        if (op.table === 'pins') {
+          if (devPins) {
+            // A developer sees ONLY their own projects on the map — including
+            // their not-yet-approved (hidden) ones, so they can track status.
+            query.owner_user_id = opts.developerId;
+          } else if (!isAuthed) {
+            // Pins switched off in the editor ("Show on public map") are staff-only.
+            query.hidden = { $ne: true };
+          }
+        }
         const projection = buildProjection(op.columns);
         let cursor = coll.find(query, projection ? { projection } : undefined);
         if (op.order) cursor = cursor.sort({ [op.order.col]: op.order.ascending ? 1 : -1 });
@@ -201,6 +228,14 @@ export async function runDbOp(op: DbOp, isAuthed: boolean): Promise<DbResult> {
           if (doc.id == null) doc.id = randomUUID();
           if (doc.created_at == null) doc.created_at = now;
           if ('updated_at' in doc === false && op.table !== 'leads') doc.updated_at = now;
+          // A developer's new pin is always owned by them and held for review —
+          // these flags are forced here so the client can't bypass approval.
+          if (devPins) {
+            doc.owner_user_id = opts.developerId;
+            doc.pending_review = true;
+            doc.rejected = false;
+            doc.hidden = true;
+          }
           doc._id = String(doc.id);
           return doc as AnyDoc;
         });
@@ -219,6 +254,16 @@ export async function runDbOp(op: DbOp, isAuthed: boolean): Promise<DbResult> {
         delete patch.id;
         delete patch._id;
         if (op.table !== 'leads') patch.updated_at = new Date().toISOString();
+        if (devPins) {
+          // Scope the update to rows this developer owns, and force every edit
+          // back through review before it can be public again. Ownership can
+          // never be reassigned by the client.
+          query.owner_user_id = opts.developerId;
+          delete patch.owner_user_id;
+          patch.pending_review = true;
+          patch.rejected = false;
+          patch.hidden = true;
+        }
 
         // History capture for pins (mirrors the original DB trigger).
         if (op.table === 'pins') {
@@ -237,6 +282,8 @@ export async function runDbOp(op: DbOp, isAuthed: boolean): Promise<DbResult> {
 
       case 'delete': {
         const query = buildQuery(op.filters);
+        // A developer can only ever delete their own pins.
+        if (devPins) query.owner_user_id = opts.developerId;
         if (op.table === 'pins') {
           const affected = await coll.find(query).toArray();
           for (const doc of affected) await captureHistory(db, doc as Record<string, unknown>, 'delete');

@@ -51,7 +51,7 @@ export async function GET() {
     .collection<PinDoc>('pins')
     .find(
       { owner_user_id: user.id },
-      { projection: { id: 1, number: 1, title: 1, location: 1, status: 1, type: 1, price: 1, pending_review: 1, rejected: 1, hidden: 1, created_at: 1 } },
+      { projection: { id: 1, number: 1, title: 1, location: 1, status: 1, type: 1, price: 1, configuration: 1, description: 1, lat: 1, lng: 1, pending_review: 1, rejected: 1, hidden: 1, created_at: 1 } },
     )
     .sort({ created_at: -1 })
     .toArray()) as PinDoc[];
@@ -59,6 +59,8 @@ export async function GET() {
   const projects = rows.map((p) => ({
     id: String(p.id), title: String(p.title || ''), location: String(p.location || ''),
     status: String(p.status || ''), type: String(p.type || ''), price: String(p.price || ''),
+    configuration: String(p.configuration || ''), description: String(p.description || ''),
+    lat: p.lat ?? null, lng: p.lng ?? null,
     review: statusOf(p), created_at: String(p.created_at || ''),
   }));
   return NextResponse.json({ data: projects }, { headers: { 'Cache-Control': 'private, no-store' } });
@@ -94,4 +96,44 @@ export async function POST(req: NextRequest) {
   await db.collection<PinDoc>('pins').insertOne(doc);
 
   return NextResponse.json({ data: { id, review: 'pending' } }, { status: 201, headers: { 'Cache-Control': 'private, no-store' } });
+}
+
+const editSchema = createSchema.partial().extend({ id: z.string().min(1) });
+
+export async function PATCH(req: NextRequest) {
+  const user = await developer();
+  if (!user) return NextResponse.json({ error: { message: 'Not authorized' } }, { status: 401 });
+
+  const parsed = editSchema.safeParse(await req.json().catch(() => null));
+  if (!parsed.success) return NextResponse.json({ error: { message: 'Invalid request.' } }, { status: 400 });
+  const { id, ...fields } = parsed.data;
+
+  const db = await getDb();
+  // Ownership is enforced in the filter: a developer can only edit their own pin.
+  const existing = await db.collection<PinDoc>('pins').findOne({ id, owner_user_id: user.id });
+  if (!existing) return NextResponse.json({ error: { message: 'Project not found' } }, { status: 404 });
+
+  const patch: Record<string, unknown> = { ...fields, updated_at: new Date().toISOString() };
+  delete (patch as { id?: unknown }).id;
+  // Any edit goes back through the super-admin review queue before it is live again.
+  patch.pending_review = true;
+  patch.rejected = false;
+  patch.hidden = true;
+
+  await db.collection<PinDoc>('pins').updateOne({ id, owner_user_id: user.id }, { $set: patch });
+  return NextResponse.json({ data: { id, review: 'pending' } }, { headers: { 'Cache-Control': 'private, no-store' } });
+}
+
+export async function DELETE(req: NextRequest) {
+  const user = await developer();
+  if (!user) return NextResponse.json({ error: { message: 'Not authorized' } }, { status: 401 });
+
+  const id = req.nextUrl.searchParams.get('id');
+  if (!id) return NextResponse.json({ error: { message: 'Missing id' } }, { status: 400 });
+
+  const db = await getDb();
+  // Scoped to the owner so a developer can never delete someone else's project.
+  const res = await db.collection<PinDoc>('pins').deleteOne({ id, owner_user_id: user.id });
+  if (!res.deletedCount) return NextResponse.json({ error: { message: 'Project not found' } }, { status: 404 });
+  return NextResponse.json({ data: { ok: true } }, { headers: { 'Cache-Control': 'private, no-store' } });
 }

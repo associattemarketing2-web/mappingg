@@ -443,11 +443,11 @@ export const LANDING_BODY = `
         </div>
         <div class="field"><label for="su-email">Email</label><input type="email" id="su-email" name="email" placeholder="you@example.com" autocomplete="email" required></div>
         <fieldset class="role-fields" data-for="buyer">
-          <details class="opt-details">
-            <summary><span><b>Tell us what you're looking for</b><small>Optional — get matching projects first</small></span><i class="fas fa-chevron-down"></i></summary>
+          <details class="opt-details" open>
+            <summary><span><b>Tell us what you're looking for</b><small>Helps us match you to the right projects</small></span><i class="fas fa-chevron-down"></i></summary>
             <div class="opt-body">
           <div class="field-row">
-            <div class="field"><label for="b-area">Preferred area</label><input id="b-area" name="area" placeholder="e.g. Mundhwa, Kharadi"></div>
+            <div class="field"><label for="b-area">Preferred area</label><input id="b-area" name="area" placeholder="e.g. Mundhwa, Kharadi" required></div>
             <div class="field"><label for="b-config">Configuration</label><select id="b-config" name="configuration"><option>1 BHK</option><option selected>2 BHK</option><option>3 BHK</option><option>4+ BHK</option><option>Plot / Villa</option></select></div>
           </div>
           <div class="field-row">
@@ -467,7 +467,7 @@ export const LANDING_BODY = `
           </div>
           <div class="field-row">
             <div class="field"><label for="d-rera">A MahaRERA project no.</label><input id="d-rera" name="reraProject" placeholder="P52100012345" required></div>
-            <div class="field"><label for="d-web">Website <small>(optional)</small></label><input id="d-web" name="website" type="url" placeholder="https://"></div>
+            <div class="field"><label for="d-web">Website</label><input id="d-web" name="website" type="url" placeholder="https://" required></div>
           </div>
         </fieldset>
         <fieldset class="role-fields" data-for="agent" hidden disabled>

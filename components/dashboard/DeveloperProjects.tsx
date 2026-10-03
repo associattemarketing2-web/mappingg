@@ -12,6 +12,10 @@ interface MyProject {
   status: string;
   type: string;
   price: string;
+  configuration: string;
+  description: string;
+  lat: number | null;
+  lng: number | null;
   review: 'pending' | 'rejected' | 'live';
   created_at: string;
 }
@@ -35,6 +39,7 @@ const EMPTY = { title: '', location: '', type: 'Residential', status: 'upcoming'
 export default function DeveloperProjects() {
   const [items, setItems] = useState<MyProject[] | null>(null);
   const [open, setOpen] = useState(false);
+  const [editId, setEditId] = useState<string | null>(null);
   const [form, setForm] = useState({ ...EMPTY });
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
@@ -48,6 +53,19 @@ export default function DeveloperProjects() {
   }
   useEffect(() => { load(); }, []);
 
+  function startAdd() {
+    setEditId(null); setForm({ ...EMPTY }); setMsg(null); setOpen(true);
+  }
+  function startEdit(p: MyProject) {
+    setEditId(p.id);
+    setForm({
+      title: p.title, location: p.location, type: p.type || 'Residential', status: p.status || 'upcoming',
+      price: p.price, configuration: p.configuration, description: p.description,
+      lat: p.lat != null ? String(p.lat) : '', lng: p.lng != null ? String(p.lng) : '',
+    });
+    setMsg(null); setOpen(true);
+  }
+
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     if (!form.title.trim()) { setMsg({ ok: false, text: 'Please enter a project name.' }); return; }
@@ -58,19 +76,32 @@ export default function DeveloperProjects() {
     };
     if (form.lat && !Number.isNaN(+form.lat)) payload.lat = +form.lat;
     if (form.lng && !Number.isNaN(+form.lng)) payload.lng = +form.lng;
+    if (editId) payload.id = editId;
     try {
       const r = await fetch('/api/my/projects', {
-        method: 'POST', credentials: 'same-origin',
+        method: editId ? 'PATCH' : 'POST', credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
       });
       const b = await r.json();
-      if (!r.ok) { setMsg({ ok: false, text: b?.error?.message || 'Could not add the project.' }); }
+      if (!r.ok) { setMsg({ ok: false, text: b?.error?.message || 'Could not save the project.' }); }
       else {
-        setMsg({ ok: true, text: 'Submitted! Our team will review it and publish it to the map shortly.' });
-        setForm({ ...EMPTY }); setOpen(false); load();
+        setMsg({ ok: true, text: editId
+          ? 'Saved! Your changes go back to our team for review before they appear on the map.'
+          : 'Submitted! Our team will review it and publish it to the map shortly.' });
+        setForm({ ...EMPTY }); setOpen(false); setEditId(null); load();
       }
     } catch { setMsg({ ok: false, text: 'Network error. Please try again.' }); }
     finally { setBusy(false); }
+  }
+
+  async function remove(p: MyProject) {
+    if (!confirm(`Delete "${p.title}"? This can't be undone.`)) return;
+    try {
+      const r = await fetch(`/api/my/projects?id=${encodeURIComponent(p.id)}`, { method: 'DELETE', credentials: 'same-origin' });
+      if (!r.ok) throw new Error();
+      setMsg({ ok: true, text: 'Project deleted.' });
+      load();
+    } catch { setMsg({ ok: false, text: 'Could not delete the project.' }); }
   }
 
   const set = (k: keyof typeof EMPTY) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
@@ -86,8 +117,8 @@ export default function DeveloperProjects() {
     <section className="dsh-card">
       <h2 style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
         <i className="fas fa-location-dot" /> Your projects
-        <button className="dsh-btn primary" style={{ marginLeft: 'auto', fontSize: 13 }} onClick={() => setOpen((v) => !v)}>
-          <i className="fas fa-plus" /> {open ? 'Close' : 'Add project'}
+        <button className="dsh-btn primary" style={{ marginLeft: 'auto', fontSize: 13 }} onClick={() => (open ? setOpen(false) : startAdd())}>
+          <i className={`fas ${open ? 'fa-xmark' : 'fa-plus'}`} /> {open ? 'Close' : 'Add project'}
         </button>
       </h2>
 
@@ -119,7 +150,7 @@ export default function DeveloperProjects() {
           </div>
           <textarea placeholder="Short description" value={form.description} onChange={set('description')} rows={3} maxLength={4000} />
           <button type="submit" className="dsh-btn primary" disabled={busy}>
-            {busy ? 'Submitting…' : 'Submit for review'}
+            {busy ? 'Saving…' : editId ? 'Save changes' : 'Submit for review'}
           </button>
           <small style={{ color: '#6b7a74' }}>
             Tip: adding latitude &amp; longitude places your project precisely on the map. Our team can also set it during review.
@@ -145,9 +176,17 @@ export default function DeveloperProjects() {
                 <span style={{ background: badge.bg, color: badge.fg, padding: '3px 10px', borderRadius: 999, fontSize: 12, fontWeight: 700 }}>
                   {badge.label}
                 </span>
-                {p.review === 'live' && (
-                  <a className="dsh-link" href={`/map?pin=${encodeURIComponent(p.id)}`}>View on map <i className="fas fa-arrow-right" /></a>
-                )}
+                <span style={{ display: 'inline-flex', gap: 8, alignItems: 'center' }}>
+                  {p.review === 'live' && (
+                    <a className="dsh-link" href={`/map?pin=${encodeURIComponent(p.id)}`}>View <i className="fas fa-arrow-right" /></a>
+                  )}
+                  <button type="button" className="dsh-link" style={{ background: 'none', border: 0, cursor: 'pointer', padding: 0 }} onClick={() => startEdit(p)} aria-label={`Edit ${p.title}`}>
+                    <i className="fas fa-pen" /> Edit
+                  </button>
+                  <button type="button" className="dsh-link" style={{ background: 'none', border: 0, cursor: 'pointer', padding: 0, color: '#b42318' }} onClick={() => remove(p)} aria-label={`Delete ${p.title}`}>
+                    <i className="fas fa-trash" />
+                  </button>
+                </span>
               </li>
             );
           })}
