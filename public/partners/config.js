@@ -19,8 +19,8 @@ window.MAPPINGG_CONFIG = {
   mapsResolverFunction: 'resolve-maps-link',
 
   // Contact shown to builders on their page (leave WhatsApp empty to hide it)
-  supportWhatsApp: '',
-  supportEmail: 'associattemarketing@gmail.com',
+  supportWhatsApp: '+91 82288 28200',
+  supportEmail: 'mappingg.associatte@gmail.com',
 
   // Map pin picker opens on Mundhwa, Pune
   defaultMapCenter: [18.5314, 73.9270],

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import BlogFooter from '@/components/BlogFooter';
 import './blog.css';
 import { listPublished } from '@/lib/blog';
 import SiteHeader from '@/components/SiteHeader';
@@ -29,16 +30,7 @@ function fmt(d?: string | null) {
   return d ? new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
 }
 
-function Footer() {
-  return (
-    <footer className="blog-foot">
-      <div className="wrap">
-        <span>© {new Date().getFullYear()} Mappingg.com — a product by Associatte.</span>
-        <span><a href="/">Home</a> · <a href="/map">Live map</a></span>
-      </div>
-    </footer>
-  );
-}
+const Footer = BlogFooter;
 
 export default async function BlogIndex() {
   const posts = await listPublished();

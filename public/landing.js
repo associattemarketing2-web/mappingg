@@ -28,6 +28,22 @@
     clearTimeout(toast.timer); toast.timer = setTimeout(() => t.classList.remove('show'), 3000);
   }
 
+  /* ---------- Featured project card: inline YouTube video (display-only card) ---------- */
+  // Plays muted as soon as the card scrolls into view, like the map card.
+  document.querySelectorAll('.pv-yt[data-yt]').forEach(box => {
+    const play = () => {
+      if (box.dataset.playing) return; box.dataset.playing = '1';
+      box.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(box.dataset.yt) +
+        '?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&loop=1&playlist=' + encodeURIComponent(box.dataset.yt) +
+        '" title="Project video" tabindex="-1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+    };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(es => { if (es.some(x => x.isIntersecting)) { io.disconnect(); play(); } }, { threshold: 0.6 });
+      io.observe(box);
+      __cleanups.push(() => io.disconnect());
+    } else play();
+  });
+
   /* ---------- Nav ---------- */
   const menuBtn = byId('menuBtn'), mobileMenu = byId('mobileMenu');
   const setMenu = open => { mobileMenu.classList.toggle('is-open', open); menuBtn.setAttribute('aria-expanded', open); menuBtn.innerHTML = open ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
@@ -314,7 +330,7 @@
   const ROLE_LABEL = { buyer: 'Buyer / Investor', developer: 'Developer / Builder', agent: 'Channel Partner', admin: 'Super admin', employee: 'Team' };
   const ROLES = {
     buyer: { side: ['Find, check and compare every project', 'See live status, MahaRERA-verified RERA numbers and possession dates for projects across Pune.'],
-      items: ['Full project details on the live map', 'Status, MahaRERA-verified RERA numbers and possession dates', 'What’s nearby: schools, hospitals, metro', 'Street View and directions to every site', 'Always complimentary for buyers'], cta: 'Create buyer account' },
+      items: ['Full project details on the live map', 'Status, MahaRERA-verified RERA numbers and possession dates', 'What’s nearby: schools, hospitals, metro', 'Always complimentary for buyers'], cta: 'Create buyer account' },
     developer: { side: ['Put your projects on the map', 'Reach buyers and channel partners already comparing projects in your area.'],
       items: ['Your project live as a pin on the map', 'Plot-level availability and layouts', 'Share links and QR codes for hoardings', 'Buyer enquiries straight to your team', 'Verified badge once your RERA no. is checked on MahaRERA'], cta: 'Create developer account' },
     agent: { side: ['Close faster with verified data', 'Show clients exactly where a project is and what its RERA record says.'],

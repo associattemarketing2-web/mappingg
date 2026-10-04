@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import BlogFooter from '@/components/BlogFooter';
 import { notFound } from 'next/navigation';
 import '../blog.css';
 import { getBySlug, readingTime } from '@/lib/blog';
@@ -98,12 +99,7 @@ export default async function BlogArticle({ params }: { params: { slug: string }
         </div>
       </article>
 
-      <footer className="blog-foot">
-        <div className="wrap">
-          <span>© {new Date().getFullYear()} Mappingg.com — a product by Associatte.</span>
-          <span><a href="/">Home</a> · <a href="/map">Live map</a></span>
-        </div>
-      </footer>
+      <BlogFooter />
     </div>
   );
 }

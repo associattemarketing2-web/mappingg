@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import InfoPage, { ContactBlock, LegalDoc, UpdatedChip, type LegalSection } from '@/components/InfoPage';
+import InfoPage, { ContactBlock, LegalDoc, OfficialChannels, UpdatedChip, type LegalSection } from '@/components/InfoPage';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
 
@@ -64,6 +64,27 @@ const sections: LegalSection[] = [
         Upcoming infrastructure depends on government approvals and timelines that may change. Map data is © OpenStreetMap
         contributors.
       </p>
+    ),
+  },
+  {
+    id: 'social-media',
+    title: 'Social media and videos',
+    body: (
+      <p>
+        The same applies to everything we share on our Instagram, LinkedIn, YouTube and Facebook pages and on WhatsApp,
+        including project videos, posts, reels and brochures. These are for information only, are not an offer to sell,
+        and may not reflect later changes to a project. Please confirm all details with the developer and MahaRERA.
+      </p>
+    ),
+  },
+  {
+    id: 'official-channels',
+    title: 'Official channels',
+    body: (
+      <>
+        <p>These are Mappingg&apos;s only official accounts. Content from any other account is not ours.</p>
+        <OfficialChannels />
+      </>
     ),
   },
   {

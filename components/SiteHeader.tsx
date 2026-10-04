@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import './site-header.css';
+import SocialLinks from '@/components/SocialLinks';
+import { EMAIL, WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/lib/contact';
 
 // The single header shared by every public page (home, blog, …) so the site
 // looks like one product. Navigation is client-side (no reload) via <Link>, and
@@ -121,6 +123,13 @@ export default function SiteHeader() {
                   {l.label}
                 </Link>
               ))}
+            </div>
+            <div className="shd-contact">
+              <div className="shd-contact-tx">
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener">WhatsApp {WHATSAPP_DISPLAY}</a>
+                <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+              </div>
+              <SocialLinks />
             </div>
             <div className="row">
               {signedIn ? (

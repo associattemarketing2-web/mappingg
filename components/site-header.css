@@ -63,3 +63,10 @@
 @media (max-width: 520px) {
   .shd-right > .shd-btn.primary { display: none; }
 }
+
+/* Contact strip in the mobile menu */
+.shd-mobile .shd-contact { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; padding: 12px 4px 4px; border-top: 1px solid var(--line); }
+.shd-mobile .shd-contact-tx { display: flex; flex-direction: column; gap: 2px; }
+.shd-mobile .shd-contact-tx a { padding: 2px 0; font-size: 13px; font-weight: 600; color: var(--forest); background: none; overflow-wrap: anywhere; }
+.shd-mobile .shd-contact .mg-socials a { width: 36px; height: 36px; padding: 0; display: grid; place-items: center; border-radius: 50%; background: #fff; border: 1px solid #e5ddcc; color: #0f5c47; font-size: 0; }
+.shd-mobile .shd-contact .mg-socials a:hover { background: #0f5c47; border-color: #0f5c47; color: #fff; }

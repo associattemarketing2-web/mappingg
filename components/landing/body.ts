@@ -16,7 +16,7 @@ export const LANDING_BODY = `
   </div>
   <div class="container">
     <div class="hero-center">
-      <span class="eyebrow"><span class="dot"></span>Live real estate map · Pune</span>
+      <span class="eyebrow"><span class="dot"></span>Live real estate map · India &amp; Dubai</span>
       <h1>Every property project, <span class="accent">mapped</span> and verified.</h1>
       <p class="hero-desc">Mappingg puts projects, RERA, possession, infrastructure and nearby details on one map — so you can shortlist properties in minutes.</p>
       <form class="ask" id="heroAskForm" role="search">
@@ -32,7 +32,6 @@ export const LANDING_BODY = `
       <p class="dev-note">Developer or channel partner? <a href="#" class="open-signup" data-role="developer">List your project</a> · <a href="#" class="open-signup" data-role="agent">Join as partner</a></p>
       <div class="hero-trust">
         <span><i class="fas fa-shield-halved"></i>RERA numbers verified on MahaRERA</span>
-        <span><i class="fas fa-street-view"></i>Street View & navigation</span>
         <span><i class="fas fa-leaf"></i>Green-certified filter</span>
       </div>
     </div>
@@ -106,7 +105,7 @@ export const LANDING_BODY = `
       <div class="globe-panel reveal">
         <canvas id="globe-canvas" aria-label="Interactive globe"></canvas>
         <div class="globe-top"><span class="glass"><span class="live-dot"></span>Live project map</span><span class="glass"><i class="fas fa-hand-pointer"></i>Drag</span></div>
-        <div class="globe-bottom"><span class="glass">🇮🇳 India · 🇦🇪 Dubai soon</span></div>
+        <div class="globe-bottom"><span class="glass">🇮🇳 India · 🇦🇪 Dubai</span></div>
       </div>
       <div class="stack">
         <div class="card agent-card reveal d2">
@@ -131,14 +130,12 @@ export const LANDING_BODY = `
     <div class="strip-item"><i class="fas fa-road"></i>Infrastructure updates</div>
     <div class="strip-item"><i class="fas fa-satellite"></i>Satellite view</div>
     <div class="strip-item"><i class="fas fa-location-crosshairs"></i>Near me</div>
-    <div class="strip-item"><i class="fas fa-street-view"></i>Street View</div>
     <div class="strip-item"><i class="fab fa-whatsapp"></i>WhatsApp enquiries</div>
     <div class="strip-item"><i class="fas fa-location-dot"></i>Live project pins</div>
     <div class="strip-item"><i class="fas fa-shield-halved"></i>MahaRERA verified</div>
     <div class="strip-item"><i class="fas fa-road"></i>Infrastructure updates</div>
     <div class="strip-item"><i class="fas fa-satellite"></i>Satellite view</div>
     <div class="strip-item"><i class="fas fa-location-crosshairs"></i>Near me</div>
-    <div class="strip-item"><i class="fas fa-street-view"></i>Street View</div>
     <div class="strip-item"><i class="fab fa-whatsapp"></i>WhatsApp enquiries</div>
   </div>
 </div>
@@ -232,13 +229,41 @@ export const LANDING_BODY = `
       </div>
       <div class="fvisual">
         <div class="blob tr"></div>
-        <div class="mock">
-          <div class="pc-media" style="background-image:url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=900&auto=format&fit=crop&q=75')"><div class="pc-badges"><span class="badge st s-construction">Under construction</span><span class="badge">Sample</span></div></div>
-          <div class="pc-body">
-            <h4>Sample Residences</h4><p>Mundhwa, Pune · 2 & 3 BHK</p>
-            <div class="kv"><div><span>Starting from</span><strong>₹1.05 Cr</strong></div><div><span>Configuration</span><strong>2, 3 BHK</strong></div></div>
-            <div class="pc-rera"><span class="qr"></span><div><span>MahaRERA no. <em class="rera-ok"><i class="fas fa-circle-check"></i> Verified</em></span><strong>P5210000XXXX</strong><a class="rera-link" href="https://maharera.maharashtra.gov.in/" target="_blank" rel="noopener">Verify on MahaRERA <i class="fas fa-arrow-up-right-from-square"></i></a></div></div>
-            <div class="pc-actions"><span class="btn btn-primary btn-sm"><i class="fas fa-diamond-turn-right"></i>Navigate</span><span class="btn btn-outline btn-sm"><i class="fas fa-street-view"></i>Street View</span></div>
+        <div class="pv-stage">
+<!--PV_CARD-->
+          <div class="pv-card" aria-label="Sample project card, as shown on the map">
+            <span class="pv-close" aria-hidden="true">×</span>
+            <div class="pv-top">
+              <div class="pv-logo"><svg viewBox="0 0 120 90" aria-hidden="true"><rect x="40" y="10" width="40" height="40" rx="6" fill="#1b2430"/><path d="M50 42V26l10-7 10 7v16h-7v-9h-6v9z" fill="#b8925a"/><text x="60" y="66" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#1b2430" letter-spacing="1.5">SAMPLE</text><text x="60" y="80" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="#4a5568" letter-spacing="2.2">RESIDENCES</text></svg></div>
+              <div class="pv-head">
+                <p class="pv-title">Sample Residences</p>
+                <div class="pv-meta">Sample Developers</div>
+                <div class="pv-meta">Mundhwa, Pune</div>
+                <div><span class="pv-status">Under Construction</span><span class="pv-type">Residential</span></div>
+              </div>
+            </div>
+            <div class="pv-body">
+              <div class="pv-details">
+                <div class="pv-meta pv-rera">P5210000XXXX</div>
+                <div class="pv-meta">2, 3 BHK · 850–1,250 sq.ft</div>
+                <div class="pv-meta">₹1.05 Cr onwards</div>
+                <div class="pv-meta">Possession: Dec 2027</div>
+                <div class="pv-meta">5 min from Magarpatta IT Park</div>
+              </div>
+              <div class="pv-label">Project video</div>
+              <div class="pv-media" style="background-image:url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=700&auto=format&fit=crop&q=70')"><span class="pv-play"><i class="fas fa-play"></i></span></div>
+            </div>
+            <div class="pv-actions" aria-hidden="true">
+              <span class="pv-enq"><svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="29" fill="#2f3b93"/><text x="30" y="29" text-anchor="middle" font-family="Arial Narrow,Arial,Helvetica,sans-serif" font-weight="800" font-size="11" fill="#fff" textLength="44" lengthAdjust="spacingAndGlyphs">ENQUIRE</text><text x="30" y="42" text-anchor="middle" font-family="Arial Narrow,Arial,Helvetica,sans-serif" font-weight="800" font-size="12.5" fill="#fff" textLength="26" lengthAdjust="spacingAndGlyphs">NOW</text><g transform="translate(39 3) rotate(12)"><rect width="17" height="12" rx="1.5" fill="#e9b85c" stroke="#fff" stroke-width="1.2"/><path d="M1 1.2 L8.5 7 L16 1.2" fill="none" stroke="#8a5a14" stroke-width="1.1" stroke-linejoin="round"/></g></svg></span>
+              <span class="pv-wa"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.02 3C9.4 3 4 8.38 4 15c0 2.29.64 4.44 1.75 6.28L4 29l7.94-1.7A11.94 11.94 0 0 0 16.02 27C22.65 27 28 21.63 28 15S22.65 3 16.02 3zm0 21.7c-1.95 0-3.77-.55-5.32-1.5l-.38-.23-4.71 1.01 1-4.6-.25-.4A9.63 9.63 0 0 1 6.3 15c0-5.36 4.36-9.7 9.72-9.7 5.36 0 9.72 4.34 9.72 9.7 0 5.36-4.36 9.7-9.72 9.7zm5.34-7.27c-.29-.15-1.73-.86-2-.95-.27-.1-.46-.15-.66.15-.2.29-.76.95-.93 1.15-.17.19-.34.22-.63.07-.29-.15-1.2-.44-2.29-1.41-.85-.75-1.42-1.68-1.59-1.97-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.66-1.6-.9-2.19-.24-.57-.48-.5-.66-.5-.17-.01-.36-.01-.56-.01-.19 0-.51.07-.78.36-.27.29-1.02 1-1.02 2.43 0 1.43 1.05 2.82 1.19 3.01.15.19 2.06 3.15 5 4.42.7.3 1.24.48 1.67.62.7.22 1.34.19 1.84.12.56-.08 1.73-.71 1.98-1.39.24-.68.24-1.27.17-1.39-.07-.12-.26-.19-.55-.34z"/></svg></span>
+              <span class="pv-share">🔗</span>
+            </div>
+          </div>
+<!--/PV_CARD-->
+          <div class="pv-tags" aria-hidden="true">
+            <span class="pv-tag t1"><i class="fas fa-signal"></i>Live status</span>
+            <span class="pv-tag t2"><i class="fas fa-calendar-check"></i>Possession date</span>
+            <span class="pv-tag t3"><i class="fas fa-circle-play"></i>Project video</span>
           </div>
         </div>
       </div>
@@ -258,24 +283,38 @@ export const LANDING_BODY = `
       </div>
       <div class="fvisual">
         <div class="blob bl"></div>
-        <div class="mock nearby">
-          <svg viewBox="0 0 560 330" role="img" aria-label="Map showing a project and nearby places">
-            <rect width="560" height="330" fill="#f6f4ee"/>
-            <g fill="#ece8de"><rect x="20" y="20" width="120" height="80" rx="8"/><rect x="170" y="30" width="90" height="70" rx="8"/><rect x="400" y="20" width="140" height="90" rx="8"/><rect x="30" y="220" width="130" height="90" rx="8"/><rect x="380" y="220" width="160" height="90" rx="8"/></g>
-            <rect x="280" y="20" width="100" height="80" rx="14" fill="#d6ebce"/>
-            <path d="M-10 190 C 120 150 240 230 360 180 S 520 150 580 170" stroke="#a9d0ef" stroke-width="26" fill="none" stroke-linecap="round"/>
-            <g stroke-linecap="round" fill="none"><path d="M0 130H560M200 0V330M460 0V330" stroke="#e2ded3" stroke-width="12"/><path d="M0 130H560M200 0V330M460 0V330" stroke="#fff" stroke-width="8"/><path d="M0 300 C 200 280 360 320 560 290" stroke="#eab95e" stroke-width="12"/><path d="M0 300 C 200 280 360 320 560 290" stroke="#f6d58f" stroke-width="8"/></g>
-            <g stroke="#2d6fa3" stroke-width="2" stroke-dasharray="5 5" fill="none"><path d="M280 160 L 110 60"/><path d="M280 160 L 470 60"/><path d="M280 160 L 450 260"/><path d="M280 160 L 95 255"/></g>
-            <circle cx="280" cy="160" r="46" fill="rgba(15,92,71,.08)" stroke="rgba(15,92,71,.35)" stroke-dasharray="4 4"/>
-            <g font-family="Inter, sans-serif" font-size="11" font-weight="700">
-              <g transform="translate(110 60)"><circle r="14" fill="#fff" stroke="#2d6fa3" stroke-width="2"/><text y="4" text-anchor="middle" fill="#2d6fa3">🏫</text><text x="18" y="-8" fill="#1d2b26">School · 1.2 km</text></g>
-              <g transform="translate(470 60)"><circle r="14" fill="#fff" stroke="#a9532d" stroke-width="2"/><text y="4" text-anchor="middle">🏥</text><text x="-18" y="-18" text-anchor="end" fill="#1d2b26">Hospital · 2.0 km</text></g>
-              <g transform="translate(450 260)"><circle r="14" fill="#fff" stroke="#c9861f" stroke-width="2"/><text y="4" text-anchor="middle">🚇</text><text x="-18" y="30" text-anchor="end" fill="#1d2b26">Metro · 3.4 km</text></g>
-              <g transform="translate(95 255)"><circle r="14" fill="#fff" stroke="#2f7a3c" stroke-width="2"/><text y="4" text-anchor="middle">🏢</text><text x="18" y="30" fill="#1d2b26">IT park · 4.1 km</text></g>
-            </g>
-            <g transform="translate(280 160)"><path d="M0 0 C -14 -18 -20 -26 -20 -36 A 20 20 0 1 1 20 -36 C 20 -26 14 -18 0 0Z" fill="#0f5c47"/><circle cy="-36" r="8" fill="#fff"/></g>
-          </svg>
-          <div class="near-list"><div><b>1.2 km</b><span>Nearest school</span></div><div><b>3.4 km</b><span>Metro station</span></div><div><b>12 min</b><span>Drive to IT park</span></div></div>
+        <div class="mock nb">
+          <div class="nb-map">
+            <svg class="nb-svg" viewBox="0 0 600 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="600" height="380" fill="#f3efe6"/>
+              <g fill="#e9e3d6"><rect x="18" y="18" width="150" height="96" rx="10"/><rect x="198" y="26" width="76" height="80" rx="10"/><rect x="440" y="18" width="142" height="104" rx="10"/><rect x="24" y="250" width="150" height="110" rx="10"/><rect x="410" y="262" width="172" height="100" rx="10"/><rect x="214" y="268" width="140" height="70" rx="10"/></g>
+              <rect x="300" y="24" width="112" height="84" rx="16" fill="#d6ebce"/>
+              <path d="M-20 214 C 110 168 230 252 360 204 S 540 170 620 192" stroke="#a9d0ef" stroke-width="30" fill="none" stroke-linecap="round"/>
+              <g stroke-linecap="round" fill="none">
+                <path d="M0 140H600M188 0V380M428 0V380" stroke="#e2dacb" stroke-width="14"/>
+                <path d="M0 140H600M188 0V380M428 0V380" stroke="#fff" stroke-width="9"/>
+                <path d="M0 352 C 210 328 380 372 600 338" stroke="#e8b45a" stroke-width="14"/>
+                <path d="M0 352 C 210 328 380 372 600 338" stroke="#f7d89a" stroke-width="9"/>
+              </g>
+              <g fill="none" stroke="#2f7a3c" stroke-dasharray="3 6" stroke-width="1.5" opacity=".55"><circle cx="300" cy="190" r="88"/><circle cx="300" cy="190" r="170"/></g>
+              <g stroke-width="2" stroke-dasharray="6 6" fill="none" stroke-linecap="round">
+                <path d="M300 190 L 120 82" stroke="#3f7fb3"/><path d="M300 190 L 486 76" stroke="#a9532d"/>
+                <path d="M300 190 L 476 300" stroke="#c9861f"/><path d="M300 190 L 114 292" stroke="#2f7a3c"/>
+              </g>
+            </svg>
+            <span class="nb-ring nb-r1">2 km</span><span class="nb-ring nb-r2">5 km</span>
+            <div class="nb-pin" style="left:50%;top:50%"><span class="nb-pulse"></span><i class="fas fa-location-dot"></i><span class="nb-pin-tx">Your project</span></div>
+            <div class="nb-poi c-school" style="left:20%;top:21.6%"><span class="nb-ic"><i class="fas fa-school"></i></span><span class="nb-tx"><b>School</b><small>1.2 km</small></span></div>
+            <div class="nb-poi c-hospital nb-l" style="left:81%;top:20%"><span class="nb-ic"><i class="fas fa-hospital"></i></span><span class="nb-tx"><b>Hospital</b><small>2.0 km</small></span></div>
+            <div class="nb-poi c-metro nb-l" style="left:79.3%;top:79%"><span class="nb-ic"><i class="fas fa-train-subway"></i></span><span class="nb-tx"><b>Metro</b><small>3.4 km</small></span></div>
+            <div class="nb-poi c-it" style="left:19%;top:76.8%"><span class="nb-ic"><i class="fas fa-building"></i></span><span class="nb-tx"><b>IT park</b><small>4.1 km</small></span></div>
+          </div>
+          <div class="nb-stats">
+            <div class="c-school"><i class="fas fa-school"></i><div><b>1.2 km</b><span>Nearest school</span></div></div>
+            <div class="c-hospital"><i class="fas fa-hospital"></i><div><b>2.0 km</b><span>Hospital</span></div></div>
+            <div class="c-metro"><i class="fas fa-train-subway"></i><div><b>3.4 km</b><span>Metro station</span></div></div>
+            <div class="c-it"><i class="fas fa-car-side"></i><div><b>12 min</b><span>Drive to IT park</span></div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -350,7 +389,7 @@ export const LANDING_BODY = `
       <details class="faq-item" open><summary>What is Mappingg?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Mappingg is a live map of real estate projects. Each project is a pin with its status, MahaRERA-verified RERA number, possession dates and what's nearby, so you can understand it in seconds.</p></details>
       <details class="faq-item"><summary>What is in it for buyers and investors?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Buyers and investors can explore the map, view project details, compare locations, understand nearby infrastructure and discover upcoming developments — all in one place.</p></details>
       <details class="faq-item"><summary>What infrastructure do you show?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Metro lines, ring roads, flyovers, bridges and road widening around each area — marked as completed, ongoing or planned — so you can see how a location is set to change.</p></details>
-      <details class="faq-item"><summary>Which areas are covered?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>We're starting with projects in Pune and Mumbai, with more metro cities coming soon. Dubai projects are planned next.</p></details>
+      <details class="faq-item"><summary>Which areas are covered?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Projects in India (Pune and the Mumbai Metropolitan Region) and Dubai, UAE, with more cities coming soon.</p></details>
       <details class="faq-item"><summary>How do you verify projects?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Every RERA number is checked on the official <a href="https://maharera.maharashtra.gov.in/" target="_blank" rel="noopener">MahaRERA website</a> before the project goes live. Each project card also links to MahaRERA, so you can verify it yourself in one tap.</p></details>
       <details class="faq-item"><summary>How can I list my project?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Create a developer account and share your RERA number, location and project details. Once we verify your RERA number on the MahaRERA website, your project goes live on the map.</p></details>
       
@@ -384,11 +423,12 @@ export const LANDING_BODY = `
         <a href="#home" class="brand"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Mappingg<em>.com</em></span></a>
         <p>Every property project, mapped and verified. A product by Associatte.</p>
         <div class="socials">
-           <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.instagram.com/mappingg.associatte/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/mappingg-com/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.youtube.com/@mappingg-official" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.facebook.com/share/1CH5PwZUsM/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://wa.me/918228828200" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:mappingg.associatte@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
       <div><h4>Explore</h4><ul><li><a href="/map" class="live-link">Live map</a></li><li><a href="/features">Features</a></li><li><a href="/how-it-works">How it works</a></li><li><a href="/faq">FAQ</a></li></ul></div>
@@ -407,7 +447,7 @@ export const LANDING_BODY = `
     <aside class="auth-side">
       <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Mappingg<em>.com</em></span></a>
       <h3 id="sideTitle">Find, check and compare every project</h3>
-      <p id="sideSub">See live status, MahaRERA-verified RERA numbers and possession dates for projects across Pune.</p>
+      <p id="sideSub">See live status, verified RERA numbers and possession dates for projects across India and Dubai.</p>
       <div class="side-map" aria-hidden="true">
         <span class="pinlabel s-available" style="left:28%;top:48%"><span class="pdot"></span>Available</span>
         <span class="pinlabel s-construction" style="left:66%;top:40%"><span class="pdot"></span>₹1.05 Cr</span>

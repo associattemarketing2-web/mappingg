@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import InfoPage, { ContactBlock, LegalDoc, UpdatedChip, type LegalSection } from '@/components/InfoPage';
+import InfoPage, { ContactBlock, LegalDoc, OfficialChannels, UpdatedChip, type LegalSection } from '@/components/InfoPage';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
 
@@ -109,10 +109,24 @@ const sections: LegalSection[] = [
     title: 'Third-party links and services',
     body: (
       <p>
-        The Website links to and uses third-party services, such as map tile providers, the MahaRERA website, YouTube and
-        WhatsApp. We are not responsible for their content or practices, and your use of them is governed by their own
-        terms.
+        The Website links to and uses third-party services, such as map tile providers, the MahaRERA website, YouTube,
+        WhatsApp, Instagram, LinkedIn and Facebook. We are not responsible for their content or practices, and your use
+        of them is governed by their own terms.
       </p>
+    ),
+  },
+  {
+    id: 'official-channels',
+    title: 'Official channels',
+    body: (
+      <>
+        <p>
+          Mappingg communicates only through the channels below. Messages, pages or profiles that use the Mappingg name
+          from any other account are not ours, and we are not responsible for them. Content we post on these channels is
+          covered by these Terms and by our <Link href="/disclaimer">Disclaimer</Link>.
+        </p>
+        <OfficialChannels />
+      </>
     ),
   },
   {

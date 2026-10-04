@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import InfoPage, { CtaBand, EMAIL, MapArt } from '@/components/InfoPage';
+import InfoPage, { CtaBand, EMAIL, MapArt, SocialLinks } from '@/components/InfoPage';
+import { WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/lib/contact';
 import ContactForm from '@/components/ContactForm';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
@@ -67,6 +68,20 @@ export default function ContactPage() {
                 <div>
                   <strong>Email</strong>
                   <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+                </div>
+              </div>
+              <div className="row">
+                <i className="fab fa-whatsapp" aria-hidden="true" />
+                <div>
+                  <strong>WhatsApp</strong>
+                  <a href={WHATSAPP_URL} target="_blank" rel="noopener">{WHATSAPP_DISPLAY}</a>
+                </div>
+              </div>
+              <div className="row">
+                <i className="fas fa-share-nodes" aria-hidden="true" />
+                <div>
+                  <strong>Follow us</strong>
+                  <SocialLinks />
                 </div>
               </div>
               <div className="row">

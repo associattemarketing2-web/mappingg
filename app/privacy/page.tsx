@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import InfoPage, { ContactBlock, LegalDoc, UpdatedChip, type LegalSection } from '@/components/InfoPage';
+import InfoPage, { ContactBlock, LegalDoc, OfficialChannels, UpdatedChip, type LegalSection } from '@/components/InfoPage';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
 
@@ -121,6 +121,38 @@ const sections: LegalSection[] = [
     ),
   },
   {
+    id: 'social-media',
+    title: 'Our social media pages and WhatsApp',
+    body: (
+      <>
+        <p>
+          Mappingg has official pages on Instagram, LinkedIn, YouTube and Facebook, and a WhatsApp number for enquiries.
+          When you follow, like, comment on or message these accounts, the platform (Meta, LinkedIn or Google) processes
+          your data under its own privacy policy, and we can see what the platform shows to page owners, such as your
+          public profile name and your messages to us.
+        </p>
+        <p>
+          Anything you send us through these channels, such as a WhatsApp enquiry, is handled under this Privacy Policy
+          in the same way as an enquiry made on the Website. Please do not share sensitive personal information, such as
+          bank or identity details, in comments or messages.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: 'official-channels',
+    title: 'Our official channels',
+    body: (
+      <>
+        <p>
+          We only contact you from the accounts below. If someone claims to be from Mappingg using any other email address,
+          number or page, it is not us — please check with us at the email address below before sharing any information.
+        </p>
+        <OfficialChannels />
+      </>
+    ),
+  },
+  {
     id: 'cookies',
     title: 'Cookies and browser storage',
     body: (
@@ -228,7 +260,7 @@ export default function PrivacyPage() {
         glance={[
           { icon: 'fas fa-address-card', title: 'What we collect', text: 'Details you give us when you sign up or enquire, plus standard browser information.' },
           { icon: 'fas fa-map-location-dot', tone: 'water', title: 'Map providers', text: 'Map images load from OpenStreetMap and others. They see your IP address, never your contact details.' },
-          { icon: 'fas fa-hand-holding-heart', tone: 'earth', title: 'Never sold', text: 'We don’t sell your data. Ask us any time to see, correct or delete it.' },
+          { icon: 'fas fa-hand-holding-heart', tone: 'earth', title: 'Never sold', text: 'We don’t sell your data. Ask us any time to see, correct or delete it — by email or WhatsApp.' },
         ]}
         intro={
           <>
