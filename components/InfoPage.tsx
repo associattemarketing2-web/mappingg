@@ -3,14 +3,16 @@ import Link from 'next/link';
 import SiteHeader from '@/components/SiteHeader';
 import TocSpy from '@/components/TocSpy';
 import IconFont from '@/components/IconFont';
+import { EMAIL, SOCIALS, WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/lib/contact';
+import SocialLinks from '@/components/SocialLinks';
 
 // Shared building blocks for the company & legal pages (About, Contact, Careers,
 // Advertise, Privacy, Terms, Disclaimer): the page shell with hero and footer,
 // the legal-document layout with a sticky table of contents, and a few
 // decorative map illustrations drawn in the landing page's map palette.
 
-export const LEGAL_UPDATED = '30 September 2026';
-export const EMAIL = 'info@associatte.com';
+export const LEGAL_UPDATED = '4 October 2026';
+export { EMAIL };
 
 type Tone = 'park' | 'water' | 'earth' | 'road';
 
@@ -92,6 +94,7 @@ export default function InfoPage({
                 <b>Mappingg<em>.com</em></b>
               </Link>
               <p>Every property project, mapped and verified. A product by Associatte PropTech, Pune.</p>
+              <SocialLinks email className="ipg-foot-socials" />
             </div>
             <FootCol title="Explore" links={EXPLORE_LINKS} path={path} />
             <FootCol title="Company" links={COMPANY_LINKS} path={path} />
@@ -99,7 +102,10 @@ export default function InfoPage({
           </div>
           <div className="bottom">
             <span>© {new Date().getFullYear()} Associatte PropTech Pvt Ltd. All rights reserved.</span>
-            <span>Questions? <a href={`mailto:${EMAIL}`}>{EMAIL}</a></span>
+            <span>
+              Questions? <a href={`mailto:${EMAIL}`}>{EMAIL}</a> · WhatsApp{' '}
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener">{WHATSAPP_DISPLAY}</a>
+            </span>
           </div>
         </div>
       </footer>
@@ -192,6 +198,31 @@ export function LegalDoc({
   );
 }
 
+export { SocialLinks };
+
+/** Every official Mappingg account, for the legal pages' "Official channels" sections. */
+export function OfficialChannels() {
+  const handle = (href: string) => href.replace(/^https?:\/\/(www\.)?/, '').replace(/\/?\?.*$/, '').replace(/\/$/, '');
+  const rows = [
+    { name: 'Email', icon: 'fas fa-envelope', href: `mailto:${EMAIL}`, label: EMAIL },
+    { name: 'WhatsApp', icon: 'fab fa-whatsapp', href: WHATSAPP_URL, label: WHATSAPP_DISPLAY },
+    ...SOCIALS.map((s) => ({ name: s.name, icon: s.icon, href: s.href, label: handle(s.href) })),
+  ];
+  return (
+    <ul className="ipg-channels">
+      {rows.map((r) => (
+        <li key={r.name}>
+          <i className={r.icon} aria-hidden="true" />
+          <div>
+            <strong>{r.name}</strong>
+            <a href={r.href} {...(r.href.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {})}>{r.label}</a>
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function ContactBlock() {
   return (
     <div className="ipg-address">
@@ -200,7 +231,9 @@ export function ContactBlock() {
         <strong>Associatte PropTech Pvt Ltd</strong>
         302 and 303, Naren Pearl, 3rd Floor, Magarpatta Road,<br />
         Above Axis and IndusInd Bank, Hadapsar, Pune - 411028<br />
-        Email: <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        Email: <a href={`mailto:${EMAIL}`}>{EMAIL}</a><br />
+        WhatsApp: <a href={WHATSAPP_URL} target="_blank" rel="noopener">{WHATSAPP_DISPLAY}</a>
+        <SocialLinks />
       </div>
     </div>
   );

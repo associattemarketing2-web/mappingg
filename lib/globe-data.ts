@@ -26,15 +26,15 @@ type CountryDef = { name: string; code: string; flag: string; lat: number; lon: 
 // Representative coordinates (country centroid-ish) + detection keywords.
 const COUNTRIES: CountryDef[] = [
   { name: 'United Arab Emirates', code: 'AE', flag: '🇦🇪', lat: 24.2, lon: 54.4, kw: ['dubai', 'uae', 'emirates', 'abu dhabi', 'sharjah'] },
-  { name: 'United Kingdom', code: 'GB', flag: '🇬🇧', lat: 54.0, lon: -2.0, kw: ['london', 'uk', 'united kingdom', 'england'] },
   { name: 'United States', code: 'US', flag: '🇺🇸', lat: 39.0, lon: -98.0, kw: ['usa', 'united states', 'new york', 'california'] },
   { name: 'Singapore', code: 'SG', flag: '🇸🇬', lat: 1.35, lon: 103.8, kw: ['singapore'] },
 ];
 const INDIA: CountryDef = { name: 'India', code: 'IN', flag: '🇮🇳', lat: 22.0, lon: 79.0, kw: [] };
 
 function countryOf(location?: string): CountryDef {
-  const s = (location || '').toLowerCase();
-  for (const c of COUNTRIES) if (c.kw.some((k) => s.includes(k))) return c;
+  // Whole-word match, so e.g. "Dahanukar Colony" isn't read as "uk".
+  const words = ` ${(location || '').toLowerCase().replace(/[^a-z]+/g, ' ')} `;
+  for (const c of COUNTRIES) if (c.kw.some((k) => words.includes(` ${k} `))) return c;
   return INDIA; // every current project is in Pune / MMR, India
 }
 

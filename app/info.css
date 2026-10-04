@@ -421,3 +421,17 @@
   .ipg-doc a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .85em; color: #555; }
   .ipg-card, .ipg-glance > div, .ipg-doc section { break-inside: avoid; box-shadow: none; }
 }
+
+/* Social links spacing (the links themselves are styled in app/globals.css) */
+.ipg-foot-socials { margin-top: 14px; }
+.ipg-office .row .mg-socials { margin-top: 6px; }
+/* Official channels list (legal pages) */
+.ipg-channels { list-style: none; padding: 0; margin: 14px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.ipg-channels li { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: #fff; border: 1px solid var(--line); min-width: 0; margin: 0; }
+.ipg-channels li::before { content: none; }
+.ipg-channels i { width: 36px; height: 36px; flex: none; border-radius: 11px; display: grid; place-items: center; background: var(--park-50); color: var(--park); font-size: 15px; }
+.ipg-channels div { min-width: 0; line-height: 1.35; }
+.ipg-channels strong { display: block; font-size: 13px; color: var(--ink); }
+.ipg-channels a { font-size: 13.5px; color: var(--forest); font-weight: 600; overflow-wrap: anywhere; }
+@media (max-width: 560px) { .ipg-channels { grid-template-columns: 1fr; } }
+.ipg-address .mg-socials { margin-top: 10px; }

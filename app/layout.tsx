@@ -11,11 +11,11 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Mappingg — Live Real Estate Project Map for Pune & MMR',
+    default: 'Mappingg — Live Real Estate Project Map for India & Dubai',
     template: '%s — Mappingg',
   },
   description:
-    'Explore a live, interactive map of real estate projects across Pune and the Mumbai Metropolitan Region — colour-coded by status, with developer, pricing, configuration and infrastructure details.',
+    'Explore a live, interactive map of real estate projects across Pune, the Mumbai Metropolitan Region and Dubai — colour-coded by status, with developer, pricing, configuration and infrastructure details.',
   applicationName: 'Mappingg',
   icons: {
     icon: '/img/mappingg-icon-mark.png',
@@ -32,12 +32,12 @@ export const metadata: Metadata = {
     siteName: 'Mappingg',
     url: SITE_URL,
     title: 'Mappingg — Live Real Estate Project Map',
-    description: 'Explore live projects, upcoming launches and infrastructure across Pune and MMR.',
+    description: 'Explore live projects, upcoming launches and infrastructure across India and Dubai.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Mappingg — Live Real Estate Project Map',
-    description: 'Explore live projects, upcoming launches and infrastructure across Pune and MMR.',
+    description: 'Explore live projects, upcoming launches and infrastructure across India and Dubai.',
   },
 };
 

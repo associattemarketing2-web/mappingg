@@ -43,6 +43,8 @@ const KEY = process.env.SUPABASE_KEY || ANON_KEY;
 const TABLES = ['pins', 'infra_markers', 'roads', 'map_settings', 'infra_types', 'area_boundaries', 'leads', 'pins_history'];
 // Pins carry base64 images, so keep pages small to avoid huge responses on a flaky link.
 const PAGE = 25;
+// Primary-key column per table in Supabase (pins_history has no `id` column).
+const KEY_COL = { pins_history: 'history_id' };
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -60,12 +62,13 @@ async function fetchRetry(u, opts, tries = 6) {
 }
 
 async function fetchTable(table) {
+  const keyCol = KEY_COL[table] || 'id';
   const headers = { apikey: KEY, Authorization: `Bearer ${KEY}`, Prefer: 'count=exact' };
   const rows = [];
   let total = null;
   for (let from = 0; ; from += PAGE) {
     const res = await fetchRetry(
-      `${SUPABASE_URL}/rest/v1/${table}?select=*&order=id.asc`,
+      `${SUPABASE_URL}/rest/v1/${table}?select=*&order=${keyCol}.asc`,
       { headers: { ...headers, Range: `${from}-${from + PAGE - 1}`, 'Range-Unit': 'items' } },
     );
     if (!res.ok && res.status !== 416) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`);
@@ -166,7 +169,7 @@ async function main() {
         const values = [];
         const tuples = chunk.map((doc, j) => {
           const { _id, ...rest } = doc;
-          const id = String(_id ?? rest.id);
+          const id = String(_id ?? rest[KEY_COL[t] || 'id']);
           if (rest.id == null) rest.id = id;
           values.push(id, JSON.stringify(rest));
           return `($${j * 2 + 1}, $${j * 2 + 2}::jsonb)`;

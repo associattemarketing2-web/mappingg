@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import InfoPage, { CtaBand, MiniMap } from '@/components/InfoPage';
+import InfoPage, { CtaBand, MiniMap, OfficialChannels } from '@/components/InfoPage';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
 
@@ -110,7 +110,18 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <CtaBand title="See it for yourself" text="Explore live projects across Pune, with RERA details and what’s nearby.">
+      <section className="ipg-section alt">
+        <div className="container">
+          <div className="ipg-head">
+            <span className="eyebrow"><span className="dot" />Stay in touch</span>
+            <h2>Find us <span className="accent">online</span></h2>
+            <p>New projects, area updates and project videos — follow Mappingg, or message us any time.</p>
+          </div>
+          <OfficialChannels />
+        </div>
+      </section>
+
+      <CtaBand title="See it for yourself" text="Explore live projects across India and Dubai, with RERA details and what’s nearby.">
         <Link href="/map" className="btn btn-primary">Open the live map <i className="fas fa-arrow-right" aria-hidden="true" /></Link>
         <Link href="/advertise" className="btn btn-outline">List your project</Link>
       </CtaBand>
