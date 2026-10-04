@@ -950,7 +950,70 @@ interface Account {
   profile?: Record<string, string>; created_at?: string; updated_at?: string;
   // Buyer: preferred areas · agent: areas they work in · developer: where their projects are.
   locations?: string[];
+  last_login_at?: string; login_count?: number;
+  stats?: { enquiries: number; contacts: number; projects: number; logins: number; compare: number; lastActive: string | null } | null;
 }
+// One entry in an account's activity (live log + events rebuilt from stored data).
+interface AccountEvent {
+  id: string; user_id: string; email: string; name?: string; role?: string;
+  type: string; detail?: string; actor?: string; at: string; ip?: string; device?: string; derived?: boolean;
+}
+const EVENT_META: Record<string, { icon: string; tone: string; label: string; group: string }> = {
+  signup: { icon: 'fa-user-plus', tone: 'blue', label: 'Signed up', group: 'signup' },
+  login: { icon: 'fa-right-to-bracket', tone: 'green', label: 'Signed in', group: 'signin' },
+  logout: { icon: 'fa-right-from-bracket', tone: 'grey', label: 'Signed out', group: 'signin' },
+  compare: { icon: 'fa-code-compare', tone: 'violet', label: 'Compare list', group: 'enquiry' },
+  enquiry: { icon: 'fa-envelope-open-text', tone: 'amber', label: 'Map enquiry', group: 'enquiry' },
+  contact: { icon: 'fa-message', tone: 'amber', label: 'Contact form', group: 'enquiry' },
+  project_added: { icon: 'fa-map-pin', tone: 'blue', label: 'Project added', group: 'projects' },
+  project_edited: { icon: 'fa-pen', tone: 'blue', label: 'Project edited', group: 'projects' },
+  project_deleted: { icon: 'fa-trash', tone: 'red', label: 'Project deleted', group: 'projects' },
+  approved: { icon: 'fa-circle-check', tone: 'green', label: 'Verified', group: 'admin' },
+  rejected: { icon: 'fa-circle-xmark', tone: 'red', label: 'Rejected', group: 'admin' },
+  reset: { icon: 'fa-rotate-left', tone: 'grey', label: 'Back to pending', group: 'admin' },
+  password_reset: { icon: 'fa-key', tone: 'grey', label: 'Password reset', group: 'admin' },
+  notes: { icon: 'fa-note-sticky', tone: 'grey', label: 'Notes updated', group: 'admin' },
+  deleted: { icon: 'fa-user-xmark', tone: 'red', label: 'Account deleted', group: 'admin' },
+};
+const FEED_FILTERS = [['all', 'All'], ['signin', 'Sign-ins'], ['signup', 'Sign-ups'], ['enquiry', 'Enquiries'], ['projects', 'Projects'], ['admin', 'Staff actions']] as const;
+const eventMeta = (t: string) => EVENT_META[t] || { icon: 'fa-circle', tone: 'grey', label: t, group: 'all' };
+const fullWhen = (d?: string | null) => (d ? new Date(d).toLocaleString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '');
+
+/** Vertical timeline of account events. */
+function ActivityList({ items, onPick, showWho }: { items: AccountEvent[]; onPick?: (e: AccountEvent) => void; showWho?: boolean }) {
+  return (
+    <ol className="acx-tl">
+      {items.map((e) => {
+        const m = eventMeta(e.type);
+        const role = (e.role || '') as Account['role'];
+        const body = (
+          <>
+            <span className={`acx-tl-ic t-${m.tone}`}><i className={`fas ${m.icon}`} /></span>
+            <span className="acx-tl-main">
+              <span className="acx-tl-top">
+                {showWho ? <b>{e.name || e.email}</b> : <b>{m.label}</b>}
+                <time title={fullWhen(e.at)}>{leadWhen(e.at)}</time>
+              </span>
+              <span className="acx-tl-detail">{e.detail || m.label}</span>
+              <span className="acx-tl-meta">
+                {showWho && ACCOUNT_ROLES[role] ? <span className={`acx-role r-${role}`}>{ACCOUNT_ROLES[role].short.replace(/s$/, '')}</span> : null}
+                {e.actor ? <span><i className="fas fa-user-tie" /> {e.actor}</span> : null}
+                {e.device ? <span><i className="fas fa-display" /> {e.device}</span> : null}
+                {e.ip ? <span title="IP address">{e.ip}</span> : null}
+              </span>
+            </span>
+          </>
+        );
+        return (
+          <li key={e.id}>
+            {onPick ? <button type="button" className="acx-tl-row" onClick={() => onPick(e)}>{body}</button> : <div className="acx-tl-row">{body}</div>}
+          </li>
+        );
+      })}
+    </ol>
+  );
+}
+
 const ACCOUNT_ROLES = ROLE_META;
 // Sign-up form fields per role, in form order, with readable labels.
 const PROFILE_FIELDS: Record<Account['role'], [string, string][]> = {
@@ -980,6 +1043,30 @@ function AccountsPanel({ flash, isOwner, onPendingChange }: {
   const [notes, setNotes] = useState('');
   const [newPass, setNewPass] = useState('');
   const [busy, setBusy] = useState(false);
+  const [feed, setFeed] = useState<AccountEvent[]>([]);
+  const [feedLoading, setFeedLoading] = useState(true);
+  const [feedFilter, setFeedFilter] = useState<(typeof FEED_FILTERS)[number][0]>('all');
+  const [feedShown, setFeedShown] = useState(12);
+  const [timeline, setTimeline] = useState<AccountEvent[] | null>(null);
+  const [allLocs, setAllLocs] = useState(false);
+
+  async function loadFeed() {
+    setFeedLoading(true);
+    try {
+      const r = await fetch('/api/admin/accounts/activity?limit=200', { credentials: 'same-origin' });
+      const b = await r.json();
+      if (r.ok) setFeed(Array.isArray(b.data) ? b.data : []);
+    } catch { /* feed is optional */ } finally { setFeedLoading(false); }
+  }
+  async function loadTimeline(id: string) {
+    setTimeline(null);
+    try {
+      const r = await fetch(`/api/admin/accounts/activity?id=${encodeURIComponent(id)}`, { credentials: 'same-origin' });
+      const b = await r.json();
+      setTimeline(r.ok && Array.isArray(b.data) ? b.data : []);
+    } catch { setTimeline([]); }
+  }
+  useEffect(() => { loadFeed(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function load() {
     setLoading(true);
@@ -1012,21 +1099,30 @@ function AccountsPanel({ flash, isOwner, onPendingChange }: {
   const list = scoped.filter((a) =>
     (filter === 'all' || (filter === 'pending' || filter === 'rejected' ? statusOf(a) === filter : a.role === filter)) && matchesSearch(a),
   );
-  // One section per account type; a type filter shows just that one.
-  const sections = (PEOPLE_ROLES as readonly Account['role'][])
-    .filter((r) => filter === 'all' || filter === r || list.some((a) => a.role === r))
-    .map((r) => ({ role: r, rows: list.filter((a) => a.role === r) }));
-  // Location-wise summary across all accounts (search applies, type/status don't).
+  // Location chips: counts across accounts matching the search (type/status don't narrow them).
   const searched = rows.filter(matchesSearch);
-  const byLocation = [
-    ...locationCounts(searched).map(([l]) => l),
-    ...(searched.some((a) => !a.locations?.length) ? [NO_LOCATION] : []),
-  ].map((l) => {
-    const inLoc = searched.filter((a) => matchesLocation(a, l));
-    return { loc: l, buyer: inLoc.filter((a) => a.role === 'buyer').length, agent: inLoc.filter((a) => a.role === 'agent').length, developer: inLoc.filter((a) => a.role === 'developer').length, total: inLoc.length };
-  });
+  const locChips: [string, number][] = [
+    ...locationCounts(searched),
+    ...(searched.some((a) => !a.locations?.length) ? [[NO_LOCATION, searched.filter((a) => !a.locations?.length).length] as [string, number]] : []),
+  ];
+  const LOC_CHIP_LIMIT = 10;
+  // Newest sign-ups first in the directory.
+  const sorted = [...list].sort((a, b) => String(b.created_at || '').localeCompare(String(a.created_at || '')));
+  const lastActiveOf = (a: Account) => a.stats?.lastActive || a.last_login_at || a.created_at || '';
+  const feedItems = feed.filter((e) => feedFilter === 'all' || eventMeta(e.type).group === feedFilter);
+  const activeToday = rows.filter((a) => {
+    const t = lastActiveOf(a);
+    return t && Date.now() - new Date(t).getTime() < 86400000;
+  }).length;
 
-  function open(a: Account) { setSel(a); setNotes(a.notes || ''); setNewPass(''); setRejectReason(''); setRejecting(false); }
+  function open(a: Account) {
+    setSel(a); setNotes(a.notes || ''); setNewPass(''); setRejectReason(''); setRejecting(false);
+    loadTimeline(a.id);
+  }
+  function openById(id: string) {
+    const a = rows.find((x) => x.id === id);
+    if (a) open(a); else flash('That account no longer exists', true);
+  }
 
   async function decide(a: Account, decision: 'approve' | 'reject' | 'reset') {
     if (decision === 'reject' && !rejectReason.trim()) { flash('Please write a reason — the applicant will see it.', true); return; }
@@ -1050,8 +1146,9 @@ function AccountsPanel({ flash, isOwner, onPendingChange }: {
       });
       const b = await r.json();
       if (!r.ok) throw new Error(b?.error?.message || 'Failed');
-      setRows((ls) => ls.map((x) => (x.id === id ? b.data : x)));
-      setSel((s) => (s && s.id === id ? b.data : s));
+      setRows((ls) => ls.map((x) => (x.id === id ? { ...b.data, locations: x.locations, stats: x.stats } : x)));
+      setSel((s) => (s && s.id === id ? { ...b.data, locations: s.locations, stats: s.stats } : s));
+      loadFeed(); loadTimeline(id);
       return true;
     } catch (e) { flash(e instanceof Error ? e.message : 'Failed', true); return false; } finally { setBusy(false); }
   }
@@ -1063,6 +1160,7 @@ function AccountsPanel({ flash, isOwner, onPendingChange }: {
       if (!r.ok) throw new Error();
       setRows((ls) => ls.filter((x) => x.id !== a.id));
       if (sel?.id === a.id) setSel(null);
+      loadFeed();
       flash('Account deleted');
     } catch { flash('Delete failed', true); }
   }
@@ -1100,12 +1198,19 @@ function AccountsPanel({ flash, isOwner, onPendingChange }: {
     return <span className="crm-pill won"><i className="fas fa-circle-check" /> {a.role === 'buyer' ? 'Active' : 'Verified'}</span>;
   };
 
+  const KPIS = [
+    ['all', 'All accounts', 'fa-users'], ['buyer', 'Buyers', 'fa-house-chimney'], ['developer', 'Developers', 'fa-building'],
+    ['agent', 'Partners', 'fa-handshake'], ['pending', 'Awaiting verification', 'fa-hourglass-half'], ['rejected', 'Rejected', 'fa-circle-xmark'],
+  ] as const;
+
   return (
-    <>
-      <div className="crm-stats">
-        {([['all', 'All accounts'], ['buyer', 'Buyers'], ['developer', 'Developers'], ['agent', 'Partners'], ['pending', 'Awaiting verification'], ['rejected', 'Rejected']] as const).map(([k, lbl]) => (
-          <button key={k} className={`crm-stat${filter === k ? ' on' : ''} s-${({ all: 'all', buyer: 'won', developer: 'new', agent: 'contacted', pending: 'contacted', rejected: 'lost' } as const)[k]}`} onClick={() => setFilter(k)}>
-            <div className="v">{counts[k]}</div><div className="l">{lbl}</div>
+    <div className="acx">
+      <div className="acx-kpis">
+        {KPIS.map(([k, lbl, ic]) => (
+          <button key={k} type="button" className={`acx-kpi k-${k}${filter === k ? ' on' : ''}`} onClick={() => setFilter(k)} aria-pressed={filter === k}>
+            <span className="acx-kpi-ic"><i className={`fas ${ic}`} /></span>
+            <span className="acx-kpi-v">{counts[k]}</span>
+            <span className="acx-kpi-l">{lbl}</span>
           </button>
         ))}
       </div>
@@ -1119,7 +1224,7 @@ function AccountsPanel({ flash, isOwner, onPendingChange }: {
           <div className="vq-list">
             {queue.map((a) => (
               <div className="vq-item" key={a.id}>
-                <span className="crm-ini">{initials(a)}</span>
+                <span className={`acx-av r-${a.role}`}>{initials(a)}</span>
                 <div className="vq-main">
                   <b>{a.name || a.email}</b>
                   <small>{ACCOUNT_ROLES[a.role]?.label} · {orgOf(a) || '—'}{reraOf(a) ? ` · RERA ${reraOf(a)}` : ''}</small>
@@ -1132,81 +1237,119 @@ function AccountsPanel({ flash, isOwner, onPendingChange }: {
         </div>
       )}
 
-      <div className="adm-panel">
-        <div className="adm-panel-head">
-          <h3>Accounts {list.length ? `(${list.length})` : ''}</h3>
-          <div className="crm-tools">
-            <input className="crm-search" placeholder="Search name, email, phone, company, area, RERA…" value={q} onChange={(e) => setQ(e.target.value)} />
-            <LocationSelect items={rows} value={loc} onChange={setLoc} />
-            <button className="adm-btn ghost sm" onClick={downloadAll} disabled={!list.length}><i className="fas fa-file-csv" /> Download all</button>
-            <button className="adm-btn ghost sm" onClick={load}><i className="fas fa-rotate" /> Refresh</button>
-          </div>
-        </div>
-        {loading ? (
-          <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>
-        ) : rows.length === 0 ? (
-          <div className="adm-empty"><i className="fas fa-users" /><p>No accounts here yet. Buyers, developers and partners who sign up on the site appear here.</p></div>
-        ) : (
-          <details className="loc-summary" open={byLocation.length <= 12}>
-            <summary><i className="fas fa-location-dot" /> Accounts by location <span className="muted">· {byLocation.length} location{byLocation.length === 1 ? '' : 's'} · click one to filter</span></summary>
-            <div className="table-scroll loc-summary-body">
-              <table className="adm-table crm-table loc-table">
-                <thead><tr><th>Location</th>{PEOPLE_ROLES.map((r) => <th key={r} className="num">{ACCOUNT_ROLES[r].short}</th>)}<th className="num">Total</th></tr></thead>
-                <tbody>
-                  {byLocation.map((x) => (
-                    <tr key={x.loc} className={`crm-row${loc === x.loc ? ' on' : ''}`} onClick={() => setLoc(loc === x.loc ? '' : x.loc)} aria-selected={loc === x.loc}>
-                      <td>{x.loc === NO_LOCATION ? <span className="muted">No location given</span> : <b>{x.loc}</b>}</td>
-                      {PEOPLE_ROLES.map((r) => <td key={r} className="num">{x[r] || <span className="muted">0</span>}</td>)}
-                      <td className="num"><b>{x.total}</b></td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+      <div className="acx-layout">
+        <section className="adm-panel acx-dir">
+          <div className="acx-dir-head">
+            <div>
+              <h3>{filter === 'all' ? 'All accounts' : KPIS.find(([k]) => k === filter)?.[1]} <span className="acx-count">{list.length}</span></h3>
+              <p className="muted">{activeToday} active in the last 24 hours · newest sign-ups first</p>
             </div>
-          </details>
-        )}
-        {!loading && rows.length > 0 && (loc || term) && (
-          <p className="adm-hint" style={{ marginTop: 10 }}>
-            Showing {loc ? <b>{loc === NO_LOCATION ? 'accounts with no location' : loc}</b> : 'all locations'}{term ? <> matching &ldquo;{q.trim()}&rdquo;</> : null}.{' '}
-            <button className="link-btn" onClick={() => { setLoc(''); setQ(''); }}>Clear filters</button>
-          </p>
-        )}
-      </div>
-
-      {!loading && rows.length > 0 && sections.map(({ role, rows: secRows }) => (
-        <div className="adm-panel acc-section" key={role}>
-          <div className="adm-panel-head">
-            <h3><i className={`fas ${ACCOUNT_ROLES[role].icon}`} /> {ACCOUNT_ROLES[role].label} <span className="muted">({secRows.length})</span></h3>
-            <button className="adm-btn ghost sm" disabled={!secRows.length} onClick={() => downloadRole(role)} title={`Download ${ACCOUNT_ROLES[role].label} accounts as CSV`}>
-              <i className="fas fa-file-csv" /> Download {ACCOUNT_ROLES[role].short} CSV
-            </button>
+            <div className="acx-dir-actions">
+              <button className="adm-btn ghost sm" onClick={() => (filter === 'buyer' || filter === 'developer' || filter === 'agent' ? downloadRole(filter) : downloadAll())} disabled={!list.length}>
+                <i className="fas fa-file-csv" /> Download CSV
+              </button>
+              <button className="adm-btn ghost sm" onClick={() => { load(); loadFeed(); }} aria-label="Refresh"><i className="fas fa-rotate" /></button>
+            </div>
           </div>
-          {secRows.length === 0 ? (
-            <div className="adm-empty" style={{ padding: '18px 0' }}><p>No {ACCOUNT_ROLES[role].label.toLowerCase()} accounts {loc || term ? 'match these filters' : 'yet'}.</p></div>
-          ) : (
-            <div className="table-scroll">
-              <table className="adm-table crm-table">
-                <thead><tr><th>Account</th><th>{role === 'developer' ? 'Project locations' : role === 'agent' ? 'Works in' : 'Preferred area'}</th><th>Details</th><th>Status</th><th>Signed up</th><th></th></tr></thead>
-                <tbody>
-                  {secRows.map((a) => (
-                    <tr key={a.id} className="crm-row" onClick={() => open(a)}>
-                      <td className="t-title">
-                        <span className="crm-ini">{initials(a)}</span>
-                        <span className="crm-id"><b>{a.name || '—'}</b><small>{a.email}{a.mobile ? ` · ${a.mobile}` : ''}</small></span>
-                      </td>
-                      <td>{a.locations?.length ? <span className="loc-tags">{a.locations.map((x) => <span className="loc-tag" key={x}>{x}</span>)}</span> : <span className="muted">—</span>}</td>
-                      <td>{detailOf(a) || <span className="muted">—</span>}</td>
-                      <td>{statusPill(a)}</td>
-                      <td className="muted">{leadWhen(a.created_at)}</td>
-                      <td><button className="adm-btn ghost sm" onClick={(e) => { e.stopPropagation(); open(a); }}>Open</button></td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+
+          <div className="acx-toolbar">
+            <div className="acx-search">
+              <i className="fas fa-magnifying-glass" />
+              <input placeholder="Search name, email, phone, company, area, RERA…" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search accounts" />
+              {q && <button type="button" onClick={() => setQ('')} aria-label="Clear search"><i className="fas fa-xmark" /></button>}
+            </div>
+            <LocationSelect items={rows} value={loc} onChange={setLoc} />
+          </div>
+
+          {locChips.length > 0 && (
+            <div className="acx-locs">
+              <button type="button" className={`acx-loc${!loc ? ' on' : ''}`} onClick={() => setLoc('')}>All locations</button>
+              {(allLocs ? locChips : locChips.slice(0, LOC_CHIP_LIMIT)).map(([l, n]) => (
+                <button key={l} type="button" className={`acx-loc${loc === l ? ' on' : ''}`} onClick={() => setLoc(loc === l ? '' : l)}>
+                  {l === NO_LOCATION ? 'No location' : l} <span>{n}</span>
+                </button>
+              ))}
+              {locChips.length > LOC_CHIP_LIMIT && (
+                <button type="button" className="acx-loc more" onClick={() => setAllLocs((v) => !v)}>
+                  {allLocs ? 'Show less' : `+${locChips.length - LOC_CHIP_LIMIT} more`}
+                </button>
+              )}
             </div>
           )}
-        </div>
-      ))}
+
+          {loading ? (
+            <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>
+          ) : rows.length === 0 ? (
+            <div className="adm-empty"><i className="fas fa-users" /><p>No accounts yet. Buyers, developers and partners who sign up on the site appear here.</p></div>
+          ) : sorted.length === 0 ? (
+            <div className="adm-empty"><i className="fas fa-filter" /><p>No accounts match these filters.</p>
+              <button className="adm-btn ghost sm" onClick={() => { setLoc(''); setQ(''); setFilter('all'); }}>Clear filters</button></div>
+          ) : (
+            <ul className="acx-list">
+              {sorted.map((a) => {
+                const st = a.stats;
+                const bits = [
+                  st?.logins ? `${st.logins} sign-in${st.logins === 1 ? '' : 's'}` : '',
+                  st?.enquiries ? `${st.enquiries} enquir${st.enquiries === 1 ? 'y' : 'ies'}` : '',
+                  st?.projects ? `${st.projects} project${st.projects === 1 ? '' : 's'}` : '',
+                  st?.compare ? `${st.compare} in compare` : '',
+                ].filter(Boolean);
+                return (
+                  <li key={a.id}>
+                    <button type="button" className={`acx-row${sel?.id === a.id ? ' on' : ''}`} onClick={() => open(a)}>
+                      <span className={`acx-av r-${a.role}`}>{initials(a)}</span>
+                      <span className="acx-who">
+                        <b>{a.name || '—'}</b>
+                        <small>{a.email}{a.mobile ? ` · ${a.mobile}` : ''}</small>
+                        <span className="acx-tags">
+                          <span className={`acx-role r-${a.role}`}><i className={`fas ${ACCOUNT_ROLES[a.role].icon}`} /> {ACCOUNT_ROLES[a.role].label}</span>
+                          {(a.locations || []).slice(0, 3).map((x) => <span className="acx-tag" key={x}><i className="fas fa-location-dot" /> {x}</span>)}
+                          {(a.locations?.length || 0) > 3 && <span className="acx-tag">+{(a.locations?.length || 0) - 3}</span>}
+                        </span>
+                      </span>
+                      <span className="acx-info">
+                        <span className="acx-detail">{detailOf(a) || <span className="muted">No extra details</span>}</span>
+                        <span className="acx-usage">{bits.length ? bits.join(' · ') : 'No activity yet'}</span>
+                      </span>
+                      <span className="acx-side">
+                        {statusPill(a)}
+                        <span className="acx-when" title={fullWhen(lastActiveOf(a))}><i className="fas fa-clock" /> Active {leadWhen(lastActiveOf(a)) || '—'}</span>
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </section>
+
+        <aside className="adm-panel acx-feed">
+          <div className="acx-dir-head">
+            <div>
+              <h3><i className="fas fa-wave-square" /> Account activity</h3>
+              <p className="muted">Sign-ins, sign-ups, enquiries and staff actions</p>
+            </div>
+            <button className="adm-btn ghost sm" onClick={loadFeed} aria-label="Refresh activity"><i className={`fas fa-rotate${feedLoading ? ' fa-spin' : ''}`} /></button>
+          </div>
+          <div className="acx-feed-filters" role="tablist">
+            {FEED_FILTERS.map(([k, lbl]) => (
+              <button key={k} type="button" role="tab" aria-selected={feedFilter === k} className={feedFilter === k ? 'on' : ''} onClick={() => { setFeedFilter(k); setFeedShown(12); }}>{lbl}</button>
+            ))}
+          </div>
+          {feedLoading && !feed.length ? (
+            <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading activity…</p></div>
+          ) : feedItems.length === 0 ? (
+            <div className="adm-empty"><i className="fas fa-wave-square" /><p>No activity here yet. New sign-ins and enquiries will show up as they happen.</p></div>
+          ) : (
+            <>
+              <ActivityList items={feedItems.slice(0, feedShown)} showWho onPick={(e) => openById(e.user_id)} />
+              {feedItems.length > feedShown && (
+                <button className="adm-btn ghost sm acx-more" onClick={() => setFeedShown((n) => n + 12)}>Show more ({feedItems.length - feedShown})</button>
+              )}
+            </>
+          )}
+        </aside>
+      </div>
 
       {sel && (
         <div className="crm-drawer-overlay" onClick={() => setSel(null)}>
@@ -1220,6 +1363,26 @@ function AccountsPanel({ flash, isOwner, onPendingChange }: {
               <a className="adm-btn ghost sm" href={`mailto:${sel.email}`}><i className="fas fa-envelope" /> {sel.email}</a>
               {sel.mobile && <a className="adm-btn ghost sm" href={`tel:${sel.mobile}`}><i className="fas fa-phone" /> {sel.mobile}</a>}
               {sel.mobile && <a className="adm-btn ghost sm" target="_blank" rel="noopener" href={`https://wa.me/${sel.mobile.replace(/\D/g, '')}`}><i className="fab fa-whatsapp" /> WhatsApp</a>}
+            </div>
+
+            <div className="acx-mini">
+              <div><b>{leadWhen(lastActiveOf(sel)) || '—'}</b><span>Last active</span></div>
+              <div><b>{sel.stats?.logins ?? sel.login_count ?? 0}</b><span>Sign-ins</span></div>
+              <div><b>{(sel.stats?.enquiries || 0) + (sel.stats?.contacts || 0)}</b><span>Enquiries</span></div>
+              {sel.role === 'developer'
+                ? <div><b>{sel.stats?.projects || 0}</b><span>Projects</span></div>
+                : <div><b>{sel.stats?.compare || 0}</b><span>In compare</span></div>}
+            </div>
+
+            <div className="crm-block">
+              <h4>Activity {timeline ? <span className="muted">({timeline.length})</span> : null}</h4>
+              {timeline === null ? (
+                <p className="crm-meta" style={{ marginTop: 0 }}><i className="fas fa-spinner fa-spin" /> Loading activity…</p>
+              ) : timeline.length === 0 ? (
+                <p className="crm-meta" style={{ marginTop: 0 }}>No activity recorded yet.</p>
+              ) : (
+                <div className="acx-drawer-tl"><ActivityList items={timeline} /></div>
+              )}
             </div>
 
             <div className="crm-block">
@@ -1311,7 +1474,7 @@ function AccountsPanel({ flash, isOwner, onPendingChange }: {
           </aside>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

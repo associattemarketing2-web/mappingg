@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { z } from 'zod';
 import { getCurrentUser } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
+import { logActivity } from '@/lib/activity';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -105,6 +106,7 @@ export async function POST(req: NextRequest) {
     }
     const docs = parsed.data.projects.map((d) => buildPin(d, user.id, company, now));
     await db.collection<PinDoc>('pins').insertMany(docs);
+    await logActivity({ user_id: user.id, email: user.email, role: user.role, type: 'project_added', detail: `Uploaded ${docs.length} project${docs.length === 1 ? '' : 's'} from a file — sent for review` });
     return NextResponse.json({ data: { inserted: docs.length, review: 'pending' } }, { status: 201, headers: { 'Cache-Control': 'private, no-store' } });
   }
 
@@ -115,6 +117,7 @@ export async function POST(req: NextRequest) {
   }
   const doc = buildPin(parsed.data, user.id, company, now);
   await db.collection<PinDoc>('pins').insertOne(doc);
+  await logActivity({ user_id: user.id, email: user.email, role: user.role, type: 'project_added', detail: `Added “${String(doc.title || 'Untitled project')}” — sent for review` });
 
   return NextResponse.json({ data: { id: doc.id, review: 'pending' } }, { status: 201, headers: { 'Cache-Control': 'private, no-store' } });
 }
@@ -142,6 +145,7 @@ export async function PATCH(req: NextRequest) {
   patch.hidden = true;
 
   await db.collection<PinDoc>('pins').updateOne({ id, owner_user_id: user.id }, { $set: patch });
+  await logActivity({ user_id: user.id, email: user.email, role: user.role, type: 'project_edited', detail: `Edited “${String(patch.title || existing.title || 'Untitled project')}” — sent for review` });
   return NextResponse.json({ data: { id, review: 'pending' } }, { headers: { 'Cache-Control': 'private, no-store' } });
 }
 
@@ -154,7 +158,9 @@ export async function DELETE(req: NextRequest) {
 
   const db = await getDb();
   // Scoped to the owner so a developer can never delete someone else's project.
+  const gone = await db.collection<PinDoc>('pins').findOne({ id, owner_user_id: user.id }, { projection: { title: 1 } });
   const res = await db.collection<PinDoc>('pins').deleteOne({ id, owner_user_id: user.id });
   if (!res.deletedCount) return NextResponse.json({ error: { message: 'Project not found' } }, { status: 404 });
+  await logActivity({ user_id: user.id, email: user.email, role: user.role, type: 'project_deleted', detail: `Deleted “${String(gone?.title || 'a project')}”` });
   return NextResponse.json({ data: { ok: true } }, { headers: { 'Cache-Control': 'private, no-store' } });
 }

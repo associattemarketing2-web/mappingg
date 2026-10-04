@@ -6,6 +6,8 @@ import { PUBLIC_ROLES, getCurrentUser } from '@/lib/auth';
 import { needsVerification, verificationOf } from '@/lib/verification';
 import { hasPermission } from '@/lib/staff';
 import { localitiesOf, localitiesOfAll } from '@/lib/locality';
+import { logActivity } from '@/lib/activity';
+import { accountStats, type AccountLite } from '@/lib/account-insights';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -43,7 +45,10 @@ export async function GET() {
       : r.role === 'agent' ? localitiesOf(r.profile?.areas)
         : localitiesOfAll(pinLocs.get(String(r.id)) || []);
 
-  return NextResponse.json({ data: rows.map((r) => ({ ...clean(r), locations: locationsOf(r) })) });
+  // Enquiries, projects, logins and last-active time per account (lib/account-insights.ts).
+  const stats = await accountStats(rows as unknown as AccountLite[]).catch(() => new Map());
+
+  return NextResponse.json({ data: rows.map((r) => ({ ...clean(r), locations: locationsOf(r), stats: stats.get(String(r.id)) || null })) });
 }
 
 const patchSchema = z.object({
@@ -95,6 +100,15 @@ export async function PATCH(req: NextRequest) {
   const res = await users.updateOne({ id, ...ROLE_FILTER }, { $set: patch });
   if (!res.matchedCount) return NextResponse.json({ error: { message: 'Account not found' } }, { status: 404 });
   const row = await users.findOne({ id });
+  if (row) {
+    const actor = (await getCurrentUser())?.email;
+    const who = { user_id: id, email: String(row.email), name: row.name ? String(row.name) : undefined, role: String(row.role), actor };
+    if (decision === 'approve') await logActivity({ ...who, type: 'approved', detail: 'Account verified — dashboard unlocked' });
+    if (decision === 'reject') await logActivity({ ...who, type: 'rejected', detail: `Application rejected: ${reason}` });
+    if (decision === 'reset') await logActivity({ ...who, type: 'reset', detail: 'Moved back to pending verification' });
+    if (password) await logActivity({ ...who, type: 'password_reset', detail: 'Password reset by staff' });
+    if (typeof notes === 'string') await logActivity({ ...who, type: 'notes', detail: 'Internal notes updated' });
+  }
   return NextResponse.json({ data: row ? clean(row) : null });
 }
 
@@ -103,7 +117,14 @@ export async function DELETE(req: NextRequest) {
   const id = req.nextUrl.searchParams.get('id');
   if (!id) return NextResponse.json({ error: { message: 'Missing id' } }, { status: 400 });
   const db = await getDb();
+  const gone = await db.collection<AnyDoc>('users').findOne({ id, ...ROLE_FILTER }, { projection: { email: 1, name: 1, role: 1 } });
   // Scoped to public roles so this can never remove the owner or an employee.
   await db.collection<AnyDoc>('users').deleteOne({ id, ...ROLE_FILTER });
+  if (gone) {
+    await logActivity({
+      user_id: id, email: String(gone.email), name: gone.name ? String(gone.name) : undefined, role: String(gone.role),
+      type: 'deleted', detail: 'Account deleted by staff', actor: (await getCurrentUser())?.email,
+    });
+  }
   return NextResponse.json({ data: { ok: true } });
 }

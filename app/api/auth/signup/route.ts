@@ -4,6 +4,7 @@ import { randomUUID } from 'node:crypto';
 import { z } from 'zod';
 import { getDb } from '@/lib/mongodb';
 import { createSessionToken, homePathFor, setSessionCookie } from '@/lib/auth';
+import { logActivity } from '@/lib/activity';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -70,6 +71,10 @@ export async function POST(req: NextRequest) {
   });
 
   const sessionUser = { id, email, role };
+  await logActivity({
+    user_id: id, email, name, role, type: 'signup',
+    detail: role === 'buyer' ? 'Buyer account created' : `${role === 'developer' ? 'Developer' : 'Channel partner'} account created — awaiting verification`,
+  });
   setSessionCookie(await createSessionToken(sessionUser));
   return NextResponse.json({ user: { ...sessionUser, name, verified: role === 'buyer' }, redirect: homePathFor(role) });
 }

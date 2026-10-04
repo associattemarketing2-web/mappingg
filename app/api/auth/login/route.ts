@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
 import { getDb } from '@/lib/mongodb';
-import { createSessionToken, homePathFor, setSessionCookie } from '@/lib/auth';
+import { PUBLIC_ROLES, createSessionToken, homePathFor, setSessionCookie } from '@/lib/auth';
+import { recordLogin } from '@/lib/activity';
 import { verificationOf } from '@/lib/verification';
 
 export const runtime = 'nodejs';
@@ -38,6 +39,9 @@ export async function POST(req: NextRequest) {
   };
   const token = await createSessionToken(sessionUser);
   setSessionCookie(token);
+  if ((PUBLIC_ROLES as readonly string[]).includes(sessionUser.role)) {
+    await recordLogin({ ...sessionUser, name: String(user.name || '') }, 'password');
+  }
 
   return NextResponse.json({
     user: { ...sessionUser, name: String(user.name || ''), verified: verificationOf(user) === 'approved' },

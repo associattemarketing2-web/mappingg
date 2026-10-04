@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { randomUUID } from 'node:crypto';
 import { getDb } from '@/lib/mongodb';
-import { createSessionToken, homePathFor, setSessionCookie } from '@/lib/auth';
+import { PUBLIC_ROLES, createSessionToken, homePathFor, setSessionCookie } from '@/lib/auth';
+import { logActivity, recordLogin } from '@/lib/activity';
 import {
   OAUTH_STATE_COOKIE,
   clearOAuthTempCookies,
@@ -65,6 +66,7 @@ export async function GET(req: NextRequest) {
         created_at: now, updated_at: now,
       };
       await users.insertOne(doc);
+      await logActivity({ user_id: id, email: profile.email, name: profile.name, role: 'buyer', type: 'signup', detail: 'Buyer account created with Google' });
       user = doc;
     } else if (!user.google_sub) {
       // Existing account signing in with Google for the first time — link it.
@@ -74,6 +76,9 @@ export async function GET(req: NextRequest) {
     const role = String(user.role || 'buyer');
     const sessionUser = { id: String(user.id || user._id), email: String(user.email), role };
     setSessionCookie(await createSessionToken(sessionUser));
+    if ((PUBLIC_ROLES as readonly string[]).includes(role)) {
+      await recordLogin({ ...sessionUser, name: String(user.name || '') }, 'google');
+    }
     clearOAuthTempCookies();
     return NextResponse.redirect(new URL(homePathFor(role), origin));
   } catch {

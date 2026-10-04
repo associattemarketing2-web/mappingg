@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getCurrentUser } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
+import { logActivity } from '@/lib/activity';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -52,5 +53,9 @@ export async function PUT(req: NextRequest) {
   const pins = ids.filter((id) => liveIds.has(id));
 
   await db.collection('users').updateOne({ email: user.email.toLowerCase() }, { $set: { compare_pins: pins } });
+  await logActivity({
+    user_id: user.id, email: user.email, role: user.role, type: 'compare',
+    detail: pins.length ? `Compare list updated — ${pins.length} project${pins.length === 1 ? '' : 's'}` : 'Cleared compare list',
+  });
   return NextResponse.json({ pins, max: MAX_COMPARE });
 }
