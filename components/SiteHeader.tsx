@@ -12,13 +12,17 @@ import './site-header.css';
 const LINKS = [
   { href: '/', label: 'Home', match: (p: string) => p === '/' },
   { href: '/map', label: 'Live map', match: (p: string) => p === '/map' || p.startsWith('/map/') },
-  { href: '/how-it-works', label: 'How it works', match: (p: string) => p === '/how-it-works' },
-  { href: '/features', label: 'Features', match: (p: string) => p === '/features' },
+  { href: '/projects', label: 'Projects', match: (p: string) => p.startsWith('/projects') },
+  { href: '/locations', label: 'Locations', match: (p: string) => p.startsWith('/locations') || p.startsWith('/cities') },
   { href: '/blog', label: 'Blog', match: (p: string) => p.startsWith('/blog') },
   { href: '/contact', label: 'Contact', match: (p: string) => p === '/contact' },
 ];
 // Secondary links shown only in the mobile menu, where the footer is a long scroll away.
 const MORE_LINKS = [
+  { href: '/developers', label: 'Developers' },
+  { href: '/property', label: 'Property types' },
+  { href: '/how-it-works', label: 'How it works' },
+  { href: '/features', label: 'Features' },
   { href: '/about', label: 'About' },
   { href: '/faq', label: 'FAQ' },
   { href: '/careers', label: 'Careers' },

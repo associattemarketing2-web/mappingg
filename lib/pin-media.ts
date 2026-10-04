@@ -13,17 +13,49 @@ export const MEDIA_FIELDS: Record<string, readonly string[]> = {
   infra_markers: ['icon_image'],
 };
 
+// Backward-compatible CDN metadata written into a pin's JSONB `doc` by the
+// image migration. When `status === 'completed'` the public pages serve
+// `imageUrl`/`thumbnailUrl` straight from the CDN; until then they fall back to
+// the base64-backed /api/media route, so nothing ever breaks mid-migration.
+export interface ImageMeta {
+  imageUrl?: string;
+  thumbnailUrl?: string;
+  storageKey?: string;
+  width?: number;
+  height?: number;
+  mimeType?: string;
+  fileSize?: number;
+  alt?: string;
+  status?: 'pending' | 'processing' | 'completed' | 'failed';
+  migratedAt?: string;
+}
+
+/** Resolve the best image URL for a migrated pin's `image`, or null if not migrated. */
+function cdnImageFor(row: Record<string, unknown>, width?: number): string | null {
+  const meta = row.image_meta as ImageMeta | undefined;
+  if (!meta || meta.status !== 'completed' || !meta.imageUrl) return null;
+  // Prefer the smaller thumbnail for small requests (cards/markers).
+  if (width && width <= 500 && meta.thumbnailUrl) return meta.thumbnailUrl;
+  return meta.imageUrl;
+}
+
 /** Short content hash, so the URL (and the browser cache) changes only when the image does. */
 export function mediaVersion(dataUrl: string): string {
   return createHash('sha1').update(dataUrl).digest('base64url').slice(0, 12);
 }
 
-export function mediaUrl(table: string, id: string, field: string, dataUrl: string): string {
-  return `/api/media/${table}/${encodeURIComponent(id)}?f=${field}&v=${mediaVersion(dataUrl)}`;
+export function mediaUrl(table: string, id: string, field: string, dataUrl: string, width?: number): string {
+  const w = width ? `&w=${Math.round(width)}` : '';
+  return `/api/media/${table}/${encodeURIComponent(id)}?f=${field}&v=${mediaVersion(dataUrl)}${w}`;
 }
 
-/** Replaces inline data: URLs on rows of `table` with their cacheable image URLs. Other values pass through. */
-export function withMediaUrls<T>(table: string, data: T): T {
+/**
+ * Replaces inline data: URLs on rows of `table` with their cacheable image URLs.
+ * Other values pass through. Pass `{ width }` to request an optimized, resized
+ * WebP (served by /api/media) instead of the full-size original — used by the
+ * public SEO pages so project covers aren't multi-MB.
+ */
+export function withMediaUrls<T>(table: string, data: T, opts: { width?: number } = {}): T {
   const fields = MEDIA_FIELDS[table];
   if (!fields) return data;
   const fix = (row: unknown) => {
@@ -31,11 +63,20 @@ export function withMediaUrls<T>(table: string, data: T): T {
     const r = row as Record<string, unknown>;
     if (typeof r.id !== 'string') return row;
     let out: Record<string, unknown> | null = null;
+    // Migrated pins: serve the CDN image instead of the base64 /api/media route.
+    if (table === 'pins') {
+      const cdn = cdnImageFor(r, opts.width);
+      if (cdn) {
+        out = { ...r };
+        out.image = cdn;
+      }
+    }
     for (const field of fields) {
+      if (out && field === 'image' && out.image !== r.image) continue; // already set from CDN
       const v = r[field];
       if (typeof v === 'string' && v.startsWith('data:')) {
         out = out || { ...r };
-        out[field] = mediaUrl(table, r.id, field, v);
+        out[field] = mediaUrl(table, r.id, field, v, opts.width);
       }
     }
     return out || row;

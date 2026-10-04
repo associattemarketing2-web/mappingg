@@ -15,12 +15,14 @@
     "sync:supabase": "node migration/sync-supabase-to-pg.mjs",
     "import:mongo": "node migration/import-mongodb.mjs",
     "db:indexes": "node migration/create-indexes.mjs",
-    "seed:admin": "node migration/seed-admin.mjs"
+    "seed:admin": "node migration/seed-admin.mjs",
+    "migrate:project-images": "node migration/migrate-project-images.mjs"
   },
   "engines": {
     "node": "24.x"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1146.0",
     "@prisma/client": "^7.10.0",
     "bcryptjs": "^2.4.3",
     "jose": "^5.9.6",

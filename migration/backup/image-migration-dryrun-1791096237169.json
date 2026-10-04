@@ -1,0 +1,57 @@
+{
+  "startedAt": "2026-10-04T06:43:55.210Z",
+  "dryRun": true,
+  "total": 5,
+  "migrated": 5,
+  "skipped": 0,
+  "failed": 0,
+  "noImage": 0,
+  "items": [
+    {
+      "id": "c19e98f4-44c2-4d31-9e31-a2e99542d1e4",
+      "title": "Associatte - Your Real Estate Advisory",
+      "origKB": 44,
+      "fullKB": 12,
+      "thumbKB": 6,
+      "width": 720,
+      "height": 720
+    },
+    {
+      "id": "db171533-719e-40cf-a018-e97ba8b3424a",
+      "title": "1 Residency by Burgundy",
+      "origKB": 23,
+      "fullKB": 10,
+      "thumbKB": 5,
+      "width": 720,
+      "height": 720
+    },
+    {
+      "id": "f4cbca92-ec0d-4402-8e75-39b76d1b0b4b",
+      "title": "Epitome by Ram India",
+      "origKB": 39,
+      "fullKB": 10,
+      "thumbKB": 5,
+      "width": 720,
+      "height": 720
+    },
+    {
+      "id": "086a77a3-8864-4bfa-86c0-380a03da4831",
+      "title": "Godrej Elaris",
+      "origKB": 8,
+      "fullKB": 2,
+      "thumbKB": 2,
+      "width": 240,
+      "height": 240
+    },
+    {
+      "id": "9263c572-4d74-436b-b7a6-5b13261bd63a",
+      "title": "Pristine Properties",
+      "origKB": 21,
+      "fullKB": 10,
+      "thumbKB": 6,
+      "width": 576,
+      "height": 593
+    }
+  ],
+  "finishedAt": "2026-10-04T06:43:57.169Z"
+}

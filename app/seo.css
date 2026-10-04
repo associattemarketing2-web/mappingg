@@ -1,0 +1,68 @@
+/* Shared styling for the crawlable SEO entity pages (projects, locations,
+   developers, cities, status, property). Mobile-first, no horizontal scroll. */
+
+.seo-wrap { max-width: 1140px; margin: 0 auto; padding: 0 20px 72px; }
+.seo-wrap a { color: #1766c0; }
+
+.seo-crumbs { font-size: 0.85rem; color: #6a7580; margin: 20px 0 8px; }
+.seo-crumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; }
+.seo-crumbs li { display: flex; align-items: center; gap: 6px; }
+.seo-crumbs .sep { color: #c3ccd4; }
+.seo-crumbs [aria-current="page"] { color: #1b2430; font-weight: 600; }
+
+.seo-hero { padding: 18px 0 10px; border-bottom: 1px solid #eef1f4; margin-bottom: 26px; }
+.seo-hero .eyebrow { text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.72rem; font-weight: 700; color: #1766c0; }
+.seo-hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); line-height: 1.15; margin: 8px 0 10px; color: #141b24; }
+.seo-hero p.lede { font-size: 1.02rem; color: #4b5560; max-width: 68ch; margin: 0; }
+.seo-hero .stats { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 16px; }
+.seo-hero .stats b { display: block; font-size: 1.3rem; color: #141b24; }
+.seo-hero .stats span { font-size: 0.8rem; color: #6a7580; }
+
+.seo-section { margin: 34px 0; }
+.seo-section > h2 { font-size: 1.25rem; color: #141b24; margin: 0 0 14px; }
+.seo-prose { color: #46505b; line-height: 1.7; max-width: 72ch; }
+.seo-prose p { margin: 0 0 12px; }
+
+.seo-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+
+.seo-card { display: flex; flex-direction: column; border: 1px solid #e7ebef; border-radius: 12px; padding: 16px; background: #fff; transition: box-shadow .15s, transform .15s; text-decoration: none; color: inherit; }
+.seo-card:hover { box-shadow: 0 8px 24px rgba(20,27,36,.09); transform: translateY(-2px); }
+.seo-card .title { font-size: 1.05rem; font-weight: 700; color: #141b24; margin: 0 0 4px; }
+.seo-card .meta { font-size: 0.86rem; color: #6a7580; margin: 0 0 10px; }
+.seo-card .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+.seo-card .usp { font-size: 0.86rem; color: #56606b; margin: 0 0 10px; }
+
+.chip { font-size: 0.72rem; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: #eef3f8; color: #2c4a66; }
+.chip.status-upcoming { background: #fff2dd; color: #9a5b00; }
+.chip.status-under_construction,
+.chip.status-construction { background: #e6f0ff; color: #1a52a8; }
+.chip.status-available { background: #e3f6ea; color: #1c7a43; }
+.chip.status-sold { background: #f0f0f2; color: #6a6a73; }
+
+.seo-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.seo-pills a { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid #e3e8ee; border-radius: 999px; text-decoration: none; color: #1b2430; font-size: 0.9rem; background: #fff; }
+.seo-pills a:hover { border-color: #1766c0; color: #1766c0; }
+.seo-pills a b { color: #1766c0; }
+
+.seo-faq { border-top: 1px solid #eef1f4; }
+.seo-faq details { border-bottom: 1px solid #eef1f4; padding: 14px 0; }
+.seo-faq summary { cursor: pointer; font-weight: 600; color: #1b2430; list-style: none; }
+.seo-faq summary::-webkit-details-marker { display: none; }
+.seo-faq p { color: #46505b; margin: 10px 0 0; line-height: 1.6; }
+
+.seo-detail-head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 26px; align-items: start; }
+.seo-detail-head .cover { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 14px; background: #eef1f4; }
+.seo-specs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; }
+.seo-specs li { display: flex; flex-direction: column; border-bottom: 1px dashed #e7ebef; padding-bottom: 8px; }
+.seo-specs .k { font-size: 0.74rem; text-transform: uppercase; letter-spacing: .5px; color: #8a94a0; }
+.seo-specs .v { font-size: 0.98rem; color: #1b2430; font-weight: 600; }
+
+.seo-cta { display: inline-flex; margin-top: 18px; gap: 10px; }
+.seo-cta a { padding: 10px 18px; border-radius: 10px; text-decoration: none; font-weight: 600; }
+.seo-cta a.primary { background: #1b2430; color: #fff; }
+.seo-cta a.ghost { border: 1px solid #d0d6dd; color: #1b2430; }
+
+@media (max-width: 760px) {
+  .seo-detail-head { grid-template-columns: 1fr; }
+  .seo-specs { grid-template-columns: 1fr; }
+}

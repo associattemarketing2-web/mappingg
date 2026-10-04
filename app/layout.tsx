@@ -5,6 +5,7 @@ import InstallPrompt from '@/components/InstallPrompt';
 import SmoothLinks from '@/components/SmoothLinks';
 import LockRedirect from '@/components/LockRedirect';
 import { getPublicSettings } from '@/lib/site-settings';
+import { jsonLd, organizationSchema, websiteSchema } from '@/lib/seo/schema';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
 
@@ -91,6 +92,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             />
           </noscript>
         ) : null}
+        {/* Site-wide Organization + WebSite (with sitelinks SearchAction) graph. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(organizationSchema(), websiteSchema()) }}
+        />
         <LockRedirect />
         <SmoothLinks />
         {children}

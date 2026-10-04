@@ -1,0 +1,39 @@
+{
+  "startedAt": "2026-10-04T06:54:40.061Z",
+  "dryRun": true,
+  "total": 3,
+  "migrated": 3,
+  "skipped": 0,
+  "failed": 0,
+  "noImage": 0,
+  "items": [
+    {
+      "id": "c19e98f4-44c2-4d31-9e31-a2e99542d1e4",
+      "title": "Associatte - Your Real Estate Advisory",
+      "origKB": 44,
+      "fullKB": 12,
+      "thumbKB": 6,
+      "width": 720,
+      "height": 720
+    },
+    {
+      "id": "db171533-719e-40cf-a018-e97ba8b3424a",
+      "title": "1 Residency by Burgundy",
+      "origKB": 23,
+      "fullKB": 10,
+      "thumbKB": 5,
+      "width": 720,
+      "height": 720
+    },
+    {
+      "id": "f4cbca92-ec0d-4402-8e75-39b76d1b0b4b",
+      "title": "Epitome by Ram India",
+      "origKB": 39,
+      "fullKB": 10,
+      "thumbKB": 5,
+      "width": 720,
+      "height": 720
+    }
+  ],
+  "finishedAt": "2026-10-04T06:54:41.683Z"
+}
