@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { getDb } from '@/lib/mongodb';
 import { PUBLIC_ROLES, createSessionToken, homePathFor, setSessionCookie } from '@/lib/auth';
 import { recordLogin } from '@/lib/activity';
-import { verificationOf } from '@/lib/verification';
+import { homeForAccount, verificationOf } from '@/lib/verification';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -45,6 +45,6 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.json({
     user: { ...sessionUser, name: String(user.name || ''), verified: verificationOf(user) === 'approved' },
-    redirect: homePathFor(sessionUser.role),
+    redirect: homeForAccount(user, homePathFor(sessionUser.role)),
   });
 }

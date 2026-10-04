@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { getDb } from '@/lib/mongodb';
 import { PUBLIC_ROLES, createSessionToken, homePathFor, setSessionCookie } from '@/lib/auth';
 import { logActivity, recordLogin } from '@/lib/activity';
+import { homeForAccount } from '@/lib/verification';
 import {
   OAUTH_STATE_COOKIE,
   clearOAuthTempCookies,
@@ -80,7 +81,7 @@ export async function GET(req: NextRequest) {
       await recordLogin({ ...sessionUser, name: String(user.name || '') }, 'google');
     }
     clearOAuthTempCookies();
-    return NextResponse.redirect(new URL(homePathFor(role), origin));
+    return NextResponse.redirect(new URL(homeForAccount(user, homePathFor(role)), origin));
   } catch {
     return fail('google_failed');
   }

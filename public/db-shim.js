@@ -20,6 +20,14 @@
   'use strict';
 
   var DB_ENDPOINT = '/api/db';
+  // In a developer's own Map Editor (/dashboard/map sets MAPPINGG_DEV_EDIT) pin
+  // reads are limited to that developer's projects. Everywhere else — the public
+  // live map, the 3D map — a developer sees every live project like any visitor.
+  function scopeHeaders(h) {
+    h = h || {};
+    if (typeof window !== 'undefined' && window.MAPPINGG_DEV_EDIT) h['X-Mg-Scope'] = 'dev-editor';
+    return h;
+  }
 
   function PostgrestBuilder(table) {
     this._table = table;
@@ -85,14 +93,18 @@
     // POST. Both share the same op shape on the server.
     var request;
     if (op.action === 'select') {
-      request = fetch(DB_ENDPOINT + '?op=' + encodeURIComponent(JSON.stringify(op)), {
+      // The editor's reads use their own URL (&scope=dev-editor), so the browser
+      // never reuses a cached public-map response for them, or vice versa.
+      var devScope = (typeof window !== 'undefined' && window.MAPPINGG_DEV_EDIT) ? '&scope=dev-editor' : '';
+      request = fetch(DB_ENDPOINT + '?op=' + encodeURIComponent(JSON.stringify(op)) + devScope, {
         method: 'GET',
+        headers: scopeHeaders(),
         credentials: 'same-origin',
       });
     } else {
       request = fetch(DB_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: scopeHeaders({ 'Content-Type': 'application/json' }),
         credentials: 'same-origin',
         body: JSON.stringify(op),
       });
@@ -129,7 +141,7 @@
   RealtimeChannel.prototype._signature = function (table) {
     return fetch(DB_ENDPOINT, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: scopeHeaders({ 'Content-Type': 'application/json' }),
       credentials: 'same-origin',
       body: JSON.stringify({ table: table, action: 'select', columns: 'id,updated_at' }),
     }).then(function (r) { return r.json(); }).then(function (b) {

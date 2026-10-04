@@ -162,6 +162,16 @@ async function captureHistory(
   });
 }
 
+/** Saves a pin's current version to pins_history before it is changed — used
+ *  outside runDbOp (the developer's project form) so the super admin can see
+ *  exactly what a developer changed when reviewing an edit. */
+export async function snapshotPin(pinDoc: Record<string, unknown> | null): Promise<void> {
+  try {
+    const db = await getDb();
+    await captureHistory(db, pinDoc, 'update');
+  } catch { /* never block the edit itself */ }
+}
+
 export interface RunDbOpts {
   // When set, every `pins` operation is scoped to this developer:
   //  - select  → only their own pins (incl. hidden / pending-review ones);
@@ -232,6 +242,7 @@ export async function runDbOp(op: DbOp, isAuthed: boolean, opts: RunDbOpts = {})
           // these flags are forced here so the client can't bypass approval.
           if (devPins) {
             doc.owner_user_id = opts.developerId;
+            doc.submitted_at = now;
             doc.pending_review = true;
             doc.rejected = false;
             doc.hidden = true;
@@ -264,6 +275,7 @@ export async function runDbOp(op: DbOp, isAuthed: boolean, opts: RunDbOpts = {})
           delete patch.owner_user_id;
           // Developers can't turn highlighting on or off; the admin's setting stays.
           delete patch.highlighted;
+          patch.submitted_at = patch.updated_at;
           patch.pending_review = true;
           patch.rejected = false;
           patch.hidden = true;

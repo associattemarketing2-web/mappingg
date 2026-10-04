@@ -59,6 +59,13 @@ const patchSchema = z.object({
   reason: z.string().trim().max(1000).optional(),
   notes: z.string().max(4000).optional(),
   password: z.string().min(8).max(200).optional(),
+  // Developers only: what they may do once approved (set when approving, or changed later).
+  access: z.enum(['viewer', 'editor']).optional(),
+  // Account details (super admin only): name, login email, WhatsApp and sign-up fields.
+  name: z.string().trim().min(1).max(120).optional(),
+  email: z.string().trim().toLowerCase().email().max(200).optional(),
+  mobile: z.string().trim().max(30).optional(),
+  profile: z.record(z.string().max(80), z.string().trim().max(1000)).optional(),
 });
 
 export async function PATCH(req: NextRequest) {
@@ -67,7 +74,8 @@ export async function PATCH(req: NextRequest) {
   if (!parsed.success) {
     return NextResponse.json({ error: { message: 'Invalid request (passwords need at least 8 characters).' } }, { status: 400 });
   }
-  const { id, decision, reason, notes, password } = parsed.data;
+  const { id, decision, reason, notes, password, access, name, email, mobile, profile } = parsed.data;
+  const editingDetails = name !== undefined || email !== undefined || mobile !== undefined || profile !== undefined;
   const now = new Date().toISOString();
   const patch: Record<string, unknown> = { updated_at: now };
   if (typeof notes === 'string') patch.notes = notes;
@@ -75,6 +83,34 @@ export async function PATCH(req: NextRequest) {
 
   const db = await getDb();
   const users = db.collection<AnyDoc>('users');
+  if (editingDetails) {
+    const me = await getCurrentUser();
+    if (!me || me.role !== 'admin') {
+      return NextResponse.json({ error: { message: 'Only the super admin can edit account details.' } }, { status: 403 });
+    }
+    if (email) {
+      const taken = await users.findOne({ email, id: { $ne: id } }, { projection: { id: 1 } });
+      if (taken) return NextResponse.json({ error: { message: 'Another account already uses this email.' } }, { status: 409 });
+      patch.email = email;
+    }
+    if (name !== undefined) patch.name = name;
+    if (mobile !== undefined) patch.mobile = mobile;
+    if (profile) {
+      const cur = await users.findOne({ id, ...ROLE_FILTER }, { projection: { profile: 1 } });
+      patch.profile = { ...((cur?.profile as Record<string, string>) || {}), ...profile };
+    }
+  }
+  if (access) {
+    const me = await getCurrentUser();
+    if (!me || me.role !== 'admin') {
+      return NextResponse.json({ error: { message: 'Only the super admin can change access.' } }, { status: 403 });
+    }
+    const target = await users.findOne({ id, ...ROLE_FILTER }, { projection: { role: 1 } });
+    if (!target || target.role !== 'developer') {
+      return NextResponse.json({ error: { message: 'Access levels apply to developer accounts only.' } }, { status: 400 });
+    }
+    patch.access = access;
+  }
   if (decision) {
     const me = await getCurrentUser();
     if (!me || me.role !== 'admin') {
@@ -103,11 +139,14 @@ export async function PATCH(req: NextRequest) {
   if (row) {
     const actor = (await getCurrentUser())?.email;
     const who = { user_id: id, email: String(row.email), name: row.name ? String(row.name) : undefined, role: String(row.role), actor };
-    if (decision === 'approve') await logActivity({ ...who, type: 'approved', detail: 'Account verified — dashboard unlocked' });
+    const level = row.role === 'developer' ? (row.access === 'viewer' ? 'Viewer — live map only' : 'Editor — can add projects') : '';
+    if (decision === 'approve') await logActivity({ ...who, type: 'approved', detail: `Account verified — dashboard unlocked${level ? ` as ${level}` : ''}` });
+    else if (access) await logActivity({ ...who, type: 'access', detail: `Access changed to ${level}` });
     if (decision === 'reject') await logActivity({ ...who, type: 'rejected', detail: `Application rejected: ${reason}` });
     if (decision === 'reset') await logActivity({ ...who, type: 'reset', detail: 'Moved back to pending verification' });
     if (password) await logActivity({ ...who, type: 'password_reset', detail: 'Password reset by staff' });
     if (typeof notes === 'string') await logActivity({ ...who, type: 'notes', detail: 'Internal notes updated' });
+    if (editingDetails) await logActivity({ ...who, type: 'profile_edited', detail: `Account details updated by staff${email ? ' (login email changed)' : ''}` });
   }
   return NextResponse.json({ data: row ? clean(row) : null });
 }

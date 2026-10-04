@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 import { getCurrentUser } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
-import { verificationOf } from '@/lib/verification';
+import { accessOf, verificationOf } from '@/lib/verification';
 import LegacyApp from '@/components/LegacyApp';
 import LegacyPreloads from '@/components/LegacyPreloads';
 
@@ -65,6 +65,8 @@ export default async function DeveloperMapEditor() {
   const db = await getDb();
   const doc = await db.collection('users').findOne({ email: user.email.toLowerCase() });
   if (!doc || verificationOf(doc) !== 'approved') redirect('/dashboard');
+  // View-only developers don't get the editor — just the public map.
+  if (accessOf(doc) === 'viewer') redirect('/map');
 
   return (
     <>

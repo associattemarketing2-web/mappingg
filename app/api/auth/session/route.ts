@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createSessionToken, getCurrentUser, homePathFor, setSessionCookie } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
-import { verificationOf } from '@/lib/verification';
+import { homeForAccount, verificationOf } from '@/lib/verification';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -16,13 +16,14 @@ export async function GET() {
   try { setSessionCookie(await createSessionToken(user)); } catch { /* non-fatal */ }
 
   // Name / verification status for the header chip; the JWT only carries id+email+role.
-  let name = '', verified = true;
+  let name = '', verified = true, home = homePathFor(user.role);
   try {
     const db = await getDb();
-    const doc = await db.collection('users').findOne({ email: user.email.toLowerCase() }, { projection: { name: 1, role: 1, verified: 1, verification: 1 } });
+    const doc = await db.collection('users').findOne({ email: user.email.toLowerCase() }, { projection: { name: 1, role: 1, verified: 1, verification: 1, access: 1 } });
     name = String(doc?.name || '');
     verified = verificationOf(doc) === 'approved';
+    home = homeForAccount(doc, home);
   } catch { /* the session itself is still valid */ }
 
-  return NextResponse.json({ session: { user: { ...user, name, verified }, home: homePathFor(user.role) } });
+  return NextResponse.json({ session: { user: { ...user, name, verified }, home } });
 }

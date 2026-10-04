@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import DeveloperProjects from './DeveloperProjects';
+import DevNotificationBell from './DevNotificationBell';
 import ProfileForm from '@/components/admin/ProfileForm';
 
 // Developer control panel — the SAME shell/design as the super-admin (reuses
@@ -117,7 +118,8 @@ export default function DeveloperApp({ user }: { user: DevUser }) {
           <span><b>Mappingg<em>.com</em></b><small>Developer panel</small></span>
         </a>
         <div className="adm2-top-right" ref={menuRef}>
-          <a className="adm-chip" href="/" target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /> View site</a>
+          <DevNotificationBell onOpenProjects={() => setTab('intake')} />
+          <a className="adm-chip" href="/" target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /> <span className="adm-hide-sm">View site</span></a>
           <button className="adm-chip" onClick={() => setMenuOpen((v) => !v)}>
             <span className="who">
               {avatar

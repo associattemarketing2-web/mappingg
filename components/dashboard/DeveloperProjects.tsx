@@ -22,6 +22,8 @@ interface MyProject {
   lng: number | null;
   review: 'pending' | 'rejected' | 'live';
   created_at: string;
+  /** Why the super admin didn't approve it (shown to the developer). */
+  review_note?: string;
 }
 
 const STATUSES = [
@@ -499,7 +501,12 @@ export default function DeveloperProjects() {
                     <td className="t-title">{p.title || 'Untitled'}<small>{p.price || p.configuration || ''}</small></td>
                     <td>{p.location || '—'}</td>
                     <td>{p.type || '—'}</td>
-                    <td><span className="adm-badge" style={{ background: badge.bg, color: badge.fg }}>{badge.label}</span></td>
+                    <td>
+                      <span className="adm-badge" style={{ background: badge.bg, color: badge.fg }}>{badge.label}</span>
+                      {p.review === 'rejected' && p.review_note && (
+                        <small style={{ display: 'block', marginTop: 4, color: '#b42318', fontSize: 12, maxWidth: 260 }}>Reason: {p.review_note} — edit the project to send it again.</small>
+                      )}
+                    </td>
                     <td className="muted">{fmtWhen(p.created_at)}</td>
                     <td><div className="adm-actions">
                       {p.review === 'live' && (

@@ -23,3 +23,29 @@ export const PENDING_FILTER = {
   role: { $in: ['developer', 'agent'] },
   $or: [{ verification: 'pending' }, { verification: { $exists: false }, verified: false }],
 };
+
+// What an approved developer may do, chosen by the super admin when approving:
+//   'editor' — add / edit their own projects (held for review) + map editor
+//   'viewer' — only the public live map, the same one every visitor sees
+// Developers approved before this existed have no value and stay editors.
+export const DEV_ACCESS = ['viewer', 'editor'] as const;
+export type DevAccess = (typeof DEV_ACCESS)[number];
+
+export function accessOf(doc: Record<string, unknown> | null | undefined): DevAccess {
+  return doc?.role === 'developer' && doc.access === 'viewer' ? 'viewer' : 'editor';
+}
+
+/** True if this developer account may add or change projects. */
+export async function canEditProjects(userId: string): Promise<boolean> {
+  const { getDb } = await import('./mongodb');
+  const db = await getDb();
+  const doc = await db.collection('users').findOne({ id: userId }, { projection: { role: 1, access: 1, verification: 1, verified: 1 } });
+  return !!doc && verificationOf(doc) === 'approved' && accessOf(doc) === 'editor';
+}
+
+/** Where this account lands after signing in. Same as homePathFor(role), except
+ *  that approved view-only developers go straight to the public live map. */
+export function homeForAccount(doc: Record<string, unknown> | null | undefined, fallback: string): string {
+  if (doc?.role === 'developer' && verificationOf(doc) === 'approved' && accessOf(doc) === 'viewer') return '/map';
+  return fallback;
+}

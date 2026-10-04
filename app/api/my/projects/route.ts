@@ -4,6 +4,8 @@ import { z } from 'zod';
 import { getCurrentUser } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
 import { logActivity } from '@/lib/activity';
+import { snapshotPin } from '@/lib/db-engine';
+import { canEditProjects } from '@/lib/verification';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -37,6 +39,13 @@ async function developer() {
   return user;
 }
 
+/** Developers with editing access (not view-only) — required for any change. */
+async function editor() {
+  const user = await developer();
+  return user && (await canEditProjects(user.id)) ? user : null;
+}
+const viewOnly = () => NextResponse.json({ error: { message: 'Your account has view-only access. Contact Mappingg to get editing access.' } }, { status: 403 });
+
 function statusOf(p: PinDoc): 'pending' | 'rejected' | 'live' {
   if (p.rejected) return 'rejected';
   if (p.pending_review) return 'pending';
@@ -56,7 +65,7 @@ function buildPin(d: z.infer<typeof createSchema>, ownerId: string, company: str
     ...(d.lat != null ? { lat: d.lat } : {}), ...(d.lng != null ? { lng: d.lng } : {}),
     owner_user_id: ownerId,
     pending_review: true, rejected: false, hidden: true, // not on the public map until approved
-    created_at: now, updated_at: now,
+    created_at: now, updated_at: now, submitted_at: now,
   };
 }
 
@@ -85,7 +94,7 @@ export async function GET() {
     .collection<PinDoc>('pins')
     .find(
       { owner_user_id: user.id },
-      { projection: { id: 1, number: 1, title: 1, location: 1, status: 1, type: 1, price: 1, configuration: 1, description: 1, lat: 1, lng: 1, pending_review: 1, rejected: 1, hidden: 1, created_at: 1 } },
+      { projection: { id: 1, number: 1, title: 1, location: 1, status: 1, type: 1, price: 1, configuration: 1, description: 1, lat: 1, lng: 1, pending_review: 1, rejected: 1, hidden: 1, created_at: 1, review_note: 1, reviewed_at: 1 } },
     )
     .sort({ created_at: -1 })
     .toArray()) as PinDoc[];
@@ -96,13 +105,14 @@ export async function GET() {
     configuration: String(p.configuration || ''), description: String(p.description || ''),
     lat: p.lat ?? null, lng: p.lng ?? null,
     review: statusOf(p), created_at: String(p.created_at || ''),
+    review_note: String(p.review_note || ''), reviewed_at: String(p.reviewed_at || ''),
   }));
   return NextResponse.json({ data: projects }, { headers: { 'Cache-Control': 'private, no-store' } });
 }
 
 export async function POST(req: NextRequest) {
-  const user = await developer();
-  if (!user) return NextResponse.json({ error: { message: 'Not authorized' } }, { status: 401 });
+  const user = await editor();
+  if (!user) return (await developer()) ? viewOnly() : NextResponse.json({ error: { message: 'Not authorized' } }, { status: 401 });
 
   const raw = await req.json().catch(() => null);
 
@@ -142,8 +152,8 @@ export async function POST(req: NextRequest) {
 const editSchema = createSchema.partial().extend({ id: z.string().min(1) });
 
 export async function PATCH(req: NextRequest) {
-  const user = await developer();
-  if (!user) return NextResponse.json({ error: { message: 'Not authorized' } }, { status: 401 });
+  const user = await editor();
+  if (!user) return (await developer()) ? viewOnly() : NextResponse.json({ error: { message: 'Not authorized' } }, { status: 401 });
 
   const parsed = editSchema.safeParse(await req.json().catch(() => null));
   if (!parsed.success) return NextResponse.json({ error: { message: 'Invalid request.' } }, { status: 400 });
@@ -154,21 +164,23 @@ export async function PATCH(req: NextRequest) {
   const existing = await db.collection<PinDoc>('pins').findOne({ id, owner_user_id: user.id });
   if (!existing) return NextResponse.json({ error: { message: 'Project not found' } }, { status: 404 });
 
-  const patch: Record<string, unknown> = { ...fields, updated_at: new Date().toISOString() };
+  const stamp = new Date().toISOString();
+  const patch: Record<string, unknown> = { ...fields, updated_at: stamp, submitted_at: stamp };
   delete (patch as { id?: unknown }).id;
   // Any edit goes back through the super-admin review queue before it is live again.
   patch.pending_review = true;
   patch.rejected = false;
   patch.hidden = true;
 
+  await snapshotPin(existing as Record<string, unknown>); // previous version, for the super admin's "what changed"
   await db.collection<PinDoc>('pins').updateOne({ id, owner_user_id: user.id }, { $set: patch });
   await logActivity({ user_id: user.id, email: user.email, role: user.role, type: 'project_edited', detail: `Edited “${String(patch.title || existing.title || 'Untitled project')}” — sent for review` });
   return NextResponse.json({ data: { id, review: 'pending' } }, { headers: { 'Cache-Control': 'private, no-store' } });
 }
 
 export async function DELETE(req: NextRequest) {
-  const user = await developer();
-  if (!user) return NextResponse.json({ error: { message: 'Not authorized' } }, { status: 401 });
+  const user = await editor();
+  if (!user) return (await developer()) ? viewOnly() : NextResponse.json({ error: { message: 'Not authorized' } }, { status: 401 });
 
   const id = req.nextUrl.searchParams.get('id');
   if (!id) return NextResponse.json({ error: { message: 'Missing id' } }, { status: 400 });

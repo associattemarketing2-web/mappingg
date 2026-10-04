@@ -6,7 +6,7 @@ import { getSeoProjects } from '@/lib/seo-data';
 import RoleDashboard, { type DashboardAccount } from '@/components/dashboard/RoleDashboard';
 import DeveloperApp from '@/components/dashboard/DeveloperApp';
 import ReviewScreen from '@/components/dashboard/ReviewScreen';
-import { verificationOf } from '@/lib/verification';
+import { accessOf, verificationOf } from '@/lib/verification';
 
 export const dynamic = 'force-dynamic';
 
@@ -45,6 +45,10 @@ export default async function DashboardRolePage({ params }: { params: { role: st
       />
     );
   }
+
+  // Developers approved as "Viewer" have no dashboard — they go straight to the
+  // public live map (the same one every visitor sees).
+  if (role === 'developer' && accessOf(doc) === 'viewer') redirect('/map');
 
   // Approved developers get the full s-admin-style control panel (Dashboard,
   // Map Editor, Projects Intake) — scoped to their own projects.

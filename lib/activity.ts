@@ -13,8 +13,8 @@ import { getDb } from './mongodb';
 export type ActivityType =
   | 'signup' | 'login' | 'logout'
   | 'compare' | 'enquiry' | 'contact'
-  | 'project_added' | 'project_edited' | 'project_deleted'
-  | 'approved' | 'rejected' | 'reset' | 'password_reset' | 'notes' | 'deleted';
+  | 'project_added' | 'project_edited' | 'project_deleted' | 'project_approved' | 'project_rejected'
+  | 'approved' | 'rejected' | 'reset' | 'password_reset' | 'notes' | 'deleted' | 'access' | 'project_admin_edit' | 'profile_edited';
 
 export interface ActivityEvent {
   id: string;

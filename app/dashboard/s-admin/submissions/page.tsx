@@ -1,9 +1,9 @@
-import SubmissionsReview from '@/components/admin/SubmissionsReview';
+import { redirect } from 'next/navigation';
 
 export const dynamic = 'force-dynamic';
 
-// Review queue for projects developers add from their dashboard. Gated by the
-// /s-admin layout (staff only). Approving publishes the pin to the public map.
+// Developer project reviews now live in the super admin's "Developer projects"
+// tab. Old links and bookmarks to this page land there.
 export default function SubmissionsPage() {
-  return <SubmissionsReview />;
+  redirect('/dashboard/s-admin?tab=projects');
 }

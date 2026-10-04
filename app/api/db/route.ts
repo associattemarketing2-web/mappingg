@@ -3,6 +3,8 @@ import { z } from 'zod';
 import { getCurrentUser, getStaffUser } from '@/lib/auth';
 import { runDbOp, type DbOp } from '@/lib/db-engine';
 import { withMediaUrls } from '@/lib/pin-media';
+import { logActivity } from '@/lib/activity';
+import { canEditProjects } from '@/lib/verification';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -49,17 +51,35 @@ function invalid(details?: unknown) {
   return NextResponse.json({ data: null, error: { message: 'Invalid request', details } }, { status: 400 });
 }
 
-async function handle(op: DbOp) {
+async function handle(op: DbOp, devEditorView = false) {
   const staff = await getStaffUser();
   const current = staff ? null : await getCurrentUser();
   // A signed-in developer is scoped to their own pins everywhere: they see only
   // their projects on the live map and in the map editor, and any pin they
   // create/edit/delete is owner-stamped and held for super-admin review. Buyers,
   // agents and anonymous visitors are unaffected.
-  const developerId = current?.role === 'developer' ? current.id : undefined;
+  // Developers with editing access are limited to their own pins in their
+  // dashboard's Map Editor (it sends X-Mg-Scope: dev-editor) and for every
+  // write. On the public live map they read every live pin, like any visitor.
+  // View-only developers (access: 'viewer') are always treated as a visitor.
+  const isEditorDev = current?.role === 'developer' && (await canEditProjects(current.id));
+  const developerId = isEditorDev && (devEditorView || op.action !== 'select') ? current!.id : undefined;
   const scopedPins = !!developerId && op.table === 'pins';
 
   const result = await runDbOp(op, !!staff, { developerId });
+
+  // A developer adding / editing / removing a pin on their dashboard map is
+  // recorded for the super admin (Developer projects tab + notification bell).
+  if (scopedPins && current && !result.error && op.action !== 'select') {
+    const vals = Array.isArray(op.values) ? op.values : op.values ? [op.values] : [];
+    const title = vals.length === 1 && vals[0].title ? `“${String(vals[0].title)}”` : vals.length > 1 ? `${vals.length} projects` : 'a project';
+    const type = op.action === 'delete' ? 'project_deleted' : op.action === 'insert' ? 'project_added' : 'project_edited';
+    const verb = type === 'project_deleted' ? 'Deleted' : type === 'project_added' ? 'Added' : 'Edited';
+    await logActivity({
+      user_id: current.id, email: current.email, role: current.role, type,
+      detail: `${verb} ${title} on the map${type === 'project_deleted' ? '' : ' — waiting for approval'}`,
+    });
+  }
   // Stored images (pin logos, brochures, infra icons) go out as cacheable URLs, not inline base64.
   let data = result.data ? withMediaUrls(op.table, result.data) : result.data;
   // History lists only show each entry's number/name; the stored copy keeps its
@@ -90,7 +110,8 @@ export async function GET(req: NextRequest) {
   const parsed = opSchema.safeParse(parsedJson);
   if (!parsed.success) return invalid(parsed.error.flatten());
   if (parsed.data.action !== 'select') return invalid('GET only supports select');
-  return handle(parsed.data as DbOp);
+  const devEditor = req.headers.get('x-mg-scope') === 'dev-editor' || req.nextUrl.searchParams.get('scope') === 'dev-editor';
+  return handle(parsed.data as DbOp, devEditor);
 }
 
 // Writes (and any non-select op).
@@ -103,5 +124,5 @@ export async function POST(req: NextRequest) {
   }
   const parsed = opSchema.safeParse(body);
   if (!parsed.success) return invalid(parsed.error.flatten());
-  return handle(parsed.data as DbOp);
+  return handle(parsed.data as DbOp, req.headers.get('x-mg-scope') === 'dev-editor');
 }
