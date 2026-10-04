@@ -63,6 +63,9 @@ export default function SiteHeader() {
     setOpen(false);
     try { await fetch('/api/auth/logout', { method: 'POST', credentials: 'same-origin' }); } catch {}
     try { localStorage.removeItem('mappingg_demo_user'); } catch {}
+    // Invalidate the live-map "already signed in" hint so the gate won't briefly
+    // open the map on the next visit after signing out.
+    try { localStorage.removeItem('mpg_map_open'); } catch {}
     window.location.href = '/';
   }
 

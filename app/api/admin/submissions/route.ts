@@ -25,7 +25,7 @@ export async function GET() {
     .collection<PinDoc>('pins')
     .find(
       { pending_review: true },
-      { projection: { id: 1, title: 1, location: 1, status: 1, type: 1, price: 1, developer: 1, description: 1, lat: 1, lng: 1, owner_user_id: 1, created_at: 1 } },
+      { projection: { id: 1, number: 1, title: 1, location: 1, status: 1, type: 1, price: 1, developer: 1, description: 1, lat: 1, lng: 1, owner_user_id: 1, created_at: 1 } },
     )
     .sort({ created_at: -1 })
     .toArray()) as PinDoc[];
@@ -38,7 +38,7 @@ export async function GET() {
   const byId = new Map(owners.map((o) => [String(o.id), o]));
 
   const data = rows.map((p) => ({
-    id: String(p.id), title: String(p.title || ''), location: String(p.location || ''),
+    id: String(p.id), number: p.number ?? null, title: String(p.title || ''), location: String(p.location || ''),
     status: String(p.status || ''), type: String(p.type || ''), price: String(p.price || ''),
     developer: String(p.developer || ''), description: String(p.description || ''),
     lat: p.lat ?? null, lng: p.lng ?? null, hasLocation: p.lat != null && p.lng != null,

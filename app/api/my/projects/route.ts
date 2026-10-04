@@ -44,10 +44,12 @@ function statusOf(p: PinDoc): 'pending' | 'rejected' | 'live' {
 }
 
 // Build a review-pending, owner-stamped pin from a validated create payload.
-function buildPin(d: z.infer<typeof createSchema>, ownerId: string, company: string, now: string): PinDoc {
+// `number` is the map pin number, assigned by the caller (see nextNumberAllocator)
+// so a developer's project gets the next free number exactly like the admin editor.
+function buildPin(d: z.infer<typeof createSchema>, ownerId: string, company: string, now: string, number: number): PinDoc {
   const id = randomUUID();
   return {
-    _id: id, id,
+    _id: id, id, number,
     title: d.title, location: d.location, type: d.type, status: d.status,
     price: d.price, configuration: d.configuration, description: d.description,
     image: d.image || null, developer: company,
@@ -56,6 +58,19 @@ function buildPin(d: z.infer<typeof createSchema>, ownerId: string, company: str
     pending_review: true, rejected: false, hidden: true, // not on the public map until approved
     created_at: now, updated_at: now,
   };
+}
+
+// Allocator for map pin numbers: returns the lowest unused positive integer,
+// filling gaps — the exact scheme the admin map editor uses. Built once per
+// request from the current pins, then hands out consecutive free numbers so a
+// bulk upload gets 206, 207, 208… The pin id (not the number) is the unique key,
+// and the super-admin can renumber on review, so this non-atomic read-then-assign
+// (identical to the editor's) is safe at this scale.
+async function nextNumberAllocator(db: Awaited<ReturnType<typeof getDb>>): Promise<() => number> {
+  const rows = (await db.collection<PinDoc>('pins').find({}, { projection: { number: 1 } }).toArray()) as PinDoc[];
+  const used = new Set<number>();
+  for (const r of rows) { const n = Number(r.number); if (Number.isInteger(n) && n > 0) used.add(n); }
+  return () => { let n = 1; while (used.has(n)) n++; used.add(n); return n; };
 }
 
 // Up to 500 projects can be bulk-uploaded from an Excel/CSV in one request.
@@ -76,7 +91,7 @@ export async function GET() {
     .toArray()) as PinDoc[];
 
   const projects = rows.map((p) => ({
-    id: String(p.id), title: String(p.title || ''), location: String(p.location || ''),
+    id: String(p.id), number: p.number ?? null, title: String(p.title || ''), location: String(p.location || ''),
     status: String(p.status || ''), type: String(p.type || ''), price: String(p.price || ''),
     configuration: String(p.configuration || ''), description: String(p.description || ''),
     lat: p.lat ?? null, lng: p.lng ?? null,
@@ -104,7 +119,8 @@ export async function POST(req: NextRequest) {
     if (!parsed.success) {
       return NextResponse.json({ error: { message: 'Some rows are missing a project name or have invalid details. Please check the file and try again.' } }, { status: 400 });
     }
-    const docs = parsed.data.projects.map((d) => buildPin(d, user.id, company, now));
+    const alloc = await nextNumberAllocator(db);
+    const docs = parsed.data.projects.map((d) => buildPin(d, user.id, company, now, alloc()));
     await db.collection<PinDoc>('pins').insertMany(docs);
     await logActivity({ user_id: user.id, email: user.email, role: user.role, type: 'project_added', detail: `Uploaded ${docs.length} project${docs.length === 1 ? '' : 's'} from a file — sent for review` });
     return NextResponse.json({ data: { inserted: docs.length, review: 'pending' } }, { status: 201, headers: { 'Cache-Control': 'private, no-store' } });
@@ -115,11 +131,12 @@ export async function POST(req: NextRequest) {
   if (!parsed.success) {
     return NextResponse.json({ error: { message: 'Please fill in a project name and the details.' } }, { status: 400 });
   }
-  const doc = buildPin(parsed.data, user.id, company, now);
+  const alloc = await nextNumberAllocator(db);
+  const doc = buildPin(parsed.data, user.id, company, now, alloc());
   await db.collection<PinDoc>('pins').insertOne(doc);
-  await logActivity({ user_id: user.id, email: user.email, role: user.role, type: 'project_added', detail: `Added “${String(doc.title || 'Untitled project')}” — sent for review` });
+  await logActivity({ user_id: user.id, email: user.email, role: user.role, type: 'project_added', detail: `Added “${String(doc.title || 'Untitled project')}” (#${doc.number}) — sent for review` });
 
-  return NextResponse.json({ data: { id: doc.id, review: 'pending' } }, { status: 201, headers: { 'Cache-Control': 'private, no-store' } });
+  return NextResponse.json({ data: { id: doc.id, number: doc.number, review: 'pending' } }, { status: 201, headers: { 'Cache-Control': 'private, no-store' } });
 }
 
 const editSchema = createSchema.partial().extend({ id: z.string().min(1) });

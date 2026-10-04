@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 // doesn't entangle the main admin SPA.
 interface Submission {
   id: string;
+  number: number | null;
   title: string;
   location: string;
   status: string;
@@ -68,6 +69,7 @@ export default function SubmissionsReview() {
           {items.map((s) => (
             <div key={s.id} style={{ border: '1px solid #e2eae6', borderRadius: 14, padding: 16, background: '#fff' }}>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, flexWrap: 'wrap' }}>
+                {s.number != null && <span style={{ fontSize: 13, fontWeight: 700, color: '#0f5c47' }}>#{s.number}</span>}
                 <b style={{ fontSize: 16, color: '#0f2e24' }}>{s.title}</b>
                 <span style={{ fontSize: 12, color: '#6b7a74' }}>{[s.type, s.status].filter(Boolean).join(' · ')}</span>
               </div>

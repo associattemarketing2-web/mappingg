@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from 'react';
 // publish, or see anyone else's projects here.
 interface MyProject {
   id: string;
+  number: number | null;
   title: string;
   location: string;
   status: string;
@@ -255,9 +256,10 @@ export default function DeveloperProjects() {
       const b = await r.json();
       if (!r.ok) { setMsg({ ok: false, text: b?.error?.message || 'Could not save the project.' }); }
       else {
+        const num = b?.data?.number;
         setMsg({ ok: true, text: editId
           ? 'Saved! Your changes go back to our team for review before they appear on the map.'
-          : 'Submitted! Our team will review it and publish it to the map shortly.' });
+          : `Submitted as project #${num ?? '—'}! Our team will review it and publish it to the map shortly.` });
         setForm({ ...EMPTY }); setEditId(null); setView('list'); load();
       }
     } catch { setMsg({ ok: false, text: 'Network error. Please try again.' }); }
@@ -487,12 +489,13 @@ export default function DeveloperProjects() {
           </div>
         ) : (
           <table className="adm-table">
-            <thead><tr><th>Project</th><th>Location</th><th>Type</th><th>Status</th><th>Updated</th><th>Actions</th></tr></thead>
+            <thead><tr><th>#</th><th>Project</th><th>Location</th><th>Type</th><th>Status</th><th>Updated</th><th>Actions</th></tr></thead>
             <tbody>
               {list.map((p) => {
                 const badge = REVIEW_BADGE[p.review];
                 return (
                   <tr key={p.id}>
+                    <td className="muted">{p.number != null ? `#${p.number}` : '—'}</td>
                     <td className="t-title">{p.title || 'Untitled'}<small>{p.price || p.configuration || ''}</small></td>
                     <td>{p.location || '—'}</td>
                     <td>{p.type || '—'}</td>
