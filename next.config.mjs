@@ -12,6 +12,8 @@ const nextConfig = {
   //   /submit → builder submission page (opened via a unique ?t=token link)
   async rewrites() {
     return [
+      // Browsers ask for /favicon.ico on plain HTML pages (intake, submit) — serve the logo mark.
+      { source: '/favicon.ico', destination: '/img/mappingg-icon-mark.png' },
       { source: '/intake', destination: '/partners/admin/index.html' },
       { source: '/intake/', destination: '/partners/admin/index.html' },
       { source: '/submit', destination: '/partners/submit/index.html' },

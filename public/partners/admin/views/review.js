@@ -309,9 +309,12 @@ export async function renderReview(page, id) {
     if (!ok) return;
     toast('Copying images…');
     const media = await copyMedia(cur);
-    const { error } = await ctx.client.rpc('admin_publish', { p_id: sub.id, p_media: media });
+    const { data: pub, error } = await ctx.client.rpc('admin_publish', { p_id: sub.id, p_media: media });
     if (error) throw error;
-    toast('Published');
+    // Tell the admin whether the project actually landed on the live map.
+    if (pub && pub.on_map) toast('Published — ' + (pub.map_note || 'now on the live map'));
+    else if (pub && pub.map_note) { toast('Published. ' + pub.map_note); alert('Published.\n\n' + pub.map_note); }
+    else toast('Published');
     await refreshCounts();
     rerender();
   }

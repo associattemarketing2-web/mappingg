@@ -1,4 +1,5 @@
 import { randomUUID } from 'crypto';
+import { MEDIA_FIELDS } from './pin-media';
 import { getDb, type Db } from './mongodb';
 import { MEDIA_FIELDS } from './pin-media';
 
@@ -59,10 +60,11 @@ type CacheEntry = { data: unknown; exp: number };
 const g = globalThis as unknown as { __pubReadCache?: Map<string, CacheEntry> };
 const readCache: Map<string, CacheEntry> = g.__pubReadCache || (g.__pubReadCache = new Map());
 
-function cacheKey(op: DbOp, isAuthed: boolean): string {
+function cacheKey(op: DbOp, isAuthed: boolean, slim = false): string {
   return [
     op.table,
     isAuthed ? 'staff' : 'public', // pins differ: hidden ones are staff-only
+    slim ? 'slim' : 'full', // slim = images as media refs
     op.columns || '*',
     JSON.stringify(op.filters || []),
     JSON.stringify(op.order || null),
@@ -182,6 +184,8 @@ export interface RunDbOpts {
   // Used so a developer sees and edits only their own projects — on the live
   // map and in the map editor — while everything else stays untouched.
   developerId?: string;
+  /** Return image fields as short media refs instead of base64 (caller converts them with withMediaUrls). */
+  slimMedia?: boolean;
 }
 
 export async function runDbOp(op: DbOp, isAuthed: boolean, opts: RunDbOpts = {}): Promise<DbResult> {
@@ -198,7 +202,7 @@ export async function runDbOp(op: DbOp, isAuthed: boolean, opts: RunDbOpts = {})
         // Developer-scoped pin reads are per-user, so never served from the
         // shared public cache.
         const canCache = PUBLIC_READ.has(op.table) && !devPins;
-        const key = canCache ? cacheKey(op, isAuthed) : '';
+        const key = canCache ? cacheKey(op, isAuthed, !!opts.slimMedia) : '';
         if (canCache) {
           const hit = readCache.get(key);
           if (hit && hit.exp > Date.now()) {
@@ -218,6 +222,7 @@ export async function runDbOp(op: DbOp, isAuthed: boolean, opts: RunDbOpts = {})
           }
         }
         const projection = buildProjection(op.columns);
+<<<<<<< HEAD
         // Inline base64 images come back as md5 digests computed in Postgres
         // (callers turn them into /api/media URLs), never as megabytes of data.
         const mediaDigest = MEDIA_FIELDS[op.table]
@@ -226,6 +231,12 @@ export async function runDbOp(op: DbOp, isAuthed: boolean, opts: RunDbOpts = {})
             ? { nested: { field: 'row_data', keys: MEDIA_FIELDS.pins } }
             : undefined;
         let cursor = coll.find(query, { ...(projection ? { projection } : {}), mediaDigest });
+=======
+        // Images become /api/media URLs in the API anyway, so don't pull megabytes
+        // of base64 from the database just to hash it (see mongo-compat mediaRefs).
+        const mediaRefs = opts.slimMedia ? MEDIA_FIELDS[op.table] : undefined;
+        let cursor = coll.find(query, projection || mediaRefs ? { ...(projection ? { projection } : {}), ...(mediaRefs ? { mediaRefs } : {}) } : undefined);
+>>>>>>> a1a147b5dd8036a22b7bdd4501dcec888e5b7954
         if (op.order) cursor = cursor.sort({ [op.order.col]: op.order.ascending ? 1 : -1 });
         if (op.limit != null) cursor = cursor.limit(op.limit);
         const rows = (await cursor.toArray()).map((d) => clean(d as Record<string, unknown>));

@@ -74,7 +74,7 @@ async function handle(op: DbOp, devEditorView = false, ip = '') {
   const developerId = isEditorDev && (devEditorView || op.action !== 'select') ? current!.id : undefined;
   const scopedPins = !!developerId && op.table === 'pins';
 
-  const result = await runDbOp(op, !!staff, { developerId });
+  const result = await runDbOp(op, !!staff, { developerId, slimMedia: true });
 
   // A developer adding / editing / removing a pin on their dashboard map is
   // recorded for the super admin (Developer projects tab + notification bell).
