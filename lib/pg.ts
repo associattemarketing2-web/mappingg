@@ -19,15 +19,36 @@ declare global {
   var _pgPool: Pool | undefined;
 }
 
+/**
+ * Prisma Postgres requires TLS. When the URL carries sslmode=require/prefer/
+ * verify-ca/verify-full, node-postgres already verifies the server certificate
+ * (it treats them all as verify-full, overriding any `ssl` option passed here)
+ * and prints a deprecation warning on every boot about that aliasing. We keep
+ * exactly that behaviour — verified TLS — but state it explicitly, so the
+ * warning goes away and no future pg upgrade silently weakens it.
+ * URLs without sslmode keep the previous unverified-TLS default; sslmode=disable
+ * (e.g. a local database) is left untouched.
+ */
+function tlsConfig(connectionString: string): { connectionString: string; ssl?: boolean | { rejectUnauthorized: boolean } } {
+  try {
+    const url = new URL(connectionString);
+    const mode = url.searchParams.get('sslmode');
+    if (mode === 'disable') return { connectionString };
+    if (mode && ['prefer', 'require', 'verify-ca', 'verify-full'].includes(mode)) {
+      url.searchParams.delete('sslmode');
+      return { connectionString: url.toString(), ssl: true };
+    }
+  } catch { /* not a URL form pg can't also parse — fall through */ }
+  return { connectionString, ssl: { rejectUnauthorized: false } };
+}
+
 function makePool(): Pool {
   const connectionString = process.env.DATABASE_URL;
   if (!connectionString) {
     throw new Error('DATABASE_URL is not set. Add it to .env.local (server-only).');
   }
   const pool = new Pool({
-    connectionString,
-    // Prisma Postgres requires TLS. It uses a managed cert; we don't pin a CA.
-    ssl: { rejectUnauthorized: false },
+    ...tlsConfig(connectionString),
     max: 5,
     // The hosted database drops idle connections on its side; closing ours
     // sooner (and keeping live ones warm) avoids handing out a dead socket.

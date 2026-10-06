@@ -55,14 +55,12 @@ export function mediaVersion(dataUrl: string): string {
 
 export function mediaUrl(table: string, id: string, field: string, dataUrl: string, width?: number): string {
   const w = width ? `&w=${Math.round(width)}` : '';
-  // A "media-ref:<hash>" marker (see mongo-compat mediaRefs) already carries the version.
-  const v = dataUrl.startsWith(MEDIA_REF) ? dataUrl.slice(MEDIA_REF.length) : mediaVersion(dataUrl);
-  return `/api/media/${table}/${encodeURIComponent(id)}?f=${field}&v=${v}${w}`;
+  // mediaVersion() also understands the digests list reads return (MEDIA_DIGEST_PREFIX).
+  return `/api/media/${table}/${encodeURIComponent(id)}?f=${field}&v=${mediaVersion(dataUrl)}${w}`;
 }
 
-/** Prefix of the short stand-in for an inline image returned by slim pin reads. */
-export const MEDIA_REF = 'media-ref:';
-const isInlineImage = (v: unknown): v is string => typeof v === 'string' && (v.startsWith('data:') || v.startsWith(MEDIA_REF));
+/** An inline image: a base64 data: URL, or the md5 digest list reads return in its place. */
+const isInlineImage = (v: unknown): v is string => typeof v === 'string' && v.startsWith('data:');
 
 /**
  * Replaces inline data: URLs on rows of `table` with their cacheable image URLs.

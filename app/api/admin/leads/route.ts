@@ -16,6 +16,9 @@ const STATUSES = ['new', 'contacted', 'won', 'lost'] as const;
 const SOURCES = { contact: 'contact_leads', map: 'leads' } as const;
 type Source = keyof typeof SOURCES;
 
+// The CRM filters and counts in the browser, so it loads the newest leads in one go.
+const LEADS_LIMIT = 5000;
+
 const sourceOf = (v: string | null | undefined): Source => (v === 'map' ? 'map' : 'contact');
 const unauthorized = () => NextResponse.json({ error: { message: 'Not authorized' } }, { status: 401 });
 
@@ -54,9 +57,14 @@ export async function GET(req: NextRequest) {
   if (!(await hasPermission('leads'))) return unauthorized();
   const source = sourceOf(req.nextUrl.searchParams.get('source'));
   const db = await getDb();
-  const rows = (await db.collection(SOURCES[source]).find({}).sort({ created_at: -1 }).limit(5000).toArray()) as Record<string, any>[];
+  const coll = db.collection(SOURCES[source]);
+  const [rows, total] = await Promise.all([
+    coll.find({}).sort({ created_at: -1 }).limit(LEADS_LIMIT).toArray() as Promise<Record<string, any>[]>,
+    coll.countDocuments({}),
+  ]);
   const data = source === 'map' ? await withProjects(rows) : rows.map((r) => strip(r));
-  return NextResponse.json({ data });
+  // `total` lets the panel say so if older leads were left out (never silently).
+  return NextResponse.json({ data, total, truncated: total > rows.length });
 }
 
 const patchSchema = z.object({

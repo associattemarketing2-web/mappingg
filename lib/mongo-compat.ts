@@ -133,7 +133,6 @@ function buildWhere(q: Query, p: Params, table = ''): string {
 }
 
 /**
-<<<<<<< HEAD
  * Inline images (base64 data: URLs, up to ~250 KB each) are replaced in the
  * result by `data:mg-digest;md5,<hex>` — their md5 computed INSIDE Postgres —
  * so a list query no longer drags megabytes of base64 from the database just
@@ -164,33 +163,12 @@ function overlayDigests(expr: string, src: string, keys: string[], p: Params): s
 /** SQL expression producing the (optionally projected) document to return. */
 function projectExpr(projection: Doc | undefined, p: Params, digest?: MediaDigest): string {
   const entries = Object.entries(projection || {});
-=======
- * For each of `mediaRefs` (image fields holding big base64 data: URLs), return a
- * short "media-ref:<hash>" marker instead of the image itself. The hash is
- * computed inside Postgres, so megabytes of image data never cross the network
- * just to be turned into an /api/media URL (see lib/pin-media.ts).
- */
-function withMediaRefs(expr: string, mediaRefs: readonly string[] | undefined, included: (k: string) => boolean, p: Params): string {
-  for (const k of mediaRefs || []) {
-    if (!included(k)) continue;
-    const key = p.key(k);
-    expr = `(CASE WHEN left(doc->>${key}, 5) = 'data:' THEN jsonb_set(${expr}, ARRAY[${key}], to_jsonb('media-ref:' || left(md5(doc->>${key}), 12))) ELSE ${expr} END)`;
-  }
-  return expr;
-}
-
-/** SQL expression producing the (optionally projected) document to return. */
-function projectExpr(projection: Doc | undefined, p: Params, mediaRefs?: readonly string[]): string {
-  if (!projection) return withMediaRefs('doc', mediaRefs, () => true, p);
-  const entries = Object.entries(projection);
->>>>>>> a1a147b5dd8036a22b7bdd4501dcec888e5b7954
   const include = entries.some(([, v]) => v === 1 || v === true);
   const media = new Set(digest?.fields || []);
   let expr: string;
   if (include) {
     const keys = new Set<string>(['id']); // always keep the primary key
     for (const [k, v] of entries) if (v === 1 || v === true) keys.add(k);
-<<<<<<< HEAD
     const pairs = [...keys].map((k) => {
       const kp = p.key(k);
       return media.has(k) ? `${kp}, coalesce(${digestOf('doc', kp)}, doc->${kp})` : `${kp}, doc->${kp}`;
@@ -208,15 +186,6 @@ function projectExpr(projection: Doc | undefined, p: Params, mediaRefs?: readonl
     expr = `CASE WHEN jsonb_typeof(${expr}->${f}) = 'object' THEN jsonb_set(${expr}, ARRAY[${f}], ${inner}) ELSE ${expr} END`;
   }
   return expr;
-=======
-    const pairs = [...keys].map((k) => `${p.key(k)}, doc->${p.key(k)}`);
-    return withMediaRefs(`jsonb_build_object(${pairs.join(', ')})`, mediaRefs, (k) => keys.has(k), p);
-  }
-  let expr = 'doc';
-  const excluded = new Set<string>();
-  for (const [k, v] of entries) if (v === 0 || v === false) { expr = `${expr} - ${p.key(k)}`; excluded.add(k); }
-  return withMediaRefs(expr, mediaRefs, (k) => !excluded.has(k), p);
->>>>>>> a1a147b5dd8036a22b7bdd4501dcec888e5b7954
 }
 
 function orderExpr(sort: Record<string, 1 | -1> | undefined, p: Params): string {
@@ -232,11 +201,7 @@ function reattachId(row: { d: Doc; id: string }): Doc {
   return { ...row.d, _id: row.id };
 }
 
-<<<<<<< HEAD
 type FindOptions = { projection?: Doc; sort?: Record<string, 1 | -1>; mediaDigest?: MediaDigest };
-=======
-type FindOptions = { projection?: Doc; sort?: Record<string, 1 | -1>; mediaRefs?: readonly string[] };
->>>>>>> a1a147b5dd8036a22b7bdd4501dcec888e5b7954
 
 class Cursor<T extends Doc = Doc> {
   private _sort?: Record<string, 1 | -1>;
@@ -254,13 +219,8 @@ class Cursor<T extends Doc = Doc> {
   skip(n: number) { this._skip = n; return this; }
   async toArray(): Promise<T[]> {
     const p = new Params();
-<<<<<<< HEAD
     const sel = projectExpr(this.options.projection, p, this.options.mediaDigest);
     const where = buildWhere(this.q, p, this.table);
-=======
-    const sel = projectExpr(this.options.projection, p, this.options.mediaRefs);
-    const where = buildWhere(this.q, p);
->>>>>>> a1a147b5dd8036a22b7bdd4501dcec888e5b7954
     let sql = `SELECT ${sel} AS d, id FROM ${assertTable(this.table)} WHERE ${where}`;
     sql += orderExpr(this._sort, p);
     if (this._limit != null) sql += ` LIMIT ${p.add(this._limit)}`;

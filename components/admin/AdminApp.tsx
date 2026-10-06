@@ -680,6 +680,8 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
   const [busy, setBusy] = useState(false);
 
   const [live, setLive] = useState(false);
+  // Total leads per source when the API had to leave older ones out.
+  const [truncated, setTruncated] = useState<Partial<Record<LeadSource, number>>>({});
 
   // `silent` refreshes (triggered by the real-time stream) skip the spinner so
   // the table doesn't flash while the admin is reading it.
@@ -689,6 +691,7 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
       const get = (s: LeadSource) => fetch(`/api/admin/leads?source=${s}`, { credentials: 'same-origin' }).then((r) => r.json());
       const [m, c] = await Promise.all([get('map'), get('contact')]);
       setBySource({ map: Array.isArray(m.data) ? m.data : [], contact: Array.isArray(c.data) ? c.data : [] });
+      setTruncated({ ...(m.truncated ? { map: Number(m.total) } : {}), ...(c.truncated ? { contact: Number(c.total) } : {}) });
     } catch { if (!silent) flash('Could not load leads', true); } finally { if (!silent) setLoading(false); }
   }
   useEffect(() => { load(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -876,6 +879,11 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
                 ))}
               </tbody>
             </table>
+          </div>
+        )}
+        {!loading && truncated[source] != null && (
+          <div className="adm-empty" style={{ padding: '12px 0' }}>
+            <p>Only the newest {bySource[source].length} of {truncated[source]} leads are loaded here. Older leads are kept in the database.</p>
           </div>
         )}
         {!loading && list.length > LEADS_RENDER_CAP && (

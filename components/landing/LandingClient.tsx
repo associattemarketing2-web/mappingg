@@ -57,7 +57,12 @@ export default function LandingClient() {
     const landing = runLanding();
     // Start the download once the browser is idle (first paint and the page's
     // own scripts come first), with a deadline so the globe never waits long.
+    // Visitors who asked their device for less motion or less data skip the
+    // ~600 KB 3D globe entirely; they still get its project-count overlay.
+    const nav = navigator as Navigator & { connection?: { saveData?: boolean } };
+    const skipGlobe = window.matchMedia('(prefers-reduced-motion: reduce)').matches || !!nav.connection?.saveData;
     const three = new Promise<void>((resolve) => {
+      if (skipGlobe) return resolve();
       const go = () => { if (cancelled) resolve(); else loadOnce('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', 'data-mpg-three').then(resolve); };
       const w = window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number };
       if (typeof w.requestIdleCallback === 'function') w.requestIdleCallback(go, { timeout: 2500 });

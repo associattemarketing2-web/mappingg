@@ -22,5 +22,6 @@ services:
         value: https://mapping-8vm5.onrender.com
       - key: NEXT_PUBLIC_GOOGLE_MAPS_KEY
         sync: false
+      # Must match package.json "engines" (24.x) and .nvmrc.
       - key: NODE_VERSION
-        value: 20.18.0
+        value: "24"
