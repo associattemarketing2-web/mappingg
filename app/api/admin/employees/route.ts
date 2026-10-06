@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { getCurrentUser } from '@/lib/auth';
+import { getCurrentUser, forgetAccount } from '@/lib/auth';
 import { listEmployees, createEmployee, updateEmployee, deleteEmployee, GRANTABLE_PERMISSIONS } from '@/lib/staff';
 
 export const runtime = 'nodejs';
@@ -65,5 +65,6 @@ export async function DELETE(req: NextRequest) {
   if (!id) return invalid('missing id');
   const ok = await deleteEmployee(id);
   if (!ok) return NextResponse.json({ error: { message: 'Employee not found' } }, { status: 404 });
+  forgetAccount(id); // their existing session stops working immediately
   return NextResponse.json({ data: { ok: true } });
 }

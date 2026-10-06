@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { getCurrentUser } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
 import { logActivity } from '@/lib/activity';
-import { snapshotPin } from '@/lib/db-engine';
+import { snapshotPin, invalidateTable } from '@/lib/db-engine';
 import { canEditProjects } from '@/lib/verification';
 
 export const runtime = 'nodejs';
@@ -132,6 +132,7 @@ export async function POST(req: NextRequest) {
     const alloc = await nextNumberAllocator(db);
     const docs = parsed.data.projects.map((d) => buildPin(d, user.id, company, now, alloc()));
     await db.collection<PinDoc>('pins').insertMany(docs);
+    invalidateTable('pins');
     await logActivity({ user_id: user.id, email: user.email, role: user.role, type: 'project_added', detail: `Uploaded ${docs.length} project${docs.length === 1 ? '' : 's'} from a file — sent for review` });
     return NextResponse.json({ data: { inserted: docs.length, review: 'pending' } }, { status: 201, headers: { 'Cache-Control': 'private, no-store' } });
   }
@@ -144,6 +145,7 @@ export async function POST(req: NextRequest) {
   const alloc = await nextNumberAllocator(db);
   const doc = buildPin(parsed.data, user.id, company, now, alloc());
   await db.collection<PinDoc>('pins').insertOne(doc);
+  invalidateTable('pins');
   await logActivity({ user_id: user.id, email: user.email, role: user.role, type: 'project_added', detail: `Added “${String(doc.title || 'Untitled project')}” (#${doc.number}) — sent for review` });
 
   return NextResponse.json({ data: { id: doc.id, number: doc.number, review: 'pending' } }, { status: 201, headers: { 'Cache-Control': 'private, no-store' } });
@@ -174,6 +176,7 @@ export async function PATCH(req: NextRequest) {
 
   await snapshotPin(existing as Record<string, unknown>); // previous version, for the super admin's "what changed"
   await db.collection<PinDoc>('pins').updateOne({ id, owner_user_id: user.id }, { $set: patch });
+  invalidateTable('pins'); // the edit hides the pin until re-approved — drop the cached public list now
   await logActivity({ user_id: user.id, email: user.email, role: user.role, type: 'project_edited', detail: `Edited “${String(patch.title || existing.title || 'Untitled project')}” — sent for review` });
   return NextResponse.json({ data: { id, review: 'pending' } }, { headers: { 'Cache-Control': 'private, no-store' } });
 }
@@ -190,6 +193,7 @@ export async function DELETE(req: NextRequest) {
   const gone = await db.collection<PinDoc>('pins').findOne({ id, owner_user_id: user.id }, { projection: { title: 1 } });
   const res = await db.collection<PinDoc>('pins').deleteOne({ id, owner_user_id: user.id });
   if (!res.deletedCount) return NextResponse.json({ error: { message: 'Project not found' } }, { status: 404 });
+  invalidateTable('pins');
   await logActivity({ user_id: user.id, email: user.email, role: user.role, type: 'project_deleted', detail: `Deleted “${String(gone?.title || 'a project')}”` });
   return NextResponse.json({ data: { ok: true } }, { headers: { 'Cache-Control': 'private, no-store' } });
 }

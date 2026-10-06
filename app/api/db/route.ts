@@ -5,6 +5,8 @@ import { runDbOp, type DbOp } from '@/lib/db-engine';
 import { withMediaUrls } from '@/lib/pin-media';
 import { logActivity } from '@/lib/activity';
 import { canEditProjects } from '@/lib/verification';
+import { clientIp, rateLimit } from '@/lib/rate-limit';
+import { warmPinThumbs } from '@/lib/media-cache';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -51,9 +53,15 @@ function invalid(details?: unknown) {
   return NextResponse.json({ data: null, error: { message: 'Invalid request', details } }, { status: 400 });
 }
 
-async function handle(op: DbOp, devEditorView = false) {
+async function handle(op: DbOp, devEditorView = false, ip = '') {
   const staff = await getStaffUser();
   const current = staff ? null : await getCurrentUser();
+  // The one write open to anonymous visitors is a map enquiry (leads insert) —
+  // cap it per IP so it can't be used to flood the CRM.
+  if (!staff && op.table === 'leads' && op.action === 'insert') {
+    const limited = rateLimit(`lead:${ip}`, 20, 10 * 60_000);
+    if (limited) return limited;
+  }
   // A signed-in developer is scoped to their own pins everywhere: they see only
   // their projects on the live map and in the map editor, and any pin they
   // create/edit/delete is owner-stamped and held for super-admin review. Buyers,
@@ -80,6 +88,10 @@ async function handle(op: DbOp, devEditorView = false) {
       detail: `${verb} ${title} on the map${type === 'project_deleted' ? '' : ' — waiting for approval'}`,
     });
   }
+  // A map is loading its pins: pre-encode the marker thumbnails it is about to
+  // request, in a few batched queries (no-op if done in the last few minutes).
+  if (op.table === 'pins' && op.action === 'select' && !result.error && !scopedPins) warmPinThumbs();
+
   // Stored images (pin logos, brochures, infra icons) go out as cacheable URLs, not inline base64.
   let data = result.data ? withMediaUrls(op.table, result.data) : result.data;
   // History lists only show each entry's number/name; the stored copy keeps its
@@ -124,5 +136,5 @@ export async function POST(req: NextRequest) {
   }
   const parsed = opSchema.safeParse(body);
   if (!parsed.success) return invalid(parsed.error.flatten());
-  return handle(parsed.data as DbOp, req.headers.get('x-mg-scope') === 'dev-editor');
+  return handle(parsed.data as DbOp, req.headers.get('x-mg-scope') === 'dev-editor', clientIp(req));
 }

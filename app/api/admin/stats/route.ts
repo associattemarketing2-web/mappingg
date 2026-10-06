@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { getStaffUser } from '@/lib/auth';
-import { PENDING_FILTER } from '@/lib/verification';
 import { getDb } from '@/lib/mongodb';
 import { countPosts } from '@/lib/blog';
 import { getPublicSettings } from '@/lib/site-settings';
@@ -23,22 +22,36 @@ export async function GET() {
   let enquiries: { week: string; count: number }[] = [];
   let addedThisMonth = 0, hiddenPins = 0;
   let daily: ReturnType<typeof perDay> = { today: '', days: [] };
+  const postsP = countPosts();
+  const settingsP = getPublicSettings();
   try {
     const db = await getDb();
-    [pins, leads, infra, roads, employees, buyers, developers, agents, pending] = await Promise.all([
-      db.collection('pins').countDocuments({}),
-      db.collection('leads').countDocuments({}),
+    // One parallel wave instead of ~6 sequential round-trips. The row lists the
+    // charts need anyway also give the totals, so no separate COUNT queries.
+    const [rows, users, mapLeadDates, contactLeadDates, infraN, roadsN] = await Promise.all([
+      db.collection('pins').find({}, { projection: { status: 1, type: 1, created_at: 1, hidden: 1 } }).toArray(),
+      db.collection('users').find({}, { projection: { role: 1, verification: 1, verified: 1 } }).toArray(),
+      db.collection('leads').find({}, { projection: { created_at: 1 } }).toArray(),
+      db.collection('contact_leads').find({}, { projection: { created_at: 1 } }).toArray(),
       db.collection('infra_markers').countDocuments({}),
       db.collection('roads').countDocuments({}),
-      db.collection('users').countDocuments({ role: 'employee' }),
-      db.collection('users').countDocuments({ role: 'buyer' }),
-      db.collection('users').countDocuments({ role: 'developer' }),
-      db.collection('users').countDocuments({ role: 'agent' }),
-      db.collection('users').countDocuments(PENDING_FILTER),
     ]);
-    contactLeads = await db.collection('contact_leads').countDocuments({});
+    pins = rows.length;
+    leads = mapLeadDates.length;
+    contactLeads = contactLeadDates.length;
+    infra = infraN;
+    roads = roadsN;
+    const byRole = (role: string) => users.filter((u) => u.role === role).length;
+    employees = byRole('employee');
+    buyers = byRole('buyer');
+    developers = byRole('developer');
+    agents = byRole('agent');
+    // Same rule as PENDING_FILTER (lib/verification.ts), applied in memory.
+    pending = users.filter((u) =>
+      (u.role === 'developer' || u.role === 'agent') &&
+      (u.verification === 'pending' || (u.verification === undefined && u.verified === false)),
+    ).length;
 
-    const rows = await db.collection('pins').find({}, { projection: { status: 1, type: 1, created_at: 1, hidden: 1 } }).toArray();
     const pub = rows.filter((r) => r.hidden !== true);
     hiddenPins = rows.length - pub.length;
     // Donut slice order keeps green (available) and red (sold) apart for colour-blind readers.
@@ -50,18 +63,13 @@ export async function GET() {
     newProjects = perWeek(rows.map((r) => r.created_at), weeks);
     // Day by day (IST) for the calendar heatmap: was anything created that day?
     daily = perDay(rows.map((r) => r.created_at), 26);
-    const [mapLeadDates, contactLeadDates] = await Promise.all([
-      db.collection('leads').find({}, { projection: { created_at: 1 } }).toArray(),
-      db.collection('contact_leads').find({}, { projection: { created_at: 1 } }).toArray(),
-    ]);
     enquiries = perWeek([...mapLeadDates, ...contactLeadDates].map((l) => l.created_at), weeks);
     const monthStart = new Date(); monthStart.setUTCDate(1); monthStart.setUTCHours(0, 0, 0, 0);
     addedThisMonth = rows.filter((r) => new Date(String(r.created_at || '')) >= monthStart).length;
   } catch {
     dbOk = false;
   }
-  const posts = await countPosts();
-  const settings = await getPublicSettings();
+  const [posts, settings] = await Promise.all([postsP, settingsP]);
 
   return NextResponse.json({
     data: {

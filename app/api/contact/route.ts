@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { randomUUID } from 'crypto';
 import { z } from 'zod';
 import { getDb } from '@/lib/mongodb';
+import { clientIp, rateLimit } from '@/lib/rate-limit';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -27,6 +28,9 @@ export async function POST(req: NextRequest) {
 
   // Silently accept (but drop) spam that trips the honeypot.
   if (d.company) return NextResponse.json({ data: { ok: true } }, { status: 200 });
+
+  const limited = rateLimit(`contact:${clientIp(req)}`, 8, 10 * 60_000);
+  if (limited) return limited;
 
   if (!d.email && !d.phone) {
     return NextResponse.json({ error: { message: 'Add an email or phone so we can reply.' } }, { status: 400 });

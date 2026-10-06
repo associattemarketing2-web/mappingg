@@ -3,7 +3,7 @@
    page's map palette so these pages read as the same product. */
 .ipg {
   --forest: #0f5c47; --forest-deep: #0a4535;
-  --ink: #1d2b26; --text: #46524d; --muted: #76807b; --line: #e7e3d9;
+  --ink: #1d2b26; --text: #46524d; --muted: #5f6964; /* WCAG AA: 5.2:1 on --paper (was #76807b, 3.7:1) */ --line: #e7e3d9;
   --paper: #ffffff; --land: #f6f4ee; --land-2: #efebe1;
   --park: #2f7a3c; --park-50: #eaf4e5; --park-200: #d6ebce;
   --water: #2d6fa3; --water-50: #e4f0fa; --water-200: #a9d0ef;
@@ -224,7 +224,7 @@
 @media (max-width: 880px) { .ipg-foot .cols { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 480px) { .ipg-foot .cols { grid-template-columns: 1fr; } }
 .ipg-foot .brand { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-.ipg-foot .brand .mark { width: 26px; height: 38px; background: url('/img/mappingg-icon-mark.png') center/contain no-repeat; }
+.ipg-foot .brand .mark { width: 26px; height: 38px; background: url('/img/mappingg-icon-mark-sm.png') center/contain no-repeat; }
 .ipg-foot .brand b { font-weight: 800; font-size: 20px; letter-spacing: -.03em; color: #0b4a3b; }
 .ipg-foot .brand b em { font-style: normal; color: var(--gold); }
 .ipg-foot .about p { max-width: 300px; }

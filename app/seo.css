@@ -54,7 +54,7 @@
 .seo-detail-head .cover { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 14px; background: #eef1f4; }
 .seo-specs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; }
 .seo-specs li { display: flex; flex-direction: column; border-bottom: 1px dashed #e7ebef; padding-bottom: 8px; }
-.seo-specs .k { font-size: 0.74rem; text-transform: uppercase; letter-spacing: .5px; color: #8a94a0; }
+.seo-specs .k { font-size: 0.74rem; text-transform: uppercase; letter-spacing: .5px; color: #646e7a; /* WCAG AA 5.2:1 (was #8a94a0) */ }
 .seo-specs .v { font-size: 0.98rem; color: #1b2430; font-weight: 600; }
 
 .seo-cta { display: inline-flex; margin-top: 18px; gap: 10px; }

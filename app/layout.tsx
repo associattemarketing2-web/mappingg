@@ -19,7 +19,8 @@ export const metadata: Metadata = {
     'Explore a live, interactive map of real estate projects across Pune, the Mumbai Metropolitan Region and Dubai — colour-coded by status, with developer, pricing, configuration and infrastructure details.',
   applicationName: 'Mappingg',
   icons: {
-    icon: '/img/mappingg-icon-mark.png',
+    // Small copy of the brand mark (the 629x920 original is ~250 KB — kept for OG/schema).
+    icon: '/img/mappingg-icon-mark-sm.png',
     apple: '/icons/apple-touch-icon.png',
   },
   appleWebApp: {
@@ -34,11 +35,13 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: 'Mappingg — Live Real Estate Project Map',
     description: 'Explore live projects, upcoming launches and infrastructure across India and Dubai.',
+    images: ['/img/mappingg-icon-mark.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Mappingg — Live Real Estate Project Map',
     description: 'Explore live projects, upcoming launches and infrastructure across India and Dubai.',
+    images: ['/img/mappingg-icon-mark.png'],
   },
 };
 

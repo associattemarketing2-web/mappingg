@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import SeoShell from '@/components/seo/SeoShell';
 import ProjectCard from '@/components/seo/ProjectCard';
 import {
@@ -24,10 +24,11 @@ const fmtDate = (d?: string) =>
   d ? new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
 
 // Open set (grows with every new pin) → on-demand ISR so a newly-added project
-// gets its page (and indexing) immediately, which is a core SEO goal. An unknown
-// slug renders the 404 UI with `noindex` (so Google never indexes it); a true
-// 404 status would require dynamicParams=false, which can't generate new pins on
-// demand. The sitemap drives discovery of valid slugs.
+// gets its page (and indexing) immediately, which is a core SEO goal.
+// Not-found and redirect decisions are made in generateMetadata, which runs
+// before the response starts streaming — so they produce a real 404 / 308
+// status. (The root loading.tsx streams every page, so a notFound() thrown only
+// in the page body would arrive after a 200 had already been sent.)
 export const revalidate = 600;
 
 async function resolve(slug: string): Promise<Pin | null> {
@@ -38,7 +39,11 @@ async function resolve(slug: string): Promise<Pin | null> {
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const pin = await resolve(params.slug);
-  if (!pin) return { title: 'Project not found', robots: { index: false, follow: false } };
+  if (!pin) notFound();
+  // Only the number identifies a project, so /projects/<anything>-<n> resolves.
+  // Send every variant (old title, typo, renamed project) to the one canonical URL.
+  const canonicalSlug = slugForProject(pin);
+  if (params.slug !== canonicalSlug) permanentRedirect(`/projects/${canonicalSlug}`);
   const loc = primaryLocality(pin);
   const city = CITY_LABELS[cityOf(pin)];
   const name = pin.title || `Project #${pin.number}`;
@@ -76,7 +81,7 @@ const specRows = (pin: Pin): { k: string; v: string }[] =>
 
 export default async function ProjectDetail({ params }: { params: { slug: string } }) {
   const pin = await resolve(params.slug);
-  if (!pin) notFound();
+  if (!pin) notFound(); // normally already thrown by generateMetadata
 
   const loc = primaryLocality(pin);
   const cityKey = cityOf(pin);
@@ -122,7 +127,6 @@ export default async function ProjectDetail({ params }: { params: { slug: string
     city,
     lat: pin.lat,
     lng: pin.lng,
-    developer: pin.developer,
   });
 
   const vid = youtubeId(pin.youtube_video_url);
@@ -155,7 +159,7 @@ export default async function ProjectDetail({ params }: { params: { slug: string
         <h1>{name}</h1>
         {pin.key_usp && <p className="lede">{pin.key_usp}</p>}
         {pin.updated_at && (
-          <p style={{ fontSize: '0.82rem', color: '#8a94a0', marginTop: 10 }}>
+          <p style={{ fontSize: '0.82rem', color: '#646e7a', marginTop: 10 }}>
             Last updated: {fmtDate(pin.updated_at)}
           </p>
         )}

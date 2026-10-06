@@ -2,7 +2,7 @@
    looks identical on the landing, blog and anywhere else it's used. */
 .shd {
   --forest: #0f5c47; --forest-deep: #0a4535; --accent: #2f7a3c; --accent-50: #eaf4e5;
-  --ink: #1d2b26; --text: #46524d; --muted: #76807b; --line: #e7e3d9; --gold: #b0924f;
+  --ink: #1d2b26; --text: #46524d; --muted: #5f6964; /* WCAG AA: 5.2:1 on --paper (was #76807b, 3.7:1) */ --line: #e7e3d9; --gold: #b0924f;
   --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   position: fixed; inset: 14px 0 auto; z-index: 1000; font-family: var(--font);
   transition: inset .3s cubic-bezier(.4,0,.2,1);
@@ -18,7 +18,7 @@
 .shd.scrolled .shd-bar { box-shadow: 0 18px 40px -24px rgba(29,43,38,.3); }
 
 .shd-brand { display: inline-flex; align-items: center; gap: 10px; }
-.shd-brand .mark { width: 30px; height: 44px; flex-shrink: 0; display: inline-block; background: url('/img/mappingg-icon-mark.png') center/contain no-repeat; }
+.shd-brand .mark { width: 30px; height: 44px; flex-shrink: 0; display: inline-block; background: url('/img/mappingg-icon-mark-sm.png') center/contain no-repeat; }
 .shd-brand b { font-weight: 800; font-size: 21px; letter-spacing: -.03em; color: #0b4a3b; }
 .shd-brand b em { font-style: normal; color: var(--gold); }
 

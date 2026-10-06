@@ -49,16 +49,27 @@ export default function LandingClient() {
     }
 
     let cancelled = false;
-    (async () => {
-      // three.js powers only the decorative hero globe; awaited so it exists
-      // first, but a failure never blocks the rest of the page.
-      await loadOnce(
-        'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',
-        'data-mpg-three',
-      );
+    type GlobeWindow = { __mpgStartGlobe?: () => void };
+    // The page's behaviour (nav, sign-in modal, scroll reveals) wires up at once;
+    // three.js (~600 KB, only for the decorative hero globe) downloads in
+    // parallel and starts the globe when it arrives. A failure to load it just
+    // leaves the globe's project counts without the 3D sphere.
+    const landing = runLanding();
+    // Start the download once the browser is idle (first paint and the page's
+    // own scripts come first), with a deadline so the globe never waits long.
+    const three = new Promise<void>((resolve) => {
+      const go = () => { if (cancelled) resolve(); else loadOnce('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', 'data-mpg-three').then(resolve); };
+      const w = window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number };
+      if (typeof w.requestIdleCallback === 'function') w.requestIdleCallback(go, { timeout: 2500 });
+      else go();
+    });
+    Promise.all([landing, three]).then(() => {
       if (cancelled) return;
-      await runLanding();
-    })();
+      const w = window as unknown as GlobeWindow;
+      const start = w.__mpgStartGlobe;
+      w.__mpgStartGlobe = undefined;
+      if (typeof start === 'function') start();
+    });
 
     return () => {
       cancelled = true;

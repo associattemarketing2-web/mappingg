@@ -1,5 +1,13 @@
-// Root loading UI — a lightweight placeholder shown while a server component
-// route streams in, so navigation never flashes a blank screen.
+// Super-admin loading UI — shown instantly while the (dynamic, per-user) admin
+// panel renders. Safe here because this segment's auth redirect lives in its
+// layout, which runs outside this boundary and so still sends a real 307.
+//
+// Deliberately NOT at the app root (or /dashboard, whose pages redirect): a
+// loading.tsx streams the pages beneath it, which commits a 200 status before notFound()/permanentRedirect() can run — so
+// unknown projects became "soft 404s", slug redirects weren't real 308s and
+// sign-in redirects became 1-second meta refreshes.
+// Public pages don't need it: App Router keeps the current page on screen until
+// the next one is ready, so navigation never shows a blank screen.
 export default function Loading() {
   return (
     <main style={{ minHeight: '60vh', display: 'grid', placeItems: 'center', padding: '2rem' }}>

@@ -62,12 +62,39 @@ function hasOps(v: unknown): v is Doc {
   return !!v && typeof v === 'object' && !Array.isArray(v) && Object.keys(v).some((k) => k.startsWith('$'));
 }
 
+function isScalar(v: unknown): v is string | number | boolean | null {
+  return v === null || typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean';
+}
+
+// Tables whose primary key always equals String(doc.id): every write goes
+// through db-engine (which sets _id = String(doc.id)) or uses the id as _id.
+// Verified against the live data. NOT true for e.g. submission_events/counters,
+// so those keep the plain document match.
+const PK_IS_DOC_ID = new Set(['pins', 'infra_markers', 'roads', 'area_boundaries', 'infra_types', 'map_settings']);
+
+/**
+ * Scalar equality on a document key. Emitted as JSONB containment
+ * (`doc @> {"k": v}`), which is semantically identical to `doc->'k' = v` for
+ * scalars but can use the table's `jsonb_path_ops` GIN index — the old form
+ * could not use any index, so every lookup scanned (and de-TOASTed) the table.
+ * Arrays/objects keep exact equality (containment would differ for them).
+ */
+function eqClause(table: string, key: string, val: unknown, p: Params): string {
+  if (!isScalar(val)) return `doc->${p.key(key)} = ${p.json(val)}`;
+  const contains = `doc @> ${p.json({ [key]: val })}`;
+  if (key === 'id' && val !== null && PK_IS_DOC_ID.has(table)) {
+    // Primary-key index first; the containment check keeps the exact semantics.
+    return `(id = ${p.add(String(val))} AND ${contains})`;
+  }
+  return contains;
+}
+
 /** Translate a Mongo query object into a SQL boolean expression. */
-function buildWhere(q: Query, p: Params): string {
+function buildWhere(q: Query, p: Params, table = ''): string {
   const clauses: string[] = [];
   for (const [key, val] of Object.entries(q || {})) {
     if (key === '$or' || key === '$and') {
-      const parts = (val as Query[]).map((sub) => `(${buildWhere(sub, p)})`);
+      const parts = (val as Query[]).map((sub) => `(${buildWhere(sub, p, table)})`);
       if (!parts.length) { clauses.push('TRUE'); continue; }
       clauses.push(`(${parts.join(key === '$or' ? ' OR ' : ' AND ')})`);
     } else if (key === '_id') {
@@ -77,7 +104,12 @@ function buildWhere(q: Query, p: Params): string {
         if (op === '$in') {
           const arr = ov as unknown[];
           if (!arr.length) { clauses.push('FALSE'); continue; }
-          clauses.push(`doc->${p.key(key)} IN (${arr.map((x) => p.json(x)).join(', ')})`);
+          if (key === 'id' && PK_IS_DOC_ID.has(table) && arr.every((x) => typeof x === 'string' || typeof x === 'number')) {
+            // Index-backed id IN (...) with the exact document check kept.
+            clauses.push(`(id = ANY(${p.add(arr.map(String))}::text[]) AND doc->${p.key(key)} IN (${arr.map((x) => p.json(x)).join(', ')}))`);
+          } else {
+            clauses.push(`doc->${p.key(key)} IN (${arr.map((x) => p.json(x)).join(', ')})`);
+          }
         } else if (op === '$ne') {
           clauses.push(`doc->${p.key(key)} IS DISTINCT FROM ${p.json(ov)}`);
         } else if (op === '$exists') {
@@ -94,25 +126,65 @@ function buildWhere(q: Query, p: Params): string {
         }
       }
     } else {
-      clauses.push(`doc->${p.key(key)} = ${p.json(val)}`);
+      clauses.push(eqClause(table, key, val, p));
     }
   }
   return clauses.length ? clauses.join(' AND ') : 'TRUE';
 }
 
+/**
+ * Inline images (base64 data: URLs, up to ~250 KB each) are replaced in the
+ * result by `data:mg-digest;md5,<hex>` — their md5 computed INSIDE Postgres —
+ * so a list query no longer drags megabytes of base64 from the database just
+ * so lib/pin-media.ts can turn each one into a versioned /api/media URL.
+ * The digest still starts with `data:`, so existing `startsWith('data:')`
+ * checks keep working; it is never sent to a browser (callers convert it).
+ */
+export const MEDIA_DIGEST_PREFIX = 'data:mg-digest;md5,';
+
+export interface MediaDigest {
+  /** Top-level keys holding inline images. */
+  fields?: readonly string[];
+  /** Keys holding inline images inside a nested object (e.g. pins_history.row_data). */
+  nested?: { field: string; keys: readonly string[] };
+}
+
+function digestOf(src: string, k: string): string {
+  return `CASE WHEN left(${src}->>${k}, 5) = 'data:' THEN to_jsonb(${`'${MEDIA_DIGEST_PREFIX}'`} || md5(${src}->>${k})) END`;
+}
+
+/** Merges digests over `expr` for the given keys; keys that aren't inline images are left untouched. */
+function overlayDigests(expr: string, src: string, keys: string[], p: Params): string {
+  if (!keys.length) return expr;
+  const pairs = keys.map((k) => { const kp = p.key(k); return `${kp}, ${digestOf(src, kp)}`; });
+  return `(${expr} || jsonb_strip_nulls(jsonb_build_object(${pairs.join(', ')})))`;
+}
+
 /** SQL expression producing the (optionally projected) document to return. */
-function projectExpr(projection: Doc | undefined, p: Params): string {
-  if (!projection) return 'doc';
-  const entries = Object.entries(projection);
+function projectExpr(projection: Doc | undefined, p: Params, digest?: MediaDigest): string {
+  const entries = Object.entries(projection || {});
   const include = entries.some(([, v]) => v === 1 || v === true);
+  const media = new Set(digest?.fields || []);
+  let expr: string;
   if (include) {
     const keys = new Set<string>(['id']); // always keep the primary key
     for (const [k, v] of entries) if (v === 1 || v === true) keys.add(k);
-    const pairs = [...keys].map((k) => `${p.key(k)}, doc->${p.key(k)}`);
-    return `jsonb_build_object(${pairs.join(', ')})`;
+    const pairs = [...keys].map((k) => {
+      const kp = p.key(k);
+      return media.has(k) ? `${kp}, coalesce(${digestOf('doc', kp)}, doc->${kp})` : `${kp}, doc->${kp}`;
+    });
+    expr = `jsonb_build_object(${pairs.join(', ')})`;
+  } else {
+    expr = 'doc';
+    const excluded = new Set<string>();
+    for (const [k, v] of entries) if (v === 0 || v === false) { expr = `${expr} - ${p.key(k)}`; excluded.add(k); }
+    expr = overlayDigests(expr, 'doc', [...media].filter((k) => !excluded.has(k)), p);
   }
-  let expr = 'doc';
-  for (const [k, v] of entries) if (v === 0 || v === false) expr = `${expr} - ${p.key(k)}`;
+  if (digest?.nested) {
+    const f = p.key(digest.nested.field);
+    const inner = overlayDigests(`(doc->${f})`, `(doc->${f})`, [...digest.nested.keys], p);
+    expr = `CASE WHEN jsonb_typeof(${expr}->${f}) = 'object' THEN jsonb_set(${expr}, ARRAY[${f}], ${inner}) ELSE ${expr} END`;
+  }
   return expr;
 }
 
@@ -129,7 +201,7 @@ function reattachId(row: { d: Doc; id: string }): Doc {
   return { ...row.d, _id: row.id };
 }
 
-type FindOptions = { projection?: Doc; sort?: Record<string, 1 | -1> };
+type FindOptions = { projection?: Doc; sort?: Record<string, 1 | -1>; mediaDigest?: MediaDigest };
 
 class Cursor<T extends Doc = Doc> {
   private _sort?: Record<string, 1 | -1>;
@@ -147,8 +219,8 @@ class Cursor<T extends Doc = Doc> {
   skip(n: number) { this._skip = n; return this; }
   async toArray(): Promise<T[]> {
     const p = new Params();
-    const sel = projectExpr(this.options.projection, p);
-    const where = buildWhere(this.q, p);
+    const sel = projectExpr(this.options.projection, p, this.options.mediaDigest);
+    const where = buildWhere(this.q, p, this.table);
     let sql = `SELECT ${sel} AS d, id FROM ${assertTable(this.table)} WHERE ${where}`;
     sql += orderExpr(this._sort, p);
     if (this._limit != null) sql += ` LIMIT ${p.add(this._limit)}`;
@@ -209,7 +281,7 @@ class Collection<T extends Doc = Doc> {
 
   async countDocuments(q: Query = {}): Promise<number> {
     const p = new Params();
-    const where = buildWhere(q, p);
+    const where = buildWhere(q, p, this.table);
     const res = await query<{ n: string }>(
       `SELECT count(*)::int AS n FROM ${assertTable(this.table)} WHERE ${where}`,
       p.values,
@@ -252,7 +324,7 @@ class Collection<T extends Doc = Doc> {
   private async runUpdate(q: Query, update: UpdateSpec, limitOne: boolean): Promise<number> {
     const p = new Params();
     const setExpr = updateExpr(update, p);
-    const where = buildWhere(q, p);
+    const where = buildWhere(q, p, this.table);
     const t = assertTable(this.table);
     const sql = limitOne
       ? `UPDATE ${t} SET doc = ${setExpr} WHERE id IN (SELECT id FROM ${t} WHERE ${where} LIMIT 1)`
@@ -332,7 +404,7 @@ class Collection<T extends Doc = Doc> {
 
   async deleteOne(q: Query): Promise<{ deletedCount: number }> {
     const p = new Params();
-    const where = buildWhere(q, p);
+    const where = buildWhere(q, p, this.table);
     const t = assertTable(this.table);
     const res = await query(
       `DELETE FROM ${t} WHERE id IN (SELECT id FROM ${t} WHERE ${where} LIMIT 1)`,
@@ -343,7 +415,7 @@ class Collection<T extends Doc = Doc> {
 
   async deleteMany(q: Query): Promise<{ deletedCount: number }> {
     const p = new Params();
-    const where = buildWhere(q, p);
+    const where = buildWhere(q, p, this.table);
     const res = await query(`DELETE FROM ${assertTable(this.table)} WHERE ${where}`, p.values);
     return { deletedCount: res.rowCount || 0 };
   }

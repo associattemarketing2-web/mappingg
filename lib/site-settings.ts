@@ -12,11 +12,18 @@ export interface PublicSettings {
 export const getPublicSettings = cache(async (): Promise<PublicSettings> => {
   try {
     const db = await getDb();
-    const row = await db.collection('map_settings').findOne({ id: 1 });
+    const row = await db.collection('map_settings').findOne(
+      { id: 1 },
+      { projection: { gtm_container_id: 1, search_console_verification: 1, youtube_video_url: 1 } },
+    );
     if (!row) return {};
+    const gtm = String(row.gtm_container_id || '').trim();
+    const gsc = String(row.search_console_verification || '').trim();
     return {
-      gtm_container_id: (row.gtm_container_id as string) || '',
-      search_console_verification: (row.search_console_verification as string) || '',
+      // Both are rendered into <head> (GTM inside an inline script), so anything
+      // that isn't a well-formed ID is dropped rather than trusted.
+      gtm_container_id: /^GTM-[A-Z0-9]{1,20}$/i.test(gtm) ? gtm : '',
+      search_console_verification: /^[A-Za-z0-9_-]{1,200}$/.test(gsc) ? gsc : '',
       youtube_video_url: (row.youtube_video_url as string) || '',
     };
   } catch {

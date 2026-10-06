@@ -10,7 +10,7 @@
     --forest-deep: #0a4535;
     --ink: #1d2b26;
     --text: #46524d;
-    --muted: #76807b;
+    --muted: #5f6964; /* WCAG AA: 5.2:1 on --paper (was #76807b, 3.7:1) */
     --line: #e7e3d9;
     --paper: #ffffff;
     --land: #f6f4ee;        /* map land */
@@ -92,7 +92,7 @@
 
   /* ---------- logo ---------- */
   .mpg .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
-  .mpg .brand-mark { width: 30px; height: 44px; flex-shrink: 0; display: inline-block; background: url('/img/mappingg-icon-mark.png') center/contain no-repeat; }
+  .mpg .brand-mark { width: 30px; height: 44px; flex-shrink: 0; display: inline-block; background: url('/img/mappingg-icon-mark-sm.png') center/contain no-repeat; }
   .mpg .brand-name { font-weight: 800; font-size: 21px; letter-spacing: -0.03em; color: #0b4a3b; }
   .mpg .brand-name em { font-style: normal; color: var(--gold); font-weight: 700; }
 

@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { getDb } from '@/lib/mongodb';
 import { createSessionToken, homePathFor, setSessionCookie } from '@/lib/auth';
 import { logActivity } from '@/lib/activity';
+import { clientIp, rateLimit } from '@/lib/rate-limit';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -51,6 +52,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: { message: 'Please fill in all required fields correctly.' } }, { status: 400 });
   }
   const { name, email, mobile, password, role, profile } = parsed.data;
+
+  const limited = rateLimit(`signup:${clientIp(req)}`, 10, 60 * 60_000);
+  if (limited) return limited;
 
   const db = await getDb();
   const users = db.collection<{ _id: string; [key: string]: unknown }>('users');

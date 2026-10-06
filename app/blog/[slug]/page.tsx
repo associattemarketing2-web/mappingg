@@ -15,7 +15,8 @@ function fmt(d?: string | null) {
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const post = await getBySlug(params.slug);
-  if (!post) return { title: 'Post not found', robots: { index: false, follow: false } };
+  // Thrown here (before streaming starts) so a missing post is a real 404.
+  if (!post) notFound();
   const title = post.seo_title || post.title;
   const description = post.seo_description || post.excerpt || `${post.title} — on the Mappingg blog.`;
   const url = `${SITE_URL}/blog/${post.slug}`;

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { buildMetadata } from '@/lib/seo/metadata';
 import Link from 'next/link';
 import InfoPage, { CtaBand } from '@/components/InfoPage';
 import { EMAIL, SOCIALS, WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/lib/contact';
@@ -15,11 +16,12 @@ const FAQS = [
   { q: 'How can I list my project?', a: <>Create a developer account and share your RERA number, location and project details. Once we verify your RERA number on the MahaRERA website, your project goes live on the map.</> },
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: 'FAQ',
-  description: 'Answers to common questions about Mappingg — what it is, how projects are verified on MahaRERA, which areas are covered, the infrastructure we show and how to list your project.',
-  alternates: { canonical: `${SITE_URL}/faq` },
-};
+  description:
+    'Answers to common questions about Mappingg — what it is, how projects are verified on MahaRERA, which areas are covered, the infrastructure we show and how to list your project.',
+  path: '/faq',
+});
 
 export default function FaqPage() {
   const faqJsonLd = {

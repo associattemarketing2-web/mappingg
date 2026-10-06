@@ -69,7 +69,16 @@
   const FREE_TAPS = 3, TAP_KEY = 'mappingg_free_taps';
   const liveFrame = byId('liveFrame'), liveBrowser = byId('liveBrowser'), mapLock = byId('mapLock');
   if (liveBrowser && liveFrame) {
-    new IntersectionObserver((es, obs) => es.forEach(e => { if (e.isIntersecting) { liveFrame.src = liveFrame.dataset.src; obs.disconnect(); } }), { rootMargin: '300px' }).observe(liveBrowser);
+    // The embedded map is a same-origin page, so it shares this page's main
+    // thread: booting Leaflet + every pin during the initial load delayed the
+    // hero's first paint. Load it once it is near the viewport AND this page has
+    // finished loading and gone idle (with a short deadline).
+    const startFrame = () => { if (!liveFrame.src) liveFrame.src = liveFrame.dataset.src; };
+    const whenSettled = (fn) => {
+      const idle = () => (window.requestIdleCallback ? requestIdleCallback(fn, { timeout: 1500 }) : fn());
+      if (document.readyState === 'complete') idle(); else window.addEventListener('load', idle, { once: true });
+    };
+    new IntersectionObserver((es, obs) => es.forEach(e => { if (e.isIntersecting) { obs.disconnect(); whenSettled(startFrame); } }), { rootMargin: '300px' }).observe(liveBrowser);
   }
   let taps = 0; try { taps = +localStorage.getItem(TAP_KEY) || 0; } catch (e) {}
   let lastTap = 0;
@@ -265,7 +274,7 @@
       for (let r = 0; r < 2; r++) for (let c = 0; c < 6; c++) {
         const x = x0 + c * 66, y = y0 + r * 102;
         plots.push({ n, x, y, road: r === 0 && y0 === 70 ? '9 m' : '12 m', st: 'available' });
-        ps += `<rect class="plot" data-n="${n}" x="${x}" y="${y}" width="60" height="92" rx="6" tabindex="0" role="button"/><text class="p-num" x="${x + 30}" y="${y + 51}" text-anchor="middle">${n}</text>`;
+        ps += `<rect class="plot" data-n="${n}" x="${x}" y="${y}" width="60" height="92" rx="6" tabindex="0" role="button" aria-label="Plot ${n}"/><text class="p-num" x="${x + 30}" y="${y + 51}" text-anchor="middle">${n}</text>`;
         n++;
       }
     });
@@ -562,7 +571,10 @@
     } catch (e) { /* ignore malformed data */ }
     buildGlobeOverlay(box, GLOBE);
 
-    if (!window.THREE) return; // counts still show above; only the 3D globe needs three.js
+    // three.js loads in parallel with this script (LandingClient) — the nav, sign-in
+    // and scroll reveals never wait for it. The globe starts whenever it arrives.
+    const startGlobe = () => {
+    if (!window.THREE || !canvas.isConnected) return; // counts still show above; only the 3D globe needs three.js
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(40, box.clientWidth / box.clientHeight, 0.1, 1000);
     const ZMIN = 1.5, ZMAX = 6;
@@ -576,14 +588,17 @@
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); size();
 
     const L = new THREE.TextureLoader();
-    const base = 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/';
+    // Self-hosted, right-sized copies of three.js's example planet textures (the
+    // globe renders at a few hundred px; the 2048px originals hot-linked from
+    // raw.githubusercontent.com were ~1.3 MB and outside our control).
+    const base = '/img/globe/';
     const group = new THREE.Group(); scene.add(group);
     group.add(new THREE.Mesh(new THREE.SphereGeometry(1, 128, 128), new THREE.MeshPhongMaterial({
-      map: L.load(base + 'earth_atmos_2048.jpg'), specularMap: L.load(base + 'earth_specular_2048.jpg'),
-      normalMap: L.load(base + 'earth_normal_2048.jpg'), specular: new THREE.Color(0x3a6a5a), shininess: 22
+      map: L.load(base + 'earth_atmos_1024.jpg'), specularMap: L.load(base + 'earth_specular_1024.jpg'),
+      normalMap: L.load(base + 'earth_normal_1024.jpg'), specular: new THREE.Color(0x3a6a5a), shininess: 22
     })));
     const clouds = new THREE.Mesh(new THREE.SphereGeometry(1.008, 96, 96),
-      new THREE.MeshPhongMaterial({ map: L.load(base + 'earth_clouds_1024.png'), transparent: true, opacity: .35, depthWrite: false }));
+      new THREE.MeshPhongMaterial({ map: L.load(base + 'earth_clouds_512.png'), transparent: true, opacity: .35, depthWrite: false }));
     group.add(clouds);
     scene.add(new THREE.Mesh(new THREE.SphereGeometry(1.16, 96, 96), new THREE.ShaderMaterial({
       vertexShader: 'varying vec3 n; void main(){ n=normalize(normalMatrix*normal); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }',
@@ -667,8 +682,21 @@
     // keep rendering to orphaned canvases, degrading performance.
     let __globeStop = false;
     __cleanups.push(() => { __globeStop = true; });
-    (function loop() {
-      if (__globeStop || !canvas.isConnected) return;
+    // Only animate while the globe is on screen: a continuous WebGL loop for a
+    // scrolled-away hero kept the main thread (and phone batteries) busy.
+    let globeVisible = true, looping = false;
+    if ('IntersectionObserver' in window) {
+      const vis = new IntersectionObserver((es) => {
+        globeVisible = es[es.length - 1].isIntersecting;
+        if (globeVisible && !looping) loop();
+      });
+      vis.observe(canvas);
+      __cleanups.push(() => vis.disconnect());
+    }
+    loop();
+    function loop() {
+      if (__globeStop || !canvas.isConnected || !globeVisible) { looping = false; return; }
+      looping = true;
       requestAnimationFrame(loop);
       if (drag) { cy += vel.y; cx = Math.max(-1.2, Math.min(1.2, cx + vel.x)); vel.x *= .93; vel.y *= .93; ty = cy; tx = cx; }
       else if (auto) { cy += .0011; cx += (tx - cx) * .02; }
@@ -678,7 +706,10 @@
       rings.forEach((r, i) => { const s = 1 + Math.sin(t * 2 + i * .9) * .28; r.scale.set(s, s, s); r.material.opacity = .6 * (2 - s); });
       camera.position.z += (zTarget - camera.position.z) * 0.1; // smooth zoom toward target
       renderer.render(scene, camera);
-    })();
+    }
     on(window, 'resize', size);
+    };
+    if (window.THREE) startGlobe();
+    else window.__mpgStartGlobe = startGlobe;
   })();
 })();

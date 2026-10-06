@@ -37,7 +37,7 @@ export function featuredCardHtml(p: FeaturedProject): string {
             <div class="pv-body">
               ${details ? `<div class="pv-details">${details}</div>` : ''}
               <div class="pv-label">Project video</div>
-              <div class="pv-media pv-yt" data-yt="${vid}" aria-label="${esc(p.title)} video"
+              <div class="pv-media pv-yt" data-yt="${vid}" role="group" aria-label="${esc(p.title)} video"
                 style="background-image:url('https://i.ytimg.com/vi/${vid}/hqdefault.jpg')"><span class="pv-play"><i class="fas fa-play"></i></span></div>
             </div>
             <div class="pv-actions" aria-hidden="true">

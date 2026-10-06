@@ -6,7 +6,7 @@
  * waiting after NAV_TIMEOUT_MS and serves the cached page instead of leaving a
  * blank screen (the "PWA pages sometimes don't load" symptom). The network copy
  * still updates the cache in the background when it eventually arrives. */
-const CACHE = 'mappingg-v3';
+const CACHE = 'mappingg-v4'; // v4: purges any private pages cached by older versions
 const NAV_TIMEOUT_MS = 3500;
 const APP_SHELL = ['/', '/map', '/mundhwa-map-3d', '/db-shim.js', '/landing.js', '/manifest.webmanifest'];
 
@@ -25,11 +25,15 @@ self.addEventListener('activate', (event) => {
   );
 });
 
+// Signed-in areas render personal/admin data into the HTML itself. They must
+// never be written to the offline cache (a shared device, or a visit after
+// sign-out, could otherwise be served someone's cached dashboard).
+const PRIVATE_PREFIXES = ['/api/', '/rest/', '/dashboard', '/s-admin', '/signin', '/intake', '/submit', '/partners/'];
+
 function isCacheable(url) {
   if (url.origin !== self.location.origin) return false;
-  // Never cache dynamic/private endpoints.
-  if (url.pathname.startsWith('/api/')) return false;
-  if (url.pathname.startsWith('/rest/')) return false;
+  // Never cache dynamic/private endpoints or signed-in pages.
+  if (PRIVATE_PREFIXES.some((p) => url.pathname === p.replace(/\/$/, '') || url.pathname.startsWith(p))) return false;
   return true;
 }
 
@@ -61,6 +65,9 @@ self.addEventListener('fetch', (event) => {
   // Navigations: race the network against a timeout so a slow/offline link
   // falls back to cache instead of a hanging blank page. The network request
   // keeps running and refreshes the cache if/when it completes.
+  // Private pages always go straight to the network (no cache read or write).
+  if (req.mode === 'navigate' && !isCacheable(url)) return;
+
   if (req.mode === 'navigate') {
     event.respondWith(
       (async () => {

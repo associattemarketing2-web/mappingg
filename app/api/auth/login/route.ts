@@ -5,6 +5,7 @@ import { getDb } from '@/lib/mongodb';
 import { PUBLIC_ROLES, createSessionToken, homePathFor, setSessionCookie } from '@/lib/auth';
 import { recordLogin } from '@/lib/activity';
 import { homeForAccount, verificationOf } from '@/lib/verification';
+import { clientIp, rateLimit } from '@/lib/rate-limit';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -20,6 +21,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: { message: 'Enter a valid email and password.' } }, { status: 400 });
   }
   const { email, password } = parsed.data;
+
+  // Brute-force brake: per account+IP, and a looser cap per IP across accounts.
+  const ip = clientIp(req);
+  const limited =
+    rateLimit(`login:${ip}:${email.toLowerCase()}`, 10, 15 * 60_000) ||
+    rateLimit(`login-ip:${ip}`, 40, 15 * 60_000);
+  if (limited) return limited;
 
   const db = await getDb();
   const user = await db.collection('users').findOne({ email: email.toLowerCase() });

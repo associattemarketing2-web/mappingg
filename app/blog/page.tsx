@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { buildMetadata } from '@/lib/seo/metadata';
 import BlogFooter from '@/components/BlogFooter';
 import './blog.css';
 import { listPublished } from '@/lib/blog';
@@ -8,23 +9,17 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
 
 export const revalidate = 600;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: 'Blog — Pune Real Estate Insights, Guides & News',
   description:
     'Practical guides, area insights and market news for buying property in Pune — RERA, possession, pricing, infrastructure and more, from the Mappingg team.',
+  path: '/blog',
   keywords: [
     'Pune real estate blog', 'property buying guide Pune', 'MahaRERA guide', 'Pune property news',
     'best areas to buy in Pune', 'Kharadi property', 'Mundhwa flats', 'Hadapsar real estate',
     'property investment Pune', 'new projects Pune', 'possession date guide', 'Mappingg blog',
   ],
-  alternates: { canonical: `${SITE_URL}/blog` },
-  openGraph: {
-    type: 'website',
-    title: 'Mappingg Blog — Pune Real Estate Insights & Guides',
-    description: 'Guides, area insights and market news for buying property in Pune.',
-    url: `${SITE_URL}/blog`,
-  },
-};
+});
 
 function fmt(d?: string | null) {
   return d ? new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';

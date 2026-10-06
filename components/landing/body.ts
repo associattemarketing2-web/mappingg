@@ -170,8 +170,8 @@ export const LANDING_BODY = `
       </div>
       <div class="lv-main">
         <div class="lv-stage" id="lvStage">
-          <svg id="lvSvg" class="area" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Illustrative area map with project pins"></svg>
-          <svg id="lvPlan" class="plan" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Sample plotted project layout"></svg>
+          <svg id="lvSvg" class="area" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" role="group" aria-label="Illustrative area map with project pins"></svg>
+          <svg id="lvPlan" class="plan" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" role="group" aria-label="Sample plotted project layout"></svg>
           <div class="lv-over lv-proj area-only"><span class="dot"></span>Pune East <small id="lvCounts"></small></div>
           <div class="lv-over lv-proj plan-only"><button type="button" class="lv-back" id="lvBack" aria-label="Back to area map"><i class="fas fa-arrow-left"></i></button><span id="planName">Sample Project</span> <small id="planCount"></small></div>
           <div class="lv-over lv-compass" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3.5 10H8.5z" fill="#a9532d"/><path d="M12 22l-3.5-10h7z" fill="#cfccc2"/></svg></div>

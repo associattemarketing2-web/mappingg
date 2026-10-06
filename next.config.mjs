@@ -18,6 +18,14 @@ const nextConfig = {
       { source: '/submit/', destination: '/partners/submit/index.html' },
     ];
   },
+  async redirects() {
+    return [
+      // /signin is just an alias for the home page's sign-in modal. As a static
+      // page its redirect was prerendered without a Location header; a config
+      // redirect is a real 307 that never renders anything.
+      { source: '/signin', destination: '/?signin=1', permanent: false },
+    ];
+  },
   async headers() {
     return [
       {

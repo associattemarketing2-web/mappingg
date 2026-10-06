@@ -68,11 +68,49 @@ export function clearSessionCookie() {
   });
 }
 
+// ---------------------------------------------------------------------------
+// The JWT alone is not enough to trust a session for 60 days: an employee who
+// is deleted, or an account whose role changes, would otherwise keep their old
+// access (and the rolling refresh in /api/auth/session would extend it). So a
+// verified token is also checked against the `users` table — cached briefly per
+// user so this costs one indexed lookup per user per ACCOUNT_TTL_MS, not one per
+// request. A database error falls back to the signed token (never locks
+// everyone out during a blip); a missing account is treated as signed out.
+const ACCOUNT_TTL_MS = 30_000;
+type AccountCheck = { role: string | null; exp: number };
+const g = globalThis as unknown as { __accountCheck?: Map<string, AccountCheck> };
+const accountCheck: Map<string, AccountCheck> = g.__accountCheck || (g.__accountCheck = new Map());
+
+async function currentRoleOf(user: SessionUser): Promise<string | null> {
+  const hit = accountCheck.get(user.id);
+  if (hit && hit.exp > Date.now()) return hit.role;
+  try {
+    const { getDb } = await import('./mongodb');
+    const db = await getDb();
+    const doc = await db.collection('users').findOne({ id: user.id }, { projection: { role: 1 } });
+    const role = doc ? String(doc.role || 'admin') : null; // same default as login
+    if (accountCheck.size > 5000) accountCheck.clear();
+    accountCheck.set(user.id, { role, exp: Date.now() + ACCOUNT_TTL_MS });
+    return role;
+  } catch {
+    return user.role;
+  }
+}
+
+/** Forget the cached account check (call after changing or deleting an account). */
+export function forgetAccount(userId: string) {
+  accountCheck.delete(userId);
+}
+
 /** Reads and verifies the current session from the request cookie, or null. */
 export async function getCurrentUser(): Promise<SessionUser | null> {
   const token = cookies().get(SESSION_COOKIE)?.value;
   if (!token) return null;
-  return verifySessionToken(token);
+  const user = await verifySessionToken(token);
+  if (!user) return null;
+  const role = await currentRoleOf(user);
+  if (!role) return null; // account no longer exists
+  return role === user.role ? user : { ...user, role };
 }
 
 // Staff (owner + employees) run the super-admin and may write map data. Public

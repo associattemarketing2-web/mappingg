@@ -1,5 +1,6 @@
 import { randomUUID } from 'crypto';
 import { getDb, type Db } from './mongodb';
+import { MEDIA_FIELDS } from './pin-media';
 
 // Our documents use string uuid _id values (not ObjectId), so we type
 // collections loosely to keep the driver's strict _id typing out of the way.
@@ -70,7 +71,8 @@ function cacheKey(op: DbOp, isAuthed: boolean): string {
   ].join('|');
 }
 
-function invalidateTable(table: string) {
+/** Drops cached public reads of `table` — call after writing a map table outside runDbOp. */
+export function invalidateTable(table: string) {
   for (const key of readCache.keys()) {
     if (key.startsWith(table + '|')) readCache.delete(key);
   }
@@ -216,7 +218,14 @@ export async function runDbOp(op: DbOp, isAuthed: boolean, opts: RunDbOpts = {})
           }
         }
         const projection = buildProjection(op.columns);
-        let cursor = coll.find(query, projection ? { projection } : undefined);
+        // Inline base64 images come back as md5 digests computed in Postgres
+        // (callers turn them into /api/media URLs), never as megabytes of data.
+        const mediaDigest = MEDIA_FIELDS[op.table]
+          ? { fields: MEDIA_FIELDS[op.table] }
+          : op.table === 'pins_history'
+            ? { nested: { field: 'row_data', keys: MEDIA_FIELDS.pins } }
+            : undefined;
+        let cursor = coll.find(query, { ...(projection ? { projection } : {}), mediaDigest });
         if (op.order) cursor = cursor.sort({ [op.order.col]: op.order.ascending ? 1 : -1 });
         if (op.limit != null) cursor = cursor.limit(op.limit);
         const rows = (await cursor.toArray()).map((d) => clean(d as Record<string, unknown>));

@@ -15,7 +15,7 @@
 
 .dsh-top { position: sticky; top: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 62px; padding: 0 22px; background: #fff; border-bottom: 1px solid var(--line); }
 .dsh-brand { display: flex; align-items: center; gap: 10px; }
-.dsh-brand .mark { width: 28px; height: 40px; flex-shrink: 0; display: inline-block; background: url('/img/mappingg-icon-mark.png') center/contain no-repeat; }
+.dsh-brand .mark { width: 28px; height: 40px; flex-shrink: 0; display: inline-block; background: url('/img/mappingg-icon-mark-sm.png') center/contain no-repeat; }
 .dsh-brand b { font-size: 18px; font-weight: 800; letter-spacing: -.03em; color: #0b4a3b; }
 .dsh-brand b em { font-style: normal; color: #b0924f; }
 .dsh-brand small { display: block; font-size: 10.5px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }

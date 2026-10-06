@@ -34,6 +34,21 @@ const MORE_LINKS = [
   { href: '/map-data', label: 'Map data' },
 ];
 
+// The header re-renders on every client-side navigation; without this it asked
+// the server for the session (a DB lookup + cookie refresh) on every page
+// change. Sign-in and sign-out both do a full page load, which resets this.
+type SessionBody = { session?: { home?: string } | null } | null;
+const SESSION_TTL_MS = 60_000;
+let sessionCache: { at: number; p: Promise<SessionBody> } | null = null;
+function loadSession(): Promise<SessionBody> {
+  if (!sessionCache || Date.now() - sessionCache.at > SESSION_TTL_MS) {
+    const p = fetch('/api/auth/session', { credentials: 'same-origin' }).then((r) => r.json() as Promise<SessionBody>);
+    p.catch(() => { sessionCache = null; }); // don't cache a failure
+    sessionCache = { at: Date.now(), p };
+  }
+  return sessionCache.p;
+}
+
 export default function SiteHeader() {
   const pathname = usePathname();
   const router = useRouter();
@@ -53,10 +68,15 @@ export default function SiteHeader() {
 
   useEffect(() => {
     // Any real session → show the account's home (Dashboard, or Live map for buyers).
-    fetch('/api/auth/session', { credentials: 'same-origin' })
-      .then((r) => r.json())
-      .then((b) => { setSignedIn(!!(b && b.session)); if (b && b.session && b.session.home) setHome(b.session.home); })
-      .catch(() => setSignedIn(false));
+    let cancelled = false;
+    loadSession()
+      .then((b) => {
+        if (cancelled) return;
+        setSignedIn(!!(b && b.session));
+        if (b && b.session && b.session.home) setHome(b.session.home);
+      })
+      .catch(() => { if (!cancelled) setSignedIn(false); });
+    return () => { cancelled = true; };
   }, [pathname]);
 
   async function signOut() {

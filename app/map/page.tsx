@@ -3,6 +3,7 @@ import LegacyApp from '@/components/LegacyApp';
 import LegacyPreloads from '@/components/LegacyPreloads';
 import MapAuthGate from '@/components/MapAuthGate';
 import { getSeoProjects, statusLabel, AREAS_PUNE, AREAS_MMR } from '@/lib/seo-data';
+import { slugForProject } from '@/lib/seo/entities';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
 
@@ -31,37 +32,19 @@ export const metadata: Metadata = {
 export default async function MapPage() {
   const projects = await getSeoProjects();
 
+  const projectPath = (p: (typeof projects)[number]) => `/projects/${slugForProject({ ...p, number: p.number ?? 0 })}`;
+  // Organization + WebSite come from the root layout; this page adds the project list.
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'WebSite',
-        '@id': `${SITE_URL}/#website`,
-        name: 'Mappingg',
-        url: SITE_URL,
-        description:
-          'Live, interactive map of real estate projects in Pune and the Mumbai Metropolitan Region.',
-      },
-      {
-        '@type': 'RealEstateAgent',
-        '@id': `${SITE_URL}/#organization`,
-        name: 'Associatte Proptech Pvt Ltd',
-        url: 'https://associatte.co.in/',
-        areaServed: [...AREAS_PUNE, ...AREAS_MMR].map((a) => ({ '@type': 'Place', name: a })),
-        knowsAbout: ['Real estate', 'Property investment', 'Home buying'],
-      },
-      {
-        '@type': 'ItemList',
-        name: 'Mapped real estate projects',
-        numberOfItems: projects.length,
-        itemListElement: projects.slice(0, 200).map((p, i) => ({
-          '@type': 'ListItem',
-          position: i + 1,
-          name: p.title || `Project #${p.number ?? ''}`.trim(),
-          url: `${SITE_URL}/map?pin=${encodeURIComponent(p.id)}`,
-        })),
-      },
-    ],
+    '@type': 'ItemList',
+    name: 'Mapped real estate projects',
+    numberOfItems: projects.length,
+    itemListElement: projects.slice(0, 200).map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: p.title || `Project #${p.number ?? ''}`.trim(),
+      url: `${SITE_URL}${projectPath(p)}`,
+    })),
   };
 
   return (
@@ -90,7 +73,7 @@ export default async function MapPage() {
             <ul>
               {projects.map((p) => (
                 <li key={p.id}>
-                  <a href={`/map?pin=${encodeURIComponent(p.id)}`}>
+                  <a href={projectPath(p)}>
                     {p.title || `Project #${p.number ?? ''}`}
                     {p.location ? ` — ${p.location}` : ''}
                     {p.status ? ` (${statusLabel(p.status)})` : ''}

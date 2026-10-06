@@ -1,4 +1,7 @@
 import { createHash } from 'node:crypto';
+import { MEDIA_DIGEST_PREFIX } from './mongo-compat';
+
+export { MEDIA_DIGEST_PREFIX };
 
 // Pin logos/brochures and infrastructure icons are stored inside their
 // documents as base64 data: URLs (~5 MB across all pins). Shipping them inside
@@ -39,9 +42,15 @@ function cdnImageFor(row: Record<string, unknown>, width?: number): string | nul
   return meta.imageUrl;
 }
 
-/** Short content hash, so the URL (and the browser cache) changes only when the image does. */
+/**
+ * Short content hash, so the URL (and the browser cache) changes only when the
+ * image does. md5 of the full data: URL — the same value Postgres' md5() yields
+ * for list queries, which return a `data:mg-digest;md5,<hex>` digest instead of
+ * the base64 itself (see MEDIA_DIGEST_PREFIX in lib/mongo-compat.ts).
+ */
 export function mediaVersion(dataUrl: string): string {
-  return createHash('sha1').update(dataUrl).digest('base64url').slice(0, 12);
+  if (dataUrl.startsWith(MEDIA_DIGEST_PREFIX)) return dataUrl.slice(MEDIA_DIGEST_PREFIX.length, MEDIA_DIGEST_PREFIX.length + 12);
+  return createHash('md5').update(dataUrl).digest('hex').slice(0, 12);
 }
 
 export function mediaUrl(table: string, id: string, field: string, dataUrl: string, width?: number): string {
@@ -86,6 +95,7 @@ export function withMediaUrls<T>(table: string, data: T, opts: { width?: number 
 
 /** Decodes a base64 data: URL into its bytes and mime type, or null if it isn't one. */
 export function decodeDataUrl(dataUrl: string): { mime: string; bytes: Buffer } | null {
+  if (dataUrl.startsWith(MEDIA_DIGEST_PREFIX)) return null; // a digest, not image data
   const m = /^data:([^;,]+)?(;base64)?,(.*)$/s.exec(dataUrl);
   if (!m) return null;
   const mime = m[1] || 'application/octet-stream';

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
 import { getDb } from '@/lib/mongodb';
-import { PUBLIC_ROLES, getCurrentUser } from '@/lib/auth';
+import { PUBLIC_ROLES, getCurrentUser, forgetAccount } from '@/lib/auth';
 import { needsVerification, verificationOf } from '@/lib/verification';
 import { hasPermission } from '@/lib/staff';
 import { localitiesOf, localitiesOfAll } from '@/lib/locality';
@@ -159,6 +159,7 @@ export async function DELETE(req: NextRequest) {
   const gone = await db.collection<AnyDoc>('users').findOne({ id, ...ROLE_FILTER }, { projection: { email: 1, name: 1, role: 1 } });
   // Scoped to public roles so this can never remove the owner or an employee.
   await db.collection<AnyDoc>('users').deleteOne({ id, ...ROLE_FILTER });
+  forgetAccount(id); // their existing session stops working immediately
   if (gone) {
     await logActivity({
       user_id: id, email: String(gone.email), name: gone.name ? String(gone.name) : undefined, role: String(gone.role),

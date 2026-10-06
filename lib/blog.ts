@@ -1,4 +1,5 @@
 import { randomUUID } from 'crypto';
+import { cache } from 'react';
 import { getDb, type Db } from './mongodb';
 
 // Blog / articles backend. Posts live in the `posts` collection and power both
@@ -76,14 +77,15 @@ export async function listAll(): Promise<BlogPost[]> {
   return rows.map((r) => clean(r) as BlogPost);
 }
 
-export async function getBySlug(slug: string): Promise<BlogPost | null> {
+// cache(): generateMetadata and the page both need the post — one query per request.
+export const getBySlug = cache(async (slug: string): Promise<BlogPost | null> => {
   try {
     const db = await getDb();
     return clean(await (await coll(db)).findOne({ slug, status: 'published' }));
   } catch {
     return null;
   }
-}
+});
 
 export async function getById(id: string): Promise<BlogPost | null> {
   const db = await getDb();

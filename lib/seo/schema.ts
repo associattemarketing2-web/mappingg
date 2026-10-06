@@ -1,4 +1,5 @@
 import { SITE, abs } from './config';
+import { EMAIL, SOCIALS, WHATSAPP_DISPLAY } from '@/lib/contact';
 
 // JSON-LD builders. Keep schema in sync with what is actually visible on the
 // page — never emit fake ratings/reviews. Each returns a plain object that a
@@ -14,10 +15,23 @@ export function organizationSchema() {
     url: SITE.url,
     logo: SITE.logo,
     description: SITE.description,
-    areaServed: ['Pune', 'Mumbai Metropolitan Region'],
+    areaServed: ['Pune', 'Mumbai Metropolitan Region', 'Dubai'],
+    email: EMAIL,
+    telephone: WHATSAPP_DISPLAY,
+    sameAs: SOCIALS.map((s) => s.href),
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email: EMAIL,
+      telephone: WHATSAPP_DISPLAY,
+      availableLanguage: ['English', 'Hindi', 'Marathi'],
+    },
   };
 }
 
+// The one site-wide WebSite node (rendered by the root layout). No SearchAction:
+// the map has no ?q= search URL to point it at, and Google no longer shows the
+// sitelinks search box anyway.
 export function websiteSchema() {
   return {
     '@context': 'https://schema.org',
@@ -26,11 +40,6 @@ export function websiteSchema() {
     name: SITE.name,
     url: SITE.url,
     publisher: { '@id': `${SITE.url}/#organization` },
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: { '@type': 'EntryPoint', urlTemplate: `${SITE.url}/map?q={search_term_string}` },
-      'query-input': 'required name=search_term_string',
-    },
   };
 }
 
@@ -83,7 +92,6 @@ export function projectSchema(opts: {
   city?: string;
   lat?: number;
   lng?: number;
-  developer?: string;
 }) {
   const geo = opts.lat && opts.lng ? { '@type': 'GeoCoordinates', latitude: opts.lat, longitude: opts.lng } : undefined;
   return {
@@ -93,7 +101,6 @@ export function projectSchema(opts: {
     description: opts.description || undefined,
     url: abs(opts.url),
     image: opts.image ? abs(opts.image) : undefined,
-    ...(opts.developer ? { provider: { '@type': 'Organization', name: opts.developer } } : {}),
     address: {
       '@type': 'PostalAddress',
       addressLocality: opts.locality || undefined,

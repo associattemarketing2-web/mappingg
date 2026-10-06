@@ -1,15 +1,16 @@
 import type { Metadata } from 'next';
+import { buildMetadata } from '@/lib/seo/metadata';
 import Link from 'next/link';
 import InfoPage, { ContactBlock, EMAIL, LegalDoc, UpdatedChip, type LegalSection } from '@/components/InfoPage';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: 'Map Data & OpenStreetMap Policy',
   description:
     'Where Mappingg’s maps come from, how we credit OpenStreetMap contributors, the licences that apply, how we use map tile servers fairly, and how to report map errors.',
-  alternates: { canonical: `${SITE_URL}/map-data` },
-};
+  path: '/map-data',
+});
 
 const ext = { target: '_blank', rel: 'noopener' } as const;
 
