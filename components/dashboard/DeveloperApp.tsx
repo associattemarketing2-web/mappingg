@@ -119,7 +119,7 @@ export default function DeveloperApp({ user }: { user: DevUser }) {
         </a>
         <div className="adm2-top-right" ref={menuRef}>
           <DevNotificationBell onOpenProjects={() => setTab('intake')} />
-          <a className="adm-chip" href="/" target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /> <span className="adm-hide-sm">View site</span></a>
+          <a className="adm-chip" href="/map" target="_blank" rel="noopener" title="Open the live map"><i className="fas fa-arrow-up-right-from-square" /> <span className="adm-hide-sm">View site</span></a>
           <button className="adm-chip" onClick={() => setMenuOpen((v) => !v)}>
             <span className="who">
               {avatar

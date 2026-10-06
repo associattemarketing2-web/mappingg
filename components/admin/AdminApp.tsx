@@ -1927,7 +1927,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
               onOpenAccount={(id) => (visible.includes('accounts') ? openAccount(id) : undefined)}
             />
           )}
-          <a className="adm-chip" href="/" target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /> <span className="adm-hide-sm">View site</span></a>
+          <a className="adm-chip" href="/map" target="_blank" rel="noopener" title="Open the live map"><i className="fas fa-arrow-up-right-from-square" /> <span className="adm-hide-sm">View site</span></a>
           <button className="adm-chip" onClick={() => setMenuOpen((v) => !v)}>
             <span className="who">
               {avatar
