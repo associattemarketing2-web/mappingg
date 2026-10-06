@@ -85,33 +85,40 @@
   function renderMapAccess() {
     if (!liveBrowser) return;
     const signedIn = typeof getUser === 'function' && getUser();
-    const left = Math.max(0, FREE_TAPS - taps), locked = !signedIn && left === 0;
+    // taps counts project cards opened; FREE_TAPS + 1 means they tried one more.
+    const left = Math.max(0, FREE_TAPS - Math.min(taps, FREE_TAPS)), locked = !signedIn && taps > FREE_TAPS;
     liveBrowser.classList.toggle('unlocked', !!signedIn);
     liveBrowser.classList.toggle('locked', locked);
     if (mapLock) mapLock.hidden = !locked;
     if (byId('mapHint')) byId('mapHint').hidden = !!signedIn || locked;
     if (byId('tapLeft')) byId('tapLeft').textContent = left;
-    if (byId('tapState')) byId('tapState').textContent = signedIn ? 'Full access' : locked ? 'Sign in to continue' : `${left} search${left === 1 ? '' : 'es'} left`;
+    if (byId('tapState')) byId('tapState').textContent = signedIn ? 'Full access' : locked ? 'Sign in to continue' : `${left} free project${left === 1 ? '' : 's'} left`;
   }
+  // One "tap" = opening a project's card on the embedded map (the map posts
+  // mappingg:pin-click). Enquiring and typing in the form are free, so a guest
+  // can fully enquire on each of their free projects; opening one more asks
+  // them to sign in.
   function countTap() {
     if (typeof getUser === 'function' && getUser()) return;
     const now = Date.now(); if (now - lastTap < 400) return; lastTap = now;
-    taps = Math.min(FREE_TAPS, taps + 1);
+    if (taps >= FREE_TAPS) {
+      taps = FREE_TAPS + 1;
+      try { localStorage.setItem(TAP_KEY, taps); } catch (e) {}
+      renderMapAccess();
+      setTimeout(() => openModal('signup', null, 'No charge for buyers — takes under a minute.'), 300);
+      return;
+    }
+    taps += 1;
     try { localStorage.setItem(TAP_KEY, taps); } catch (e) {}
     renderMapAccess();
-    if (taps >= FREE_TAPS) setTimeout(() => openModal('signup', null, 'No charge for buyers — takes under a minute.'), 450);
-    else toast(`${FREE_TAPS - taps} search${FREE_TAPS - taps === 1 ? '' : 'es'} left on the live map`, 'fa-hand-pointer');
+    const left = FREE_TAPS - taps;
+    toast(left ? `${left} free project${left === 1 ? '' : 's'} left — tap Enquire to get details` : 'Last free project — tap Enquire to get its details', 'fa-hand-pointer');
   }
-  on(window, 'blur', () => {
-    setTimeout(() => {
-      if (document.activeElement !== liveFrame) return;
-      countTap();
-      if (liveFrame) liveFrame.blur(); window.focus();
-    }, 0);
-  });
   on(window, 'message', e => {
-    if (!/^https:\/\/(www\.)?mappingg\.com$/.test(e.origin)) return;
-    if (e.data && e.data.type === 'mappingg:pin-click') countTap();
+    const ok = e.origin === window.location.origin || /^https:\/\/(www\.)?mappingg\.com$/.test(e.origin);
+    if (!ok || !e.data) return;
+    if (e.data.type === 'mappingg:pin-click') countTap();
+    if (e.data.type === 'mappingg:lead-submitted') toast('Thanks! Your enquiry is sent — our team will contact you soon.', 'fa-circle-check');
   });
   if (mapLock) {
     mapLock.querySelectorAll('.lock-buyer, .lock-others button').forEach(b => b.addEventListener('click', () => openModal('signup', b.dataset.role, 'No charge for buyers — takes under a minute.')));
@@ -429,11 +436,45 @@
       toast('Network error — please try again', 'fa-triangle-exclamation');
     });
   });
+  // Phone field: digits only (max 10), flag + code shown on the code button,
+  // and a live "7/10" → ✓ counter. box.__sync() refreshes it after a reset.
+  function mgWirePhone(box){
+    if(!box || box.__sync) return;
+    const sel = box.querySelector('select'), inp = box.querySelector('input[type="tel"]');
+    const img = box.querySelector('.phone-cc img'), codeEl = box.querySelector('.phone-cc-code');
+    const isoEl = box.querySelector('.phone-iso'), cnt = box.querySelector('.phone-count');
+    const isoOf = (f)=> Array.from(f || '').map((ch)=> ch.codePointAt(0) - 0x1F1E6).filter((n)=> n >= 0 && n < 26).map((n)=> String.fromCharCode(97 + n)).join('');
+    if(img) img.addEventListener('error', ()=> box.classList.add('no-flag'));
+    const sync = ()=>{
+      const d = inp.value.replace(/\D/g, '').slice(0, 10);
+      if(d !== inp.value) inp.value = d;
+      const opt = sel.options[sel.selectedIndex];
+      const iso = isoOf(opt ? opt.textContent.trim().split(/\s+/)[0] : '');
+      if(codeEl) codeEl.textContent = sel.value;
+      if(isoEl) isoEl.textContent = iso.toUpperCase() || '—';
+      if(img && iso && img.dataset.iso !== iso){ img.dataset.iso = iso; box.classList.remove('no-flag'); img.src = 'https://flagcdn.com/' + iso + '.svg'; }
+      if(!iso) box.classList.add('no-flag');
+      const n = d.length;
+      box.classList.toggle('is-empty', !n);
+      box.classList.toggle('is-ok', n === 10);
+      box.classList.toggle('is-partial', n > 0 && n < 10);
+      if(cnt) cnt.textContent = n === 10 ? '✓' : n + '/10';
+    };
+    inp.addEventListener('input', sync);
+    sel.addEventListener('change', sync);
+    box.__sync = sync;
+    sync();
+  }
+  document.querySelectorAll('.phone-in').forEach(mgWirePhone);
   if (signupForm) signupForm.addEventListener('submit', e => {
     e.preventDefault(); if (!signupForm.reportValidity()) return;
     const role = currentRole(), fd = Object.fromEntries(new FormData(signupForm));
     // Only the active role's fieldset is enabled, so fd holds just that role's extras.
-    const { name, email, mobile, ...profile } = fd;
+    const { name, email, mobile: phoneDigits, ...profile } = fd;
+    // WhatsApp: country code (default +91) + exactly 10 digits → "+91 9876543210".
+    const digits = String(phoneDigits || '').replace(/\D/g, '');
+    if (digits.length !== 10) { toast('Please enter a valid 10-digit mobile number', 'fa-triangle-exclamation'); byId('su-phone') && byId('su-phone').focus(); return; }
+    const mobile = ((byId('su-phone-code') && byId('su-phone-code').value) || '+91') + ' ' + digits;
     const btn = byId('signupBtn'); const label = btn ? btn.textContent : '';
     if (btn) { btn.disabled = true; btn.textContent = 'Creating account…'; }
     fetch('/api/auth/signup', {

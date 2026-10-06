@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import PhoneInput from './PhoneInput';
+import { PHONE_ERROR, isValidNumber, splitPhone } from '@/lib/phone';
 
 const SUBJECTS = ['Project enquiry', 'List my project', 'Channel partner', 'Correction', 'Something else'];
 
@@ -18,6 +20,7 @@ export default function ContactForm() {
     setError('');
     if (!f.name.trim() || !f.message.trim()) return setError('Please add your name and a message.');
     if (!f.email.trim() && !f.phone.trim()) return setError('Add an email or phone so we can reply.');
+    if (splitPhone(f.phone).number && !isValidNumber(splitPhone(f.phone).number)) return setError(PHONE_ERROR);
     setSending(true);
     try {
       const res = await fetch('/api/contact', {
@@ -65,7 +68,7 @@ export default function ContactForm() {
         </div>
         <div className="fld">
           <label htmlFor="cf-phone">Phone / WhatsApp</label>
-          <input id="cf-phone" value={f.phone} onChange={(e) => set('phone', e.target.value)} placeholder="+91 98xxxxxxxx" autoComplete="tel" />
+          <PhoneInput id="cf-phone" value={f.phone} onChange={(v) => set('phone', v)} />
         </div>
         <div className="fld wide">
           <label htmlFor="cf-message">Message *</label>

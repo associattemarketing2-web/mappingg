@@ -130,7 +130,7 @@ export const FIELDS = [
 
   // ----- Admin: Sales contact -----
   { key: 'sales_contact_name', label: 'Sales contact name', type: 'text', audience: 'admin', group: 'contact', score: true },
-  { key: 'sales_contact_phone', label: 'Sales contact phone', type: 'text', audience: 'admin', group: 'contact', score: true },
+  { key: 'sales_contact_phone', label: 'Sales contact phone', type: 'phone', audience: 'admin', group: 'contact', score: true },
 
   // ----- Admin: Verification & publishing -----
   { key: 'rera_verified_on', label: 'RERA verified on', type: 'date', audience: 'admin', group: 'verify', score: true },

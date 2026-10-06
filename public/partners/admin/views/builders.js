@@ -1,5 +1,6 @@
 // Builders and their unique submission links.
 import { STATUS, BUILDER_STATUS } from '../../shared/fields.js';
+import { phoneFieldHtml, wirePhoneField, isValidPhone } from '../../shared/phone.js';
 import { h, esc, $, toast, friendlyError, statusBadge, formatDate, timeAgo, confirmDialog, linkUrl, whatsappUrl, copyText } from '../../shared/lib.js';
 import { ctx, refreshCounts } from '../context.js';
 
@@ -25,7 +26,7 @@ function builderForm(b = {}) {
   return `<div class="two-col form-col">
     <label class="wide">Company name * <input class="input" name="company_name" required value="${esc(b.company_name || '')}"></label>
     <label>Contact person <input class="input" name="contact_name" value="${esc(b.contact_name || '')}"></label>
-    <label>WhatsApp / phone <input class="input" name="phone" placeholder="+91 98xxxxxxxx" value="${esc(b.phone || '')}"></label>
+    <label>WhatsApp / phone ${phoneFieldHtml('phone', b.phone || '')}</label>
     <label>Email <input class="input" type="email" name="email" value="${esc(b.email || '')}"></label>
     <label>City <input class="input" name="city" value="${esc(b.city || '')}"></label>
     <label class="wide">Country <input class="input" name="country" value="${esc(b.country || 'India')}"></label>
@@ -40,9 +41,12 @@ function formDialog(title, inner, submitText) {
     </form></dialog>`);
     document.body.appendChild(dlg);
     const form = $('form', dlg);
+    form.querySelectorAll('[data-phone]').forEach((el) => wirePhoneField(el));
     dlg.addEventListener('close', () => {
       const ok = dlg.returnValue === 'ok';
       const data = Object.fromEntries(new FormData(form).entries());
+      if (ok && data.phone && !isValidPhone(data.phone)) toast('Phone number must be 10 digits — it was not saved.', 'bad');
+      if (ok && data.phone && !isValidPhone(data.phone)) delete data.phone;
       dlg.remove();
       resolve(ok ? data : null);
     });

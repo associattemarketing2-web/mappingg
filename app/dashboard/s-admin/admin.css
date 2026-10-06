@@ -765,3 +765,17 @@ button.acs-act-row:hover { background: var(--bg); }
 /* Lead / account panel header: avatar beside a stacked name + subtitle */
 .crm-id.big { flex-direction: row; align-items: center; gap: 12px; }
 .crm-id.big > span:last-child { display: flex; flex-direction: column; min-width: 0; line-height: 1.3; }
+
+/* Buyer lead: enquired projects / compare list */
+.bl-list { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.bl-list li { display: flex; flex-direction: column; gap: 1px; padding: 9px 12px; font-size: 13.5px; }
+.bl-list li + li { border-top: 1px solid var(--line); }
+.bl-list a { color: var(--forest); font-weight: 600; }
+.bl-list a:hover { text-decoration: underline; }
+.bl-list small { color: var(--muted); font-size: 12px; }
+
+/* Map enquiries: buyer account column / badge */
+.ml-acc { display: inline-flex; flex-direction: column; gap: 3px; }
+.ml-acc small { font-size: 11.5px; color: var(--muted); white-space: nowrap; }
+.ml-badge { display: inline-flex; align-items: center; gap: 5px; align-self: flex-start; padding: 2px 8px; border-radius: 999px; background: var(--accent-50); color: var(--accent); font-size: 11px; font-weight: 700; white-space: nowrap; }
+.crm-block h4 .ml-badge { margin-left: 6px; vertical-align: middle; text-transform: none; letter-spacing: 0; }

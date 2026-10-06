@@ -1,6 +1,7 @@
 // Renders project fields as a form. Used by the builder page and the admin review screen.
 import { FIELDS, GROUPS, optionsFor } from './fields.js';
 import { esc, h, $, $$, parseLatLng, isShortMapsLink, resolveMapsLink, fileNameFromPath, getConfig, toast } from './lib.js';
+import { phoneFieldHtml, wirePhoneField, isValidPhone } from './phone.js';
 
 /**
  * @param {HTMLElement} root
@@ -100,6 +101,12 @@ export function createForm(root, opts) {
         inp.addEventListener('input', () => { state.values[f.key] = inp.value; changed(); });
         if (f.key === 'google_maps_link') inp.addEventListener('change', () => fillPinFromLink(inp.value, true));
         return wrap(f, inp, f.type === 'url');
+      }
+      case 'phone': {
+        // Country code (default +91) + exactly 10 digits.
+        const box = h(phoneFieldHtml('', v, { id: `f_${f.key}`, disabled: !!opts.readOnly }));
+        wirePhoneField(box, (val) => { state.values[f.key] = val; changed(); });
+        return wrap(f, box);
       }
       case 'number': {
         const inp = h(`<input class="input" id="f_${f.key}" type="text" inputmode="decimal" ${dis} value="${esc(v ?? '')}">`);
@@ -372,11 +379,15 @@ export function createForm(root, opts) {
     return out;
   }
 
+  // Fields that would save a wrong value: non-numbers in number fields, and
+  // phone numbers that aren't exactly 10 digits.
   function invalidNumbers() {
-    return fields.filter(f => f.type === 'number').filter(f => {
+    const nums = fields.filter(f => f.type === 'number').filter(f => {
       const t = String(state.values[f.key] ?? '').replace(/,/g, '').trim();
       return t !== '' && isNaN(Number(t));
     }).map(f => f.label);
+    const phones = fields.filter(f => f.type === 'phone' && !isValidPhone(state.values[f.key])).map(f => `${f.label} (10 digits)`);
+    return [...nums, ...phones];
   }
 
   function focusField(key) {

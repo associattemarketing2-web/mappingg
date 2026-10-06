@@ -18,6 +18,18 @@ import { useEffect, useState } from 'react';
 //    runs and self-corrects a stale hint.
 type Gate = 'checking' | 'guest' | 'pending' | 'open';
 
+/** The map embedded on the home page (/map?embed=home inside our own page),
+ *  where guests get a few free projects — the home page runs that trial. */
+function isHomeTrialEmbed(): boolean {
+  try {
+    if (window.self === window.top) return false;
+    if (new URLSearchParams(window.location.search).get('embed') !== 'home') return false;
+    return window.parent.location.origin === window.location.origin; // same-site frame only
+  } catch {
+    return false;
+  }
+}
+
 const HINT_KEY = 'mpg_map_open';
 
 export default function MapAuthGate() {
@@ -37,7 +49,9 @@ export default function MapAuthGate() {
         const user = b && b.session && b.session.user;
         if (!user) {
           try { localStorage.removeItem(HINT_KEY); } catch {}
-          setGate('guest');
+          // Guests on the home page's embedded map may explore and enquire on a
+          // few projects; the home page locks it after the free ones.
+          setGate(isHomeTrialEmbed() ? 'open' : 'guest');
           return;
         }
         // Developers and channel partners must be approved by the super-admin

@@ -5,6 +5,7 @@ import { getDb } from '@/lib/mongodb';
 import { getSeoProjects } from '@/lib/seo-data';
 import RoleDashboard, { type DashboardAccount } from '@/components/dashboard/RoleDashboard';
 import DeveloperApp from '@/components/dashboard/DeveloperApp';
+import BuyerProfile from '@/components/dashboard/BuyerProfile';
 import ReviewScreen from '@/components/dashboard/ReviewScreen';
 import { accessOf, verificationOf } from '@/lib/verification';
 
@@ -31,10 +32,13 @@ export default async function DashboardRolePage({ params }: { params: { role: st
   // URL, or /dashboard/s-admin for a non-staff account) goes to the right one.
   if (params.role !== role) redirect(homePathFor(doc.role as string));
 
+  // Buyers: no dashboard, just their profile (the live map is their home).
+  if (role === 'buyer') return <BuyerProfile />;
+
   // Developers and agents only get their dashboard once the super admin has
   // approved them; until then they see their submitted details and status.
   const status = verificationOf(doc);
-  if (role !== 'buyer' && status !== 'approved') {
+  if (status !== 'approved') {
     return (
       <ReviewScreen
         account={{

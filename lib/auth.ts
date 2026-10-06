@@ -133,5 +133,7 @@ export function homePathFor(role?: string): string {
   if (isStaffRole(role)) return '/dashboard/s-admin';
   if (role === 'developer') return '/dashboard/developer';
   if (role === 'agent') return '/dashboard/agent';
-  return '/dashboard/buyer';
+  // Buyers have no dashboard: they go straight to the live map (their profile is
+  // at /dashboard/buyer, linked from the map and the site header).
+  return '/map';
 }

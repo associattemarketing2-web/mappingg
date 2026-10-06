@@ -59,7 +59,74 @@ async function withProjects(rows: Record<string, any>[]) {
     ? ((await db.collection('pins').find({ id: { $in: ids } }, { projection: { id: 1, title: 1, number: 1, location: 1 } }).toArray()) as unknown as Pin[])
     : [];
   const byId = new Map(pins.map((p) => [String(p.id), p]));
-  return rows.map((r) => mapLead(r, byId.get(String(r.pin_id))));
+  return withBuyerAccounts(rows.map((r) => mapLead(r, byId.get(String(r.pin_id)))));
+}
+
+/** Map enquiries from people with a buyer account (matched by account or email) get
+ *  that account's login data and preferences; everyone else is a guest. */
+async function withBuyerAccounts(rows: Record<string, any>[]) {
+  const db = await getDb();
+  const ids = Array.from(new Set(rows.map((r) => String(r.account_id || '')).filter(Boolean)));
+  const emails = Array.from(new Set(rows.map((r) => String(r.email || '').trim().toLowerCase()).filter(Boolean)));
+  if (!ids.length && !emails.length) return rows.map((r) => ({ ...r, account: null }));
+  const users = await db.collection('users').find(
+    { role: 'buyer', $or: [{ id: { $in: ids } }, { email: { $in: emails } }] },
+    { projection: { id: 1, email: 1, name: 1, last_login_at: 1, login_count: 1, profile: 1, compare_pins: 1, created_at: 1 } },
+  ).toArray() as Record<string, any>[];
+  const byId = new Map(users.map((u) => [String(u.id), u]));
+  const byEmail = new Map(users.map((u) => [String(u.email || '').toLowerCase(), u]));
+  // How many map enquiries each buyer has made in total.
+  const countFor = (u: Record<string, any>) => rows.filter((r) => String(r.account_id || '') === String(u.id) || String(r.email || '').toLowerCase() === String(u.email || '').toLowerCase()).length;
+  return rows.map((r) => {
+    const u = byId.get(String(r.account_id || '')) || byEmail.get(String(r.email || '').trim().toLowerCase());
+    return {
+      ...r,
+      account: u ? {
+        id: String(u.id), signed_in: !!r.account_id, last_login_at: u.last_login_at || null, login_count: Number(u.login_count || 0),
+        profile: u.profile || {}, compare_count: Array.isArray(u.compare_pins) ? u.compare_pins.length : 0,
+        enquiry_count: countFor(u), member_since: u.created_at || null,
+      } : null,
+    };
+  });
+}
+
+/** Buyer sign-up leads + that buyer's account activity: logins, enquiries, compare list. */
+async function withBuyerActivity(rows: Record<string, any>[]) {
+  const db = await getDb();
+  const ids = Array.from(new Set(rows.map((r) => String(r.account_id || '')).filter(Boolean)));
+  if (!ids.length) return rows.map((r) => strip(r));
+  const users = await db.collection('users').find({ id: { $in: ids } }, {
+    projection: { id: 1, last_login_at: 1, login_count: 1, compare_pins: 1, profile: 1, mobile: 1, created_at: 1 },
+  }).toArray() as Record<string, any>[];
+  const byUser = new Map(users.map((u) => [String(u.id), u]));
+  // Their map enquiries: made while signed in (account_id) or with the same email.
+  const emails = rows.map((r) => String(r.email || '').toLowerCase()).filter(Boolean);
+  const enq = await db.collection('leads').find(
+    { $or: [{ account_id: { $in: ids } }, { email: { $in: emails } }] },
+    { projection: { account_id: 1, email: 1, pin_id: 1, created_at: 1 } },
+  ).sort({ created_at: -1 }).toArray() as Record<string, any>[];
+  const pinIds = Array.from(new Set([...enq.map((e) => String(e.pin_id)), ...users.flatMap((u) => (Array.isArray(u.compare_pins) ? u.compare_pins.map(String) : []))]));
+  const pins = pinIds.length
+    ? (await db.collection('pins').find({ id: { $in: pinIds } }, { projection: { id: 1, title: 1, number: 1, location: 1 } }).toArray() as unknown as Pin[])
+    : [];
+  const pinById = new Map(pins.map((p) => [String(p.id), p]));
+  const proj = (id: string) => { const p = pinById.get(id); return p ? { id: p.id, title: p.title || 'Untitled project', number: p.number ?? null, location: p.location || '' } : null; };
+  return rows.map((r) => {
+    const u = byUser.get(String(r.account_id));
+    const email = String(r.email || '').toLowerCase();
+    const mine = enq.filter((e) => String(e.account_id) === String(r.account_id) || (email && String(e.email || '').toLowerCase() === email));
+    return {
+      ...strip(r),
+      buyer: {
+        last_login_at: u?.last_login_at || r.last_login_at || null,
+        login_count: Number(u?.login_count ?? r.login_count ?? 0),
+        profile: u?.profile || {},
+        enquiries: mine.map((e) => ({ at: e.created_at, project: proj(String(e.pin_id)) })).filter((e) => e.project),
+        compare: (Array.isArray(u?.compare_pins) ? u!.compare_pins.map(String) : []).map(proj).filter(Boolean),
+        account_exists: !!u,
+      },
+    };
+  });
 }
 
 export async function GET(req: NextRequest) {
@@ -71,7 +138,7 @@ export async function GET(req: NextRequest) {
     coll.find(SOURCE_FILTER[source]).sort({ created_at: -1 }).limit(LEADS_LIMIT).toArray() as Promise<Record<string, any>[]>,
     coll.countDocuments(SOURCE_FILTER[source]),
   ]);
-  const data = source === 'map' ? await withProjects(rows) : rows.map((r) => strip(r));
+  const data = source === 'map' ? await withProjects(rows) : source === 'signup' ? await withBuyerActivity(rows) : rows.map((r) => strip(r));
   // `total` lets the panel say so if older leads were left out (never silently).
   return NextResponse.json({ data, total, truncated: total > rows.length });
 }

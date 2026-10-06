@@ -37,7 +37,7 @@ const MORE_LINKS = [
 // The header re-renders on every client-side navigation; without this it asked
 // the server for the session (a DB lookup + cookie refresh) on every page
 // change. Sign-in and sign-out both do a full page load, which resets this.
-type SessionBody = { session?: { home?: string } | null } | null;
+type SessionBody = { session?: { home?: string; user?: { role?: string } } | null } | null;
 const SESSION_TTL_MS = 60_000;
 let sessionCache: { at: number; p: Promise<SessionBody> } | null = null;
 function loadSession(): Promise<SessionBody> {
@@ -57,7 +57,10 @@ export default function SiteHeader() {
   const [signedIn, setSignedIn] = useState<boolean | null>(null);
   // Where this account's "home" is: /s-admin (staff), /dashboard (developer/agent) or /map (buyer).
   const [home, setHome] = useState('/dashboard');
+  const [role, setRole] = useState('');
+  // Map-home accounts (buyers, view-only developers) get "Live map"; buyers also "My profile".
   const isBuyer = home === '/map';
+  const isBuyerRole = role === 'buyer';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -74,6 +77,7 @@ export default function SiteHeader() {
         if (cancelled) return;
         setSignedIn(!!(b && b.session));
         if (b && b.session && b.session.home) setHome(b.session.home);
+        setRole(String(b?.session?.user?.role || ''));
       })
       .catch(() => { if (!cancelled) setSignedIn(false); });
     return () => { cancelled = true; };
@@ -116,6 +120,7 @@ export default function SiteHeader() {
             {signedIn ? (
               <>
                 {isBuyer && <button className="shd-btn link" onClick={signOut}>Sign out</button>}
+                {isBuyerRole && <Link href="/dashboard/buyer" className="shd-btn link">My profile</Link>}
                 <Link href={home} className="shd-btn primary">{isBuyer ? 'Live map' : 'Dashboard'}</Link>
               </>
             ) : (
@@ -158,6 +163,7 @@ export default function SiteHeader() {
               {signedIn ? (
                 <>
                   {isBuyer && <button className="shd-btn link" onClick={signOut}>Sign out</button>}
+                  {isBuyerRole && <Link href="/dashboard/buyer" className="shd-btn link" onClick={() => setOpen(false)}>My profile</Link>}
                   <Link href={home} className="shd-btn primary" onClick={() => setOpen(false)}>{isBuyer ? 'Live map' : 'Dashboard'}</Link>
                 </>
               ) : (

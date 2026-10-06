@@ -1,6 +1,7 @@
 import { randomUUID } from 'crypto';
 import { getDb, type Db } from './mongodb';
 import { MEDIA_FIELDS } from './pin-media';
+import { PHONE_ERROR, normalizePhone } from './phone';
 
 // Our documents use string uuid _id values (not ObjectId), so we type
 // collections loosely to keep the driver's strict _id typing out of the way.
@@ -242,6 +243,14 @@ export async function runDbOp(op: DbOp, isAuthed: boolean, opts: RunDbOpts = {})
       case 'insert': {
         const input = Array.isArray(op.values) ? op.values : [op.values || {}];
         const now = new Date().toISOString();
+        // Map enquiries: the WhatsApp number must be a country code + 10 digits.
+        if (op.table === 'leads') {
+          for (const v of input as Record<string, unknown>[]) {
+            const w = normalizePhone(v.whatsapp, { required: true });
+            if (!w) return err(PHONE_ERROR, 400);
+            v.whatsapp = w;
+          }
+        }
         const docs = input.map((v) => {
           const doc: Record<string, any> = { ...(v as Record<string, unknown>) };
           if (doc.id == null) doc.id = randomUUID();

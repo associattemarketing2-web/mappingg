@@ -38,3 +38,66 @@ body {
 .mg-socials a:hover { background: #0f5c47; border-color: #0f5c47; color: #fff; transform: translateY(-1px); }
 .mg-socials a:focus-visible { outline: 2px solid #0f5c47; outline-offset: 2px; }
 .mg-socials svg { width: 17px; height: 17px; display: block; }
+
+/* Phone number field: one joined control — country code (flag + code, default
+   +91) and a 10-digit number. The native <select> sits invisibly over the
+   flag button, so phones still get their own country picker. Each form sets
+   its theme through the --ph-* variables. */
+.phone-in {
+  --ph-line: var(--line, #e2ded3); --ph-bg: #fff; --ph-accent: #0f5c47; --ph-ring: rgba(15,92,71,.14);
+  --ph-radius: 12px; --ph-border: 1.5px; --ph-cc-bg: #f6f4ee; --ph-ink: #1d2b26; --ph-muted: #76807b; --ph-bad: #c2410c;
+  position: relative; display: flex; align-items: stretch; width: 100%; min-width: 0; box-sizing: border-box;
+  background: var(--ph-bg); border: var(--ph-border) solid var(--ph-line); border-radius: var(--ph-radius);
+  transition: border-color .15s, box-shadow .15s, background-color .15s;
+}
+.phone-in:hover { border-color: color-mix(in srgb, var(--ph-line) 55%, var(--ph-accent)); }
+.phone-in:focus-within { border-color: var(--ph-accent); box-shadow: 0 0 0 3px var(--ph-ring); }
+.phone-in.is-partial:not(:focus-within) { border-color: var(--ph-bad); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ph-bad) 12%, transparent); }
+.phone-in.is-disabled { background: #f6f5f0; opacity: .8; }
+.phone-in .phone-cc {
+  position: relative; flex: 0 0 auto; display: inline-flex; align-items: center; gap: 7px;
+  padding: 0 10px 0 12px; margin: 0; font-size: 14px; font-weight: 600; color: var(--ph-ink); white-space: nowrap;
+  background: var(--ph-cc-bg); border-right: 1px solid var(--ph-line);
+  border-radius: calc(var(--ph-radius) - var(--ph-border)) 0 0 calc(var(--ph-radius) - var(--ph-border));
+  cursor: pointer; transition: background-color .15s;
+}
+.phone-in .phone-cc:hover { background: color-mix(in srgb, var(--ph-cc-bg) 88%, var(--ph-accent)); }
+.phone-in .phone-cc:focus-within { background: color-mix(in srgb, var(--ph-cc-bg) 84%, var(--ph-accent)); }
+.phone-in .phone-cc img { display: block; width: 22px; height: 16px; border-radius: 3px; object-fit: cover; box-shadow: 0 0 0 1px rgba(0,0,0,.1); flex: 0 0 auto; }
+.phone-in .phone-cc .phone-iso { display: none; font-size: 10px; font-weight: 700; letter-spacing: .04em; padding: 2px 4px; border-radius: 4px; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.1); color: var(--ph-muted); }
+.phone-in.no-flag .phone-cc img { display: none; }
+.phone-in.no-flag .phone-cc .phone-iso { display: inline-block; }
+.phone-in .phone-cc-code { font-variant-numeric: tabular-nums; }
+.phone-in .phone-cc svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; opacity: .5; flex: 0 0 auto; }
+.phone-in .phone-cc select {
+  position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; min-width: 0 !important;
+  margin: 0 !important; padding: 0 !important; border: 0 !important; opacity: 0 !important; cursor: pointer;
+  font-size: 16px !important; appearance: none; -webkit-appearance: none; background: none !important; box-shadow: none !important;
+}
+.phone-in input[type=tel] {
+  flex: 1 1 auto !important; width: auto !important; min-width: 0 !important; margin: 0 !important;
+  border: 0 !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; outline: none !important;
+  letter-spacing: .06em; font-variant-numeric: tabular-nums;
+}
+.phone-in input[type=tel]::placeholder { letter-spacing: normal; }
+.phone-in .phone-count {
+  align-self: center; flex: 0 0 auto; margin-right: 10px; padding: 2px 7px; border-radius: 999px;
+  font-size: 11px; font-weight: 600; line-height: 1.4; color: var(--ph-muted); background: rgba(0,0,0,.04);
+  font-variant-numeric: tabular-nums; white-space: nowrap; pointer-events: none;
+}
+.phone-in.is-empty .phone-count { display: none; }
+.phone-in.is-ok .phone-count { color: #fff; background: var(--ph-accent); padding: 2px 6px; }
+.phone-in.is-partial:not(:focus-within) .phone-count { color: var(--ph-bad); background: color-mix(in srgb, var(--ph-bad) 10%, transparent); }
+@media (max-width: 400px) {
+  .phone-in .phone-cc { gap: 5px; padding: 0 8px 0 10px; }
+  .phone-in .phone-cc img { width: 20px; height: 14px; }
+  .phone-in .phone-cc svg { display: none; }
+  .phone-in .phone-count { margin-right: 8px; }
+}
+/* Themes: home sign-up, buyer profile, super admin drawer */
+.mpg .field .phone-in { --ph-bg: var(--land, #f6f4ee); --ph-border: 1px; --ph-cc-bg: var(--land-2, #efebe1); --ph-ring: rgba(15,92,71,.1); }
+.mpg .field .phone-in:focus-within { --ph-bg: #fff; box-shadow: 0 0 0 4px var(--ph-ring); }
+.mpg .role-fields .field .phone-in, .mpg .opt-body .field .phone-in { --ph-bg: #fff; --ph-cc-bg: var(--land, #f6f4ee); }
+.bp-field .phone-in { --ph-radius: 11px; --ph-border: 1px; --ph-line: var(--bp-line, #e2ded3); --ph-ring: rgba(15,92,71,.12); }
+.dp-field .phone-in { --ph-radius: 10px; --ph-border: 1px; --ph-ring: rgba(15,92,71,.12); }
+.dp-field .phone-in .phone-cc { font-size: 13px; }

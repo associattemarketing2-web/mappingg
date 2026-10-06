@@ -4,6 +4,13 @@
 // LandingClient.tsx. "Open live map" links point at the in-app /map route.
 // NOTE: the top navigation is now the shared <SiteHeader/> React component
 // (rendered by the home page), so the landing markup below starts at the hero.
+import { COUNTRY_CODES } from '@/lib/country-codes';
+
+// Country-code options for phone fields (India +91 selected).
+const PHONE_CODE_OPTIONS = COUNTRY_CODES
+  .map(([c, f]) => `<option value="${c}"${c === '+91' ? ' selected' : ''}>${f} ${c}</option>`)
+  .join('');
+
 export const LANDING_BODY = `
 <header class="hero" id="home">
   <div class="hero-pins" aria-hidden="true">
@@ -44,19 +51,19 @@ export const LANDING_BODY = `
 <div class="sec-head reveal">
   <span class="eyebrow"><span class="dot"></span>Live project map</span>
   <h2>Explore the <span class="accent">live project map</span></h2>
-  <p>Every pin is a real project. Tap around — your first 3 taps are on us, then sign in to keep exploring.</p>
+  <p>Every pin is a real project. Open any 3 projects free — tap a pin, then Enquire to get its full details. Sign in to see them all.</p>
 </div>
 <div class="browser reveal trial" id="liveBrowser" aria-label="Mappingg live map — try it">
   <div class="browser-bar">
     <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
-    <div class="url"><i class="fas fa-lock"></i><span>mappingg.com</span><em class="url-state" id="tapState">3 searches left</em></div>
+    <div class="url"><i class="fas fa-lock"></i><span>mappingg.com</span><em class="url-state" id="tapState">3 free projects left</em></div>
     <span class="bar-space" aria-hidden="true"></span>
   </div>
   <div class="browser-body">
     <div class="map-fallback" aria-hidden="true"></div>
     
-    <iframe id="liveFrame" title="Mappingg live map" data-src="/map" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="geolocation"></iframe>
-    <div class="map-hint" id="mapHint"><i class="fas fa-hand-pointer"></i><span>Tap any pin to explore — <b id="tapLeft">3</b> searches left</span></div>
+    <iframe id="liveFrame" title="Mappingg live map" data-src="/map?embed=home" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="geolocation"></iframe>
+    <div class="map-hint" id="mapHint"><i class="fas fa-hand-pointer"></i><span>Tap any pin to explore — <b id="tapLeft">3</b> free projects left</span></div>
     <div class="map-lock" id="mapLock" hidden>
       <div class="lock-card" role="dialog" aria-labelledby="lockTitle">
         <div class="lock-ic"><i class="fas fa-lock"></i></div>
@@ -479,7 +486,7 @@ export const LANDING_BODY = `
       <form class="auth-form is-active" id="signupForm" novalidate>
         <div class="field-row">
           <div class="field"><label for="su-name">Full name</label><input type="text" id="su-name" name="name" placeholder="Your name" autocomplete="name" required></div>
-          <div class="field"><label for="su-phone">WhatsApp number</label><input type="tel" id="su-phone" name="mobile" placeholder="+91 98XXX XXXXX" autocomplete="tel" pattern="[+0-9 ]{10,16}" required></div>
+          <div class="field"><label for="su-phone">WhatsApp number</label><div class="phone-in is-empty"><span class="phone-cc"><img alt="" width="22" height="16"><span class="phone-iso"></span><span class="phone-cc-code">+91</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><select id="su-phone-code" aria-label="Country code">${PHONE_CODE_OPTIONS}</select></span><input type="tel" id="su-phone" name="mobile" placeholder="10-digit number" autocomplete="tel-national" inputmode="numeric" maxlength="10" pattern="\d{10}" title="Enter a 10-digit mobile number" required><span class="phone-count" aria-hidden="true"></span></div></div>
         </div>
         <div class="field"><label for="su-email">Email</label><input type="email" id="su-email" name="email" placeholder="you@example.com" autocomplete="email" required></div>
         <fieldset class="role-fields" data-for="buyer">

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import { randomUUID } from 'node:crypto';
 import { z } from 'zod';
+import { PHONE_ERROR, normalizePhone } from '@/lib/phone';
 import { getDb } from '@/lib/mongodb';
 import { createSessionToken, homePathFor, setSessionCookie } from '@/lib/auth';
 import { logActivity } from '@/lib/activity';
@@ -20,7 +21,7 @@ const req = (max = 120) => z.string().trim().min(1).max(max);
 const base = z.object({
   name: z.string().trim().min(1).max(120),
   email: z.string().trim().toLowerCase().email(),
-  mobile: z.string().trim().regex(/^[+0-9 ]{10,16}$/),
+  mobile: z.string().trim().max(24),
   password: z.string().min(8).max(200),
 });
 
@@ -52,7 +53,10 @@ export async function POST(req: NextRequest) {
   if (!parsed.success) {
     return NextResponse.json({ error: { message: 'Please fill in all required fields correctly.' } }, { status: 400 });
   }
-  const { name, email, mobile, password, role, profile } = parsed.data;
+  const { name, email, password, role, profile } = parsed.data;
+  // Country code (default +91) + exactly 10 digits, stored as "+91 9876543210".
+  const mobile = normalizePhone(parsed.data.mobile, { required: true });
+  if (!mobile) return NextResponse.json({ error: { message: PHONE_ERROR } }, { status: 400 });
 
   const limited = rateLimit(`signup:${clientIp(req)}`, 10, 60 * 60_000);
   if (limited) return limited;

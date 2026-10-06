@@ -49,3 +49,24 @@ export async function addBuyerSignupLead(a: SignupAccount): Promise<void> {
     console.warn('[signup-leads] could not add lead:', e instanceof Error ? e.message : e);
   }
 }
+
+/** A buyer signed in: make sure they have a lead and stamp it with the login, so
+ *  the Leads section shows who is active. Never throws. */
+export async function touchBuyerLead(userId: string): Promise<void> {
+  try {
+    const db = await getDb();
+    const u = await db.collection('users').findOne({ id: userId }, { projection: { id: 1, role: 1, name: 1, email: 1, mobile: 1, profile: 1, provider: 1, created_at: 1, last_login_at: 1, login_count: 1 } });
+    if (!u || u.role !== 'buyer') return;
+    await addBuyerSignupLead({
+      id: String(u.id), name: u.name as string | undefined, email: String(u.email), mobile: u.mobile as string | undefined,
+      profile: u.profile as Profile | undefined, provider: u.provider === 'google' ? 'google' : 'password', created_at: u.created_at as string | undefined,
+    });
+    const now = new Date().toISOString();
+    await db.collection('contact_leads').updateOne(
+      { account_id: String(u.id) },
+      { $set: { last_login_at: (u.last_login_at as string) || now, login_count: Number(u.login_count) || 1, updated_at: now } },
+    );
+  } catch (e) {
+    console.warn('[signup-leads] could not update lead on login:', e instanceof Error ? e.message : e);
+  }
+}

@@ -2,6 +2,7 @@ import { randomUUID } from 'node:crypto';
 import { headers } from 'next/headers';
 import { query } from './pg';
 import { getDb } from './mongodb';
+import { touchBuyerLead } from './signup-leads';
 
 // Account activity log for the super admin's Accounts page: sign-ups, logins,
 // sign-outs, compare-list changes, developer project edits and staff actions on
@@ -87,6 +88,8 @@ export async function recordLogin(user: { id: string; email: string; name?: stri
     );
   } catch { /* never block sign-in */ }
   await logActivity({ ...user, user_id: user.id, type: 'login', detail: method === 'google' ? 'Signed in with Google' : 'Signed in with email' });
+  // Buyers: keep their lead in the Leads section up to date with this login.
+  if (user.role === 'buyer') await touchBuyerLead(user.id);
 }
 
 export async function listActivity(opts: { userId?: string; limit?: number } = {}): Promise<ActivityEvent[]> {

@@ -6,6 +6,7 @@ import SettingsForm from './SettingsForm';
 import ProfileForm from './ProfileForm';
 import DevProjectsPanel, { type DevProject } from './DevProjectsPanel';
 import NotificationBell from './NotificationBell';
+import PhoneInput from '@/components/PhoneInput';
 import { ChartCard, DayHeatmap, Donut, HBars, STATUS_META, StatTile, StatusStack, TYPE_COLORS, WeekColumns, dayStats } from './SeoCharts';
 
 export interface AdminUser {
@@ -642,7 +643,23 @@ interface Lead {
   // Map enquiries only:
   role?: PersonRole; pin_id?: string; locations?: string[];
   project?: { id: string; title: string; number: number | null; location: string } | null;
+  // Map enquiries only: the enquirer's buyer account, if they have one.
+  account?: {
+    id: string; signed_in: boolean; last_login_at: string | null; login_count: number; profile: Record<string, string>;
+    compare_count: number; enquiry_count: number; member_since: string | null;
+  } | null;
+  // Buyer sign-ups only: that buyer's account activity.
+  buyer?: {
+    last_login_at: string | null; login_count: number; profile: Record<string, string>; account_exists: boolean;
+    enquiries: { at: string; project: { id: string; title: string; number: number | null; location: string } }[];
+    compare: { id: string; title: string; number: number | null; location: string }[];
+  };
 }
+/** "2 BHK · ₹1 – 2 Cr · Mundhwa" from a buyer's sign-up preferences. */
+const buyerWants = (l: Lead) => {
+  const pf = l.buyer?.profile || {};
+  return [pf.configuration, pf.budget, pf.area].filter(Boolean).join(' · ');
+};
 // Cap how many lead rows hit the DOM at once so the table stays fast even with
 // thousands of leads. Counts/filters still run over the full set; the admin
 // narrows with search/status to reach older rows.
@@ -752,7 +769,12 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
 
   function open(l: Lead) { setSel(l); setNotes(l.notes || ''); }
   const replace = (id: string, next: Lead | null) =>
-    setBySource((b) => ({ ...b, [source]: next ? b[source].map((x) => (x.id === id ? next : x)) : b[source].filter((x) => x.id !== id) }));
+    setBySource((b) => ({
+      ...b,
+      [source]: next
+        ? b[source].map((x) => (x.id === id ? { ...next, account: x.account ?? next.account, buyer: x.buyer ?? next.buyer } : x))
+        : b[source].filter((x) => x.id !== id),
+    }));
 
   async function patch(id: string, body: Record<string, unknown>) {
     setBusy(true);
@@ -764,7 +786,7 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
       const b = await r.json();
       if (!r.ok) throw new Error(b?.error?.message || 'Failed');
       replace(id, b.data);
-      setSel((s) => (s && s.id === id ? b.data : s));
+      setSel((s) => (s && s.id === id ? { ...b.data, account: s.account ?? b.data.account, buyer: s.buyer ?? b.data.buyer } : s));
       return true;
     } catch (e) { flash(e instanceof Error ? e.message : 'Failed', true); return false; } finally { setBusy(false); }
   }
@@ -867,8 +889,10 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
             <table className="adm-table crm-table">
               <thead>
                 {isMap
-                  ? <tr><th>Lead</th><th>Type</th><th>Project</th><th>Location</th><th>Status</th><th>Received</th><th></th></tr>
-                  : <tr><th>Lead</th><th>Topic</th><th>Status</th><th>Received</th><th></th></tr>}
+                  ? <tr><th>Lead</th><th>Type</th><th>Project</th><th>Location</th><th>Account</th><th>Status</th><th>Received</th><th></th></tr>
+                  : isSignup
+                    ? <tr><th>Buyer</th><th>Looking for</th><th>Last login</th><th>Activity</th><th>Status</th><th>Signed up</th><th></th></tr>
+                    : <tr><th>Lead</th><th>Topic</th><th>Status</th><th>Received</th><th></th></tr>}
               </thead>
               <tbody>
                 {list.slice(0, LEADS_RENDER_CAP).map((l) => (
@@ -882,6 +906,26 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
                         <td><i className={`fas ${ROLE_META[l.role || 'buyer'].icon}`} style={{ color: 'var(--muted)', marginRight: 6 }} />{ROLE_META[l.role || 'buyer'].label}</td>
                         <td>{projectName(l) || <span className="muted">Project removed</span>}</td>
                         <td>{l.locations?.length ? <span className="loc-tags">{l.locations.map((x) => <span className="loc-tag" key={x}>{x}</span>)}</span> : <span className="muted">—</span>}</td>
+                        <td>
+                          {l.account ? (
+                            <span className="ml-acc">
+                              <span className="ml-badge"><i className="fas fa-user-check" /> Buyer account</span>
+                              <small>{l.account.last_login_at ? `Last login ${leadWhen(l.account.last_login_at)}` : 'No login yet'}{l.account.login_count ? ` · ${l.account.login_count} sign-in${l.account.login_count === 1 ? '' : 's'}` : ''}</small>
+                            </span>
+                          ) : <span className="muted">Guest</span>}
+                        </td>
+                      </>
+                    ) : isSignup ? (
+                      <>
+                        <td>{buyerWants(l) || <span className="muted">—</span>}</td>
+                        <td>{l.buyer?.last_login_at ? <span title={new Date(l.buyer.last_login_at).toLocaleString('en-IN')}>{leadWhen(l.buyer.last_login_at)}</span> : <span className="muted">Not yet</span>}</td>
+                        <td className="muted">
+                          {[
+                            l.buyer?.login_count ? `${l.buyer.login_count} sign-in${l.buyer.login_count === 1 ? '' : 's'}` : '',
+                            l.buyer?.enquiries.length ? `${l.buyer.enquiries.length} enquir${l.buyer.enquiries.length === 1 ? 'y' : 'ies'}` : '',
+                            l.buyer?.compare.length ? `${l.buyer.compare.length} in compare` : '',
+                          ].filter(Boolean).join(' · ') || '—'}
+                        </td>
                       </>
                     ) : (
                       <td>{l.subject || '—'}</td>
@@ -930,6 +974,7 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
             </div>
 
             {isMap ? (
+              <>
               <div className="crm-block">
                 <h4>Asked about</h4>
                 {sel.project ? (
@@ -947,6 +992,73 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
                   </div>
                 )}
               </div>
+              {sel.account ? (
+                <div className="crm-block">
+                  <h4>Buyer account {sel.account.signed_in ? <span className="ml-badge"><i className="fas fa-user-check" /> Enquired while signed in</span> : null}</h4>
+                  <div className="acs-stats">
+                    <div><b>{sel.account.last_login_at ? leadWhen(sel.account.last_login_at) : '—'}</b><span>Last login</span></div>
+                    <div><b>{sel.account.login_count}</b><span>Sign-ins</span></div>
+                    <div><b>{sel.account.enquiry_count}</b><span>Enquiries</span></div>
+                  </div>
+                  <table className="adm-table">
+                    <tbody>
+                      {([['configuration', 'Looking for'], ['budget', 'Budget'], ['area', 'Preferred area'], ['timeline', 'Planning to buy'], ['purpose', 'Buying for']] as const).map(([k, lbl]) => (
+                        <tr key={k}><td className="muted">{lbl}</td><td>{sel.account?.profile?.[k] || '—'}</td></tr>
+                      ))}
+                      <tr><td className="muted">Compare list</td><td>{sel.account.compare_count ? `${sel.account.compare_count} project${sel.account.compare_count === 1 ? '' : 's'}` : '—'}</td></tr>
+                      {sel.account.member_since && <tr><td className="muted">Buyer since</td><td>{new Date(sel.account.member_since).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</td></tr>}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <p className="crm-meta">Guest enquiry — this person doesn&apos;t have a buyer account.</p>
+              )}
+              </>
+            ) : isSignup && sel.buyer ? (
+              <>
+                <div className="acs-stats">
+                  <div><b>{sel.buyer.last_login_at ? leadWhen(sel.buyer.last_login_at) : '—'}</b><span>Last login</span></div>
+                  <div><b>{sel.buyer.login_count}</b><span>Sign-ins</span></div>
+                  <div><b>{sel.buyer.enquiries.length}</b><span>Enquiries</span></div>
+                </div>
+                <div className="crm-block">
+                  <h4>Looking for</h4>
+                  <table className="adm-table">
+                    <tbody>
+                      {([['configuration', 'Configuration'], ['budget', 'Budget'], ['area', 'Preferred area'], ['timeline', 'Planning to buy'], ['purpose', 'Buying for']] as const).map(([k, lbl]) => (
+                        <tr key={k}><td className="muted">{lbl}</td><td>{sel.buyer?.profile?.[k] || '—'}</td></tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="crm-block">
+                  <h4>Projects they enquired about {sel.buyer.enquiries.length ? `(${sel.buyer.enquiries.length})` : ''}</h4>
+                  {sel.buyer.enquiries.length ? (
+                    <ul className="bl-list">
+                      {sel.buyer.enquiries.map((e, i) => (
+                        <li key={i}>
+                          <a href={`/map?pin=${encodeURIComponent(e.project.id)}`} target="_blank" rel="noopener">{e.project.title}{e.project.number != null ? ` #${e.project.number}` : ''}</a>
+                          <small>{e.project.location || ''}{e.at ? ` · ${leadWhen(e.at)}` : ''}</small>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : <p className="crm-meta" style={{ marginTop: 0 }}>No enquiries yet.</p>}
+                </div>
+                <div className="crm-block">
+                  <h4>Compare list {sel.buyer.compare.length ? `(${sel.buyer.compare.length})` : ''}</h4>
+                  {sel.buyer.compare.length ? (
+                    <ul className="bl-list">
+                      {sel.buyer.compare.map((c) => (
+                        <li key={c.id}>
+                          <a href={`/map?pin=${encodeURIComponent(c.id)}`} target="_blank" rel="noopener">{c.title}{c.number != null ? ` #${c.number}` : ''}</a>
+                          <small>{c.location}</small>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : <p className="crm-meta" style={{ marginTop: 0 }}>Nothing in their compare list.</p>}
+                </div>
+                {!sel.buyer.account_exists && <p className="crm-meta">This buyer&apos;s account has since been deleted.</p>}
+              </>
             ) : (
               <div className="crm-block"><h4>Message</h4><p className="crm-msg">{sel.message || '—'}</p></div>
             )}
@@ -1480,7 +1592,7 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
                   <div className="dp-edit">
                     <label className="dp-field"><span>Name *</span><input value={editAcc.name} onChange={(e) => setEditAcc((m) => m && { ...m, name: e.target.value })} /></label>
                     <label className="dp-field"><span>Email (used to sign in) *</span><input type="email" value={editAcc.email} onChange={(e) => setEditAcc((m) => m && { ...m, email: e.target.value })} /></label>
-                    <label className="dp-field"><span>WhatsApp number</span><input inputMode="tel" value={editAcc.mobile} onChange={(e) => setEditAcc((m) => m && { ...m, mobile: e.target.value })} /></label>
+                    <div className="dp-field"><span>WhatsApp number</span><PhoneInput value={editAcc.mobile} onChange={(v) => setEditAcc((m) => m && { ...m, mobile: v })} /></div>
                     {(PROFILE_FIELDS[sel.role] || []).map(([k, lbl]) => (
                       <label className="dp-field" key={k}><span>{lbl}</span>
                         <input value={editAcc.profile[k] || ''} onChange={(e) => setEditAcc((m) => m && { ...m, profile: { ...m.profile, [k]: e.target.value } })} />

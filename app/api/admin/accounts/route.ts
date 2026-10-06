@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
+import { PHONE_ERROR, normalizePhone } from '@/lib/phone';
 import { getDb } from '@/lib/mongodb';
 import { PUBLIC_ROLES, getCurrentUser, forgetAccount } from '@/lib/auth';
 import { needsVerification, verificationOf } from '@/lib/verification';
@@ -94,7 +95,11 @@ export async function PATCH(req: NextRequest) {
       patch.email = email;
     }
     if (name !== undefined) patch.name = name;
-    if (mobile !== undefined) patch.mobile = mobile;
+    if (mobile !== undefined) {
+      const m = normalizePhone(mobile);
+      if (m === null) return NextResponse.json({ error: { message: PHONE_ERROR } }, { status: 400 });
+      patch.mobile = m;
+    }
     if (profile) {
       const cur = await users.findOne({ id, ...ROLE_FILTER }, { projection: { profile: 1 } });
       patch.profile = { ...((cur?.profile as Record<string, string>) || {}), ...profile };

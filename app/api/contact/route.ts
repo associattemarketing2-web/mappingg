@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { randomUUID } from 'crypto';
 import { z } from 'zod';
+import { PHONE_ERROR, normalizePhone } from '@/lib/phone';
 import { getDb } from '@/lib/mongodb';
 import { clientIp, rateLimit } from '@/lib/rate-limit';
 
@@ -32,6 +33,9 @@ export async function POST(req: NextRequest) {
   const limited = rateLimit(`contact:${clientIp(req)}`, 8, 10 * 60_000);
   if (limited) return limited;
 
+  const phone = normalizePhone(d.phone);
+  if (phone === null) return NextResponse.json({ error: { message: PHONE_ERROR } }, { status: 400 });
+  d.phone = phone;
   if (!d.email && !d.phone) {
     return NextResponse.json({ error: { message: 'Add an email or phone so we can reply.' } }, { status: 400 });
   }
