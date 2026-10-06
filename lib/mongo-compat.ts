@@ -100,20 +100,36 @@ function buildWhere(q: Query, p: Params): string {
   return clauses.length ? clauses.join(' AND ') : 'TRUE';
 }
 
+/**
+ * For each of `mediaRefs` (image fields holding big base64 data: URLs), return a
+ * short "media-ref:<hash>" marker instead of the image itself. The hash is
+ * computed inside Postgres, so megabytes of image data never cross the network
+ * just to be turned into an /api/media URL (see lib/pin-media.ts).
+ */
+function withMediaRefs(expr: string, mediaRefs: readonly string[] | undefined, included: (k: string) => boolean, p: Params): string {
+  for (const k of mediaRefs || []) {
+    if (!included(k)) continue;
+    const key = p.key(k);
+    expr = `(CASE WHEN left(doc->>${key}, 5) = 'data:' THEN jsonb_set(${expr}, ARRAY[${key}], to_jsonb('media-ref:' || left(md5(doc->>${key}), 12))) ELSE ${expr} END)`;
+  }
+  return expr;
+}
+
 /** SQL expression producing the (optionally projected) document to return. */
-function projectExpr(projection: Doc | undefined, p: Params): string {
-  if (!projection) return 'doc';
+function projectExpr(projection: Doc | undefined, p: Params, mediaRefs?: readonly string[]): string {
+  if (!projection) return withMediaRefs('doc', mediaRefs, () => true, p);
   const entries = Object.entries(projection);
   const include = entries.some(([, v]) => v === 1 || v === true);
   if (include) {
     const keys = new Set<string>(['id']); // always keep the primary key
     for (const [k, v] of entries) if (v === 1 || v === true) keys.add(k);
     const pairs = [...keys].map((k) => `${p.key(k)}, doc->${p.key(k)}`);
-    return `jsonb_build_object(${pairs.join(', ')})`;
+    return withMediaRefs(`jsonb_build_object(${pairs.join(', ')})`, mediaRefs, (k) => keys.has(k), p);
   }
   let expr = 'doc';
-  for (const [k, v] of entries) if (v === 0 || v === false) expr = `${expr} - ${p.key(k)}`;
-  return expr;
+  const excluded = new Set<string>();
+  for (const [k, v] of entries) if (v === 0 || v === false) { expr = `${expr} - ${p.key(k)}`; excluded.add(k); }
+  return withMediaRefs(expr, mediaRefs, (k) => !excluded.has(k), p);
 }
 
 function orderExpr(sort: Record<string, 1 | -1> | undefined, p: Params): string {
@@ -129,7 +145,7 @@ function reattachId(row: { d: Doc; id: string }): Doc {
   return { ...row.d, _id: row.id };
 }
 
-type FindOptions = { projection?: Doc; sort?: Record<string, 1 | -1> };
+type FindOptions = { projection?: Doc; sort?: Record<string, 1 | -1>; mediaRefs?: readonly string[] };
 
 class Cursor<T extends Doc = Doc> {
   private _sort?: Record<string, 1 | -1>;
@@ -147,7 +163,7 @@ class Cursor<T extends Doc = Doc> {
   skip(n: number) { this._skip = n; return this; }
   async toArray(): Promise<T[]> {
     const p = new Params();
-    const sel = projectExpr(this.options.projection, p);
+    const sel = projectExpr(this.options.projection, p, this.options.mediaRefs);
     const where = buildWhere(this.q, p);
     let sql = `SELECT ${sel} AS d, id FROM ${assertTable(this.table)} WHERE ${where}`;
     sql += orderExpr(this._sort, p);

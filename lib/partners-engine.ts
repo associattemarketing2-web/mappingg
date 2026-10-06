@@ -1,5 +1,6 @@
 import { randomUUID, randomBytes } from 'crypto';
 import { getDb, type Db } from './mongodb';
+import { hideProjectPin, syncProjectPin } from './intake-pins';
 
 // =============================================================================
 // Partners intake engine (MongoDB)
@@ -429,7 +430,16 @@ const RPCS: Record<string, RpcFn> = {
       },
     });
     await logEvent(db, sub.id, 'published', 'admin', {});
-    return { data: { project_id: projectId }, error: null, status: 200 };
+
+    // Put the project on the live map (the map reads `pins`, not `projects`).
+    let map: { pin_id: string | null; pin_number: number | null; on_map: boolean; map_note: string };
+    try {
+      const r = await syncProjectPin({ ...projectDoc, pin_id: (existingProject as any)?.pin_id }, sub.google_maps_link || undefined);
+      map = { pin_id: r.pinId, pin_number: r.number, on_map: r.onMap, map_note: r.note };
+    } catch (e) {
+      map = { pin_id: null, pin_number: null, on_map: false, map_note: `Published, but the map pin could not be created: ${e instanceof Error ? e.message : 'error'}` };
+    }
+    return { data: { project_id: projectId, ...map }, error: null, status: 200 };
   },
 
   // ------------------------------------------------------------ admin_unpublish
@@ -439,7 +449,10 @@ const RPCS: Record<string, RpcFn> = {
     const sub = await c.findOne({ id: p.p_id });
     if (!sub) return err('Submission not found', 404);
     const pid = (sub as any).published_project_id;
-    if (pid) await coll(db, 'projects').updateOne({ id: pid }, { $set: { is_live: false, updated_at: now() } });
+    if (pid) {
+      await coll(db, 'projects').updateOne({ id: pid }, { $set: { is_live: false, updated_at: now() } });
+      await hideProjectPin(pid).catch(() => {}); // off the live map too
+    }
     await c.updateOne({ id: p.p_id }, { $set: { updated_at: now() } });
     await logEvent(db, p.p_id, 'unpublished', 'admin', { note: p.p_note || null });
     return { data: true, error: null, status: 200 };

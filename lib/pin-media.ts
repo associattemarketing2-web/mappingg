@@ -46,8 +46,14 @@ export function mediaVersion(dataUrl: string): string {
 
 export function mediaUrl(table: string, id: string, field: string, dataUrl: string, width?: number): string {
   const w = width ? `&w=${Math.round(width)}` : '';
-  return `/api/media/${table}/${encodeURIComponent(id)}?f=${field}&v=${mediaVersion(dataUrl)}${w}`;
+  // A "media-ref:<hash>" marker (see mongo-compat mediaRefs) already carries the version.
+  const v = dataUrl.startsWith(MEDIA_REF) ? dataUrl.slice(MEDIA_REF.length) : mediaVersion(dataUrl);
+  return `/api/media/${table}/${encodeURIComponent(id)}?f=${field}&v=${v}${w}`;
 }
+
+/** Prefix of the short stand-in for an inline image returned by slim pin reads. */
+export const MEDIA_REF = 'media-ref:';
+const isInlineImage = (v: unknown): v is string => typeof v === 'string' && (v.startsWith('data:') || v.startsWith(MEDIA_REF));
 
 /**
  * Replaces inline data: URLs on rows of `table` with their cacheable image URLs.
@@ -74,7 +80,7 @@ export function withMediaUrls<T>(table: string, data: T, opts: { width?: number 
     for (const field of fields) {
       if (out && field === 'image' && out.image !== r.image) continue; // already set from CDN
       const v = r[field];
-      if (typeof v === 'string' && v.startsWith('data:')) {
+      if (isInlineImage(v)) {
         out = out || { ...r };
         out[field] = mediaUrl(table, r.id, field, v, opts.width);
       }
