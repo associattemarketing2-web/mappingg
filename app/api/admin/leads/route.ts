@@ -8,18 +8,27 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 // CRM leads. Admin-only; needs the 'leads' permission (the owner always has it).
-// Two sources:
+// Three sources:
 //   contact (default) → contact-form submissions (`contact_leads`)
 //   map               → "Enquire" requests from project cards on the live map
 //                       (`leads`), from buyers/investors, agents and developers.
+//   signup            → buyers who created an account (also in `contact_leads`,
+//                       marked source "Buyer sign-up" — see lib/signup-leads.ts)
 const STATUSES = ['new', 'contacted', 'won', 'lost'] as const;
-const SOURCES = { contact: 'contact_leads', map: 'leads' } as const;
+const SOURCES = { contact: 'contact_leads', map: 'leads', signup: 'contact_leads' } as const;
 type Source = keyof typeof SOURCES;
+const SIGNUP = 'Buyer sign-up';
+/** Which rows of the table belong to each source. */
+const SOURCE_FILTER: Record<Source, Record<string, unknown>> = {
+  contact: { source: { $ne: SIGNUP } },
+  map: {},
+  signup: { source: SIGNUP },
+};
 
 // The CRM filters and counts in the browser, so it loads the newest leads in one go.
 const LEADS_LIMIT = 5000;
 
-const sourceOf = (v: string | null | undefined): Source => (v === 'map' ? 'map' : 'contact');
+const sourceOf = (v: string | null | undefined): Source => (v === 'map' ? 'map' : v === 'signup' ? 'signup' : 'contact');
 const unauthorized = () => NextResponse.json({ error: { message: 'Not authorized' } }, { status: 401 });
 
 function strip<T extends Record<string, any>>(doc: T) {
@@ -59,8 +68,8 @@ export async function GET(req: NextRequest) {
   const db = await getDb();
   const coll = db.collection(SOURCES[source]);
   const [rows, total] = await Promise.all([
-    coll.find({}).sort({ created_at: -1 }).limit(LEADS_LIMIT).toArray() as Promise<Record<string, any>[]>,
-    coll.countDocuments({}),
+    coll.find(SOURCE_FILTER[source]).sort({ created_at: -1 }).limit(LEADS_LIMIT).toArray() as Promise<Record<string, any>[]>,
+    coll.countDocuments(SOURCE_FILTER[source]),
   ]);
   const data = source === 'map' ? await withProjects(rows) : rows.map((r) => strip(r));
   // `total` lets the panel say so if older leads were left out (never silently).
@@ -69,7 +78,7 @@ export async function GET(req: NextRequest) {
 
 const patchSchema = z.object({
   id: z.string().min(1),
-  source: z.enum(['contact', 'map']).optional(),
+  source: z.enum(['contact', 'map', 'signup']).optional(),
   status: z.enum(STATUSES).optional(),
   notes: z.string().max(4000).optional(),
 });

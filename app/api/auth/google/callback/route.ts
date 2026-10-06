@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { getDb } from '@/lib/mongodb';
 import { PUBLIC_ROLES, createSessionToken, homePathFor, setSessionCookie } from '@/lib/auth';
 import { logActivity, recordLogin } from '@/lib/activity';
+import { addBuyerSignupLead } from '@/lib/signup-leads';
 import { homeForAccount } from '@/lib/verification';
 import {
   OAUTH_STATE_COOKIE,
@@ -68,6 +69,7 @@ export async function GET(req: NextRequest) {
       };
       await users.insertOne(doc);
       await logActivity({ user_id: id, email: profile.email, name: profile.name, role: 'buyer', type: 'signup', detail: 'Buyer account created with Google' });
+      await addBuyerSignupLead({ id, name: profile.name, email: profile.email, provider: 'google', created_at: now });
       user = doc;
     } else if (!user.google_sub) {
       // Existing account signing in with Google for the first time — link it.

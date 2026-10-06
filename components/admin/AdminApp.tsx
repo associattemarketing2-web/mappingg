@@ -634,7 +634,7 @@ const csvDate = (d?: string | null) => (d ? new Date(d).toLocaleString('en-IN', 
 /* ------------------------------ Leads / CRM ------------------------------ */
 // Two sources: "Enquire" requests from project cards on the live map (from
 // buyers/investors, agents and developers) and Contact-form messages.
-type LeadSource = 'map' | 'contact';
+type LeadSource = 'map' | 'signup' | 'contact';
 interface Lead {
   id: string; name: string; email?: string; phone?: string; subject?: string;
   message?: string; source?: string; status: 'new' | 'contacted' | 'won' | 'lost';
@@ -668,7 +668,7 @@ const projectName = (l: Lead) =>
 const stageLabel = (s: Lead['status']) => LEAD_STAGES.find((x) => x.key === s)?.label || s;
 
 function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
-  const [bySource, setBySource] = useState<Record<LeadSource, Lead[]>>({ map: [], contact: [] });
+  const [bySource, setBySource] = useState<Record<LeadSource, Lead[]>>({ map: [], signup: [], contact: [] });
   const [source, setSource] = useState<LeadSource>('map');
   const [loading, setLoading] = useState(true);
   const [q, setQ] = useState('');
@@ -689,9 +689,11 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
     if (!silent) setLoading(true);
     try {
       const get = (s: LeadSource) => fetch(`/api/admin/leads?source=${s}`, { credentials: 'same-origin' }).then((r) => r.json());
-      const [m, c] = await Promise.all([get('map'), get('contact')]);
-      setBySource({ map: Array.isArray(m.data) ? m.data : [], contact: Array.isArray(c.data) ? c.data : [] });
-      setTruncated({ ...(m.truncated ? { map: Number(m.total) } : {}), ...(c.truncated ? { contact: Number(c.total) } : {}) });
+      const [m, su, c] = await Promise.all([get('map'), get('signup'), get('contact')]);
+      setBySource({ map: Array.isArray(m.data) ? m.data : [], signup: Array.isArray(su.data) ? su.data : [], contact: Array.isArray(c.data) ? c.data : [] });
+      setTruncated({
+        ...(m.truncated ? { map: Number(m.total) } : {}), ...(su.truncated ? { signup: Number(su.total) } : {}), ...(c.truncated ? { contact: Number(c.total) } : {}),
+      });
     } catch { if (!silent) flash('Could not load leads', true); } finally { if (!silent) setLoading(false); }
   }
   useEffect(() => { load(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -712,6 +714,7 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
   }
 
   const isMap = source === 'map';
+  const isSignup = source === 'signup';
   const all = bySource[source];
   // Type + location narrow everything below (status chips, table, downloads).
   const scoped = all.filter((l) => (!isMap || role === 'all' || l.role === role) && (!isMap || matchesLocation(l, loc)));
@@ -736,6 +739,12 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
       rows.map((l) => [l.name, l.email, l.phone, ROLE_META[r].label, l.project?.title, l.project?.number, l.project?.location, l.locations, stageLabel(l.status), l.notes, csvDate(l.created_at)]));
   }
   function downloadContact() {
+    if (isSignup) {
+      downloadCsv(fileSlug('buyer-signups'),
+        ['Name', 'Email', 'WhatsApp', 'Looking for', 'Status', 'Notes', 'Signed up'],
+        list.map((l) => [l.name, l.email, l.phone, l.message, stageLabel(l.status), l.notes, csvDate(l.created_at)]));
+      return;
+    }
     downloadCsv(fileSlug('contact-leads'),
       ['Name', 'Email', 'Phone', 'Topic', 'Message', 'Status', 'Notes', 'Received'],
       list.map((l) => [l.name, l.email, l.phone, l.subject, l.message, stageLabel(l.status), l.notes, csvDate(l.created_at)]));
@@ -786,7 +795,10 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
         <button role="tab" aria-selected={isMap} className={isMap ? 'on' : ''} onClick={() => switchSource('map')}>
           <i className="fas fa-map-location-dot" /> Map enquiries <span className="n">{bySource.map.length}</span>
         </button>
-        <button role="tab" aria-selected={!isMap} className={!isMap ? 'on' : ''} onClick={() => switchSource('contact')}>
+        <button role="tab" aria-selected={isSignup} className={isSignup ? 'on' : ''} onClick={() => switchSource('signup')}>
+          <i className="fas fa-user-plus" /> Buyer sign-ups <span className="n">{bySource.signup.length}</span>
+        </button>
+        <button role="tab" aria-selected={source === 'contact'} className={source === 'contact' ? 'on' : ''} onClick={() => switchSource('contact')}>
           <i className="fas fa-envelope" /> Contact form <span className="n">{bySource.contact.length}</span>
         </button>
       </div>
@@ -801,7 +813,7 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
 
       <div className="adm-panel">
         <div className="adm-panel-head">
-          <h3>{isMap ? 'Map enquiries' : 'Contact leads'} {list.length ? `(${list.length})` : ''}</h3>
+          <h3>{isMap ? 'Map enquiries' : isSignup ? 'Buyer sign-ups' : 'Contact leads'} {list.length ? `(${list.length})` : ''}</h3>
           <div className="crm-tools">
             <span className="crm-live" title={live ? 'Live — updates automatically' : 'Reconnecting…'} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 12, color: live ? '#2f7a3c' : '#9a6a00' }}>
               <i className="fas fa-circle" style={{ fontSize: 8, color: live ? '#2f7a3c' : '#c9861f' }} /> {live ? 'Live' : 'Offline'}
@@ -834,7 +846,7 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
         )}
         {!isMap && (
           <div className="adm-filterbar">
-            <span className="muted" style={{ fontSize: 13 }}>Messages sent from the website&apos;s Contact page.</span>
+            <span className="muted" style={{ fontSize: 13 }}>{isSignup ? 'Buyers who created an account, with what they are looking for.' : <>Messages sent from the website&apos;s Contact page.</>}</span>
             <button className="adm-btn ghost sm" disabled={!list.length} onClick={downloadContact}><i className="fas fa-file-csv" /> Download CSV ({list.length})</button>
           </div>
         )}
@@ -843,9 +855,11 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
           <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>
         ) : list.length === 0 ? (
           <div className="adm-empty">
-            <i className={`fas ${isMap ? 'fa-map-location-dot' : 'fa-address-book'}`} />
+            <i className={`fas ${isMap ? 'fa-map-location-dot' : isSignup ? 'fa-user-plus' : 'fa-address-book'}`} />
             <p>{all.length === 0
-              ? (isMap ? 'No map enquiries yet. When someone taps Enquire on a project card on the live map, it appears here.' : 'No leads yet. Submissions from the Contact form appear here.')
+              ? (isMap ? 'No map enquiries yet. When someone taps Enquire on a project card on the live map, it appears here.'
+                : isSignup ? 'No buyer sign-ups yet. When a buyer creates an account, they appear here as a lead.'
+                  : 'No leads yet. Submissions from the Contact form appear here.')
               : 'Nothing matches these filters.'}</p>
           </div>
         ) : (
@@ -944,7 +958,7 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
                 <button className="adm-btn danger sm" onClick={() => remove(sel)}><i className="fas fa-trash" /> Delete</button>
               </div>
             </div>
-            <p className="crm-meta">Received {leadWhen(sel.created_at)} · via {isMap ? 'Enquire on the live map' : (sel.source || 'contact form')}</p>
+            <p className="crm-meta">{isSignup ? 'Signed up' : 'Received'} {leadWhen(sel.created_at)} · via {isMap ? 'Enquire on the live map' : (sel.source || 'contact form')}</p>
           </aside>
         </div>
       )}

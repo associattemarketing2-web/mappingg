@@ -761,3 +761,7 @@ button.acs-act-row:hover { background: var(--bg); }
 .dp-custom { display: grid; grid-template-columns: 1fr 1fr auto; gap: 6px; }
 .dp-img-btns { display: flex; gap: 10px; margin-top: 2px; font-size: 12.5px; }
 .dp-img-btns label { cursor: pointer; }
+
+/* Lead / account panel header: avatar beside a stacked name + subtitle */
+.crm-id.big { flex-direction: row; align-items: center; gap: 12px; }
+.crm-id.big > span:last-child { display: flex; flex-direction: column; min-width: 0; line-height: 1.3; }

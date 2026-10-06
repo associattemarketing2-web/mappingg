@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { getDb } from '@/lib/mongodb';
 import { createSessionToken, homePathFor, setSessionCookie } from '@/lib/auth';
 import { logActivity } from '@/lib/activity';
+import { addBuyerSignupLead } from '@/lib/signup-leads';
 import { clientIp, rateLimit } from '@/lib/rate-limit';
 
 export const runtime = 'nodejs';
@@ -75,6 +76,8 @@ export async function POST(req: NextRequest) {
   });
 
   const sessionUser = { id, email, role };
+  // New buyers also show up as a lead in the super admin's Leads section.
+  if (role === 'buyer') await addBuyerSignupLead({ id, name, email, mobile, profile: profile as Record<string, string>, provider: 'password', created_at: now });
   await logActivity({
     user_id: id, email, name, role, type: 'signup',
     detail: role === 'buyer' ? 'Buyer account created' : `${role === 'developer' ? 'Developer' : 'Channel partner'} account created — awaiting verification`,
