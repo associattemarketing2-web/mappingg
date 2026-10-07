@@ -553,6 +553,7 @@ button.acs-act-row:hover { background: var(--bg); }
 .acs-act-ic.t-amber { background: #fbf1dc; color: var(--road); }
 .acs-act-ic.t-red { background: #f6e6dd; color: var(--earth); }
 .acs-act-ic.t-violet { background: #efe9fb; color: #6b4fbb; }
+.acs-act-ic.t-rose { background: #fdebef; color: #d6336c; }
 .acs-act-tx { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .acs-act-tx b { font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .acs-act-tx span { font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }

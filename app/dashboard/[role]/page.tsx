@@ -3,7 +3,7 @@ import '@/app/dashboard/s-admin/admin.css';
 import { getCurrentUser, homePathFor, isStaffRole } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
 import { getSeoProjects } from '@/lib/seo-data';
-import RoleDashboard, { type DashboardAccount } from '@/components/dashboard/RoleDashboard';
+import AgentProfile, { type AgentAccount } from '@/components/dashboard/AgentProfile';
 import DeveloperApp from '@/components/dashboard/DeveloperApp';
 import BuyerProfile from '@/components/dashboard/BuyerProfile';
 import ReviewScreen from '@/components/dashboard/ReviewScreen';
@@ -11,8 +11,9 @@ import { accessOf, verificationOf } from '@/lib/verification';
 
 export const dynamic = 'force-dynamic';
 
-// Per-role dashboards at a consistent URL:
-//   /dashboard/developer · /dashboard/agent · /dashboard/buyer
+// Per-role pages at a consistent URL:
+//   /dashboard/developer (dashboard) · /dashboard/agent and /dashboard/buyer
+//   (profile pages only — the live map is their home)
 // The super-admin is the static sibling route /dashboard/s-admin; staff who hit a
 // per-role URL are sent there. The account's actual role is the source of truth:
 // if the URL role doesn't match, we redirect to theirs.
@@ -35,7 +36,7 @@ export default async function DashboardRolePage({ params }: { params: { role: st
   // Buyers: no dashboard, just their profile (the live map is their home).
   if (role === 'buyer') return <BuyerProfile />;
 
-  // Developers and agents only get their dashboard once the super admin has
+  // Developers and agents only get their page once the super admin has
   // approved them; until then they see their submitted details and status.
   const status = verificationOf(doc);
   if (status !== 'approved') {
@@ -60,16 +61,27 @@ export default async function DashboardRolePage({ params }: { params: { role: st
     return <DeveloperApp user={{ email: String(doc.email || ''), name: String(doc.name || '') }} />;
   }
 
-  const account: DashboardAccount = {
+  // Approved agents / channel partners: no dashboard — the live map is their
+  // home (like buyers). This is their profile page, with the projects they
+  // enquired about while signed in.
+  const enquiries = await db.collection('leads')
+    .find({ account_id: String(doc.id) }, { projection: { pin_id: 1, created_at: 1, last_enquired_at: 1, enquiry_clicks: 1 } })
+    .sort({ created_at: -1 }).limit(100).toArray();
+  const account: AgentAccount = {
     name: String(doc.name || ''),
     email: String(doc.email || ''),
     mobile: String(doc.mobile || ''),
-    role,
-    verified: status === 'approved',
     created_at: String(doc.created_at || ''),
     profile: (doc.profile as Record<string, string>) || {},
+    enquiries: enquiries.map((r) => ({
+      pin_id: String(r.pin_id || ''),
+      at: String(r.last_enquired_at || r.created_at || ''),
+      times: Number(r.enquiry_clicks) || 1,
+    })).filter((e) => e.pin_id),
+    last_login_at: String(doc.last_login_at || ''),
+    login_count: Number(doc.login_count || 0),
   };
 
   const projects = await getSeoProjects();
-  return <RoleDashboard account={account} projects={projects} />;
+  return <AgentProfile account={account} projects={projects} />;
 }

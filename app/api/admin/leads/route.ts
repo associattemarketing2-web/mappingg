@@ -36,7 +36,12 @@ function strip<T extends Record<string, any>>(doc: T) {
   return rest;
 }
 
-type Pin = { id: string; title?: string; number?: number; location?: string };
+type Pin = {
+  id: string; title?: string; number?: number; location?: string; developer?: string; status?: string; type?: string;
+  price?: string; configuration?: string; sqft?: string; possession_timeline?: string;
+};
+// Project fields shown with a map enquiry in the CRM.
+const PIN_FIELDS = { id: 1, title: 1, number: 1, location: 1, developer: 1, status: 1, type: 1, price: 1, configuration: 1, sqft: 1, possession_timeline: 1 };
 
 /** A map enquiry in the CRM's lead shape, with the project it was about. */
 function mapLead(doc: Record<string, any>, pin?: Pin) {
@@ -47,7 +52,13 @@ function mapLead(doc: Record<string, any>, pin?: Pin) {
     status: STATUSES.includes(l.status) ? l.status : 'new',
     phone: l.whatsapp || l.phone || '',
     role: ['buyer', 'agent', 'developer'].includes(l.role) ? l.role : 'buyer',
-    project: pin ? { id: pin.id, title: pin.title || '', number: pin.number ?? null, location: pin.location || '' } : null,
+    project: pin ? {
+      id: pin.id, title: pin.title || '', number: pin.number ?? null, location: pin.location || '',
+      developer: pin.developer || '', status: pin.status || '', type: pin.type || '', price: pin.price || '',
+      configuration: pin.configuration || '', sqft: pin.sqft || '', possession: pin.possession_timeline || '',
+    } : null,
+    enquiry_clicks: Number(l.enquiry_clicks) || 1,
+    last_enquired_at: l.last_enquired_at || l.created_at || null,
     locations: localitiesOf(pin?.location),
   };
 }
@@ -56,22 +67,23 @@ async function withProjects(rows: Record<string, any>[]) {
   const db = await getDb();
   const ids = Array.from(new Set(rows.map((r) => String(r.pin_id || '')).filter(Boolean)));
   const pins = ids.length
-    ? ((await db.collection('pins').find({ id: { $in: ids } }, { projection: { id: 1, title: 1, number: 1, location: 1 } }).toArray()) as unknown as Pin[])
+    ? ((await db.collection('pins').find({ id: { $in: ids } }, { projection: PIN_FIELDS }).toArray()) as unknown as Pin[])
     : [];
   const byId = new Map(pins.map((p) => [String(p.id), p]));
-  return withBuyerAccounts(rows.map((r) => mapLead(r, byId.get(String(r.pin_id)))));
+  return withAccounts(rows.map((r) => mapLead(r, byId.get(String(r.pin_id)))));
 }
 
-/** Map enquiries from people with a buyer account (matched by account or email) get
- *  that account's login data and preferences; everyone else is a guest. */
-async function withBuyerAccounts(rows: Record<string, any>[]) {
+/** Map enquiries from people with an account (buyer, agent or developer — matched
+ *  by account or email) get that account's details, login data and preferences;
+ *  everyone else is a guest. */
+async function withAccounts(rows: Record<string, any>[]) {
   const db = await getDb();
   const ids = Array.from(new Set(rows.map((r) => String(r.account_id || '')).filter(Boolean)));
   const emails = Array.from(new Set(rows.map((r) => String(r.email || '').trim().toLowerCase()).filter(Boolean)));
   if (!ids.length && !emails.length) return rows.map((r) => ({ ...r, account: null }));
   const users = await db.collection('users').find(
-    { role: 'buyer', $or: [{ id: { $in: ids } }, { email: { $in: emails } }] },
-    { projection: { id: 1, email: 1, name: 1, last_login_at: 1, login_count: 1, profile: 1, compare_pins: 1, created_at: 1 } },
+    { role: { $in: ['buyer', 'agent', 'developer'] }, $or: [{ id: { $in: ids } }, { email: { $in: emails } }] },
+    { projection: { id: 1, email: 1, name: 1, mobile: 1, role: 1, last_login_at: 1, login_count: 1, profile: 1, compare_pins: 1, created_at: 1 } },
   ).toArray() as Record<string, any>[];
   const byId = new Map(users.map((u) => [String(u.id), u]));
   const byEmail = new Map(users.map((u) => [String(u.email || '').toLowerCase(), u]));
@@ -82,7 +94,9 @@ async function withBuyerAccounts(rows: Record<string, any>[]) {
     return {
       ...r,
       account: u ? {
-        id: String(u.id), signed_in: !!r.account_id, last_login_at: u.last_login_at || null, login_count: Number(u.login_count || 0),
+        id: String(u.id), signed_in: !!r.account_id, role: String(u.role || 'buyer'), name: String(u.name || ''),
+        email: String(u.email || ''), mobile: String(u.mobile || ''),
+        last_login_at: u.last_login_at || null, login_count: Number(u.login_count || 0),
         profile: u.profile || {}, compare_count: Array.isArray(u.compare_pins) ? u.compare_pins.length : 0,
         enquiry_count: countFor(u), member_since: u.created_at || null,
       } : null,

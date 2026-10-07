@@ -9,7 +9,40 @@ export const dynamic = 'force-dynamic';
 
 // A buyer's compare cart on the live map: up to MAX_COMPARE project (pin) ids,
 // saved on their `users` document so it follows them across devices.
-const MAX_COMPARE = 4;
+const MAX_COMPARE = 3;
+
+// Fields shown for each project in the buyer's profile, keyed by the
+// field_visibility id the admin uses to hide them on the public card (the live
+// map's compare table follows the same rule).
+const DETAIL_FIELDS: { key: string; visibility: string }[] = [
+  { key: 'developer', visibility: 'developer' },
+  { key: 'location', visibility: 'location' },
+  { key: 'status', visibility: 'status' },
+  { key: 'type', visibility: 'type' },
+  { key: 'rera_number', visibility: 'rera' },
+  { key: 'configuration', visibility: 'configuration' },
+  { key: 'sqft', visibility: 'configuration' },
+  { key: 'price', visibility: 'price' },
+  { key: 'possession_timeline', visibility: 'possession' },
+  { key: 'launch_date', visibility: 'possession' },
+  { key: 'key_usp', visibility: 'key_usp' },
+];
+
+/** The compare-list projects with the details their public card shows. */
+async function details(ids: string[]) {
+  if (!ids.length) return [];
+  const db = await getDb();
+  const projection: Record<string, 1> = { id: 1, number: 1, title: 1, field_visibility: 1 };
+  DETAIL_FIELDS.forEach((f) => { projection[f.key] = 1; });
+  const rows = await db.collection('pins').find({ id: { $in: ids }, hidden: { $ne: true } }, { projection }).toArray() as Record<string, any>[];
+  const byId = new Map(rows.map((r) => [String(r.id), r]));
+  return ids.map((id) => byId.get(id)).filter(Boolean).map((r) => {
+    const vis = (r!.field_visibility || {}) as Record<string, unknown>;
+    const out: Record<string, unknown> = { id: String(r!.id), number: r!.number ?? null, title: String(r!.title || '') };
+    DETAIL_FIELDS.forEach((f) => { out[f.key] = vis[f.visibility] === false ? '' : String(r![f.key] || ''); });
+    return out;
+  });
+}
 
 const putSchema = z.object({
   pins: z.array(z.string().trim().min(1).max(100)).max(MAX_COMPARE),
@@ -24,13 +57,17 @@ async function buyer() {
 
 const unauthorized = () => NextResponse.json({ error: { message: 'Not authorized' } }, { status: 401 });
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   const user = await buyer();
   if (!user) return unauthorized();
 
   const db = await getDb();
   const doc = await db.collection('users').findOne({ email: user.email.toLowerCase() }, { projection: { compare_pins: 1 } });
   const pins = Array.isArray(doc?.compare_pins) ? doc.compare_pins.map(String).slice(0, MAX_COMPARE) : [];
+  // ?details=1 (the buyer's profile page) also returns each project's details.
+  if (req.nextUrl.searchParams.get('details')) {
+    return NextResponse.json({ pins, max: MAX_COMPARE, projects: await details(pins) }, { headers: { 'Cache-Control': 'private, no-store' } });
+  }
   return NextResponse.json({ pins, max: MAX_COMPARE });
 }
 

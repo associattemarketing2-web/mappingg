@@ -56,9 +56,13 @@ export default function SiteHeader() {
   // Where this account's "home" is: /s-admin (staff), /dashboard (developer/agent) or /map (buyer).
   const [home, setHome] = useState('/dashboard');
   const [role, setRole] = useState('');
-  // Map-home accounts (buyers, view-only developers) get "Live map"; buyers also "My profile".
+  // Map-home accounts (buyers, approved agents, view-only developers) get "Live map";
+  // buyers and agents also "My profile".
   const isBuyer = home === '/map';
-  const isBuyerRole = role === 'buyer';
+  const profileHref = role === 'buyer' ? '/dashboard/buyer' : role === 'agent' ? '/dashboard/agent' : '';
+  // On the home page, agents / channel partners see just a "Live map" button
+  // (their profile is in the map's Profile menu).
+  const agentOnHome = role === 'agent' && pathname === '/';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -115,11 +119,13 @@ export default function SiteHeader() {
           </nav>
 
           <div className="shd-right">
-            {signedIn ? (
+            {signedIn && agentOnHome ? (
+              <Link href="/map" className="shd-btn primary">Live map</Link>
+            ) : signedIn ? (
               <>
                 {isBuyer && <button className="shd-btn link" onClick={signOut}>Sign out</button>}
-                {isBuyerRole && <Link href="/dashboard/buyer" className="shd-btn link">My profile</Link>}
-                <Link href={home} className="shd-btn primary">{isBuyer ? 'Live map' : 'Dashboard'}</Link>
+                {profileHref && profileHref !== home && <Link href={profileHref} className="shd-btn link">My profile</Link>}
+                <Link href={home} className="shd-btn primary">{isBuyer ? 'Live map' : role === 'agent' ? 'My profile' : 'Dashboard'}</Link>
               </>
             ) : (
               <>
@@ -158,11 +164,13 @@ export default function SiteHeader() {
               <SocialLinks />
             </div>
             <div className="row">
-              {signedIn ? (
+              {signedIn && agentOnHome ? (
+                <Link href="/map" className="shd-btn primary" onClick={() => setOpen(false)}>Live map</Link>
+              ) : signedIn ? (
                 <>
                   {isBuyer && <button className="shd-btn link" onClick={signOut}>Sign out</button>}
-                  {isBuyerRole && <Link href="/dashboard/buyer" className="shd-btn link" onClick={() => setOpen(false)}>My profile</Link>}
-                  <Link href={home} className="shd-btn primary" onClick={() => setOpen(false)}>{isBuyer ? 'Live map' : 'Dashboard'}</Link>
+                  {profileHref && profileHref !== home && <Link href={profileHref} className="shd-btn link" onClick={() => setOpen(false)}>My profile</Link>}
+                  <Link href={home} className="shd-btn primary" onClick={() => setOpen(false)}>{isBuyer ? 'Live map' : role === 'agent' ? 'My profile' : 'Dashboard'}</Link>
                 </>
               ) : (
                 <>

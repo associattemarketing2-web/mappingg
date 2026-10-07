@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import PhoneInput from '@/components/PhoneInput';
+import BuyerCompare from './BuyerCompare';
 
 // Buyers have no dashboard: after signing in they use the live map. This is
-// their only other page — "My profile": contact details and what they're
-// looking for (which also tells the Mappingg team what to suggest).
+// their only other page — "My profile": the projects in their compare list,
+// contact details and what they're looking for (which also tells the Mappingg
+// team what to suggest).
 interface Me { name: string; email: string; mobile: string; profile: Record<string, string>; created_at: string; google: boolean }
 
 const PREF_FIELDS: { key: string; label: string; placeholder: string; options?: string[] }[] = [
@@ -78,6 +80,8 @@ export default function BuyerProfile() {
           <span><b>Explore the live map</b><small>Every project with status, RERA, prices and what&apos;s nearby. Tap Enquire on any project for full details.</small></span>
           <i className="fas fa-arrow-right" />
         </a>
+
+        <BuyerCompare />
 
         <form className="bp-card" onSubmit={save}>
           <h2>Your details</h2>

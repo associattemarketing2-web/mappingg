@@ -44,8 +44,10 @@ export async function canEditProjects(userId: string): Promise<boolean> {
 }
 
 /** Where this account lands after signing in. Same as homePathFor(role), except
- *  that approved view-only developers go straight to the public live map. */
+ *  that approved agents / channel partners and approved view-only developers go
+ *  straight to the public live map (agents' profile is at /dashboard/agent). */
 export function homeForAccount(doc: Record<string, unknown> | null | undefined, fallback: string): string {
+  if (doc?.role === 'agent' && verificationOf(doc) === 'approved') return '/map';
   if (doc?.role === 'developer' && verificationOf(doc) === 'approved' && accessOf(doc) === 'viewer') return '/map';
   return fallback;
 }

@@ -647,10 +647,16 @@ interface Lead {
   notes?: string; created_at?: string; updated_at?: string;
   // Map enquiries only:
   role?: PersonRole; pin_id?: string; locations?: string[];
-  project?: { id: string; title: string; number: number | null; location: string } | null;
-  // Map enquiries only: the enquirer's buyer account, if they have one.
+  project?: {
+    id: string; title: string; number: number | null; location: string;
+    developer?: string; status?: string; type?: string; price?: string; configuration?: string; sqft?: string; possession?: string;
+  } | null;
+  // Map enquiries only: how many times they tapped "Enquire now" on this project, and when last.
+  enquiry_clicks?: number; last_enquired_at?: string | null;
+  // Map enquiries only: the enquirer's account (buyer, agent or developer), if they have one.
   account?: {
-    id: string; signed_in: boolean; last_login_at: string | null; login_count: number; profile: Record<string, string>;
+    id: string; signed_in: boolean; role?: string; name?: string; email?: string; mobile?: string;
+    last_login_at: string | null; login_count: number; profile: Record<string, string>;
     compare_count: number; enquiry_count: number; member_since: string | null;
   } | null;
   // Buyer sign-ups only: that buyer's account activity.
@@ -688,6 +694,9 @@ const leadWhen = (d?: string) => {
 const projectName = (l: Lead) =>
   l.project ? `${l.project.title || 'Untitled project'}${l.project.number != null ? ` #${l.project.number}` : ''}` : '';
 const stageLabel = (s: Lead['status']) => LEAD_STAGES.find((x) => x.key === s)?.label || s;
+const fullDate = (d?: string | null) => (d ? new Date(d).toLocaleString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit' }) : '—');
+const accountRole = (r?: string) => ROLE_META[(PEOPLE_ROLES as readonly string[]).includes(String(r)) ? (r as PersonRole) : 'buyer'];
+const PIN_STATUS: Record<string, string> = { available: 'Ready to move', under_construction: 'Under construction', upcoming: 'Upcoming', sold: 'Sold out' };
 
 function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
   const [bySource, setBySource] = useState<Record<LeadSource, Lead[]>>({ map: [], signup: [], contact: [] });
@@ -757,8 +766,8 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
   function downloadMap(r: PersonRole) {
     const rows = forDownload(r);
     downloadCsv(fileSlug('map-enquiries', ROLE_META[r].file, loc ? locationLabel(loc) : ''),
-      ['Name', 'Email', 'WhatsApp', 'Type', 'Project', 'Project no.', 'Project location', 'Locality', 'Status', 'Notes', 'Received'],
-      rows.map((l) => [l.name, l.email, l.phone, ROLE_META[r].label, l.project?.title, l.project?.number, l.project?.location, l.locations, stageLabel(l.status), l.notes, csvDate(l.created_at)]));
+      ['Name', 'Email', 'WhatsApp', 'Type', 'Signed in', 'Project', 'Project no.', 'Project location', 'Locality', 'Developer', 'Price', 'Status', 'Notes', 'Received', 'Times tapped', 'Last enquired'],
+      rows.map((l) => [l.name, l.email, l.phone, ROLE_META[r].label, l.account?.signed_in ? 'Yes' : 'No', l.project?.title, l.project?.number, l.project?.location, l.locations, l.project?.developer, l.project?.price, stageLabel(l.status), l.notes, csvDate(l.created_at), l.enquiry_clicks || 1, csvDate(l.last_enquired_at)]));
   }
   function downloadContact() {
     if (isSignup) {
@@ -914,7 +923,7 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
                         <td>
                           {l.account ? (
                             <span className="ml-acc">
-                              <span className="ml-badge"><i className="fas fa-user-check" /> Buyer account</span>
+                              <span className="ml-badge"><i className="fas fa-user-check" /> {l.account.signed_in ? 'Signed in' : 'Has account'} · {accountRole(l.account.role).short.replace(/s$/, '')}</span>
                               <small>{l.account.last_login_at ? `Last login ${leadWhen(l.account.last_login_at)}` : 'No login yet'}{l.account.login_count ? ` · ${l.account.login_count} sign-in${l.account.login_count === 1 ? '' : 's'}` : ''}</small>
                             </span>
                           ) : <span className="muted">Guest</span>}
@@ -936,7 +945,10 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
                       <td>{l.subject || '—'}</td>
                     )}
                     <td><span className={`crm-pill ${l.status}`}>{stageLabel(l.status)}</span></td>
-                    <td className="muted">{leadWhen(l.created_at)}</td>
+                    <td className="muted" title={fullDate(l.created_at)}>
+                      {leadWhen(l.created_at)}
+                      {isMap && (l.enquiry_clicks || 1) > 1 && <small style={{ display: 'block' }}>{l.enquiry_clicks}× · last {leadWhen(l.last_enquired_at || undefined)}</small>}
+                    </td>
                     <td><button className="adm-btn ghost sm" onClick={(e) => { e.stopPropagation(); open(l); }}>Open</button></td>
                   </tr>
                 ))}
@@ -981,13 +993,34 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
             {isMap ? (
               <>
               <div className="crm-block">
+                <h4>Enquiry</h4>
+                <table className="adm-table">
+                  <tbody>
+                    <tr><td className="muted">Name</td><td>{sel.name}</td></tr>
+                    <tr><td className="muted">Email</td><td>{sel.email || '—'}</td></tr>
+                    <tr><td className="muted">WhatsApp</td><td>{sel.phone || '—'}</td></tr>
+                    <tr><td className="muted">Enquirer type</td><td>{ROLE_META[sel.role || 'buyer'].label}</td></tr>
+                    <tr><td className="muted">How</td><td>{sel.account?.signed_in ? 'Enquire now while signed in' : 'Enquiry form (not signed in)'}</td></tr>
+                    <tr><td className="muted">First enquired</td><td>{fullDate(sel.created_at)}</td></tr>
+                    <tr><td className="muted">Times tapped</td><td>{sel.enquiry_clicks || 1}</td></tr>
+                    {(sel.enquiry_clicks || 1) > 1 && <tr><td className="muted">Last enquired</td><td>{fullDate(sel.last_enquired_at)}</td></tr>}
+                  </tbody>
+                </table>
+              </div>
+              <div className="crm-block">
                 <h4>Asked about</h4>
                 {sel.project ? (
                   <table className="adm-table">
                     <tbody>
                       <tr><td className="muted">Project</td><td>{projectName(sel)}</td></tr>
                       <tr><td className="muted">Location</td><td>{sel.project.location || '—'}</td></tr>
-                      <tr><td className="muted">Enquirer type</td><td>{ROLE_META[sel.role || 'buyer'].label}</td></tr>
+                      <tr><td className="muted">Developer</td><td>{sel.project.developer || '—'}</td></tr>
+                      <tr><td className="muted">Status</td><td>{PIN_STATUS[sel.project.status || ''] || sel.project.status || '—'}</td></tr>
+                      <tr><td className="muted">Type</td><td>{sel.project.type || '—'}</td></tr>
+                      <tr><td className="muted">Configuration</td><td>{sel.project.configuration || '—'}</td></tr>
+                      <tr><td className="muted">Size</td><td>{sel.project.sqft || '—'}</td></tr>
+                      <tr><td className="muted">Price</td><td>{sel.project.price || '—'}</td></tr>
+                      <tr><td className="muted">Possession</td><td>{sel.project.possession || '—'}</td></tr>
                     </tbody>
                   </table>
                 ) : <p className="crm-msg">This project has since been removed from the map.</p>}
@@ -999,7 +1032,7 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
               </div>
               {sel.account ? (
                 <div className="crm-block">
-                  <h4>Buyer account {sel.account.signed_in ? <span className="ml-badge"><i className="fas fa-user-check" /> Enquired while signed in</span> : null}</h4>
+                  <h4>{accountRole(sel.account.role).label} account {sel.account.signed_in ? <span className="ml-badge"><i className="fas fa-user-check" /> Enquired while signed in</span> : null}</h4>
                   <div className="acs-stats">
                     <div><b>{sel.account.last_login_at ? leadWhen(sel.account.last_login_at) : '—'}</b><span>Last login</span></div>
                     <div><b>{sel.account.login_count}</b><span>Sign-ins</span></div>
@@ -1007,16 +1040,19 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
                   </div>
                   <table className="adm-table">
                     <tbody>
+                      <tr><td className="muted">Account name</td><td>{sel.account.name || '—'}</td></tr>
+                      <tr><td className="muted">Account email</td><td>{sel.account.email || '—'}</td></tr>
+                      <tr><td className="muted">Account mobile</td><td>{sel.account.mobile || '—'}</td></tr>
                       {([['configuration', 'Looking for'], ['budget', 'Budget'], ['area', 'Preferred area'], ['timeline', 'Planning to buy'], ['purpose', 'Buying for']] as const).map(([k, lbl]) => (
                         <tr key={k}><td className="muted">{lbl}</td><td>{sel.account?.profile?.[k] || '—'}</td></tr>
                       ))}
                       <tr><td className="muted">Compare list</td><td>{sel.account.compare_count ? `${sel.account.compare_count} project${sel.account.compare_count === 1 ? '' : 's'}` : '—'}</td></tr>
-                      {sel.account.member_since && <tr><td className="muted">Buyer since</td><td>{new Date(sel.account.member_since).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</td></tr>}
+                      {sel.account.member_since && <tr><td className="muted">Member since</td><td>{new Date(sel.account.member_since).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</td></tr>}
                     </tbody>
                   </table>
                 </div>
               ) : (
-                <p className="crm-meta">Guest enquiry — this person doesn&apos;t have a buyer account.</p>
+                <p className="crm-meta">Guest enquiry — this person doesn&apos;t have an account.</p>
               )}
               </>
             ) : isSignup && sel.buyer ? (
@@ -1107,6 +1143,7 @@ const EVENT_META: Record<string, { icon: string; tone: string; label: string; gr
   login: { icon: 'fa-right-to-bracket', tone: 'green', label: 'Signed in', group: 'signin' },
   logout: { icon: 'fa-right-from-bracket', tone: 'grey', label: 'Signed out', group: 'signin' },
   compare: { icon: 'fa-code-compare', tone: 'violet', label: 'Compare list', group: 'enquiry' },
+  favorite: { icon: 'fa-heart', tone: 'rose', label: 'Favourites', group: 'enquiry' },
   enquiry: { icon: 'fa-envelope-open-text', tone: 'amber', label: 'Map enquiry', group: 'enquiry' },
   contact: { icon: 'fa-message', tone: 'amber', label: 'Contact form', group: 'enquiry' },
   project_added: { icon: 'fa-map-pin', tone: 'blue', label: 'Project added', group: 'projects' },

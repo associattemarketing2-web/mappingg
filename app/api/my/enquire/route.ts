@@ -42,12 +42,17 @@ export async function POST(req: NextRequest) {
 
   const leads = db.collection<{ _id: string; [k: string]: unknown }>('leads');
   const existing = await leads.findOne({ account_id: user.id, pin_id }, { projection: { id: 1 } });
-  if (!existing) {
+  const now = new Date().toISOString();
+  if (existing) {
+    // Tapped Enquire now again on the same project: keep the one lead, but record
+    // the repeat so the CRM shows how often (and when last) they asked.
+    await leads.updateOne({ id: existing.id }, { $set: { last_enquired_at: now, updated_at: now }, $inc: { enquiry_clicks: 1 } });
+  } else {
     const id = randomUUID();
-    const now = new Date().toISOString();
     await leads.insertOne({
       _id: id, id, pin_id, role, name, whatsapp, email, consent: true,
       source: 'Signed-in account', account_id: user.id, status: 'new', notes: '',
+      enquiry_clicks: 1, last_enquired_at: now,
       created_at: now, updated_at: now,
     });
   }
