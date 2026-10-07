@@ -48,23 +48,37 @@ export const viewport = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  // Admin-editable SEO/analytics values (Search Console verification + GTM).
-  // Falls back to the site's own IDs when the admin Settings fields are empty.
+  // Admin-editable SEO/analytics values (Search Console verification, GTM, GA4).
+  // getPublicSettings falls back to the site's own IDs when a Settings field is
+  // empty, so these always match what the SEO & Health checks report.
   const settings = await getPublicSettings();
-  const gsc = settings.search_console_verification || 'xjmisC7LNZagrEObXyZOZoVzRQW2g72BbVjGuaBXsL8';
-  const gtm = settings.gtm_container_id || 'GTM-59Q6QBP6';
+  const gsc = settings.search_console_verification;
+  const gtm = settings.gtm_container_id;
+  const ga = settings.ga_measurement_id;
 
   return (
     <html lang="en">
       <head>
         {/* Google Tag Manager — kept first in <head>, as Google recommends. */}
-        {gtm ? (
+        {gtm || ga ? (
           // Google Consent Mode defaults: analytics/ad cookies stay off until the
           // visitor accepts in the cookie banner (components/CookieConsent.tsx),
           // whose choice is remembered in the mg_cookie_consent cookie.
           <script
             dangerouslySetInnerHTML={{
               __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}var c=/(?:^|; )mg_cookie_consent=all/.test(document.cookie)?'granted':'denied';gtag('consent','default',{analytics_storage:c,ad_storage:c,ad_user_data:c,ad_personalization:c,functionality_storage:'granted',security_storage:'granted',wait_for_update:500});`,
+            }}
+          />
+        ) : null}
+        {ga ? (
+          // Google tag (gtag.js) for GA4 — after the Consent Mode defaults above.
+          // eslint-disable-next-line @next/next/next-script-for-ga
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga}`} />
+        ) : null}
+        {ga ? (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${ga}');`,
             }}
           />
         ) : null}

@@ -10,10 +10,11 @@ export const dynamic = 'force-dynamic';
 // Site-wide settings live in the single `map_settings` row (id === 1), the same
 // row the map app reads. Exposed here so the admin can edit SEO/analytics values.
 const schema = z.object({
-  // Rendered into an inline <script> in the root layout, so only a real GTM ID
-  // (or empty, to switch it off) is accepted.
+  // Rendered into inline <script>s in the root layout, so only real IDs are
+  // accepted (empty = use the site's default ID from lib/site-settings.ts).
   gtm_container_id: z.string().trim().regex(/^(GTM-[A-Z0-9]{1,20})?$/i, 'Use a GTM container ID like GTM-ABC1234').optional(),
   search_console_verification: z.string().trim().max(200).regex(/^[A-Za-z0-9_\-]*$/).optional(),
+  ga_measurement_id: z.string().trim().regex(/^(G-[A-Z0-9]{4,20})?$/i, 'Use a GA4 measurement ID like G-ABC1234').optional(),
   youtube_video_url: z.string().max(400).optional(),
 });
 

@@ -7,6 +7,7 @@ import ProfileForm from './ProfileForm';
 import DevProjectsPanel, { type DevProject } from './DevProjectsPanel';
 import NotificationBell from './NotificationBell';
 import PhoneInput from '@/components/PhoneInput';
+import SearchConsolePanel from './SearchConsolePanel';
 import { ChartCard, DayHeatmap, Donut, HBars, STATUS_META, StatTile, StatusStack, TYPE_COLORS, WeekColumns, dayStats } from './SeoCharts';
 
 export interface AdminUser {
@@ -87,6 +88,7 @@ function DashboardPanel({ onGo }: { onGo: (t: string) => void }) {
     { ok: 'ok', b: 'Sitemap & robots', v: 'Active' },
     { ok: s.seo?.gsc ? 'ok' : 'warn', b: 'Search Console verification', v: s.seo?.gsc ? 'Set' : 'Not set' },
     { ok: s.seo?.gtm ? 'ok' : 'warn', b: 'Google Tag Manager', v: s.seo?.gtm ? 'Set' : 'Not set' },
+    { ok: s.seo?.ga ? 'ok' : 'warn', b: 'Google Analytics 4', v: s.seo?.ga ? 'Set' : 'Not set' },
   ];
 
   return (
@@ -237,6 +239,9 @@ function SeoPanel() {
 
   return (
     <div className="viz">
+      <SearchConsolePanel />
+
+      <h2 className="gsc-title" style={{ marginTop: 12 }}><i className="fas fa-heart-pulse" /> Site health &amp; content</h2>
       <div className="viz-tiles">
         <StatTile label="SEO health score" value={`${scorePct}%`} meter={scorePct} note={`${d.score.passed} of ${d.score.total} checks passing`} />
         <StatTile label="Project page completeness" value={`${d.avgCompleteness}%`} meter={d.avgCompleteness} note="Average across the details below" />
@@ -314,7 +319,7 @@ function SeoPanel() {
               <div className="adm-health-row" key={t}><span className="viz-step">{i + 1}</span><div><b>{t}</b><br /><span className="muted">{desc}</span></div></div>
             ))}
           </div>
-          <p className="adm-note" style={{ marginTop: 16 }}><i className="fas fa-lightbulb" /><span>Visitor and ranking numbers come from Google Search Console and Analytics once they&apos;re connected in Settings.</span></p>
+          <p className="adm-note" style={{ marginTop: 16 }}><i className="fas fa-lightbulb" /><span>Clicks, impressions and rankings above come live from Google Search Console. Tag IDs in use: Search Console <code>{d.tags?.gsc}</code>, GTM <code>{d.tags?.gtm}</code>, GA4 <code>{d.tags?.ga}</code>.</span></p>
         </div>
       </div>
     </div>

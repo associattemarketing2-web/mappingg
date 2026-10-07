@@ -2,9 +2,14 @@
 
 import { useEffect, useState } from 'react';
 
+// Shown as placeholders: these are what the live site uses when a field is empty
+// (keep in sync with the defaults in lib/site-settings.ts).
+const DEFAULTS = { gsc: 'xjmisC7LNZagrEObXyZOZoVzRQW2g72BbVjGuaBXsL8', gtm: 'GTM-59Q6QBP6', ga: 'G-PWBF18X96P' };
+
 export default function SettingsForm() {
   const [gtm, setGtm] = useState('');
   const [gsc, setGsc] = useState('');
+  const [ga, setGa] = useState('');
   const [yt, setYt] = useState('');
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -23,6 +28,7 @@ export default function SettingsForm() {
         const d = body.data || {};
         setGtm(d.gtm_container_id || '');
         setGsc(d.search_console_verification || '');
+        setGa(d.ga_measurement_id || '');
         setYt(d.youtube_video_url || '');
       } catch {
         flash('Could not load settings', true);
@@ -40,12 +46,17 @@ export default function SettingsForm() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'same-origin',
-        body: JSON.stringify({ gtm_container_id: gtm.trim(), search_console_verification: gsc.trim(), youtube_video_url: yt.trim() }),
+        body: JSON.stringify({
+          gtm_container_id: gtm.trim(),
+          search_console_verification: gsc.trim(),
+          ga_measurement_id: ga.trim(),
+          youtube_video_url: yt.trim(),
+        }),
       });
       if (!res.ok) throw new Error();
       flash('Settings saved');
     } catch {
-      flash('Save failed', true);
+      flash('Save failed — check the ID formats', true);
     } finally {
       setSaving(false);
     }
@@ -58,15 +69,19 @@ export default function SettingsForm() {
       <div className="adm-panel-head"><h3>SEO &amp; analytics</h3></div>
       <p className="adm-note" style={{ marginBottom: 16 }}>
         <i className="fas fa-circle-info" />
-        <span>These control site-wide tracking &amp; search-engine verification. Paste values exactly as Google gives them.</span>
+        <span>These control site-wide tracking &amp; search-engine verification. Paste values exactly as Google gives them. Leave a field empty to use the site&apos;s default ID (shown greyed out).</span>
       </p>
       <div className="adm-field">
         <label>Google Search Console verification <small>(the content value of the meta tag)</small></label>
-        <input value={gsc} onChange={(e) => setGsc(e.target.value)} placeholder="e.g. AbCdEf123… (from the HTML tag method)" />
+        <input value={gsc} onChange={(e) => setGsc(e.target.value)} placeholder={DEFAULTS.gsc} />
       </div>
       <div className="adm-field">
         <label>Google Tag Manager container ID</label>
-        <input value={gtm} onChange={(e) => setGtm(e.target.value)} placeholder="GTM-XXXXXXX" />
+        <input value={gtm} onChange={(e) => setGtm(e.target.value)} placeholder={DEFAULTS.gtm} />
+      </div>
+      <div className="adm-field">
+        <label>Google Analytics 4 measurement ID <small>(gtag.js)</small></label>
+        <input value={ga} onChange={(e) => setGa(e.target.value)} placeholder={DEFAULTS.ga} />
       </div>
       <div className="adm-field">
         <label>Promo YouTube video URL <small>(optional)</small></label>

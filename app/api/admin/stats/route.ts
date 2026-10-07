@@ -82,6 +82,7 @@ export async function GET() {
       seo: {
         gsc: !!settings.search_console_verification,
         gtm: !!settings.gtm_container_id,
+        ga: !!settings.ga_measurement_id,
       },
     },
   });

@@ -6,6 +6,7 @@ import { countPosts } from '@/lib/blog';
 import { getPublicSettings } from '@/lib/site-settings';
 import sitemap from '@/app/sitemap';
 import { lastWeeks, perWeek } from '@/lib/insights';
+import { gscConfigured } from '@/lib/search-console';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -23,6 +24,29 @@ function areaOf(location: unknown): string {
   const first = String(location || '').split(/[,|/-]/)[0].trim().replace(/\s+/g, ' ');
   if (!first) return '';
   return first.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+/**
+ * Fetches the live homepage and checks the Google tags are really in the HTML
+ * Google sees — not just saved in Settings. null = the site couldn't be reached.
+ */
+async function liveTags(gsc: string, gtm: string, ga: string) {
+  const url = (process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com').replace(/\/$/, '') + '/';
+  try {
+    const res = await fetch(url, { cache: 'no-store', signal: AbortSignal.timeout(6000), headers: { 'User-Agent': 'MappinggHealthCheck/1.0' } });
+    const html = await res.text();
+    const meta = html.match(/<meta[^>]+name="google-site-verification"[^>]*>/i)?.[0] || '';
+    return {
+      url,
+      status: res.status,
+      gsc: !!gsc && meta.includes(`content="${gsc}"`),
+      gscFound: meta.match(/content="([^"]*)"/)?.[1] || '',
+      gtm: !!gtm && html.includes(gtm),
+      ga: !!ga && html.includes(`gtag/js?id=${ga}`),
+    };
+  } catch {
+    return null;
+  }
 }
 
 export async function GET() {
@@ -86,11 +110,19 @@ export async function GET() {
   const [posts, settings, urls] = await Promise.all([countPosts(), getPublicSettings(), sitemap()]);
   const blogUrls = urls.filter((u) => /\/blog\/[^/]+$/.test(u.url)).length;
 
+  const gsc = settings.search_console_verification || '';
+  const gtm = settings.gtm_container_id || '';
+  const ga = settings.ga_measurement_id || '';
+  const live = await liveTags(gsc, gtm, ga);
+  const liveFix = (what: string) => (live ? `${what} not found on ${live.url}` : 'Live site not reachable — check deploy');
+
   const health = [
     { label: 'Database connection', ok: true },
     { label: 'Sitemap.xml & robots.txt', ok: urls.length > 0 },
-    { label: 'Search Console verification', ok: !!settings.search_console_verification, fix: 'Add it in Settings' },
-    { label: 'Google Tag Manager', ok: !!settings.gtm_container_id, fix: 'Add it in Settings' },
+    { label: 'Search Console verification tag live', ok: !!live?.gsc, fix: live?.gscFound ? `Live tag is "${live.gscFound}" — doesn't match Settings` : liveFix('Meta tag') },
+    { label: 'Google Tag Manager live', ok: !!live?.gtm, fix: liveFix(gtm || 'GTM') },
+    { label: 'Google Analytics 4 (gtag.js) live', ok: !!live?.ga, fix: liveFix(ga || 'gtag.js') },
+    { label: 'Search Console API connected', ok: gscConfigured(), fix: 'Add service-account env vars' },
     { label: 'At least 3 published blog posts', ok: posts.published >= 3, fix: `${posts.published} published so far` },
     { label: 'Project pages ≥ 80% complete', ok: avgCompleteness >= 80, fix: `${avgCompleteness}% complete` },
     { label: 'Every public project has a location', ok: noLocation === 0, fix: `${noLocation} without a location` },
@@ -107,6 +139,7 @@ export async function GET() {
       newProjects, enquiries,
       sitemap: { total: urls.length, pages: urls.length - blogUrls, blog: blogUrls },
       posts,
+      tags: { gsc, gtm, ga, live },
     },
   }, { headers: { 'Cache-Control': 'private, no-store' } });
 }

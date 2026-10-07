@@ -779,3 +779,23 @@ button.acs-act-row:hover { background: var(--bg); }
 .ml-acc small { font-size: 11.5px; color: var(--muted); white-space: nowrap; }
 .ml-badge { display: inline-flex; align-items: center; gap: 5px; align-self: flex-start; padding: 2px 8px; border-radius: 999px; background: var(--accent-50); color: var(--accent); font-size: 11px; font-weight: 700; white-space: nowrap; }
 .crm-block h4 .ml-badge { margin-left: 6px; vertical-align: middle; text-transform: none; letter-spacing: 0; }
+
+/* ---------- Live Google Search Console (SEO & Health tab) ---------- */
+.gsc-bar { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.gsc-bar p { margin: 4px 0 0; font-size: 12.5px; }
+.gsc-title { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 18px; }
+.gsc-live { padding: 2px 8px; border-radius: 999px; background: var(--accent-50); color: var(--accent); font-size: 10.5px; font-weight: 800; letter-spacing: .08em; }
+.gsc-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.gsc-delta { font-weight: 700; } .gsc-delta.up { color: #1f7a2e; } .gsc-delta.down { color: #b5484c; }
+.gsc-delta .muted { font-weight: 400; }
+.gsc-metric { margin-bottom: 14px; }
+.gsc-table-wrap { overflow-x: auto; max-height: 520px; overflow-y: auto; }
+.gsc-table th { position: sticky; top: 0; background: var(--card); }
+.gsc-table td:not(:first-child), .gsc-table th:not(:first-child) { text-align: right; white-space: nowrap; }
+.gsc-key { max-width: 420px; overflow-wrap: anywhere; }
+.gsc-key a { color: var(--water); text-decoration: none; } .gsc-key a:hover { text-decoration: underline; }
+.gsc-pos { display: inline-block; min-width: 38px; padding: 2px 8px; border-radius: 999px; font-weight: 700; font-size: 12.5px; text-align: center; }
+.gsc-pos.top { background: #dff0d8; color: #1f6a2c; } .gsc-pos.p1 { background: var(--accent-50); color: var(--accent); }
+.gsc-pos.p2 { background: #fbefd9; color: #8a5a12; } .gsc-pos.far { background: #eee9df; color: var(--muted); }
+.gsc-err { background: #fbeaea; color: #8a2f33; }
+.adm-note code, .adm-health-row code { font-size: 12px; padding: 1px 5px; border-radius: 5px; background: rgba(0,0,0,.06); }
