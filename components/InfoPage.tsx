@@ -25,6 +25,7 @@ const COMPANY_LINKS = [
 const LEGAL_LINKS = [
   { href: '/privacy', label: 'Privacy policy' },
   { href: '/terms', label: 'Terms of use' },
+  { href: '/cookies', label: 'Cookie policy' },
   { href: '/disclaimer', label: 'Disclaimer' },
   { href: '/map-data', label: 'Map data & OpenStreetMap' },
 ];
