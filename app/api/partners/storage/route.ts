@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import sharp from 'sharp';
+import { GridFSBucket } from 'mongodb';
 import { query } from '@/lib/pg';
+import { getMongoDb, usingMongo } from '@/lib/mongodb';
 import { getStaffUser } from '@/lib/auth';
 import { tokenIsValid } from '@/lib/partners-engine';
 
@@ -14,6 +16,48 @@ const BUCKETS = new Set(['submission-media', 'project-media']);
 const MAX_BYTES = 25 * 1024 * 1024;
 
 function key(bucket: string, path: string) { return `${bucket}/${path}`; }
+
+// On MongoDB the files live in a GridFS bucket (files can exceed the 16 MB
+// document limit); on Postgres in the partners_media table.
+const gridfs = async () => new GridFSBucket(await getMongoDb(), { bucketName: 'partners_media' });
+
+async function saveFile(filename: string, contentType: string, metadata: Record<string, string>, buf: Buffer) {
+  if (usingMongo()) {
+    const bucket = await gridfs();
+    for (const f of await bucket.find({ filename }).toArray()) await bucket.delete(f._id);
+    await new Promise<void>((resolve, reject) => {
+      const up = bucket.openUploadStream(filename, { metadata: { ...metadata, contentType } });
+      up.on('finish', () => resolve()).on('error', reject);
+      up.end(buf);
+    });
+    return;
+  }
+  // Overwrite semantics: drop any existing versions of this exact key first.
+  await query(`DELETE FROM "partners_media" WHERE filename = $1`, [filename]);
+  await query(
+    `INSERT INTO "partners_media" (filename, content_type, metadata, data)
+     VALUES ($1, $2, $3::jsonb, $4)`,
+    [filename, contentType, JSON.stringify(metadata), buf],
+  );
+}
+
+async function loadFile(filename: string): Promise<{ content_type: string; data: Buffer } | null> {
+  if (usingMongo()) {
+    const bucket = await gridfs();
+    const [f] = await bucket.find({ filename }).sort({ uploadDate: -1 }).limit(1).toArray();
+    if (!f) return null;
+    const chunks: Buffer[] = [];
+    await new Promise<void>((resolve, reject) => {
+      bucket.openDownloadStream(f._id).on('data', (c: Buffer) => chunks.push(c)).on('end', () => resolve()).on('error', reject);
+    });
+    return { content_type: String(f.metadata?.contentType || ''), data: Buffer.concat(chunks) };
+  }
+  const res = await query<{ content_type: string; data: Buffer }>(
+    `SELECT content_type, data FROM "partners_media" WHERE filename = $1 ORDER BY upload_date DESC LIMIT 1`,
+    [filename],
+  );
+  return res.rows[0] || null;
+}
 
 // Small WebP thumbnails (?w=96 for map markers) of public project images, kept
 // in-process so repeat marker loads skip the database and sharp entirely.
@@ -62,13 +106,7 @@ export async function POST(req: NextRequest) {
   }
 
   const filename = key(bucketName, path);
-  // Overwrite semantics: drop any existing versions of this exact key first.
-  await query(`DELETE FROM "partners_media" WHERE filename = $1`, [filename]);
-  await query(
-    `INSERT INTO "partners_media" (filename, content_type, metadata, data)
-     VALUES ($1, $2, $3::jsonb, $4)`,
-    [filename, contentType, JSON.stringify({ bucket: bucketName, path }), buf],
-  );
+  await saveFile(filename, contentType, { bucket: bucketName, path }, buf);
 
   return NextResponse.json({ data: { path }, error: null });
 }
@@ -99,11 +137,7 @@ export async function GET(req: NextRequest) {
     return new NextResponse(hit, { headers: { 'Content-Type': 'image/webp', 'Content-Length': String(hit.byteLength), 'Cache-Control': publicCache } });
   }
 
-  const res = await query<{ content_type: string; data: Buffer }>(
-    `SELECT content_type, data FROM "partners_media" WHERE filename = $1 ORDER BY upload_date DESC LIMIT 1`,
-    [filename],
-  );
-  const fileDoc = res.rows[0];
+  const fileDoc = await loadFile(filename);
   if (!fileDoc) return NextResponse.json({ error: { message: 'Not found' } }, { status: 404 });
 
   const body = fileDoc.data;

@@ -1,13 +1,15 @@
+import { randomUUID } from 'node:crypto';
 import { gzipSync, gunzipSync } from 'node:zlib';
-import { getDb } from './mongodb';
+import { Binary } from 'mongodb';
+import { getDb, getMongoDb, usingMongo } from './mongodb';
 import { DOC_TABLES } from './mongo-compat';
 import { query } from './pg';
 
 // Whole-database backups for the super-admin "Backups" tab.
 //
 // - A snapshot is every table's documents as one gzipped JSON blob, stored in
-//   the `backups` table (bytea column) in the same Postgres database. (This used
-//   to be a MongoDB GridFS bucket.)
+//   the `backups` table (bytea column) in the same Postgres database — or the
+//   `backups` collection (BinData) when the app runs on MongoDB.
 // - One is taken automatically per day (when an admin opens the tab — no cron
 //   needed) and on demand. The newest KEEP_SNAPSHOTS are kept.
 // - Password hashes are never written into a backup or a download.
@@ -74,7 +76,14 @@ function toInfo(r: BackupRow): SnapshotInfo {
   };
 }
 
+type MongoBackup = BackupRow & { _id: string; filename: string; gz?: Binary };
+const backupsColl = async () => (await getMongoDb()).collection<MongoBackup>('backups');
+
 export async function listSnapshots(): Promise<SnapshotInfo[]> {
+  if (usingMongo()) {
+    const rows = await (await backupsColl()).find({}, { projection: { gz: 0 } }).sort({ created_at: -1 }).toArray();
+    return rows.map(toInfo);
+  }
   const res = await query<BackupRow>(
     `SELECT id, created_at, reason, size, counts FROM "backups" ORDER BY created_at DESC`,
   );
@@ -86,6 +95,15 @@ export async function createSnapshot(reason: 'auto' | 'manual'): Promise<Snapsho
   const created_at = new Date().toISOString();
   const gz = gzipSync(Buffer.from(JSON.stringify({ created_at, reason, data })));
   const filename = `mappingg-backup-${created_at.replace(/[:.]/g, '-')}.json.gz`;
+
+  if (usingMongo()) {
+    const coll = await backupsColl();
+    const id = randomUUID();
+    await coll.insertOne({ _id: id, id, filename, created_at: new Date(created_at), reason, size: gz.length, counts, gz: new Binary(gz) });
+    const keep = await coll.find({}, { projection: { _id: 1 } }).sort({ created_at: -1 }).limit(KEEP_SNAPSHOTS).toArray();
+    await coll.deleteMany({ _id: { $nin: keep.map((k) => k._id) } });
+    return { id, created_at, reason, size: gz.length, counts };
+  }
 
   const res = await query<{ id: string }>(
     `INSERT INTO "backups" (filename, created_at, reason, size, counts, gz)
@@ -113,6 +131,11 @@ export async function ensureDailySnapshot(): Promise<SnapshotInfo | null> {
 
 export async function readSnapshotGz(id: string): Promise<{ gz: Buffer; info: SnapshotInfo } | null> {
   if (!isUuid(id)) return null;
+  if (usingMongo()) {
+    const row = await (await backupsColl()).findOne({ _id: id });
+    if (!row?.gz) return null;
+    return { gz: Buffer.from(row.gz.buffer), info: toInfo(row) };
+  }
   const res = await query<BackupRow & { gz: Buffer }>(
     `SELECT id, created_at, reason, size, counts, gz FROM "backups" WHERE id = $1`,
     [id],

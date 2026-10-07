@@ -20,9 +20,11 @@
 # timestamped snapshots written by `npm run sync:supabase` (large; stay local)
 /migration/backup/supabase-*/
 /migration/backup/pg-snapshot-*/
+/migration/backup/pg-export-*/
 
 # misc
 .DS_Store
 *.pem
 npm-debug.log*
 next-env.d.ts
+/migration/backup/mongo-before-merge/

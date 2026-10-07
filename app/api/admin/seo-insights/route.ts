@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getDb } from '@/lib/mongodb';
 import { query } from '@/lib/pg';
+import { getMongoDb, usingMongo } from '@/lib/mongodb';
 import { hasPermission } from '@/lib/staff';
 import { countPosts } from '@/lib/blog';
 import { getPublicSettings } from '@/lib/site-settings';
@@ -63,8 +64,16 @@ export async function GET() {
   const db = await getDb();
 
   // Pins without the heavy base64 images — just whether they have one. Computed
-  // in SQL so the image bytes never leave the database.
-  const pins = (await query<{ d: Pin }>(
+  // inside the database (SQL or an aggregation) so the image bytes never leave it.
+  const FIELDS = ['title', 'description', 'developer', 'location', 'price', 'status', 'type', 'key_usp', 'rera_number',
+    'custom_fields', 'possession_timeline', 'launch_date', 'created_at', 'hidden'];
+  const hasData = (f: string) => ({ $and: [{ $eq: [{ $type: `$${f}` }, 'string'] }, { $gt: [{ $strLenBytes: `$${f}` }, 0] }] });
+  const pins: Pin[] = usingMongo()
+    ? await (await getMongoDb()).collection('pins').aggregate<Pin>([{ $project: {
+        _id: 0, ...Object.fromEntries(FIELDS.map((f) => [f, 1])),
+        hasImage: hasData('image'), hasBrochure: hasData('brochure_image'),
+      } }]).toArray()
+    : (await query<{ d: Pin }>(
     `SELECT jsonb_build_object(
        'title', doc->'title', 'description', doc->'description', 'developer', doc->'developer',
        'location', doc->'location', 'price', doc->'price', 'status', doc->'status',

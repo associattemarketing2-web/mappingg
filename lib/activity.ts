@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { headers } from 'next/headers';
 import { query } from './pg';
-import { getDb } from './mongodb';
+import { getDb, getMongoDb, usingMongo } from './mongodb';
 import { touchBuyerLead } from './signup-leads';
 
 // Account activity log for the super admin's Accounts page: sign-ups, logins,
@@ -36,6 +36,13 @@ export interface ActivityEvent {
 
 let ready: Promise<void> | null = null;
 function ensureTable(): Promise<void> {
+  if (usingMongo()) {
+    ready ??= getMongoDb().then(async (db) => {
+      await db.collection('account_activity').createIndex({ user_id: 1, at: -1 });
+      await db.collection('account_activity').createIndex({ at: -1 });
+    }).catch((e) => { ready = null; throw e; });
+    return ready;
+  }
   ready ??= query(`
     CREATE TABLE IF NOT EXISTS "account_activity" (id text PRIMARY KEY, doc jsonb NOT NULL DEFAULT '{}'::jsonb);
     CREATE INDEX IF NOT EXISTS account_activity_user ON "account_activity" ((doc->>'user_id'));
@@ -72,7 +79,8 @@ export async function logActivity(e: {
     await ensureTable();
     const id = randomUUID();
     const doc: ActivityEvent = { id, ...e, email: e.email.toLowerCase(), at: new Date().toISOString(), ...requestInfo() };
-    await query(`INSERT INTO "account_activity" (id, doc) VALUES ($1, $2::jsonb)`, [id, JSON.stringify(doc)]);
+    if (usingMongo()) await (await getMongoDb()).collection('account_activity').insertOne({ _id: id as never, ...doc });
+    else await query(`INSERT INTO "account_activity" (id, doc) VALUES ($1, $2::jsonb)`, [id, JSON.stringify(doc)]);
   } catch (err) {
     console.warn('[activity] could not log', e.type, err instanceof Error ? err.message : err);
   }
@@ -96,6 +104,12 @@ export async function listActivity(opts: { userId?: string; limit?: number } = {
   try {
     await ensureTable();
     const limit = Math.min(Math.max(opts.limit ?? 100, 1), 1000);
+    if (usingMongo()) {
+      const docs = await (await getMongoDb()).collection('account_activity')
+        .find(opts.userId ? { user_id: opts.userId } : {}, { projection: { _id: 0 } })
+        .sort({ at: -1 }).limit(limit).toArray();
+      return docs as unknown as ActivityEvent[];
+    }
     const res = opts.userId
       ? await query<{ doc: ActivityEvent }>(`SELECT doc FROM "account_activity" WHERE doc->>'user_id' = $1 ORDER BY doc->>'at' DESC LIMIT ${limit}`, [opts.userId])
       : await query<{ doc: ActivityEvent }>(`SELECT doc FROM "account_activity" ORDER BY doc->>'at' DESC LIMIT ${limit}`);
@@ -109,6 +123,11 @@ export async function listActivity(opts: { userId?: string; limit?: number } = {
 export async function lastActivityByUser(): Promise<Map<string, string>> {
   try {
     await ensureTable();
+    if (usingMongo()) {
+      const rows = await (await getMongoDb()).collection('account_activity')
+        .aggregate<{ _id: string; at: string }>([{ $group: { _id: '$user_id', at: { $max: '$at' } } }]).toArray();
+      return new Map(rows.map((r) => [r._id, r.at]));
+    }
     const res = await query<{ uid: string; at: string }>(
       `SELECT doc->>'user_id' AS uid, max(doc->>'at') AS at FROM "account_activity" GROUP BY 1`,
     );

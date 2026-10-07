@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query } from '@/lib/pg';
+import { getMongoDb, usingMongo } from '@/lib/mongodb';
 import { localitiesOf } from '@/lib/locality';
 import { slugForProject, primaryLocality, STATUS_ROUTES, type Pin } from '@/lib/seo/entities';
 import { slugify } from '@/lib/seo/slug';
@@ -26,6 +27,20 @@ type Row = {
   number: string | null; thumb: string | null;
 };
 
+/** MongoDB version of the viewport query: same fields, coordinates compared as numbers. */
+async function mongoRows(minLat: number, maxLat: number, minLng: number, maxLng: number, limit: number): Promise<Row[]> {
+  const toNum = (f: string) => ({ $convert: { input: f, to: 'double', onError: null, onNull: null } });
+  const str = (f: string) => ({ $convert: { input: f, to: 'string', onError: null, onNull: null } });
+  return (await getMongoDb()).collection('pins').aggregate<Row>([
+    { $match: { hidden: { $ne: true } } },
+    { $project: { _id: 0, id: str('$id'), latN: toNum('$lat'), lngN: toNum('$lng'), title: 1, status: 1, type: 1,
+      developer: 1, location: 1, number: str('$number'), thumb: '$image_meta.thumbnailUrl' } },
+    { $match: { latN: { $gte: minLat, $lte: maxLat }, lngN: { $gte: minLng, $lte: maxLng } } },
+    { $limit: limit },
+    { $addFields: { lat: { $toString: '$latN' }, lng: { $toString: '$lngN' } } },
+  ]).toArray();
+}
+
 function num(v: string | null): number | null {
   if (v == null || v === '') return null;
   const n = Number(v);
@@ -44,8 +59,9 @@ export async function GET(req: NextRequest) {
   const zoom = num(sp.get('zoom'));
   const limit = Math.min(Math.max(num(sp.get('limit')) ?? DEFAULT_LIMIT, 1), 2000);
 
-  // Bounds in SQL (index-backed). hidden pins stay staff-only / out of the public API.
-  const { rows } = await query<Row>(
+  const [minLat, maxLat, minLng, maxLng] = [Math.min(south, north), Math.max(south, north), Math.min(west, east), Math.max(west, east)];
+  // Bounds in the database (index-backed in SQL). hidden pins stay staff-only / out of the public API.
+  const rows = usingMongo() ? await mongoRows(minLat, maxLat, minLng, maxLng, limit) : (await query<Row>(
     `SELECT id,
             doc->>'lat'       AS lat,
             doc->>'lng'       AS lng,
@@ -61,8 +77,8 @@ export async function GET(req: NextRequest) {
        AND (doc->>'lat')::double precision BETWEEN $1 AND $2
        AND (doc->>'lng')::double precision BETWEEN $3 AND $4
      LIMIT $5`,
-    [Math.min(south, north), Math.max(south, north), Math.min(west, east), Math.max(west, east), limit],
-  );
+    [minLat, maxLat, minLng, maxLng, limit],
+  )).rows;
 
   // Optional filters (small dataset → applied in-memory after the index scan).
   const statusParam = (sp.get('status') || '').toLowerCase();

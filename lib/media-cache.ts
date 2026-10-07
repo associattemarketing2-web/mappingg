@@ -1,5 +1,6 @@
 import sharp from 'sharp';
 import { query } from './pg';
+import { getMongoDb, usingMongo } from './mongodb';
 import { decodeDataUrl, mediaVersion } from './pin-media';
 
 // -----------------------------------------------------------------------------
@@ -101,17 +102,24 @@ export function versionMatches(dataUrl: string, version: string): boolean {
 export function warmPinThumbs(): void {
   if (store.warming || Date.now() - store.lastWarm < WARM_EVERY_MS) return;
   store.warming = (async () => {
-    const { rows: idRows } = await query<{ id: string }>(
-      `SELECT id FROM pins
-        WHERE (doc->>'hidden') IS DISTINCT FROM 'true' AND left(doc->>'image', 5) = 'data:'`,
-    );
-    const ids = idRows.map((r) => r.id);
+    const mongo = usingMongo() ? (await getMongoDb()).collection('pins') : null;
+    // Public pins with an inline logo (ids first, then images in small batches).
+    const ids = mongo
+      ? (await mongo.find({ hidden: { $ne: true }, image: { $regex: '^data:' } }, { projection: { id: 1 } }).toArray()).map((d) => String(d.id))
+      : (await query<{ id: string }>(
+        `SELECT id FROM pins
+          WHERE (doc->>'hidden') IS DISTINCT FROM 'true' AND left(doc->>'image', 5) = 'data:'`,
+      )).rows.map((r) => r.id);
     for (let i = 0; i < ids.length; i += WARM_BATCH) {
-      const { rows } = await query<{ id: string; img: string }>(
-        `SELECT id, doc->>'image' AS img FROM pins
-          WHERE id = ANY($1::text[]) AND (doc->>'hidden') IS DISTINCT FROM 'true'`,
-        [ids.slice(i, i + WARM_BATCH)],
-      );
+      const batch = ids.slice(i, i + WARM_BATCH);
+      const rows = mongo
+        ? (await mongo.find({ id: { $in: batch.flatMap((x) => [x, Number(x)]) }, hidden: { $ne: true } }, { projection: { id: 1, image: 1 } }).toArray())
+          .map((d) => ({ id: String(d.id), img: String(d.image || '') }))
+        : (await query<{ id: string; img: string }>(
+          `SELECT id, doc->>'image' AS img FROM pins
+            WHERE id = ANY($1::text[]) AND (doc->>'hidden') IS DISTINCT FROM 'true'`,
+          [batch],
+        )).rows;
       await Promise.all(rows.map((r) => {
         if (!r.img || !r.img.startsWith('data:')) return null;
         const key = mediaKey('pins', r.id, 'image', mediaVersion(r.img), MARKER_THUMB_WIDTH);
