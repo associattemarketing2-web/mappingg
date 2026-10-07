@@ -3,6 +3,7 @@ import './globals.css';
 import PwaRegister from '@/components/PwaRegister';
 import SmoothLinks from '@/components/SmoothLinks';
 import LockRedirect from '@/components/LockRedirect';
+import CookieConsent from '@/components/CookieConsent';
 import { getPublicSettings } from '@/lib/site-settings';
 import { jsonLd, organizationSchema, websiteSchema } from '@/lib/seo/schema';
 
@@ -58,6 +59,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <head>
         {/* Google Tag Manager — kept first in <head>, as Google recommends. */}
         {gtm ? (
+          // Google Consent Mode defaults: analytics/ad cookies stay off until the
+          // visitor accepts in the cookie banner (components/CookieConsent.tsx),
+          // whose choice is remembered in the mg_cookie_consent cookie.
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}var c=/(?:^|; )mg_cookie_consent=all/.test(document.cookie)?'granted':'denied';gtag('consent','default',{analytics_storage:c,ad_storage:c,ad_user_data:c,ad_personalization:c,functionality_storage:'granted',security_storage:'granted',wait_for_update:500});`,
+            }}
+          />
+        ) : null}
+        {gtm ? (
           // eslint-disable-next-line @next/next/next-script-for-ga
           <script
             dangerouslySetInnerHTML={{
@@ -102,6 +113,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <LockRedirect />
         <SmoothLinks />
         {children}
+        <CookieConsent />
         <PwaRegister />
         {/* The "Install app" button lives in the super-admin layout only. */}
       </body>

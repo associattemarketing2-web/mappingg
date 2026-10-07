@@ -442,7 +442,7 @@ export const LANDING_BODY = `
       <div><h4>For business</h4><ul><li><a href="#" class="open-signup" data-role="developer">Developers</a></li><li><a href="#" class="open-signup" data-role="agent">Channel partners</a></li><li><a href="/advertise">Advertise</a></li><li><a href="/contact">Contact</a></li></ul></div>
       <div><h4>Company</h4><ul><li><a href="/about">About</a></li><li><a href="/blog">Blog</a></li><li><a href="/careers">Careers</a></li><li><a href="/privacy">Privacy policy</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><div>© 2026 Mappingg.com. All rights reserved.</div><div class="legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/disclaimer">Disclaimer</a><a href="/map-data">Map data</a></div></div>
+    <div class="footer-bottom"><div>© 2026 Mappingg.com. All rights reserved.</div><div class="legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/cookies">Cookies</a><a href="/disclaimer">Disclaimer</a><a href="/map-data">Map data</a></div></div>
     <p class="disclaimer">RERA numbers are verified on the <a href="https://maharera.maharashtra.gov.in/" target="_blank" rel="noopener">MahaRERA website</a>. Other project information comes from developers and is shown for reference only. Please confirm all details with the developer and MahaRERA before making a decision.</p>
   </div>
 </footer>
