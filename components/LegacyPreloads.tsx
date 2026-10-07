@@ -37,6 +37,9 @@ export default function LegacyPreloads({ slug }: { slug: string }) {
     <>
       {/* No crossOrigin: tiles and these libraries load as plain (non-CORS) requests. */}
       {[...origins, ...PRECONNECT].map((o) => <link key={o} rel="preconnect" href={o} />)}
+      {/* The map apps' Google Fonts (the root layout no longer preconnects these site-wide). */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       <link rel="preload" href={`/legacy/${slug}.json`} as="fetch" crossOrigin="anonymous" />
       {styles.map((href) => <link key={href} rel="preload" href={href} as="style" />)}
       {scripts.map((src) => <link key={src} rel="preload" href={src} as="script" />)}

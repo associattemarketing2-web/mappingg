@@ -145,13 +145,13 @@ export default function SiteHeader() {
 
           <div className={`shd-mobile${open ? ' open' : ''}`}>
             {LINKS.map((l) => (
-              <Link key={l.href} href={l.href} className={l.match(pathname) ? 'active' : ''} onClick={() => setOpen(false)}>
+              <Link key={l.href} href={l.href} prefetch={false} className={l.match(pathname) ? 'active' : ''} onClick={() => setOpen(false)}>
                 {l.label}
               </Link>
             ))}
             <div className="shd-more">
               {MORE_LINKS.map((l) => (
-                <Link key={l.href} href={l.href} className={pathname === l.href ? 'active' : ''} onClick={() => setOpen(false)}>
+                <Link key={l.href} href={l.href} prefetch={false} className={pathname === l.href ? 'active' : ''} onClick={() => setOpen(false)}>
                   {l.label}
                 </Link>
               ))}

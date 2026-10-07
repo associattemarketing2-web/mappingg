@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import sharp from 'sharp';
 import { query } from '@/lib/pg';
 import { getStaffUser } from '@/lib/auth';
 import { tokenIsValid } from '@/lib/partners-engine';
@@ -13,6 +14,20 @@ const BUCKETS = new Set(['submission-media', 'project-media']);
 const MAX_BYTES = 25 * 1024 * 1024;
 
 function key(bucket: string, path: string) { return `${bucket}/${path}`; }
+
+// Small WebP thumbnails (?w=96 for map markers) of public project images, kept
+// in-process so repeat marker loads skip the database and sharp entirely.
+const THUMBS = new Map<string, Uint8Array<ArrayBuffer>>();
+const MAX_THUMBS = 2000;
+async function thumbnail(bytes: Buffer, width: number): Promise<Uint8Array<ArrayBuffer> | null> {
+  try {
+    return new Uint8Array(await sharp(bytes).rotate()
+      .resize({ width, height: width, fit: 'inside', withoutEnlargement: true })
+      .webp({ quality: 80 }).toBuffer());
+  } catch {
+    return null;
+  }
+}
 
 // ----------------------------------------------------------------- upload
 export async function POST(req: NextRequest) {
@@ -73,6 +88,17 @@ export async function GET(req: NextRequest) {
   }
 
   const filename = key(bucketName, path);
+  const publicMedia = isPublic && bucketName === 'project-media';
+  const w = Math.min(Math.max(parseInt(req.nextUrl.searchParams.get('w') || '', 10) || 0, 0), 1600);
+  // Public images rarely change: let browsers reuse them for a day and refresh
+  // in the background for a week (was 1 hour, which Lighthouse flagged).
+  const publicCache = 'public, max-age=86400, stale-while-revalidate=604800';
+  const thumbKey = `${filename}@${w}`;
+  const hit = publicMedia && w ? THUMBS.get(thumbKey) : undefined;
+  if (hit) {
+    return new NextResponse(hit, { headers: { 'Content-Type': 'image/webp', 'Content-Length': String(hit.byteLength), 'Cache-Control': publicCache } });
+  }
+
   const res = await query<{ content_type: string; data: Buffer }>(
     `SELECT content_type, data FROM "partners_media" WHERE filename = $1 ORDER BY upload_date DESC LIMIT 1`,
     [filename],
@@ -82,12 +108,20 @@ export async function GET(req: NextRequest) {
 
   const body = fileDoc.data;
   const ct = fileDoc.content_type || 'application/octet-stream';
+  if (publicMedia && w && ct.startsWith('image/') && ct !== 'image/svg+xml') {
+    const small = await thumbnail(body, w);
+    if (small) {
+      if (THUMBS.size >= MAX_THUMBS) THUMBS.delete(THUMBS.keys().next().value as string);
+      THUMBS.set(thumbKey, small);
+      return new NextResponse(small, { headers: { 'Content-Type': 'image/webp', 'Content-Length': String(small.byteLength), 'Cache-Control': publicCache } });
+    }
+  }
   return new NextResponse(new Uint8Array(body), {
     status: 200,
     headers: {
       'Content-Type': ct,
       'Content-Length': String(body.byteLength),
-      'Cache-Control': isPublic ? 'public, max-age=3600' : 'private, no-store',
+      'Cache-Control': isPublic ? publicCache : 'private, no-store',
     },
   });
 }

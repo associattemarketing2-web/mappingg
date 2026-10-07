@@ -9,7 +9,7 @@
   --water: #2d6fa3; --water-50: #e4f0fa; --water-200: #a9d0ef;
   --road: #e3a83e; --road-50: #fdf3df;
   --earth: #a9532d; --earth-50: #f8e9e1;
-  --gold: #b0924f;
+  --gold: #7f6527;
   --f: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --sh-sm: 0 1px 2px rgba(29,43,38,.06);
   --sh: 0 18px 40px -24px rgba(29,43,38,.30);
@@ -163,7 +163,7 @@
 .ipg-legal { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 56px; align-items: start; }
 @media (max-width: 960px) { .ipg-legal { grid-template-columns: 1fr; gap: 28px; } }
 .ipg-toc { position: sticky; top: 104px; padding: 20px; border-radius: 20px; background: var(--land); border: 1px solid var(--line); max-height: calc(100vh - 128px); overflow: auto; }
-.ipg-toc h4 { font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 10px; }
+.ipg-toc h2, .ipg-toc h4 { font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 10px; }
 .ipg-toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; counter-reset: toc; }
 .ipg-toc a { counter-increment: toc; display: flex; gap: 10px; padding: 7px 10px; border-radius: 10px; font-size: 13.5px; color: var(--text); line-height: 1.4; transition: background .2s, color .2s; }
 .ipg-toc a::before { content: counter(toc, decimal-leading-zero); font-size: 11.5px; font-weight: 700; color: var(--muted); padding-top: 1px; }
@@ -177,7 +177,7 @@
 /* Tablet & phone: the TOC becomes a sticky, sideways-scrolling row of chips. */
 @media (max-width: 960px) {
   .ipg-toc { top: 88px; z-index: 5; padding: 10px; margin: 0 -4px; max-height: none; border-radius: 16px; background: rgba(246,244,238,.95); backdrop-filter: blur(10px); }
-  .ipg-toc h4, .ipg-toc .toc-other { display: none; }
+  .ipg-toc h2, .ipg-toc h4, .ipg-toc .toc-other { display: none; }
   .ipg-toc ol { flex-direction: row; gap: 6px; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x proximity; }
   .ipg-toc ol::-webkit-scrollbar { display: none; }
   .ipg-toc li { flex: none; scroll-snap-align: start; }
@@ -249,11 +249,11 @@
 @media (max-width: 880px) { .ipg-foot .cols { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 480px) { .ipg-foot .cols { grid-template-columns: 1fr; } }
 .ipg-foot .brand { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-.ipg-foot .brand .mark { width: 26px; height: 38px; background: url('/img/mappingg-icon-mark-sm.png') center/contain no-repeat; }
+.ipg-foot .brand .mark { width: 26px; height: 38px; background: url('/img/mappingg-icon-mark-sm.webp') center/contain no-repeat; }
 .ipg-foot .brand b { font-weight: 800; font-size: 20px; letter-spacing: -.03em; color: #0b4a3b; }
 .ipg-foot .brand b em { font-style: normal; color: var(--gold); }
 .ipg-foot .about p { max-width: 300px; }
-.ipg-foot h4 { font-size: 13px; color: var(--ink); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 14px; }
+.ipg-foot h3, .ipg-foot h4 { font-size: 13px; color: var(--ink); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 14px; }
 .ipg-foot ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
 .ipg-foot ul a:hover, .ipg-foot ul a[aria-current="page"] { color: var(--forest); }
 .ipg-foot ul a[aria-current="page"] { font-weight: 600; }

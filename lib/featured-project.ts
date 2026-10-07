@@ -83,7 +83,8 @@ export async function getFeaturedProject(): Promise<FeaturedProject | null> {
     return {
       id: p.id,
       title: str(p.title)!,
-      logo: image ? (image.startsWith('data:') ? mediaUrl('pins', p.id, 'image', image) : image) : null,
+      // Shown at 128px — a 2x (256px) thumbnail instead of the full-size upload.
+      logo: image ? (image.startsWith('data:') ? mediaUrl('pins', p.id, 'image', image, 256) : image.startsWith('/api/partners/storage?') ? image + '&w=256' : image) : null,
       videoId: youTubeId(p.youtube_video_url)!,
       developer: on('developer') ? str(p.developer) : undefined,
       location: on('location') ? str(p.location) : undefined,

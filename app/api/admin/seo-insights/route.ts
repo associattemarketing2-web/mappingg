@@ -35,6 +35,13 @@ async function liveTags(gsc: string, gtm: string, ga: string) {
   try {
     const res = await fetch(url, { cache: 'no-store', signal: AbortSignal.timeout(6000), headers: { 'User-Agent': 'MappinggHealthCheck/1.0' } });
     const html = await res.text();
+    // GA4 normally runs inside the GTM container (no gtag.js in the page then),
+    // so when it isn't in the HTML, check the published container instead.
+    let gaLive = !!ga && html.includes(`gtag/js?id=${ga}`);
+    if (!gaLive && ga && gtm && html.includes(gtm)) {
+      const c = await fetch(`https://www.googletagmanager.com/gtm.js?id=${gtm}`, { cache: 'no-store', signal: AbortSignal.timeout(6000) }).catch(() => null);
+      gaLive = !!c?.ok && (await c.text()).includes(ga);
+    }
     const meta = html.match(/<meta[^>]+name="google-site-verification"[^>]*>/i)?.[0] || '';
     return {
       url,
@@ -42,7 +49,7 @@ async function liveTags(gsc: string, gtm: string, ga: string) {
       gsc: !!gsc && meta.includes(`content="${gsc}"`),
       gscFound: meta.match(/content="([^"]*)"/)?.[1] || '',
       gtm: !!gtm && html.includes(gtm),
-      ga: !!ga && html.includes(`gtag/js?id=${ga}`),
+      ga: gaLive,
     };
   } catch {
     return null;
@@ -121,7 +128,7 @@ export async function GET() {
     { label: 'Sitemap.xml & robots.txt', ok: urls.length > 0 },
     { label: 'Search Console verification tag live', ok: !!live?.gsc, fix: live?.gscFound ? `Live tag is "${live.gscFound}" — doesn't match Settings` : liveFix('Meta tag') },
     { label: 'Google Tag Manager live', ok: !!live?.gtm, fix: liveFix(gtm || 'GTM') },
-    { label: 'Google Analytics 4 (gtag.js) live', ok: !!live?.ga, fix: liveFix(ga || 'gtag.js') },
+    { label: 'Google Analytics 4 live (via GTM)', ok: !!live?.ga, fix: live ? `${ga} not found on the page or in ${gtm}` : liveFix('GA4') },
     { label: 'Search Console API connected', ok: gscConfigured(), fix: 'Add service-account env vars' },
     { label: 'At least 3 published blog posts', ok: posts.published >= 3, fix: `${posts.published} published so far` },
     { label: 'Project pages ≥ 80% complete', ok: avgCompleteness >= 80, fix: `${avgCompleteness}% complete` },

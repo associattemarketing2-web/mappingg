@@ -117,7 +117,7 @@ export default function InfoPage({
 function FootCol({ title, links, path }: { title: string; links: { href: string; label: string }[]; path: string }) {
   return (
     <div>
-      <h4>{title}</h4>
+      <h3>{title}</h3>
       <ul>
         {links.map((l) => (
           <li key={l.href}>
@@ -155,14 +155,14 @@ export function LegalDoc({
       <div className="container">
         <div className="ipg-legal">
           <aside className="ipg-toc" aria-label="On this page">
-            <h4>On this page</h4>
+            <h2>On this page</h2>
             <ol>
               {sections.map((s) => (
                 <li key={s.id}><a href={`#${s.id}`}>{s.title}</a></li>
               ))}
             </ol>
             <div className="toc-other">
-              <h4>Legal</h4>
+              <h2>Legal</h2>
               {LEGAL_LINKS.map((l) => (
                 <Link key={l.href} href={l.href} aria-current={l.href === path ? 'page' : undefined}>{l.label}</Link>
               ))}
