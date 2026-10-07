@@ -48,12 +48,14 @@ export default async function BlogArticle({ params }: { params: { slug: string }
   if (!post) notFound();
 
   const url = `${SITE_URL}/blog/${post.slug}`;
+  // Structured data wants an absolute image URL; covers may be site-relative (/img/blog/...).
+  const cover = post.cover_image?.startsWith('/') ? `${SITE_URL}${post.cover_image}` : post.cover_image;
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.seo_description || post.excerpt || '',
-    image: post.cover_image ? [post.cover_image] : [`${SITE_URL}/img/mappingg-icon-mark.png`],
+    image: cover ? [cover] : [`${SITE_URL}/img/mappingg-icon-mark.png`],
     datePublished: post.published_at || post.created_at,
     dateModified: post.updated_at || post.published_at || post.created_at,
     author: { '@type': 'Organization', name: post.author || 'Mappingg' },
