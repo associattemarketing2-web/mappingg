@@ -15,7 +15,7 @@
 /* top bar */
 .adm2-top { position: sticky; top: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; gap: 14px; height: 62px; padding: 0 22px; background: #fff; border-bottom: 1px solid var(--line); }
 .adm2-brand { display: flex; align-items: center; gap: 10px; }
-.adm2-brand .mark { width: 28px; height: 40px; flex-shrink: 0; display: inline-block; background: url('/img/mappingg-icon-mark-sm.png') center/contain no-repeat; }
+.adm2-brand .mark { width: 28px; height: 40px; flex-shrink: 0; display: inline-block; background: url('/img/mappingg-icon-mark-sm.webp') center/contain no-repeat; }
 .adm2-brand b { font-size: 18px; font-weight: 800; letter-spacing: -.03em; color: #0b4a3b; }
 .adm2-brand b em { font-style: normal; color: #b0924f; }
 .adm2-brand small { display: block; font-size: 10.5px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }

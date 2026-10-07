@@ -55,18 +55,30 @@ export default function LandingClient() {
     // parallel and starts the globe when it arrives. A failure to load it just
     // leaves the globe's project counts without the 3D sphere.
     const landing = runLanding();
-    // Start the download once the browser is idle (first paint and the page's
-    // own scripts come first), with a deadline so the globe never waits long.
     // Visitors who asked their device for less motion or less data skip the
     // ~600 KB 3D globe entirely; they still get its project-count overlay.
     const nav = navigator as Navigator & { connection?: { saveData?: boolean } };
     const skipGlobe = window.matchMedia('(prefers-reduced-motion: reduce)').matches || !!nav.connection?.saveData;
+    // three.js parses for ~0.5 s on a mid-range phone, so it waits for the first
+    // interaction (pointer/scroll/key/touch) — or 12 s after load for a visitor
+    // who just watches — keeping it well clear of the loading window.
+    const INTERACT = ['pointerdown', 'pointermove', 'wheel', 'scroll', 'keydown', 'touchstart'];
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let trigger: (() => void) | undefined;
     const three = new Promise<void>((resolve) => {
       if (skipGlobe) return resolve();
-      const go = () => { if (cancelled) resolve(); else loadOnce('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', 'data-mpg-three').then(resolve); };
-      const w = window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number };
-      if (typeof w.requestIdleCallback === 'function') w.requestIdleCallback(go, { timeout: 2500 });
-      else go();
+      let started = false;
+      const go = () => {
+        if (started) return;
+        started = true;
+        INTERACT.forEach((t) => window.removeEventListener(t, trigger!));
+        if (timer) clearTimeout(timer);
+        if (cancelled) resolve(); else loadOnce('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', 'data-mpg-three').then(resolve);
+      };
+      trigger = go;
+      INTERACT.forEach((t) => window.addEventListener(t, go, { passive: true, once: true }));
+      const afterLoad = () => { timer = setTimeout(go, 12000); };
+      if (document.readyState === 'complete') afterLoad(); else window.addEventListener('load', afterLoad, { once: true });
     });
     Promise.all([landing, three]).then(() => {
       if (cancelled) return;
@@ -78,6 +90,8 @@ export default function LandingClient() {
 
     return () => {
       cancelled = true;
+      if (timer) clearTimeout(timer);
+      if (trigger) INTERACT.forEach((t) => window.removeEventListener(t, trigger!));
       // Stop the globe animation + release listeners when leaving the page.
       const w = window as unknown as { __mpgCleanup?: () => void };
       if (typeof w.__mpgCleanup === 'function') w.__mpgCleanup();

@@ -70,37 +70,25 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             }}
           />
         ) : null}
-        {ga ? (
-          // Google tag (gtag.js) for GA4 — after the Consent Mode defaults above.
-          // eslint-disable-next-line @next/next/next-script-for-ga
-          <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga}`} />
-        ) : null}
-        {ga ? (
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${ga}');`,
-            }}
-          />
-        ) : null}
-        {gtm ? (
+        {gtm || ga ? (
+          // Tag loader. gtm.start is recorded now (also tells the legacy map apps
+          // GTM is handled, so they never inject a second copy), but the GTM
+          // script itself is fetched on the visitor's first interaction or 10 s
+          // after load — it costs ~0.3–0.8 s of main-thread time on phones, so it
+          // stays out of the critical loading window. GA4 is configured
+          // inside the GTM container; the standalone gtag.js is only loaded when
+          // no GTM container is set, so page views are never counted twice.
           // eslint-disable-next-line @next/next/next-script-for-ga
           <script
             dangerouslySetInnerHTML={{
-              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtm}');`,
+              __html: `(function(w,d,gtm,ga){var done=0,E=['pointerdown','pointermove','wheel','scroll','keydown','touchstart'];if(gtm)w.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});function add(src){var j=d.createElement('script');j.async=true;j.src=src;d.head.appendChild(j);}function load(){if(done)return;done=1;E.forEach(function(e){w.removeEventListener(e,load);});if(gtm)add('https://www.googletagmanager.com/gtm.js?id='+gtm);else{gtag('js',new Date());gtag('config',ga);add('https://www.googletagmanager.com/gtag/js?id='+ga);}}E.forEach(function(e){w.addEventListener(e,load,{passive:true,once:true});});function later(){setTimeout(load,10000);}if(d.readyState==='complete')later();else w.addEventListener('load',later,{once:true});})(window,document,'${gtm || ''}','${ga || ''}');`,
             }}
           />
         ) : null}
 
-        {/* Warm up the TLS/DNS connections to the external origins the legacy map
-            apps pull from (Leaflet/MapLibre on unpkg, Google Fonts). These are
-            otherwise only discovered late — after the app bundle is fetched and
-            injected — so pre-connecting here removes a serial round-trip from the
-            critical path and makes the map paint noticeably sooner. */}
-        <link rel="preconnect" href="https://unpkg.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://unpkg.com" />
-        {/* Icon font CDN (Font Awesome) used by the landing and company/legal pages. */}
+        {/* Icon font CDN (Font Awesome) used by the landing and company/legal
+            pages. The map apps' own origins (unpkg, Google Fonts, tiles) are
+            preconnected by <LegacyPreloads/> on the map pages only. */}
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
 
         {/* Google Search Console verification — set from the admin Settings page. */}

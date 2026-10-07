@@ -73,12 +73,21 @@
     // thread: booting Leaflet + every pin during the initial load delayed the
     // hero's first paint. Load it once it is near the viewport AND this page has
     // finished loading and gone idle (with a short deadline).
+    // It is also held back until the visitor first interacts (pointer, scroll,
+    // key, touch): the map is a whole second app (Leaflet + every pin image), and
+    // booting it unprompted cost seconds of main-thread time on phones. The
+    // static map preview (.map-fallback) shows until then.
     const startFrame = () => { if (!liveFrame.src) liveFrame.src = liveFrame.dataset.src; };
     const whenSettled = (fn) => {
       const idle = () => (window.requestIdleCallback ? requestIdleCallback(fn, { timeout: 1500 }) : fn());
       if (document.readyState === 'complete') idle(); else window.addEventListener('load', idle, { once: true });
     };
-    new IntersectionObserver((es, obs) => es.forEach(e => { if (e.isIntersecting) { obs.disconnect(); whenSettled(startFrame); } }), { rootMargin: '300px' }).observe(liveBrowser);
+    let near = false, engaged = false;
+    const maybeStart = () => { if (near && engaged) whenSettled(startFrame); };
+    const INTERACT = ['pointerdown', 'pointermove', 'wheel', 'scroll', 'keydown', 'touchstart'];
+    const onEngage = () => { engaged = true; INTERACT.forEach(t => window.removeEventListener(t, onEngage)); maybeStart(); };
+    INTERACT.forEach(t => on(window, t, onEngage, { passive: true, once: true }));
+    new IntersectionObserver((es, obs) => es.forEach(e => { if (e.isIntersecting) { obs.disconnect(); near = true; maybeStart(); } }), { rootMargin: '300px' }).observe(liveBrowser);
   }
   let taps = 0; try { taps = +localStorage.getItem(TAP_KEY) || 0; } catch (e) {}
   let lastTap = 0;
@@ -460,6 +469,14 @@
       box.classList.toggle('is-partial', n > 0 && n < 10);
       if(cnt) cnt.textContent = n === 10 ? '✓' : n + '/10';
     };
+    // The full country list is swapped in from <template id="mpg-cc-options">
+    // just before the dropdown first opens (keeps ~220 <option>s out of the DOM).
+    const fill = ()=>{
+      const t = document.getElementById('mpg-cc-options');
+      if(!t || sel.options.length > 1) return;
+      const v = sel.value; sel.innerHTML = t.innerHTML; sel.value = v;
+    };
+    ['pointerdown', 'touchstart', 'focus', 'keydown'].forEach((e)=> sel.addEventListener(e, fill, { passive: true }));
     inp.addEventListener('input', sync);
     sel.addEventListener('change', sync);
     box.__sync = sync;

@@ -6,10 +6,14 @@
 // (rendered by the home page), so the landing markup below starts at the hero.
 import { COUNTRY_CODES } from '@/lib/country-codes';
 
-// Country-code options for phone fields (India +91 selected).
+// Country-code options for phone fields (India +91 selected). Only +91 is in
+// the live DOM; the full ~220-option list sits in an inert <template> (no style
+// or layout cost on page load) and landing.js swaps it in when the dropdown is
+// first opened.
 const PHONE_CODE_OPTIONS = COUNTRY_CODES
   .map(([c, f]) => `<option value="${c}"${c === '+91' ? ' selected' : ''}>${f} ${c}</option>`)
   .join('');
+const PHONE_CODE_DEFAULT = '<option value="+91" selected>🇮🇳 +91</option>';
 
 export const LANDING_BODY = `
 <header class="hero" id="home">
@@ -438,9 +442,9 @@ export const LANDING_BODY = `
           <a href="mailto:mappingg.associatte@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
-      <div><h4>Explore</h4><ul><li><a href="/map" class="live-link">Live map</a></li><li><a href="/features">Features</a></li><li><a href="/how-it-works">How it works</a></li><li><a href="/faq">FAQ</a></li></ul></div>
-      <div><h4>For business</h4><ul><li><a href="#" class="open-signup" data-role="developer">Developers</a></li><li><a href="#" class="open-signup" data-role="agent">Channel partners</a></li><li><a href="/advertise">Advertise</a></li><li><a href="/contact">Contact</a></li></ul></div>
-      <div><h4>Company</h4><ul><li><a href="/about">About</a></li><li><a href="/blog">Blog</a></li><li><a href="/careers">Careers</a></li><li><a href="/privacy">Privacy policy</a></li></ul></div>
+      <div><h3>Explore</h3><ul><li><a href="/map" class="live-link">Live map</a></li><li><a href="/features">Features</a></li><li><a href="/how-it-works">How it works</a></li><li><a href="/faq">FAQ</a></li></ul></div>
+      <div><h3>For business</h3><ul><li><a href="#" class="open-signup" data-role="developer">Developers</a></li><li><a href="#" class="open-signup" data-role="agent">Channel partners</a></li><li><a href="/advertise">Advertise</a></li><li><a href="/contact">Contact</a></li></ul></div>
+      <div><h3>Company</h3><ul><li><a href="/about">About</a></li><li><a href="/blog">Blog</a></li><li><a href="/careers">Careers</a></li><li><a href="/privacy">Privacy policy</a></li></ul></div>
     </div>
     <div class="footer-bottom"><div>© 2026 Mappingg.com. All rights reserved.</div><div class="legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/cookies">Cookies</a><a href="/disclaimer">Disclaimer</a><a href="/map-data">Map data</a></div></div>
     <p class="disclaimer">RERA numbers are verified on the <a href="https://maharera.maharashtra.gov.in/" target="_blank" rel="noopener">MahaRERA website</a>. Other project information comes from developers and is shown for reference only. Please confirm all details with the developer and MahaRERA before making a decision.</p>
@@ -486,7 +490,7 @@ export const LANDING_BODY = `
       <form class="auth-form is-active" id="signupForm" novalidate>
         <div class="field-row">
           <div class="field"><label for="su-name">Full name</label><input type="text" id="su-name" name="name" placeholder="Your name" autocomplete="name" required></div>
-          <div class="field"><label for="su-phone">WhatsApp number</label><div class="phone-in is-empty"><span class="phone-cc"><img alt="" width="22" height="16"><span class="phone-iso"></span><span class="phone-cc-code">+91</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><select id="su-phone-code" aria-label="Country code">${PHONE_CODE_OPTIONS}</select></span><input type="tel" id="su-phone" name="mobile" placeholder="10-digit number" autocomplete="tel-national" inputmode="numeric" maxlength="10" pattern="\d{10}" title="Enter a 10-digit mobile number" required><span class="phone-count" aria-hidden="true"></span></div></div>
+          <div class="field"><label for="su-phone">WhatsApp number</label><div class="phone-in is-empty"><span class="phone-cc"><img alt="" width="22" height="16"><span class="phone-iso"></span><span class="phone-cc-code">+91</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><select id="su-phone-code" aria-label="Country code">${PHONE_CODE_DEFAULT}</select></span><input type="tel" id="su-phone" name="mobile" placeholder="10-digit number" autocomplete="tel-national" inputmode="numeric" maxlength="10" pattern="\d{10}" title="Enter a 10-digit mobile number" required><span class="phone-count" aria-hidden="true"></span></div></div>
         </div>
         <div class="field"><label for="su-email">Email</label><input type="email" id="su-email" name="email" placeholder="you@example.com" autocomplete="email" required></div>
         <fieldset class="role-fields" data-for="buyer">
@@ -544,4 +548,5 @@ export const LANDING_BODY = `
   </div>
 </div>
 <div class="mpg-toast" id="toast" role="status" aria-live="polite"></div>
+<template id="mpg-cc-options">${PHONE_CODE_OPTIONS}</template>
 `;
