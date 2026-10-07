@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import PwaRegister from '@/components/PwaRegister';
-import InstallPrompt from '@/components/InstallPrompt';
 import SmoothLinks from '@/components/SmoothLinks';
 import LockRedirect from '@/components/LockRedirect';
 import { getPublicSettings } from '@/lib/site-settings';
@@ -22,11 +21,6 @@ export const metadata: Metadata = {
     // Small copy of the brand mark (the 629x920 original is ~250 KB — kept for OG/schema).
     icon: '/img/mappingg-icon-mark-sm.png',
     apple: '/icons/apple-touch-icon.png',
-  },
-  appleWebApp: {
-    capable: true,
-    title: 'Mappingg',
-    statusBarStyle: 'default',
   },
   formatDetection: { telephone: false },
   openGraph: {
@@ -109,7 +103,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <SmoothLinks />
         {children}
         <PwaRegister />
-        <InstallPrompt />
+        {/* The "Install app" button lives in the super-admin layout only. */}
       </body>
     </html>
   );

@@ -201,7 +201,7 @@ ${h.table(commercial, 'Commercial projects in Mundhwa')}
 
 <h2>Checklist before you book a flat in Mundhwa</h2>
 <ol>
-  <li><strong>Verify the MahaRERA number</strong> on the MahaRERA website. Check the promoter, the registered carpet areas and the RERA possession date (it can be later than the date in the brochure).</li>
+  <li><strong>Verify the MahaRERA number</strong> on the MahaRERA website (<a href="/blog/how-to-check-maharera-registration-number">here’s how</a>). Check the promoter, the registered carpet areas and the RERA possession date (it can be later than the date in the brochure).</li>
   <li><strong>Compare carpet area, not super built-up area.</strong> Work out the price per sq ft on carpet area.</li>
   <li><strong>Check the exact location on a map.</strong> Mundhwa is spread out, and the KP Annexe side, the Magarpatta side and the Kharadi bridge side each have very different commute times. Open the <a href="/map">live map</a> to see each project alongside its surrounding roads and infrastructure.</li>
   <li><strong>Understand the payment plan.</strong> Flexi plans such as 25x4 reduce your pre-EMI burden, but read the cancellation clauses carefully.</li>
@@ -262,7 +262,7 @@ function puneAreasArticle(h) {
 ${h.gallery([13, 4, 17])}
 
 <h2>2. Kharadi – Pune’s IT hub with steady rental demand</h2>
-<p>Kharadi is home to EON IT Park and the World Trade Center, which keeps demand for rental homes high. There are new 2 and 3 BHK options at ${h.link(135)}, ${h.link(75, 'Mantra Melange')} and ${h.link(208)}, while ${h.link(92)} and ${h.link(226)} serve the 3/4 BHK segment. In Upper Kharadi, ${h.link(87)} offers a 25x4 payment plan.</p>
+<p>Kharadi is home to EON IT Park and the World Trade Center, which keeps demand for rental homes high. There are new 2 and 3 BHK options at ${h.link(135)}, ${h.link(75, 'Mantra Melange')} and ${h.link(208)}, while ${h.link(92)} and ${h.link(226)} serve the 3/4 BHK segment. In Upper Kharadi, ${h.link(87)} offers a 25x4 payment plan. See every option in our <a href="/blog/new-projects-in-kharadi-pune">Kharadi new projects guide</a>.</p>
 ${h.table([135, 75, 208, 184, 92, 226, 87], 'New projects in Kharadi')}
 
 <h2>3. Hinjewadi – township living near Rajiv Gandhi Infotech Park</h2>
@@ -306,9 +306,140 @@ ${h.gallery([194, 103])}
 <h3>Is East Pune or West Pune better for investment?</h3>
 <p>Both are strong. East Pune (Kharadi, Mundhwa) is driven by the EON IT Park, WTC and Magarpatta. West Pune (Hinjewadi, Balewadi, Tathawade) is driven by Rajiv Gandhi Infotech Park and the Mumbai–Bengaluru highway. Pick the side closest to where demand comes from.</p>
 <h3>How do I check if a Pune project is RERA approved?</h3>
-<p>Search for the project’s MahaRERA number on the official MahaRERA portal. Mappingg shows the RERA number on each <a href="/projects">project page</a> wherever the developer has shared it.</p>
+<p>Search for the project’s MahaRERA number on the official MahaRERA portal. Our step-by-step guide explains <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA registration number</a>. Mappingg shows the RERA number on each <a href="/projects">project page</a> wherever the developer has shared it.</p>
 
 <blockquote>Prices and possession timelines are as listed on Mappingg in October 2026 and may change. Always confirm with the developer and on MahaRERA before you book.</blockquote>
+`,
+  };
+}
+
+function kharadiArticle(h) {
+  return {
+    slug: 'new-projects-in-kharadi-pune',
+    title: 'New Projects in Kharadi, Pune (2026): 2, 3 & 4 BHK Prices, Possession & RERA',
+    seo_title: 'New Projects in Kharadi Pune 2026: Flats & Prices',
+    seo_description:
+      'New residential projects in Kharadi, Pune — 2, 3 & 4 BHK flats from ₹1.12 Cr near EON IT Park & WTC, with possession dates, MahaRERA numbers and a live map.',
+    excerpt:
+      'Flats in Kharadi near EON IT Park and the World Trade Center — every new and under-construction project on our map, with BHK options, starting prices, possession dates and MahaRERA numbers.',
+    tags: ['Kharadi', 'Pune', 'New Projects', 'Flats in Kharadi', 'EON IT Park'],
+    coverPins: [92, 81, 135],
+    coverLines: ['New Projects in', 'Kharadi, Pune', '2026 Buyer’s Guide'],
+    coverKicker: 'Locality guide',
+    content: `
+<p>Kharadi is East Pune’s biggest employment hub. EON IT Park, the World Trade Center and a string of large office campuses bring thousands of professionals here every day, and that keeps demand for <strong>flats in Kharadi</strong> strong for both homebuyers and investors. This guide lists the <strong>new projects in Kharadi, Pune</strong> that we track on the <a href="/locations/kharadi">Mappingg Kharadi map</a>, with prices, BHK options, possession dates and MahaRERA numbers.</p>
+
+<h2>Why buy a flat in Kharadi?</h2>
+<ul>
+  <li><strong>Walk-to-work potential:</strong> many projects are within a short drive of ${h.link(78, 'EON IT Park')} and the ${h.link(79, 'World Trade Center')}.</li>
+  <li><strong>Steady rental demand</strong> from IT and corporate tenants, which matters if you are buying to invest.</li>
+  <li><strong>Established social infrastructure:</strong> schools, hospitals, malls and the riverside stretch along Kharadi’s eastern edge.</li>
+  <li><strong>Close to Mundhwa, Viman Nagar and Wagholi</strong>, so you can compare a wide range of budgets nearby. See our <a href="/blog/new-projects-in-mundhwa-pune">Mundhwa guide</a> for the neighbouring market.</li>
+</ul>
+
+${h.gallery([92, 81, 135, 184, 75, 87])}
+
+<h2>2 &amp; 3 BHK projects in Kharadi under ₹1.8 Cr</h2>
+<p>The entry point for new homes in Kharadi is a little over ₹1.1 Cr. ${h.link(135)} by Venkatesh Buildcon offers 2, 3 and 4 BHK homes, ${h.link(208)} has 2 and 3 BHK options, and ${h.link(75)} (2 and 3 BHK plus shops) sits on the Kharadi–Wadgaon Sheri side. ${h.link(184)} offers river-facing 3 BHK homes.</p>
+${h.table([135, 75, 134, 208, 184], 'Kharadi projects under ₹1.8 Cr')}
+
+<h2>Premium 3, 4 &amp; 4.5 BHK homes in Kharadi</h2>
+<p>For larger homes, ${h.link(92)} and ${h.link(226)} cover the 3–4.5 BHK segment from just under ₹2 Cr, while ${h.link(81)} offers 3.5 and 4.5 BHK residences that are nearing possession. ${h.link(84)} offers villas by invitation only. In Upper Kharadi, ${h.link(87)} starts at around ₹2.25 Cr with a 25x4 payment plan.</p>
+${h.table([92, 226, 87, 81, 84], 'Premium projects in Kharadi')}
+
+<h2>Commercial &amp; office space in Kharadi</h2>
+<p>Kharadi’s offices are what drive its housing demand. On the map you can see ${h.link(78)}, ${h.link(91)}, the ${h.link(79)}, ${h.link(88)} and ${h.link(89)}. Browse all <a href="/property/commercial">commercial projects</a> to compare.</p>
+
+<h2>Things to check before booking in Kharadi</h2>
+<ol>
+  <li><strong>Which side of Kharadi?</strong> Central Kharadi, the riverside, Upper Kharadi and the Wadgaon Sheri side have very different commutes. Check each project on the <a href="/map">live map</a>.</li>
+  <li><strong>MahaRERA registration and possession date.</strong> Match the brochure’s date with the date on MahaRERA. Our guide shows <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>.</li>
+  <li><strong>Carpet area and loading.</strong> Compare price per sq ft on carpet area only.</li>
+  <li><strong>Peak-hour traffic</strong> on Nagar Road and the Kharadi bypass.</li>
+</ol>
+
+<h2>FAQs: Buying property in Kharadi</h2>
+<h3>What is the price of a 2 BHK in Kharadi?</h3>
+<p>Among the projects on our map, new 2 BHK homes in Kharadi start at around ₹1.12–1.26 Cr (for example ${h.link(135)} and ${h.link(208)}).</p>
+<h3>Is Kharadi good for investment in 2026?</h3>
+<p>Kharadi’s large office base supports rental demand and resale. Compare possession dates, the developer’s track record and the exact micro-location before you decide. Our <a href="/blog/best-areas-to-buy-property-in-pune">Pune locality comparison</a> puts Kharadi side by side with other areas.</p>
+<h3>Which developers are building in Kharadi?</h3>
+<p>Panchshil Realty, Majestique Landmark, Mantra Properties, Marvel Realtors, Lodha, Venkatesh Buildcon, Duville Estate and SSPL, among others. See the <a href="/developers">developers page</a>.</p>
+
+<blockquote>Prices, configurations and possession dates are as listed on Mappingg in October 2026 and may change. Always confirm with the developer and on MahaRERA before you book.</blockquote>
+`,
+  };
+}
+
+function reraArticle(h) {
+  return {
+    slug: 'how-to-check-maharera-registration-number',
+    title: 'How to Check a MahaRERA Registration Number Before You Buy (2026 Guide)',
+    seo_title: 'How to Check MahaRERA Registration Number (2026)',
+    seo_description:
+      'Step-by-step guide to verifying a MahaRERA project registration number — what the number means, what to check on the MahaRERA website, and red flags to watch for.',
+    excerpt:
+      'A MahaRERA number is the single most important check before booking a flat in Maharashtra. Here is how to read it, verify it on the MahaRERA website and spot red flags.',
+    tags: ['MahaRERA', 'RERA', 'Home Buying Guide', 'Pune', 'Maharashtra'],
+    coverPins: [16, 17, 3],
+    coverLines: ['How to Check a', 'MahaRERA Number', 'Before You Buy'],
+    coverKicker: 'Buyer’s guide',
+    content: `
+<p>Before you pay a booking amount for any under-construction flat in Maharashtra, you should <strong>check the project’s MahaRERA registration number</strong>. It takes five minutes and tells you whether the project is legally registered, who the promoter is, what was approved and when the developer has committed to finish. This guide explains how to read a MahaRERA number, how to verify it, and what to look for.</p>
+
+<h2>What is MahaRERA?</h2>
+<p>MahaRERA is the Maharashtra Real Estate Regulatory Authority, set up under the Real Estate (Regulation and Development) Act, 2016 (RERA). Under the Act, most new projects (generally those on more than 500 sq m of land or with more than eight apartments) must be registered before they are advertised or sold. Developers must also keep 70% of the money collected from buyers in a separate account for that project. Real estate agents have to register too.</p>
+
+<h2>What does a MahaRERA number look like?</h2>
+<ul>
+  <li><strong>Older project numbers</strong> start with <code>P</code> followed by 11 digits, for example ${h.link(16)} (<code>P52100053239</code>).</li>
+  <li><strong>Newer project numbers</strong> on our map are longer and start with two letters. In our data, <code>PR</code> numbers belong to residential projects (for example ${h.link(17)}, <code>PR1260002500852</code>), <code>PC</code> to commercial projects (${h.link(3)}, <code>PC1260002500325</code>) and <code>PM</code> to mixed-use projects (${h.link(4)}, <code>PM1260002501385</code>).</li>
+  <li><strong>Agent numbers</strong> start with <code>A</code>. They belong to a broker or advisory firm, not a project, so don’t mistake one for a project registration.</li>
+</ul>
+<p>Large projects are often registered in phases or by tower, so one project can have several MahaRERA numbers. Make sure the number matches <em>your</em> tower or phase.</p>
+
+<h2>How to check a MahaRERA number: step by step</h2>
+<ol>
+  <li><strong>Get the number from the developer.</strong> It must be printed on every advertisement and brochure, and newer adverts also carry a MahaRERA QR code you can scan.</li>
+  <li><strong>Open the official MahaRERA website</strong> (maharera.maharashtra.gov.in) and go to the search for registered projects.</li>
+  <li><strong>Search by registration number</strong> (or by project name and district) and open the project’s details.</li>
+  <li><strong>Match the details</strong> against what the sales team told you, using the checklist below.</li>
+</ol>
+
+<h2>What to check on the MahaRERA project page</h2>
+<div class="table-scroll"><table>
+<caption>MahaRERA verification checklist</caption>
+<thead><tr><th>Check</th><th>Why it matters</th></tr></thead>
+<tbody>
+<tr><td>Promoter name</td><td>Should match the company on your booking form and agreement.</td></tr>
+<tr><td>Proposed completion date</td><td>This is the legally committed date. It is often later than the brochure date.</td></tr>
+<tr><td>Extensions</td><td>Repeated extensions can signal delays.</td></tr>
+<tr><td>Approved plans &amp; carpet areas</td><td>Your flat’s carpet area should match the registered unit type.</td></tr>
+<tr><td>Project / tower covered</td><td>Confirm your tower or phase is part of this registration.</td></tr>
+<tr><td>Progress updates</td><td>Shows how far construction has actually reached.</td></tr>
+<tr><td>Complaints &amp; litigation</td><td>Check for open complaints or cases against the project.</td></tr>
+</tbody></table></div>
+
+<h2>Red flags</h2>
+<ul>
+  <li>No MahaRERA number on adverts, or “registration applied for” when you are being asked to pay.</li>
+  <li>The number belongs to a different project, tower or promoter.</li>
+  <li>The completion date on MahaRERA is much later than the one you were promised.</li>
+  <li>Pressure to pay large sums before signing a registered agreement for sale.</li>
+</ul>
+
+<h2>See RERA numbers on the map</h2>
+<p>Mappingg shows the MahaRERA number on each <a href="/projects">project page</a> wherever the developer has shared it, alongside the project’s location, configuration, price and possession timeline. Browse projects by area, for example <a href="/blog/new-projects-in-mundhwa-pune">Mundhwa</a> or <a href="/blog/new-projects-in-kharadi-pune">Kharadi</a>, or compare <a href="/blog/best-areas-to-buy-property-in-pune">the best areas to buy in Pune</a>.</p>
+
+<h2>FAQs</h2>
+<h3>Is it safe to buy a flat without a MahaRERA number?</h3>
+<p>For a project that is required to register, no. Without registration you lose the protections RERA gives buyers, such as a committed completion date and a separate project account.</p>
+<h3>Can one project have more than one MahaRERA number?</h3>
+<p>Yes. Phases or towers are often registered separately, so check the number for your specific tower.</p>
+<h3>Do ready-to-move flats need a RERA number?</h3>
+<p>Projects that received their completion or occupancy certificate before RERA came into force may not have one. For anything still under construction, ask for the number.</p>
+
+<blockquote>This guide is general information, not legal advice. For a specific purchase, verify every detail on the official MahaRERA website and consult a property lawyer.</blockquote>
 `,
   };
 }
@@ -346,7 +477,7 @@ async function upsert(post) {
 async function main() {
   const pins = await loadPins();
   const h = makeHelpers(pins);
-  const articles = [mundhwaArticle(h), puneAreasArticle(h)];
+  const articles = [mundhwaArticle(h), puneAreasArticle(h), kharadiArticle(h), reraArticle(h)];
 
   // Sanity: every slug used by the articles' internal links must be stable.
   for (const a of articles) if (slugify(a.slug) !== a.slug) throw new Error(`bad slug ${a.slug}`);

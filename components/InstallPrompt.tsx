@@ -21,8 +21,8 @@ function isIos() {
   return /iphone|ipad|ipod/i.test(navigator.userAgent) && !/crios|fxios/i.test(navigator.userAgent);
 }
 
-// Floating "Install App" control shown on every page (public map, admin editor,
-// 3D map). Uses the native install prompt on Android/desktop Chromium, and shows
+// Floating "Install App" control, rendered only for the super admin by
+// app/dashboard/s-admin/layout.tsx. Uses the native install prompt on Android/desktop Chromium, and shows
 // Add-to-Home-Screen instructions on iOS (which has no programmatic prompt).
 export default function InstallPrompt() {
   const [deferred, setDeferred] = useState<BeforeInstallPromptEvent | null>(null);
