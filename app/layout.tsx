@@ -54,11 +54,24 @@ export const viewport = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   // Admin-editable SEO/analytics values (Search Console verification + GTM).
-  const { search_console_verification: gsc, gtm_container_id: gtm } = await getPublicSettings();
+  // Falls back to the site's own IDs when the admin Settings fields are empty.
+  const settings = await getPublicSettings();
+  const gsc = settings.search_console_verification || 'xjmisC7LNZagrEObXyZOZoVzRQW2g72BbVjGuaBXsL8';
+  const gtm = settings.gtm_container_id || 'GTM-59Q6QBP6';
 
   return (
     <html lang="en">
       <head>
+        {/* Google Tag Manager — kept first in <head>, as Google recommends. */}
+        {gtm ? (
+          // eslint-disable-next-line @next/next/next-script-for-ga
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtm}');`,
+            }}
+          />
+        ) : null}
+
         {/* Warm up the TLS/DNS connections to the external origins the legacy map
             apps pull from (Leaflet/MapLibre on unpkg, Google Fonts). These are
             otherwise only discovered late — after the app bundle is fetched and
@@ -74,32 +87,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         {/* Google Search Console verification — set from the admin Settings page. */}
         {gsc ? <meta name="google-site-verification" content={gsc} /> : null}
 
-        {/* Google Tag Manager — injected only when a container ID is configured. */}
-        {gtm ? (
-          // eslint-disable-next-line @next/next/next-script-for-ga
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtm}');`,
-            }}
-          />
-
-        ) : null}
-        <meta name="google-site-verification" content="xjmisC7LNZagrEObXyZOZoVzRQW2g72BbVjGuaBXsL8" />
-
-        {/* <!-- Google Tag Manager --> */}
-        <script>(function(w,d,s,l,i){w[l] = w[l] || [];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-59Q6QBP6');</script>
-        {/* <!-- End Google Tag Manager --> */}
-
       </head>
       <body>
-        {/* <!-- Google Tag Manager (noscript) --> */}
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59Q6QBP6"
-          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        {/* <!-- End Google Tag Manager (noscript) --> */}
+        {/* Google Tag Manager (noscript) — immediately after the opening <body> tag. */}
         {gtm ? (
           <noscript>
             <iframe
