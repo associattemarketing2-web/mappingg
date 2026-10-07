@@ -1,17 +1,7 @@
-import type { Metadata } from 'next';
 import EntityListing from '@/components/seo/EntityListing';
 import { getPublicPins, getLocalityGroups, getStatusGroups } from '@/lib/seo/entities';
-import { buildMetadata } from '@/lib/seo/metadata';
 
 export const revalidate = 600;
-
-export const metadata: Metadata = buildMetadata({
-  title: 'Real Estate Projects in Pune & MMR',
-  description:
-    'Browse real estate projects across Pune and the Mumbai Metropolitan Region — by locality, developer, status and property type, with configurations, pricing and possession timelines.',
-  path: '/projects',
-  keywords: ['real estate projects Pune', 'property projects Mumbai', 'new projects MMR'],
-});
 
 export default async function ProjectsIndex() {
   const [pins, locs, statuses] = await Promise.all([getPublicPins(), getLocalityGroups(), getStatusGroups()]);

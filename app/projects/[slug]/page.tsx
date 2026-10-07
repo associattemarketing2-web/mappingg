@@ -1,11 +1,10 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
-import { notFound, permanentRedirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import SeoShell from '@/components/seo/SeoShell';
 import ProjectCard from '@/components/seo/ProjectCard';
 import {
   getPublicPins,
-  getPinByNumber,
+  getPinBySlug,
   primaryLocality,
   cityOf,
   statusLabel,
@@ -16,8 +15,7 @@ import {
   type Pin,
 } from '@/lib/seo/entities';
 import { localitiesOf } from '@/lib/locality';
-import { slugify, projectNumberFromSlug } from '@/lib/seo/slug';
-import { buildMetadata } from '@/lib/seo/metadata';
+import { slugify } from '@/lib/seo/slug';
 import { projectSchema, faqSchema, videoSchema, youtubeId, jsonLd } from '@/lib/seo/schema';
 
 const fmtDate = (d?: string) =>
@@ -25,47 +23,11 @@ const fmtDate = (d?: string) =>
 
 // Open set (grows with every new pin) → on-demand ISR so a newly-added project
 // gets its page (and indexing) immediately, which is a core SEO goal.
-// Not-found and redirect decisions are made in generateMetadata, which runs
+// Not-found and redirect decisions are made in this route's layout.tsx (generateMetadata), which runs
 // before the response starts streaming — so they produce a real 404 / 308
 // status. (The root loading.tsx streams every page, so a notFound() thrown only
 // in the page body would arrive after a 200 had already been sent.)
 export const revalidate = 600;
-
-async function resolve(slug: string): Promise<Pin | null> {
-  const n = projectNumberFromSlug(slug);
-  if (n == null) return null;
-  return getPinByNumber(n);
-}
-
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const pin = await resolve(params.slug);
-  if (!pin) notFound();
-  // Only the number identifies a project, so /projects/<anything>-<n> resolves.
-  // Send every variant (old title, typo, renamed project) to the one canonical URL.
-  const canonicalSlug = slugForProject(pin);
-  if (params.slug !== canonicalSlug) permanentRedirect(`/projects/${canonicalSlug}`);
-  const loc = primaryLocality(pin);
-  const city = CITY_LABELS[cityOf(pin)];
-  const name = pin.title || `Project #${pin.number}`;
-  const where = [loc, city].filter(Boolean).join(', ');
-  const title = where ? `${name} in ${where} | Price, Location & Details` : `${name} | Price, Location & Details`;
-  const bits = [
-    pin.developer ? `by ${pin.developer}` : '',
-    pin.configuration || '',
-    pin.status ? statusLabel(pin.status) : '',
-  ].filter(Boolean).join(', ');
-  const description =
-    (pin.key_usp || pin.description || '').toString().slice(0, 150).trim() ||
-    `Explore ${name}${where ? ` in ${where}` : ''}${bits ? ` — ${bits}` : ''}. View location, configuration, pricing and project details on Mappingg.`;
-  return buildMetadata({
-    title,
-    description,
-    path: `/projects/${slugForProject(pin)}`,
-    image: pin.image && /^(https?:|\/api\/)/.test(pin.image) ? pin.image : undefined,
-    type: 'article',
-    keywords: [name, pin.developer, loc, city, pin.type].filter(Boolean) as string[],
-  });
-}
 
 const specRows = (pin: Pin): { k: string; v: string }[] =>
   [
@@ -80,7 +42,7 @@ const specRows = (pin: Pin): { k: string; v: string }[] =>
   ].filter((r) => r.v);
 
 export default async function ProjectDetail({ params }: { params: { slug: string } }) {
-  const pin = await resolve(params.slug);
+  const pin = await getPinBySlug(params.slug);
   if (!pin) notFound(); // normally already thrown by generateMetadata
 
   const loc = primaryLocality(pin);

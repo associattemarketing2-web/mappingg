@@ -1,18 +1,9 @@
-import type { Metadata } from 'next';
-import { buildMetadata } from '@/lib/seo/metadata';
 import Link from 'next/link';
 import InfoPage, { CtaBand, EMAIL, MapArt, SocialLinks } from '@/components/InfoPage';
 import { WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/lib/contact';
 import ContactForm from '@/components/ContactForm';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
-
-export const metadata: Metadata = buildMetadata({
-  title: 'Contact Us',
-  description:
-    'Get in touch with the Mappingg team at Associatte PropTech, Hadapsar, Pune.',
-  path: '/contact',
-});
 
 const DIRECTIONS = 'https://www.google.com/maps/search/?api=1&query=Naren+Pearl+Magarpatta+Road+Hadapsar+Pune+411028';
 

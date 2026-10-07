@@ -1,19 +1,9 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import SeoShell from '@/components/seo/SeoShell';
 import { getLocalityGroups, cityOf, CITY_LABELS } from '@/lib/seo/entities';
-import { buildMetadata } from '@/lib/seo/metadata';
 import { itemListSchema, jsonLd } from '@/lib/seo/schema';
 
 export const revalidate = 600;
-
-export const metadata: Metadata = buildMetadata({
-  title: 'Real Estate by Locality in Pune & MMR',
-  description:
-    'Explore real estate projects locality by locality across Pune and the Mumbai Metropolitan Region — Kharadi, Mundhwa, Magarpatta, Wagholi, Thane, Kharghar and more.',
-  path: '/locations',
-  keywords: ['real estate localities Pune', 'property by area Pune', 'MMR localities'],
-});
 
 export default async function LocationsIndex() {
   const groups = await getLocalityGroups();

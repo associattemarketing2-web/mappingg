@@ -1,15 +1,6 @@
-import type { Metadata } from 'next';
-import { buildMetadata } from '@/lib/seo/metadata';
 import InfoPage, { ContactBlock, LegalDoc, OfficialChannels, UpdatedChip, type LegalSection } from '@/components/InfoPage';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
-
-export const metadata: Metadata = buildMetadata({
-  title: 'Disclaimer',
-  description:
-    'Project information on Mappingg.com is for reference only. Please confirm all details with the developer and MahaRERA.',
-  path: '/disclaimer',
-});
 
 const sections: LegalSection[] = [
   {

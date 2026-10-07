@@ -1,19 +1,9 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import SeoShell from '@/components/seo/SeoShell';
 import { getDeveloperGroups } from '@/lib/seo/entities';
-import { buildMetadata } from '@/lib/seo/metadata';
 import { itemListSchema, jsonLd } from '@/lib/seo/schema';
 
 export const revalidate = 600;
-
-export const metadata: Metadata = buildMetadata({
-  title: 'Real Estate Developers in Pune & MMR',
-  description:
-    'Browse real estate developers building across Pune and the Mumbai Metropolitan Region, and explore their projects, locations and current status on Mappingg.',
-  path: '/developers',
-  keywords: ['real estate developers Pune', 'builders Pune', 'developers MMR'],
-});
 
 export default async function DevelopersIndex() {
   const groups = await getDeveloperGroups();

@@ -1,16 +1,7 @@
-import type { Metadata } from 'next';
-import { buildMetadata } from '@/lib/seo/metadata';
 import Link from 'next/link';
 import InfoPage, { CtaBand, EMAIL } from '@/components/InfoPage';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
-
-export const metadata: Metadata = buildMetadata({
-  title: 'Careers',
-  description:
-    'Work with the team behind Mappingg, the live real estate project map by Associatte PropTech in Pune.',
-  path: '/careers',
-});
 
 const APPLY = `mailto:${EMAIL}?subject=${encodeURIComponent('Careers at Mappingg')}`;
 

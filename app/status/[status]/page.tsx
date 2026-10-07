@@ -1,25 +1,12 @@
-import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import EntityListing from '@/components/seo/EntityListing';
 import { getStatusGroups, getLocalityGroups, findGroup, STATUS_ROUTES } from '@/lib/seo/entities';
-import { buildMetadata } from '@/lib/seo/metadata';
 
 export const revalidate = 600;
 // Closed set (3 indexed statuses) → prerender + hard-404 on unknown slugs.
 export const dynamicParams = false;
 export async function generateStaticParams() {
   return STATUS_ROUTES.map((s) => ({ status: s.slug }));
-}
-
-export async function generateMetadata({ params }: { params: { status: string } }): Promise<Metadata> {
-  const g = await findGroup(getStatusGroups, params.status);
-  if (!g) return { title: 'Not found', robots: { index: false, follow: false } };
-  return buildMetadata({
-    title: `${g.label} Projects in Pune & MMR`,
-    description: `Explore ${g.count} ${g.label.toLowerCase()} real estate project${g.count === 1 ? '' : 's'} across Pune and the Mumbai Metropolitan Region — locations, developers, pricing and configurations on Mappingg.`,
-    path: `/status/${g.slug}`,
-    keywords: [`${g.label.toLowerCase()} projects Pune`, `${g.label.toLowerCase()} property Pune`],
-  });
 }
 
 export default async function StatusPage({ params }: { params: { status: string } }) {

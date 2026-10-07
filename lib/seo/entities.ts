@@ -2,7 +2,7 @@ import { cache } from 'react';
 import { runDbOp } from '@/lib/db-engine';
 import { withMediaUrls } from '@/lib/pin-media';
 import { localitiesOf } from '@/lib/locality';
-import { slugify, projectSlug } from './slug';
+import { slugify, projectSlug, projectNumberFromSlug } from './slug';
 
 // -----------------------------------------------------------------------------
 // SEO entity layer. "Projects" are the public `pins` (224 rows). Locations,
@@ -100,6 +100,12 @@ export const getPinByNumber = cache(async (n: number): Promise<Pin | null> => {
     return null;
   }
 });
+
+/** Resolve a /projects/<slug> URL to its pin via the trailing number (any title prefix matches). */
+export async function getPinBySlug(slug: string): Promise<Pin | null> {
+  const n = projectNumberFromSlug(slug);
+  return n == null ? null : getPinByNumber(n);
+}
 
 // ---- derivations ----------------------------------------------------------
 

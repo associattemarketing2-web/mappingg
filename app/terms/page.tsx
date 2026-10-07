@@ -1,16 +1,7 @@
-import type { Metadata } from 'next';
-import { buildMetadata } from '@/lib/seo/metadata';
 import Link from 'next/link';
 import InfoPage, { ContactBlock, LegalDoc, OfficialChannels, UpdatedChip, type LegalSection } from '@/components/InfoPage';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
-
-export const metadata: Metadata = buildMetadata({
-  title: 'Terms of Use',
-  description:
-    'The terms that apply when you use Mappingg.com, the live real estate project map by Associatte PropTech.',
-  path: '/terms',
-});
 
 const sections: LegalSection[] = [
   {

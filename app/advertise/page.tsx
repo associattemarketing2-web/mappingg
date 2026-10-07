@@ -1,16 +1,7 @@
-import type { Metadata } from 'next';
-import { buildMetadata } from '@/lib/seo/metadata';
 import Link from 'next/link';
 import InfoPage, { CtaBand, EMAIL, MiniMap } from '@/components/InfoPage';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
-
-export const metadata: Metadata = buildMetadata({
-  title: 'Advertise With Us',
-  description:
-    'Put your real estate project in front of buyers exploring the Mappingg live project map in Pune.',
-  path: '/advertise',
-});
 
 const ENQUIRE = `mailto:${EMAIL}?subject=${encodeURIComponent('Advertising on Mappingg')}`;
 

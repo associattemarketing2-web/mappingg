@@ -1,18 +1,9 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import SeoShell from '@/components/seo/SeoShell';
 import { getTypeGroups } from '@/lib/seo/entities';
-import { buildMetadata } from '@/lib/seo/metadata';
 import { itemListSchema, jsonLd } from '@/lib/seo/schema';
 
 export const revalidate = 600;
-
-export const metadata: Metadata = buildMetadata({
-  title: 'Property Types in Pune & MMR',
-  description:
-    'Explore real estate by property type across Pune and the Mumbai Metropolitan Region — residential, commercial and more, with projects, locations and status on Mappingg.',
-  path: '/property',
-});
 
 export default async function PropertyIndex() {
   const groups = await getTypeGroups();

@@ -1,5 +1,3 @@
-import type { Metadata } from 'next';
-import { buildMetadata } from '@/lib/seo/metadata';
 import Link from 'next/link';
 import InfoPage, { CtaBand } from '@/components/InfoPage';
 import { EMAIL, SOCIALS, WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/lib/contact';
@@ -15,13 +13,6 @@ const FAQS = [
   { q: 'How can I contact Mappingg?', a: <>Email us at <a href={`mailto:${EMAIL}`}>{EMAIL}</a> or message us on WhatsApp at <a href={WHATSAPP_URL} target="_blank" rel="noopener">{WHATSAPP_DISPLAY}</a>. You can also follow us on {SOCIALS.map((s, i) => <span key={s.name}>{i ? (i === SOCIALS.length - 1 ? ' and ' : ', ') : ''}<a href={s.href} target="_blank" rel="noopener">{s.name}</a></span>)} for new projects and area updates.</> },
   { q: 'How can I list my project?', a: <>Create a developer account and share your RERA number, location and project details. Once we verify your RERA number on the MahaRERA website, your project goes live on the map.</> },
 ];
-
-export const metadata: Metadata = buildMetadata({
-  title: 'FAQ',
-  description:
-    'Answers to common questions about Mappingg — what it is, how projects are verified on MahaRERA, which areas are covered, the infrastructure we show and how to list your project.',
-  path: '/faq',
-});
 
 export default function FaqPage() {
   const faqJsonLd = {

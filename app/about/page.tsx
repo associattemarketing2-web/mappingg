@@ -1,16 +1,7 @@
-import type { Metadata } from 'next';
-import { buildMetadata } from '@/lib/seo/metadata';
 import Link from 'next/link';
 import InfoPage, { CtaBand, MiniMap, OfficialChannels } from '@/components/InfoPage';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
-
-export const metadata: Metadata = buildMetadata({
-  title: 'About Us',
-  description:
-    'Mappingg puts every live real estate project on one interactive map. A product by Associatte PropTech, Pune.',
-  path: '/about',
-});
 
 const FEATURES = [
   { icon: 'fas fa-location-dot', tone: '', title: 'Live projects', text: 'Every pin is a real project, colour-coded by status, with developer, configuration and possession details.' },

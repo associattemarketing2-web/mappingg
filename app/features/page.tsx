@@ -1,16 +1,7 @@
-import type { Metadata } from 'next';
-import { buildMetadata } from '@/lib/seo/metadata';
 import Link from 'next/link';
 import InfoPage, { CtaBand } from '@/components/InfoPage';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
-
-export const metadata: Metadata = buildMetadata({
-  title: 'Features',
-  description:
-    'See every real estate project differently — project pins by status, map and satellite views, area labels, nearby places, upcoming infrastructure, project info and plot-by-plot layouts.',
-  path: '/features',
-});
 
 const VIEWS = [
   { icon: 'fas fa-location-dot', tone: '', title: 'Project pins', text: 'Every project as a pin, colour-coded by status so you can scan a whole area at a glance.' },

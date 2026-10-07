@@ -1,18 +1,9 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import SeoShell from '@/components/seo/SeoShell';
 import { getCityGroups } from '@/lib/seo/entities';
-import { buildMetadata } from '@/lib/seo/metadata';
 import { itemListSchema, jsonLd } from '@/lib/seo/schema';
 
 export const revalidate = 600;
-
-export const metadata: Metadata = buildMetadata({
-  title: 'Real Estate by City — Pune & Mumbai (MMR)',
-  description:
-    'Explore real estate projects city by city. Choose Pune or the Mumbai Metropolitan Region to drill into localities, developers and projects on Mappingg.',
-  path: '/cities',
-});
 
 export default async function CitiesIndex() {
   const groups = await getCityGroups();

@@ -1,16 +1,7 @@
-import type { Metadata } from 'next';
-import { buildMetadata } from '@/lib/seo/metadata';
 import Link from 'next/link';
 import InfoPage, { CtaBand } from '@/components/InfoPage';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
-
-export const metadata: Metadata = buildMetadata({
-  title: 'How It Works',
-  description:
-    'From project data to an intelligent map in three simple steps — connect your data, map your project, then visualise and share it. See how a project goes live on Mappingg.',
-  path: '/how-it-works',
-});
 
 const STEPS = [
   { n: '01', icon: 'fas fa-plug', tone: '', title: 'Connect your data', text: 'Share your RERA number, location, plans and prices. We verify the RERA number on the MahaRERA website.', tags: ['RERA', 'Location', 'Plans'] },

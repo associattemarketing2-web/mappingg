@@ -15,6 +15,16 @@ export interface BuildMeta {
   keywords?: string[];
 }
 
+/**
+ * buildMetadata() for a layout.tsx whose folder also has child routes (e.g.
+ * app/projects/layout.tsx above /projects/[slug]). A plain string title in a
+ * layout drops the root "%s — Mappingg" template for every child page, so this
+ * keeps the title as the section's default and re-declares the template.
+ */
+export function buildSectionMetadata(o: BuildMeta): Metadata {
+  return { ...buildMetadata(o), title: { default: o.title, template: `%s — ${SITE.name}` } };
+}
+
 export function buildMetadata(o: BuildMeta): Metadata {
   const url = abs(o.path);
   const images = [o.image ? abs(o.image) : SITE.ogFallback];

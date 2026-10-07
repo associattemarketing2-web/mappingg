@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import EntityListing from '@/components/seo/EntityListing';
 import {
@@ -9,7 +8,6 @@ import {
   cityOf,
   CITY_LABELS,
 } from '@/lib/seo/entities';
-import { buildMetadata } from '@/lib/seo/metadata';
 import { slugify } from '@/lib/seo/slug';
 
 export const revalidate = 600;
@@ -19,18 +17,6 @@ export const revalidate = 600;
 export const dynamicParams = false;
 export async function generateStaticParams() {
   return (await getLocalityGroups()).map((g) => ({ slug: g.slug }));
-}
-
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const g = await findGroup(getLocalityGroups, params.slug);
-  if (!g) return { title: 'Locality not found', robots: { index: false, follow: false } };
-  const city = g.pins[0] ? CITY_LABELS[cityOf(g.pins[0])] : '';
-  return buildMetadata({
-    title: `Real Estate Projects in ${g.label}${city ? `, ${city}` : ''}`,
-    description: `Explore ${g.count} real estate project${g.count === 1 ? '' : 's'} in ${g.label}${city ? `, ${city}` : ''} — developers, configurations, pricing, status and an interactive map of the area on Mappingg.`,
-    path: `/locations/${g.slug}`,
-    keywords: [`real estate ${g.label}`, `property in ${g.label}`, `projects in ${g.label}`],
-  });
 }
 
 export default async function LocationPage({ params }: { params: { slug: string } }) {

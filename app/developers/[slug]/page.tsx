@@ -1,28 +1,15 @@
-import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import EntityListing from '@/components/seo/EntityListing';
 import { getDeveloperGroups, findGroup, primaryLocality } from '@/lib/seo/entities';
-import { buildMetadata } from '@/lib/seo/metadata';
 import { slugify } from '@/lib/seo/slug';
 
 // Open set (new pins can introduce new developers) → on-demand ISR so new
 // developer hubs appear immediately.
-// Not-found and redirect decisions are made in generateMetadata, which runs
+// Not-found and redirect decisions are made in this route's layout.tsx (generateMetadata), which runs
 // before the response starts streaming — so they produce a real 404 / 308
 // status. (The root loading.tsx streams every page, so a notFound() thrown only
 // in the page body would arrive after a 200 had already been sent.)
 export const revalidate = 600;
-
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const g = await findGroup(getDeveloperGroups, params.slug);
-  if (!g) notFound();
-  return buildMetadata({
-    title: `${g.label} — Projects in Pune & MMR`,
-    description: `Explore ${g.count} project${g.count === 1 ? '' : 's'} by ${g.label} across Pune and the Mumbai Metropolitan Region — locations, configurations, pricing and current status on Mappingg.`,
-    path: `/developers/${g.slug}`,
-    keywords: [`${g.label} projects`, `${g.label} Pune`, `${g.label} real estate`],
-  });
-}
 
 export default async function DeveloperPage({ params }: { params: { slug: string } }) {
   const g = await findGroup(getDeveloperGroups, params.slug);
