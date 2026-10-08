@@ -7,6 +7,7 @@ import { logActivity } from '@/lib/activity';
 import { canEditProjects } from '@/lib/verification';
 import { clientIp, rateLimit } from '@/lib/rate-limit';
 import { warmPinThumbs } from '@/lib/media-cache';
+import { getDb } from '@/lib/mongodb';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -80,12 +81,18 @@ async function handle(op: DbOp, devEditorView = false, ip = '') {
   // recorded for the super admin (Developer projects tab + notification bell).
   if (scopedPins && current && !result.error && op.action !== 'select') {
     const vals = Array.isArray(op.values) ? op.values : op.values ? [op.values] : [];
-    const title = vals.length === 1 && vals[0].title ? `“${String(vals[0].title)}”` : vals.length > 1 ? `${vals.length} projects` : 'a project';
-    const type = op.action === 'delete' ? 'project_deleted' : op.action === 'insert' ? 'project_added' : 'project_edited';
-    const verb = type === 'project_deleted' ? 'Deleted' : type === 'project_added' ? 'Added' : 'Edited';
+    let title = vals.length === 1 && vals[0].title ? `“${String(vals[0].title)}”` : vals.length > 1 ? `${vals.length} projects` : 'a project';
+    if (op.action === 'delete') {
+      // A developer's delete is only a request (see db-engine) — name the project in the log.
+      const idf = op.filters?.find((f) => f.col === 'id' && f.op === 'eq');
+      const pin = idf && 'val' in idf ? await (await getDb()).collection('pins').findOne({ id: String(idf.val) }, { projection: { title: 1 } }) : null;
+      if (pin?.title) title = `“${String(pin.title)}”`;
+    }
+    const type = op.action === 'delete' ? 'project_delete_requested' : op.action === 'insert' ? 'project_added' : 'project_edited';
+    const verb = type === 'project_delete_requested' ? 'Asked to delete' : type === 'project_added' ? 'Added' : 'Edited';
     await logActivity({
       user_id: current.id, email: current.email, role: current.role, type,
-      detail: `${verb} ${title} on the map${type === 'project_deleted' ? '' : ' — waiting for approval'}`,
+      detail: `${verb} ${title}${type === 'project_delete_requested' ? ' — waiting for super admin approval' : ' on the map — waiting for approval'}`,
     });
   }
   // A map is loading its pins: pre-encode the marker thumbnails it is about to

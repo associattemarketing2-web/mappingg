@@ -10,6 +10,7 @@ interface Payload { pendingProjects: number; unread: number; items: Note[] }
 
 const ICON: Record<string, string> = {
   project_added: 'fa-map-pin', project_edited: 'fa-pen', project_deleted: 'fa-trash', signup: 'fa-user-plus',
+  project_delete_requested: 'fa-trash-can',
 };
 const ago = (d: string) => {
   const s = (Date.now() - new Date(d).getTime()) / 1000;

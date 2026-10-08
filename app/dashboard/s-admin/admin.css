@@ -651,6 +651,11 @@ button.acs-act-row:hover { background: var(--bg); }
 .dp-note { font-size: 12.5px; margin-top: 2px; }
 .dp-note.ok { color: var(--accent); }
 .dp-note.bad { color: var(--earth); }
+.dp-delreq { margin-top: 6px; padding: 10px 12px; border-radius: 10px; background: #fdf0ec; border: 1px solid #f1d2c6; font-size: 12.5px; color: #7a3a22; }
+.dp-delreq p { margin: 0 0 8px; }
+.dp-delreq i { color: var(--earth); }
+.dp-delreq-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.dp-delalert .acs-alert-ic { background: #fbeee8; color: var(--earth); }
 .dp-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
 .dp-reject { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
 .dp-reject .crm-notes { width: 100%; }
@@ -1019,13 +1024,21 @@ button.acs-act-row:hover { background: var(--bg); }
 .dvl-warn { font-size: 12px; color: #9a6a12; font-weight: 600; }
 .dvl-apply { justify-self: start; border: 0; background: var(--accent-50); color: var(--accent); font: 600 12px var(--font); padding: 4px 9px; border-radius: 999px; cursor: pointer; }
 .dvl-apply:hover { background: #d9ebcf; }
-.dvl-actions { display: flex; flex-direction: column; gap: 4px; }
-.dvl-icon { position: relative; width: 30px; height: 30px; border-radius: 8px; border: 1px solid transparent; background: none; color: var(--muted); cursor: pointer; font-size: 12.5px; }
-.dvl-icon:hover { border-color: var(--line); color: var(--fg); background: #fff; }
-.dvl-icon.danger:hover { color: var(--earth); border-color: #ecccbf; }
-.dvl-x { position: absolute; right: 3px; bottom: 3px; font-size: 9px; }
-.dvl-rename { display: flex; gap: 6px; }
-.dvl-rename input { flex: 1; min-width: 0; padding: 6px 9px; border-radius: 8px; border: 1px solid var(--forest); font: 14px var(--font); }
+.dvl-edit { align-self: start; }
+.dvl-card .dvl-logo { cursor: default; }
+.dvl-drawer h3 { margin: 0; font-size: 17px; }
+.dvl-close { width: 34px; height: 34px; border-radius: 9px; border: 1px solid var(--line); background: #fff; color: var(--muted); cursor: pointer; }
+.dvl-close:hover { color: var(--fg); border-color: var(--forest); }
+.dvl-logo-edit { display: flex; gap: 14px; align-items: center; }
+.dvl-logo.big { width: 104px; height: 104px; flex: none; cursor: default; }
+.dvl-logo-btns { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.dvl-logo-btns small { font-size: 11.5px; line-height: 1.4; }
+.dvl-undo { border: 0; background: none; padding: 0; color: var(--water); font: 600 12px var(--font); cursor: pointer; }
+.dvl-proj { font-size: 12.5px; margin: -4px 0 16px; }
+.dvl-form-actions { display: flex; justify-content: flex-end; gap: 8px; }
+.dvl-danger { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 28px; padding: 14px; border-radius: 12px; border: 1px solid #f1d2c6; background: #fdf6f3; }
+.dvl-danger div { display: grid; gap: 2px; font-size: 13px; }
+.dvl-danger .muted { font-size: 12px; }
 .dvl-add { display: grid; grid-template-columns: 72px 1fr auto; gap: 16px; align-items: end; }
 .dvl-add .adm-field { margin: 0; }
 .dvl-add-actions { display: flex; gap: 8px; }

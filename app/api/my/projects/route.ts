@@ -4,8 +4,7 @@ import { z } from 'zod';
 import { getCurrentUser } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
 import { logActivity } from '@/lib/activity';
-import { snapshotPin, invalidateTable, runDbOp } from '@/lib/db-engine';
-import { moveToTrash } from '@/lib/trash';
+import { snapshotPin, invalidateTable } from '@/lib/db-engine';
 import { canEditProjects } from '@/lib/verification';
 
 export const runtime = 'nodejs';
@@ -95,7 +94,7 @@ export async function GET() {
     .collection<PinDoc>('pins')
     .find(
       { owner_user_id: user.id },
-      { projection: { id: 1, number: 1, title: 1, location: 1, status: 1, type: 1, price: 1, configuration: 1, description: 1, lat: 1, lng: 1, pending_review: 1, rejected: 1, hidden: 1, created_at: 1, review_note: 1, reviewed_at: 1 } },
+      { projection: { id: 1, number: 1, title: 1, location: 1, status: 1, type: 1, price: 1, configuration: 1, description: 1, lat: 1, lng: 1, pending_review: 1, rejected: 1, hidden: 1, created_at: 1, review_note: 1, reviewed_at: 1, delete_requested_at: 1, delete_review_note: 1 } },
     )
     .sort({ created_at: -1 })
     .toArray()) as PinDoc[];
@@ -107,6 +106,8 @@ export async function GET() {
     lat: p.lat ?? null, lng: p.lng ?? null,
     review: statusOf(p), created_at: String(p.created_at || ''),
     review_note: String(p.review_note || ''), reviewed_at: String(p.reviewed_at || ''),
+    // Asked to delete — waiting for the super admin; or why the super admin kept it.
+    delete_requested: !!p.delete_requested_at, delete_note: String(p.delete_review_note || ''),
   }));
   return NextResponse.json({ data: projects }, { headers: { 'Cache-Control': 'private, no-store' } });
 }
@@ -190,15 +191,15 @@ export async function DELETE(req: NextRequest) {
   if (!id) return NextResponse.json({ error: { message: 'Missing id' } }, { status: 400 });
 
   const db = await getDb();
-  // Scoped to the owner so a developer can never delete someone else's project.
-  const gone = await db.collection<PinDoc>('pins').findOne({ id, owner_user_id: user.id });
-  if (!gone) return NextResponse.json({ error: { message: 'Project not found' } }, { status: 404 });
-  // The super admin can restore it from Backups → Recycle bin (and the pin's
-  // own history), so a developer's accidental delete is never final.
-  await moveToTrash({ kind: 'dev_project', label: String(gone.title || 'Untitled project'), sub: `Deleted by the developer · ${user.email}`, docs: [{ collection: 'pins', doc: gone }], deletedBy: user.email });
-  const res = await runDbOp({ table: 'pins', action: 'delete', filters: [{ op: 'eq', col: 'id', val: id }] }, true, { developerId: user.id });
-  if (res.error) return NextResponse.json({ error: res.error }, { status: res.status });
-  invalidateTable('pins');
-  await logActivity({ user_id: user.id, email: user.email, role: user.role, type: 'project_deleted', detail: `Deleted “${String(gone?.title || 'a project')}”` });
-  return NextResponse.json({ data: { ok: true } }, { headers: { 'Cache-Control': 'private, no-store' } });
+  // Scoped to the owner so a developer can never touch someone else's project.
+  const pin = await db.collection<PinDoc>('pins').findOne({ id, owner_user_id: user.id }, { projection: { id: 1, title: 1, delete_requested_at: 1 } });
+  if (!pin) return NextResponse.json({ error: { message: 'Project not found' } }, { status: 404 });
+  // Developers can't delete: this only asks the super admin, who deletes it
+  // (Developer projects → Delete requests) or keeps it. Nothing changes on the map meanwhile.
+  if (!pin.delete_requested_at) {
+    await db.collection<PinDoc>('pins').updateOne({ id, owner_user_id: user.id }, { $set: { delete_requested_at: new Date().toISOString(), delete_review_note: '' } });
+    invalidateTable('pins');
+    await logActivity({ user_id: user.id, email: user.email, role: user.role, type: 'project_delete_requested', detail: `Asked to delete “${String(pin.title || 'a project')}” — waiting for super admin approval` });
+  }
+  return NextResponse.json({ data: { delete_requested: true } }, { headers: { 'Cache-Control': 'private, no-store' } });
 }

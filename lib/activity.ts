@@ -15,6 +15,7 @@ export type ActivityType =
   | 'signup' | 'login' | 'logout'
   | 'compare' | 'favorite' | 'enquiry' | 'contact'
   | 'project_added' | 'project_edited' | 'project_deleted' | 'project_approved' | 'project_rejected'
+  | 'project_delete_requested' | 'project_delete_approved' | 'project_delete_rejected'
   | 'approved' | 'rejected' | 'reset' | 'password_reset' | 'notes' | 'deleted' | 'access' | 'project_admin_edit' | 'profile_edited';
 
 export interface ActivityEvent {

@@ -68,13 +68,6 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
     setBusy(id);
     try { await fn(); flash(done); await load(); } catch (e) { flash(e instanceof Error ? e.message : 'Something went wrong', true); } finally { setBusy(null); }
   }
-  const setLogo = (d: Dev, file: File) => run(d.id, async () => call('PATCH', `?id=${d.id}`, { logo: await readLogo(file) }), `${d.name} logo updated`);
-  const removeLogo = (d: Dev) => run(d.id, () => call('PATCH', `?id=${d.id}`, { logo: null }), `${d.name} logo removed`);
-  const rename = (d: Dev, name: string) => run(d.id, () => call('PATCH', `?id=${d.id}`, { name }), 'Name saved').then(() => setEditing(null));
-  const remove = (d: Dev) => {
-    if (!window.confirm(`Remove “${d.name}” from the developer list?\n\nIts ${d.projects} map project${d.projects === 1 ? '' : 's'} keep their name and logo.`)) return;
-    run(d.id, () => call('DELETE', `?id=${d.id}`), `${d.name} removed`);
-  };
   const applyAll = (d: Dev) => {
     const n = d.projects - d.logoInUse;
     if (!window.confirm(`Put this logo on ${n} more ${d.name} project${n === 1 ? '' : 's'} on the map?\n\nOld pictures stay in each pin's history (Backups), so this can be undone.`)) return;
@@ -110,11 +103,12 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
             <ul className="dvl-grid">
               {shown.map((d) => (
                 <li key={d.id} className={`dvl-card${busy === d.id ? ' busy' : ''}`}>
-                  <LogoPicker dev={d} onFile={(f) => setLogo(d, f)} disabled={busy === d.id} />
+                  <div className={`dvl-logo${d.logo ? '' : ' empty'}`} aria-hidden="true">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    {d.logo ? <img src={thumb(d.logo)} alt="" loading="lazy" /> : <i className="fas fa-image" />}
+                  </div>
                   <div className="dvl-info">
-                    {editing === d.id
-                      ? <RenameForm initial={d.name} onCancel={() => setEditing(null)} onSave={(n) => rename(d, n)} />
-                      : <b className="dvl-name" title={d.name}>{d.name}</b>}
+                    <b className="dvl-name" title={d.name}>{d.name}</b>
                     <span className="muted dvl-sub">
                       {d.projects ? `${d.projects} project${d.projects === 1 ? '' : 's'} on the map` : 'Not on the map yet'}
                     </span>
@@ -123,42 +117,100 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
                         ? <span className="dvl-ok"><i className="fas fa-circle-check" /> Logo on every project</span>
                         : <button className="dvl-apply" disabled={busy === d.id} onClick={() => applyAll(d)}><i className="fas fa-wand-magic-sparkles" /> Logo on {d.logoInUse} of {d.projects} — use on all</button>
                     )}
-                    {!d.logo && <span className="dvl-warn"><i className="fas fa-image" /> No logo — click the box to add one</span>}
+                    {!d.logo && <span className="dvl-warn"><i className="fas fa-image" /> No logo — use Edit to add one</span>}
                   </div>
-                  <div className="dvl-actions">
-                    <button className="dvl-icon" title="Rename" aria-label={`Rename ${d.name}`} onClick={() => setEditing(d.id)}><i className="fas fa-pen" /></button>
-                    {d.logo && <button className="dvl-icon" title="Remove logo" aria-label={`Remove ${d.name} logo`} onClick={() => removeLogo(d)}><i className="fas fa-image" /><i className="fas fa-xmark dvl-x" /></button>}
-                    <button className="dvl-icon danger" title="Remove from list" aria-label={`Remove ${d.name}`} onClick={() => remove(d)}><i className="fas fa-trash" /></button>
-                  </div>
+                  <button className="adm-btn ghost sm dvl-edit" disabled={busy === d.id} onClick={() => setEditing(d.id)} aria-label={`Edit ${d.name}`}><i className="fas fa-pen" /> Edit</button>
                 </li>
               ))}
             </ul>
           )}
+
+      {editing && rows?.find((r) => r.id === editing) && (
+        <EditDrawer dev={rows.find((r) => r.id === editing)!} flash={flash}
+          onClose={() => setEditing(null)} onDone={() => { setEditing(null); load(); }} />
+      )}
     </div>
   );
 }
 
-function LogoPicker({ dev, onFile, disabled }: { dev: { name: string; logo: string | null }; onFile: (f: File) => void; disabled?: boolean }) {
+/** Edit one developer: name, logo (change / remove) and — at the bottom — delete. */
+function EditDrawer({ dev, flash, onClose, onDone }: { dev: Dev; flash: Flash; onClose: () => void; onDone: () => void }) {
+  const [name, setName] = useState(dev.name);
+  // undefined = logo unchanged, null = remove it, string = new logo (data: URL)
+  const [logo, setLogo] = useState<string | null | undefined>(undefined);
+  const [busy, setBusy] = useState(false);
   const input = useRef<HTMLInputElement>(null);
-  return (
-    <button type="button" className={`dvl-logo${dev.logo ? '' : ' empty'}`} disabled={disabled} onClick={() => input.current?.click()}
-      title={dev.logo ? 'Change logo' : 'Add logo'} aria-label={`${dev.logo ? 'Change' : 'Add'} ${dev.name} logo`}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      {dev.logo ? <img src={thumb(dev.logo)} alt="" loading="lazy" /> : <i className="fas fa-plus" />}
-      <span className="dvl-logo-hover"><i className="fas fa-camera" /></span>
-      <input ref={input} type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml" hidden
-        onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ''; if (f) onFile(f); }} />
-    </button>
-  );
-}
+  const preview = logo === undefined ? (dev.logo ? thumb(dev.logo) : null) : logo;
+  const changed = name.trim() !== dev.name || logo !== undefined;
 
-function RenameForm({ initial, onSave, onCancel }: { initial: string; onSave: (n: string) => void; onCancel: () => void }) {
-  const [v, setV] = useState(initial);
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape' && !busy) onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [busy, onClose]);
+
+  async function save(e: React.FormEvent) {
+    e.preventDefault();
+    if (!name.trim()) { flash('Enter the developer’s name', true); return; }
+    if (!changed) { onClose(); return; }
+    setBusy(true);
+    try {
+      await call('PATCH', `?id=${dev.id}`, { ...(name.trim() !== dev.name ? { name: name.trim() } : {}), ...(logo !== undefined ? { logo } : {}) });
+      flash(`${name.trim()} saved`);
+      onDone();
+    } catch (err) { flash(err instanceof Error ? err.message : 'Could not save', true); setBusy(false); }
+  }
+  async function remove() {
+    if (!window.confirm(`Delete “${dev.name}” from the developer list?\n\nIts ${dev.projects} map project${dev.projects === 1 ? '' : 's'} keep their name and logo.`)) return;
+    setBusy(true);
+    try { await call('DELETE', `?id=${dev.id}`); flash(`${dev.name} deleted`); onDone(); } catch (err) { flash(err instanceof Error ? err.message : 'Could not delete', true); setBusy(false); }
+  }
+
   return (
-    <form className="dvl-rename" onSubmit={(e) => { e.preventDefault(); if (v.trim() && v.trim() !== initial) onSave(v.trim()); else onCancel(); }}>
-      <input autoFocus value={v} onChange={(e) => setV(e.target.value)} onKeyDown={(e) => e.key === 'Escape' && onCancel()} aria-label="Developer name" maxLength={120} />
-      <button className="adm-btn primary sm" type="submit">Save</button>
-    </form>
+    <div className="crm-drawer-overlay" onClick={() => { if (!busy) onClose(); }}>
+      <aside className="crm-drawer dvl-drawer" role="dialog" aria-modal="true" aria-label={`Edit ${dev.name}`} onClick={(e) => e.stopPropagation()}>
+        <div className="crm-drawer-head">
+          <h3>Edit developer</h3>
+          <button type="button" className="dvl-close" onClick={onClose} aria-label="Close"><i className="fas fa-xmark" /></button>
+        </div>
+        <form onSubmit={save} className="dvl-form">
+          <div className="adm-field">
+            <label>Logo</label>
+            <div className="dvl-logo-edit">
+              <div className={`dvl-logo big${preview ? '' : ' empty'}`}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                {preview ? <img src={preview} alt="" /> : <i className="fas fa-image" />}
+              </div>
+              <div className="dvl-logo-btns">
+                <button type="button" className="adm-btn ghost sm" disabled={busy} onClick={() => input.current?.click()}>
+                  <i className="fas fa-upload" /> {preview ? 'Change logo' : 'Add logo'}
+                </button>
+                {preview && (
+                  <button type="button" className="adm-btn ghost sm" disabled={busy} onClick={() => setLogo(null)}><i className="fas fa-xmark" /> Remove logo</button>
+                )}
+                {logo !== undefined && <button type="button" className="dvl-undo" onClick={() => setLogo(undefined)}>Undo logo change</button>}
+                <small className="muted">PNG, JPG, WebP, GIF or SVG. Used on every new project of this developer.</small>
+              </div>
+            </div>
+            <input ref={input} type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml" hidden
+              onChange={async (e) => { const f = e.target.files?.[0]; e.target.value = ''; if (!f) return; try { setLogo(await readLogo(f)); } catch (err) { flash(err instanceof Error ? err.message : 'Could not read image', true); } }} />
+          </div>
+          <div className="adm-field">
+            <label htmlFor="dvl-edit-name">Developer name</label>
+            <input id="dvl-edit-name" value={name} onChange={(e) => setName(e.target.value)} maxLength={120} />
+          </div>
+          <p className="muted dvl-proj">{dev.projects ? `${dev.projects} project${dev.projects === 1 ? '' : 's'} on the map use this name.` : 'No projects on the map use this name yet.'}</p>
+          <div className="dvl-form-actions">
+            <button type="button" className="adm-btn ghost" onClick={onClose} disabled={busy}>Cancel</button>
+            <button type="submit" className="adm-btn primary" disabled={busy || !changed || !name.trim()}>{busy ? 'Saving…' : 'Save changes'}</button>
+          </div>
+        </form>
+        <div className="dvl-danger">
+          <div><b>Delete developer</b><span className="muted">Removes it from this list. Projects on the map are not changed.</span></div>
+          <button type="button" className="adm-btn danger sm" disabled={busy} onClick={remove}><i className="fas fa-trash" /> Delete</button>
+        </div>
+      </aside>
+    </div>
   );
 }
 
