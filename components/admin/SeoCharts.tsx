@@ -129,9 +129,11 @@ export function StatusStack({ data, show, hide }: {
 }
 
 /* ---------- weekly columns (count over time; one series) ---------- */
-export function WeekColumns({ data, show, hide, noun }: {
+export function WeekColumns({ data, show, hide, noun, period = 'week' }: {
   data: { week: string; count: number }[]; noun: [string, string];
   show: (e: React.PointerEvent, t: string, l: string[]) => void; hide: () => void;
+  /** 'day' = one bar per day (tooltip shows the weekday, labels thin out for long ranges). */
+  period?: 'week' | 'day';
 }) {
   const max = Math.max(...data.map((d) => d.count), 0);
   const top = niceMax(max);
@@ -145,12 +147,12 @@ export function WeekColumns({ data, show, hide, noun }: {
         {ticks.map((t, i) => <span key={i} className="viz-grid" style={{ bottom: `${top ? (t / top) * 100 : 0}%` }} />)}
         {data.map((d, i) => (
           <div className="viz-col" key={d.week}
-            onPointerMove={(e) => show(e, `Week of ${label(d.week)}`, [`${fmt(d.count)} ${d.count === 1 ? noun[0] : noun[1]}`])}
+            onPointerMove={(e) => show(e, period === 'day' ? new Date(d.week + 'T00:00:00Z').toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' }) : `Week of ${label(d.week)}`, [`${fmt(d.count)} ${d.count === 1 ? noun[0] : noun[1]}`])}
             onPointerLeave={hide}>
             <span className="viz-colbar" style={{ height: `${top ? (d.count / top) * 100 : 0}%` }}>
               {i === peak && d.count > 0 && <span className="viz-colval">{fmt(d.count)}</span>}
             </span>
-            <span className="viz-xlabel">{i % 3 === data.length % 3 || i === data.length - 1 ? label(d.week) : ''}</span>
+            <span className="viz-xlabel">{(i - data.length + 1) % Math.max(3, Math.ceil(data.length / 8)) === 0 ? label(d.week) : ''}</span>
           </div>
         ))}
       </div>

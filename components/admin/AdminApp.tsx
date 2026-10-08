@@ -9,6 +9,7 @@ import NotificationBell from './NotificationBell';
 import PhoneInput from '@/components/PhoneInput';
 import SearchConsolePanel from './SearchConsolePanel';
 import { BulkBar, PickOne, useSelection } from './bulk';
+import TrafficPanel from './TrafficPanel';
 import { ChartCard, DayHeatmap, Donut, HBars, STATUS_META, StatTile, StatusStack, TYPE_COLORS, WeekColumns, dayStats } from './SeoCharts';
 
 export interface AdminUser {
@@ -240,6 +241,7 @@ function SeoPanel() {
 
   return (
     <div className="viz">
+      <TrafficPanel />
       <SearchConsolePanel />
 
       <h2 className="gsc-title" style={{ marginTop: 12 }}><i className="fas fa-heart-pulse" /> Site health &amp; content</h2>

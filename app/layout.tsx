@@ -4,6 +4,7 @@ import PwaRegister from '@/components/PwaRegister';
 import SmoothLinks from '@/components/SmoothLinks';
 import LockRedirect from '@/components/LockRedirect';
 import CookieConsent from '@/components/CookieConsent';
+import SiteTracker from '@/components/SiteTracker';
 import { getPublicSettings } from '@/lib/site-settings';
 import { jsonLd, organizationSchema, websiteSchema } from '@/lib/seo/schema';
 
@@ -116,6 +117,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <SmoothLinks />
         {children}
         <CookieConsent />
+        <SiteTracker />
         <PwaRegister />
         {/* The "Install app" button lives in the super-admin layout only. */}
       </body>

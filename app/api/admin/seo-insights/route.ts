@@ -138,7 +138,7 @@ export async function GET() {
     { label: 'Search Console verification tag live', ok: !!live?.gsc, fix: live?.gscFound ? `Live tag is "${live.gscFound}" — doesn't match Settings` : liveFix('Meta tag') },
     { label: 'Google Tag Manager live', ok: !!live?.gtm, fix: liveFix(gtm || 'GTM') },
     { label: 'Google Analytics 4 live (via GTM)', ok: !!live?.ga, fix: live ? `${ga} not found on the page or in ${gtm}` : liveFix('GA4') },
-    { label: 'Search Console API connected', ok: gscConfigured(), fix: 'Add service-account env vars' },
+    { label: 'Search Console API connected', ok: gscConfigured(), fix: 'Add GSC_SERVICE_ACCOUNT_JSON to .env and Render, then restart' },
     { label: 'At least 3 published blog posts', ok: posts.published >= 3, fix: `${posts.published} published so far` },
     { label: 'Project pages ≥ 80% complete', ok: avgCompleteness >= 80, fix: `${avgCompleteness}% complete` },
     { label: 'Every public project has a location', ok: noLocation === 0, fix: `${noLocation} without a location` },
