@@ -1,10 +1,14 @@
 // Seed the public blog with SEO articles built from the live project data.
 //
-//   node --env-file=.env migration/seed-blogs.mjs
+//   node --env-file=.env migration/seed-blogs.mjs [--dry-run]
+//
+// --dry-run renders the covers and builds every article but writes nothing to
+// the database — use it to commit the new covers before the posts go live.
 //
 // - Removes the old placeholder post ("welcome-to-the-mappingg-blog").
-// - Generates 1200x630 cover images into public/img/blog/ (also used as the
-//   Open Graph / Twitter card image). Commit them so production serves them.
+// - Renders an illustrated 1200x630 cover per article (migration/blog-covers.mjs)
+//   into public/img/blog/, also used as the Open Graph / Twitter card image.
+//   Commit and deploy them before seeding, so production can serve them.
 // - Upserts each article by slug, so re-running refreshes the content instead
 //   of creating duplicates.
 //
@@ -13,12 +17,12 @@
 // rules as the /projects/<slug> pages (lib/seo/slug.ts + lib/locality.ts).
 
 import { randomUUID } from 'node:crypto';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import pg from 'pg';
-import sharp from 'sharp';
 import { projectSlug, slugify } from '../lib/seo/slug.ts';
 import { localitiesOf } from '../lib/locality.ts';
+import { makeCover } from './blog-covers.mjs';
 
 const OLD_SLUGS = ['welcome-to-the-mappingg-blog'];
 const COVER_DIR = path.resolve('public/img/blog');
@@ -103,44 +107,14 @@ function makeHelpers(pins) {
     return cards ? `<div class="proj-grid">${cards}</div>` : '';
   };
 
-  return { get, link, table, gallery, href };
-}
+  /** <a> to a locality page; throws if no public project is in that locality. */
+  const localities = new Set([...pins.values()].map((p) => localitiesOf(p.location)[0]).filter(Boolean));
+  const loc = (name, text) => {
+    if (!localities.has(name)) throw new Error(`locality ${name} has no public projects`);
+    return `<a href="/locations/${slugify(name)}">${esc(text || name)}</a>`;
+  };
 
-// ---- covers -------------------------------------------------------------------
-
-async function fetchImage(url) {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`image ${res.status}: ${url}`);
-  return Buffer.from(await res.arrayBuffer());
-}
-
-/** 1200x630 cover: headline on the left, a column of three project/developer images on the right. */
-async function makeCover(file, { kicker, lines, imageUrls }) {
-  const W = 1200, H = 630, tile = 170, gap = 20;
-  const svg = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
-    <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0f5c47"/><stop offset="1" stop-color="#0a3d30"/></linearGradient></defs>
-    <rect width="${W}" height="${H}" fill="url(#g)"/>
-    <rect x="60" y="64" rx="18" width="${Math.round(kicker.length * 15.5) + 40}" height="40" fill="#e8f2e1"/>
-    <text x="80" y="91" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#2f7a3c" letter-spacing="2">${esc(kicker.toUpperCase())}</text>
-    ${lines.map((l, i) => `<text x="60" y="${178 + i * 66}" font-family="Segoe UI, Arial, sans-serif" font-size="56" font-weight="800" fill="#ffffff">${esc(l)}</text>`).join('')}
-    <text x="60" y="${H - 50}" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" fill="#d9c48f">mappingg.com</text>
-    <text x="250" y="${H - 50}" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#cfe3d6">Live map · MahaRERA details · Prices</text>
-  </svg>`;
-  const tiles = await Promise.all(
-    imageUrls.slice(0, 3).map(async (u) =>
-      sharp(await fetchImage(u))
-        .resize(tile, tile, { fit: 'cover' })
-        .composite([{ input: Buffer.from(`<svg width="${tile}" height="${tile}"><rect width="${tile}" height="${tile}" rx="22" ry="22"/></svg>`), blend: 'dest-in' }])
-        .png()
-        .toBuffer(),
-    ),
-  );
-  const top = Math.round((H - (tiles.length * tile + (tiles.length - 1) * gap)) / 2);
-  await sharp(Buffer.from(svg))
-    .composite(tiles.map((input, i) => ({ input, left: W - 60 - tile, top: top + i * (tile + gap) })))
-    .jpeg({ quality: 84, mozjpeg: true })
-    .toFile(file);
+  return { get, link, loc, table, gallery, href };
 }
 
 // ---- articles -----------------------------------------------------------------
@@ -161,9 +135,12 @@ function mundhwaArticle(h) {
     excerpt:
       'A data-backed guide to new launches and under-construction projects in Mundhwa, Pune — budgets, BHK configurations, possession timelines and MahaRERA numbers in one place.',
     tags: ['Mundhwa', 'Pune', 'New Projects', 'Flats in Mundhwa', 'MahaRERA'],
-    coverPins: [18, 15, 13],
-    coverLines: ['New Projects in', 'Mundhwa, Pune', '2026 Buyer’s Guide'],
-    coverKicker: 'Locality guide',
+    cover: {
+      theme: 'dusk',
+      kicker: 'Locality guide',
+      lines: ['New Projects in', 'Mundhwa, Pune', '2026 Buyer’s Guide'],
+      stats: [['30+', 'projects tracked'], ['₹98 L', '2 BHK from'], ['2–5 BHK', 'plus villas']],
+    },
     content: `
 <p>Searching for <strong>new projects in Mundhwa, Pune</strong>? Mundhwa has quietly become one of East Pune’s busiest residential micro-markets. It sits between Koregaon Park, Kharadi, Magarpatta and Hadapsar, so you get quick access to the city’s biggest IT parks without paying Koregaon Park prices. On <a href="/locations/mundhwa">Mappingg’s live map of Mundhwa</a> we track more than 30 residential, mixed-use and commercial projects here, which makes it the most active locality on our map.</p>
 
@@ -235,9 +212,12 @@ function puneAreasArticle(h) {
     excerpt:
       'Mundhwa, Kharadi, Hinjewadi, Balewadi, Tathawade, Lohegaon, NIBM or Kalyani Nagar? A budget-wise comparison of Pune’s top localities, with real projects, prices and possession dates.',
     tags: ['Pune', 'Real Estate Investment', 'Best Areas in Pune', 'Kharadi', 'Hinjewadi'],
-    coverPins: [92, 205, 11],
-    coverLines: ['Best Areas to Buy', 'Property in Pune', '2026 Price Guide'],
-    coverKicker: 'Pune investment guide',
+    cover: {
+      theme: 'emerald',
+      kicker: 'Pune investment guide',
+      lines: ['Best Areas to Buy', 'Property in Pune', '2026 Price Guide'],
+      stats: [['8', 'localities compared'], ['₹65 L', 'lowest entry'], ['₹3.5 Cr+', 'luxury picks']],
+    },
     content: `
 <p>Choosing the <strong>best area to buy property in Pune</strong> comes down to three questions: where you work, what your budget is, and whether you’re buying to live in or to invest. To help, we compared Pune’s most active localities using the projects listed on the <a href="/cities/pune">Mappingg Pune map</a>, including real starting prices, BHK options and possession dates.</p>
 
@@ -323,9 +303,12 @@ function kharadiArticle(h) {
     excerpt:
       'Flats in Kharadi near EON IT Park and the World Trade Center — every new and under-construction project on our map, with BHK options, starting prices, possession dates and MahaRERA numbers.',
     tags: ['Kharadi', 'Pune', 'New Projects', 'Flats in Kharadi', 'EON IT Park'],
-    coverPins: [92, 81, 135],
-    coverLines: ['New Projects in', 'Kharadi, Pune', '2026 Buyer’s Guide'],
-    coverKicker: 'Locality guide',
+    cover: {
+      theme: 'midnight',
+      kicker: 'Locality guide',
+      lines: ['New Projects in', 'Kharadi, Pune', '2026 Buyer’s Guide'],
+      stats: [['20+', 'projects tracked'], ['₹1.12 Cr', '2 BHK from'], ['EON · WTC', 'IT hubs nearby']],
+    },
     content: `
 <p>Kharadi is East Pune’s biggest employment hub. EON IT Park, the World Trade Center and a string of large office campuses bring thousands of professionals here every day, and that keeps demand for <strong>flats in Kharadi</strong> strong for both homebuyers and investors. This guide lists the <strong>new projects in Kharadi, Pune</strong> that we track on the <a href="/locations/kharadi">Mappingg Kharadi map</a>, with prices, BHK options, possession dates and MahaRERA numbers.</p>
 
@@ -381,9 +364,12 @@ function reraArticle(h) {
     excerpt:
       'A MahaRERA number is the single most important check before booking a flat in Maharashtra. Here is how to read it, verify it on the MahaRERA website and spot red flags.',
     tags: ['MahaRERA', 'RERA', 'Home Buying Guide', 'Pune', 'Maharashtra'],
-    coverPins: [16, 17, 3],
-    coverLines: ['How to Check a', 'MahaRERA Number', 'Before You Buy'],
-    coverKicker: 'Buyer’s guide',
+    cover: {
+      theme: 'forest',
+      kicker: 'Buyer’s guide',
+      lines: ['How to Check a', 'MahaRERA Number', 'Before You Buy'],
+      stats: [['5 min', 'to verify'], ['7', 'checks to run'], ['Free', 'on MahaRERA']],
+    },
     content: `
 <p>Before you pay a booking amount for any under-construction flat in Maharashtra, you should <strong>check the project’s MahaRERA registration number</strong>. It takes five minutes and tells you whether the project is legally registered, who the promoter is, what was approved and when the developer has committed to finish. This guide explains how to read a MahaRERA number, how to verify it, and what to look for.</p>
 
@@ -444,6 +430,289 @@ function reraArticle(h) {
   };
 }
 
+function westPuneArticle(h) {
+  return {
+    slug: 'new-projects-in-hinjewadi-baner-balewadi-pune',
+    title: 'New Projects in Hinjewadi, Baner, Balewadi & Tathawade (2026): West Pune Price Guide',
+    seo_title: 'New Projects in Hinjewadi, Baner & Balewadi 2026',
+    seo_description:
+      'New flats in West Pune’s IT belt — Hinjewadi, Baner, Balewadi, Tathawade, Wakad & Mahalunge. 2, 3 & 4 BHK from ₹74 Lacs, with possession dates and MahaRERA numbers.',
+    excerpt:
+      'Working in Hinjewadi or Baner? Every new project we track across West Pune’s IT belt — Hinjewadi, Baner, Balewadi, Tathawade, Wakad, Sus and Mahalunge — sorted by budget.',
+    tags: ['Hinjewadi', 'Baner', 'Balewadi', 'West Pune', 'New Projects'],
+    cover: {
+      theme: 'sunrise',
+      kicker: 'West Pune guide',
+      lines: ['New Projects in', 'Hinjewadi, Baner', '& Balewadi 2026'],
+      stats: [['20+', 'projects tracked'], ['₹74 L', 'starting price'], ['2–4.5 BHK', 'configurations']],
+    },
+    content: `
+<p>West Pune’s IT belt runs from <strong>Rajiv Gandhi Infotech Park in Hinjewadi</strong> through Wakad and Tathawade to Baner, Balewadi and Aundh. It’s where many of Pune’s tech professionals work, and the area has some of the city’s biggest new launches. This guide lists every <strong>new project in Hinjewadi, Baner, Balewadi and Tathawade</strong> that we track on the <a href="/map">Mappingg live map</a>, sorted by budget, with BHK options, possession dates and MahaRERA numbers.</p>
+
+<h2>Why buy in West Pune?</h2>
+<ul>
+  <li><strong>Short commute to IT jobs:</strong> Hinjewadi Phases 1–3, Baner and Balewadi are all office hubs, so homes here rarely struggle to find tenants.</li>
+  <li><strong>Large townships:</strong> the 105-acre Krisala Hiranandani township in ${h.loc('Hinjewadi')} and Mahindra’s ${h.link(198)} in ${h.loc('Mahalunge')} come with schools, retail and open spaces built in.</li>
+  <li><strong>Metro and highway access:</strong> the Hinjewadi–Shivajinagar metro line and the Mumbai–Bengaluru highway connect the belt to the rest of the city.</li>
+  <li><strong>Every budget:</strong> from 2 BHKs under ₹1 Cr in Hinjewadi, Sus and Tathawade to 4.5 BHK residences in Baner and Aundh.</li>
+</ul>
+
+${h.gallery([204, 182, 201, 217, 198, 202])}
+
+<h2>West Pune projects under ₹1 Cr</h2>
+<p>The best entry points are in the townships. ${h.link(204)} and the upcoming ${h.link(206)} in the Krisala Hiranandani township start at ₹82–85 Lacs, and ${h.link(203)} offers 2, 3 and 3.5 BHK homes in central Hinjewadi. ${h.link(199)} in ${h.loc('Sus')} starts at about ₹74 Lacs, and ${h.link(202)} in ${h.loc('Tathawade')} is IGBC Gold certified.</p>
+${h.table([199, 204, 206, 198, 203, 202, 231], 'West Pune projects starting under ₹1 Cr')}
+
+<h2>2 &amp; 3 BHK projects from ₹1 Cr to ₹2 Cr</h2>
+<p>This is where most buyers in West Pune land. Lodha’s ${h.link(182)} and ${h.link(166)} in Hinjewadi, ${h.link(201)} in ${h.loc('Baner')}, and ${h.link(200)} and ${h.link(230)} in ${h.loc('Balewadi')} all start between ₹1 Cr and ₹1.45 Cr. In Wakad, ${h.link(246)} has just six flats per floor and a metro station within walking distance.</p>
+${h.table([201, 230, 182, 200, 232, 246, 166, 217], 'West Pune projects from ₹1 Cr to ₹2 Cr')}
+
+<h2>Premium 3, 4 &amp; 4.5 BHK homes</h2>
+<p>For bigger homes, ${h.link(205)} in the Hiranandani township offers 3 BHK, 4 BHK and duplex options, and Majestique’s ${h.link(216)} in Balewadi starts at about ₹1.88 Cr. At the top end, ${h.link(215)} in Baner, ${h.link(162)} in Balewadi and ${h.link(181)} in ${h.loc('Aundh')} are 4 and 4.5 BHK residences.</p>
+${h.table([205, 216, 215, 162, 181], 'Premium projects in West Pune')}
+
+<h2>Which West Pune locality suits you?</h2>
+<div class="table-scroll"><table>
+<caption>West Pune localities compared</caption>
+<thead><tr><th>Locality</th><th>Best for</th><th>Projects to look at</th></tr></thead>
+<tbody>
+<tr><td>${h.loc('Hinjewadi')}</td><td>Walk-to-work, townships, first homes</td><td>${h.link(204)}, ${h.link(203)}, ${h.link(182)}</td></tr>
+<tr><td>${h.loc('Tathawade')} &amp; ${h.loc('Wakad')}</td><td>Value 2/3 BHK between Hinjewadi and the highway</td><td>${h.link(202)}, ${h.link(231)}, ${h.link(246)}</td></tr>
+<tr><td>${h.loc('Balewadi')}</td><td>Upgraders, Balewadi High Street, sports complex</td><td>${h.link(200)}, ${h.link(230)}, ${h.link(217)}</td></tr>
+<tr><td>${h.loc('Baner')} &amp; ${h.loc('Aundh')}</td><td>Established neighbourhoods, larger homes</td><td>${h.link(201)}, ${h.link(215)}, ${h.link(181)}</td></tr>
+<tr><td>${h.loc('Mahalunge')} &amp; ${h.loc('Sus')}</td><td>Newer, greener pockets with lower entry prices</td><td>${h.link(198)}, ${h.link(199)}</td></tr>
+</tbody></table></div>
+
+<h2>Before you book in West Pune</h2>
+<ol>
+  <li><strong>Check which Hinjewadi phase you’ll commute to.</strong> Traffic between Phase 1, Phase 3 and Wakad can add a lot of time at peak hours. Look at the project on the <a href="/map">live map</a> alongside the roads and the metro line.</li>
+  <li><strong>Read the township’s phasing.</strong> In large townships, amenities are often delivered in phases. Ask which ones will be ready when you get possession.</li>
+  <li><strong>Verify the MahaRERA registration</strong> for your specific tower. Our guide shows <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>.</li>
+  <li><strong>Compare carpet areas,</strong> not super built-up areas, when you compare prices across projects.</li>
+</ol>
+
+<h2>FAQs: Buying in Hinjewadi, Baner &amp; Balewadi</h2>
+<h3>What is the cheapest new 2 BHK near Hinjewadi?</h3>
+<p>Among the projects on our map, ${h.link(199)} in Sus (from about ₹74 Lacs), ${h.link(204)} in Hinjewadi (from ₹82 Lacs) and ${h.link(198)} in Mahalunge (from ₹90 Lacs) are the lowest starting prices in the belt.</p>
+<h3>Is Baner or Balewadi better for a family home?</h3>
+<p>Both are established, with good schools and retail. Balewadi has newer high-rise supply around Balewadi High Street. Baner has more standalone and boutique buildings, such as ${h.link(201)}. Compare both on the <a href="/map">map</a> by commute and budget.</p>
+<h3>Which projects in West Pune are close to possession?</h3>
+<p>${h.link(181)} (November 2026) and ${h.link(230)}, ${h.link(231)} and ${h.link(232)} (December 2026) have the nearest possession dates among the projects listed here.</p>
+
+<p>Comparing West Pune with East Pune? Read our guides to <a href="/blog/new-projects-in-kharadi-pune">Kharadi</a>, <a href="/blog/new-projects-in-east-pune-hadapsar-viman-nagar-lohegaon">Hadapsar, Viman Nagar &amp; Lohegaon</a> and the <a href="/blog/best-areas-to-buy-property-in-pune">best areas to buy in Pune</a>.</p>
+
+<blockquote>Prices, configurations and possession dates are as listed on Mappingg in October 2026 and may change. Always confirm with the developer and on MahaRERA before you book.</blockquote>
+`,
+  };
+}
+
+function pcmcArticle(h) {
+  return {
+    slug: 'new-projects-in-pimpri-chinchwad-pcmc',
+    title: 'New Projects in Pimpri-Chinchwad (PCMC) 2026: Ravet, Pimple Saudagar, Chikhali & More',
+    seo_title: 'New Projects in Pimpri-Chinchwad (PCMC) 2026',
+    seo_description:
+      'New flats in Pimpri-Chinchwad — Ravet, Pimple Saudagar, Chikhali, Thergaon, Moshi, Charholi & Dapodi. 1, 2 & 3 BHK from ₹30 Lacs, with MahaRERA numbers and possession dates.',
+    excerpt:
+      'PCMC has some of the best-value homes in the Pune region. Here are the new projects we track in Ravet, Pimple Saudagar, Chikhali, Thergaon, Moshi, Charholi, Dudulgaon and Dapodi.',
+    tags: ['PCMC', 'Pimpri-Chinchwad', 'Ravet', 'Pimple Saudagar', 'Affordable Homes'],
+    cover: {
+      theme: 'metro',
+      kicker: 'PCMC guide',
+      lines: ['New Projects in', 'Pimpri-Chinchwad', 'PCMC 2026 Guide'],
+      stats: [['15+', 'projects tracked'], ['₹30 L', 'starting price'], ['1–4 BHK', 'configurations']],
+    },
+    content: `
+<p><strong>Pimpri-Chinchwad (PCMC)</strong> is Pune’s twin city and one of the region’s fastest-growing housing markets. It has the auto and manufacturing belt, quick access to Hinjewadi, the Pune metro, and some of the <strong>most affordable new flats</strong> in the Pune region. This guide lists the new projects we track in PCMC’s localities, sorted by budget, with BHK options, possession dates and MahaRERA numbers.</p>
+
+<h2>Why buy in Pimpri-Chinchwad?</h2>
+<ul>
+  <li><strong>Lower prices than Pune city:</strong> new 1 and 2 BHK homes start from about ₹30 Lacs in Chikhali, well below most of Pune.</li>
+  <li><strong>Metro connectivity:</strong> the PCMC–Swargate metro line runs through Pimpri, Chinchwad and Dapodi, and several projects advertise metro stations within a few minutes.</li>
+  <li><strong>Close to Hinjewadi:</strong> Ravet, Thergaon and Pimple Saudagar are a short drive from Rajiv Gandhi Infotech Park, which makes them popular with IT professionals.</li>
+  <li><strong>Planned growth:</strong> PCMC is a well-planned municipal corporation with wide roads, parks and the Pradhikaran sectors.</li>
+</ul>
+
+<h2>Affordable 1 &amp; 2 BHK flats under ₹60 Lacs</h2>
+<p>${h.loc('Chikhali')} has the lowest prices on our map. ${h.link(244)} offers 1 and 2 BHK homes from ₹30 Lacs with possession due in December 2026, and ${h.link(240)} is a low-density, road-touch project from ₹35 Lacs.</p>
+${h.table([244, 240], 'PCMC projects under ₹60 Lacs')}
+
+<h2>2 &amp; 3 BHK projects from ₹60 Lacs to ₹1.2 Cr</h2>
+<p>Most PCMC buyers shop in this band. ${h.link(249)} in Dudulgaon has a dedicated 2,000 sq ft amenity area for women, ${h.link(251)} in ${h.loc('DAPODI', 'Dapodi')} is a few minutes from the railway and metro stations, and ${h.link(241)} in ${h.loc('CHARHOLI', 'Charholi')} offers 2 and 3 BHK homes. ${h.link(242)} sits in the centre of ${h.loc('MOSHI', 'Moshi')}, and ${h.link(238)} in ${h.loc('Ravet')} has amenities on the 17th floor.</p>
+${h.table([249, 251, 241, 242, 238, 248], 'PCMC projects from ₹60 Lacs to ₹1.2 Cr')}
+
+<h2>Mid-premium &amp; large homes</h2>
+<p>For bigger homes, ${h.link(228)} and ${h.link(255)} in ${h.loc('Thergaon')} are low-density projects with large carpet areas, and ${h.link(247)} in ${h.loc('Pimple Saudgar', 'Pimple Saudagar')} is surrounded by defence greenery. ${h.link(236)} is a rare <strong>ready-to-move</strong> 3 and 4 BHK option in Pimple Saudagar. Near the Akurdi metro station, ${h.link(227)} offers 3, 4 and 4.5 BHK homes from ₹1.63 Cr.</p>
+${h.table([228, 247, 255, 236], 'Larger homes in PCMC')}
+
+<h2>Shops &amp; offices in PCMC</h2>
+<p>Investors can look at ${h.link(61)}, an office project, or the shops at ${h.link(243)} in ${h.loc('Sanghvi', 'Sangvi')}, which have main-road visibility. Browse all <a href="/property/commercial">commercial projects</a> to compare.</p>
+
+<h2>Things to check before booking in PCMC</h2>
+<ol>
+  <li><strong>Distance to the metro and the highway.</strong> Check the walk to the nearest station on the <a href="/map">live map</a>, not just the brochure’s “minutes away”.</li>
+  <li><strong>Water supply and road access,</strong> especially in fast-growing pockets like Chikhali, Moshi and Charholi.</li>
+  <li><strong>The MahaRERA number for your tower.</strong> Several projects here have more than one registration. Here’s <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>.</li>
+  <li><strong>The real possession date.</strong> Match the brochure date with the MahaRERA completion date.</li>
+</ol>
+
+<h2>FAQs: Buying property in PCMC</h2>
+<h3>Where can I buy a flat in PCMC under ₹50 Lacs?</h3>
+<p>Among the projects on our map, ${h.link(244)} (from ₹30 Lacs) and ${h.link(240)} (from ₹35 Lacs) in Chikhali are the options under ₹50 Lacs.</p>
+<h3>Is PCMC good for investment?</h3>
+<p>PCMC combines lower entry prices with metro connectivity and access to Hinjewadi, so it suits first-time buyers and rental investors. Compare the micro-location and the developer’s track record before you book.</p>
+<h3>Are there ready-to-move flats in PCMC?</h3>
+<p>Yes. ${h.link(236)} in Pimple Saudagar has completed possession. Read our guide to <a href="/blog/ready-to-move-vs-under-construction-flats-pune">ready-to-move vs under-construction flats</a> to decide which suits you.</p>
+
+<p>Also near PCMC: <a href="/blog/new-projects-in-hinjewadi-baner-balewadi-pune">new projects in Hinjewadi, Baner, Balewadi &amp; Tathawade</a>.</p>
+
+<blockquote>Prices, configurations and possession dates are as listed on Mappingg in October 2026 and may change. Always confirm with the developer and on MahaRERA before you book.</blockquote>
+`,
+  };
+}
+
+function eastPuneArticle(h) {
+  return {
+    slug: 'new-projects-in-east-pune-hadapsar-viman-nagar-lohegaon',
+    title: 'New Projects in East Pune (2026): Hadapsar, Viman Nagar, Lohegaon, Kalyani Nagar & Koregaon Park',
+    seo_title: 'New Projects in Hadapsar, Viman Nagar & Lohegaon 2026',
+    seo_description:
+      'New flats in East Pune beyond Kharadi — Hadapsar, Magarpatta, Viman Nagar, Lohegaon, Kalyani Nagar, Koregaon Park & Undri. From ₹45 Lacs to ultra-luxury, with RERA details.',
+    excerpt:
+      'From ₹45 Lacs starter homes in Hadapsar to luxury residences in Koregaon Park and Kalyani Nagar — every new project we track in East Pune, beyond Kharadi and Mundhwa.',
+    tags: ['Hadapsar', 'Viman Nagar', 'Lohegaon', 'Kalyani Nagar', 'East Pune'],
+    cover: {
+      theme: 'sky',
+      kicker: 'East Pune guide',
+      lines: ['New Projects in', 'Hadapsar, Viman', 'Nagar & Lohegaon'],
+      stats: [['25+', 'projects tracked'], ['₹45 L', 'starting price'], ['Airport', 'next door']],
+    },
+    content: `
+<p>East Pune is more than Kharadi and Mundhwa. Around them sit <strong>Hadapsar and Magarpatta</strong> in the south, <strong>Viman Nagar and Lohegaon</strong> by the airport, and the established luxury neighbourhoods of <strong>Kalyani Nagar and Koregaon Park</strong>. Further south-east, Undri, NIBM and Mohammadwadi offer some of the city’s most affordable new homes. This guide lists the <strong>new projects in East Pune</strong> that we track on the <a href="/map">live map</a>, locality by locality.</p>
+
+<p>Looking for Kharadi or Mundhwa? They have their own guides: <a href="/blog/new-projects-in-kharadi-pune">new projects in Kharadi</a> and <a href="/blog/new-projects-in-mundhwa-pune">new projects in Mundhwa</a>.</p>
+
+${h.gallery([221, 210, 136, 194, 118, 211])}
+
+<h2>Hadapsar &amp; Magarpatta: from starter homes to ready 3.5 BHKs</h2>
+<p>${h.loc('Hadapsar')} has the widest price range in East Pune. ${h.link(221)} offers 1 and 2 BHK homes from ₹44.99 Lacs, and ${h.link(210)} has 2 and 3 BHKs from ₹66 Lacs. ${h.link(114)} is nearing possession, and ${h.link(93)} has 3.5 BHK homes with ready possession. Inside ${h.loc('Magarpatta')}, ${h.link(47)} offers 2 and 3 BHK homes, and ${h.link(113)} by Shapoorji Pallonji is in nearby ${h.loc('Manjri')}.</p>
+${h.table([221, 210, 114, 47, 113, 93], 'New projects in Hadapsar, Magarpatta & Manjri')}
+
+<h2>Viman Nagar, Lohegaon &amp; Dhanori: close to the airport</h2>
+<p>${h.loc('Lohegaon')} is the most affordable airport-side market. ${h.link(233)} and ${h.link(234)} start at about ₹65 Lacs, and the upcoming ${h.link(256)} offers airport-facing flats with an infinity pool. ${h.link(165)} in ${h.loc('Dhanori')} starts at ₹81 Lacs. In ${h.loc('Viman Nagar')}, ${h.link(136)} (5 minutes from the airport) and the IGBC Platinum-certified ${h.link(101)} are larger 3.5 and 4.5 BHK homes.</p>
+${h.table([233, 234, 256, 165, 136, 101], 'New projects near Pune Airport')}
+
+<h2>Kalyani Nagar &amp; Koregaon Park: established luxury</h2>
+<p>${h.loc('Koregaon Park')} and ${h.loc('Kalyani Nagar')} are East Pune’s most established addresses. ${h.link(164)} in Koregaon Park starts at ₹1.2 Cr and is nearing possession. For larger homes, look at ${h.link(194)} (a low-density 3 and 4 BHK project), ${h.link(103)} (with duplexes and penthouses), ${h.link(38)} and ${h.link(118)}. ${h.link(197)} by Panchshil is the top of the market.</p>
+${h.table([164, 194, 103, 38, 118], 'Luxury projects in Kalyani Nagar & Koregaon Park')}
+
+<h2>Undri, NIBM &amp; Mohammadwadi: value in the south-east</h2>
+<p>Families who want quieter, greener surroundings near good schools look south-east. ${h.link(211)} in ${h.loc('Undri')} and ${h.link(212)} in ${h.loc('Mohammadwadi')} start in the ₹62–68 Lacs range, and ${h.link(235)} in ${h.loc('NIBM')} is due for possession in December 2026.</p>
+${h.table([211, 212, 235], 'New projects in Undri, NIBM & Mohammadwadi')}
+
+<h2>Choosing the right part of East Pune</h2>
+<ol>
+  <li><strong>Work in Magarpatta or Hadapsar?</strong> Hadapsar, Manjri, Undri and NIBM keep your commute short.</li>
+  <li><strong>Fly often or work near the airport?</strong> Viman Nagar, Lohegaon and Dhanori are the closest.</li>
+  <li><strong>Want an established neighbourhood?</strong> Koregaon Park and Kalyani Nagar have the most mature social infrastructure, at a premium.</li>
+  <li><strong>Always verify MahaRERA details.</strong> Here’s <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>.</li>
+</ol>
+
+<h2>FAQs: Buying in East Pune</h2>
+<h3>What is the cheapest new flat in East Pune?</h3>
+<p>Among the projects on our map, ${h.link(221)} in Hadapsar starts at ₹44.99 Lacs, followed by ${h.link(211)} in Undri and ${h.link(233)} in Lohegaon in the ₹62–65 Lacs range.</p>
+<h3>Is Lohegaon a good place to buy?</h3>
+<p>Lohegaon has low entry prices, airport proximity and the planned Ring Road nearby, which suits first-time buyers. Check flight-path noise and road access for the specific project before you book.</p>
+<h3>Which East Pune projects are ready or nearly ready?</h3>
+<p>${h.link(93)} in Hadapsar has ready possession, and ${h.link(114)} and ${h.link(164)} are nearing possession.</p>
+
+<blockquote>Prices, configurations and possession dates are as listed on Mappingg in October 2026 and may change. Always confirm with the developer and on MahaRERA before you book.</blockquote>
+`,
+  };
+}
+
+function readyVsUcArticle(h) {
+  return {
+    slug: 'ready-to-move-vs-under-construction-flats-pune',
+    title: 'Ready-to-Move vs Under-Construction Flats in Pune: Which Should You Buy in 2026?',
+    seo_title: 'Ready-to-Move vs Under-Construction Flats in Pune',
+    seo_description:
+      'Ready-to-move or under-construction? Compare price, GST, risk, rent savings and possession timelines for flats in Pune — with real projects in each category.',
+    excerpt:
+      'Ready-to-move flats cost more but carry less risk; under-construction flats are cheaper but you wait. Here’s how price, GST, rent and risk compare — with real Pune projects in each category.',
+    tags: ['Home Buying Guide', 'Ready to Move', 'Under Construction', 'Pune', 'GST'],
+    cover: {
+      theme: 'ember',
+      kicker: 'Buyer’s guide',
+      lines: ['Ready-to-Move vs', 'Under-Construction', 'Which to Buy?'],
+      stats: [['0%', 'GST on ready'], ['5%', 'GST on UC'], ['2–5 yrs', 'typical wait']],
+    },
+    content: `
+<p>One of the first decisions every home buyer in Pune faces is whether to buy a <strong>ready-to-move flat</strong> or an <strong>under-construction flat</strong>. The choice affects how much you pay, how much tax you pay, how long you wait and how much risk you take. This guide compares the two side by side, with examples from the projects on the <a href="/map">Mappingg live map</a>.</p>
+
+<h2>The quick comparison</h2>
+<div class="table-scroll"><table>
+<caption>Ready-to-move vs under-construction</caption>
+<thead><tr><th>Factor</th><th>Ready-to-move</th><th>Under-construction</th></tr></thead>
+<tbody>
+<tr><td>Price</td><td>Usually higher</td><td>Usually lower, especially at launch</td></tr>
+<tr><td>GST</td><td>None, once the occupancy certificate (OC) is issued</td><td>5% (1% for affordable housing), without input tax credit</td></tr>
+<tr><td>What you see</td><td>The actual flat, view and neighbours</td><td>A sample flat and a brochure</td></tr>
+<tr><td>Move-in / rent</td><td>Immediately; rent or EMI starts at once</td><td>Wait 2–5 years; you may pay rent and pre-EMI together</td></tr>
+<tr><td>Risk</td><td>Low: the building is finished</td><td>Delay and specification risk</td></tr>
+<tr><td>Payment</td><td>Large lump sum or full loan up front</td><td>Spread over construction stages</td></tr>
+<tr><td>Choice of unit</td><td>Limited to what’s left</td><td>Wider choice of floor, view and layout</td></tr>
+</tbody></table></div>
+<p><small>GST rates are as in force in October 2026. Stamp duty and registration charges apply in both cases.</small></p>
+
+<h2>When a ready-to-move flat makes sense</h2>
+<ul>
+  <li><strong>You’re paying rent today.</strong> Moving in immediately saves you from paying rent and an EMI at the same time.</li>
+  <li><strong>You want certainty.</strong> You can check the actual flat, the light, the view, the water supply and the neighbours before you pay.</li>
+  <li><strong>You want to avoid GST.</strong> A completed flat with an occupancy certificate attracts no GST, which can offset part of the higher price.</li>
+</ul>
+<p>Examples on our map include ${h.link(236)} in Pimple Saudagar (possession done), ${h.link(93)} in Hadapsar (ready possession), and projects nearing possession such as ${h.link(114)}, ${h.link(164)} and ${h.link(81)}.</p>
+${h.table([236, 93, 114, 164, 81], 'Ready and nearly-ready projects in Pune')}
+
+<h2>When an under-construction flat makes sense</h2>
+<ul>
+  <li><strong>You don’t need to move in soon,</strong> for example if you’re buying to invest or planning ahead.</li>
+  <li><strong>You want a lower entry price</strong> and a payment plan spread over construction stages.</li>
+  <li><strong>You want first pick</strong> of floor, view and layout.</li>
+</ul>
+<p>To reduce the wait, look at projects due within a year. Several on our map have December 2026 possession dates, such as ${h.link(244)} in Chikhali, ${h.link(233)} in Lohegaon, ${h.link(235)} in NIBM and ${h.link(231)} in Tathawade.</p>
+${h.table([244, 233, 235, 231, 230, 228], 'Under-construction projects due in late 2026')}
+
+<h2>How to reduce the risk of an under-construction flat</h2>
+<ol>
+  <li><strong>Buy only MahaRERA-registered projects,</strong> and check the RERA completion date, not just the brochure’s. Here’s <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>.</li>
+  <li><strong>Check the developer’s delivery record</strong> on their past projects. See the <a href="/developers">developers page</a>.</li>
+  <li><strong>Look at construction progress</strong> in the quarterly updates on MahaRERA, and visit the site.</li>
+  <li><strong>Prefer construction-linked payment plans,</strong> and read the cancellation and delay-compensation clauses in the agreement for sale.</li>
+  <li><strong>Budget for rent and pre-EMI together</strong> until possession.</li>
+</ol>
+
+<h2>Checklist for a ready-to-move flat</h2>
+<ul>
+  <li>Ask for the <strong>occupancy certificate (OC)</strong>. Without it, the flat is not legally complete and GST may still apply.</li>
+  <li>Check the <strong>society formation</strong> status, maintenance charges and any pending dues.</li>
+  <li>Inspect for seepage, finishing quality and water pressure.</li>
+  <li>For a resale flat, check the chain of title documents with a lawyer.</li>
+</ul>
+
+<h2>FAQs</h2>
+<h3>Is GST charged on ready-to-move flats?</h3>
+<p>No. GST does not apply to a flat sold after the occupancy certificate has been issued. Under-construction flats attract 5% GST (1% for affordable housing).</p>
+<h3>Are under-construction flats cheaper?</h3>
+<p>Usually, yes, especially at launch. But add GST, the rent you’ll keep paying until possession and the risk of delay before comparing.</p>
+<h3>How do I find ready-to-move projects in Pune?</h3>
+<p>Filter by status on the map, or browse <a href="/status/ready-to-move">ready-to-move</a>, <a href="/status/under-construction">under-construction</a> and <a href="/status/upcoming">upcoming</a> projects.</p>
+
+<blockquote>This guide is general information, not tax or legal advice. Tax rates and project details can change, so confirm them with a professional, the developer and MahaRERA before you book.</blockquote>
+`,
+  };
+}
+
 // ---- main ---------------------------------------------------------------------
 
 async function upsert(post) {
@@ -477,21 +746,26 @@ async function upsert(post) {
 async function main() {
   const pins = await loadPins();
   const h = makeHelpers(pins);
-  const articles = [mundhwaArticle(h), puneAreasArticle(h), kharadiArticle(h), reraArticle(h)];
+  const articles = [
+    mundhwaArticle(h), puneAreasArticle(h), kharadiArticle(h), reraArticle(h),
+    westPuneArticle(h), pcmcArticle(h), eastPuneArticle(h), readyVsUcArticle(h),
+  ];
 
   // Sanity: every slug used by the articles' internal links must be stable.
   for (const a of articles) if (slugify(a.slug) !== a.slug) throw new Error(`bad slug ${a.slug}`);
 
   await mkdir(COVER_DIR, { recursive: true });
   for (const a of articles) {
-    const file = `${a.slug}.jpg`;
-    await makeCover(path.join(COVER_DIR, file), {
-      kicker: a.coverKicker,
-      lines: a.coverLines,
-      imageUrls: a.coverPins.map((n) => h.get(n).image_url),
-    });
+    // Versioned name: /img is browser-cached for a week (next.config.mjs).
+    const file = `${a.slug}-v2.jpg`;
+    await makeCover(path.join(COVER_DIR, file), a.cover);
     a.cover_image = `/img/blog/${file}`;
     console.log(`Cover: public/img/blog/${file}`);
+  }
+
+  if (process.argv.includes('--dry-run')) {
+    console.log(`Dry run: ${articles.length} articles built, database untouched.`);
+    return;
   }
 
   for (const slug of OLD_SLUGS) {
