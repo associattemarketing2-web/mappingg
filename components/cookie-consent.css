@@ -110,3 +110,7 @@
 @keyframes mg-cookie-sheet { from { transform: translateY(100%); } to { transform: none; } }
 @media (prefers-reduced-motion: reduce) { .mg-cookie, .mg-cookie-btn { animation: none; transition: none; } }
 @media print { .mg-cookie { display: none; } }
+
+/* The sign-in / sign-up modal is open: step aside so the banner can't cover
+   its submit button on phones. It comes back when the modal closes. */
+body.mpg-auth-open .mg-cookie { display: none; }

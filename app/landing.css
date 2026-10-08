@@ -582,7 +582,8 @@
   .mpg .field input, .mpg .field select { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--land); font: 14px var(--f); color: var(--ink); transition: var(--ease); }
   .mpg .field input:focus, .mpg .field select:focus { outline: none; border-color: var(--forest); background: #fff; box-shadow: 0 0 0 4px rgba(15,92,71,.1); }
   .mpg .field select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2376807b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 16px; }
-  .mpg .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .mpg .field-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .mpg .field-row > .field { min-width: 0; }
   .mpg .roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .mpg .role { position: relative; }
   .mpg .role input { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
@@ -610,6 +611,9 @@
   .mpg .opts label { display: flex; align-items: center; gap: 6px; color: var(--muted); cursor: pointer; }
   .mpg .opts input { accent-color: var(--forest); width: 15px; height: 15px; }
   .mpg .opts a { color: var(--forest); font-weight: 600; text-decoration: none; }
+  /* Terms consent: one wrapping sentence, not a flex row of text fragments. */
+  .mpg #signupForm .opts label { display: block; line-height: 1.55; }
+  .mpg #signupForm .opts input { vertical-align: -3px; margin: 0 6px 0 0; }
   .mpg .divider { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: 12px; }
   .mpg .divider::before, .mpg .divider::after { content: ''; flex: 1; height: 1px; background: var(--line); }
   .mpg .btn-google { width: 100%; padding: 12px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font: 600 14px var(--f); display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }

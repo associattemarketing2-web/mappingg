@@ -69,15 +69,25 @@ export async function POST(req: NextRequest) {
 
   const id = randomUUID();
   const now = new Date().toISOString();
-  await users.insertOne({
-    _id: id, id, email, name, mobile, role, profile,
-    password_hash: await bcrypt.hash(password, 12),
-    // Buyers get full access at once; developers and agents wait until the
-    // super admin checks their details (MahaRERA number etc.).
-    verified: role === 'buyer',
-    verification: role === 'buyer' ? 'approved' : 'pending',
-    created_at: now, updated_at: now,
-  });
+  try {
+    await users.insertOne({
+      _id: id, id, email, name, mobile, role, profile,
+      password_hash: await bcrypt.hash(password, 12),
+      // Buyers get full access at once; developers and agents wait until the
+      // super admin checks their details (MahaRERA number etc.).
+      verified: role === 'buyer',
+      verification: role === 'buyer' ? 'approved' : 'pending',
+      created_at: now, updated_at: now,
+    });
+  } catch (e) {
+    // Two sign-ups for the same email racing each other: the unique email
+    // index rejects the second one — report it like any existing account.
+    const code = (e as { code?: string | number }).code;
+    if (code === '23505' || code === 11000) {
+      return NextResponse.json({ error: { message: 'An account with this email already exists — please sign in.' } }, { status: 409 });
+    }
+    throw e;
+  }
 
   const sessionUser = { id, email, role };
   // New buyers also show up as a lead in the super admin's Leads section.

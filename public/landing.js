@@ -402,8 +402,11 @@
     byId('modalSub').textContent = reason || (isIn ? 'Choose your account type, then sign in.' : 'Takes less than a minute.');
     renderSide();
     modal.classList.add('is-open'); document.body.style.overflow = 'hidden';
+    // Hides the cookie banner while the modal is open so it can't cover the submit button.
+    document.body.classList.add('mpg-auth-open');
   }
-  function closeModal() { modal.classList.remove('is-open'); document.body.style.overflow = ''; }
+  function closeModal() { modal.classList.remove('is-open'); document.body.style.overflow = ''; document.body.classList.remove('mpg-auth-open'); }
+  __cleanups.push(() => document.body.classList.remove('mpg-auth-open'));
   document.querySelectorAll('#roleTiles input').forEach(r => r.addEventListener('change', renderSide));
   tabs.forEach(t => t.addEventListener('click', () => openModal(t.dataset.tab)));
   document.querySelectorAll('.pass-toggle').forEach(b => b.addEventListener('click', () => {
@@ -419,7 +422,9 @@
     byId('successTitle').textContent = `${isNew ? 'Welcome' : 'Welcome back'}, ${u.name.split(' ')[0]}!`;
     byId('successSub').textContent = u.verified ? 'The live map is unlocked — tap any pin to explore.' : 'The live map is unlocked. We’ll verify your RERA number on MahaRERA shortly for full developer or partner access.';
   }
-  if (signinForm) signinForm.addEventListener('submit', e => {
+  // Registered with on() so a re-run of this script never leaves a second
+  // submit handler bound to the same form (that sent duplicate requests).
+  if (signinForm) on(signinForm, 'submit', e => {
     e.preventDefault(); if (!signinForm.reportValidity()) return;
     const email = byId('si-email').value.trim().toLowerCase();
     const password = byId('si-pass').value;
@@ -483,8 +488,9 @@
     sync();
   }
   document.querySelectorAll('.phone-in').forEach(mgWirePhone);
-  if (signupForm) signupForm.addEventListener('submit', e => {
-    e.preventDefault(); if (!signupForm.reportValidity()) return;
+  let signingUp = false;
+  if (signupForm) on(signupForm, 'submit', e => {
+    e.preventDefault(); if (signingUp || !signupForm.reportValidity()) return;
     const role = currentRole(), fd = Object.fromEntries(new FormData(signupForm));
     // Only the active role's fieldset is enabled, so fd holds just that role's extras.
     const { name, email, mobile: phoneDigits, ...profile } = fd;
@@ -494,11 +500,12 @@
     const mobile = ((byId('su-phone-code') && byId('su-phone-code').value) || '+91') + ' ' + digits;
     const btn = byId('signupBtn'); const label = btn ? btn.textContent : '';
     if (btn) { btn.disabled = true; btn.textContent = 'Creating account…'; }
+    signingUp = true;
     fetch('/api/auth/signup', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin',
       body: JSON.stringify({ role, name: (name || '').trim(), email: (email || '').trim().toLowerCase(), mobile: (mobile || '').trim(), password: byId('su-pass').value, profile }),
     }).then(r => r.json().then(b => ({ ok: r.ok, b }))).then(({ ok, b }) => {
-      if (btn) { btn.disabled = false; btn.textContent = label; }
+      signingUp = false; if (btn) { btn.disabled = false; btn.textContent = label; }
       if (ok && b.user) {
         success({ name: b.user.name, email: b.user.email, role: b.user.role, verified: b.user.verified }, true);
         setTimeout(() => { window.location.href = b.redirect || '/dashboard'; }, 900);
@@ -506,7 +513,7 @@
         toast((b.error && b.error.message) || 'Could not create your account', 'fa-triangle-exclamation');
       }
     }).catch(() => {
-      if (btn) { btn.disabled = false; btn.textContent = label; }
+      signingUp = false; if (btn) { btn.disabled = false; btn.textContent = label; }
       toast('Network error — please try again', 'fa-triangle-exclamation');
     });
   });
