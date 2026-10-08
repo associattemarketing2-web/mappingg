@@ -162,7 +162,7 @@ export async function searchConsoleReport(days: number) {
     analytics(s, { ...prev, dimensions: ['date'], rowLimit: 500 }),
     analytics(s, { ...cur, dimensions: ['query'], rowLimit: 50 }),
     analytics(s, { ...cur, dimensions: ['page'], rowLimit: 50 }),
-    analytics(s, { ...cur, dimensions: ['country'], rowLimit: 10 }),
+    analytics(s, { ...cur, dimensions: ['country'], rowLimit: 250 }), // every country, for the map
     analytics(s, { ...cur, dimensions: ['device'], rowLimit: 5 }),
     api<{ sitemap?: { path: string; lastSubmitted?: string; lastDownloaded?: string; isPending?: boolean; errors?: string; warnings?: string; contents?: { type: string; submitted?: string; indexed?: string }[] }[] }>(
       `/webmasters/v3/sites/${encodeURIComponent(s)}/sitemaps`,
