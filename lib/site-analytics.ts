@@ -3,17 +3,21 @@ import { query } from './pg';
 import { getMongoDb, usingMongo } from './mongodb';
 
 // First-party website analytics for the super-admin dashboard: page views,
-// clicks, active visitors, top pages, traffic sources and devices.
+// clicks, searches, active visitors, top pages, traffic sources, devices and
+// where visitors are (country / state / city).
 //
 // Cookieless and anonymous: a visitor is a hash of (secret salt + India date +
 // IP + browser), so the same person counts once per day, can't be followed
-// across days, and no personal data is stored. Bots and signed-in staff are
+// across days, and no personal data is stored. Location comes from an offline
+// IP database (fast-geoip) at the moment of the visit; the IP itself is never
+// stored or sent anywhere. Bots and signed-in staff are
 // never recorded. Events older than RETENTION_DAYS are pruned automatically.
 
-export type EventKind = 'pv' | 'click' | 'hb';
+export type EventKind = 'pv' | 'click' | 'hb' | 'search';
 export interface SiteEvent {
   at: string; kind: EventKind; path: string; vid: string;
   label?: string; href?: string; source?: string; device?: string;
+  country?: string; region?: string; city?: string;
 }
 
 const RETENTION_DAYS = 180;
@@ -40,6 +44,9 @@ function ensureTable(): Promise<void> {
     );
     CREATE INDEX IF NOT EXISTS site_events_at ON site_events (at DESC);
     CREATE INDEX IF NOT EXISTS site_events_kind_at ON site_events (kind, at DESC);
+    ALTER TABLE site_events ADD COLUMN IF NOT EXISTS country text;
+    ALTER TABLE site_events ADD COLUMN IF NOT EXISTS region text;
+    ALTER TABLE site_events ADD COLUMN IF NOT EXISTS city text;
   `).then(() => undefined).catch((e) => { ready = null; throw e; });
   return ready;
 }
@@ -79,6 +86,43 @@ export function sourceOf(referrer: string, utm: string, ownHost: string): string
   return host.slice(0, 60);
 }
 
+// ---------------------------------------------------------------- location
+
+/** Indian states / UTs by ISO 3166-2 code (what the IP database returns). */
+const IN_STATES: Record<string, string> = {
+  AN: 'Andaman & Nicobar', AP: 'Andhra Pradesh', AR: 'Arunachal Pradesh', AS: 'Assam', BR: 'Bihar', CH: 'Chandigarh',
+  CT: 'Chhattisgarh', CG: 'Chhattisgarh', DN: 'Dadra & Nagar Haveli and Daman & Diu', DH: 'Dadra & Nagar Haveli and Daman & Diu',
+  DD: 'Dadra & Nagar Haveli and Daman & Diu', DL: 'Delhi', GA: 'Goa', GJ: 'Gujarat', HR: 'Haryana', HP: 'Himachal Pradesh',
+  JK: 'Jammu & Kashmir', JH: 'Jharkhand', KA: 'Karnataka', KL: 'Kerala', LA: 'Ladakh', LD: 'Lakshadweep', MP: 'Madhya Pradesh',
+  MH: 'Maharashtra', MN: 'Manipur', ML: 'Meghalaya', MZ: 'Mizoram', NL: 'Nagaland', OR: 'Odisha', OD: 'Odisha', PY: 'Puducherry',
+  PB: 'Punjab', RJ: 'Rajasthan', SK: 'Sikkim', TN: 'Tamil Nadu', TG: 'Telangana', TS: 'Telangana', TR: 'Tripura',
+  UP: 'Uttar Pradesh', UT: 'Uttarakhand', UK: 'Uttarakhand', WB: 'West Bengal',
+};
+let countryNames: Intl.DisplayNames | null = null;
+export function countryName(code: string): string {
+  try { countryNames ??= new Intl.DisplayNames(['en'], { type: 'region' }); return countryNames.of(code) || code; } catch { return code; }
+}
+export const regionName = (country: string, code: string) => (country === 'IN' && IN_STATES[code]) || code;
+
+// Recent lookups are cached — a visitor sends several events per minute.
+const geoCache = new Map<string, { country?: string; region?: string; city?: string }>();
+const PRIVATE_IP = /^(::1|127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|fc|fd|fe80|unknown$)/i;
+export async function locate(ip: string): Promise<{ country?: string; region?: string; city?: string }> {
+  const key = ip.replace(/^::ffff:/, '');
+  if (!key || PRIVATE_IP.test(key)) return {};
+  const hit = geoCache.get(key);
+  if (hit) return hit;
+  let out: { country?: string; region?: string; city?: string } = {};
+  try {
+    const geoip = (await import('fast-geoip')).default as { lookup(ip: string): Promise<{ country?: string; region?: string; city?: string } | null> };
+    const g = await geoip.lookup(key);
+    if (g?.country) out = { country: g.country, region: g.region || undefined, city: g.city || undefined };
+  } catch { /* location is a nice-to-have */ }
+  if (geoCache.size > 5000) geoCache.clear();
+  geoCache.set(key, out);
+  return out;
+}
+
 let lastPrune = 0;
 export async function recordEvents(events: SiteEvent[]): Promise<void> {
   if (!events.length) return;
@@ -86,13 +130,13 @@ export async function recordEvents(events: SiteEvent[]): Promise<void> {
   if (usingMongo()) {
     await (await getMongoDb()).collection('site_events').insertMany(events.map((e) => ({ _id: randomUUID() as never, ...e, at: new Date(e.at) })));
   } else {
+    const COLS = 11;
     const vals: unknown[] = [];
     const rows = events.map((e, i) => {
-      vals.push(e.at, e.kind, e.path, e.vid, e.label ?? null, e.href ?? null, e.source ?? null, e.device ?? null);
-      const b = i * 8;
-      return `($${b + 1}, $${b + 2}, $${b + 3}, $${b + 4}, $${b + 5}, $${b + 6}, $${b + 7}, $${b + 8})`;
+      vals.push(e.at, e.kind, e.path, e.vid, e.label ?? null, e.href ?? null, e.source ?? null, e.device ?? null, e.country ?? null, e.region ?? null, e.city ?? null);
+      return `(${Array.from({ length: COLS }, (_, c) => '$' + (i * COLS + c + 1)).join(', ')})`;
     });
-    await query(`INSERT INTO site_events (at, kind, path, vid, label, href, source, device) VALUES ${rows.join(', ')}`, vals);
+    await query(`INSERT INTO site_events (at, kind, path, vid, label, href, source, device, country, region, city) VALUES ${rows.join(', ')}`, vals);
   }
   // Keep the table small: drop old events about once an hour.
   if (Date.now() - lastPrune > 3_600_000) {
@@ -116,6 +160,11 @@ export interface TrafficReport {
   topClicks: { label: string; href: string; clicks: number }[];
   sources: { source: string; visitors: number }[];
   devices: { device: string; visitors: number }[];
+  countries: { code: string; name: string; visitors: number }[];
+  regions: { name: string; country: string; visitors: number }[];
+  cities: { name: string; region: string; country: string; visitors: number }[];
+  searches: { term: string; count: number; visitors: number }[];
+  totalSearches: number;
   since: string | null;
 }
 
@@ -172,13 +221,22 @@ export async function trafficReport(days: number): Promise<TrafficReport> {
       topClicks: [...clicks.values()].sort((a, b) => b.clicks - a.clicks).slice(0, 15),
       sources: group(cur.filter((e) => e.kind === 'pv'), (e) => e.source).map((x) => ({ source: x.k, visitors: x.v })).slice(0, 10),
       devices: group(cur, (e) => e.device).map((x) => ({ device: x.k, visitors: x.v })),
+      countries: group(cur, (e) => e.country).map((x) => ({ code: x.k, name: countryName(x.k), visitors: x.v })).slice(0, 20),
+      regions: group(cur, (e) => (e.region ? `${e.country}|${e.region}` : '')).map((x) => { const [c, r] = x.k.split('|'); return { name: regionName(c, r), country: countryName(c), visitors: x.v }; }).slice(0, 20),
+      cities: group(cur, (e) => (e.city ? `${e.country}|${e.region || ''}|${e.city}` : '')).map((x) => { const [c, r, city] = x.k.split('|'); return { name: city, region: regionName(c, r), country: countryName(c), visitors: x.v }; }).slice(0, 20),
+      searches: (() => {
+        const m = new Map<string, { count: number; v: Set<string> }>();
+        cur.filter((e) => e.kind === 'search' && e.label).forEach((e) => { const k = e.label!.toLowerCase(); const x = m.get(k) || { count: 0, v: new Set() }; x.count++; x.v.add(e.vid); m.set(k, x); });
+        return [...m.entries()].map(([term, x]) => ({ term, count: x.count, visitors: x.v.size })).sort((a, b) => b.count - a.count).slice(0, 20);
+      })(),
+      totalSearches: count(cur, 'search'),
       since: rows.length ? rows.reduce((m, e) => (e.at < m ? e.at : m), rows[0].at) : null,
     });
   }
 
   const q = async (sql: string, args: unknown[]) => (await query(sql, args)).rows as Row[];
   const DAY = `to_char(at AT TIME ZONE 'Asia/Kolkata', 'YYYY-MM-DD')`;
-  const [totals, prev, today, active, daily, pages, clicks, sources, devices, first] = await Promise.all([
+  const [totals, prev, today, active, daily, pages, clicks, sources, devices, first, countries, regions, cities, searches, nSearch] = await Promise.all([
     q(`SELECT count(DISTINCT vid) v, count(*) FILTER (WHERE kind='pv') pv, count(*) FILTER (WHERE kind='click') c FROM site_events WHERE at >= $1`, [start]),
     q(`SELECT count(DISTINCT vid) v, count(*) FILTER (WHERE kind='pv') pv, count(*) FILTER (WHERE kind='click') c FROM site_events WHERE at >= $1 AND at < $2`, [prevStart, start]),
     q(`SELECT count(DISTINCT vid) v, count(*) FILTER (WHERE kind='pv') pv, count(*) FILTER (WHERE kind='click') c FROM site_events WHERE at >= $1`, [todayStart]),
@@ -189,6 +247,11 @@ export async function trafficReport(days: number): Promise<TrafficReport> {
     q(`SELECT source, count(DISTINCT vid) v FROM site_events WHERE kind='pv' AND source IS NOT NULL AND source <> '' AND at >= $1 GROUP BY source ORDER BY v DESC LIMIT 10`, [start]),
     q(`SELECT device, count(DISTINCT vid) v FROM site_events WHERE device IS NOT NULL AND at >= $1 GROUP BY device ORDER BY v DESC`, [start]),
     q(`SELECT min(at) f FROM site_events`, []),
+    q(`SELECT country, count(DISTINCT vid) v FROM site_events WHERE country IS NOT NULL AND at >= $1 GROUP BY country ORDER BY v DESC LIMIT 20`, [start]),
+    q(`SELECT country, region, count(DISTINCT vid) v FROM site_events WHERE region IS NOT NULL AND region <> '' AND at >= $1 GROUP BY country, region ORDER BY v DESC LIMIT 20`, [start]),
+    q(`SELECT country, coalesce(region, '') region, city, count(DISTINCT vid) v FROM site_events WHERE city IS NOT NULL AND city <> '' AND at >= $1 GROUP BY country, region, city ORDER BY v DESC LIMIT 20`, [start]),
+    q(`SELECT lower(label) term, count(*) c, count(DISTINCT vid) v FROM site_events WHERE kind = 'search' AND label IS NOT NULL AND at >= $1 GROUP BY 1 ORDER BY c DESC LIMIT 20`, [start]),
+    q(`SELECT count(*) c FROM site_events WHERE kind = 'search' AND at >= $1`, [start]),
   ]);
   return finish({
     activeNow: active.reduce((a, r) => a + n(r.v), 0),
@@ -200,6 +263,11 @@ export async function trafficReport(days: number): Promise<TrafficReport> {
     topClicks: clicks.map((r) => ({ label: String(r.label), href: String(r.href), clicks: n(r.c) })),
     sources: sources.map((r) => ({ source: String(r.source), visitors: n(r.v) })),
     devices: devices.map((r) => ({ device: String(r.device), visitors: n(r.v) })),
+    countries: countries.map((r) => ({ code: String(r.country), name: countryName(String(r.country)), visitors: n(r.v) })),
+    regions: regions.map((r) => ({ name: regionName(String(r.country), String(r.region)), country: countryName(String(r.country)), visitors: n(r.v) })),
+    cities: cities.map((r) => ({ name: String(r.city), region: regionName(String(r.country), String(r.region)), country: countryName(String(r.country)), visitors: n(r.v) })),
+    searches: searches.map((r) => ({ term: String(r.term), count: n(r.c), visitors: n(r.v) })),
+    totalSearches: n(nSearch[0]?.c),
     since: first[0]?.f ? new Date(first[0].f as string).toISOString() : null,
   });
 

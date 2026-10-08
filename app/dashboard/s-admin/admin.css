@@ -836,3 +836,4 @@ button.acs-act-row:hover { background: var(--bg); }
 .trf-dot { width: 9px; height: 9px; border-radius: 50%; background: #22a35a; box-shadow: 0 0 0 0 rgba(34,163,90,.5); animation: trfPulse 1.8s ease-out infinite; }
 @keyframes trfPulse { 0% { box-shadow: 0 0 0 0 rgba(34,163,90,.5); } 70% { box-shadow: 0 0 0 9px rgba(34,163,90,0); } 100% { box-shadow: 0 0 0 0 rgba(34,163,90,0); } }
 @media (prefers-reduced-motion: reduce) { .trf-dot { animation: none; } }
+.trf-geo { margin: -4px 0 12px; }

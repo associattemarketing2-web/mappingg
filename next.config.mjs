@@ -5,6 +5,9 @@ const nextConfig = {
   // injected as raw <img> tags, so we keep the classic <img> behaviour rather
   // than forcing next/image on the ported markup.
   images: { unoptimized: true },
+  // fast-geoip reads its IP-location data files from its own folder at runtime,
+  // so it must stay a plain node_modules package (not bundled) — lib/site-analytics.ts.
+  experimental: { serverComponentsExternalPackages: ['fast-geoip'] },
   // Clean URLs for the partners intake app (static assets live under
   // /public/partners, but these are the addresses people actually use):
   //   /intake → intake panel (bulk CSV upload, review queue, builders, live);

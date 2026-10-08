@@ -242,7 +242,6 @@ function SeoPanel() {
   return (
     <div className="viz">
       <TrafficPanel />
-      <SearchConsolePanel />
 
       <h2 className="gsc-title" style={{ marginTop: 12 }}><i className="fas fa-heart-pulse" /> Site health &amp; content</h2>
       <div className="viz-tiles">
@@ -322,9 +321,12 @@ function SeoPanel() {
               <div className="adm-health-row" key={t}><span className="viz-step">{i + 1}</span><div><b>{t}</b><br /><span className="muted">{desc}</span></div></div>
             ))}
           </div>
-          <p className="adm-note" style={{ marginTop: 16 }}><i className="fas fa-lightbulb" /><span>Clicks, impressions and rankings above come live from Google Search Console. Tag IDs in use: Search Console <code>{d.tags?.gsc}</code>, GTM <code>{d.tags?.gtm}</code>, GA4 <code>{d.tags?.ga}</code>.</span></p>
+          <p className="adm-note" style={{ marginTop: 16 }}><i className="fas fa-lightbulb" /><span>Google search clicks, impressions and rankings are in the Search Console section below. Tag IDs in use: Search Console <code>{d.tags?.gsc}</code>, GTM <code>{d.tags?.gtm}</code>, GA4 <code>{d.tags?.ga}</code>.</span></p>
         </div>
       </div>
+
+      {/* Google Search Console — kept at the bottom of SEO & Health. */}
+      <SearchConsolePanel />
     </div>
   );
 }
