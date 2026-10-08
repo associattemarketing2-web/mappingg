@@ -78,7 +78,7 @@ export function syncFromPins(): Promise<void> {
       const id = randomUUID();
       return { _id: id, id, name: x.name, logo: (x.pin && images.get(x.pin)) || null, created_at: now, updated_at: now };
     }));
-  })().finally(() => { seeding = null; });
+  })().finally(() => { seeding = null; logoIdx = null; });
   return seeding;
 }
 
@@ -131,6 +131,52 @@ async function assertUniqueName(name: string, exceptId?: string) {
   if (clash) throw new DeveloperError(`“${clash.name}” is already in the list`, 409);
 }
 
+// ---------------------------------------------------------------- auto logo
+// Whenever a pin is saved with a developer name (Map Editor, Projects Intake,
+// developer dashboard), the developer's logo from this directory goes on the
+// pin automatically — so typing the name is enough.
+
+let logoIdx: { at: number; byName: Map<string, { logo: string; fp: string }>; fps: Set<string> } | null = null;
+async function logoIndex() {
+  if (logoIdx && Date.now() - logoIdx.at < 60_000) return logoIdx;
+  await ensureTable();
+  const devs = await (await coll()).find({}, { projection: { name: 1, logo: 1 } }).toArray();
+  const byName = new Map<string, { logo: string; fp: string }>();
+  for (const d of devs) if (d.logo && normDev(d.name)) byName.set(normDev(d.name), { logo: d.logo, fp: fingerprint(d.logo) });
+  logoIdx = { at: Date.now(), byName, fps: new Set([...byName.values()].map((x) => x.fp)) };
+  return logoIdx;
+}
+
+/** The directory logo for a developer name (matched loosely: case, spaces and punctuation ignored). */
+export async function developerLogo(developer: unknown): Promise<string | null> {
+  if (!normDev(developer)) return null;
+  try { return (await logoIndex()).byName.get(normDev(developer))?.logo || null; } catch { return null; }
+}
+
+/**
+ * The image a pin should get for `developer`, or undefined to leave it as is.
+ * Fills an empty picture, and swaps another developer's directory logo (the
+ * name was changed) — but never replaces a picture someone uploaded themselves.
+ * `currentImage` may be a data: URL, its md5 digest or a link.
+ */
+export async function autoLogo(developer: unknown, currentImage: unknown): Promise<string | undefined> {
+  if (!normDev(developer)) return undefined;
+  let idx;
+  try { idx = await logoIndex(); } catch { return undefined; }
+  const hit = idx.byName.get(normDev(developer));
+  if (!hit) return undefined;
+  const cur = fingerprint(currentImage);
+  if (!cur) return hit.logo;
+  if (cur === hit.fp) return undefined;
+  return idx.fps.has(cur) ? hit.logo : undefined;
+}
+
+/** A pin's current picture as a fingerprint (no image data), for autoLogo(). */
+export async function pinImageDigest(id: string): Promise<string> {
+  const p = await (await pinsColl()).findOne({ id }, { projection: { image: 1 }, mediaDigest: { fields: ['image'] } } as never);
+  return fingerprint(p?.image);
+}
+
 export async function createDeveloper(input: { name: unknown; logo?: unknown }): Promise<void> {
   await ensureTable();
   const name = cleanName(input.name);
@@ -139,6 +185,7 @@ export async function createDeveloper(input: { name: unknown; logo?: unknown }):
   await assertUniqueName(name);
   const id = randomUUID(), now = new Date().toISOString();
   await (await coll()).insertOne({ _id: id, id, name, logo: (input.logo as string) || null, created_at: now, updated_at: now });
+  logoIdx = null;
 }
 
 export async function updateDeveloper(id: string, input: { name?: unknown; logo?: unknown }): Promise<void> {
@@ -155,12 +202,14 @@ export async function updateDeveloper(id: string, input: { name?: unknown; logo?
     set.logo = input.logo as string | null;
   }
   const r = await (await coll()).updateOne({ id }, { $set: set });
+  logoIdx = null;
   if (!r.matchedCount) throw new DeveloperError('Developer not found', 404);
 }
 
 export async function deleteDeveloper(id: string): Promise<void> {
   await ensureTable();
   await (await coll()).deleteOne({ id });
+  logoIdx = null;
 }
 
 /**

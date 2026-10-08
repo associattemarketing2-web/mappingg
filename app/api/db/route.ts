@@ -8,6 +8,7 @@ import { canEditProjects } from '@/lib/verification';
 import { clientIp, rateLimit } from '@/lib/rate-limit';
 import { warmPinThumbs } from '@/lib/media-cache';
 import { getDb } from '@/lib/mongodb';
+import { autoLogo, pinImageDigest } from '@/lib/developers';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -74,6 +75,16 @@ async function handle(op: DbOp, devEditorView = false, ip = '') {
   const isEditorDev = current?.role === 'developer' && (await canEditProjects(current.id));
   const developerId = isEditorDev && (devEditorView || op.action !== 'select') ? current!.id : undefined;
   const scopedPins = !!developerId && op.table === 'pins';
+
+  // Developer name on a pin → that developer's logo from Super admin → Developers.
+  if (op.table === 'pins' && (op.action === 'insert' || op.action === 'update') && op.values && !Array.isArray(op.values) && 'developer' in op.values) {
+    const v = op.values as Record<string, unknown>;
+    const idf = op.filters?.find((f) => f.col === 'id' && f.op === 'eq');
+    const current = 'image' in v ? v.image
+      : op.action === 'update' && idf && 'val' in idf ? await pinImageDigest(String(idf.val)).catch(() => '') : null;
+    const logo = await autoLogo(v.developer, current);
+    if (logo) op = { ...op, values: { ...v, image: logo } };
+  }
 
   const result = await runDbOp(op, !!staff, { developerId });
 

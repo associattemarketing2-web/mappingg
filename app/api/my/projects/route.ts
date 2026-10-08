@@ -6,6 +6,7 @@ import { getDb } from '@/lib/mongodb';
 import { logActivity } from '@/lib/activity';
 import { snapshotPin, invalidateTable } from '@/lib/db-engine';
 import { canEditProjects } from '@/lib/verification';
+import { developerLogo } from '@/lib/developers';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -133,6 +134,8 @@ export async function POST(req: NextRequest) {
     }
     const alloc = await nextNumberAllocator(db);
     const docs = parsed.data.projects.map((d) => buildPin(d, user.id, company, now, alloc()));
+    const logo = await developerLogo(company);
+    if (logo) for (const d of docs) if (!d.image) d.image = logo;
     await db.collection<PinDoc>('pins').insertMany(docs);
     invalidateTable('pins');
     await logActivity({ user_id: user.id, email: user.email, role: user.role, type: 'project_added', detail: `Uploaded ${docs.length} project${docs.length === 1 ? '' : 's'} from a file — sent for review` });
@@ -146,6 +149,8 @@ export async function POST(req: NextRequest) {
   }
   const alloc = await nextNumberAllocator(db);
   const doc = buildPin(parsed.data, user.id, company, now, alloc());
+  // No picture added → their company's logo from the developer directory.
+  if (!doc.image) doc.image = (await developerLogo(company)) || null;
   await db.collection<PinDoc>('pins').insertOne(doc);
   invalidateTable('pins');
   await logActivity({ user_id: user.id, email: user.email, role: user.role, type: 'project_added', detail: `Added “${String(doc.title || 'Untitled project')}” (#${doc.number}) — sent for review` });
