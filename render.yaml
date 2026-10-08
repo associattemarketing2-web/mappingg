@@ -25,6 +25,12 @@ services:
         value: https://mapping-8vm5.onrender.com
       - key: NEXT_PUBLIC_GOOGLE_MAPS_KEY
         sync: false
+      # Google sign-in (OAuth). Redirect URI to whitelist in Google Cloud:
+      #   <NEXT_PUBLIC_SITE_URL>/api/auth/google/callback
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
       # Must match package.json "engines" (24.x) and .nvmrc.
       - key: NODE_VERSION
         value: "24"

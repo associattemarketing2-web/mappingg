@@ -517,7 +517,6 @@
       toast('Network error — please try again', 'fa-triangle-exclamation');
     });
   });
-  document.querySelectorAll('.btn-google').forEach(b => b.addEventListener('click', () => toast('Google sign-in is coming soon', 'fa-circle-info')));
   document.querySelectorAll('.open-signin').forEach(b => b.addEventListener('click', e => { e.preventDefault(); openModal('signin'); }));
   document.querySelectorAll('.open-signup').forEach(b => b.addEventListener('click', e => {
     e.preventDefault();
@@ -571,10 +570,18 @@
 
   // "Continue with Google" → hand off to the server-side OAuth start route,
   // which redirects to Google's consent screen (PKCE + state set there).
-  var googleBtn = document.querySelector('.btn-google');
-  if (googleBtn) googleBtn.addEventListener('click', function () {
-    googleBtn.disabled = true;
-    window.location.href = '/api/auth/google/start';
+  // Both the Sign in and Create account forms have one; a new Google user is
+  // created as a buyer (the callback never grants any other role).
+  document.querySelectorAll('.btn-google').forEach(function (b) {
+    on(b, 'click', function () {
+      b.disabled = true;
+      window.location.href = '/api/auth/google/start';
+    });
+  });
+  // Coming back with the browser's Back button restores this page from cache
+  // with the button still disabled — re-enable it.
+  on(window, 'pageshow', function () {
+    document.querySelectorAll('.btn-google').forEach(function (b) { b.disabled = false; });
   });
 
   /* ---------- Globe ---------- */

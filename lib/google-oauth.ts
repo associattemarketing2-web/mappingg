@@ -30,9 +30,12 @@ function base64url(buf: Buffer): string {
  * The absolute redirect URI registered in the Google Cloud console. Prefers the
  * configured public origin; falls back to the request's own origin so it works
  * across environments (the value must still be whitelisted in the console).
+ * In local development the request's own origin (e.g. http://localhost:3000)
+ * is used, so Google doesn't send a local sign-in back to the live site.
  */
 export function redirectUri(req: NextRequest): string {
-  const origin = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || req.nextUrl.origin;
+  const site = process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') : '';
+  const origin = site || req.nextUrl.origin;
   return `${origin}/api/auth/google/callback`;
 }
 
