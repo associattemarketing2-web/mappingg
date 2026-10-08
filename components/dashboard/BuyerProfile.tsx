@@ -13,7 +13,7 @@ interface Me { name: string; email: string; mobile: string; profile: Record<stri
 const PREF_FIELDS: { key: string; label: string; placeholder: string; options?: string[] }[] = [
   { key: 'area', label: 'Preferred area', placeholder: 'e.g. Mundhwa, Kharadi' },
   { key: 'configuration', label: 'Configuration', placeholder: 'e.g. 2 BHK', options: ['1 BHK', '2 BHK', '3 BHK', '4 BHK', '5+ BHK', 'Plot', 'Commercial'] },
-  { key: 'budget', label: 'Budget', placeholder: 'e.g. ₹50 L – ₹1 Cr', options: ['Under ₹50 L', '₹50 L – ₹1 Cr', '₹1 – 2 Cr', '₹2 – 5 Cr', 'Above ₹5 Cr'] },
+  { key: 'budget', label: 'Budget', placeholder: 'e.g. 75L - 1.5 Cr', options: ['Under 1 Cr', '75L - 1.5 Cr', '1.5Cr - 2.5 Cr', '3Cr +'] },
   { key: 'timeline', label: 'Planning to buy', placeholder: 'e.g. 3–6 months', options: ['Within 3 months', '3–6 months', '6–12 months', 'Just exploring'] },
   { key: 'purpose', label: 'Buying for', placeholder: 'Self use / Investment', options: ['Self use', 'Investment', 'Both'] },
 ];

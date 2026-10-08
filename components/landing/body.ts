@@ -502,7 +502,7 @@ export const LANDING_BODY = `
             <div class="field"><label for="b-config">Configuration</label><select id="b-config" name="configuration"><option>1 BHK</option><option selected>2 BHK</option><option>3 BHK</option><option>4+ BHK</option><option>Plot / Villa</option></select></div>
           </div>
           <div class="field-row">
-            <div class="field"><label for="b-budget">Budget</label><select id="b-budget" name="budget"><option>Under ₹50 L</option><option selected>₹50 L – ₹1 Cr</option><option>₹1 – 2 Cr</option><option>₹2 Cr +</option></select></div>
+            <div class="field"><label for="b-budget">Budget</label><select id="b-budget" name="budget"><option selected>Under 1 Cr</option><option>75L - 1.5 Cr</option><option>1.5Cr - 2.5 Cr</option><option>3Cr +</option></select></div>
             <div class="field"><label for="b-time">Planning to buy</label><select id="b-time" name="timeline"><option>Within 3 months</option><option selected>3–6 months</option><option>6–12 months</option><option>Just exploring</option></select></div>
           </div>
           <div class="field"><label>Buying for</label><div class="pills"><label><input type="radio" name="purpose" value="Self use" checked><span>Self use</span></label><label><input type="radio" name="purpose" value="Investment"><span>Investment</span></label><label><input type="radio" name="purpose" value="Both"><span>Both</span></label></div></div>

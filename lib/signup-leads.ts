@@ -12,7 +12,7 @@ export interface SignupAccount {
   provider?: 'password' | 'google'; created_at?: string;
 }
 
-/** "Looking for: 3 BHK · Budget ₹50 L – ₹1 Cr · Area: Kharadi · …" from the buyer sign-up fields. */
+/** "Looking for: 3 BHK · Budget 75L - 1.5 Cr · Area: Kharadi · …" from the buyer sign-up fields. */
 export function buyerNeeds(profile: Profile = {}, provider?: string): string {
   const parts = [
     profile.configuration && `Looking for: ${profile.configuration}`,
