@@ -7,14 +7,14 @@ export type { Db } from './mongo-compat';
 
 // Data layer switch. Every call site uses `getDb()` with the MongoDB driver's
 // API, so the same code runs on either backend:
-//   - MongoDB    when MONGODB_URI is set (or DB_PROVIDER=mongodb)
-//   - PostgreSQL otherwise (lib/mongo-compat.ts, the Mongo-compatible layer)
+//   - PostgreSQL by default (lib/mongo-compat.ts, the Mongo-compatible layer)
+//   - MongoDB    only when DB_PROVIDER=mongodb is set explicitly
+// A stray MONGODB_URI alone no longer switches the app off Postgres.
 // The few modules that used raw SQL check `usingMongo()` and have a Mongo path.
 
 export function usingMongo(): boolean {
   const p = (process.env.DB_PROVIDER || '').toLowerCase();
-  if (p === 'postgres' || p === 'pg') return false;
-  return p === 'mongodb' || p === 'mongo' || !!process.env.MONGODB_URI;
+  return p === 'mongodb' || p === 'mongo';
 }
 
 // Atlas SRV lookups fail on some networks whose only DNS server is loopback.

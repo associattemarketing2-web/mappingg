@@ -17,12 +17,10 @@ services:
         sync: false
       - key: AUTH_SECRET
         sync: false
-      # MongoDB: when MONGODB_URI is set the whole app uses MongoDB instead of
-      # DATABASE_URL (see lib/mongodb.ts). Set DB_PROVIDER=postgres to force Postgres.
-      - key: MONGODB_URI
-        sync: false
-      - key: MONGODB_DB
-        value: mappingg
+      # The app runs on Postgres only. MongoDB is used solely when
+      # DB_PROVIDER=mongodb is set explicitly (see lib/mongodb.ts).
+      - key: DB_PROVIDER
+        value: postgres
       - key: NEXT_PUBLIC_SITE_URL
         value: https://mapping-8vm5.onrender.com
       - key: NEXT_PUBLIC_GOOGLE_MAPS_KEY
