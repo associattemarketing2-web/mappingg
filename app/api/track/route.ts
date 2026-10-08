@@ -38,7 +38,9 @@ export async function POST(req: NextRequest) {
   const vid = visitorId(ip, ua);
   const host = new URL(process.env.NEXT_PUBLIC_SITE_URL || req.nextUrl.origin).hostname;
   const at = new Date().toISOString();
-  const geo = await locate(ip); // country / state / city — the IP itself is not stored
+  // Behind Cloudflare the real visitor IP is in its own header; x-forwarded-for can be a proxy.
+  const visitorIp = req.headers.get('cf-connecting-ip') || req.headers.get('true-client-ip') || ip;
+  const geo = await locate(visitorIp); // country / state / city — the IP itself is not stored
   const events: SiteEvent[] = parsed.data.e.map((e): SiteEvent => {
     const p = e.p.split('?')[0].slice(0, 200) || '/';
     if (e.k === 'pv') {

@@ -144,7 +144,7 @@ export default function TrafficPanel() {
               {geoRows.length ? (
                 <HBars rows={geoRows.map(({ label, value }) => ({ label, value }))} max={maxGeo} show={show} hide={hide} valueText={fmt}
                   tipLines={(row) => { const g = geoRows.find((x) => x.label === row.label); return [`${fmt(row.value)} visitors`, g?.extra || '']; }} />
-              ) : <div className="adm-empty"><p>No location data yet.</p></div>}
+              ) : <div className="adm-empty"><p>No location data yet. Location comes from the visitor&apos;s internet address, so visits on localhost (your own testing) have none — real visitors on the live site will show here.</p></div>}
             </>
           )}
         </ChartCard>
