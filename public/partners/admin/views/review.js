@@ -21,6 +21,39 @@ export async function createManualSubmission(builderId) {
   return data.id;
 }
 
+// Copy private files to the public bucket so the map can show them
+async function copyMedia(cur) {
+  const map = { ...(cur.published_media || {}) };
+  const all = [cur.cover_image_path, ...(cur.gallery_paths || []), cur.brochure_path, cur.rera_qr_path].filter(Boolean);
+  for (const p of all) {
+    if (map[p]) continue;
+    const { data: blob, error: e1 } = await ctx.client.storage.from('submission-media').download(p);
+    if (e1) throw new Error(`Could not read ${fileNameFromPath(p)}: ${e1.message}`);
+    const dest = `${cur.id}/${p.split('/').pop()}`;
+    const { error: e2 } = await ctx.client.storage.from('project-media').upload(dest, blob, { upsert: true, contentType: blob.type || undefined });
+    if (e2) throw new Error(`Could not publish ${fileNameFromPath(p)}: ${e2.message}`);
+    map[p] = ctx.client.storage.from('project-media').getPublicUrl(dest).data.publicUrl;
+  }
+  await ctx.client.from('project_submissions').update({ published_media: map }).eq('id', cur.id);
+  return {
+    cover_image_url: cur.cover_image_path ? map[cur.cover_image_path] : null,
+    gallery_urls: (cur.gallery_paths || []).map(p => map[p]).filter(Boolean),
+    brochure_url: cur.brochure_path ? map[cur.brochure_path] : null,
+    rera_qr_url: cur.rera_qr_path ? map[cur.rera_qr_path] : null
+  };
+}
+
+/** Publish a saved submission without the review screen (bulk "Make live").
+ *  Throws with the missing fields if it isn't ready. */
+export async function publishSubmission(sub) {
+  const blockers = publishBlockers(sub);
+  if (blockers.length) throw new Error(`missing ${blockers.join(', ')}`);
+  const media = await copyMedia(sub);
+  const { data, error } = await ctx.client.rpc('admin_publish', { p_id: sub.id, p_media: media });
+  if (error) throw error;
+  return data;
+}
+
 async function loadSubmission(id) {
   const { data, error } = await ctx.client.from('project_submissions')
     .select('*, builder:builders(*), link:submission_links(id, tag, token, is_active, expires_at)')
@@ -317,28 +350,6 @@ export async function renderReview(page, id) {
     else toast('Published');
     await refreshCounts();
     rerender();
-  }
-
-  // Copy private files to the public bucket so the map can show them
-  async function copyMedia(cur) {
-    const map = { ...(cur.published_media || {}) };
-    const all = [cur.cover_image_path, ...(cur.gallery_paths || []), cur.brochure_path, cur.rera_qr_path].filter(Boolean);
-    for (const p of all) {
-      if (map[p]) continue;
-      const { data: blob, error: e1 } = await ctx.client.storage.from('submission-media').download(p);
-      if (e1) throw new Error(`Could not read ${fileNameFromPath(p)}: ${e1.message}`);
-      const dest = `${cur.id}/${p.split('/').pop()}`;
-      const { error: e2 } = await ctx.client.storage.from('project-media').upload(dest, blob, { upsert: true, contentType: blob.type || undefined });
-      if (e2) throw new Error(`Could not publish ${fileNameFromPath(p)}: ${e2.message}`);
-      map[p] = ctx.client.storage.from('project-media').getPublicUrl(dest).data.publicUrl;
-    }
-    await ctx.client.from('project_submissions').update({ published_media: map }).eq('id', cur.id);
-    return {
-      cover_image_url: cur.cover_image_path ? map[cur.cover_image_path] : null,
-      gallery_urls: (cur.gallery_paths || []).map(p => map[p]).filter(Boolean),
-      brochure_url: cur.brochure_path ? map[cur.brochure_path] : null,
-      rera_qr_url: cur.rera_qr_path ? map[cur.rera_qr_path] : null
-    };
   }
 
   async function reject() {

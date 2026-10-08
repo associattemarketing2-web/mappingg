@@ -8,6 +8,7 @@ import DevProjectsPanel, { type DevProject } from './DevProjectsPanel';
 import NotificationBell from './NotificationBell';
 import PhoneInput from '@/components/PhoneInput';
 import SearchConsolePanel from './SearchConsolePanel';
+import { BulkBar, PickOne, useSelection } from './bulk';
 import { ChartCard, DayHeatmap, Donut, HBars, STATUS_META, StatTile, StatusStack, TYPE_COLORS, WeekColumns, dayStats } from './SeoCharts';
 
 export interface AdminUser {
@@ -358,13 +359,36 @@ function BlogsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
       setEditId(id); setView('form');
     } catch { flash('Could not open post', true); }
   }
+  const sel = useSelection();
   async function remove(p: Post) {
-    if (!confirm(`Delete “${p.title}”?`)) return;
+    if (!confirm(`Delete “${p.title}”? It moves to Backups → Recycle bin, where you can restore it.`)) return;
+    await removeMany([p.id]);
+  }
+  async function removeMany(ids: string[]) {
     try {
-      const r = await fetch(`/api/admin/blogs?id=${encodeURIComponent(p.id)}`, { method: 'DELETE', credentials: 'same-origin' });
+      const r = await fetch(`/api/admin/blogs?ids=${ids.map(encodeURIComponent).join(',')}`, { method: 'DELETE', credentials: 'same-origin' });
       if (!r.ok) throw new Error();
-      setPosts((l) => l.filter((x) => x.id !== p.id)); flash('Post deleted');
+      setPosts((l) => l.filter((x) => !ids.includes(x.id))); sel.clear();
+      flash(`${ids.length === 1 ? 'Post' : `${ids.length} posts`} moved to the recycle bin`);
     } catch { flash('Delete failed', true); }
+  }
+  // Publish / unpublish several posts: re-save each with the new status.
+  async function setStatusMany(ids: string[], status: 'draft' | 'published') {
+    let ok = 0;
+    for (const id of ids) {
+      try {
+        const g = await fetch(`/api/admin/blogs?id=${encodeURIComponent(id)}`, { credentials: 'same-origin' }).then((r) => r.json());
+        const p = g.data; if (!p) continue;
+        const r = await fetch('/api/admin/blogs', {
+          method: 'PUT', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin',
+          body: JSON.stringify({ id, title: p.title, slug: p.slug, excerpt: p.excerpt, content: p.content, cover_image: p.cover_image, tags: p.tags || [],
+            author: p.author, seo_title: p.seo_title, seo_description: p.seo_description, status }),
+        });
+        if (r.ok) ok++;
+      } catch { /* counted as failed */ }
+    }
+    sel.clear(); load();
+    flash(`${ok} post${ok === 1 ? '' : 's'} ${status === 'published' ? 'published' : 'moved to drafts'}${ok < ids.length ? `, ${ids.length - ok} failed` : ''}`, ok < ids.length);
   }
   function onCover(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]; if (!file) return;
@@ -441,11 +465,18 @@ function BlogsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
       ) : posts.length === 0 ? (
         <div className="adm-empty"><i className="fas fa-newspaper" /><p>No posts yet. Create your first SEO article.</p></div>
       ) : (
+        <>
+        <BulkBar sel={sel} ids={posts.map((p) => p.id)} hint={`Select all ${posts.length} posts — or tick posts to publish, unpublish or delete them together`}>
+          <button className="adm-btn primary sm" onClick={() => setStatusMany(sel.of(posts.map((p) => p.id)), 'published')}><i className="fas fa-globe" /> Publish</button>
+          <button className="adm-btn ghost sm" onClick={() => setStatusMany(sel.of(posts.map((p) => p.id)), 'draft')}><i className="fas fa-eye-slash" /> Make draft</button>
+          <button className="adm-btn danger sm" onClick={() => { const ids = sel.of(posts.map((p) => p.id)); if (confirm(`Delete ${ids.length} post${ids.length === 1 ? '' : 's'}? They move to Backups → Recycle bin, where you can restore them.`)) removeMany(ids); }}><i className="fas fa-trash" /> Delete</button>
+        </BulkBar>
         <table className="adm-table">
-          <thead><tr><th>Title</th><th>Status</th><th>Updated</th><th>Actions</th></tr></thead>
+          <thead><tr><th className="pick" /><th>Title</th><th>Status</th><th>Updated</th><th>Actions</th></tr></thead>
           <tbody>
             {posts.map((p) => (
-              <tr key={p.id}>
+              <tr key={p.id} className={sel.has(p.id) ? 'picked' : undefined}>
+                <td className="pick"><PickOne sel={sel} id={p.id} label={p.title} /></td>
                 <td className="t-title">{p.title}<small>/blog/{p.slug}</small></td>
                 <td><span className={`adm-badge ${p.status === 'published' ? 'ok' : 'muted'}`}>{p.status === 'published' ? 'Published' : 'Draft'}</span></td>
                 <td className="muted">{fmt(p.updated_at)}</td>
@@ -458,6 +489,7 @@ function BlogsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
             ))}
           </tbody>
         </table>
+        </>
       )}
     </div>
   );
@@ -509,12 +541,17 @@ function EmployeesPanel({ flash }: { flash: (m: string, e?: boolean) => void }) 
       flash(editId ? 'Employee updated' : 'Employee added'); setView('list'); load();
     } catch (e) { flash(e instanceof Error ? e.message : 'Save failed', true); } finally { setSaving(false); }
   }
+  const sel = useSelection();
   async function remove(e: Emp) {
-    if (!confirm(`Remove ${e.email}? They will lose access.`)) return;
+    if (!confirm(`Remove ${e.email}? They will lose access. You can restore them from Backups → Recycle bin.`)) return;
+    await removeMany([e.id]);
+  }
+  async function removeMany(ids: string[]) {
     try {
-      const r = await fetch(`/api/admin/employees?id=${encodeURIComponent(e.id)}`, { method: 'DELETE', credentials: 'same-origin' });
+      const r = await fetch(`/api/admin/employees?ids=${ids.map(encodeURIComponent).join(',')}`, { method: 'DELETE', credentials: 'same-origin' });
       if (!r.ok) throw new Error();
-      setList((l) => l.filter((x) => x.id !== e.id)); flash('Employee removed');
+      setList((l) => l.filter((x) => !ids.includes(x.id))); sel.clear();
+      flash(`${ids.length === 1 ? 'Employee' : `${ids.length} employees`} removed — kept in the recycle bin`);
     } catch { flash('Delete failed', true); }
   }
 
@@ -562,11 +599,16 @@ function EmployeesPanel({ flash }: { flash: (m: string, e?: boolean) => void }) 
       ) : list.length === 0 ? (
         <div className="adm-empty"><i className="fas fa-users-gear" /><p>No employees yet. Add teammates and choose which tabs they can access.</p></div>
       ) : (
+        <>
+        <BulkBar sel={sel} ids={list.map((e) => e.id)} hint={`Select all ${list.length} employees — or tick some to remove them together`}>
+          <button className="adm-btn danger sm" onClick={() => { const ids = sel.of(list.map((e) => e.id)); if (confirm(`Remove ${ids.length} employee${ids.length === 1 ? '' : 's'}? They will lose access. You can restore them from Backups → Recycle bin.`)) removeMany(ids); }}><i className="fas fa-trash" /> Remove</button>
+        </BulkBar>
         <table className="adm-table">
-          <thead><tr><th>Employee</th><th>Access</th><th>Actions</th></tr></thead>
+          <thead><tr><th className="pick" /><th>Employee</th><th>Access</th><th>Actions</th></tr></thead>
           <tbody>
             {list.map((e) => (
-              <tr key={e.id}>
+              <tr key={e.id} className={sel.has(e.id) ? 'picked' : undefined}>
+                <td className="pick"><PickOne sel={sel} id={e.id} label={e.name || e.email} /></td>
                 <td className="t-title">{e.name || e.email}<small>{e.email}</small></td>
                 <td>{e.permissions.length ? e.permissions.map((p) => <span key={p} className="adm-badge muted" style={{ marginRight: 4 }}>{TAB_META[p]?.label || p}</span>) : <span className="muted">Dashboard only</span>}</td>
                 <td><div className="adm-actions">
@@ -577,6 +619,7 @@ function EmployeesPanel({ flash }: { flash: (m: string, e?: boolean) => void }) 
             ))}
           </tbody>
         </table>
+        </>
       )}
     </div>
   );
@@ -740,8 +783,9 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
     return () => es.close();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const pick = useSelection();
   function switchSource(s: LeadSource) {
-    setSource(s); setRole('all'); setLoc(''); setFilter('all'); setQ('');
+    setSource(s); setRole('all'); setLoc(''); setFilter('all'); setQ(''); pick.clear();
   }
 
   const isMap = source === 'map';
@@ -812,14 +856,24 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
     if (sel && await patch(sel.id, { notes })) flash('Notes saved');
   }
   async function remove(l: Lead) {
-    if (!confirm(`Delete lead from ${l.name}? This cannot be undone.`)) return;
+    if (!confirm(`Delete lead from ${l.name}? You can restore it from Backups → Recycle bin.`)) return;
+    await removeMany([l.id]);
+  }
+  async function removeMany(ids: string[]) {
     try {
-      const r = await fetch(`/api/admin/leads?source=${source}&id=${encodeURIComponent(l.id)}`, { method: 'DELETE', credentials: 'same-origin' });
+      const r = await fetch(`/api/admin/leads?source=${source}&ids=${ids.map(encodeURIComponent).join(',')}`, { method: 'DELETE', credentials: 'same-origin' });
       if (!r.ok) throw new Error();
-      replace(l.id, null);
-      if (sel?.id === l.id) setSel(null);
-      flash('Lead deleted');
+      setBySource((b) => ({ ...b, [source]: b[source].filter((x) => !ids.includes(x.id)) }));
+      if (sel && ids.includes(sel.id)) setSel(null);
+      pick.clear();
+      flash(`${ids.length === 1 ? 'Lead' : `${ids.length} leads`} moved to the recycle bin`);
     } catch { flash('Delete failed', true); }
+  }
+  async function setStatusMany(ids: string[], status: Lead['status']) {
+    let ok = 0;
+    for (const id of ids) if (await patch(id, { status })) ok++;
+    pick.clear();
+    flash(`${ok} lead${ok === 1 ? '' : 's'} marked ${stageLabel(status)}${ok < ids.length ? `, ${ids.length - ok} failed` : ''}`, ok < ids.length);
   }
 
   const initials = (l: Lead) => (l.name || l.email || '?').slice(0, 2).toUpperCase();
@@ -899,18 +953,28 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
               : 'Nothing matches these filters.'}</p>
           </div>
         ) : (
+          <>
+          <BulkBar sel={pick} ids={list.slice(0, LEADS_RENDER_CAP).map((l) => l.id)} hint={`Select all ${Math.min(list.length, LEADS_RENDER_CAP)} shown — or tick leads to update or delete them together`}>
+            <select className="crm-select" value="" disabled={busy} aria-label="Set status of selected leads"
+              onChange={(e) => { if (e.target.value) setStatusMany(pick.of(list.map((l) => l.id)), e.target.value as Lead['status']); }}>
+              <option value="">Set status…</option>
+              {LEAD_STAGES.map((st) => <option key={st.key} value={st.key}>{st.label}</option>)}
+            </select>
+            <button className="adm-btn danger sm" disabled={busy} onClick={() => { const ids = pick.of(list.map((l) => l.id)); if (confirm(`Delete ${ids.length} lead${ids.length === 1 ? '' : 's'}? You can restore them from Backups → Recycle bin.`)) removeMany(ids); }}><i className="fas fa-trash" /> Delete</button>
+          </BulkBar>
           <div className="table-scroll">
             <table className="adm-table crm-table">
               <thead>
                 {isMap
-                  ? <tr><th>Lead</th><th>Type</th><th>Project</th><th>Location</th><th>Account</th><th>Status</th><th>Received</th><th></th></tr>
+                  ? <tr><th className="pick" /><th>Lead</th><th>Type</th><th>Project</th><th>Location</th><th>Account</th><th>Status</th><th>Received</th><th></th></tr>
                   : isSignup
-                    ? <tr><th>Buyer</th><th>Looking for</th><th>Last login</th><th>Activity</th><th>Status</th><th>Signed up</th><th></th></tr>
-                    : <tr><th>Lead</th><th>Topic</th><th>Status</th><th>Received</th><th></th></tr>}
+                    ? <tr><th className="pick" /><th>Buyer</th><th>Looking for</th><th>Last login</th><th>Activity</th><th>Status</th><th>Signed up</th><th></th></tr>
+                    : <tr><th className="pick" /><th>Lead</th><th>Topic</th><th>Status</th><th>Received</th><th></th></tr>}
               </thead>
               <tbody>
                 {list.slice(0, LEADS_RENDER_CAP).map((l) => (
-                  <tr key={l.id} className="crm-row" onClick={() => open(l)}>
+                  <tr key={l.id} className={`crm-row${pick.has(l.id) ? ' picked' : ''}`} onClick={() => open(l)}>
+                    <td className="pick" onClick={(e) => e.stopPropagation()}><PickOne sel={pick} id={l.id} label={l.name || l.email || 'lead'} /></td>
                     <td className="t-title">
                       <span className="crm-ini">{initials(l)}</span>
                       <span className="crm-id"><b>{l.name}</b><small>{l.email || l.phone || '—'}</small></span>
@@ -955,6 +1019,7 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
               </tbody>
             </table>
           </div>
+          </>
         )}
         {!loading && truncated[source] != null && (
           <div className="adm-empty" style={{ padding: '12px 0' }}>
@@ -1383,15 +1448,50 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
     } catch (e) { flash(e instanceof Error ? e.message : 'Failed', true); return false; } finally { setBusy(false); }
   }
 
+  // Ticked rows for bulk actions (ids; acted on only while still in `rows`).
+  const [picked, setPicked] = useState<Set<string>>(new Set());
+  const pickedRows = rows.filter((a) => picked.has(a.id));
+  const togglePick = (id: string) => setPicked((s) => { const n = new Set(s); if (n.has(id)) n.delete(id); else n.add(id); return n; });
+
+  async function bulkDelete() {
+    const list = pickedRows;
+    if (!list.length) return;
+    if (!confirm(`Delete ${list.length} account${list.length === 1 ? '' : 's'}? They will no longer be able to sign in. You can restore them from Backups → Recycle bin.`)) return;
+    setBusy(true);
+    const r = await fetch(`/api/admin/accounts?ids=${list.map((a) => encodeURIComponent(a.id)).join(',')}`, { method: 'DELETE', credentials: 'same-origin' }).catch(() => null);
+    const gone = r?.ok ? list.map((a) => a.id) : [];
+    setBusy(false);
+    setRows((ls) => ls.filter((x) => !gone.includes(x.id)));
+    setPicked(new Set());
+    if (sel && gone.includes(sel.id)) setSel(null);
+    loadFeed();
+    flash(gone.length === list.length ? `${gone.length} account${gone.length === 1 ? '' : 's'} moved to the recycle bin` : `${gone.length} deleted, ${list.length - gone.length} failed`, gone.length !== list.length);
+  }
+
+  async function bulkDecide(decision: 'approve' | 'reject') {
+    const list = pickedRows.filter(isPending);
+    if (!list.length) { flash('None of the selected accounts are waiting for approval.', true); return; }
+    let reason = '';
+    if (decision === 'reject') {
+      reason = (prompt(`Reason for rejecting ${list.length} application${list.length === 1 ? '' : 's'} (the applicants will see it):`) || '').trim();
+      if (!reason) return;
+    } else if (!confirm(`Approve ${list.length} account${list.length === 1 ? '' : 's'} waiting for approval?`)) return;
+    let ok = 0;
+    for (const a of list) if (await patch(a.id, { decision, reason: reason || undefined })) ok++;
+    setPicked(new Set());
+    flash(`${ok} account${ok === 1 ? '' : 's'} ${decision === 'approve' ? 'approved' : 'rejected'}${ok < list.length ? `, ${list.length - ok} failed` : ''}`, ok < list.length);
+  }
+
   async function remove(a: Account) {
-    if (!confirm(`Delete the account of ${a.name || a.email}? They will no longer be able to sign in. This cannot be undone.`)) return;
+    if (!confirm(`Delete the account of ${a.name || a.email}? They will no longer be able to sign in. You can restore it from Backups → Recycle bin.`)) return;
     try {
       const r = await fetch(`/api/admin/accounts?id=${encodeURIComponent(a.id)}`, { method: 'DELETE', credentials: 'same-origin' });
       if (!r.ok) throw new Error();
       setRows((ls) => ls.filter((x) => x.id !== a.id));
+      setPicked((s) => { const n = new Set(s); n.delete(a.id); return n; });
       if (sel?.id === a.id) setSel(null);
       loadFeed();
-      flash('Account deleted');
+      flash('Account moved to the recycle bin');
     } catch { flash('Delete failed', true); }
   }
 
@@ -1493,10 +1593,38 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
               <button className="adm-btn ghost sm" onClick={() => { setLoc(''); setQ(''); setFilter('all'); }}>Show all accounts</button></div>
           ) : (
             <>
+              <div className={`acs-bulk${pickedRows.length ? ' on' : ''}`}>
+                <label className="acs-pick">
+                  <input
+                    type="checkbox" aria-label="Select all accounts shown"
+                    checked={sorted.every((a) => picked.has(a.id))}
+                    ref={(el) => { if (el) el.indeterminate = !sorted.every((a) => picked.has(a.id)) && sorted.some((a) => picked.has(a.id)); }}
+                    onChange={(e) => setPicked((s) => { const n = new Set(s); sorted.forEach((a) => (e.target.checked ? n.add(a.id) : n.delete(a.id))); return n; })}
+                  />
+                </label>
+                {pickedRows.length ? (
+                  <>
+                    <b>{pickedRows.length} selected</b>
+                    {isOwner && pickedRows.some(isPending) && (
+                      <>
+                        <button type="button" className="adm-btn primary sm" disabled={busy} onClick={() => bulkDecide('approve')}><i className="fas fa-circle-check" /> Approve</button>
+                        <button type="button" className="adm-btn ghost sm" disabled={busy} onClick={() => bulkDecide('reject')}><i className="fas fa-circle-xmark" /> Reject</button>
+                      </>
+                    )}
+                    <button type="button" className="adm-btn danger sm" disabled={busy} onClick={bulkDelete}><i className="fas fa-trash" /> Delete</button>
+                    <button type="button" className="adm-btn ghost sm" onClick={() => setPicked(new Set())}>Clear</button>
+                  </>
+                ) : (
+                  <span className="muted">Select all {sorted.length} shown — or tick accounts to delete or approve them together</span>
+                )}
+              </div>
               <div className="acs-head" aria-hidden="true"><span>Name</span><span>Type</span><span>Status</span><span>Last active</span><span /></div>
               <ul className="acs-list">
                 {sorted.map((a) => (
-                  <li key={a.id}>
+                  <li key={a.id} className={picked.has(a.id) ? 'picked' : undefined}>
+                    <label className="acs-pick">
+                      <input type="checkbox" checked={picked.has(a.id)} onChange={() => togglePick(a.id)} aria-label={`Select ${a.name || a.email}`} />
+                    </label>
                     <button type="button" className={`acs-row${sel?.id === a.id ? ' on' : ''}`} onClick={() => open(a)}>
                       <span className={`acs-av r-${a.role}`}>{initials(a)}</span>
                       <span className="acs-who"><b>{a.name || a.email}</b><small>{a.email}</small></span>
@@ -1504,6 +1632,9 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
                       <span className="acs-status">{statusPill(a)}</span>
                       <span className="acs-when" title={fullWhen(lastActiveOf(a))}>{leadWhen(lastActiveOf(a)) || '—'}</span>
                       <i className="fas fa-chevron-right acs-go" />
+                    </button>
+                    <button type="button" className="acs-del" onClick={() => remove(a)} title="Delete this account" aria-label={`Delete ${a.name || a.email}`}>
+                      <i className="fas fa-trash" />
                     </button>
                   </li>
                 ))}
@@ -1772,6 +1903,13 @@ interface Snapshot { id: string; created_at: string; reason: 'auto' | 'manual'; 
 interface DeletedPin extends PinSummary { history_id: string; deleted_at: string; blank: boolean; }
 interface Compare { snapshot: Snapshot; missing: PinSummary[]; added: PinSummary[]; changed: number; }
 interface HistorySummary { total: number; edits: number; deletes: number; first: string | null; last: string | null; }
+interface TrashEntry { id: string; kind: string; label: string; sub?: string; deleted_at: string; deleted_by?: string; count: number; pin_ids: string[]; }
+const TRASH_KINDS: Record<string, { label: string; icon: string }> = {
+  account: { label: 'Account', icon: 'fa-user' }, employee: { label: 'Employee', icon: 'fa-user-tie' },
+  lead: { label: 'Lead', icon: 'fa-address-book' }, blog: { label: 'Blog post', icon: 'fa-newspaper' },
+  intake_project: { label: 'Intake project', icon: 'fa-file-arrow-up' }, dev_project: { label: 'Developer project', icon: 'fa-map-pin' },
+  builder: { label: 'Builder', icon: 'fa-building' },
+};
 
 const DATA_LABELS: Record<string, { label: string; icon: string }> = {
   pins: { label: 'Project pins', icon: 'fa-map-pin' },
@@ -1798,6 +1936,11 @@ function BackupsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
   const [busy, setBusy] = useState<string | null>(null);
   const [cmp, setCmp] = useState<Compare | null>(null);
   const [showBlank, setShowBlank] = useState(false);
+  const [trash, setTrash] = useState<TrashEntry[]>([]);
+  const [trashKind, setTrashKind] = useState('');
+  const [trashQ, setTrashQ] = useState('');
+  const binSel = useSelection();
+  const pinSel = useSelection();
 
   async function load() {
     setLoading(true);
@@ -1805,7 +1948,7 @@ function BackupsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
       const r = await fetch('/api/admin/backups', { credentials: 'same-origin' });
       const b = await r.json();
       if (!r.ok) throw new Error(b?.error?.message);
-      setLive(b.data.live || {}); setSnaps(b.data.snapshots || []); setDeleted(b.data.deleted || []); setKeep(b.data.keep || 14); setHistory(b.data.history || null);
+      setLive(b.data.live || {}); setSnaps(b.data.snapshots || []); setDeleted(b.data.deleted || []); setKeep(b.data.keep || 14); setHistory(b.data.history || null); setTrash(b.data.trash || []);
       if (b.data.autoError) flash(`Automatic backup failed: ${b.data.autoError}`, true);
     } catch { flash('Could not load backups', true); } finally { setLoading(false); }
   }
@@ -1846,12 +1989,55 @@ function BackupsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
     catch (e) { flash(e instanceof Error ? e.message : 'Restore failed', true); } finally { setBusy(null); }
   }
 
+  // ---- Recycle bin
+  async function binRestore(ids: string[]) {
+    if (!ids.length) return;
+    setBusy('bin');
+    try {
+      const d = await post({ action: 'trash-restore', ids });
+      binSel.clear();
+      if (d.failed?.length) { flash(`${d.restored.length} restored, ${d.failed.length} not`, true); alert(`Could not restore:\n\n${d.failed.join('\n')}`); }
+      else flash(`Restored ${d.restored.length === 1 ? `“${d.restored[0]}”` : `${d.restored.length} items`}`);
+      await load();
+    } catch (e) { flash(e instanceof Error ? e.message : 'Restore failed', true); } finally { setBusy(null); }
+  }
+  async function binPurge(ids: string[]) {
+    if (!ids.length || !confirm(`Delete ${ids.length} item${ids.length === 1 ? '' : 's'} forever? This cannot be undone.`)) return;
+    setBusy('bin');
+    try { await post({ action: 'trash-purge', ids }); binSel.clear(); flash(`${ids.length} item${ids.length === 1 ? '' : 's'} deleted forever`); await load(); }
+    catch (e) { flash(e instanceof Error ? e.message : 'Delete failed', true); } finally { setBusy(null); }
+  }
+  // ---- Deleted pins (from the change history)
+  async function restorePins(list: DeletedPin[]) {
+    if (!list.length || !confirm(`Put ${list.length} project${list.length === 1 ? '' : 's'} back on the map?`)) return;
+    setBusy('pins');
+    let ok = 0;
+    for (const p of list) { try { await post({ action: 'restore-deleted', historyId: p.history_id }); ok++; } catch { /* counted below */ } }
+    pinSel.clear(); setBusy(null);
+    flash(`${ok} project${ok === 1 ? '' : 's'} restored${ok < list.length ? `, ${list.length - ok} failed` : ''}`, ok < list.length);
+    load();
+  }
+  async function purgePins(list: DeletedPin[]) {
+    if (!list.length || !confirm(`Delete ${list.length} project${list.length === 1 ? '' : 's'} forever? ${list.length === 1 ? 'Its' : 'Their'} saved history is removed and ${list.length === 1 ? 'it' : 'they'} can no longer be restored.`)) return;
+    setBusy('pins');
+    try { await post({ action: 'purge-deleted', pinIds: list.map((p) => p.id) }); pinSel.clear(); flash(`${list.length} deleted forever`); await load(); }
+    catch (e) { flash(e instanceof Error ? e.message : 'Delete failed', true); } finally { setBusy(null); }
+  }
+
   if (loading && !snaps.length) return <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Checking backups…</p></div>;
 
   const latest = snaps[0];
-  const realDeleted = deleted.filter((d) => !d.blank);
-  const blankDeleted = deleted.filter((d) => d.blank);
-  const deletedList = showBlank ? deleted : realDeleted;
+  // Pins kept in the recycle bin are restored from there (with their project), not listed twice.
+  const inBin = new Set(trash.flatMap((t) => t.pin_ids || []));
+  const realDeleted = deleted.filter((d) => !d.blank && !inBin.has(d.id));
+  const blankDeleted = deleted.filter((d) => d.blank && !inBin.has(d.id));
+  const tq = trashQ.trim().toLowerCase();
+  const binList = trash.filter((t) => (!trashKind || t.kind === trashKind) && (!tq || [t.label, t.sub, t.deleted_by].some((x) => (x || '').toLowerCase().includes(tq))));
+  const binIds = binList.map((t) => t.id);
+  const kindCounts = trash.reduce<Record<string, number>>((m, t) => ({ ...m, [t.kind]: (m[t.kind] || 0) + 1 }), {});
+  const deletedList = showBlank ? [...realDeleted, ...blankDeleted] : realDeleted;
+  const pinIds = deletedList.map((p) => p.history_id);
+  const pickedPins = deletedList.filter((p) => pinSel.has(p.history_id));
   const dataKeys = Object.keys(live).sort((a, b) => (DATA_LABELS[a] ? 0 : 1) - (DATA_LABELS[b] ? 0 : 1) || a.localeCompare(b));
 
   return (
@@ -1880,6 +2066,57 @@ function BackupsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
             </div>
           ))}
         </div>
+      </div>
+
+      <div className="adm-panel" id="recycle-bin">
+        <div className="adm-panel-head">
+          <h3><i className="fas fa-trash-can-arrow-up" style={{ color: 'var(--forest)', marginRight: 8 }} />Recycle bin {trash.length ? `(${trash.length})` : ''}</h3>
+          <button className="adm-btn ghost sm" onClick={load}><i className="fas fa-rotate" /> Refresh</button>
+        </div>
+        <p className="muted" style={{ margin: '0 0 12px', fontSize: 13, lineHeight: 1.5 }}>
+          Accounts, employees, leads, blog posts and projects deleted from any panel land here first. Restore puts them back exactly as they were; Delete forever removes them for good.
+        </p>
+        {trash.length === 0 ? (
+          <div className="adm-empty"><i className="fas fa-circle-check" /><p>The recycle bin is empty.</p></div>
+        ) : (
+          <>
+            <div className="acs-toolbar" style={{ padding: 0, marginBottom: 12 }}>
+              <label className="acs-search">
+                <i className="fas fa-magnifying-glass" />
+                <input placeholder="Search deleted items" value={trashQ} onChange={(e) => setTrashQ(e.target.value)} aria-label="Search recycle bin" />
+              </label>
+              <select className="crm-select" value={trashKind} onChange={(e) => setTrashKind(e.target.value)} aria-label="Filter by type">
+                <option value="">All types ({trash.length})</option>
+                {Object.entries(kindCounts).map(([k, n]) => <option key={k} value={k}>{TRASH_KINDS[k]?.label || k} ({n})</option>)}
+              </select>
+            </div>
+            <BulkBar sel={binSel} ids={binIds} hint={`Select all ${binList.length} shown — or tick items to restore or delete them forever`}>
+              <button className="adm-btn primary sm" disabled={!!busy} onClick={() => binRestore(binSel.of(binIds))}><i className="fas fa-rotate-left" /> Restore</button>
+              <button className="adm-btn danger sm" disabled={!!busy} onClick={() => binPurge(binSel.of(binIds))}><i className="fas fa-trash" /> Delete forever</button>
+            </BulkBar>
+            {binList.length === 0 ? (
+              <div className="adm-empty"><i className="fas fa-filter" /><p>Nothing matches.</p></div>
+            ) : (
+              <table className="adm-table">
+                <thead><tr><th className="pick" /><th>Item</th><th>Type</th><th>Deleted</th><th /></tr></thead>
+                <tbody>
+                  {binList.map((t) => (
+                    <tr key={t.id} className={binSel.has(t.id) ? 'picked' : undefined}>
+                      <td className="pick"><PickOne sel={binSel} id={t.id} label={t.label} /></td>
+                      <td className="t-title">{t.label}<small>{t.sub || ''}</small></td>
+                      <td><span className="adm-badge muted"><i className={`fas ${TRASH_KINDS[t.kind]?.icon || 'fa-box'}`} /> {TRASH_KINDS[t.kind]?.label || t.kind}</span></td>
+                      <td className="muted" title={fmtDate(t.deleted_at)}>{leadWhen(t.deleted_at)}{t.deleted_by ? <small style={{ display: 'block' }}>by {t.deleted_by}</small> : null}</td>
+                      <td><div className="adm-actions">
+                        <button className="adm-btn ghost sm" disabled={!!busy} onClick={() => binRestore([t.id])}><i className="fas fa-rotate-left" /> Restore</button>
+                        <button className="adm-btn danger sm" disabled={!!busy} onClick={() => binPurge([t.id])} title="Delete forever"><i className="fas fa-trash" /></button>
+                      </div></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </>
+        )}
       </div>
 
       <div className="adm-panel">
@@ -1911,18 +2148,29 @@ function BackupsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
         {deletedList.length === 0 ? (
           <div className="adm-empty"><i className="fas fa-circle-check" /><p>No deleted projects are missing from the map.</p></div>
         ) : (
+          <>
+          <p className="muted" style={{ margin: '0 0 12px', fontSize: 13 }}>Map pins deleted in the Map Editor. Restore puts them back on the map; Delete forever removes their saved history.</p>
+          <BulkBar sel={pinSel} ids={pinIds} hint={`Select all ${deletedList.length} shown — or tick projects to restore or delete them forever`}>
+            <button className="adm-btn primary sm" disabled={!!busy} onClick={() => restorePins(pickedPins)}><i className="fas fa-rotate-left" /> Restore</button>
+            <button className="adm-btn danger sm" disabled={!!busy} onClick={() => purgePins(pickedPins)}><i className="fas fa-trash" /> Delete forever</button>
+          </BulkBar>
           <table className="adm-table">
-            <thead><tr><th>Project</th><th>Deleted</th><th /></tr></thead>
+            <thead><tr><th className="pick" /><th>Project</th><th>Deleted</th><th /></tr></thead>
             <tbody>
               {deletedList.map((p) => (
-                <tr key={p.history_id}>
+                <tr key={p.history_id} className={pinSel.has(p.history_id) ? 'picked' : undefined}>
+                  <td className="pick"><PickOne sel={pinSel} id={p.history_id} label={pinName(p)} /></td>
                   <td className="t-title"><b>{p.number != null ? `#${p.number} ` : ''}{pinName(p)}</b><small className="muted"> {[p.developer, p.location].filter(Boolean).join(' · ')}</small></td>
                   <td className="muted">{fmtDate(p.deleted_at)}</td>
-                  <td><button className="adm-btn ghost sm" disabled={!!busy} onClick={() => restoreDeleted(p)}><i className="fas fa-rotate-left" /> Restore</button></td>
+                  <td><div className="adm-actions">
+                    <button className="adm-btn ghost sm" disabled={!!busy} onClick={() => restoreDeleted(p)}><i className="fas fa-rotate-left" /> Restore</button>
+                    <button className="adm-btn danger sm" disabled={!!busy} onClick={() => purgePins([p])} title="Delete forever"><i className="fas fa-trash" /></button>
+                  </div></td>
                 </tr>
               ))}
             </tbody>
           </table>
+          </>
         )}
       </div>
 

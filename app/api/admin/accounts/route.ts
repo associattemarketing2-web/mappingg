@@ -9,6 +9,7 @@ import { hasPermission } from '@/lib/staff';
 import { localitiesOf, localitiesOfAll } from '@/lib/locality';
 import { logActivity } from '@/lib/activity';
 import { accountStats, type AccountLite } from '@/lib/account-insights';
+import { idsParam, moveToTrash } from '@/lib/trash';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -158,18 +159,27 @@ export async function PATCH(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
   if (!(await hasPermission('accounts'))) return unauthorized();
-  const id = req.nextUrl.searchParams.get('id');
-  if (!id) return NextResponse.json({ error: { message: 'Missing id' } }, { status: 400 });
+  const ids = idsParam(req.nextUrl.searchParams);
+  if (!ids.length) return NextResponse.json({ error: { message: 'Missing id' } }, { status: 400 });
   const db = await getDb();
-  const gone = await db.collection<AnyDoc>('users').findOne({ id, ...ROLE_FILTER }, { projection: { email: 1, name: 1, role: 1 } });
-  // Scoped to public roles so this can never remove the owner or an employee.
-  await db.collection<AnyDoc>('users').deleteOne({ id, ...ROLE_FILTER });
-  forgetAccount(id); // their existing session stops working immediately
-  if (gone) {
+  const actor = (await getCurrentUser())?.email;
+  let deleted = 0;
+  for (const id of ids) {
+    // Scoped to public roles so this can never remove the owner or an employee.
+    const gone = await db.collection<AnyDoc>('users').findOne({ id, ...ROLE_FILTER });
+    if (!gone) continue;
+    // A full copy goes to Backups → Recycle bin first, so it can be restored.
+    await moveToTrash({
+      kind: 'account', label: String(gone.name || gone.email), sub: `${String(gone.email)} · ${String(gone.role)}`,
+      docs: [{ collection: 'users', doc: gone }], deletedBy: actor,
+    });
+    await db.collection<AnyDoc>('users').deleteOne({ id, ...ROLE_FILTER });
+    forgetAccount(id); // their existing session stops working immediately
+    deleted++;
     await logActivity({
       user_id: id, email: String(gone.email), name: gone.name ? String(gone.name) : undefined, role: String(gone.role),
-      type: 'deleted', detail: 'Account deleted by staff', actor: (await getCurrentUser())?.email,
+      type: 'deleted', detail: 'Account deleted by staff (in the recycle bin)', actor,
     });
   }
-  return NextResponse.json({ data: { ok: true } });
+  return NextResponse.json({ data: { ok: true, deleted } });
 }

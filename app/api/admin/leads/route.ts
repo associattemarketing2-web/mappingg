@@ -3,6 +3,8 @@ import { z } from 'zod';
 import { getDb } from '@/lib/mongodb';
 import { hasPermission } from '@/lib/staff';
 import { localitiesOf } from '@/lib/locality';
+import { getCurrentUser } from '@/lib/auth';
+import { idsParam, moveToTrash } from '@/lib/trash';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -188,10 +190,24 @@ export async function PATCH(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
   if (!(await hasPermission('leads'))) return unauthorized();
-  const id = req.nextUrl.searchParams.get('id');
-  if (!id) return NextResponse.json({ error: { message: 'Missing id' } }, { status: 400 });
+  const ids = idsParam(req.nextUrl.searchParams);
+  if (!ids.length) return NextResponse.json({ error: { message: 'Missing id' } }, { status: 400 });
   const source = sourceOf(req.nextUrl.searchParams.get('source'));
   const db = await getDb();
-  await db.collection(SOURCES[source]).deleteOne({ id });
-  return NextResponse.json({ data: { ok: true } });
+  const coll = db.collection(SOURCES[source]);
+  const actor = (await getCurrentUser())?.email;
+  let deleted = 0;
+  for (const id of ids) {
+    const lead = await coll.findOne({ id });
+    if (!lead) continue;
+    // Kept in Backups → Recycle bin so it can be restored.
+    await moveToTrash({
+      kind: 'lead', label: String(lead.name || lead.email || lead.phone || 'Lead'),
+      sub: [lead.email, lead.phone || lead.mobile, lead.project_title || lead.project].filter(Boolean).map(String).join(' · '),
+      docs: [{ collection: SOURCES[source], doc: lead }], deletedBy: actor,
+    });
+    await coll.deleteOne({ id });
+    deleted++;
+  }
+  return NextResponse.json({ data: { ok: true, deleted } });
 }

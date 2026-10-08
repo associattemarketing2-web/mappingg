@@ -140,3 +140,11 @@ body.side-rail:not(.side-peek) .side .foot .linkish { justify-content: center; }
 .side-edge:hover { background: var(--brand); border-color: var(--brand); color: #fff; }
 .side-edge:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
 @media (max-width: 800px) { .side-edge { display: none; } }
+
+/* Review queue: tick rows, then act on all of them from the bulk bar. */
+.bulk-bar { position: sticky; top: 8px; z-index: 5; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 10px 14px; margin-bottom: 12px; border: 1px solid var(--brand); border-radius: var(--radius); background: var(--brand-soft); box-shadow: var(--shadow); }
+.bulk-bar[hidden] { display: none; }
+.bulk-bar .bulk-n { margin-right: auto; color: var(--brand); font-size: 14px; }
+.tbl th.pick, .tbl td.pick { width: 44px; padding-right: 0; cursor: default; }
+.tbl .pick input { width: 17px; height: 17px; accent-color: var(--brand); cursor: pointer; }
+.tbl tr.picked td { background: var(--brand-soft); }

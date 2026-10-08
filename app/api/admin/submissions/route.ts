@@ -6,6 +6,7 @@ import { runDbOp } from '@/lib/db-engine';
 import { hasPermission } from '@/lib/staff';
 import { mediaUrl } from '@/lib/pin-media';
 import { logActivity } from '@/lib/activity';
+import { idsParam, moveToTrash } from '@/lib/trash';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -176,6 +177,40 @@ export async function POST(req: NextRequest) {
     });
   }
   return NextResponse.json({ data: { id, action } }, { headers: { 'Cache-Control': 'private, no-store' } });
+}
+
+// ---- Super admin deletes developer projects (one or many) ---------------------
+// Each one goes to Backups → Recycle bin first, and the pin delete is recorded in
+// the pin history too, so nothing deleted here is lost for good.
+export async function DELETE(req: NextRequest) {
+  const me = await getCurrentUser();
+  if (!me || me.role !== 'admin') {
+    return NextResponse.json({ error: { message: 'Only the super admin can delete developer projects.' } }, { status: 403 });
+  }
+  const ids = idsParam(req.nextUrl.searchParams);
+  if (!ids.length) return NextResponse.json({ error: { message: 'Missing id' } }, { status: 400 });
+  const db = await getDb();
+  let deleted = 0;
+  for (const id of ids) {
+    const pin = await db.collection<PinDoc>('pins').findOne({ id, owner_user_id: { $exists: true } });
+    if (!pin) continue;
+    const owner = await db.collection('users').findOne({ id: String(pin.owner_user_id) }, { projection: { id: 1, email: 1, name: 1, role: 1 } });
+    await moveToTrash({
+      kind: 'dev_project', label: String(pin.title || 'Untitled project'),
+      sub: [owner?.name || owner?.email, pin.location].filter(Boolean).map(String).join(' · '),
+      docs: [{ collection: 'pins', doc: pin }], deletedBy: me.email,
+    });
+    const res = await runDbOp({ table: 'pins', action: 'delete', filters: [{ op: 'eq', col: 'id', val: id }] }, true);
+    if (res.error) continue;
+    deleted++;
+    if (owner) {
+      await logActivity({
+        user_id: String(owner.id), email: String(owner.email), name: owner.name ? String(owner.name) : undefined, role: String(owner.role || 'developer'),
+        type: 'project_deleted', actor: me.email, detail: `“${String(pin.title || 'Project')}” deleted by the super admin`,
+      });
+    }
+  }
+  return NextResponse.json({ data: { ok: true, deleted } }, { headers: { 'Cache-Control': 'private, no-store' } });
 }
 
 // ---- Super admin corrects a developer's project ------------------------------

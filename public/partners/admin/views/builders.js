@@ -3,6 +3,7 @@ import { STATUS, BUILDER_STATUS } from '../../shared/fields.js';
 import { phoneFieldHtml, wirePhoneField, isValidPhone } from '../../shared/phone.js';
 import { h, esc, $, toast, friendlyError, statusBadge, formatDate, timeAgo, confirmDialog, linkUrl, whatsappUrl, copyText } from '../../shared/lib.js';
 import { ctx, refreshCounts } from '../context.js';
+import { createBulk } from '../bulk.js';
 
 function linkState(l) {
   if (!l.is_active) return { label: 'Switched off', tone: 'muted' };
@@ -89,10 +90,27 @@ export async function renderBuilders(page) {
 
   const toolbar = h('<div class="toolbar"><input class="input" type="search" placeholder="Search builders…" aria-label="Search builders"></div>');
   page.appendChild(toolbar);
+  const bulk = createBulk({
+    actions: [{ act: 'delete', label: 'Delete', tone: 'danger' }],
+    onAction: async (act, ids) => {
+      if (act !== 'delete' || !ids.length) return;
+      const s = ids.length === 1 ? '' : 's';
+      const ok = await confirmDialog({ title: `Delete ${ids.length} builder${s}?`, tone: 'danger', confirmText: 'Delete',
+        body: `<p style="margin:0">Their submission links stop working. Their projects stay in the review queue. You can restore ${s ? 'them' : 'it'} from Backups → Recycle bin.</p>` });
+      if (!ok) return;
+      const { data, error } = await ctx.client.rpc('admin_delete_builders', { p_ids: ids });
+      if (error) { toast(friendlyError(error), 'bad'); return; }
+      toast(`Deleted ${data?.deleted ?? ids.length} builder${s} — kept in the recycle bin`);
+      await refreshCounts();
+      renderBuilders(page);
+    },
+  });
+  page.appendChild(bulk.bar);
   const wrap = h('<div class="card table-wrap"></div>');
   page.appendChild(wrap);
 
   const draw = () => {
+    bulk.attach(draw);
     const term = $('input', toolbar).value.trim().toLowerCase();
     const list = rows.filter(b => !term || [b.company_name, b.code, b.contact_name, b.city, b.phone].some(x => (x || '').toLowerCase().includes(term)));
     if (!list.length) {
@@ -100,6 +118,7 @@ export async function renderBuilders(page) {
       return;
     }
     wrap.innerHTML = '<table class="tbl"><thead><tr><th>Builder</th><th>Contact</th><th>Links</th><th>Projects</th><th>Last activity</th></tr></thead><tbody></tbody></table>';
+    $('thead tr', wrap).prepend(bulk.headCell(list.map(b => b.id)));
     const tb = $('tbody', wrap);
     for (const b of list) {
       const active = b.links.filter(l => linkState(l).label === 'Active').length;
@@ -112,6 +131,8 @@ export async function renderBuilders(page) {
         <td class="num">${active} active${b.links.length > active ? `<div class="cell-sub">${b.links.length - active} off/expired</div>` : ''}</td>
         <td>${b.subs.length ? Object.entries(counts).map(([s, n]) => `${statusBadge(s, STATUS)} <span class="num">${n}</span>`).join(' ') : '<span class="muted">None yet</span>'}</td>
         <td class="cell-sub">${last ? esc(timeAgo(last)) : 'Not opened yet'}</td></tr>`);
+      tr.prepend(bulk.rowCell(b.id, b.company_name));
+      if (bulk.selected.has(b.id)) tr.classList.add('picked');
       const open = () => { location.hash = `#/builders/${b.id}`; };
       tr.addEventListener('click', open);
       tr.addEventListener('keydown', e => { if (e.key === 'Enter') open(); });

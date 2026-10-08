@@ -1,6 +1,7 @@
 import { randomUUID, randomBytes } from 'crypto';
 import { getDb, type Db } from './mongodb';
-import { hideProjectPin, syncProjectPin } from './intake-pins';
+import { deleteProjectPin, hideProjectPin, syncProjectPin } from './intake-pins';
+import { moveToTrash } from './trash';
 
 // =============================================================================
 // Partners intake engine (MongoDB)
@@ -458,6 +459,64 @@ const RPCS: Record<string, RpcFn> = {
     return { data: true, error: null, status: 200 };
   },
 
+  // --------------------------------------------------- admin_delete_submissions
+  // Permanently delete submissions (bulk). A published one also loses its live
+  // project and map pin — the pin delete is recorded, so Backups can restore it.
+  async admin_delete_submissions(p, ctx) {
+    const ids: string[] = Array.isArray(p.p_ids) ? p.p_ids.map(String).filter(Boolean) : [];
+    if (!ids.length) return err('No projects selected', 400);
+    const db = await getDb();
+    const c = coll(db, 'project_submissions');
+    const subs = await c.find({ id: { $in: ids } }).toArray();
+    for (const sub of subs as any[]) {
+      // Everything that belongs to the project goes to Backups → Recycle bin as
+      // one entry (submission, its history, the live project and its map pin).
+      const pid = sub.published_project_id;
+      const events = await coll(db, 'submission_events').find({ submission_id: sub.id }).toArray();
+      const project = pid ? await coll(db, 'projects').findOne({ id: pid }) : null;
+      const pin = pid ? await db.collection('pins').findOne({ intake_project_id: String(pid) }) : null;
+      await moveToTrash({
+        kind: 'intake_project', label: sub.project_name || sub.ref_code || 'Untitled project',
+        sub: [sub.ref_code, [sub.locality, sub.city].filter(Boolean).join(', '), sub.status].filter(Boolean).join(' · '),
+        docs: [
+          { collection: 'project_submissions', doc: sub },
+          ...events.map((e) => ({ collection: 'submission_events', doc: e as Record<string, unknown> })),
+          ...(project ? [{ collection: 'projects', doc: project as Record<string, unknown> }] : []),
+          ...(pin ? [{ collection: 'pins', doc: pin as Record<string, unknown> }] : []),
+        ],
+        deletedBy: ctx.userEmail || undefined,
+      });
+      if (pid) {
+        await deleteProjectPin(pid);
+        await coll(db, 'projects').deleteOne({ id: pid });
+      }
+      await c.deleteOne({ id: sub.id });
+      await coll(db, 'submission_events').deleteMany({ submission_id: sub.id });
+    }
+    return { data: { deleted: subs.length }, error: null, status: 200 };
+  },
+
+  // ------------------------------------------------------ admin_delete_builders
+  // Delete builders (bulk) with their submission links; their projects stay.
+  // Each builder goes to Backups → Recycle bin first, links included.
+  async admin_delete_builders(p, ctx) {
+    const ids: string[] = Array.isArray(p.p_ids) ? p.p_ids.map(String).filter(Boolean) : [];
+    if (!ids.length) return err('No builders selected', 400);
+    const db = await getDb();
+    const builders = await coll(db, 'builders').find({ id: { $in: ids } }).toArray();
+    for (const b of builders as any[]) {
+      const links = await coll(db, 'submission_links').find({ builder_id: b.id }).toArray();
+      await moveToTrash({
+        kind: 'builder', label: b.company_name || b.code || 'Builder', sub: [b.code, b.contact_name, b.city].filter(Boolean).join(' · '),
+        docs: [{ collection: 'builders', doc: b }, ...links.map((l) => ({ collection: 'submission_links', doc: l as Record<string, unknown> }))],
+        deletedBy: ctx.userEmail || undefined,
+      });
+      await coll(db, 'submission_links').deleteMany({ builder_id: b.id });
+      await coll(db, 'builders').deleteOne({ id: b.id });
+    }
+    return { data: { deleted: builders.length }, error: null, status: 200 };
+  },
+
   // --------------------------------------------------------- admin_find_duplicates
   async admin_find_duplicates(p, _ctx) {
     const db = await getDb();
@@ -589,7 +648,7 @@ const RPCS: Record<string, RpcFn> = {
 
 export const ADMIN_RPCS = new Set([
   'is_admin', 'admin_counts', 'admin_set_status', 'admin_request_changes', 'admin_publish',
-  'admin_unpublish', 'admin_find_duplicates', 'admin_regenerate_link',
+  'admin_unpublish', 'admin_find_duplicates', 'admin_regenerate_link', 'admin_delete_submissions', 'admin_delete_builders',
 ]);
 export const PUBLIC_RPCS = new Set(['link_open', 'link_save_submission', 'link_delete_draft']);
 

@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getCurrentUser } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
-import { runDbOp, restorePinFromHistory } from '@/lib/db-engine';
+import { runDbOp, restorePinFromHistory, invalidateTable } from '@/lib/db-engine';
+import { forgetAccount } from '@/lib/auth';
+import { revalidatePath } from 'next/cache';
+import { listTrash, purgeTrash, restoreFromTrash } from '@/lib/trash';
 import {
   KEEP_SNAPSHOTS, collectAll, createSnapshot, ensureDailySnapshot, listSnapshots, liveCounts, readSnapshot, readSnapshotGz,
 } from '@/lib/backup';
@@ -113,8 +116,8 @@ export async function GET(req: NextRequest) {
 
   let autoError: string | null = null;
   try { await ensureDailySnapshot(); } catch (e) { autoError = e instanceof Error ? e.message : 'Automatic backup failed'; }
-  const [live, snapshots, deleted, history] = await Promise.all([liveCounts(), listSnapshots(), deletedPins(), historySummary()]);
-  return NextResponse.json({ data: { live, snapshots, deleted, history, keep: KEEP_SNAPSHOTS, autoError } });
+  const [live, snapshots, deleted, history, trash] = await Promise.all([liveCounts(), listSnapshots(), deletedPins(), historySummary(), listTrash()]);
+  return NextResponse.json({ data: { live, snapshots, deleted, history, trash, keep: KEEP_SNAPSHOTS, autoError } });
 }
 
 const postSchema = z.discriminatedUnion('action', [
@@ -122,6 +125,11 @@ const postSchema = z.discriminatedUnion('action', [
   z.object({ action: z.literal('compare'), id: z.string().min(1) }),
   z.object({ action: z.literal('restore-pin'), id: z.string().min(1), pinId: z.string().min(1) }),
   z.object({ action: z.literal('restore-deleted'), historyId: z.string().min(1) }),
+  // Deleted pins: remove their change history for good (they can't be restored after).
+  z.object({ action: z.literal('purge-deleted'), pinIds: z.array(z.string().min(1)).min(1).max(500) }),
+  // Recycle bin: restore entries, or delete them forever.
+  z.object({ action: z.literal('trash-restore'), ids: z.array(z.string().min(1)).min(1).max(500) }),
+  z.object({ action: z.literal('trash-purge'), ids: z.array(z.string().min(1)).min(1).max(500) }),
 ]);
 
 export async function POST(req: NextRequest) {
@@ -171,6 +179,37 @@ export async function POST(req: NextRequest) {
     const res = await runDbOp({ table: 'pins', action: 'insert', values: doc, returning: false }, true);
     if (res.error) return NextResponse.json({ error: res.error }, { status: res.status });
     return NextResponse.json({ data: { restored: pinSummary(doc), renumbered } });
+  }
+
+  if (body.action === 'purge-deleted') {
+    // Only pins that are really gone — never the history of a pin still on the map.
+    const onMap = new Set((await db.collection('pins').find({ id: { $in: body.pinIds } }, { projection: { id: 1 } }).toArray()).map((p) => String(p.id)));
+    const ids = body.pinIds.filter((id) => !onMap.has(id));
+    const res = ids.length ? await db.collection('pins_history').deleteMany({ pin_id: { $in: ids } }) : { deletedCount: 0 };
+    return NextResponse.json({ data: { purged: ids.length, rows: res.deletedCount } });
+  }
+
+  if (body.action === 'trash-purge') {
+    return NextResponse.json({ data: { purged: await purgeTrash(body.ids) } });
+  }
+
+  if (body.action === 'trash-restore') {
+    const restored: string[] = [];
+    const failed: string[] = [];
+    for (const id of body.ids) {
+      const r = await restoreFromTrash(id);
+      if (!r.ok) { failed.push(r.message); continue; }
+      restored.push(r.item.label);
+      // Refresh whatever the restored documents feed.
+      for (const d of r.item.docs) {
+        if (d.collection === 'pins') invalidateTable('pins');
+        if (d.collection === 'users') forgetAccount(String(d.doc.id));
+        if (d.collection === 'posts') {
+          try { revalidatePath('/blog'); revalidatePath('/sitemap.xml'); revalidatePath(`/blog/${String(d.doc.slug)}`); } catch { /* outside a request */ }
+        }
+      }
+    }
+    return NextResponse.json({ data: { restored, failed } });
   }
 
   // restore-deleted: bring back a pin from the change history.

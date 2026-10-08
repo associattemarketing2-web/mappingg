@@ -3,6 +3,8 @@ import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { hasPermission } from '@/lib/staff';
 import { listAll, getById, createPost, updatePost, deletePost } from '@/lib/blog';
+import { getCurrentUser } from '@/lib/auth';
+import { idsParam, moveToTrash } from '@/lib/trash';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -81,11 +83,18 @@ export async function PUT(req: NextRequest) {
 // DELETE /api/admin/blogs?id=xxx
 export async function DELETE(req: NextRequest) {
   if (!(await hasPermission('blogs'))) return unauthorized();
-  const id = req.nextUrl.searchParams.get('id');
-  if (!id) return invalid('missing id');
-  const existing = await getById(id);
-  const ok = await deletePost(id);
-  if (!ok) return NextResponse.json({ error: { message: 'Not found' } }, { status: 404 });
-  revalidateBlog(existing?.slug);
-  return NextResponse.json({ data: { ok: true } });
+  const ids = idsParam(req.nextUrl.searchParams);
+  if (!ids.length) return invalid('missing id');
+  const actor = (await getCurrentUser())?.email;
+  let deleted = 0;
+  for (const id of ids) {
+    const existing = await getById(id);
+    if (!existing) continue;
+    // Kept in Backups → Recycle bin so it can be restored.
+    await moveToTrash({ kind: 'blog', label: existing.title, sub: `/blog/${existing.slug} · ${existing.status}`, docs: [{ collection: 'posts', doc: { ...existing } }], deletedBy: actor });
+    if (await deletePost(id)) deleted++;
+    revalidateBlog(existing.slug);
+  }
+  if (!deleted) return NextResponse.json({ error: { message: 'Not found' } }, { status: 404 });
+  return NextResponse.json({ data: { ok: true, deleted } });
 }

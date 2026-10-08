@@ -121,3 +121,11 @@ export async function hideProjectPin(projectId: string): Promise<void> {
   const pin = await db.collection<Doc>('pins').findOne({ intake_project_id: String(projectId) }, { projection: { id: 1 } });
   if (pin) await runDbOp({ table: 'pins', action: 'update', filters: [{ op: 'eq', col: 'id', val: pin.id }], values: { hidden: true } }, true);
 }
+
+/** Remove a project's pin from the map (when its intake project is deleted).
+ *  The delete goes through pins_history, so Backups can still restore it. */
+export async function deleteProjectPin(projectId: string): Promise<void> {
+  const db = await getDb();
+  const pin = await db.collection<Doc>('pins').findOne({ intake_project_id: String(projectId) }, { projection: { id: 1 } });
+  if (pin) await runDbOp({ table: 'pins', action: 'delete', filters: [{ op: 'eq', col: 'id', val: pin.id }] }, true);
+}

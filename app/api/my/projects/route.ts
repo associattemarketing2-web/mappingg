@@ -4,7 +4,8 @@ import { z } from 'zod';
 import { getCurrentUser } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
 import { logActivity } from '@/lib/activity';
-import { snapshotPin, invalidateTable } from '@/lib/db-engine';
+import { snapshotPin, invalidateTable, runDbOp } from '@/lib/db-engine';
+import { moveToTrash } from '@/lib/trash';
 import { canEditProjects } from '@/lib/verification';
 
 export const runtime = 'nodejs';
@@ -190,9 +191,13 @@ export async function DELETE(req: NextRequest) {
 
   const db = await getDb();
   // Scoped to the owner so a developer can never delete someone else's project.
-  const gone = await db.collection<PinDoc>('pins').findOne({ id, owner_user_id: user.id }, { projection: { title: 1 } });
-  const res = await db.collection<PinDoc>('pins').deleteOne({ id, owner_user_id: user.id });
-  if (!res.deletedCount) return NextResponse.json({ error: { message: 'Project not found' } }, { status: 404 });
+  const gone = await db.collection<PinDoc>('pins').findOne({ id, owner_user_id: user.id });
+  if (!gone) return NextResponse.json({ error: { message: 'Project not found' } }, { status: 404 });
+  // The super admin can restore it from Backups → Recycle bin (and the pin's
+  // own history), so a developer's accidental delete is never final.
+  await moveToTrash({ kind: 'dev_project', label: String(gone.title || 'Untitled project'), sub: `Deleted by the developer · ${user.email}`, docs: [{ collection: 'pins', doc: gone }], deletedBy: user.email });
+  const res = await runDbOp({ table: 'pins', action: 'delete', filters: [{ op: 'eq', col: 'id', val: id }] }, true, { developerId: user.id });
+  if (res.error) return NextResponse.json({ error: res.error }, { status: res.status });
   invalidateTable('pins');
   await logActivity({ user_id: user.id, email: user.email, role: user.role, type: 'project_deleted', detail: `Deleted “${String(gone?.title || 'a project')}”` });
   return NextResponse.json({ data: { ok: true } }, { headers: { 'Cache-Control': 'private, no-store' } });

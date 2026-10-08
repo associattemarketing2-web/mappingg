@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getCurrentUser, forgetAccount } from '@/lib/auth';
 import { listEmployees, createEmployee, updateEmployee, deleteEmployee, GRANTABLE_PERMISSIONS } from '@/lib/staff';
+import { getDb } from '@/lib/mongodb';
+import { idsParam, moveToTrash } from '@/lib/trash';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -60,11 +62,20 @@ export async function PUT(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-  if (!(await requireOwner())) return forbidden();
-  const id = req.nextUrl.searchParams.get('id');
-  if (!id) return invalid('missing id');
-  const ok = await deleteEmployee(id);
-  if (!ok) return NextResponse.json({ error: { message: 'Employee not found' } }, { status: 404 });
-  forgetAccount(id); // their existing session stops working immediately
-  return NextResponse.json({ data: { ok: true } });
+  const me = await requireOwner();
+  if (!me) return forbidden();
+  const ids = idsParam(req.nextUrl.searchParams);
+  if (!ids.length) return invalid('missing id');
+  const db = await getDb();
+  let deleted = 0;
+  for (const id of ids) {
+    const emp = await db.collection('users').findOne({ id, role: 'employee' });
+    if (!emp) continue;
+    // Kept in Backups → Recycle bin so it can be restored.
+    await moveToTrash({ kind: 'employee', label: String(emp.name || emp.email), sub: String(emp.email), docs: [{ collection: 'users', doc: emp }], deletedBy: me.email });
+    if (await deleteEmployee(id)) deleted++;
+    forgetAccount(id); // their existing session stops working immediately
+  }
+  if (!deleted) return NextResponse.json({ error: { message: 'Employee not found' } }, { status: 404 });
+  return NextResponse.json({ data: { ok: true, deleted } });
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { BulkBar, PickOne, useSelection } from './bulk';
 
 // Super admin → "Developer projects": every project a developer added from their
 // dashboard, who added it, and its approval state. New and edited projects stay
@@ -211,6 +212,41 @@ export default function DevProjectsPanel({ flash, isOwner, onPendingChange, focu
     } catch (e) { flash(e instanceof Error ? e.message : 'Failed', true); } finally { setBusy(''); }
   }
 
+  // ---- bulk: approve / reject / delete the ticked projects (owner only)
+  const pick = useSelection();
+  const [bulkBusy, setBulkBusy] = useState(false);
+  async function bulkDecide(action: 'approve' | 'reject') {
+    const chosen = list.filter((p) => pick.has(p.id) && (action === 'approve' ? p.state !== 'approved' : p.state !== 'rejected'));
+    if (!chosen.length) { flash(`None of the selected projects can be ${action === 'approve' ? 'approved' : 'rejected'}.`, true); return; }
+    let why = '';
+    if (action === 'reject') {
+      why = (prompt(`Reason for not approving ${chosen.length} project${chosen.length === 1 ? '' : 's'} (the developers will see it):`) || '').trim();
+      if (!why) return;
+    } else if (!confirm(`Approve ${chosen.length} project${chosen.length === 1 ? '' : 's'}? They go live on the map right away.`)) return;
+    setBulkBusy(true);
+    let ok = 0;
+    for (const p of chosen) {
+      const r = await fetch('/api/admin/submissions', {
+        method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: p.id, action, reason: action === 'reject' ? why : undefined }),
+      }).catch(() => null);
+      if (r?.ok) ok++;
+    }
+    setBulkBusy(false); pick.clear(); await load();
+    flash(`${ok} project${ok === 1 ? '' : 's'} ${action === 'approve' ? 'approved — live on the map' : 'not approved'}${ok < chosen.length ? `, ${chosen.length - ok} failed` : ''}`, ok < chosen.length);
+  }
+  async function bulkDelete() {
+    const ids = pick.of(list.map((p) => p.id));
+    if (!ids.length) return;
+    if (!confirm(`Delete ${ids.length} project${ids.length === 1 ? '' : 's'}? ${ids.length === 1 ? 'It is' : 'They are'} removed from the map and the developer’s dashboard. You can restore them from Backups → Recycle bin.`)) return;
+    setBulkBusy(true);
+    const r = await fetch(`/api/admin/submissions?ids=${ids.map(encodeURIComponent).join(',')}`, { method: 'DELETE', credentials: 'same-origin' }).catch(() => null);
+    const b = r ? await r.json().catch(() => ({})) : {};
+    setBulkBusy(false); pick.clear(); await load();
+    if (!r?.ok) flash(b?.error?.message || 'Delete failed', true);
+    else flash(`${b?.data?.deleted ?? ids.length} project${ids.length === 1 ? '' : 's'} moved to the recycle bin`);
+  }
+
   const TABS: [Filter, string][] = [['pending', 'Waiting approval'], ['approved', 'Live on map'], ['rejected', 'Not approved'], ['all', 'All']];
 
   return (
@@ -268,9 +304,20 @@ export default function DevProjectsPanel({ flash, isOwner, onPendingChange, focu
             {(term || dev) && <button className="adm-btn ghost sm" onClick={() => { setQ(''); setDev(''); }}>Show all developers</button>}
           </div>
         ) : (
+          <>
+          <BulkBar sel={pick} ids={list.map((p) => p.id)} hint={isOwner ? `Select all ${list.length} shown — or tick projects to approve, reject or delete them together` : 'Only the super admin can approve, reject or delete projects.'}>
+            {isOwner ? (
+              <>
+                <button className="adm-btn primary sm" disabled={bulkBusy} onClick={() => bulkDecide('approve')}><i className="fas fa-circle-check" /> Approve</button>
+                <button className="adm-btn ghost sm" disabled={bulkBusy} onClick={() => bulkDecide('reject')}><i className="fas fa-circle-xmark" /> Not approve</button>
+                <button className="adm-btn danger sm" disabled={bulkBusy} onClick={bulkDelete}><i className="fas fa-trash" /> Delete</button>
+              </>
+            ) : <span className="crm-meta"><i className="fas fa-lock" /> Only the super admin can change projects.</span>}
+          </BulkBar>
           <ul className="dp-list" ref={listRef}>
             {list.map((p) => (
-              <li key={p.id} data-id={p.id} className={`dp-card s-${p.state}${highlight === p.id ? ' hl' : ''}`}>
+              <li key={p.id} data-id={p.id} className={`dp-card s-${p.state}${highlight === p.id ? ' hl' : ''}${pick.has(p.id) ? ' picked' : ''}`}>
+                <span className="dp-pick"><PickOne sel={pick} id={p.id} label={p.title || 'project'} /></span>
                 <div className="dp-logo">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   {p.image ? <img src={p.image} alt="" loading="lazy" /> : <i className="fas fa-building" />}
@@ -318,6 +365,7 @@ export default function DevProjectsPanel({ flash, isOwner, onPendingChange, focu
               </li>
             ))}
           </ul>
+          </>
         )}
       </section>
 

@@ -518,6 +518,19 @@ a.adm-chip { padding: 7px 12px; }
 .acs-row:hover { background: #f7faf8; }
 .acs-row.on { background: #eef6f1; }
 .acs-row:focus-visible { outline: 2px solid var(--forest); outline-offset: -2px; }
+/* Ticking accounts: checkbox + row + delete button side by side, bulk bar above. */
+.acs-list li { display: flex; align-items: center; background: #fff; }
+.acs-list li .acs-row { flex: 1; min-width: 0; padding-left: 4px; }
+.acs-list li.picked, .acs-list li.picked .acs-row { background: #eef6f1; }
+.acs-pick { display: grid; place-items: center; flex: 0 0 44px; align-self: stretch; padding-left: 8px; cursor: pointer; }
+.acs-pick input { width: 17px; height: 17px; accent-color: var(--forest); cursor: pointer; }
+.acs-del { flex: 0 0 auto; margin-right: 10px; width: 34px; height: 34px; border: 1px solid transparent; border-radius: 9px; background: none; color: var(--muted); cursor: pointer; transition: color .12s, background .12s, border-color .12s; }
+.acs-del:hover, .acs-del:focus-visible { color: #b42318; background: #fdeceb; border-color: #f4c7c3; }
+.acs-bulk { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-height: 52px; padding: 8px 16px 8px 0; border-top: 1px solid var(--line); font-size: 13px; }
+.acs-bulk .acs-pick { align-self: center; }
+.acs-bulk b { margin-right: auto; color: var(--forest); }
+.acs-bulk.on { position: sticky; top: 0; z-index: 3; background: #eef6f1; }
+.acs-head { padding-left: 48px; padding-right: 60px; }
 .acs-av { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 13px; flex-shrink: 0; background: var(--accent-50); color: var(--forest); }
 .acs-av.lg { width: 52px; height: 52px; font-size: 16px; }
 .acs-av.r-buyer { background: var(--c-buyer-bg); color: var(--c-buyer); }
@@ -618,6 +631,8 @@ button.acs-act-row:hover { background: var(--bg); }
 .dp-list { list-style: none; margin: 0; padding: 0; }
 .dp-card { display: flex; gap: 14px; padding: 16px; border-top: 1px solid var(--line); transition: background .3s ease; }
 .dp-card.hl { background: #fff8e6; }
+.dp-card.picked { background: #eef6f1; }
+.dp-pick { display: grid; place-items: center; align-self: flex-start; padding-top: 14px; }
 .dp-logo { width: 64px; height: 64px; flex-shrink: 0; border-radius: 12px; border: 1px solid var(--line); background: #fff; display: grid; place-items: center; overflow: hidden; color: #b9c4bf; font-size: 22px; }
 .dp-logo img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
 .dp-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
@@ -800,3 +815,12 @@ button.acs-act-row:hover { background: var(--bg); }
 .gsc-pos.p2 { background: #fbefd9; color: #8a5a12; } .gsc-pos.far { background: #eee9df; color: var(--muted); }
 .gsc-err { background: #fbeaea; color: #8a2f33; }
 .adm-note code, .adm-health-row code { font-size: 12px; padding: 1px 5px; border-radius: 5px; background: rgba(0,0,0,.06); }
+
+/* Bulk selection bar + row checkboxes (components/admin/bulk.tsx), used by every list. */
+.adm-bulk { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-height: 50px; padding: 8px 14px; margin: 0 0 12px; border: 1px solid var(--line); border-radius: 12px; background: #fafbfa; font-size: 13px; }
+.adm-bulk.on { position: sticky; top: 8px; z-index: 4; border-color: var(--forest); background: #eef6f1; box-shadow: 0 8px 20px -14px rgba(16,36,30,.5); }
+.adm-bulk b { margin-right: auto; color: var(--forest); }
+.adm-bulk .muted { margin-right: auto; }
+.adm-pick { width: 17px; height: 17px; margin: 0; accent-color: var(--forest); cursor: pointer; flex: 0 0 auto; }
+.adm-table th.pick, .adm-table td.pick { width: 36px; padding-right: 0; }
+.adm-table tr.picked td { background: #eef6f1; }

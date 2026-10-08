@@ -25,6 +25,8 @@ CREATE TABLE IF NOT EXISTS "projects"            (id text PRIMARY KEY, doc jsonb
 CREATE TABLE IF NOT EXISTS "counters"            (id text PRIMARY KEY, doc jsonb NOT NULL DEFAULT '{}'::jsonb);
 CREATE TABLE IF NOT EXISTS "posts"               (id text PRIMARY KEY, doc jsonb NOT NULL DEFAULT '{}'::jsonb);
 CREATE TABLE IF NOT EXISTS "contact_leads"       (id text PRIMARY KEY, doc jsonb NOT NULL DEFAULT '{}'::jsonb);
+-- Super-admin recycle bin (lib/trash.ts also creates it on first use).
+CREATE TABLE IF NOT EXISTS "trash"               (id text PRIMARY KEY, doc jsonb NOT NULL DEFAULT '{}'::jsonb);
 
 -- ---- GIN indexes (containment / key existence) ------------------------------
 CREATE INDEX IF NOT EXISTS pins_gin                ON "pins"                USING gin (doc jsonb_path_ops);
