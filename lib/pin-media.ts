@@ -14,6 +14,7 @@ export { MEDIA_DIGEST_PREFIX };
 export const MEDIA_FIELDS: Record<string, readonly string[]> = {
   pins: ['image', 'brochure_image'],
   infra_markers: ['icon_image'],
+  developers: ['logo'], // developer directory logos (lib/developers.ts)
 };
 
 // Backward-compatible CDN metadata written into a pin's JSONB `doc` by the

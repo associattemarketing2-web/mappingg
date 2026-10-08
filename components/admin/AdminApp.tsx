@@ -10,6 +10,7 @@ import PhoneInput from '@/components/PhoneInput';
 import SearchConsolePanel from './SearchConsolePanel';
 import { BulkBar, PickOne, useSelection } from './bulk';
 import TrafficPanel from './TrafficPanel';
+import DevelopersPanel from './DevelopersPanel';
 import { ChartCard, DayHeatmap, Donut, HBars, STATUS_META, StatTile, StatusStack, TYPE_COLORS, WeekColumns, dayStats } from './SeoCharts';
 
 export interface AdminUser {
@@ -33,6 +34,7 @@ const GRANTABLE = [
 const TAB_META: Record<string, { label: string; icon: string }> = {
   dashboard: { label: 'Dashboard', icon: 'fa-gauge-high' },
   map: { label: 'Map Editor', icon: 'fa-map-location-dot' },
+  developers: { label: 'Developers', icon: 'fa-building' },
   intake: { label: 'Projects Intake', icon: 'fa-file-arrow-up' },
   projects: { label: 'Developer projects', icon: 'fa-map-pin' },
   leads: { label: 'Leads', icon: 'fa-address-book' },
@@ -2246,8 +2248,8 @@ export default function AdminApp({ user }: { user: AdminUser }) {
   const { flash, node: toastNode } = useToast();
 
   const visible = isOwner
-    ? ['dashboard', 'map', 'projects', 'intake', 'leads', 'accounts', 'blogs', 'employees', 'backups', 'seo', 'settings', 'profile']
-    : ['dashboard', ...GRANTABLE.map((g) => g.key).filter((k) => user.permissions.includes(k)).flatMap((k) => (k === 'intake' ? ['projects', 'intake'] : [k])), 'profile'];
+    ? ['dashboard', 'map', 'developers', 'projects', 'intake', 'leads', 'accounts', 'blogs', 'employees', 'backups', 'seo', 'settings', 'profile']
+    : ['dashboard', ...GRANTABLE.map((g) => g.key).filter((k) => user.permissions.includes(k)).flatMap((k) => (k === 'intake' ? ['projects', 'intake'] : k === 'map' ? ['map', 'developers'] : [k])), 'profile'];
 
   // Profile and Settings live in the top-right account menu, not the tab row.
   const MENU_TABS = ['profile', 'settings'];
@@ -2395,6 +2397,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
           {tab === 'dashboard' && <DashboardPanel onGo={(t) => visible.includes(t) && setTab(t)} />}
           {warm.includes('map') && <div hidden={tab !== 'map'}><MapPanel /></div>}
           {warm.includes('intake') && <div hidden={tab !== 'intake'}><IntakePanel /></div>}
+          {tab === 'developers' && <DevelopersPanel flash={flash} />}
           {tab === 'leads' && <LeadsPanel flash={flash} />}
           {tab === 'projects' && (
             <DevProjectsPanel flash={flash} isOwner={isOwner} onPendingChange={setProjPending} focus={projFocus} onFocusDone={() => setProjFocus(null)} />

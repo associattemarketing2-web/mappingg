@@ -989,3 +989,48 @@ button.acs-act-row:hover { background: var(--bg); }
 .trf-map-canvas { width: 100%; min-height: 260px; }
 .trf-geo-list { min-width: 0; max-height: 420px; overflow-y: auto; }
 @media (max-width: 860px) { .trf-geo-body { grid-template-columns: 1fr; } .trf-map-canvas { min-height: 200px; } }
+
+/* ============================ Developers & logos ============================ */
+.dvl { display: flex; flex-direction: column; gap: 16px; }
+.dvl-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.dvl-head h2 { display: flex; align-items: center; gap: 8px; margin: 0 0 4px; font-size: 20px; }
+.dvl-head h2 i { color: var(--forest); }
+.dvl-head p { margin: 0; font-size: 13px; max-width: 70ch; }
+.dvl-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.dvl-search { display: flex; align-items: center; gap: 8px; flex: 1 1 240px; max-width: 360px; padding: 9px 13px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--muted); }
+.dvl-search:focus-within { border-color: var(--forest); box-shadow: 0 0 0 3px rgba(15,92,71,.12); }
+.dvl-search input { flex: 1; min-width: 0; border: 0; outline: 0; font: 14px var(--font); color: var(--fg); background: none; }
+.dvl-count { display: inline-block; min-width: 20px; padding: 0 6px; border-radius: 999px; background: var(--bg); font-size: 11px; color: var(--muted); }
+.viz-toggle button.on .dvl-count { background: var(--accent-50); color: var(--accent); }
+.dvl-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.dvl-card { position: relative; display: grid; grid-template-columns: 72px 1fr auto; gap: 14px; align-items: center; padding: 14px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); transition: opacity .15s; }
+.dvl-card.busy { opacity: .55; pointer-events: none; }
+.dvl-logo { position: relative; width: 72px; height: 72px; padding: 6px; border-radius: 12px; border: 1px solid var(--line); background: #fff; display: grid; place-items: center; cursor: pointer; overflow: hidden; }
+.dvl-logo img { width: 100%; height: 100%; object-fit: contain; }
+.dvl-logo.empty { border: 2px dashed #cfd8d3; background: var(--bg); color: var(--muted); font-size: 18px; }
+.dvl-logo-hover { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(15,32,28,.55); color: #fff; font-size: 18px; opacity: 0; transition: opacity .15s; }
+.dvl-logo:hover .dvl-logo-hover, .dvl-logo:focus-visible .dvl-logo-hover { opacity: 1; }
+.dvl-logo:focus-visible { outline: 3px solid rgba(15,92,71,.35); outline-offset: 2px; }
+.dvl-logo-label { display: grid; justify-items: center; gap: 4px; font-size: 11px; font-weight: 600; }
+.dvl-info { min-width: 0; display: grid; gap: 3px; }
+.dvl-name { font-size: 14.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dvl-sub { font-size: 12px; }
+.dvl-ok { font-size: 12px; color: #1f7a2e; font-weight: 600; }
+.dvl-warn { font-size: 12px; color: #9a6a12; font-weight: 600; }
+.dvl-apply { justify-self: start; border: 0; background: var(--accent-50); color: var(--accent); font: 600 12px var(--font); padding: 4px 9px; border-radius: 999px; cursor: pointer; }
+.dvl-apply:hover { background: #d9ebcf; }
+.dvl-actions { display: flex; flex-direction: column; gap: 4px; }
+.dvl-icon { position: relative; width: 30px; height: 30px; border-radius: 8px; border: 1px solid transparent; background: none; color: var(--muted); cursor: pointer; font-size: 12.5px; }
+.dvl-icon:hover { border-color: var(--line); color: var(--fg); background: #fff; }
+.dvl-icon.danger:hover { color: var(--earth); border-color: #ecccbf; }
+.dvl-x { position: absolute; right: 3px; bottom: 3px; font-size: 9px; }
+.dvl-rename { display: flex; gap: 6px; }
+.dvl-rename input { flex: 1; min-width: 0; padding: 6px 9px; border-radius: 8px; border: 1px solid var(--forest); font: 14px var(--font); }
+.dvl-add { display: grid; grid-template-columns: 72px 1fr auto; gap: 16px; align-items: end; }
+.dvl-add .adm-field { margin: 0; }
+.dvl-add-actions { display: flex; gap: 8px; }
+@media (max-width: 640px) {
+  .dvl-add { grid-template-columns: 72px 1fr; }
+  .dvl-add-actions { grid-column: 1 / -1; justify-content: flex-end; }
+  .dvl-grid { grid-template-columns: 1fr; }
+}

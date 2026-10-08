@@ -1023,6 +1023,14 @@
   .mpg .opt-details summary small { display: block; font-size: 12px; color: var(--muted); }
   .mpg .opt-details summary i { color: var(--forest); font-size: 12px; transition: transform .2s ease; }
   .mpg .opt-details[open] summary i { transform: rotate(180deg); }
+  .mpg .opt-summary { padding: 12px 14px 4px; margin-bottom: 6px; }
+  .mpg .opt-summary b { display: block; font-size: 13.5px; color: var(--ink); }
+  .mpg .opt-summary small { display: block; font-size: 12px; color: var(--muted); }
+  /* Sign-up: every field is required — a red star on each label. */
+  .mpg #signupForm .field > label:not(.opt)::after { content: ' *'; color: #c5221f; font-weight: 700; }
+  .mpg #signupForm .req-note { margin: 0 0 2px; font-size: 12px; color: var(--muted); }
+  .mpg #signupForm .req-note span { color: #c5221f; font-weight: 700; }
+  .mpg #signupForm select:invalid { color: var(--muted); }
   .mpg .opt-body { display: flex; flex-direction: column; gap: 12px; padding: 0 14px 14px; }
   .mpg .opt-body .field input, .mpg .opt-body .field select { background: #fff; }
 

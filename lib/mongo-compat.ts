@@ -27,7 +27,7 @@ import { query } from './pg';
 export const DOC_TABLES = new Set([
   'pins', 'infra_markers', 'roads', 'area_boundaries', 'infra_types', 'map_settings',
   'leads', 'pins_history', 'users', 'builders', 'submission_links', 'project_submissions',
-  'submission_events', 'projects', 'counters', 'posts', 'contact_leads', 'trash',
+  'submission_events', 'projects', 'counters', 'posts', 'contact_leads', 'trash', 'developers',
 ]);
 
 type Doc = Record<string, any>;

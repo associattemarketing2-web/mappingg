@@ -15,7 +15,7 @@ export const dynamic = 'force-dynamic';
 // Public self-sign-up for buyers, developers and channel partners. Staff roles
 // (admin / employee) can never be created here — only via seed-admin or the
 // Employees tab. Each role keeps its own profile fields from the sign-up form.
-// Every field is required — the form marks them all mandatory too.
+// Every field is required except a developer's website — the form marks them the same way.
 const req = (max = 120) => z.string().trim().min(1).max(max);
 
 const base = z.object({
@@ -36,7 +36,8 @@ const schema = z.discriminatedUnion('role', [
     role: z.literal('developer'),
     profile: z.object({
       company: req(160), designation: req(), activeProjects: req(),
-      reraProject: z.string().trim().min(4).max(40), website: req(300),
+      // Website is the one optional field (many developers don't have one).
+      reraProject: z.string().trim().min(4).max(40), website: z.string().trim().max(300).optional().default(''),
     }),
   }),
   base.extend({

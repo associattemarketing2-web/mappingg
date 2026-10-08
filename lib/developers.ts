@@ -1,0 +1,189 @@
+import { createHash, randomUUID } from 'node:crypto';
+import { query } from './pg';
+import { getDb, usingMongo } from './mongodb';
+import { runDbOp } from './db-engine';
+import { MEDIA_DIGEST_PREFIX, mediaUrl } from './pin-media';
+
+// The developer directory: one record per real-estate developer (builder brand)
+// with ONE logo. The map editor's "Developer" box suggests names from here, and
+// picking one puts that logo on the pin automatically — so a developer's logo is
+// uploaded once instead of on every project. Super admin → Developers manages it.
+//
+// The first time it is read it fills itself from the pins already on the map:
+// one entry per developer name, using the logo most of their pins already use.
+// Logos are stored like pin logos (base64 data: URL in the doc) and served as
+// cacheable images by /api/media/developers/<id>?f=logo (see MEDIA_FIELDS).
+
+export interface Developer {
+  id: string;
+  name: string;
+  /** base64 data: URL (or an http URL) — never sent to the browser as-is, see toClient(). */
+  logo?: string | null;
+  created_at: string;
+  updated_at: string;
+}
+export interface DeveloperRow { id: string; name: string; logo: string | null; projects: number; logoInUse: number; updated_at: string }
+
+/** "Lodha Group " / "LODHA-group" → "lodha group" — how names are matched. */
+export const normDev = (s: unknown) => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+
+let ready: Promise<void> | null = null;
+function ensureTable(): Promise<void> {
+  if (usingMongo()) return Promise.resolve();
+  ready ??= query(`
+    CREATE TABLE IF NOT EXISTS "developers" (id text PRIMARY KEY, doc jsonb NOT NULL DEFAULT '{}'::jsonb);
+  `).then(() => undefined).catch((e) => { ready = null; throw e; });
+  return ready;
+}
+
+const coll = async () => (await getDb()).collection<Developer & { _id: string }>('developers');
+const pinsColl = async () => (await getDb()).collection<{ _id: string; id: string; developer?: string; image?: string }>('pins');
+
+// Inline images are compared by md5 fingerprint: Postgres hands back
+// MEDIA_DIGEST_PREFIX + md5 instead of the base64 (megabytes across all pins).
+const md5 = (s: string) => createHash('md5').update(s).digest('hex');
+const fingerprint = (img: unknown) => (typeof img !== 'string' || !img ? '' : img.startsWith(MEDIA_DIGEST_PREFIX) ? img.slice(MEDIA_DIGEST_PREFIX.length) : img.startsWith('data:') ? md5(img) : img);
+/** Every pin's id, developer and image fingerprint — no image data. */
+const pinSummaries = async () => (await (await pinsColl()).find({}, { projection: { id: 1, developer: 1, image: 1 }, mediaDigest: { fields: ['image'] } } as never).toArray())
+  .map((p) => ({ id: p.id, developer: p.developer, logo: fingerprint(p.image) }));
+
+let seeding: Promise<void> | null = null;
+/** Adds a directory entry for every developer on the map that doesn't have one yet. */
+export function syncFromPins(): Promise<void> {
+  seeding ??= (async () => {
+    await ensureTable();
+    const c = await coll();
+    const have = new Set((await c.find({}, { projection: { name: 1 } }).toArray()).map((d) => normDev(d.name)));
+    // Per developer: the spelling used most, and the logo (by fingerprint) used most, with a pin that has it.
+    const groups = new Map<string, { names: Map<string, number>; logos: Map<string, { n: number; pin: string }> }>();
+    for (const p of await pinSummaries()) {
+      const key = normDev(p.developer);
+      if (!key || have.has(key)) continue;
+      const g = groups.get(key) || { names: new Map(), logos: new Map() };
+      const name = String(p.developer).trim();
+      g.names.set(name, (g.names.get(name) || 0) + 1);
+      if (p.logo) { const l = g.logos.get(p.logo); if (l) l.n++; else g.logos.set(p.logo, { n: 1, pin: p.id }); }
+      groups.set(key, g);
+    }
+    if (!groups.size) return;
+    const picks = [...groups.values()].map((g) => ({
+      name: [...g.names.entries()].sort((a, b) => b[1] - a[1])[0][0],
+      pin: [...g.logos.values()].sort((a, b) => b.n - a.n)[0]?.pin,
+    }));
+    // Only now load actual image data — one picture per developer.
+    const want = picks.map((x) => x.pin).filter(Boolean) as string[];
+    const images = new Map((want.length ? await (await pinsColl()).find({ id: { $in: want } }, { projection: { id: 1, image: 1 } }).toArray() : []).map((p) => [p.id, p.image || null]));
+    const now = new Date().toISOString();
+    await c.insertMany(picks.map((x) => {
+      const id = randomUUID();
+      return { _id: id, id, name: x.name, logo: (x.pin && images.get(x.pin)) || null, created_at: now, updated_at: now };
+    }));
+  })().finally(() => { seeding = null; });
+  return seeding;
+}
+
+/** All developers, with inline logos as fingerprints (enough to build their media URLs). */
+const devDocs = async () => (await coll()).find({}, { mediaDigest: { fields: ['logo'] } } as never).toArray();
+
+/** Media URL for a stored logo (or the URL itself if it is already a link). */
+function logoUrl(d: Developer, width?: number): string | null {
+  if (!d.logo) return null;
+  if (!d.logo.startsWith('data:')) return d.logo; // a plain link (the digest prefix starts with data: too)
+  return mediaUrl('developers', d.id, 'logo', d.logo, width);
+}
+
+/** Every developer with its logo URL and how many map projects use the name (and this logo). */
+export async function listDevelopers(): Promise<DeveloperRow[]> {
+  await syncFromPins();
+  const [devs, pins] = await Promise.all([devDocs(), pinSummaries()]);
+  const projects = new Map<string, number>();
+  const sameLogo = new Map<string, number>();
+  const logoOf = new Map(devs.map((d) => [normDev(d.name), fingerprint(d.logo)]));
+  for (const p of pins) {
+    const k = normDev(p.developer);
+    if (!k) continue;
+    projects.set(k, (projects.get(k) || 0) + 1);
+    if (p.logo && p.logo === logoOf.get(k)) sameLogo.set(k, (sameLogo.get(k) || 0) + 1);
+  }
+  return devs
+    .map((d) => ({ id: d.id, name: d.name, logo: logoUrl(d), projects: projects.get(normDev(d.name)) || 0, logoInUse: sameLogo.get(normDev(d.name)) || 0, updated_at: d.updated_at }))
+    .sort((a, b) => b.projects - a.projects || a.name.localeCompare(b.name));
+}
+
+/** Small list for the map editor's suggestions: name + logo thumbnail URL. */
+export async function directory(): Promise<{ id: string; name: string; logo: string | null }[]> {
+  await syncFromPins();
+  return (await devDocs())
+    .map((d) => ({ id: d.id, name: d.name, logo: logoUrl(d) }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+export class DeveloperError extends Error {
+  constructor(message: string, public status = 400) { super(message); }
+}
+
+const cleanName = (s: unknown) => String(s || '').replace(/\s+/g, ' ').trim().slice(0, 120);
+const isLogo = (s: unknown): s is string => typeof s === 'string' && /^data:image\/(png|jpe?g|webp|gif|svg\+xml);base64,/.test(s) && s.length < 3_000_000;
+
+async function assertUniqueName(name: string, exceptId?: string) {
+  const all = await (await coll()).find({}, { projection: { id: 1, name: 1 } }).toArray();
+  const clash = all.find((d) => d.id !== exceptId && normDev(d.name) === normDev(name));
+  if (clash) throw new DeveloperError(`“${clash.name}” is already in the list`, 409);
+}
+
+export async function createDeveloper(input: { name: unknown; logo?: unknown }): Promise<void> {
+  await ensureTable();
+  const name = cleanName(input.name);
+  if (!name) throw new DeveloperError('Enter the developer’s name');
+  if (input.logo != null && !isLogo(input.logo)) throw new DeveloperError('Logo must be a PNG, JPG, WebP, GIF or SVG image under 2 MB');
+  await assertUniqueName(name);
+  const id = randomUUID(), now = new Date().toISOString();
+  await (await coll()).insertOne({ _id: id, id, name, logo: (input.logo as string) || null, created_at: now, updated_at: now });
+}
+
+export async function updateDeveloper(id: string, input: { name?: unknown; logo?: unknown }): Promise<void> {
+  await ensureTable();
+  const set: Partial<Developer> = { updated_at: new Date().toISOString() };
+  if (input.name !== undefined) {
+    const name = cleanName(input.name);
+    if (!name) throw new DeveloperError('Enter the developer’s name');
+    await assertUniqueName(name, id);
+    set.name = name;
+  }
+  if (input.logo !== undefined) {
+    if (input.logo !== null && !isLogo(input.logo)) throw new DeveloperError('Logo must be a PNG, JPG, WebP, GIF or SVG image under 2 MB');
+    set.logo = input.logo as string | null;
+  }
+  const r = await (await coll()).updateOne({ id }, { $set: set });
+  if (!r.matchedCount) throw new DeveloperError('Developer not found', 404);
+}
+
+export async function deleteDeveloper(id: string): Promise<void> {
+  await ensureTable();
+  await (await coll()).deleteOne({ id });
+}
+
+/**
+ * Puts the developer's logo on every map project with that developer name.
+ * Goes through the normal pin update, so each change lands in pin history
+ * (restorable from Backups) and the live map refreshes.
+ */
+export async function applyLogoToPins(id: string): Promise<number> {
+  await ensureTable();
+  const dev = await (await coll()).findOne({ id });
+  if (!dev) throw new DeveloperError('Developer not found', 404);
+  if (!dev.logo) throw new DeveloperError('Add a logo first');
+  const key = normDev(dev.name), want = fingerprint(dev.logo);
+  const ids = (await pinSummaries()).filter((p) => normDev(p.developer) === key && p.logo !== want).map((p) => p.id);
+  if (!ids.length) return 0;
+  const r = await runDbOp({ table: 'pins', action: 'update', filters: [{ op: 'in', col: 'id', vals: ids }], values: { image: dev.logo } }, true);
+  if (r.error) throw new DeveloperError(r.error.message, r.status || 500);
+  return ids.length;
+}
+
+/** The stored logo exactly as saved (data: URL), so pins get an identical copy. */
+export async function logoData(id: string): Promise<string | null> {
+  await ensureTable();
+  const d = await (await coll()).findOne({ id }, { projection: { logo: 1 } });
+  return d?.logo || null;
+}

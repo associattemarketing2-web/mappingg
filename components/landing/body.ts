@@ -488,37 +488,38 @@ export const LANDING_BODY = `
       </form>
 
       <form class="auth-form is-active" id="signupForm" novalidate>
+        <p class="req-note"><span aria-hidden="true">*</span> All fields are required</p>
         <div class="field-row">
           <div class="field"><label for="su-name">Full name</label><input type="text" id="su-name" name="name" placeholder="Your name" autocomplete="name" required></div>
           <div class="field"><label for="su-phone">WhatsApp number</label><div class="phone-in is-empty"><span class="phone-cc"><img alt="" width="22" height="16"><span class="phone-iso"></span><span class="phone-cc-code">+91</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><select id="su-phone-code" aria-label="Country code">${PHONE_CODE_DEFAULT}</select></span><input type="tel" id="su-phone" name="mobile" placeholder="10-digit number" autocomplete="tel-national" inputmode="numeric" maxlength="10" pattern="\\d{10}" title="Enter a 10-digit mobile number" required><span class="phone-count" aria-hidden="true"></span></div></div>
         </div>
         <div class="field"><label for="su-email">Email</label><input type="email" id="su-email" name="email" placeholder="you@example.com" autocomplete="email" required></div>
         <fieldset class="role-fields" data-for="buyer">
-          <details class="opt-details" open>
-            <summary><span><b>Tell us what you're looking for</b><small>Helps us match you to the right projects</small></span><i class="fas fa-chevron-down"></i></summary>
+          <div class="opt-details">
+            <div class="opt-summary"><b>Tell us what you're looking for</b><small>Helps us match you to the right projects</small></div>
             <div class="opt-body">
           <div class="field-row">
             <div class="field"><label for="b-area">Preferred area</label><input id="b-area" name="area" placeholder="e.g. Mundhwa, Kharadi" required></div>
-            <div class="field"><label for="b-config">Configuration</label><select id="b-config" name="configuration"><option>1 BHK</option><option selected>2 BHK</option><option>3 BHK</option><option>4+ BHK</option><option>Plot / Villa</option></select></div>
+            <div class="field"><label for="b-config">Configuration</label><select id="b-config" name="configuration" required><option value="" disabled selected>Select…</option><option>1 BHK</option><option>2 BHK</option><option>3 BHK</option><option>4+ BHK</option><option>Plot / Villa</option></select></div>
           </div>
           <div class="field-row">
-            <div class="field"><label for="b-budget">Budget</label><select id="b-budget" name="budget"><option selected>Under 1 Cr</option><option>75L - 1.5 Cr</option><option>1.5Cr - 2.5 Cr</option><option>3Cr +</option></select></div>
-            <div class="field"><label for="b-time">Planning to buy</label><select id="b-time" name="timeline"><option>Within 3 months</option><option selected>3–6 months</option><option>6–12 months</option><option>Just exploring</option></select></div>
+            <div class="field"><label for="b-budget">Budget</label><select id="b-budget" name="budget" required><option value="" disabled selected>Select…</option><option>Under 1 Cr</option><option>75L - 1.5 Cr</option><option>1.5Cr - 2.5 Cr</option><option>3Cr +</option></select></div>
+            <div class="field"><label for="b-time">Planning to buy</label><select id="b-time" name="timeline" required><option value="" disabled selected>Select…</option><option>Within 3 months</option><option>3–6 months</option><option>6–12 months</option><option>Just exploring</option></select></div>
           </div>
-          <div class="field"><label>Buying for</label><div class="pills"><label><input type="radio" name="purpose" value="Self use" checked><span>Self use</span></label><label><input type="radio" name="purpose" value="Investment"><span>Investment</span></label><label><input type="radio" name="purpose" value="Both"><span>Both</span></label></div></div>
+          <div class="field"><label>Buying for</label><div class="pills"><label><input type="radio" name="purpose" value="Self use" required><span>Self use</span></label><label><input type="radio" name="purpose" value="Investment"><span>Investment</span></label><label><input type="radio" name="purpose" value="Both"><span>Both</span></label></div></div>
             </div>
-          </details>
+          </div>
         </fieldset>
         <fieldset class="role-fields" data-for="developer" hidden disabled>
           <legend>Company details</legend>
           <div class="field"><label for="d-company">Company / developer name</label><input id="d-company" name="company" placeholder="e.g. ABC Developers Pvt Ltd" required></div>
           <div class="field-row">
-            <div class="field"><label for="d-role">Your role</label><select id="d-role" name="designation"><option>Owner / Director</option><option>Sales head</option><option>Marketing head</option><option>Other</option></select></div>
-            <div class="field"><label for="d-count">Active projects</label><select id="d-count" name="activeProjects"><option>1</option><option>2–5</option><option>6–10</option><option>10+</option></select></div>
+            <div class="field"><label for="d-role">Your role</label><select id="d-role" name="designation" required><option value="" disabled selected>Select…</option><option>Owner / Director</option><option>Sales head</option><option>Marketing head</option><option>Other</option></select></div>
+            <div class="field"><label for="d-count">Active projects</label><select id="d-count" name="activeProjects" required><option value="" disabled selected>Select…</option><option>1</option><option>2–5</option><option>6–10</option><option>10+</option></select></div>
           </div>
           <div class="field-row">
             <div class="field"><label for="d-rera">A MahaRERA project no.</label><input id="d-rera" name="reraProject" placeholder="P52100012345" required></div>
-            <div class="field"><label for="d-web">Website</label><input id="d-web" name="website" type="url" placeholder="https://" required></div>
+            <div class="field"><label for="d-web" class="opt">Website <small>(optional)</small></label><input id="d-web" name="website" type="url" placeholder="https://"></div>
           </div>
         </fieldset>
         <fieldset class="role-fields" data-for="agent" hidden disabled>
