@@ -10,7 +10,9 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 interface ProjectInfo {
   id: string; title: string; number: number | null; hasLogo: boolean;
   location: string; status: string; type: string; configuration: string; price: string; possession: string; hidden: boolean;
+  image: string | null;
 }
+const FIRST = 8; // projects shown per developer before "Show all"
 interface Dev {
   id: string; name: string; logo: string | null; projects: number; logoInUse: number; updated_at: string;
   list?: ProjectInfo[];
@@ -58,8 +60,9 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
   const [adding, setAdding] = useState(false);
   const [editing, setEditing] = useState<string | null>(null);
   const [open, setOpen] = useState<string | null>(null);
-  // Developer cards, or one list of every project.
-  const [view, setView] = useState<'cards' | 'list'>('cards');
+  // Developers whose full project list is shown (otherwise the first FIRST).
+  const [expanded, setExpanded] = useState<Set<string>>(new Set());
+  const toggleExpand = (id: string) => setExpanded((s) => { const n = new Set(s); if (n.has(id)) n.delete(id); else n.add(id); return n; });
 
   const load = () => call('GET').then(setRows).catch((e) => { flash(e.message, true); setRows((r) => r || []); });
   useEffect(() => { load(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -92,15 +95,24 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
 
       {adding && <AddCard onCancel={() => setAdding(false)} onSaved={() => { setAdding(false); flash('Developer added'); load(); }} flash={flash} />}
 
-      <div className="dvl-bar">
-        <div className="viz-toggle" role="tablist" aria-label="View">
-          <button role="tab" aria-selected={view === 'cards'} className={view === 'cards' ? 'on' : ''} onClick={() => setView('cards')}>
-            <i className="fas fa-building" /> Developers <span className="dvl-count">{counts.all}</span>
+      {rows && rows.length > 0 && (
+        <div className="dvl-stats">
+          <button type="button" className={`dvl-stat${filter === 'all' ? ' on' : ''}`} onClick={() => setFilter('all')}>
+            <i className="fas fa-building" /><b>{counts.all}</b><span>Developers</span>
           </button>
-          <button role="tab" aria-selected={view === 'list'} className={view === 'list' ? 'on' : ''} onClick={() => setView('list')}>
-            <i className="fas fa-list" /> All projects <span className="dvl-count">{totalProjects}</span>
+          <div className="dvl-stat static">
+            <i className="fas fa-map-pin" /><b>{totalProjects}</b><span>Projects on the map</span>
+          </div>
+          <button type="button" className={`dvl-stat warn${filter === 'nologo' ? ' on' : ''}`} onClick={() => setFilter('nologo')} disabled={!counts.nologo}>
+            <i className="fas fa-image" /><b>{counts.nologo}</b><span>Need a logo</span>
+          </button>
+          <button type="button" className={`dvl-stat warn${filter === 'mismatch' ? ' on' : ''}`} onClick={() => setFilter('mismatch')} disabled={!counts.mismatch}>
+            <i className="fas fa-circle-exclamation" /><b>{counts.mismatch}</b><span>Logo missing on some projects</span>
           </button>
         </div>
+      )}
+
+      <div className="dvl-bar dvl-tools">
         <label className="dvl-search"><i className="fas fa-magnifying-glass" aria-hidden="true" />
           <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search developer or project…" aria-label="Search developer or project" />
         </label>
@@ -113,58 +125,59 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
 
       {!rows ? <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading developers…</p></div>
         : !shown.length ? <div className="adm-empty"><i className="fas fa-building" /><p>{rows.length ? 'Nothing matches your search.' : 'No developers yet — add one, or add a developer name to a pin in the Map Editor.'}</p></div>
-          : view === 'list' ? (
-            <div className="table-scroll dvl-table-wrap">
-              <table className="adm-table dvl-table">
-                <thead><tr><th>Project</th><th>Location</th><th>Status</th><th>Price</th><th>Logo</th></tr></thead>
-                {shown.filter((d) => d.list?.length).map((d) => {
-                  // Searching a project name shows just the matching projects of that developer.
-                  const items = s && !d.name.toLowerCase().includes(s) ? d.list!.filter((p) => p.title.toLowerCase().includes(s)) : d.list!;
-                  return (
-                    <tbody key={d.id}>
-                      <tr className="dvl-group" onClick={() => setOpen(d.id)}>
-                        <th colSpan={5}>
-                          <span className={`dvl-mini${d.logo ? '' : ' empty'}`}>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            {d.logo ? <img src={thumb(d.logo)} alt="" loading="lazy" /> : <i className="fas fa-image" />}
-                          </span>
-                          {d.name} <span className="muted">· {d.projects} project{d.projects === 1 ? '' : 's'}</span>
-                          <span className="dvl-open">Open <i className="fas fa-chevron-right" /></span>
-                        </th>
-                      </tr>
-                      {items.map((p) => (
-                        <tr key={p.id} className="dvl-row" onClick={() => setOpen(d.id)}>
-                          <td><b>{projName(p)}</b>{p.hidden && <small className="muted"> · hidden</small>}</td>
-                          <td>{p.location || '—'}</td>
-                          <td>{statusLabel(p.status)}</td>
-                          <td>{p.price || '—'}</td>
-                          <td>{p.hasLogo ? <span className="dvl-ok"><i className="fas fa-circle-check" /> Yes</span> : <span className="dvl-warn">Different / none</span>}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  );
-                })}
-              </table>
+          : (
+            <div className="dvl-secs">
+              {shown.map((d) => {
+                // Searching a project name shows just the matching projects of that developer.
+                const all = d.list || [];
+                const items = s && !d.name.toLowerCase().includes(s) ? all.filter((p) => p.title.toLowerCase().includes(s)) : all;
+                const more = expanded.has(d.id) ? 0 : Math.max(0, items.length - FIRST);
+                return (
+                  <section key={d.id} className={`dvl-sec s-${logoState(d)}`}>
+                    <header className="dvl-sec-head">
+                      <span className={`dvl-logo${d.logo ? '' : ' empty'}`} aria-hidden="true">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        {d.logo ? <img src={thumb(d.logo)} alt="" loading="lazy" /> : <i className="fas fa-image" />}
+                      </span>
+                      <span className="dvl-info">
+                        <b className="dvl-name" title={d.name}>{d.name}</b>
+                        <span className="muted dvl-sub">{d.projects ? `${d.projects} project${d.projects === 1 ? '' : 's'}` : 'No projects on the map yet'}</span>
+                        <LogoStatus dev={d} />
+                        {d.logo && d.projects > 0 && (
+                          <span className="dvl-bar-meter" aria-hidden="true"><span style={{ width: `${Math.round((Math.min(d.logoInUse, d.projects) / d.projects) * 100)}%` }} /></span>
+                        )}
+                      </span>
+                      <button type="button" className="adm-btn primary sm" onClick={() => setOpen(d.id)}><i className="fas fa-pen-to-square" /> Manage logos</button>
+                    </header>
+                    {items.length > 0 && (
+                      <ul className="dvl-proj-grid">
+                        {items.slice(0, items.length - more).map((p) => (
+                          <li key={p.id}>
+                            <button type="button" className="dvl-proj" onClick={() => setOpen(d.id)} title={`${projName(p)} — click to change its logo`}>
+                              <span className={`dvl-pj-img${p.image ? '' : ' empty'}`}>
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                {p.image ? <img src={p.image} alt="" loading="lazy" /> : <i className="fas fa-image" />}
+                              </span>
+                              <span className="dvl-pj-name">
+                                <b title={projName(p)}>{projName(p)}</b>
+                                <small className="muted" title={p.location}>{p.location || '—'}</small>
+                                {!p.hasLogo && <span className={`dvl-pill ${p.image ? 'own' : 'none'}`}>{p.image ? 'Own logo' : 'No logo'}</span>}
+                              </span>
+                              {p.hasLogo && <i className="fas fa-circle-check dvl-proj-ok" title="Shows the developer logo" aria-label="Shows the developer logo" />}
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    {(more > 0 || (expanded.has(d.id) && items.length > FIRST)) && (
+                      <button type="button" className="dvl-more" onClick={() => toggleExpand(d.id)}>
+                        {more > 0 ? <>Show all {items.length} projects <i className="fas fa-chevron-down" /></> : <>Show less <i className="fas fa-chevron-up" /></>}
+                      </button>
+                    )}
+                  </section>
+                );
+              })}
             </div>
-          ) : (
-            <ul className="dvl-grid">
-              {shown.map((d) => (
-                <li key={d.id}>
-                  <button type="button" className="dvl-card" onClick={() => setOpen(d.id)} aria-label={`Open ${d.name}`}>
-                    <span className={`dvl-logo${d.logo ? '' : ' empty'}`} aria-hidden="true">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      {d.logo ? <img src={thumb(d.logo)} alt="" loading="lazy" /> : <i className="fas fa-image" />}
-                    </span>
-                    <span className="dvl-info">
-                      <b className="dvl-name" title={d.name}>{d.name}</b>
-                      <span className="muted dvl-sub">{d.projects ? `${d.projects} project${d.projects === 1 ? '' : 's'}` : 'No projects on the map yet'}</span>
-                      <LogoStatus dev={d} />
-                    </span>
-                    <i className="fas fa-chevron-right dvl-go" aria-hidden="true" />
-                  </button>
-                </li>
-              ))}
-            </ul>
           )}
 
       {openDev && !editDev && (
@@ -179,6 +192,9 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
   );
 }
 
+/** 'none' (no logo), 'some' (not on every project) or 'ok'. */
+const logoState = (d: Dev) => (!d.logo ? 'none' : d.projects && d.logoInUse < d.projects ? 'some' : 'ok');
+
 /** One line saying how the developer's logo is doing: none / on some projects / on all. */
 function LogoStatus({ dev }: { dev: Dev }) {
   if (!dev.logo) return <span className="dvl-warn"><i className="fas fa-circle-exclamation" /> No logo yet</span>;
@@ -187,7 +203,7 @@ function LogoStatus({ dev }: { dev: Dev }) {
   return <span className="dvl-warn"><i className="fas fa-circle-exclamation" /> Logo on {dev.logoInUse} of {dev.projects} projects</span>;
 }
 
-type DevProject = ProjectInfo & { image: string | null };
+type DevProject = ProjectInfo;
 
 /**
  * One developer: their logo at the top with one button to use it on every
@@ -253,7 +269,11 @@ function DeveloperDrawer({ dev, flash, onClose, onChanged, onEdit }: { dev: Dev;
           <button type="button" className="dvl-close" onClick={onClose} aria-label="Close"><i className="fas fa-xmark" /></button>
         </div>
 
+        <h4 className="dvl-step"><span>1</span> Developer logo</h4>
         {/* Step 1: the developer logo on every project, in one click. */}
+        {list && !all.length && !dev.logo && (
+          <div className="dvl-callout warn"><i className="fas fa-circle-exclamation" /><span>No logo yet. Click <b>Add logo</b> above.</span></div>
+        )}
         {list && all.length > 0 && (
           !dev.logo ? (
             <div className="dvl-callout warn"><i className="fas fa-circle-exclamation" /><span>This developer has no logo yet. Click <b>Add logo</b> above — then you can put it on all projects in one click.</span></div>
@@ -269,12 +289,13 @@ function DeveloperDrawer({ dev, flash, onClose, onChanged, onEdit }: { dev: Dev;
         )}
 
         {/* Step 2: the project list — change the logo of any single project. */}
+        <h4 className="dvl-step"><span>2</span> Projects ({all.length}) <small className="muted">— change the logo of one project, or tick several</small></h4>
         <div className="dvl-list-head">
           <label className="dvl-pj-all">
             <input type="checkbox" disabled={!all.length || busy} checked={allPicked} onChange={(e) => setPicked(e.target.checked ? new Set(all.map((p) => p.id)) : new Set())} />
-            Projects
+            Select all
           </label>
-          <span className="muted">Tick projects to change several at once</span>
+          <span className="muted">{missing.length ? `${missing.length} without the developer logo` : 'All show the developer logo'}</span>
         </div>
 
         {!list ? <p className="muted"><i className="fas fa-spinner fa-spin" /> Loading projects…</p>
@@ -290,8 +311,10 @@ function DeveloperDrawer({ dev, flash, onClose, onChanged, onEdit }: { dev: Dev;
                     </span>
                     <span className="dvl-pj-name">
                       <b>{projName(p)}</b>
-                      <small className="muted">{[p.location, statusLabel(p.status), p.price].filter((x) => x && x !== '—').join(' · ') || '—'}</small>
-                      <small className={p.hasLogo ? 'dvl-ok' : 'dvl-warn'}>{p.hasLogo ? 'Developer logo' : p.image ? 'Own logo' : 'No logo'}</small>
+                      <small className="muted">{[p.location, statusLabel(p.status)].filter((x) => x && x !== '—').join(' · ') || '—'}</small>
+                      {p.hasLogo
+                        ? <small className="dvl-ok"><i className="fas fa-circle-check" /> Developer logo</small>
+                        : <span className={`dvl-pill ${p.image ? 'own' : 'none'}`}>{p.image ? 'Own logo' : 'No logo'}</span>}
                     </span>
                     <span className="dvl-pj-acts">
                       {dev.logo && !p.hasLogo && (

@@ -31,9 +31,12 @@ export interface DeveloperRow {
 export interface ProjectInfo {
   id: string; title: string; number: number | null; hasLogo: boolean;
   location: string; status: string; type: string; configuration: string; price: string; possession: string; hidden: boolean;
+  /** The project's current picture (small), or null. */
+  image: string | null;
 }
 type PinFacts = { id: string; developer?: string; image?: string; title?: string; number?: number; location?: string; status?: string; type?: string; configuration?: string; price?: string; possession_timeline?: string; hidden?: boolean };
 const PIN_FACTS = { id: 1, developer: 1, image: 1, title: 1, number: 1, location: 1, status: 1, type: 1, configuration: 1, price: 1, possession_timeline: 1, hidden: 1 };
+const imageOf = (p: PinFacts, width: number) => (!p.image ? null : p.image.startsWith('data:') ? mediaUrl('pins', p.id, 'image', p.image, width) : p.image);
 const factsOf = (p: PinFacts) => ({
   title: p.title || 'Untitled project', number: p.number ?? null, location: p.location || '', status: p.status || '', type: p.type || '',
   configuration: p.configuration || '', price: p.price || '', possession: p.possession_timeline || '', hidden: p.hidden === true,
@@ -60,7 +63,7 @@ const md5 = (s: string) => createHash('md5').update(s).digest('hex');
 const fingerprint = (img: unknown) => (typeof img !== 'string' || !img ? '' : img.startsWith(MEDIA_DIGEST_PREFIX) ? img.slice(MEDIA_DIGEST_PREFIX.length) : img.startsWith('data:') ? md5(img) : img);
 /** Every pin's id, developer and image fingerprint — no image data. */
 const pinSummaries = async () => (await (await pinsColl()).find({}, { projection: PIN_FACTS, mediaDigest: { fields: ['image'] } } as never).toArray() as unknown as PinFacts[])
-  .map((p) => ({ id: p.id, developer: p.developer, logo: fingerprint(p.image), ...factsOf(p) }));
+  .map((p) => ({ id: p.id, developer: p.developer, logo: fingerprint(p.image), image: imageOf(p, 120), ...factsOf(p) }));
 
 let seeding: Promise<void> | null = null;
 /** Adds a directory entry for every developer on the map that doesn't have one yet. */
@@ -123,7 +126,7 @@ export async function listDevelopers(): Promise<DeveloperRow[]> {
     if (hasLogo) sameLogo.set(k, (sameLogo.get(k) || 0) + 1);
     lists.set(k, [...(lists.get(k) || []), {
       id: p.id, hasLogo, title: p.title, number: p.number, location: p.location, status: p.status, type: p.type,
-      configuration: p.configuration, price: p.price, possession: p.possession, hidden: p.hidden,
+      configuration: p.configuration, price: p.price, possession: p.possession, hidden: p.hidden, image: p.image,
     }]);
   }
   return devs
@@ -275,7 +278,7 @@ export async function setPinsLogo(id: string, pinIds: string[], logo: unknown): 
 }
 
 /** This developer's map projects, each with its current picture and whether it already shows the developer logo. */
-export async function developerProjects(id: string): Promise<(ProjectInfo & { image: string | null })[]> {
+export async function developerProjects(id: string): Promise<ProjectInfo[]> {
   await ensureTable();
   const dev = await (await coll()).findOne({ id }, { mediaDigest: { fields: ['logo'] } } as never);
   if (!dev) throw new DeveloperError('Developer not found', 404);
@@ -285,7 +288,7 @@ export async function developerProjects(id: string): Promise<(ProjectInfo & { im
     .filter((p) => normDev(p.developer) === key)
     .map((p) => ({
       id: p.id, ...factsOf(p),
-      image: !p.image ? null : p.image.startsWith('data:') ? mediaUrl('pins', p.id, 'image', p.image, 160) : p.image,
+      image: imageOf(p, 160),
       hasLogo: !!want && fingerprint(p.image) === want,
     }))
     .sort((a, b) => Number(a.hasLogo) - Number(b.hasLogo) || (a.number ?? 1e9) - (b.number ?? 1e9));
