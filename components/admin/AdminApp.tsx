@@ -1149,13 +1149,9 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
                 <option value={UNASSIGNED}>Nobody (unassign)</option>
               </select>
             )}
-            <button className="adm-btn ghost sm" disabled={busy} title="Share the selected leads on WhatsApp — you choose the contact or group"
+            <button className="adm-btn ghost sm" disabled={busy} title="Share the selected leads' details — you choose the app and contact"
               onClick={() => { const ids = pick.of(list.map((l) => l.id)); shareWithAnyone(joinLeads(list.filter((l) => ids.includes(l.id)))); }}>
-              <i className="fab fa-whatsapp" /> Share
-            </button>
-            <button className="adm-btn ghost sm" disabled={busy} title="Send the selected leads to the office number +91 82288 28200"
-              onClick={() => { const ids = pick.of(list.map((l) => l.id)); shareOnWhatsApp(joinLeads(list.filter((l) => ids.includes(l.id)))); }}>
-              <i className="fas fa-building" /> To office
+              <i className="fas fa-share-nodes" /> Share
             </button>
             {waStaff.length > 0 && (
               <select className="crm-select" value="" disabled={busy} aria-label="Send selected leads to an employee on WhatsApp"
@@ -1305,9 +1301,10 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
             <div className="crm-contact">
               {sel.email && <a className="adm-btn ghost sm" href={`mailto:${sel.email}`}><i className="fas fa-envelope" /> {sel.email}</a>}
               {sel.phone && <a className="adm-btn ghost sm" href={`tel:${sel.phone.replace(/\s/g, '')}`}><i className="fas fa-phone" /> {sel.phone}</a>}
-              {sel.phone && <a className="adm-btn ghost sm" target="_blank" rel="noopener" href={`https://wa.me/${sel.phone.replace(/\D/g, '')}`}><i className="fab fa-whatsapp" /> WhatsApp</a>}
-              {isOwner && <button type="button" className="adm-btn primary sm" onClick={() => shareWithAnyone(leadShareText(sel))} title="Share this lead on WhatsApp — you choose the contact or group"><i className="fab fa-whatsapp" /> Share lead</button>}
-              {isOwner && <button type="button" className="adm-btn ghost sm" onClick={() => shareOnWhatsApp(leadShareText(sel))} title="Send this lead to the office number +91 82288 28200"><i className="fas fa-building" /> To office</button>}
+              {/* Super admin: one Share button for the lead's details. Employees chat with the buyer instead. */}
+              {isOwner
+                ? <button type="button" className="adm-btn primary sm" onClick={() => shareWithAnyone(leadShareText(sel))} title="Share this lead's details — you choose the app and contact"><i className="fas fa-share-nodes" /> Share</button>
+                : sel.phone && <a className="adm-btn ghost sm" target="_blank" rel="noopener" href={`https://wa.me/${sel.phone.replace(/\D/g, '')}`}><i className="fab fa-whatsapp" /> WhatsApp</a>}
             </div>
 
             {isOwner && (
