@@ -696,6 +696,8 @@ interface Lead {
   notes?: string; created_at?: string; updated_at?: string;
   // The employee this lead was transferred to (any source).
   assigned_to?: string | null; assigned_name?: string | null; assigned_at?: string | null; assigned_by?: string | null;
+  // CRM work on the lead: timeline (newest first), next follow-up, last touch.
+  activity?: LeadEvent[]; follow_up_at?: string | null; last_activity_at?: string; last_activity_by?: string;
   // Map enquiries only:
   role?: PersonRole; pin_id?: string; locations?: string[];
   project?: {
@@ -717,6 +719,34 @@ interface Lead {
     compare: { id: string; title: string; number: number | null; location: string }[];
   };
 }
+interface LeadEvent {
+  id: string; at: string; type: 'note' | 'status' | 'follow_up' | 'assigned' | 'unassigned';
+  text?: string; from?: string; to?: string; by_id?: string; by_name?: string; by_role?: string;
+  // Team activity feed only: which lead it was on.
+  lead_id?: string; lead_name?: string; lead_source?: LeadSource;
+}
+const LEAD_EVENT_ICON: Record<LeadEvent['type'], string> = {
+  note: 'fa-note-sticky', status: 'fa-arrow-right', follow_up: 'fa-calendar-check', assigned: 'fa-user-tie', unassigned: 'fa-user-slash',
+};
+/** "Moved from New to Contacted", "Follow-up set for 12 Oct, 4:00 pm", or the note itself. */
+function leadEventText(e: LeadEvent) {
+  const stage = (k?: string) => LEAD_STAGES.find((x) => x.key === k)?.label || k || '';
+  switch (e.type) {
+    case 'note': return e.text || '';
+    case 'status': return `Moved from ${stage(e.from)} to ${stage(e.to)}`;
+    case 'follow_up': return e.to ? `Follow-up set for ${fullDate(e.to)}` : 'Follow-up cleared';
+    case 'assigned': return e.from ? `Transferred from ${e.from} to ${e.to}` : `Transferred to ${e.to}`;
+    case 'unassigned': return `Taken back from ${e.from || 'employee'}`;
+  }
+}
+/** A follow-up value for <input type="datetime-local"> (local time). */
+const toLocalInput = (d?: string | null) => {
+  if (!d) return '';
+  const t = new Date(d); if (Number.isNaN(t.getTime())) return '';
+  return new Date(t.getTime() - t.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+};
+const isOverdue = (d?: string | null) => !!d && new Date(d).getTime() < Date.now();
+
 /** "2 BHK · ₹1 – 2 Cr · Mundhwa" from a buyer's sign-up preferences. */
 const buyerWants = (l: Lead) => {
   const pf = l.buyer?.profile || {};
@@ -762,6 +792,20 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
   const [sel, setSel] = useState<Lead | null>(null);
   const [notes, setNotes] = useState('');
   const [busy, setBusy] = useState(false);
+  const [noteDraft, setNoteDraft] = useState('');
+  const [followDraft, setFollowDraft] = useState('');
+  // Super admin: everything the team did on leads.
+  const [teamFeed, setTeamFeed] = useState<LeadEvent[] | null>(null);
+  const [teamOpen, setTeamOpen] = useState(false);
+  const [teamWho, setTeamWho] = useState('');
+  async function loadTeamFeed() {
+    setTeamFeed(null);
+    try {
+      const r = await fetch('/api/admin/leads?activity=1', { credentials: 'same-origin' });
+      const b = await r.json();
+      setTeamFeed(r.ok && Array.isArray(b.data) ? b.data : []);
+    } catch { setTeamFeed([]); }
+  }
 
   // Employees a lead can be transferred to, and the "Assigned to" filter
   // ('' = everyone, UNASSIGNED = nobody yet, else an employee id).
@@ -771,7 +815,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
     if (!isOwner) return; // only the super admin transfers leads
     fetch('/api/admin/leads?staff=1', { credentials: 'same-origin' })
       .then((r) => (r.ok ? r.json() : null)).then((b) => setStaff(Array.isArray(b?.data) ? b.data : [])).catch(() => {});
-  }, []);
+  }, [isOwner]);
 
   const [live, setLive] = useState(false);
   // Total leads per source when the API had to leave older ones out.
@@ -846,7 +890,24 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
       list.map((l) => [l.name, l.email, l.phone, l.subject, l.message, stageLabel(l.status), l.notes, csvDate(l.created_at)]));
   }
 
-  function open(l: Lead) { setSel(l); setNotes(l.notes || ''); }
+  function open(l: Lead) { setSel(l); setNotes(l.notes || ''); setNoteDraft(''); setFollowDraft(toLocalInput(l.follow_up_at)); }
+  async function addNote() {
+    if (!sel || !noteDraft.trim()) return;
+    if (await patch(sel.id, { add_note: noteDraft.trim() })) { setNoteDraft(''); flash('Note added'); }
+  }
+  async function saveFollowUp(clear = false) {
+    if (!sel) return;
+    const v = clear ? null : followDraft ? new Date(followDraft).toISOString() : null;
+    if (await patch(sel.id, { follow_up_at: v })) { if (clear) setFollowDraft(''); flash(v ? 'Follow-up saved' : 'Follow-up cleared'); }
+  }
+  /** Open a lead from the team activity feed (switching to its tab first). */
+  function openFromFeed(e: LeadEvent) {
+    const src = e.lead_source || 'contact';
+    const l = bySource[src].find((x) => x.id === e.lead_id);
+    if (!l) { flash('That lead no longer exists', true); return; }
+    if (src !== source) switchSource(src);
+    setTeamOpen(false); open(l);
+  }
   const replace = (id: string, next: Lead | null) =>
     setBySource((b) => ({
       ...b,
@@ -927,7 +988,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
 
       {!isOwner && (
         <p className="muted" style={{ fontSize: 13, margin: '0 0 10px' }}>
-          <i className="fas fa-user-tie" /> You see the leads the super admin transferred to you.
+          <i className="fas fa-user-tie" /> Your leads, transferred by the super admin. Update the status, add notes and set follow-ups — the super admin sees everything you do.
         </p>
       )}
       <div className="crm-stats">
@@ -954,6 +1015,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
                 {staff.map((e) => <option key={e.id} value={e.id}>{e.name} ({all.filter((l) => l.assigned_to === e.id).length})</option>)}
               </select>
             )}
+            {isOwner && <button className="adm-btn ghost sm" onClick={() => { setTeamOpen(true); loadTeamFeed(); }}><i className="fas fa-clock-rotate-left" /> Team activity</button>}
             <button className="adm-btn ghost sm" onClick={() => load()}><i className="fas fa-rotate" /> Refresh</button>
           </div>
         </div>
@@ -974,20 +1036,22 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
                 </button>
               ))}
             </div>
-            <div className="dl-group">
-              <span className="lbl"><i className="fas fa-download" /> Download</span>
-              {PEOPLE_ROLES.map((r) => (
-                <button key={r} className="adm-btn ghost sm" disabled={!forDownload(r).length} onClick={() => downloadMap(r)} title={`Download ${ROLE_META[r].label} enquiries as CSV`}>
-                  {ROLE_META[r].short} ({forDownload(r).length})
-                </button>
-              ))}
-            </div>
+            {isOwner && (
+              <div className="dl-group">
+                <span className="lbl"><i className="fas fa-download" /> Download</span>
+                {PEOPLE_ROLES.map((r) => (
+                  <button key={r} className="adm-btn ghost sm" disabled={!forDownload(r).length} onClick={() => downloadMap(r)} title={`Download ${ROLE_META[r].label} enquiries as CSV`}>
+                    {ROLE_META[r].short} ({forDownload(r).length})
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         )}
         {!isMap && (
           <div className="adm-filterbar">
             <span className="muted" style={{ fontSize: 13 }}>{isSignup ? 'Every buyer who created an account (newest first), with what they are looking for.' : <>Messages sent from the website&apos;s Contact page.</>}</span>
-            <button className="adm-btn ghost sm" disabled={!list.length} onClick={downloadContact}><i className="fas fa-file-csv" /> Download CSV ({list.length})</button>
+            {isOwner && <button className="adm-btn ghost sm" disabled={!list.length} onClick={downloadContact}><i className="fas fa-file-csv" /> Download CSV ({list.length})</button>}
           </div>
         )}
 
@@ -1005,6 +1069,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
           </div>
         ) : (
           <>
+          {isOwner && (
           <BulkBar sel={pick} ids={list.slice(0, LEADS_RENDER_CAP).map((l) => l.id)} hint={`Select all ${Math.min(list.length, LEADS_RENDER_CAP)} shown — or tick leads to update or delete them together`}>
             <select className="crm-select" value="" disabled={busy} aria-label="Set status of selected leads"
               onChange={(e) => { if (e.target.value) setStatusMany(pick.of(list.map((l) => l.id)), e.target.value as Lead['status']); }}>
@@ -1021,6 +1086,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
             )}
             <button className="adm-btn danger sm" disabled={busy} onClick={() => { const ids = pick.of(list.map((l) => l.id)); if (confirm(`Delete ${ids.length} lead${ids.length === 1 ? '' : 's'}? You can restore them from Backups → Recycle bin.`)) removeMany(ids); }}><i className="fas fa-trash" /> Delete</button>
           </BulkBar>
+          )}
           <div className="table-scroll">
             <table className="adm-table crm-table">
               <thead>
@@ -1033,7 +1099,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
               <tbody>
                 {list.slice(0, LEADS_RENDER_CAP).map((l) => (
                   <tr key={l.id} className={`crm-row${pick.has(l.id) ? ' picked' : ''}`} onClick={() => open(l)}>
-                    <td className="pick" onClick={(e) => e.stopPropagation()}><PickOne sel={pick} id={l.id} label={l.name || l.email || 'lead'} /></td>
+                    <td className="pick" onClick={(e) => e.stopPropagation()}>{isOwner && <PickOne sel={pick} id={l.id} label={l.name || l.email || 'lead'} />}</td>
                     <td className="t-title">
                       <span className="crm-ini">{initials(l)}</span>
                       <span className="crm-id"><b>{l.name}</b><small>{l.email || l.phone || '—'}</small>
@@ -1070,7 +1136,9 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
                     )}
                     <td>
                       <span className={`crm-pill ${l.status}`}>{stageLabel(l.status)}</span>
-                      {l.assigned_name && <small className="muted" style={{ display: 'block', marginTop: 3 }} title="Transferred to"><i className="fas fa-user-tie" /> {l.assigned_name}</small>}
+                      {isOwner && l.assigned_name && <small className="muted" style={{ display: 'block', marginTop: 3 }} title="Transferred to"><i className="fas fa-user-tie" /> {l.assigned_name}</small>}
+                      {l.follow_up_at && <small style={{ display: 'block', marginTop: 3, color: isOverdue(l.follow_up_at) ? '#b42318' : 'var(--muted)' }} title={fullDate(l.follow_up_at)}><i className="fas fa-calendar-check" /> {isOverdue(l.follow_up_at) ? 'Overdue' : 'Follow-up'} {leadWhen(l.follow_up_at)}</small>}
+                      {l.last_activity_at && <small className="muted" style={{ display: 'block', marginTop: 3 }} title={fullDate(l.last_activity_at)}>Updated by {l.last_activity_by} · {leadWhen(l.last_activity_at)}</small>}
                     </td>
                     <td className="muted" title={fullDate(l.created_at)}>
                       {leadWhen(l.created_at)}
@@ -1095,6 +1163,36 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
           </div>
         )}
       </div>
+
+      {teamOpen && (
+        <div className="crm-drawer-overlay" onClick={() => setTeamOpen(false)}>
+          <aside className="crm-drawer" onClick={(e) => e.stopPropagation()} aria-label="Team activity on leads">
+            <div className="crm-drawer-head">
+              <div className="crm-id big"><span className="crm-ini"><i className="fas fa-clock-rotate-left" /></span><span><b>Team activity</b><small>Notes, status changes, follow-ups and transfers on leads</small></span></div>
+              <button className="adm-btn ghost sm" onClick={() => setTeamOpen(false)} aria-label="Close"><i className="fas fa-xmark" /></button>
+            </div>
+            <select className="crm-select" value={teamWho} onChange={(e) => setTeamWho(e.target.value)} aria-label="Filter by person" style={{ marginBottom: 10 }}>
+              <option value="">Everyone</option>
+              {Array.from(new Map((teamFeed || []).map((e) => [e.by_id || '', e.by_name || 'Someone'])).entries()).map(([id, name]) => <option key={id} value={id}>{name}</option>)}
+            </select>
+            {teamFeed === null ? <p className="crm-meta"><i className="fas fa-spinner fa-spin" /> Loading…</p>
+              : !teamFeed.filter((e) => !teamWho || e.by_id === teamWho).length ? <p className="crm-meta">Nothing yet. When anyone adds a note, changes a status or sets a follow-up, it shows here.</p>
+                : (
+                  <ul className="bl-list">
+                    {teamFeed.filter((e) => !teamWho || e.by_id === teamWho).map((e) => (
+                      <li key={`${e.lead_id}-${e.id}`}>
+                        <button type="button" className="link-btn" style={{ textAlign: 'left' }} onClick={() => openFromFeed(e)}>
+                          <b>{e.by_name || 'Someone'}</b> on <b>{e.lead_name || 'a lead'}</b>
+                        </button>
+                        <span><i className={`fas ${LEAD_EVENT_ICON[e.type]}`} style={{ color: 'var(--muted)', marginRight: 6 }} />{leadEventText(e)}</span>
+                        <small title={fullDate(e.at)}>{leadWhen(e.at)}</small>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+          </aside>
+        </div>
+      )}
 
       {sel && (
         <div className="crm-drawer-overlay" onClick={() => setSel(null)}>
@@ -1244,13 +1342,47 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
               <div className="crm-block"><h4>Message</h4><p className="crm-msg">{sel.message || '—'}</p></div>
             )}
             <div className="crm-block">
-              <h4>Internal notes</h4>
-              <textarea className="crm-notes" rows={4} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Add a note for your team…" />
-              <div className="adm-actions" style={{ marginTop: 8 }}>
-                <button className="adm-btn primary sm" disabled={busy} onClick={saveNotes}><i className="fas fa-floppy-disk" /> Save notes</button>
-                <button className="adm-btn danger sm" onClick={() => remove(sel)}><i className="fas fa-trash" /> Delete</button>
+              <h4>Next follow-up</h4>
+              <div className="acs-inline">
+                <input className="crm-search" type="datetime-local" value={followDraft} onChange={(e) => setFollowDraft(e.target.value)} aria-label="Next follow-up" />
+                <button className="adm-btn ghost sm" disabled={busy || !followDraft || toLocalInput(sel.follow_up_at) === followDraft} onClick={() => saveFollowUp()}>Save</button>
+                {sel.follow_up_at && <button className="adm-btn ghost sm" disabled={busy} onClick={() => saveFollowUp(true)}>Clear</button>}
               </div>
+              {sel.follow_up_at && isOverdue(sel.follow_up_at) && <p className="crm-meta" style={{ color: '#b42318' }}><i className="fas fa-triangle-exclamation" /> Follow-up was due {leadWhen(sel.follow_up_at)}</p>}
             </div>
+
+            <div className="crm-block">
+              <h4>Notes &amp; activity {sel.activity?.length ? `(${sel.activity.length})` : ''}</h4>
+              <textarea className="crm-notes" rows={3} value={noteDraft} onChange={(e) => setNoteDraft(e.target.value)} placeholder="e.g. Called — wants a site visit on Saturday" />
+              <div className="adm-actions" style={{ marginTop: 8 }}>
+                <button className="adm-btn primary sm" disabled={busy || !noteDraft.trim()} onClick={addNote}><i className="fas fa-plus" /> Add note</button>
+              </div>
+              {sel.activity?.length ? (
+                <ul className="bl-list" style={{ marginTop: 10 }}>
+                  {sel.activity.map((e) => (
+                    <li key={e.id}>
+                      <span><i className={`fas ${LEAD_EVENT_ICON[e.type]}`} style={{ color: 'var(--muted)', marginRight: 6 }} />{leadEventText(e)}</span>
+                      <small>{e.by_name || 'Someone'}{e.by_role === 'admin' ? ' (super admin)' : ''} · <span title={fullDate(e.at)}>{leadWhen(e.at)}</span></small>
+                    </li>
+                  ))}
+                </ul>
+              ) : <p className="crm-meta">No notes or activity yet.</p>}
+            </div>
+
+            {(isOwner || sel.notes) && (
+              <div className="crm-block">
+                <h4>Internal notes</h4>
+                {isOwner ? (
+                  <>
+                    <textarea className="crm-notes" rows={3} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Private notes for the super admin…" />
+                    <div className="adm-actions" style={{ marginTop: 8 }}>
+                      <button className="adm-btn primary sm" disabled={busy || notes === (sel.notes || '')} onClick={saveNotes}><i className="fas fa-floppy-disk" /> Save notes</button>
+                      <button className="adm-btn danger sm" onClick={() => remove(sel)}><i className="fas fa-trash" /> Delete lead</button>
+                    </div>
+                  </>
+                ) : <p className="crm-msg">{sel.notes}</p>}
+              </div>
+            )}
             <p className="crm-meta">{isSignup ? 'Signed up' : 'Received'} {leadWhen(sel.created_at)} · via {isMap ? 'Enquire on the live map' : (sel.source || 'contact form')}</p>
           </aside>
         </div>

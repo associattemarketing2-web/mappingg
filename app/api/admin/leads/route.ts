@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { randomUUID } from 'node:crypto';
 import { z } from 'zod';
 import { getDb } from '@/lib/mongodb';
 import { hasPermission } from '@/lib/staff';
@@ -160,6 +161,22 @@ export async function GET(req: NextRequest) {
     const staff = (await listEmployees()).filter((e) => e.permissions.includes('leads'));
     return NextResponse.json({ data: staff.map((e) => ({ id: e.id, name: e.name || e.email, email: e.email })) });
   }
+  // Super admin: what everyone did on leads (notes, status, follow-ups, transfers), newest first.
+  if (req.nextUrl.searchParams.get('activity')) {
+    if ((await getCurrentUser())?.role !== 'admin') return unauthorized();
+    const db = await getDb();
+    const proj = { projection: { id: 1, name: 1, source: 1, activity: 1 } };
+    const [contact, map] = await Promise.all([
+      db.collection('contact_leads').find({ last_activity_at: { $exists: true } }, proj).toArray() as Promise<Record<string, any>[]>,
+      db.collection('leads').find({ last_activity_at: { $exists: true } }, proj).toArray() as Promise<Record<string, any>[]>,
+    ]);
+    const tab = (l: Record<string, any>, isMap: boolean): Source => (isMap ? 'map' : l.source === SIGNUP ? 'signup' : 'contact');
+    const items = [...contact.map((l) => [l, false] as const), ...map.map((l) => [l, true] as const)]
+      .flatMap(([l, isMap]) => (Array.isArray(l.activity) ? l.activity : []).map((e: LeadEvent) => ({ ...e, lead_id: l.id, lead_name: l.name || '', lead_source: tab(l, isMap) })))
+      .sort((x, y) => String(y.at).localeCompare(String(x.at)))
+      .slice(0, 500);
+    return NextResponse.json({ data: items });
+  }
   const source = sourceOf(req.nextUrl.searchParams.get('source'));
   // Every buyer account is a lead — add any that are missing (older accounts etc.).
   if (source === 'signup') await syncBuyerLeads();
@@ -179,10 +196,22 @@ const patchSchema = z.object({
   id: z.string().min(1),
   source: z.enum(['contact', 'map', 'signup']).optional(),
   status: z.enum(STATUSES).optional(),
+  // The super admin's free-text internal notes (one field, overwritten).
   notes: z.string().max(4000).optional(),
-  // Transfer the lead to an employee (their user id), or null to unassign.
+  // A note added to the lead's timeline (super admin or the employee working it).
+  add_note: z.string().trim().min(1).max(2000).optional(),
+  // Next follow-up (ISO date/time), or null to clear.
+  follow_up_at: z.string().max(40).nullable().optional(),
+  // Transfer the lead to an employee (their user id), or null to unassign. Super admin only.
   assigned_to: z.string().min(1).nullable().optional(),
 });
+
+/** One entry in a lead's timeline — what was done, by whom, when. */
+interface LeadEvent {
+  id: string; at: string; type: 'note' | 'status' | 'follow_up' | 'assigned' | 'unassigned';
+  text?: string; from?: string; to?: string; by_id?: string; by_name?: string; by_role?: string;
+}
+const MAX_EVENTS = 300;
 
 export async function PATCH(req: NextRequest) {
   if (!(await hasPermission('leads'))) return unauthorized();
@@ -190,34 +219,65 @@ export async function PATCH(req: NextRequest) {
   if (!parsed.success) {
     return NextResponse.json({ error: { message: 'Invalid request' } }, { status: 400 });
   }
-  const { id, status, notes, assigned_to } = parsed.data;
+  const me = await getCurrentUser();
+  if (!me) return unauthorized();
+  const isOwner = me.role === 'admin';
+  const { id, status, notes, add_note, follow_up_at, assigned_to } = parsed.data;
+  // Employees work their own leads like a CRM (status, notes, follow-ups) but
+  // can't overwrite the internal notes or move leads to someone else.
+  if (!isOwner && (notes !== undefined || assigned_to !== undefined)) {
+    return NextResponse.json({ error: { message: 'Only the super admin can do that.' } }, { status: 403 });
+  }
+  if (follow_up_at && Number.isNaN(Date.parse(follow_up_at))) {
+    return NextResponse.json({ error: { message: 'Invalid follow-up date' } }, { status: 400 });
+  }
   const source = sourceOf(parsed.data.source);
-  const patch: Record<string, unknown> = { updated_at: new Date().toISOString() };
-  if (status) patch.status = status;
-  if (typeof notes === 'string') patch.notes = notes;
-
   const db = await getDb();
-  const scope = await leadScope();
+  const coll = db.collection(SOURCES[source]);
+  const cur = (await coll.findOne({ id, ...(await leadScope()) })) as Record<string, any> | null;
+  if (!cur) return NextResponse.json({ error: { message: 'Lead not found' } }, { status: 404 });
+
+  const now = new Date().toISOString();
+  const meDoc = await db.collection('users').findOne({ id: me.id }, { projection: { name: 1 } });
+  const by = { by_id: me.id, by_name: String(meDoc?.name || me.email), by_role: isOwner ? 'admin' : 'employee' };
+  const events: LeadEvent[] = [];
+  const ev = (e: Omit<LeadEvent, 'id' | 'at'>) => events.push({ id: randomUUID(), at: now, ...by, ...e });
+
+  const patch: Record<string, unknown> = { updated_at: now };
+  if (status && status !== (cur.status || 'new')) {
+    patch.status = status;
+    ev({ type: 'status', from: String(cur.status || 'new'), to: status });
+  }
+  if (typeof notes === 'string') patch.notes = notes;
+  if (add_note) ev({ type: 'note', text: add_note });
+  if (follow_up_at !== undefined && (follow_up_at || null) !== (cur.follow_up_at || null)) {
+    patch.follow_up_at = follow_up_at || null;
+    ev({ type: 'follow_up', to: follow_up_at || '' });
+  }
   if (assigned_to !== undefined) {
-    const me = await getCurrentUser();
-    if (me?.role !== 'admin') return NextResponse.json({ error: { message: 'Only the super admin can transfer leads.' } }, { status: 403 });
     if (assigned_to === null) {
-      Object.assign(patch, { assigned_to: null, assigned_name: null, assigned_email: null, assigned_at: null, assigned_by: me?.email || null });
+      if (cur.assigned_to) ev({ type: 'unassigned', from: String(cur.assigned_name || '') });
+      Object.assign(patch, { assigned_to: null, assigned_name: null, assigned_email: null, assigned_at: null, assigned_by: me.email });
     } else {
       const emp = await db.collection('users').findOne({ id: assigned_to, role: 'employee' }, { projection: { id: 1, name: 1, email: 1, permissions: 1 } });
       if (!emp) return NextResponse.json({ error: { message: 'That employee no longer exists.' } }, { status: 404 });
       if (!(Array.isArray(emp.permissions) && emp.permissions.includes('leads'))) {
         return NextResponse.json({ error: { message: 'This employee has no access to Leads — give them the Leads permission first.' } }, { status: 400 });
       }
+      if (String(cur.assigned_to || '') !== String(emp.id)) ev({ type: 'assigned', to: String(emp.name || emp.email), from: String(cur.assigned_name || '') });
       Object.assign(patch, {
         assigned_to: String(emp.id), assigned_name: String(emp.name || emp.email), assigned_email: String(emp.email),
-        assigned_at: patch.updated_at, assigned_by: me?.email || null,
+        assigned_at: now, assigned_by: me.email,
       });
     }
   }
-  const coll = db.collection(SOURCES[source]);
-  const res = await coll.updateOne({ id, ...scope }, { $set: patch });
-  if (!res.matchedCount) return NextResponse.json({ error: { message: 'Lead not found' } }, { status: 404 });
+  if (events.length) {
+    const prev: LeadEvent[] = Array.isArray(cur.activity) ? cur.activity : [];
+    patch.activity = [...events, ...prev].slice(0, MAX_EVENTS); // newest first
+    patch.last_activity_at = now;
+    patch.last_activity_by = by.by_name;
+  }
+  await coll.updateOne({ id }, { $set: patch });
   const row = (await coll.findOne({ id })) as Record<string, any> | null;
   if (!row) return NextResponse.json({ data: null });
   const data = source === 'map' ? (await withProjects([row]))[0] : strip(row);
@@ -226,6 +286,7 @@ export async function PATCH(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
   if (!(await hasPermission('leads'))) return unauthorized();
+  if ((await getCurrentUser())?.role !== 'admin') return NextResponse.json({ error: { message: 'Leads are view-only for employees.' } }, { status: 403 });
   const ids = idsParam(req.nextUrl.searchParams);
   if (!ids.length) return NextResponse.json({ error: { message: 'Missing id' } }, { status: 400 });
   const source = sourceOf(req.nextUrl.searchParams.get('source'));
