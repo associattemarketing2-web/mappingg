@@ -19,7 +19,8 @@ export const dynamic = 'force-dynamic';
 //                       (`leads`), from buyers/investors, agents and developers.
 //   signup            → buyers who created an account (also in `contact_leads`,
 //                       marked source "Buyer sign-up" — see lib/signup-leads.ts)
-const STATUSES = ['new', 'contacted', 'won', 'lost'] as const;
+// Real-estate pipeline. 'won' is shown as "Booked".
+const STATUSES = ['new', 'contacted', 'site_visit', 'negotiation', 'won', 'lost'] as const;
 const SOURCES = { contact: 'contact_leads', map: 'leads', signup: 'contact_leads' } as const;
 type Source = keyof typeof SOURCES;
 const SIGNUP = 'Buyer sign-up';
@@ -178,6 +179,8 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ data: items });
   }
   const source = sourceOf(req.nextUrl.searchParams.get('source'));
+  // Employees only work buyer-account leads; map enquiries and the contact form stay with the super admin.
+  if (source !== 'signup' && (await getCurrentUser())?.role !== 'admin') return NextResponse.json({ data: [], total: 0, truncated: false });
   // Every buyer account is a lead — add any that are missing (older accounts etc.).
   if (source === 'signup') await syncBuyerLeads();
   const db = await getDb();
@@ -255,6 +258,7 @@ export async function PATCH(req: NextRequest) {
     ev({ type: 'follow_up', to: follow_up_at || '' });
   }
   if (assigned_to !== undefined) {
+    if (source !== 'signup') return NextResponse.json({ error: { message: 'Only buyer-account leads can be transferred.' } }, { status: 400 });
     if (assigned_to === null) {
       if (cur.assigned_to) ev({ type: 'unassigned', from: String(cur.assigned_name || '') });
       Object.assign(patch, { assigned_to: null, assigned_name: null, assigned_email: null, assigned_at: null, assigned_by: me.email });

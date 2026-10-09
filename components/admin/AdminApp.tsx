@@ -692,7 +692,7 @@ const csvDate = (d?: string | null) => (d ? new Date(d).toLocaleString('en-IN', 
 type LeadSource = 'map' | 'signup' | 'contact';
 interface Lead {
   id: string; name: string; email?: string; phone?: string; subject?: string;
-  message?: string; source?: string; status: 'new' | 'contacted' | 'won' | 'lost';
+  message?: string; source?: string; status: 'new' | 'contacted' | 'site_visit' | 'negotiation' | 'won' | 'lost';
   notes?: string; created_at?: string; updated_at?: string;
   // The employee this lead was transferred to (any source).
   assigned_to?: string | null; assigned_name?: string | null; assigned_at?: string | null; assigned_by?: string | null;
@@ -758,12 +758,21 @@ const buyerWants = (l: Lead) => {
 const LEADS_RENDER_CAP = 300;
 const UNASSIGNED = '__none';
 
+// Real-estate sales pipeline, in order.
 const LEAD_STAGES: { key: Lead['status']; label: string }[] = [
   { key: 'new', label: 'New' },
   { key: 'contacted', label: 'Contacted' },
-  { key: 'won', label: 'Won' },
+  { key: 'site_visit', label: 'Site visit' },
+  { key: 'negotiation', label: 'Negotiation' },
+  { key: 'won', label: 'Booked' },
   { key: 'lost', label: 'Lost' },
 ];
+/** Follow-up due today (or already overdue). */
+const isDue = (d?: string | null) => {
+  if (!d) return false;
+  const end = new Date(); end.setHours(23, 59, 59, 999);
+  return new Date(d).getTime() <= end.getTime();
+};
 const leadWhen = (d?: string) => {
   if (!d) return '';
   const s = (Date.now() - new Date(d).getTime()) / 1000;
@@ -786,7 +795,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
   const [source, setSource] = useState<LeadSource>('signup');
   const [loading, setLoading] = useState(true);
   const [q, setQ] = useState('');
-  const [filter, setFilter] = useState<'all' | Lead['status']>('all');
+  const [filter, setFilter] = useState<'all' | 'due' | Lead['status']>('all');
   const [role, setRole] = useState<'all' | PersonRole>('all');
   const [loc, setLoc] = useState('');
   const [sel, setSel] = useState<Lead | null>(null);
@@ -827,7 +836,9 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
     if (!silent) setLoading(true);
     try {
       const get = (s: LeadSource) => fetch(`/api/admin/leads?source=${s}`, { credentials: 'same-origin' }).then((r) => r.json());
-      const [m, su, c] = await Promise.all([get('map'), get('signup'), get('contact')]);
+      // Employees only work buyer-account leads.
+      const none = Promise.resolve({ data: [] });
+      const [m, su, c] = await Promise.all([isOwner ? get('map') : none, get('signup'), isOwner ? get('contact') : none]);
       setBySource({ map: Array.isArray(m.data) ? m.data : [], signup: Array.isArray(su.data) ? su.data : [], contact: Array.isArray(c.data) ? c.data : [] });
       setTruncated({
         ...(m.truncated ? { map: Number(m.total) } : {}), ...(su.truncated ? { signup: Number(su.total) } : {}), ...(c.truncated ? { contact: Number(c.total) } : {}),
@@ -858,19 +869,20 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
   // Type + location narrow everything below (status chips, table, downloads).
   const matchesAssignee = (l: Lead) => !assignee || (assignee === UNASSIGNED ? !l.assigned_to : l.assigned_to === assignee);
   const scoped = all.filter((l) => (!isMap || role === 'all' || l.role === role) && (!isMap || matchesLocation(l, loc)) && matchesAssignee(l));
-  const counts = {
+  const counts: Record<'all' | 'due' | Lead['status'], number> = {
     all: scoped.length,
-    new: scoped.filter((l) => l.status === 'new').length,
-    contacted: scoped.filter((l) => l.status === 'contacted').length,
-    won: scoped.filter((l) => l.status === 'won').length,
-    lost: scoped.filter((l) => l.status === 'lost').length,
+    due: scoped.filter((l) => isDue(l.follow_up_at) && l.status !== 'won' && l.status !== 'lost').length,
+    ...Object.fromEntries(LEAD_STAGES.map((st) => [st.key, scoped.filter((l) => l.status === st.key).length])) as Record<Lead['status'], number>,
   };
   const term = q.trim().toLowerCase();
   const matchesSearch = (l: Lead) => !term || [l.name, l.email, l.phone, l.subject, l.message, l.project?.title, l.project?.location]
     .some((x) => (x || '').toLowerCase().includes(term));
-  const list = scoped.filter((l) => (filter === 'all' || l.status === filter) && matchesSearch(l));
+  const inFilter = (l: Lead) => filter === 'all' || (filter === 'due' ? isDue(l.follow_up_at) && l.status !== 'won' && l.status !== 'lost' : l.status === filter);
+  const list = scoped.filter((l) => inFilter(l) && matchesSearch(l))
+    // Follow-ups due first (oldest due on top), then newest.
+    .sort((a, b) => (filter === 'due' ? String(a.follow_up_at).localeCompare(String(b.follow_up_at)) : 0));
   // Downloads follow the location / status / search filters, split by type.
-  const forDownload = (r: PersonRole) => all.filter((l) => l.role === r && matchesLocation(l, loc) && (filter === 'all' || l.status === filter) && matchesSearch(l));
+  const forDownload = (r: PersonRole) => all.filter((l) => l.role === r && matchesLocation(l, loc) && inFilter(l) && matchesSearch(l));
 
   function downloadMap(r: PersonRole) {
     const rows = forDownload(r);
@@ -974,7 +986,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
 
   return (
     <>
-      <div className="lead-src" role="tablist" aria-label="Lead source">
+      {isOwner && <div className="lead-src" role="tablist" aria-label="Lead source">
         <button role="tab" aria-selected={isSignup} className={isSignup ? 'on' : ''} onClick={() => switchSource('signup')}>
           <i className="fas fa-user-plus" /> Buyer accounts <span className="n">{bySource.signup.length}</span>
         </button>
@@ -984,31 +996,31 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
         <button role="tab" aria-selected={source === 'contact'} className={source === 'contact' ? 'on' : ''} onClick={() => switchSource('contact')}>
           <i className="fas fa-envelope" /> Contact form <span className="n">{bySource.contact.length}</span>
         </button>
-      </div>
+      </div>}
 
       {!isOwner && (
         <p className="muted" style={{ fontSize: 13, margin: '0 0 10px' }}>
-          <i className="fas fa-user-tie" /> Your leads, transferred by the super admin. Update the status, add notes and set follow-ups — the super admin sees everything you do.
+          <i className="fas fa-user-tie" /> Buyers assigned to you. Call or WhatsApp them, move them through the pipeline (Contacted → Site visit → Negotiation → Booked), add notes and set the next follow-up — the super admin sees everything you do.
         </p>
       )}
       <div className="crm-stats">
-        {([['all', 'Total'], ['new', 'New'], ['contacted', 'Contacted'], ['won', 'Won'], ['lost', 'Lost']] as const).map(([k, lbl]) => (
-          <button key={k} className={`crm-stat${filter === k ? ' on' : ''} s-${k}`} onClick={() => setFilter(k as typeof filter)}>
-            <div className="v">{counts[k as keyof typeof counts]}</div><div className="l">{lbl}</div>
+        {([['all', isOwner ? 'Total' : 'My leads'], ['due', 'Follow-up due'], ...LEAD_STAGES.map((st) => [st.key, st.label])] as [typeof filter, string][]).map(([k, lbl]) => (
+          <button key={k} className={`crm-stat${filter === k ? ' on' : ''} s-${k}`} onClick={() => setFilter(k)}>
+            <div className="v">{counts[k]}</div><div className="l">{lbl}</div>
           </button>
         ))}
       </div>
 
       <div className="adm-panel">
         <div className="adm-panel-head">
-          <h3>{isMap ? 'Map enquiries' : isSignup ? 'Buyer accounts' : 'Contact leads'} {list.length ? `(${list.length})` : ''}</h3>
+          <h3>{!isOwner ? 'My buyer leads' : isMap ? 'Map enquiries' : isSignup ? 'Buyer accounts' : 'Contact leads'} {list.length ? `(${list.length})` : ''}</h3>
           <div className="crm-tools">
             <span className="crm-live" title={live ? 'Live — updates automatically' : 'Reconnecting…'} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 12, color: live ? '#2f7a3c' : '#9a6a00' }}>
               <i className="fas fa-circle" style={{ fontSize: 8, color: live ? '#2f7a3c' : '#c9861f' }} /> {live ? 'Live' : 'Offline'}
             </span>
             <input className="crm-search" placeholder={isMap ? 'Search name, email, phone, project…' : 'Search name, email, phone…'} value={q} onChange={(e) => setQ(e.target.value)} />
             {isMap && <LocationSelect items={bySource.map} value={loc} onChange={setLoc} />}
-            {isOwner && (
+            {isOwner && isSignup && (
               <select className="crm-select" aria-label="Filter by employee" value={assignee} onChange={(e) => setAssignee(e.target.value)}>
                 <option value="">Assigned to: anyone</option>
                 <option value={UNASSIGNED}>Not assigned ({all.filter((l) => !l.assigned_to).length})</option>
@@ -1061,7 +1073,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
           <div className="adm-empty">
             <i className={`fas ${isMap ? 'fa-map-location-dot' : isSignup ? 'fa-user-plus' : 'fa-address-book'}`} />
             <p>{all.length === 0
-              ? (!isOwner ? 'No leads of this kind have been transferred to you yet.'
+              ? (!isOwner ? 'No leads have been transferred to you yet. The super admin will assign buyers to you.'
                 : isMap ? 'No map enquiries yet. When someone taps Enquire on a project card on the live map, it appears here.'
                 : isSignup ? 'No buyer accounts yet. When a buyer creates an account, they appear here as a lead.'
                   : 'No leads yet. Submissions from the Contact form appear here.')
@@ -1076,7 +1088,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
               <option value="">Set status…</option>
               {LEAD_STAGES.map((st) => <option key={st.key} value={st.key}>{st.label}</option>)}
             </select>
-            {staff.length > 0 && (
+            {staff.length > 0 && isSignup && (
               <select className="crm-select" value="" disabled={busy} aria-label="Transfer selected leads to an employee"
                 onChange={(e) => { if (e.target.value) assignMany(pick.of(list.map((l) => l.id)), e.target.value); }}>
                 <option value="">Transfer to…</option>
@@ -1210,7 +1222,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
               ))}
             </div>
 
-            {isOwner && <div className="crm-block">
+            {isOwner && isSignup && <div className="crm-block">
               <h4>Transferred to</h4>
               {staff.length ? (
                 <select className="crm-select" value={sel.assigned_to || ''} disabled={busy} onChange={(e) => assign(sel, e.target.value)} aria-label="Transfer this lead to an employee">
