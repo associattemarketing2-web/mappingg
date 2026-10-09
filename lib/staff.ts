@@ -22,6 +22,8 @@ export interface StaffMember {
   name?: string;
   role: string;
   permissions: string[];
+  /** WhatsApp number ("+91 9876543210"), used to send them leads. */
+  mobile?: string;
   avatar?: string;
   created_at?: string;
   updated_at?: string;
@@ -35,6 +37,7 @@ function clean(doc: Record<string, unknown> | null): StaffMember | null {
     name: (doc.name as string) || '',
     role: String(doc.role || 'employee'),
     permissions: Array.isArray(doc.permissions) ? (doc.permissions as string[]) : [],
+    mobile: (doc.mobile as string) || '',
     avatar: (doc.avatar as string) || '',
     created_at: doc.created_at as string,
     updated_at: doc.updated_at as string,
@@ -77,7 +80,7 @@ function sanitizePerms(perms?: string[]): string[] {
 }
 
 export async function createEmployee(input: {
-  email: string; name?: string; password: string; permissions?: string[];
+  email: string; name?: string; password: string; permissions?: string[]; mobile?: string;
 }): Promise<{ ok: true; staff: StaffMember } | { ok: false; error: string }> {
   const db = await getDb();
   const users = db.collection<AnyDoc>('users');
@@ -91,6 +94,7 @@ export async function createEmployee(input: {
     password_hash: await bcrypt.hash(input.password, 12),
     role: 'employee',
     permissions: sanitizePerms(input.permissions),
+    mobile: input.mobile || '',
     created_at: now, updated_at: now,
   };
   await users.insertOne(doc);
@@ -98,7 +102,7 @@ export async function createEmployee(input: {
 }
 
 export async function updateEmployee(id: string, input: {
-  name?: string; password?: string; permissions?: string[];
+  name?: string; password?: string; permissions?: string[]; mobile?: string;
 }): Promise<StaffMember | null> {
   const db = await getDb();
   const users = db.collection<AnyDoc>('users');
@@ -107,6 +111,7 @@ export async function updateEmployee(id: string, input: {
   const patch: Record<string, unknown> = { updated_at: new Date().toISOString() };
   if (typeof input.name === 'string') patch.name = input.name.trim();
   if (Array.isArray(input.permissions)) patch.permissions = sanitizePerms(input.permissions);
+  if (typeof input.mobile === 'string') patch.mobile = input.mobile;
   if (input.password) patch.password_hash = await bcrypt.hash(input.password, 12);
   await users.updateOne({ id, role: 'employee' }, { $set: patch });
   return clean(await users.findOne({ id }));
