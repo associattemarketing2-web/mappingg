@@ -2,10 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import { ChartCard, Donut, HBars, StatTile, WeekColumns } from './SeoCharts';
+import GeoMap, { type GeoMapData } from './GeoMap';
+import RealtimeCard, { type Realtime } from './RealtimeCard';
 
 // "Website traffic" on the super-admin Dashboard: who is on the site right now,
 // visitors / page views / clicks over a chosen range, where visitors are
-// (country / state / city), what they searched, top pages, most-clicked links,
+// (a Google-Analytics-style realtime map of the last 30 minutes, plus country /
+// state / city on a map for the chosen range), what they searched, top pages, most-clicked links,
 // traffic sources and devices. Data: /api/admin/traffic (lib/site-analytics.ts).
 interface Report {
   days: number;
@@ -18,13 +21,17 @@ interface Report {
   topClicks: { label: string; href: string; clicks: number }[];
   sources: { source: string; visitors: number }[];
   devices: { device: string; visitors: number }[];
-  countries: { code: string; name: string; visitors: number }[];
-  regions: { name: string; country: string; visitors: number }[];
-  cities: { name: string; region: string; country: string; visitors: number }[];
+  countries: GeoCountry[];
+  regions: GeoRegion[];
+  cities: GeoCity[];
+  realtime: Realtime;
   searches: { term: string; count: number; visitors: number }[];
   totalSearches: number;
   since: string | null;
 }
+interface GeoCountry { code: string; name: string; visitors: number }
+interface GeoRegion { code: string; countryCode: string; name: string; country: string; visitors: number }
+interface GeoCity { name: string; region: string; country: string; countryCode: string; lat: number | null; lng: number | null; visitors: number }
 type GeoLevel = 'country' | 'region' | 'city';
 
 const RANGES: [number, string][] = [[1, 'Today'], [7, '7 days'], [30, '30 days'], [90, '90 days']];
@@ -40,9 +47,25 @@ function change(cur: number, prev: number, days: number) {
   return `${pct >= 0 ? '▲' : '▼'} ${Math.abs(pct)}% vs previous ${days === 1 ? 'day' : `${days} days`}`;
 }
 
+/** Every list present, even if the server (or a report from an older build) left one out. */
+function normalize(x: Partial<Report>): Report {
+  const list = <T,>(v: T[] | undefined) => (Array.isArray(v) ? v : []);
+  const rt = (x.realtime || {}) as Partial<Realtime>;
+  return {
+    ...(x as Report),
+    activeNow: x.activeNow || 0,
+    activePages: list(x.activePages), daily: list(x.daily), topPages: list(x.topPages), topClicks: list(x.topClicks),
+    sources: list(x.sources), devices: list(x.devices), countries: list(x.countries), regions: list(x.regions), cities: list(x.cities),
+    searches: list(x.searches), totalSearches: x.totalSearches || 0,
+    realtime: { visitors: rt.visitors || 0, perMinute: rt.perMinute?.length ? rt.perMinute : Array(30).fill(0), countries: list(rt.countries), regions: list(rt.regions), cities: list(rt.cities) },
+  };
+}
+
 export default function TrafficPanel() {
   const [days, setDays] = useState(7);
-  const [r, setR] = useState<Report | null>(null);
+  const [raw, setR] = useState<Report | null>(null);
+  // Normalised on every render, so data kept across a hot reload or from an older server can't crash it.
+  const r = raw ? normalize(raw) : null;
   const [err, setErr] = useState('');
   const [geo, setGeo] = useState<GeoLevel>('region');
 
@@ -92,12 +115,25 @@ export default function TrafficPanel() {
   const maxSrc = Math.max(...r.sources.map((s) => s.visitors), 1);
   const devTotal = r.devices.reduce((a, d) => a + d.visitors, 0);
   const clickName = (c: Report['topClicks'][number]) => c.label || c.href || '(no label)';
-  // Location rows for the chosen level. India's states are the default view.
+  // Location rows for the chosen level over the date range. India's states are the default view.
+  const g = r;
   const geoRows = geo === 'country'
-    ? r.countries.map((c) => ({ label: c.name, value: c.visitors, extra: c.code }))
+    ? g.countries.map((c) => ({ label: c.name, value: c.visitors, extra: c.code }))
     : geo === 'region'
-      ? r.regions.map((x) => ({ label: x.name, value: x.visitors, extra: x.country }))
-      : r.cities.map((x) => ({ label: x.name, value: x.visitors, extra: [x.region, x.country].filter(Boolean).join(', ') }));
+      ? g.regions.map((x) => ({ label: x.name, value: x.visitors, extra: x.country }))
+      : g.cities.map((x) => ({ label: x.name, value: x.visitors, extra: [x.region, x.country].filter(Boolean).join(', ') }));
+  // The state map shows one country: India if anyone came from there, else the busiest one.
+  const mapCountry = g.regions.some((x) => x.countryCode === 'IN') || !g.regions.length ? 'IN' : g.regions[0].countryCode;
+  const cityCountries = new Set(g.cities.map((x) => x.countryCode));
+  const mapData: GeoMapData = geo === 'country'
+    ? { level: 'country', rows: g.countries }
+    : geo === 'region'
+      ? { level: 'region', country: mapCountry, rows: g.regions.filter((x) => x.countryCode === mapCountry) }
+      : {
+        level: 'city', country: cityCountries.size === 1 ? [...cityCountries][0] : cityCountries.size ? null : 'IN',
+        rows: g.cities.flatMap((x) => (x.lat != null && x.lng != null ? [{ name: x.name, place: x.region, lat: x.lat, lng: x.lng, visitors: x.visitors }] : [])),
+      };
+  const levelName = geo === 'region' ? 'state' : geo;
   const maxGeo = Math.max(...geoRows.map((g) => g.value), 1);
   const maxSearch = Math.max(...r.searches.map((x) => x.count), 1);
   const GEO_TABS: [GeoLevel, string][] = [['country', 'Country'], ['region', 'State'], ['city', 'City']];
@@ -123,6 +159,8 @@ export default function TrafficPanel() {
         <StatTile label="Clicks" value={fmt(t.clicks)} note={change(t.clicks, t.prevClicks, r.days) || 'Links and buttons clicked'} />
       </div>
 
+      <RealtimeCard rt={r.realtime} activeNow={r.activeNow} />
+
       {r.days > 1 && (
         <ChartCard
           title="Visitors per day"
@@ -133,29 +171,38 @@ export default function TrafficPanel() {
         </ChartCard>
       )}
 
-      <div className="viz-grid2">
-        <ChartCard title="Where visitors are" subtitle={`Visitors ${rangeLabel}, by ${geo === 'region' ? 'state' : geo}`}
-          table={{ head: [geo === 'country' ? 'Country' : geo === 'region' ? 'State' : 'City', geo === 'country' ? 'Code' : geo === 'region' ? 'Country' : 'State, country', 'Visitors'], rows: geoRows.map((g) => [g.label, g.extra, g.value]) }}>
-          {(show, hide) => (
-            <>
-              <div className="viz-toggle trf-geo" role="tablist" aria-label="Location level">
+      <ChartCard title="Where visitors are" className="trf-geo-card"
+        subtitle={`Visitors ${rangeLabel}, by ${levelName}`}
+        table={{ head: [geo === 'country' ? 'Country' : geo === 'region' ? 'State' : 'City', geo === 'country' ? 'Code' : geo === 'region' ? 'Country' : 'State, country', 'Visitors'], rows: geoRows.map((x) => [x.label, x.extra, x.value]) }}>
+        {(show, hide) => (
+          <>
+            <div className="trf-geo-bar">
+              <div className="viz-toggle" role="tablist" aria-label="Location level">
                 {GEO_TABS.map(([k, l]) => <button key={k} type="button" role="tab" aria-selected={geo === k} className={geo === k ? 'on' : ''} onClick={() => setGeo(k)}>{l}</button>)}
               </div>
-              {geoRows.length ? (
-                <HBars rows={geoRows.map(({ label, value }) => ({ label, value }))} max={maxGeo} show={show} hide={hide} valueText={fmt}
-                  tipLines={(row) => { const g = geoRows.find((x) => x.label === row.label); return [`${fmt(row.value)} visitors`, g?.extra || '']; }} />
-              ) : <div className="adm-empty"><p>No location data yet. Location comes from the visitor&apos;s internet address, so visits on localhost (your own testing) have none — real visitors on the live site will show here.</p></div>}
-            </>
-          )}
-        </ChartCard>
-        <ChartCard title="What people searched" subtitle={`${fmt(r.totalSearches)} searches on the site ${rangeLabel} (home page and live map)`}
-          table={{ head: ['Search', 'Times', 'Visitors'], rows: r.searches.map((x) => [x.term, x.count, x.visitors]) }}>
-          {(show, hide) => r.searches.length ? (
-            <HBars rows={r.searches.map((x) => ({ label: x.term, value: x.count }))} max={maxSearch} show={show} hide={hide} valueText={fmt}
-              tipLines={(row) => { const x = r.searches.find((y) => y.term === row.label); return [`Searched ${fmt(row.value)} time${row.value === 1 ? '' : 's'}`, `by ${fmt(x?.visitors || 0)} visitor${x?.visitors === 1 ? '' : 's'}`]; }} />
-          ) : <div className="adm-empty"><p>No searches yet.</p></div>}
-        </ChartCard>
-      </div>
+            </div>
+            <div className="trf-geo-body">
+              <GeoMap data={mapData} />
+              <div className="trf-geo-list">
+                {geoRows.length ? (
+                  <HBars rows={geoRows.map(({ label, value }) => ({ label, value }))} max={maxGeo} show={show} hide={hide} valueText={fmt}
+                    tipLines={(row) => { const x = geoRows.find((y) => y.label === row.label); return [`${fmt(row.value)} visitors`, x?.extra || '']; }} />
+                ) : (
+                  <div className="adm-empty"><p>No location data yet. Location comes from the visitor&apos;s internet address, so visits on localhost (your own testing) have none — real visitors on the live site will show here.</p></div>
+                )}
+              </div>
+            </div>
+          </>
+        )}
+      </ChartCard>
+
+      <ChartCard title="What people searched" subtitle={`${fmt(r.totalSearches)} searches on the site ${rangeLabel} (home page and live map)`}
+        table={{ head: ['Search', 'Times', 'Visitors'], rows: r.searches.map((x) => [x.term, x.count, x.visitors]) }}>
+        {(show, hide) => r.searches.length ? (
+          <HBars rows={r.searches.map((x) => ({ label: x.term, value: x.count }))} max={maxSearch} show={show} hide={hide} valueText={fmt}
+            tipLines={(row) => { const x = r.searches.find((y) => y.term === row.label); return [`Searched ${fmt(row.value)} time${row.value === 1 ? '' : 's'}`, `by ${fmt(x?.visitors || 0)} visitor${x?.visitors === 1 ? '' : 's'}`]; }} />
+        ) : <div className="adm-empty"><p>No searches yet.</p></div>}
+      </ChartCard>
 
       <div className="viz-grid2">
         <ChartCard title="Most visited pages" subtitle={`Page views ${rangeLabel}`}

@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { getDb } from './mongodb';
 import { runDbOp } from './db-engine';
+import { developerLogo } from './developers';
 import { resolveMapsLink } from './maps-link';
 
 // Projects published from "Projects Intake" (the bulk-upload / builder-link
@@ -100,6 +101,9 @@ export async function syncProjectPin(project: Doc, googleMapsLink?: string): Pro
   }
 
   const fields = pinFieldsFrom(project, lat as number, lng as number);
+  // The developer's logo (Super admin → Developers) is the pin picture; the cover photo only if there is none.
+  const logo = await developerLogo(fields.developer);
+  if (logo) fields.image = logo;
   if (existing) {
     const res = await runDbOp({ table: 'pins', action: 'update', filters: [{ op: 'eq', col: 'id', val: existing.id }], values: fields }, true);
     if (res.error) throw new Error(res.error.message);

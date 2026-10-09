@@ -12,9 +12,11 @@ export interface DevProject {
   state: 'pending' | 'approved' | 'rejected'; edited: boolean; admin_edited_at?: string; admin_edited_by?: string;
   owner: { id: string; name: string; email: string; mobile: string; company: string };
   created_at: string; updated_at: string; reviewed_at: string; reviewed_by: string; review_note: string;
+  /** Set when the developer asked to delete it (they can't delete themselves). */
+  delete_requested_at?: string;
 }
 
-type Filter = 'pending' | 'approved' | 'rejected' | 'all';
+type Filter = 'pending' | 'delete' | 'approved' | 'rejected' | 'all';
 
 // Full details of one project, for checking before approval (GET /api/admin/submissions?id=).
 interface ProjectDetail {
@@ -153,7 +155,9 @@ export default function DevProjectsPanel({ flash, isOwner, onPendingChange, focu
   useEffect(() => { load(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const pending = (items || []).filter((p) => p.state === 'pending').length;
-  useEffect(() => { if (items) onPendingChange?.(pending); }, [pending, items]); // eslint-disable-line react-hooks/exhaustive-deps
+  const deleteReqs = (items || []).filter((p) => p.delete_requested_at).length;
+  // The tab badge counts everything waiting for the super admin.
+  useEffect(() => { if (items) onPendingChange?.(pending + deleteReqs); }, [pending, deleteReqs, items]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Jump to a project / developer when opened from a notification or an account.
   useEffect(() => {
@@ -161,7 +165,7 @@ export default function DevProjectsPanel({ flash, isOwner, onPendingChange, focu
     if (focus.ownerId) { setDev(focus.ownerId); setFilter('all'); setQ(''); }
     if (focus.projectId) {
       const p = items.find((x) => x.id === focus.projectId);
-      if (p) { setFilter(p.state); setDev(''); setQ(''); setHighlight(p.id); }
+      if (p) { setFilter(p.delete_requested_at ? 'delete' : p.state); setDev(''); setQ(''); setHighlight(p.id); }
       else flash('That project no longer exists', true);
     }
     onFocusDone?.();
@@ -188,13 +192,38 @@ export default function DevProjectsPanel({ flash, isOwner, onPendingChange, focu
     && (!term || [p.title, p.location, p.developer, p.owner.name, p.owner.email, p.owner.company].some((x) => x.toLowerCase().includes(term))));
   const counts = {
     pending: scoped.filter((p) => p.state === 'pending').length,
+    delete: scoped.filter((p) => p.delete_requested_at).length,
     approved: scoped.filter((p) => p.state === 'approved').length,
     rejected: scoped.filter((p) => p.state === 'rejected').length,
     all: scoped.length,
   };
   // Oldest first while waiting (first come, first served); newest first otherwise.
-  const list = scoped.filter((p) => filter === 'all' || p.state === filter)
-    .sort((a, b) => (filter === 'pending' ? a.updated_at.localeCompare(b.updated_at) : b.updated_at.localeCompare(a.updated_at)));
+  const list = scoped.filter((p) => filter === 'all' || (filter === 'delete' ? !!p.delete_requested_at : p.state === filter))
+    .sort((a, b) => (filter === 'delete' ? String(a.delete_requested_at).localeCompare(String(b.delete_requested_at))
+      : filter === 'pending' ? a.updated_at.localeCompare(b.updated_at) : b.updated_at.localeCompare(a.updated_at)));
+
+  // A developer's delete request: delete it (recycle bin first) or keep it on the map.
+  async function decideDelete(p: DevProject, action: 'approve_delete' | 'keep') {
+    let why = '';
+    if (action === 'approve_delete') {
+      if (!confirm(`Delete “${p.title}” as ${ownerName(p)} asked?\n\nIt is removed from the map and their dashboard. You can restore it from Backups → Recycle bin.`)) return;
+    } else {
+      const answer = prompt(`Keep “${p.title}” on the map?\n\nOptional: tell ${ownerName(p)} why (they will see it).`, '');
+      if (answer === null) return;
+      why = answer.trim();
+    }
+    setBusy(p.id);
+    try {
+      const r = await fetch('/api/admin/submissions', {
+        method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: p.id, action, reason: why || undefined }),
+      });
+      const b = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(b?.error?.message || 'Failed');
+      flash(action === 'approve_delete' ? `“${p.title}” deleted — moved to the recycle bin` : `“${p.title}” kept — ${ownerName(p)} will be told`);
+      await load();
+    } catch (e) { flash(e instanceof Error ? e.message : 'Failed', true); } finally { setBusy(''); }
+  }
 
   async function decide(p: DevProject, action: 'approve' | 'reject') {
     if (action === 'reject' && !reason.trim()) { flash('Please write a reason — the developer will see it.', true); return; }
@@ -247,7 +276,7 @@ export default function DevProjectsPanel({ flash, isOwner, onPendingChange, focu
     else flash(`${b?.data?.deleted ?? ids.length} project${ids.length === 1 ? '' : 's'} moved to the recycle bin`);
   }
 
-  const TABS: [Filter, string][] = [['pending', 'Waiting approval'], ['approved', 'Live on map'], ['rejected', 'Not approved'], ['all', 'All']];
+  const TABS: [Filter, string][] = [['pending', 'Waiting approval'], ['delete', 'Delete requests'], ['approved', 'Live on map'], ['rejected', 'Not approved'], ['all', 'All']];
 
   return (
     <div className="acs">
@@ -270,10 +299,21 @@ export default function DevProjectsPanel({ flash, isOwner, onPendingChange, focu
         </div>
       )}
 
+      {deleteReqs > 0 && filter !== 'delete' && (
+        <div className="acs-alert dp-delalert">
+          <span className="acs-alert-ic"><i className="fas fa-trash-can" /></span>
+          <div>
+            <b>{deleteReqs} delete {deleteReqs === 1 ? 'request' : 'requests'} from developers</b>
+            <span>Developers can&apos;t delete projects themselves — nothing is removed until you approve.</span>
+          </div>
+          <button type="button" className="adm-btn primary sm" onClick={() => { setFilter('delete'); setDev(''); setQ(''); }}>Review requests</button>
+        </div>
+      )}
+
       <section className="adm-panel acs-panel">
         <div className="acs-tabs" role="tablist" aria-label="Approval status">
           {TABS.map(([k, lbl]) => (
-            <button key={k} type="button" role="tab" aria-selected={filter === k} className={`${filter === k ? 'on' : ''}${k === 'pending' && counts.pending ? ' warn' : ''}`} onClick={() => setFilter(k)}>
+            <button key={k} type="button" role="tab" aria-selected={filter === k} className={`${filter === k ? 'on' : ''}${(k === 'pending' && counts.pending) || (k === 'delete' && counts.delete) ? ' warn' : ''}`} onClick={() => setFilter(k)}>
               {lbl} <span>{counts[k]}</span>
             </button>
           ))}
@@ -300,7 +340,8 @@ export default function DevProjectsPanel({ flash, isOwner, onPendingChange, focu
         ) : list.length === 0 ? (
           <div className="adm-empty">
             <i className={`fas ${filter === 'pending' ? 'fa-circle-check' : 'fa-filter'}`} />
-            <p>{filter === 'pending' && !term && !dev ? 'All caught up — nothing is waiting for approval.' : 'No projects match.'}</p>
+            <p>{filter === 'pending' && !term && !dev ? 'All caught up — nothing is waiting for approval.'
+              : filter === 'delete' && !term && !dev ? 'No delete requests — developers can’t delete projects without your approval.' : 'No projects match.'}</p>
             {(term || dev) && <button className="adm-btn ghost sm" onClick={() => { setQ(''); setDev(''); }}>Show all developers</button>}
           </div>
         ) : (
@@ -342,6 +383,17 @@ export default function DevProjectsPanel({ flash, isOwner, onPendingChange, focu
                     {p.edited && <span title={fullDate(p.updated_at)}> · edited {ago(p.updated_at)}</span>}
                   </p>
 
+                  {p.delete_requested_at && (
+                    <div className="dp-delreq">
+                      <p><i className="fas fa-trash-can" /> <b>{ownerName(p)}</b> asked to delete this project <span title={fullDate(p.delete_requested_at)}>{ago(p.delete_requested_at)}</span>. It stays {p.state === 'approved' ? 'on the map' : 'as it is'} until you decide.</p>
+                      {isOwner ? (
+                        <div className="dp-delreq-actions">
+                          <button className="adm-btn danger sm" disabled={busy === p.id} onClick={() => decideDelete(p, 'approve_delete')}><i className="fas fa-trash" /> Approve delete</button>
+                          <button className="adm-btn ghost sm" disabled={busy === p.id} onClick={() => decideDelete(p, 'keep')}><i className="fas fa-rotate-left" /> Keep project</button>
+                        </div>
+                      ) : <span className="crm-meta"><i className="fas fa-lock" /> Only the super admin can approve a delete.</span>}
+                    </div>
+                  )}
                   {p.state === 'pending' && !p.hasLocation && (
                     <p className="dp-warn"><i className="fas fa-triangle-exclamation" /> No map location yet — after approving, place the pin in the Map Editor so it shows on the map.</p>
                   )}

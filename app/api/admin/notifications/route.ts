@@ -23,7 +23,7 @@ export async function GET() {
   const db = await getDb();
   const [mine, pins, people, logged] = await Promise.all([
     me ? db.collection('users').findOne({ id: me.id }, { projection: { notif_seen_at: 1 } }) : null,
-    db.collection<Doc>('pins').find({ owner_user_id: { $exists: true } }, { projection: { id: 1, title: 1, location: 1, owner_user_id: 1, created_at: 1, updated_at: 1, pending_review: 1, rejected: 1 } }).toArray(),
+    db.collection<Doc>('pins').find({ owner_user_id: { $exists: true } }, { projection: { id: 1, title: 1, location: 1, owner_user_id: 1, created_at: 1, updated_at: 1, pending_review: 1, rejected: 1, delete_requested_at: 1 } }).toArray(),
     db.collection<Doc>('users').find({ role: { $in: ['developer', 'agent'] } }, { projection: { id: 1, name: 1, email: 1, role: 1, created_at: 1 } }).toArray(),
     listActivity({ limit: 300 }),
   ]);
@@ -42,6 +42,13 @@ export async function GET() {
       user_id: uid, name: nameOf(uid), role: 'developer', project_id: String(p.id),
       detail: `${edited ? 'Edited' : 'Added'} ${title} — ${state}`, at: String(edited ? p.updated_at : p.created_at || ''),
     });
+    if (p.delete_requested_at) {
+      items.push({
+        id: `pin-${p.id}-delreq-${p.delete_requested_at}`, type: 'project_delete_requested',
+        user_id: uid, name: nameOf(uid), role: 'developer', project_id: String(p.id),
+        detail: `Asked to delete ${title} — waiting for your approval`, at: String(p.delete_requested_at),
+      });
+    }
   }
   for (const u of people) {
     if (!u.created_at) continue;
@@ -55,7 +62,8 @@ export async function GET() {
 
   const list = items.filter((i) => i.at).sort((a, b) => b.at.localeCompare(a.at)).slice(0, 30)
     .map((i) => ({ ...i, unread: !!seen && i.at > seen || (!seen && Date.now() - new Date(i.at).getTime() < 7 * 86400000) }));
-  const pendingProjects = pins.filter((p) => p.pending_review).length;
+  // Waiting for the super admin: new/edited projects and delete requests.
+  const pendingProjects = pins.filter((p) => p.pending_review || p.delete_requested_at).length;
   return NextResponse.json(
     { data: { pendingProjects, unread: list.filter((i) => i.unread).length, items: list } },
     { headers: { 'Cache-Control': 'private, no-store' } },

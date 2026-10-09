@@ -24,6 +24,10 @@ interface MyProject {
   created_at: string;
   /** Why the super admin didn't approve it (shown to the developer). */
   review_note?: string;
+  /** Asked the super admin to delete it — waiting for their decision. */
+  delete_requested?: boolean;
+  /** Why the super admin kept it, after declining a delete request. */
+  delete_note?: string;
 }
 
 const STATUSES = [
@@ -268,14 +272,16 @@ export default function DeveloperProjects() {
     finally { setBusy(false); }
   }
 
+  // Developers can't delete projects themselves — this asks the Mappingg team,
+  // who approve or decline it. The project stays as it is until then.
   async function remove(p: MyProject) {
-    if (!confirm(`Delete "${p.title}"? This can't be undone.`)) return;
+    if (!confirm(`Ask the Mappingg team to delete "${p.title}"?\n\nIt stays as it is${p.review === 'live' ? ' (and on the map)' : ''} until they approve.`)) return;
     try {
       const r = await fetch(`/api/my/projects?id=${encodeURIComponent(p.id)}`, { method: 'DELETE', credentials: 'same-origin' });
       if (!r.ok) throw new Error();
-      setMsg({ ok: true, text: 'Project deleted.' });
+      setMsg({ ok: true, text: `Delete request sent for "${p.title}". The Mappingg team will review it — you'll see their answer in your notifications.` });
       load();
-    } catch { setMsg({ ok: false, text: 'Could not delete the project.' }); }
+    } catch { setMsg({ ok: false, text: 'Could not send the delete request. Please try again.' }); }
   }
 
   const set = (k: keyof typeof EMPTY) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
@@ -506,6 +512,12 @@ export default function DeveloperProjects() {
                       {p.review === 'rejected' && p.review_note && (
                         <small style={{ display: 'block', marginTop: 4, color: '#b42318', fontSize: 12, maxWidth: 260 }}>Reason: {p.review_note} — edit the project to send it again.</small>
                       )}
+                      {p.delete_requested && (
+                        <span className="adm-badge" style={{ display: 'inline-block', marginTop: 4, background: '#fdecec', color: '#b42318' }}><i className="fas fa-hourglass-half" /> Delete requested</span>
+                      )}
+                      {!p.delete_requested && p.delete_note && (
+                        <small style={{ display: 'block', marginTop: 4, color: '#6b746e', fontSize: 12, maxWidth: 260 }}>Delete request declined: {p.delete_note}</small>
+                      )}
                     </td>
                     <td className="muted">{fmtWhen(p.created_at)}</td>
                     <td><div className="adm-actions">
@@ -513,7 +525,9 @@ export default function DeveloperProjects() {
                         <a className="adm-btn ghost sm" href={`/map?pin=${encodeURIComponent(p.id)}`} target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /></a>
                       )}
                       <button className="adm-btn ghost sm" onClick={() => startEdit(p)}><i className="fas fa-pen" /> Edit</button>
-                      <button className="adm-btn danger sm" onClick={() => remove(p)}><i className="fas fa-trash" /></button>
+                      {p.delete_requested
+                        ? <button className="adm-btn ghost sm" disabled title="Waiting for the Mappingg team to approve the delete"><i className="fas fa-hourglass-half" /> Requested</button>
+                        : <button className="adm-btn danger sm" onClick={() => remove(p)} title="Ask the Mappingg team to delete this project" aria-label={`Request delete of ${p.title}`}><i className="fas fa-trash" /> Request delete</button>}
                     </div></td>
                   </tr>
                 );

@@ -322,8 +322,15 @@ export async function runDbOp(op: DbOp, isAuthed: boolean, opts: RunDbOpts = {})
 
       case 'delete': {
         const query = buildQuery(op.filters);
-        // A developer can only ever delete their own pins.
-        if (devPins) query.owner_user_id = opts.developerId;
+        if (devPins) {
+          // Developers can't delete projects themselves: it becomes a request the
+          // super admin approves (Developer projects tab). The project stays exactly
+          // as it is — still live if it was — until then. Only their own pins.
+          query.owner_user_id = opts.developerId;
+          await coll.updateMany(query, { $set: { delete_requested_at: new Date().toISOString(), delete_review_note: '' } });
+          invalidateTable(op.table);
+          return { data: { delete_requested: true }, error: null, status: 200 };
+        }
         if (op.table === 'pins') {
           const affected = await coll.find(query).toArray();
           for (const doc of affected) await captureHistory(db, doc as Record<string, unknown>, 'delete');

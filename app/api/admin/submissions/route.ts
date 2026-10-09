@@ -13,13 +13,16 @@ export const dynamic = 'force-dynamic';
 
 // Projects added by developers from their dashboard (pins with an
 // owner_user_id). New and edited ones wait as `pending_review` (hidden from the
-// public map) until the super admin approves them. Staff with the "intake"
-// permission can view the list; only the super admin (owner) can decide.
+// public map) until the super admin approves them. Developers can't delete a
+// project either: deleting only sets `delete_requested_at`, and the super admin
+// approves the delete or keeps the project. Staff with the "intake" permission
+// can view the list; only the super admin (owner) can decide.
 type PinDoc = { _id?: string; [k: string]: unknown };
 
 const actionSchema = z.object({
   id: z.string().min(1),
-  action: z.enum(['approve', 'reject']),
+  // approve / reject: a new or edited project. approve_delete / keep: a delete request.
+  action: z.enum(['approve', 'reject', 'approve_delete', 'keep']),
   reason: z.string().trim().max(1000).optional(),
 });
 
@@ -105,6 +108,7 @@ export async function GET(req: NextRequest) {
           id: 1, number: 1, title: 1, location: 1, status: 1, type: 1, price: 1, configuration: 1, sqft: 1,
           possession_timeline: 1, developer: 1, description: 1, lat: 1, lng: 1, image: 1, owner_user_id: 1,
           pending_review: 1, rejected: 1, hidden: 1, created_at: 1, updated_at: 1, submitted_at: 1, reviewed_at: 1, reviewed_by: 1, review_note: 1, admin_edited_at: 1, admin_edited_by: 1,
+          delete_requested_at: 1,
         },
       },
     )
@@ -136,6 +140,7 @@ export async function GET(req: NextRequest) {
         : { id: String(p.owner_user_id || ''), name: '', email: '', mobile: '', company: '' },
       created_at: String(p.created_at || ''), updated_at: String(p.updated_at || ''),
       reviewed_at: String(p.reviewed_at || ''), reviewed_by: String(p.reviewed_by || ''), review_note: String(p.review_note || ''),
+      delete_requested_at: String(p.delete_requested_at || ''),
     };
   });
   return NextResponse.json({ data }, { headers: { 'Cache-Control': 'private, no-store' } });
@@ -154,8 +159,10 @@ export async function POST(req: NextRequest) {
   }
 
   const db = await getDb();
-  const pin = await db.collection<PinDoc>('pins').findOne({ id, owner_user_id: { $exists: true } }, { projection: { id: 1, title: 1, owner_user_id: 1 } });
+  const pin = await db.collection<PinDoc>('pins').findOne({ id, owner_user_id: { $exists: true } }, { projection: { id: 1, title: 1, owner_user_id: 1, delete_requested_at: 1, location: 1 } });
   if (!pin) return NextResponse.json({ error: { message: 'Project not found' } }, { status: 404 });
+
+  if (action === 'approve_delete' || action === 'keep') return decideDelete(pin, action, reason || '', me.email);
 
   const now = new Date().toISOString();
   const review = { reviewed_at: now, reviewed_by: me.email };
@@ -174,6 +181,40 @@ export async function POST(req: NextRequest) {
       detail: action === 'approve'
         ? `“${String(pin.title || 'Project')}” approved — now live on the map`
         : `“${String(pin.title || 'Project')}” not approved: ${reason}`,
+    });
+  }
+  return NextResponse.json({ data: { id, action } }, { headers: { 'Cache-Control': 'private, no-store' } });
+}
+
+/** The super admin's answer to a developer's delete request. */
+async function decideDelete(pin: PinDoc, action: 'approve_delete' | 'keep', reason: string, by: string) {
+  if (!pin.delete_requested_at) return NextResponse.json({ error: { message: 'The developer has not asked to delete this project.' } }, { status: 400 });
+  const db = await getDb();
+  const id = String(pin.id), title = String(pin.title || 'Project');
+  const owner = await db.collection('users').findOne({ id: String(pin.owner_user_id) }, { projection: { id: 1, email: 1, name: 1, role: 1 } });
+  if (action === 'approve_delete') {
+    // Same as the super admin deleting it: recycle bin first, then the pin (with history).
+    const full = await db.collection<PinDoc>('pins').findOne({ id });
+    if (full) {
+      await moveToTrash({
+        kind: 'dev_project', label: title,
+        sub: [`Deleted on the developer's request`, owner?.name || owner?.email, pin.location].filter(Boolean).map(String).join(' · '),
+        docs: [{ collection: 'pins', doc: full }], deletedBy: by,
+      });
+    }
+    const res = await runDbOp({ table: 'pins', action: 'delete', filters: [{ op: 'eq', col: 'id', val: id }] }, true);
+    if (res.error) return NextResponse.json({ error: res.error }, { status: res.status });
+  } else {
+    const res = await runDbOp({ table: 'pins', action: 'update', filters: [{ op: 'eq', col: 'id', val: id }], values: { delete_requested_at: '', delete_review_note: reason || 'The Mappingg team kept this project on the map.', delete_reviewed_at: new Date().toISOString() } }, true);
+    if (res.error) return NextResponse.json({ error: res.error }, { status: res.status });
+  }
+  if (owner) {
+    await logActivity({
+      user_id: String(owner.id), email: String(owner.email), name: owner.name ? String(owner.name) : undefined, role: String(owner.role || 'developer'),
+      type: action === 'approve_delete' ? 'project_delete_approved' : 'project_delete_rejected', actor: by,
+      detail: action === 'approve_delete'
+        ? `“${title}” was deleted, as you asked`
+        : `Your request to delete “${title}” was declined${reason ? `: ${reason}` : ''}`,
     });
   }
   return NextResponse.json({ data: { id, action } }, { headers: { 'Cache-Control': 'private, no-store' } });
