@@ -43,8 +43,9 @@ export async function PUT(req: NextRequest) {
   const parsed = schema.safeParse(await req.json().catch(() => null));
   if (!parsed.success) return NextResponse.json({ error: { message: 'Please enter your name.' } }, { status: 400 });
   const { name, profile } = parsed.data;
-  const mobile = normalizePhone(parsed.data.mobile);
-  if (mobile === null) return NextResponse.json({ error: { message: PHONE_ERROR } }, { status: 400 });
+  // Every account must keep a mobile number (it can be changed, not removed).
+  const mobile = normalizePhone(parsed.data.mobile, { required: true });
+  if (!mobile) return NextResponse.json({ error: { message: PHONE_ERROR } }, { status: 400 });
 
   const db = await getDb();
   const now = new Date().toISOString();

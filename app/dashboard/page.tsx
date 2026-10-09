@@ -13,9 +13,9 @@ export default async function DashboardPage() {
   const session = await getCurrentUser();
   if (!session) redirect('/?signin=1');
   let home = homePathFor(session.role);
-  if (session.role === 'developer' || session.role === 'agent') {
+  if (session.role === 'buyer' || session.role === 'developer' || session.role === 'agent') {
     const db = await getDb();
-    const doc = await db.collection('users').findOne({ id: session.id }, { projection: { role: 1, access: 1, verification: 1, verified: 1 } });
+    const doc = await db.collection('users').findOne({ id: session.id }, { projection: { role: 1, mobile: 1, access: 1, verification: 1, verified: 1 } });
     home = homeForAccount(doc, home);
   }
   redirect(home);

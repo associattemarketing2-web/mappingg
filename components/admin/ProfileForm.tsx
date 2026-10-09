@@ -1,6 +1,7 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import PhoneInput from '@/components/PhoneInput';
 
 const PERM_LABELS: Record<string, string> = {
   map: 'Map Editor',
@@ -40,6 +41,15 @@ export default function ProfileForm({
   const [avatar, setAvatar] = useState(initialAvatar);
   const [savingProfile, setSavingProfile] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
+  // Mobile / WhatsApp number — null until loaded, so a save never wipes it.
+  const [mobile, setMobile] = useState<string | null>(null);
+  const mobileRequired = !(role === 'admin' || role === 'employee');
+  useEffect(() => {
+    fetch('/api/admin/profile', { credentials: 'same-origin' })
+      .then((r) => r.json())
+      .then((b) => setMobile(String(b?.data?.mobile || '')))
+      .catch(() => setMobile(''));
+  }, []);
 
   const [current, setCurrent] = useState('');
   const [next, setNext] = useState('');
@@ -72,7 +82,7 @@ export default function ProfileForm({
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'same-origin',
-        body: JSON.stringify({ name: name.trim(), avatar }),
+        body: JSON.stringify({ name: name.trim(), avatar, ...(mobile !== null ? { mobile } : {}) }),
       });
       const body = await res.json();
       if (!res.ok) throw new Error(body?.error?.message || 'Failed');
@@ -125,6 +135,10 @@ export default function ProfileForm({
             <div className="adm-field">
               <label>Display name</label>
               <input value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Rahul Sharma" />
+            </div>
+            <div className="adm-field">
+              <label>Mobile / WhatsApp number{mobileRequired ? '' : ' (optional)'}</label>
+              <PhoneInput value={mobile ?? ''} onChange={setMobile} required={mobileRequired} disabled={mobile === null} />
             </div>
             <div className="adm-avatar-actions">
               <input ref={fileRef} type="file" accept="image/*" onChange={pickPhoto} hidden />

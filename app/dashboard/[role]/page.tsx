@@ -7,7 +7,7 @@ import AgentProfile, { type AgentAccount } from '@/components/dashboard/AgentPro
 import DeveloperApp from '@/components/dashboard/DeveloperApp';
 import BuyerProfile from '@/components/dashboard/BuyerProfile';
 import ReviewScreen from '@/components/dashboard/ReviewScreen';
-import { accessOf, verificationOf } from '@/lib/verification';
+import { ADD_MOBILE_PATH, accessOf, needsMobile, verificationOf } from '@/lib/verification';
 
 export const dynamic = 'force-dynamic';
 
@@ -32,6 +32,9 @@ export default async function DashboardRolePage({ params }: { params: { role: st
   // Canonical URL is /dashboard/<actual role>. Anything else (wrong role in the
   // URL, or /dashboard/s-admin for a non-staff account) goes to the right one.
   if (params.role !== role) redirect(homePathFor(doc.role as string));
+
+  // No mobile number yet (e.g. signed up with Google) → ask for it first.
+  if (needsMobile(doc)) redirect(ADD_MOBILE_PATH);
 
   // Buyers: no dashboard, just their profile (the live map is their home).
   if (role === 'buyer') return <BuyerProfile />;

@@ -54,6 +54,13 @@ export default function MapAuthGate() {
           setGate(isHomeTrialEmbed() ? 'open' : 'guest');
           return;
         }
+        // Every account needs a mobile number (Google sign-in doesn't give one):
+        // ask for it before the map opens.
+        if (user.needsMobile) {
+          try { localStorage.removeItem(HINT_KEY); } catch {}
+          try { (window.top || window).location.href = '/dashboard/add-mobile'; } catch { window.location.href = '/dashboard/add-mobile'; }
+          return;
+        }
         // Developers and channel partners must be approved by the super-admin
         // before they can open the live map. Buyers and staff are never gated.
         const needsApproval = user.role === 'developer' || user.role === 'agent';

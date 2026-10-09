@@ -1,3 +1,5 @@
+import { normalizePhone } from './phone';
+
 // Developer / builder and agent / channel-partner accounts must be checked by
 // the super admin (RERA number etc.) before they get their dashboard. Buyers
 // never need verification.
@@ -43,10 +45,22 @@ export async function canEditProjects(userId: string): Promise<boolean> {
   return !!doc && verificationOf(doc) === 'approved' && accessOf(doc) === 'editor';
 }
 
+// Every public account (buyer / developer / agent) must have a mobile number.
+// Password sign-up asks for it; Google sign-in can't provide one, so those
+// accounts (and any older account without one) are sent to this page first.
+export const ADD_MOBILE_PATH = '/dashboard/add-mobile';
+
+export function needsMobile(doc: Record<string, unknown> | null | undefined): boolean {
+  if (!doc || !['buyer', 'developer', 'agent'].includes(String(doc.role || 'buyer'))) return false;
+  return !normalizePhone(doc.mobile, { required: true });
+}
+
 /** Where this account lands after signing in. Same as homePathFor(role), except
  *  that approved agents / channel partners and approved view-only developers go
- *  straight to the public live map (agents' profile is at /dashboard/agent). */
+ *  straight to the public live map (agents' profile is at /dashboard/agent), and
+ *  an account without a mobile number is asked for one first. */
 export function homeForAccount(doc: Record<string, unknown> | null | undefined, fallback: string): string {
+  if (needsMobile(doc)) return ADD_MOBILE_PATH;
   if (doc?.role === 'agent' && verificationOf(doc) === 'approved') return '/map';
   if (doc?.role === 'developer' && verificationOf(doc) === 'approved' && accessOf(doc) === 'viewer') return '/map';
   return fallback;

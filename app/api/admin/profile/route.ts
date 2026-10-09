@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getDb } from '@/lib/mongodb';
-import { getCurrentUser } from '@/lib/auth';
+import { PUBLIC_ROLES, getCurrentUser } from '@/lib/auth';
+import { PHONE_ERROR, normalizePhone } from '@/lib/phone';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -16,6 +17,7 @@ const MAX_AVATAR = 1_500_000;
 const schema = z.object({
   name: z.string().max(80).optional(),
   avatar: z.string().max(MAX_AVATAR).optional(),
+  mobile: z.string().trim().max(24).optional(),
 });
 
 export async function GET() {
@@ -33,6 +35,7 @@ export async function GET() {
       role: String(user.role || 'employee'),
       permissions: Array.isArray(user.permissions) ? user.permissions : [],
       avatar: (user.avatar as string) || '',
+      mobile: String(user.mobile || ''),
     },
   });
 }
@@ -47,6 +50,13 @@ export async function PUT(req: NextRequest) {
   }
   const { name, avatar } = parsed.data;
 
+  // Mobile: required for public accounts (buyer / developer / agent), optional for staff.
+  let mobile: string | null | undefined;
+  if (typeof parsed.data.mobile === 'string') {
+    mobile = normalizePhone(parsed.data.mobile, { required: (PUBLIC_ROLES as readonly string[]).includes(session.role) });
+    if (mobile === null) return NextResponse.json({ error: { message: PHONE_ERROR } }, { status: 400 });
+  }
+
   // An avatar, if provided, must be an inline image data URL (or blank to clear it).
   if (avatar && avatar !== '' && !/^data:image\/(png|jpe?g|webp|gif);base64,/.test(avatar)) {
     return NextResponse.json({ error: { message: 'Please choose a JPG, PNG, WebP or GIF image.' } }, { status: 400 });
@@ -55,6 +65,7 @@ export async function PUT(req: NextRequest) {
   const patch: Record<string, unknown> = { updated_at: new Date().toISOString() };
   if (typeof name === 'string') patch.name = name.trim();
   if (typeof avatar === 'string') patch.avatar = avatar;
+  if (typeof mobile === 'string') patch.mobile = mobile;
 
   const db = await getDb();
   await db.collection('users').updateOne({ email: session.email.toLowerCase() }, { $set: patch });
@@ -67,6 +78,7 @@ export async function PUT(req: NextRequest) {
       role: String(user?.role || 'employee'),
       permissions: Array.isArray(user?.permissions) ? user!.permissions : [],
       avatar: (user?.avatar as string) || '',
+      mobile: String(user?.mobile || ''),
     },
   });
 }

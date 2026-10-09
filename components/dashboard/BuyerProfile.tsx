@@ -45,6 +45,7 @@ export default function BuyerProfile() {
       });
       const b = await r.json().catch(() => ({}));
       if (!r.ok) throw new Error(b?.error?.message || 'Could not save');
+      setMe((m) => (m ? { ...m, name: form.name, mobile: form.mobile } : m));
       setMsg({ text: 'Saved — thanks! We use this to suggest the right projects.' });
     } catch (err) { setMsg({ text: err instanceof Error ? err.message : 'Could not save', err: true }); } finally { setBusy(false); }
   }
@@ -71,7 +72,7 @@ export default function BuyerProfile() {
           <span className="bp-av" aria-hidden="true">{initials || '?'}</span>
           <div>
             <h1>{me ? `Hi ${(form.name || 'there').split(' ')[0]}` : 'My profile'}</h1>
-            <p>{me?.email}{me?.created_at ? ` · Buyer since ${new Date(me.created_at).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })}` : ''}</p>
+            <p>{me?.email}{me?.mobile ? <> · <i className="fas fa-phone" aria-hidden="true" /> {me.mobile}</> : ''}{me?.created_at ? ` · Buyer since ${new Date(me.created_at).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })}` : ''}</p>
           </div>
         </section>
 
@@ -91,8 +92,8 @@ export default function BuyerProfile() {
                 <label className="bp-field"><span>Full name</span>
                   <input value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} required maxLength={120} />
                 </label>
-                <div className="bp-field"><span>WhatsApp number</span>
-                  <PhoneInput value={form.mobile} onChange={(v) => setForm((f) => ({ ...f, mobile: v }))} />
+                <div className="bp-field"><span>Mobile / WhatsApp number</span>
+                  <PhoneInput value={form.mobile} onChange={(v) => setForm((f) => ({ ...f, mobile: v }))} required />
                 </div>
                 <label className="bp-field wide"><span>Email <small>(used to sign in)</small></span>
                   <input value={me.email} disabled />
