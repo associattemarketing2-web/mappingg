@@ -750,7 +750,7 @@ const fullDate = (d?: string | null) => (d ? new Date(d).toLocaleString('en-IN',
 const accountRole = (r?: string) => ROLE_META[(PEOPLE_ROLES as readonly string[]).includes(String(r)) ? (r as PersonRole) : 'buyer'];
 const PIN_STATUS: Record<string, string> = { available: 'Ready to move', under_construction: 'Under construction', upcoming: 'Upcoming', sold: 'Sold out' };
 
-function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
+function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => void; isOwner: boolean }) {
   const [bySource, setBySource] = useState<Record<LeadSource, Lead[]>>({ map: [], signup: [], contact: [] });
   // Opens on buyer accounts: every buyer who signed up is a lead there.
   const [source, setSource] = useState<LeadSource>('signup');
@@ -768,6 +768,7 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
   const [staff, setStaff] = useState<{ id: string; name: string; email: string }[]>([]);
   const [assignee, setAssignee] = useState('');
   useEffect(() => {
+    if (!isOwner) return; // only the super admin transfers leads
     fetch('/api/admin/leads?staff=1', { credentials: 'same-origin' })
       .then((r) => (r.ok ? r.json() : null)).then((b) => setStaff(Array.isArray(b?.data) ? b.data : [])).catch(() => {});
   }, []);
@@ -924,6 +925,11 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
         </button>
       </div>
 
+      {!isOwner && (
+        <p className="muted" style={{ fontSize: 13, margin: '0 0 10px' }}>
+          <i className="fas fa-user-tie" /> You see the leads the super admin transferred to you.
+        </p>
+      )}
       <div className="crm-stats">
         {([['all', 'Total'], ['new', 'New'], ['contacted', 'Contacted'], ['won', 'Won'], ['lost', 'Lost']] as const).map(([k, lbl]) => (
           <button key={k} className={`crm-stat${filter === k ? ' on' : ''} s-${k}`} onClick={() => setFilter(k as typeof filter)}>
@@ -941,11 +947,13 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
             </span>
             <input className="crm-search" placeholder={isMap ? 'Search name, email, phone, project…' : 'Search name, email, phone…'} value={q} onChange={(e) => setQ(e.target.value)} />
             {isMap && <LocationSelect items={bySource.map} value={loc} onChange={setLoc} />}
-            <select className="crm-select" aria-label="Filter by employee" value={assignee} onChange={(e) => setAssignee(e.target.value)}>
-              <option value="">Assigned to: anyone</option>
-              <option value={UNASSIGNED}>Not assigned ({all.filter((l) => !l.assigned_to).length})</option>
-              {staff.map((e) => <option key={e.id} value={e.id}>{e.name} ({all.filter((l) => l.assigned_to === e.id).length})</option>)}
-            </select>
+            {isOwner && (
+              <select className="crm-select" aria-label="Filter by employee" value={assignee} onChange={(e) => setAssignee(e.target.value)}>
+                <option value="">Assigned to: anyone</option>
+                <option value={UNASSIGNED}>Not assigned ({all.filter((l) => !l.assigned_to).length})</option>
+                {staff.map((e) => <option key={e.id} value={e.id}>{e.name} ({all.filter((l) => l.assigned_to === e.id).length})</option>)}
+              </select>
+            )}
             <button className="adm-btn ghost sm" onClick={() => load()}><i className="fas fa-rotate" /> Refresh</button>
           </div>
         </div>
@@ -989,7 +997,8 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
           <div className="adm-empty">
             <i className={`fas ${isMap ? 'fa-map-location-dot' : isSignup ? 'fa-user-plus' : 'fa-address-book'}`} />
             <p>{all.length === 0
-              ? (isMap ? 'No map enquiries yet. When someone taps Enquire on a project card on the live map, it appears here.'
+              ? (!isOwner ? 'No leads of this kind have been transferred to you yet.'
+                : isMap ? 'No map enquiries yet. When someone taps Enquire on a project card on the live map, it appears here.'
                 : isSignup ? 'No buyer accounts yet. When a buyer creates an account, they appear here as a lead.'
                   : 'No leads yet. Submissions from the Contact form appear here.')
               : 'Nothing matches these filters.'}</p>
@@ -1103,7 +1112,7 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
               ))}
             </div>
 
-            <div className="crm-block">
+            {isOwner && <div className="crm-block">
               <h4>Transferred to</h4>
               {staff.length ? (
                 <select className="crm-select" value={sel.assigned_to || ''} disabled={busy} onChange={(e) => assign(sel, e.target.value)} aria-label="Transfer this lead to an employee">
@@ -1113,7 +1122,7 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
                 </select>
               ) : <p className="crm-meta" style={{ marginTop: 0 }}>No employees with access to Leads yet — add one under Employees and tick Leads.</p>}
               {sel.assigned_to && sel.assigned_at && <p className="crm-meta">Since {leadWhen(sel.assigned_at)}{sel.assigned_by ? ` · by ${sel.assigned_by}` : ''}</p>}
-            </div>
+            </div>}
 
             <div className="crm-contact">
               {sel.email && <a className="adm-btn ghost sm" href={`mailto:${sel.email}`}><i className="fas fa-envelope" /> {sel.email}</a>}
@@ -2501,7 +2510,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
           {warm.includes('map') && <div hidden={tab !== 'map'}><MapPanel /></div>}
           {warm.includes('intake') && <div hidden={tab !== 'intake'}><IntakePanel /></div>}
           {tab === 'developers' && <DevelopersPanel flash={flash} />}
-          {tab === 'leads' && <LeadsPanel flash={flash} />}
+          {tab === 'leads' && <LeadsPanel flash={flash} isOwner={isOwner} />}
           {tab === 'projects' && (
             <DevProjectsPanel flash={flash} isOwner={isOwner} onPendingChange={setProjPending} focus={projFocus} onFocusDone={() => setProjFocus(null)} />
           )}

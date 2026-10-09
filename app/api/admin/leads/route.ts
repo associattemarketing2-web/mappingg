@@ -33,6 +33,11 @@ const SOURCE_FILTER: Record<Source, Record<string, unknown>> = {
 const LEADS_LIMIT = 5000;
 
 const sourceOf = (v: string | null | undefined): Source => (v === 'map' ? 'map' : v === 'signup' ? 'signup' : 'contact');
+/** The super admin sees every lead; an employee only the leads transferred to them. */
+async function leadScope(): Promise<Record<string, unknown>> {
+  const me = await getCurrentUser();
+  return me?.role === 'admin' ? {} : { assigned_to: me?.id || '__nobody' };
+}
 const unauthorized = () => NextResponse.json({ error: { message: 'Not authorized' } }, { status: 401 });
 
 function strip<T extends Record<string, any>>(doc: T) {
@@ -151,6 +156,7 @@ export async function GET(req: NextRequest) {
   if (!(await hasPermission('leads'))) return unauthorized();
   // Who a lead can be transferred to: employees who can open Leads.
   if (req.nextUrl.searchParams.get('staff')) {
+    if ((await getCurrentUser())?.role !== 'admin') return NextResponse.json({ data: [] }); // only the super admin transfers
     const staff = (await listEmployees()).filter((e) => e.permissions.includes('leads'));
     return NextResponse.json({ data: staff.map((e) => ({ id: e.id, name: e.name || e.email, email: e.email })) });
   }
@@ -159,9 +165,10 @@ export async function GET(req: NextRequest) {
   if (source === 'signup') await syncBuyerLeads();
   const db = await getDb();
   const coll = db.collection(SOURCES[source]);
+  const filter = { ...SOURCE_FILTER[source], ...(await leadScope()) };
   const [rows, total] = await Promise.all([
-    coll.find(SOURCE_FILTER[source]).sort({ created_at: -1 }).limit(LEADS_LIMIT).toArray() as Promise<Record<string, any>[]>,
-    coll.countDocuments(SOURCE_FILTER[source]),
+    coll.find(filter).sort({ created_at: -1 }).limit(LEADS_LIMIT).toArray() as Promise<Record<string, any>[]>,
+    coll.countDocuments(filter),
   ]);
   const data = source === 'map' ? await withProjects(rows) : source === 'signup' ? await withBuyerActivity(rows) : rows.map((r) => strip(r));
   // `total` lets the panel say so if older leads were left out (never silently).
@@ -190,8 +197,10 @@ export async function PATCH(req: NextRequest) {
   if (typeof notes === 'string') patch.notes = notes;
 
   const db = await getDb();
+  const scope = await leadScope();
   if (assigned_to !== undefined) {
     const me = await getCurrentUser();
+    if (me?.role !== 'admin') return NextResponse.json({ error: { message: 'Only the super admin can transfer leads.' } }, { status: 403 });
     if (assigned_to === null) {
       Object.assign(patch, { assigned_to: null, assigned_name: null, assigned_email: null, assigned_at: null, assigned_by: me?.email || null });
     } else {
@@ -207,7 +216,7 @@ export async function PATCH(req: NextRequest) {
     }
   }
   const coll = db.collection(SOURCES[source]);
-  const res = await coll.updateOne({ id }, { $set: patch });
+  const res = await coll.updateOne({ id, ...scope }, { $set: patch });
   if (!res.matchedCount) return NextResponse.json({ error: { message: 'Lead not found' } }, { status: 404 });
   const row = (await coll.findOne({ id })) as Record<string, any> | null;
   if (!row) return NextResponse.json({ data: null });
@@ -223,9 +232,10 @@ export async function DELETE(req: NextRequest) {
   const db = await getDb();
   const coll = db.collection(SOURCES[source]);
   const actor = (await getCurrentUser())?.email;
+  const scope = await leadScope();
   let deleted = 0;
   for (const id of ids) {
-    const lead = await coll.findOne({ id });
+    const lead = await coll.findOne({ id, ...scope });
     if (!lead) continue;
     // Kept in Backups → Recycle bin so it can be restored.
     await moveToTrash({

@@ -9,7 +9,8 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  if (!(await getStaffUser())) {
+  const staff = await getStaffUser();
+  if (!staff) {
     return NextResponse.json({ error: { message: 'Not authorized' } }, { status: 401 });
   }
 
@@ -24,6 +25,7 @@ export async function GET() {
   let daily: ReturnType<typeof perDay> = { today: '', days: [] };
   const postsP = countPosts();
   const settingsP = getPublicSettings();
+  const leadScope = staff.role === 'admin' ? {} : { assigned_to: staff.id };
   try {
     const db = await getDb();
     // One parallel wave instead of ~6 sequential round-trips. The row lists the
@@ -31,8 +33,9 @@ export async function GET() {
     const [rows, users, mapLeadDates, contactLeadDates, infraN, roadsN] = await Promise.all([
       db.collection('pins').find({}, { projection: { status: 1, type: 1, created_at: 1, hidden: 1 } }).toArray(),
       db.collection('users').find({}, { projection: { role: 1, verification: 1, verified: 1 } }).toArray(),
-      db.collection('leads').find({}, { projection: { created_at: 1 } }).toArray(),
-      db.collection('contact_leads').find({}, { projection: { created_at: 1 } }).toArray(),
+      // Employees only count the leads transferred to them.
+      db.collection('leads').find(leadScope, { projection: { created_at: 1 } }).toArray(),
+      db.collection('contact_leads').find(leadScope, { projection: { created_at: 1 } }).toArray(),
       db.collection('infra_markers').countDocuments({}),
       db.collection('roads').countDocuments({}),
     ]);
