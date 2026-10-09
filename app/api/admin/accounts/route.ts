@@ -10,6 +10,7 @@ import { localitiesOf, localitiesOfAll } from '@/lib/locality';
 import { logActivity } from '@/lib/activity';
 import { accountStats, type AccountLite } from '@/lib/account-insights';
 import { idsParam, moveToTrash } from '@/lib/trash';
+import { addBuyerSignupLead } from '@/lib/signup-leads';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -68,6 +69,9 @@ const patchSchema = z.object({
   email: z.string().trim().toLowerCase().email().max(200).optional(),
   mobile: z.string().trim().max(30).optional(),
   profile: z.record(z.string().max(80), z.string().trim().max(1000)).optional(),
+  // Move the account to another type (super admin only), e.g. a buyer or channel
+  // partner who is really a developer. Staff moving someone counts as verifying them.
+  role: z.enum(PUBLIC_ROLES).optional(),
 });
 
 export async function PATCH(req: NextRequest) {
@@ -76,7 +80,7 @@ export async function PATCH(req: NextRequest) {
   if (!parsed.success) {
     return NextResponse.json({ error: { message: 'Invalid request (passwords need at least 8 characters).' } }, { status: 400 });
   }
-  const { id, decision, reason, notes, password, access, name, email, mobile, profile } = parsed.data;
+  const { id, decision, reason, notes, password, access, name, email, mobile, profile, role } = parsed.data;
   const editingDetails = name !== undefined || email !== undefined || mobile !== undefined || profile !== undefined;
   const now = new Date().toISOString();
   const patch: Record<string, unknown> = { updated_at: now };
@@ -106,7 +110,23 @@ export async function PATCH(req: NextRequest) {
       patch.profile = { ...((cur?.profile as Record<string, string>) || {}), ...profile };
     }
   }
-  if (access) {
+  let roleChange: { from: string; to: string } | null = null;
+  if (role) {
+    const me = await getCurrentUser();
+    if (!me || me.role !== 'admin') {
+      return NextResponse.json({ error: { message: 'Only the super admin can change the account type.' } }, { status: 403 });
+    }
+    const target = await users.findOne({ id, ...ROLE_FILTER }, { projection: { role: 1 } });
+    if (!target) return NextResponse.json({ error: { message: 'Account not found' } }, { status: 404 });
+    if (target.role !== role) {
+      roleChange = { from: String(target.role), to: role };
+      patch.role = role;
+      // Approved straight away — the super admin chose this type for them.
+      Object.assign(patch, { verification: 'approved', verified: true, verification_note: '', verified_at: now, verified_by: me.email });
+      if (role === 'developer') patch.access = access || 'editor';
+    }
+  }
+  if (access && !roleChange) {
     const me = await getCurrentUser();
     if (!me || me.role !== 'admin') {
       return NextResponse.json({ error: { message: 'Only the super admin can change access.' } }, { status: 403 });
@@ -141,6 +161,7 @@ export async function PATCH(req: NextRequest) {
   }
   const res = await users.updateOne({ id, ...ROLE_FILTER }, { $set: patch });
   if (!res.matchedCount) return NextResponse.json({ error: { message: 'Account not found' } }, { status: 404 });
+  if (roleChange) forgetAccount(id); // their open session picks up the new dashboard right away
   const row = await users.findOne({ id });
   if (row) {
     const actor = (await getCurrentUser())?.email;
@@ -152,6 +173,16 @@ export async function PATCH(req: NextRequest) {
     if (decision === 'reset') await logActivity({ ...who, type: 'reset', detail: 'Moved back to pending verification' });
     if (password) await logActivity({ ...who, type: 'password_reset', detail: 'Password reset by staff' });
     if (typeof notes === 'string') await logActivity({ ...who, type: 'notes', detail: 'Internal notes updated' });
+    if (roleChange?.to === 'buyer') {
+      await addBuyerSignupLead({
+        id, name: row.name as string | undefined, email: String(row.email), mobile: row.mobile as string | undefined,
+        profile: row.profile as Record<string, string> | undefined, provider: row.provider === 'google' ? 'google' : 'password',
+      });
+    }
+    if (roleChange) {
+      const label = (r: string) => ({ buyer: 'Buyer', developer: 'Developer', agent: 'Channel partner' } as Record<string, string>)[r] || r;
+      await logActivity({ ...who, type: 'role_changed', detail: `Account type changed from ${label(roleChange.from)} to ${label(roleChange.to)}${level ? ` (${level})` : ''}` });
+    }
     if (editingDetails) await logActivity({ ...who, type: 'profile_edited', detail: `Account details updated by staff${email ? ' (login email changed)' : ''}` });
   }
   return NextResponse.json({ data: row ? clean(row) : null });

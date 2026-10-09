@@ -694,6 +694,8 @@ interface Lead {
   id: string; name: string; email?: string; phone?: string; subject?: string;
   message?: string; source?: string; status: 'new' | 'contacted' | 'won' | 'lost';
   notes?: string; created_at?: string; updated_at?: string;
+  // The employee this lead was transferred to (any source).
+  assigned_to?: string | null; assigned_name?: string | null; assigned_at?: string | null; assigned_by?: string | null;
   // Map enquiries only:
   role?: PersonRole; pin_id?: string; locations?: string[];
   project?: {
@@ -724,6 +726,7 @@ const buyerWants = (l: Lead) => {
 // thousands of leads. Counts/filters still run over the full set; the admin
 // narrows with search/status to reach older rows.
 const LEADS_RENDER_CAP = 300;
+const UNASSIGNED = '__none';
 
 const LEAD_STAGES: { key: Lead['status']; label: string }[] = [
   { key: 'new', label: 'New' },
@@ -759,6 +762,15 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
   const [notes, setNotes] = useState('');
   const [busy, setBusy] = useState(false);
 
+  // Employees a lead can be transferred to, and the "Assigned to" filter
+  // ('' = everyone, UNASSIGNED = nobody yet, else an employee id).
+  const [staff, setStaff] = useState<{ id: string; name: string; email: string }[]>([]);
+  const [assignee, setAssignee] = useState('');
+  useEffect(() => {
+    fetch('/api/admin/leads?staff=1', { credentials: 'same-origin' })
+      .then((r) => (r.ok ? r.json() : null)).then((b) => setStaff(Array.isArray(b?.data) ? b.data : [])).catch(() => {});
+  }, []);
+
   const [live, setLive] = useState(false);
   // Total leads per source when the API had to leave older ones out.
   const [truncated, setTruncated] = useState<Partial<Record<LeadSource, number>>>({});
@@ -791,14 +803,15 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
 
   const pick = useSelection();
   function switchSource(s: LeadSource) {
-    setSource(s); setRole('all'); setLoc(''); setFilter('all'); setQ(''); pick.clear();
+    setSource(s); setRole('all'); setLoc(''); setFilter('all'); setQ(''); setAssignee(''); pick.clear();
   }
 
   const isMap = source === 'map';
   const isSignup = source === 'signup';
   const all = bySource[source];
   // Type + location narrow everything below (status chips, table, downloads).
-  const scoped = all.filter((l) => (!isMap || role === 'all' || l.role === role) && (!isMap || matchesLocation(l, loc)));
+  const matchesAssignee = (l: Lead) => !assignee || (assignee === UNASSIGNED ? !l.assigned_to : l.assigned_to === assignee);
+  const scoped = all.filter((l) => (!isMap || role === 'all' || l.role === role) && (!isMap || matchesLocation(l, loc)) && matchesAssignee(l));
   const counts = {
     all: scoped.length,
     new: scoped.filter((l) => l.status === 'new').length,
@@ -822,8 +835,8 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
   function downloadContact() {
     if (isSignup) {
       downloadCsv(fileSlug('buyer-signups'),
-        ['Name', 'Email', 'WhatsApp', 'Looking for', 'Status', 'Notes', 'Signed up'],
-        list.map((l) => [l.name, l.email, l.phone, l.message, stageLabel(l.status), l.notes, csvDate(l.created_at)]));
+        ['Name', 'Email', 'WhatsApp', 'Looking for', 'Status', 'Assigned to', 'Notes', 'Signed up'],
+        list.map((l) => [l.name, l.email, l.phone, l.message, stageLabel(l.status), l.assigned_name, l.notes, csvDate(l.created_at)]));
       return;
     }
     downloadCsv(fileSlug('contact-leads'),
@@ -875,6 +888,17 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
       flash(`${ids.length === 1 ? 'Lead' : `${ids.length} leads`} moved to the recycle bin`);
     } catch { flash('Delete failed', true); }
   }
+  const staffName = (id: string) => staff.find((e) => e.id === id)?.name || 'employee';
+  async function assign(l: Lead, to: string) {
+    if ((l.assigned_to || '') === to) return;
+    if (await patch(l.id, { assigned_to: to || null })) flash(to ? `Lead transferred to ${staffName(to)}` : 'Lead unassigned');
+  }
+  async function assignMany(ids: string[], to: string) {
+    let ok = 0;
+    for (const id of ids) if (await patch(id, { assigned_to: to === UNASSIGNED ? null : to })) ok++;
+    pick.clear();
+    flash(`${ok} lead${ok === 1 ? '' : 's'} ${to === UNASSIGNED ? 'unassigned' : `transferred to ${staffName(to)}`}${ok < ids.length ? `, ${ids.length - ok} failed` : ''}`, ok < ids.length);
+  }
   async function setStatusMany(ids: string[], status: Lead['status']) {
     let ok = 0;
     for (const id of ids) if (await patch(id, { status })) ok++;
@@ -916,6 +940,11 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
             </span>
             <input className="crm-search" placeholder={isMap ? 'Search name, email, phone, project…' : 'Search name, email, phone…'} value={q} onChange={(e) => setQ(e.target.value)} />
             {isMap && <LocationSelect items={bySource.map} value={loc} onChange={setLoc} />}
+            <select className="crm-select" aria-label="Filter by employee" value={assignee} onChange={(e) => setAssignee(e.target.value)}>
+              <option value="">Assigned to: anyone</option>
+              <option value={UNASSIGNED}>Not assigned ({all.filter((l) => !l.assigned_to).length})</option>
+              {staff.map((e) => <option key={e.id} value={e.id}>{e.name} ({all.filter((l) => l.assigned_to === e.id).length})</option>)}
+            </select>
             <button className="adm-btn ghost sm" onClick={() => load()}><i className="fas fa-rotate" /> Refresh</button>
           </div>
         </div>
@@ -966,6 +995,14 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
               <option value="">Set status…</option>
               {LEAD_STAGES.map((st) => <option key={st.key} value={st.key}>{st.label}</option>)}
             </select>
+            {staff.length > 0 && (
+              <select className="crm-select" value="" disabled={busy} aria-label="Transfer selected leads to an employee"
+                onChange={(e) => { if (e.target.value) assignMany(pick.of(list.map((l) => l.id)), e.target.value); }}>
+                <option value="">Transfer to…</option>
+                {staff.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
+                <option value={UNASSIGNED}>Nobody (unassign)</option>
+              </select>
+            )}
             <button className="adm-btn danger sm" disabled={busy} onClick={() => { const ids = pick.of(list.map((l) => l.id)); if (confirm(`Delete ${ids.length} lead${ids.length === 1 ? '' : 's'}? You can restore them from Backups → Recycle bin.`)) removeMany(ids); }}><i className="fas fa-trash" /> Delete</button>
           </BulkBar>
           <div className="table-scroll">
@@ -1014,7 +1051,10 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
                     ) : (
                       <td>{l.subject || '—'}</td>
                     )}
-                    <td><span className={`crm-pill ${l.status}`}>{stageLabel(l.status)}</span></td>
+                    <td>
+                      <span className={`crm-pill ${l.status}`}>{stageLabel(l.status)}</span>
+                      {l.assigned_name && <small className="muted" style={{ display: 'block', marginTop: 3 }} title="Transferred to"><i className="fas fa-user-tie" /> {l.assigned_name}</small>}
+                    </td>
                     <td className="muted" title={fullDate(l.created_at)}>
                       {leadWhen(l.created_at)}
                       {isMap && (l.enquiry_clicks || 1) > 1 && <small style={{ display: 'block' }}>{l.enquiry_clicks}× · last {leadWhen(l.last_enquired_at || undefined)}</small>}
@@ -1053,6 +1093,18 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
                   {s.label}
                 </button>
               ))}
+            </div>
+
+            <div className="crm-block">
+              <h4>Transferred to</h4>
+              {staff.length ? (
+                <select className="crm-select" value={sel.assigned_to || ''} disabled={busy} onChange={(e) => assign(sel, e.target.value)} aria-label="Transfer this lead to an employee">
+                  <option value="">Nobody yet</option>
+                  {sel.assigned_to && !staff.some((e) => e.id === sel.assigned_to) && <option value={sel.assigned_to}>{sel.assigned_name || 'Former employee'}</option>}
+                  {staff.map((e) => <option key={e.id} value={e.id}>{e.name} · {e.email}</option>)}
+                </select>
+              ) : <p className="crm-meta" style={{ marginTop: 0 }}>No employees with access to Leads yet — add one under Employees and tick Leads.</p>}
+              {sel.assigned_to && sel.assigned_at && <p className="crm-meta">Since {leadWhen(sel.assigned_at)}{sel.assigned_by ? ` · by ${sel.assigned_by}` : ''}</p>}
             </div>
 
             <div className="crm-contact">
@@ -1234,6 +1286,7 @@ const EVENT_META: Record<string, { icon: string; tone: string; label: string; gr
   project_admin_edit: { icon: 'fa-user-pen', tone: 'blue', label: 'Project corrected', group: 'projects' },
   deleted: { icon: 'fa-user-xmark', tone: 'red', label: 'Account deleted', group: 'admin' },
   access: { icon: 'fa-user-lock', tone: 'blue', label: 'Access changed', group: 'admin' },
+  role_changed: { icon: 'fa-arrow-right-arrow-left', tone: 'blue', label: 'Type changed', group: 'admin' },
 };
 const FEED_FILTERS = [['all', 'All'], ['signin', 'Sign-ins'], ['signup', 'Sign-ups'], ['enquiry', 'Enquiries'], ['projects', 'Projects'], ['admin', 'Staff actions']] as const;
 const eventMeta = (t: string) => EVENT_META[t] || { icon: 'fa-circle', tone: 'grey', label: t, group: 'all' };
@@ -1408,6 +1461,7 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
     setSel(a); setNotes(a.notes || ''); setNewPass(''); setRejectReason(''); setRejecting(false);
     setDrawerTab('overview');
     setEditAcc(null);
+    setNewRole(''); setNewAccess('editor');
     loadTimeline(a.id);
     setDevProjects(null);
     if (a.role === 'developer') {
@@ -1434,6 +1488,17 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
   async function setAccess(a: Account, access: 'viewer' | 'editor') {
     if (accessLevel(a) === access) return;
     if (await patch(a.id, { access })) flash(access === 'viewer' ? `${a.name || a.email} can now only view the live map` : `${a.name || a.email} can now add and edit projects`);
+  }
+  // Super admin moving an account to another type (e.g. channel partner → developer).
+  const [newRole, setNewRole] = useState<Account['role'] | ''>('');
+  const [newAccess, setNewAccess] = useState<'viewer' | 'editor'>('editor');
+  async function changeRole(a: Account) {
+    if (!newRole || newRole === a.role) return;
+    if (!confirm(`Move ${a.name || a.email} from ${typeLabel(a.role)} to ${typeLabel(newRole)}? They get the ${typeLabel(newRole)} dashboard from their next page load, already verified.`)) return;
+    if (await patch(a.id, { role: newRole, ...(newRole === 'developer' ? { access: newAccess } : {}) })) {
+      setNewRole('');
+      flash(`${a.name || a.email} is now a ${typeLabel(newRole)} — fill in their ${typeLabel(newRole)} details under Overview`);
+    }
   }
   async function copyRera(a: Account) {
     const n = reraOf(a);
@@ -1861,6 +1926,33 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
                     {!isOwner && <p className="crm-meta"><i className="fas fa-lock" /> Only the super admin can change access.</p>}
                   </div>
                 )}
+
+                <div className="acs-box">
+                  <h4>Account type</h4>
+                  <p className="crm-meta">Currently <b>{typeLabel(sel.role)}</b>. Move them to another type if they signed up as the wrong one — their existing details are kept.</p>
+                  {isOwner ? (
+                    <>
+                      <div className="acs-inline">
+                        <select className="crm-select" value={newRole} disabled={busy} onChange={(e) => setNewRole(e.target.value as Account['role'] | '')} aria-label="New account type">
+                          <option value="">Choose new type…</option>
+                          {(['buyer', 'developer', 'agent'] as const).filter((r) => r !== sel.role).map((r) => <option key={r} value={r}>{typeLabel(r)}</option>)}
+                        </select>
+                        <button className="adm-btn primary sm" disabled={busy || !newRole} onClick={() => changeRole(sel)}><i className="fas fa-arrow-right-arrow-left" /> Change type</button>
+                      </div>
+                      {newRole === 'developer' && (
+                        <div className="acs-access" style={{ marginTop: 10 }}>
+                          {([['editor', 'fa-pen-to-square', 'Editor', 'Can add and edit their projects (each change needs your approval).'],
+                            ['viewer', 'fa-eye', 'Viewer', 'Can only view the live map.']] as const).map(([k, ic, lbl, desc]) => (
+                            <button key={k} type="button" className={newAccess === k ? 'on' : ''} aria-pressed={newAccess === k} disabled={busy} onClick={() => setNewAccess(k)}>
+                              <i className={`fas ${ic}`} />
+                              <span><b>{lbl}</b><small>{desc}</small></span>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : <p className="crm-meta"><i className="fas fa-lock" /> Only the super admin can change the account type.</p>}
+                </div>
 
                 {sel.role !== 'buyer' && statusOf(sel) !== 'pending' && isOwner && (
                   <div className="acs-box">

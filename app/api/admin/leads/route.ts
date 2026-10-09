@@ -5,6 +5,8 @@ import { hasPermission } from '@/lib/staff';
 import { localitiesOf } from '@/lib/locality';
 import { getCurrentUser } from '@/lib/auth';
 import { idsParam, moveToTrash } from '@/lib/trash';
+import { syncBuyerLeads } from '@/lib/signup-leads';
+import { listEmployees } from '@/lib/staff';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -147,7 +149,14 @@ async function withBuyerActivity(rows: Record<string, any>[]) {
 
 export async function GET(req: NextRequest) {
   if (!(await hasPermission('leads'))) return unauthorized();
+  // Who a lead can be transferred to: employees who can open Leads.
+  if (req.nextUrl.searchParams.get('staff')) {
+    const staff = (await listEmployees()).filter((e) => e.permissions.includes('leads'));
+    return NextResponse.json({ data: staff.map((e) => ({ id: e.id, name: e.name || e.email, email: e.email })) });
+  }
   const source = sourceOf(req.nextUrl.searchParams.get('source'));
+  // Every buyer account is a lead — add any that are missing (older accounts etc.).
+  if (source === 'signup') await syncBuyerLeads();
   const db = await getDb();
   const coll = db.collection(SOURCES[source]);
   const [rows, total] = await Promise.all([
@@ -164,6 +173,8 @@ const patchSchema = z.object({
   source: z.enum(['contact', 'map', 'signup']).optional(),
   status: z.enum(STATUSES).optional(),
   notes: z.string().max(4000).optional(),
+  // Transfer the lead to an employee (their user id), or null to unassign.
+  assigned_to: z.string().min(1).nullable().optional(),
 });
 
 export async function PATCH(req: NextRequest) {
@@ -172,13 +183,29 @@ export async function PATCH(req: NextRequest) {
   if (!parsed.success) {
     return NextResponse.json({ error: { message: 'Invalid request' } }, { status: 400 });
   }
-  const { id, status, notes } = parsed.data;
+  const { id, status, notes, assigned_to } = parsed.data;
   const source = sourceOf(parsed.data.source);
   const patch: Record<string, unknown> = { updated_at: new Date().toISOString() };
   if (status) patch.status = status;
   if (typeof notes === 'string') patch.notes = notes;
 
   const db = await getDb();
+  if (assigned_to !== undefined) {
+    const me = await getCurrentUser();
+    if (assigned_to === null) {
+      Object.assign(patch, { assigned_to: null, assigned_name: null, assigned_email: null, assigned_at: null, assigned_by: me?.email || null });
+    } else {
+      const emp = await db.collection('users').findOne({ id: assigned_to, role: 'employee' }, { projection: { id: 1, name: 1, email: 1, permissions: 1 } });
+      if (!emp) return NextResponse.json({ error: { message: 'That employee no longer exists.' } }, { status: 404 });
+      if (!(Array.isArray(emp.permissions) && emp.permissions.includes('leads'))) {
+        return NextResponse.json({ error: { message: 'This employee has no access to Leads — give them the Leads permission first.' } }, { status: 400 });
+      }
+      Object.assign(patch, {
+        assigned_to: String(emp.id), assigned_name: String(emp.name || emp.email), assigned_email: String(emp.email),
+        assigned_at: patch.updated_at, assigned_by: me?.email || null,
+      });
+    }
+  }
   const coll = db.collection(SOURCES[source]);
   const res = await coll.updateOne({ id }, { $set: patch });
   if (!res.matchedCount) return NextResponse.json({ error: { message: 'Lead not found' } }, { status: 404 });

@@ -70,3 +70,27 @@ export async function touchBuyerLead(userId: string): Promise<void> {
     console.warn('[signup-leads] could not update lead on login:', e instanceof Error ? e.message : e);
   }
 }
+
+/** Every buyer account gets a lead — also older ones, buyers added before this
+ *  existed, and accounts staff moved to "Buyer". Cheap when nothing is missing
+ *  (two indexed reads). Never throws. Returns how many leads were added. */
+export async function syncBuyerLeads(): Promise<number> {
+  try {
+    const db = await getDb();
+    const have = new Set((await db.collection('contact_leads').find({ account_id: { $exists: true } }, { projection: { account_id: 1 } }).toArray()).map((l) => String(l.account_id)));
+    const missing = (await db.collection('users').find(
+      { role: 'buyer' },
+      { projection: { id: 1, name: 1, email: 1, mobile: 1, profile: 1, provider: 1, created_at: 1 } },
+    ).toArray()).filter((u) => u.id && !have.has(String(u.id)));
+    for (const u of missing) {
+      await addBuyerSignupLead({
+        id: String(u.id), name: u.name as string | undefined, email: String(u.email || ''), mobile: u.mobile as string | undefined,
+        profile: u.profile as Profile | undefined, provider: u.provider === 'google' ? 'google' : 'password', created_at: u.created_at as string | undefined,
+      });
+    }
+    return missing.length;
+  } catch (e) {
+    console.warn('[signup-leads] could not sync buyer leads:', e instanceof Error ? e.message : e);
+    return 0;
+  }
+}
