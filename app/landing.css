@@ -1220,3 +1220,10 @@
     content-visibility: auto;
     contain-intrinsic-size: auto 900px;
   }
+
+  /* Email verification code (sign-up) and "Forgot password?" */
+  .mpg .otp-block input { letter-spacing: 6px; font-size: 18px; font-weight: 600; }
+  .mpg .otp-meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 6px; font-size: 12px; color: var(--muted); }
+  .mpg .otp-meta a { color: var(--forest); font-weight: 600; text-decoration: none; white-space: nowrap; }
+  .mpg #forgotForm .otp-intro { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .mpg #fp-step2:not([hidden]) { display: flex; flex-direction: column; gap: 14px; }

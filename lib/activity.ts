@@ -3,6 +3,7 @@ import { headers } from 'next/headers';
 import { query } from './pg';
 import { getDb, getMongoDb, usingMongo } from './mongodb';
 import { touchBuyerLead } from './signup-leads';
+import { notifyActivity } from './notify';
 
 // Account activity log for the super admin's Accounts page: sign-ups, logins,
 // sign-outs, compare-list changes, developer project edits and staff actions on
@@ -85,6 +86,8 @@ export async function logActivity(e: {
   } catch (err) {
     console.warn('[activity] could not log', e.type, err instanceof Error ? err.message : err);
   }
+  // Email the account holder + the Mappingg team (in the background).
+  void notifyActivity(e);
 }
 
 /** Records a successful sign-in: an activity row plus last_login_at / login_count on the account. */

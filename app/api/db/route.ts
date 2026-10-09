@@ -8,6 +8,7 @@ import { canEditProjects } from '@/lib/verification';
 import { clientIp, rateLimit } from '@/lib/rate-limit';
 import { warmPinThumbs } from '@/lib/media-cache';
 import { getDb } from '@/lib/mongodb';
+import { notifyAdmin } from '@/lib/mailer';
 import { autoLogo, pinImageDigest } from '@/lib/developers';
 
 export const runtime = 'nodejs';
@@ -87,6 +88,20 @@ async function handle(op: DbOp, devEditorView = false, ip = '') {
   }
 
   const result = await runDbOp(op, !!staff, { developerId });
+
+  // A visitor's enquiry from the live map → email the Mappingg team.
+  if (!staff && op.table === 'leads' && op.action === 'insert' && !result.error) {
+    for (const v of (Array.isArray(op.values) ? op.values : op.values ? [op.values] : []) as Record<string, unknown>[]) {
+      const pin = v.pin_id ? await (await getDb()).collection('pins').findOne({ id: String(v.pin_id) }, { projection: { title: 1, number: 1 } }).catch(() => null) : null;
+      const project = pin ? String(pin.title || `#${pin.number ?? ''}`) : '';
+      notifyAdmin(`New enquiry${project ? `: ${project}` : ''} — ${String(v.name || 'visitor')}`, {
+        title: 'New enquiry from the live map',
+        body: [],
+        rows: [['Name', v.name], ['WhatsApp', v.whatsapp], ['Email', v.email], ['Role', v.role], ['Project', project], ['Message', v.message]],
+        cta: { label: 'Open leads', href: '/dashboard/s-admin' },
+      }, typeof v.email === 'string' && v.email ? v.email : undefined);
+    }
+  }
 
   // A developer adding / editing / removing a pin on their dashboard map is
   // recorded for the super admin (Developer projects tab + notification bell).

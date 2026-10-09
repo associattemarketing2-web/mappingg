@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { normalizePhone } from '@/lib/phone';
 import { getCurrentUser, isStaffRole } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
+import { esc, layout, notifyAdmin, queueMail } from '@/lib/mailer';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -54,6 +55,20 @@ export async function POST(req: NextRequest) {
       source: 'Signed-in account', account_id: user.id, status: 'new', notes: '',
       enquiry_clicks: 1, last_enquired_at: now,
       created_at: now, updated_at: now,
+    });
+  }
+  const project = String(pin.title || `#${pin.number ?? ''}`);
+  if (!existing) {
+    notifyAdmin(`New enquiry: ${project} — ${name}`, {
+      title: 'New enquiry from the live map',
+      body: [`${esc(name)} asked about <b>${esc(project)}</b>.`],
+      rows: [['Name', name], ['Email', email], ['WhatsApp', whatsapp], ['Account type', role], ['Project', project]],
+      cta: { label: 'Open leads', href: '/dashboard/s-admin' },
+    }, email);
+    queueMail({
+      to: email,
+      subject: `Your enquiry for ${project} — Mappingg`,
+      html: layout({ title: 'We received your enquiry', body: [`Hi ${esc(name.split(' ')[0])},`, `Thanks for your interest in <b>${esc(project)}</b>. Our team will contact you on WhatsApp shortly.`] }),
     });
   }
   return NextResponse.json({

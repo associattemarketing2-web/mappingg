@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { PHONE_ERROR, normalizePhone } from '@/lib/phone';
 import { getDb } from '@/lib/mongodb';
 import { clientIp, rateLimit } from '@/lib/rate-limit';
+import { esc, layout, notifyAdmin, queueMail } from '@/lib/mailer';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -56,6 +57,18 @@ export async function POST(req: NextRequest) {
     });
   } catch {
     return NextResponse.json({ error: { message: 'Something went wrong. Please try again.' } }, { status: 500 });
+  }
+  notifyAdmin(`Contact form: ${d.subject || 'General enquiry'} — ${d.name}`, {
+    title: 'New message from the contact form',
+    body: [esc(d.message).replace(/\n/g, '<br>')],
+    rows: [['Name', d.name], ['Email', d.email], ['Phone', d.phone], ['Subject', d.subject || 'General enquiry']],
+  }, d.email || undefined);
+  if (d.email) {
+    queueMail({
+      to: d.email,
+      subject: 'We received your message — Mappingg',
+      html: layout({ title: 'Thanks for getting in touch', body: [`Hi ${esc(d.name.split(' ')[0])},`, 'We received your message and will get back to you shortly.'] }),
+    });
   }
   return NextResponse.json({ data: { ok: true } }, { status: 201 });
 }

@@ -31,6 +31,19 @@ services:
         sync: false
       - key: GOOGLE_CLIENT_SECRET
         sync: false
+      # Email (Gmail SMTP + App password) — OTP codes and notifications.
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: "465"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+      - key: ADMIN_NOTIFY_EMAIL
+        sync: false
       # Must match package.json "engines" (24.x) and .nvmrc.
       - key: NODE_VERSION
         value: "24"

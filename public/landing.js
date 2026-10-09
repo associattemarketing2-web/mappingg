@@ -377,6 +377,7 @@
 
   const modal = byId('authModal'), tabs = document.querySelectorAll('.tab');
   const signinForm = byId('signinForm'), signupForm = byId('signupForm'), successView = byId('successView');
+  const forgotForm = byId('forgotForm');
   let mode = 'signup';
   const currentRole = () => (document.querySelector('#roleTiles input:checked') || {}).value || 'buyer';
   function renderSide() {
@@ -397,6 +398,7 @@
     const isIn = which === 'signin';
     tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === which));
     signinForm.classList.toggle('is-active', isIn); signupForm.classList.toggle('is-active', !isIn);
+    if (forgotForm) forgotForm.classList.remove('is-active');
     successView.classList.remove('is-active'); byId('roleBlock').hidden = false; byId('authTabs').hidden = false;
     byId('modalTitle').textContent = isIn ? 'Sign in' : (currentRole() === 'buyer' ? 'Explore every project' : 'Create your account');
     byId('modalSub').textContent = reason || (isIn ? 'Choose your account type, then sign in.' : 'Takes less than a minute.');
@@ -489,6 +491,45 @@
   }
   document.querySelectorAll('.phone-in').forEach(mgWirePhone);
   let signingUp = false;
+  // Email verification code for sign-up: the server returns a signed ticket that
+  // goes back with the code (see /api/auth/otp).
+  const suOtp = { ticket: '', email: '' };
+  function resetSignupCode() {
+    suOtp.ticket = ''; suOtp.email = '';
+    if (byId('su-otp-block')) byId('su-otp-block').hidden = true;
+    if (byId('su-otp')) byId('su-otp').value = '';
+  }
+  function requestCode(email, purpose, name) {
+    return fetch('/api/auth/otp', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin',
+      body: JSON.stringify({ email, purpose, name }),
+    }).then(r => r.json().then(b => ({ ok: r.ok, b }))).then(({ ok, b }) => {
+      if (ok && b.data && b.data.ticket) return b.data.ticket;
+      throw new Error((b.error && b.error.message) || 'Could not send the code');
+    }, () => { throw new Error('Network error — please try again'); });
+  }
+  function sendSignupCode(email, name) {
+    const btn = byId('signupBtn');
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending code…'; }
+    signingUp = true;
+    requestCode(email, 'signup', name).then(ticket => {
+      suOtp.ticket = ticket; suOtp.email = email;
+      byId('su-otp-block').hidden = false;
+      byId('su-otp-hint').textContent = 'We emailed a 6-digit code to ' + email + '.';
+      byId('su-otp').focus();
+      toast('Verification code sent to ' + email, 'fa-envelope');
+      if (btn) btn.textContent = 'Verify & create account';
+    }).catch(err => {
+      toast(err.message, 'fa-triangle-exclamation');
+      if (btn) btn.textContent = ROLES[currentRole()].cta;
+    }).then(() => { signingUp = false; if (btn) btn.disabled = false; });
+  }
+  if (byId('su-email')) byId('su-email').addEventListener('input', () => { if (suOtp.ticket) { resetSignupCode(); byId('signupBtn').textContent = ROLES[currentRole()].cta; } });
+  if (byId('su-otp-resend')) byId('su-otp-resend').addEventListener('click', e => {
+    e.preventDefault(); if (signingUp) return;
+    const mail = (byId('su-email').value || '').trim().toLowerCase();
+    if (mail) sendSignupCode(mail, (byId('su-name').value || '').trim());
+  });
   if (signupForm) on(signupForm, 'submit', e => {
     e.preventDefault(); if (signingUp || !signupForm.reportValidity()) return;
     const role = currentRole(), fd = Object.fromEntries(new FormData(signupForm));
@@ -498,15 +539,21 @@
     const digits = String(phoneDigits || '').replace(/\D/g, '');
     if (digits.length !== 10) { toast('Please enter a valid 10-digit mobile number', 'fa-triangle-exclamation'); byId('su-phone') && byId('su-phone').focus(); return; }
     const mobile = ((byId('su-phone-code') && byId('su-phone-code').value) || '+91') + ' ' + digits;
+    const mail = (email || '').trim().toLowerCase();
+    // Step 1: email a 6-digit code. Step 2 (same button): create the account with it.
+    if (!suOtp.ticket || suOtp.email !== mail) { sendSignupCode(mail, (name || '').trim()); return; }
+    const otp = (byId('su-otp').value || '').replace(/\D/g, '');
+    if (otp.length !== 6) { toast('Enter the 6-digit code we emailed you', 'fa-triangle-exclamation'); byId('su-otp').focus(); return; }
     const btn = byId('signupBtn'); const label = btn ? btn.textContent : '';
     if (btn) { btn.disabled = true; btn.textContent = 'Creating account…'; }
     signingUp = true;
     fetch('/api/auth/signup', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin',
-      body: JSON.stringify({ role, name: (name || '').trim(), email: (email || '').trim().toLowerCase(), mobile: (mobile || '').trim(), password: byId('su-pass').value, profile }),
+      body: JSON.stringify({ role, name: (name || '').trim(), email: mail, mobile: (mobile || '').trim(), password: byId('su-pass').value, profile, otp, ticket: suOtp.ticket }),
     }).then(r => r.json().then(b => ({ ok: r.ok, b }))).then(({ ok, b }) => {
       signingUp = false; if (btn) { btn.disabled = false; btn.textContent = label; }
       if (ok && b.user) {
+        resetSignupCode();
         success({ name: b.user.name, email: b.user.email, role: b.user.role, verified: b.user.verified }, true);
         setTimeout(() => { window.location.href = b.redirect || '/dashboard'; }, 900);
       } else {
@@ -517,6 +564,57 @@
       toast('Network error — please try again', 'fa-triangle-exclamation');
     });
   });
+  /* ---------- Forgot password: email code → new password ---------- */
+  const fp = { ticket: '', email: '', busy: false };
+  function openForgot() {
+    signinForm.classList.remove('is-active'); signupForm.classList.remove('is-active'); successView.classList.remove('is-active');
+    forgotForm.classList.add('is-active');
+    byId('roleBlock').hidden = true; byId('authTabs').hidden = true;
+    byId('modalTitle').textContent = 'Reset your password';
+    byId('modalSub').textContent = 'We’ll email you a 6-digit code.';
+    fp.ticket = ''; byId('fp-step2').hidden = true; byId('forgotBtn').textContent = 'Send code';
+    byId('fp-email').value = byId('si-email').value || ''; byId('fp-otp').value = ''; byId('fp-pass').value = '';
+    byId('fp-email').focus();
+  }
+  function sendResetCode() {
+    const email = (byId('fp-email').value || '').trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { toast('Enter a valid email address', 'fa-triangle-exclamation'); byId('fp-email').focus(); return; }
+    const btn = byId('forgotBtn'); fp.busy = true; btn.disabled = true; btn.textContent = 'Sending code…';
+    requestCode(email, 'reset').then(ticket => {
+      fp.ticket = ticket; fp.email = email;
+      byId('fp-step2').hidden = false;
+      byId('fp-otp-hint').textContent = 'Code sent to ' + email + '.';
+      byId('fp-otp').focus();
+      toast('Code sent to ' + email, 'fa-envelope');
+      btn.textContent = 'Set new password';
+    }).catch(err => { toast(err.message, 'fa-triangle-exclamation'); btn.textContent = 'Send code'; })
+      .then(() => { fp.busy = false; btn.disabled = false; });
+  }
+  if (forgotForm) {
+    byId('forgotLink').addEventListener('click', e => { e.preventDefault(); openForgot(); });
+    byId('fp-back').addEventListener('click', e => { e.preventDefault(); openModal('signin'); });
+    byId('fp-resend').addEventListener('click', e => { e.preventDefault(); if (!fp.busy) sendResetCode(); });
+    byId('fp-email').addEventListener('input', () => { if (fp.ticket) { fp.ticket = ''; byId('fp-step2').hidden = true; byId('forgotBtn').textContent = 'Send code'; } });
+    on(forgotForm, 'submit', e => {
+      e.preventDefault(); if (fp.busy) return;
+      if (!fp.ticket) { sendResetCode(); return; }
+      const otp = (byId('fp-otp').value || '').replace(/\D/g, ''), password = byId('fp-pass').value;
+      if (otp.length !== 6) { toast('Enter the 6-digit code we emailed you', 'fa-triangle-exclamation'); byId('fp-otp').focus(); return; }
+      if (password.length < 8) { toast('Use at least 8 characters for the new password', 'fa-triangle-exclamation'); byId('fp-pass').focus(); return; }
+      const btn = byId('forgotBtn'); fp.busy = true; btn.disabled = true; btn.textContent = 'Saving…';
+      fetch('/api/auth/reset-password', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin',
+        body: JSON.stringify({ email: fp.email, otp, ticket: fp.ticket, password }),
+      }).then(r => r.json().then(b => ({ ok: r.ok, b }))).then(({ ok, b }) => {
+        if (ok) {
+          toast('Password changed — sign in with your new password', 'fa-circle-check');
+          const mail = fp.email; fp.ticket = '';
+          openModal('signin'); byId('si-email').value = mail; byId('si-pass').value = ''; byId('si-pass').focus();
+        } else toast((b.error && b.error.message) || 'Could not reset the password', 'fa-triangle-exclamation');
+      }).catch(() => toast('Network error — please try again', 'fa-triangle-exclamation'))
+        .then(() => { fp.busy = false; btn.disabled = false; if (fp.ticket) btn.textContent = 'Set new password'; });
+    });
+  }
   document.querySelectorAll('.open-signin').forEach(b => b.addEventListener('click', e => { e.preventDefault(); openModal('signin'); }));
   document.querySelectorAll('.open-signup').forEach(b => b.addEventListener('click', e => {
     e.preventDefault();
