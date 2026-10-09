@@ -282,7 +282,7 @@ ${h.gallery([194, 103])}
 <h3>Which is the best area to invest in Pune in 2026?</h3>
 <p>For rental yield near IT jobs, Kharadi, Mundhwa and Hinjewadi lead. For lower entry prices, Lohegaon and Tathawade stand out. For premium homes, look at Balewadi and Kalyani Nagar. The right answer depends on your budget and where you or your tenants work.</p>
 <h3>Where can I buy a 2 BHK flat in Pune under ₹1 Cr?</h3>
-<p>Lohegaon (${h.link(233)}, ${h.link(234)}), Hinjewadi (${h.link(204)}), Tathawade (${h.link(202)}), NIBM (${h.link(235)}) and Mundhwa (${h.link(13)}) all have new 2 BHK options starting under or around ₹1 Cr.</p>
+<p>Lohegaon (${h.link(233)}, ${h.link(234)}), Hinjewadi (${h.link(204)}), Tathawade (${h.link(202)}), NIBM (${h.link(235)}) and Mundhwa (${h.link(13)}) all have new 2 BHK options starting under or around ₹1 Cr. See the full list in our guide to <a href="/blog/flats-under-1-crore-in-pune">flats under ₹1 crore in Pune</a>.</p>
 <h3>Is East Pune or West Pune better for investment?</h3>
 <p>Both are strong. East Pune (Kharadi, Mundhwa) is driven by the EON IT Park, WTC and Magarpatta. West Pune (Hinjewadi, Balewadi, Tathawade) is driven by Rajiv Gandhi Infotech Park and the Mumbai–Bengaluru highway. Pick the side closest to where demand comes from.</p>
 <h3>How do I check if a Pune project is RERA approved?</h3>
@@ -713,6 +713,179 @@ ${h.table([244, 233, 235, 231, 230, 228], 'Under-construction projects due in la
   };
 }
 
+function underOneCroreArticle(h) {
+  return {
+    slug: 'flats-under-1-crore-in-pune',
+    title: 'Flats Under ₹1 Crore in Pune (2026): 1, 2 & 3 BHK New Projects by Budget',
+    seo_title: 'Flats Under ₹1 Cr in Pune 2026: 2 & 3 BHK Projects',
+    seo_description:
+      'New flats in Pune under ₹1 crore — 1 & 2 BHK from ₹30 Lacs in Chikhali to 2 & 3 BHK under ₹1 Cr in Hinjewadi, Tathawade, NIBM & Mundhwa, with possession dates and MahaRERA numbers.',
+    excerpt:
+      'Buying your first home in Pune with a budget under ₹1 crore? Every new project on our map that starts below ₹1 Cr — sorted into under ₹50 Lacs, ₹50–75 Lacs and ₹75 Lacs–1 Cr — with locations, BHK options and possession dates.',
+    tags: ['Pune', 'Flats Under 1 Crore', 'Affordable Homes', '2 BHK', 'First Home'],
+    cover: {
+      theme: 'morning',
+      kicker: 'Budget guide',
+      lines: ['Flats Under ₹1 Cr', 'in Pune: 2026', 'Budget Guide'],
+      stats: [['30+', 'projects under ₹1 Cr'], ['₹30 L', 'lowest entry'], ['1–3 BHK', 'configurations']],
+    },
+    content: `
+<p>A budget under <strong>₹1 crore</strong> still buys a new home in most parts of Pune, if you know where to look. On the <a href="/map">Mappingg live map</a> we track more than 30 new projects whose starting price is below ₹1 Cr, from 1 BHK homes around ₹30 Lacs in Pimpri-Chinchwad to 2 and 3 BHK homes in the Hinjewadi IT belt. This guide sorts them by budget so you can build a shortlist quickly.</p>
+
+<h2>Where ₹1 crore goes furthest in Pune</h2>
+<div class="table-scroll"><table>
+<caption>What your budget buys, by area</caption>
+<thead><tr><th>Budget</th><th>Where to look</th><th>Typical home</th></tr></thead>
+<tbody>
+<tr><td>Under ₹50 Lacs</td><td>Chikhali, Bopkhel, Hadapsar–Fursungi</td><td>1 BHK and compact 2 BHK</td></tr>
+<tr><td>₹50–75 Lacs</td><td>Lohegaon, Undri, Ambegaon, Dapodi, Charholi, Dudulgaon, Sus</td><td>2 BHK, some 3 BHK</td></tr>
+<tr><td>₹75 Lacs – ₹1 Cr</td><td>Hinjewadi, Tathawade, Mahalunge, NIBM, Dhanori, Mundhwa</td><td>Larger 2 BHK, entry 3 BHK</td></tr>
+</tbody></table></div>
+<p><small>Starting prices as listed on Mappingg in October 2026. Most projects have bigger homes above these prices.</small></p>
+
+<h2>New flats under ₹50 Lacs</h2>
+<p>The lowest entry prices on our map are in Pimpri-Chinchwad. ${h.link(244)} in ${h.loc('Chikhali')} offers 1 and 2 BHK homes from ₹30 Lacs with possession due in December 2026, and ${h.link(240)}, also in Chikhali, starts at ₹35 Lacs. On the east side, ${h.link(221)} in Hadapsar–Fursungi starts at ₹44.99 Lacs, and ${h.link(163)} near Khadki and Bopkhel starts at about ₹50 Lacs.</p>
+${h.table([244, 240, 221, 163], 'New projects starting under ₹50 Lacs')}
+
+<h2>2 BHK flats from ₹50 Lacs to ₹75 Lacs</h2>
+<p>This is the sweet spot for first-time buyers. In the south-east, ${h.link(211)} in ${h.loc('Undri')}, ${h.link(212)} in Mohammadwadi and ${h.link(210)} in Handewadi start between ₹62 and ₹68 Lacs. Near the airport, ${h.link(233)} and ${h.link(234)} in ${h.loc('Lohegaon')} start at about ₹65 Lacs, and ${h.link(256)} is an upcoming project from ₹72.89 Lacs. In PCMC, look at ${h.link(249)} in Dudulgaon, ${h.link(251)} in Dapodi and ${h.link(241)} in Charholi. ${h.link(229)} in Ambegaon and ${h.link(111)} by Magarpatta Group in Loni Kalbhor round out the list.</p>
+${h.gallery([211, 210, 233, 249, 241, 229])}
+${h.table([211, 249, 233, 251, 229, 234, 210, 212, 241, 256, 111], '2 BHK projects from ₹50 Lacs to ₹75 Lacs')}
+
+<h2>2 &amp; 3 BHK flats from ₹75 Lacs to ₹1 Crore</h2>
+<p>With a little more budget, the IT belts open up. ${h.link(199)} in Sus starts at ₹74 Lacs, ${h.link(238)} in ${h.loc('Ravet')} at ₹75 Lacs and ${h.link(242)} in Moshi at ₹75 Lacs. In ${h.loc('Hinjewadi')}, the Krisala Hiranandani township has ${h.link(204)} from ₹82 Lacs and the upcoming ${h.link(206)} from ₹85 Lacs, and ${h.link(203)} starts at about ₹94 Lacs. ${h.link(198)} by Mahindra in Mahalunge and ${h.link(235)} in ${h.loc('NIBM')} both start at ₹90 Lacs, while ${h.link(202)} and ${h.link(231)} in ${h.loc('Tathawade')} and ${h.link(13)} in Mundhwa come in just under ₹1 Cr.</p>
+${h.table([199, 238, 242, 245, 165, 204, 206, 198, 235, 202, 203, 231, 13], 'Projects from ₹75 Lacs to ₹1 Cr')}
+
+<h2>Under ₹1 Cr and ready soon</h2>
+<p>If you’re paying rent, a near-term possession date matters as much as the price. These projects on our map start under ₹1 Cr and are due by December 2026: ${h.link(245)} in Chinchwad (October 2026), ${h.link(244)} in Chikhali, ${h.link(233)} in Lohegaon, ${h.link(249)} in Dudulgaon, ${h.link(235)} in NIBM and ${h.link(231)} in Tathawade. Our guide to <a href="/blog/ready-to-move-vs-under-construction-flats-pune">ready-to-move vs under-construction flats</a> explains the trade-offs.</p>
+
+<h2>How to stretch a ₹1 crore budget</h2>
+<ol>
+  <li><strong>Budget for the costs on top of the price.</strong> In Pune city, stamp duty, registration and GST can add about 12% to an under-construction flat. Read our guide to <a href="/blog/stamp-duty-registration-charges-pune">stamp duty, registration and hidden costs</a> before you fix your budget.</li>
+  <li><strong>Compare carpet area, not super built-up area.</strong> Two “2 BHK” homes at the same price can differ by 100 sq ft or more of usable space.</li>
+  <li><strong>Check the commute on a map.</strong> A cheaper flat that adds an hour a day to your commute may not be a saving. Open each project on the <a href="/map">live map</a> to see the roads and metro lines around it.</li>
+  <li><strong>Look at the payment plan.</strong> Construction-linked plans spread the cost, but read the cancellation clauses.</li>
+  <li><strong>Verify the MahaRERA number</strong> for your specific tower. Here’s <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>.</li>
+</ol>
+
+<h2>FAQs: Flats under ₹1 crore in Pune</h2>
+<h3>Can I buy a 2 BHK in Pune under ₹1 crore?</h3>
+<p>Yes. Most of the projects in this guide offer 2 BHK homes under ₹1 Cr, from about ₹62 Lacs in Undri and Dudulgaon to about ₹82–94 Lacs in Hinjewadi and Tathawade.</p>
+<h3>Which is the cheapest area to buy a new flat in Pune?</h3>
+<p>Among the projects on our map, Chikhali in Pimpri-Chinchwad has the lowest starting prices (from ₹30 Lacs), followed by Hadapsar–Fursungi and Bopkhel.</p>
+<h3>Can I get a 3 BHK under ₹1 crore in Pune?</h3>
+<p>A few projects offer entry-level 3 BHK homes close to ₹1 Cr, mainly in Lohegaon, Undri, Charholi and Moshi. Ask the developer for the exact price of the 3 BHK unit, because the starting price is usually for the smallest home.</p>
+<h3>Is it better to buy in East or West Pune on this budget?</h3>
+<p>Choose the side closest to where you work. Our guide to the <a href="/blog/best-areas-to-buy-property-in-pune">best areas to buy property in Pune</a> compares the main localities.</p>
+
+<blockquote>Prices, configurations and possession dates are as listed on Mappingg in October 2026 and may change. Always confirm with the developer and on MahaRERA before you book.</blockquote>
+`,
+  };
+}
+
+function stampDutyArticle(h) {
+  return {
+    slug: 'stamp-duty-registration-charges-pune',
+    title: 'Stamp Duty, Registration Charges & Hidden Costs of Buying a Flat in Pune (2026)',
+    seo_title: 'Stamp Duty & Registration Charges in Pune 2026',
+    seo_description:
+      'Stamp duty in Pune is 7% in PMC & PCMC limits (6% for women), plus 1% registration capped at ₹30,000, GST on under-construction flats and other costs. Worked example for an ₹80 L flat.',
+    excerpt:
+      'The price on the brochure is not what you pay. Here is how stamp duty, metro cess, registration, GST, TDS and the smaller charges add up when you buy a flat in Pune, with a worked example.',
+    tags: ['Stamp Duty', 'Registration Charges', 'Pune', 'Home Buying Guide', 'GST'],
+    cover: {
+      theme: 'slate',
+      kicker: 'Buyer’s guide',
+      lines: ['Stamp Duty &', 'Hidden Costs of', 'a Flat in Pune'],
+      stats: [['7%', 'stamp duty'], ['₹30K', 'max registration'], ['≈12%', 'on top of price']],
+    },
+    content: `
+<p>When you budget for a flat in Pune, the price on the brochure is only the start. On top of it you pay <strong>stamp duty</strong>, a <strong>registration fee</strong>, <strong>GST</strong> if the flat is under construction, and several smaller charges. Together they can add more than 10% to the cost. This guide explains each one, with a worked example, so there are no surprises on the day you register.</p>
+
+<h2>Stamp duty in Pune (2026)</h2>
+<p>Stamp duty is a state tax on the property document. Within Pune Municipal Corporation (PMC) and Pimpri-Chinchwad Municipal Corporation (PCMC) limits, it is made up of three parts:</p>
+<div class="table-scroll"><table>
+<caption>Stamp duty in PMC and PCMC limits</caption>
+<thead><tr><th>Component</th><th>Men / joint with a man</th><th>Woman (sole owner)</th></tr></thead>
+<tbody>
+<tr><td>Stamp duty</td><td>5%</td><td>4%</td></tr>
+<tr><td>Metro cess</td><td>1%</td><td>1%</td></tr>
+<tr><td>Local body tax (LBT) surcharge</td><td>1%</td><td>1%</td></tr>
+<tr><td><strong>Total</strong></td><td><strong>7%</strong></td><td><strong>6%</strong></td></tr>
+</tbody></table></div>
+<p>Three things to know:</p>
+<ul>
+  <li><strong>It is charged on the higher value.</strong> Stamp duty is worked out on the agreement value or the government’s ready reckoner value for that flat, whichever is higher.</li>
+  <li><strong>The women’s concession</strong> applies to residential property bought in a woman’s name. Check the current conditions before you register, especially for joint ownership.</li>
+  <li><strong>Outside city limits it is lower.</strong> In gram panchayat areas around Pune, the metro cess and LBT surcharge generally don’t apply.</li>
+</ul>
+
+<h2>Registration fee</h2>
+<p>The registration fee is <strong>1% of the property value, capped at ₹30,000</strong>. For almost every new flat in Pune city, you’ll pay the full ₹30,000. You pay it when the agreement for sale is registered at the sub-registrar’s office.</p>
+
+<h2>GST on under-construction flats</h2>
+<div class="table-scroll"><table>
+<caption>GST on residential flats</caption>
+<thead><tr><th>Type of flat</th><th>GST</th></tr></thead>
+<tbody>
+<tr><td>Ready-to-move, with occupancy certificate (OC)</td><td>None</td></tr>
+<tr><td>Under construction, affordable (up to ₹45 Lacs and up to 90 sq m carpet in Pune)</td><td>1%</td></tr>
+<tr><td>Under construction, all others</td><td>5%</td></tr>
+</tbody></table></div>
+<p>GST is charged without input tax credit and is normally collected with each construction-linked instalment. Ask the developer whether the quoted price includes GST. Parking, club membership and other charges billed by the developer may attract GST separately.</p>
+
+<h2>Worked example: an ₹80 Lacs flat in Pune city</h2>
+<p>Take a 2 BHK in PMC limits with an agreement value of ₹80 Lacs, bought under construction by a man (or jointly with a man):</p>
+<div class="table-scroll"><table>
+<caption>What an ₹80 Lacs under-construction flat really costs</caption>
+<thead><tr><th>Item</th><th>Amount</th></tr></thead>
+<tbody>
+<tr><td>Agreement value</td><td>₹80,00,000</td></tr>
+<tr><td>Stamp duty, metro cess &amp; LBT (7%)</td><td>₹5,60,000</td></tr>
+<tr><td>Registration fee (capped)</td><td>₹30,000</td></tr>
+<tr><td>GST (5%)</td><td>₹4,00,000</td></tr>
+<tr><td><strong>Total before other charges</strong></td><td><strong>₹89,90,000</strong></td></tr>
+</tbody></table></div>
+<p>If the flat is registered in a woman’s name alone, stamp duty falls to 6% (₹4,80,000), saving ₹80,000. If the same flat is ready to move with an OC, there is no GST, saving ₹4 Lacs.</p>
+
+<h2>TDS: 1% you deduct, not an extra cost</h2>
+<p>If the flat costs ₹50 Lacs or more, you must deduct <strong>1% TDS</strong> from each payment to the developer and deposit it with the Income Tax Department under the developer’s PAN. It isn’t an extra cost, because the developer gets credit for it, but forgetting it can lead to interest and penalties. On an ₹80 Lacs flat, the TDS is ₹80,000.</p>
+
+<h2>The smaller costs buyers forget</h2>
+<ul>
+  <li><strong>Maintenance deposit:</strong> developers usually collect 12 to 24 months of maintenance in advance at possession.</li>
+  <li><strong>Society formation and legal charges:</strong> often a fixed amount, collected at possession.</li>
+  <li><strong>Electricity and water connections:</strong> meter and connection deposits.</li>
+  <li><strong>Parking, floor rise and preferential location charges (PLC):</strong> check whether they are in the quoted price.</li>
+  <li><strong>Home loan costs:</strong> processing fees, legal and valuation charges, and stamp duty on the loan agreement.</li>
+  <li><strong>Brokerage</strong>, if you buy through a broker.</li>
+  <li><strong>Interiors and furnishing</strong>, which many buyers leave out of the budget entirely.</li>
+</ul>
+
+<h2>How to keep the extra costs down</h2>
+<ol>
+  <li><strong>Ask for an all-inclusive cost sheet</strong> that shows the agreement value, GST, stamp duty, registration and every other charge before you pay the booking amount.</li>
+  <li><strong>Consider registering in a woman’s name</strong> where it suits your family, to save 1% stamp duty.</li>
+  <li><strong>Compare ready-to-move flats</strong>, which carry no GST. Our guide to <a href="/blog/ready-to-move-vs-under-construction-flats-pune">ready-to-move vs under-construction flats</a> explains when that makes sense.</li>
+  <li><strong>Keep a buffer of 12–15% of the price</strong> for an under-construction flat in Pune city, or 7–10% for a ready one.</li>
+</ol>
+<p>Looking for homes that leave room in the budget? See our list of <a href="/blog/flats-under-1-crore-in-pune">flats under ₹1 crore in Pune</a>, and always <a href="/blog/how-to-check-maharera-registration-number">check the MahaRERA number</a> before you book.</p>
+
+<h2>FAQs</h2>
+<h3>What is the stamp duty in Pune in 2026?</h3>
+<p>Within PMC and PCMC limits, it is 7% (5% stamp duty, 1% metro cess and 1% LBT surcharge). Women buying in their own name pay 6%.</p>
+<h3>What are the registration charges in Pune?</h3>
+<p>1% of the property value, capped at ₹30,000.</p>
+<h3>Is stamp duty charged on the agreement value or the ready reckoner rate?</h3>
+<p>On whichever is higher of the two.</p>
+<h3>Can I include stamp duty in my home loan?</h3>
+<p>Banks generally lend against the property value and don’t fund stamp duty and registration, so plan to pay them from your own savings.</p>
+
+<blockquote>Rates are as reported for October 2026 and can change. This guide is general information, not legal or tax advice. Confirm the current rates on the IGR Maharashtra website or with a property lawyer before you register.</blockquote>
+`,
+  };
+}
+
 // ---- main ---------------------------------------------------------------------
 
 async function upsert(post) {
@@ -749,6 +922,7 @@ async function main() {
   const articles = [
     mundhwaArticle(h), puneAreasArticle(h), kharadiArticle(h), reraArticle(h),
     westPuneArticle(h), pcmcArticle(h), eastPuneArticle(h), readyVsUcArticle(h),
+    underOneCroreArticle(h), stampDutyArticle(h),
   ];
 
   // Sanity: every slug used by the articles' internal links must be stable.
@@ -757,7 +931,7 @@ async function main() {
   await mkdir(COVER_DIR, { recursive: true });
   for (const a of articles) {
     // Versioned name: /img is browser-cached for a week (next.config.mjs).
-    const file = `${a.slug}-v2.jpg`;
+    const file = `${a.slug}-v3.jpg`;
     await makeCover(path.join(COVER_DIR, file), a.cover);
     a.cover_image = `/img/blog/${file}`;
     console.log(`Cover: public/img/blog/${file}`);
