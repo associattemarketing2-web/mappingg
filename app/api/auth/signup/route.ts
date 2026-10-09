@@ -9,6 +9,7 @@ import { logActivity } from '@/lib/activity';
 import { addBuyerSignupLead } from '@/lib/signup-leads';
 import { clientIp, rateLimit } from '@/lib/rate-limit';
 import { checkOtp } from '@/lib/otp';
+import { withRoleProfiles } from '@/lib/signup-profile';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -16,9 +17,6 @@ export const dynamic = 'force-dynamic';
 // Public self-sign-up for buyers, developers and channel partners. Staff roles
 // (admin / employee) can never be created here — only via seed-admin or the
 // Employees tab. Each role keeps its own profile fields from the sign-up form.
-// Every field is required except a developer's website — the form marks them the same way.
-const req = (max = 120) => z.string().trim().min(1).max(max);
-
 const base = z.object({
   name: z.string().trim().min(1).max(120),
   email: z.string().trim().toLowerCase().email(),
@@ -28,30 +26,8 @@ const base = z.object({
   otp: z.string().trim().max(12),
   ticket: z.string().max(1000),
 });
-
-const schema = z.discriminatedUnion('role', [
-  base.extend({
-    role: z.literal('buyer'),
-    profile: z.object({
-      area: req(), configuration: req(), budget: req(), timeline: req(), purpose: req(),
-    }),
-  }),
-  base.extend({
-    role: z.literal('developer'),
-    profile: z.object({
-      company: req(160), designation: req(), activeProjects: req(),
-      // Website is the one optional field (many developers don't have one).
-      reraProject: z.string().trim().min(4).max(40), website: z.string().trim().max(300).optional().default(''),
-    }),
-  }),
-  base.extend({
-    role: z.literal('agent'),
-    profile: z.object({
-      agency: req(160),
-      reraAgent: z.string().trim().min(4).max(40), areas: req(300),
-    }),
-  }),
-]);
+// Each role's own fields (lib/signup-profile.ts) — all required except a developer's website.
+const schema = withRoleProfiles(base);
 
 export async function POST(req: NextRequest) {
   const parsed = schema.safeParse(await req.json().catch(() => null));

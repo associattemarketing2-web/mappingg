@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { randomUUID } from 'node:crypto';
 import { getDb } from '@/lib/mongodb';
 import { PUBLIC_ROLES, createSessionToken, homePathFor, setSessionCookie } from '@/lib/auth';
-import { logActivity, recordLogin } from '@/lib/activity';
-import { addBuyerSignupLead } from '@/lib/signup-leads';
+import { recordLogin } from '@/lib/activity';
+import { COMPLETE_SIGNUP_PATH, setPendingGoogleSignup } from '@/lib/google-signup';
 import { homeForAccount } from '@/lib/verification';
 import {
   OAUTH_STATE_COOKIE,
@@ -20,8 +19,8 @@ export const dynamic = 'force-dynamic';
 // then issue the same mg_session cookie password login uses.
 //
 // SECURITY: Google sign-in NEVER grants a staff role. An existing account keeps
-// its stored role; a brand-new Google user is provisioned as a public `buyer`
-// (lowest privilege, auto-approved), mirroring self-sign-up. Staff access still
+// its stored role; a brand-new Google user first completes the public sign-up
+// form (buyer / developer / channel partner only), mirroring self-sign-up. Staff access still
 // requires an admin to set the role in the Employees tab.
 export async function GET(req: NextRequest) {
   const origin = req.nextUrl.origin;
@@ -55,22 +54,15 @@ export async function GET(req: NextRequest) {
     type UserRow = { _id: string; [key: string]: unknown };
     const db = await getDb();
     const users = db.collection<UserRow>('users');
-    let user: UserRow | null = await users.findOne({ email: profile.email });
+    const user: UserRow | null = await users.findOne({ email: profile.email });
 
     if (!user) {
-      // First-time Google sign-in → create a public buyer account (no password).
-      const id = randomUUID();
-      const now = new Date().toISOString();
-      const doc: UserRow = {
-        _id: id, id, email: profile.email, name: profile.name,
-        role: 'buyer', provider: 'google', google_sub: profile.sub,
-        verified: true, verification: 'approved',
-        created_at: now, updated_at: now,
-      };
-      await users.insertOne(doc);
-      await logActivity({ user_id: id, email: profile.email, name: profile.name, role: 'buyer', type: 'signup', detail: 'Buyer account created with Google' });
-      await addBuyerSignupLead({ id, name: profile.name, email: profile.email, provider: 'google', created_at: now });
-      user = doc;
+      // First-time Google sign-in → no account yet. They fill in the full
+      // sign-up form first (account type, WhatsApp, details); the account is
+      // created when they submit it (/api/auth/google/complete).
+      await setPendingGoogleSignup({ email: profile.email, name: profile.name, sub: profile.sub });
+      clearOAuthTempCookies();
+      return NextResponse.redirect(new URL(COMPLETE_SIGNUP_PATH, origin));
     } else if (!user.google_sub) {
       // Existing account signing in with Google for the first time — link it.
       await users.updateOne({ _id: String(user._id) }, { $set: { google_sub: profile.sub, provider: user.provider || 'google' } });

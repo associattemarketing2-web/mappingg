@@ -253,3 +253,11 @@
   .fav-search { flex: 1 1 100%; }
   .fav-grid { gap: 14px; }
 }
+
+/* Complete-your-Google-sign-up form: account type + "Buying for" choices. */
+.gs-roles { display: flex; flex-wrap: wrap; gap: 8px; }
+.gs-role { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 11px; border: 1px solid var(--bp-line); background: #fff; font-family: inherit; font-size: 13.5px; font-weight: 600; color: inherit; cursor: pointer; }
+.gs-role i { color: var(--bp-muted); }
+.gs-role:hover { border-color: var(--bp-forest); }
+.gs-role.on { border-color: var(--bp-forest); background: rgba(15,92,71,.08); color: var(--bp-forest); box-shadow: 0 0 0 3px rgba(15,92,71,.12); }
+.gs-role.on i { color: var(--bp-forest); }
