@@ -22,7 +22,22 @@ export interface Developer {
   created_at: string;
   updated_at: string;
 }
-export interface DeveloperRow { id: string; name: string; logo: string | null; projects: number; logoInUse: number; updated_at: string }
+export interface DeveloperRow {
+  id: string; name: string; logo: string | null; projects: number; logoInUse: number; updated_at: string;
+  /** Every map project of this developer, for the card and the project list. */
+  list: ProjectInfo[];
+}
+/** A map project's key facts, as shown in the Developers section. */
+export interface ProjectInfo {
+  id: string; title: string; number: number | null; hasLogo: boolean;
+  location: string; status: string; type: string; configuration: string; price: string; possession: string; hidden: boolean;
+}
+type PinFacts = { id: string; developer?: string; image?: string; title?: string; number?: number; location?: string; status?: string; type?: string; configuration?: string; price?: string; possession_timeline?: string; hidden?: boolean };
+const PIN_FACTS = { id: 1, developer: 1, image: 1, title: 1, number: 1, location: 1, status: 1, type: 1, configuration: 1, price: 1, possession_timeline: 1, hidden: 1 };
+const factsOf = (p: PinFacts) => ({
+  title: p.title || 'Untitled project', number: p.number ?? null, location: p.location || '', status: p.status || '', type: p.type || '',
+  configuration: p.configuration || '', price: p.price || '', possession: p.possession_timeline || '', hidden: p.hidden === true,
+});
 
 /** "Lodha Group " / "LODHA-group" → "lodha group" — how names are matched. */
 export const normDev = (s: unknown) => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
@@ -44,8 +59,8 @@ const pinsColl = async () => (await getDb()).collection<{ _id: string; id: strin
 const md5 = (s: string) => createHash('md5').update(s).digest('hex');
 const fingerprint = (img: unknown) => (typeof img !== 'string' || !img ? '' : img.startsWith(MEDIA_DIGEST_PREFIX) ? img.slice(MEDIA_DIGEST_PREFIX.length) : img.startsWith('data:') ? md5(img) : img);
 /** Every pin's id, developer and image fingerprint — no image data. */
-const pinSummaries = async () => (await (await pinsColl()).find({}, { projection: { id: 1, developer: 1, image: 1 }, mediaDigest: { fields: ['image'] } } as never).toArray())
-  .map((p) => ({ id: p.id, developer: p.developer, logo: fingerprint(p.image) }));
+const pinSummaries = async () => (await (await pinsColl()).find({}, { projection: PIN_FACTS, mediaDigest: { fields: ['image'] } } as never).toArray() as unknown as PinFacts[])
+  .map((p) => ({ id: p.id, developer: p.developer, logo: fingerprint(p.image), ...factsOf(p) }));
 
 let seeding: Promise<void> | null = null;
 /** Adds a directory entry for every developer on the map that doesn't have one yet. */
@@ -98,15 +113,24 @@ export async function listDevelopers(): Promise<DeveloperRow[]> {
   const [devs, pins] = await Promise.all([devDocs(), pinSummaries()]);
   const projects = new Map<string, number>();
   const sameLogo = new Map<string, number>();
+  const lists = new Map<string, DeveloperRow['list']>();
   const logoOf = new Map(devs.map((d) => [normDev(d.name), fingerprint(d.logo)]));
   for (const p of pins) {
     const k = normDev(p.developer);
     if (!k) continue;
     projects.set(k, (projects.get(k) || 0) + 1);
-    if (p.logo && p.logo === logoOf.get(k)) sameLogo.set(k, (sameLogo.get(k) || 0) + 1);
+    const hasLogo = !!p.logo && p.logo === logoOf.get(k);
+    if (hasLogo) sameLogo.set(k, (sameLogo.get(k) || 0) + 1);
+    lists.set(k, [...(lists.get(k) || []), {
+      id: p.id, hasLogo, title: p.title, number: p.number, location: p.location, status: p.status, type: p.type,
+      configuration: p.configuration, price: p.price, possession: p.possession, hidden: p.hidden,
+    }]);
   }
   return devs
-    .map((d) => ({ id: d.id, name: d.name, logo: logoUrl(d), projects: projects.get(normDev(d.name)) || 0, logoInUse: sameLogo.get(normDev(d.name)) || 0, updated_at: d.updated_at }))
+    .map((d) => ({
+      id: d.id, name: d.name, logo: logoUrl(d), projects: projects.get(normDev(d.name)) || 0, logoInUse: sameLogo.get(normDev(d.name)) || 0, updated_at: d.updated_at,
+      list: (lists.get(normDev(d.name)) || []).sort((a, b) => (a.number ?? 1e9) - (b.number ?? 1e9) || a.title.localeCompare(b.title)),
+    }))
     .sort((a, b) => b.projects - a.projects || a.name.localeCompare(b.name));
 }
 
@@ -217,17 +241,54 @@ export async function deleteDeveloper(id: string): Promise<void> {
  * Goes through the normal pin update, so each change lands in pin history
  * (restorable from Backups) and the live map refreshes.
  */
-export async function applyLogoToPins(id: string): Promise<number> {
+export async function applyLogoToPins(id: string, onlyPins?: string[]): Promise<number> {
   await ensureTable();
   const dev = await (await coll()).findOne({ id });
   if (!dev) throw new DeveloperError('Developer not found', 404);
   if (!dev.logo) throw new DeveloperError('Add a logo first');
   const key = normDev(dev.name), want = fingerprint(dev.logo);
-  const ids = (await pinSummaries()).filter((p) => normDev(p.developer) === key && p.logo !== want).map((p) => p.id);
+  // Optional: just the projects the admin ticked (still only this developer's).
+  const picked = onlyPins ? new Set(onlyPins) : null;
+  const ids = (await pinSummaries()).filter((p) => normDev(p.developer) === key && p.logo !== want && (!picked || picked.has(p.id))).map((p) => p.id);
   if (!ids.length) return 0;
   const r = await runDbOp({ table: 'pins', action: 'update', filters: [{ op: 'in', col: 'id', vals: ids }], values: { image: dev.logo } }, true);
   if (r.error) throw new DeveloperError(r.error.message, r.status || 500);
   return ids.length;
+}
+
+/**
+ * Puts a different logo (not the developer's own) on some of the developer's
+ * projects — e.g. a project with its own branding. Same pin update as above, so
+ * the old picture stays in pin history.
+ */
+export async function setPinsLogo(id: string, pinIds: string[], logo: unknown): Promise<number> {
+  await ensureTable();
+  if (!isLogo(logo)) throw new DeveloperError('Logo must be a PNG, JPG, WebP, GIF or SVG image under 2 MB');
+  const dev = await (await coll()).findOne({ id }, { projection: { name: 1 } });
+  if (!dev) throw new DeveloperError('Developer not found', 404);
+  const key = normDev(dev.name), picked = new Set(pinIds);
+  const ids = (await pinSummaries()).filter((p) => normDev(p.developer) === key && picked.has(p.id)).map((p) => p.id);
+  if (!ids.length) throw new DeveloperError('Select at least one of this developer’s projects');
+  const r = await runDbOp({ table: 'pins', action: 'update', filters: [{ op: 'in', col: 'id', vals: ids }], values: { image: logo } }, true);
+  if (r.error) throw new DeveloperError(r.error.message, r.status || 500);
+  return ids.length;
+}
+
+/** This developer's map projects, each with its current picture and whether it already shows the developer logo. */
+export async function developerProjects(id: string): Promise<(ProjectInfo & { image: string | null })[]> {
+  await ensureTable();
+  const dev = await (await coll()).findOne({ id }, { mediaDigest: { fields: ['logo'] } } as never);
+  if (!dev) throw new DeveloperError('Developer not found', 404);
+  const key = normDev(dev.name), want = fingerprint(dev.logo);
+  const pins = await (await pinsColl()).find({}, { projection: PIN_FACTS, mediaDigest: { fields: ['image'] } } as never).toArray() as unknown as PinFacts[];
+  return pins
+    .filter((p) => normDev(p.developer) === key)
+    .map((p) => ({
+      id: p.id, ...factsOf(p),
+      image: !p.image ? null : p.image.startsWith('data:') ? mediaUrl('pins', p.id, 'image', p.image, 160) : p.image,
+      hasLogo: !!want && fingerprint(p.image) === want,
+    }))
+    .sort((a, b) => Number(a.hasLogo) - Number(b.hasLogo) || (a.number ?? 1e9) - (b.number ?? 1e9));
 }
 
 /** The stored logo exactly as saved (data: URL), so pins get an identical copy. */
