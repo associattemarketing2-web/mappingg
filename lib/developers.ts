@@ -3,6 +3,7 @@ import { query } from './pg';
 import { getDb, usingMongo } from './mongodb';
 import { runDbOp } from './db-engine';
 import { MEDIA_DIGEST_PREFIX, mediaUrl } from './pin-media';
+import { slugForProject } from './seo/entities';
 
 // The developer directory: one record per real-estate developer (builder brand)
 // with ONE logo. The map editor's "Developer" box suggests names from here, and
@@ -278,16 +279,29 @@ export async function setPinsLogo(id: string, pinIds: string[], logo: unknown): 
 }
 
 /** This developer's map projects, each with its current picture and whether it already shows the developer logo. */
-export async function developerProjects(id: string): Promise<ProjectInfo[]> {
+/** Extra facts shown when a project is opened in the Developers section. */
+export interface ProjectDetails { sqft: string; launch: string; rera: string; about: string; page: string | null }
+
+export async function developerProjects(id: string): Promise<(ProjectInfo & { details: ProjectDetails })[]> {
   await ensureTable();
   const dev = await (await coll()).findOne({ id }, { mediaDigest: { fields: ['logo'] } } as never);
   if (!dev) throw new DeveloperError('Developer not found', 404);
   const key = normDev(dev.name), want = fingerprint(dev.logo);
-  const pins = await (await pinsColl()).find({}, { projection: PIN_FACTS, mediaDigest: { fields: ['image'] } } as never).toArray() as unknown as PinFacts[];
+  const extra = { sqft: 1, launch_date: 1, rera_number: 1, rera_numbers: 1, key_usp: 1, description: 1 };
+  type Full = PinFacts & { sqft?: string; launch_date?: string; rera_number?: string; rera_numbers?: unknown; key_usp?: string; description?: string };
+  const pins = await (await pinsColl()).find({}, { projection: { ...PIN_FACTS, ...extra }, mediaDigest: { fields: ['image'] } } as never).toArray() as unknown as Full[];
+  const str = (v: unknown) => (v == null ? '' : String(v).trim());
   return pins
     .filter((p) => normDev(p.developer) === key)
     .map((p) => ({
       id: p.id, ...factsOf(p),
+      details: {
+        sqft: str(p.sqft), launch: str(p.launch_date),
+        rera: str(p.rera_number) || (Array.isArray(p.rera_numbers) ? p.rera_numbers.map(str).filter(Boolean).join(', ') : str(p.rera_numbers)),
+        about: str(p.key_usp) || str(p.description),
+        // The public project page — only for projects visible on the site.
+        page: p.hidden || p.number == null ? null : `/projects/${slugForProject(p as never)}`,
+      },
       image: imageOf(p, 160),
       hasLogo: !!want && fingerprint(p.image) === want,
     }))

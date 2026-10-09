@@ -12,7 +12,7 @@ interface ProjectInfo {
   location: string; status: string; type: string; configuration: string; price: string; possession: string; hidden: boolean;
   image: string | null;
 }
-const FIRST = 8; // projects shown per developer before "Show all"
+const FIRST = 4; // project names listed on a developer card before "+ n more"
 interface Dev {
   id: string; name: string; logo: string | null; projects: number; logoInUse: number; updated_at: string;
   list?: ProjectInfo[];
@@ -60,9 +60,9 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
   const [adding, setAdding] = useState(false);
   const [editing, setEditing] = useState<string | null>(null);
   const [open, setOpen] = useState<string | null>(null);
-  // Developers whose full project list is shown (otherwise the first FIRST).
-  const [expanded, setExpanded] = useState<Set<string>>(new Set());
-  const toggleExpand = (id: string) => setExpanded((s) => { const n = new Set(s); if (n.has(id)) n.delete(id); else n.add(id); return n; });
+  // A project to show straight away when the developer panel opens.
+  const [openProject, setOpenProject] = useState<string | null>(null);
+  const openDevAt = (devId: string, projectId: string | null = null) => { setOpenProject(projectId); setOpen(devId); };
 
   const load = () => call('GET').then(setRows).catch((e) => { flash(e.message, true); setRows((r) => r || []); });
   useEffect(() => { load(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -126,62 +126,55 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
       {!rows ? <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading developers…</p></div>
         : !shown.length ? <div className="adm-empty"><i className="fas fa-building" /><p>{rows.length ? 'Nothing matches your search.' : 'No developers yet — add one, or add a developer name to a pin in the Map Editor.'}</p></div>
           : (
-            <div className="dvl-secs">
+            <ul className="dvl-cards">
               {shown.map((d) => {
-                // Searching a project name shows just the matching projects of that developer.
+                // Searching a project name lists the matching projects first.
                 const all = d.list || [];
                 const items = s && !d.name.toLowerCase().includes(s) ? all.filter((p) => p.title.toLowerCase().includes(s)) : all;
-                const more = expanded.has(d.id) ? 0 : Math.max(0, items.length - FIRST);
+                const st = logoState(d);
                 return (
-                  <section key={d.id} className={`dvl-sec s-${logoState(d)}`}>
-                    <header className="dvl-sec-head">
+                  <li key={d.id} className={`dvl-dcard s-${st}`}>
+                    <div className="dvl-dcard-top">
                       <span className={`dvl-logo${d.logo ? '' : ' empty'}`} aria-hidden="true">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         {d.logo ? <img src={thumb(d.logo)} alt="" loading="lazy" /> : <i className="fas fa-image" />}
                       </span>
-                      <span className="dvl-info">
-                        <b className="dvl-name" title={d.name}>{d.name}</b>
-                        <span className="muted dvl-sub">{d.projects ? `${d.projects} project${d.projects === 1 ? '' : 's'}` : 'No projects on the map yet'}</span>
-                        <LogoStatus dev={d} />
-                        {d.logo && d.projects > 0 && (
-                          <span className="dvl-bar-meter" aria-hidden="true"><span style={{ width: `${Math.round((Math.min(d.logoInUse, d.projects) / d.projects) * 100)}%` }} /></span>
-                        )}
-                      </span>
-                      <button type="button" className="adm-btn primary sm" onClick={() => setOpen(d.id)}><i className="fas fa-pen-to-square" /> Manage logos</button>
-                    </header>
-                    {items.length > 0 && (
-                      <ul className="dvl-proj-grid">
-                        {items.slice(0, items.length - more).map((p) => (
+                      <div className="dvl-dcard-id">
+                        <b title={d.name}>{d.name}</b>
+                        <span className="muted">{d.projects ? `${d.projects} project${d.projects === 1 ? '' : 's'}` : 'No projects yet'}</span>
+                      </div>
+                    </div>
+
+                    <span className={`dvl-chip s-${st}`}>
+                      <i className={`fas ${st === 'ok' ? 'fa-circle-check' : 'fa-circle-exclamation'}`} />
+                      {st === 'none' ? 'No logo yet' : st === 'some' ? `Logo on ${d.logoInUse} of ${d.projects}` : d.projects ? 'Logo on all projects' : 'Logo added'}
+                    </span>
+
+                    {items.length > 0 ? (
+                      <ul className="dvl-dcard-list">
+                        {items.slice(0, FIRST).map((p) => (
                           <li key={p.id}>
-                            <button type="button" className="dvl-proj" onClick={() => setOpen(d.id)} title={`${projName(p)} — click to change its logo`}>
-                              <span className={`dvl-pj-img${p.image ? '' : ' empty'}`}>
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                {p.image ? <img src={p.image} alt="" loading="lazy" /> : <i className="fas fa-image" />}
-                              </span>
-                              <span className="dvl-pj-name">
-                                <b title={projName(p)}>{projName(p)}</b>
-                                <small className="muted" title={p.location}>{p.location || '—'}</small>
-                                {!p.hasLogo && <span className={`dvl-pill ${p.image ? 'own' : 'none'}`}>{p.image ? 'Own logo' : 'No logo'}</span>}
-                              </span>
-                              {p.hasLogo && <i className="fas fa-circle-check dvl-proj-ok" title="Shows the developer logo" aria-label="Shows the developer logo" />}
+                            <button type="button" onClick={() => openDevAt(d.id, p.id)} title={`${projName(p)}${p.location ? ` — ${p.location}` : ''} · click for details`}>
+                              <i className={`fas ${p.hasLogo ? 'fa-circle-check ok' : 'fa-circle-exclamation warn'}`} aria-label={p.hasLogo ? 'Developer logo' : 'Different or no logo'} />
+                              <span>{projName(p)}</span>
                             </button>
                           </li>
                         ))}
+                        {items.length > FIRST && <li className="more"><button type="button" onClick={() => openDevAt(d.id)}>+ {items.length - FIRST} more</button></li>}
                       </ul>
-                    )}
-                    {(more > 0 || (expanded.has(d.id) && items.length > FIRST)) && (
-                      <button type="button" className="dvl-more" onClick={() => toggleExpand(d.id)}>
-                        {more > 0 ? <>Show all {items.length} projects <i className="fas fa-chevron-down" /></> : <>Show less <i className="fas fa-chevron-up" /></>}
-                      </button>
-                    )}
-                  </section>
+                    ) : <p className="muted dvl-dcard-empty">No projects on the map use this name yet.</p>}
+
+                    <button type="button" className="adm-btn sm dvl-dcard-btn" onClick={() => openDevAt(d.id)}>
+                      View projects &amp; logos <i className="fas fa-arrow-right" />
+                    </button>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           )}
 
       {openDev && !editDev && (
-        <DeveloperDrawer dev={openDev} flash={flash} onClose={() => setOpen(null)} onChanged={load} onEdit={() => setEditing(openDev.id)} />
+        <DeveloperDrawer dev={openDev} initialProject={openProject} flash={flash} onClose={() => { setOpen(null); setOpenProject(null); }} onChanged={load} onEdit={() => setEditing(openDev.id)} />
       )}
 
       {editDev && (
@@ -195,23 +188,65 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
 /** 'none' (no logo), 'some' (not on every project) or 'ok'. */
 const logoState = (d: Dev) => (!d.logo ? 'none' : d.projects && d.logoInUse < d.projects ? 'some' : 'ok');
 
-/** One line saying how the developer's logo is doing: none / on some projects / on all. */
-function LogoStatus({ dev }: { dev: Dev }) {
-  if (!dev.logo) return <span className="dvl-warn"><i className="fas fa-circle-exclamation" /> No logo yet</span>;
-  if (!dev.projects) return <span className="dvl-ok"><i className="fas fa-circle-check" /> Logo added</span>;
-  if (dev.logoInUse >= dev.projects) return <span className="dvl-ok"><i className="fas fa-circle-check" /> Logo on all projects</span>;
-  return <span className="dvl-warn"><i className="fas fa-circle-exclamation" /> Logo on {dev.logoInUse} of {dev.projects} projects</span>;
+/** One project's information, inside the developer panel. */
+function ProjectDetail({ p, dev, busy, onBack, onUseDevLogo, onUpload }: { p: DevProject; dev: Dev; busy: boolean; onBack: () => void; onUseDevLogo: () => void; onUpload: () => void }) {
+  const d = p.details;
+  const rows: [string, string][] = ([
+    ['Developer', dev.name],
+    ['Location', p.location],
+    ['Status', p.status ? statusLabel(p.status) : ''],
+    ['Property type', p.type],
+    ['Configuration', p.configuration],
+    ['Size', d?.sqft ? `${d.sqft} sq.ft` : ''],
+    ['Price', p.price],
+    ['Possession', p.possession],
+    ['Launch', d?.launch || ''],
+    ['RERA no.', d?.rera || ''],
+  ] as [string, string][]).filter(([, v]) => v);
+  return (
+    <div className="dvl-detail">
+      <button type="button" className="dvl-back" onClick={onBack}><i className="fas fa-arrow-left" /> All projects</button>
+      <div className="dvl-detail-head">
+        <span className={`dvl-detail-img${p.image ? '' : ' empty'}`}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          {p.image ? <img src={p.image} alt="" /> : <i className="fas fa-image" />}
+        </span>
+        <div>
+          <h3>{p.title}</h3>
+          <span className="muted">{p.number != null ? `Project #${p.number}` : 'Project'}{p.hidden ? ' · hidden on the map' : ''}</span>
+          {p.hasLogo
+            ? <span className="dvl-chip s-ok"><i className="fas fa-circle-check" /> Shows the developer logo</span>
+            : <span className="dvl-chip s-some"><i className="fas fa-circle-exclamation" /> {p.image ? 'Shows its own logo' : 'No logo'}</span>}
+        </div>
+      </div>
+
+      <dl className="dvl-facts">
+        {rows.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}
+      </dl>
+      {d?.about && <p className="dvl-about">{d.about}</p>}
+
+      <div className="dvl-detail-acts">
+        {dev.logo && !p.hasLogo && <button type="button" className="adm-btn primary sm" disabled={busy} onClick={onUseDevLogo}><i className="fas fa-wand-magic-sparkles" /> Use developer logo</button>}
+        <button type="button" className="adm-btn ghost sm" disabled={busy} onClick={onUpload}><i className="fas fa-upload" /> Upload a different logo</button>
+        <a className="adm-btn ghost sm" href={`/map?pin=${encodeURIComponent(p.id)}`} target="_blank" rel="noopener"><i className="fas fa-map-location-dot" /> View on map</a>
+        {d?.page && <a className="adm-btn ghost sm" href={d.page} target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /> Project page</a>}
+      </div>
+      <p className="muted dvl-foot">To change other details (price, status, possession…), edit this project in the Map Editor.</p>
+    </div>
+  );
 }
 
-type DevProject = ProjectInfo;
+type DevProject = ProjectInfo & { details?: { sqft: string; launch: string; rera: string; about: string; page: string | null } };
 
 /**
  * One developer: their logo at the top with one button to use it on every
  * project, then the project list. Each project can get the developer logo or
  * its own uploaded logo; tick several to do it in one go.
  */
-function DeveloperDrawer({ dev, flash, onClose, onChanged, onEdit }: { dev: Dev; flash: Flash; onClose: () => void; onChanged: () => void; onEdit: () => void }) {
+function DeveloperDrawer({ dev, initialProject, flash, onClose, onChanged, onEdit }: { dev: Dev; initialProject?: string | null; flash: Flash; onClose: () => void; onChanged: () => void; onEdit: () => void }) {
   const [list, setList] = useState<DevProject[] | null>(null);
+  // The project whose details are shown (null = the project list).
+  const [detail, setDetail] = useState<string | null>(initialProject || null);
   const [picked, setPicked] = useState<Set<string>>(new Set());
   const [busy, setBusy] = useState(false);
   // Which projects an uploaded logo goes on (set just before the file picker opens).
@@ -220,12 +255,13 @@ function DeveloperDrawer({ dev, flash, onClose, onChanged, onEdit }: { dev: Dev;
   const load = () => call('GET', `?id=${dev.id}&projects=1`).then((r: DevProject[]) => setList(r)).catch((e) => { flash(e.message, true); setList([]); });
   useEffect(() => { load(); }, [dev.id]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape' && !busy) onClose(); };
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape' && !busy) { if (detail) setDetail(null); else onClose(); } };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [busy, onClose]);
+  }, [busy, onClose, detail]);
 
   const all = list || [];
+  const shownProject = detail ? all.find((p) => p.id === detail) : undefined;
   const missing = all.filter((p) => !p.hasLogo);
   const toggle = (id: string) => setPicked((s) => { const n = new Set(s); if (n.has(id)) n.delete(id); else n.add(id); return n; });
   const allPicked = all.length > 0 && all.every((p) => picked.has(p.id));
@@ -269,6 +305,12 @@ function DeveloperDrawer({ dev, flash, onClose, onChanged, onEdit }: { dev: Dev;
           <button type="button" className="dvl-close" onClick={onClose} aria-label="Close"><i className="fas fa-xmark" /></button>
         </div>
 
+        {shownProject ? (
+          <ProjectDetail p={shownProject} dev={dev} busy={busy} onBack={() => setDetail(null)}
+            onUseDevLogo={() => applyDevLogo([shownProject.id])} onUpload={() => pickUpload([shownProject.id])} />
+        ) : detail && !list ? (
+          <p className="muted"><i className="fas fa-spinner fa-spin" /> Loading project…</p>
+        ) : (<>
         <h4 className="dvl-step"><span>1</span> Developer logo</h4>
         {/* Step 1: the developer logo on every project, in one click. */}
         {list && !all.length && !dev.logo && (
@@ -309,13 +351,13 @@ function DeveloperDrawer({ dev, flash, onClose, onChanged, onEdit }: { dev: Dev;
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       {p.image ? <img src={p.image} alt="" loading="lazy" /> : <i className="fas fa-image" />}
                     </span>
-                    <span className="dvl-pj-name">
-                      <b>{projName(p)}</b>
+                    <button type="button" className="dvl-pj-name dvl-pj-open" onClick={() => setDetail(p.id)} title="See project details">
+                      <b>{projName(p)} <i className="fas fa-chevron-right" /></b>
                       <small className="muted">{[p.location, statusLabel(p.status)].filter((x) => x && x !== '—').join(' · ') || '—'}</small>
                       {p.hasLogo
                         ? <small className="dvl-ok"><i className="fas fa-circle-check" /> Developer logo</small>
                         : <span className={`dvl-pill ${p.image ? 'own' : 'none'}`}>{p.image ? 'Own logo' : 'No logo'}</span>}
-                    </span>
+                    </button>
                     <span className="dvl-pj-acts">
                       {dev.logo && !p.hasLogo && (
                         <button type="button" className="adm-btn ghost sm" disabled={busy} onClick={() => applyDevLogo([p.id])} title={`Use the ${dev.name} logo`}>Use developer logo</button>
@@ -328,7 +370,9 @@ function DeveloperDrawer({ dev, flash, onClose, onChanged, onEdit }: { dev: Dev;
               </ul>
             )}
 
-        {picked.size > 0 && (
+        </>)}
+
+        {!shownProject && picked.size > 0 && (
           <div className="dvl-selbar">
             <b>{picked.size} selected</b>
             {dev.logo && <button type="button" className="adm-btn primary sm" disabled={busy} onClick={() => applyDevLogo([...picked])}>Use developer logo</button>}
