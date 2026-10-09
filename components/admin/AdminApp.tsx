@@ -2361,7 +2361,9 @@ export default function AdminApp({ user }: { user: AdminUser }) {
 
   const visible = isOwner
     ? ['dashboard', 'map', 'developers', 'projects', 'intake', 'leads', 'accounts', 'blogs', 'employees', 'backups', 'seo', 'settings', 'profile']
-    : ['dashboard', ...GRANTABLE.map((g) => g.key).filter((k) => user.permissions.includes(k)).flatMap((k) => (k === 'intake' ? ['projects', 'intake'] : k === 'map' ? ['map', 'developers'] : [k])), 'profile'];
+    // Employees get no site-wide Dashboard overview — they open straight on their
+    // leads (only the ones transferred to them), plus any other tab the super admin granted.
+    : [...GRANTABLE.map((g) => g.key).filter((k) => user.permissions.includes(k)).sort((a, b) => Number(b === 'leads') - Number(a === 'leads')).flatMap((k) => (k === 'intake' ? ['projects', 'intake'] : k === 'map' ? ['map', 'developers'] : [k])), 'profile'];
 
   // Profile and Settings live in the top-right account menu, not the tab row.
   const MENU_TABS = ['profile', 'settings'];

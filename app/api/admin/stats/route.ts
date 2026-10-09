@@ -25,7 +25,14 @@ export async function GET() {
   let daily: ReturnType<typeof perDay> = { today: '', days: [] };
   const postsP = countPosts();
   const settingsP = getPublicSettings();
-  const leadScope = staff.role === 'admin' ? {} : { assigned_to: staff.id };
+  // Site-wide numbers are for the super admin only; employees just get their own lead counts.
+  if (staff.role !== 'admin') {
+    const db = await getDb();
+    const mine = { assigned_to: staff.id };
+    const [leads, contactLeads] = await Promise.all([db.collection('leads').countDocuments(mine), db.collection('contact_leads').countDocuments(mine)]);
+    return NextResponse.json({ data: { dbOk: true, leads, enquiriesTotal: leads + contactLeads } });
+  }
+  const leadScope = {};
   try {
     const db = await getDb();
     // One parallel wave instead of ~6 sequential round-trips. The row lists the
