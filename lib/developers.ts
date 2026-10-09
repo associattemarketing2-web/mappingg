@@ -216,13 +216,26 @@ export async function createDeveloper(input: { name: unknown; logo?: unknown }):
   logoIdx = null;
 }
 
+/** Changes the developer name on every map project that uses `from` (matched loosely). */
+async function renamePins(from: string, to: string): Promise<number> {
+  const key = normDev(from);
+  const ids = (await pinSummaries()).filter((p) => normDev(p.developer) === key && p.developer !== to).map((p) => p.id);
+  if (!ids.length) return 0;
+  const r = await runDbOp({ table: 'pins', action: 'update', filters: [{ op: 'in', col: 'id', vals: ids }], values: { developer: to } }, true);
+  if (r.error) throw new DeveloperError(r.error.message, r.status || 500);
+  return ids.length;
+}
+
 export async function updateDeveloper(id: string, input: { name?: unknown; logo?: unknown }): Promise<void> {
   await ensureTable();
   const set: Partial<Developer> = { updated_at: new Date().toISOString() };
+  let renameFrom: string | null = null;
   if (input.name !== undefined) {
     const name = cleanName(input.name);
     if (!name) throw new DeveloperError('Enter the developer’s name');
     await assertUniqueName(name, id);
+    const cur = await (await coll()).findOne({ id }, { projection: { name: 1 } });
+    if (cur && cur.name !== name) renameFrom = cur.name;
     set.name = name;
   }
   if (input.logo !== undefined) {
@@ -232,6 +245,40 @@ export async function updateDeveloper(id: string, input: { name?: unknown; logo?
   const r = await (await coll()).updateOne({ id }, { $set: set });
   logoIdx = null;
   if (!r.matchedCount) throw new DeveloperError('Developer not found', 404);
+  // Keep the map projects on the new name too — otherwise the old name would be
+  // added back to this list from those projects (a duplicate).
+  if (renameFrom && set.name) await renamePins(renameFrom, set.name);
+}
+
+/**
+ * Merges a duplicate developer into another one: its map projects move to the
+ * other developer's name, projects showing the duplicate's logo get the other
+ * developer's logo (projects with their own logo keep it), the logo is kept if
+ * the other developer has none, and the duplicate is removed from the list.
+ * Every project change goes through the normal pin update (history / Backups).
+ */
+export async function mergeDeveloper(fromId: string, intoId: string): Promise<{ moved: number }> {
+  await ensureTable();
+  if (!intoId || fromId === intoId) throw new DeveloperError('Choose a different developer to merge into');
+  const c = await coll();
+  const [from, into] = await Promise.all([c.findOne({ id: fromId }), c.findOne({ id: intoId })]);
+  if (!from || !into) throw new DeveloperError('Developer not found', 404);
+  const fromKey = normDev(from.name), fromLogo = fingerprint(from.logo);
+  const pins = (await pinSummaries()).filter((p) => normDev(p.developer) === fromKey);
+  const ids = pins.map((p) => p.id);
+  // Projects that showed the duplicate's logo (or none) switch to the kept developer's logo.
+  const logo = into.logo || from.logo || null;
+  const swap = logo ? pins.filter((p) => !p.logo || (fromLogo && p.logo === fromLogo)).map((p) => p.id) : [];
+  const keep = ids.filter((x) => !swap.includes(x));
+  for (const [list, values] of [[swap, { developer: into.name, image: logo }], [keep, { developer: into.name }]] as const) {
+    if (!list.length) continue;
+    const r = await runDbOp({ table: 'pins', action: 'update', filters: [{ op: 'in', col: 'id', vals: [...list] }], values }, true);
+    if (r.error) throw new DeveloperError(r.error.message, r.status || 500);
+  }
+  if (!into.logo && from.logo) await c.updateOne({ id: intoId }, { $set: { logo: from.logo, updated_at: new Date().toISOString() } });
+  await c.deleteOne({ id: fromId });
+  logoIdx = null;
+  return { moved: ids.length };
 }
 
 export async function deleteDeveloper(id: string): Promise<void> {

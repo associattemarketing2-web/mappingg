@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { hasPermission } from '@/lib/staff';
-import { DeveloperError, applyLogoToPins, createDeveloper, deleteDeveloper, developerProjects, listDevelopers, setPinsLogo, updateDeveloper } from '@/lib/developers';
+import { DeveloperError, applyLogoToPins, createDeveloper, deleteDeveloper, developerProjects, listDevelopers, mergeDeveloper, setPinsLogo, updateDeveloper } from '@/lib/developers';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -12,6 +12,7 @@ export const dynamic = 'force-dynamic';
 //   POST ?id=…&action=apply  put this logo on the developer's map projects —
 //                            all of them, or only {pins: [ids]} when given
 //   POST ?id=…&action=setlogo {pins, logo}  a different logo on just those projects
+//   POST ?id=…&action=merge {into}  merge this (duplicate) developer into another
 //   PATCH ?id=… {name?, logo?}  rename / change or remove logo
 //   DELETE ?id=…             remove from the list (map projects are not touched)
 // Anyone who may edit the map may manage it.
@@ -37,6 +38,10 @@ export async function POST(req: NextRequest) {
   if (!(await hasPermission('map'))) return denied();
   const id = req.nextUrl.searchParams.get('id');
   try {
+    if (id && req.nextUrl.searchParams.get('action') === 'merge') {
+      const b = await body(req);
+      return NextResponse.json({ data: await mergeDeveloper(id, String(b.into || '')) }, { headers });
+    }
     if (id && req.nextUrl.searchParams.get('action') === 'setlogo') {
       const b = await body(req);
       const pins = Array.isArray(b.pins) ? b.pins.map(String).slice(0, 2000) : [];

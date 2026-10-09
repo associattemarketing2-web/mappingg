@@ -1176,3 +1176,90 @@ button.acs-act-row:hover { background: var(--bg); }
 .dvl-about { margin: 0; padding: 12px 14px; border-radius: 12px; background: var(--bg); font-size: 13px; line-height: 1.5; }
 .dvl-detail-acts { display: flex; flex-wrap: wrap; gap: 8px; }
 @media (max-width: 480px) { .dvl-facts { grid-template-columns: 1fr; } .dvl-facts > div:nth-child(odd) { border-right: 0; } }
+
+/* ---- Developers: phone & tablet layout ---- */
+.dvl-dev-id h3 { overflow-wrap: anywhere; }
+.dvl-dev-id .adm-btn { white-space: nowrap; }
+@media (max-width: 640px) {
+  .dvl-head { align-items: flex-start; }
+  .dvl-head .adm-btn { width: 100%; justify-content: center; }
+  .dvl-drawer.dvl-dev { width: 100vw; padding: 16px; }
+  .dvl-dev-head { gap: 12px; }
+  .dvl-dev-head .dvl-logo.big { width: 64px; height: 64px; }
+  .dvl-dev-id h3 { font-size: 16.5px; }
+  .dvl-step small { display: none; }
+  .dvl-list-head { flex-wrap: wrap; }
+  /* Project rows: checkbox + picture + name, then the buttons on one line underneath. */
+  .dvl-pj-list li { grid-template-columns: auto 44px 1fr; row-gap: 8px; }
+  .dvl-pj-list li .dvl-pj-img { width: 44px; height: 44px; }
+  .dvl-pj-acts { grid-column: 1 / -1; justify-content: flex-start; flex-wrap: nowrap; padding-left: 28px; }
+  .dvl-pj-acts .adm-btn { padding: 6px 10px; white-space: nowrap; }
+  .dvl-selbar { bottom: -16px; margin: 0 -4px; }
+  .dvl-selbar b { width: 100%; }
+  .dvl-detail-img { width: 64px; height: 64px; }
+  .dvl-detail-head h3 { font-size: 16.5px; }
+  .dvl-detail-acts .adm-btn { flex: 1 1 auto; justify-content: center; }
+}
+/* Keep the facts in two columns on phones; one column only on very narrow screens. */
+@media (max-width: 480px) { .dvl-facts { grid-template-columns: 1fr 1fr; } .dvl-facts > div:nth-child(odd) { border-right: 1px solid #efede6; } }
+@media (max-width: 340px) { .dvl-facts { grid-template-columns: 1fr; } .dvl-facts > div:nth-child(odd) { border-right: 0; } }
+@media (min-width: 641px) and (max-width: 900px) {
+  .dvl-cards { grid-template-columns: repeat(2, 1fr); }
+  .dvl-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---- Developers: duplicates & merge ---- */
+.dvl-merge { display: grid; gap: 10px; margin-top: 22px; padding: 14px; border-radius: 12px; border: 1px solid #e3e9f2; background: #f5f8fc; }
+.dvl-merge > div:first-child { display: grid; gap: 3px; font-size: 13px; }
+.dvl-merge > div:first-child i { color: var(--water); margin-right: 4px; }
+.dvl-merge .muted { font-size: 12px; }
+.dvl-merge-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.dvl-merge-row .crm-select { flex: 1 1 200px; min-width: 0; }
+
+/* ---- Developers: duplicates box + merge dialog (redesign) ---- */
+.dvl-dupes { border: 1px solid #f0dfbd; background: #fffaf0; border-radius: 14px; overflow: hidden; }
+.dvl-dupes header { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; }
+.dvl-dupes header > i { width: 34px; height: 34px; flex: none; border-radius: 10px; display: grid; place-items: center; background: #fdf0d5; color: #9a6a12; }
+.dvl-dupes header > div { display: grid; gap: 2px; font-size: 14px; }
+.dvl-dupes header .muted { font-size: 12.5px; }
+.dvl-dupes ul { list-style: none; margin: 0; padding: 0; }
+.dvl-dupes li { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 12px 16px; border-top: 1px solid #f3e6c8; background: #fff; }
+.dvl-dupe-names { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; min-width: 0; }
+.dvl-dupe-dev { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
+.dvl-dupe-dev > span:last-child { display: grid; line-height: 1.25; }
+.dvl-dupe-dev b { font-size: 13.5px; }
+.dvl-dupe-dev small { font-size: 11.5px; }
+.dvl-dupe-sep { color: var(--muted); font-size: 12px; margin: 0 2px; }
+.dvl-dupe-acts { display: flex; gap: 8px; flex-wrap: wrap; }
+.dvl-mini-logo { width: 34px; height: 34px; flex: none; border-radius: 8px; border: 1px solid var(--line); background: #fff; display: grid; place-items: center; overflow: hidden; color: var(--muted); font-size: 12px; }
+.dvl-mini-logo img { width: 100%; height: 100%; object-fit: contain; }
+.dvl-mini-logo.empty { border-style: dashed; background: var(--bg); }
+.dvl-mini-logo.big { width: 46px; height: 46px; }
+
+.dvl-modal-wrap { display: grid; place-items: center; padding: 16px; }
+.dvl-modal { width: min(520px, 100%); max-height: calc(100vh - 32px); overflow-y: auto; background: var(--card); border-radius: 18px; padding: 20px; box-shadow: 0 24px 60px -20px rgba(0,0,0,.45); display: flex; flex-direction: column; gap: 14px; }
+.dvl-modal .crm-drawer-head { margin: 0; }
+.dvl-modal h3 { margin: 0; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+.dvl-modal h3 i { color: var(--water); }
+.dvl-modal-q { margin: 0; font-weight: 700; font-size: 14px; }
+.dvl-keep { display: grid; gap: 8px; }
+.dvl-keep-opt { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px; border-radius: 12px; border: 2px solid var(--line); background: #fff; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+.dvl-keep-opt:hover { border-color: #b9cfc6; }
+.dvl-keep-opt.on { border-color: var(--forest); background: #f2f8f5; }
+.dvl-keep-radio { width: 18px; height: 18px; flex: none; border-radius: 50%; border: 2px solid #b8bfba; }
+.dvl-keep-opt.on .dvl-keep-radio { border-color: var(--forest); box-shadow: inset 0 0 0 4px #fff; background: var(--forest); }
+.dvl-keep-txt { flex: 1; min-width: 0; display: grid; gap: 2px; }
+.dvl-keep-txt b { overflow-wrap: anywhere; }
+.dvl-keep-txt small { font-size: 12px; }
+.dvl-keep-tag { padding: 3px 9px; border-radius: 999px; background: var(--forest); color: #fff; font-size: 11px; font-weight: 700; }
+.dvl-summary { padding: 12px 14px; border-radius: 12px; background: var(--bg); font-size: 13px; }
+.dvl-summary ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 7px; }
+.dvl-summary li { display: flex; gap: 8px; line-height: 1.45; }
+.dvl-summary li i { color: var(--muted); font-size: 11px; margin-top: 4px; width: 12px; flex: none; }
+@media (max-width: 640px) {
+  .dvl-dupes li { flex-direction: column; align-items: stretch; }
+  .dvl-dupe-acts .adm-btn { flex: 1 1 auto; justify-content: center; }
+  .dvl-modal { padding: 16px; }
+  .dvl-modal .dvl-form-actions { flex-direction: column-reverse; }
+  .dvl-modal .dvl-form-actions .adm-btn { justify-content: center; }
+}

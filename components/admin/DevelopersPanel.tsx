@@ -80,6 +80,15 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
     // Search finds a developer by its name or by one of its project names.
     return !s || r.name.toLowerCase().includes(s) || !!r.list?.some((p) => p.title.toLowerCase().includes(s));
   });
+  // Duplicate groups the admin said are different companies (remembered on this device).
+  const [notDupes, setNotDupes] = useState<string[]>(() => { try { return JSON.parse(localStorage.getItem(NOT_DUPES_KEY) || '[]'); } catch { return []; } });
+  const dupes = useMemo(() => likelyDuplicates(rows || []).filter((g) => !notDupes.includes(groupKey(g))), [rows, notDupes]);
+  const [merging, setMerging] = useState<Dev[] | null>(null);
+  const ignoreDupe = (g: Dev[]) => {
+    const next = [...notDupes, groupKey(g)];
+    setNotDupes(next);
+    try { localStorage.setItem(NOT_DUPES_KEY, JSON.stringify(next)); } catch { /* private mode */ }
+  };
   const openDev = rows?.find((r) => r.id === open);
   const editDev = rows?.find((r) => r.id === editing);
 
@@ -110,6 +119,40 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
             <i className="fas fa-circle-exclamation" /><b>{counts.mismatch}</b><span>Logo missing on some projects</span>
           </button>
         </div>
+      )}
+
+      {dupes.length > 0 && (
+        <section className="dvl-dupes">
+          <header>
+            <i className="fas fa-clone" />
+            <div>
+              <b>Possible duplicate developers ({dupes.length})</b>
+              <span className="muted">These names look like the same company. Merge them so all projects sit under one developer.</span>
+            </div>
+          </header>
+          <ul>
+            {dupes.map((g) => (
+              <li key={groupKey(g)}>
+                <div className="dvl-dupe-names">
+                  {g.map((d, j) => (
+                    <span key={d.id} className="dvl-dupe-dev">
+                      {j > 0 && <i className="fas fa-arrows-left-right dvl-dupe-sep" aria-hidden="true" />}
+                      <span className={`dvl-mini-logo${d.logo ? '' : ' empty'}`} aria-hidden="true">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        {d.logo ? <img src={thumb(d.logo)} alt="" /> : <i className="fas fa-image" />}
+                      </span>
+                      <span><b>{d.name}</b><small className="muted">{d.projects} project{d.projects === 1 ? '' : 's'}</small></span>
+                    </span>
+                  ))}
+                </div>
+                <div className="dvl-dupe-acts">
+                  <button type="button" className="adm-btn primary sm" onClick={() => setMerging(g)}><i className="fas fa-code-merge" /> Review &amp; merge</button>
+                  <button type="button" className="adm-btn ghost sm" onClick={() => ignoreDupe(g)} title="Hide this suggestion">Not a duplicate</button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
       )}
 
       <div className="dvl-bar dvl-tools">
@@ -177,13 +220,36 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
         <DeveloperDrawer dev={openDev} initialProject={openProject} flash={flash} onClose={() => { setOpen(null); setOpenProject(null); }} onChanged={load} onEdit={() => setEditing(openDev.id)} />
       )}
 
+      {merging && (
+        <MergeDialog group={merging} flash={flash} onClose={() => setMerging(null)} onDone={() => { setMerging(null); load(); }} />
+      )}
+
       {editDev && (
-        <EditDrawer dev={editDev} flash={flash}
+        <EditDrawer dev={editDev} others={mergeTargets(editDev, rows || [])} flash={flash}
           onClose={() => setEditing(null)} onDone={() => { setEditing(null); load(); }} />
       )}
     </div>
   );
 }
+
+// Words too common to say two developers are the same company.
+const COMMON = new Set(['the', 'shree', 'shri', 'sri', 'sai', 'new', 'pune', 'mumbai', 'group', 'developers', 'developer', 'properties', 'property', 'realty', 'builders', 'builder', 'buildcon', 'constructions', 'construction', 'infra', 'homes', 'estates', 'and', 'pvt', 'ltd', 'llp']);
+const nameKey = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+const firstWord = (s: string) => nameKey(s).split(' ').find((w) => w.length >= 3 && !COMMON.has(w)) || '';
+/** Developers whose names look like the same company (same main word, e.g. “Lodha” and “Lodha Group”). */
+function likelyDuplicates(rows: Dev[]): Dev[][] {
+  const groups = new Map<string, Dev[]>();
+  for (const r of rows) { const k = firstWord(r.name); if (k) groups.set(k, [...(groups.get(k) || []), r]); }
+  return [...groups.values()].filter((g) => g.length > 1);
+}
+const NOT_DUPES_KEY = 'mg_dev_not_dupes';
+const groupKey = (g: Dev[]) => g.map((d) => d.id).sort().join('|');
+
+/** Other developers to merge into, likely duplicates first. */
+const mergeTargets = (dev: Dev, rows: Dev[]) => {
+  const k = firstWord(dev.name);
+  return rows.filter((r) => r.id !== dev.id).sort((a, b) => Number(!!k && firstWord(b.name) === k) - Number(!!k && firstWord(a.name) === k) || b.projects - a.projects || a.name.localeCompare(b.name));
+};
 
 /** 'none' (no logo), 'some' (not on every project) or 'ok'. */
 const logoState = (d: Dev) => (!d.logo ? 'none' : d.projects && d.logoInUse < d.projects ? 'some' : 'ok');
@@ -323,7 +389,7 @@ function DeveloperDrawer({ dev, initialProject, flash, onClose, onChanged, onEdi
             <div className="dvl-callout">
               <i className="fas fa-wand-magic-sparkles" />
               <span><b>{all.length - missing.length} of {all.length}</b> projects show the {dev.name} logo.</span>
-              <button type="button" className="adm-btn primary sm" disabled={busy} onClick={() => applyDevLogo(missing.map((p) => p.id))}>Use on all {missing.length} others</button>
+              <button type="button" className="adm-btn primary sm" disabled={busy} onClick={() => applyDevLogo(missing.map((p) => p.id))}>{missing.length === 1 ? 'Use on the other 1' : `Use on all ${missing.length} others`}</button>
             </div>
           ) : (
             <div className="dvl-callout ok"><i className="fas fa-circle-check" /><span>All projects show the {dev.name} logo.</span></div>
@@ -389,8 +455,90 @@ function DeveloperDrawer({ dev, initialProject, flash, onClose, onChanged, onEdi
   );
 }
 
+/** Merge a group of look-alike developers: pick the one to keep, the others move into it. */
+function MergeDialog({ group, flash, onClose, onDone }: { group: Dev[]; flash: Flash; onClose: () => void; onDone: () => void }) {
+  // Keep the one with the most projects by default (then the one with a logo).
+  const best = [...group].sort((a, b) => b.projects - a.projects || Number(!!b.logo) - Number(!!a.logo))[0];
+  const [keep, setKeep] = useState(best.id);
+  const [busy, setBusy] = useState(false);
+  const kept = group.find((d) => d.id === keep)!;
+  const others = group.filter((d) => d.id !== keep);
+  const moving = others.reduce((n, d) => n + d.projects, 0);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape' && !busy) onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [busy, onClose]);
+
+  async function merge() {
+    setBusy(true);
+    try {
+      let moved = 0;
+      for (const d of others) moved += (await call('POST', `?id=${d.id}&action=merge`, { into: keep }))?.moved || 0;
+      flash(`Merged into ${kept.name} — ${moved} project${moved === 1 ? '' : 's'} moved`);
+      onDone();
+    } catch (e) { flash(e instanceof Error ? e.message : 'Could not merge', true); setBusy(false); }
+  }
+
+  return (
+    <div className="crm-drawer-overlay dvl-modal-wrap" onClick={() => { if (!busy) onClose(); }}>
+      <div className="dvl-modal" role="dialog" aria-modal="true" aria-label="Merge duplicate developers" onClick={(e) => e.stopPropagation()}>
+        <div className="crm-drawer-head">
+          <h3><i className="fas fa-code-merge" /> Merge duplicates</h3>
+          <button type="button" className="dvl-close" onClick={onClose} disabled={busy} aria-label="Close"><i className="fas fa-xmark" /></button>
+        </div>
+        <p className="dvl-modal-q">Which one should stay?</p>
+        <div className="dvl-keep" role="radiogroup" aria-label="Developer to keep">
+          {group.map((d) => (
+            <button key={d.id} type="button" role="radio" aria-checked={keep === d.id} className={`dvl-keep-opt${keep === d.id ? ' on' : ''}`} onClick={() => setKeep(d.id)} disabled={busy}>
+              <span className="dvl-keep-radio" aria-hidden="true" />
+              <span className={`dvl-mini-logo big${d.logo ? '' : ' empty'}`} aria-hidden="true">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                {d.logo ? <img src={thumb(d.logo)} alt="" /> : <i className="fas fa-image" />}
+              </span>
+              <span className="dvl-keep-txt">
+                <b>{d.name}</b>
+                <small className="muted">{d.projects} project{d.projects === 1 ? '' : 's'} · {d.logo ? 'has a logo' : 'no logo'}</small>
+              </span>
+              {keep === d.id && <span className="dvl-keep-tag">Keep</span>}
+            </button>
+          ))}
+        </div>
+        <div className="dvl-summary">
+          <b>What happens</b>
+          <ul>
+            <li><i className="fas fa-arrow-right" /><span>{moving} project{moving === 1 ? '' : 's'} from {others.map((o) => `“${o.name}”`).join(' and ')} move to <b>“{kept.name}”</b>.</span></li>
+            <li><i className="fas fa-image" /><span>{kept.logo ? `They show the “${kept.name}” logo` : others.some((o) => o.logo) ? 'The logo of the merged developer is kept' : 'No logo yet — add one after merging'} (projects with their own logo keep it).</span></li>
+            <li><i className="fas fa-trash" /><span>{others.map((o) => `“${o.name}”`).join(' and ')} {others.length === 1 ? 'is' : 'are'} removed from the list.</span></li>
+            <li><i className="fas fa-clock-rotate-left" /><span>Old project data stays in Backups, so this can be undone.</span></li>
+          </ul>
+        </div>
+        <div className="dvl-form-actions">
+          <button type="button" className="adm-btn ghost" onClick={onClose} disabled={busy}>Cancel</button>
+          <button type="button" className="adm-btn primary" onClick={merge} disabled={busy}>
+            {busy ? <><i className="fas fa-spinner fa-spin" /> Merging…</> : <>Merge into “{kept.name}”</>}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /** Edit one developer: name, logo (change / remove) and — at the bottom — delete. */
-function EditDrawer({ dev, flash, onClose, onDone }: { dev: Dev; flash: Flash; onClose: () => void; onDone: () => void }) {
+function EditDrawer({ dev, others, flash, onClose, onDone }: { dev: Dev; others: Dev[]; flash: Flash; onClose: () => void; onDone: () => void }) {
+  const [into, setInto] = useState('');
+  async function merge() {
+    const target = others.find((o) => o.id === into);
+    if (!target) return;
+    if (!window.confirm(`Merge “${dev.name}” into “${target.name}”?\n\n• Its ${dev.projects} project${dev.projects === 1 ? '' : 's'} move to “${target.name}”.\n• Projects showing the “${dev.name}” logo get the “${target.name}” logo; projects with their own logo keep it.\n• “${dev.name}” is removed from the list.\n\nOld project data stays in Backups.`)) return;
+    setBusy(true);
+    try {
+      const r = await call('POST', `?id=${dev.id}&action=merge`, { into });
+      flash(`Merged into ${target.name} — ${r?.moved ?? 0} project${r?.moved === 1 ? '' : 's'} moved`);
+      onDone();
+    } catch (err) { flash(err instanceof Error ? err.message : 'Could not merge', true); setBusy(false); }
+  }
   const [name, setName] = useState(dev.name);
   // undefined = logo unchanged, null = remove it, string = new logo (data: URL)
   const [logo, setLogo] = useState<string | null | undefined>(undefined);
@@ -417,6 +565,13 @@ function EditDrawer({ dev, flash, onClose, onDone }: { dev: Dev; flash: Flash; o
     } catch (err) { flash(err instanceof Error ? err.message : 'Could not save', true); setBusy(false); }
   }
   async function remove() {
+    // A developer whose name is still on map projects is added back from them — merge is the real fix.
+    if (dev.projects > 0) {
+      window.alert(`“${dev.name}” still has ${dev.projects} project${dev.projects === 1 ? '' : 's'} on the map, so it would come straight back.
+
+If it is a duplicate, use “Merge into another developer” above instead.`);
+      return;
+    }
     if (!window.confirm(`Delete “${dev.name}” from the developer list?\n\nIts ${dev.projects} map project${dev.projects === 1 ? '' : 's'} keep their name and logo.`)) return;
     setBusy(true);
     try { await call('DELETE', `?id=${dev.id}`); flash(`${dev.name} deleted`); onDone(); } catch (err) { flash(err instanceof Error ? err.message : 'Could not delete', true); setBusy(false); }
@@ -461,8 +616,21 @@ function EditDrawer({ dev, flash, onClose, onDone }: { dev: Dev; flash: Flash; o
             <button type="submit" className="adm-btn primary" disabled={busy || !changed || !name.trim()}>{busy ? 'Saving…' : 'Save changes'}</button>
           </div>
         </form>
+        {others.length > 0 && (
+          <div className="dvl-merge">
+            <div><b><i className="fas fa-code-merge" /> Merge into another developer</b>
+              <span className="muted">Created this developer twice? Move all its projects into the right one and remove this duplicate.</span></div>
+            <div className="dvl-merge-row">
+              <select className="crm-select" value={into} onChange={(e) => setInto(e.target.value)} disabled={busy} aria-label="Developer to keep">
+                <option value="">Choose the developer to keep…</option>
+                {others.map((o) => <option key={o.id} value={o.id}>{o.name} ({o.projects} project{o.projects === 1 ? '' : 's'})</option>)}
+              </select>
+              <button type="button" className="adm-btn primary sm" disabled={busy || !into} onClick={merge}>Merge</button>
+            </div>
+          </div>
+        )}
         <div className="dvl-danger">
-          <div><b>Delete developer</b><span className="muted">Removes it from this list. Projects on the map are not changed.</span></div>
+          <div><b>Delete developer</b><span className="muted">{dev.projects ? 'Only for developers with no projects — for a duplicate, use Merge above.' : 'Removes it from this list.'}</span></div>
           <button type="button" className="adm-btn danger sm" disabled={busy} onClick={remove}><i className="fas fa-trash" /> Delete</button>
         </div>
       </aside>
