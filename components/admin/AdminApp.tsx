@@ -752,7 +752,8 @@ const PIN_STATUS: Record<string, string> = { available: 'Ready to move', under_c
 
 function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
   const [bySource, setBySource] = useState<Record<LeadSource, Lead[]>>({ map: [], signup: [], contact: [] });
-  const [source, setSource] = useState<LeadSource>('map');
+  // Opens on buyer accounts: every buyer who signed up is a lead there.
+  const [source, setSource] = useState<LeadSource>('signup');
   const [loading, setLoading] = useState(true);
   const [q, setQ] = useState('');
   const [filter, setFilter] = useState<'all' | Lead['status']>('all');
@@ -912,11 +913,11 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
   return (
     <>
       <div className="lead-src" role="tablist" aria-label="Lead source">
+        <button role="tab" aria-selected={isSignup} className={isSignup ? 'on' : ''} onClick={() => switchSource('signup')}>
+          <i className="fas fa-user-plus" /> Buyer accounts <span className="n">{bySource.signup.length}</span>
+        </button>
         <button role="tab" aria-selected={isMap} className={isMap ? 'on' : ''} onClick={() => switchSource('map')}>
           <i className="fas fa-map-location-dot" /> Map enquiries <span className="n">{bySource.map.length}</span>
-        </button>
-        <button role="tab" aria-selected={isSignup} className={isSignup ? 'on' : ''} onClick={() => switchSource('signup')}>
-          <i className="fas fa-user-plus" /> Buyer sign-ups <span className="n">{bySource.signup.length}</span>
         </button>
         <button role="tab" aria-selected={source === 'contact'} className={source === 'contact' ? 'on' : ''} onClick={() => switchSource('contact')}>
           <i className="fas fa-envelope" /> Contact form <span className="n">{bySource.contact.length}</span>
@@ -933,7 +934,7 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
 
       <div className="adm-panel">
         <div className="adm-panel-head">
-          <h3>{isMap ? 'Map enquiries' : isSignup ? 'Buyer sign-ups' : 'Contact leads'} {list.length ? `(${list.length})` : ''}</h3>
+          <h3>{isMap ? 'Map enquiries' : isSignup ? 'Buyer accounts' : 'Contact leads'} {list.length ? `(${list.length})` : ''}</h3>
           <div className="crm-tools">
             <span className="crm-live" title={live ? 'Live — updates automatically' : 'Reconnecting…'} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 12, color: live ? '#2f7a3c' : '#9a6a00' }}>
               <i className="fas fa-circle" style={{ fontSize: 8, color: live ? '#2f7a3c' : '#c9861f' }} /> {live ? 'Live' : 'Offline'}
@@ -949,6 +950,12 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
           </div>
         </div>
 
+        {isMap && (
+          <p className="muted" style={{ fontSize: 13, margin: '0 0 8px' }}>
+            Only people who tapped <b>Enquire</b> on a project card. Every buyer who created an account is under{' '}
+            <button type="button" className="link-btn" onClick={() => switchSource('signup')}>Buyer accounts</button>.
+          </p>
+        )}
         {isMap && (
           <div className="adm-filterbar">
             <div className="adm-seg" role="group" aria-label="Enquirer type">
@@ -971,7 +978,7 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
         )}
         {!isMap && (
           <div className="adm-filterbar">
-            <span className="muted" style={{ fontSize: 13 }}>{isSignup ? 'Buyers who created an account, with what they are looking for.' : <>Messages sent from the website&apos;s Contact page.</>}</span>
+            <span className="muted" style={{ fontSize: 13 }}>{isSignup ? 'Every buyer who created an account (newest first), with what they are looking for.' : <>Messages sent from the website&apos;s Contact page.</>}</span>
             <button className="adm-btn ghost sm" disabled={!list.length} onClick={downloadContact}><i className="fas fa-file-csv" /> Download CSV ({list.length})</button>
           </div>
         )}
@@ -983,7 +990,7 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
             <i className={`fas ${isMap ? 'fa-map-location-dot' : isSignup ? 'fa-user-plus' : 'fa-address-book'}`} />
             <p>{all.length === 0
               ? (isMap ? 'No map enquiries yet. When someone taps Enquire on a project card on the live map, it appears here.'
-                : isSignup ? 'No buyer sign-ups yet. When a buyer creates an account, they appear here as a lead.'
+                : isSignup ? 'No buyer accounts yet. When a buyer creates an account, they appear here as a lead.'
                   : 'No leads yet. Submissions from the Contact form appear here.')
               : 'Nothing matches these filters.'}</p>
           </div>
@@ -1020,7 +1027,8 @@ function LeadsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
                     <td className="pick" onClick={(e) => e.stopPropagation()}><PickOne sel={pick} id={l.id} label={l.name || l.email || 'lead'} /></td>
                     <td className="t-title">
                       <span className="crm-ini">{initials(l)}</span>
-                      <span className="crm-id"><b>{l.name}</b><small>{l.email || l.phone || '—'}</small></span>
+                      <span className="crm-id"><b>{l.name}</b><small>{l.email || l.phone || '—'}</small>
+                        {isSignup && l.buyer && !l.buyer.account_exists && <small style={{ color: 'var(--muted)' }}><i className="fas fa-user-xmark" /> Account deleted</small>}</span>
                     </td>
                     {isMap ? (
                       <>
