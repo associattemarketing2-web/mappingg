@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import SettingsForm from './SettingsForm';
 import ProfileForm from './ProfileForm';
 import DevProjectsPanel, { type DevProject } from './DevProjectsPanel';
+import { WHATSAPP_NUMBER } from '@/lib/contact';
 import NotificationBell from './NotificationBell';
 import PhoneInput from '@/components/PhoneInput';
 import SearchConsolePanel from './SearchConsolePanel';
@@ -747,6 +748,31 @@ const toLocalInput = (d?: string | null) => {
 };
 const isOverdue = (d?: string | null) => !!d && new Date(d).getTime() < Date.now();
 
+/** A lead as a WhatsApp message (plain text, *bold* lines), for sharing with the team or a partner. */
+function leadShareText(l: Lead): string {
+  const pf = l.buyer?.profile || l.account?.profile || {};
+  const lines = [
+    `*Lead: ${l.name || l.email || 'Unknown'}*`,
+    l.phone && `📞 ${l.phone}`,
+    l.email && `✉️ ${l.email}`,
+    l.project && `🏢 Project: ${l.project.title || 'Untitled'}${l.project.number != null ? ` #${l.project.number}` : ''}${l.project.location ? `, ${l.project.location}` : ''}`,
+    l.project?.price && `💰 Price: ${l.project.price}`,
+    pf.configuration && `🏠 Looking for: ${pf.configuration}`,
+    pf.budget && `💰 Budget: ${pf.budget}`,
+    pf.area && `📍 Preferred area: ${pf.area}`,
+    pf.timeline && `🗓️ Planning to buy: ${pf.timeline}`,
+    pf.purpose && `🎯 Buying for: ${pf.purpose}`,
+    !l.project && !l.buyer && l.message && `💬 ${l.message}`,
+    `Status: ${LEAD_STAGES.find((x) => x.key === l.status)?.label || l.status}`,
+    l.follow_up_at && `Next follow-up: ${fullDate(l.follow_up_at)}`,
+  ].filter(Boolean);
+  return lines.join('\n');
+}
+/** Sends the text to the company WhatsApp number (+91 82288 28200), ready to send. */
+function shareOnWhatsApp(text: string) {
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+}
+
 /** "2 BHK · ₹1 – 2 Cr · Mundhwa" from a buyer's sign-up preferences. */
 const buyerWants = (l: Lead) => {
   const pf = l.buyer?.profile || {};
@@ -1096,6 +1122,10 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
                 <option value={UNASSIGNED}>Nobody (unassign)</option>
               </select>
             )}
+            <button className="adm-btn ghost sm" disabled={busy} title="Send the selected leads to +91 82288 28200 on WhatsApp"
+              onClick={() => { const ids = pick.of(list.map((l) => l.id)); shareOnWhatsApp(list.filter((l) => ids.includes(l.id)).map(leadShareText).join('\n\n────────\n\n')); }}>
+              <i className="fab fa-whatsapp" /> Share
+            </button>
             <button className="adm-btn danger sm" disabled={busy} onClick={() => { const ids = pick.of(list.map((l) => l.id)); if (confirm(`Delete ${ids.length} lead${ids.length === 1 ? '' : 's'}? You can restore them from Backups → Recycle bin.`)) removeMany(ids); }}><i className="fas fa-trash" /> Delete</button>
           </BulkBar>
           )}
@@ -1238,6 +1268,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
               {sel.email && <a className="adm-btn ghost sm" href={`mailto:${sel.email}`}><i className="fas fa-envelope" /> {sel.email}</a>}
               {sel.phone && <a className="adm-btn ghost sm" href={`tel:${sel.phone.replace(/\s/g, '')}`}><i className="fas fa-phone" /> {sel.phone}</a>}
               {sel.phone && <a className="adm-btn ghost sm" target="_blank" rel="noopener" href={`https://wa.me/${sel.phone.replace(/\D/g, '')}`}><i className="fab fa-whatsapp" /> WhatsApp</a>}
+              {isOwner && <button type="button" className="adm-btn primary sm" onClick={() => shareOnWhatsApp(leadShareText(sel))} title="Send this lead's details to +91 82288 28200 on WhatsApp"><i className="fab fa-whatsapp" /> Share lead</button>}
             </div>
 
             {isMap ? (
