@@ -1221,6 +1221,36 @@
     contain-intrinsic-size: auto 900px;
   }
 
+  /* ---------- "Trusted by developers": logo rows that scroll right to left ---------- */
+  .mpg > section.trusted-sec { padding: 76px 0 80px; background: linear-gradient(180deg, #fff 0%, #fbfaf6 100%); border-block: 1px solid var(--line); contain-intrinsic-size: auto 520px; }
+  .mpg .trusted-sec .sec-head { margin-bottom: 40px; }
+  .mpg .trusted-rows { display: flex; flex-direction: column; gap: clamp(10px, 1.4vw, 18px); }
+  /* Soft fade at both edges; the vertical padding leaves room for the cards' shadow and hover lift. */
+  .mpg .trusted-marquee { overflow: hidden; padding: 8px 0 14px; margin: -8px 0 -14px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+  .mpg .trusted-track { display: flex; width: max-content; animation: marquee 60s linear infinite; }
+  /* Second row runs the other way: left to right. */
+  .mpg .trusted-track.rev { animation-direction: reverse; }
+  .mpg .trusted-rows:hover .trusted-track { animation-play-state: paused; }
+  /* Card size follows the screen width (fluid), so the rows look right from small phones to wide desktops. */
+  .mpg .trusted-logo { flex: none; width: clamp(116px, 12.5vw, 168px); height: clamp(62px, 6.6vw, 88px); margin: 0 clamp(5px, .6vw, 9px); padding: clamp(10px, 1.1vw, 15px) clamp(14px, 1.6vw, 22px); border-radius: clamp(13px, 1.3vw, 18px); background: #fff; border: 1px solid var(--line); box-shadow: 0 10px 24px -18px rgba(29,43,38,.35); overflow: hidden; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+  .mpg .trusted-logo:hover { transform: translateY(-4px); border-color: var(--park-200); box-shadow: 0 18px 30px -18px rgba(29,43,38,.4); }
+  /* Every logo is scaled to fit the same inner box, so they all read at the same size. */
+  .mpg .trusted-logo img { width: 100%; height: 100%; object-fit: contain; }
+  @media (max-width: 900px) {
+    .mpg > section.trusted-sec { padding: 60px 0 64px; }
+  }
+  @media (max-width: 640px) {
+    .mpg > section.trusted-sec { padding: 46px 0 50px; contain-intrinsic-size: auto 400px; }
+    .mpg .trusted-sec .sec-head { margin-bottom: 26px; }
+    .mpg .trusted-marquee { -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    /* No scrolling: show each logo once, wrapped. */
+    .mpg .trusted-marquee { -webkit-mask-image: none; mask-image: none; }
+    .mpg .trusted-track { width: auto; flex-wrap: wrap; justify-content: center; row-gap: 14px; }
+    .mpg .trusted-logo.dup { display: none; }
+  }
+
   /* Email verification code (sign-up) and "Forgot password?" */
   .mpg .otp-block input { letter-spacing: 6px; font-size: 18px; font-weight: 600; }
   .mpg .otp-meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 6px; font-size: 12px; color: var(--muted); }

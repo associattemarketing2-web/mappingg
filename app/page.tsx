@@ -7,6 +7,8 @@ import IconFont from '@/components/IconFont';
 import { getGlobeData } from '@/lib/globe-data';
 import { getFeaturedProject } from '@/lib/featured-project';
 import { featuredCardHtml } from '@/components/landing/featured-card';
+import { trustedLogos } from '@/lib/developers';
+import { trustedDevelopersHtml } from '@/components/landing/trusted-developers';
 
 import { SITE_URL } from '@/lib/seo/config';
 
@@ -43,11 +45,13 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [globe, featured] = await Promise.all([getGlobeData(), getFeaturedProject()]);
+  const [globe, featured, logos] = await Promise.all([getGlobeData(), getFeaturedProject(), trustedLogos().catch(() => [])]);
   // Swap the sample card for a real project with a video (keeps the sample if none).
-  const landingHtml = featured
+  const landingHtml = (featured
     ? LANDING_BODY.replace(/<!--PV_CARD-->[\s\S]*?<!--\/PV_CARD-->/, () => featuredCardHtml(featured))
-    : LANDING_BODY;
+    : LANDING_BODY
+  // "Trusted by developers" logo row (nothing is shown until a few developers have logos).
+  ).replace('<!--DEV_LOGOS-->', () => trustedDevelopersHtml(logos));
 
   return (
     <>

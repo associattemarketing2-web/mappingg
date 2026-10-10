@@ -5,6 +5,7 @@ import { normalizePhone } from '@/lib/phone';
 import { getCurrentUser, isStaffRole } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
 import { esc, layout, notifyAdmin, queueMail } from '@/lib/mailer';
+import { pageOf, pushToCrm, visitorIp } from '@/lib/crm';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -59,6 +60,7 @@ export async function POST(req: NextRequest) {
   }
   const project = String(pin.title || `#${pin.number ?? ''}`);
   if (!existing) {
+    pushToCrm({ name, mobile: whatsapp, email, project, source: 'Map "Enquire now" (signed-in account)', page: pageOf(req), extra: [['Account type', role]], ip: visitorIp(req) });
     notifyAdmin(`New enquiry: ${project} — ${name}`, {
       title: 'New enquiry from the live map',
       body: [`${esc(name)} asked about <b>${esc(project)}</b>.`],

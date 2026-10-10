@@ -8,7 +8,7 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 // Serves an image stored inside a map document (pin logo/brochure, infra icon)
-// as a real image file: /api/media/<table>/<id>?f=<field>&v=<hash>[&w=<px>].
+// as a real image file: /api/media/<table>/<id>?f=<field>&v=<hash>[&w=<px>][&trim=1].
 // URLs carry a content hash, so responses are cached for a year; ?w= returns a
 // small thumbnail (map markers only need ~96px). Only whitelisted public map
 // tables/fields are reachable. Encoded results are cached in-process (see
@@ -28,7 +28,9 @@ export async function GET(req: NextRequest, { params }: { params: { table: strin
   if (!fields || !fields.includes(field)) return notFound();
   const w = Math.min(Math.max(parseInt(req.nextUrl.searchParams.get('w') || '', 10) || 0, 0), 1600);
   const v = req.nextUrl.searchParams.get('v') || '';
-  const key = mediaKey(params.table, params.id, field, v, w);
+  // trim=1 (with w) crops the empty border around the picture before resizing.
+  const trim = w > 0 && req.nextUrl.searchParams.get('trim') === '1';
+  const key = mediaKey(params.table, params.id, field, v, w) + (trim ? '/trim' : '');
 
   // Only versioned (public, content-addressed) entries are ever cached.
   const cached = v ? cacheGet(key) : undefined;
@@ -48,7 +50,7 @@ export async function GET(req: NextRequest, { params }: { params: { table: strin
     return /^https?:\/\//.test(value) ? NextResponse.redirect(value, 302) : notFound();
   }
 
-  const encoded = await encodeShared(key, value, w, !isHiddenPin && versionMatches(value, v));
+  const encoded = await encodeShared(key, value, w, !isHiddenPin && versionMatches(value, v), trim);
   if (!encoded) return notFound();
   return imageResponse(encoded, isHiddenPin ? 'private, no-store' : CACHE_FOREVER);
 }

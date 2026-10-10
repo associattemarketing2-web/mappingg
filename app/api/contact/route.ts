@@ -5,6 +5,7 @@ import { PHONE_ERROR, normalizePhone } from '@/lib/phone';
 import { getDb } from '@/lib/mongodb';
 import { clientIp, rateLimit } from '@/lib/rate-limit';
 import { esc, layout, notifyAdmin, queueMail } from '@/lib/mailer';
+import { pageOf, pushToCrm, visitorIp } from '@/lib/crm';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -58,7 +59,11 @@ export async function POST(req: NextRequest) {
   } catch {
     return NextResponse.json({ error: { message: 'Something went wrong. Please try again.' } }, { status: 500 });
   }
-  notifyAdmin(`Contact form: ${d.subject || 'General enquiry'} — ${d.name}`, {
+  pushToCrm({
+    name: d.name, mobile: d.phone, email: d.email, source: 'Contact form', page: pageOf(req),
+    extra: [['Subject', d.subject || 'General enquiry']], message: d.message, ip: visitorIp(req),
+  });
+  notifyAdmin(`Contact form:${d.subject || 'General enquiry'} — ${d.name}`, {
     title: 'New message from the contact form',
     body: [esc(d.message).replace(/\n/g, '<br>')],
     rows: [['Name', d.name], ['Email', d.email], ['Phone', d.phone], ['Subject', d.subject || 'General enquiry']],
