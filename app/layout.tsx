@@ -8,7 +8,7 @@ import SiteTracker from '@/components/SiteTracker';
 import { getPublicSettings } from '@/lib/site-settings';
 import { jsonLd, organizationSchema, websiteSchema } from '@/lib/seo/schema';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
+import { SITE_URL } from '@/lib/seo/config';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

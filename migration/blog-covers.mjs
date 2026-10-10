@@ -380,6 +380,31 @@ function costCard(t) {
     </g>`;
 }
 
+function emiCard(t) {
+  const rows = [
+    ['Flat price', '₹90,00,000'],
+    ['Down payment (20%)', '₹18,00,000'],
+    ['Home loan (80%)', '₹72,00,000'],
+    ['Rate · tenure', '8.5% · 20 yrs'],
+  ];
+  return `
+    <g transform="rotate(-3 900 320)">
+      <rect x="730" y="104" width="340" height="430" rx="16" fill="#000" opacity=".5" filter="url(#blur12)" transform="translate(8 20)"/>
+      <rect x="730" y="104" width="340" height="430" rx="16" fill="${lin([[0, '#ffffff'], [1, '#eef4f1']])}"/>
+      <text x="760" y="150" font-family="${FONT}" font-size="14" font-weight="800" fill="${t.accent2}" letter-spacing="2">HOME LOAN EMI</text>
+      <text x="760" y="180" font-family="${FONT}" font-size="13" font-weight="600" fill="#7c8a84">₹90 L flat in Pune · example</text>
+      <rect x="760" y="196" width="280" height="1.5" fill="#d9e4de"/>
+      ${rows.map(([k, v], i) => `
+        <text x="760" y="${236 + i * 46}" font-family="${FONT}" font-size="16" font-weight="600" fill="#45504b">${esc(k)}</text>
+        <text x="1040" y="${236 + i * 46}" text-anchor="end" font-family="${FONT}" font-size="17" font-weight="800" fill="${t.ink}">${v}</text>
+        <rect x="760" y="${252 + i * 46}" width="280" height="1" fill="#e2ebe6"/>`).join('')}
+      <rect x="752" y="${236 + 4 * 46 - 18}" width="296" height="58" rx="10" fill="${t.accent2}" opacity=".1"/>
+      <text x="768" y="${236 + 4 * 46 + 16}" font-family="${FONT}" font-size="17" font-weight="800" fill="${t.ink}">Monthly EMI</text>
+      <text x="1032" y="${236 + 4 * 46 + 17}" text-anchor="end" font-family="${FONT}" font-size="24" font-weight="900" fill="${t.accent2}">₹62,483</text>
+      <text x="760" y="508" font-family="${FONT}" font-size="11.5" fill="#8a9690">Rates vary by lender · illustrative only</text>
+    </g>`;
+}
+
 // ---- scenes -----------------------------------------------------------------------
 
 const SCENES = {
@@ -511,6 +536,34 @@ const SCENES = {
     ];
   },
 
+  /** Tall family towers at golden hour with BHK price pins — 3 BHK flats. */
+  family(t) {
+    return [
+      sky(t), farSkyline(t, { seed: 121, color: t.far, max: 180, lights: 0.15 }), haze(t, 270),
+      tower(t, { x: 560, top: 260, w: 78, seed: 101, lit: 0.35 }),
+      tower(t, { x: 668, top: 170, w: 92, seed: 102, lit: 0.4, crown: true }),
+      tower(t, { x: 800, top: 230, w: 80, seed: 103, lit: 0.35 }),
+      tower(t, { x: 916, top: 140, w: 100, seed: 104, lit: 0.45, kind: 'glass', crown: true }),
+      tower(t, { x: 1052, top: 210, w: 86, seed: 105, lit: 0.4 }),
+      tower(t, { x: 1160, top: 290, w: 56, seed: 106, lit: 0.35 }),
+      ground(t), trees(t, [560, 650, 780, 900, 1030, 1140, 1190], { size: 1.25 }),
+      mapPin(t, 714, 162, '₹1 Cr+', { color: t.pin }),
+      mapPin(t, 966, 132, '₹1.7 Cr+'),
+      mapPin(t, 1094, 202, '₹4 Cr+', { color: t.pin }),
+    ];
+  },
+
+  /** Daylight apartments behind an EMI slip — home loan guide. */
+  loan(t) {
+    return [
+      sky(t), farSkyline(t, { seed: 131, color: t.far, max: 170, lights: 0 }), haze(t, 280),
+      tower(t, { x: 560, top: 240, w: 86, seed: 111, lit: 0.08 }),
+      tower(t, { x: 1100, top: 200, w: 86, seed: 112, lit: 0.08, crown: true }),
+      ground(t), trees(t, [580, 660, 1090, 1180], { size: 1.2 }),
+      emiCard(t),
+    ];
+  },
+
   /** Evening apartments behind a cost slip — stamp duty & hidden costs. */
   costs(t) {
     return [
@@ -595,6 +648,20 @@ export const THEMES = {
     face: ['#2b3760', '#18203d'], side: ['#18203d', '#0d1226'], roof: '#3a4878', slab: '#55649a', glass: '#1f2950',
     lit: ['#ffd88a', '#ffeccc'], office: '#ffd88a', tree: ['#0e1428', '#141b33'], ground: ['#141a33', '#080b18'],
     scrim: '#0d1530', accent: '#ffb85a', accent2: '#b0532c', stamp: '#c0392b', ink: '#1e1a14', sub: '#d8dff5',
+  },
+  golden: {
+    scene: 'family', sky: ['#2a2350', '#6a4a7a', '#e0906a', '#ffd59a'], sun: { x: 1120, y: 330, r: 42, color: '#fff0b8', halo: '#ffc070' },
+    clouds: { n: 6, color: '#ffc9a0', seed: 31 }, far: '#6a5070', haze: '#f6bd8a', hazeA: 0.5,
+    face: ['#f4dcc2', '#b8927a'], side: ['#7a5a5a', '#523a40'], roof: '#ffecd6', slab: '#fff3e6', glass: '#5a4a6a',
+    lit: ['#ffe2a0', '#fff1c8'], office: '#ffe2a0', tree: ['#2f3a2a', '#3c4a34', '#232c20'], ground: ['#3a3a2c', '#1a1a12'],
+    scrim: '#22123a', accent: '#ffcf5a', pin: '#d9485f', ink: '#22123a', sub: '#f5e2d8',
+  },
+  mint: {
+    scene: 'loan', sky: ['#2f8a9a', '#7cc4c8', '#e2f3ee'], sun: { x: 640, y: 90, r: 34, color: '#fffbe0', halo: '#fff2b8' },
+    clouds: { n: 8, color: '#ffffff', seed: 37 }, far: '#9cc4c4', haze: '#eaf6f2', hazeA: 0.7,
+    face: ['#f3f0e8', '#cfc8b8'], side: ['#a6a090', '#7f7a6c'], roof: '#ffffff', slab: '#ffffff', glass: '#5f8f9a',
+    lit: ['#fff1c8'], office: '#fff', tree: ['#2e7a5a', '#3d8f68', '#25604a'], ground: ['#4a8a64', '#244a34'],
+    scrim: '#08343a', accent: '#7af0c8', accent2: '#0f7a6a', ink: '#08343a', sub: '#d4f0ea',
   },
 };
 

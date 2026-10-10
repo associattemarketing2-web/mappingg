@@ -2,7 +2,7 @@ import Link from 'next/link';
 import InfoPage, { CtaBand } from '@/components/InfoPage';
 import { EMAIL, SOCIALS, WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/lib/contact';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
+import { SITE_URL } from '@/lib/seo/config';
 
 const FAQS = [
   { q: 'What is Mappingg?', a: <>Mappingg is a live map of real estate projects. Each project is a pin with its status, MahaRERA-verified RERA number, possession dates and what&apos;s nearby, so you can understand it in seconds.</> },

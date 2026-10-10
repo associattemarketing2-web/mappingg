@@ -886,6 +886,199 @@ function stampDutyArticle(h) {
   };
 }
 
+function threeBhkArticle(h) {
+  return {
+    slug: '3-bhk-flats-in-pune',
+    title: '3 BHK Flats in Pune (2026): New Projects & Prices from ₹1 Cr to Luxury',
+    seo_title: '3 BHK Flats in Pune 2026: New Projects & Prices',
+    seo_description:
+      'New 3 BHK flats in Pune from ₹99 Lacs — compare 3 & 4 BHK projects in Hinjewadi, Wakad, Kharadi, Mundhwa, Balewadi & Baner by price, possession date and MahaRERA number.',
+    excerpt:
+      'Upgrading to a 3 BHK in Pune? Every new 3 BHK project on our map sorted by budget — under ₹1.5 Cr, ₹1.5–2 Cr, ₹2–3 Cr and luxury — with locations, possession dates and MahaRERA numbers.',
+    tags: ['3 BHK Flats in Pune', 'Pune', 'New Projects', '4 BHK', 'Luxury Apartments'],
+    cover: {
+      theme: 'golden',
+      kicker: 'Budget guide',
+      lines: ['3 BHK Flats', 'in Pune: 2026', 'Prices & Projects'],
+      stats: [['40+', '3 BHK projects'], ['₹99 L', 'lowest entry'], ['3–5 BHK', 'configurations']],
+    },
+    content: `
+<p>A <strong>3 BHK flat in Pune</strong> is the most popular choice for growing families and for buyers moving up from a 2 BHK. The extra bedroom works as a kids’ room, a guest room or a home office. On the <a href="/map">Mappingg live map</a> we track more than 40 new projects that offer 3 BHK homes, from about ₹99 Lacs in the Hinjewadi IT belt to ₹4 Cr+ residences in Koregaon Park and Kalyani Nagar. This guide sorts them by budget so you can see what your money buys.</p>
+
+<h2>3 BHK prices in Pune at a glance</h2>
+<div class="table-scroll"><table>
+<caption>What a new 3 BHK costs, by budget</caption>
+<thead><tr><th>Budget</th><th>Where to look</th><th>Typical home</th></tr></thead>
+<tbody>
+<tr><td>Under ₹1.5 Cr</td><td>Hinjewadi, PCMC Spine Road, Pradhikaran, Wakad, Manjri</td><td>Compact 3 BHK, around 900–1,100 sq ft carpet</td></tr>
+<tr><td>₹1.5 – 2 Cr</td><td>Mundhwa, Kharadi, Thergaon, Mahalunge</td><td>Spacious 3 BHK in large gated communities</td></tr>
+<tr><td>₹2 – 3 Cr</td><td>Balewadi, Upper Kharadi, Mundhwa, Pimple Saudagar</td><td>Large 3 BHK and entry 4 BHK</td></tr>
+<tr><td>₹3.5 Cr+</td><td>Baner, Kalyani Nagar, Koregaon Park, Viman Nagar</td><td>3.5 / 4.5 BHK luxury residences</td></tr>
+</tbody></table></div>
+<p><small>Starting prices as listed on Mappingg in October 2026. The starting price is often for the smallest unit, so ask for the 3 BHK price specifically.</small></p>
+
+<h2>3 BHK flats under ₹1.5 crore</h2>
+<p>West Pune and Pimpri-Chinchwad give you the most space for the money. ${h.link(269)} in ${h.loc('Hinjewadi')} Phase 1 offers 3 and 4 BHK homes from ₹99 Lacs, and ${h.link(253)} on Spine Road is an all-3 BHK project from ₹1.1 Cr. ${h.link(237)} in Pradhikaran offers 3 BHK suites from ₹1.46 Cr, and ${h.link(246)} in Wakad starts at ₹1.3 Cr. On the east side, ${h.link(113)} by Shapoorji Pallonji in Manjri starts at ₹1.42 Cr.</p>
+${h.table([269, 253, 246, 113, 237], '3 BHK projects under ₹1.5 Cr')}
+
+<h2>3 BHK flats from ₹1.5 crore to ₹2 crore</h2>
+<p>This band covers most of East Pune’s family homes. In Mundhwa, ${h.link(18)} starts at ₹1.55 Cr with a flexi payment plan and ${h.link(12)} at ₹1.71 Cr. In ${h.loc('Kharadi')}, ${h.link(184)} offers river-facing 3 BHK homes from ₹1.74 Cr and ${h.link(92)} starts at ₹1.84 Cr. In West Pune, ${h.link(205)} in the Krisala Hiranandani township, ${h.link(267)} in Mahalunge and ${h.link(255)} in Thergaon are worth a look.</p>
+${h.gallery([18, 12, 184, 92, 205, 11])}
+${h.table([18, 205, 267, 12, 255, 184, 11, 92], '3 BHK projects from ₹1.5 Cr to ₹2 Cr')}
+
+<h2>Premium 3 &amp; 4 BHK flats from ₹2 crore to ₹3 crore</h2>
+<p>With a larger budget you get bigger carpet areas, better views and more amenities. ${h.link(216)} near ${h.loc('Balewadi')} High Street starts at ₹1.88 Cr, ${h.link(226)} in Kharadi at ₹1.90 Cr and ${h.link(87)} in Upper Kharadi at ₹2.25 Cr. If you want to move in now, ${h.link(236)} in Pimple Saudagar is ready, with possession done. Mundhwa options include ${h.link(16)}, ${h.link(10)} and ${h.link(35)}.</p>
+${h.table([216, 226, 236, 87, 16, 10, 35], 'Premium 3 & 4 BHK projects, ₹2–3 Cr')}
+
+<h2>Luxury 3.5, 4 &amp; 4.5 BHK residences</h2>
+<p>At the top end, Pune’s luxury market is concentrated in Baner, Koregaon Park, Kalyani Nagar and the Mundhwa–KP Annexe stretch. ${h.link(136)} in Viman Nagar starts at ₹3.72 Cr, ${h.link(215)} on Pan Card Club Road, Baner at ₹3.85 Cr, and ${h.link(194)} in Kalyani Nagar at ₹3.58 Cr. ${h.link(15)} by Panchshil and ${h.link(118)} in Koregaon Park start above ₹4.3 Cr.</p>
+${h.gallery([15, 194, 215, 118, 136, 103])}
+${h.table([194, 136, 215, 103, 15, 118], 'Luxury 3.5 – 4.5 BHK projects in Pune')}
+
+<h2>What to check before you buy a 3 BHK</h2>
+<ol>
+  <li><strong>Carpet area, not super built-up.</strong> In Pune, a “3 BHK” can range from about 900 sq ft to over 1,500 sq ft of carpet area. Compare price per sq ft on carpet area only.</li>
+  <li><strong>Room sizes and layout.</strong> Check that the third bedroom fits a bed and a wardrobe, and whether it has an attached bathroom.</li>
+  <li><strong>Schools and commute.</strong> For a family home, the distance to schools matters as much as the distance to work. Open each project on the <a href="/map">live map</a> to see what’s around it.</li>
+  <li><strong>Full cost, not just price.</strong> On a ₹1.8 Cr flat in Pune city, stamp duty alone is about ₹12.6 Lacs. Read our guide to <a href="/blog/stamp-duty-registration-charges-pune">stamp duty and hidden costs</a>, and see how a <a href="/blog/home-loan-emi-eligibility-pune">home loan EMI</a> fits your income.</li>
+  <li><strong>MahaRERA registration</strong> for your specific tower and its possession date. Here’s <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>.</li>
+</ol>
+
+<h2>FAQs: 3 BHK flats in Pune</h2>
+<h3>What is the price of a new 3 BHK flat in Pune?</h3>
+<p>Among the projects on our map, new 3 BHK homes start at about ₹99 Lacs to ₹1.3 Cr in Hinjewadi, Wakad and PCMC, ₹1.55–2 Cr in Mundhwa and Kharadi, and ₹3.5 Cr and above in Baner, Kalyani Nagar and Koregaon Park.</p>
+<h3>Which is the best area to buy a 3 BHK in Pune?</h3>
+<p>For value, Hinjewadi, Wakad and Tathawade. For East Pune IT jobs, Kharadi and Mundhwa. For premium living, Balewadi, Baner and Kalyani Nagar. Our guide to the <a href="/blog/best-areas-to-buy-property-in-pune">best areas to buy property in Pune</a> compares them in detail.</p>
+<h3>Can I buy a 3 BHK in Pune under ₹1 crore?</h3>
+<p>Only a few. ${h.link(269)} starts at ₹99 Lacs, and some projects in Lohegaon, Undri and Charholi have entry-level 3 BHK units close to ₹1 Cr. See our list of <a href="/blog/flats-under-1-crore-in-pune">flats under ₹1 crore in Pune</a>.</p>
+<h3>Is a 3 BHK a good investment in Pune?</h3>
+<p>3 BHK homes near IT hubs rent well to families and sharing professionals, and they are easier to resell to upgraders. Rental yield as a percentage is usually a little lower than on a 2 BHK, so buy a 3 BHK mainly if it suits your own family.</p>
+
+<blockquote>Prices, configurations and possession dates are as listed on Mappingg in October 2026 and may change. Always confirm with the developer and on MahaRERA before you book.</blockquote>
+`,
+  };
+}
+
+function homeLoanArticle(h) {
+  return {
+    slug: 'home-loan-emi-eligibility-pune',
+    title: 'Home Loan for a Flat in Pune (2026): EMI, Eligibility, Down Payment & Documents',
+    seo_title: 'Home Loan EMI & Eligibility Guide for Pune 2026',
+    seo_description:
+      'How much home loan can you get? EMI tables for ₹30 L to ₹1.5 Cr loans, down payment rules, eligibility by salary, documents and tax benefits — with real Pune flats as examples.',
+    excerpt:
+      'How big a home loan you can get, what the EMI will be, how much down payment you need and which documents to keep ready — explained with EMI tables and real Pune projects.',
+    tags: ['Home Loan', 'EMI Calculator', 'Home Loan Eligibility', 'Pune', 'Home Buying Guide'],
+    cover: {
+      theme: 'mint',
+      kicker: 'Buyer’s guide',
+      lines: ['Home Loan EMI &', 'Eligibility for', 'a Flat in Pune'],
+      stats: [['75–90%', 'loan-to-value'], ['₹868', 'EMI per lakh'], ['≈50%', 'of income max']],
+    },
+    content: `
+<p>Most people buy their flat in Pune with a <strong>home loan</strong>. Before you pay a booking amount, you should know three numbers: how much the bank will lend you, how much you must pay yourself as a <strong>down payment</strong>, and what your monthly <strong>EMI</strong> will be. This guide explains each one with simple tables and real examples from the projects on the <a href="/map">Mappingg live map</a>.</p>
+
+<h2>How much down payment do you need?</h2>
+<p>Banks and housing finance companies don’t fund the full price of a flat. RBI rules cap the loan-to-value (LTV) ratio, so you pay the rest yourself:</p>
+<div class="table-scroll"><table>
+<caption>Maximum home loan as a share of the property value</caption>
+<thead><tr><th>Loan amount</th><th>Maximum loan (LTV)</th><th>Your minimum down payment</th></tr></thead>
+<tbody>
+<tr><td>Up to ₹30 Lacs</td><td>90%</td><td>10%</td></tr>
+<tr><td>₹30 Lacs – ₹75 Lacs</td><td>80%</td><td>20%</td></tr>
+<tr><td>Above ₹75 Lacs</td><td>75%</td><td>25%</td></tr>
+</tbody></table></div>
+<p>Two things catch buyers out. First, the LTV is worked out on the property’s value, which generally <strong>excludes stamp duty and registration</strong>, so you pay those from savings too. Second, a lender can approve less than the maximum based on your income and credit score.</p>
+
+<h2>Home loan EMI table</h2>
+<p>Your EMI depends on the loan amount, the interest rate and the tenure. Here is the EMI at an illustrative rate of <strong>8.5% a year</strong>:</p>
+<div class="table-scroll"><table>
+<caption>Monthly EMI at 8.5% interest</caption>
+<thead><tr><th>Loan amount</th><th>15 years</th><th>20 years</th><th>25 years</th><th>30 years</th></tr></thead>
+<tbody>
+<tr><td>₹30 Lacs</td><td>₹29,542</td><td>₹26,035</td><td>₹24,157</td><td>₹23,067</td></tr>
+<tr><td>₹50 Lacs</td><td>₹49,237</td><td>₹43,391</td><td>₹40,261</td><td>₹38,446</td></tr>
+<tr><td>₹60 Lacs</td><td>₹59,084</td><td>₹52,069</td><td>₹48,314</td><td>₹46,135</td></tr>
+<tr><td>₹75 Lacs</td><td>₹73,855</td><td>₹65,087</td><td>₹60,392</td><td>₹57,669</td></tr>
+<tr><td>₹1 Crore</td><td>₹98,474</td><td>₹86,782</td><td>₹80,523</td><td>₹76,891</td></tr>
+<tr><td>₹1.5 Crore</td><td>₹1,47,711</td><td>₹1,30,173</td><td>₹1,20,784</td><td>₹1,15,337</td></tr>
+</tbody></table></div>
+<p><small>A quick rule of thumb: at 8.5% over 20 years, every ₹1 Lac of loan costs about ₹868 a month. Actual rates depend on the lender, your credit score and the RBI repo rate, so check current offers before you decide.</small></p>
+
+<h3>How the interest rate changes your EMI</h3>
+<p>On a ₹50 Lacs loan over 20 years, the EMI is ₹41,822 at 8%, ₹43,391 at 8.5%, ₹44,986 at 9% and ₹46,607 at 9.5%. Even half a percent makes a difference of about ₹1,600 a month, or nearly ₹4 Lacs over the life of the loan, so it pays to compare lenders.</p>
+
+<h3>The true cost of a longer tenure</h3>
+<p>A longer tenure lowers your EMI but raises the total interest. On a ₹50 Lacs loan at 8.5% for 20 years, you repay about ₹1.04 Cr in all, of which about ₹54 Lacs is interest. Making part-prepayments whenever you get a bonus is the simplest way to cut that.</p>
+
+<h2>How much home loan can you get on your salary?</h2>
+<p>Lenders usually let your total EMIs (including car loans and personal loans) take up to about <strong>50–60% of your net monthly income</strong>. This is called the FOIR (fixed obligations to income ratio). For example, with a take-home salary of ₹1 Lac a month and no other loans, a 50% FOIR allows an EMI of ₹50,000, which supports a loan of about <strong>₹57.6 Lacs</strong> over 20 years at 8.5%.</p>
+<p>Ways to increase your eligibility:</p>
+<ul>
+  <li><strong>Add a co-applicant</strong>, such as an earning spouse or parent, so both incomes are counted.</li>
+  <li><strong>Close small loans and card dues</strong> before you apply, to free up FOIR.</li>
+  <li><strong>Choose a longer tenure</strong>, if your age allows it.</li>
+  <li><strong>Keep your credit score high</strong>. A score above 750 usually gets you the best rates.</li>
+</ul>
+
+<h2>Example: the loan for real Pune flats</h2>
+<p>Here is what it would take to buy some of the projects on our map at their starting price, with the maximum loan, a 20-year tenure and 8.5% interest:</p>
+<div class="table-scroll"><table>
+<caption>Down payment and EMI at the starting price</caption>
+<thead><tr><th>Project</th><th>Starting price</th><th>Down payment</th><th>Loan</th><th>EMI (20 yrs)</th></tr></thead>
+<tbody>
+<tr><td>${h.link(204)}, Hinjewadi</td><td>₹82 Lacs</td><td>₹16.4 Lacs</td><td>₹65.6 Lacs</td><td>₹56,929</td></tr>
+<tr><td>${h.link(235)}, NIBM</td><td>₹90 Lacs</td><td>₹18 Lacs</td><td>₹72 Lacs</td><td>₹62,483</td></tr>
+<tr><td>${h.link(13)}, Mundhwa</td><td>₹98 Lacs</td><td>₹24.5 Lacs</td><td>₹73.5 Lacs</td><td>₹63,785</td></tr>
+<tr><td>${h.link(18)}, Mundhwa</td><td>₹1.55 Cr</td><td>₹38.75 Lacs</td><td>₹1.16 Cr</td><td>₹1,00,884</td></tr>
+</tbody></table></div>
+<p><small>Down payments exclude stamp duty, registration and GST. At a 50% FOIR, these EMIs need a take-home income of roughly ₹1.14 Lacs, ₹1.25 Lacs, ₹1.28 Lacs and ₹2 Lacs a month respectively.</small></p>
+<p>Notice that ${h.link(13, 'Ravima Newtown')} needs a much larger down payment than ${h.link(235, 'KP Supernova')} even though the price is only ₹8 Lacs higher: at 80% the loan would cross ₹75 Lacs, so the 75% limit applies. Looking for homes in a lower band? See our guide to <a href="/blog/flats-under-1-crore-in-pune">flats under ₹1 crore in Pune</a>.</p>
+
+<h2>Home loans for under-construction flats</h2>
+<ul>
+  <li><strong>Staged disbursement:</strong> the bank pays the developer in instalments as construction progresses, not all at once.</li>
+  <li><strong>Pre-EMI:</strong> until the full loan is disbursed, you can pay interest only on the amount released so far (pre-EMI), or start the full EMI straight away. Pre-EMI feels lighter, but it doesn’t reduce your principal.</li>
+  <li><strong>Approved projects:</strong> banks often pre-approve large MahaRERA-registered projects, which makes the loan faster. Always <a href="/blog/how-to-check-maharera-registration-number">check the MahaRERA number</a> yourself as well.</li>
+  <li><strong>Rent plus EMI:</strong> if you are renting, budget for both until possession. Our guide to <a href="/blog/ready-to-move-vs-under-construction-flats-pune">ready-to-move vs under-construction flats</a> explains the trade-off.</li>
+</ul>
+
+<h2>Documents you will need</h2>
+<ul>
+  <li><strong>KYC:</strong> PAN card and Aadhaar or passport for every applicant.</li>
+  <li><strong>Income proof (salaried):</strong> the last 3–6 months’ salary slips, Form 16 and 6–12 months’ bank statements.</li>
+  <li><strong>Income proof (self-employed):</strong> 2–3 years of income tax returns with computation, audited financials and business bank statements.</li>
+  <li><strong>Property papers:</strong> the allotment letter or agreement for sale, the developer’s MahaRERA certificate, approved plans and the payment receipts.</li>
+  <li><strong>For a resale flat:</strong> the chain of title documents, the society NOC and the occupancy certificate.</li>
+</ul>
+
+<h2>Tax benefits on a home loan</h2>
+<p>Under the old tax regime, you can usually claim up to ₹2 Lacs a year of interest on a self-occupied home, and up to ₹1.5 Lacs of principal repayment within the overall 80C-style limit. Co-owners who are also co-borrowers can each claim their share. The new tax regime doesn’t allow these deductions for a self-occupied home. Tax law and section numbers have changed recently, so confirm what applies to you with a tax adviser.</p>
+
+<h2>Tips to get the best home loan deal</h2>
+<ol>
+  <li><strong>Get a sanction letter before you book</strong>, so you know your exact budget.</li>
+  <li><strong>Compare at least three lenders</strong> on the interest rate, processing fee and prepayment terms. Floating-rate loans to individuals carry no prepayment penalty.</li>
+  <li><strong>Plan the extra costs.</strong> Stamp duty, registration and GST are paid from your own pocket. See our guide to <a href="/blog/stamp-duty-registration-charges-pune">stamp duty and hidden costs</a>.</li>
+  <li><strong>Remember the 1% TDS</strong> on flats worth ₹50 Lacs or more, deducted from every payment to the developer, including bank disbursements.</li>
+  <li><strong>Keep an emergency fund</strong> of at least six months of EMIs.</li>
+</ol>
+
+<h2>FAQs: Home loans in Pune</h2>
+<h3>How much home loan can I get on a ₹1 lakh salary?</h3>
+<p>With no other loans, roughly ₹55–60 Lacs over 20 years at about 8.5%, depending on the lender’s FOIR limit and your credit score. Adding an earning co-applicant can increase this.</p>
+<h3>What is the EMI on a ₹50 lakh home loan?</h3>
+<p>About ₹43,391 a month over 20 years at 8.5%, or ₹38,446 over 30 years.</p>
+<h3>Can a bank fund 100% of the flat’s price?</h3>
+<p>No. You must pay at least 10–25% as a down payment, depending on the loan size, plus stamp duty and registration.</p>
+<h3>Is it better to choose a shorter or longer tenure?</h3>
+<p>A shorter tenure saves interest but raises your EMI. Many buyers choose a longer tenure for a comfortable EMI and then prepay whenever they can.</p>
+
+<blockquote>EMIs in this guide are illustrative, at 8.5% a year, and are not an offer of credit. Interest rates, lending rules and tax provisions change, so confirm the details with your lender and a tax adviser. Project prices are as listed on Mappingg in October 2026.</blockquote>
+`,
+  };
+}
+
 // ---- main ---------------------------------------------------------------------
 
 async function upsert(post) {
@@ -922,7 +1115,7 @@ async function main() {
   const articles = [
     mundhwaArticle(h), puneAreasArticle(h), kharadiArticle(h), reraArticle(h),
     westPuneArticle(h), pcmcArticle(h), eastPuneArticle(h), readyVsUcArticle(h),
-    underOneCroreArticle(h), stampDutyArticle(h),
+    underOneCroreArticle(h), stampDutyArticle(h), threeBhkArticle(h), homeLoanArticle(h),
   ];
 
   // Sanity: every slug used by the articles' internal links must be stable.

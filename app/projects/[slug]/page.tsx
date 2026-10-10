@@ -12,6 +12,7 @@ import {
   typeLabel,
   slugForProject,
   CITY_LABELS,
+  hasCityHub,
   type Pin,
 } from '@/lib/seo/entities';
 import { localitiesOf } from '@/lib/locality';
@@ -63,7 +64,7 @@ export default async function ProjectDetail({ params }: { params: { slug: string
 
   const crumbs = [
     { name: 'Home', path: '/' },
-    { name: city, path: `/cities/${cityKey}` },
+    ...(hasCityHub(cityKey) ? [{ name: city, path: `/cities/${cityKey}` }] : []),
     ...(loc ? [{ name: loc, path: `/locations/${slugify(loc)}` }] : []),
     { name, path: `/projects/${slugForProject(pin)}` },
   ];
@@ -103,7 +104,7 @@ export default async function ProjectDetail({ params }: { params: { slug: string
     ...(statusSlug ? [{ label: `${statusLabel(pin.status)} projects`, path: `/status/${statusSlug}` }] : []),
     ...(pin.type ? [{ label: `${typeLabel(pin.type)} projects`, path: `/property/${slugify(pin.type)}` }] : []),
     ...(loc ? [{ label: `All projects in ${loc}`, path: `/locations/${slugify(loc)}` }] : []),
-    { label: `Real estate in ${city}`, path: `/cities/${cityKey}` },
+    ...(hasCityHub(cityKey) ? [{ label: `Real estate in ${city}`, path: `/cities/${cityKey}` }] : []),
   ];
   // Other localities this project touches (projects often span 2 areas).
   const otherLocs = localitiesOf(pin.location)

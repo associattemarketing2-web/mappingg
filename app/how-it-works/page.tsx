@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import InfoPage, { CtaBand } from '@/components/InfoPage';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
+import { SITE_URL } from '@/lib/seo/config';
 
 const STEPS = [
   { n: '01', icon: 'fas fa-plug', tone: '', title: 'Connect your data', text: 'Share your RERA number, location, plans and prices. We verify the RERA number on the MahaRERA website.', tags: ['RERA', 'Location', 'Plans'] },

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getBySlug } from '@/lib/blog';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
+import { SITE_URL } from '@/lib/seo/config';
 
 // SEO metadata for /blog/<slug> lives here; page.tsx renders the article.
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {

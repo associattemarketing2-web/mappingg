@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import SeoShell from '@/components/seo/SeoShell';
-import { getLocalityGroups, cityOf, CITY_LABELS } from '@/lib/seo/entities';
+import { getLocalityGroups, cityOf, CITY_LABELS, hasCityHub, type CityKey } from '@/lib/seo/entities';
 import { itemListSchema, jsonLd } from '@/lib/seo/schema';
 
 export const revalidate = 600;
@@ -34,11 +34,11 @@ export default async function LocationsIndex() {
         </div>
       </header>
 
-      {(['pune', 'mumbai'] as const).map((city) =>
+      {(Object.keys(CITY_LABELS) as CityKey[]).map((city) =>
         byCity[city] && byCity[city].length ? (
           <section className="seo-section" key={city}>
             <h2>
-              <Link href={`/cities/${city}`}>{CITY_LABELS[city]}</Link>
+              {hasCityHub(city) ? <Link href={`/cities/${city}`}>{CITY_LABELS[city]}</Link> : CITY_LABELS[city]}
             </h2>
             <div className="seo-grid">
               {byCity[city].map((g) => (

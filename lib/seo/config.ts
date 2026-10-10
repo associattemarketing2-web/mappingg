@@ -2,7 +2,15 @@
 // origin, brand strings and social handles, so metadata, JSON-LD, the sitemap
 // and OG images never drift out of sync.
 
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com').replace(/\/$/, '');
+// The canonical origin used in canonical tags, the sitemap, robots.txt, Open
+// Graph and JSON-LD. Production serves www.mappingg.com (the apex 308-redirects
+// there), so an apex value is upgraded to www: a canonical that redirects sends
+// Google conflicting signals. NEXT_PUBLIC_SITE_URL itself is left alone because
+// Google sign-in builds its whitelisted redirect URI from it (lib/google-oauth.ts);
+// set NEXT_PUBLIC_CANONICAL_URL to override the canonical origin explicitly.
+export const SITE_URL = (process.env.NEXT_PUBLIC_CANONICAL_URL || process.env.NEXT_PUBLIC_SITE_URL || 'https://www.mappingg.com')
+  .replace(/\/$/, '')
+  .replace(/^https?:\/\/mappingg\.com$/i, 'https://www.mappingg.com');
 
 export const SITE = {
   url: SITE_URL,
