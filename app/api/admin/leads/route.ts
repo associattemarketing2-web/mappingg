@@ -160,7 +160,7 @@ export async function GET(req: NextRequest) {
   if (req.nextUrl.searchParams.get('staff')) {
     if ((await getCurrentUser())?.role !== 'admin') return NextResponse.json({ data: [] }); // only the super admin transfers
     const staff = (await listEmployees()).filter((e) => e.permissions.includes('leads'));
-    return NextResponse.json({ data: staff.map((e) => ({ id: e.id, name: e.name || e.email, email: e.email })) });
+    return NextResponse.json({ data: staff.map((e) => ({ id: e.id, name: e.name || e.email, email: e.email, mobile: e.mobile || '' })) });
   }
   // Super admin: what everyone did on leads (notes, status, follow-ups, transfers), newest first.
   if (req.nextUrl.searchParams.get('activity')) {

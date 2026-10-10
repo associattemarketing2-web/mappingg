@@ -1263,3 +1263,9 @@ button.acs-act-row:hover { background: var(--bg); }
   .dvl-modal .dvl-form-actions { flex-direction: column-reverse; }
   .dvl-modal .dvl-form-actions .adm-btn { justify-content: center; }
 }
+
+/* Leads: send a lead to an employee on WhatsApp */
+.lead-wa h4 i { color: #25d366; margin-right: 4px; }
+.lead-wa-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.lead-wa-btns .adm-btn i { color: inherit; }
+@media (max-width: 560px) { .lead-wa-btns .adm-btn { flex: 1 1 100%; justify-content: center; } }

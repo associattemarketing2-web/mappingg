@@ -503,7 +503,7 @@ function BlogsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
 }
 
 /* ------------------------------ Employees -------------------------------- */
-interface Emp { id: string; email: string; name?: string; permissions: string[]; created_at?: string; }
+interface Emp { id: string; email: string; name?: string; permissions: string[]; mobile?: string; created_at?: string; }
 
 function EmployeesPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
   const [list, setList] = useState<Emp[]>([]);
@@ -514,6 +514,7 @@ function EmployeesPanel({ flash }: { flash: (m: string, e?: boolean) => void }) 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [perms, setPerms] = useState<string[]>([]);
+  const [mobile, setMobile] = useState('');
   const [saving, setSaving] = useState(false);
 
   async function load() {
@@ -526,15 +527,15 @@ function EmployeesPanel({ flash }: { flash: (m: string, e?: boolean) => void }) 
   }
   useEffect(() => { load(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  function openNew() { setEditId(null); setName(''); setEmail(''); setPassword(''); setPerms([]); setView('form'); }
-  function openEdit(e: Emp) { setEditId(e.id); setName(e.name || ''); setEmail(e.email); setPassword(''); setPerms(e.permissions || []); setView('form'); }
+  function openNew() { setEditId(null); setName(''); setEmail(''); setPassword(''); setPerms([]); setMobile(''); setView('form'); }
+  function openEdit(e: Emp) { setEditId(e.id); setName(e.name || ''); setEmail(e.email); setPassword(''); setPerms(e.permissions || []); setMobile(e.mobile || ''); setView('form'); }
   function togglePerm(k: string) { setPerms((p) => (p.includes(k) ? p.filter((x) => x !== k) : [...p, k])); }
 
   async function save() {
     if (!editId && (!email.trim() || password.length < 8)) return flash('Email and a password (8+ chars) are required', true);
     setSaving(true);
     try {
-      const payload: any = { name, permissions: perms };
+      const payload: any = { name, permissions: perms, mobile };
       let r;
       if (editId) {
         payload.id = editId; if (password) payload.password = password;
@@ -572,6 +573,10 @@ function EmployeesPanel({ flash }: { flash: (m: string, e?: boolean) => void }) 
         <div className="adm-grid2">
           <div className="adm-field"><label>Full name</label><input value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Rahul Sharma" /></div>
           <div className="adm-field"><label>Email {editId && <small>(cannot change)</small>}</label><input value={email} onChange={(e) => setEmail(e.target.value)} disabled={!!editId} placeholder="employee@example.com" /></div>
+        </div>
+        <div className="adm-field">
+          <label>WhatsApp number <small>(to send them leads on WhatsApp)</small></label>
+          <PhoneInput value={mobile} onChange={setMobile} />
         </div>
         <div className="adm-field">
           <label>{editId ? 'Reset password ' : 'Password '}<small>{editId ? '(leave blank to keep current)' : '(min 8 characters)'}</small></label>
@@ -616,7 +621,7 @@ function EmployeesPanel({ flash }: { flash: (m: string, e?: boolean) => void }) 
             {list.map((e) => (
               <tr key={e.id} className={sel.has(e.id) ? 'picked' : undefined}>
                 <td className="pick"><PickOne sel={sel} id={e.id} label={e.name || e.email} /></td>
-                <td className="t-title">{e.name || e.email}<small>{e.email}</small></td>
+                <td className="t-title">{e.name || e.email}<small>{e.email}{e.mobile ? ` · ${e.mobile}` : ''}</small></td>
                 <td>{e.permissions.length ? e.permissions.map((p) => <span key={p} className="adm-badge muted" style={{ marginRight: 4 }}>{TAB_META[p]?.label || p}</span>) : <span className="muted">Dashboard only</span>}</td>
                 <td><div className="adm-actions">
                   <button className="adm-btn ghost sm" onClick={() => openEdit(e)}><i className="fas fa-pen" /> Edit</button>
@@ -768,10 +773,23 @@ function leadShareText(l: Lead): string {
   ].filter(Boolean);
   return lines.join('\n');
 }
-/** Sends the text to the company WhatsApp number (+91 82288 28200), ready to send. */
-function shareOnWhatsApp(text: string) {
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+/** Opens WhatsApp with the text ready to send — to the given number, or the company number (+91 82288 28200). */
+function shareOnWhatsApp(text: string, to: string = WHATSAPP_NUMBER) {
+  window.open(`https://wa.me/${to.replace(/\D/g, '')}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
 }
+/**
+ * Share with anyone: on phones the system share sheet (WhatsApp, WhatsApp
+ * Business, …); on a computer WhatsApp opens with the text ready and you pick
+ * the chat or group.
+ */
+async function shareWithAnyone(text: string) {
+  const touch = typeof navigator !== 'undefined' && typeof navigator.share === 'function' && window.matchMedia('(pointer: coarse)').matches;
+  if (touch) {
+    try { await navigator.share({ text }); return; } catch (e) { if ((e as Error)?.name === 'AbortError') return; }
+  }
+  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+}
+const joinLeads = (leads: Lead[]) => leads.map(leadShareText).join('\n\n────────\n\n');
 
 /** "2 BHK · ₹1 – 2 Cr · Mundhwa" from a buyer's sign-up preferences. */
 const buyerWants = (l: Lead) => {
@@ -844,7 +862,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
 
   // Employees a lead can be transferred to, and the "Assigned to" filter
   // ('' = everyone, UNASSIGNED = nobody yet, else an employee id).
-  const [staff, setStaff] = useState<{ id: string; name: string; email: string }[]>([]);
+  const [staff, setStaff] = useState<{ id: string; name: string; email: string; mobile?: string }[]>([]);
   const [assignee, setAssignee] = useState('');
   useEffect(() => {
     if (!isOwner) return; // only the super admin transfers leads
@@ -990,6 +1008,15 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
     } catch { flash('Delete failed', true); }
   }
   const staffName = (id: string) => staff.find((e) => e.id === id)?.name || 'employee';
+  // Employees who can get leads on WhatsApp (a number is saved under Employees).
+  const waStaff = staff.filter((e) => e.mobile);
+  /** Sends these leads to an employee on WhatsApp (their chat opens with the details filled in). */
+  function sendToEmployee(leads: Lead[], empId: string) {
+    const emp = staff.find((e) => e.id === empId);
+    if (!emp?.mobile || !leads.length) return;
+    const intro = `Hi ${emp.name.split(' ')[0]}, ${leads.length === 1 ? 'a new lead for you' : `${leads.length} new leads for you`} from Mappingg:`;
+    shareOnWhatsApp([intro, ...leads.map(leadShareText)].join('\n\n────────\n\n'), emp.mobile);
+  }
   async function assign(l: Lead, to: string) {
     if ((l.assigned_to || '') === to) return;
     if (await patch(l.id, { assigned_to: to || null })) flash(to ? `Lead transferred to ${staffName(to)}` : 'Lead unassigned');
@@ -1122,10 +1149,17 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
                 <option value={UNASSIGNED}>Nobody (unassign)</option>
               </select>
             )}
-            <button className="adm-btn ghost sm" disabled={busy} title="Send the selected leads to +91 82288 28200 on WhatsApp"
-              onClick={() => { const ids = pick.of(list.map((l) => l.id)); shareOnWhatsApp(list.filter((l) => ids.includes(l.id)).map(leadShareText).join('\n\n────────\n\n')); }}>
-              <i className="fab fa-whatsapp" /> Share
+            <button className="adm-btn ghost sm" disabled={busy} title="Share the selected leads' details — you choose the app and contact"
+              onClick={() => { const ids = pick.of(list.map((l) => l.id)); shareWithAnyone(joinLeads(list.filter((l) => ids.includes(l.id)))); }}>
+              <i className="fas fa-share-nodes" /> Share
             </button>
+            {waStaff.length > 0 && (
+              <select className="crm-select" value="" disabled={busy} aria-label="Send selected leads to an employee on WhatsApp"
+                onChange={(e) => { if (e.target.value) { const ids = pick.of(list.map((l) => l.id)); sendToEmployee(list.filter((l) => ids.includes(l.id)), e.target.value); } }}>
+                <option value="">WhatsApp to employee…</option>
+                {waStaff.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
+              </select>
+            )}
             <button className="adm-btn danger sm" disabled={busy} onClick={() => { const ids = pick.of(list.map((l) => l.id)); if (confirm(`Delete ${ids.length} lead${ids.length === 1 ? '' : 's'}? You can restore them from Backups → Recycle bin.`)) removeMany(ids); }}><i className="fas fa-trash" /> Delete</button>
           </BulkBar>
           )}
@@ -1267,9 +1301,34 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
             <div className="crm-contact">
               {sel.email && <a className="adm-btn ghost sm" href={`mailto:${sel.email}`}><i className="fas fa-envelope" /> {sel.email}</a>}
               {sel.phone && <a className="adm-btn ghost sm" href={`tel:${sel.phone.replace(/\s/g, '')}`}><i className="fas fa-phone" /> {sel.phone}</a>}
-              {sel.phone && <a className="adm-btn ghost sm" target="_blank" rel="noopener" href={`https://wa.me/${sel.phone.replace(/\D/g, '')}`}><i className="fab fa-whatsapp" /> WhatsApp</a>}
-              {isOwner && <button type="button" className="adm-btn primary sm" onClick={() => shareOnWhatsApp(leadShareText(sel))} title="Send this lead's details to +91 82288 28200 on WhatsApp"><i className="fab fa-whatsapp" /> Share lead</button>}
+              {/* Super admin: one Share button for the lead's details. Employees chat with the buyer instead. */}
+              {isOwner
+                ? <button type="button" className="adm-btn primary sm" onClick={() => shareWithAnyone(leadShareText(sel))} title="Share this lead's details — you choose the app and contact"><i className="fas fa-share-nodes" /> Share</button>
+                : sel.phone && <a className="adm-btn ghost sm" target="_blank" rel="noopener" href={`https://wa.me/${sel.phone.replace(/\D/g, '')}`}><i className="fab fa-whatsapp" /> WhatsApp</a>}
             </div>
+
+            {isOwner && (
+              <div className="crm-block lead-wa">
+                <h4><i className="fab fa-whatsapp" /> Send to an employee on WhatsApp</h4>
+                {waStaff.length ? (
+                  <div className="lead-wa-btns">
+                    {/* The employee this lead is transferred to comes first. */}
+                    {[...waStaff].sort((a, b) => Number(b.id === sel.assigned_to) - Number(a.id === sel.assigned_to)).map((e) => (
+                      <button key={e.id} type="button" className={`adm-btn sm ${e.id === sel.assigned_to ? 'primary' : 'ghost'}`} onClick={() => sendToEmployee([sel], e.id)} title={`Open WhatsApp to ${e.mobile} with this lead`}>
+                        <i className="fab fa-whatsapp" /> {e.name}{e.id === sel.assigned_to ? ' (assigned)' : ''}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="crm-meta" style={{ marginTop: 0 }}>
+                    Add a WhatsApp number to your employees (Employees → Edit) and they show up here.
+                  </p>
+                )}
+                {staff.length > waStaff.length && waStaff.length > 0 && (
+                  <p className="crm-meta" style={{ margin: '6px 0 0' }}>{staff.length - waStaff.length} employee{staff.length - waStaff.length === 1 ? ' has' : 's have'} no WhatsApp number yet (Employees → Edit).</p>
+                )}
+              </div>
+            )}
 
             {isMap ? (
               <>
