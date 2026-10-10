@@ -44,6 +44,9 @@ services:
         sync: false
       - key: ADMIN_NOTIFY_EMAIL
         sync: false
+      # Sales CRM (B2BBricks) webhook new leads are posted to (see lib/crm.ts).
+      - key: CRM_WEBHOOK_URL
+        sync: false
       # Must match package.json "engines" (24.x) and .nvmrc.
       - key: NODE_VERSION
         value: "24"

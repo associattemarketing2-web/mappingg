@@ -9,6 +9,7 @@ import { clientIp, rateLimit } from '@/lib/rate-limit';
 import { warmPinThumbs } from '@/lib/media-cache';
 import { getDb } from '@/lib/mongodb';
 import { notifyAdmin } from '@/lib/mailer';
+import { pageOf, pushToCrm, visitorIp } from '@/lib/crm';
 import { autoLogo, pinImageDigest } from '@/lib/developers';
 
 export const runtime = 'nodejs';
@@ -56,7 +57,7 @@ function invalid(details?: unknown) {
   return NextResponse.json({ data: null, error: { message: 'Invalid request', details } }, { status: 400 });
 }
 
-async function handle(op: DbOp, devEditorView = false, ip = '') {
+async function handle(op: DbOp, devEditorView = false, ip = '', visitor = ip, page = '') {
   const staff = await getStaffUser();
   const current = staff ? null : await getCurrentUser();
   // The one write open to anonymous visitors is a map enquiry (leads insert) —
@@ -94,6 +95,10 @@ async function handle(op: DbOp, devEditorView = false, ip = '') {
     for (const v of (Array.isArray(op.values) ? op.values : op.values ? [op.values] : []) as Record<string, unknown>[]) {
       const pin = v.pin_id ? await (await getDb()).collection('pins').findOne({ id: String(v.pin_id) }, { projection: { title: 1, number: 1 } }).catch(() => null) : null;
       const project = pin ? String(pin.title || `#${pin.number ?? ''}`) : '';
+      pushToCrm({
+        name: String(v.name || ''), mobile: String(v.whatsapp || ''), email: String(v.email || ''), project,
+        source: 'Map enquiry form', page, extra: [['Role', v.role]], message: String(v.message || ''), ip: visitor,
+      });
       notifyAdmin(`New enquiry${project ? `: ${project}` : ''} — ${String(v.name || 'visitor')}`, {
         title: 'New enquiry from the live map',
         body: [],
@@ -169,5 +174,5 @@ export async function POST(req: NextRequest) {
   }
   const parsed = opSchema.safeParse(body);
   if (!parsed.success) return invalid(parsed.error.flatten());
-  return handle(parsed.data as DbOp, req.headers.get('x-mg-scope') === 'dev-editor', clientIp(req));
+  return handle(parsed.data as DbOp, req.headers.get('x-mg-scope') === 'dev-editor', clientIp(req), visitorIp(req), pageOf(req));
 }

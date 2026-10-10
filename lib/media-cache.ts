@@ -59,14 +59,42 @@ function cacheSet(key: string, val: Encoded) {
   }
 }
 
-/** Decodes a data: URL and, for raster images with a width, resizes to a WebP thumbnail. */
-async function encode(dataUrl: string, width: number): Promise<Encoded | null> {
+/**
+ * Crops a logo down to its artwork so every logo fills its card the same way:
+ * the empty margin goes first, then — when the picture is a thin frame around a
+ * small logo on a light background — the frame and the margin inside it.
+ * A logo's own coloured background (dark square, banner) is left alone.
+ */
+export async function trimLogo(bytes: Buffer | Uint8Array): Promise<Buffer> {
+  const TRIM = { threshold: 25 };
+  let img = await sharp(bytes).rotate().flatten({ background: '#ffffff' }).trim(TRIM).png().toBuffer();
+  for (let pass = 0; pass < 2; pass++) {
+    const { width: w = 0, height: h = 0 } = await sharp(img).metadata();
+    if (w < 40 || h < 40) break;
+    // Look just inside the edge: past a frame line there is light, empty space.
+    const dx = Math.ceil(w * 0.03), dy = Math.ceil(h * 0.03);
+    const inner = await sharp(img).extract({ left: dx, top: dy, width: w - 2 * dx, height: h - 2 * dy }).png().toBuffer();
+    const corner = await sharp(inner).extract({ left: 0, top: 0, width: 1, height: 1 }).raw().toBuffer();
+    if (Math.min(corner[0], corner[1], corner[2]) < 235) break;
+    const cut = await sharp(inner).trim(TRIM).png().toBuffer({ resolveWithObject: true }).catch(() => null);
+    // Barely smaller = the edge was the artwork itself, not a frame — keep it whole.
+    if (!cut || cut.info.width * cut.info.height > 0.7 * (w - 2 * dx) * (h - 2 * dy)) break;
+    img = cut.data;
+  }
+  return img;
+}
+
+/** Decodes a data: URL and, for raster images with a width, resizes to a WebP thumbnail.
+ *  `trim` first crops the empty border around the picture (logos uploaded with a lot of margin). */
+async function encode(dataUrl: string, width: number, trim = false): Promise<Encoded | null> {
   const decoded = decodeDataUrl(dataUrl);
   if (!decoded) return null;
   let { bytes, mime } = decoded;
   if (width && mime.startsWith('image/') && mime !== 'image/svg+xml') {
     try {
-      bytes = await sharp(bytes).rotate().resize({ width, height: width, fit: 'inside', withoutEnlargement: true })
+      // A picture that cannot be trimmed (e.g. one flat colour) is resized as it is.
+      const src = trim ? await trimLogo(bytes).catch(() => bytes) : bytes;
+      bytes = await sharp(src).rotate().resize({ width, height: width, fit: 'inside', withoutEnlargement: true })
         .webp({ quality: 80 }).toBuffer();
       mime = 'image/webp';
     } catch { /* not resizable — serve the original */ }
@@ -79,10 +107,10 @@ async function encode(dataUrl: string, width: number): Promise<Encoded | null> {
  * the same key. The result is cached only if `cacheable` (public image whose
  * real hash matches the version in the key).
  */
-export function encodeShared(key: string, dataUrl: string, width: number, cacheable: boolean): Promise<Encoded | null> {
+export function encodeShared(key: string, dataUrl: string, width: number, cacheable: boolean, trim = false): Promise<Encoded | null> {
   const running = store.inflight.get(key);
   if (running) return running;
-  const p = encode(dataUrl, width)
+  const p = encode(dataUrl, width, trim)
     .then((enc) => { if (enc && cacheable) cacheSet(key, enc); return enc; })
     .finally(() => store.inflight.delete(key));
   store.inflight.set(key, p);

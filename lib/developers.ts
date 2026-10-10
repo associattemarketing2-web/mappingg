@@ -146,6 +146,30 @@ export async function directory(): Promise<{ id: string; name: string; logo: str
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
+/** A logo cropped to its artwork (trim=1) so every logo fills its card the same way.
+ *  Works for logos stored here and for partner uploads; outside links are used as they are. */
+function cardLogo(url: string | null): string | null {
+  if (!url) return url;
+  if (url.startsWith('/api/media/')) return `${url}&trim=1`;
+  if (url.startsWith('/api/partners/storage?')) return `${url}&w=400&trim=1`;
+  return url;
+}
+
+/** Developers that have a logo, for the home page's "Trusted by developers" row
+ *  (small thumbnails) — those with the most projects live on the map first. */
+export async function trustedLogos(limit = 40): Promise<{ name: string; logo: string }[]> {
+  await syncFromPins();
+  const [devs, pins] = await Promise.all([devDocs(), pinSummaries()]);
+  const live = new Map<string, number>();
+  for (const p of pins) if (!p.hidden) live.set(normDev(p.developer), (live.get(normDev(p.developer)) || 0) + 1);
+  return devs
+    .map((d) => ({ name: d.name, logo: cardLogo(logoUrl(d, 400)), projects: live.get(normDev(d.name)) || 0 }))
+    .filter((d): d is { name: string; logo: string; projects: number } => !!d.logo && !!d.name)
+    .sort((a, b) => b.projects - a.projects || a.name.localeCompare(b.name))
+    .slice(0, limit)
+    .map(({ name, logo }) => ({ name, logo }));
+}
+
 export class DeveloperError extends Error {
   constructor(message: string, public status = 400) { super(message); }
 }

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import sharp from 'sharp';
+import { trimLogo } from '@/lib/media-cache';
 import { GridFSBucket } from 'mongodb';
 import { query } from '@/lib/pg';
 import { getMongoDb, usingMongo } from '@/lib/mongodb';
@@ -63,9 +64,11 @@ async function loadFile(filename: string): Promise<{ content_type: string; data:
 // in-process so repeat marker loads skip the database and sharp entirely.
 const THUMBS = new Map<string, Uint8Array<ArrayBuffer>>();
 const MAX_THUMBS = 2000;
-async function thumbnail(bytes: Buffer, width: number): Promise<Uint8Array<ArrayBuffer> | null> {
+// trim crops the empty border around a logo first (see trimLogo).
+async function thumbnail(bytes: Buffer, width: number, trim = false): Promise<Uint8Array<ArrayBuffer> | null> {
   try {
-    return new Uint8Array(await sharp(bytes).rotate()
+    const src = trim ? await trimLogo(bytes).catch(() => bytes) : bytes;
+    return new Uint8Array(await sharp(src).rotate()
       .resize({ width, height: width, fit: 'inside', withoutEnlargement: true })
       .webp({ quality: 80 }).toBuffer());
   } catch {
@@ -131,7 +134,8 @@ export async function GET(req: NextRequest) {
   // Public images rarely change: let browsers reuse them for a day and refresh
   // in the background for a week (was 1 hour, which Lighthouse flagged).
   const publicCache = 'public, max-age=86400, stale-while-revalidate=604800';
-  const thumbKey = `${filename}@${w}`;
+  const trim = w > 0 && req.nextUrl.searchParams.get('trim') === '1';
+  const thumbKey = `${filename}@${w}${trim ? 't' : ''}`;
   const hit = publicMedia && w ? THUMBS.get(thumbKey) : undefined;
   if (hit) {
     return new NextResponse(hit, { headers: { 'Content-Type': 'image/webp', 'Content-Length': String(hit.byteLength), 'Cache-Control': publicCache } });
@@ -143,7 +147,7 @@ export async function GET(req: NextRequest) {
   const body = fileDoc.data;
   const ct = fileDoc.content_type || 'application/octet-stream';
   if (publicMedia && w && ct.startsWith('image/') && ct !== 'image/svg+xml') {
-    const small = await thumbnail(body, w);
+    const small = await thumbnail(body, w, trim);
     if (small) {
       if (THUMBS.size >= MAX_THUMBS) THUMBS.delete(THUMBS.keys().next().value as string);
       THUMBS.set(thumbKey, small);

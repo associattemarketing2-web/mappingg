@@ -97,6 +97,7 @@ export const LANDING_BODY = `
   </div>
 </section>
 
+<!--DEV_LOGOS-->
 
 <section class="showcase-sec">
   <div class="container">
