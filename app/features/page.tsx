@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import InfoPage, { CtaBand } from '@/components/InfoPage';
 
-import { SITE_URL } from '@/lib/seo/config';
 
 const VIEWS = [
   { icon: 'fas fa-location-dot', tone: '', title: 'Project pins', text: 'Every project as a pin, colour-coded by status so you can scan a whole area at a glance.' },

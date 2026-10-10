@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import InfoPage, { CtaBand, EMAIL } from '@/components/InfoPage';
 
-import { SITE_URL } from '@/lib/seo/config';
 
 const APPLY = `mailto:${EMAIL}?subject=${encodeURIComponent('Careers at Mappingg')}`;
 

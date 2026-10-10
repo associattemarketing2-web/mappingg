@@ -1,7 +1,6 @@
 import LegacyApp from '@/components/LegacyApp';
 import LegacyPreloads from '@/components/LegacyPreloads';
 
-import { SITE_URL } from '@/lib/seo/config';
 
 export default function Map3DPage() {
   return (

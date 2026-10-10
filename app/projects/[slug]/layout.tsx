@@ -29,10 +29,17 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     pin.developer ? `by ${pin.developer}` : '',
     pin.configuration || '',
     pin.status ? statusLabel(pin.status) : '',
-  ].filter(Boolean).join(', ');
+    // Only a real price ("₹ 1.73 Cr onwards", "Price on Request"), never other notes typed in the field.
+    pin.price && /\d|request/i.test(pin.price) ? pin.price : '',
+  ].map((s) => s.trim()).filter(Boolean).join(', ');
+  const facts = `${name}${where ? ` in ${where}` : ''}${bits ? ` — ${bits}` : ''}.`;
+  // The developer's own text is used as-is only when it is a real sentence; short
+  // notes like "Flexi Payment 25x4" are appended to the facts instead of replacing them.
+  const own = (pin.key_usp || pin.description || '').toString().replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
   const description =
-    (pin.key_usp || pin.description || '').toString().slice(0, 150).trim() ||
-    `Explore ${name}${where ? ` in ${where}` : ''}${bits ? ` — ${bits}` : ''}. View location, configuration, pricing and project details on Mappingg.`;
+    own.length >= 110
+      ? clip(own, 160)
+      : clip(own && `${facts} ${own}`.length <= 160 ? `${facts} ${own}` : `${facts} View location, configuration, pricing and project details on Mappingg.`, 160);
   return buildMetadata({
     title,
     description,
@@ -41,6 +48,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     type: 'article',
     keywords: [name, pin.developer, loc, city, pin.type].filter(Boolean) as string[],
   });
+}
+
+/** Cut at a word boundary so a description never ends mid-word. */
+function clip(text: string, max: number): string {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max - 1);
+  return `${cut.slice(0, Math.max(cut.lastIndexOf(' '), max / 2)).replace(/[\s,;:–—-]+$/, '')}…`;
 }
 
 export default function ProjectLayout({ children }: { children: React.ReactNode }) {

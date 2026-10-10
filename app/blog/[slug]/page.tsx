@@ -58,7 +58,7 @@ export default async function BlogArticle({ params }: { params: { slug: string }
           </div>
           {post.cover_image && (
             // eslint-disable-next-line @next/next/no-img-element
-            <img className="a-cover" src={post.cover_image} alt={post.title} />
+            <img className="a-cover" src={post.cover_image} alt={post.title} width={1200} height={630} />
           )}
           <div className="article-body" dangerouslySetInnerHTML={{ __html: post.content || '' }} />
 

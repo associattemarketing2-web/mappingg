@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import InfoPage, { CtaBand, MiniMap, OfficialChannels } from '@/components/InfoPage';
 
-import { SITE_URL } from '@/lib/seo/config';
 
 const FEATURES = [
   { icon: 'fas fa-location-dot', tone: '', title: 'Live projects', text: 'Every pin is a real project, colour-coded by status, with developer, configuration and possession details.' },

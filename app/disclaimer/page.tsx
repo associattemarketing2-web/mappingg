@@ -1,6 +1,5 @@
 import InfoPage, { ContactBlock, LegalDoc, OfficialChannels, UpdatedChip, type LegalSection } from '@/components/InfoPage';
 
-import { SITE_URL } from '@/lib/seo/config';
 
 const sections: LegalSection[] = [
   {

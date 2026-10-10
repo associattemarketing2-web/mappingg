@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import InfoPage, { ContactBlock, EMAIL, LegalDoc, UpdatedChip, type LegalSection } from '@/components/InfoPage';
 
-import { SITE_URL } from '@/lib/seo/config';
 
 const ext = { target: '_blank', rel: 'noopener' } as const;
 

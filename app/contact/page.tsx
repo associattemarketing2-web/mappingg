@@ -3,7 +3,6 @@ import InfoPage, { CtaBand, EMAIL, MapArt, SocialLinks } from '@/components/Info
 import { WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/lib/contact';
 import ContactForm from '@/components/ContactForm';
 
-import { SITE_URL } from '@/lib/seo/config';
 
 const DIRECTIONS = 'https://www.google.com/maps/search/?api=1&query=Naren+Pearl+Magarpatta+Road+Hadapsar+Pune+411028';
 
