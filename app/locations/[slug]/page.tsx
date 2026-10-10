@@ -7,6 +7,7 @@ import {
   findGroup,
   cityOf,
   CITY_LABELS,
+  hasCityHub,
 } from '@/lib/seo/entities';
 import { slugify } from '@/lib/seo/slug';
 
@@ -48,7 +49,7 @@ export default async function LocationPage({ params }: { params: { slug: string 
     <EntityListing
       crumbs={[
         { name: 'Home', path: '/' },
-        { name: city, path: `/cities/${cityKey}` },
+        ...(hasCityHub(cityKey) ? [{ name: city, path: `/cities/${cityKey}` }] : []),
         { name: g.label, path: `/locations/${g.slug}` },
       ]}
       eyebrow={`${city} · Locality`}

@@ -3,6 +3,7 @@ import { runDbOp } from '@/lib/db-engine';
 import { withMediaUrls } from '@/lib/pin-media';
 import { localitiesOf } from '@/lib/locality';
 import { slugify, projectSlug, projectNumberFromSlug } from './slug';
+import { cityFrom, CITY_LABELS, hasCityHub, type CityKey } from './city';
 
 // -----------------------------------------------------------------------------
 // SEO entity layer. "Projects" are the public `pins` (224 rows). Locations,
@@ -36,15 +37,9 @@ export interface Pin {
   updated_at?: string;
 }
 
+// lat/lng are needed to tell which city a project is in (lib/seo/city.ts).
 const LIST_COLUMNS =
-  'id,number,title,type,status,price,configuration,sqft,possession_timeline,launch_date,developer,location,key_usp,updated_at';
-
-// Localities that belong to the Mumbai Metropolitan Region (the rest are Pune).
-const MMR = new Set(
-  ['Andheri', 'Khar', 'Bandra', 'Vashi', 'Nerul', 'Kharghar', 'Airoli', 'Juinagar', 'Thane', 'Dombivli', 'Palava', 'Kalyan', 'Manpada'].map(
-    (s) => s.toLowerCase(),
-  ),
-);
+  'id,number,title,type,status,price,configuration,sqft,possession_timeline,launch_date,developer,location,key_usp,lat,lng,updated_at';
 
 export const STATUS_ROUTES = [
   { slug: 'upcoming', label: 'Upcoming', match: ['upcoming'] },
@@ -113,14 +108,11 @@ export function primaryLocality(pin: Pin): string {
   return localitiesOf(pin.location)[0] || '';
 }
 
-export function cityOf(pin: Pin): 'pune' | 'mumbai' {
-  const locs = localitiesOf(pin.location);
-  if (locs.some((l) => MMR.has(l.toLowerCase()))) return 'mumbai';
-  if (/mumbai|navi\s*mumbai|thane|mmr/i.test(pin.location || '')) return 'mumbai';
-  return 'pune';
+export function cityOf(pin: Pin): CityKey {
+  return cityFrom(pin.location, pin.lat, pin.lng);
 }
 
-export const CITY_LABELS: Record<string, string> = { pune: 'Pune', mumbai: 'Mumbai & MMR' };
+export { CITY_LABELS, hasCityHub, type CityKey };
 
 export function typeLabel(type?: string): string {
   const t = (type || '').trim();
@@ -174,9 +166,13 @@ export const getDeveloperGroups = cache(async (): Promise<Group[]> => {
   return groupBy(pins, (p) => (p.developer ? { slug: slugify(p.developer), label: p.developer } : null));
 });
 
+/** City hub groups (Pune, Mumbai/MMR) — projects in other cities have no hub page. */
 export const getCityGroups = cache(async (): Promise<Group[]> => {
   const pins = await getPublicPins();
-  return groupBy(pins, (p) => ({ slug: cityOf(p), label: CITY_LABELS[cityOf(p)] }));
+  return groupBy(pins, (p) => {
+    const key = cityOf(p);
+    return hasCityHub(key) ? { slug: key, label: CITY_LABELS[key] } : null;
+  });
 });
 
 export const getTypeGroups = cache(async (): Promise<Group[]> => {

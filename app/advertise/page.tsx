@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import InfoPage, { CtaBand, EMAIL, MiniMap } from '@/components/InfoPage';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
+import { SITE_URL } from '@/lib/seo/config';
 
 const ENQUIRE = `mailto:${EMAIL}?subject=${encodeURIComponent('Advertising on Mappingg')}`;
 

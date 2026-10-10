@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { getBySlug, readingTime } from '@/lib/blog';
 import SiteHeader from '@/components/SiteHeader';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
+import { SITE_URL } from '@/lib/seo/config';
 
 export const revalidate = 600;
 

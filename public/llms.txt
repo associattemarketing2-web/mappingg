@@ -14,8 +14,8 @@
 
 ## Links
 
-- [Mappingg live map](https://mappingg.com/): the interactive project map
-- [About Mappingg and FAQ](https://mappingg.com/#about): what the platform is, areas covered and how it works
+- [Mappingg live map](https://www.mappingg.com/): the interactive project map
+- [About Mappingg and FAQ](https://www.mappingg.com/#about): what the platform is, areas covered and how it works
 - [Associatte Proptech](https://associatte.co.in/): the company behind Mappingg
 - [Instagram](https://www.instagram.com/mappingg.associatte/)
 - [LinkedIn](https://www.linkedin.com/company/mappingg-com/)

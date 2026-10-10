@@ -4,7 +4,7 @@ import MapAuthGate from '@/components/MapAuthGate';
 import { getSeoProjects, statusLabel, AREAS_PUNE, AREAS_MMR } from '@/lib/seo-data';
 import { slugForProject } from '@/lib/seo/entities';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
+import { SITE_URL } from '@/lib/seo/config';
 
 // Regenerate the crawlable content periodically (ISR) — fast to serve, fresh
 // enough for search engines, and cheap on the database.

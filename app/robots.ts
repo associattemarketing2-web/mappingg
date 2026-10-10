@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
+import { SITE_URL } from '@/lib/seo/config';
 
 export default function robots(): MetadataRoute.Robots {
   return {

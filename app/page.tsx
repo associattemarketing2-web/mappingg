@@ -8,7 +8,7 @@ import { getGlobeData } from '@/lib/globe-data';
 import { getFeaturedProject } from '@/lib/featured-project';
 import { featuredCardHtml } from '@/components/landing/featured-card';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
+import { SITE_URL } from '@/lib/seo/config';
 
 // ISR: served static & fast, but re-renders periodically so admin-set SEO values
 // (Search Console verification, GTM) from the shared layout show up without a redeploy.

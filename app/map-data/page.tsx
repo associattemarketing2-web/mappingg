@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import InfoPage, { ContactBlock, EMAIL, LegalDoc, UpdatedChip, type LegalSection } from '@/components/InfoPage';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mappingg.com';
+import { SITE_URL } from '@/lib/seo/config';
 
 const ext = { target: '_blank', rel: 'noopener' } as const;
 
