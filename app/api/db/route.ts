@@ -93,10 +93,10 @@ async function handle(op: DbOp, devEditorView = false, ip = '', visitor = ip, pa
   // A visitor's enquiry from the live map → email the Mappingg team.
   if (!staff && op.table === 'leads' && op.action === 'insert' && !result.error) {
     for (const v of (Array.isArray(op.values) ? op.values : op.values ? [op.values] : []) as Record<string, unknown>[]) {
-      const pin = v.pin_id ? await (await getDb()).collection('pins').findOne({ id: String(v.pin_id) }, { projection: { title: 1, number: 1 } }).catch(() => null) : null;
+      const pin = v.pin_id ? await (await getDb()).collection('pins').findOne({ id: String(v.pin_id) }, { projection: { title: 1, number: 1, developer: 1 } }).catch(() => null) : null;
       const project = pin ? String(pin.title || `#${pin.number ?? ''}`) : '';
       pushToCrm({
-        name: String(v.name || ''), mobile: String(v.whatsapp || ''), email: String(v.email || ''), project,
+        name: String(v.name || ''), mobile: String(v.whatsapp || ''), email: String(v.email || ''), project, builder: String(pin?.developer || ''),
         source: 'Map enquiry form', page, extra: [['Role', v.role]], message: String(v.message || ''), ip: visitor,
       });
       notifyAdmin(`New enquiry${project ? `: ${project}` : ''} — ${String(v.name || 'visitor')}`, {

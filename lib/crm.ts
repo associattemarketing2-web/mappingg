@@ -14,6 +14,8 @@ export interface CrmLead {
   mobile?: string;
   email?: string;
   project?: string;
+  /** The project's developer / builder, when the lead is about a project. */
+  builder?: string;
   /** Which form the lead came from, e.g. "Contact form" — shown in the CRM remark. */
   source: string;
   /** The page the form was submitted from (see pageOf). */
@@ -34,11 +36,10 @@ export function pageOf(req: NextRequest): string {
   return (req.headers.get('referer') || '').split(/[?#]/)[0].slice(0, 300);
 }
 
-/** "+91 9876543210" → "9876543210"; other countries keep their code ("14155550123"). */
-function crmMobile(value: unknown): string {
+/** "+91 9876543210" → { mobile: "9876543210", countryCode: "+91" } — the code goes inside the remark, not as its own field. */
+function crmPhone(value: unknown): { mobile: string; countryCode: string } {
   const { code, number } = splitPhone(value);
-  if (!number) return '';
-  return code === '+91' ? number : code.replace(/\D/g, '') + number;
+  return { mobile: number, countryCode: number ? code : '' };
 }
 
 const oneLine = (v: unknown) => String(v ?? '').replace(/\s+/g, ' ').trim();
@@ -50,9 +51,12 @@ async function send(lead: CrmLead): Promise<void> {
     const ip = lead.ip && lead.ip !== 'unknown' ? lead.ip.replace(/^::ffff:/, '') : '';
     const geo = ip ? await locate(ip) : {};
     const place = [geo.city, geo.region && regionName(geo.country || '', geo.region)].filter(Boolean).join(', ');
-    // The remark is what the sales team reads first: which form, project and page the lead came from.
+    const { mobile, countryCode } = crmPhone(lead.mobile);
+    // The remark follows the CRM's own layout — form, project, builder, source, country code,
+    // location — then the rest of what the visitor gave us. Email is sent as its own field.
     const remark = [
-      ...[['Form', lead.source], ['Project', lead.project], ['Page', lead.page], ...(lead.extra || []), ['Message', lead.message], ['IP', ip], ['Location', place]]
+      ...[['Form', lead.source], ['Project', lead.project], ['Builder', lead.builder], ['Source', lead.page || 'Mappingg website'],
+        ['Country Code', countryCode], ['Location', place], ...(lead.extra || []), ['Message', lead.message]]
         .map(([k, v]) => [k, oneLine(v)])
         .filter(([, v]) => v)
         .map(([k, v]) => `${k}: ${v}`),
@@ -62,14 +66,16 @@ async function send(lead: CrmLead): Promise<void> {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: oneLine(lead.name),
-        mobile: crmMobile(lead.mobile),
+        mobile,
         email: oneLine(lead.email),
         project: oneLine(lead.project),
         remark,
       }),
       signal: AbortSignal.timeout(10_000),
     });
-    if (!res.ok) console.warn('[crm] webhook answered', res.status, (await res.text().catch(() => '')).slice(0, 200));
+    // The CRM answers 200 even when it refuses a lead ("Spam Detected!", "Webhook Not Registered!").
+    const answer = (await res.text().catch(() => '')).slice(0, 200);
+    if (!res.ok || /spam|not registered|error|invalid/i.test(answer)) console.warn('[crm] lead NOT accepted by the CRM:', res.status, answer);
   } catch (e) {
     console.warn('[crm] could not send lead:', e instanceof Error ? e.message : e);
   }

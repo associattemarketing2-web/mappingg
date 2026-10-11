@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
   if (isStaffRole(user.role)) return NextResponse.json({ data: { ok: true, lead: false } });
 
   const db = await getDb();
-  const pin = await db.collection('pins').findOne({ id: pin_id, hidden: { $ne: true } }, { projection: { id: 1, title: 1, number: 1 } });
+  const pin = await db.collection('pins').findOne({ id: pin_id, hidden: { $ne: true } }, { projection: { id: 1, title: 1, number: 1, developer: 1 } });
   if (!pin) return NextResponse.json({ error: { message: 'Project not found' } }, { status: 404 });
 
   const me = await db.collection('users').findOne({ id: user.id }, { projection: { name: 1, email: 1, mobile: 1, role: 1 } });
@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
   }
   const project = String(pin.title || `#${pin.number ?? ''}`);
   if (!existing) {
-    pushToCrm({ name, mobile: whatsapp, email, project, source: 'Map "Enquire now" (signed-in account)', page: pageOf(req), extra: [['Account type', role]], ip: visitorIp(req) });
+    pushToCrm({ name, mobile: whatsapp, email, project, builder: String(pin.developer || ''), source: 'Map "Enquire now" (signed-in account)', page: pageOf(req), extra: [['Account type', role]], ip: visitorIp(req) });
     notifyAdmin(`New enquiry: ${project} — ${name}`, {
       title: 'New enquiry from the live map',
       body: [`${esc(name)} asked about <b>${esc(project)}</b>.`],
