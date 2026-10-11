@@ -1,0 +1,9 @@
+﻿District,Search Category,Records Reported by Portal,Total Pages,Pages Collected,Pages Throttled / Unverified,Pages Not Yet Attempted,Pages Missing (total),Page Coverage %,Records Collected,Record Coverage %,Complete?,Throttled / Unverified Page Numbers,Not-yet-attempted Page Ranges
+Thane,Registered Projects,6988,699,47,0,652,652,6.7%,470,6.7%,NO - PARTIAL,,48-699
+Mumbai Suburban,Registered Projects,6324,633,19,0,614,614,3.0%,190,3.0%,NO - PARTIAL,,20-633
+Mumbai City,Registered Projects,1299,130,64,1,65,66,49.2%,640,49.3%,NO - PARTIAL,65,66-130
+Raigarh,Registered Projects,5416,542,1,0,541,541,0.2%,10,0.2%,NO - PARTIAL,,2-542
+Pune,Registered Projects,12996,1300,26,0,1274,1274,2.0%,260,2.0%,NO - PARTIAL,,27-1300
+Palghar,Registered Projects,2706,271,0,0,271,271,0.0%,0,0.0%,NO - PARTIAL,,1-271
+All (filtered),"Revoked Projects (statewide search, filtered to scope)",83,9,4,3,2,5,44.4%,40,48.2%,NO - PARTIAL,"2, 6-7",8-9
+ALL TARGET DISTRICTS,Registered Projects (total),35729,3575,157,1,3417,3418,4.4%,1570,4.4%,NO - PARTIAL,,

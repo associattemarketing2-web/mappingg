@@ -2,6 +2,7 @@ import { randomUUID, randomBytes } from 'crypto';
 import { getDb, type Db } from './mongodb';
 import { deleteProjectPin, hideProjectPin, syncProjectPin } from './intake-pins';
 import { moveToTrash } from './trash';
+import { PIN_OK, datasetInfo, getScraped, importDataset, listScraped, markAdded, resetScraped, rowsForAdd, setDeleted, updateScraped } from './scraped';
 
 // =============================================================================
 // Partners intake engine (MongoDB)
@@ -630,6 +631,87 @@ const RPCS: Record<string, RpcFn> = {
     return { data: sub, error: null, status: 200 };
   },
 
+  // ------------------------------------------------------------ scraped data
+  // Projects collected from official RERA registries (see lib/scraped.ts).
+  async admin_scraped_info() {
+    try { return { data: await datasetInfo(), error: null, status: 200 }; } catch (e) { return err(e instanceof Error ? e.message : 'Dataset not found', 500); }
+  },
+  async admin_scraped_import() {
+    try { return { data: await importDataset(), error: null, status: 200 }; } catch (e) { return err(e instanceof Error ? e.message : 'Import failed', 500); }
+  },
+  async admin_scraped_list() {
+    try { return { data: await listScraped(), error: null, status: 200 }; } catch (e) { return err(e instanceof Error ? e.message : 'Could not load', 500); }
+  },
+  async admin_scraped_get(p) {
+    const doc = await getScraped(String(p.p_id || ''));
+    return doc ? { data: doc, error: null, status: 200 } : err('Record not found', 404);
+  },
+  async admin_scraped_update(p, ctx) {
+    try { return { data: await updateScraped(String(p.p_id || ''), p.p_patch || {}, ctx.userEmail), error: null, status: 200 }; }
+    catch (e) { return err(e instanceof Error ? e.message : 'Could not save', 422); }
+  },
+  async admin_scraped_reset(p) {
+    await resetScraped(String(p.p_id || ''));
+    return { data: true, error: null, status: 200 };
+  },
+  async admin_scraped_delete(p) {
+    const ids: string[] = Array.isArray(p.p_ids) ? p.p_ids.map(String).filter(Boolean) : [];
+    if (!ids.length) return err('Nothing selected', 400);
+    return { data: { changed: await setDeleted(ids, !p.p_restore) }, error: null, status: 200 };
+  },
+  // Each record becomes a submission in the review queue (status "in_review",
+  // source "scraped"). With p_publish it is also published, which puts it on the map.
+  async admin_scraped_add(p, ctx) {
+    const ids: string[] = Array.isArray(p.p_ids) ? p.p_ids.map(String).filter(Boolean) : [];
+    if (!ids.length) return err('Nothing selected', 400);
+    const db = await getDb();
+    const subs = coll(db, 'project_submissions');
+    const CITY_LABEL: Record<string, string> = { Kalyan_Dombivli: 'Kalyan-Dombivli' };
+    const out = { added: 0, published: 0, skipped: [] as { id: string; name: string; reason: string }[], notes: [] as string[] };
+    for (const doc of await rowsForAdd(ids)) {
+      const d = doc.data || {}, o = doc.original || {}, name = d.project_name || 'Untitled';
+      const skip = (reason: string) => out.skipped.push({ id: doc.id, name, reason });
+      if (doc.deleted) { skip('Deleted'); continue; }
+      if (!PIN_OK.has(d.pin_check)) { skip(`Location not verified (${d.pin_check || 'unknown'})`); continue; }
+      if (doc.submission_id && (await subs.findOne({ id: doc.submission_id }))) { skip('Already added to Projects'); continue; }
+      if (d.rera_number) {
+        const dup = (await subs.findOne({ rera_numbers: { $in: [d.rera_number] } })) || (await coll(db, 'projects').findOne({ rera_numbers: { $in: [d.rera_number] } }));
+        if (dup) { skip(`RERA ${d.rera_number} is already in Projects (${(dup as any).ref_code || (dup as any).slug || (dup as any).project_name})`); continue; }
+        const onMap = (await db.collection<AnyDoc>('pins').find({}, { projection: { number: 1, rera_number: 1, title: 1 } }).toArray())
+          .find((pin: any) => String(pin.rera_number || '').split(/[\s,;]+/).includes(d.rera_number));
+        if (onMap) { skip(`RERA ${d.rera_number} is already on the map (pin #${(onMap as any).number ?? '—'} ${(onMap as any).title || ''})`); continue; }
+      }
+      const month = (v: unknown) => (typeof v === 'string' && /^\d{4}-\d{2}/.test(v) ? v.slice(0, 7) : null);
+      const details = [
+        { label: 'Promoter legal name (registry)', value: o.developer_name && o.developer_name !== d.developer_name ? o.developer_name : '' },
+        { label: 'Source (official registry)', value: o.source_url || '' },
+        { label: 'Registry project page', value: o.project_url || '' },
+        { label: 'Registry status', value: [d.status, o.status_category].filter(Boolean).join(' — ') },
+        { label: 'Registration date', value: d.registration_date || 'Not shown by the registry' },
+        { label: 'Location check', value: d.pin_reason || '' },
+      ].filter((x) => x.value);
+      const sub = await prepareInsertDoc(db, 'project_submissions', {
+        project_name: d.project_name, developer_name: d.developer_name || null, project_type: d.project_type || null,
+        country: o.country || 'India', state: o.state || null, city: CITY_LABEL[d.city] || d.city || null, locality: d.locality || null,
+        address: [d.address, d.pincode].filter(Boolean).join(' - ') || null, lat: d.lat, lng: d.lng,
+        rera_numbers: d.rera_number ? [d.rera_number] : [], rera_verified_on: o.verified_on || null,
+        possession_date_rera: month(d.revised_completion || d.original_completion),
+        additional_details: details, status: 'in_review', source: 'scraped', scraped_id: doc.id,
+        builder_remarks: 'Added from Scraped data (official RERA registry). No images, price or configuration in the source - add them before publishing.',
+      });
+      await subs.insertOne(sub);
+      await logEvent(db, sub.id, 'created', 'admin', { source: 'scraped', scraped_id: doc.id });
+      await markAdded(doc.id, sub.id);
+      out.added++;
+      if (p.p_publish) {
+        const r = await RPCS.admin_publish({ p_id: sub.id }, ctx);
+        if (!r.error) { out.published++; const m = r.data as any; if (m && !m.on_map) out.notes.push(`${name}: ${m.map_note}`); }
+        else out.notes.push(`${name}: ${r.error.message}`);
+      }
+    }
+    return { data: out, error: null, status: 200 };
+  },
+
   // --------------------------------------------------------- link_delete_draft
   async link_delete_draft(p, _ctx) {
     const db = await getDb();
@@ -649,6 +731,8 @@ const RPCS: Record<string, RpcFn> = {
 export const ADMIN_RPCS = new Set([
   'is_admin', 'admin_counts', 'admin_set_status', 'admin_request_changes', 'admin_publish',
   'admin_unpublish', 'admin_find_duplicates', 'admin_regenerate_link', 'admin_delete_submissions', 'admin_delete_builders',
+  'admin_scraped_info', 'admin_scraped_import', 'admin_scraped_list', 'admin_scraped_get', 'admin_scraped_update',
+  'admin_scraped_reset', 'admin_scraped_delete', 'admin_scraped_add',
 ]);
 export const PUBLIC_RPCS = new Set(['link_open', 'link_save_submission', 'link_delete_draft']);
 

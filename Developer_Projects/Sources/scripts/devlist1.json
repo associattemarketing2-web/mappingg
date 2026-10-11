@@ -1,0 +1,16 @@
+[
+ {"legal": "OBEROI REALTY LIMITED", "brand": "Oberoi Realty", "domain": "www.oberoirealty.com", "mustMatch": "Oberoi Realty"},
+ {"legal": "EMAAR INDIA LIMITED", "brand": "Emaar India", "domain": "www.emaar-india.com", "mustMatch": "Emaar"},
+ {"legal": "ASHIANA HOUSING LIMITED", "brand": "Ashiana Housing", "domain": "www.ashianahousing.com", "mustMatch": "Ashiana"},
+ {"legal": "M3M INDIA INFRASTRUCTURES PRIVATE LIMITED", "brand": "M3M", "domain": "www.m3mindia.com", "mustMatch": "M3M"},
+ {"legal": "ANANT RAJ LIMITED", "brand": "Anant Raj", "domain": "www.anantrajlimited.com", "mustMatch": "Anant Raj"},
+ {"legal": "BIRLA ESTATES PRIVATE LIMITED", "brand": "Birla Estates", "domain": "www.birlaestates.com", "mustMatch": "Birla Estates"},
+ {"legal": "BPTP LIMITED", "brand": "BPTP", "domain": "www.bptp.com", "mustMatch": "BPTP"},
+ {"legal": "SUMADHURA INFRACON PRIVATE LIMITED", "brand": "Sumadhura Group", "domain": "www.sumadhuragroup.com", "mustMatch": "Sumadhura"},
+ {"legal": "DS MAX PROPERTIES PRIVATE LIMITED", "brand": "DS-MAX", "domain": "www.dsmaxproperties.com", "mustMatch": "DS[- ]?MAX"},
+ {"legal": "Sattva Resi Private Limited", "brand": "Sattva Group", "domain": "www.sattvagroup.in", "mustMatch": "Sattva"},
+ {"legal": "GODREJ PROPERTIES LIMITED", "brand": "Godrej Properties", "domain": "www.godrejproperties.com", "mustMatch": "Godrej Properties"},
+ {"legal": "Lodha Developers Limited", "brand": "Lodha", "domain": "www.lodhagroup.com", "mustMatch": "Lodha"},
+ {"legal": "PRESTIGE PROJECTS PRIVATE LIMITED", "brand": "Prestige Group", "domain": "www.prestigeconstructions.com", "mustMatch": "Prestige"},
+ {"legal": "SOBHA LIMITED", "brand": "Sobha", "domain": "www.sobha.com", "mustMatch": "Sobha"}
+]

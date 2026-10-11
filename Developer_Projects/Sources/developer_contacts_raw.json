@@ -1,0 +1,1311 @@
+{
+ "OBEROI REALTY LIMITED": {
+  "legal": "OBEROI REALTY LIMITED",
+  "brand": "Oberoi Realty",
+  "domain": "www.oberoirealty.com",
+  "pages": [
+   {
+    "url": "https://www.oberoirealty.com/",
+    "final": "https://www.oberoirealty.com/",
+    "status": 403
+   },
+   {
+    "url": "https://www.oberoirealty.com/contact-us",
+    "final": "https://www.oberoirealty.com/contact-us",
+    "status": 403
+   },
+   {
+    "url": "https://www.oberoirealty.com/contact",
+    "final": "https://www.oberoirealty.com/contact",
+    "status": 403
+   },
+   {
+    "url": "https://www.oberoirealty.com/contactus",
+    "final": "https://www.oberoirealty.com/contactus",
+    "status": 403
+   },
+   {
+    "url": "https://www.oberoirealty.com/contact-us/",
+    "final": "https://www.oberoirealty.com/contact-us/",
+    "status": 403
+   },
+   {
+    "url": "https://www.oberoirealty.com/contact/",
+    "final": "https://www.oberoirealty.com/contact/",
+    "status": 403
+   }
+  ],
+  "phones": [],
+  "emails": [],
+  "identity": false,
+  "done": true
+ },
+ "EMAAR INDIA LIMITED": {
+  "legal": "EMAAR INDIA LIMITED",
+  "brand": "Emaar India",
+  "domain": "www.emaar-india.com",
+  "pages": [
+   {
+    "url": "https://www.emaar-india.com/",
+    "final": "https://www.emaar-india.com/",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.emaar-india.com/contact-us",
+    "final": "https://www.emaar-india.com/contact-us",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.emaar-india.com/contact",
+    "final": "https://www.emaar-india.com/contact",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.emaar-india.com/contactus",
+    "final": "https://www.emaar-india.com/contactus",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.emaar-india.com/contact-us/",
+    "final": "https://www.emaar-india.com/contact-us/",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.emaar-india.com/contact/",
+    "final": "https://www.emaar-india.com/contact/",
+    "status": 0,
+    "err": "fetch failed"
+   }
+  ],
+  "phones": [],
+  "emails": [],
+  "identity": false,
+  "done": true
+ },
+ "ASHIANA HOUSING LIMITED": {
+  "legal": "ASHIANA HOUSING LIMITED",
+  "brand": "Ashiana Housing",
+  "domain": "www.ashianahousing.com",
+  "pages": [
+   {
+    "url": "https://www.ashianahousing.com/",
+    "final": "https://www.ashianahousing.com/",
+    "status": 200
+   },
+   {
+    "url": "https://www.ashianahousing.com/contact-us",
+    "final": "https://www.ashianahousing.com/contact-us",
+    "status": 404
+   },
+   {
+    "url": "https://www.ashianahousing.com/contact",
+    "final": "https://www.ashianahousing.com/contact",
+    "status": 404
+   },
+   {
+    "url": "https://www.ashianahousing.com/contactus",
+    "final": "https://www.ashianahousing.com/contactus",
+    "status": 404
+   },
+   {
+    "url": "https://www.ashianahousing.com/contact-us/",
+    "final": "https://www.ashianahousing.com/contact-us",
+    "status": 404
+   },
+   {
+    "url": "https://www.ashianahousing.com/contact/",
+    "final": "https://www.ashianahousing.com/contact",
+    "status": 404
+   }
+  ],
+  "phones": [],
+  "emails": [],
+  "identity": true,
+  "done": true,
+  "title": "Ashiana Housing Ltd - Indian Real Estate Property Developer since 1986"
+ },
+ "M3M INDIA INFRASTRUCTURES PRIVATE LIMITED": {
+  "legal": "M3M INDIA INFRASTRUCTURES PRIVATE LIMITED",
+  "brand": "M3M",
+  "domain": "www.m3mindia.com",
+  "pages": [
+   {
+    "url": "https://www.m3mindia.com/",
+    "final": "https://m3mindia.com/",
+    "status": 200
+   },
+   {
+    "url": "https://www.m3mindia.com/contact-us",
+    "final": "https://m3mindia.com/contact-us",
+    "status": 200
+   },
+   {
+    "url": "https://www.m3mindia.com/contact",
+    "final": "https://m3mindia.com/contact",
+    "status": 404
+   },
+   {
+    "url": "https://www.m3mindia.com/contactus",
+    "final": "https://m3mindia.com/contactus",
+    "status": 404
+   },
+   {
+    "url": "https://www.m3mindia.com/contact-us/",
+    "final": "https://m3mindia.com/contact-us/",
+    "status": 200
+   },
+   {
+    "url": "https://www.m3mindia.com/contact/",
+    "final": "https://m3mindia.com/contact/",
+    "status": 404
+   }
+  ],
+  "phones": [
+   {
+    "number": "18001233333",
+    "source": "https://m3mindia.com/"
+   },
+   {
+    "number": "+919599108196",
+    "source": "https://m3mindia.com/contact-us"
+   },
+   {
+    "number": "+917888851483",
+    "source": "https://m3mindia.com/contact-us"
+   },
+   {
+    "number": "+919999689658",
+    "source": "https://m3mindia.com/contact-us"
+   }
+  ],
+  "emails": [
+   {
+    "email": "feedback@m3mindia.com",
+    "source": "https://m3mindia.com/"
+   },
+   {
+    "email": "careersgurgaon@m3mindia.com",
+    "source": "https://m3mindia.com/"
+   },
+   {
+    "email": "careersnoida@m3mindia.com",
+    "source": "https://m3mindia.com/"
+   },
+   {
+    "email": "sales@m3mindia.com",
+    "source": "https://m3mindia.com/contact-us"
+   },
+   {
+    "email": "officeleasing@m3mindia.com",
+    "source": "https://m3mindia.com/contact-us"
+   },
+   {
+    "email": "palash.ghosh@m3mindia.com",
+    "source": "https://m3mindia.com/contact-us"
+   },
+   {
+    "email": "arijit.bhattacharyya@m3mindia.com",
+    "source": "https://m3mindia.com/contact-us"
+   },
+   {
+    "email": "anuj.sobti@m3mindia.com",
+    "source": "https://m3mindia.com/contact-us"
+   },
+   {
+    "email": "retailleasing@m3mindia.com",
+    "source": "https://m3mindia.com/contact-us"
+   },
+   {
+    "email": "media@m3mindia.com",
+    "source": "https://m3mindia.com/contact-us"
+   }
+  ],
+  "identity": true,
+  "done": true,
+  "title": "M3M India | Luxury Real Estate Developer in Gurugram & NCR",
+  "contactPage": "https://m3mindia.com/contact-us"
+ },
+ "ANANT RAJ LIMITED": {
+  "legal": "ANANT RAJ LIMITED",
+  "brand": "Anant Raj",
+  "domain": "www.anantrajlimited.com",
+  "pages": [
+   {
+    "url": "https://www.anantrajlimited.com/",
+    "final": "https://anantrajlimited.com/",
+    "status": 200
+   },
+   {
+    "url": "https://www.anantrajlimited.com/contact-us",
+    "final": "https://anantrajlimited.com/contact-us",
+    "status": 200
+   },
+   {
+    "url": "https://www.anantrajlimited.com/contact",
+    "final": "https://anantrajlimited.com/contact-us",
+    "status": 200
+   },
+   {
+    "url": "https://www.anantrajlimited.com/contactus",
+    "final": "https://anantrajlimited.com/404",
+    "status": 404
+   },
+   {
+    "url": "https://www.anantrajlimited.com/contact-us/",
+    "final": "https://anantrajlimited.com/contact-us",
+    "status": 200
+   },
+   {
+    "url": "https://www.anantrajlimited.com/contact/",
+    "final": "https://anantrajlimited.com/contact-us",
+    "status": 200
+   }
+  ],
+  "phones": [
+   {
+    "number": "+911143034400",
+    "source": "https://anantrajlimited.com/"
+   },
+   {
+    "number": "+918929800666",
+    "source": "https://anantrajlimited.com/"
+   },
+   {
+    "number": "918929800666",
+    "source": "https://anantrajlimited.com/contact-us"
+   },
+   {
+    "number": "911143559100",
+    "source": "https://anantrajlimited.com/contact-us"
+   }
+  ],
+  "emails": [
+   {
+    "email": "estate@anantrajlimited.com",
+    "source": "https://anantrajlimited.com/contact-us"
+   },
+   {
+    "email": "leasing@anantrajlimited.com",
+    "source": "https://anantrajlimited.com/contact-us"
+   }
+  ],
+  "identity": true,
+  "done": true,
+  "title": "Anant Raj Limited: Leading Real Estate Developers in Delhi NCR",
+  "contactPage": "https://anantrajlimited.com/contact-us"
+ },
+ "BIRLA ESTATES PRIVATE LIMITED": {
+  "legal": "BIRLA ESTATES PRIVATE LIMITED",
+  "brand": "Birla Estates",
+  "domain": "www.birlaestates.com",
+  "pages": [
+   {
+    "url": "https://www.birlaestates.com/",
+    "final": "https://www.birlaestates.com/",
+    "status": 200
+   },
+   {
+    "url": "https://www.birlaestates.com/contact-us",
+    "final": "https://www.birlaestates.com/contact-us",
+    "status": 200
+   },
+   {
+    "url": "https://www.birlaestates.com/contact",
+    "final": "https://www.birlaestates.com/contact",
+    "status": 200
+   },
+   {
+    "url": "https://www.birlaestates.com/contactus",
+    "final": "https://www.birlaestates.com/contactus",
+    "status": 200
+   },
+   {
+    "url": "https://www.birlaestates.com/contact-us/",
+    "final": "https://www.birlaestates.com/contact-us/",
+    "status": 200
+   },
+   {
+    "url": "https://www.birlaestates.com/contact/",
+    "final": "https://www.birlaestates.com/contact/",
+    "status": 200
+   }
+  ],
+  "phones": [
+   {
+    "number": "+919403897940",
+    "source": "https://www.birlaestates.com/"
+   }
+  ],
+  "emails": [],
+  "identity": true,
+  "done": true,
+  "title": "India's Top Luxury Real Estate Developers & Builders - Birla Estates",
+  "contactPage": "https://www.birlaestates.com/contact-us"
+ },
+ "BPTP LIMITED": {
+  "legal": "BPTP LIMITED",
+  "brand": "BPTP",
+  "domain": "www.bptp.com",
+  "pages": [
+   {
+    "url": "https://www.bptp.com/",
+    "final": "https://www.bptp.com/",
+    "status": 200
+   },
+   {
+    "url": "https://www.bptp.com/contact-us",
+    "final": "https://www.bptp.com/contact-us",
+    "status": 404
+   },
+   {
+    "url": "https://www.bptp.com/contact",
+    "final": "https://www.bptp.com/contact",
+    "status": 200
+   },
+   {
+    "url": "https://www.bptp.com/contactus",
+    "final": "https://www.bptp.com/contactus",
+    "status": 404
+   },
+   {
+    "url": "https://www.bptp.com/contact-us/",
+    "final": "https://www.bptp.com/contact-us",
+    "status": 404
+   },
+   {
+    "url": "https://www.bptp.com/contact/",
+    "final": "https://www.bptp.com/contact",
+    "status": 200
+   }
+  ],
+  "phones": [
+   {
+    "number": "+918748852852",
+    "source": "https://www.bptp.com/"
+   },
+   {
+    "number": "+911204492650",
+    "source": "https://www.bptp.com/"
+   },
+   {
+    "number": "+01294086272",
+    "source": "https://www.bptp.com/"
+   },
+   {
+    "number": "+918882456456",
+    "source": "https://www.bptp.com/"
+   },
+   {
+    "number": "+918044483333",
+    "source": "https://www.bptp.com/"
+   },
+   {
+    "number": "+911149572787",
+    "source": "https://www.bptp.com/contact"
+   }
+  ],
+  "emails": [],
+  "identity": true,
+  "done": true,
+  "title": "Luxury High Rise Apartment &amp; Homes | Property Developer &amp; Real Estate Company in Gurgaon &amp; Faridabad",
+  "contactPage": "https://www.bptp.com/contact"
+ },
+ "SUMADHURA INFRACON PRIVATE LIMITED": {
+  "legal": "SUMADHURA INFRACON PRIVATE LIMITED",
+  "brand": "Sumadhura Group",
+  "domain": "www.sumadhuragroup.com",
+  "pages": [
+   {
+    "url": "https://www.sumadhuragroup.com/",
+    "final": "https://sumadhuragroup.com/",
+    "status": 200
+   },
+   {
+    "url": "https://www.sumadhuragroup.com/contact-us",
+    "final": "https://sumadhuragroup.com/contact-us",
+    "status": 200
+   },
+   {
+    "url": "https://www.sumadhuragroup.com/contact",
+    "final": "https://sumadhuragroup.com/contact",
+    "status": 404
+   },
+   {
+    "url": "https://www.sumadhuragroup.com/contactus",
+    "final": "https://sumadhuragroup.com/contactus",
+    "status": 404
+   },
+   {
+    "url": "https://www.sumadhuragroup.com/contact-us/",
+    "final": "https://sumadhuragroup.com/contact-us",
+    "status": 200
+   },
+   {
+    "url": "https://www.sumadhuragroup.com/contact/",
+    "final": "https://sumadhuragroup.com/contact",
+    "status": 404
+   }
+  ],
+  "phones": [
+   {
+    "number": "+917045016000",
+    "source": "https://sumadhuragroup.com/"
+   }
+  ],
+  "emails": [
+   {
+    "email": "enquiries@sumadhuragroup.com",
+    "source": "https://sumadhuragroup.com/"
+   }
+  ],
+  "identity": true,
+  "done": true,
+  "title": "Sumadhura Group | Premium Homes in Bangalore &amp; Hyderabad",
+  "contactPage": "https://sumadhuragroup.com/contact-us"
+ },
+ "DS MAX PROPERTIES PRIVATE LIMITED": {
+  "legal": "DS MAX PROPERTIES PRIVATE LIMITED",
+  "brand": "DS-MAX",
+  "domain": "www.dsmaxproperties.com",
+  "pages": [
+   {
+    "url": "https://www.dsmaxproperties.com/",
+    "final": "https://www.dsmaxproperties.com/",
+    "status": 200
+   },
+   {
+    "url": "https://www.dsmaxproperties.com/contact-us",
+    "final": "https://www.dsmaxproperties.com/contact-us/",
+    "status": 200
+   },
+   {
+    "url": "https://www.dsmaxproperties.com/contact",
+    "final": "https://www.dsmaxproperties.com/contact-us/",
+    "status": 200
+   },
+   {
+    "url": "https://www.dsmaxproperties.com/contactus",
+    "final": "https://www.dsmaxproperties.com/contactus",
+    "status": 404
+   },
+   {
+    "url": "https://www.dsmaxproperties.com/contact-us/",
+    "final": "https://www.dsmaxproperties.com/contact-us/",
+    "status": 200
+   },
+   {
+    "url": "https://www.dsmaxproperties.com/contact/",
+    "final": "https://www.dsmaxproperties.com/contact-us/",
+    "status": 200
+   }
+  ],
+  "phones": [
+   {
+    "number": "+918088121121",
+    "source": "https://www.dsmaxproperties.com/"
+   },
+   {
+    "number": "8088121121",
+    "source": "https://www.dsmaxproperties.com/contact-us/"
+   },
+   {
+    "number": "8880009009",
+    "source": "https://www.dsmaxproperties.com/contact-us/"
+   },
+   {
+    "number": "8880081180",
+    "source": "https://www.dsmaxproperties.com/contact-us/"
+   },
+   {
+    "number": "8880335522",
+    "source": "https://www.dsmaxproperties.com/contact-us/"
+   },
+   {
+    "number": "7583048304",
+    "source": "https://www.dsmaxproperties.com/contact-us/"
+   }
+  ],
+  "emails": [
+   {
+    "email": "feedback@dsgroupworld.in",
+    "source": "https://www.dsmaxproperties.com/contact-us/"
+   },
+   {
+    "email": "crm@dsgroupworld.in",
+    "source": "https://www.dsmaxproperties.com/contact-us/"
+   },
+   {
+    "email": "hr@dsgroupworld.in",
+    "source": "https://www.dsmaxproperties.com/contact-us/"
+   },
+   {
+    "email": "channelsales@dsgroupworld.in",
+    "source": "https://www.dsmaxproperties.com/contact-us/"
+   },
+   {
+    "email": "fmc@dsgroupworld.in",
+    "source": "https://www.dsmaxproperties.com/contact-us/"
+   }
+  ],
+  "identity": true,
+  "done": true,
+  "title": "Most Trusted Apartments in Bangalore | DS-MAX Properties",
+  "contactPage": "https://www.dsmaxproperties.com/contact-us/"
+ },
+ "Sattva Resi Private Limited": {
+  "legal": "Sattva Resi Private Limited",
+  "brand": "Sattva Group",
+  "domain": "www.sattvagroup.in",
+  "pages": [
+   {
+    "url": "https://www.sattvagroup.in/",
+    "final": "https://sattvagroup.com/",
+    "status": 200
+   },
+   {
+    "url": "https://www.sattvagroup.in/contact-us",
+    "final": "https://sattvagroup.com/contact-us/",
+    "status": 200
+   },
+   {
+    "url": "https://www.sattvagroup.in/contact",
+    "final": "https://sattvagroup.in/contact/",
+    "status": 200
+   },
+   {
+    "url": "https://www.sattvagroup.in/contactus",
+    "final": "https://sattvagroup.in/contactus/",
+    "status": 200
+   },
+   {
+    "url": "https://www.sattvagroup.in/contact-us/",
+    "final": "https://sattvagroup.com/contact-us/",
+    "status": 200
+   },
+   {
+    "url": "https://www.sattvagroup.in/contact/",
+    "final": "https://sattvagroup.in/contact/",
+    "status": 200
+   }
+  ],
+  "phones": [
+   {
+    "number": "+9118001213344",
+    "source": "https://sattvagroup.com/"
+   },
+   {
+    "number": "+9108042699000",
+    "source": "https://sattvagroup.com/"
+   },
+   {
+    "number": "+9104048490000",
+    "source": "https://sattvagroup.com/"
+   },
+   {
+    "number": "+9102026951042",
+    "source": "https://sattvagroup.com/"
+   },
+   {
+    "number": "+9103340306000",
+    "source": "https://sattvagroup.com/"
+   },
+   {
+    "number": "+918390000623",
+    "source": "https://sattvagroup.com/"
+   },
+   {
+    "number": "+917338084422",
+    "source": "https://sattvagroup.com/"
+   },
+   {
+    "number": "18001213344",
+    "source": "https://sattvagroup.com/contact-us/"
+   },
+   {
+    "number": "+918042699000",
+    "source": "https://sattvagroup.com/contact-us/"
+   },
+   {
+    "number": "+913340306000",
+    "source": "https://sattvagroup.com/contact-us/"
+   },
+   {
+    "number": "+912026951042",
+    "source": "https://sattvagroup.com/contact-us/"
+   },
+   {
+    "number": "08042699000",
+    "source": "https://sattvagroup.com/contact-us/"
+   },
+   {
+    "number": "02266666124",
+    "source": "https://sattvagroup.com/contact-us/"
+   }
+  ],
+  "emails": [
+   {
+    "email": "connect@sattvagroup.in",
+    "source": "https://sattvagroup.in/contact/"
+   }
+  ],
+  "identity": true,
+  "done": true,
+  "title": "Leading Real Estate Builder &amp; Developer in Bangalore | Sattva Group",
+  "contactPage": "https://sattvagroup.com/contact-us/"
+ },
+ "GODREJ PROPERTIES LIMITED": {
+  "legal": "GODREJ PROPERTIES LIMITED",
+  "brand": "Godrej Properties",
+  "domain": "www.godrejproperties.com",
+  "pages": [
+   {
+    "url": "https://www.godrejproperties.com/",
+    "final": "https://www.godrejproperties.com/",
+    "status": 200
+   },
+   {
+    "url": "https://www.godrejproperties.com/contact-us",
+    "final": "https://www.godrejproperties.com/contact-us",
+    "status": 404
+   },
+   {
+    "url": "https://www.godrejproperties.com/contact",
+    "final": "https://www.godrejproperties.com/contact",
+    "status": 404
+   },
+   {
+    "url": "https://www.godrejproperties.com/contactus",
+    "final": "https://www.godrejproperties.com/contactus",
+    "status": 404
+   },
+   {
+    "url": "https://www.godrejproperties.com/contact-us/",
+    "final": "https://www.godrejproperties.com/contact-us",
+    "status": 404
+   },
+   {
+    "url": "https://www.godrejproperties.com/contact/",
+    "final": "https://www.godrejproperties.com/contact",
+    "status": 404
+   }
+  ],
+  "phones": [
+   {
+    "number": "+918287882878",
+    "source": "https://www.godrejproperties.com/"
+   },
+   {
+    "number": "18447463126",
+    "source": "https://www.godrejproperties.com/"
+   },
+   {
+    "number": "+18447463126",
+    "source": "https://www.godrejproperties.com/"
+   }
+  ],
+  "emails": [],
+  "identity": true,
+  "done": true,
+  "title": "Godrej Properties | Top Real Estate Developer in India"
+ },
+ "Lodha Developers Limited": {
+  "legal": "Lodha Developers Limited",
+  "brand": "Lodha",
+  "domain": "www.lodhagroup.com",
+  "pages": [
+   {
+    "url": "https://www.lodhagroup.com/",
+    "final": "https://www.lodhagroup.com/",
+    "status": 200
+   },
+   {
+    "url": "https://www.lodhagroup.com/contact-us",
+    "final": "https://www.lodhagroup.com/contact-us",
+    "status": 200
+   },
+   {
+    "url": "https://www.lodhagroup.com/contact",
+    "final": "https://www.lodhagroup.com/contact",
+    "status": 200
+   },
+   {
+    "url": "https://www.lodhagroup.com/contactus",
+    "final": "https://www.lodhagroup.com/contactus",
+    "status": 404
+   },
+   {
+    "url": "https://www.lodhagroup.com/contact-us/",
+    "final": "https://www.lodhagroup.com/contact-us",
+    "status": 200
+   },
+   {
+    "url": "https://www.lodhagroup.com/contact/",
+    "final": "https://www.lodhagroup.com/contact",
+    "status": 200
+   }
+  ],
+  "phones": [
+   {
+    "number": "+912267161111",
+    "source": "https://www.lodhagroup.com/contact-us"
+   },
+   {
+    "number": "912267161111",
+    "source": "https://www.lodhagroup.com/contact-us"
+   },
+   {
+    "number": "+918291026005",
+    "source": "https://www.lodhagroup.com/contact-us"
+   },
+   {
+    "number": "+912261334400",
+    "source": "https://www.lodhagroup.com/contact-us"
+   },
+   {
+    "number": "912267737373",
+    "source": "https://www.lodhagroup.com/contact-us"
+   }
+  ],
+  "emails": [
+   {
+    "email": "service.support@lodhagroup.com",
+    "source": "https://www.lodhagroup.com/contact-us"
+   },
+   {
+    "email": "easylease@lodhagroup.com",
+    "source": "https://www.lodhagroup.com/contact-us"
+   },
+   {
+    "email": "vendors@lodhagroup.com",
+    "source": "https://www.lodhagroup.com/contact-us"
+   },
+   {
+    "email": "mediarelations@lodhagroup.com",
+    "source": "https://www.lodhagroup.com/contact-us"
+   },
+   {
+    "email": "careers@lodhagroup.com",
+    "source": "https://www.lodhagroup.com/contact-us"
+   },
+   {
+    "email": "nri.support@lodhagroup.com",
+    "source": "https://www.lodhagroup.com/contact-us"
+   },
+   {
+    "email": "investor.relations@lodhagroup.com",
+    "source": "https://www.lodhagroup.com/contact-us"
+   },
+   {
+    "email": "pritha.chatterjee@lodhagroup.com",
+    "source": "https://www.lodhagroup.com/contact-us"
+   }
+  ],
+  "identity": true,
+  "done": true,
+  "title": "Lodha - India&#039;s Leading Real Estate Developer | World&#039;s Finest Developments",
+  "contactPage": "https://www.lodhagroup.com/contact-us"
+ },
+ "PRESTIGE PROJECTS PRIVATE LIMITED": {
+  "legal": "PRESTIGE PROJECTS PRIVATE LIMITED",
+  "brand": "Prestige Group",
+  "domain": "www.prestigeconstructions.com",
+  "pages": [
+   {
+    "url": "https://www.prestigeconstructions.com/",
+    "final": "https://www.prestigeconstructions.com/",
+    "status": 200
+   },
+   {
+    "url": "https://www.prestigeconstructions.com/contact-us",
+    "final": "https://www.prestigeconstructions.com/contact-us",
+    "status": 200
+   },
+   {
+    "url": "https://www.prestigeconstructions.com/contact",
+    "final": "https://www.prestigeconstructions.com/our-investors/contact",
+    "status": 200
+   },
+   {
+    "url": "https://www.prestigeconstructions.com/contactus",
+    "final": "https://www.prestigeconstructions.com/contactus",
+    "status": 200
+   },
+   {
+    "url": "https://www.prestigeconstructions.com/contact-us/",
+    "final": "https://www.prestigeconstructions.com/contact-us",
+    "status": 200
+   },
+   {
+    "url": "https://www.prestigeconstructions.com/contact/",
+    "final": "https://www.prestigeconstructions.com/our-investors/contact",
+    "status": 200
+   }
+  ],
+  "phones": [
+   {
+    "number": "+919876543210",
+    "source": "https://www.prestigeconstructions.com/"
+   },
+   {
+    "number": "+918025591080",
+    "source": "https://www.prestigeconstructions.com/our-investors/contact"
+   },
+   {
+    "number": "+912249186270",
+    "source": "https://www.prestigeconstructions.com/our-investors/contact"
+   }
+  ],
+  "emails": [
+   {
+    "email": "investors@prestigeconstructions.com",
+    "source": "https://www.prestigeconstructions.com/our-investors/contact"
+   },
+   {
+    "email": "rnt.helpdesk@in.mpms.mufg.com",
+    "source": "https://www.prestigeconstructions.com/our-investors/contact"
+   },
+   {
+    "email": "umesh.salvi@ctltrustee.com",
+    "source": "https://www.prestigeconstructions.com/our-investors/contact"
+   }
+  ],
+  "identity": true,
+  "done": true,
+  "title": "Prestige Group | Top Builder in Bangalore | Real Estate Developers",
+  "contactPage": "https://www.prestigeconstructions.com/contact-us"
+ },
+ "SOBHA LIMITED": {
+  "legal": "SOBHA LIMITED",
+  "brand": "Sobha",
+  "domain": "www.sobha.com",
+  "pages": [
+   {
+    "url": "https://www.sobha.com/",
+    "final": "https://www.sobha.com/",
+    "status": 200
+   },
+   {
+    "url": "https://www.sobha.com/contact-us",
+    "final": "https://www.sobha.com/contact-us",
+    "status": 200
+   },
+   {
+    "url": "https://www.sobha.com/contact",
+    "final": "https://www.sobha.com/contact-us/",
+    "status": 200
+   },
+   {
+    "url": "https://www.sobha.com/contactus",
+    "final": "https://www.sobha.com/contactus",
+    "status": 404
+   },
+   {
+    "url": "https://www.sobha.com/contact-us/",
+    "final": "https://www.sobha.com/contact-us/",
+    "status": 200
+   },
+   {
+    "url": "https://www.sobha.com/contact/",
+    "final": "https://www.sobha.com/contact-us/",
+    "status": 200
+   }
+  ],
+  "phones": [
+   {
+    "number": "08046464500",
+    "source": "https://www.sobha.com/"
+   },
+   {
+    "number": "+918046464500",
+    "source": "https://www.sobha.com/contact-us"
+   },
+   {
+    "number": "+918049320000",
+    "source": "https://www.sobha.com/contact-us"
+   },
+   {
+    "number": "+971553591773",
+    "source": "https://www.sobha.com/contact-us"
+   },
+   {
+    "number": "+919360707070",
+    "source": "https://www.sobha.com/contact-us"
+   },
+   {
+    "number": "+918022631700",
+    "source": "https://www.sobha.com/contact-us"
+   },
+   {
+    "number": "+918027839700",
+    "source": "https://www.sobha.com/contact-us"
+   },
+   {
+    "number": "+918022631702",
+    "source": "https://www.sobha.com/contact-us"
+   },
+   {
+    "number": "+918027825177",
+    "source": "https://www.sobha.com/contact-us"
+   },
+   {
+    "number": "+919900029353",
+    "source": "https://www.sobha.com/contact-us"
+   }
+  ],
+  "emails": [
+   {
+    "email": "marketing@sobha.com",
+    "source": "https://www.sobha.com/contact-us"
+   },
+   {
+    "email": "sobhainteriors@sobha.com",
+    "source": "https://www.sobha.com/contact-us"
+   },
+   {
+    "email": "sobha.restoplus@sobha.com",
+    "source": "https://www.sobha.com/contact-us"
+   },
+   {
+    "email": "sgml@sobha.com",
+    "source": "https://www.sobha.com/contact-us"
+   },
+   {
+    "email": "cpd.sales@sobha.com",
+    "source": "https://www.sobha.com/contact-us"
+   },
+   {
+    "email": "manoj.rastogi@sobha.com",
+    "source": "https://www.sobha.com/contact-us"
+   }
+  ],
+  "identity": true,
+  "done": true,
+  "title": "SOBHA Limited | Luxury Real Estate Company in India",
+  "contactPage": "https://www.sobha.com/contact-us"
+ },
+ "Ten X Realty Limited": {
+  "legal": "Ten X Realty Limited",
+  "brand": "Ten X Realty (Raymond Realty)",
+  "domain": "www.raymondrealty.in",
+  "pages": [
+   {
+    "url": "https://www.raymondrealty.in/",
+    "final": "https://raymondrealty.in/",
+    "status": 200
+   },
+   {
+    "url": "https://www.raymondrealty.in/contact-us",
+    "final": "https://raymondrealty.in/contact-us",
+    "status": 200
+   },
+   {
+    "url": "https://www.raymondrealty.in/contact",
+    "final": "https://raymondrealty.in/contact",
+    "status": 200
+   },
+   {
+    "url": "https://www.raymondrealty.in/contactus",
+    "final": "https://raymondrealty.in/contactus",
+    "status": 200
+   },
+   {
+    "url": "https://www.raymondrealty.in/contact-us/",
+    "final": "https://raymondrealty.in/contact-us",
+    "status": 200
+   },
+   {
+    "url": "https://www.raymondrealty.in/contact/",
+    "final": "https://raymondrealty.in/contact",
+    "status": 200
+   }
+  ],
+  "phones": [
+   {
+    "number": "+912268373700",
+    "source": "https://raymondrealty.in/contact-us"
+   }
+  ],
+  "emails": [
+   {
+    "email": "realty@raymond.in",
+    "source": "https://raymondrealty.in/contact-us"
+   }
+  ],
+  "identity": true,
+  "done": true,
+  "title": "Raymond Realty | Trusted Real Estate Developer in Mumbai &amp; Thane",
+  "contactPage": "https://raymondrealty.in/contact-us"
+ },
+ "The Bombay Dyeing and Manufacturing Company Ltd": {
+  "legal": "The Bombay Dyeing and Manufacturing Company Ltd",
+  "brand": "Bombay Dyeing",
+  "domain": "www.bombaydyeing.com",
+  "pages": [
+   {
+    "url": "https://www.bombaydyeing.com/",
+    "final": "https://www.bombaydyeing.com/",
+    "status": 200
+   },
+   {
+    "url": "https://www.bombaydyeing.com/contact-us",
+    "final": "https://www.bombaydyeing.com/contact-us",
+    "status": 404
+   },
+   {
+    "url": "https://www.bombaydyeing.com/contact",
+    "final": "https://www.bombaydyeing.com/contact",
+    "status": 404
+   },
+   {
+    "url": "https://www.bombaydyeing.com/contactus",
+    "final": "https://www.bombaydyeing.com/contactus",
+    "status": 404
+   },
+   {
+    "url": "https://www.bombaydyeing.com/contact-us/",
+    "final": "https://www.bombaydyeing.com/contact-us/",
+    "status": 404
+   },
+   {
+    "url": "https://www.bombaydyeing.com/contact/",
+    "final": "https://www.bombaydyeing.com/contact/",
+    "status": 404
+   }
+  ],
+  "phones": [],
+  "emails": [],
+  "identity": true,
+  "done": true,
+  "title": "Bombay Dyeing"
+ },
+ "K RAHEJA CORP REAL ESTATE PRIVATE LIMITED": {
+  "legal": "K RAHEJA CORP REAL ESTATE PRIVATE LIMITED",
+  "brand": "K Raheja Corp",
+  "domain": "www.krahejacorp.com",
+  "pages": [
+   {
+    "url": "https://www.krahejacorp.com/",
+    "final": "https://www.krahejacorp.com/",
+    "status": 200
+   },
+   {
+    "url": "https://www.krahejacorp.com/contact-us",
+    "final": "https://www.krahejacorp.com/contact-us",
+    "status": 200
+   },
+   {
+    "url": "https://www.krahejacorp.com/contact",
+    "final": "https://www.krahejacorp.com/contact",
+    "status": 404
+   },
+   {
+    "url": "https://www.krahejacorp.com/contactus",
+    "final": "https://www.krahejacorp.com/contactus",
+    "status": 404
+   },
+   {
+    "url": "https://www.krahejacorp.com/contact-us/",
+    "final": "https://www.krahejacorp.com/contact-us/",
+    "status": 200
+   },
+   {
+    "url": "https://www.krahejacorp.com/contact/",
+    "final": "https://www.krahejacorp.com/contact/",
+    "status": 404
+   }
+  ],
+  "phones": [
+   {
+    "number": "912226564000",
+    "source": "https://www.krahejacorp.com/contact-us"
+   },
+   {
+    "number": "912226564560",
+    "source": "https://www.krahejacorp.com/contact-us"
+   },
+   {
+    "number": "02066831000",
+    "source": "https://www.krahejacorp.com/contact-us"
+   },
+   {
+    "number": "66831010",
+    "source": "https://www.krahejacorp.com/contact-us"
+   },
+   {
+    "number": "914066280000",
+    "source": "https://www.krahejacorp.com/contact-us"
+   },
+   {
+    "number": "914066280066",
+    "source": "https://www.krahejacorp.com/contact-us"
+   },
+   {
+    "number": "918040215000",
+    "source": "https://www.krahejacorp.com/contact-us"
+   },
+   {
+    "number": "918040215099",
+    "source": "https://www.krahejacorp.com/contact-us"
+   },
+   {
+    "number": "+919909027446",
+    "source": "https://www.krahejacorp.com/contact-us"
+   },
+   {
+    "number": "+9108326511450",
+    "source": "https://www.krahejacorp.com/contact-us"
+   }
+  ],
+  "emails": [],
+  "identity": true,
+  "done": true,
+  "title": "K Raheja Corp - India’s leading Real Estate Conglomerate",
+  "contactPage": "https://www.krahejacorp.com/contact-us"
+ },
+ "Runwal Developers Limited": {
+  "legal": "Runwal Developers Limited",
+  "brand": "Runwal",
+  "domain": "www.runwal.com",
+  "pages": [
+   {
+    "url": "https://www.runwal.com/",
+    "final": "https://www.runwal.com/",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.runwal.com/contact-us",
+    "final": "https://www.runwal.com/contact-us",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.runwal.com/contact",
+    "final": "https://www.runwal.com/contact",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.runwal.com/contactus",
+    "final": "https://www.runwal.com/contactus",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.runwal.com/contact-us/",
+    "final": "https://www.runwal.com/contact-us/",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.runwal.com/contact/",
+    "final": "https://www.runwal.com/contact/",
+    "status": 0,
+    "err": "fetch failed"
+   }
+  ],
+  "phones": [],
+  "emails": [],
+  "identity": false,
+  "done": true
+ },
+ "KENT CORPORATION": {
+  "legal": "KENT CORPORATION",
+  "brand": "Kent Corporation",
+  "domain": "www.kentcorporation.in",
+  "pages": [
+   {
+    "url": "https://www.kentcorporation.in/",
+    "final": "https://www.kentcorporation.in/",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.kentcorporation.in/contact-us",
+    "final": "https://www.kentcorporation.in/contact-us",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.kentcorporation.in/contact",
+    "final": "https://www.kentcorporation.in/contact",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.kentcorporation.in/contactus",
+    "final": "https://www.kentcorporation.in/contactus",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.kentcorporation.in/contact-us/",
+    "final": "https://www.kentcorporation.in/contact-us/",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.kentcorporation.in/contact/",
+    "final": "https://www.kentcorporation.in/contact/",
+    "status": 0,
+    "err": "fetch failed"
+   }
+  ],
+  "phones": [],
+  "emails": [],
+  "identity": false,
+  "done": true
+ },
+ "HAPPY HOME LIFESPACES LLP": {
+  "legal": "HAPPY HOME LIFESPACES LLP",
+  "brand": "Happy Home",
+  "domain": "www.happyhomegroup.com",
+  "pages": [
+   {
+    "url": "https://www.happyhomegroup.com/",
+    "final": "https://www.happyhomegroup.com/",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.happyhomegroup.com/contact-us",
+    "final": "https://www.happyhomegroup.com/contact-us",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.happyhomegroup.com/contact",
+    "final": "https://www.happyhomegroup.com/contact",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.happyhomegroup.com/contactus",
+    "final": "https://www.happyhomegroup.com/contactus",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.happyhomegroup.com/contact-us/",
+    "final": "https://www.happyhomegroup.com/contact-us/",
+    "status": 0,
+    "err": "fetch failed"
+   },
+   {
+    "url": "https://www.happyhomegroup.com/contact/",
+    "final": "https://www.happyhomegroup.com/contact/",
+    "status": 0,
+    "err": "fetch failed"
+   }
+  ],
+  "phones": [],
+  "emails": [],
+  "identity": false,
+  "done": true
+ }
+}

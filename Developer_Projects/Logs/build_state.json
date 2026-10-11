@@ -1,0 +1,440 @@
+{
+ "researchDate": "2026-10-11",
+ "generated": "2026-10-11 07:48:58 UTC",
+ "D90": "2026-07-13",
+ "D365": "2025-10-11",
+ "cities": {
+  "Mumbai": {
+   "file": "C:\\Users\\Pushkar\\Documents\\GitHub\\mappingg\\Developer_Projects\\Mumbai\\Mumbai_Projects.xlsx",
+   "projects": 963,
+   "developers": 773,
+   "verifiedContacts": 21,
+   "partialContacts": 2,
+   "devWithContacts": 4,
+   "latest": null,
+   "r90": null,
+   "r365": null,
+   "verified": 0,
+   "partiallyVerified": 963,
+   "unverified": 0,
+   "partial": true,
+   "blocked": null,
+   "coverage": [
+    "District Mumbai Suburban: 24 of 633 listing pages collected (3.8%), 5 of the newest 25 pages; portal total 6324 records for the whole district.",
+    "District Mumbai City: 73 of 130 listing pages collected (56.2%), 8 of the newest 25 pages; portal total 1299 records for the whole district."
+   ],
+   "missingRegNo": 0,
+   "missingRegDate": 963,
+   "missingDev": 0,
+   "missingSrc": 0,
+   "uniqueReg": 963,
+   "dupRemoved": 0,
+   "cats": {
+    "Registered - current status not confirmed": 952,
+    "Lapsed (abeyance: completion date lapsed)": 2,
+    "Deregistered": 4,
+    "Abeyance (common bank account)": 1,
+    "Abeyance (QPR non-compliance)": 4
+   },
+   "outsideWindow": 0
+  },
+  "Thane": {
+   "file": "C:\\Users\\Pushkar\\Documents\\GitHub\\mappingg\\Developer_Projects\\Thane\\Thane_Projects.xlsx",
+   "projects": 269,
+   "developers": 174,
+   "verifiedContacts": 0,
+   "partialContacts": 0,
+   "devWithContacts": 0,
+   "latest": null,
+   "r90": null,
+   "r365": null,
+   "verified": 0,
+   "partiallyVerified": 269,
+   "unverified": 0,
+   "partial": true,
+   "blocked": null,
+   "coverage": [
+    "District Thane: 48 of 699 listing pages collected (6.9%), 1 of the newest 25 pages; portal total 6988 records for the whole district.",
+    "Thane-district records split by taluka: Thane -> Thane workbook, Kalyan -> Kalyan_Dombivli workbook. Other talukas excluded: Ambarnath 76, Bhiwandi 15, Shahapur 12, Ulhasnagar 8."
+   ],
+   "missingRegNo": 0,
+   "missingRegDate": 269,
+   "missingDev": 0,
+   "missingSrc": 0,
+   "uniqueReg": 269,
+   "dupRemoved": 0,
+   "cats": {
+    "Registered - current status not confirmed": 267,
+    "Abeyance (QPR non-compliance)": 1,
+    "Deregistered": 1
+   },
+   "outsideWindow": 0
+  },
+  "Kalyan_Dombivli": {
+   "file": "C:\\Users\\Pushkar\\Documents\\GitHub\\mappingg\\Developer_Projects\\Kalyan_Dombivli\\Kalyan_Dombivli_Projects.xlsx",
+   "projects": 98,
+   "developers": 68,
+   "verifiedContacts": 0,
+   "partialContacts": 0,
+   "devWithContacts": 0,
+   "latest": null,
+   "r90": null,
+   "r365": null,
+   "verified": 0,
+   "partiallyVerified": 98,
+   "unverified": 0,
+   "partial": true,
+   "blocked": null,
+   "coverage": [
+    "District Thane: 48 of 699 listing pages collected (6.9%), 1 of the newest 25 pages; portal total 6988 records for the whole district.",
+    "Thane-district records split by taluka: Thane -> Thane workbook, Kalyan -> Kalyan_Dombivli workbook. Other talukas excluded: Ambarnath 76, Bhiwandi 15, Shahapur 12, Ulhasnagar 8."
+   ],
+   "missingRegNo": 0,
+   "missingRegDate": 98,
+   "missingDev": 0,
+   "missingSrc": 0,
+   "uniqueReg": 98,
+   "dupRemoved": 0,
+   "cats": {
+    "Registered - current status not confirmed": 98
+   },
+   "outsideWindow": 0
+  },
+  "Pune": {
+   "file": "C:\\Users\\Pushkar\\Documents\\GitHub\\mappingg\\Developer_Projects\\Pune\\Pune_Projects.xlsx",
+   "projects": 260,
+   "developers": 205,
+   "verifiedContacts": 0,
+   "partialContacts": 0,
+   "devWithContacts": 0,
+   "latest": null,
+   "r90": null,
+   "r365": null,
+   "verified": 0,
+   "partiallyVerified": 260,
+   "unverified": 0,
+   "partial": true,
+   "blocked": null,
+   "coverage": [
+    "District Pune: 26 of 1300 listing pages collected (2.0%), 0 of the newest 25 pages; portal total 12996 records for the whole district."
+   ],
+   "missingRegNo": 0,
+   "missingRegDate": 260,
+   "missingDev": 0,
+   "missingSrc": 0,
+   "uniqueReg": 260,
+   "dupRemoved": 0,
+   "cats": {
+    "Registered - current status not confirmed": 260
+   },
+   "outsideWindow": 0
+  },
+  "Hyderabad": {
+   "file": "C:\\Users\\Pushkar\\Documents\\GitHub\\mappingg\\Developer_Projects\\Hyderabad\\Hyderabad_Projects.xlsx",
+   "projects": 0,
+   "developers": 0,
+   "verifiedContacts": 0,
+   "partialContacts": 0,
+   "devWithContacts": 0,
+   "latest": null,
+   "r90": 0,
+   "r365": 0,
+   "verified": 0,
+   "partiallyVerified": 0,
+   "unverified": 0,
+   "partial": true,
+   "blocked": "Telangana RERA registered-project search (https://rerait.telangana.gov.in/SearchList/Search) requires a CAPTCHA for every search. Automated collection was not attempted, per the no-CAPTCHA-bypass rule. No project records are included. Use manual searches or request an official export to populate.",
+   "coverage": [
+    "Telangana RERA registered-project search (https://rerait.telangana.gov.in/SearchList/Search) requires a CAPTCHA for every search. Automated collection was not attempted, per the no-CAPTCHA-bypass rule. No project records are included. Use manual searches or request an official export to populate."
+   ],
+   "missingRegNo": 0,
+   "missingRegDate": 0,
+   "missingDev": 0,
+   "missingSrc": 0,
+   "uniqueReg": 0,
+   "dupRemoved": 0,
+   "cats": {},
+   "outsideWindow": 0
+  },
+  "Bengaluru": {
+   "file": "C:\\Users\\Pushkar\\Documents\\GitHub\\mappingg\\Developer_Projects\\Bengaluru\\Bengaluru_Projects.xlsx",
+   "projects": 4425,
+   "developers": 2848,
+   "verifiedContacts": 49,
+   "partialContacts": 0,
+   "devWithContacts": 8,
+   "latest": "2026-10-09",
+   "r90": 85,
+   "r365": 331,
+   "verified": 4137,
+   "partiallyVerified": 288,
+   "unverified": 0,
+   "partial": false,
+   "blocked": null,
+   "coverage": [
+    "Full official RERA Karnataka list for district Bengaluru Urban (4425 rows). Bengaluru Rural not included."
+   ],
+   "missingRegNo": 288,
+   "missingRegDate": 288,
+   "missingDev": 0,
+   "missingSrc": 0,
+   "uniqueReg": 4137,
+   "dupRemoved": 0,
+   "cats": {
+    "Approved - within proposed completion date": 1247,
+    "Approved - proposed completion date passed": 2814,
+    "Transferred": 30,
+    "Withdrawn": 63,
+    "Revoked": 6,
+    "Rejected (no registration)": 265
+   },
+   "outsideWindow": 0
+  },
+  "Delhi": {
+   "file": "C:\\Users\\Pushkar\\Documents\\GitHub\\mappingg\\Developer_Projects\\Delhi\\Delhi_Projects.xlsx",
+   "projects": 0,
+   "developers": 0,
+   "verifiedContacts": 0,
+   "partialContacts": 0,
+   "devWithContacts": 0,
+   "latest": null,
+   "r90": 0,
+   "r365": 0,
+   "verified": 0,
+   "partiallyVerified": 0,
+   "unverified": 0,
+   "partial": true,
+   "blocked": "The official Delhi RERA portal (https://rera.delhi.gov.in/, IP 164.100.77.33) refused/timed out connections from both the local network and the web-fetch service on 2026-10-11. No Delhi records were collected. Haryana/UP records were NOT substituted.",
+   "coverage": [
+    "The official Delhi RERA portal (https://rera.delhi.gov.in/, IP 164.100.77.33) refused/timed out connections from both the local network and the web-fetch service on 2026-10-11. No Delhi records were collected. Haryana/UP records were NOT substituted."
+   ],
+   "missingRegNo": 0,
+   "missingRegDate": 0,
+   "missingDev": 0,
+   "missingSrc": 0,
+   "uniqueReg": 0,
+   "dupRemoved": 0,
+   "cats": {},
+   "outsideWindow": 0
+  },
+  "Gurugram": {
+   "file": "C:\\Users\\Pushkar\\Documents\\GitHub\\mappingg\\Developer_Projects\\Gurugram\\Gurugram_Projects.xlsx",
+   "projects": 1082,
+   "developers": 587,
+   "verifiedContacts": 46,
+   "partialContacts": 0,
+   "devWithContacts": 7,
+   "latest": "2026-09-14",
+   "r90": 11,
+   "r365": 103,
+   "verified": 1080,
+   "partiallyVerified": 2,
+   "unverified": 0,
+   "partial": false,
+   "blocked": null,
+   "coverage": [
+    "Full official list for the Gurugram authority (1 page, 1082 rows)."
+   ],
+   "missingRegNo": 0,
+   "missingRegDate": 2,
+   "missingDev": 0,
+   "missingSrc": 0,
+   "uniqueReg": 1082,
+   "dupRemoved": 0,
+   "cats": {
+    "Registered - within registration validity (per list)": 511,
+    "Registered - validity date passed, not flagged lapsed": 360,
+    "Superseded (certificate replaced)": 11,
+    "Lapsed": 200
+   },
+   "outsideWindow": 0
+  },
+  "Dubai": {
+   "file": "C:\\Users\\Pushkar\\Documents\\GitHub\\mappingg\\Developer_Projects\\Dubai\\Dubai_Projects.xlsx",
+   "projects": 0,
+   "developers": 0,
+   "verifiedContacts": 0,
+   "partialContacts": 0,
+   "devWithContacts": 0,
+   "latest": null,
+   "r90": 0,
+   "r365": 0,
+   "verified": 0,
+   "partiallyVerified": 0,
+   "unverified": 0,
+   "partial": true,
+   "blocked": "DLD \"Real Estate Project Status\", \"Approved Developers\" and \"Real Estate Data\" (open data) pages load their data through APIs protected by Google reCAPTCHA; Dubai Pulse (official open-data portal) refused connections and requires an API key/permission. No Dubai records were collected; no secondary listings were used.",
+   "coverage": [
+    "DLD \"Real Estate Project Status\", \"Approved Developers\" and \"Real Estate Data\" (open data) pages load their data through APIs protected by Google reCAPTCHA; Dubai Pulse (official open-data portal) refused connections and requires an API key/permission. No Dubai records were collected; no secondary listings were used."
+   ],
+   "missingRegNo": 0,
+   "missingRegDate": 0,
+   "missingDev": 0,
+   "missingSrc": 0,
+   "uniqueReg": 0,
+   "dupRemoved": 0,
+   "cats": {},
+   "outsideWindow": 0
+  }
+ },
+ "dupReviewCount": 352,
+ "excludedContacts": [
+  [
+   "Mumbai",
+   "Lodha Developers Limited",
+   "vendors@lodhagroup.com (recruitment/vendor address)",
+   "Excluded"
+  ],
+  [
+   "Mumbai",
+   "Lodha Developers Limited",
+   "careers@lodhagroup.com (recruitment/vendor address)",
+   "Excluded"
+  ],
+  [
+   "Mumbai",
+   "Lodha Developers Limited",
+   "pritha.chatterjee@lodhagroup.com (appears to be an individual employee address)",
+   "Excluded"
+  ],
+  [
+   "Mumbai",
+   "Runwal Developers Limited",
+   "www.runwal.com - site not reachable / identity not confirmed",
+   "No contacts taken"
+  ],
+  [
+   "Mumbai",
+   "HAPPY HOME LIFESPACES LLP",
+   "www.happyhomegroup.com - site not reachable / identity not confirmed",
+   "No contacts taken"
+  ],
+  [
+   "Mumbai",
+   "KENT CORPORATION",
+   "www.kentcorporation.in - site not reachable / identity not confirmed",
+   "No contacts taken"
+  ],
+  [
+   "Bengaluru",
+   "Sobha Limited",
+   "manoj.rastogi@sobha.com (appears to be an individual employee address)",
+   "Excluded"
+  ],
+  [
+   "Bengaluru",
+   "DS Max Properties Private Limited",
+   "hr@dsgroupworld.in (recruitment/vendor address)",
+   "Excluded"
+  ],
+  [
+   "Bengaluru",
+   "PRESTIGE PROJECTS PRIVATE LIMITED",
+   "rnt.helpdesk@in.mpms.mufg.com (third-party domain)",
+   "Excluded"
+  ],
+  [
+   "Bengaluru",
+   "PRESTIGE PROJECTS PRIVATE LIMITED",
+   "umesh.salvi@ctltrustee.com (third-party domain)",
+   "Excluded"
+  ],
+  [
+   "Bengaluru",
+   "PRESTIGE PROJECTS PRIVATE LIMITED",
+   "+919876543210 (placeholder number)",
+   "Excluded"
+  ],
+  [
+   "Bengaluru",
+   "Lodha Developers Limited",
+   "vendors@lodhagroup.com (recruitment/vendor address)",
+   "Excluded"
+  ],
+  [
+   "Bengaluru",
+   "Lodha Developers Limited",
+   "careers@lodhagroup.com (recruitment/vendor address)",
+   "Excluded"
+  ],
+  [
+   "Bengaluru",
+   "Lodha Developers Limited",
+   "pritha.chatterjee@lodhagroup.com (appears to be an individual employee address)",
+   "Excluded"
+  ],
+  [
+   "Gurugram",
+   "EMAAR INDIA LIMITED",
+   "www.emaar-india.com - site not reachable / identity not confirmed",
+   "No contacts taken"
+  ],
+  [
+   "Gurugram",
+   "SOBHA LIMITED",
+   "manoj.rastogi@sobha.com (appears to be an individual employee address)",
+   "Excluded"
+  ],
+  [
+   "Gurugram",
+   "OBEROI REALTY LIMITED",
+   "www.oberoirealty.com - site not reachable / identity not confirmed",
+   "No contacts taken"
+  ],
+  [
+   "Gurugram",
+   "M3M INDIA INFRASTRUCTURES PRIVATE LIMITED",
+   "careersgurgaon@m3mindia.com (recruitment/vendor address)",
+   "Excluded"
+  ],
+  [
+   "Gurugram",
+   "M3M INDIA INFRASTRUCTURES PRIVATE LIMITED",
+   "careersnoida@m3mindia.com (recruitment/vendor address)",
+   "Excluded"
+  ],
+  [
+   "Gurugram",
+   "M3M INDIA INFRASTRUCTURES PRIVATE LIMITED",
+   "palash.ghosh@m3mindia.com (appears to be an individual employee address)",
+   "Excluded"
+  ],
+  [
+   "Gurugram",
+   "M3M INDIA INFRASTRUCTURES PRIVATE LIMITED",
+   "arijit.bhattacharyya@m3mindia.com (appears to be an individual employee address)",
+   "Excluded"
+  ],
+  [
+   "Gurugram",
+   "M3M INDIA INFRASTRUCTURES PRIVATE LIMITED",
+   "anuj.sobti@m3mindia.com (appears to be an individual employee address)",
+   "Excluded"
+  ],
+  [
+   "Gurugram",
+   "LODHA DEVELOPERS LIMITED",
+   "vendors@lodhagroup.com (recruitment/vendor address)",
+   "Excluded"
+  ],
+  [
+   "Gurugram",
+   "LODHA DEVELOPERS LIMITED",
+   "careers@lodhagroup.com (recruitment/vendor address)",
+   "Excluded"
+  ],
+  [
+   "Gurugram",
+   "LODHA DEVELOPERS LIMITED",
+   "pritha.chatterjee@lodhagroup.com (appears to be an individual employee address)",
+   "Excluded"
+  ]
+ ],
+ "mhExcluded": {
+  "Thane / Ambarnath": 76,
+  "Thane / Bhiwandi": 15,
+  "Thane / Shahapur": 12,
+  "Thane / Ulhasnagar": 8
+ },
+ "mhDupes": 0
+}

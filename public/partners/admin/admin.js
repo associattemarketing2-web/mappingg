@@ -5,6 +5,7 @@ import { renderReview, createManualSubmission } from './views/review.js';
 import { renderBuilders, renderBuilderDetail } from './views/builders.js';
 import { renderImport } from './views/import.js';
 import { renderLive } from './views/live.js';
+import { renderScraped } from './views/scraped.js';
 
 import { ctx, refreshCounts } from './context.js';
 
@@ -101,6 +102,8 @@ const NAV = [
     icon: '<path d="M12 15V3"/><path d="M7 8l5-5 5 5"/><path d="M5 15v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/>' },
   { key: 'live', label: 'Live projects', hint: 'Published projects now on the map', count: 'live',
     icon: '<path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>' },
+  { key: 'scraped', label: 'Scraped data', hint: 'Official RERA registry records by city', count: '',
+    icon: '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/>' },
 ];
 const svg = (paths, cls = '') => `<svg class="${cls}" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
 const SIDE_KEY = 'mg_intake_side'; // 'docked' = open; anything else = icon strip
@@ -186,6 +189,7 @@ async function route() {
       case 'builders': return parts[1] ? await renderBuilderDetail(page, parts[1]) : await renderBuilders(page);
       case 'import': return await renderImport(page);
       case 'live': return await renderLive(page);
+      case 'scraped': return await renderScraped(page, params);
       default: return await renderQueue(page, params);
     }
   } catch (e) {

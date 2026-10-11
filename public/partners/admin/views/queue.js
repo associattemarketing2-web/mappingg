@@ -13,7 +13,7 @@ const TABS = [
   { key: 'all', label: 'All', statuses: null }
 ];
 
-const SOURCE = { link: 'Builder link', excel: 'Excel', csv: 'CSV', admin: 'Added by team' };
+const SOURCE = { link: 'Builder link', excel: 'Excel', csv: 'CSV', admin: 'Added by team', scraped: 'Scraped data' };
 
 export async function renderQueue(page, params) {
   const tabKey = params.get('tab') || 'review';
