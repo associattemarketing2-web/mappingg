@@ -66,7 +66,7 @@ async function accessToken(): Promise<string> {
 }
 
 export class GscError extends Error {
-  constructor(public code: 'not_configured' | 'auth_failed' | 'no_access' | 'api_error', message: string) {
+  constructor(public code: 'not_configured' | 'auth_failed' | 'no_access' | 'api_disabled' | 'api_error', message: string) {
     super(message);
   }
 }
@@ -79,6 +79,10 @@ async function api<T>(path: string, init?: { method?: string; body?: unknown }):
     cache: 'no-store',
   });
   const body = (await res.json().catch(() => ({}))) as T & { error?: { message?: string } };
+  // 403 is either "the Search Console API is turned off in the Google Cloud project" or "no access to the property".
+  if (res.status === 403 && /has not been used|is disabled|SERVICE_DISABLED|accessNotConfigured/i.test(body.error?.message || '')) {
+    throw new GscError('api_disabled', body.error?.message || 'The Google Search Console API is disabled in the Google Cloud project');
+  }
   if (res.status === 403) throw new GscError('no_access', body.error?.message || 'The service account has no access to this property');
   if (!res.ok) throw new GscError('api_error', body.error?.message || `Search Console API error (${res.status})`);
   return body;

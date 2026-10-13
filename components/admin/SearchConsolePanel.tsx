@@ -25,7 +25,7 @@ export interface GscReportData {
   sitemaps: { path: string; lastSubmitted: string | null; lastDownloaded: string | null; pending: boolean; errors: number; warnings: number; submitted: number }[];
   homepage: { url: string; verdict: string; coverage: string; lastCrawl: string | null; canonical: string; robots: string; fetch: string } | null;
 }
-type Resp = GscReportData | { status: 'not_configured' | 'auth_failed' | 'no_access' | 'api_error'; message?: string; serviceAccount?: string };
+type Resp = GscReportData | { status: 'not_configured' | 'auth_failed' | 'no_access' | 'api_disabled' | 'api_error'; message?: string; serviceAccount?: string };
 
 const fmt = (n: number) => Math.round(n).toLocaleString('en-IN');
 const pct1 = (n: number) => `${(n * 100).toFixed(1)}%`;
@@ -104,7 +104,7 @@ export default function SearchConsolePanel() {
       <div className="viz gsc">
         {head}
         <div className="adm-panel">
-          <div className="adm-panel-head"><h3>{notSet ? 'Connect Search Console to see clicks & rankings' : 'Search Console could not be read'}</h3></div>
+          <div className="adm-panel-head"><h3>{notSet ? 'Connect Search Console to see clicks & rankings' : d.status === 'api_disabled' ? 'Search Console API is turned off in Google Cloud — no data shown' : 'Search Console could not be read — no data shown'}</h3></div>
           {!notSet && <p className="adm-note gsc-err"><i className="fas fa-triangle-exclamation" /><span>{d.message}</span></p>}
           <div className="adm-health" style={{ marginTop: 12 }}>
             {[
