@@ -11,6 +11,7 @@ import { getDb } from '@/lib/mongodb';
 import { notifyAdmin } from '@/lib/mailer';
 import { pageOf, pushToCrm, visitorIp } from '@/lib/crm';
 import { autoLogo, pinImageDigest } from '@/lib/developers';
+import { mapLeadConsent, optInSummary, type ConsentRecord } from '@/lib/consent';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -65,6 +66,14 @@ async function handle(op: DbOp, devEditorView = false, ip = '', visitor = ip, pa
   if (!staff && op.table === 'leads' && op.action === 'insert') {
     const limited = rateLimit(`lead:${ip}`, 20, 10 * 60_000);
     if (limited) return limited;
+    // Consent is recorded by the server from the visitor's actual choices
+    // (lib/consent.ts); the required privacy/enquiry box must be ticked.
+    const rows = (Array.isArray(op.values) ? op.values : op.values ? [op.values] : []) as Record<string, unknown>[];
+    const checked = rows.map((v) => mapLeadConsent(v));
+    if (!checked.length || checked.some((c) => !c.ok)) {
+      return NextResponse.json({ data: null, error: { message: 'Please agree to the Privacy Policy and Terms to continue.' } }, { status: 400 });
+    }
+    op = { ...op, values: Array.isArray(op.values) ? checked.map((c) => c.values) : checked[0].values };
   }
   // A signed-in developer is scoped to their own pins everywhere: they see only
   // their projects on the live map and in the map editor, and any pin they
@@ -97,7 +106,7 @@ async function handle(op: DbOp, devEditorView = false, ip = '', visitor = ip, pa
       const project = pin ? String(pin.title || `#${pin.number ?? ''}`) : '';
       pushToCrm({
         name: String(v.name || ''), mobile: String(v.whatsapp || ''), email: String(v.email || ''), project, builder: String(pin?.developer || ''),
-        source: 'Map enquiry form', page, extra: [['Role', v.role]], message: String(v.message || ''), ip: visitor,
+        source: 'Map enquiry form', page, extra: [['Role', v.role], ['Opted in to', optInSummary(v.consent as ConsentRecord)]], message: String(v.message || ''), ip: visitor,
       });
       notifyAdmin(`New enquiry${project ? `: ${project}` : ''} — ${String(v.name || 'visitor')}`, {
         title: 'New enquiry from the live map',

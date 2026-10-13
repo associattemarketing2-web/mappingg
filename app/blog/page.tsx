@@ -5,21 +5,15 @@ import { listPublished } from '@/lib/blog';
 import SiteHeader from '@/components/SiteHeader';
 
 import { SITE_URL } from '@/lib/seo/config';
+import { blogPageCount, blogPageHref as pageHref, blogPageSlice, parseBlogPage, type PageParam } from '@/lib/blog-pagination';
 
 export const revalidate = 600;
 
-/** Articles per page; page 1 is /blog, later pages are /blog?page=N. */
-const PER_PAGE = 9;
-const pageHref = (n: number) => (n <= 1 ? '/blog' : `/blog?page=${n}`);
-/** The requested page number (1 for missing or invalid values). */
-const pageOf = (sp?: { page?: string | string[] }) => {
-  const n = Number(Array.isArray(sp?.page) ? sp?.page[0] : sp?.page);
-  return Number.isInteger(n) && n > 1 ? n : 1;
-};
+// 9 articles per page; page 1 is /blog, later pages /blog?page=N (lib/blog-pagination.ts).
 
 // Page 2+ gets its own title and canonical URL so search engines index each page.
-export function generateMetadata({ searchParams }: { searchParams?: { page?: string | string[] } }): Metadata {
-  const page = pageOf(searchParams);
+export function generateMetadata({ searchParams }: { searchParams?: { page?: PageParam } }): Metadata {
+  const page = parseBlogPage(searchParams?.page);
   if (page === 1) return {};
   return { title: `Blog — Page ${page}`, alternates: { canonical: `${SITE_URL}${pageHref(page)}` } };
 }
@@ -30,12 +24,12 @@ function fmt(d?: string | null) {
 
 const Footer = BlogFooter;
 
-export default async function BlogIndex({ searchParams }: { searchParams?: { page?: string | string[] } }) {
+export default async function BlogIndex({ searchParams }: { searchParams?: { page?: PageParam } }) {
   const all = await listPublished();
-  const pages = Math.max(1, Math.ceil(all.length / PER_PAGE));
-  const page = pageOf(searchParams);
-  if (page > pages) notFound();
-  const posts = all.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+  const pages = blogPageCount(all.length);
+  const page = parseBlogPage(searchParams?.page);
+  const posts = blogPageSlice(all, page);
+  if (!posts) notFound();
 
   const jsonLd = {
     '@context': 'https://schema.org',
