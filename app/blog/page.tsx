@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import BlogFooter from '@/components/BlogFooter';
 import { listPublished } from '@/lib/blog';
 import SiteHeader from '@/components/SiteHeader';
@@ -6,21 +8,41 @@ import { SITE_URL } from '@/lib/seo/config';
 
 export const revalidate = 600;
 
+/** Articles per page; page 1 is /blog, later pages are /blog?page=N. */
+const PER_PAGE = 9;
+const pageHref = (n: number) => (n <= 1 ? '/blog' : `/blog?page=${n}`);
+/** The requested page number (1 for missing or invalid values). */
+const pageOf = (sp?: { page?: string | string[] }) => {
+  const n = Number(Array.isArray(sp?.page) ? sp?.page[0] : sp?.page);
+  return Number.isInteger(n) && n > 1 ? n : 1;
+};
+
+// Page 2+ gets its own title and canonical URL so search engines index each page.
+export function generateMetadata({ searchParams }: { searchParams?: { page?: string | string[] } }): Metadata {
+  const page = pageOf(searchParams);
+  if (page === 1) return {};
+  return { title: `Blog — Page ${page}`, alternates: { canonical: `${SITE_URL}${pageHref(page)}` } };
+}
+
 function fmt(d?: string | null) {
   return d ? new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
 }
 
 const Footer = BlogFooter;
 
-export default async function BlogIndex() {
-  const posts = await listPublished();
+export default async function BlogIndex({ searchParams }: { searchParams?: { page?: string | string[] } }) {
+  const all = await listPublished();
+  const pages = Math.max(1, Math.ceil(all.length / PER_PAGE));
+  const page = pageOf(searchParams);
+  if (page > pages) notFound();
+  const posts = all.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
     name: 'Mappingg Blog',
-    url: `${SITE_URL}/blog`,
-    blogPost: posts.slice(0, 50).map((p) => ({
+    url: `${SITE_URL}${pageHref(page)}`,
+    blogPost: posts.map((p) => ({
       '@type': 'BlogPosting',
       headline: p.title,
       url: `${SITE_URL}/blog/${p.slug}`,
@@ -68,6 +90,23 @@ export default async function BlogIndex() {
               </a>
             ))}
           </div>
+        )}
+
+        {pages > 1 && (
+          <nav className="blog-pager" aria-label="Blog pages">
+            {page > 1
+              ? <a className="pg-step" href={pageHref(page - 1)} rel="prev">← Previous</a>
+              : <span className="pg-step off" aria-hidden="true">← Previous</span>}
+            <span className="pg-nums">
+              {Array.from({ length: pages }, (_, i) => i + 1).map((n) =>
+                n === page
+                  ? <span key={n} className="pg-num on" aria-current="page">{n}</span>
+                  : <a key={n} className="pg-num" href={pageHref(n)} aria-label={`Page ${n}`}>{n}</a>)}
+            </span>
+            {page < pages
+              ? <a className="pg-step" href={pageHref(page + 1)} rel="next">Next →</a>
+              : <span className="pg-step off" aria-hidden="true">Next →</span>}
+          </nav>
         )}
       </main>
 

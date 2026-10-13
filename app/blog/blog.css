@@ -49,6 +49,15 @@
 .post-meta { margin-top: auto; display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); padding-top: 8px; }
 .blog-empty { text-align: center; padding: 60px 20px; color: var(--muted); }
 
+/* Pagination under the article grid */
+.blog-pager { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; margin: -40px 0 80px; }
+.blog-pager .pg-nums { display: flex; gap: 8px; }
+.blog-pager .pg-num, .blog-pager .pg-step { display: inline-flex; align-items: center; justify-content: center; min-width: 42px; height: 42px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--fg); font-weight: 600; font-size: 14px; transition: border-color .15s, color .15s, background .15s; }
+.blog-pager a:hover { border-color: var(--forest); color: var(--forest); }
+.blog-pager .pg-num.on { background: var(--forest); border-color: var(--forest); color: #fff; }
+.blog-pager .pg-step.off { opacity: .45; }
+@media (max-width: 620px) { .blog-pager .pg-step { padding: 0 12px; font-size: 13px; } }
+
 /* article */
 .article { padding: 40px 0 80px; }
 .article .back { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: var(--muted); margin-bottom: 20px; }
