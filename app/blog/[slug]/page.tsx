@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { getBySlug, readingTime } from '@/lib/blog';
 import SiteHeader from '@/components/SiteHeader';
 
-import { SITE_URL } from '@/lib/seo/config';
+import { SITE, SITE_URL } from '@/lib/seo/config';
 
 export const revalidate = 600;
 
@@ -23,7 +23,7 @@ export default async function BlogArticle({ params }: { params: { slug: string }
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.seo_description || post.excerpt || '',
-    image: cover ? [cover] : [`${SITE_URL}/img/mappingg-icon-mark.png`],
+    image: cover ? [cover] : [SITE.ogFallback],
     datePublished: post.published_at || post.created_at,
     dateModified: post.updated_at || post.published_at || post.created_at,
     author: { '@type': 'Organization', name: post.author || 'Mappingg' },

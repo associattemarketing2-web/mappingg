@@ -10,7 +10,7 @@ import { featuredCardHtml } from '@/components/landing/featured-card';
 import { trustedLogos } from '@/lib/developers';
 import { trustedDevelopersHtml } from '@/components/landing/trusted-developers';
 
-import { SITE_URL } from '@/lib/seo/config';
+import { SITE, SITE_URL } from '@/lib/seo/config';
 
 // ISR: served static & fast, but re-renders periodically so admin-set SEO values
 // (Search Console verification, GTM) from the shared layout show up without a redeploy.
@@ -33,14 +33,14 @@ export const metadata: Metadata = {
     description:
       'One interactive map of every live real estate project in India and Dubai — status, verified RERA, possession dates and nearby infrastructure.',
     url: SITE_URL,
-    images: ['/img/mappingg-icon-mark.png'],
+    images: [{ url: SITE.ogFallback, width: 1200, height: 630, alt: SITE.ogFallbackAlt }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Mappingg.com — Every Property Project, Mapped & Verified',
     description:
       'One interactive map of every live real estate project in India and Dubai — status, verified RERA, possession dates and nearby infrastructure.',
-    images: ['/img/mappingg-icon-mark.png'],
+    images: [{ url: SITE.ogFallback, width: 1200, height: 630, alt: SITE.ogFallbackAlt }],
   },
 };
 

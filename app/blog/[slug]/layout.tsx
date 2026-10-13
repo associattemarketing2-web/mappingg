@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getBySlug } from '@/lib/blog';
 
-import { SITE_URL } from '@/lib/seo/config';
+import { SITE, SITE_URL } from '@/lib/seo/config';
 
 // SEO metadata for /blog/<slug> lives here; page.tsx renders the article.
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       title,
       description,
       url,
-      images: post.cover_image ? [post.cover_image] : ['/img/mappingg-icon-mark.png'],
+      images: post.cover_image ? [post.cover_image] : [{ url: SITE.ogFallback, width: 1200, height: 630, alt: SITE.ogFallbackAlt }],
       publishedTime: post.published_at || post.created_at,
       authors: [post.author || 'Mappingg'],
     },

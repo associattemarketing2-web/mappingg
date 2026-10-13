@@ -5,7 +5,7 @@ import { buildMetadata } from '@/lib/seo/metadata';
 export const metadata: Metadata = buildMetadata({
   title: 'How It Works',
   description:
-    'From project data to an intelligent map in three simple steps — connect your data, map your project, then visualise and share it. See how a project goes live on Mappingg.',
+    'How Mappingg works: home buyers search, compare and enquire on a live map of projects in Pune & Mumbai; developers put verified projects on the map and receive enquiries.',
   path: '/how-it-works',
 });
 

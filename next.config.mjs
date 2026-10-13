@@ -59,7 +59,7 @@ const nextConfig = {
         // Logos/marks/icons/globe textures change rarely — browsers reuse them for
         // a week and refresh in the background for a month after that.
         // Repeat visits skip re-fetching them (Lighthouse: efficient cache lifetimes).
-        source: '/:dir(img|icons|video)/:file*',
+        source: '/:dir(img|icons|video|og)/:file*',
         headers: [{ key: 'Cache-Control', value: 'public, max-age=604800, stale-while-revalidate=2592000' }],
       },
     ];

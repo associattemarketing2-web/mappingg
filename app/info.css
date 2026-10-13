@@ -480,6 +480,9 @@
 .ct-quick b { font-size: 14px; color: var(--ink); }
 .ct-quick small { font-size: 12.5px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ct-open-map { align-self: flex-start; }
+/* A card grid used as the left column of .ct-layout (e.g. /how-it-works buyers section) */
+.ct-layout > .ipg-grid { grid-template-columns: repeat(2, 1fr); align-self: start; }
+@media (max-width: 560px) { .ct-layout > .ipg-grid { grid-template-columns: 1fr; } }
 
 /* ---- form card ---- */
 .cf-card { position: relative; background: #fff; border: 1px solid var(--line); border-radius: 24px; padding: 28px; box-shadow: var(--sh-lg); }

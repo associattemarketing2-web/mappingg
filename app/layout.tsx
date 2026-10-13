@@ -8,7 +8,7 @@ import SiteTracker from '@/components/SiteTracker';
 import { getPublicSettings } from '@/lib/site-settings';
 import { jsonLd, organizationSchema, websiteSchema } from '@/lib/seo/schema';
 
-import { SITE_URL } from '@/lib/seo/config';
+import { SITE, SITE_URL } from '@/lib/seo/config';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -31,13 +31,13 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: 'Mappingg — Live Real Estate Project Map',
     description: 'Explore live projects, upcoming launches and infrastructure across India and Dubai.',
-    images: ['/img/mappingg-icon-mark.png'],
+    images: [{ url: SITE.ogFallback, width: 1200, height: 630, alt: SITE.ogFallbackAlt }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Mappingg — Live Real Estate Project Map',
     description: 'Explore live projects, upcoming launches and infrastructure across India and Dubai.',
-    images: ['/img/mappingg-icon-mark.png'],
+    images: [{ url: SITE.ogFallback, width: 1200, height: 630, alt: SITE.ogFallbackAlt }],
   },
 };
 

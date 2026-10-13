@@ -20,7 +20,9 @@ export const SITE = {
   description:
     'Explore a live, interactive map of real estate projects across Pune and the Mumbai Metropolitan Region — colour-coded by status, with developer, pricing, configuration and infrastructure details.',
   logo: `${SITE_URL}/img/Associattelogo.png`,
-  ogFallback: `${SITE_URL}/img/mappingg-icon-mark.png`,
+  // 1200x630 share image (migration/og-image.mjs). Pages with their own image use that instead.
+  ogFallback: `${SITE_URL}/og/mappingg-og-v1.jpg`,
+  ogFallbackAlt: 'Mappingg — every property project in Pune & Mumbai on one live map',
   twitter: '@mappingg',
   locale: 'en_IN',
 } as const;

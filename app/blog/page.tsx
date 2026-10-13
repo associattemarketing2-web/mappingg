@@ -53,8 +53,8 @@ export default async function BlogIndex({ searchParams }: { searchParams?: { pag
       <header className="blog-hero">
         <div className="wrap">
           <span className="eyebrow">Mappingg Blog</span>
-          <h1>Pune real estate, made clear</h1>
-          <p>Guides, area insights and market news to help you buy smarter — from the team behind the live project map.</p>
+          <h1>Pune &amp; Mumbai real estate, made clear</h1>
+          <p>Locality guides, budget guides and buying tips for Pune and the Mumbai Metropolitan Region — from the team behind the live project map.</p>
         </div>
       </header>
 

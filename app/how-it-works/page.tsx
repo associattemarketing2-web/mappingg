@@ -1,5 +1,17 @@
 import Link from 'next/link';
 import InfoPage, { CtaBand } from '@/components/InfoPage';
+import MappinggExplainer from '@/components/MappinggExplainer';
+
+// What a buyer sees on every project card on the live map (all shown in the real UI).
+const BUYER_SEES = [
+  { icon: 'fas fa-circle-half-stroke', tone: '', title: 'Live status', text: 'Available, under construction, upcoming or sold — colour-coded on the map.' },
+  { icon: 'fas fa-indian-rupee-sign', tone: 'road', title: 'Price & configuration', text: 'Starting price, BHK options and carpet area, where the developer shares them.' },
+  { icon: 'fas fa-calendar-check', tone: 'water', title: 'Possession date', text: 'The listed possession timeline, so you can plan your move.' },
+  { icon: 'fas fa-certificate', tone: 'earth', title: 'MahaRERA number', text: 'Shown on the project card so you can check it on the MahaRERA website.' },
+  { icon: 'fas fa-route', tone: 'water', title: 'What is nearby', text: 'Roads, metro lines and nearby places on the same map.' },
+  { icon: 'fas fa-comments', tone: '', title: 'One-tap enquiry', text: 'Ask about a project once and the team gets back to you.' },
+];
+
 
 
 const STEPS = [
@@ -31,19 +43,43 @@ export default function HowItWorksPage() {
       eyebrow="How it works"
       icon="fas fa-diagram-project"
       tone="water"
-      title={<>From project data to an <span className="accent">intelligent map</span></>}
-      intro="Three simple steps to put your project in front of the right people — verified, mapped and ready to share."
+      title={<>How Mappingg works for <span className="accent">buyers</span> and developers</>}
+      intro="Home buyers find and compare projects on one live map of Pune and Mumbai. Developers put their verified projects on it and receive enquiries."
       actions={
         <>
-          <Link href="/advertise" className="btn btn-primary"><i className="fas fa-plus" aria-hidden="true" /> List your project</Link>
-          <Link href="/map" className="btn btn-outline">Explore the live map</Link>
+          <Link href="/map" className="btn btn-primary"><i className="fas fa-map-location-dot" aria-hidden="true" /> Explore the live map</Link>
+          <Link href="/advertise" className="btn btn-outline"><i className="fas fa-plus" aria-hidden="true" /> List your project</Link>
         </>
       }
     >
+      <section className="ipg-section" id="buyers">
+        <div className="container">
+          <div className="ipg-head">
+            <span className="eyebrow"><span className="dot" />For home buyers</span>
+            <h2>Shortlist projects on a <span className="accent">live map</span></h2>
+            <p>Search the area you want, open any project to compare the details, and enquire when one fits. Free for home buyers.</p>
+          </div>
+          <div className="ct-layout">
+            <div className="ipg-grid">
+              {BUYER_SEES.map((b) => (
+                <div className="ipg-card" key={b.title}>
+                  <span className={`ipg-ic ${b.tone}`}><i className={b.icon} aria-hidden="true" /></span>
+                  <h3>{b.title}</h3>
+                  <p>{b.text}</p>
+                </div>
+              ))}
+            </div>
+            <aside className="ct-aside">
+              <MappinggExplainer />
+            </aside>
+          </div>
+        </div>
+      </section>
+
       <section className="ipg-section">
         <div className="container">
           <div className="ipg-head">
-            <span className="eyebrow"><span className="dot" />Three steps</span>
+            <span className="eyebrow"><span className="dot" />For developers · three steps</span>
             <h2>Put your project on the <span className="accent">map</span></h2>
             <p>Share your details once; we verify them and bring your project to life as an interactive pin.</p>
           </div>

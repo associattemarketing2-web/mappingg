@@ -29,7 +29,9 @@ export function buildSectionMetadata(o: BuildMeta): Metadata {
 
 export function buildMetadata(o: BuildMeta): Metadata {
   const url = abs(o.path);
-  const images = [o.image ? abs(o.image) : SITE.ogFallback];
+  const images = o.image
+    ? [abs(o.image)]
+    : [{ url: SITE.ogFallback, width: 1200, height: 630, alt: SITE.ogFallbackAlt }];
   return {
     title: o.title,
     description: o.description,
