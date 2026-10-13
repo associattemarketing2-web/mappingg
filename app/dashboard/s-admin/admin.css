@@ -190,6 +190,9 @@ a.adm-chip { padding: 7px 12px; }
 .crm-pill.lost { background: #f6e6dd; color: var(--earth); }
 .crm-pill.site_visit { background: #efe9fb; color: #6b4fbb; }
 .crm-pill.negotiation { background: #fdeee0; color: #b4540a; }
+.crm-pill.not_answered { background: #fde8e8; color: #b42318; }
+.crm-pill.call_back { background: #e0f4f1; color: #0f766e; }
+.crm-pill.spam { background: #ececec; color: #4b4b4b; }
 
 /* Detail drawer */
 .crm-drawer-overlay { position: fixed; inset: 0; z-index: 200; background: rgba(20,30,26,.42); display: flex; justify-content: flex-end; }
@@ -199,15 +202,19 @@ a.adm-chip { padding: 7px 12px; }
 .crm-id.big .crm-ini { width: 44px; height: 44px; font-size: 15px; }
 .crm-id.big b { font-size: 16px; }
 
-.crm-pipeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 16px; }
-.crm-stage { padding: 9px 6px; border-radius: 10px; border: 1px solid var(--line); background: #fff; font: 600 12.5px var(--font); color: var(--muted); cursor: pointer; }
-.crm-stage:hover { border-color: var(--forest); }
-.crm-stage.on.new { background: var(--water); color: #fff; border-color: var(--water); }
-.crm-stage.on.contacted { background: var(--road); color: #fff; border-color: var(--road); }
-.crm-stage.on.won { background: var(--accent); color: #fff; border-color: var(--accent); }
-.crm-stage.on.lost { background: var(--earth); color: #fff; border-color: var(--earth); }
-.crm-stage.on.site_visit { background: #6b4fbb; color: #fff; border-color: #6b4fbb; }
-.crm-stage.on.negotiation { background: #b4540a; color: #fff; border-color: #b4540a; }
+/* Status dropdown in the drawer; the dot takes the status colour. */
+.crm-status { --st: var(--muted); position: relative; display: flex; align-items: center; }
+.crm-status .dot { position: absolute; left: 13px; width: 10px; height: 10px; border-radius: 50%; background: var(--st); box-shadow: 0 0 0 3px color-mix(in srgb, var(--st) 18%, transparent); pointer-events: none; }
+.crm-status .crm-select { width: 100%; max-width: none; padding: 10px 12px 10px 34px; font-weight: 600; border-left: 4px solid var(--st); cursor: pointer; }
+.crm-status.new { --st: var(--water); }
+.crm-status.contacted { --st: var(--road); }
+.crm-status.not_answered { --st: #b42318; }
+.crm-status.call_back { --st: #0f766e; }
+.crm-status.site_visit { --st: #6b4fbb; }
+.crm-status.negotiation { --st: #b4540a; }
+.crm-status.won { --st: var(--accent); }
+.crm-status.lost { --st: var(--earth); }
+.crm-status.spam { --st: #4b4b4b; }
 
 .crm-contact { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
 .crm-block { margin-bottom: 18px; }

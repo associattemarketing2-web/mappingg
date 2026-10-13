@@ -43,7 +43,7 @@ export default function ContactPage() {
             <aside className="ct-aside">
               <span className="eyebrow"><span className="dot" />How Mappingg works</span>
               <h3>Find your home on a <span className="accent">live map</span></h3>
-              <p>Watch how buyers use Mappingg to shortlist projects, compare the details and enquire.</p>
+              <p>A real 40-second walkthrough of the live map: search a locality, open a project and send an enquiry.</p>
               <MappinggExplainer />
               <div className="ct-quick">
                 <a href={WHATSAPP_URL} target="_blank" rel="noopener" className="wa">

@@ -19,8 +19,9 @@ export const dynamic = 'force-dynamic';
 //                       (`leads`), from buyers/investors, agents and developers.
 //   signup            → buyers who created an account (also in `contact_leads`,
 //                       marked source "Buyer sign-up" — see lib/signup-leads.ts)
-// Real-estate pipeline. 'won' is shown as "Booked".
-const STATUSES = ['new', 'contacted', 'site_visit', 'negotiation', 'won', 'lost'] as const;
+// Real-estate pipeline. 'won' is shown as "Booked". 'not_answered' and 'call_back'
+// are call outcomes that stay open for follow-up; 'spam' closes the lead like 'lost'.
+const STATUSES = ['new', 'contacted', 'not_answered', 'call_back', 'site_visit', 'negotiation', 'won', 'lost', 'spam'] as const;
 const SOURCES = { contact: 'contact_leads', map: 'leads', signup: 'contact_leads' } as const;
 type Source = keyof typeof SOURCES;
 const SIGNUP = 'Buyer sign-up';

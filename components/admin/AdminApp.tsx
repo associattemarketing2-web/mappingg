@@ -698,7 +698,7 @@ const csvDate = (d?: string | null) => (d ? new Date(d).toLocaleString('en-IN', 
 type LeadSource = 'map' | 'signup' | 'contact';
 interface Lead {
   id: string; name: string; email?: string; phone?: string; subject?: string;
-  message?: string; source?: string; status: 'new' | 'contacted' | 'site_visit' | 'negotiation' | 'won' | 'lost';
+  message?: string; source?: string; status: 'new' | 'contacted' | 'not_answered' | 'call_back' | 'site_visit' | 'negotiation' | 'won' | 'lost' | 'spam';
   notes?: string; created_at?: string; updated_at?: string;
   // The employee this lead was transferred to (any source).
   assigned_to?: string | null; assigned_name?: string | null; assigned_at?: string | null; assigned_by?: string | null;
@@ -806,11 +806,16 @@ const UNASSIGNED = '__none';
 const LEAD_STAGES: { key: Lead['status']; label: string }[] = [
   { key: 'new', label: 'New' },
   { key: 'contacted', label: 'Contacted' },
+  { key: 'not_answered', label: 'Call not answered' },
+  { key: 'call_back', label: 'Call back' },
   { key: 'site_visit', label: 'Site visit' },
   { key: 'negotiation', label: 'Negotiation' },
   { key: 'won', label: 'Booked' },
   { key: 'lost', label: 'Lost' },
+  { key: 'spam', label: 'Spam' },
 ];
+/** Booked, lost and spam leads are closed: no follow-up is due on them. */
+const isClosed = (s: Lead['status']) => s === 'won' || s === 'lost' || s === 'spam';
 /** Follow-up due today (or already overdue). */
 const isDue = (d?: string | null) => {
   if (!d) return false;
@@ -915,13 +920,13 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
   const scoped = all.filter((l) => (!isMap || role === 'all' || l.role === role) && (!isMap || matchesLocation(l, loc)) && matchesAssignee(l));
   const counts: Record<'all' | 'due' | Lead['status'], number> = {
     all: scoped.length,
-    due: scoped.filter((l) => isDue(l.follow_up_at) && l.status !== 'won' && l.status !== 'lost').length,
+    due: scoped.filter((l) => isDue(l.follow_up_at) && !isClosed(l.status)).length,
     ...Object.fromEntries(LEAD_STAGES.map((st) => [st.key, scoped.filter((l) => l.status === st.key).length])) as Record<Lead['status'], number>,
   };
   const term = q.trim().toLowerCase();
   const matchesSearch = (l: Lead) => !term || [l.name, l.email, l.phone, l.subject, l.message, l.project?.title, l.project?.location]
     .some((x) => (x || '').toLowerCase().includes(term));
-  const inFilter = (l: Lead) => filter === 'all' || (filter === 'due' ? isDue(l.follow_up_at) && l.status !== 'won' && l.status !== 'lost' : l.status === filter);
+  const inFilter = (l: Lead) => filter === 'all' || (filter === 'due' ? isDue(l.follow_up_at) && !isClosed(l.status) : l.status === filter);
   const list = scoped.filter((l) => inFilter(l) && matchesSearch(l))
     // Follow-ups due first (oldest due on top), then newest.
     .sort((a, b) => (filter === 'due' ? String(a.follow_up_at).localeCompare(String(b.follow_up_at)) : 0));
@@ -1278,12 +1283,15 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
               <button className="adm-btn ghost sm" onClick={() => setSel(null)}><i className="fas fa-xmark" /></button>
             </div>
 
-            <div className="crm-pipeline">
-              {LEAD_STAGES.map((s) => (
-                <button key={s.key} className={`crm-stage${sel.status === s.key ? ' on' : ''} ${s.key}`} disabled={busy} onClick={() => setStatus(sel, s.key)}>
-                  {s.label}
-                </button>
-              ))}
+            <div className="crm-block">
+              <h4>Status</h4>
+              <div className={`crm-status ${sel.status}`}>
+                <span className="dot" aria-hidden="true" />
+                <select className="crm-select" value={sel.status} disabled={busy} aria-label="Lead status"
+                  onChange={(e) => setStatus(sel, e.target.value as Lead['status'])}>
+                  {LEAD_STAGES.map((s) => <option key={s.key} value={s.key}>{s.label}</option>)}
+                </select>
+              </div>
             </div>
 
             {isOwner && isSignup && <div className="crm-block">
