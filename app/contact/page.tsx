@@ -2,6 +2,7 @@ import Link from 'next/link';
 import InfoPage, { CtaBand, EMAIL, MapArt, SocialLinks } from '@/components/InfoPage';
 import { WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/lib/contact';
 import ContactForm from '@/components/ContactForm';
+import MappinggExplainer from '@/components/MappinggExplainer';
 
 
 const DIRECTIONS = 'https://www.google.com/maps/search/?api=1&query=Naren+Pearl+Magarpatta+Road+Hadapsar+Pune+411028';
@@ -37,7 +38,28 @@ export default function ContactPage() {
             <h2>Tell us what you <span className="accent">need</span></h2>
             <p>Fill in the form and our team will get back to you. Your message reaches us directly.</p>
           </div>
-          <ContactForm />
+          <div className="ct-layout">
+            <ContactForm />
+            <aside className="ct-aside">
+              <span className="eyebrow"><span className="dot" />How Mappingg works</span>
+              <h3>Find your home on a <span className="accent">live map</span></h3>
+              <p>Watch how buyers use Mappingg to shortlist projects, compare the details and enquire.</p>
+              <MappinggExplainer />
+              <div className="ct-quick">
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener" className="wa">
+                  <i className="fab fa-whatsapp" aria-hidden="true" />
+                  <span><b>Chat on WhatsApp</b><small>{WHATSAPP_DISPLAY}</small></span>
+                </a>
+                <a href={`mailto:${EMAIL}`} className="em">
+                  <i className="fas fa-envelope" aria-hidden="true" />
+                  <span><b>Email us</b><small>{EMAIL}</small></span>
+                </a>
+              </div>
+              <Link href="/map" className="btn btn-outline ct-open-map">
+                <i className="fas fa-map-location-dot" aria-hidden="true" /> Open the live map <i className="fas fa-arrow-right" aria-hidden="true" />
+              </Link>
+            </aside>
+          </div>
         </div>
       </section>
 
