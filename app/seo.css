@@ -1,7 +1,13 @@
 /* Shared styling for the crawlable SEO entity pages (projects, locations,
    developers, cities, status, property). Mobile-first, no horizontal scroll. */
 
-.seo-wrap { max-width: 1140px; margin: 0 auto; padding: 0 20px 72px; }
+.seo-wrap {
+  max-width: 1140px; margin: 0 auto;
+  padding: 84px 20px 72px; /* top: clear the fixed shared header (same as the blog) */
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.seo-wrap button, .seo-wrap input, .seo-wrap select, .seo-wrap textarea { font-family: inherit; }
 .seo-wrap a { color: #1766c0; }
 
 .seo-crumbs { font-size: 0.85rem; color: #6a7580; margin: 20px 0 8px; }
