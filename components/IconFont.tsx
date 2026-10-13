@@ -1,22 +1,11 @@
-'use client';
+// Font Awesome icons for the pages that render this component. Only the icons the
+// site uses are included (components/icons/fa-subset.css, regenerated before every
+// build by scripts/build-icon-css.mjs), so the ~24 KB stylesheet is bundled with the
+// page CSS instead of fetching the full 100 KB file after hydration, which forced a
+// full restyle and relayout of the page. The icon fonts still load from cdnjs; icon
+// boxes have fixed sizes, so nothing shifts when they arrive.
+import './icons/fa-subset.css';
 
-import { useEffect } from 'react';
-
-const FA_HREF = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
-
-// Loads the Font Awesome icon stylesheet without blocking the first paint: text
-// and layout render immediately and icons appear a moment later (icon boxes have
-// fixed sizes, so nothing shifts). The tag is added to <head> once and kept, so
-// client-side navigation between pages never re-requests or re-parses it.
 export default function IconFont() {
-  useEffect(() => {
-    if (document.querySelector(`link[href="${FA_HREF}"]`)) return;
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = FA_HREF;
-    link.crossOrigin = 'anonymous';
-    document.head.appendChild(link);
-  }, []);
-
   return null;
 }

@@ -4,6 +4,7 @@ import PwaRegister from '@/components/PwaRegister';
 import SmoothLinks from '@/components/SmoothLinks';
 import LockRedirect from '@/components/LockRedirect';
 import CookieConsent from '@/components/CookieConsent';
+import IconFont from '@/components/IconFont';
 import SiteTracker from '@/components/SiteTracker';
 import { getPublicSettings } from '@/lib/site-settings';
 import { jsonLd, organizationSchema, websiteSchema } from '@/lib/seo/schema';
@@ -116,6 +117,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <LockRedirect />
         <SmoothLinks />
         {children}
+        {/* Font Awesome subset (~24 KB, bundled with the page CSS) for icons on every page. */}
+        <IconFont />
         <CookieConsent />
         <SiteTracker />
         <PwaRegister />
