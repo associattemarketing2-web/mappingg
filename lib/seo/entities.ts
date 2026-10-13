@@ -4,6 +4,11 @@ import { withMediaUrls } from '@/lib/pin-media';
 import { localitiesOf } from '@/lib/locality';
 import { slugify, projectSlug, projectNumberFromSlug } from './slug';
 import { cityFrom, CITY_LABELS, hasCityHub, type CityKey } from './city';
+import { isPropertyProject } from './project-filter';
+import { displayDeveloperName } from './developer-name';
+
+/** Developer name in display form (case/spacing only; slugs are unaffected). */
+const withDisplayName = <T extends { developer?: string }>(p: T): T => (p.developer ? { ...p, developer: displayDeveloperName(p.developer) } : p);
 
 // -----------------------------------------------------------------------------
 // SEO entity layer. "Projects" are the public `pins` (224 rows). Locations,
@@ -38,8 +43,9 @@ export interface Pin {
 }
 
 // lat/lng are needed to tell which city a project is in (lib/seo/city.ts).
+// description is needed to tell empty placeholder pages apart (lib/seo/indexing.ts).
 const LIST_COLUMNS =
-  'id,number,title,type,status,price,configuration,sqft,possession_timeline,launch_date,developer,location,key_usp,lat,lng,updated_at';
+  'id,number,title,type,status,price,configuration,sqft,possession_timeline,launch_date,developer,location,key_usp,description,lat,lng,updated_at';
 
 export const STATUS_ROUTES = [
   { slug: 'upcoming', label: 'Upcoming', match: ['upcoming'] },
@@ -66,7 +72,8 @@ export function statusRouteSlug(status?: string): string | null {
   return route ? route.slug : null;
 }
 
-/** Every public pin, lightweight (no base64 images). Deduped per request. */
+/** Every public pin that is a property project (lib/seo/project-filter.ts), lightweight
+ *  (no base64 images). Office markers and land parcels stay on the map but are left out. */
 export const getPublicPins = cache(async (): Promise<Pin[]> => {
   try {
     const res = await runDbOp(
@@ -74,7 +81,7 @@ export const getPublicPins = cache(async (): Promise<Pin[]> => {
       false,
     );
     if (res.error || !Array.isArray(res.data)) return [];
-    return res.data as Pin[];
+    return (res.data as Pin[]).filter(isPropertyProject).map(withDisplayName);
   } catch {
     return [];
   }
@@ -88,9 +95,11 @@ export const getPinByNumber = cache(async (n: number): Promise<Pin | null> => {
       false,
     );
     if (res.error || !res.data) return null;
+    // Not a property project (office marker, land parcel) → no project page (404).
+    if (!isPropertyProject(res.data as Pin)) return null;
     // Request an optimized ~1000px WebP cover (served by /api/media) rather than
     // the full-size base64 original, so the project page stays fast (P0).
-    return withMediaUrls('pins', res.data, { width: 1000 }) as Pin;
+    return withDisplayName(withMediaUrls('pins', res.data, { width: 1000 }) as Pin);
   } catch {
     return null;
   }

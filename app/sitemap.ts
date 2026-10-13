@@ -11,6 +11,7 @@ import {
   slugForProject,
   type Pin,
 } from '@/lib/seo/entities';
+import { developerIndexing, localityIndexing, projectIndexing } from '@/lib/seo/indexing';
 
 // Regenerate at most every 10 minutes so newly published blog posts and new
 // projects/localities appear without a redeploy (search engines re-fetch
@@ -69,7 +70,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     else if (path === '/blog') r.lastModified = latest(posts);
   }
 
-  const projectRoutes: MetadataRoute.Sitemap = pins.map((p) => ({
+  // Only indexable pages are listed: noindex pages (thin localities/developers,
+  // empty placeholder projects — lib/seo/indexing.ts) stay reachable but out of here.
+  const projectRoutes: MetadataRoute.Sitemap = pins.filter((p) => projectIndexing(p).index).map((p) => ({
     url: `${SITE_URL}/projects/${slugForProject(p)}`,
     lastModified: latest([p]),
     changeFrequency: 'weekly',
@@ -79,8 +82,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const group = (base: string, groups: { slug: string; pins: Pin[] }[], priority: number): MetadataRoute.Sitemap =>
     groups.map((g) => ({ url: `${SITE_URL}${base}/${g.slug}`, lastModified: latest(g.pins), changeFrequency: 'weekly', priority }));
 
-  const locRoutes = group('/locations', locs, 0.75);
-  const devRoutes = group('/developers', devs, 0.6);
+  const locRoutes = group('/locations', locs.filter((g) => localityIndexing(g.slug, g.count).index), 0.75);
+  const devRoutes = group('/developers', devs.filter((g) => developerIndexing(g.count).index), 0.6);
   const cityRoutes = group('/cities', cities, 0.7);
   const statusRoutes = group('/status', statuses, 0.6);
   const typeRoutes = group('/property', types, 0.6);

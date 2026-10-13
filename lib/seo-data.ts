@@ -8,6 +8,8 @@ export interface SeoProject {
   status?: string;
   type?: string;
   developer?: string;
+  price?: string;
+  configuration?: string;
 }
 
 // Server-side fetch of lightweight project info for crawlable SEO content.
@@ -19,7 +21,8 @@ export async function getSeoProjects(): Promise<SeoProject[]> {
       {
         table: 'pins',
         action: 'select',
-        columns: 'id,number,title,location,status,type,developer',
+        // price + configuration let callers drop non-project pins (lib/seo/project-filter.ts).
+        columns: 'id,number,title,location,status,type,developer,price,configuration',
         order: { col: 'number', ascending: true },
       },
       false,

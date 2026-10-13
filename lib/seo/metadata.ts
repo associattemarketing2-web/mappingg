@@ -12,6 +12,8 @@ export interface BuildMeta {
   image?: string;
   type?: 'website' | 'article';
   noIndex?: boolean;
+  /** With noIndex: still let crawlers follow the page's links (thin but useful pages). */
+  follow?: boolean;
   keywords?: string[];
 }
 
@@ -33,7 +35,7 @@ export function buildMetadata(o: BuildMeta): Metadata {
     description: o.description,
     keywords: o.keywords && o.keywords.length ? o.keywords : undefined,
     alternates: { canonical: url },
-    robots: o.noIndex ? { index: false, follow: false } : undefined,
+    robots: o.noIndex ? { index: false, follow: !!o.follow } : undefined,
     openGraph: {
       type: o.type || 'website',
       siteName: SITE.name,

@@ -3,6 +3,7 @@ import LegacyPreloads from '@/components/LegacyPreloads';
 import MapAuthGate from '@/components/MapAuthGate';
 import { getSeoProjects, statusLabel, AREAS_PUNE, AREAS_MMR } from '@/lib/seo-data';
 import { slugForProject } from '@/lib/seo/entities';
+import { isPropertyProject } from '@/lib/seo/project-filter';
 
 import { SITE_URL } from '@/lib/seo/config';
 
@@ -11,7 +12,8 @@ import { SITE_URL } from '@/lib/seo/config';
 export const revalidate = 600;
 
 export default async function MapPage() {
-  const projects = await getSeoProjects();
+  // Office markers and land parcels stay on the map itself but aren't listed as projects.
+  const projects = (await getSeoProjects()).filter(isPropertyProject);
 
   const projectPath = (p: (typeof projects)[number]) => `/projects/${slugForProject({ ...p, number: p.number ?? 0 })}`;
   // Organization + WebSite come from the root layout; this page adds the project list.

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getLocalityGroups, findGroup, cityOf, CITY_LABELS } from '@/lib/seo/entities';
 import { buildMetadata } from '@/lib/seo/metadata';
+import { localityIndexing } from '@/lib/seo/indexing';
 
 // SEO metadata for /locations/<slug> lives here; page.tsx renders the listing.
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
@@ -12,6 +13,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     description: `Explore ${g.count} real estate project${g.count === 1 ? '' : 's'} in ${g.label}${city ? `, ${city}` : ''} — developers, configurations, pricing, status and an interactive map of the area on Mappingg.`,
     path: `/locations/${g.slug}`,
     keywords: [`real estate ${g.label}`, `property in ${g.label}`, `projects in ${g.label}`],
+    // Thin localities stay reachable but aren't indexed (lib/seo/indexing.ts).
+    noIndex: !localityIndexing(g.slug, g.count).index,
+    follow: true,
   });
 }
 

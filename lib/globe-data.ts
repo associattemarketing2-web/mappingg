@@ -1,4 +1,5 @@
 import { getSeoProjects } from './seo-data';
+import { isPropertyProject } from './seo/project-filter';
 
 // Aggregates live projects by country (and the top areas within each) so the
 // hero globe can show real numbers — "which country has how many projects, and
@@ -45,7 +46,7 @@ function areaOf(location?: string): string {
 }
 
 export async function getGlobeData(): Promise<GlobeData> {
-  const projects = await getSeoProjects();
+  const projects = (await getSeoProjects()).filter(isPropertyProject);
   // Count only projects that are actually live on the map (exclude sold).
   const live = projects.filter((p) => (p.status || '').toLowerCase() !== 'sold');
 

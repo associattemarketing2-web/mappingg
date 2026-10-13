@@ -9,6 +9,8 @@ import {
   CITY_LABELS,
 } from '@/lib/seo/entities';
 import { buildMetadata } from '@/lib/seo/metadata';
+import { projectIndexing } from '@/lib/seo/indexing';
+import { displayDeveloperName } from '@/lib/seo/developer-name';
 
 // SEO metadata for /projects/<slug> lives here; page.tsx renders the project.
 // Not-found and redirect decisions are made here, before the response starts
@@ -26,7 +28,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const where = [loc, city].filter(Boolean).join(', ');
   const title = where ? `${name} in ${where} | Price, Location & Details` : `${name} | Price, Location & Details`;
   const bits = [
-    pin.developer ? `by ${pin.developer}` : '',
+    pin.developer ? `by ${displayDeveloperName(pin.developer)}` : '',
     pin.configuration || '',
     pin.status ? statusLabel(pin.status) : '',
     // Only a real price ("₹ 1.73 Cr onwards", "Price on Request"), never other notes typed in the field.
@@ -46,7 +48,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     path: `/projects/${canonicalSlug}`,
     image: pin.image && /^(https?:|\/api\/)/.test(pin.image) ? pin.image : undefined,
     type: 'article',
-    keywords: [name, pin.developer, loc, city, pin.type].filter(Boolean) as string[],
+    keywords: [name, pin.developer && displayDeveloperName(pin.developer), loc, city, pin.type].filter(Boolean) as string[],
+    // Empty placeholder projects (no location, price, configuration or description) aren't indexed yet.
+    noIndex: !projectIndexing(pin).index,
+    follow: true,
   });
 }
 
