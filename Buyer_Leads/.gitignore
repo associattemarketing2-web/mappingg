@@ -1,0 +1,3 @@
+# Contains personal data — never commit.
+*
+!.gitignore

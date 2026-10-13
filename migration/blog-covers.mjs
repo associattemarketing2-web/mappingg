@@ -422,7 +422,7 @@ const SCENES = {
   },
 
   /** Golden-hour panorama with locality pins — Pune overview. */
-  panorama(t) {
+  panorama(t, { pins = ['Hinjewadi', 'Kharadi', 'Mundhwa', 'Balewadi'] } = {}) {
     return [
       sky(t), farSkyline(t, { seed: 41, color: t.far, max: 150, lights: 0 }), haze(t, 280),
       tower(t, { x: 520, top: 330, w: 70, seed: 11, lit: 0.3 }),
@@ -433,10 +433,10 @@ const SCENES = {
       tower(t, { x: 1046, top: 250, w: 80, seed: 16, lit: 0.35 }),
       tower(t, { x: 1150, top: 320, w: 60, seed: 17, lit: 0.3 }),
       ground(t), trees(t, [540, 700, 800, 930, 1030, 1140, 1190], { size: 1.2 }),
-      mapPin(t, 652, 262, 'Hinjewadi', { color: t.pin }),
-      mapPin(t, 862, 222, 'Kharadi'),
-      mapPin(t, 978, 282, 'Mundhwa', { color: t.pin }),
-      mapPin(t, 1086, 242, 'Balewadi', { color: t.pin }),
+      mapPin(t, 652, 262, pins[0], { color: t.pin }),
+      mapPin(t, 862, 222, pins[1]),
+      mapPin(t, 978, 282, pins[2], { color: t.pin }),
+      mapPin(t, 1086, 242, pins[3], { color: t.pin }),
     ];
   },
 
@@ -677,15 +677,15 @@ async function brandMark() {
 /**
  * Render a cover.
  * @param {string} file  output .jpg path
- * @param {{ theme: keyof THEMES, kicker: string, lines: string[], stats?: [string, string][] }} spec
+ * @param {{ theme: keyof THEMES, kicker: string, lines: string[], stats?: [string, string][], pins?: string[], tagline?: string }} spec
  *   lines: 2–3 headline lines; the last line is drawn in the accent colour.
  *   stats: up to 3 [value, label] chips under the headline.
  */
-export async function makeCover(file, { theme, kicker, lines, stats = [] }) {
+export async function makeCover(file, { theme, kicker, lines, stats = [], pins, tagline = 'Pune’s live real-estate map' }) {
   const t = THEMES[theme];
   if (!t) throw new Error(`unknown cover theme ${theme}`);
   reset();
-  const scene = SCENES[t.scene](t).join('');
+  const scene = SCENES[t.scene](t, { pins }).join('');
   const glowLayer = glow.join('');
 
   const size = lines.some((l) => l.length > 17) ? 52 : 58;
@@ -747,7 +747,7 @@ export async function makeCover(file, { theme, kicker, lines, stats = [] }) {
     <g filter="url(#tshadow)">${lines.map((l, i) => `<text x="60" y="${top + i * lineH}" font-family="${FONT}" font-size="${size}" font-weight="800" letter-spacing="-1" fill="${i === lines.length - 1 ? head : '#fff'}">${esc(l)}</text>`).join('')}</g>
     ${chips.join('')}
     <text x="114" y="${H - 52}" font-family="${FONT}" font-size="24" font-weight="800" fill="#fff">mappingg.com</text>
-    <text x="114" y="${H - 30}" font-family="${FONT}" font-size="15" fill="${t.sub}">Pune’s live real-estate map</text>
+    <text x="114" y="${H - 30}" font-family="${FONT}" font-size="15" fill="${t.sub}">${esc(tagline)}</text>
   </svg>`;
 
   await sharp(Buffer.from(svg))

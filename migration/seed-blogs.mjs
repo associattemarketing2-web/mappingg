@@ -93,14 +93,14 @@ function makeHelpers(pins) {
       `<tbody>${rows}</tbody></table></div>`;
   };
 
-  /** Image cards for projects that have a photo. */
-  const gallery = (numbers) => {
+  /** Image cards for projects that have a photo. `city` goes into the image alt text. */
+  const gallery = (numbers, city = 'Pune') => {
     const cards = numbers
       .map(get)
       .filter((p) => p.image_url)
       .map(
         (p) => `<a class="proj-card" href="${href(p)}">` +
-          `<img src="${esc(p.image_url)}" alt="${esc(`${p.title} – ${p.type || 'project'} in ${locality(p)}, Pune`)}" loading="lazy" width="240" height="240">` +
+          `<img src="${esc(p.image_url)}" alt="${esc(`${p.title} – ${p.type || 'project'} in ${locality(p)}, ${city}`)}" loading="lazy" width="240" height="240">` +
           `<span><strong>${esc(p.title)}</strong><em>${esc(locality(p))} · ${esc(price(p))}</em></span></a>`,
       )
       .join('');
@@ -1079,6 +1079,325 @@ function homeLoanArticle(h) {
   };
 }
 
+function twoBhkArticle(h) {
+  return {
+    slug: '2-bhk-flats-in-pune',
+    title: '2 BHK Flats in Pune (2026): New Projects & Prices from ₹30 Lacs to ₹1.5 Cr',
+    seo_title: '2 BHK Flats in Pune 2026: New Projects & Prices',
+    seo_description:
+      'New 2 BHK flats in Pune by budget — from ₹30 Lacs in Chikhali to premium 2 BHKs in Kharadi, Mundhwa & Hinjewadi, with possession dates and MahaRERA numbers.',
+    excerpt:
+      'The 2 BHK is Pune’s most popular home. Here is every new 2 BHK project on our map, sorted by budget from ₹30 Lacs to ₹1.5 Cr, with locations, possession dates and MahaRERA numbers.',
+    tags: ['2 BHK Flats', 'Pune', 'New Projects', 'First Home', 'MahaRERA'],
+    cover: {
+      theme: 'sky',
+      kicker: 'Budget guide',
+      lines: ['2 BHK Flats in', 'Pune: 2026', 'Prices & Projects'],
+      stats: [['50+', '2 BHK projects'], ['₹30 L', 'lowest entry'], ['₹1.5 Cr', 'premium band']],
+    },
+    content: `
+<p>The <strong>2 BHK flat</strong> is the most popular home in Pune. It suits young couples, small families and investors, and it is the easiest size to rent out and resell. On the <a href="/map">Mappingg live map</a> more than 50 new projects in Pune offer 2 BHK homes, from about ₹30 Lacs in Pimpri-Chinchwad to premium 2 BHKs above ₹1.2 Cr near the IT hubs. This guide sorts them by budget so you can build your shortlist quickly.</p>
+
+<h2>How much does a 2 BHK cost in Pune?</h2>
+<div class="table-scroll"><table>
+<caption>2 BHK starting prices by area</caption>
+<thead><tr><th>Budget</th><th>Where to look</th><th>What you get</th></tr></thead>
+<tbody>
+<tr><td>Under ₹60 Lacs</td><td>Chikhali, Hadapsar–Fursungi, Bopkhel</td><td>Compact 2 BHK, often alongside 1 BHK</td></tr>
+<tr><td>₹60–80 Lacs</td><td>Undri, Lohegaon, Ambegaon, Mohammadwadi, Dudulgaon, Dapodi, Sus</td><td>Standard 2 BHK in gated projects</td></tr>
+<tr><td>₹80 Lacs – ₹1 Cr</td><td>Hinjewadi, Dhanori, Mahalunge, Charholi, Moshi, Hadapsar</td><td>Larger 2 BHK near IT and township hubs</td></tr>
+<tr><td>₹1 Cr – ₹1.5 Cr</td><td>Kharadi, Mundhwa, Baner, Balewadi, Magarpatta, NIBM</td><td>Premium 2 BHK in prime East and West Pune</td></tr>
+</tbody></table></div>
+<p><small>Starting prices as listed on Mappingg in October 2026. The same projects usually have bigger homes at higher prices.</small></p>
+
+${h.gallery([211, 199, 204, 25, 182, 200])}
+
+<h2>2 BHK flats under ₹60 Lacs</h2>
+<p>The lowest prices on our map are in Pimpri-Chinchwad. ${h.link(244)} in ${h.loc('Chikhali')} offers 1 and 2 BHK homes from ₹30 Lacs, and ${h.link(240)} nearby starts at ₹35 Lacs. On the east side, ${h.link(221)} in Hadapsar has 2 BHK homes up to about ₹77 Lacs with 1 BHKs from ₹44.99 Lacs, and ${h.link(163)} near Khadki starts at about ₹50 Lacs.</p>
+${h.table([244, 240, 221, 163], '2 BHK projects starting under ₹60 Lacs')}
+
+<h2>2 BHK flats from ₹60 Lacs to ₹80 Lacs</h2>
+<p>This is the sweet spot for first-time buyers. In South-East Pune, ${h.link(211)} in ${h.loc('Undri')}, ${h.link(212)} in Mohammadwadi and ${h.link(229)} in Ambegaon start between ₹62 and ₹68 Lacs. Near the airport, ${h.link(233)} and ${h.link(234)} in ${h.loc('Lohegaon')} start at about ₹65 Lacs. In PCMC, look at ${h.link(249)} in Dudulgaon and ${h.link(251)} in Dapodi, while ${h.link(199)} in Sus and ${h.link(111)} by Magarpatta Group in Loni Kalbhor round out the list.</p>
+${h.table([211, 212, 229, 233, 234, 249, 251, 199, 111], '2 BHK projects from ₹60 Lacs to ₹80 Lacs')}
+
+<h2>2 BHK flats from ₹80 Lacs to ₹1 Crore</h2>
+<p>A little more budget gets you closer to the big job hubs. In ${h.loc('Hinjewadi')}, the Krisala Hiranandani township has ${h.link(204)} from ₹82 Lacs. ${h.link(165)} in ${h.loc('Dhanori')} starts at ₹81 Lacs, ${h.link(198)} by Mahindra in Mahalunge at ₹90 Lacs, and ${h.link(260)} in Dhanori at ₹87 Lacs. ${h.link(210)} in Hadapsar, ${h.link(241)} in Charholi, ${h.link(256)} in Lohegaon and ${h.link(242)} in Moshi all have 2 BHK homes in this band.</p>
+${h.table([204, 165, 260, 198, 210, 241, 256, 242, 213], '2 BHK projects from ₹80 Lacs to ₹1 Cr')}
+
+<h2>Premium 2 BHK flats from ₹1 Cr to ₹1.5 Cr</h2>
+<p>If you want a 2 BHK in a prime micro-market, expect to pay ₹1 Cr or more. In ${h.loc('Mundhwa')}, ${h.link(13)} starts at ₹98 Lacs and ${h.link(25)} by Magarpatta Group at ₹1.08 Cr. In ${h.loc('Kharadi')}, ${h.link(135)}, ${h.link(21)} and ${h.link(265)} start between ₹92 Lacs and ₹1.25 Cr. West Pune options include ${h.link(201)} in ${h.loc('Baner')}, ${h.link(200)} in ${h.loc('Balewadi')} and ${h.link(182)} by Lodha in Hinjewadi. ${h.link(47)} in Magarpatta and ${h.link(235)} in ${h.loc('NIBM')} complete the list.</p>
+${h.table([13, 25, 135, 21, 265, 201, 200, 182, 47, 235], 'Premium 2 BHK projects from ₹1 Cr to ₹1.5 Cr')}
+
+<h2>2 BHK flats ready by the end of 2026</h2>
+<p>If you’re paying rent, an early possession date matters as much as the price. These projects with 2 BHK homes are due by December 2026: ${h.link(244)} in Chikhali, ${h.link(233)} in Lohegaon, ${h.link(249)} in Dudulgaon, ${h.link(235)} in NIBM, ${h.link(228)} in Thergaon and ${h.link(232)} in ${h.loc('Tathawade')}. Our guide to <a href="/blog/ready-to-move-vs-under-construction-flats-pune">ready-to-move vs under-construction flats</a> explains the trade-offs.</p>
+${h.table([244, 233, 249, 235, 228, 232], '2 BHK projects due by December 2026')}
+
+<h2>How to choose the right 2 BHK</h2>
+<ol>
+  <li><strong>Compare carpet area, not the “2 BHK” label.</strong> 2 BHK homes in Pune range from about 650 to over 900 sq ft of carpet area. Work out the price per sq ft on carpet area.</li>
+  <li><strong>Consider a 2.5 BHK.</strong> Many projects, such as ${h.link(25)} and ${h.link(111)}, offer a 2.5 BHK with a small study for a modest premium. It’s useful if you work from home.</li>
+  <li><strong>Check the commute on a map.</strong> Open each project on the <a href="/map">live map</a> to see the roads and metro lines around it.</li>
+  <li><strong>Budget for the extra costs.</strong> Stamp duty, registration and GST can add about 12% to the price. Read our guide to <a href="/blog/stamp-duty-registration-charges-pune">stamp duty and hidden costs</a>.</li>
+  <li><strong>Plan your loan early.</strong> See our <a href="/blog/home-loan-emi-eligibility-pune">home loan EMI and eligibility guide</a> to know your budget before you book.</li>
+  <li><strong>Verify the MahaRERA number</strong> for your tower. Here’s <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>.</li>
+</ol>
+
+<h2>FAQs: 2 BHK flats in Pune</h2>
+<h3>What is the price of a new 2 BHK flat in Pune?</h3>
+<p>Among the projects on our map, new 2 BHK homes start at about ₹30 Lacs in Chikhali, ₹62–68 Lacs in Undri and South-East Pune, ₹82–90 Lacs near Hinjewadi and Mahalunge, and ₹1–1.25 Cr in Kharadi, Mundhwa and Baner.</p>
+<h3>Which is the best area to buy a 2 BHK in Pune?</h3>
+<p>Choose the side of the city where you work. For Hinjewadi IT jobs, look at Hinjewadi, Tathawade, Sus and Mahalunge. For Kharadi and Magarpatta, look at Kharadi, Mundhwa, Hadapsar and Lohegaon. Our guide to the <a href="/blog/best-areas-to-buy-property-in-pune">best areas to buy property in Pune</a> compares them.</p>
+<h3>Is a 2 BHK a good investment in Pune?</h3>
+<p>2 BHK homes near IT hubs have the widest pool of tenants and resale buyers, so they are usually easier to rent and sell than larger homes. Rental yields depend on the exact location and price, so compare a few projects before you decide.</p>
+<h3>Should I buy a 2 BHK or a 3 BHK?</h3>
+<p>If your family may grow within a few years, compare the cost of a 3 BHK now with moving later. See our guide to <a href="/blog/3-bhk-flats-in-pune">3 BHK flats in Pune</a> and <a href="/blog/flats-under-1-crore-in-pune">flats under ₹1 crore</a>.</p>
+
+<blockquote>Prices, configurations and possession dates are as listed on Mappingg in October 2026 and may change. Always confirm with the developer and on MahaRERA before you book.</blockquote>
+`,
+  };
+}
+
+function luxuryArticle(h) {
+  return {
+    slug: 'luxury-flats-villas-in-pune',
+    title: 'Luxury Flats & Villas in Pune (2026): 4 & 5 BHK Projects from ₹2.5 Cr to ₹12 Cr',
+    seo_title: 'Luxury Flats & Villas in Pune 2026: 4 & 5 BHK Prices',
+    seo_description:
+      'Luxury apartments and villas in Pune — Koregaon Park, Mundhwa, Kharadi, Baner, Kothrud & Aundh. 3.5 to 5 BHK homes from ₹2.5 Cr to ₹12 Cr, with possession dates and MahaRERA numbers.',
+    excerpt:
+      'Where Pune’s luxury homes are: Koregaon Park, Mundhwa, Kharadi, Baner, Kothrud and Aundh. Every 3.5–5 BHK apartment and villa project on our map from ₹2.5 Cr up, with prices and possession dates.',
+    tags: ['Luxury Homes', 'Villas', 'Pune', 'Koregaon Park', '4 BHK'],
+    cover: {
+      theme: 'golden',
+      kicker: 'Luxury guide',
+      lines: ['Luxury Flats &', 'Villas in Pune', '2026 Price Guide'],
+      stats: [['25+', 'luxury projects'], ['₹2.5 Cr+', 'entry price'], ['4–5 BHK', 'and villas']],
+    },
+    content: `
+<p>Pune’s luxury market has grown quickly. Large 3.5, 4.5 and 5 BHK apartments and gated villa communities are now on offer from Koregaon Park and Mundhwa in the east to Baner, Aundh and Kothrud in the west. On the <a href="/map">Mappingg live map</a> we track more than 25 projects that start at ₹2.5 Cr or more, or that offer villas and 4–5 BHK homes. This guide brings them together by budget.</p>
+
+<h2>Where Pune’s luxury homes are</h2>
+<ul>
+  <li><strong>${h.loc('Koregaon Park')} and Bund Garden Road:</strong> Pune’s most established premium address, with large apartments close to the city centre.</li>
+  <li><strong>${h.loc('Mundhwa')}:</strong> the KP Annexe side has the widest choice of luxury towers and villa communities, at prices below Koregaon Park.</li>
+  <li><strong>${h.loc('Kharadi')} and ${h.loc('Viman Nagar')}:</strong> high-rise 3.5 and 4.5 BHK homes near the EON IT Park and the airport.</li>
+  <li><strong>${h.loc('Baner')}, ${h.loc('Balewadi')} and ${h.loc('Aundh')}:</strong> West Pune’s premium belt, close to Hinjewadi and the Mumbai–Bengaluru highway.</li>
+  <li><strong>${h.loc('Kothrud')} and the city core:</strong> redevelopment-led luxury projects in established neighbourhoods.</li>
+</ul>
+
+${h.gallery([31, 15, 118, 6, 37, 181])}
+
+<h2>Ultra-luxury homes and villas from ₹5 Cr</h2>
+<p>At the top end, ${h.link(31)} in Mundhwa offers 4 BHK villas from ₹11.50 Cr, and ${h.link(52)} plans 4 and 5 BHK homes from ₹8 Cr to ₹12 Cr. ${h.link(187)} in Bhosale Nagar starts at ₹9.35 Cr. On Satara Road and Shankar Seth Road, ${h.link(218)} and ${h.link(219)} offer 3 and 4 BHK homes up to about ₹6.35 Cr.</p>
+${h.table([31, 52, 187, 218, 219], 'Ultra-luxury projects in Pune')}
+
+<h2>Luxury apartments from ₹3.5 Cr to ₹5 Cr</h2>
+<p>This is the core of Pune’s luxury market. In Mundhwa, ${h.link(22)} offers villas from ₹4.95 Cr, ${h.link(15)} by Panchshil has 3.5 and 4.5 BHK homes from ₹4.32 Cr, and ${h.link(6)} by Magarpatta Group has 4.5 BHK homes from ₹4.30 Cr. In Koregaon Park, look at ${h.link(118)} and ${h.link(38)}. ${h.link(181)} in Aundh, ${h.link(215)} in Baner, ${h.link(104)} in Lulla Nagar, ${h.link(81)} in Kharadi and ${h.link(136)} in Viman Nagar complete the list.</p>
+${h.table([22, 15, 6, 118, 38, 181, 119, 215, 104, 81, 136], 'Luxury projects from ₹3.5 Cr to ₹5 Cr')}
+
+<h2>Premium homes from ₹2.5 Cr to ₹3.5 Cr</h2>
+<p>For a large 3.5 or 4 BHK without paying ultra-luxury prices, consider ${h.link(37)} by Godrej Properties from ₹3.33 Cr, the upcoming ${h.link(9)} from ₹3 Cr, and ${h.link(2)} from ₹2.65 Cr, all in Mundhwa. In West Pune, ${h.link(159)} in Kothrud starts at ₹2.70 Cr, and the larger 4 BHK homes at ${h.link(216)} in Balewadi go up to ₹2.65 Cr.</p>
+${h.table([37, 9, 2, 159, 216], 'Premium projects from ₹2.5 Cr to ₹3.5 Cr')}
+
+<h2>Ready luxury homes</h2>
+<p>Most luxury projects are still under construction. If you want to move in sooner, ${h.link(236)} in Pimple Saudagar (possession done) and ${h.link(93)} in Hadapsar (ready possession) are on our map, and ${h.link(81)} in Kharadi is nearing possession. Remember that a completed flat with an occupancy certificate attracts no GST.</p>
+${h.table([236, 93, 81], 'Ready and nearly-ready premium projects')}
+
+<h2>Price on request</h2>
+<p>Some of Pune’s most exclusive projects don’t publish prices. These include ${h.link(167)} on Bund Garden Road, ${h.link(68)} in Mundhwa, ${h.link(84)} villas in Kharadi, ${h.link(162)} in Balewadi and ${h.link(101)} in Viman Nagar. Ask the developer for a price sheet and compare it with the projects above.</p>
+
+<h2>Checklist before you buy a luxury home</h2>
+<ol>
+  <li><strong>Compare carpet area and the price per sq ft</strong> on carpet area. Large balconies, decks and private gardens are often priced differently.</li>
+  <li><strong>Check the density.</strong> Ask how many homes share each floor and lift, and how much of the land is open space.</li>
+  <li><strong>Look at the specifications in the agreement,</strong> not just the brochure: flooring, kitchen fittings, home automation and the number of parking spaces.</li>
+  <li><strong>Check the developer’s delivery record</strong> on past luxury projects. See the <a href="/developers">developers page</a>.</li>
+  <li><strong>Budget for the extra costs.</strong> On a ₹5 Cr home, stamp duty alone in PMC limits is about ₹35 Lacs. Read our guide to <a href="/blog/stamp-duty-registration-charges-pune">stamp duty and hidden costs</a>.</li>
+  <li><strong>Remember the 1% TDS</strong> on every payment to the developer for homes worth ₹50 Lacs or more.</li>
+  <li><strong>Verify the MahaRERA number</strong> for your tower. Here’s <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>.</li>
+</ol>
+
+<h2>FAQs: Luxury homes in Pune</h2>
+<h3>Which is the most premium area in Pune?</h3>
+<p>Koregaon Park and Bund Garden Road are Pune’s most established premium addresses. Mundhwa (KP Annexe), Kalyani Nagar, Baner and Aundh now offer many new luxury projects too.</p>
+<h3>How much does a 4 BHK cost in Pune?</h3>
+<p>Among the projects on our map, new 4 and 4.5 BHK homes start at about ₹3.3–4.5 Cr in Mundhwa, Kharadi and Baner, and go above ₹5 Cr in Koregaon Park and the city core. Villas in Mundhwa start at about ₹5 Cr and go above ₹11 Cr.</p>
+<h3>Are there villa projects in Pune?</h3>
+<p>Yes. ${h.link(31)} and ${h.link(22)} in Mundhwa and ${h.link(84)} in Kharadi offer villas inside gated communities.</p>
+<h3>Where can I compare all luxury projects on a map?</h3>
+<p>Open the <a href="/map">interactive map</a> to see each project with nearby roads and infrastructure, or compare localities in our guide to the <a href="/blog/best-areas-to-buy-property-in-pune">best areas to buy property in Pune</a>.</p>
+
+<blockquote>Prices, configurations and possession dates are as listed on Mappingg in October 2026 and may change. Always confirm with the developer and on MahaRERA before you book.</blockquote>
+`,
+  };
+}
+
+function naviMumbaiArticle(h) {
+  return {
+    slug: 'new-projects-in-navi-mumbai',
+    title: 'New Projects in Navi Mumbai (2026): Kharghar, Panvel, Airoli, Juinagar, Vashi & Nerul',
+    seo_title: 'New Projects in Navi Mumbai 2026: Prices & BHK',
+    seo_description:
+      'New residential projects in Navi Mumbai — Kharghar, Panvel, Airoli, Juinagar, Vashi, Nerul & Taloja. 1 BHK from ₹48 Lacs to 2, 3 & 4 BHK homes from ₹1.57 Cr, with possession dates.',
+    excerpt:
+      'Every Navi Mumbai project on our map, node by node: budget 1 and 2 BHK homes in Upper Kharghar and Panvel, 2–4 BHK family homes from ₹1.57 Cr in Airoli, Juinagar and Kharghar, and the big launches in Vashi and Nerul.',
+    tags: ['Navi Mumbai', 'Kharghar', 'Panvel', 'New Projects', 'MMR'],
+    cover: {
+      theme: 'emerald',
+      kicker: 'Locality guide',
+      lines: ['New Projects in', 'Navi Mumbai', '2026 Buyer’s Guide'],
+      stats: [['19', 'projects tracked'], ['₹48 L', '1 BHK from'], ['1–4 BHK', 'homes']],
+      pins: ['Kharghar', 'Vashi', 'Airoli', 'Panvel'],
+      tagline: 'Pune & Mumbai’s live real-estate map',
+    },
+    content: `
+<p>Looking for <strong>new projects in Navi Mumbai</strong>? Navi Mumbai was planned from the start as a city of nodes. Each node, such as Vashi, Nerul, Kharghar or Panvel, has its own stations, markets and schools. That makes it one of the most popular places in the Mumbai Metropolitan Region (MMR) for families who want more space than Mumbai offers at the same budget. On the <a href="/cities/mumbai">Mappingg map of Mumbai &amp; MMR</a> we track 19 projects across Navi Mumbai. This guide sorts them by node and budget.</p>
+
+<h2>Why buy in Navi Mumbai?</h2>
+<ul>
+  <li><strong>Planned layout:</strong> wide roads, sector-wise planning and plenty of open space, compared with older parts of Mumbai.</li>
+  <li><strong>Connectivity:</strong> the Harbour and Trans-Harbour suburban lines, the Sion–Panvel Highway, the Atal Setu (Mumbai Trans Harbour Link) to South Mumbai and Navi Mumbai Metro Line 1 around Belapur and Kharghar.</li>
+  <li><strong>The new airport:</strong> Navi Mumbai International Airport near Panvel is driving demand in Kharghar, Panvel, Taloja and Ulwe.</li>
+  <li><strong>Jobs nearby:</strong> the Thane–Belapur industrial belt and the IT parks in Airoli, Ghansoli and Mahape.</li>
+</ul>
+
+${h.gallery([177, 131, 132, 183, 224, 225], 'Navi Mumbai')}
+
+<h2>Budget 1 &amp; 2 BHK homes under ₹1 Cr</h2>
+<p>The most affordable new homes on our map are in the outer nodes. ${h.link(224)} in Upper ${h.loc('Kharghar')} offers 1 and 2 BHK homes from ₹48 Lacs to ₹71 Lacs, and ${h.link(225)} in ${h.loc('Panvel')} from about ₹64 Lacs to ₹90 Lacs. Both are by Today Group and due in December 2029.</p>
+${h.table([224, 225], 'Navi Mumbai projects under ₹1 Cr')}
+
+<h2>2, 3 &amp; 4 BHK family homes from ₹1.5 Cr to ₹2 Cr</h2>
+<p>This band covers most of the larger homes on our map. ${h.link(183)} in Panvel starts at ₹1.57 Cr for 2 and 3 BHK homes, with some towers ready. In ${h.loc('Airoli')}, ${h.link(177)} starts at ₹1.72 Cr. ${h.link(131)} in ${h.loc('Juinagar')} and ${h.link(132)} in Kharghar both start at ₹1.90 Cr, with 2, 3 and 4 BHK homes.</p>
+${h.table([183, 177, 131, 132], '2–4 BHK projects in Navi Mumbai from ₹1.5 Cr')}
+
+<h2>More residential projects in Navi Mumbai</h2>
+<p>Prices for these projects aren’t listed on our map yet. Open each project page or ask the developer for a price sheet:</p>
+<ul>
+  <li><strong>${h.loc('Vashi')}:</strong> ${h.link(173)} by Godrej Properties and ${h.link(171)} by Arihant Superstructures.</li>
+  <li><strong>${h.loc('Nerul')}:</strong> ${h.link(169)}, plus the mixed-use ${h.link(126)} by Paradise Group.</li>
+  <li><strong>Juinagar:</strong> ${h.link(129)} by Raheja Universal, ${h.link(130)} by K Raheja Corp and ${h.link(133)}.</li>
+  <li><strong>Kharghar &amp; ${h.loc('Taloja')}:</strong> ${h.link(178)}, ${h.link(179)} and ${h.link(180)}, all by Paradise Group.</li>
+  <li><strong>Airoli:</strong> ${h.link(175)} by Delta Bhagvati.</li>
+</ul>
+
+<h2>Commercial projects</h2>
+<p>For office or retail space, look at ${h.link(127)} in Juinagar (ready) and ${h.link(128)} in Nerul. Browse every <a href="/property/commercial">commercial project</a> on the map to compare.</p>
+
+<h2>Which Navi Mumbai node suits you?</h2>
+<div class="table-scroll"><table>
+<caption>Navi Mumbai nodes at a glance</caption>
+<thead><tr><th>Node</th><th>Best for</th><th>On our map</th></tr></thead>
+<tbody>
+<tr><td>Vashi, Nerul, Juinagar</td><td>Established nodes closest to Mumbai, good schools and markets</td><td>Launches by large developers; prices not yet listed on our map</td></tr>
+<tr><td>Airoli</td><td>Working near the Airoli–Ghansoli IT parks or Thane</td><td>2–4 BHK from ₹1.72 Cr</td></tr>
+<tr><td>Kharghar</td><td>Families wanting space, green areas and the metro</td><td>1–2 BHK from ₹48 Lacs in Upper Kharghar; 2–4 BHK from ₹1.90 Cr</td></tr>
+<tr><td>Panvel &amp; Taloja</td><td>Lowest entry prices; closest to the new airport</td><td>1–2 BHK from about ₹64 Lacs; 2–3 BHK from ₹1.57 Cr</td></tr>
+</tbody></table></div>
+
+<h2>Checklist before you book in Navi Mumbai</h2>
+<ol>
+  <li><strong>Verify the MahaRERA number</strong> for your tower or phase. Here’s <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>. Several projects above don’t show a number on our map yet, so ask the developer for it.</li>
+  <li><strong>Check whether the land is freehold or CIDCO leasehold.</strong> Much of Navi Mumbai is on CIDCO lease land, which affects transfer charges and paperwork.</li>
+  <li><strong>Compare carpet area</strong> and work out the price per sq ft on carpet area, not on the “2 BHK” label.</li>
+  <li><strong>Check the commute on a map.</strong> Open each project on the <a href="/map">live map</a> to see the stations, highways and metro around it.</li>
+  <li><strong>Budget for the extra costs.</strong> Stamp duty, registration and GST add several percent to the price. Confirm the stamp duty rate for the exact municipal area with your lawyer.</li>
+</ol>
+
+<h2>FAQs: New projects in Navi Mumbai</h2>
+<h3>What is the cheapest new project in Navi Mumbai?</h3>
+<p>Among the projects on our map, ${h.link(224)} in Upper Kharghar has the lowest starting price, with 1 BHK homes from about ₹48 Lacs, followed by ${h.link(225)} in Panvel from about ₹64 Lacs.</p>
+<h3>How much does a 3 BHK cost in Navi Mumbai?</h3>
+<p>New 2–4 BHK projects on our map start at ₹1.57 Cr in Panvel, ₹1.72 Cr in Airoli and ₹1.90 Cr in Juinagar and Kharghar. 3 BHK homes are usually priced above these starting figures.</p>
+<h3>Is Navi Mumbai good for investment?</h3>
+<p>The new airport, the Atal Setu and the metro are all improving access, especially to Panvel, Kharghar and Taloja. As with any purchase, compare possession dates and the developer’s delivery record before you decide.</p>
+<h3>Where can I see all Navi Mumbai projects on a map?</h3>
+<p>Open the <a href="/cities/mumbai">Mumbai &amp; MMR page</a> for the full list, or the <a href="/map">interactive map</a>. Also comparing Kalyan, Dombivli and Thane? Read our guide to <a href="/blog/new-projects-in-kalyan-dombivli-palava-thane">new projects in Kalyan, Dombivli, Palava &amp; Thane</a>.</p>
+
+<blockquote>Prices, configurations and possession dates are as listed on Mappingg in October 2026 and may change. Always confirm with the developer and on MahaRERA before you book.</blockquote>
+`,
+  };
+}
+
+function kalyanDombivliArticle(h) {
+  return {
+    slug: 'new-projects-in-kalyan-dombivli-palava-thane',
+    title: 'New Projects in Kalyan, Dombivli, Palava & Thane (2026): Flats from ₹29 Lacs to Luxury Villas',
+    seo_title: 'New Projects in Kalyan, Dombivli, Palava & Thane 2026',
+    seo_description:
+      'New projects on Kalyan Shil Road, Dombivli, Manpada, Palava and Thane — 1 & 2 BHK flats from ₹29 Lacs, 3 BHK homes from ₹1.51 Cr and Lodha villas, with possession dates.',
+    excerpt:
+      'Kalyan–Dombivli is MMR’s biggest affordable-housing belt, and Palava adds luxury homes and villas. Here is every project on our map along Kalyan Shil Road, in Dombivli, Manpada, Palava and Thane, sorted by budget.',
+    tags: ['Kalyan', 'Dombivli', 'Palava', 'Thane', 'MMR'],
+    cover: {
+      theme: 'sunrise',
+      kicker: 'Locality guide',
+      lines: ['New Projects in', 'Kalyan, Dombivli', 'Palava & Thane'],
+      stats: [['21', 'projects tracked'], ['₹29 L', 'entry price'], ['1 BHK–villas', 'on offer']],
+      tagline: 'Pune & Mumbai’s live real-estate map',
+    },
+    content: `
+<p>The Kalyan–Dombivli belt, and the Palava township along Kalyan Shil Road, is where much of the Mumbai Metropolitan Region’s new housing is being built. Prices here are a fraction of Mumbai’s, and big developers such as Lodha, Runwal and Rustomjee are active. On the <a href="/cities/mumbai">Mappingg map of Mumbai &amp; MMR</a> we track 21 projects in ${h.loc('Kalyan')}, ${h.loc('Dombivli')}, ${h.loc('Manpada')}, ${h.loc('Palava')} and ${h.loc('Thane')}. This guide sorts them by budget.</p>
+
+<h2>Why buy along Kalyan Shil Road?</h2>
+<ul>
+  <li><strong>Affordable entry:</strong> new 1 and 2 BHK homes start below ₹50 Lacs, far below Mumbai and Thane city prices.</li>
+  <li><strong>Large townships:</strong> Palava and Runwal Garden City are planned as townships, with homes, shops and amenities in one place.</li>
+  <li><strong>Connectivity:</strong> Kalyan and Dombivli stations on the Central line, Kalyan Shil Road towards Navi Mumbai and Thane, and new metro lines planned for the region.</li>
+  <li><strong>Choice at every budget:</strong> from ₹29 Lacs starter homes to 4 and 5 BHK homes and villas in Palava.</li>
+</ul>
+
+${h.gallery([121, 147, 120, 152, 222, 192], 'Mumbai Metropolitan Region')}
+
+<h2>Flats under ₹50 Lacs</h2>
+<p>For first-time buyers, ${h.link(151)} in Manpada starts at ₹29 Lacs for 1 and 2 BHK homes, with some towers ready. ${h.link(153)} at Vicco Naka in Dombivli starts at ₹35 Lacs, and ${h.link(123)} by Lodha on Kalyan Shil Road at ₹38 Lacs. ${h.link(150)} in Manpada, ${h.link(154)} in Dombivli East, ${h.link(120)} by Runwal, ${h.link(223)} at Shilphata and ${h.link(192)} (ready possession) all start between ₹42 Lacs and ₹48 Lacs.</p>
+${h.table([151, 153, 123, 150, 154, 120, 223, 192], 'Projects starting under ₹50 Lacs')}
+
+<h2>Flats from ₹50 Lacs to ₹1 Cr</h2>
+<p>A little more budget gets you a bigger home in a well-known township. ${h.link(124)} by Paradise Group starts at ₹51 Lacs with 1 to 3 BHK homes. ${h.link(152)} by Rustomjee and ${h.link(122)} by Lodha offer 1, 2 and 3 BHK homes from about ₹52–55 Lacs. ${h.link(155)} in Dombivli East starts at ₹55 Lacs, and ${h.link(222)} at Shilphata at ₹60 Lacs.</p>
+${h.table([124, 152, 122, 155, 222], 'Projects from ₹50 Lacs to ₹1 Cr')}
+
+<h2>3 &amp; 4 BHK homes from ₹1.5 Cr</h2>
+<p>For a larger family home, ${h.link(121)} by Lodha on Kalyan Shil Road offers 3 and 4 BHK homes and duplexes from ₹1.51 Cr. In Palava, ${h.link(147)} starts at ₹2.50 Cr for 3 and 4 BHK homes and duplexes, due in December 2027.</p>
+${h.table([121, 147], '3 & 4 BHK projects from ₹1.5 Cr')}
+
+<h2>Luxury homes and villas in Palava and Thane</h2>
+<p>At the top end, ${h.link(149)} in Palava Phase 1 offers 4 and 5 BHK homes from ₹7 Cr, due in June 2027. ${h.link(148)} in Palava Phase 2 offers bare-shell villas from ₹4.2 Cr. In Thane, the upcoming ${h.link(156)} plans 3 and 4 BHK homes from ₹4 Cr.</p>
+${h.table([149, 148, 156], 'Luxury projects in Palava and Thane')}
+
+<h2>More projects in Thane</h2>
+<p>Our map also has ${h.link(386)} and ${h.link(385)} by Raheja Universal in Thane. Both are MahaRERA-registered, but their prices aren’t listed on our map yet, so ask the developer for a price sheet.</p>
+
+<h2>Commercial space</h2>
+<p>${h.link(125)} by Lodha on Kalyan Shil Road offers office space from ₹1 Cr, with some buildings ready. ${h.link(120)} by Runwal also has shops and offices alongside its homes.</p>
+
+<h2>Homes you can move into sooner</h2>
+<p>If you’re paying rent, look at projects with ready towers: ${h.link(192)} (ready possession), and the ready phases of ${h.link(120)}, ${h.link(122)}, ${h.link(124)} and ${h.link(151)}. Later phases of the same projects are due between 2027 and 2028. Our guide to <a href="/blog/ready-to-move-vs-under-construction-flats-pune">ready-to-move vs under-construction flats</a> explains the trade-offs, and they apply across Maharashtra.</p>
+
+<h2>Checklist before you book</h2>
+<ol>
+  <li><strong>Verify the MahaRERA number</strong> for your exact tower or phase. Most projects above don’t show a number on our map yet, so ask the developer and check it yourself. Here’s <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>.</li>
+  <li><strong>Check the possession date for your tower.</strong> Large townships deliver in phases, so “Ready &amp; Dec 2028” means some towers are ready and others are not.</li>
+  <li><strong>Test the commute at peak hours.</strong> Kalyan Shil Road traffic can be heavy, so check your route to work on the <a href="/map">live map</a> and in person.</li>
+  <li><strong>Compare carpet area</strong> and work out the price per sq ft on carpet area.</li>
+  <li><strong>Budget for the extra costs.</strong> Stamp duty, registration and GST add several percent to the price. Confirm the stamp duty rate for your municipal area with your lawyer.</li>
+</ol>
+
+<h2>FAQs: Kalyan, Dombivli, Palava &amp; Thane</h2>
+<h3>What is the cheapest new project in Kalyan–Dombivli?</h3>
+<p>Among the projects on our map, ${h.link(151)} in Manpada starts at ₹29 Lacs, followed by ${h.link(153)} in Dombivli at ₹35 Lacs and ${h.link(123)} on Kalyan Shil Road at ₹38 Lacs.</p>
+<h3>Is Palava a good place to buy?</h3>
+<p>Palava is a large Lodha township with homes from mid-range 3 BHKs to villas and 5 BHK residences. It suits buyers who want a self-contained township. Compare commute times and possession dates before you decide.</p>
+<h3>Which mid-range projects in Kalyan–Dombivli offer 3 BHK homes?</h3>
+<p>${h.link(154)}, ${h.link(124)}, ${h.link(152)} and ${h.link(122)} all list 3 BHK homes. Their starting prices (about ₹44–55 Lacs) are for the smallest homes, so ask each developer for the 3 BHK price sheet.</p>
+<h3>Where can I see these projects on a map?</h3>
+<p>Open the <a href="/cities/mumbai">Mumbai &amp; MMR page</a> or the <a href="/map">interactive map</a>. Also considering Navi Mumbai? Read our guide to <a href="/blog/new-projects-in-navi-mumbai">new projects in Navi Mumbai</a>.</p>
+
+<blockquote>Prices, configurations and possession dates are as listed on Mappingg in October 2026 and may change. Always confirm with the developer and on MahaRERA before you book.</blockquote>
+`,
+  };
+}
+
 // ---- main ---------------------------------------------------------------------
 
 async function upsert(post) {
@@ -1116,6 +1435,7 @@ async function main() {
     mundhwaArticle(h), puneAreasArticle(h), kharadiArticle(h), reraArticle(h),
     westPuneArticle(h), pcmcArticle(h), eastPuneArticle(h), readyVsUcArticle(h),
     underOneCroreArticle(h), stampDutyArticle(h), threeBhkArticle(h), homeLoanArticle(h),
+    twoBhkArticle(h), luxuryArticle(h), naviMumbaiArticle(h), kalyanDombivliArticle(h),
   ];
 
   // Sanity: every slug used by the articles' internal links must be stable.
