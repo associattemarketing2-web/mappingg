@@ -66,7 +66,7 @@ export function openApiSpec(): Obj {
     },
     servers: [{ url: `${SITE_URL}${API_BASE_PATH}` }],
     security: [{ bearerAuth: [] }],
-    tags: ['Health', 'Metadata', 'Projects', 'Sample', 'Categories', 'Developers', 'Localities', 'Map', 'Infrastructure', 'Blogs'].map((name) => ({ name })),
+    tags: ['Health', 'Metadata', 'Projects', 'Sample', 'Categories', 'Developers', 'Localities', 'Map', 'Infrastructure', 'Blogs', 'Enquiries'].map((name) => ({ name })),
     'x-scopes': Object.fromEntries(SCOPE_LIST.map((s) => [s, SCOPES[s]])),
     paths: {
       '/health': { get: op('Health check', 'public', [], { type: 'object', properties: { status: { enum: ['ok', 'degraded'] }, version: { type: 'string' }, time: { type: 'string', format: 'date-time' } } }) },
@@ -113,6 +113,28 @@ export function openApiSpec(): Obj {
           { type: 'array', items: ref('InfraMarker') }, { paginated: true, description: 'Give all four bounds or none.' }),
       },
       '/blogs': { get: op('Blogs: published articles', 'blogs:read', [...PAGE, qp('tag', { type: 'string', maxLength: 40 }, 'Only articles with this tag (case-insensitive).')], { type: 'array', items: ref('BlogSummary') }, { paginated: true }) },
+      '/enquiries': {
+        post: {
+          summary: 'Enquiries: send a visitor’s enquiry into the Mappingg CRM',
+          description:
+            'Server-to-server only — never call this from browser code (no CORS). Requires the `enquiries:submit` scope and a registered website: ' +
+            '`sourcePage` must be on that domain. You must show the visitor your consent wording and send it exactly in `consent.text`; ' +
+            'Mappingg records it as consent stated by you, the partner. Retries with the same `submissionId` and body return the original receipt (200, `Idempotent-Replayed: true`). ' +
+            'The response never says whether the person or number is already known to Mappingg.',
+          tags: ['Enquiries'],
+          'x-required-scope': 'enquiries:submit',
+          requestBody: { required: true, content: { 'application/json': { schema: ref('EnquiryRequest') } } },
+          responses: {
+            201: { ...ok(ref('EnquiryReceipt')), description: 'Received' },
+            200: { description: 'Same submissionId and body as an earlier request — the original receipt (Idempotent-Replayed: true)', content: { 'application/json': { schema: ref('EnquiryReceipt') } } },
+            409: { description: 'submissionId already used for a different body, or still being processed', content: { 'application/json': { schema: ref('Error') } } },
+            413: { description: `Body larger than ${LIMITS.maxEnquiryBytes} bytes`, content: { 'application/json': { schema: ref('Error') } } },
+            415: { description: 'Content-Type is not application/json', content: { 'application/json': { schema: ref('Error') } } },
+            422: { description: 'Well-formed but not acceptable: invalid_phone, invalid_consent, website_not_registered, source_not_allowed, project_not_found, project_mismatch, content_rejected', content: { 'application/json': { schema: ref('Error') } } },
+            ...errors(400, 401, 403, 429, 500, 503),
+          },
+        },
+      },
       '/blogs/{slug}': { get: op('Blogs: one published article (with HTML)', 'blogs:read', [pp('slug', 'Article slug.', SLUG)], ref('Blog'), { extra: [404] }) },
     },
     components: {
@@ -133,7 +155,7 @@ export function openApiSpec(): Obj {
           properties: {
             success: { const: false },
             error: { type: 'object', required: ['code', 'message', 'requestId'], properties: {
-              code: { type: 'string', enum: ['invalid_parameter', 'missing_api_key', 'invalid_api_key', 'revoked_api_key', 'expired_api_key', 'application_disabled', 'application_revoked', 'application_expired', 'insufficient_scope', 'not_found', 'rate_limited', 'quota_exceeded', 'client_blocked', 'timeout', 'response_too_large', 'internal_error', 'api_disabled', 'api_unavailable'] },
+              code: { type: 'string', enum: ['invalid_parameter', 'invalid_request', 'invalid_json', 'payload_too_large', 'unsupported_media_type', 'invalid_phone', 'invalid_consent', 'website_not_registered', 'source_not_allowed', 'project_not_found', 'project_mismatch', 'content_rejected', 'submission_id_reused', 'submission_in_progress', 'enquiries_paused', 'missing_api_key', 'invalid_api_key', 'revoked_api_key', 'expired_api_key', 'application_disabled', 'application_revoked', 'application_expired', 'insufficient_scope', 'not_found', 'rate_limited', 'quota_exceeded', 'client_blocked', 'timeout', 'response_too_large', 'internal_error', 'api_disabled', 'api_unavailable'] },
               message: { type: 'string' }, details: {}, requestId: { type: 'string' },
             } },
           },
@@ -184,6 +206,36 @@ export function openApiSpec(): Obj {
           reading_minutes: { type: 'integer' }, published_at: nullable('string', { format: 'date-time' }), updated_at: nullable('string', { format: 'date-time' }),
         } },
         Blog: { allOf: [ref('BlogSummary'), { type: 'object', properties: { content_html: { type: 'string', description: 'Article HTML as published on mappingg.com. Sanitise before rendering in your own pages.' } } }] },
+        EnquiryRequest: {
+          type: 'object', additionalProperties: false,
+          required: ['submissionId', 'name', 'phone', 'consent', 'sourcePage'],
+          properties: {
+            submissionId: { type: 'string', pattern: '^[A-Za-z0-9_-]{8,64}$', description: 'Your unique id for this enquiry (e.g. a UUID). Reuse it when retrying.' },
+            name: { type: 'string', minLength: 2, maxLength: 120 },
+            phone: { type: 'string', description: 'Country code + 10 digits, e.g. "+91 9876543210" (a plain 10-digit number is read as +91).' },
+            email: { type: 'string', format: 'email', maxLength: 200 },
+            projectId: { type: 'integer', description: 'A published project’s `id` from /projects.' },
+            projectName: { type: 'string', maxLength: 160, description: 'Optional; must match projectId’s project if both are sent.' },
+            locality: { type: 'string', maxLength: 120 },
+            budget: { type: 'string', maxLength: 40, examples: ['₹1–1.5 Cr'] },
+            bhk: { type: 'string', enum: ['1 RK', '1 BHK', '1.5 BHK', '2 BHK', '2.5 BHK', '3 BHK', '3.5 BHK', '4 BHK', '4.5 BHK', '5+ BHK', 'Villa', 'Plot', 'Shop', 'Office'] },
+            message: { type: 'string', maxLength: 1000 },
+            consent: {
+              type: 'object', additionalProperties: false, required: ['enquiry', 'text', 'textVersion', 'capturedAt'],
+              properties: {
+                enquiry: { const: true, description: 'The visitor asked to be contacted about this enquiry.' },
+                call: { type: 'boolean', description: 'Separate opt-in to calls about other matching projects. Only `true` counts.' },
+                whatsapp: { type: 'boolean', description: 'Separate opt-in to WhatsApp/SMS about other matching projects. Only `true` counts.' },
+                text: { type: 'string', minLength: 20, maxLength: 1000, description: 'The exact consent wording shown to the visitor.' },
+                textVersion: { type: 'string', pattern: '^[A-Za-z0-9._-]{1,60}$' },
+                capturedAt: { type: 'string', format: 'date-time', description: `When the visitor submitted; within the last ${LIMITS.maxConsentAgeHours} h.` },
+              },
+            },
+            sourcePage: { type: 'string', format: 'uri', description: 'The https page of your registered website the form was on.' },
+            campaign: { type: 'object', additionalProperties: false, properties: { source: { type: 'string' }, medium: { type: 'string' }, name: { type: 'string' }, term: { type: 'string' }, content: { type: 'string' } } },
+          },
+        },
+        EnquiryReceipt: { type: 'object', properties: { submissionId: { type: 'string' }, reference: { type: 'string', description: 'Mappingg’s reference for this submission (quote it to support).' }, status: { const: 'received' } } },
         AppMetadata: { type: 'object', properties: {
           api_version: { type: 'string' }, application: { type: 'object' }, scopes: { type: 'array', items: { type: 'object', properties: { id: { type: 'string', enum: SCOPE_LIST }, description: { type: 'string' } } } },
           limits: { type: 'object' }, attribution: { type: 'string' }, documentation_url: { type: 'string' },

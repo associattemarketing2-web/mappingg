@@ -24,10 +24,22 @@ test('OpenAPI paths ⇔ route files', () => {
 });
 
 test('every scope required in the docs exists', () => {
-  const spec = openApiSpec() as { paths: Record<string, { get: Record<string, unknown> }> };
+  const spec = openApiSpec() as { paths: Record<string, Record<string, Record<string, unknown>>> };
   for (const [p, item] of Object.entries(spec.paths)) {
-    const s = item.get['x-required-scope'];
-    if (s && s !== 'any valid key') assert.ok((SCOPE_LIST as string[]).includes(s as string), `${p}: ${s}`);
+    for (const [method, op] of Object.entries(item)) {
+      const s = op['x-required-scope'];
+      if (s && s !== 'any valid key') assert.ok((SCOPE_LIST as string[]).includes(s as string), `${method} ${p}: ${s}`);
+    }
+  }
+});
+
+test('documented methods match each route file’s exports', async () => {
+  const { readFileSync } = await import('node:fs');
+  const spec = openApiSpec() as { paths: Record<string, Record<string, unknown>> };
+  for (const [p, item] of Object.entries(spec.paths)) {
+    const src = readFileSync(path.join(ROOT, p.replace(/\{(\w+)\}/g, '[$1]'), 'route.ts'), 'utf8');
+    const exported = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'].filter((m) => new RegExp(`export (const|async function|function) ${m}\\b`).test(src));
+    assert.deepEqual(exported.map((m) => m.toLowerCase()).sort(), Object.keys(item).sort(), p);
   }
 });
 

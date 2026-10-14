@@ -16,6 +16,8 @@ export const SCOPES = {
   'map:read': 'Map: project pins inside a bounding box, with clustering',
   'infrastructure:read': 'Infrastructure: public map markers (metro, hospitals, schools …)',
   'blogs:read': 'Blogs: published articles only',
+  // The only write scope. Never granted by default; an admin must tick it per application.
+  'enquiries:submit': 'Enquiries: send property enquiries from your own website into the Mappingg CRM (server-to-server only)',
 } as const;
 export type Scope = keyof typeof SCOPES;
 export const SCOPE_LIST = Object.keys(SCOPES) as Scope[];
@@ -51,6 +53,19 @@ export const LIMITS = {
   /** Grace period an old key keeps working after a rotation, unless 0 is chosen. */
   defaultRotationGraceHours: 24,
   maxRotationGraceHours: 24 * 30,
+  // POST /enquiries — separate from the read limits, configurable per application.
+  defaultEnquiryPerMinute: 10,
+  defaultEnquiryDailyQuota: 200,
+  maxEnquiryPerMinute: 120,
+  maxEnquiryDailyQuota: 5000,
+  /** Largest accepted enquiry body. */
+  maxEnquiryBytes: 16_384,
+  /** Same phone + same project from one application within this window updates the existing lead. */
+  enquiryDuplicateWindowHours: 24,
+  /** Rejected (invalid) enquiry submissions per application per hour before enquiries pause for that hour. */
+  maxInvalidEnquiriesPerHour: 50,
+  /** A consent timestamp older than this, or in the future, is rejected. */
+  maxConsentAgeHours: 24,
 } as const;
 
 /** Kill switch: DEVELOPER_API_DISABLED=1 turns every /api/v1 data endpoint off (503). */

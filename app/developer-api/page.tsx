@@ -27,6 +27,7 @@ const ENDPOINTS: [string, string, string][] = [
   ['GET /map/infrastructure', 'infrastructure:read', 'Metro stations, hospitals, schools and other public map markers.'],
   ['GET /blogs', 'blogs:read', 'Published articles (no drafts), newest first.'],
   ['GET /blogs/{slug}', 'blogs:read', 'One published article, with its HTML.'],
+  ['POST /enquiries', 'enquiries:submit', 'Send a visitor’s enquiry from your website into the Mappingg CRM (server-to-server).'],
 ];
 
 const ERRORS: [string, string, string][] = [
@@ -46,6 +47,177 @@ const Row = ({ cells, labels }: { cells: React.ReactNode[]; labels: string[] }) 
   <tr>{cells.map((c, i) => <td key={i} data-label={labels[i]}>{c}</td>)}</tr>
 );
 
+// ---- POST /enquiries ----------------------------------------------------------------
+
+const ENQUIRY_REQUEST = `
+POST ${BASE}/enquiries
+Authorization: Bearer <key>
+Content-Type: application/json
+
+{
+  "submissionId": "9f0c2b6e-1d7a-4b55-9a3e-2f6a1c8d4e01",
+  "name": "Asha Patil",
+  "phone": "+91 9876543210",
+  "email": "asha@example.com",
+  "projectId": 135,
+  "bhk": "2 BHK",
+  "budget": "₹1–1.5 Cr",
+  "message": "Please share the price sheet.",
+  "consent": {
+    "enquiry": true,
+    "whatsapp": true,
+    "text": "I agree to be contacted by Example Realty and Mappingg about this enquiry. I'd also like WhatsApp updates on matching projects.",
+    "textVersion": "2026-10",
+    "capturedAt": "2026-10-14T10:15:00+05:30"
+  },
+  "sourcePage": "https://www.example-realty.com/kharadi/new-projects",
+  "campaign": { "source": "google", "medium": "cpc", "name": "kharadi-oct" }
+}`;
+
+const ENQUIRY_NODE = `
+// server.js (Express). The browser posts the form to /enquire on YOUR domain;
+// only this server knows MAPPINGG_API_KEY.
+import express from 'express';
+import { randomUUID } from 'node:crypto';
+
+const app = express();
+app.use(express.json({ limit: '16kb' }));
+const CONSENT = 'I agree to be contacted by Example Realty and Mappingg about this enquiry.';
+const WHATSAPP = " I'd also like WhatsApp updates on matching projects.";
+
+app.post('/enquire', async (req, res) => {
+  const { name, phone, email, projectId, message, agree, whatsappOptIn } = req.body;
+  if (agree !== true) return res.status(400).json({ error: 'Please tick the consent box.' });
+
+  const body = {
+    submissionId: randomUUID(),        // keep the same id for every retry of this enquiry
+    name, phone, email, message,
+    projectId: projectId ? Number(projectId) : undefined,
+    consent: {
+      enquiry: true,
+      whatsapp: whatsappOptIn === true,
+      text: CONSENT + (whatsappOptIn === true ? WHATSAPP : ''),
+      textVersion: '2026-10',
+      capturedAt: new Date().toISOString(),
+    },
+    sourcePage: 'https://www.example-realty.com/contact',
+  };
+
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    const r = await fetch('${BASE}/enquiries', {
+      method: 'POST',
+      headers: { Authorization: \`Bearer \${process.env.MAPPINGG_API_KEY}\`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    }).catch(() => null);
+    if (r && (r.status === 201 || r.status === 200)) return res.json({ ok: true });
+    if (r && r.status < 500 && r.status !== 429) {
+      const e = await r.json();
+      return res.status(400).json({ error: e.error.message });   // fix the input; don't retry
+    }
+    const wait = Number(r?.headers.get('retry-after') || attempt);
+    await new Promise((s) => setTimeout(s, wait * 1000));
+  }
+  res.status(503).json({ error: 'Please try again in a minute.' });
+});`;
+
+const ENQUIRY_FORM = `
+<!-- Your website's form. No key in the page: it posts to YOUR backend. -->
+<form id="enquire">
+  <input name="name" required> <input name="phone" required> <input name="email" type="email">
+  <label><input type="checkbox" name="agree"> I agree to be contacted by Example Realty and Mappingg about this enquiry.</label>
+  <label><input type="checkbox" name="whatsappOptIn"> I'd also like WhatsApp updates on matching projects.</label>
+  <button>Send</button>
+</form>
+<script>
+  document.getElementById('enquire').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    await fetch('/enquire', {          // same origin: your server, not Mappingg
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: f.get('name'), phone: f.get('phone'), email: f.get('email') || undefined,
+        agree: f.get('agree') === 'on', whatsappOptIn: f.get('whatsappOptIn') === 'on',
+      }),
+    });
+  });
+</script>`;
+
+const ENQUIRY_FIELDS: [string, string][] = [
+  ['submissionId', 'Required. Your unique id for this enquiry (8–64 letters, digits, - or _; a UUID is ideal). Reuse it when retrying.'],
+  ['name', 'Required, 2–120 characters.'],
+  ['phone', 'Required. Country code + 10 digits, e.g. "+91 9876543210" (a plain 10-digit number is read as +91).'],
+  ['email', 'Optional.'],
+  ['projectId', 'Optional. A published project’s id from /projects. projectName, if also sent, must match it.'],
+  ['locality, budget, bhk, message', 'Optional. bhk is one of the values in the API reference; message up to 1,000 characters.'],
+  ['consent', 'Required — see “Consent” below.'],
+  ['sourcePage', 'Required. The https page on your registered website where the form was. Query strings are not stored.'],
+  ['campaign', 'Optional attribution: source, medium, name, term, content.'],
+];
+
+const ENQUIRY_SECTION: LegalSection = {
+  id: 'enquiries',
+  title: 'Sending enquiries (enquiries:submit)',
+  body: (
+    <>
+      <p>
+        If Mappingg has granted your application <code>enquiries:submit</code>, your website can send a visitor’s property
+        enquiry straight into the Mappingg CRM. It arrives as a new lead attributed to your website, and our team follows it
+        up. Your application must have your website’s domain registered with us: <code>sourcePage</code> must be an https page
+        on that domain or a subdomain.
+      </p>
+      <div className="dapi-warn"><i className="fas fa-triangle-exclamation" aria-hidden="true" />
+        <span><b>Server-to-server only.</b> Your form posts to <i>your own</i> backend, and your backend calls Mappingg with the
+        key. A key in browser JavaScript, a mobile app or public HTML can be copied and used to flood our CRM in your name. This
+        endpoint sends no CORS headers, so browsers can’t call it directly.</span>
+      </div>
+      <h3>Request</h3>
+      <Code>{ENQUIRY_REQUEST}</Code>
+      <div className="ipg-table dapi-table">
+        <table>
+          <thead><tr><th>Field</th><th>Rules</th></tr></thead>
+          <tbody>{ENQUIRY_FIELDS.map(([f, r]) => <Row key={f} labels={['Field', 'Rules']} cells={[<code key="f">{f}</code>, r]} />)}</tbody>
+        </table>
+      </div>
+      <p>Any other field (status, assignment, ids, notes…) is rejected with <code>400</code>; you can’t set how Mappingg handles the lead.</p>
+      <h3>Consent — your responsibility</h3>
+      <ul>
+        <li>Show the visitor a clear consent statement next to an <b>unticked</b> checkbox, and only send the enquiry if they ticked it.</li>
+        <li>Send the exact wording in <code>consent.text</code>, your label for that wording in <code>consent.textVersion</code> (change it whenever the wording changes), and when they submitted in <code>consent.capturedAt</code> (within the last {LIMITS.maxConsentAgeHours} hours).</li>
+        <li><code>consent.enquiry</code> must be <code>true</code>. <code>call</code> and <code>whatsapp</code> are separate, optional opt-ins for other offers; send <code>true</code> only if the visitor ticked those boxes too.</li>
+        <li>Mappingg can’t see your form, so it records this as consent <b>stated by you</b>, with your wording, version and time. Receiving <code>consent.enquiry: true</code> does not prove the visitor consented, so sending enquiries without real consent breaks our terms and gets the application revoked.</li>
+        <li>Tell visitors in your privacy notice that enquiries are shared with Mappingg (Associatte PropTech Pvt Ltd) to be followed up, and link to <Link href="/privacy">our privacy policy</Link>.</li>
+      </ul>
+      <h3>Responses, retries and duplicates</h3>
+      <ul>
+        <li><code>201</code> received: <code>{'{"success":true,"data":{"submissionId":"…","reference":"enq_…","status":"received"}}'}</code>. Keep the reference for support.</li>
+        <li>Network error or <code>5xx</code>? Retry with the <b>same</b> submissionId and body. You get the original receipt again (<code>200</code>, header <code>Idempotent-Replayed: true</code>), never a second lead. A used submissionId with a different body returns <code>409</code>.</li>
+        <li>If the same phone number asks about the same project again within {LIMITS.enquiryDuplicateWindowHours} hours, it is added to the existing lead instead of creating a new one. The response is the same either way: the API never says whether a person is already known to Mappingg.</li>
+        <li><code>400</code> invalid or unknown fields · <code>413</code> body over {Math.round(LIMITS.maxEnquiryBytes / 1024)} KB · <code>415</code> not JSON · <code>422</code> invalid_phone, invalid_consent, source_not_allowed, website_not_registered, project_not_found, project_mismatch, content_rejected · <code>429</code> limits (see Retry-After).</li>
+        <li>The API can’t read, list, update or delete enquiries.</li>
+      </ul>
+      <h3>Limits</h3>
+      <p>
+        Enquiries have their own limits per application, {LIMITS.defaultEnquiryPerMinute} a minute and {LIMITS.defaultEnquiryDailyQuota} a day (UTC) by default, on
+        top of the general request limits. Rejected submissions count too, and after {LIMITS.maxInvalidEnquiriesPerHour} rejected submissions in an hour,
+        enquiries pause for the rest of that hour (<code>enquiries_paused</code>). Rate-limit your own form per visitor as well (a CAPTCHA helps),
+        so bots can’t use your form to fill your quota.
+      </p>
+      <span className="dapi-label">Node.js — your backend endpoint for your website’s form</span>
+      <Code>{ENQUIRY_NODE}</Code>
+      <span className="dapi-label">Your website’s form</span>
+      <Code>{ENQUIRY_FORM}</Code>
+      <h3>Data processing</h3>
+      <p>
+        For enquiries you send, you collect the data from the visitor and are responsible for a lawful basis and a clear notice;
+        Mappingg receives it to follow up the enquiry under its <Link href="/privacy">privacy policy</Link>. Don’t send enquiries
+        for people who didn’t ask to be contacted, data about anyone other than the enquirer, or sensitive personal data. If a
+        visitor asks to withdraw an enquiry or their consent, email <a href={`mailto:${EMAIL}`}>{EMAIL}</a> with the reference.
+      </p>
+    </>
+  ),
+};
+
 const sections: LegalSection[] = [
   {
     id: 'overview',
@@ -53,7 +225,7 @@ const sections: LegalSection[] = [
     body: (
       <>
         <p>
-          The Mappingg Developer API gives approved partners read-only access to the same public data shown on mappingg.com:
+          The Mappingg Developer API gives approved partners read access to the same public data shown on mappingg.com:
           projects (name, developer, locality, configuration, published price, possession, MahaRERA number where listed,
           coordinates and image), developers, localities, map pins, infrastructure markers and published articles.
         </p>
@@ -61,6 +233,10 @@ const sections: LegalSection[] = [
           It does <b>not</b> give access to buyer or customer details, enquiries and leads, accounts, drafts or unpublished
           content, uploaded files, the admin panel, or the database. If a project field is hidden on the project’s public
           card, it is <code>null</code> in the API too. Hidden, pending-review and rejected projects are never returned.
+        </p>
+        <p>
+          The one write — <Link href="#enquiries">sending enquiries</Link> from your website into our CRM — is a separate scope,
+          <code>enquiries:submit</code>, granted only on request. It can add an enquiry but never read, list or change one.
         </p>
       </>
     ),
@@ -103,7 +279,7 @@ const sections: LegalSection[] = [
     title: 'Base URL and endpoints',
     body: (
       <>
-        <p>Base URL: <code>{BASE}</code>. All endpoints are <code>GET</code> and return JSON.</p>
+        <p>Base URL: <code>{BASE}</code>. All endpoints return JSON; all are <code>GET</code> except <code>POST /enquiries</code>.</p>
         <div className="ipg-table dapi-table">
           <table>
             <thead><tr><th>Endpoint</th><th>Scope</th><th>Returns</th></tr></thead>
@@ -119,7 +295,7 @@ const sections: LegalSection[] = [
     title: 'Scopes',
     body: (
       <>
-        <p>Each application is given only the scopes it needs. All scopes are read-only.</p>
+        <p>Each application is given only the scopes it needs. Everything is read-only except <code>enquiries:submit</code>, which is never granted by default.</p>
         <div className="ipg-table dapi-table">
           <table>
             <thead><tr><th>Scope</th><th>Allows</th></tr></thead>
@@ -289,6 +465,7 @@ curl -s "${BASE}/map/pins?north=18.60&south=18.50&east=73.98&west=73.88&zoom=14"
       </>
     ),
   },
+  ENQUIRY_SECTION,
   {
     id: 'usage',
     title: 'Attribution and permitted use',
@@ -352,7 +529,7 @@ export default function DeveloperApiPage() {
       icon="fas fa-plug"
       tone="water"
       title={<>Mappingg <span className="accent">Developer API</span></>}
-      intro="Read-only access to Mappingg’s public project, developer, locality, map and article data for approved partners."
+      intro="Access to Mappingg’s public project, developer, locality, map and article data for approved partners — and, on request, a secure way to send enquiries from your website into our CRM."
       actions={
         <>
           <Link className="btn btn-primary" href="/developer-api/reference"><i className="fas fa-book" aria-hidden="true" /> API reference</Link>
@@ -362,7 +539,7 @@ export default function DeveloperApiPage() {
     >
       <LegalDoc
         path="/developer-api"
-        intro={<>Base URL <code>{BASE}</code> · JSON over HTTPS · <code>Authorization: Bearer &lt;key&gt;</code> · read-only.</>}
+        intro={<>Base URL <code>{BASE}</code> · JSON over HTTPS · <code>Authorization: Bearer &lt;key&gt;</code> · read scopes, plus optional <code>enquiries:submit</code>.</>}
         sections={sections}
       />
     </InfoPage>

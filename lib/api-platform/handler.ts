@@ -26,26 +26,51 @@ export class ApiError extends Error {
 }
 
 export interface Pagination { page: number; limit: number; total: number; hasMore: boolean }
-export interface HandlerResult { data: unknown; pagination?: Pagination; records?: number }
+export interface HandlerResult { data: unknown; pagination?: Pagination; records?: number; status?: number; headers?: Record<string, string> }
 
-export interface Ctx<Q> {
+export interface Ctx<Q, B = unknown> {
   req: NextRequest;
   query: Q;
+  /** Parsed, validated JSON body (POST routes with a `body` schema only). */
+  body: B;
   params: Record<string, string>;
   /** The calling application (null on public endpoints). */
   app: ApiApp | null;
   requestId: string;
 }
 
-interface Options<Q extends z.ZodTypeAny> {
+interface Options<Q extends z.ZodTypeAny, B extends z.ZodTypeAny = z.ZodTypeAny> {
   /** Route template for logs and docs, e.g. "/projects/{id}". */
   route: string;
   /** Required scope; `null` = any valid key; `'public'` = no key (health, openapi, sample). */
   scope: Scope | null | 'public';
   query?: Q;
-  handler: (ctx: Ctx<z.infer<Q>>) => Promise<HandlerResult | Response>;
+  /** POST routes: strict schema for the JSON body. Unknown fields are rejected. */
+  body?: B;
+  /** Largest accepted body in bytes (POST only). */
+  maxBodyBytes?: number;
+  handler: (ctx: Ctx<z.infer<Q>, z.infer<B>>) => Promise<HandlerResult | Response>;
   /** Cache-Control for public endpoints. */
   publicCache?: string;
+}
+
+/** Reads and validates a JSON body: size cap, content type, JSON syntax, strict schema. Values are never echoed back. */
+export async function parseBody<B extends z.ZodTypeAny>(req: NextRequest, schema: B, maxBytes: number): Promise<z.infer<B>> {
+  const declared = Number(req.headers.get('content-length') || 0);
+  if (declared > maxBytes) throw new ApiError(413, 'payload_too_large', `The request body must be at most ${maxBytes} bytes.`);
+  if (!/^application\/json\b/i.test(req.headers.get('content-type') || '')) {
+    throw new ApiError(415, 'unsupported_media_type', 'Send the body as JSON with "Content-Type: application/json".');
+  }
+  const text = await req.text();
+  if (Buffer.byteLength(text, 'utf8') > maxBytes) throw new ApiError(413, 'payload_too_large', `The request body must be at most ${maxBytes} bytes.`);
+  let raw: unknown;
+  try { raw = JSON.parse(text); } catch { throw new ApiError(400, 'invalid_json', 'The request body is not valid JSON.'); }
+  const parsed = schema.safeParse(raw);
+  if (!parsed.success) {
+    throw new ApiError(400, 'invalid_request', 'One or more fields are invalid.',
+      parsed.error.issues.map((i) => ({ field: i.path.join('.') || ((i as { keys?: string[] }).keys || []).join(','), message: i.message })));
+  }
+  return parsed.data;
 }
 
 // Tests swap the database for an in-process Postgres; production uses lib/pg.
@@ -116,8 +141,8 @@ function withTimeout<T>(p: Promise<T>, ms: number): Promise<T> {
 
 const utcDay = (d = new Date()) => d.toISOString().slice(0, 10);
 
-export function apiRoute<Q extends z.ZodTypeAny = z.ZodTypeAny>(opts: Options<Q>) {
-  return async function GET(req: NextRequest, ctx?: { params?: Record<string, string> }): Promise<Response> {
+export function apiRoute<Q extends z.ZodTypeAny = z.ZodTypeAny, B extends z.ZodTypeAny = z.ZodTypeAny>(opts: Options<Q, B>) {
+  return async function handle(req: NextRequest, ctx?: { params?: Record<string, string> }): Promise<Response> {
     const started = Date.now();
     const requestId = randomUUID();
     const client = clientFingerprint(clientIp(req));
@@ -198,18 +223,21 @@ export function apiRoute<Q extends z.ZodTypeAny = z.ZodTypeAny>(opts: Options<Q>
       }
 
       const query = parseQuery(req, opts.query);
-      const out = await withTimeout(opts.handler({ req, query, params: ctx?.params || {}, app, requestId }), LIMITS.timeoutMs);
+      const body = opts.body ? await parseBody(req, opts.body, opts.maxBodyBytes ?? 16_384) : undefined;
+      const out = await withTimeout(opts.handler({ req, query, body, params: ctx?.params || {}, app, requestId }), LIMITS.timeoutMs);
       if (out instanceof Response) {
         response = out;
         status = out.status;
       } else {
         records = out.records ?? (Array.isArray(out.data) ? out.data.length : out.data ? 1 : 0);
-        const body = JSON.stringify({ success: true, data: out.data, ...(out.pagination ? { pagination: out.pagination } : {}), meta: { requestId, apiVersion: API_VERSION } });
-        if (body.length > LIMITS.maxResponseBytes) throw new ApiError(500, 'response_too_large', 'The response is too large. Use a smaller page size.');
-        response = new NextResponse(body, { status: 200, headers: { 'Content-Type': 'application/json; charset=utf-8' } });
+        status = out.status ?? 200;
+        const json = JSON.stringify({ success: true, data: out.data, ...(out.pagination ? { pagination: out.pagination } : {}), meta: { requestId, apiVersion: API_VERSION } });
+        if (json.length > LIMITS.maxResponseBytes) throw new ApiError(500, 'response_too_large', 'The response is too large. Use a smaller page size.');
+        response = new NextResponse(json, { status, headers: { 'Content-Type': 'application/json; charset=utf-8', ...(out.headers || {}) } });
         // Keyed responses may only be cached by the caller, never by a shared cache:
         // otherwise a CDN could serve one app's response (and bypass limits) to another.
-        response.headers.set('Cache-Control', isPublic ? opts.publicCache || 'public, max-age=60' : 'private, max-age=30');
+        // Writes are never cacheable.
+        response.headers.set('Cache-Control', opts.body || req.method !== 'GET' ? 'no-store' : isPublic ? opts.publicCache || 'public, max-age=60' : 'private, max-age=30');
         if (!isPublic) response.headers.set('Vary', 'Authorization');
       }
     } catch (e) {

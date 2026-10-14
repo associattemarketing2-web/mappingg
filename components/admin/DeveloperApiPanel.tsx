@@ -13,9 +13,10 @@ interface Key { id: string; last4: string; created_at: string; expires_at: strin
 interface App {
   id: string; name: string; organization: string; contact_email: string; website: string; purpose: string; scopes: string[];
   status: 'active' | 'disabled' | 'revoked'; rate_per_minute: number; daily_quota: number; max_page_size: number;
+  enquiry_rate_per_minute: number; enquiry_daily_quota: number;
   expires_at: string | null; created_at: string; last_used_at: string | null; keys: Key[];
 }
-interface Usage { app_id: string; today: number; last_7_days: number; errors_7_days: number; rate_limited_7_days: number; avg_ms_7_days: number }
+interface Usage { app_id: string; today: number; last_7_days: number; errors_7_days: number; rate_limited_7_days: number; avg_ms_7_days: number; enquiries_accepted_7_days?: number; enquiries_rejected_7_days?: number }
 interface Ev { at: string; app_id: string | null; key_id: string | null; route: string; status: number; event: string; duration_ms: number; records: number; request_id: string; client: string | null }
 interface Overview { apps: App[]; usage: Usage[]; security: Ev[]; scopes: Record<string, string>; limits: Record<string, number> }
 interface Detail { app: App; keys: Key[]; usage: { day: string; route: string; requests: number; errors: number; rate_limited: number; avg_ms: number }[]; events: Ev[]; audit: { at: string; actor: string; action: string }[] }
@@ -32,7 +33,7 @@ async function post(body: Record<string, unknown>) {
   return b.data;
 }
 
-const emptyForm = { name: '', organization: '', contact_email: '', website: '', purpose: '', scopes: [] as string[], rate_per_minute: 60, daily_quota: 5000, max_page_size: 50, expires_at: '' };
+const emptyForm = { name: '', organization: '', contact_email: '', website: '', purpose: '', scopes: [] as string[], rate_per_minute: 60, daily_quota: 5000, max_page_size: 50, enquiry_rate_per_minute: 10, enquiry_daily_quota: 200, expires_at: '' };
 
 export default function DeveloperApiPanel({ flash }: { flash: Flash }) {
   const [ov, setOv] = useState<Overview | null>(null);
@@ -67,7 +68,7 @@ export default function DeveloperApiPanel({ flash }: { flash: Flash }) {
   function openEdit(a: App) {
     setEditId(a.id);
     setForm({ name: a.name, organization: a.organization, contact_email: a.contact_email, website: a.website, purpose: a.purpose, scopes: a.scopes,
-      rate_per_minute: a.rate_per_minute, daily_quota: a.daily_quota, max_page_size: a.max_page_size, expires_at: a.expires_at ? a.expires_at.slice(0, 10) : '' });
+      rate_per_minute: a.rate_per_minute, daily_quota: a.daily_quota, max_page_size: a.max_page_size, enquiry_rate_per_minute: a.enquiry_rate_per_minute, enquiry_daily_quota: a.enquiry_daily_quota, expires_at: a.expires_at ? a.expires_at.slice(0, 10) : '' });
     setView('form');
   }
   const set = (k: keyof typeof emptyForm, v: unknown) => setForm((f) => ({ ...f, [k]: v }));
@@ -141,7 +142,7 @@ export default function DeveloperApiPanel({ flash }: { flash: Flash }) {
           <div className="adm-field"><label>Website <small>(optional)</small></label><input value={form.website} onChange={(e) => set('website', e.target.value)} placeholder="https://acme.example" /></div>
         </div>
         <div className="adm-field"><label>Purpose of the integration</label><input value={form.purpose} onChange={(e) => set('purpose', e.target.value)} placeholder="e.g. Show Kharadi projects on their agency website" /></div>
-        <div className="adm-field"><label>Scopes — what can this key read? <small>(nothing is granted unless ticked)</small></label></div>
+        <div className="adm-field"><label>Scopes — what can this key do? <small>(nothing is granted unless ticked; only enquiries:submit writes)</small></label></div>
         <div className="adm-perms">
           {Object.entries(ov.scopes).map(([s, desc]) => (
             <button type="button" key={s} className={`adm-perm${form.scopes.includes(s) ? ' on' : ''}`} onClick={() => toggleScope(s)}>
@@ -155,9 +156,19 @@ export default function DeveloperApiPanel({ flash }: { flash: Flash }) {
           <div className="adm-field"><label>Requests per minute <small>(max {ov.limits.maxRatePerMinute})</small></label><input type="number" min={1} max={ov.limits.maxRatePerMinute} value={form.rate_per_minute} onChange={(e) => set('rate_per_minute', Number(e.target.value))} /></div>
           <div className="adm-field"><label>Daily quota <small>(requests per UTC day, max {ov.limits.maxDailyQuota.toLocaleString('en-IN')})</small></label><input type="number" min={1} max={ov.limits.maxDailyQuota} value={form.daily_quota} onChange={(e) => set('daily_quota', Number(e.target.value))} /></div>
           <div className="adm-field"><label>Max records per page <small>(max {ov.limits.maxPageSize})</small></label><input type="number" min={1} max={ov.limits.maxPageSize} value={form.max_page_size} onChange={(e) => set('max_page_size', Number(e.target.value))} /></div>
+          {form.scopes.includes('enquiries:submit') && (
+            <>
+              <div className="adm-field"><label>Enquiries per minute <small>(max {ov.limits.maxEnquiryPerMinute})</small></label><input type="number" min={1} max={ov.limits.maxEnquiryPerMinute} value={form.enquiry_rate_per_minute} onChange={(e) => set('enquiry_rate_per_minute', Number(e.target.value))} /></div>
+              <div className="adm-field"><label>Enquiries per day <small>(UTC, max {ov.limits.maxEnquiryDailyQuota.toLocaleString('en-IN')})</small></label><input type="number" min={1} max={ov.limits.maxEnquiryDailyQuota} value={form.enquiry_daily_quota} onChange={(e) => set('enquiry_daily_quota', Number(e.target.value))} /></div>
+            </>
+          )}
           <div className="adm-field"><label>Access expires on <small>(optional)</small></label><input type="date" value={form.expires_at} onChange={(e) => set('expires_at', e.target.value)} /></div>
         </div>
-        <p className="adm-note"><i className="fas fa-circle-info" /><span>Keys give read-only access to public data only (published projects, articles and map data). They never give access to leads, accounts, drafts, the admin panel or the database.</span></p>
+        {form.scopes.includes('enquiries:submit') && (
+          <p className="adm-note" style={{ background: '#fff6d6', color: '#6b5200', marginBottom: 10 }}><i className="fas fa-triangle-exclamation" />
+            <span><b>enquiries:submit</b> lets this partner send leads into your CRM. Enquiries are only accepted from pages on the <b>Website</b> above (and its subdomains), with the visitor’s consent wording. Leads arrive in Leads → map enquiries as “partner website …”. Grant it only to partners you trust.</span></p>
+        )}
+        <p className="adm-note"><i className="fas fa-circle-info" /><span>Read scopes give read-only access to public data only (published projects, articles and map data). They never give access to leads, accounts, drafts, the admin panel or the database.</span></p>
         <div className="adm-actions" style={{ marginTop: 16 }}>
           <button className="adm-btn primary" disabled={busy} onClick={save}><i className="fas fa-floppy-disk" /> {busy ? 'Saving…' : editId ? 'Save changes' : 'Create & generate key'}</button>
         </div>
@@ -189,6 +200,9 @@ export default function DeveloperApiPanel({ flash }: { flash: Flash }) {
             <StatTile label="Requests today" value={String(u?.today ?? 0)} note={`quota ${a.daily_quota.toLocaleString('en-IN')} / day`} meter={u ? Math.min(100, (u.today / a.daily_quota) * 100) : 0} />
             <StatTile label="Last 7 days" value={String(u?.last_7_days ?? 0)} note={`${u?.errors_7_days ?? 0} errors · ${u?.rate_limited_7_days ?? 0} rate-limited`} />
             <StatTile label="Avg response" value={`${u?.avg_ms_7_days ?? 0} ms`} note={`limit ${a.rate_per_minute}/min · ${a.max_page_size}/page`} />
+            {a.scopes.includes('enquiries:submit') && (
+              <StatTile label="Enquiries (7 days)" value={String(u?.enquiries_accepted_7_days ?? 0)} note={`${u?.enquiries_rejected_7_days ?? 0} rejected · limit ${a.enquiry_rate_per_minute}/min, ${a.enquiry_daily_quota}/day`} />
+            )}
             <StatTile label="Last used" value={a.last_used_at ? fmt(a.last_used_at) : 'Never'} note={a.expires_at ? `expires ${fmt(a.expires_at)}` : 'no expiry'} />
           </div>
           <div style={{ marginBottom: 12 }}>{a.scopes.length ? a.scopes.map((s) => <span key={s} className="adm-badge ok" style={{ marginRight: 6 }}>{s}</span>) : <span className="muted">No scopes — /metadata only</span>}</div>

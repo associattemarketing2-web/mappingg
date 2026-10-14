@@ -8,7 +8,8 @@
 --   psql "$DATABASE_URL" -f migration/pg-api-platform.sql
 --
 -- ROLLBACK (removes the Developer API's data only — every key stops working):
---   DROP TABLE IF EXISTS api_request_log, api_counters, api_audit, api_keys, api_apps;
+--   DROP TABLE IF EXISTS api_enquiry_submissions, api_request_log, api_counters, api_audit, api_keys, api_apps;
+-- (Enquiries already written to the `leads` table stay there — they are normal CRM leads.)
 -- To switch the API off WITHOUT deleting anything, set DEVELOPER_API_DISABLED=1.
 
 CREATE TABLE IF NOT EXISTS api_apps (
@@ -82,3 +83,20 @@ CREATE TABLE IF NOT EXISTS api_audit (
   );
 
 CREATE INDEX IF NOT EXISTS api_audit_app_at ON api_audit (app_id, at DESC);
+
+ALTER TABLE api_apps ADD COLUMN IF NOT EXISTS enquiry_rate_per_minute integer NOT NULL DEFAULT 10;
+
+ALTER TABLE api_apps ADD COLUMN IF NOT EXISTS enquiry_daily_quota integer NOT NULL DEFAULT 200;
+
+CREATE TABLE IF NOT EXISTS api_enquiry_submissions (
+  app_id text NOT NULL,
+  submission_id text NOT NULL,
+  reference text NOT NULL UNIQUE,
+  payload_hash text NOT NULL,
+  lead_id text,
+  outcome text NOT NULL DEFAULT 'pending',
+  created_at timestamptz NOT NULL DEFAULT now(),
+  PRIMARY KEY (app_id, submission_id)
+  );
+
+CREATE INDEX IF NOT EXISTS api_enquiry_submissions_app_at ON api_enquiry_submissions (app_id, created_at DESC);

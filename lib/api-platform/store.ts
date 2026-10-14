@@ -78,6 +78,22 @@ export const SCHEMA_SQL = [
     detail jsonb NOT NULL DEFAULT '{}'::jsonb
   )`,
   `CREATE INDEX IF NOT EXISTS api_audit_app_at ON api_audit (app_id, at DESC)`,
+  // ---- enquiries:submit (POST /api/v1/enquiries) — additive ----
+  `ALTER TABLE api_apps ADD COLUMN IF NOT EXISTS enquiry_rate_per_minute integer NOT NULL DEFAULT ${LIMITS.defaultEnquiryPerMinute}`,
+  `ALTER TABLE api_apps ADD COLUMN IF NOT EXISTS enquiry_daily_quota integer NOT NULL DEFAULT ${LIMITS.defaultEnquiryDailyQuota}`,
+  // One row per accepted submission: the idempotency record and the link to the CRM lead.
+  // Holds no personal data — only a hash of the payload (to detect a reused submissionId).
+  `CREATE TABLE IF NOT EXISTS api_enquiry_submissions (
+    app_id text NOT NULL,
+    submission_id text NOT NULL,
+    reference text NOT NULL UNIQUE,
+    payload_hash text NOT NULL,
+    lead_id text,
+    outcome text NOT NULL DEFAULT 'pending',
+    created_at timestamptz NOT NULL DEFAULT now(),
+    PRIMARY KEY (app_id, submission_id)
+  )`,
+  `CREATE INDEX IF NOT EXISTS api_enquiry_submissions_app_at ON api_enquiry_submissions (app_id, created_at DESC)`,
 ];
 
 const ready = new WeakMap<Sql, Promise<void>>();
@@ -106,6 +122,9 @@ export interface ApiApp {
   rate_per_minute: number;
   daily_quota: number;
   max_page_size: number;
+  /** POST /enquiries limits (separate from the read limits above). */
+  enquiry_rate_per_minute: number;
+  enquiry_daily_quota: number;
   expires_at: string | null;
   created_by: string;
   created_at: string;
@@ -134,6 +153,8 @@ export interface AppInput {
   rate_per_minute?: number;
   daily_quota?: number;
   max_page_size?: number;
+  enquiry_rate_per_minute?: number;
+  enquiry_daily_quota?: number;
   expires_at?: string | null;
 }
 
@@ -148,7 +169,10 @@ function toApp(r: any): ApiApp {
   return {
     id: r.id, name: r.name, organization: r.organization, contact_email: r.contact_email, website: r.website,
     purpose: r.purpose, scopes: cleanScopes(r.scopes), status: r.status, rate_per_minute: Number(r.rate_per_minute),
-    daily_quota: Number(r.daily_quota), max_page_size: Number(r.max_page_size), expires_at: iso(r.expires_at),
+    daily_quota: Number(r.daily_quota), max_page_size: Number(r.max_page_size),
+    enquiry_rate_per_minute: Number(r.enquiry_rate_per_minute ?? LIMITS.defaultEnquiryPerMinute),
+    enquiry_daily_quota: Number(r.enquiry_daily_quota ?? LIMITS.defaultEnquiryDailyQuota),
+    expires_at: iso(r.expires_at),
     created_by: r.created_by, created_at: iso(r.created_at)!, updated_at: iso(r.updated_at)!, last_used_at: iso(r.last_used_at),
   };
 }
@@ -173,6 +197,8 @@ function appValues(input: AppInput) {
     rate_per_minute: clampInt(input.rate_per_minute, 1, LIMITS.maxRatePerMinute, LIMITS.defaultRatePerMinute),
     daily_quota: clampInt(input.daily_quota, 1, LIMITS.maxDailyQuota, LIMITS.defaultDailyQuota),
     max_page_size: clampInt(input.max_page_size, 1, LIMITS.maxPageSize, LIMITS.defaultMaxPageSize),
+    enquiry_rate_per_minute: clampInt(input.enquiry_rate_per_minute, 1, LIMITS.maxEnquiryPerMinute, LIMITS.defaultEnquiryPerMinute),
+    enquiry_daily_quota: clampInt(input.enquiry_daily_quota, 1, LIMITS.maxEnquiryDailyQuota, LIMITS.defaultEnquiryDailyQuota),
     expires_at: input.expires_at ? new Date(input.expires_at).toISOString() : null,
   };
 }
@@ -187,9 +213,9 @@ export async function createApp(input: AppInput, actor: string, sql: Sql = defau
   const v = appValues(input);
   const id = `app_${randomUUID().replace(/-/g, '').slice(0, 20)}`;
   const { rows } = await sql(
-    `INSERT INTO api_apps (id, name, organization, contact_email, website, purpose, scopes, rate_per_minute, daily_quota, max_page_size, expires_at, created_by)
-     VALUES ($1,$2,$3,$4,$5,$6,$7::text[],$8,$9,$10,$11,$12) RETURNING *`,
-    [id, v.name, v.organization, v.contact_email, v.website, v.purpose, v.scopes, v.rate_per_minute, v.daily_quota, v.max_page_size, v.expires_at, actor],
+    `INSERT INTO api_apps (id, name, organization, contact_email, website, purpose, scopes, rate_per_minute, daily_quota, max_page_size, expires_at, created_by, enquiry_rate_per_minute, enquiry_daily_quota)
+     VALUES ($1,$2,$3,$4,$5,$6,$7::text[],$8,$9,$10,$11,$12,$13,$14) RETURNING *`,
+    [id, v.name, v.organization, v.contact_email, v.website, v.purpose, v.scopes, v.rate_per_minute, v.daily_quota, v.max_page_size, v.expires_at, actor, v.enquiry_rate_per_minute, v.enquiry_daily_quota],
   );
   const { key, secret } = await insertKey(sql, id, v.expires_at);
   await audit(sql, actor, id, 'app.create', { name: v.name, scopes: v.scopes, key_id: key.id });
@@ -208,14 +234,21 @@ async function insertKey(sql: Sql, appId: string, expiresAt: string | null) {
 export async function updateApp(id: string, input: AppInput, actor: string, sql: Sql = defaultSql): Promise<ApiApp | null> {
   await ensureSchema(sql);
   const v = appValues(input);
+  const before = await getApp(id, sql);
   const { rows } = await sql(
     `UPDATE api_apps SET name=$2, organization=$3, contact_email=$4, website=$5, purpose=$6, scopes=$7::text[],
-       rate_per_minute=$8, daily_quota=$9, max_page_size=$10, expires_at=$11, updated_at=now()
+       rate_per_minute=$8, daily_quota=$9, max_page_size=$10, expires_at=$11, enquiry_rate_per_minute=$12, enquiry_daily_quota=$13, updated_at=now()
      WHERE id=$1 RETURNING *`,
-    [id, v.name, v.organization, v.contact_email, v.website, v.purpose, v.scopes, v.rate_per_minute, v.daily_quota, v.max_page_size, v.expires_at],
+    [id, v.name, v.organization, v.contact_email, v.website, v.purpose, v.scopes, v.rate_per_minute, v.daily_quota, v.max_page_size, v.expires_at, v.enquiry_rate_per_minute, v.enquiry_daily_quota],
   );
   if (!rows[0]) return null;
-  await audit(sql, actor, id, 'app.update', { scopes: v.scopes, rate_per_minute: v.rate_per_minute, daily_quota: v.daily_quota, max_page_size: v.max_page_size, expires_at: v.expires_at });
+  const granted = v.scopes.filter((s) => !before?.scopes.includes(s));
+  const removed = (before?.scopes || []).filter((s) => !v.scopes.includes(s));
+  await audit(sql, actor, id, 'app.update', {
+    scopes: v.scopes, scopes_granted: granted, scopes_revoked: removed,
+    rate_per_minute: v.rate_per_minute, daily_quota: v.daily_quota, max_page_size: v.max_page_size,
+    enquiry_rate_per_minute: v.enquiry_rate_per_minute, enquiry_daily_quota: v.enquiry_daily_quota, expires_at: v.expires_at,
+  });
   return toApp(rows[0]);
 }
 
@@ -381,6 +414,8 @@ export interface UsageSummary {
   errors_7_days: number;
   rate_limited_7_days: number;
   avg_ms_7_days: number;
+  enquiries_accepted_7_days: number;
+  enquiries_rejected_7_days: number;
 }
 
 export async function usageSummary(sql: Sql = defaultSql): Promise<UsageSummary[]> {
@@ -391,7 +426,9 @@ export async function usageSummary(sql: Sql = defaultSql): Promise<UsageSummary[
             count(*)::int AS last_7_days,
             count(*) FILTER (WHERE status >= 400)::int AS errors_7_days,
             count(*) FILTER (WHERE event IN ('rate_limited','quota_exceeded'))::int AS rate_limited_7_days,
-            coalesce(round(avg(duration_ms)), 0)::int AS avg_ms_7_days
+            coalesce(round(avg(duration_ms)), 0)::int AS avg_ms_7_days,
+            count(*) FILTER (WHERE route = '/enquiries' AND status IN (200, 201))::int AS enquiries_accepted_7_days,
+            count(*) FILTER (WHERE route = '/enquiries' AND status >= 400)::int AS enquiries_rejected_7_days
      FROM api_request_log WHERE app_id IS NOT NULL AND at >= now() - interval '7 days' GROUP BY app_id`,
   );
   return rows.map((r) => ({ ...r, app_id: r.app_id }));

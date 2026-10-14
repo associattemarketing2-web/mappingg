@@ -3,7 +3,8 @@ import { query as pgQuery } from '../pg';
 import { slugify } from '../seo/slug';
 import { localitiesOf } from '../locality';
 import { API_VERSION, LIMITS, SCOPES } from './config';
-import { apiRoute, ApiError, pageParams, paginate, slugParam, notFound } from './handler';
+import { apiRoute, ApiError, pageParams, paginate, slugParam, notFound, parseBody } from './handler';
+import { enquirySchema, checkEnquiry, submitEnquiry, enforceEnquiryLimits, countInvalid } from './enquiries';
 import * as data from './data';
 import {
   serializeProject, serializeProjectSummary, serializeMapPin, serializeBlog, serializeBlogSummary, serializeInfra,
@@ -284,5 +285,35 @@ export const blog = apiRoute({
     const b = await data.findBlog(slugParam(params.slug));
     if (!b) throw notFound('Article');
     return { data: serializeBlog(b) };
+  },
+});
+
+// ---- enquiries (write) ------------------------------------------------------------------------
+
+/**
+ * POST /enquiries — a partner's website sends a visitor's enquiry into the Mappingg CRM.
+ * Server-to-server only (no CORS). See lib/api-platform/enquiries.ts for storage and consent.
+ */
+export const enquiries = apiRoute({
+  route: '/enquiries',
+  scope: 'enquiries:submit',
+  handler: async ({ req, app }) => {
+    await enforceEnquiryLimits(app!);
+    let body, checked;
+    try {
+      body = await parseBody(req, enquirySchema, LIMITS.maxEnquiryBytes);
+      checked = checkEnquiry(body, app!);
+    } catch (e) {
+      // Repeated invalid submissions pause the application's enquiries for the hour.
+      if (e instanceof ApiError && e.status < 500) await countInvalid(app!);
+      throw e;
+    }
+    try {
+      const { receipt, replayed } = await submitEnquiry(body, app!, checked);
+      return { data: receipt, records: 1, status: replayed ? 200 : 201, headers: (replayed ? { 'Idempotent-Replayed': 'true' } : {}) as Record<string, string> };
+    } catch (e) {
+      if (e instanceof ApiError && e.status === 422) await countInvalid(app!);
+      throw e;
+    }
   },
 });

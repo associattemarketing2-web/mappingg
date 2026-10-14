@@ -714,6 +714,8 @@ interface Lead {
   } | null;
   // Map enquiries only: how many times they tapped "Enquire now" on this project, and when last.
   enquiry_clicks?: number; last_enquired_at?: string | null;
+  // Enquiries sent by a partner website through the Developer API (POST /api/v1/enquiries).
+  integration?: { app_id: string; app_name: string; website: string; source_page?: string; reference?: string } | null;
   // Map enquiries only: the enquirer's account (buyer, agent or developer), if they have one.
   account?: {
     id: string; signed_in: boolean; role?: string; name?: string; email?: string; mobile?: string;
@@ -1495,7 +1497,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
                 ) : <p className="crm-msg">{sel.notes}</p>}
               </div>
             )}
-            <p className="crm-meta">{isSignup ? 'Signed up' : 'Received'} {leadWhen(sel.created_at)} · via {isMap ? 'Enquire on the live map' : (sel.source || 'contact form')}</p>
+            <p className="crm-meta">{isSignup ? 'Signed up' : 'Received'} {leadWhen(sel.created_at)} · via {isMap ? (sel.integration ? `partner website ${sel.integration.website} (Developer API: ${sel.integration.app_name}; consent stated by the partner)` : 'Enquire on the live map') : (sel.source || 'contact form')}</p>
           </aside>
         </div>
       )}

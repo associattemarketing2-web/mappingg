@@ -57,6 +57,29 @@ The concurrency cap is per instance (in memory).
 Rotate: application → **Rotate key** → choose how many hours the old key keeps working (0 = stop now).
 Pause: **Disable** (reversible). End: **Revoke** (permanent, kills every key).
 
+## Partner enquiries (POST /api/v1/enquiries, scope `enquiries:submit`)
+
+The only write endpoint. A partner's **server** sends a visitor's enquiry; it becomes a normal CRM lead.
+
+- **Grant:** application → *Edit scopes & limits* → tick `enquiries:submit`, make sure **Website** is the partner's
+  domain (enquiries are only accepted from `sourcePage` URLs on that domain or its subdomains), and set the enquiry
+  limits (default 10/min, 200/day). Revoke by unticking (takes effect on the next request). Both are in the audit trail.
+- **Where leads appear:** Super admin → Leads → *map enquiries* (`leads` table, same shape as a live-map enquiry):
+  status `new`, unassigned, so the normal CRM rules apply (owner sees all; employees only leads transferred to them).
+  The lead's detail line reads "via partner website <domain> (Developer API: <app>; consent stated by the partner)".
+  New leads are also pushed to the sales CRM webhook (`CRM_WEBHOOK_URL`) and emailed to the admin, like other enquiries.
+- **Stored on the lead:** name, WhatsApp/phone (site format), email, project (`pin_id`), message (with BHK/budget/area),
+  `consent` (partner-stated: their exact wording, version, time; `asserted_by_partner: true`), and `integration`
+  (application, domain, page without query string, campaign, reference). Nothing else from the request is stored.
+- **Not stored anywhere else:** API logs keep only route/status/timing; `api_enquiry_submissions` keeps the idempotency
+  record (application, submissionId, reference, payload hash, lead id) — no personal data.
+- **Duplicates:** same application + submissionId → original receipt (no new lead). Same phone + same project from the
+  same application within 24 h (or a 4th lead for one phone in 24 h) → the existing lead's `enquiry_clicks` goes up.
+- **Abuse:** per-app enquiry limits (shared counters), general request limits, 50 rejected submissions/hour pauses the
+  app's enquiries for the hour, auth-failure blocking, 16 KB body cap, strict field allow-list.
+- **Consent caveat:** Mappingg cannot verify a partner's form. The record proves what the partner *stated*, not what the
+  visitor did. Grant this scope only to partners under a written agreement covering consent.
+
 ## Emergency procedures
 
 - **One key leaked:** application → Keys → **Revoke** on that key, then **Rotate key** with grace 0 and send the new key.

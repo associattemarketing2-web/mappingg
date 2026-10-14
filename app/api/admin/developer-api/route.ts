@@ -73,6 +73,9 @@ const appFields = {
   rate_per_minute: z.coerce.number().int().min(1).max(LIMITS.maxRatePerMinute),
   daily_quota: z.coerce.number().int().min(1).max(LIMITS.maxDailyQuota),
   max_page_size: z.coerce.number().int().min(1).max(LIMITS.maxPageSize),
+  // POST /enquiries limits; only used when the app has the enquiries:submit scope.
+  enquiry_rate_per_minute: z.coerce.number().int().min(1).max(LIMITS.maxEnquiryPerMinute).optional(),
+  enquiry_daily_quota: z.coerce.number().int().min(1).max(LIMITS.maxEnquiryDailyQuota).optional(),
   expires_at: z.union([z.null(), z.literal(''), z.string().datetime({ offset: true })]).optional(),
 };
 
