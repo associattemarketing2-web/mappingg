@@ -1,11 +1,13 @@
-// Photo-style 1200x630 blog covers (also the Open Graph / Twitter card image).
+// 1200x630 blog covers (also the Open Graph / Twitter card image).
 //
-// Each cover is a full-bleed rendered scene — sky, sun glow, layered skyline with
-// haze, lit buildings with depth, reflections, light trails, film grain and a
-// vignette — with the headline over a soft scrim on the left. Every article gets
-// its own scene and palette so no two covers look alike. Everything is vector
-// (SVG rendered by sharp), so covers never depend on third-party project photos
-// or developer logos (the pins' pictures are mostly developer logos).
+// Covers use a real, CC-licensed photo of the area when one is given (see
+// migration/blog-photos/ and fetch-blog-photos.mjs); otherwise they fall back
+// to the illustrated scenes below.
+//
+// The illustrated fallback is a full-bleed rendered scene — sky, sun glow, layered
+// skyline with haze, lit buildings with depth, reflections, light trails, film
+// grain and a vignette. Either way the headline sits over a soft scrim on the
+// left. The pins' own pictures are mostly developer logos, so they aren't used.
 //
 // Used by migration/seed-blogs.mjs; preview without the DB with
 //   node migration/blog-covers.mjs <out-dir>
@@ -677,16 +679,19 @@ async function brandMark() {
 /**
  * Render a cover.
  * @param {string} file  output .jpg path
- * @param {{ theme: keyof THEMES, kicker: string, lines: string[], stats?: [string, string][], pins?: string[], tagline?: string }} spec
+ * @param {{ theme: keyof THEMES, kicker: string, lines: string[], stats?: [string, string][], pins?: string[], photo?: { file: string, position?: string }, tagline?: string }} spec
  *   lines: 2–3 headline lines; the last line is drawn in the accent colour.
  *   stats: up to 3 [value, label] chips under the headline.
+ *   photo: a real photo to use instead of the illustrated scene (position is a
+ *   sharp crop position such as 'centre', 'top' or 'right').
  */
-export async function makeCover(file, { theme, kicker, lines, stats = [], pins, tagline = 'Pune’s live real-estate map' }) {
+export async function makeCover(file, { theme, kicker, lines, stats = [], pins, photo, tagline = 'Pune’s live real-estate map' }) {
   const t = THEMES[theme];
   if (!t) throw new Error(`unknown cover theme ${theme}`);
   reset();
-  const scene = SCENES[t.scene](t, { pins }).join('');
-  const glowLayer = glow.join('');
+  // With a real photo the illustrated scene, glow and grain are skipped.
+  const scene = photo ? '' : SCENES[t.scene](t, { pins }).join('');
+  const glowLayer = photo ? '' : `<g filter="url(#glow)" opacity=".9">${glow.join('')}</g>`;
 
   const size = lines.some((l) => l.length > 17) ? 52 : 58;
   const lineH = size + 10;
@@ -736,11 +741,11 @@ export async function makeCover(file, { theme, kicker, lines, stats = [], pins, 
       ${defs.join('')}
     </defs>
     ${scene}
-    <g filter="url(#glow)" opacity=".9">${glowLayer}</g>
+    ${glowLayer}
     <rect width="${W}" height="${H}" fill="url(#vignette)"/>
     <rect width="${W}" height="${H}" fill="url(#scrim)"/>
     <rect y="${H - 160}" width="${W}" height="160" fill="url(#foot)"/>
-    <rect width="${W}" height="${H}" filter="url(#grain)" opacity=".28"/>
+    ${photo ? '' : `<rect width="${W}" height="${H}" filter="url(#grain)" opacity=".28"/>`}
     <rect x="60" y="70" rx="20" width="${Math.round(kicker.length * 12.6) + 52}" height="40" fill="${head}"/>
     <circle cx="82" cy="90" r="5" fill="${t.scrim}"/>
     <text x="96" y="97" font-family="${FONT}" font-size="17" font-weight="800" fill="${t.scrim}" letter-spacing="2">${esc(kicker.toUpperCase())}</text>
@@ -750,8 +755,18 @@ export async function makeCover(file, { theme, kicker, lines, stats = [], pins, 
     <text x="114" y="${H - 30}" font-family="${FONT}" font-size="15" fill="${t.sub}">${esc(tagline)}</text>
   </svg>`;
 
-  await sharp(Buffer.from(svg))
-    .composite([{ input: await brandMark(), left: 60, top: H - 88 }])
+  const layers = [{ input: await brandMark(), left: 60, top: H - 88 }];
+  let base = sharp(Buffer.from(svg));
+  if (photo) {
+    // Real photo cropped to 1200x630, toned down a touch so the text reads.
+    base = sharp(await sharp(photo.file)
+      .resize(W, H, { fit: 'cover', position: photo.position || 'centre' })
+      .modulate({ brightness: 0.94, saturation: 1.06 })
+      .toBuffer());
+    layers.unshift({ input: Buffer.from(svg), left: 0, top: 0 });
+  }
+  await base
+    .composite(layers)
     .jpeg({ quality: 88, mozjpeg: true, chromaSubsampling: '4:4:4' })
     .toFile(file);
 }

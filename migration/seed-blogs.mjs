@@ -6,8 +6,9 @@
 // the database — use it to commit the new covers before the posts go live.
 //
 // - Removes the old placeholder post ("welcome-to-the-mappingg-blog").
-// - Renders an illustrated 1200x630 cover per article (migration/blog-covers.mjs)
-//   into public/img/blog/, also used as the Open Graph / Twitter card image.
+// - Renders a 1200x630 cover per article (migration/blog-covers.mjs) from a real,
+//   CC-licensed photo of the area (migration/blog-photos/, credited at the end of
+//   each article) into public/img/blog/, also used as the Open Graph / Twitter card.
 //   Commit and deploy them before seeding, so production can serve them.
 // - Upserts each article by slug, so re-running refreshes the content instead
 //   of creating duplicates.
@@ -17,7 +18,7 @@
 // rules as the /projects/<slug> pages (lib/seo/slug.ts + lib/locality.ts).
 
 import { randomUUID } from 'node:crypto';
-import { mkdir } from 'node:fs/promises';
+import { mkdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import pg from 'pg';
 import { projectSlug, slugify } from '../lib/seo/slug.ts';
@@ -1398,6 +1399,185 @@ ${h.table([149, 148, 156], 'Luxury projects in Palava and Thane')}
   };
 }
 
+function commercialArticle(h) {
+  return {
+    slug: 'commercial-property-office-space-in-pune',
+    title: 'Commercial Property in Pune (2026): Office Space, Shops & Studio Investments',
+    seo_title: 'Commercial Property in Pune 2026: Offices & Shops',
+    seo_description:
+      'Office space, shops, showrooms and studio units in Pune — Mundhwa, Kharadi, Kothrud, Camp & PCMC compared by price, possession and MahaRERA number. Studios from ₹46 Lacs.',
+    excerpt:
+      'Buying an office, shop or studio unit in Pune? Real commercial projects in Mundhwa, Kharadi, Kothrud, Camp, Sadashiv Peth and PCMC, with prices, possession dates, MahaRERA numbers and the costs to plan for.',
+    tags: ['Commercial Property', 'Office Space in Pune', 'Pune', 'Investment', 'Shops'],
+    cover: {
+      theme: 'midnight',
+      kicker: 'Investor guide',
+      lines: ['Commercial Property', 'in Pune: Offices,', 'Shops & Studios'],
+      stats: [['₹46 L', 'studios from'], ['₹84 L', 'shops & offices from'], ['EON · WTC', 'leasing hubs']],
+    },
+    content: `
+<p>Looking for <strong>commercial property in Pune</strong>? Pune’s office market is built around its IT and business districts: Kharadi’s EON IT Park and World Trade Center, Magarpatta, Hinjewadi and, increasingly, Mundhwa. Alongside large leased-out office parks, developers are also selling smaller offices, shops, showrooms and studio units to individual investors. This guide lists the commercial projects on <a href="/property/commercial">Mappingg’s commercial map</a>, with prices, possession dates and MahaRERA numbers where the developer has shared them.</p>
+
+<h2>Types of commercial property you can buy in Pune</h2>
+<ul>
+  <li><strong>Office space:</strong> from small office units of a few hundred sq ft to full floors. Buyers either use them or lease them to companies.</li>
+  <li><strong>Shops and showrooms:</strong> ground- and first-floor retail on busy roads or in high-street developments. Footfall and frontage matter more than size.</li>
+  <li><strong>Studio / serviced units:</strong> compact, low-ticket units in mixed-use towers, usually bought to rent out to working professionals.</li>
+  <li><strong>Leased Grade-A space:</strong> large IT parks such as EON and WTC are mostly leased to companies rather than sold unit by unit.</li>
+</ul>
+
+<h2>Office space in Mundhwa and Magarpatta</h2>
+<p>Mundhwa is the most active commercial micro-market on our map. ${h.link(3)} by Ram India Group offers office space from ₹2.2 Cr, with possession in June 2029, and is registered as a commercial project on MahaRERA (<code>PC1260002500325</code>). At the top end, ${h.link(24)} near the old passport office junction offers offices of 3,000 to 18,000 sq ft from ₹8.10 Cr, due in December 2030. ${h.link(48)}, ${h.link(59)} and the upcoming ${h.link(53)} add more supply, and ${h.link(8)} by Magarpatta Group is under construction next door in Magarpatta.</p>
+${h.table([3, 24, 48, 59, 8], 'Office projects in Mundhwa & Magarpatta')}
+
+<h2>Shops, showrooms and offices in central Pune</h2>
+<p>In the old city, high-street retail is the main draw. ${h.link(254)} in Sadashiv Peth has showrooms and offices from ₹84 Lacs, due in December 2027. ${h.link(158)} on Laxmi Road offers premium retail shops and anchor showrooms from ₹1.50 Cr. Near the Collector’s Office in Camp, ${h.link(115)} by Kundan Spaces is a 37-floor tower with offices, shops and showrooms from ₹1.50 Cr, due in December 2028. In West Pune, ${h.link(220)} in Vanaz, Kothrud has shops and offices from ₹1.8 Cr, due in June 2027.</p>
+${h.table([254, 158, 115, 220], 'Shops & offices in central and West Pune')}
+
+<h2>Studio units for rental income</h2>
+<p>If your budget is under ₹60 Lacs, studio units are the lowest-ticket way into Pune’s commercial and mixed-use market. Jhamtani Group has two projects in Mundhwa: ${h.link(34)} from ₹46 Lacs (December 2028) and ${h.link(30)} from ₹52 Lacs (December 2027, MahaRERA <code>P52100054261</code>). Tenants are typically professionals working in Kharadi, Magarpatta and Koregaon Park, so check commute times on the <a href="/map">live map</a> before you buy.</p>
+${h.table([34, 30], 'Studio units in Mundhwa')}
+
+<h2>Retail and offices in PCMC, NIBM and Sanghvi</h2>
+<p>${h.link(61)} on Tata Motors Road in Pimpri-Chinchwad offers office space (price on request, due December 2030). ${h.link(243)} in Sanghvi has shops from ₹1.34 Cr and is listed as available, with MahaRERA number <code>P52100077792</code>. In South-East Pune, ${h.link(109)} by VTP Group has shops, showrooms and a rooftop restaurant space.</p>
+${h.table([61, 243, 109], 'Commercial projects in PCMC, Sanghvi & NIBM')}
+
+<h2>Grade-A office parks: EON, WTC and Kharadi</h2>
+<p>Kharadi is Pune’s biggest office cluster. Panchshil Realty’s ${h.link(78)}, ${h.link(91)} and ${h.link(79)} are large, completed office parks. Space here is mostly leased to companies rather than sold to individuals, but these parks drive rental demand for every home and studio around them. That’s one reason <a href="/blog/new-projects-in-kharadi-pune">new projects in Kharadi</a> and nearby Mundhwa stay in demand. ${h.link(88)} is a newer office project under construction in Kharadi.</p>
+${h.gallery([78, 79, 91])}
+<p>For ready space, ${h.link(95)} in Mundhwa is listed for rental and resale, and ${h.link(96)} on Nagar Road in Wagholi is offered for leasing only.</p>
+
+<h2>Costs to plan for when buying commercial property</h2>
+<div class="table-scroll"><table>
+<caption>Typical extra costs on a commercial purchase in Pune</caption>
+<thead><tr><th>Cost</th><th>What to expect</th></tr></thead>
+<tbody>
+<tr><td>GST</td><td>12% on under-construction commercial units (the developer can claim input tax credit). No GST once the occupancy certificate is issued.</td></tr>
+<tr><td>Stamp duty</td><td>Same rate as residential property in PMC/PCMC limits. The concession for women buyers applies to residential property only.</td></tr>
+<tr><td>Registration</td><td>1% of the value, capped at ₹30,000.</td></tr>
+<tr><td>TDS</td><td>1% deducted by the buyer when the price is ₹50 Lacs or more (Section 194-IA).</td></tr>
+<tr><td>Maintenance &amp; property tax</td><td>Usually higher per sq ft than for homes. Ask for the expected monthly charges in writing.</td></tr>
+</tbody></table></div>
+<p><small>Tax rates as in force in October 2026. See our full guide to <a href="/blog/stamp-duty-registration-charges-pune">stamp duty and registration charges in Pune</a>, and confirm the figures for your purchase with a chartered accountant.</small></p>
+
+<h2>Checklist before you buy an office or shop</h2>
+<ol>
+  <li><strong>Verify the MahaRERA number.</strong> RERA covers commercial projects too. Newer commercial registrations start with <code>PC</code>. Here’s <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>.</li>
+  <li><strong>Compare carpet area and loading.</strong> Commercial projects often quote “super” or chargeable area, which can be far larger than the usable carpet area.</li>
+  <li><strong>Check frontage, floor and footfall</strong> for shops. A ground-floor shop on the main road can be worth much more than one on an upper floor.</li>
+  <li><strong>Ask about parking and power backup.</strong> Office tenants expect both, and they affect the rent you can charge.</li>
+  <li><strong>Work out the real rental yield.</strong> Divide the expected yearly rent, after maintenance and tax, by your all-in cost, not just the base price.</li>
+  <li><strong>Check what’s around the project</strong> on the <a href="/map">live map</a>: offices, metro stations and new roads drive both rent and resale.</li>
+</ol>
+
+<h2>FAQs: Commercial property in Pune</h2>
+<h3>What is the cheapest way to invest in commercial property in Pune?</h3>
+<p>Among the projects on our map, studio units are the lowest-ticket option: ${h.link(34)} from ₹46 Lacs and ${h.link(30)} from ₹52 Lacs, both in Mundhwa. For shops and offices, ${h.link(254)} in Sadashiv Peth starts at ₹84 Lacs.</p>
+<h3>Where is the best place to buy office space in Pune?</h3>
+<p>It depends on your tenants. Kharadi and Mundhwa sit next to EON IT Park, WTC and Magarpatta, so they suit IT and services companies. Camp, Laxmi Road and Sadashiv Peth suit retail, showrooms and professional offices such as CAs and doctors.</p>
+<h3>Is GST charged on commercial property?</h3>
+<p>Yes, on under-construction units: 12% with input tax credit available to the developer. Completed units sold after the occupancy certificate do not attract GST.</p>
+<h3>Can I get a loan for commercial property?</h3>
+<p>Yes. Banks offer loans against commercial property, but usually at a higher interest rate and a lower loan-to-value ratio than home loans. Compare offers before you book. Our <a href="/blog/home-loan-emi-eligibility-pune">home loan guide</a> explains EMI and eligibility.</p>
+
+<blockquote>Prices, configurations and possession dates are as listed on Mappingg in October 2026 and may change. This guide is general information, not tax or investment advice. Always confirm details with the developer, on MahaRERA and with your own advisers before you book.</blockquote>
+`,
+  };
+}
+
+function upcomingArticle(h) {
+  return {
+    slug: 'upcoming-new-launch-projects-in-pune',
+    title: 'Upcoming & New Launch Projects in Pune (2026): Pre-Launch, EOI & RERA Guide',
+    seo_title: 'Upcoming & New Launch Projects in Pune 2026',
+    seo_description:
+      'Upcoming and newly launched projects in Pune — Mundhwa, Hinjewadi, Lohegaon, Kharadi, Wakad & more — with prices, possession dates, MahaRERA numbers and how to book safely at EOI stage.',
+    excerpt:
+      'New launches and pre-launch (EOI) projects in Pune, from ₹72.89 Lacs 2 BHKs in Lohegaon to luxury 4/5 BHKs in Mundhwa — with possession dates, MahaRERA numbers and the rules that protect you before you pay.',
+    tags: ['New Launch Projects', 'Upcoming Projects in Pune', 'Pune', 'Pre-Launch', 'MahaRERA'],
+    cover: {
+      theme: 'sunrise',
+      kicker: 'New launches',
+      lines: ['Upcoming & New', 'Launch Projects', 'in Pune, 2026'],
+      stats: [['₹72.9 L', '2 BHK from'], ['2029–31', 'possession'], ['RERA', 'check before EOI']],
+    },
+    content: `
+<p>Buying at launch is one of the most common ways to get a better price on a new flat in Pune. Developers often offer launch pricing, flexible payment plans and the widest choice of floors and views. This guide lists the <strong>upcoming and new launch projects in Pune</strong> on Mappingg’s map: projects taking expressions of interest (EOI) now, and projects launched recently with possession in 2029–2031. It also covers the rules that protect you before you pay anything.</p>
+
+<h2>What “upcoming”, “pre-launch” and “new launch” mean</h2>
+<ul>
+  <li><strong>Upcoming / pre-launch:</strong> the developer is collecting interest but the project may not yet be registered with MahaRERA. You may be asked for a refundable EOI cheque to reserve a place in the queue.</li>
+  <li><strong>New launch:</strong> the project is registered with MahaRERA and formally open for booking. Prices are usually at their lowest at this stage.</li>
+  <li><strong>Under construction:</strong> booking is open and building work has started. Possession dates are firmer, and so are prices.</li>
+</ul>
+<p>Under RERA, a developer cannot advertise, market, book or sell flats in a project that must be registered until it has a MahaRERA registration. A developer also cannot take more than 10% of the price as an advance before signing a registered agreement for sale.</p>
+
+<h2>Upcoming projects in Pune taking EOIs</h2>
+<p>In Mundhwa, ${h.link(207)} by Kumar Corp is taking EOIs for 2 and 3 BHK homes from ₹1.20 Cr, with possession planned for December 2031. It already shows a MahaRERA number on our map (<code>PR1264042501296</code>). ${h.link(7)} plans 3 and 4 BHK homes, and Pristine Properties has two upcoming projects: ${h.link(5)}, with 3 BHK homes and shops from ₹1.89 Cr, and ${h.link(9)}, with 3, 4 and 5 BHK homes from ₹3 Cr. At the luxury end, ${h.link(52)} plans 4 and 5 BHK residences priced at ₹8–12 Cr.</p>
+<p>In North Hinjewadi, the 105-acre Krisala Hiranandani township has announced ${h.link(206)}, with 2 and 3 BHK homes from ₹85 Lacs to ₹1.35 Cr. Near Pune Airport, ${h.link(256)} in Lohegaon offers airport-facing 2 and 3 BHK homes from ₹72.89 Lacs, due in August 2029 (MahaRERA <code>PM1260002602036</code>). In Kharadi, ${h.link(134)} is listed from ₹1.25 Cr.</p>
+${h.table([207, 206, 256, 134, 5, 9, 52, 7], 'Upcoming projects in Pune')}
+
+<h2>New launches with possession in 2030–2031</h2>
+<p>These projects are already registered and under construction, but are at an early stage, with possession four to five years away. That’s usually where launch-phase pricing is still available.</p>
+<h3>East Pune: Mundhwa, Kharadi and Manjri</h3>
+<p>${h.link(10)} offers 3 and 4 BHK homes from ₹2.20 Cr (December 2031). ${h.link(23)} has 3 and 4 BHK homes plus showrooms from ₹2.31 Cr, and ${h.link(17)} has 3, 4 and 4.5 BHK homes from ₹1.95 Cr (March 2030). In Kharadi, ${h.link(135)} offers 2, 3 and 4 BHK homes from ₹1.12 Cr (December 2030). On the Solapur Highway, ${h.link(113)} by Shapoorji Pallonji in Manjri starts at ₹1.42 Cr.</p>
+${h.table([10, 23, 17, 135, 113], 'New launches in East Pune')}
+
+<h3>West Pune: Hinjewadi, Wakad, Tathawade, Mahalunge and Sus</h3>
+<p>West Pune has the most new launches under ₹1 Cr. ${h.link(199)} in Sus starts at ₹74 Lacs, ${h.link(204)} in North Hinjewadi at ₹82 Lacs and ${h.link(198)} in Mahalunge at ₹90 Lacs. ${h.link(202)} in Tathawade starts at ₹93 Lacs. In Wakad, Kohinoor’s ${h.link(270)} (₹92 Lacs to ₹1.9 Cr) and ${h.link(246)} by Binary Infrastructures (₹1.3–2.25 Cr) are both due in 2030–31, and ${h.link(269)} in Hinjewadi Phase 1 offers 3 and 4 BHK homes from ₹99 Lacs.</p>
+${h.table([199, 204, 198, 202, 270, 246, 269, 205], 'New launches in West Pune')}
+
+<h3>Central and luxury launches</h3>
+<p>${h.link(168)} by Birla Estate in Mangalwar Peth offers 2, 3 and 4 BHK homes from ₹1.73 Cr (September 2031). For luxury buyers, ${h.link(103)} in Kalyani Nagar starts at ₹4.25 Cr and ${h.link(119)} on Shankar Sheth Road at ₹4.71 Cr. Our guide to <a href="/blog/luxury-flats-villas-in-pune">luxury flats and villas in Pune</a> covers more options.</p>
+${h.table([168, 103, 119], 'Central and luxury launches')}
+
+<h2>How to book safely at the pre-launch or EOI stage</h2>
+<ol>
+  <li><strong>Check for a MahaRERA number before you pay a booking amount.</strong> If the project isn’t registered yet, keep any EOI small and get it in writing as fully refundable. Here’s <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>.</li>
+  <li><strong>Get the EOI terms in writing:</strong> the amount, whether it is refundable, the refund timeline and what happens if the launch price is higher than expected.</li>
+  <li><strong>Pay by cheque or bank transfer to the developer’s account</strong>, never in cash and never to an individual.</li>
+  <li><strong>Compare the launch price with nearby projects.</strong> Use the <a href="/map">live map</a> to see what similar under-construction and <a href="/status/ready-to-move">ready-to-move</a> projects nearby are asking.</li>
+  <li><strong>Plan for a long wait.</strong> Possession in 2030–31 means paying rent or EMI for years. Our guide to <a href="/blog/ready-to-move-vs-under-construction-flats-pune">ready-to-move vs under-construction flats</a> explains the trade-offs.</li>
+  <li><strong>Check the developer’s track record</strong> on past projects. Compare their earlier RERA completion dates with when buyers actually got possession.</li>
+</ol>
+
+<h2>FAQs: Upcoming projects in Pune</h2>
+<h3>Which upcoming projects in Pune have a MahaRERA number?</h3>
+<p>Among the upcoming projects on our map, ${h.link(207)} in Mundhwa (<code>PR1264042501296</code>) and ${h.link(256)} in Lohegaon (<code>PM1260002602036</code>) show MahaRERA numbers. For the others, ask the developer and check the official MahaRERA website before you pay a booking amount.</p>
+<h3>What is the cheapest new launch in Pune?</h3>
+<p>Among the projects in this guide, ${h.link(256)} in Lohegaon starts at ₹72.89 Lacs and ${h.link(199)} in Sus at ₹74 Lacs. See more options in our guide to <a href="/blog/flats-under-1-crore-in-pune">flats under ₹1 crore in Pune</a>.</p>
+<h3>Is an EOI refundable?</h3>
+<p>Most developers describe EOIs as refundable, but terms vary. Get the refund conditions and timeline in writing before you pay.</p>
+<h3>Is it better to buy at launch?</h3>
+<p>Launch prices are usually the lowest, and you get the most choice. In return you wait longer for possession and take on more delivery risk. Check the developer’s track record and the RERA completion date, and make sure you can afford rent and EMI at the same time if needed.</p>
+
+<blockquote>Prices, configurations and possession dates are as listed on Mappingg in October 2026. Upcoming projects in particular can change price, layout and timing before launch. Always confirm with the developer and on MahaRERA before you pay.</blockquote>
+`,
+  };
+}
+
+// ---- photos ---------------------------------------------------------------------
+
+const PHOTO_DIR = path.resolve('migration/blog-photos');
+const CREDITS = JSON.parse(await readFile(path.join(PHOTO_DIR, 'credits.json'), 'utf8'));
+
+// Crop position per cover photo (sharp gravity); default 'centre'.
+const PHOTO_POSITION = {
+  'new-projects-in-mundhwa-pune': 'top',
+  'how-to-check-maharera-registration-number': 'bottom',
+  'new-projects-in-navi-mumbai': 'bottom',
+  'luxury-flats-villas-in-pune': 'right',
+};
+
+/** CC licences require attribution and a note that the photo was changed. */
+function photoCredit(c) {
+  const title = `<a href="${esc(c.source)}" rel="nofollow noopener" target="_blank">${esc(c.title)}</a>`;
+  const license = c.licenseUrl
+    ? `<a href="${esc(c.licenseUrl)}" rel="license nofollow noopener" target="_blank">${esc(c.license)}</a>`
+    : esc(c.license);
+  return `<p class="photo-credit"><small>Cover photo: ${title} by ${esc(c.author)}, ${license}, via Wikimedia Commons. Cropped, with text added.</small></p>`;
+}
+
 // ---- main ---------------------------------------------------------------------
 
 async function upsert(post) {
@@ -1436,6 +1616,7 @@ async function main() {
     westPuneArticle(h), pcmcArticle(h), eastPuneArticle(h), readyVsUcArticle(h),
     underOneCroreArticle(h), stampDutyArticle(h), threeBhkArticle(h), homeLoanArticle(h),
     twoBhkArticle(h), luxuryArticle(h), naviMumbaiArticle(h), kalyanDombivliArticle(h),
+    commercialArticle(h), upcomingArticle(h),
   ];
 
   // Sanity: every slug used by the articles' internal links must be stable.
@@ -1443,10 +1624,16 @@ async function main() {
 
   await mkdir(COVER_DIR, { recursive: true });
   for (const a of articles) {
+    const credit = CREDITS[a.slug];
+    if (!credit) throw new Error(`no cover photo for ${a.slug} (run migration/fetch-blog-photos.mjs)`);
     // Versioned name: /img is browser-cached for a week (next.config.mjs).
-    const file = `${a.slug}-v3.jpg`;
-    await makeCover(path.join(COVER_DIR, file), a.cover);
+    const file = `${a.slug}-v4.jpg`;
+    await makeCover(path.join(COVER_DIR, file), {
+      ...a.cover,
+      photo: { file: path.join(PHOTO_DIR, credit.file), position: PHOTO_POSITION[a.slug] },
+    });
     a.cover_image = `/img/blog/${file}`;
+    a.content = `${a.content.trim()}\n\n${photoCredit(credit)}`;
     console.log(`Cover: public/img/blog/${file}`);
   }
 
