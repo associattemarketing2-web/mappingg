@@ -12,6 +12,7 @@ import SearchConsolePanel from './SearchConsolePanel';
 import { BulkBar, PickOne, useSelection } from './bulk';
 import TrafficPanel from './TrafficPanel';
 import DevelopersPanel from './DevelopersPanel';
+import DeveloperApiPanel from './DeveloperApiPanel';
 import { ChartCard, DayHeatmap, Donut, HBars, STATUS_META, StatTile, StatusStack, TYPE_COLORS, WeekColumns, dayStats } from './SeoCharts';
 
 export interface AdminUser {
@@ -43,6 +44,7 @@ const TAB_META: Record<string, { label: string; icon: string }> = {
   backups: { label: 'Backups', icon: 'fa-database' },
   blogs: { label: 'Blogs', icon: 'fa-newspaper' },
   employees: { label: 'Employees', icon: 'fa-users-gear' },
+  devapi: { label: 'Developer API', icon: 'fa-plug' },
   seo: { label: 'SEO & Health', icon: 'fa-chart-line' },
   settings: { label: 'Settings', icon: 'fa-gear' },
   profile: { label: 'Profile', icon: 'fa-user' },
@@ -2602,7 +2604,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
   const { flash, node: toastNode } = useToast();
 
   const visible = isOwner
-    ? ['dashboard', 'map', 'developers', 'projects', 'intake', 'leads', 'accounts', 'blogs', 'employees', 'backups', 'seo', 'settings', 'profile']
+    ? ['dashboard', 'map', 'developers', 'projects', 'intake', 'leads', 'accounts', 'blogs', 'employees', 'backups', 'devapi', 'seo', 'settings', 'profile']
     // Employees get no site-wide Dashboard overview — they open straight on their
     // leads (only the ones transferred to them), plus any other tab the super admin granted.
     : [...GRANTABLE.map((g) => g.key).filter((k) => user.permissions.includes(k)).sort((a, b) => Number(b === 'leads') - Number(a === 'leads')).flatMap((k) => (k === 'intake' ? ['projects', 'intake'] : k === 'map' ? ['map', 'developers'] : [k])), 'profile'];
@@ -2768,6 +2770,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
           {tab === 'blogs' && <BlogsPanel flash={flash} />}
           {tab === 'employees' && isOwner && <EmployeesPanel flash={flash} />}
           {tab === 'backups' && isOwner && <BackupsPanel flash={flash} />}
+          {tab === 'devapi' && isOwner && <DeveloperApiPanel flash={flash} />}
           {tab === 'seo' && <SeoPanel />}
           {tab === 'settings' && <SettingsForm />}
           {tab === 'profile' && (

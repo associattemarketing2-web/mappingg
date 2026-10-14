@@ -1,0 +1,19 @@
+/* Developer API docs (/developer-api) — additions to the info-page styles (app/info.css). */
+.ipg-doc pre.dapi-code { margin: 6px 0 16px; padding: 16px 18px; border-radius: 14px; background: #14211c; color: #e6efe9; font: 13px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow-x: auto; white-space: pre; tab-size: 2; }
+.ipg-doc pre.dapi-code .c { color: #8fb5a3; }
+.ipg-doc :not(pre) > code { font-size: .88em; padding: 1px 6px; border-radius: 6px; background: var(--land); color: var(--ink); overflow-wrap: anywhere; }
+.ipg-doc .dapi-table td:last-child { white-space: normal; }
+.ipg-doc .dapi-table td:first-child { width: auto; white-space: nowrap; }
+.ipg-doc .dapi-label { display: inline-block; margin: 2px 0 6px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.ipg-doc .dapi-warn { display: flex; gap: 10px; padding: 14px 16px; margin: 8px 0 16px; border-radius: 14px; background: #fff6e0; border: 1px solid #f1d58a; color: #5a4300; font-size: 15px; line-height: 1.6; }
+@media (max-width: 620px) {
+  .ipg-doc .dapi-table td:first-child { white-space: normal; }
+  .ipg-doc pre.dapi-code { font-size: 12px; padding: 14px; margin-inline: -4px; }
+}
+
+/* API reference (Swagger UI) */
+.dapi-ref { padding: 32px 0 80px; }
+.dapi-ref .container { max-width: 1200px; }
+.dapi-ref #swagger-ui { min-height: 60vh; }
+.dapi-ref .swagger-ui .topbar { display: none; }
+.dapi-ref noscript, .dapi-ref .dapi-fallback { display: block; padding: 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--land); }
