@@ -1,0 +1,663 @@
+{
+  "date": "2026-10-14",
+  "total_pins": 418,
+  "live_pins": 418,
+  "not_live": {
+    "hidden": 0,
+    "pending_review": 0,
+    "rejected": 0
+  },
+  "field_filled": {
+    "title": {
+      "filled": 415,
+      "pct": 99
+    },
+    "developer": {
+      "filled": 371,
+      "pct": 89
+    },
+    "location": {
+      "filled": 375,
+      "pct": 90
+    },
+    "coordinates": {
+      "filled": 418,
+      "pct": 100
+    },
+    "type": {
+      "filled": 364,
+      "pct": 87
+    },
+    "status": {
+      "filled": 418,
+      "pct": 100
+    },
+    "configuration": {
+      "filled": 193,
+      "pct": 46
+    },
+    "carpet_area": {
+      "filled": 273,
+      "pct": 65
+    },
+    "price": {
+      "filled": 180,
+      "pct": 43
+    },
+    "possession": {
+      "filled": 253,
+      "pct": 61
+    },
+    "rera_number": {
+      "filled": 187,
+      "pct": 45
+    },
+    "description": {
+      "filled": 5,
+      "pct": 1
+    },
+    "key_usp": {
+      "filled": 88,
+      "pct": 21
+    },
+    "amenities": {
+      "filled": 16,
+      "pct": 4
+    },
+    "image": {
+      "filled": 415,
+      "pct": 99
+    },
+    "brochure": {
+      "filled": 8,
+      "pct": 2
+    },
+    "video": {
+      "filled": 138,
+      "pct": 33
+    }
+  },
+  "avg_fields_filled": 9.8,
+  "least_complete": [
+    {
+      "number": 415,
+      "title": "",
+      "filled": 3
+    },
+    {
+      "number": 416,
+      "title": "",
+      "filled": 3
+    },
+    {
+      "number": 416,
+      "title": "",
+      "filled": 3
+    },
+    {
+      "number": 14,
+      "title": "Majestique Landmark",
+      "filled": 6
+    },
+    {
+      "number": 40,
+      "title": "Merlin New Project",
+      "filled": 6
+    },
+    {
+      "number": 42,
+      "title": "Adani Greens",
+      "filled": 6
+    },
+    {
+      "number": 43,
+      "title": "Casa Elanza",
+      "filled": 6
+    },
+    {
+      "number": 44,
+      "title": "Omicron Commerz",
+      "filled": 6
+    },
+    {
+      "number": 49,
+      "title": "Anandtara New Launch",
+      "filled": 6
+    },
+    {
+      "number": 51,
+      "title": "Vedant 84",
+      "filled": 6
+    },
+    {
+      "number": 57,
+      "title": "Unique Properties",
+      "filled": 6
+    },
+    {
+      "number": 63,
+      "title": "Gandharv New Commercial",
+      "filled": 6
+    },
+    {
+      "number": 64,
+      "title": "Gandharv New Commercial 2",
+      "filled": 6
+    },
+    {
+      "number": 65,
+      "title": "Ram India New Commerial",
+      "filled": 6
+    },
+    {
+      "number": 67,
+      "title": "Panchshil WestView",
+      "filled": 6
+    },
+    {
+      "number": 69,
+      "title": "Clover Commercial",
+      "filled": 6
+    },
+    {
+      "number": 77,
+      "title": "Pawar Riseonic",
+      "filled": 6
+    },
+    {
+      "number": 80,
+      "title": "Goel Ganga Platinum Towers",
+      "filled": 6
+    },
+    {
+      "number": 86,
+      "title": "Kundan Project",
+      "filled": 6
+    },
+    {
+      "number": 90,
+      "title": "Panchshil Vantage",
+      "filled": 6
+    },
+    {
+      "number": 102,
+      "title": "Rohan Mithila Business Center",
+      "filled": 6
+    },
+    {
+      "number": 105,
+      "title": "Nyati Lullanagar",
+      "filled": 6
+    },
+    {
+      "number": 106,
+      "title": "Tribeca - The Ark",
+      "filled": 6
+    },
+    {
+      "number": 107,
+      "title": "Tribeca High Street",
+      "filled": 6
+    },
+    {
+      "number": 108,
+      "title": "Reserve by K Raheja",
+      "filled": 6
+    }
+  ],
+  "identity_warnings": {
+    "duplicate_titles": [
+      {
+        "title": "pristine properties",
+        "pins": [
+          5,
+          9
+        ]
+      },
+      {
+        "title": "mantra melange",
+        "pins": [
+          21,
+          75
+        ]
+      },
+      {
+        "title": "santiago sunrise",
+        "pins": [
+          239,
+          243
+        ]
+      }
+    ],
+    "duplicate_rera": [
+      {
+        "rera": "PM1261012601312",
+        "pins": [
+          21,
+          75
+        ]
+      },
+      {
+        "rera": "P52100077792",
+        "pins": [
+          239,
+          243
+        ]
+      }
+    ],
+    "malformed_rera": [
+      {
+        "number": 1,
+        "value": "A52100029540"
+      },
+      {
+        "number": 5,
+        "value": "LAUNCHING-SOON"
+      },
+      {
+        "number": 7,
+        "value": "LAUNCHING-SOON"
+      },
+      {
+        "number": 227,
+        "value": "P52100080358 (TOWER E F G)"
+      },
+      {
+        "number": 228,
+        "value": "P52100077052 PR1261012601494"
+      },
+      {
+        "number": 233,
+        "value": "P52100000051202"
+      },
+      {
+        "number": 248,
+        "value": "P52100055197 : PM1261012501485"
+      },
+      {
+        "number": 252,
+        "value": "IN PROCESS"
+      },
+      {
+        "number": 291,
+        "value": "PRM/KA/RERA/1251/310/PR/180926/008948"
+      },
+      {
+        "number": 292,
+        "value": "PRM/KA/RERA/1251/309/PR/100926/008930"
+      },
+      {
+        "number": 293,
+        "value": "PRM/KA/RERA/1251/309/PR/100926/008931"
+      },
+      {
+        "number": 294,
+        "value": "PRM/KA/RERA/1251/308/PR/080926/008919"
+      },
+      {
+        "number": 295,
+        "value": "PRM/KA/RERA/1251/446/PR/190826/008878"
+      },
+      {
+        "number": 296,
+        "value": "PRM/KA/RERA/1251/310/PR/180826/008875"
+      },
+      {
+        "number": 297,
+        "value": "PRM/KA/RERA/1251/472/PR/200726/008829"
+      },
+      {
+        "number": 298,
+        "value": "PRM/KA/RERA/1251/308/PR/150726/008810"
+      },
+      {
+        "number": 299,
+        "value": "PRM/KA/RERA/1251/446/PR/090726/008800"
+      },
+      {
+        "number": 300,
+        "value": "PRM/KA/RERA/1251/310/PR/200526/008667"
+      },
+      {
+        "number": 301,
+        "value": "PRM/KA/RERA/1251/309/PR/070526/008628"
+      },
+      {
+        "number": 302,
+        "value": "PRM/KA/RERA/1251/309/PR/070526/008629"
+      },
+      {
+        "number": 303,
+        "value": "PRM/KA/RERA/1251/310/PR/050526/008622"
+      },
+      {
+        "number": 304,
+        "value": "PRM/KA/RERA/1251/446/PR/240326/008549"
+      },
+      {
+        "number": 305,
+        "value": "PRM/KA/RERA/1251/310/PR/230326/008543"
+      },
+      {
+        "number": 306,
+        "value": "PRM/KA/RERA/1251/309/PR/230326/008545"
+      },
+      {
+        "number": 307,
+        "value": "PRM/KA/RERA/1251/308/PR/180326/008537"
+      },
+      {
+        "number": 308,
+        "value": "PRM/KA/RERA/1251/308/PR/110326/008519"
+      },
+      {
+        "number": 309,
+        "value": "PRM/KA/RERA/1251/472/PR/270226/008494"
+      },
+      {
+        "number": 310,
+        "value": "PRM/KA/RERA/1251/308/PR/230126/008427"
+      },
+      {
+        "number": 311,
+        "value": "PRM/KA/RERA/1251/310/PR/170126/008410"
+      },
+      {
+        "number": 312,
+        "value": "PRM/KA/RERA/1251/446/PR/070126/008388"
+      },
+      {
+        "number": 313,
+        "value": "PRM/KA/RERA/1251/446/PR/050126/008382"
+      },
+      {
+        "number": 314,
+        "value": "PRM/KA/RERA/1251/308/PR/291225/008366"
+      },
+      {
+        "number": 315,
+        "value": "PRM/KA/RERA/1251/308/PR/191225/008353"
+      },
+      {
+        "number": 316,
+        "value": "PRM/KA/RERA/1251/446/PR/010126/008374"
+      },
+      {
+        "number": 317,
+        "value": "PRM/KA/RERA/1251/310/PR/151225/008338"
+      },
+      {
+        "number": 318,
+        "value": "PRM/KA/RERA/1251/446/PR/111225/008328"
+      },
+      {
+        "number": 319,
+        "value": "PRM/KA/RERA/1251/446/PR/111225/008330"
+      },
+      {
+        "number": 320,
+        "value": "PRM/KA/RERA/1251/446/PR/111225/008332"
+      },
+      {
+        "number": 321,
+        "value": "PRM/KA/RERA/1251/308/PR/281125/008287"
+      },
+      {
+        "number": 322,
+        "value": "PRM/KA/RERA/1251/310/PR/131025/008160"
+      },
+      {
+        "number": 333,
+        "value": "PRM/KA/RERA/1251/309/PR/180826/008876"
+      },
+      {
+        "number": 334,
+        "value": "PRM/KA/RERA/1251/446/PR/220526/008677"
+      },
+      {
+        "number": 335,
+        "value": "PRM/KA/RERA/1251/310/PR/130526/008653"
+      },
+      {
+        "number": 336,
+        "value": "PRM/KA/RERA/1251/308/PR/260526/008686"
+      },
+      {
+        "number": 337,
+        "value": "PRM/KA/RERA/1251/446/PR/100326/008517"
+      },
+      {
+        "number": 338,
+        "value": "PRM/KA/RERA/1251/309/PR/020326/008501"
+      },
+      {
+        "number": 339,
+        "value": "PRM/KA/RERA/1251/310/PR/271125/008281"
+      },
+      {
+        "number": 340,
+        "value": "PRM/KA/RERA/1251/446/PR/180926/008944"
+      },
+      {
+        "number": 341,
+        "value": "PRM/KA/RERA/1251/310/PR/090726/008801"
+      },
+      {
+        "number": 342,
+        "value": "PRM/KA/RERA/1251/310/PR/080626/008706"
+      },
+      {
+        "number": 343,
+        "value": "PRM/KA/RERA/1251/310/PR/270326/008557"
+      },
+      {
+        "number": 344,
+        "value": "PRM/KA/RERA/1251/308/PR/260326/008551"
+      },
+      {
+        "number": 345,
+        "value": "PRM/KA/RERA/1251/310/PR/241225/008358"
+      },
+      {
+        "number": 346,
+        "value": "PRM/KA/RERA/1251/472/PR/121125/008248"
+      },
+      {
+        "number": 347,
+        "value": "PRM/KA/RERA/1251/308/PR/020126/008375"
+      },
+      {
+        "number": 348,
+        "value": "PRM/KA/RERA/1251/472/PR/031125/008217"
+      },
+      {
+        "number": 349,
+        "value": "PRM/KA/RERA/1251/308/PR/171025/008179"
+      },
+      {
+        "number": 350,
+        "value": "PRM/KA/RERA/1251/308/PR/091026/009008"
+      },
+      {
+        "number": 351,
+        "value": "PRM/KA/RERA/1251/308/PR/040926/008911"
+      },
+      {
+        "number": 352,
+        "value": "PRM/KA/RERA/1251/308/PR/300926/008986"
+      },
+      {
+        "number": 353,
+        "value": "PRM/KA/RERA/1251/308/PR/250826/008887"
+      },
+      {
+        "number": 354,
+        "value": "PRM/KA/RERA/1251/308/PR/110926/008937"
+      },
+      {
+        "number": 355,
+        "value": "PRM/KA/RERA/1251/446/PR/070926/008912"
+      },
+      {
+        "number": 356,
+        "value": "PRM/KA/RERA/1251/310/PR/020926/008905"
+      },
+      {
+        "number": 357,
+        "value": "PRM/KA/RERA/1251/446/PR/280826/008895"
+      },
+      {
+        "number": 358,
+        "value": "PRM/KA/RERA/1251/472/PR/200826/008882"
+      },
+      {
+        "number": 359,
+        "value": "PRM/KA/RERA/1251/310/PR/030826/008857"
+      },
+      {
+        "number": 360,
+        "value": "PRM/KA/RERA/1251/446/PR/230726/008837"
+      },
+      {
+        "number": 361,
+        "value": "PRM/KA/RERA/1251/446/PR/240726/008838"
+      },
+      {
+        "number": 362,
+        "value": "PRM/KA/RERA/1251/310/PR/200726/008830"
+      },
+      {
+        "number": 363,
+        "value": "PRM/KA/RERA/1251/310/PR/220626/008739"
+      },
+      {
+        "number": 364,
+        "value": "PRM/KA/RERA/1251/310/PR/200626/008730"
+      },
+      {
+        "number": 365,
+        "value": "PRM/KA/RERA/1251/309/PR/100626/008714"
+      },
+      {
+        "number": 366,
+        "value": "PRM/KA/RERA/1251/446/PR/090626/008711"
+      },
+      {
+        "number": 367,
+        "value": "PRM/KA/RERA/1251/446/PR/290526/008691"
+      },
+      {
+        "number": 368,
+        "value": "PRM/KA/RERA/1251/446/PR/080526/008640"
+      },
+      {
+        "number": 369,
+        "value": "PRM/KA/RERA/1251/446/PR/160326/008527"
+      },
+      {
+        "number": 370,
+        "value": "PRM/KA/RERA/1251/308/PR/210526/008669"
+      },
+      {
+        "number": 371,
+        "value": "PRM/KA/RERA/1251/308/PR/210526/008671"
+      },
+      {
+        "number": 372,
+        "value": "PRM/KA/RERA/1251/446/PR/110526/008641"
+      },
+      {
+        "number": 373,
+        "value": "PRM/KA/RERA/1251/308/PR/070526/008631"
+      },
+      {
+        "number": 374,
+        "value": "PRM/KA/RERA/1251/310/PR/040526/008618"
+      },
+      {
+        "number": 375,
+        "value": "PRM/KA/RERA/1251/446/PR/280426/008605"
+      },
+      {
+        "number": 376,
+        "value": "PRM/KA/RERA/1251/310/PR/240426/008602"
+      },
+      {
+        "number": 377,
+        "value": "PRM/KA/RERA/1251/446/PR/070426/008573"
+      },
+      {
+        "number": 378,
+        "value": "PRM/KA/RERA/1251/309/PR/170326/008531"
+      },
+      {
+        "number": 379,
+        "value": "PRM/KA/RERA/1251/446/PR/110326/008520"
+      },
+      {
+        "number": 380,
+        "value": "PRM/KA/RERA/1251/308/PR/260226/008489"
+      },
+      {
+        "number": 388,
+        "value": "GGM/1059/791/2026/31"
+      },
+      {
+        "number": 389,
+        "value": "GGM/1048/780/2026/20"
+      },
+      {
+        "number": 390,
+        "value": "GGM/999/731/2025/102"
+      },
+      {
+        "number": 391,
+        "value": "GGM/1042/774/2026/14"
+      },
+      {
+        "number": 392,
+        "value": "GGM/1081/813/2026/53"
+      },
+      {
+        "number": 393,
+        "value": "GGM/1010/742/2025/113"
+      },
+      {
+        "number": 394,
+        "value": "GGM/1054/786/2026/26"
+      },
+      {
+        "number": 395,
+        "value": "PRM/KA/RERA/1251/446/PR/041225/008302"
+      },
+      {
+        "number": 408,
+        "value": "PRM/KA/RERA/1251/446/PR/040226/008447"
+      },
+      {
+        "number": 409,
+        "value": "PRM/KA/RERA/1251/308/PR/280126/008428"
+      },
+      {
+        "number": 410,
+        "value": "PRM/KA/RERA/1251/308/PR/210126/008418"
+      },
+      {
+        "number": 411,
+        "value": "PRM/KA/RERA/1251/446/PR/051225/008315"
+      },
+      {
+        "number": 412,
+        "value": "PRM/KA/RERA/1251/310/PR/051225/008319"
+      },
+      {
+        "number": 413,
+        "value": "PRM/KA/RERA/1251/446/PR/041225/008303"
+      },
+      {
+        "number": 414,
+        "value": "PRM/KA/RERA/1251/310/PR/061125/008228"
+      }
+    ]
+  }
+}

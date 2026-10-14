@@ -1,0 +1,101 @@
+{
+  "checked_on": "2026-10-14",
+  "method": "Official MahaRERA public search (maharera.maharashtra.gov.in/projects-search-result, by project name) for identity, registration number, promoter and pincode. Listing portals (housiey, propertypistol, cityair, keystone, houssed, saeloun, gharpe) as secondary sources only. MahaRERA project detail pages (maharerait…/public/project/view/<id>) render in JavaScript and could not be read automatically, so completion dates and carpet areas are NOT verified from MahaRERA.",
+  "rules": {
+    "apply": "Only items with status 'verified' AND action 'set' are applied, and only to the allow-listed fields. Everything else is for human review.",
+    "allowlist": ["rera_number", "possession_timeline", "configuration", "sqft", "price", "custom_fields+"],
+    "never_auto": ["title", "developer", "location", "lat", "lng", "status", "hidden", "number", "owner_user_id"],
+    "title_note": "Project URLs are built from the title (/projects/<title>-<locality>-<number>). Correcting a title changes the URL, so title fixes are proposed as a 'Registered name' custom field, never applied automatically."
+  },
+  "projects": [
+    {
+      "number": 19, "title": "Eastern Front", "identity": "matched",
+      "identity_evidence": "MahaRERA: 'EASTERN FRONT', promoter VISHAL ANJANI ASSOCIATES LLP, Haveli, Pune 411036 (Mundhwa pincode) — 1 result. Matches pin title, Mundhwa location; Vishal Group is the promoter's brand.",
+      "fields": [
+        { "field": "rera_number", "existing": "", "proposed": "P52100055529", "source_url": "https://maharera.maharashtra.gov.in/projects-search-result?project_name=EASTERN+FRONT&project_state=27&op=Search", "source_type": "regulator", "confidence": "high", "status": "verified", "action": "set" },
+        { "field": "custom_fields+", "existing": "", "proposed": { "label": "MahaRERA promoter", "value": "Vishal Anjani Associates LLP" }, "source_url": "https://maharera.maharashtra.gov.in/projects-search-result?project_name=EASTERN+FRONT&project_state=27&op=Search", "source_type": "regulator", "confidence": "high", "status": "verified", "action": "set" },
+        { "field": "possession_timeline", "existing": "", "proposed": "Jun 2028 (RERA)", "source_url": "https://housiey.com/projects/vishal-eastern-front", "source_type": "portal", "confidence": "medium", "status": "needs_review", "action": "review", "note": "Two portals agree on 30 Jun 2028; confirm on the MahaRERA detail page." },
+        { "field": "configuration", "existing": "", "proposed": null, "source_type": "portal", "confidence": "low", "status": "needs_review", "action": "none", "conflict": ["housiey: 3 towers, 3B+G+P+13", "keystone: 3 towers G+15", "propertypistol: 1 tower / 13 floors"], "note": "Portals disagree; carpet 813–1254 sq ft (2–4 BHK) from one source only." },
+        { "field": "price", "existing": "", "proposed": null, "source_type": "portal", "confidence": "low", "status": "needs_review", "action": "none", "conflict": ["₹1.03 Cr onwards", "₹1.18 Cr onwards"] }
+      ]
+    },
+    {
+      "number": 55, "title": "Mellizia Towers", "identity": "matched_with_conflict",
+      "identity_evidence": "MahaRERA has 'Melliza Towers- Residential' (P52100052564) and 'Melliza Towers- Commercial' (P52100052462), promoter MOONLIGHT HOUSING SCHEMES LLP, Haveli, Pune 411036. Pin is Mixed-Use '3/4 BHK, Shops/Office' in Mundhwa — consistent. Spelling differs (Mellizia vs Melliza).",
+      "fields": [
+        { "field": "rera_number", "existing": "", "proposed": "P52100052564", "source_url": "https://maharera.maharashtra.gov.in/projects-search-result?project_name=MELLIZ&project_state=27&op=Search", "source_type": "regulator", "confidence": "high", "status": "verified", "action": "set", "note": "Residential registration." },
+        { "field": "custom_fields+", "existing": "", "proposed": { "label": "MahaRERA (commercial)", "value": "P52100052462" }, "source_url": "https://maharera.maharashtra.gov.in/projects-search-result?project_name=MELLIZ&project_state=27&op=Search", "source_type": "regulator", "confidence": "high", "status": "verified", "action": "set" },
+        { "field": "title", "existing": "Mellizia Towers", "proposed": "Melliza Towers", "source_type": "regulator", "confidence": "high", "status": "needs_review", "action": "review", "note": "Registered spelling is 'Melliza'. Changing the title changes the project URL — decide whether to rename (with a redirect) or keep." },
+        { "field": "developer", "existing": "Vidhyashree Developers", "proposed": "Moonlight Housing Schemes LLP", "source_type": "regulator", "confidence": "medium", "status": "needs_review", "action": "review", "conflict": ["map: Vidhyashree Developers", "MahaRERA promoter: Moonlight Housing Schemes LLP", "houssed: Moonlight Housing Schemes"], "note": "Vidhyashree may be a marketing brand or partner; keep existing until confirmed." },
+        { "field": "sqft", "existing": "", "proposed": "1120 – 1600 sq ft", "source_url": "https://houssed.com/pune/sale/builder/moonlight-housing-schemes-813107", "source_type": "portal", "confidence": "low", "status": "needs_review", "action": "none", "note": "Single portal, which also says 2/3 BHK while the map says 3/4 BHK." }
+      ]
+    },
+    {
+      "number": 62, "title": "Marvel Diva Ultima", "identity": "unconfirmed",
+      "identity_evidence": "MahaRERA name search 'DIVA ULTIMA' → no records. Portals cite P52100046794 but describe different products (16 villas 4 BHK / 2–3 BHK flats / residential plots).",
+      "fields": [
+        { "field": "rera_number", "existing": "", "proposed": "P52100046794", "source_url": "https://housiey.com/projects/marvel-diva-ultima", "source_type": "portal", "confidence": "low", "status": "needs_review", "action": "none", "note": "Not found by name on MahaRERA; registered name may differ. Verify the number on MahaRERA before use." },
+        { "field": "price", "existing": "Bunglow Plots", "proposed": null, "source_type": "data_quality", "confidence": "high", "status": "needs_review", "action": "review", "note": "The price field holds a product description, not a price. Suggest moving 'Bungalow plots' to configuration and leaving price empty." }
+      ]
+    },
+    {
+      "number": 99, "title": "Kohinoor Kalideo", "identity": "matched_phase_unknown",
+      "identity_evidence": "MahaRERA: 'Kohinoor Kaleido' P52100046027 and 'Kohinoor Kaleido-Phase-II' P52100078107, promoter Intofinity Promoters Private Limited, Haveli, Pune 412207 (Wagholi). Pin is one marker for the project; phase not stated.",
+      "fields": [
+        { "field": "title", "existing": "Kohinoor Kalideo", "proposed": "Kohinoor Kaleido", "source_type": "regulator", "confidence": "high", "status": "needs_review", "action": "review", "note": "Misspelling. Renaming changes the URL; decide rename+redirect or a 'Registered name' custom field." },
+        { "field": "rera_number", "existing": "", "proposed": "P52100046027", "alternatives": ["P52100078107 (Phase II)"], "source_url": "https://maharera.maharashtra.gov.in/projects-search-result?project_name=KOHINOOR+KAL&project_state=27&op=Search", "source_type": "regulator", "confidence": "high", "status": "needs_review", "action": "review", "note": "Both phases verified; choose which phase this pin represents (or list both)." },
+        { "field": "possession_timeline", "existing": "", "proposed": null, "source_type": "portal", "confidence": "low", "status": "needs_review", "action": "none", "conflict": ["Dec 2026", "30 Dec 2027 (Phase I)", "Oct 2029 (Phase II)"] }
+      ]
+    },
+    {
+      "number": 100, "title": "VJ Yashwin Enchante", "identity": "matched_phase_unknown",
+      "identity_evidence": "MahaRERA: 'Yashwin Enchante Phase 1' P52100046510 and 'Phase 2' P52100077455, promoter Vilas Javdekar Infinitee Developers Pvt. Ltd., Haveli, Pune 412207. Pin location 'Upper Kharadi, Wagholi' consistent.",
+      "fields": [
+        { "field": "rera_number", "existing": "", "proposed": "P52100046510", "alternatives": ["P52100077455 (Phase 2)"], "source_url": "https://maharera.maharashtra.gov.in/projects-search-result?project_name=YASHWIN+ENCHANTE&project_state=27&op=Search", "source_type": "regulator", "confidence": "high", "status": "needs_review", "action": "review", "note": "Both phases verified; choose the phase (or list both)." },
+        { "field": "developer", "existing": "Villas Javdekar", "proposed": "Vilas Javdekar", "source_type": "regulator", "confidence": "high", "status": "needs_review", "action": "review", "note": "Spelling. Developer name drives /developers/<slug>; 'Villas Javdekar' and 'Vilas Javdekar' would be two developer pages — check other pins." },
+        { "field": "possession_timeline", "existing": "", "proposed": "Phase 1: Jun 2027 · Phase 2: Dec 2029 (RERA)", "source_url": "https://keystonerealestateadvisory.com/buy/new/vj-yashwin-enchante-phase-2-project-wagholi-pune/2401", "source_type": "portal", "confidence": "medium", "status": "needs_review", "action": "review", "note": "Keystone + Dwello agree on Phase 1 Jun 2027; Housiey shows Dec 2029 / target Dec 2028." }
+      ]
+    },
+    {
+      "number": 123, "title": "Lodha Crown", "identity": "ambiguous",
+      "identity_evidence": "MahaRERA name search 'LODHA CROWN' returns only 'Lodha Crown Kolshet' Towers 1–4 (Thane 400607) — a DIFFERENT project. This pin is on Kalyan–Shil Road (Manpada/Dombivli East). Portals cite P51700049154, P51700048779, P51700034861 for 'Lodha Crown Dombivli' but disagree on which tower each covers.",
+      "fields": [
+        { "field": "rera_number", "existing": "", "proposed": null, "source_type": "portal", "confidence": "low", "status": "not_found", "action": "none", "warning": "Do NOT use the Kolshet (Thane) registrations — similar name, different project." },
+        { "field": "price", "existing": "₹ 38 Lacs Onwards", "proposed": null, "source_type": "portal", "confidence": "low", "status": "needs_review", "action": "none", "conflict": ["₹34.9 L onwards", "₹48.83 L"], "note": "Keep existing." }
+      ]
+    },
+    {
+      "number": 129, "title": "Raheja Lunaris", "identity": "matched_phase_unknown",
+      "identity_evidence": "MahaRERA: Raheja Lunaris-1 – Callisto P51700076867, Lunaris-2 PR1331012501769, Lunaris-3 PR1332022601394, Lunaris-4 PR1332022601055; promoter Raheja Universal (Pvt.) Ltd., Thane 400705 (Juinagar/Sanpada). Pin developer 'Raheja Universal' matches.",
+      "fields": [
+        { "field": "rera_number", "existing": "", "proposed": "P51700076867", "alternatives": ["PR1331012501769 (Lunaris-2)", "PR1332022601394 (Lunaris-3)", "PR1332022601055 (Lunaris-4)"], "source_url": "https://maharera.maharashtra.gov.in/projects-search-result?project_name=LUNARIS&project_state=27&op=Search", "source_type": "regulator", "confidence": "high", "status": "needs_review", "action": "review", "note": "Four registered phases. Pick the phase(s) this pin markets." },
+        { "field": "configuration", "existing": "", "proposed": null, "source_type": "portal", "confidence": "low", "status": "needs_review", "action": "none", "conflict": ["1/1.5/2 BHK (housiey)", "2/3 BHK (propertypistol)", "1.5–4 BHK (360realtors)", "2 BHK (ghar.tv)"] },
+        { "field": "possession_timeline", "existing": "", "proposed": null, "source_type": "portal", "confidence": "low", "status": "needs_review", "action": "none", "conflict": ["Dec 2030 (RERA, housiey)", "Dec 2029 (propertypistol)"] }
+      ]
+    },
+    {
+      "number": 60, "title": "Yoo Pune - Panchshil", "identity": "matched_not_on_rera",
+      "identity_evidence": "Panchshil 'yoopune' (designed by yoo / Philippe Starck), Hadapsar/Magarpatta side, 228 homes in 6 towers, reported ready-to-move in 2019 (Elle Decor). Not found on MahaRERA under 'YOO' (likely completed before or outside RERA registration). Pin status 'available' is consistent.",
+      "fields": [
+        { "field": "description", "existing": "", "proposed": "Branded residences by Panchshil Realty with interiors designed by yoo (Philippe Starck); 228 homes across six towers near Magarpatta.", "source_url": "https://elledecor.in/article/yoopune-is-indias-first-branded-residential-development-and-ready-to-move-in-yoo-project-in-the-country/", "source_type": "press", "confidence": "medium", "status": "needs_review", "action": "review", "note": "Press article (2019); inventory is not implied." },
+        { "field": "identity_warning", "existing": "#84 'Yoo Pune by Panchshil' (Kharadi, villa plots, Dec 2027)", "proposed": null, "source_type": "data_quality", "confidence": "medium", "status": "needs_review", "action": "review", "note": "#84 describes villa plots in Kharadi — likely Panchshil's separate yoo villas project, not yoopune. Do not merge; consider renaming #84." }
+      ]
+    },
+    {
+      "number": 9, "title": "Pristine Properties", "identity": "not_identifiable",
+      "identity_evidence": "Title is the developer's name, not a project name (pin #5 has the same title). No registered or advertised Pristine project in Mundhwa/Magarpatta with 3/4/5 BHK and a 2027 launch was found. Nearest matches (Pristine iLife, iLife 4: 2/2.5/3 BHK) do not match.",
+      "fields": [
+        { "field": "all", "existing": "", "proposed": null, "source_type": "none", "confidence": "low", "status": "not_found", "action": "none", "note": "Ask the developer for the project name before researching. Do not attach iLife data." }
+      ]
+    },
+    {
+      "number": 137, "title": "Platinum Oceanic", "identity": "matched",
+      "identity_evidence": "MahaRERA: 'PLATINUM OCEANIC' P51800078789, promoter PLATINUMCORP LIFESCAPES LLP, Mumbai Suburban 400052 (Khar West). Same number already stored in the pin's custom field 'Rera No'.",
+      "fields": [
+        { "field": "rera_number", "existing": "(custom field only) P51800078789", "proposed": "P51800078789", "source_url": "https://maharera.maharashtra.gov.in/projects-search-result?project_name=PLATINUM+OCEAN&project_state=27&op=Search", "source_type": "regulator", "confidence": "high", "status": "verified", "action": "set", "note": "Copies the verified number into the standard field (used by the RERA card, schema and API). The custom field is left as is." },
+        { "field": "price", "existing": "₹ 6 Cr Onwards", "proposed": null, "source_type": "portal", "confidence": "low", "status": "needs_review", "action": "none", "conflict": ["₹4.2 Cr onwards (saeloun)", "₹3.1–3.9 Cr (houssed)"], "note": "Keep existing; confirm with developer." },
+        { "field": "possession_timeline", "existing": "", "proposed": null, "source_type": "portal", "confidence": "low", "status": "needs_review", "action": "none", "conflict": ["Dec 2026 (saeloun)", "30 Dec 2028 (houssed)"] }
+      ]
+    }
+  ]
+}

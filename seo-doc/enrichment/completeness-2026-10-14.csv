@@ -1,0 +1,419 @@
+number,title,developer,location,title,developer,location,coordinates,type,status,configuration,carpet_area,price,possession,rera_number,description,key_usp,amenities,image,brochure,video,filled_of_17
+1,"Associatte - Your Real Estate Advisory","Associatte Proptech Pvt Ltd","302 & 303 , Naren Pearl, Magarpatta Road,  Hadapsar,  Pune 411036",y,y,y,y,y,y,,y,y,,,,,,y,,y,10
+2,"1 Residency by Burgundy","Mantra Properties","Mundhwa/Magarpatta, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+3,"Epitome by Ram India","Ram India Group","Mundhwa/Magarpatta, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+4,"Godrej Elaris","Godrej Properties","Mundhwa, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+5,"Pristine Properties","Pristine Properties","Mundhwa / Magarpatta",y,y,y,y,y,y,y,y,y,,,,,,y,,,10
+6,"Nova Elegence","Magarpatta Group","Mundhwa/Magarpatta, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+7,"Lodha Mundhwa","Lodha","Mundhwa, Pune",y,y,y,y,y,y,y,y,,,,,,,y,,,9
+8,"Port 133","Magarpatta Group","Magarpatta , Hadapsar, Pune",y,y,y,y,y,y,y,y,,,,,,,y,,y,10
+9,"Pristine Properties","Pristine Properties","Mundhwa/Magarpatta, Pune",y,y,y,y,y,y,y,y,y,,,,,,y,,,10
+10,"Kumar Prism","Kumar World","Mundhwa, Pune",y,y,y,y,y,y,y,y,y,y,y,,,y,y,,y,14
+11,"Ganga Avanta","Goel Ganga Developments","Mundhwa, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+12,"Kumar 47 East","Kumar Corp","Mundhwa, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+13,"Ravima Newtown","Ravima Ventures","Mundhwa, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+14,"Majestique Landmark","","",y,,,y,y,y,,y,,,,,,,y,,,6
+15,"57 Avenue","Panchshil Realty","Mundhwa, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+16,"Tayal Envoque","Tayal Corp","Mundhwa, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+17,"Jhamtani Ace Abundance","Jhamtani Group","Mundhwa, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+18,"Osian Almanova","Kanchan Developers","Mundhwa, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+19,"Eastern Front","Vishal Group","Mundhwa, Pune",y,y,y,y,y,y,,y,,,,,,,y,,y,9
+20,"Shubh Tristar","Shubh Developer","Mundhwa, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+21,"Mantra Melange","Mantra Properties","Kharadi / Wadgaonshri, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+22,"Mantra Marvilla - Burgundy","Mantra Properties","Mundhwa, Pune",y,y,y,y,y,y,y,y,y,,y,,,,y,,y,12
+23,"DUVILLE AVIRA","Duville Estate","Mundhwa, Pune",y,y,y,y,y,y,y,y,y,y,y,y,y,,y,,y,15
+24,"Trump World Center","Kundan & Tribeca","Mundhwa / Old Passport Office Junction, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,,12
+25,"Nova Residency","Magarpatta Group","Mundhwa, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+26,"Mantra Business Center","Mantra Properties","Mundhwa, Pune",y,y,y,y,y,y,,y,,,,,,,y,,y,9
+27,"Mantra Mirari","Mantra Properties","Mundhwa, Pune",y,y,y,y,y,y,,y,y,,,,,y,y,,,10
+28,"Mayfair by Burgundy","Mantra Properties","Mundhwa, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+29,"Global Riverfront","Global Group","Mundhwa, Pune",y,y,y,y,y,y,y,y,y,y,y,y,,,y,,y,14
+30,"Jhamtani Bizcore","Jhamtani Group","Mundhwa, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+31,"Jhamtani XO Villas","Jhamtani Group","Mundha, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+32,"Power Heights & Residency","","",y,,,y,y,y,,y,,,,,,,y,,y,7
+33,"Panchashil Golden Bell 2","","",y,,,y,y,y,,y,,,,,,,y,,y,7
+34,"Jhamtani Elevate","Jhamtani Group","Mundhwa, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,,12
+35,"The Reserve","Lohia Jain Malpani","Mundhwa, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+36,"Osian - One & Only","Kanchan Developers","Mundhwa, Pune",y,y,y,y,y,y,,y,,,,,,,y,,y,9
+37,"Godrej Skyline","Godrej Properties","Mundhwa, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+38,"Supreme Towers","Supreme Universal","North Main Road, Koregaon Park Annexe, Mundwa Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+39,"Platinum Capital","A Advani Realty","North Main Road, KP, Mundhwa, Pune",y,y,y,y,y,y,,y,,,,,y,y,y,,y,11
+40,"Merlin New Project","","",y,,,y,y,y,,y,,,,,,,y,,,6
+41,"AP81 by Amar & Pristine","Amar Builders","Mundhwa Pune",y,y,y,y,y,y,,y,,,,,,,y,,y,9
+42,"Adani Greens","","",y,,,y,y,y,,y,,,,,,,y,,,6
+43,"Casa Elanza","","",y,,,y,y,y,,y,,,,,,,y,,,6
+44,"Omicron Commerz","","",y,,,y,y,y,,y,,,,,,,y,,,6
+45,"Amar Quantum Tech Park","","",y,,,y,y,y,y,y,,,,,,,y,,,7
+46,"Triplex Bmt + GF GK-II","Malik's","Greater Kailash II",y,y,y,y,y,y,,y,y,,,,y,,y,,y,11
+47,"Kumar Parc","Kumar Corp","Magarpatta Road , Pune",y,y,y,y,y,y,y,y,y,y,,,,,y,,y,12
+48,"Kohinoor Business Towers","Kohinoor","Mundhwa, Pune",y,y,y,y,y,y,,y,,,,,,,y,,,8
+49,"Anandtara New Launch","","",y,,,y,y,y,,y,,,,,,,y,,,6
+50,"Trustfort Icon","","Mundhwa, Pune",y,,y,y,y,y,y,y,y,y,y,,,,y,,y,12
+51,"Vedant 84","","",y,,,y,y,y,,y,,,,,,,y,,,6
+52,"Mantra Uber Luxury","Mantra Properties","Mundhwa/Magarpatta, Pune",y,y,y,y,y,y,y,y,y,,,,,,y,,,10
+53,"Mantra Highstreet & Offices","Mantra Properties","Mundhwa/Magarpatta, Pune",y,y,y,y,y,y,y,y,,,,,,,y,,,9
+54,"Horizon Highgroves","Horizon Developers","Mundhwa, Pune",y,y,y,y,y,y,,y,,,,,,,y,,,8
+55,"Mellizia Towers","Vidhyashree Developers","Mundhwa, Pune",y,y,y,y,y,y,y,y,,y,,,,,y,,y,11
+56,"Breeza","","Mundhwa, Pune",y,,y,y,y,y,,y,,,y,,,,y,,,8
+57,"Unique Properties","","",y,,,y,y,y,,y,,,,,,,y,,,6
+58,"A Advani Ovella","","Mundhwa, Pune",y,,y,y,y,y,,y,,,,,,,y,,,7
+59,"Goel Ganga Capital","Goel Ganga Developments","Mundhwa,  Pune",y,y,y,y,y,y,,y,,,,,,,y,,,8
+60,"Yoo Pune - Panchshil","Panchshil Realty","Mundhwa / Magarpatta",y,y,y,y,y,y,,y,,,,,y,y,y,,y,11
+61,"Apex Business Bay","Ranawat & Shankeshwar","PCMC, Tata Motor Road",y,y,y,y,y,y,y,y,,y,y,,,,y,,,11
+62,"Marvel Diva Ultima","Marvel Realtors","Magarpatta Road",y,y,y,y,y,y,,y,,,,,,y,y,,y,10
+63,"Gandharv New Commercial","","",y,,,y,y,y,,y,,,,,,,y,,,6
+64,"Gandharv New Commercial 2","","",y,,,y,y,y,,y,,,,,,,y,,,6
+65,"Ram India New Commerial","","",y,,,y,y,y,,y,,,,,,,y,,,6
+66,"Merlin 18 East","","",y,,,y,y,y,,y,y,,,,,,y,,y,8
+67,"Panchshil WestView","","",y,,,y,y,y,,y,,,,,,,y,,,6
+68,"Akara","A Advani Realty","North Main Road, KP, Mundhwa, Pune",y,y,y,y,y,y,y,y,,,y,,y,,y,,y,12
+69,"Clover Commercial","","",y,,,y,y,y,,y,,,,,,,y,,,6
+70,"Bajaj HO","","Mundhwa , Pune",y,,y,y,y,y,,y,y,,,,,,y,y,,9
+71,"108 SUITES","Horizon Developers","",y,y,,y,y,y,,y,,,,,,,y,,,7
+72,"A Advani New Commercial","","Mundhwa, Pune",y,,y,y,y,y,,y,,,,,,,y,,,7
+73,"Land for Sale","","",y,,,y,y,y,,y,y,,,,,y,y,,,8
+74,"Land for JV 4.5 Acres","","",y,,,y,y,y,,y,y,,,,,y,y,,,8
+75,"Mantra Melange","Mantra Properties","Kharadi / Wadgaonshri, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+76,"Nyati Evolve","Nyati Group","Mundhwa/Magarpatta, Pune",y,y,y,y,y,y,,y,,,,,,,y,,,8
+77,"Pawar Riseonic","","",y,,,y,y,y,,y,,,,,,,y,,,6
+78,"Eon IT Park","Panchshil Realty","Kharadi, Pune",y,y,y,y,y,y,,y,,,,,y,y,y,,,10
+79,"World Trade Center","Panchshil Realty","Kharadi, Pune",y,y,y,y,y,y,,y,,,,,,y,y,,,9
+80,"Goel Ganga Platinum Towers","","",y,,,y,y,y,,y,,,,,,,y,,,6
+81,"Marvel Aquanus","Marvel Realtors","Kharadi, Pune",y,y,y,y,y,y,y,y,y,y,,,,,y,,,11
+82,"Eon Water Front","Panchshil Realty","Kharadi, Pune",y,y,y,y,y,y,,y,,,,,,,y,,,8
+83,"Panchshil Towers","Panchshil Realty","Kharadi, Pune",y,y,y,y,y,y,,y,,,,,,,y,,,8
+84,"Yoo Pune by Panchshil","Panchshil Realty","Kharadi, Pune",y,y,y,y,y,y,y,y,,y,,,y,,y,,y,12
+85,"SOHO by Panchshil","Panchshil Realty","Kharadi Pune",y,y,y,y,y,y,,y,,,,,,,y,,,8
+86,"Kundan Project","","",y,,,y,y,y,,y,,,,,,,y,,,6
+87,"Lodha Camelot","Lodha","Upper Kharadi, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+88,"Omicron Commercial","Omicron","Kharadi, Pune",y,y,y,y,y,y,y,y,,,,,,,y,,,9
+89,"Pristine O2","Pristine Developers","Kharadi, Pune",y,y,y,y,y,y,,y,,,,,,,y,,,8
+90,"Panchshil Vantage","","",y,,,y,y,y,,y,,,,,,,y,,,6
+91,"EON Phase 2","Panchshil Realty","Kharadi, Pune",y,y,y,y,y,y,,y,,,,,y,y,y,,,10
+92,"Majestique Evolvus","Majestique Landmark","Kharadi, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+93,"Marvel Bounty 2","Marvel Realtors","Hadapsar, Pune",y,y,y,y,y,y,y,y,y,y,,,,,y,,y,12
+94,"Holystico Astrana","","",y,,,y,y,y,y,y,y,y,y,,,,y,,y,11
+95,"Attrium Mundwa by VTP Group","VTP Group","Mundhwa, Pune",y,y,y,y,y,y,,y,,,,,,,y,,,8
+96,"AP4","Amar Builders","Nagar Road, Wagholi",y,y,y,y,y,y,,y,,,,,,y,y,,y,10
+97,"Lodha Giardino","","",y,,,y,y,y,,y,,,,,,y,y,,,7
+98,"Lodha Estilo","","",y,,,y,y,y,y,y,y,,,,,,y,,,8
+99,"Kohinoor Kalideo","Kohinoor Developers","Upper Kharadi,  Wagholi",y,y,y,y,y,y,,y,,,,,,,y,,,8
+100,"VJ Yashwin Enchante","Villas Javdekar","Upper Kharadi,  Wagholi",y,y,y,y,y,y,,y,,,,,,,y,,,8
+101,"Prisitine Kyra","Pristine Properties","Viman Nagar,  Pune",y,y,y,y,y,y,y,y,,y,y,,y,,y,,y,13
+102,"Rohan Mithila Business Center","","",y,,,y,y,y,,y,,,,,,,y,,,6
+103,"Pristine Amore","Pristine Developers","Kalyani Nagar,  Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+104,"The Everett","Tribeca Developers","Lulla Nagar, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+105,"Nyati Lullanagar","","",y,,,y,y,y,,y,,,,,,,y,,,6
+106,"Tribeca - The Ark","","",y,,,y,y,y,,y,,,,,,,y,,,6
+107,"Tribeca High Street","","",y,,,y,y,y,,y,,,,,,,y,,,6
+108,"Reserve by K Raheja","","",y,,,y,y,y,,y,,,,,,,y,,,6
+109,"Attrium NIBM","VTP Group","NIBM, Pune",y,y,y,y,y,y,y,y,,,y,,,,y,,,10
+110,"Hornbil Heights","","",y,,,y,y,y,y,y,y,y,,,,,y,,y,10
+111,"Flamingo Park","Magarpatta Group","Loni Kalbhor, Pune",y,y,y,y,y,y,y,y,y,y,,,,,y,,y,12
+112,"Falcon Towers","","",y,,,y,y,y,,y,,,,,,,y,,,6
+113,"Everra","Shapporji Pallonji Real Estate","Manjri, Solapur Highway, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+114,"Wadhwa - Solitaire","Wadhwa Group","Malwadi, Hadapsar, Pune",y,y,y,y,y,y,y,y,y,y,,,,,y,,,11
+115,"THE WYNG","Kundan Spaces","Opp. Collector's Office, Camp, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+116,"Codename Autobiography by Jhamtani","","",y,,,y,y,y,,y,,,,,,,y,,,6
+116,"YOO ONE","","",y,,,y,y,y,y,y,y,y,,,,,y,,,9
+117,"Lodha Wakad","Lodha","Wakad, Pune",y,y,y,y,y,y,y,y,y,,y,,y,,y,,y,13
+118,"Marvel Basilo","Marvel Realtors","Lane 5, Koregaon Park, Pune",y,y,y,y,y,y,y,y,y,y,,,,,y,,y,12
+119,"Codename Legacy","Mantra - Burgundy","Shankar Shet Road, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+120,"Runwal Garden City","Runwal Enterprises","Kalyan Shil Road, Dombivali",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+121,"Lodha Opulis","Lodha","Kalyan Shil Road",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+122,"Lodha Premiere","Lodha","Kalyan Shil Road",y,y,y,y,y,y,y,y,y,y,,,,,y,,,11
+123,"Lodha Crown","Lodha","Kalyan Shil Road",y,y,y,y,y,y,,y,y,,,,,,y,,,9
+124,"Sai World Dreams","Paradise Group","Kalyan Shil Road",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+125,"Lodha Signet","Lodha","Kalyan Shill Road",y,y,y,y,y,y,y,y,y,y,y,y,,,y,,,13
+126,"Sai World One","Paradise Group","Nerul, Navi Mumbai",y,y,y,y,y,y,,y,,,,,,,y,,,8
+127,"24 High Business Park","Dream Apex Realties Ltd","Juinagar, Navi Mumbai",y,y,y,y,y,y,,y,,,,,,,y,,,8
+128,"Shreeji Devine","Shreeji Devine","Nerul, Navi Mumbai",y,y,y,y,y,y,,y,,,,,,,y,,,8
+129,"Raheja Lunaris","Raheja Universal","Juinagar, Navi Mumbai",y,y,y,y,y,y,,y,,,,,,,y,,,8
+130,"Jade City Raheja","K Raheja Corp","Juinagar, Navi Mumbai",y,y,y,y,y,y,,y,,,,,,,y,,,8
+131,"Today Citadel","Today Group","Juinagar, Navi Mumbai",y,y,y,y,y,y,y,y,y,y,y,,,,y,,,12
+132,"Sai World Empire","Paradise Group","Kharghar, Navi Mumbai",y,y,y,y,y,y,y,y,y,y,,,,,y,,y,12
+133,"Sai World Pyramid","Paradise Group","Juinagar, Navi Mumbai",y,y,y,y,y,y,,y,,,,,,,y,,,8
+134,"Mantra Kharadi","Mantra - Burgundy","Kharadi, Pune",y,y,y,y,y,y,,y,y,,,,,y,y,,,10
+135,"New Begninings","Venkatesh Buildcon","Kharadi, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,y,,13
+136,"Prasun Ekaanta","Prasun Developers","Viman Nagar, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,y,,14
+137,"Platinum Oceanic","Platinum Corp","Khar West, Mumbai, Maharashtra",y,y,y,y,y,y,y,y,y,,y,,y,,y,,y,13
+138,"Platinum Stellar","Platinum Corp","Vithaldas Nagar, Santacruz (West), Mumbai, Maharashtra 400054",y,y,y,y,y,y,y,y,,,,,,,y,,,9
+139,"Platinum Vibe","Platinum Corp","Andheri West, Mumbai, Maharashtra",y,y,y,y,y,y,y,y,,,,,,,y,,,9
+140,"Platinum Crest","Platinum Corp","Andheri West, Mumbai, Maharashtra",y,y,y,y,y,y,y,y,,,,,,,y,,y,10
+141,"Platinum Classic","","Andheri West, Mumbai, Maharashtra",y,,y,y,y,y,y,y,,,,,,,y,,,8
+142,"Platinum Grandeur","","Andheri West, Mumbai, Maharashtra",y,,y,y,y,y,y,y,,,,,,y,y,,,9
+143,"Platinum Avenue","Platinum  Corp","Khar West, Mumbai, Maharashtra",y,y,y,y,y,y,y,y,,,,,y,,y,,,10
+144,"AMARA","","Mundhwa , Pune",y,,y,y,y,y,y,y,,y,,,,,y,,,9
+145,"Trilive","Tribeca Developers","Andheri East, Mumbai",y,y,y,y,y,y,y,y,y,y,,,y,,y,,y,13
+146,"Central Vista","Naiknavare Developers","Sadashiv Peth",y,y,y,y,y,y,y,y,y,y,y,,,,y,,,12
+147,"Hanging Gardens","Lodha","Pallava Phase 2",y,y,y,y,y,y,y,y,y,y,,,,,y,,y,12
+148,"Lodha Villa Royale","Lodha","Palava Phase 2",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+149,"Lodha Golf View","Lodha","Palava Phase 1",y,y,y,y,y,y,y,y,y,y,,,,,y,,y,12
+150,"Unimax Life","Unimax World","Umbroli Road, Manpada",y,y,y,y,y,y,y,y,y,y,y,,,,y,,,12
+151,"Balaji Estate","Sai Balaji Buildcon","Umbroli Road, Manpada",y,y,y,y,y,y,y,y,y,y,,,,,y,,,11
+152,"Rustomjee Urban Woods","Rustomjee","Vicco Naka, Dombivli",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+153,"Vishnu Vertex","Vishnu Bihar Developers","Vicco Naka, Dombivli",y,y,y,y,y,y,y,y,y,y,,,,,y,,,11
+154,"Sunraj Solitaire","Sunraj Construction","Kalyan Shil Road, Dombivli E",y,y,y,y,y,y,y,y,y,y,y,,,,y,,,12
+155,"Nivasa Green City","Nivasa Developer","Dombivli E",y,y,y,y,y,y,y,y,y,y,y,,,,y,,,12
+156,"Aesseen","Aesseen","Thane",y,y,y,y,y,y,y,y,y,,,,,,y,,,10
+157,"Kundan Gulmohar Park","Kundan Spaces","",y,y,,y,y,y,,y,,,,,,,y,,,7
+158,"Kundan Profitbay","Kundan Spaces","Vijay Talkies, Laxmi Road, Narayan Peth, Pune",y,y,y,y,y,y,y,y,y,,y,,,,y,,y,12
+159,"Kundan Mathurakunj","Kundan Spaces","Dahanukar Colony, Kothrud, Pune",y,y,y,y,y,y,y,y,y,,y,y,,,y,,,12
+160,"Kundan Gandharv Nagari","Kundan Spaces","Dahanukar Colony, Kothrud, Pune",y,y,y,y,y,y,y,y,y,,,,,,y,,,10
+161,"Kundan New Kaveri","Kundan Spaces","Ramkrishna Paramhans Nagar, Near Vanaz Metro Station, Kothrud, Pune",y,y,y,y,y,y,y,y,,,y,,,,y,,,10
+162,"Arvaana","Kundan Spaces","Balewadi, Pune",y,y,y,y,y,y,y,y,,y,y,,,,y,,y,12
+163,"Kundan Praangan","Kundan Spaces","Khadki NX / Bopkhel, Pune",y,y,y,y,y,y,y,y,y,,y,,,,y,,y,12
+164,"Eternia 2.0","Kundan Spaces","Koregaon Park NX / Ghorpadi, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+165,"Pride World City","Pride Group","Dhanori /. Chairoli",y,y,y,y,y,y,y,y,y,y,,,,,y,,y,12
+166,"Lodha Panache","Lodha","Hinjewadi Phase 1, Pune",y,y,y,y,y,y,y,y,y,y,,,,,y,,y,12
+167,"Lodha One","Lodha","Bundh Garden Road",y,y,y,y,y,y,y,y,,y,,,y,,y,,y,12
+168,"Birla Puniya","Birla Estate","Mangalwar Peth , Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+169,"Kamdhenu Pinnacle","Kamdhenu Developers","Nerul, Navi Mumbai",y,y,y,y,y,y,,y,,,,,,,y,,,8
+170,"Sai Palm View","Paradise Group","Palm Beach Road",y,y,y,y,y,y,,y,,,,,,,y,,,8
+171,"Arihant Advika","Arihant Superstructures","Vashi, Navi Mumbai",y,y,y,y,y,y,,y,,,,,,,y,,,8
+172,"Godrej Eternal Palm","","",y,,,y,y,y,,y,,,,,,,y,,,6
+173,"Godrej Bay View","Godrej Properties","Vashi, Navi Mumbai",y,y,y,y,y,y,,y,,,,,,,y,,,8
+174,"Birla Taranya","Birla Estate","",y,y,,y,y,y,y,y,y,,y,,y,,y,,,11
+175,"Delta New Palm Beach","Delta Bhagvati","Airoli, Navi Mumbai",y,y,y,y,y,y,,y,,,,,,,y,,,8
+176,"Sector Zero Delta Tricity","Delta & Tricity","",y,y,,y,y,y,,y,,,,,,,y,,,7
+177,"CODENAME EDEN GARDEN","Today Group","Airoli, Navi Mumbai",y,y,y,y,y,y,y,y,y,y,y,,y,,y,y,y,15
+178,"Sai Prerna","Paradise Group","Kharghar, Navi Mumbai",y,y,y,y,y,y,,y,,,,,,,y,,,8
+179,"Sai Platinum","Paradise Group","Kharghar, Navi Mumbai",y,y,y,y,y,y,,y,,,,,,,y,,,8
+180,"Sai Sun City","Paradise Group","Taloja, Navi Mumbai",y,y,y,y,y,y,,y,,,,,,,y,,,8
+181,"Tishya","ASAP Spaces","Aund,  Pune",y,y,y,y,y,y,y,y,y,y,,,,y,y,y,y,14
+182,"Lodha Sylvan","Lodha","Hinjewadi Phase 3",y,y,y,y,y,y,y,y,y,y,,,,,y,,y,12
+183,"Sai World City","Paradise Group","Panvel, Navi Mumbai",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+184,"Riverdale Grand","Duville Estate","Central Kharadi, Riverside Road, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+185,"One by MSN","MSN Realty","Neopolis, Hyderabad",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+186,"MSN New Launch Plot No 6","MSN Realty","Neopolis , Hyderabad",y,y,y,y,y,y,y,y,y,,,,,,y,,,10
+187,"Castel Royal","ABIL Group","Bhosale Nagar, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+188,"Century Kindle","Century Real Estate","Yelahanka New Town, Bengaluru",y,y,y,y,y,y,y,y,y,y,,,,,y,,,11
+189,"Blue Moon","Century Real Estate","Century Immencity, Bengaluru",y,y,y,y,y,y,y,y,y,y,,,,,y,,y,12
+190,"Century Mirai","Century Real Estate","Marathahalli, Bengaluru",y,y,y,y,y,y,y,y,y,y,,,,,y,,y,12
+191,"Century Bliss","Century Real Estate","Hosahudya, Bengaluru",y,y,y,y,y,y,y,y,y,y,,,,,y,,y,12
+192,"Kohinoor Highland","Kohinoor","Dombivali",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+193,"Land Of Dreams","Krisala Developers","Talegaon Dabhade, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+194,"Nyati Evoque","Nyati Group","Kalyani Nagar, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+195,"Omnia Residences","Panchshil Realty","Bandra West, Mumbai",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+196,"Oleander Residencies by Yoo","Panchshil Realty","Dubai Island A, Dubai",y,y,y,y,y,y,y,y,y,y,,,,,y,y,,12
+197,"Trump Towers","Panchshil Realty","Kalyani Nagar, Pune",y,y,y,y,y,y,,y,y,,,,y,y,y,,y,12
+198,"Mahindra Rivenza","Mahindra Lifespaces","Mahalunge, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,y,,14
+199,"Mantra Mistara","Mantra Properties","Sus, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+200,"Mantra Meridian","Mantra Properties","Balewadi, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+201,"Green Onyx","Green Ornate","Baner, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,,13
+202,"Krisala Aventis","Krisala Developers","Tathawade, Pune",y,y,y,y,y,y,y,y,y,y,y,y,y,,y,,y,15
+203,"Krisala 41 ZOY+","KRISALA DEVELOPERS","HINJAWADI PHASE 1, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,,13
+204,"Everlyn","Krisala Hiranandani Township","North Hinjewadi, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+205,"ICON","Krisala Hiranandani Township","North Hinjewadi, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+206,"Arcadia","Krisala Hiranandani Township","North Hinjewadi, Pune",y,y,y,y,y,y,y,y,y,y,,,y,,y,,,12
+207,"The Select Circle","Kumar Corp","Mundhwa",y,y,y,y,y,y,y,y,y,y,y,,y,,y,y,,14
+208,"Majestique Towers","Majestique Landmark","Near Kapila Resort, Kharadi, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+209,"Majestique New Friends","Majestique Landmark","Vanaz, Kothrud, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+210,"Majestique Rhythm County","Majestique Landmark","Handewadi, Hadapsar, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,,12
+211,"Majestique 38 Park","Majestique Landmark","Undri Chowk, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+212,"Majestique Memories","Majestique Landmark","Mohammadwadi, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+213,"Majestique Swapnangan","Majestique Landmark","Chavan Baug, Dhayari, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,,12
+214,"Majestique Aravali","Majestique Landmark","Near Chandani Chowk, Warje, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+215,"Majestique Elements","Majestique Landmark","Pan Card Club Road, Baner, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,,12
+216,"Majestique Twilight","Majestique Landmark","Balewadi, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,,12
+217,"Majestique Signature Towers","Majestique Landmark","Balewadi High Street, Balewadi, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,,12
+218,"Majestique Krutarth","Majestique Landmark","Satara Road, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+219,"Majestique The Crown","Majestique Landmark","Shankar Seth Road, Gultedi, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+220,"Kothrud Central Mall","Majestique Landmark","Vanaz, Kothrud, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+221,"Codename BEWISE","Ram India Group","Hadapsar / Fursungi, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+222,"Palm Vista","Punvankara Ltd.","Shilphata Junction, Kalyan Shil Road",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+223,"Bhoomi Castle","Gajra Group","Shilphata Junction, Kalyan Shil Road",y,y,y,y,y,y,y,y,y,y,,,y,,y,,y,13
+224,"Codename Upvan","Today Group","Upper Kharghar, Navi Mumbai",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,,13
+225,"Codename Elements","Today Group","Panvel, Navi Mumbai",y,y,y,y,y,y,y,y,y,y,,,y,,y,,,12
+226,"The Strand","SSPL","Kharadi, Pune",y,y,y,y,y,y,y,y,y,y,y,,,,y,,y,13
+227,"Shubh Veda","Shubh Developer","Akurdi Khandoba Chowk, Pune",y,y,y,y,y,y,y,y,y,y,,,y,,y,,y,13
+228,"Aeternaa","Koral Realty","Thergaon, Pune",y,y,y,y,y,y,y,y,y,y,,,y,,y,,y,13
+229,"Lake Ridge City","Bhaishree Realty","Ambegaon, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+230,"KIMAYA ONE","Kimaya Group","BALEWADI, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+231,"Austin Yana","Austin Realty","Tathawade, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+232,"Harivishva Skyfinia","Harivishva Construction LLP","Tathawade, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+233,"Sparkle Youthika","Sparkle Realty","Lohegaon, Pune",y,y,y,y,y,y,y,y,y,y,,,y,,y,,y,13
+234,"Sparkle Neoworld","Sparkle Realty","Lohegaon, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,,13
+235,"KP SUPERNOVA","KANIFNATH REALTORS","NIBM, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,,13
+236,"Austin One","Austin & Kriplani","Pimple Saudgar, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,,13
+237,"SANTIAGO SKYWORLD","SANTAIGO REALTY","SECTOR NO 10,PRADHIAKARAN, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,,13
+238,"Shubharambh Clara","Subharambh Landmarks","Ravet, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,,13
+239,"Santiago Sunrise","SANTIAGO REALITY","Sanghvi, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,,13
+240,"Santiago Moonrise","SANTIAGO REALITY","Chikhali, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,,13
+241,"SANTIAGO SKYMONT","SANTIAGO REALITY","CHARHOLI, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,,13
+242,"SAHYADRI PLUMERIA","SAHYADRI LANDMARKS","MOSHI, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+243,"Santiago Sunrise","SANTIAGO REALITY","Sanghvi, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,,13
+244,"Abhimaan Vishwa","Royal Group","Chikhali, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+245,"AUDUMBAR BLISS","Royal Srushti Developers","Chinchwad, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+246,"Highness","Binary Infrastructures","Wakad, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+247,"Muktangan Kimaya","Muktangan Kimaya Realities LLP","Pimple Saudgar, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,,13
+248,"DOLPHIN PALMS","Dolphin Group","Ravet, Pune",y,y,y,y,y,y,y,y,,y,,,y,,y,,y,12
+249,"LANDMARKK LUXURIA","LANDMARKK TOWNSHIPS","DUDULGAON, PUNE, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+250,"ESTQUIRE LUXEMBOURG","ESTQUIRE DEVLOPERS","VASAI WEST, MUMBAI",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+251,"HORIZON HARMONY","Ramgeet Developers LLP","DAPODI, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,,13
+252,"SANTIAGO SKYWORLD II","NAMOH SAI PROPERTIES LLP","SECTOR NO 7,INDRAYANINAGAR BHOSARI, PUNE",y,y,y,y,y,y,y,y,,y,,,y,,y,,,11
+253,"RACHANA PRIVANA","RACHANA DEVELOPERS","SPINE ROAD, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+254,"Imperia","Atharva Builders","Sadashiv Peth, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,,13
+255,"Morya Skydale","Royal Nisarg Ventures","Thergaon,Chinchwad, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,,13
+256,"Belmont Skyone","Belmont Group","Lohegaon, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,,13
+257,"Belmont Skydale","Belmont Group","Lohegaon, Pune",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,,13
+258,"SAMRAAT AMOZON","SAMRAAT AMOZON","GANGAPUR ROAD,SERENE MEADOWS, NASHIK",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+259,"KOHINOOR WESTVIEW RESERVE","KOHINOOR GROUP","Punawale, Pimpri-Chinchwad, Pune, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,,13
+260,"KOHINOOR VIVA PIXEL PHASE 2","KOHINOOR GROUP","Dhanori Road, Dhanori, Pune, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+261,"KOHINOOR VIVA PIXEL PHASE 1","KOHINOOR GROUP","Dhanori Road, Dhanori, Pune, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+262,"KOHINOOR VIVA CITY","KOHINOOR GROUP","Dhanori Road, Dhanori, Pune, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+263,"KOHINOOR FAMVILLE","KOHINOOR GROUP","Hinjewadi Phase 2, Maan, Mulshi, Pun, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+264,"KOHINOOR UPTOWN AVENUE","KOHINOOR GROUP","Kate Wasti, Punawale, Pune – 411033, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+265,"KOHINOOR RIVERDALE","KOHINOOR GROUP","Upper Kharadi (Near Wellington College), Pune, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+266,"KOHINOOR WOODSHIRE","KOHINOOR GROUP","Bhugaon, Near Paud Road, Kothrud, Pune, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+267,"SATORI BY KOHINOOR","KOHINOOR GROUP","Mahalunge, Balewadi, Pune, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+268,"KOHINOOR CENTRAL PARK","KOHINOOR GROUP","Hinjewadi Phase 2, Maan, Mulshi, Pimpri-Chinchwad, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+269,"KOHINOOR ROYALE TOWERS","KOHINOOR GROUP","Hinjewadi Phase 1, Pimpri-Chinchwad, Pune, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+270,"KOHINOOR AVANTARA","KOHINOOR GROUP","Downtown Wakad, Pimpri-Chinchwad, Pune, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+271,"KOHINOOR REGALIA TOWERS","KOHINOOR GROUP","Downtown Wakad, Pimpri-Chinchwad, Pune, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+272,"KOHINOOR KALEIDO PH-2","KOHINOOR GROUP","New Kharadi / Upper Kharadi, Pune, PUNE",y,y,y,y,y,y,y,y,y,y,y,,y,,y,,y,14
+273,"Raheja Exotica Positano","Raheja Universal","Borivali, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+274,"Godrej Bandra Bay Phase 3","Godrej Properties","Andheri, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+275,"Godrej Bandra Bay Phase 2","Godrej Properties","Andheri, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+276,"Lodha Sewri Project","Lodha","Mumbai City, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+277,"Lodha Worli Residential Project","Lodha","Mumbai City, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+278,"RAHEJA SOBO RESIDENCES","K Raheja Corp","Mumbai City, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+279,"The Address by GS Sion Tower E","Raymond Realty","Mumbai City, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+280,"The Address by GS Sion Tower B","Raymond Realty","Mumbai City, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+281,"Lotus Sky Plaza","Lotus Developers","Andheri, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+282,"Vascon Onyx Residences","Vascon","Andheri, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+283,"Lotus Trident","Lotus Developers","Andheri, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+284,"THREE ICC-C WING","Bombay Realty","Ward FSouth, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+285,"THREE ICC-B WING","Bombay Realty","Mumbai City, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+286,"The Address by GS Sion Tower D","Raymond Realty","Mumbai City, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+287,"The Address by GS Sion Tower C","Raymond Realty","Mumbai City, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+288,"The Address by GS Sion Tower A","Raymond Realty","Mumbai City, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+289,"Rustomjee Vista Bay","Rustomjee","Mumbai City, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+290,"THREE ICC-A WING","Bombay Realty","Ward FSouth, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+291,"Provident Equinox 6","Provident Housing","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+292,"Nikoo Homes 9, Alpine, Bhartiya Garden Hill Ph-1","Bhartiya City","Bengaluru North, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+293,"Nikoo Homes 9 Alpine Bhartiya Garden Hill Phase-2","Bhartiya City","Bengaluru North, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+294,"Garden Breeze @ The Prestige City","Prestige Group","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+295,"Boulevard at Godrej Woodscapes","Godrej Properties","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+296,"Azalea at Brigade Meadows","Brigade Group","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+297,"Fiorana@Beaumont Estate(Phase-1)","Lodha","Yelahanka, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+298,"Godrej Regent Park","Godrej Properties","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+299,"ARVIND SYLVA","Arvind SmartSpaces","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+300,"CASAGRAND MOONDANCE","Casagrand","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+301,"Nikoo Homes 8, Bhartiya Garden Enclave, Phase-1","Bhartiya City","Bengaluru North, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+302,"Nikoo Homes 8, Bhartiya Garden Enclave, Phase-2","Bhartiya City","Bengaluru North, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+303,"DS MAX SKY SUKHINO","DS-MAX Properties","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+304,"Brigade Belvedere","Brigade Group","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+305,"Arvind Skycrest","Arvind SmartSpaces","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+306,"Brigade Lumina","Brigade Group","Bengaluru North, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+307,"Eaton Park @ The Prestige City","Prestige Group","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+308,"Fernvale @ The Prestige City","Prestige Group","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+309,"SATTVA CITY","Sattva Group","Yelahanka, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+310,"DS MAX SPOORTHI NEST","DS-MAX Properties","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+311,"Provident Equinox 5","Provident Housing","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+312,"SOBHA ALTAIR","Sobha","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+313,"FOLIUM BY SUMADHURA PHASE-IV","Sumadhura Group","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+314,"DS MAX SKY SAMPADHA","DS-MAX Properties","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+315,"Elanza","Lodha","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+316,"Evergreen @ Prestige Raintree Park","Prestige Group","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+317,"Purva Silversky","Puravankara","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+318,"SUMADHURA EDITION PHASE-I","Sumadhura Group","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+319,"SUMADHURA SOLACE PHASE-I","Sumadhura Group","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+320,"SUMADHURA EDITION PHASE-II","Sumadhura Group","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+321,"DS MAX SKY STANZA","DS-MAX Properties","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+322,"SOBHA MAGNUS","Sobha","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+323,"VYANA PHASE-I-T8 AT THE RESERVE","Kolte Patil Developers","Haveli, Pune",y,y,y,y,,y,,,,,y,,,,y,,,7
+324,"Kharadi New Project -Tower 6","Lodha","Haveli, Pune",y,y,y,y,,y,,,,,y,,,,y,,,7
+325,"VYOMORA PHASE 2","Shapporji Pallonji Real Estate","Mulshi, Pune",y,y,y,y,,y,,,,,y,,,,y,,,7
+326,"VYANA PHASE-I-T1 AT THE RESERVE","Kolte Patil Developers","Haveli, Pune",y,y,y,y,,y,,,,,y,,,,y,,,7
+327,"Kharadi New Project -Tower 9","Lodha","Haveli, Pune",y,y,y,y,,y,,,,,y,,,,y,,,7
+328,"Belmondo Townhouse 4","Lodha","Mawal, Pune",y,y,y,y,,y,,,,,y,,,,y,,,7
+329,"VYOMORA PHASE 3","Shapporji Pallonji Real Estate","Mulshi, Pune",y,y,y,y,,y,,,,,y,,,,y,,,7
+330,"SHRIDHAR BHALCHANDRA","Naiknavare Developers","Pune City, Pune",y,y,y,y,,y,,,,,y,,,,y,,,7
+331,"KUTUMB PRIME LIFE","Naiknavare Developers","Mawal, Pune",y,y,y,y,,y,,,,,y,,,,y,,,7
+332,"Rohan Ekam Phase 3","Rohan Builders","Haveli, Pune",y,y,y,y,,y,,,,,y,,,,y,,,7
+333,"Century OneWorld Seraya Phase 3","Century Real Estate","Bengaluru North, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+334,"Sumadhura Elysium Phase-I","Sumadhura Group","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+335,"Godrej Vanantara","Godrej Properties","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+336,"Nambiar District 25 Phase 3","Nambiar Builders","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+337,"SUMADHURA SOLEA","Sumadhura Group","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+338,"GODREJ AVELINE","Godrej Properties","Bengaluru North, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+339,"CityVille Valmark Phase 2B","Valmark","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+340,"SATTVA AANGANE","Sattva Group","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+341,"Purva Heritage","Puravankara","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+342,"APARNA WONDERWOODS","Aparna Constructions","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+343,"SATTVA SONGBIRD PH 2","Sattva Group","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+344,"Haven Phase 2","Lodha","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+345,"SATTVA AARANYA","Sattva Group","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+346,"GODREJ WOODS","Godrej Properties","Yelahanka, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+347,"NCC URBAN GREEN PROVINCE PHASE 2","NCC Urban","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+348,"Vajram Chrysanthemum","Vajram Group","Yelahanka, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+349,"SIPANI CITY PHASE-1","Sipani Properties","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+350,"SIGNATURE CNR MARVEL","Signature Dwellings","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+351,"SIGNATURE REGAL","Signature Dwellings","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+352,"ABHEE CITY URBAN GLENN PHASE II","Abhee Ventures","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+353,"ABHEE CITY URBAN GLENN PHASE I","Abhee Ventures","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+354,"M5 ECHELON","Mahendra Homes","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+355,"WAVES AND WHIMSY","ISTA Spaces","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+356,"AAROHANA ALTERRA","Aarohana Projects","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+357,"SRI SAI SAMRUDHI","Sri Sai Ventures","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+358,"ADITI NORTH STAR","ADI Developers","Yelahanka, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+359,"VAINAVI SERENIA","Vainavi Developers","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+360,"MAITHRI SPRINGWOODS","Maithri Developers","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+361,"Bhavya Triora","Bhavya Constructions","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+362,"GRC SAPPHIRE SPRING PHASE II","GRC Infra","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+363,"KNS AADRIKA PHASE III","KNS Infrastructure","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+364,"Samanvitha Siena Terra","Samanvitha Projects","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+365,"Yafa Zinnia","Yafa Properties","Bengaluru North, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+366,"NATURE'S NEST","NPS Developers","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+367,"LEMON TREE","Legend Properties","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+368,"Sumukha Nature's Symphony","Sumukha Ventures","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+369,"Sumukha Earthen Crest","Sumukha Ventures","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+370,"LEAFY SERENE","Leafy Realty","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+371,"LEAFY AVENUE","Leafy Realty","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+372,"MAITREE VAJRA","Maitree Developers","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+373,"VRUSHABADRI WINTER PARK","Vrushabadri Developers","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+374,"Assetz Muse & Maison","Assetz","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+375,"NIKHAR CELIO","Nikhar Estates","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+376,"MEMCO SKYLINE - JUTAKU","Memco Skyline","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+377,"HMT SRI GAYATHRI SERENITY","Sdr Constructions","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+378,"AMIGO ALFRESCO","Amigo Shelters","Bengaluru North, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+379,"AURA","BLUE SKY Properties","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+380,"SEVEN SARJAPUR","Fortune Primero","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+381,"Ashok Villas Imperial","Peninsula Land","Mawal, Pune",y,y,y,y,,y,,,,,y,,,,y,,,7
+382,"NYATI ESTEBAN III","Nyati Group","Haveli, Pune",y,y,y,y,,y,,,,,y,,,,y,,,7
+383,"ARKADE ASCEND","Arkade Developers","Borivali, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+384,"Ashok Villas Grande","Peninsula Land","Mawal, Pune",y,y,y,y,,y,,,,,y,,,,y,,,7
+385,"Raheja Lunaris-4","Raheja Universal","Thane, Thane",y,y,y,y,,y,,,,,y,,,,y,,,7
+386,"Raheja Lunaris-3","Raheja Universal","Thane, Thane",y,y,y,y,,y,,,,,y,,,,y,,,7
+387,"ARKADE SAPPHIRE","Arkade Developers","Andheri, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+388,"GODREJ SAMARIS","Godrej Properties","GH-24, URBAN ESTATE, SECTOR 5 3, GURUGRAM, Gurugram",y,y,y,y,,y,,,,,,,,,y,,,6
+389,"ELDECO TERRA & SOL","Eldeco Group","PLOT NO- 3A, SECTOR 80, MANES AR, GURUGRAM, Gurugram",y,y,y,y,,y,,,,,,,,,y,,,6
+390,"SAMSARA IVANA 2.0","Adani Realty","SECTOR 63, BLOCK - I VILLAGE MAIDAVAS, Gurugram",y,y,y,y,,y,,,,,,,,,y,,,6
+391,"THE MARQ","Adani Realty","SECTOR 102 & 102A, Gurugram",y,y,y,y,,y,,,,,,,,,y,,,6
+392,"GODREJ VERANO","Godrej Properties","SECTOR-63A, GURUGRAM, Gurugram",y,y,y,y,,y,,,,,,,,,y,,,6
+393,"SOBHA STRADA","Sobha","SECTOR 106, VILLAGE PAWALA KH USRUPUR, GURUGRAM, Gurugram",y,y,y,y,,y,,,,,,,,,y,,,6
+394,"SOBHA CRESCENT PHASE - 1","Sobha","SECTOR 63A, VILLAGE BEHRAMPUR , GURUGRAM MANESAR URBAN COMPLEX, Gurugram",y,y,y,y,,y,,,,,,,,,y,,,6
+395,"Elite Park Phase 5","Elite Estates","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+396,"MK HARMONY","Matrix Constructions","Kurla, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+397,"io Tower by PCPL","Pranav Constructions","Borivali, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+398,"AMRUT AWAS CO-OP. HOUSING SOCIETY","Swami Serenespaces","Borivali, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+399,"Mayfair Aarambh","Mayfair Housing","Mumbai City, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+400,"MAYFAIR ARANYA","Mayfair Housing","Andheri, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+401,"Param Adarsh by Shraddha","Shraddha Prime Projects","Kurla, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+402,"Munisuvrat Chhaya","Vira Group","Andheri, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+403,"io Residences by PCPL","Pranav Constructions","Borivali, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+404,"PCPL STELLAR CREST","Pranav Constructions","Andheri, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+405,"EMPIRE HEIGHTS","Empire Realty","Borivali, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+406,"Hum Laxmi","HUM Developers","Borivali, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+407,"HUM SAPPHIRE","HUM Developers","Borivali, Mumbai",y,y,y,y,,y,,,,,y,,,,y,,,7
+408,"MYHNA VISTARA","Myhna Properties","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+409,"RHYTHM OF EARTH","Blissful Acres","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+410,"Trifecta Veranza","Trifecta Projects","Anekal, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+411,"LOCAL SQUARE WHITEFIELD","Curated Living Solutions","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+412,"ADITYA RAAGA","Aditya Constructions","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+413,"MANA VERDANT TERRACES","MANA Projects","Bengaluru East, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+414,"JYOTHI NIVAS","SAI Kiran Constructions","Bengaluru South, Bengaluru",y,y,y,y,y,y,,,,y,,,,,y,,,8
+415,"","","",,,,y,y,y,,,,,,,,,,,,3
+416,"","","",,,,y,y,y,,,,,,,,,,,,3
+416,"","","",,,,y,y,y,,,,,,,,,,,,3
