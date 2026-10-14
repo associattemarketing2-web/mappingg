@@ -49,7 +49,7 @@ Rollback: set pin B's number back to 116 (history row) and remove the redirect.
 | Blog links | `2-bhk-flats-in-pune` (2 links) | `new-projects-in-kharadi-pune` (3), `best-areas-to-buy-property-in-pune` (2) |
 | History rows | 23 | 16 |
 
-MahaRERA name search for "Melange" returns nothing (registered under another name), so the number PM1261012601312 could not be matched to a site yet.
+MahaRERA (batch 1, re-checked with retries): the only "Melange" registrations belong to other developers — "Melange Residences" Phases I–IV (Rama Synergy Spaces, 411057) and "The Melange" (Cosmos Skyline Homes, 411012). The stored PM1261012601312 did not appear under any name searched, so it could not be matched to a site yet. Both pins show the same number, so whichever is wrong, one pin carries a registration that hasn't been confirmed to belong to it.
 
 **Assessment:** one registration, two map positions. Either it is one project placed twice (a true duplicate — one position is wrong), or the pins mark two different things (e.g. the site and a sales office/experience centre). The different videos suggest someone added them separately on purpose.
 
@@ -68,6 +68,8 @@ MahaRERA name search for "Melange" returns nothing (registered under another nam
 | Intake records | own intake project `1d63d26e…` | own intake project `53916656…` |
 | Leads / favorites | none | none |
 | Blog links | none | `new-projects-in-pimpri-chinchwad-pcmc` |
+
+**MahaRERA (batch 1):** one registration, "Santiago Sunrise" `P52100077792`, promoter Santiago Realtech Ventures, Pune 411027 (Sangvi) — confirmed for both pins.
 
 **Assessment:** not a data-entry duplicate — two components (residential and commercial) of one registered project, entered as two intake projects. Both pages carry different, valid information.
 

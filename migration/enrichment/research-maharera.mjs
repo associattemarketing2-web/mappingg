@@ -200,10 +200,28 @@ for (const id of numbers) {
     for (const row of r.rows) rows.set(row.registration, row);
     if (r.total > 0 && r.total <= 10) break; // a specific hit; no need for looser variants
   }
+  // Reconciliation against every registry row already fetched in this run (no extra requests):
+  // a strong match can surface in another project's search ("Mantra Business Centre Mundhwa").
+  const all = new Map(Object.values(cache).flatMap((r) => r.rows || []).map((r) => [r.registration, r]));
+  const crossHits = [];
+  for (const r of all.values()) {
+    if (rows.has(r.registration) || !districtOk(p, r)) continue;
+    const exact = nameScore(p, r), fuzzy = nameScore(p, r, false), prom = promoterOk(p, r);
+    if (fuzzy >= 0.99 || (fuzzy >= 0.5 && prom === true)) { rows.set(r.registration, r); crossHits.push(r.registration); }
+  }
   const c = classify(p, [...rows.values()]);
+  if (crossHits.length) c.flags.push(`matched only via other projects' searches: ${crossHits.join(', ')}`);
+  // The stored RERA number, wherever it appeared in the registry results.
+  const existingNo = String(p.rera_number || '').replace(/\s/g, '').toUpperCase();
+  const existingRow = existingNo ? all.get(existingNo) : null;
+  // One-letter prefix typo: stored PR… vs registered PM… with identical digits.
+  const prefixTwin = existingNo && !existingRow ? [...all.values()].find((r) => r.registration.slice(2) === existingNo.slice(2) && /^P[RCM]/.test(r.registration) && r.registration !== existingNo) : null;
+  if (prefixTwin) c.flags.push(`stored ${existingNo} is not registered, but ${prefixTwin.registration} ("${prefixTwin.name}", ${prefixTwin.promoter}) has the same digits — probable typo`);
   results.push({
     number: p.number, pin_id: p.id, title: p.title, developer: p.developer || '', location: p.location || '',
     existing_rera: p.rera_number || '', checked_on: new Date().toISOString().slice(0, 10), searches, ...c,
+    existing_rera_registry: existingRow ? { registered_name: existingRow.name, promoter: existingRow.promoter, pincode: existingRow.pincode, district: existingRow.district } : null,
+    existing_rera_typo_candidate: prefixTwin ? prefixTwin.registration : null,
   });
   console.log(`#${p.number} ${p.title}: ${c.identity}${c.proposed_rera ? ' → ' + c.proposed_rera : ''} (${c.candidates.length} cand.)`);
 }

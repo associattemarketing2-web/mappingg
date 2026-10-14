@@ -1,0 +1,3687 @@
+{
+  "generated_at": "2026-10-14T07:10:49.126Z",
+  "source": "MahaRERA public project search (official)",
+  "summary": {
+    "projects": 50,
+    "queries_completed_in_run": 96,
+    "http_requests_in_run": 215,
+    "outcomes": {
+      "verified": [
+        "#4 Godrej Elaris",
+        "#6 Nova Elegence",
+        "#11 Ganga Avanta",
+        "#15 57 Avenue",
+        "#17 Jhamtani Ace Abundance",
+        "#18 Osian Almanova",
+        "#20 Shubh Tristar",
+        "#23 DUVILLE AVIRA",
+        "#24 Trump World Center",
+        "#25 Nova Residency",
+        "#29 Global Riverfront",
+        "#30 Jhamtani Bizcore",
+        "#35 The Reserve",
+        "#37 Godrej Skyline",
+        "#38 Supreme Towers",
+        "#50 Trustfort Icon"
+      ],
+      "conflicting_evidence": [
+        "#7 Lodha Mundhwa",
+        "#10 Kumar Prism",
+        "#31 Jhamtani XO Villas",
+        "#47 Kumar Parc"
+      ],
+      "needs_manual_review": [
+        "#13 Ravima Newtown",
+        "#21 Mantra Melange",
+        "#26 Mantra Business Center",
+        "#27 Mantra Mirari",
+        "#32 Power Heights & Residency",
+        "#34 Jhamtani Elevate",
+        "#39 Platinum Capital",
+        "#43 Casa Elanza",
+        "#44 Omicron Commerz",
+        "#48 Kohinoor Business Towers",
+        "#54 Horizon Highgroves",
+        "#56 Breeza"
+      ],
+      "not_found_genuine": [
+        "#2 1 Residency by Burgundy",
+        "#3 Epitome by Ram India",
+        "#8 Port 133",
+        "#12 Kumar 47 East",
+        "#14 Majestique Landmark",
+        "#16 Tayal Envoque",
+        "#22 Mantra Marvilla - Burgundy",
+        "#28 Mayfair by Burgundy",
+        "#33 Panchashil Golden Bell 2",
+        "#36 Osian - One & Only",
+        "#41 AP81 by Amar & Pristine",
+        "#42 Adani Greens",
+        "#45 Amar Quantum Tech Park",
+        "#51 Vedant 84",
+        "#52 Mantra Uber Luxury",
+        "#53 Mantra Highstreet & Offices"
+      ],
+      "not_found_placeholder": [
+        "#40 Merlin New Project",
+        "#49 Anandtara New Launch"
+      ]
+    },
+    "proposed_changes": [
+      {
+        "number": 10,
+        "title": "Kumar Prism",
+        "field": "rera_number",
+        "existing": "PR1260002501640",
+        "proposed": "PM1260002501640",
+        "action": "review",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=KUMAR+PRISM&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "note": "stored number is not registered; same digits registered with a different prefix",
+        "identity_evidence": "MahaRERA: \"Kumar Prism Tower A\", promoter Kumar Prism Realty LLP, Pune 411036; map: \"Kumar Prism\" by Kumar World, Mundhwa, Pune"
+      },
+      {
+        "number": 26,
+        "title": "Mantra Business Center",
+        "field": "rera_number",
+        "existing": "",
+        "proposed": "P52100030995",
+        "action": "review",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MUNDHWA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "identity_evidence": "MahaRERA: \"MANTRA BUSINESS CENTRE MUNDHWA\", promoter MANTRA RESIDENCES MUNDHWA PRIVATE LIMITED, Pune 411036; map: \"Mantra Business Center\" by Mantra Properties, Mundhwa, Pune"
+      },
+      {
+        "number": 32,
+        "title": "Power Heights & Residency",
+        "field": "rera_number",
+        "existing": "",
+        "proposed": "P52100047455",
+        "action": "review",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=POWER+HEI&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "identity_evidence": "MahaRERA: \"POWER HEIGHTS AND POWER RESIDENCES\", promoter SAPRA CONSTRUCTIONS, Pune 411036; map: \"Power Heights & Residency\""
+      },
+      {
+        "number": 34,
+        "title": "Jhamtani Elevate",
+        "field": "rera_number",
+        "existing": "",
+        "proposed": "P52100078567",
+        "action": "review",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=JHAMTANI+ELEVATE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "identity_evidence": "MahaRERA: \"Jhamtani Elevate\", promoter HIGHSPOT REALTY LLP, Pune 411036; map: \"Jhamtani Elevate\" by Jhamtani Group, Mundhwa, Pune"
+      },
+      {
+        "number": 43,
+        "title": "Casa Elanza",
+        "field": "rera_number",
+        "existing": "",
+        "proposed": "P52100029148",
+        "action": "review",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=CASA+ELA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "identity_evidence": "MahaRERA: \"Casa Elanza\", promoter Parmaz Green Realty LLP, Pune 411036; map: \"Casa Elanza\""
+      },
+      {
+        "number": 54,
+        "title": "Horizon Highgroves",
+        "field": "rera_number",
+        "existing": "",
+        "proposed": "P52100030909",
+        "action": "review",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=HORIZON+HIGHGROVES&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "identity_evidence": "MahaRERA: \"HORIZON HIGHGROVES\", promoter YASHCON SHELTER LLP, Pune 411036; map: \"Horizon Highgroves\" by Horizon Developers, Mundhwa, Pune"
+      }
+    ],
+    "cross_pin_conflicts": [
+      "#47: PR1264042501296 (\"Kumar Parc Residences - B1\") is stored on pin #207 \"The Select Circle\""
+    ],
+    "existing_rera_confirmed": 17,
+    "new_registration_verified": 0,
+    "new_registration_needs_review": 6,
+    "multiple_phases_or_projects": 8,
+    "weak_match": 2,
+    "not_found_after_retries": 18,
+    "invalid_existing_rera": [
+      {
+        "number": 7,
+        "value": "LAUNCHING-SOON"
+      },
+      {
+        "number": 31,
+        "value": "P5210048327"
+      }
+    ],
+    "existing_rera_not_matched_by_name": [
+      {
+        "number": 2,
+        "title": "1 Residency by Burgundy",
+        "rera": "P52100066482"
+      },
+      {
+        "number": 3,
+        "title": "Epitome by Ram India",
+        "rera": "PC1260002500325"
+      },
+      {
+        "number": 10,
+        "title": "Kumar Prism",
+        "rera": "PR1260002501640"
+      },
+      {
+        "number": 12,
+        "title": "Kumar 47 East",
+        "rera": "P52100024598"
+      },
+      {
+        "number": 16,
+        "title": "Tayal Envoque",
+        "rera": "P52100053239"
+      },
+      {
+        "number": 21,
+        "title": "Mantra Melange",
+        "rera": "PM1261012601312"
+      },
+      {
+        "number": 22,
+        "title": "Mantra Marvilla - Burgundy",
+        "rera": "P52100054742"
+      },
+      {
+        "number": 28,
+        "title": "Mayfair by Burgundy",
+        "rera": "P52100079211"
+      }
+    ],
+    "promoter_differs": 17,
+    "spelling_differs": 2,
+    "placeholder_titles": [
+      "#40 Merlin New Project",
+      "#49 Anandtara New Launch"
+    ],
+    "fields_not_verified": "price, possession, carpet area, amenities, description — not verifiable from the MahaRERA search page; not proposed"
+  },
+  "projects": [
+    {
+      "number": 2,
+      "pin_id": "db171533-719e-40cf-a018-e97ba8b3424a",
+      "title": "1 Residency by Burgundy",
+      "developer": "Mantra Properties",
+      "location": "Mundhwa/Magarpatta, Pune",
+      "outcome": "not_found",
+      "outcome_reason": "no registered project found by name after 3 tries per query (not proof the project is unregistered)",
+      "placeholder": false,
+      "existing_rera": "P52100066482",
+      "existing_rera_valid": true,
+      "existing_rera_registry": null,
+      "identity": "not_found",
+      "status": "not_found",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=1+RESIDENCY+BY+BURGUNDY&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "1 Residency by Burgundy",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=1+RESIDENCY&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "1 Residency",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=1+RES&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "1 Res",
+          "results": 3
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "existing RERA number not found among name-search results (registered name may differ) — not disproved"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 3,
+      "pin_id": "f4cbca92-ec0d-4402-8e75-39b76d1b0b4b",
+      "title": "Epitome by Ram India",
+      "developer": "Ram India Group",
+      "location": "Mundhwa/Magarpatta, Pune",
+      "outcome": "not_found",
+      "outcome_reason": "no registered project found by name after 3 tries per query (not proof the project is unregistered)",
+      "placeholder": false,
+      "existing_rera": "PC1260002500325",
+      "existing_rera_valid": true,
+      "existing_rera_registry": null,
+      "identity": "not_found",
+      "status": "not_found",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=EPITOME+BY+RAM+INDIA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Epitome by Ram India",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=EPITOME&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Epitome",
+          "results": 16
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=EPITOM&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Epitom",
+          "results": 16
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "existing RERA number not found among name-search results (registered name may differ) — not disproved"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 4,
+      "pin_id": "086a77a3-8864-4bfa-86c0-380a03da4831",
+      "title": "Godrej Elaris",
+      "developer": "Godrej Properties",
+      "location": "Mundhwa, Pune",
+      "outcome": "verified",
+      "outcome_reason": "stored RERA number found on MahaRERA under a matching name and developer",
+      "placeholder": false,
+      "existing_rera": "PM1260002501385",
+      "existing_rera_valid": true,
+      "existing_rera_registry": {
+        "registered_name": "Godrej Elaris",
+        "promoter": "Godrej Properties Limited",
+        "pincode": "411036",
+        "district": "Pune"
+      },
+      "identity": "existing_rera_confirmed",
+      "status": "verified",
+      "confidence": "high",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "PM1260002501385",
+        "proposed": "PM1260002501385",
+        "action": "none",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=GODREJ+ELARIS&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "note": "existing value confirmed on MahaRERA",
+        "identity_evidence": "MahaRERA: \"Godrej Elaris\", promoter Godrej Properties Limited, Pune 411036; map: \"Godrej Elaris\" by Godrej Properties, Mundhwa, Pune"
+      },
+      "registered": [
+        {
+          "registration": "PM1260002501385",
+          "registered_name": "Godrej Elaris",
+          "promoter": "Godrej Properties Limited",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-06-02",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "PM1260002400007",
+          "registered_name": "Godrej Skyline",
+          "promoter": "Godrej Properties Limited",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-03-25",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=GODREJ+ELARIS&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Godrej Elaris",
+          "results": 1
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "PM1260002400007 \"Godrej Skyline\": extra words not in the map title/location (skyline) — check it is the same site",
+        "matched only via other projects' searches: PM1260002400007"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 6,
+      "pin_id": "678a7524-93ae-4b21-bcdd-2f802d83aa0c",
+      "title": "Nova Elegence",
+      "developer": "Magarpatta Group",
+      "location": "Mundhwa/Magarpatta, Pune",
+      "outcome": "verified",
+      "outcome_reason": "stored RERA number found on MahaRERA under a matching name and developer",
+      "placeholder": false,
+      "existing_rera": "P52100053062",
+      "existing_rera_valid": true,
+      "existing_rera_registry": {
+        "registered_name": "Nova Elegance",
+        "promoter": "Magarpatta Township Development & Construction Co. Ltd.",
+        "pincode": "411036",
+        "district": "Pune"
+      },
+      "identity": "existing_rera_confirmed",
+      "status": "verified",
+      "confidence": "high",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "P52100053062",
+        "proposed": "P52100053062",
+        "action": "none",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=NOVA+ELE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "note": "existing value confirmed on MahaRERA",
+        "identity_evidence": "MahaRERA: \"Nova Elegance\", promoter Magarpatta Township Development & Construction Co. Ltd., Pune 411036; map: \"Nova Elegence\" by Magarpatta Group, Mundhwa/Magarpatta, Pune"
+      },
+      "registered": [
+        {
+          "registration": "P52100053062",
+          "registered_name": "Nova Elegance",
+          "promoter": "Magarpatta Township Development & Construction Co. Ltd.",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2024-07-10",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "P52100055577",
+          "registered_name": "Nova Residency",
+          "promoter": "Magarpatta City Dev, Co. Pvt. Ltd.",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2024-12-17",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=NOVA+ELEGENCE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Nova Elegence",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=NOVA+ELE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Nova Ele",
+          "results": 1
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "P52100055577 \"Nova Residency\": extra words not in the map title/location (residency) — check it is the same site",
+        "matched only via other projects' searches: P52100055577"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 7,
+      "pin_id": "e55dfcc6-8db8-4ea8-b701-d717e0da3d40",
+      "title": "Lodha Mundhwa",
+      "developer": "Lodha",
+      "location": "Mundhwa, Pune",
+      "outcome": "conflicting_evidence",
+      "outcome_reason": "stored RERA value is not a MahaRERA project number",
+      "placeholder": false,
+      "existing_rera": "LAUNCHING-SOON",
+      "existing_rera_valid": false,
+      "existing_rera_registry": null,
+      "identity": "weak_match",
+      "status": "needs_review",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [
+        {
+          "registration": "P52100030995",
+          "registered_name": "MANTRA BUSINESS CENTRE MUNDHWA",
+          "promoter": "MANTRA RESIDENCES MUNDHWA PRIVATE LIMITED",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2024-04-29",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100045670",
+          "registered_name": "iLife, Mundhwa-ALPHA- A Wing",
+          "promoter": "Goodwill9 Ventures LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2023-05-26",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100046239",
+          "registered_name": "iLife, Mundhwa-OMEGA- B Wing",
+          "promoter": "Goodwill9 Ventures LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2023-05-26",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "PR1261012500924",
+          "registered_name": "NEWTON HOME MUNDHWA",
+          "promoter": "Ravima Venture",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2025-09-24",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "PR1260002600463",
+          "registered_name": "LOCAL SQUARE MUNDHWA",
+          "promoter": "CURATED LIVING SOLUTIONS PRIVATE LIMITED",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-05-18",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": false
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=LODHA+MUNDHWA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Lodha Mundhwa",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MUNDHWA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Mundhwa",
+          "results": 5
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "existing RERA value is not a MahaRERA project number (\"LAUNCHING-SOON\")",
+        "a candidate has a different promoter name (brand vs legal entity, or a different project)",
+        "P52100030995 \"MANTRA BUSINESS CENTRE MUNDHWA\": extra words not in the map title/location (mantra, business, centre) — check it is the same site",
+        "P52100045670 \"iLife, Mundhwa-ALPHA- A Wing\": extra words not in the map title/location (ilife, alpha) — check it is the same site",
+        "P52100046239 \"iLife, Mundhwa-OMEGA- B Wing\": extra words not in the map title/location (ilife, omega) — check it is the same site",
+        "PR1261012500924 \"NEWTON HOME MUNDHWA\": extra words not in the map title/location (newton, home) — check it is the same site",
+        "PR1260002600463 \"LOCAL SQUARE MUNDHWA\": extra words not in the map title/location (local, square) — check it is the same site"
+      ],
+      "_status_on_map": "upcoming"
+    },
+    {
+      "number": 8,
+      "pin_id": "077e8251-4e1a-4058-9026-544b14a91f6a",
+      "title": "Port 133",
+      "developer": "Magarpatta Group",
+      "location": "Magarpatta , Hadapsar, Pune",
+      "outcome": "not_found",
+      "outcome_reason": "no registered project found by name after 3 tries per query (not proof the project is unregistered)",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "not_found",
+      "status": "not_found",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=PORT+133&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Port 133",
+          "results": 0
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 10,
+      "pin_id": "5aad493a-b7fe-49ad-afdf-f764af4b9a69",
+      "title": "Kumar Prism",
+      "developer": "Kumar World",
+      "location": "Mundhwa, Pune",
+      "outcome": "conflicting_evidence",
+      "outcome_reason": "stored RERA number looks like a typo of a registered number",
+      "placeholder": false,
+      "existing_rera": "PR1260002501640",
+      "existing_rera_valid": true,
+      "existing_rera_registry": null,
+      "identity": "multiple_phases_or_projects",
+      "status": "needs_review",
+      "confidence": "medium",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "PR1260002501640",
+        "proposed": "PM1260002501640",
+        "action": "review",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=KUMAR+PRISM&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "note": "stored number is not registered; same digits registered with a different prefix",
+        "identity_evidence": "MahaRERA: \"Kumar Prism Tower A\", promoter Kumar Prism Realty LLP, Pune 411036; map: \"Kumar Prism\" by Kumar World, Mundhwa, Pune"
+      },
+      "registered": [
+        {
+          "registration": "P52100034109",
+          "registered_name": "KUMAR PRISM",
+          "promoter": "KUMAR PROPERTIES AND PROMOTERS PRIVATE LIMITED",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2022-03-24",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "PM1260002501640",
+          "registered_name": "Kumar Prism Tower A",
+          "promoter": "Kumar Prism Realty LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2025-12-02",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "P52100032022",
+          "registered_name": "Kumar Parc residences - A1",
+          "promoter": "Kumar Properties Infratech Developers Pvt Ltd",
+          "pincode": "411028",
+          "district": "Pune",
+          "last_modified": "2026-04-30",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "P52100047940",
+          "registered_name": "Kumar Parc Residences - C Mhada",
+          "promoter": "Kumar Properties Infratech Developers Pvt Ltd",
+          "pincode": "411028",
+          "district": "Pune",
+          "last_modified": "2026-08-25",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "P52100049839",
+          "registered_name": "Kumar Parc Residences - B2",
+          "promoter": "Kumar Properties Infratech Developers Pvt Ltd",
+          "pincode": "411028",
+          "district": "Pune",
+          "last_modified": "2025-11-20",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "P52100055344",
+          "registered_name": "Kumar Parc Residences - A2",
+          "promoter": "Kumar Properties Infratech Developers Pvt Ltd",
+          "pincode": "411028",
+          "district": "Pune",
+          "last_modified": "2026-04-28",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "PR1264042501296",
+          "registered_name": "Kumar Parc Residences - B1",
+          "promoter": "Kumar Properties Infratech Developers Pvt Ltd",
+          "pincode": "411028",
+          "district": "Pune",
+          "last_modified": "2026-03-25",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=KUMAR+PRISM&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Kumar Prism",
+          "results": 2
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "existing RERA number not found among name-search results (registered name may differ) — not disproved",
+        "P52100032022 \"Kumar Parc residences - A1\": extra words not in the map title/location (parc, residences, a1) — check it is the same site",
+        "P52100047940 \"Kumar Parc Residences - C Mhada\": extra words not in the map title/location (parc, residences, mhada) — check it is the same site",
+        "P52100049839 \"Kumar Parc Residences - B2\": extra words not in the map title/location (parc, residences, b2) — check it is the same site",
+        "P52100055344 \"Kumar Parc Residences - A2\": extra words not in the map title/location (parc, residences, a2) — check it is the same site",
+        "PR1264042501296 \"Kumar Parc Residences - B1\": extra words not in the map title/location (parc, residences, b1) — check it is the same site",
+        "matched only via other projects' searches: P52100032022, P52100047940, P52100049839, P52100055344, PR1264042501296",
+        "stored PR1260002501640 is not registered, but PM1260002501640 (\"Kumar Prism Tower A\", Kumar Prism Realty LLP) has the same digits — probable typo"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 11,
+      "pin_id": "1b2ebd16-2811-412f-bccf-9f9db48bc667",
+      "title": "Ganga Avanta",
+      "developer": "Goel Ganga Developments",
+      "location": "Mundhwa, Pune",
+      "outcome": "verified",
+      "outcome_reason": "stored RERA number found on MahaRERA under a matching name; registered promoter is a different legal entity (normal for project SPVs) — noted",
+      "placeholder": false,
+      "existing_rera": "PM1260002601565",
+      "existing_rera_valid": true,
+      "existing_rera_registry": {
+        "registered_name": "GANGA AVANTA A2",
+        "promoter": "SOHAM ASSOCIATES",
+        "pincode": "411014",
+        "district": "Pune"
+      },
+      "identity": "existing_rera_confirmed",
+      "status": "verified",
+      "confidence": "high",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "PM1260002601565",
+        "proposed": "PM1260002601565",
+        "action": "none",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=GANGA+AVANTA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "note": "existing value confirmed on MahaRERA",
+        "identity_evidence": "MahaRERA: \"GANGA AVANTA A2\", promoter SOHAM ASSOCIATES, Pune 411014; map: \"Ganga Avanta\" by Goel Ganga Developments, Mundhwa, Pune"
+      },
+      "registered": [
+        {
+          "registration": "P52100047366",
+          "registered_name": "GANGA AVANTA A1",
+          "promoter": "SOHAM ASSOCIATES",
+          "pincode": "411014",
+          "district": "Pune",
+          "last_modified": "2026-05-06",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "PM1260002601565",
+          "registered_name": "GANGA AVANTA A2",
+          "promoter": "SOHAM ASSOCIATES",
+          "pincode": "411014",
+          "district": "Pune",
+          "last_modified": "2026-08-17",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=GANGA+AVANTA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Ganga Avanta",
+          "results": 2
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "a candidate has a different promoter name (brand vs legal entity, or a different project)",
+        "P52100047366 \"GANGA AVANTA A1\": extra words not in the map title/location (a1) — check it is the same site",
+        "PM1260002601565 \"GANGA AVANTA A2\": extra words not in the map title/location (a2) — check it is the same site"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 12,
+      "pin_id": "51243608-7dc5-4b0b-9b10-9bf9f6cf94d7",
+      "title": "Kumar 47 East",
+      "developer": "Kumar Corp",
+      "location": "Mundhwa, Pune",
+      "outcome": "not_found",
+      "outcome_reason": "no registered project found by name after 3 tries per query (not proof the project is unregistered)",
+      "placeholder": false,
+      "existing_rera": "P52100024598",
+      "existing_rera_valid": true,
+      "existing_rera_registry": null,
+      "identity": "not_found",
+      "status": "not_found",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=KUMAR+47+EAST&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Kumar 47 East",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=47+EAST&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "47 East",
+          "results": 0
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "existing RERA number not found among name-search results (registered name may differ) — not disproved"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 13,
+      "pin_id": "43279ad4-c281-4687-a7c5-13f4f880242e",
+      "title": "Ravima Newtown",
+      "developer": "Ravima Ventures",
+      "location": "Mundhwa, Pune",
+      "outcome": "needs_manual_review",
+      "outcome_reason": "stored RERA number exists on MahaRERA as \"NEWTON HOME MUNDHWA\" (Ravima Venture); the name only matches with spelling tolerance",
+      "placeholder": false,
+      "existing_rera": "PR1261012500924",
+      "existing_rera_valid": true,
+      "existing_rera_registry": {
+        "registered_name": "NEWTON HOME MUNDHWA",
+        "promoter": "Ravima Venture",
+        "pincode": "411036",
+        "district": "Pune"
+      },
+      "identity": "existing_rera_confirmed",
+      "status": "verified",
+      "confidence": "high",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "PR1261012500924",
+        "proposed": "PR1261012500924",
+        "action": "none",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MUNDHWA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "note": "existing value confirmed on MahaRERA",
+        "identity_evidence": null
+      },
+      "registered": [
+        {
+          "registration": "P52100002738",
+          "registered_name": "ARV Newtown",
+          "promoter": "Vedant Infracon",
+          "pincode": "411028",
+          "district": "Pune",
+          "last_modified": "2017-08-04",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100001431",
+          "registered_name": "GANGA NEWTOWN PHASE I",
+          "promoter": "SHREE BALAJI ASSOCIATES PUNE LLP",
+          "pincode": "411015",
+          "district": "Pune",
+          "last_modified": "2017-07-28",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100015904",
+          "registered_name": "ARV Newtown Phase II",
+          "promoter": "Vedant Infracon",
+          "pincode": "411028",
+          "district": "Pune",
+          "last_modified": "2018-04-09",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100019275",
+          "registered_name": "Ganga Newtown Ph 02",
+          "promoter": "SHREE BALAJI ASSOCIATES PUNE LLP",
+          "pincode": "411015",
+          "district": "Pune",
+          "last_modified": "2021-08-27",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100027214",
+          "registered_name": "ARV Newtown Phase III",
+          "promoter": "Vedant Infracon",
+          "pincode": "411028",
+          "district": "Pune",
+          "last_modified": "2023-10-26",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100034400",
+          "registered_name": "GANGA NEWTOWN PH 3 C Bldg",
+          "promoter": "SHREE BALAJI ASSOCIATES PUNE LLP",
+          "pincode": "411015",
+          "district": "Pune",
+          "last_modified": "2024-06-17",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100055461",
+          "registered_name": "GANGA NEWTOWN PH 4 D Bldg",
+          "promoter": "SHREE BALAJI ASSOCIATES PUNE LLP",
+          "pincode": "411015",
+          "district": "Pune",
+          "last_modified": "2024-08-13",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100079278",
+          "registered_name": "GANGA NEWTOWN PH 5 E BLDG",
+          "promoter": "SHREE BALAJI ASSOCIATES PUNE LLP",
+          "pincode": "411015",
+          "district": "Pune",
+          "last_modified": "2026-08-17",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": false
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=RAVIMA+NEWTOWN&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Ravima Newtown",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=NEWTOWN&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Newtown",
+          "results": 9
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "a candidate has a different promoter name (brand vs legal entity, or a different project)",
+        "P52100002738 \"ARV Newtown\": extra words not in the map title/location (arv) — check it is the same site",
+        "P52100001431 \"GANGA NEWTOWN PHASE I\": extra words not in the map title/location (ganga) — check it is the same site",
+        "P52100015904 \"ARV Newtown Phase II\": extra words not in the map title/location (arv) — check it is the same site",
+        "P52100019275 \"Ganga Newtown Ph 02\": extra words not in the map title/location (ganga, ph) — check it is the same site",
+        "P52100027214 \"ARV Newtown Phase III\": extra words not in the map title/location (arv) — check it is the same site",
+        "P52100034400 \"GANGA NEWTOWN PH 3 C Bldg\": extra words not in the map title/location (ganga, ph) — check it is the same site",
+        "P52100055461 \"GANGA NEWTOWN PH 4 D Bldg\": extra words not in the map title/location (ganga, ph) — check it is the same site",
+        "P52100079278 \"GANGA NEWTOWN PH 5 E BLDG\": extra words not in the map title/location (ganga, ph) — check it is the same site",
+        "PM1260002601659 \"GANGA NEWTOWN PH 6 F BLDG\": extra words not in the map title/location (ganga, ph) — check it is the same site",
+        "PR1261012500924 \"NEWTON HOME MUNDHWA\": extra words not in the map title/location (home) — check it is the same site",
+        "matched only via other projects' searches: PR1261012500924"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 14,
+      "pin_id": "0e293e71-14a3-4f43-a3d4-1eeeb3b3970e",
+      "title": "Majestique Landmark",
+      "developer": "",
+      "location": "",
+      "outcome": "not_found",
+      "outcome_reason": "no registered project found by name after 3 tries per query (not proof the project is unregistered)",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "not_found",
+      "status": "not_found",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MAJESTIQUE+LANDMARK&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Majestique Landmark",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MAJESTIQUE+LAN&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Majestique Lan",
+          "results": 1
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [],
+      "_status_on_map": "upcoming"
+    },
+    {
+      "number": 15,
+      "pin_id": "d65ab904-a299-4d35-b860-6383c9f3c424",
+      "title": "57 Avenue",
+      "developer": "Panchshil Realty",
+      "location": "Mundhwa, Pune",
+      "outcome": "verified",
+      "outcome_reason": "stored RERA number found on MahaRERA under a matching name; registered promoter is a different legal entity (normal for project SPVs) — noted",
+      "placeholder": false,
+      "existing_rera": "PR1260002503013",
+      "existing_rera_valid": true,
+      "existing_rera_registry": {
+        "registered_name": "57 Avenue",
+        "promoter": "Aquaris Properties Private Limited",
+        "pincode": "411036",
+        "district": "Pune"
+      },
+      "identity": "existing_rera_confirmed",
+      "status": "verified",
+      "confidence": "high",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "PR1260002503013",
+        "proposed": "PR1260002503013",
+        "action": "none",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=57+AVENUE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "note": "existing value confirmed on MahaRERA",
+        "identity_evidence": "MahaRERA: \"57 Avenue\", promoter Aquaris Properties Private Limited, Pune 411036; map: \"57 Avenue\" by Panchshil Realty, Mundhwa, Pune"
+      },
+      "registered": [
+        {
+          "registration": "P52100047569",
+          "registered_name": "GARVE BUILDCON O WING 57 AVENUE",
+          "promoter": "GARVE BUILDCON O WING 57 AVENUE",
+          "pincode": "411057",
+          "district": "Pune",
+          "last_modified": "2024-05-08",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "PR1260002503013",
+          "registered_name": "57 Avenue",
+          "promoter": "Aquaris Properties Private Limited",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-05-19",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=57+AVENUE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "57 Avenue",
+          "results": 2
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "a candidate has a different promoter name (brand vs legal entity, or a different project)",
+        "P52100047569 \"GARVE BUILDCON O WING 57 AVENUE\": extra words not in the map title/location (garve, buildcon) — check it is the same site"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 16,
+      "pin_id": "c8eaa6bd-ced5-4ad7-8362-763ca8545639",
+      "title": "Tayal Envoque",
+      "developer": "Tayal Corp",
+      "location": "Mundhwa, Pune",
+      "outcome": "not_found",
+      "outcome_reason": "no registered project found by name after 3 tries per query (not proof the project is unregistered)",
+      "placeholder": false,
+      "existing_rera": "P52100053239",
+      "existing_rera_valid": true,
+      "existing_rera_registry": null,
+      "identity": "not_found",
+      "status": "not_found",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=TAYAL+ENVOQUE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Tayal Envoque",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=ENVOQUE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Envoque",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=TAYAL+ENV&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Tayal Env",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=ENVOQU&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Envoqu",
+          "results": 0
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "existing RERA number not found among name-search results (registered name may differ) — not disproved"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 17,
+      "pin_id": "490b59f7-bb08-434f-841e-943e54a6f21a",
+      "title": "Jhamtani Ace Abundance",
+      "developer": "Jhamtani Group",
+      "location": "Mundhwa, Pune",
+      "outcome": "verified",
+      "outcome_reason": "stored RERA number found on MahaRERA under a matching name and developer",
+      "placeholder": false,
+      "existing_rera": "PR1260002500852",
+      "existing_rera_valid": true,
+      "existing_rera_registry": {
+        "registered_name": "Ace Abundance",
+        "promoter": "JHAMTANI REALTY PRIVATE LIMITED",
+        "pincode": "411036",
+        "district": "Pune"
+      },
+      "identity": "existing_rera_confirmed",
+      "status": "verified",
+      "confidence": "high",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "PR1260002500852",
+        "proposed": "PR1260002500852",
+        "action": "none",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=ACE+ABUNDANCE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "note": "existing value confirmed on MahaRERA",
+        "identity_evidence": "MahaRERA: \"Ace Abundance\", promoter JHAMTANI REALTY PRIVATE LIMITED, Pune 411036; map: \"Jhamtani Ace Abundance\" by Jhamtani Group, Mundhwa, Pune"
+      },
+      "registered": [
+        {
+          "registration": "PR1260002500852",
+          "registered_name": "Ace Abundance",
+          "promoter": "JHAMTANI REALTY PRIVATE LIMITED",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-02-19",
+          "name_match": 0.67,
+          "spelling_tolerant_match": 0.67,
+          "promoter_matches_developer": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=JHAMTANI+ACE+ABUNDANCE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Jhamtani Ace Abundance",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=ACE+ABUNDANCE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Ace Abundance",
+          "results": 1
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 18,
+      "pin_id": "2f1f9cb2-70c3-4ed5-8d54-3e8dca80328b",
+      "title": "Osian Almanova",
+      "developer": "Kanchan Developers",
+      "location": "Mundhwa, Pune",
+      "outcome": "verified",
+      "outcome_reason": "stored RERA number found on MahaRERA under a matching name; registered promoter is a different legal entity (normal for project SPVs) — noted",
+      "placeholder": false,
+      "existing_rera": "PR1260002600175",
+      "existing_rera_valid": true,
+      "existing_rera_registry": {
+        "registered_name": "Osian Almanova Phase 2",
+        "promoter": "Osian Infratech LLP",
+        "pincode": "411036",
+        "district": "Pune"
+      },
+      "identity": "existing_rera_confirmed",
+      "status": "verified",
+      "confidence": "high",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "PR1260002600175",
+        "proposed": "PR1260002600175",
+        "action": "none",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=OSIAN+ALMANOVA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "note": "existing value confirmed on MahaRERA",
+        "identity_evidence": "MahaRERA: \"Osian Almanova Phase 2\", promoter Osian Infratech LLP, Pune 411036; map: \"Osian Almanova\" by Kanchan Developers, Mundhwa, Pune"
+      },
+      "registered": [
+        {
+          "registration": "P52100056492",
+          "registered_name": "Osian Almanova Phase 1",
+          "promoter": "Osian Infratech LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2025-01-16",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "PR1260002600175",
+          "registered_name": "Osian Almanova Phase 2",
+          "promoter": "Osian Infratech LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-05-06",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=OSIAN+ALMANOVA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Osian Almanova",
+          "results": 2
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "a candidate has a different promoter name (brand vs legal entity, or a different project)"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 20,
+      "pin_id": "5c6bb40a-518f-4227-bb47-628cc3276922",
+      "title": "Shubh Tristar",
+      "developer": "Shubh Developer",
+      "location": "Mundhwa, Pune",
+      "outcome": "verified",
+      "outcome_reason": "stored RERA number found on MahaRERA under a matching name and developer",
+      "placeholder": false,
+      "existing_rera": "P52100052695",
+      "existing_rera_valid": true,
+      "existing_rera_registry": {
+        "registered_name": "Shubh Tristar Wing-A",
+        "promoter": "Shubh Housing",
+        "pincode": "411014",
+        "district": "Pune"
+      },
+      "identity": "existing_rera_confirmed",
+      "status": "verified",
+      "confidence": "high",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "P52100052695",
+        "proposed": "P52100052695",
+        "action": "none",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=SHUBH+TRISTAR&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "note": "existing value confirmed on MahaRERA",
+        "identity_evidence": "MahaRERA: \"Shubh Tristar Wing-A\", promoter Shubh Housing, Pune 411014; map: \"Shubh Tristar\" by Shubh Developer, Mundhwa, Pune"
+      },
+      "registered": [
+        {
+          "registration": "P52100052695",
+          "registered_name": "Shubh Tristar Wing-A",
+          "promoter": "Shubh Housing",
+          "pincode": "411014",
+          "district": "Pune",
+          "last_modified": "2026-07-02",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "P52100055763",
+          "registered_name": "Shubh Tristar Wing-B",
+          "promoter": "Shubh Housing",
+          "pincode": "411014",
+          "district": "Pune",
+          "last_modified": "2025-12-13",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "PM1263032600557",
+          "registered_name": "Shubh Tristar Wing C",
+          "promoter": "SHUBH HOUSING",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-06-29",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=SHUBH+TRISTAR&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Shubh Tristar",
+          "results": 3
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 21,
+      "pin_id": "65e8ea66-667f-43b6-9be7-5edfeabbd43b",
+      "title": "Mantra Melange",
+      "developer": "Mantra Properties",
+      "location": "Kharadi / Wadgaonshri, Pune",
+      "outcome": "needs_manual_review",
+      "outcome_reason": "several registrations match (phases, wings or same-name projects elsewhere) — phase/site not confirmed",
+      "placeholder": false,
+      "existing_rera": "PM1261012601312",
+      "existing_rera_valid": true,
+      "existing_rera_registry": null,
+      "identity": "multiple_phases_or_projects",
+      "status": "needs_review",
+      "confidence": "medium",
+      "proposal": null,
+      "registered": [
+        {
+          "registration": "P52100002877",
+          "registered_name": "MELANGE RESIDENCES - PHASE I",
+          "promoter": "RAMA SYNERGY SPACES",
+          "pincode": "411057",
+          "district": "Pune",
+          "last_modified": "2017-08-04",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100003047",
+          "registered_name": "MELANGE RESIDENCES - PHASE II",
+          "promoter": "RAMA SYNERGY SPACES",
+          "pincode": "411057",
+          "district": "Pune",
+          "last_modified": "2020-06-13",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100017090",
+          "registered_name": "MELANGE RESIDENCES - PHASE III",
+          "promoter": "RAMA SYNERGY SPACES",
+          "pincode": "411057",
+          "district": "Pune",
+          "last_modified": "2021-10-31",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100025451",
+          "registered_name": "MELANGE RESIDENCES - PHASE IV",
+          "promoter": "RAMA SYNERGY SPACES",
+          "pincode": "411057",
+          "district": "Pune",
+          "last_modified": "2022-12-27",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100031891",
+          "registered_name": "THE MELANGE",
+          "promoter": "Cosmos Skyline Homes Private Limited",
+          "pincode": "411012",
+          "district": "Pune",
+          "last_modified": "2025-06-05",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100030995",
+          "registered_name": "MANTRA BUSINESS CENTRE MUNDHWA",
+          "promoter": "MANTRA RESIDENCES MUNDHWA PRIVATE LIMITED",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2024-04-29",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "P52100030037",
+          "registered_name": "MANTRA MIRARI PHASE 1",
+          "promoter": "MANTRA RESIDENCES MUNDHWA PRIVATE LIMITED",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2024-04-29",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "P52100032842",
+          "registered_name": "Mantra Mirari Phase 2",
+          "promoter": "MANTRA RESIDENCES MUNDHWA PRIVATE LIMITED",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2024-11-22",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MANTRA+MELANGE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Mantra Melange",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MELANGE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Melange",
+          "results": 7
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "existing RERA number not found among name-search results (registered name may differ) — not disproved",
+        "a candidate has a different promoter name (brand vs legal entity, or a different project)",
+        "P52100002877 \"MELANGE RESIDENCES - PHASE I\": extra words not in the map title/location (residences) — check it is the same site",
+        "P52100003047 \"MELANGE RESIDENCES - PHASE II\": extra words not in the map title/location (residences) — check it is the same site",
+        "P52100017090 \"MELANGE RESIDENCES - PHASE III\": extra words not in the map title/location (residences) — check it is the same site",
+        "P52100025451 \"MELANGE RESIDENCES - PHASE IV\": extra words not in the map title/location (residences, iv) — check it is the same site",
+        "P52100030995 \"MANTRA BUSINESS CENTRE MUNDHWA\": extra words not in the map title/location (business, centre, mundhwa) — check it is the same site",
+        "P52100030037 \"MANTRA MIRARI PHASE 1\": extra words not in the map title/location (mirari) — check it is the same site",
+        "P52100032842 \"Mantra Mirari Phase 2\": extra words not in the map title/location (mirari) — check it is the same site",
+        "P52100049704 \"Mantra Mirari Phase 3\": extra words not in the map title/location (mirari) — check it is the same site",
+        "matched only via other projects' searches: P52100030995, P52100030037, P52100032842, P52100049704",
+        "another pin has the same title"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 22,
+      "pin_id": "e27a24a5-1386-4639-b051-0cae85601430",
+      "title": "Mantra Marvilla - Burgundy",
+      "developer": "Mantra Properties",
+      "location": "Mundhwa, Pune",
+      "outcome": "not_found",
+      "outcome_reason": "no registered project found by name after 3 tries per query (not proof the project is unregistered)",
+      "placeholder": false,
+      "existing_rera": "P52100054742",
+      "existing_rera_valid": true,
+      "existing_rera_registry": null,
+      "identity": "not_found",
+      "status": "not_found",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MANTRA+MARVILLA+-+BURGUNDY&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Mantra Marvilla - Burgundy",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MANTRA+MARVILLA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Mantra Marvilla",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MARVILLA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Marvilla",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MANTRA+MAR&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Mantra Mar",
+          "results": 2
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "existing RERA number not found among name-search results (registered name may differ) — not disproved"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 23,
+      "pin_id": "efe6a2fc-b374-4a73-bf15-885f4f78e1d1",
+      "title": "DUVILLE AVIRA",
+      "developer": "Duville Estate",
+      "location": "Mundhwa, Pune",
+      "outcome": "verified",
+      "outcome_reason": "stored RERA number found on MahaRERA under a matching name; registered promoter is a different legal entity (normal for project SPVs) — noted",
+      "placeholder": false,
+      "existing_rera": "PM1260002601985",
+      "existing_rera_valid": true,
+      "existing_rera_registry": {
+        "registered_name": "DUVILLE AVIRA",
+        "promoter": "TWIN BUNGALOWS MUNDHWA LLP",
+        "pincode": "411036",
+        "district": "Pune"
+      },
+      "identity": "existing_rera_confirmed",
+      "status": "verified",
+      "confidence": "high",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "PM1260002601985",
+        "proposed": "PM1260002601985",
+        "action": "none",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=DUVILLE+AVIRA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "note": "existing value confirmed on MahaRERA",
+        "identity_evidence": "MahaRERA: \"DUVILLE AVIRA\", promoter TWIN BUNGALOWS MUNDHWA LLP, Pune 411036; map: \"DUVILLE AVIRA\" by Duville Estate, Mundhwa, Pune"
+      },
+      "registered": [
+        {
+          "registration": "PM1260002601985",
+          "registered_name": "DUVILLE AVIRA",
+          "promoter": "TWIN BUNGALOWS MUNDHWA LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-09-21",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=DUVILLE+AVIRA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "DUVILLE AVIRA",
+          "results": 1
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "a candidate has a different promoter name (brand vs legal entity, or a different project)"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 24,
+      "pin_id": "779a4f71-11ed-48f9-99c8-b928e4669f3a",
+      "title": "Trump World Center",
+      "developer": "Kundan & Tribeca",
+      "location": "Mundhwa / Old Passport Office Junction, Pune",
+      "outcome": "verified",
+      "outcome_reason": "stored RERA number found on MahaRERA under a matching name; registered promoter is a different legal entity (normal for project SPVs) — noted",
+      "placeholder": false,
+      "existing_rera": "P52100077843",
+      "existing_rera_valid": true,
+      "existing_rera_registry": {
+        "registered_name": "Trump World Center Pune",
+        "promoter": "Enbrick Properties LLP",
+        "pincode": "411036",
+        "district": "Pune"
+      },
+      "identity": "existing_rera_confirmed",
+      "status": "verified",
+      "confidence": "high",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "P52100077843",
+        "proposed": "P52100077843",
+        "action": "none",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=TRUMP+WORLD+CENTER&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "note": "existing value confirmed on MahaRERA",
+        "identity_evidence": "MahaRERA: \"Trump World Center Pune\", promoter Enbrick Properties LLP, Pune 411036; map: \"Trump World Center\" by Kundan & Tribeca, Mundhwa / Old Passport Office Junction, Pune"
+      },
+      "registered": [
+        {
+          "registration": "P52100077843",
+          "registered_name": "Trump World Center Pune",
+          "promoter": "Enbrick Properties LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-08-06",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=TRUMP+WORLD+CENTER&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Trump World Center",
+          "results": 1
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "a candidate has a different promoter name (brand vs legal entity, or a different project)"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 25,
+      "pin_id": "61817faa-914e-47c1-9b8c-e3972b2fd088",
+      "title": "Nova Residency",
+      "developer": "Magarpatta Group",
+      "location": "Mundhwa, Pune",
+      "outcome": "verified",
+      "outcome_reason": "stored RERA number found on MahaRERA under a matching name; registered promoter is a different legal entity (normal for project SPVs) — noted",
+      "placeholder": false,
+      "existing_rera": "P52100055577",
+      "existing_rera_valid": true,
+      "existing_rera_registry": {
+        "registered_name": "Nova Residency",
+        "promoter": "Magarpatta City Dev, Co. Pvt. Ltd.",
+        "pincode": "411036",
+        "district": "Pune"
+      },
+      "identity": "existing_rera_confirmed",
+      "status": "verified",
+      "confidence": "high",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "P52100055577",
+        "proposed": "P52100055577",
+        "action": "none",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=NOVA+RESIDENCY&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "note": "existing value confirmed on MahaRERA",
+        "identity_evidence": "MahaRERA: \"Nova Residency\", promoter Magarpatta City Dev, Co. Pvt. Ltd., Pune 411036; map: \"Nova Residency\" by Magarpatta Group, Mundhwa, Pune"
+      },
+      "registered": [
+        {
+          "registration": "P52100018498",
+          "registered_name": "NOVA RESIDENCY",
+          "promoter": "AMIT JUGALKISHOR RATHI",
+          "pincode": "411033",
+          "district": "Pune",
+          "last_modified": "2018-11-12",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100026787",
+          "registered_name": "NOVA RESIDENCY WING B",
+          "promoter": "AMIT JUGALKISHOR RATHI",
+          "pincode": "411057",
+          "district": "Pune",
+          "last_modified": "2021-03-04",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100033273",
+          "registered_name": "NOVA RESIDENCY WING C",
+          "promoter": "AMIT JUGALKISHOR RATHI",
+          "pincode": "411057",
+          "district": "Pune",
+          "last_modified": "2022-02-15",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100055577",
+          "registered_name": "Nova Residency",
+          "promoter": "Magarpatta City Dev, Co. Pvt. Ltd.",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2024-12-17",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "P52100053062",
+          "registered_name": "Nova Elegance",
+          "promoter": "Magarpatta Township Development & Construction Co. Ltd.",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2024-07-10",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=NOVA+RESIDENCY&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Nova Residency",
+          "results": 4
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "a candidate has a different promoter name (brand vs legal entity, or a different project)",
+        "P52100053062 \"Nova Elegance\": extra words not in the map title/location (elegance) — check it is the same site",
+        "matched only via other projects' searches: P52100053062"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 26,
+      "pin_id": "4d74e4ef-2870-4fb6-88e2-605e49aa44c7",
+      "title": "Mantra Business Center",
+      "developer": "Mantra Properties",
+      "location": "Mundhwa, Pune",
+      "outcome": "needs_manual_review",
+      "outcome_reason": "one registration matches, but the name spelling or developer/promoter could not be confirmed",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "single_match",
+      "status": "needs_review",
+      "confidence": "medium",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "",
+        "proposed": "P52100030995",
+        "action": "review",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MUNDHWA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "identity_evidence": "MahaRERA: \"MANTRA BUSINESS CENTRE MUNDHWA\", promoter MANTRA RESIDENCES MUNDHWA PRIVATE LIMITED, Pune 411036; map: \"Mantra Business Center\" by Mantra Properties, Mundhwa, Pune"
+      },
+      "registered": [
+        {
+          "registration": "P52100000415",
+          "registered_name": "Hirabaug Business center",
+          "promoter": "sanjivani shelters",
+          "pincode": "411002",
+          "district": "Pune",
+          "last_modified": "2018-12-20",
+          "name_match": 0.67,
+          "spelling_tolerant_match": 0.67,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100001547",
+          "registered_name": "Atria Business Center",
+          "promoter": "Atria Developers",
+          "pincode": "413102",
+          "district": "Pune",
+          "last_modified": "2017-07-28",
+          "name_match": 0.67,
+          "spelling_tolerant_match": 0.67,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100008007",
+          "registered_name": "TRIDENT BUSINESS CENTER",
+          "promoter": "SHIRISH BHASKAR JADHAV",
+          "pincode": "411007",
+          "district": "Pune",
+          "last_modified": "2021-09-09",
+          "name_match": 0.67,
+          "spelling_tolerant_match": 0.67,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100014188",
+          "registered_name": "Green Park Business Center",
+          "promoter": "Prafulla Bhimdeo Taware",
+          "pincode": "413102",
+          "district": "Pune",
+          "last_modified": "2017-11-14",
+          "name_match": 0.67,
+          "spelling_tolerant_match": 0.67,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100015422",
+          "registered_name": "PRIME BUSINESS CENTER",
+          "promoter": "THE PRIME PROPERTIES",
+          "pincode": "410506",
+          "district": "Pune",
+          "last_modified": "2018-02-23",
+          "name_match": 0.67,
+          "spelling_tolerant_match": 0.67,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100030995",
+          "registered_name": "MANTRA BUSINESS CENTRE MUNDHWA",
+          "promoter": "MANTRA RESIDENCES MUNDHWA PRIVATE LIMITED",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2024-04-29",
+          "name_match": 0.67,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MANTRA+BUSINESS+CENTER&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Mantra Business Center",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=BUSINESS+CENTER&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Business Center",
+          "results": 38
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MANTRA+BUS&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Mantra Bus",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=BUSINE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Busine",
+          "results": 341
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "a candidate has a different promoter name (brand vs legal entity, or a different project)",
+        "P52100000415 \"Hirabaug Business center\": extra words not in the map title/location (hirabaug) — check it is the same site",
+        "P52100001547 \"Atria Business Center\": extra words not in the map title/location (atria) — check it is the same site",
+        "P52100008007 \"TRIDENT BUSINESS CENTER\": extra words not in the map title/location (trident) — check it is the same site",
+        "P52100014188 \"Green Park Business Center\": extra words not in the map title/location (green, park) — check it is the same site",
+        "P52100015422 \"PRIME BUSINESS CENTER\": extra words not in the map title/location (prime) — check it is the same site",
+        "registered name \"MANTRA BUSINESS CENTRE MUNDHWA\" is spelled differently from the map title",
+        "matched only via other projects' searches: P52100030995"
+      ],
+      "_status_on_map": "sold"
+    },
+    {
+      "number": 27,
+      "pin_id": "de79d806-60d1-41a8-8a42-df8a913a8ce0",
+      "title": "Mantra Mirari",
+      "developer": "Mantra Properties",
+      "location": "Mundhwa, Pune",
+      "outcome": "needs_manual_review",
+      "outcome_reason": "several registrations match (phases, wings or same-name projects elsewhere) — phase/site not confirmed",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "multiple_phases_or_projects",
+      "status": "needs_review",
+      "confidence": "medium",
+      "proposal": null,
+      "registered": [
+        {
+          "registration": "P52100030037",
+          "registered_name": "MANTRA MIRARI PHASE 1",
+          "promoter": "MANTRA RESIDENCES MUNDHWA PRIVATE LIMITED",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2024-04-29",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "P52100032842",
+          "registered_name": "Mantra Mirari Phase 2",
+          "promoter": "MANTRA RESIDENCES MUNDHWA PRIVATE LIMITED",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2024-11-22",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "P52100049704",
+          "registered_name": "Mantra Mirari Phase 3",
+          "promoter": "MANTRA RESIDENCES MUNDHWA PRIVATE LIMITED",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2024-04-10",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "P52100030995",
+          "registered_name": "MANTRA BUSINESS CENTRE MUNDHWA",
+          "promoter": "MANTRA RESIDENCES MUNDHWA PRIVATE LIMITED",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2024-04-29",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MANTRA+MIRARI&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Mantra Mirari",
+          "results": 3
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "P52100030995 \"MANTRA BUSINESS CENTRE MUNDHWA\": extra words not in the map title/location (business, centre) — check it is the same site",
+        "matched only via other projects' searches: P52100030995"
+      ],
+      "_status_on_map": "sold"
+    },
+    {
+      "number": 28,
+      "pin_id": "8d03bf04-c768-486c-a6e5-eee7e0f8ec0d",
+      "title": "Mayfair by Burgundy",
+      "developer": "Mantra Properties",
+      "location": "Mundhwa, Pune",
+      "outcome": "not_found",
+      "outcome_reason": "no registered project found by name after 3 tries per query (not proof the project is unregistered)",
+      "placeholder": false,
+      "existing_rera": "P52100079211",
+      "existing_rera_valid": true,
+      "existing_rera_registry": null,
+      "identity": "not_found",
+      "status": "not_found",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MAYFAIR+BY+BURGUNDY&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Mayfair by Burgundy",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MAYFAIR&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Mayfair",
+          "results": 23
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MAYFAI&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Mayfai",
+          "results": 23
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "existing RERA number not found among name-search results (registered name may differ) — not disproved"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 29,
+      "pin_id": "11365d5b-2e4b-43c7-9fd5-90679b72eca4",
+      "title": "Global Riverfront",
+      "developer": "Global Group",
+      "location": "Mundhwa, Pune",
+      "outcome": "verified",
+      "outcome_reason": "stored RERA number found on MahaRERA under a matching name; registered promoter is a different legal entity (normal for project SPVs) — noted",
+      "placeholder": false,
+      "existing_rera": "PR1261012600482",
+      "existing_rera_valid": true,
+      "existing_rera_registry": {
+        "registered_name": "Global Riverfront- Phase 1",
+        "promoter": "HARKRISH LIFESPACE DEVELOPERS LLP",
+        "pincode": "411036",
+        "district": "Pune"
+      },
+      "identity": "existing_rera_confirmed",
+      "status": "verified",
+      "confidence": "high",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "PR1261012600482",
+        "proposed": "PR1261012600482",
+        "action": "none",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=GLOBAL+RIVERFRONT&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "note": "existing value confirmed on MahaRERA",
+        "identity_evidence": "MahaRERA: \"Global Riverfront- Phase 1\", promoter HARKRISH LIFESPACE DEVELOPERS LLP, Pune 411036; map: \"Global Riverfront\" by Global Group, Mundhwa, Pune"
+      },
+      "registered": [
+        {
+          "registration": "PR1261012600482",
+          "registered_name": "Global Riverfront- Phase 1",
+          "promoter": "HARKRISH LIFESPACE DEVELOPERS LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-05-20",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=GLOBAL+RIVERFRONT&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Global Riverfront",
+          "results": 1
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "a candidate has a different promoter name (brand vs legal entity, or a different project)"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 30,
+      "pin_id": "fd50e4d4-6dd4-4758-a525-38a2e3d2be54",
+      "title": "Jhamtani Bizcore",
+      "developer": "Jhamtani Group",
+      "location": "Mundhwa, Pune",
+      "outcome": "verified",
+      "outcome_reason": "stored RERA number found on MahaRERA under a matching name; registered promoter is a different legal entity (normal for project SPVs) — noted",
+      "placeholder": false,
+      "existing_rera": "P52100054261",
+      "existing_rera_valid": true,
+      "existing_rera_registry": {
+        "registered_name": "Jhamtani BizCore",
+        "promoter": "DUSK REALTY LLP",
+        "pincode": "411036",
+        "district": "Pune"
+      },
+      "identity": "existing_rera_confirmed",
+      "status": "verified",
+      "confidence": "high",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "P52100054261",
+        "proposed": "P52100054261",
+        "action": "none",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=JHAMTANI+BIZCORE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "note": "existing value confirmed on MahaRERA",
+        "identity_evidence": "MahaRERA: \"Jhamtani BizCore\", promoter DUSK REALTY LLP, Pune 411036; map: \"Jhamtani Bizcore\" by Jhamtani Group, Mundhwa, Pune"
+      },
+      "registered": [
+        {
+          "registration": "P52100054261",
+          "registered_name": "Jhamtani BizCore",
+          "promoter": "DUSK REALTY LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-09-18",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=JHAMTANI+BIZCORE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Jhamtani Bizcore",
+          "results": 1
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "a candidate has a different promoter name (brand vs legal entity, or a different project)"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 31,
+      "pin_id": "58a9025c-792c-453e-a633-c79e8eec4415",
+      "title": "Jhamtani XO Villas",
+      "developer": "Jhamtani Group",
+      "location": "Mundha, Pune",
+      "outcome": "conflicting_evidence",
+      "outcome_reason": "stored RERA value is not a MahaRERA project number",
+      "placeholder": false,
+      "existing_rera": "P5210048327",
+      "existing_rera_valid": false,
+      "existing_rera_registry": null,
+      "identity": "not_found",
+      "status": "not_found",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=JHAMTANI+XO+VILLAS&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Jhamtani XO Villas",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=XO+VILLAS&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "XO Villas",
+          "results": 0
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "existing RERA value is not a MahaRERA project number (\"P5210048327\")"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 32,
+      "pin_id": "b64cc272-36e4-44ef-8a53-95918755da14",
+      "title": "Power Heights & Residency",
+      "developer": "",
+      "location": "",
+      "outcome": "needs_manual_review",
+      "outcome_reason": "one registration matches, but the name spelling or developer/promoter could not be confirmed",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "single_match",
+      "status": "needs_review",
+      "confidence": "medium",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "",
+        "proposed": "P52100047455",
+        "action": "review",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=POWER+HEI&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "identity_evidence": "MahaRERA: \"POWER HEIGHTS AND POWER RESIDENCES\", promoter SAPRA CONSTRUCTIONS, Pune 411036; map: \"Power Heights & Residency\""
+      },
+      "registered": [
+        {
+          "registration": "P52100047455",
+          "registered_name": "POWER HEIGHTS AND POWER RESIDENCES",
+          "promoter": "SAPRA CONSTRUCTIONS",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2022-11-02",
+          "name_match": 0.67,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": null
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=POWER+HEIGHTS+%26+RESIDENCY&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Power Heights & Residency",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=POWER+HEI&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Power Hei",
+          "results": 1
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "registered name \"POWER HEIGHTS AND POWER RESIDENCES\" is spelled differently from the map title"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 33,
+      "pin_id": "d1339095-a50c-439b-8fde-adf58395e6e9",
+      "title": "Panchashil Golden Bell 2",
+      "developer": "",
+      "location": "",
+      "outcome": "not_found",
+      "outcome_reason": "no registered project found by name after 3 tries per query (not proof the project is unregistered)",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "not_found",
+      "status": "not_found",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=PANCHASHIL+GOLDEN+BELL+2&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Panchashil Golden Bell 2",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=PANCHASHIL+GOL&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Panchashil Gol",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=PANCHA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Pancha",
+          "results": 33
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 34,
+      "pin_id": "b024f92e-f3b1-479c-be29-ef53e56dfd1f",
+      "title": "Jhamtani Elevate",
+      "developer": "Jhamtani Group",
+      "location": "Mundhwa, Pune",
+      "outcome": "needs_manual_review",
+      "outcome_reason": "one registration matches, but the name spelling or developer/promoter could not be confirmed",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "single_match",
+      "status": "needs_review",
+      "confidence": "medium",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "",
+        "proposed": "P52100078567",
+        "action": "review",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=JHAMTANI+ELEVATE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "identity_evidence": "MahaRERA: \"Jhamtani Elevate\", promoter HIGHSPOT REALTY LLP, Pune 411036; map: \"Jhamtani Elevate\" by Jhamtani Group, Mundhwa, Pune"
+      },
+      "registered": [
+        {
+          "registration": "P52100078567",
+          "registered_name": "Jhamtani Elevate",
+          "promoter": "HIGHSPOT REALTY LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-09-16",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=JHAMTANI+ELEVATE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Jhamtani Elevate",
+          "results": 1
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "a candidate has a different promoter name (brand vs legal entity, or a different project)"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 35,
+      "pin_id": "3d6ab62b-3466-4efc-8bef-bcef695ad562",
+      "title": "The Reserve",
+      "developer": "Lohia Jain Malpani",
+      "location": "Mundhwa, Pune",
+      "outcome": "verified",
+      "outcome_reason": "stored RERA number found on MahaRERA under a matching name; registered promoter is a different legal entity (normal for project SPVs) — noted",
+      "placeholder": false,
+      "existing_rera": "PR1260002400065",
+      "existing_rera_valid": true,
+      "existing_rera_registry": {
+        "registered_name": "The Reserve",
+        "promoter": "LJM ESTATES LLP",
+        "pincode": "411036",
+        "district": "Pune"
+      },
+      "identity": "existing_rera_confirmed",
+      "status": "verified",
+      "confidence": "high",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "PR1260002400065",
+        "proposed": "PR1260002400065",
+        "action": "none",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=THE+RESERVE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "note": "existing value confirmed on MahaRERA",
+        "identity_evidence": "MahaRERA: \"The Reserve\", promoter LJM ESTATES LLP, Pune 411036; map: \"The Reserve\" by Lohia Jain Malpani, Mundhwa, Pune"
+      },
+      "registered": [
+        {
+          "registration": "PR1260002400065",
+          "registered_name": "The Reserve",
+          "promoter": "LJM ESTATES LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-08-19",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "PM1261012600748",
+          "registered_name": "Vyana Phase-I-T5, T6, T7 at The Reserve",
+          "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+          "pincode": "411041",
+          "district": "Pune",
+          "last_modified": "2026-07-27",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "PM1261012601667",
+          "registered_name": "VYANA PHASE-I-T2,T3 AT THE RESERVE",
+          "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+          "pincode": "411041",
+          "district": "Pune",
+          "last_modified": "2026-08-25",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "PM1261012601645",
+          "registered_name": "VYANA PHASE-I-T1 AT THE RESERVE",
+          "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+          "pincode": "411041",
+          "district": "Pune",
+          "last_modified": "2026-08-25",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "PR1261012601671",
+          "registered_name": "VYANA PHASE-I-T8 AT THE RESERVE",
+          "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+          "pincode": "411041",
+          "district": "Pune",
+          "last_modified": "2026-08-27",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=THE+RESERVE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "The Reserve",
+          "results": 8
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "a candidate has a different promoter name (brand vs legal entity, or a different project)",
+        "PM1261012600748 \"Vyana Phase-I-T5, T6, T7 at The Reserve\": extra words not in the map title/location (vyana, t5, t6, t7, at) — check it is the same site",
+        "PM1261012601667 \"VYANA PHASE-I-T2,T3 AT THE RESERVE\": extra words not in the map title/location (vyana, t2, t3, at) — check it is the same site",
+        "PM1261012601645 \"VYANA PHASE-I-T1 AT THE RESERVE\": extra words not in the map title/location (vyana, t1, at) — check it is the same site",
+        "PR1261012601671 \"VYANA PHASE-I-T8 AT THE RESERVE\": extra words not in the map title/location (vyana, t8, at) — check it is the same site",
+        "related pin (same development, separate pin): PM1261012601645 (\"VYANA PHASE-I-T1 AT THE RESERVE\") is stored on pin #326 \"VYANA PHASE-I-T1 AT THE RESERVE\"",
+        "related pin (same development, separate pin): PR1261012601671 (\"VYANA PHASE-I-T8 AT THE RESERVE\") is stored on pin #323 \"VYANA PHASE-I-T8 AT THE RESERVE\""
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 36,
+      "pin_id": "579f4c93-589f-49b4-9c48-917b639a42a3",
+      "title": "Osian - One & Only",
+      "developer": "Kanchan Developers",
+      "location": "Mundhwa, Pune",
+      "outcome": "not_found",
+      "outcome_reason": "no registered project found by name after 3 tries per query (not proof the project is unregistered)",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "not_found",
+      "status": "not_found",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=OSIAN+-+ONE+%26+ONLY&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Osian - One & Only",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=OSIAN&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Osian",
+          "results": 0
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [],
+      "_status_on_map": "available"
+    },
+    {
+      "number": 37,
+      "pin_id": "317efaea-4764-4c77-9c6b-39ce7779db61",
+      "title": "Godrej Skyline",
+      "developer": "Godrej Properties",
+      "location": "Mundhwa, Pune",
+      "outcome": "verified",
+      "outcome_reason": "stored RERA number found on MahaRERA under a matching name and developer",
+      "placeholder": false,
+      "existing_rera": "PM1260002400007",
+      "existing_rera_valid": true,
+      "existing_rera_registry": {
+        "registered_name": "Godrej Skyline",
+        "promoter": "Godrej Properties Limited",
+        "pincode": "411036",
+        "district": "Pune"
+      },
+      "identity": "existing_rera_confirmed",
+      "status": "verified",
+      "confidence": "high",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "PM1260002400007",
+        "proposed": "PM1260002400007",
+        "action": "none",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=GODREJ+SKYLINE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "note": "existing value confirmed on MahaRERA",
+        "identity_evidence": "MahaRERA: \"Godrej Skyline\", promoter Godrej Properties Limited, Pune 411036; map: \"Godrej Skyline\" by Godrej Properties, Mundhwa, Pune"
+      },
+      "registered": [
+        {
+          "registration": "PM1260002400007",
+          "registered_name": "Godrej Skyline",
+          "promoter": "Godrej Properties Limited",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-03-25",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "PM1260002501385",
+          "registered_name": "Godrej Elaris",
+          "promoter": "Godrej Properties Limited",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-06-02",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=GODREJ+SKYLINE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Godrej Skyline",
+          "results": 1
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "PM1260002501385 \"Godrej Elaris\": extra words not in the map title/location (elaris) — check it is the same site",
+        "matched only via other projects' searches: PM1260002501385"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 38,
+      "pin_id": "9a4bd2f6-e6d4-48d6-bb09-3fb62ce46a92",
+      "title": "Supreme Towers",
+      "developer": "Supreme Universal",
+      "location": "North Main Road, Koregaon Park Annexe, Mundwa Pune",
+      "outcome": "verified",
+      "outcome_reason": "stored RERA number found on MahaRERA under a matching name; registered promoter is a different legal entity (normal for project SPVs) — noted",
+      "placeholder": false,
+      "existing_rera": "P52100053868",
+      "existing_rera_valid": true,
+      "existing_rera_registry": {
+        "registered_name": "SUPREME TOWERS PHASE I",
+        "promoter": "EASTWOOD REALTY LLP",
+        "pincode": "411036",
+        "district": "Pune"
+      },
+      "identity": "existing_rera_confirmed",
+      "status": "verified",
+      "confidence": "high",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "P52100053868",
+        "proposed": "P52100053868",
+        "action": "none",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=SUPREME+TOWERS&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "note": "existing value confirmed on MahaRERA",
+        "identity_evidence": "MahaRERA: \"SUPREME TOWERS PHASE I\", promoter EASTWOOD REALTY LLP, Pune 411036; map: \"Supreme Towers\" by Supreme Universal, North Main Road, Koregaon Park Annexe, Mundwa Pune"
+      },
+      "registered": [
+        {
+          "registration": "P52100053868",
+          "registered_name": "SUPREME TOWERS PHASE I",
+          "promoter": "EASTWOOD REALTY LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2024-08-12",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100056095",
+          "registered_name": "SUPREME TOWERS PHASE II",
+          "promoter": "EASTWOOD REALTY LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-05-06",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=SUPREME+TOWERS&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Supreme Towers",
+          "results": 2
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "a candidate has a different promoter name (brand vs legal entity, or a different project)"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 39,
+      "pin_id": "b6afa2a8-ff0c-486f-a842-63c8a18f72d8",
+      "title": "Platinum Capital",
+      "developer": "A Advani Realty",
+      "location": "North Main Road, KP, Mundhwa, Pune",
+      "outcome": "needs_manual_review",
+      "outcome_reason": "several registrations match (phases, wings or same-name projects elsewhere) — phase/site not confirmed",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "multiple_phases_or_projects",
+      "status": "needs_review",
+      "confidence": "medium",
+      "proposal": null,
+      "registered": [
+        {
+          "registration": "P52100030060",
+          "registered_name": "PLATINUM CAPITAL RETAIL",
+          "promoter": "A ADVANI PROPERTIES LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-01-14",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "P52100047639",
+          "registered_name": "PLATINUM CAPITAL OFFICE - PHASE I",
+          "promoter": "A ADVANI PROPERTIES LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2025-09-03",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=PLATINUM+CAPITAL&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Platinum Capital",
+          "results": 2
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "P52100030060 \"PLATINUM CAPITAL RETAIL\": extra words not in the map title/location (retail) — check it is the same site",
+        "P52100047639 \"PLATINUM CAPITAL OFFICE - PHASE I\": extra words not in the map title/location (office) — check it is the same site"
+      ],
+      "_status_on_map": "available"
+    },
+    {
+      "number": 40,
+      "pin_id": "9aee6a8d-1dde-4bed-a77f-9d5d10a7b048",
+      "title": "Merlin New Project",
+      "developer": "",
+      "location": "",
+      "outcome": "not_found",
+      "outcome_reason": "placeholder title — not a registered project name; loose name matches ignored",
+      "placeholder": true,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "not_found",
+      "status": "not_found",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MERLIN+NEW+PROJECT&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Merlin New Project",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MERLIN&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Merlin",
+          "results": 0
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "title looks like a placeholder, not a registered project name"
+      ],
+      "_status_on_map": "upcoming"
+    },
+    {
+      "number": 41,
+      "pin_id": "4b92831e-0d90-4510-b847-f8c69891f8ed",
+      "title": "AP81 by Amar & Pristine",
+      "developer": "Amar Builders",
+      "location": "Mundhwa Pune",
+      "outcome": "not_found",
+      "outcome_reason": "no registered project found by name after 3 tries per query (not proof the project is unregistered)",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "not_found",
+      "status": "not_found",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=AP81+BY+AMAR+%26+PRISTINE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "AP81 by Amar & Pristine",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=AP81&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "AP81",
+          "results": 0
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [],
+      "_status_on_map": "available"
+    },
+    {
+      "number": 42,
+      "pin_id": "e48fe91b-b427-468f-b3c0-ed24bd0367d2",
+      "title": "Adani Greens",
+      "developer": "",
+      "location": "",
+      "outcome": "not_found",
+      "outcome_reason": "no registered project found by name after 3 tries per query (not proof the project is unregistered)",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "not_found",
+      "status": "not_found",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=ADANI+GREENS&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Adani Greens",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=ADANI+GRE&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Adani Gre",
+          "results": 0
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [],
+      "_status_on_map": "sold"
+    },
+    {
+      "number": 43,
+      "pin_id": "09c8cf7a-6b26-4725-bbab-de2fc46ec04a",
+      "title": "Casa Elanza",
+      "developer": "",
+      "location": "",
+      "outcome": "needs_manual_review",
+      "outcome_reason": "one registration matches, but the name spelling or developer/promoter could not be confirmed",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "single_match",
+      "status": "needs_review",
+      "confidence": "medium",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "",
+        "proposed": "P52100029148",
+        "action": "review",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=CASA+ELA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "identity_evidence": "MahaRERA: \"Casa Elanza\", promoter Parmaz Green Realty LLP, Pune 411036; map: \"Casa Elanza\""
+      },
+      "registered": [
+        {
+          "registration": "P52100029148",
+          "registered_name": "Casa Elanza",
+          "promoter": "Parmaz Green Realty LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2025-06-17",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": null
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=CASA+ELANZA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Casa Elanza",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=CASA+ELA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Casa Ela",
+          "results": 1
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 44,
+      "pin_id": "f2a06fca-2550-4f01-aef7-c3a1bef74cc9",
+      "title": "Omicron Commerz",
+      "developer": "",
+      "location": "",
+      "outcome": "needs_manual_review",
+      "outcome_reason": "several registrations match (phases, wings or same-name projects elsewhere) — phase/site not confirmed",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "multiple_phases_or_projects",
+      "status": "needs_review",
+      "confidence": "medium",
+      "proposal": null,
+      "registered": [
+        {
+          "registration": "P52100029441",
+          "registered_name": "OMICRON COMMERZ KOREGAON PARK NX PHASE I",
+          "promoter": "BLUECHIP DEVELOPMENTS LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2021-05-29",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": null
+        },
+        {
+          "registration": "P52100079947",
+          "registered_name": "OMICRON COMMERZ BANER",
+          "promoter": "OMICRON BLU LLP",
+          "pincode": "411045",
+          "district": "Pune",
+          "last_modified": "2025-04-07",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": null
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=OMICRON+COMMERZ&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Omicron Commerz",
+          "results": 2
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "P52100029441 \"OMICRON COMMERZ KOREGAON PARK NX PHASE I\": extra words not in the map title/location (koregaon, park, nx) — check it is the same site",
+        "P52100079947 \"OMICRON COMMERZ BANER\": extra words not in the map title/location (baner) — check it is the same site"
+      ],
+      "_status_on_map": "sold"
+    },
+    {
+      "number": 45,
+      "pin_id": "7dcc07b9-c8a9-42a5-94cf-10bcfac68f33",
+      "title": "Amar Quantum Tech Park",
+      "developer": "",
+      "location": "",
+      "outcome": "not_found",
+      "outcome_reason": "no registered project found by name after 3 tries per query (not proof the project is unregistered)",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "not_found",
+      "status": "not_found",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=AMAR+QUANTUM+TECH+PARK&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Amar Quantum Tech Park",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=AMAR+QUA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Amar Qua",
+          "results": 0
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [],
+      "_status_on_map": "upcoming"
+    },
+    {
+      "number": 47,
+      "pin_id": "40792063-6d52-43c2-9a89-44272308f078",
+      "title": "Kumar Parc",
+      "developer": "Kumar Corp",
+      "location": "Magarpatta Road , Pune",
+      "outcome": "conflicting_evidence",
+      "outcome_reason": "a matching registration is stored on another pin",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "multiple_phases_or_projects",
+      "status": "needs_review",
+      "confidence": "medium",
+      "proposal": null,
+      "registered": [
+        {
+          "registration": "P52100032022",
+          "registered_name": "Kumar Parc residences - A1",
+          "promoter": "Kumar Properties Infratech Developers Pvt Ltd",
+          "pincode": "411028",
+          "district": "Pune",
+          "last_modified": "2026-04-30",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "P52100047940",
+          "registered_name": "Kumar Parc Residences - C Mhada",
+          "promoter": "Kumar Properties Infratech Developers Pvt Ltd",
+          "pincode": "411028",
+          "district": "Pune",
+          "last_modified": "2026-08-25",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "P52100049839",
+          "registered_name": "Kumar Parc Residences - B2",
+          "promoter": "Kumar Properties Infratech Developers Pvt Ltd",
+          "pincode": "411028",
+          "district": "Pune",
+          "last_modified": "2025-11-20",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "P52100055344",
+          "registered_name": "Kumar Parc Residences - A2",
+          "promoter": "Kumar Properties Infratech Developers Pvt Ltd",
+          "pincode": "411028",
+          "district": "Pune",
+          "last_modified": "2026-04-28",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "PR1264042501296",
+          "registered_name": "Kumar Parc Residences - B1",
+          "promoter": "Kumar Properties Infratech Developers Pvt Ltd",
+          "pincode": "411028",
+          "district": "Pune",
+          "last_modified": "2026-03-25",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "P52100034109",
+          "registered_name": "KUMAR PRISM",
+          "promoter": "KUMAR PROPERTIES AND PROMOTERS PRIVATE LIMITED",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2022-03-24",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": true
+        },
+        {
+          "registration": "PM1260002501640",
+          "registered_name": "Kumar Prism Tower A",
+          "promoter": "Kumar Prism Realty LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2025-12-02",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=KUMAR+PARC&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Kumar Parc",
+          "results": 5
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "P52100032022 \"Kumar Parc residences - A1\": extra words not in the map title/location (residences, a1) — check it is the same site",
+        "P52100047940 \"Kumar Parc Residences - C Mhada\": extra words not in the map title/location (residences, mhada) — check it is the same site",
+        "P52100049839 \"Kumar Parc Residences - B2\": extra words not in the map title/location (residences, b2) — check it is the same site",
+        "P52100055344 \"Kumar Parc Residences - A2\": extra words not in the map title/location (residences, a2) — check it is the same site",
+        "PR1264042501296 \"Kumar Parc Residences - B1\": extra words not in the map title/location (residences, b1) — check it is the same site",
+        "P52100034109 \"KUMAR PRISM\": extra words not in the map title/location (prism) — check it is the same site",
+        "PM1260002501640 \"Kumar Prism Tower A\": extra words not in the map title/location (prism) — check it is the same site",
+        "matched only via other projects' searches: P52100034109, PM1260002501640",
+        "cross-pin: PR1264042501296 (\"Kumar Parc Residences - B1\") is stored on pin #207 \"The Select Circle\""
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 48,
+      "pin_id": "d4439197-cefa-4240-bc04-c3d6872b2a62",
+      "title": "Kohinoor Business Towers",
+      "developer": "Kohinoor",
+      "location": "Mundhwa, Pune",
+      "outcome": "needs_manual_review",
+      "outcome_reason": "several registrations match (phases, wings or same-name projects elsewhere) — phase/site not confirmed",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "multiple_phases_or_projects",
+      "status": "needs_review",
+      "confidence": "medium",
+      "proposal": null,
+      "registered": [
+        {
+          "registration": "P52100049202",
+          "registered_name": "Kohinoor Business Tower",
+          "promoter": "Rising Associates",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2025-09-23",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        },
+        {
+          "registration": "P52100079205",
+          "registered_name": "Kohinoor Business Tower-Baner",
+          "promoter": "Revoluxe Estates LLP",
+          "pincode": "411045",
+          "district": "Pune",
+          "last_modified": "2025-08-25",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=KOHINOOR+BUSINESS+TOWERS&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Kohinoor Business Towers",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=BUSINESS&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Business",
+          "results": 341
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=KOHINOOR+BUS&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Kohinoor Bus",
+          "results": 2
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "a candidate has a different promoter name (brand vs legal entity, or a different project)",
+        "P52100079205 \"Kohinoor Business Tower-Baner\": extra words not in the map title/location (baner) — check it is the same site"
+      ],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 49,
+      "pin_id": "52562f97-80ec-4c4c-98a2-ef5d50cc746d",
+      "title": "Anandtara New Launch",
+      "developer": "",
+      "location": "",
+      "outcome": "not_found",
+      "outcome_reason": "placeholder title — not a registered project name; loose name matches ignored",
+      "placeholder": true,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "weak_match",
+      "status": "needs_review",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [
+        {
+          "registration": "P52100007529",
+          "registered_name": "ANANDTARA WHITEFIELD RESIDENCES PHASE - I",
+          "promoter": "ANANDTARA INFRASTRUCTURE",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2020-06-14",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": null
+        },
+        {
+          "registration": "P52100018257",
+          "registered_name": "ANANDTARA WHITEFIELD RESIDENCIES PHASE-II",
+          "promoter": "ANANDTARA INFRASTRUCTURE",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2021-09-09",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": null
+        },
+        {
+          "registration": "P52100053321",
+          "registered_name": "Anandtara Dyankunj",
+          "promoter": "Aanandtara properties",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-02-11",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": null
+        },
+        {
+          "registration": "P52100054845",
+          "registered_name": "ANANDTARA IRIS RESIDENCES PHASE I",
+          "promoter": "ANANDTARA INFRASTRUCTURE",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-08-20",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": null
+        },
+        {
+          "registration": "P52100055274",
+          "registered_name": "ANANDTARA IRIS RESIDENCES PHASE II",
+          "promoter": "ANANDTARA INFRASTRUCTURE",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2025-11-21",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": null
+        },
+        {
+          "registration": "PR1260002600494",
+          "registered_name": "Anandtara Iris Residences Phase III",
+          "promoter": "ANANDTARA INFRASTRUCTURE",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-05-21",
+          "name_match": 0.5,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": null
+        },
+        {
+          "registration": "P52100004122",
+          "registered_name": "ANANDTARAS HARITARA",
+          "promoter": "ANANDTARA PROPERTIES",
+          "pincode": "411023",
+          "district": "Pune",
+          "last_modified": "2019-11-06",
+          "name_match": 0,
+          "spelling_tolerant_match": 0.5,
+          "promoter_matches_developer": null
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=ANANDTARA+NEW+LAUNCH&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Anandtara New Launch",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=ANANDTARA+LAUNCH&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Anandtara Launch",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=ANANDT&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Anandt",
+          "results": 7
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "P52100007529 \"ANANDTARA WHITEFIELD RESIDENCES PHASE - I\": extra words not in the map title/location (whitefield, residences) — check it is the same site",
+        "P52100018257 \"ANANDTARA WHITEFIELD RESIDENCIES PHASE-II\": extra words not in the map title/location (whitefield, residencies) — check it is the same site",
+        "P52100053321 \"Anandtara Dyankunj\": extra words not in the map title/location (dyankunj) — check it is the same site",
+        "P52100054845 \"ANANDTARA IRIS RESIDENCES PHASE I\": extra words not in the map title/location (iris, residences) — check it is the same site",
+        "P52100055274 \"ANANDTARA IRIS RESIDENCES PHASE II\": extra words not in the map title/location (iris, residences) — check it is the same site",
+        "PR1260002600494 \"Anandtara Iris Residences Phase III\": extra words not in the map title/location (iris, residences) — check it is the same site",
+        "P52100004122 \"ANANDTARAS HARITARA\": extra words not in the map title/location (haritara) — check it is the same site",
+        "title looks like a placeholder, not a registered project name"
+      ],
+      "_status_on_map": "upcoming"
+    },
+    {
+      "number": 50,
+      "pin_id": "3ff2cde8-2d46-432e-80d4-4f0d57c6b5a8",
+      "title": "Trustfort Icon",
+      "developer": "",
+      "location": "Mundhwa, Pune",
+      "outcome": "verified",
+      "outcome_reason": "stored RERA number found on MahaRERA under a matching name and developer",
+      "placeholder": false,
+      "existing_rera": "P52100078450",
+      "existing_rera_valid": true,
+      "existing_rera_registry": {
+        "registered_name": "Trustfort Icon",
+        "promoter": "Trustfort realty and Infra LLP",
+        "pincode": "411036",
+        "district": "Pune"
+      },
+      "identity": "existing_rera_confirmed",
+      "status": "verified",
+      "confidence": "high",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "P52100078450",
+        "proposed": "P52100078450",
+        "action": "none",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=TRUSTFORT+ICON&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "note": "existing value confirmed on MahaRERA",
+        "identity_evidence": "MahaRERA: \"Trustfort Icon\", promoter Trustfort realty and Infra LLP, Pune 411036; map: \"Trustfort Icon\", Mundhwa, Pune"
+      },
+      "registered": [
+        {
+          "registration": "P52100078450",
+          "registered_name": "Trustfort Icon",
+          "promoter": "Trustfort realty and Infra LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2025-12-30",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": null
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=TRUSTFORT+ICON&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Trustfort Icon",
+          "results": 1
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [],
+      "_status_on_map": "construction"
+    },
+    {
+      "number": 51,
+      "pin_id": "7e63a797-d0a7-4b34-840d-40f7b516bf33",
+      "title": "Vedant 84",
+      "developer": "",
+      "location": "",
+      "outcome": "not_found",
+      "outcome_reason": "no registered project found by name after 3 tries per query (not proof the project is unregistered)",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "not_found",
+      "status": "not_found",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=VEDANT+84&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Vedant 84",
+          "results": 0
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [],
+      "_status_on_map": "sold"
+    },
+    {
+      "number": 52,
+      "pin_id": "92043119-e7ad-4a45-bf64-97be4113e550",
+      "title": "Mantra Uber Luxury",
+      "developer": "Mantra Properties",
+      "location": "Mundhwa/Magarpatta, Pune",
+      "outcome": "not_found",
+      "outcome_reason": "no registered project found by name after 3 tries per query (not proof the project is unregistered)",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "not_found",
+      "status": "not_found",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MANTRA+UBER+LUXURY&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Mantra Uber Luxury",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=UBER+LUXURY&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Uber Luxury",
+          "results": 0
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [],
+      "_status_on_map": "upcoming"
+    },
+    {
+      "number": 53,
+      "pin_id": "1337feb4-cc84-452a-8025-e07f9ff74760",
+      "title": "Mantra Highstreet & Offices",
+      "developer": "Mantra Properties",
+      "location": "Mundhwa/Magarpatta, Pune",
+      "outcome": "not_found",
+      "outcome_reason": "no registered project found by name after 3 tries per query (not proof the project is unregistered)",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "not_found",
+      "status": "not_found",
+      "confidence": "low",
+      "proposal": null,
+      "registered": [],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MANTRA+HIGHSTREET+%26+OFFICES&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Mantra Highstreet & Offices",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=HIGHSTREET+%26+OFFICES&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Highstreet & Offices",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=MANTRA+HIG&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Mantra Hig",
+          "results": 0
+        },
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=HIGHST&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Highst",
+          "results": 15
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [],
+      "_status_on_map": "upcoming"
+    },
+    {
+      "number": 54,
+      "pin_id": "65059808-98e6-4ca0-a284-1ae4874e05ab",
+      "title": "Horizon Highgroves",
+      "developer": "Horizon Developers",
+      "location": "Mundhwa, Pune",
+      "outcome": "needs_manual_review",
+      "outcome_reason": "one registration matches, but the name spelling or developer/promoter could not be confirmed",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "single_match",
+      "status": "needs_review",
+      "confidence": "medium",
+      "proposal": {
+        "field": "rera_number",
+        "existing": "",
+        "proposed": "P52100030909",
+        "action": "review",
+        "source_url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=HORIZON+HIGHGROVES&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+        "identity_evidence": "MahaRERA: \"HORIZON HIGHGROVES\", promoter YASHCON SHELTER LLP, Pune 411036; map: \"Horizon Highgroves\" by Horizon Developers, Mundhwa, Pune"
+      },
+      "registered": [
+        {
+          "registration": "P52100030909",
+          "registered_name": "HORIZON HIGHGROVES",
+          "promoter": "YASHCON SHELTER LLP",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2022-10-11",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": false
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=HORIZON+HIGHGROVES&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Horizon Highgroves",
+          "results": 1
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "a candidate has a different promoter name (brand vs legal entity, or a different project)"
+      ],
+      "_status_on_map": "available"
+    },
+    {
+      "number": 56,
+      "pin_id": "a662e29d-a91b-413d-88f3-20ff547bd35b",
+      "title": "Breeza",
+      "developer": "",
+      "location": "Mundhwa, Pune",
+      "outcome": "needs_manual_review",
+      "outcome_reason": "several registrations match (phases, wings or same-name projects elsewhere) — phase/site not confirmed",
+      "placeholder": false,
+      "existing_rera": "",
+      "existing_rera_valid": null,
+      "existing_rera_registry": null,
+      "identity": "multiple_phases_or_projects",
+      "status": "needs_review",
+      "confidence": "medium",
+      "proposal": null,
+      "registered": [
+        {
+          "registration": "P52100020307",
+          "registered_name": "GOODWILL BREEZA PHASE 1",
+          "promoter": "CHOICE REALTORS",
+          "pincode": "411015",
+          "district": "Pune",
+          "last_modified": "2019-04-03",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": null
+        },
+        {
+          "registration": "P52100025114",
+          "registered_name": "Goodwill Breeza Phase 2",
+          "promoter": "CHOICE REALTORS",
+          "pincode": "411015",
+          "district": "Pune",
+          "last_modified": "2021-07-16",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": null
+        },
+        {
+          "registration": "P52100047290",
+          "registered_name": "BREEZA",
+          "promoter": "A AND A DEVELOPERS",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-09-26",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": null
+        },
+        {
+          "registration": "P52100055883",
+          "registered_name": "BREEZA P II",
+          "promoter": "A AND A DEVELOPERS",
+          "pincode": "411036",
+          "district": "Pune",
+          "last_modified": "2026-04-20",
+          "name_match": 1,
+          "spelling_tolerant_match": 1,
+          "promoter_matches_developer": null
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.maharera.maharashtra.gov.in/projects-search-result?project_name=BREEZA&project_location=&project_completion_date=&project_state=27&project_district=0&carpetAreas=&completionDate=&project_division=&page=1&op=Search",
+          "query": "Breeza",
+          "results": 4
+        }
+      ],
+      "checked_on": "2026-10-14",
+      "not_researched": [
+        "price",
+        "possession_timeline",
+        "carpet_area",
+        "amenities",
+        "description"
+      ],
+      "flags": [
+        "P52100020307 \"GOODWILL BREEZA PHASE 1\": extra words not in the map title/location (goodwill) — check it is the same site",
+        "P52100025114 \"Goodwill Breeza Phase 2\": extra words not in the map title/location (goodwill) — check it is the same site"
+      ],
+      "_status_on_map": "construction"
+    }
+  ]
+}
