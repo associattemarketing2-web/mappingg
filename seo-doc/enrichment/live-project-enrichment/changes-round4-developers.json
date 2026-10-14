@@ -1,0 +1,314 @@
+{
+ "batch_id": "live-2026-10-14-r4-dev",
+ "checked_on": "2026-10-14",
+ "changes": [
+  {
+   "pin_id": "ac93c76f-7a01-45d0-a47f-9b4496294379",
+   "number": 341,
+   "title": "Purva Heritage",
+   "source_url": "https://www.puravankara.com/residential/bengaluru/purva-heritage",
+   "source_type": "Developer official project page",
+   "confidence": "high",
+   "note": "Page RERA PRM/KA/RERA/1251/310/PR/090726/008801 = pin RERA; possession 31-08-2030 = pin",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 3.10 Cr Onwards (3 BHK)",
+     "expect": ""
+    },
+    {
+     "op": "custom_add",
+     "label": "Official project page",
+     "value": "https://www.puravankara.com/residential/bengaluru/purva-heritage"
+    }
+   ]
+  },
+  {
+   "pin_id": "2cc5f61a-86b6-4c00-96f7-f63781e74cc1",
+   "number": 288,
+   "title": "The Address by GS Sion Tower A",
+   "source_url": "https://raymondrealty.in/residential-property/the-address-by-gs-sion",
+   "source_type": "Developer official project page",
+   "confidence": "high",
+   "note": "Page lists Tower A MahaRERA PR1170002503012 = pin RERA. Configuration is for the whole project (page does not split by tower)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 / 3 / 4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "custom_add",
+     "label": "Official project page",
+     "value": "https://raymondrealty.in/residential-property/the-address-by-gs-sion"
+    }
+   ]
+  },
+  {
+   "pin_id": "5d56bd8f-9d21-4911-8ec7-5a36780f983a",
+   "number": 280,
+   "title": "The Address by GS Sion Tower B",
+   "source_url": "https://raymondrealty.in/residential-property/the-address-by-gs-sion",
+   "source_type": "Developer official project page",
+   "confidence": "high",
+   "note": "Page lists Tower B MahaRERA PR1170002503011 = pin RERA. Configuration is for the whole project (page does not split by tower)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 / 3 / 4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "custom_add",
+     "label": "Official project page",
+     "value": "https://raymondrealty.in/residential-property/the-address-by-gs-sion"
+    }
+   ]
+  },
+  {
+   "pin_id": "48f22faa-d226-4987-9bca-d87ea005b8f8",
+   "number": 287,
+   "title": "The Address by GS Sion Tower C",
+   "source_url": "https://raymondrealty.in/residential-property/the-address-by-gs-sion",
+   "source_type": "Developer official project page",
+   "confidence": "high",
+   "note": "Page lists Tower C MahaRERA PR1170002503010 = pin RERA. Configuration is for the whole project (page does not split by tower)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 / 3 / 4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "custom_add",
+     "label": "Official project page",
+     "value": "https://raymondrealty.in/residential-property/the-address-by-gs-sion"
+    }
+   ]
+  },
+  {
+   "pin_id": "26dc9173-5fb8-4ac5-9ace-cbb3c719c99e",
+   "number": 286,
+   "title": "The Address by GS Sion Tower D",
+   "source_url": "https://raymondrealty.in/residential-property/the-address-by-gs-sion",
+   "source_type": "Developer official project page",
+   "confidence": "high",
+   "note": "Page lists Tower D MahaRERA PR1170002503009 = pin RERA. Configuration is for the whole project (page does not split by tower)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 / 3 / 4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "custom_add",
+     "label": "Official project page",
+     "value": "https://raymondrealty.in/residential-property/the-address-by-gs-sion"
+    }
+   ]
+  },
+  {
+   "pin_id": "87293e5e-4f8a-41be-a840-67cef7d15086",
+   "number": 279,
+   "title": "The Address by GS Sion Tower E",
+   "source_url": "https://raymondrealty.in/residential-property/the-address-by-gs-sion",
+   "source_type": "Developer official project page",
+   "confidence": "high",
+   "note": "Page lists Tower E MahaRERA PR1170002503008 = pin RERA. Configuration is for the whole project (page does not split by tower)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 / 3 / 4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "custom_add",
+     "label": "Official project page",
+     "value": "https://raymondrealty.in/residential-property/the-address-by-gs-sion"
+    }
+   ]
+  },
+  {
+   "pin_id": "0112f077-6596-4149-a592-fa2211c64f3a",
+   "number": 289,
+   "title": "Rustomjee Vista Bay",
+   "source_url": "https://www.rustomjee.com/projects/residential/vista-bay-parel-extension/",
+   "source_type": "Developer official project page",
+   "confidence": "high",
+   "note": "Page MahaRERA PR1170002501979 = pin RERA. Price skipped: Rustomjee pages show different starting prices",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "805 – 1,372 Sq Ft (carpet)",
+     "expect": ""
+    },
+    {
+     "op": "custom_add",
+     "label": "Official project page",
+     "value": "https://www.rustomjee.com/projects/residential/vista-bay-parel-extension/"
+    }
+   ]
+  },
+  {
+   "pin_id": "7adc2bbf-bdac-4b4f-b26f-9e8b117fbb35",
+   "number": 391,
+   "title": "THE MARQ",
+   "source_url": "https://www.adanirealty.com/residential-projects/gurugram/the-marq",
+   "source_type": "Developer official project page",
+   "confidence": "high",
+   "note": "Page HARERA RC/REP/HARERA/GGM/1042/774/2026/14 = pin RERA",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "3 / 4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "2,375 – 3,295 Sq Ft (RERA carpet + exclusive area)",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 4.25 Cr Onwards",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2031",
+     "expect": ""
+    },
+    {
+     "op": "custom_add",
+     "label": "Official project page",
+     "value": "https://www.adanirealty.com/residential-projects/gurugram/the-marq"
+    }
+   ]
+  },
+  {
+   "pin_id": "1642bd04-5643-4fd9-a25e-11974d6e85ec",
+   "number": 276,
+   "title": "Lodha Sewri Project",
+   "source_url": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-aureus-sewri",
+   "source_type": "Developer official project page",
+   "confidence": "high",
+   "note": "Official page (Lodha Aureus, Sewri) MahaRERA PR1170002502863 = pin RERA",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "3 / 4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "custom_add",
+     "label": "Official project page",
+     "value": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-aureus-sewri"
+    }
+   ]
+  },
+  {
+   "pin_id": "898c07e6-8bbe-45d2-a88d-b3827a02fa1b",
+   "number": 277,
+   "title": "Lodha Worli Residential Project",
+   "source_url": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-worli",
+   "source_type": "Developer official project page",
+   "confidence": "high",
+   "note": "Official page MahaRERA PR1170002502174 = pin RERA; page gives no other details",
+   "ops": [
+    {
+     "op": "custom_add",
+     "label": "Official project page",
+     "value": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-worli"
+    }
+   ]
+  },
+  {
+   "pin_id": "8fbeefba-998d-4572-9962-2ff711a9f7d0",
+   "number": 292,
+   "title": "Nikoo Homes 9, Alpine, Bhartiya Garden Hill Ph-1",
+   "source_url": "https://nikoohomes.com/nikoo-homes-9-stagging/",
+   "source_type": "Developer official project page",
+   "confidence": "high",
+   "note": "Page Phase 1 RERA PRM/KA/RERA/1251/309/PR/100926/008930 = pin RERA. Unit mix not split by phase, so not added",
+   "ops": [
+    {
+     "op": "custom_add",
+     "label": "Official project page",
+     "value": "https://nikoohomes.com/nikoo-homes-9-stagging/"
+    }
+   ]
+  },
+  {
+   "pin_id": "de8f2c6d-e2ff-4812-bf2d-460c0b4343bc",
+   "number": 293,
+   "title": "Nikoo Homes 9 Alpine Bhartiya Garden Hill Phase-2",
+   "source_url": "https://nikoohomes.com/nikoo-homes-9-stagging/",
+   "source_type": "Developer official project page",
+   "confidence": "high",
+   "note": "Page Phase 2 RERA …/008931 = pin RERA. Unit mix not split by phase, so not added",
+   "ops": [
+    {
+     "op": "custom_add",
+     "label": "Official project page",
+     "value": "https://nikoohomes.com/nikoo-homes-9-stagging/"
+    }
+   ]
+  },
+  {
+   "pin_id": "7069f8cc-d0e0-4b89-814d-83c82a80b35d",
+   "number": 301,
+   "title": "Nikoo Homes 8, Bhartiya Garden Enclave, Phase-1",
+   "source_url": "https://nikoohomes.com/nikoo-homes-8/",
+   "source_type": "Developer official project page",
+   "confidence": "high",
+   "note": "Page Phase 1 RERA PRM/KA/RERA/1251/309/PR/070526/008628 = pin RERA. Unit mix not split by phase, so not added",
+   "ops": [
+    {
+     "op": "custom_add",
+     "label": "Official project page",
+     "value": "https://nikoohomes.com/nikoo-homes-8/"
+    }
+   ]
+  },
+  {
+   "pin_id": "78d7a2de-9bf4-4423-a76b-92c9fb400baa",
+   "number": 302,
+   "title": "Nikoo Homes 8, Bhartiya Garden Enclave, Phase-2",
+   "source_url": "https://nikoohomes.com/nikoo-homes-8/",
+   "source_type": "Developer official project page",
+   "confidence": "high",
+   "note": "Page Phase 2 RERA …/008629 = pin RERA. Unit mix not split by phase, so not added",
+   "ops": [
+    {
+     "op": "custom_add",
+     "label": "Official project page",
+     "value": "https://nikoohomes.com/nikoo-homes-8/"
+    }
+   ]
+  }
+ ]
+}

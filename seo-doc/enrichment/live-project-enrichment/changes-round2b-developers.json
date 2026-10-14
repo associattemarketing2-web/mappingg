@@ -1,0 +1,44 @@
+{
+  "batch_id": "live-2026-10-14-r2b-dev",
+  "checked_on": "2026-10-14",
+  "changes": [
+    { "pin_id": "a6149d9e-eadf-407c-9b2f-7e3cc6c5fc0b", "number": 312, "title": "SOBHA ALTAIR", "source_url": "https://www.sobha.com/bengaluru/sobha-altair/", "source_type": "Developer official project page", "confidence": "high", "note": "Page RERA PRM/KA/RERA/1251/446/PR/070126/008388 = pin RERA; completion May 2031 = pin. Area type not specified on the page",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "3 / 4 BHK", "expect": "" },
+        { "op": "set", "field": "sqft", "value": "1,894 – 2,570 Sq Ft", "expect": "" },
+        { "op": "set", "field": "price", "value": "₹ 3.6 Cr Onwards", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.sobha.com/bengaluru/sobha-altair/" }
+      ] },
+    { "pin_id": "5e933315-df87-4c67-a9fd-640c28b73b0d", "number": 322, "title": "SOBHA MAGNUS", "source_url": "https://www.sobha.com/bengaluru/sobha-magnus/", "source_type": "Developer official project page", "confidence": "high", "note": "Page RERA PRM/KA/RERA/1251/310/PR/131025/008160 = pin RERA; completion May 2030 = pin. Area type not specified on the page",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "3 / 4 BHK", "expect": "" },
+        { "op": "set", "field": "sqft", "value": "1,856 – 2,578 Sq Ft", "expect": "" },
+        { "op": "set", "field": "price", "value": "₹ 3.4 Cr Onwards", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.sobha.com/bengaluru/sobha-magnus/" }
+      ] },
+    { "pin_id": "755d44c8-4c27-4f2c-a1db-afbd05713fb2", "number": 393, "title": "SOBHA STRADA", "source_url": "https://www.sobha.com/delhi-ncr/sobha-strada-sector-106-gurgaon/", "source_type": "Developer official project page", "confidence": "high", "note": "Page RERA RC/REP/HARERA/GGM/1010/742/2025/113 = pin RERA. Serviced residences; completion date as stated by the developer",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "1 Bed serviced residences", "expect": "" },
+        { "op": "set", "field": "sqft", "value": "857 – 1,026 Sq Ft", "expect": "" },
+        { "op": "set", "field": "price", "value": "₹ 2.03 Cr Onwards", "expect": "" },
+        { "op": "set", "field": "possession_timeline", "value": "Dec 2032", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.sobha.com/delhi-ncr/sobha-strada-sector-106-gurgaon/" }
+      ] },
+    { "pin_id": "4487ce91-08ab-4318-bcb3-002dca6ab60a", "number": 319, "title": "SUMADHURA SOLACE PHASE-I", "source_url": "https://sumadhuragroup.com/residential/bangalore/sumadhura-solace", "source_type": "Developer official project page", "confidence": "high", "note": "Page RERA PRM/KA/RERA/1251/446/PR/111225/008330 = pin RERA. Area type not specified on the page",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "3 / 4 BHK", "expect": "" },
+        { "op": "set", "field": "sqft", "value": "1,705 – 2,730 Sq Ft", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://sumadhuragroup.com/residential/bangalore/sumadhura-solace" }
+      ] },
+    { "pin_id": "23a91679-9eae-4c80-bb19-0bdbec2b75c4", "number": 307, "title": "Eaton Park @ The Prestige City", "source_url": "https://www.prestigeconstructions.com/residential-projects/bangalore/the-prestige-city-sarjapur/eaton-park", "source_type": "Developer official project page (title)", "confidence": "high", "note": "Official page title: 'Premium 3 & 4 BHK Sarjapur Road Apartments' for Eaton Park at The Prestige City; pin is The Prestige City, Anekal (Sarjapur)",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "3 / 4 BHK", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.prestigeconstructions.com/residential-projects/bangalore/the-prestige-city-sarjapur/eaton-park" }
+      ] },
+    { "pin_id": "6755dbb7-65a2-4c6f-b410-37c406cb9ab2", "number": 308, "title": "Fernvale @ The Prestige City", "source_url": "https://www.prestigeconstructions.com/residential-projects/bangalore/the-prestige-city-sarjapur/fernvale", "source_type": "Developer official project page (title)", "confidence": "high", "note": "Official page title: '2 & 3 BHK Township Apartments Sarjapur Road' for Fernvale at The Prestige City",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "2 / 3 BHK", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.prestigeconstructions.com/residential-projects/bangalore/the-prestige-city-sarjapur/fernvale" }
+      ] }
+  ]
+}

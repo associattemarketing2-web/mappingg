@@ -1,0 +1,81 @@
+{
+  "read_at": "2026-10-14T10:08:03.446Z",
+  "pins_in_table": 418,
+  "live_projects": 418,
+  "not_live": 0,
+  "property_projects": 415,
+  "markers": 3,
+  "unique_pin_numbers": 416,
+  "duplicate_pin_numbers": [
+    {
+      "number": 116,
+      "pins": [
+        {
+          "id": "5a743d2b-cc05-4d1e-bd5e-c0e1500cb2e4",
+          "title": "YOO ONE",
+          "created_at": "2026-09-03T07:08:53.889182+00:00"
+        },
+        {
+          "id": "2f813591-6a0e-4654-8530-e862829b9ae3",
+          "title": "Codename Autobiography by Jhamtani",
+          "created_at": "2026-09-01T18:11:55.399073+00:00"
+        }
+      ]
+    },
+    {
+      "number": 416,
+      "pins": [
+        {
+          "id": "3d131992-c549-45fe-9cd9-db966f385c60",
+          "title": "(no title)",
+          "created_at": "2026-10-14T05:13:23.958Z"
+        },
+        {
+          "id": "e01c53f5-6512-40e5-9f0f-9e53a797a183",
+          "title": "(no title)",
+          "created_at": "2026-10-14T05:13:25.628Z"
+        }
+      ]
+    }
+  ],
+  "projects_with_invalid_values": 32,
+  "field_missing_counts": {
+    "developer": 47,
+    "locality": 43,
+    "coordinates": 0,
+    "property_type": 54,
+    "status": 0,
+    "rera_number": 123,
+    "configuration": 225,
+    "carpet_area": 145,
+    "price": 238,
+    "possession": 165,
+    "description": 413,
+    "highlights": 330,
+    "amenities": 402,
+    "address": 418,
+    "official_website": 418,
+    "brochure": 413,
+    "video": 286
+  },
+  "enrichable_fields": [
+    "developer",
+    "locality",
+    "coordinates",
+    "property_type",
+    "status",
+    "rera_number",
+    "configuration",
+    "carpet_area",
+    "price",
+    "possession",
+    "description",
+    "highlights",
+    "amenities",
+    "address",
+    "official_website",
+    "brochure",
+    "video"
+  ],
+  "avg_missing": 8.9
+}

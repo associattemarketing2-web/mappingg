@@ -1,0 +1,78 @@
+{
+  "batch_id": "live-2026-10-14-r2-dev",
+  "checked_on": "2026-10-14",
+  "changes": [
+    { "pin_id": "579fba92-ea05-411a-8f87-a66cbb7b71b6", "number": 304, "title": "Brigade Belvedere", "source_url": "https://www.brigadegroup.com/residential/projects/bengaluru/brigade-belvedere", "source_type": "Developer official project page", "confidence": "high", "note": "Page RERA PRM/KA/RERA/1251/446/PR/240326/008549 = pin RERA. Price excludes govt/other charges and taxes",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "1 / 2 / 3 / 3.5 BHK", "expect": "" },
+        { "op": "set", "field": "sqft", "value": "427 – 1,205 Sq Ft (carpet)", "expect": "" },
+        { "op": "set", "field": "price", "value": "₹ 97 Lacs Onwards", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.brigadegroup.com/residential/projects/bengaluru/brigade-belvedere" }
+      ] },
+    { "pin_id": "bb4a4e40-9184-4d9b-845e-6bc0bb68f0f7", "number": 306, "title": "Brigade Lumina", "source_url": "https://www.brigadegroup.com/residential/projects/bengaluru/brigade-lumina", "source_type": "Developer official project page", "confidence": "high", "note": "Page RERA PRM/KA/RERA/1251/309/PR/230326/008545 = pin RERA. Price excludes govt/other charges and taxes",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "2 / 3 BHK", "expect": "" },
+        { "op": "set", "field": "sqft", "value": "713 – 1,139 Sq Ft (carpet)", "expect": "" },
+        { "op": "set", "field": "price", "value": "₹ 1.45 Cr Onwards", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.brigadegroup.com/residential/projects/bengaluru/brigade-lumina" }
+      ] },
+    { "pin_id": "ea6b1f28-d9db-475d-9bec-e753d79335ee", "number": 394, "title": "SOBHA CRESCENT PHASE - 1", "source_url": "https://www.sobha.com/delhi-ncr/sobha-crescent-sector-63a-gurgaon/", "source_type": "Developer official project page", "confidence": "high", "note": "Page RERA RC/REP/HARERA/GGM/1054/786/2026/26 = pin RERA. Completion date as stated by the developer",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "3 / 4 BHK", "expect": "" },
+        { "op": "set", "field": "sqft", "value": "2,277 – 2,966 Sq Ft", "expect": "" },
+        { "op": "set", "field": "price", "value": "₹ 5.86 Cr Onwards", "expect": "" },
+        { "op": "set", "field": "possession_timeline", "value": "Mar 2033", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.sobha.com/delhi-ncr/sobha-crescent-sector-63a-gurgaon/" }
+      ] },
+    { "pin_id": "ded48a8a-49de-4c86-86a7-ddf851502854", "number": 317, "title": "Purva Silversky", "source_url": "https://www.puravankara.com/residential/bengaluru/purva-silversky", "source_type": "Developer official project page", "confidence": "high", "note": "Page RERA PRM/KA/RERA/1251/310/PR/151225/008338 = pin RERA; page possession 30-07-2030 = pin Jul 2030",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "3 / 4 BHK", "expect": "" },
+        { "op": "set", "field": "price", "value": "₹ 2.55 Cr Onwards", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.puravankara.com/residential/bengaluru/purva-silversky" }
+      ] },
+    { "pin_id": "e31dc060-62e7-4bdc-8da6-3807fd53dcb6", "number": 390, "title": "SAMSARA IVANA 2.0", "source_url": "https://www.adanirealty.com/residential-projects/gurugram/samsara-ivana-2-0", "source_type": "Developer official project page", "confidence": "high", "note": "Page RERA RC/REP/HARERA/GGM/999/731/2025/102 = pin RERA. Unit size as stated (type of area not specified)",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "4 BHK independent floors", "expect": "" },
+        { "op": "set", "field": "sqft", "value": "1,702 Sq Ft", "expect": "" },
+        { "op": "set", "field": "price", "value": "₹ 6.09 Cr Onwards", "expect": "" },
+        { "op": "set", "field": "possession_timeline", "value": "Sep 2030", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.adanirealty.com/residential-projects/gurugram/samsara-ivana-2-0" }
+      ] },
+    { "pin_id": "489fcc68-b9a7-4063-aeda-a12a2f436bbe", "number": 173, "title": "Godrej Bay View", "source_url": "https://www.godrejproperties.com/mumbai/residential/godrej-bayview", "source_type": "Developer official project page", "confidence": "high", "note": "Godrej Bayview, Sector 9, Vashi = pin (Vashi, Navi Mumbai)",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "2 / 3 BHK", "expect": "" },
+        { "op": "set", "field": "price", "value": "₹ 3.40 Cr Onwards", "expect": "" },
+        { "op": "set", "field": "possession_timeline", "value": "Dec 2027", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.godrejproperties.com/mumbai/residential/godrej-bayview" }
+      ] },
+    { "pin_id": "d10dcb25-6b6a-402a-9c0a-70f3e2b8530f", "number": 388, "title": "GODREJ SAMARIS", "source_url": "https://www.godrejproperties.com/gurugram/residential/godrej-samaris", "source_type": "Developer official project page", "confidence": "high", "note": "Godrej Samaris, Sector 53, Gurugram = pin (Sector 53)",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "3 / 4 BHK", "expect": "" },
+        { "op": "set", "field": "price", "value": "₹ 9.84 Cr Onwards", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.godrejproperties.com/gurugram/residential/godrej-samaris" }
+      ] },
+    { "pin_id": "d5e903fc-25cc-45ca-b722-9f8784aa3bf5", "number": 335, "title": "Godrej Vanantara", "source_url": "https://www.godrejproperties.com/bengaluru/residential/godrej-vanantara", "source_type": "Developer official project page", "confidence": "high", "note": "Godrej Vanantara, Bannerghatta Road = pin (Bengaluru South)",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "2 / 3 BHK", "expect": "" },
+        { "op": "set", "field": "price", "value": "₹ 1.49 Cr Onwards", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.godrejproperties.com/bengaluru/residential/godrej-vanantara" }
+      ] },
+    { "pin_id": "5901aa7b-8647-4620-bb87-cd63d138137d", "number": 392, "title": "GODREJ VERANO", "source_url": "https://www.godrejproperties.com/gurugram/residential/godrej-verano", "source_type": "Developer official project page", "confidence": "high", "note": "Golf Course Extension Road = pin (Sector 63A). Price skipped: page shows two different prices",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "3 / 4 / 5 BHK", "expect": "" },
+        { "op": "set", "field": "possession_timeline", "value": "Mar 2031", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.godrejproperties.com/gurugram/residential/godrej-verano" }
+      ] },
+    { "pin_id": "1021dd85-9389-4520-976a-d7f092a9b5ef", "number": 338, "title": "GODREJ AVELINE", "source_url": "https://www.godrejproperties.com/bengaluru/residential/godrej-aveline", "source_type": "Developer official project page", "confidence": "high", "note": "Yelahanka = pin (Bengaluru North); page possession Mar 2031 = pin",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "3 / 3.5 / 4.5 BHK", "expect": "" },
+        { "op": "set", "field": "price", "value": "₹ 2.90 Cr Onwards", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.godrejproperties.com/bengaluru/residential/godrej-aveline" }
+      ] },
+    { "pin_id": "5b913e51-f046-4018-ac1f-397dddeedf59", "number": 298, "title": "Godrej Regent Park", "source_url": "https://www.godrejproperties.com/bengaluru/residential/godrej-regent-park", "source_type": "Developer official project page", "confidence": "high", "note": "Sarjapur Road = pin (Anekal); page possession Jul 2031 = pin. Price skipped: page shows two different prices",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "2 / 3 BHK", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.godrejproperties.com/bengaluru/residential/godrej-regent-park" }
+      ] }
+  ]
+}

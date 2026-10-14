@@ -1,0 +1,75 @@
+{
+  "generated_at": "2026-10-14T09:37:26.379Z",
+  "date": "2026-10-14",
+  "counts": {
+    "scraped": 7704,
+    "scraped_unique_registrations": 7416,
+    "live_pins": 418,
+    "pins_unique_numbers": 416,
+    "intake_projects": 188,
+    "submissions": 205
+  },
+  "scraped_by_class": {
+    "A": 7416,
+    "E": 262,
+    "B": 23,
+    "D": 3
+  },
+  "pins_by_class": {
+    "A": 166,
+    "G": 145,
+    "D": 12,
+    "B": 84,
+    "F": 8,
+    "E": 3
+  },
+  "scraped_by_city": {
+    "Bengaluru": 4425,
+    "Gurugram": 1082,
+    "Kalyan_Dombivli": 132,
+    "Mumbai": 1133,
+    "Pune": 586,
+    "Thane": 346
+  },
+  "scraped_by_regulator": {
+    "RERA Karnataka": 4425,
+    "HARERA Gurugram": 1082,
+    "MahaRERA": 2197
+  },
+  "scraped_by_status": {
+    "Approved - proposed completion date passed": 2814,
+    "Rejected (no registration)": 265,
+    "Approved - within proposed completion date": 1247,
+    "Transferred": 30,
+    "Withdrawn": 63,
+    "Revoked": 6,
+    "Registered - validity date passed, not flagged lapsed": 360,
+    "Registered - within registration validity (per list)": 511,
+    "Lapsed": 200,
+    "Superseded (certificate replaced)": 11,
+    "Registered - current status not confirmed": 2184,
+    "Deregistered": 5,
+    "Lapsed (abeyance: completion date lapsed)": 2,
+    "Abeyance (common bank account)": 1,
+    "Abeyance (QPR non-compliance)": 5
+  },
+  "scraped_not_listable": 552,
+  "scraped_linked_to_live": 155,
+  "pins_linked_to_registry": 155,
+  "scraped_with_coordinates": 2256,
+  "duplicate_groups": {
+    "same name + developer + city (registry)": 72,
+    "live pins sharing one pin number": 2,
+    "live pins sharing one registration": 3
+  },
+  "avg_missing_fields": {
+    "scraped": 5.01,
+    "pins": 3.63
+  },
+  "coverage_check": {
+    "inventory_rows": 8122,
+    "expected": 8122,
+    "unique_db_ids": 8122,
+    "unique_audit_refs": 8122
+  }
+}

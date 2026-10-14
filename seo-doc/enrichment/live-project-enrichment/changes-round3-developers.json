@@ -1,0 +1,57 @@
+{
+  "batch_id": "live-2026-10-14-r3-dev",
+  "checked_on": "2026-10-14",
+  "changes": [
+    { "pin_id": "589a6fa5-88b0-40ed-a886-c9164aceb3ae", "number": 315, "title": "Elanza", "source_url": "https://www.lodhagroup.com/projects/residential-property-in-bangalore/lodha-elanza-sarjapur-road", "source_type": "Developer official project page", "confidence": "high", "note": "Lodha Elanza, Sarjapur Road (developer Lodha = pin; Anekal taluk). Prices from the official price page",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "3 BHK / 3 BHK + Study", "expect": "" },
+        { "op": "set", "field": "price", "value": "₹ 2.45 Cr Onwards", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.lodhagroup.com/projects/residential-property-in-bangalore/lodha-elanza-sarjapur-road" }
+      ] },
+    { "pin_id": "f5fc8e86-7fec-4b61-85b8-43b947be8f4f", "number": 344, "title": "Haven Phase 2", "source_url": "https://www.lodhagroup.com/projects/residential-property-in-bangalore/lodha-haven-hosa-road", "source_type": "Developer official project page", "confidence": "high", "note": "Page lists RERA PRM/KA/RERA/1251/308/PR/260326/008551 = pin RERA",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "3 / 4 BHK", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.lodhagroup.com/projects/residential-property-in-bangalore/lodha-haven-hosa-road" }
+      ] },
+    { "pin_id": "c676380d-7663-4828-8609-e9c6a39ada11", "number": 334, "title": "Sumadhura Elysium Phase-I", "source_url": "https://sumadhuragroup.com/residential/bangalore/sumadhura-elysium", "source_type": "Developer official project page", "confidence": "high", "note": "Page RERA PRM/KA/RERA/1251/446/PR/220526/008677 = pin RERA; possession Dec 2029 = pin. Area type not specified on the page",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "3 / 3.5 / 4 BHK", "expect": "" },
+        { "op": "set", "field": "sqft", "value": "1,826 – 2,810 Sq Ft", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://sumadhuragroup.com/residential/bangalore/sumadhura-elysium" }
+      ] },
+    { "pin_id": "bf9a4733-5d80-4f99-b8e9-987ec69cb0d3", "number": 337, "title": "SUMADHURA SOLEA", "source_url": "https://sumadhuragroup.com/projects/sumadhura-solea.php", "source_type": "Developer official project page", "confidence": "high", "note": "Page RERA PRM/KA/RERA/1251/446/PR/100326/008517 = pin RERA. Possession not changed (page Dec 2029 vs pin Jun 2029)",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "3 / 4 BHK", "expect": "" },
+        { "op": "set", "field": "price", "value": "₹ 2.2 Cr Onwards", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://sumadhuragroup.com/projects/sumadhura-solea.php" }
+      ] },
+    { "pin_id": "05afb3a2-b93c-4496-962e-dad2bbad3b32", "number": 374, "title": "Assetz Muse & Maison", "source_url": "https://www.assetzproperty.com/museandmaison/", "source_type": "Developer official project page", "confidence": "high", "note": "Page RERA PRM/KA/RERA/1251/310/PR/040526/008618 = pin RERA. Carpet (RERA + balcony) for the two listed unit types",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "3 BHK", "expect": "" },
+        { "op": "set", "field": "sqft", "value": "1,313 – 1,356 Sq Ft (carpet)", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.assetzproperty.com/museandmaison/" }
+      ] },
+    { "pin_id": "bd00f62a-c2a2-49b0-bdee-afeac66a8dd8", "number": 305, "title": "Arvind Skycrest", "source_url": "https://www.arvindsmartspaces.com/projects/arvind-skycrest/", "source_type": "Developer official project page", "confidence": "high", "note": "Page RERA PRM/KA/RERA/1251/310/PR/230326/008543 = pin RERA",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "2 / 2.5 / 3 / 4 BHK", "expect": "" },
+        { "op": "set", "field": "price", "value": "₹ 1.22 Cr Onwards", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.arvindsmartspaces.com/projects/arvind-skycrest/" }
+      ] },
+    { "pin_id": "7447057b-4531-418b-bcdd-c343e142c60b", "number": 299, "title": "ARVIND SYLVA", "source_url": "https://www.arvindsmartspaces.com/projects/arvind-sylva/", "source_type": "Developer official project page", "confidence": "high", "note": "Page RERA PRM/KA/RERA/1251/446/PR/090726/008800 = pin RERA",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "3 / 4 BHK", "expect": "" },
+        { "op": "set", "field": "price", "value": "₹ 2.20 Cr Onwards", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.arvindsmartspaces.com/projects/arvind-sylva/" }
+      ] },
+    { "pin_id": "2c12ebc9-7da6-4d98-9563-66ac44276b7b", "number": 300, "title": "CASAGRAND MOONDANCE", "source_url": "https://www.casagrand.co.in/residential/ongoing-projects-bangalore/casagrand-moondance/", "source_type": "Developer official project page", "confidence": "high", "note": "Page RERA PRM/KA/RERA/1251/310/PR/200526/008667 = pin RERA. Price and area skipped: page gives conflicting figures",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "2 / 3 BHK", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://www.casagrand.co.in/residential/ongoing-projects-bangalore/casagrand-moondance/" }
+      ] },
+    { "pin_id": "22e38509-3487-47ed-80ad-b1b649f9a453", "number": 318, "title": "SUMADHURA EDITION PHASE-I", "source_url": "https://sumadhuragroup.com/residential/bangalore/sumadhura-edition", "source_type": "Developer official project page", "confidence": "high", "note": "Page RERA PRM/KA/RERA/1251/446/PR/111225/008328 = pin RERA; possession Dec 2029 = pin",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "2 / 3 / 4 BHK", "expect": "" },
+        { "op": "custom_add", "label": "Official project page", "value": "https://sumadhuragroup.com/residential/bangalore/sumadhura-edition" }
+      ] }
+  ]
+}

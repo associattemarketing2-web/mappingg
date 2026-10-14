@@ -1,0 +1,72 @@
+{
+ "batch_id": "live-2026-10-14-r5-dev",
+ "checked_on": "2026-10-14",
+ "changes": [
+  {
+   "pin_id": "15ed478f-7003-44b2-8df7-1f8c23046b0d",
+   "number": 348,
+   "title": "Vajram Chrysanthemum",
+   "source_url": "https://www.vajramgroup.com/campaigns/vajramchrysanthemum/",
+   "source_type": "Developer official project page",
+   "confidence": "high",
+   "note": "Page RERA PRM/KA/RERA/1251/472/PR/031125/008217 = pin RERA. Price skipped: Vajram pages show different starting prices",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "3 / 3.5 BHK",
+     "expect": ""
+    },
+    {
+     "op": "custom_add",
+     "label": "Official project page",
+     "value": "https://www.vajramgroup.com/campaigns/vajramchrysanthemum/"
+    }
+   ]
+  },
+  {
+   "pin_id": "8f8d0d2d-c8b9-48ce-a2d8-b885f6c20d41",
+   "number": 387,
+   "title": "ARKADE SAPPHIRE",
+   "source_url": "https://arkade.in/the-luxury-of-living-among-the-few-welcome-to-arkade-sapphire/",
+   "source_type": "Developer official project page",
+   "confidence": "high",
+   "note": "Official Arkade page: MahaRERA PM1180002600639 = pin RERA; 25 three-bedroom residences, Santacruz West",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "custom_add",
+     "label": "Official project page",
+     "value": "https://arkade.in/the-luxury-of-living-among-the-few-welcome-to-arkade-sapphire/"
+    }
+   ]
+  },
+  {
+   "pin_id": "f58804a9-c8d1-41d2-a816-506f673ee370",
+   "number": 389,
+   "title": "ELDECO TERRA & SOL",
+   "source_url": "https://www.eldecogroup.com/residential/eldeco-terra-and-sol",
+   "source_type": "Developer official project page",
+   "confidence": "high",
+   "note": "Page: HARERA Reg. No. 20 of 2026 = pin GGM/1048/780/2026/20; Sector 80 Gurugram = pin",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "custom_add",
+     "label": "Official project page",
+     "value": "https://www.eldecogroup.com/residential/eldeco-terra-and-sol"
+    }
+   ]
+  }
+ ]
+}
