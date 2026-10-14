@@ -1,0 +1,193 @@
+{
+ "batch_id": "live-2026-10-14-r6-rera",
+ "checked_on": "2026-10-14",
+ "changes": [
+  {
+   "pin_id": "e7eab23c-4885-444b-bb6a-4f9e551998b6",
+   "number": 77,
+   "title": "Pawar Riseonic",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/30509",
+   "source_type": "MahaRERA (official)",
+   "confidence": "high",
+   "note": "Registered \"PAWAR RISEONIC\", promoter PAWAR BUILDCON AND COMPANY, Pune 411036; only registration matching this name",
+   "ops": [
+    {
+     "op": "set",
+     "field": "rera_number",
+     "value": "P52100031525",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "bc300c8a-62c5-47c8-b284-5d4711ec3916",
+   "number": 82,
+   "title": "Eon Water Front",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/6968",
+   "source_type": "MahaRERA (official)",
+   "confidence": "high",
+   "note": "Registered \"Eon Water Front\", promoter Panchshil Realty and Developers Pvt Ltd, Pune 411014; only registration matching this name",
+   "ops": [
+    {
+     "op": "set",
+     "field": "rera_number",
+     "value": "P52100004202",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "34ef5d58-0566-45a8-8e74-e9b83fe4317d",
+   "number": 83,
+   "title": "Panchshil Towers",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/4917",
+   "source_type": "MahaRERA (official)",
+   "confidence": "high",
+   "note": "Registered \"Panchshil Towers\", promoter Panchshil Infrastructure Holdings Pvt. Ltd., Pune 412207; only registration matching this name",
+   "ops": [
+    {
+     "op": "set",
+     "field": "rera_number",
+     "value": "P52100002528",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "bca4bd56-3e8a-439a-9369-2147eb6c208e",
+   "number": 111,
+   "title": "Flamingo Park",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/63320",
+   "source_type": "MahaRERA (official)",
+   "confidence": "high",
+   "note": "Registered \"Flamingo Park\", promoter Riverview City Constructions Ltd, Pune 412201; only registration matching this name",
+   "ops": [
+    {
+     "op": "set",
+     "field": "rera_number",
+     "value": "PR1260002600177",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "6919d050-d305-4905-8980-55fcf5bb80c1",
+   "number": 118,
+   "title": "Marvel Basilo",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/4210",
+   "source_type": "MahaRERA (official)",
+   "confidence": "high",
+   "note": "Registered \"Marvel Basilo A AND B Building\", promoter VVV REALTORS AND DEVELOPERS PRIVATE LIMITED, Pune 411001; only registration matching this name",
+   "ops": [
+    {
+     "op": "set",
+     "field": "rera_number",
+     "value": "P52100001711",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "2690a34a-5227-4e9d-8629-6f216b6d2dc4",
+   "number": 138,
+   "title": "Platinum Stellar",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/63872",
+   "source_type": "MahaRERA (official)",
+   "confidence": "high",
+   "note": "Registered \"PLATINUM STELLAR\", promoter PLATINUMCORP ELEGANT RESIDENCES PRIVATE LIMITED, Mumbai Suburban 400054; only registration matching this name",
+   "ops": [
+    {
+     "op": "set",
+     "field": "rera_number",
+     "value": "PR1180002600268",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4fd0e544-2ba5-42b4-a080-b8b114b40403",
+   "number": 141,
+   "title": "Platinum Classic",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/59404",
+   "source_type": "MahaRERA (official)",
+   "confidence": "high",
+   "note": "Registered \"PLATINUM CLASSIC\", promoter PLATINUMCORP URBAN DEVELOPERS LLP, Mumbai Suburban 400053; only registration matching this name",
+   "ops": [
+    {
+     "op": "set",
+     "field": "rera_number",
+     "value": "PR1180002502056",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ec639df8-ec8f-4921-bd5d-40c19f75f635",
+   "number": 142,
+   "title": "Platinum Grandeur",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/44950",
+   "source_type": "MahaRERA (official)",
+   "confidence": "high",
+   "note": "Registered \"PLATINUM GRANDEUR\", promoter Platinum Strategic Developers LLP, Mumbai Suburban 400053; only registration matching this name",
+   "ops": [
+    {
+     "op": "set",
+     "field": "rera_number",
+     "value": "P51800052098",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "76c748de-6073-4225-aef5-47e9a5c93b3e",
+   "number": 153,
+   "title": "Vishnu Vertex",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/58330",
+   "source_type": "MahaRERA (official)",
+   "confidence": "high",
+   "note": "Registered \"VISHNU VERTEX\", promoter VISHNU BIHAR BUILDERS AND DEVELOPERS LLP, Thane 421306; only registration matching this name",
+   "ops": [
+    {
+     "op": "set",
+     "field": "rera_number",
+     "value": "PR1330002502278",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "b9de0d3c-791a-46b6-84ff-d8519c853e83",
+   "number": 169,
+   "title": "Kamdhenu Pinnacle",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/50708",
+   "source_type": "MahaRERA (official)",
+   "confidence": "high",
+   "note": "Registered \"Kamdhenu Pinnacle\", promoter Kamdhenu Green, Thane 400706; only registration matching this name",
+   "ops": [
+    {
+     "op": "set",
+     "field": "rera_number",
+     "value": "P51700077771",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "141f6ea6-4e22-469e-b6ea-5bce68d7aed2",
+   "number": 171,
+   "title": "Arihant Advika",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/33532",
+   "source_type": "MahaRERA (official)",
+   "confidence": "high",
+   "note": "Registered \"ARIHANT ADVIKA\", promoter ARIHANT AASHIYANA PRIVATE LIMITED, Thane 400703; only registration matching this name",
+   "ops": [
+    {
+     "op": "set",
+     "field": "rera_number",
+     "value": "P51700028950",
+     "expect": ""
+    }
+   ]
+  }
+ ]
+}
