@@ -127,6 +127,20 @@ status, conflicts). Filters: "has <fact>", conflicts, Projects state; CSV export
 exactly, total units, towers, land area (acres) and matching amenities as fields; the rest (project cost, unit mix,
 carpet area, approvals, dates, website, address) under Additional details. It still goes to the Review queue first.
 
+### Map location for the complete records (15 Oct 2026, 13:15 UTC)
+
+`migration/enrichment/scraped/locate-ready.mjs` gave a map location to the 787 "Added data — Check & go live" records
+(14 already had one). The location is the latitude/longitude on the official RERA Karnataka project page, declared by
+the promoter; nothing was geocoded or guessed (the site's Google Maps key is browser-only, and Google's terms do not allow
+storing its geocodes). It was saved (`data.lat/lng`, `pin_check` "verified", `pin_reason`, `location_source`) only when
+the point is inside Bengaluru, given to at least 4 decimals, inside the boundary of the record's own pincode (OpenStreetMap
+postal-code boundary, 1 km tolerance), and not the same point as another promoter's project.
+
+- Saved and verified by read-back: **613**. Live tables re-checked before/after: hashes unchanged.
+- Not located (left without coordinates, listed in `LOCATION-NOT-VERIFIED.csv`): 160 — point outside its pincode 115,
+  too coarse 13, shared with another promoter 11, pincode without an OpenStreetMap boundary 9, outside Bengaluru 8, no coordinates 4.
+- Backup: `migration/backup/pg-snapshot-2026-10-15T13-15-25-207Z-before-locate-ready/`.
+
 ## Files
 
 - `PROJECT-CHANGE-LOG.csv` — one line per saved value: record id, field, old and new value, source, confidence, date, save status.
