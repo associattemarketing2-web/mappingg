@@ -38,8 +38,27 @@ mkdirSync(OUTDIR, { recursive: true });
 const url = new URL(process.env.DATABASE_URL);
 const mode = url.searchParams.get('sslmode');
 url.searchParams.delete('sslmode');
-const db = new pg.Client(mode === 'disable' ? { connectionString: process.env.DATABASE_URL } : { connectionString: url.toString(), ssl: mode ? true : { rejectUnauthorized: false }, query_timeout: 600000 });
-await db.connect();
+const cfg = mode === 'disable' ? { connectionString: process.env.DATABASE_URL } : { connectionString: url.toString(), ssl: mode ? true : { rejectUnauthorized: false } };
+// One client, replaced after a dropped/timed-out connection. Every write is safe to repeat (its
+// WHERE clause only matches a row that is still un-enriched), and success is decided by the read-back.
+let client = null;
+const db = {
+  async query(sql, params) {
+    for (let i = 0; ; i++) {
+      try {
+        if (!client) { client = new pg.Client({ ...cfg, query_timeout: 120000 }); await client.connect(); }
+        return await client.query(sql, params);
+      } catch (e) {
+        try { await client?.end(); } catch { /* already closed */ }
+        client = null;
+        if (i >= 4) throw e;
+        console.log(`  db retry ${i + 1}: ${e.message}`);
+        await new Promise((r) => setTimeout(r, 5000 * (i + 1)));
+      }
+    }
+  },
+  end: () => client?.end(),
+};
 
 // ---- helpers -------------------------------------------------------------------------------
 const SQFT = 10.7639;
@@ -207,6 +226,23 @@ const { rows } = await db.query(`SELECT id, doc FROM scraped_projects ORDER BY i
 console.log(`${rows.length} scraped rows read (${APPLY ? 'APPLY' : 'dry run'})`);
 if (APPLY && !existsSync(LOG)) writeFileSync(LOG, COLS.join(',') + '\n');
 
+// Reconcile: a run that stopped between a write and its log line leaves an enriched row with no log
+// lines. Log those from the saved enrichment (re-read from the database) before going on.
+if (APPLY) {
+  const logged = new Set(readFileSync(LOG, 'utf8').split('\n').slice(1).map((l) => l.slice(1, l.indexOf('"', 1))));
+  for (const row of rows.filter((r) => r.doc.enrichment && !logged.has(r.id))) {
+    const e = row.doc.enrichment, name = row.doc.data?.project_name || '';
+    const src = e.sources[0] + (e.source_note ? ` (${e.source_note})` : '');
+    const lines = [
+      ...Object.entries(e.fields).map(([k, v]) => [row.id, name, `enrichment.${k}`, '', v, src, e.source_type, 'high', e.enriched_at, 'saved_verified (logged on reconcile)']),
+      ...Object.entries(e.data_filled || {}).map(([k, v]) => [row.id, name, `data.${k}`, v.old ?? '', v.new, src, e.source_type, 'high', e.enriched_at, 'saved_verified (logged on reconcile)']),
+      ...(e.review_required || []).map((r) => [row.id, name, `data.${r.field}`, r.current, r.registry, src, e.source_type, 'conflict', e.enriched_at, 'review_required']),
+    ];
+    appendFileSync(LOG, lines.map((l) => l.map(csv).join(',')).join('\n') + '\n');
+    console.log(`Reconciled log for ${row.id} (enriched ${e.enriched_at})`);
+  }
+}
+
 const stats = { total: rows.length, processed: 0, enriched: 0, skipped: 0, already: 0, failed: 0, fields: 0, data_fills: 0, review_rows: 0, skip_reasons: {} };
 let writes = 0;
 for (const row of rows) {
@@ -245,9 +281,10 @@ for (const row of rows) {
   // Read back and compare.
   const back = (await db.query(`SELECT doc FROM scraped_projects WHERE id = $1`, [row.id])).rows[0]?.doc;
   // jsonb does not keep key order, so compare canonical (key-sorted) JSON.
-  const ok = res.rowCount === 1 && back && canon(back.enrichment) === canon(enrichment) && canon(back.data) === canon(data)
+  // (rowCount can be 0 when a retried UPDATE had already committed; the read-back decides.)
+  const ok = !!back && canon(back.enrichment) === canon(enrichment) && canon(back.data) === canon(data)
     && canon(back.original) === canon(row.doc.original) && back.id === row.doc.id;
-  const status = ok ? 'saved_verified' : res.rowCount === 1 ? 'saved_mismatch' : 'not_saved_row_changed';
+  const status = ok ? 'saved_verified' : back?.enrichment ? 'saved_mismatch' : 'not_saved_row_changed';
   if (ok) { stats.enriched++; stats.fields += enrichment.updated_fields.length; stats.data_fills += Object.keys(p.fills).length; if (p.review.length) stats.review_rows++; }
   else stats.failed++;
   writes++;
