@@ -83,7 +83,14 @@ export async function listScraped(): Promise<{ rows: Doc[]; imported_at: string 
       'imported_at', doc->>'imported_at', 'dataset_generated', doc->>'dataset_generated',
       'enrichment_status', doc->'enrichment'->>'review_status', 'enriched_at', doc->'enrichment'->>'enriched_at',
       'enriched_fields', jsonb_array_length(coalesce(doc->'enrichment'->'updated_fields', '[]'::jsonb)),
-      'enrichment_review', jsonb_array_length(coalesce(doc->'enrichment'->'review_required', '[]'::jsonb))) AS doc FROM scraped_projects`);
+      'enrichment_review', jsonb_array_length(coalesce(doc->'enrichment'->'review_required', '[]'::jsonb)),
+      -- just the facts readyGaps() looks at
+      'ready_e', CASE WHEN doc->'enrichment' IS NULL THEN NULL ELSE jsonb_build_object('review_required', doc->'enrichment'->'review_required',
+        'fields', jsonb_strip_nulls(jsonb_build_object('configurations', doc->'enrichment'->'fields'->'configurations',
+          'total_units', doc->'enrichment'->'fields'->'total_units', 'total_plots', doc->'enrichment'->'fields'->'total_plots',
+          'proposed_completion', doc->'enrichment'->'fields'->'proposed_completion', 'project_cost', doc->'enrichment'->'fields'->'project_cost',
+          'land_area', doc->'enrichment'->'fields'->'land_area', 'pincode', doc->'enrichment'->'fields'->'pincode',
+          'registry_project_status', doc->'enrichment'->'fields'->'registry_project_status'))) END) AS doc FROM scraped_projects`);
   const subIds = res.rows.map((r) => r.doc.submission_id).filter(Boolean);
   const subs = new Map<string, Doc>();
   if (subIds.length) {
@@ -121,6 +128,7 @@ export async function listScraped(): Promise<{ rows: Doc[]; imported_at: string 
       enriched_fields: doc.enriched_fields || 0, enrichment_review: doc.enrichment_review || 0 };
     for (const k of LIST_FIELDS) row[k] = d[k] ?? null;
     row.pin_check = d.pin_check || doc.pin_check || null;
+    if (doc.ready_e) row.ready_gaps = readyGaps(d, doc.ready_e);
     return row;
   });
   return { rows, imported_at, dataset_generated };
@@ -183,6 +191,28 @@ export function enrichmentForProject(e: Doc | undefined): { patch: Doc; details:
   ];
   const details = rows.filter(([, v]) => v != null && String(v).trim() !== '').map(([label, v]) => ({ label, value: String(v) }));
   return { patch, details };
+}
+
+const CLOSED = /Lapsed|Withdrawn|Revoked|Transferred|Superseded/i;
+/**
+ * Why an enriched row is not complete enough to go live ([] = complete): every key fact present and taken
+ * from the registry, no conflict with the list, a configuration the project form knows, a completion date
+ * still ahead, and a registration that is not closed. Logo and location are shown separately in the admin.
+ */
+export function readyGaps(d: Doc, e: Doc | undefined, today = new Date().toISOString().slice(0, 10)): string[] {
+  if (!e) return ['Not enriched'];
+  const f: Doc = e.fields || {}, g: string[] = [];
+  if ((e.review_required || []).length) g.push('Registry differs from the list (conflict)');
+  if (!enrichmentForProject(e).patch.configurations) g.push('No configuration matching the project form');
+  if (f.total_units == null && f.total_plots == null) g.push('No unit / plot count');
+  if (!f.proposed_completion) g.push('No proposed completion date');
+  else if (f.proposed_completion < today) g.push('Proposed completion date has passed');
+  if (!f.project_cost) g.push('No project cost');
+  if (!f.land_area) g.push('No land area');
+  if (!(d.pincode || f.pincode)) g.push('No pincode');
+  if (!d.project_name || !d.developer_name || !d.rera_number || !d.locality) g.push('Name, developer, RERA no. or locality missing');
+  if (CLOSED.test(d.status_category || '') || f.registry_project_status === 'Completed') g.push('Registration closed or project completed');
+  return g;
 }
 
 /** One row with both copies, for the editor. */

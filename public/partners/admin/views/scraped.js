@@ -23,7 +23,7 @@ const stateBadge = s => { if (!s) return '<span class="cell-sub">—</span>'; co
 const initials = s => esc(String(s || '?').replace(/[^A-Za-z0-9 ]/g, '').trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase() || '?');
 const logoCell = r => r.logo ? `<img class="scr-logo" src="${esc(r.logo)}" alt="" loading="lazy">` : `<span class="scr-logo none" title="No logo in Developers directory">${initials(r.developer_name)}</span>`;
 
-const state = { page: 0, term: '', city: '', pin: '', cat: '', has: '', rev: '', proj: '' };
+const state = { page: 0, term: '', city: '', pin: '', cat: '', has: '', logo: '', proj: '' };
 
 // "Added data" tab: the facts added from the official registry project pages, one column per fact.
 const HAS = { configurations: 'Configurations', unit_mix: 'Unit mix', carpet: 'Carpet area', total_units: 'Total units', towers: 'Towers', total_plots: 'Plots',
@@ -35,6 +35,8 @@ const carpetText = f => Array.isArray(f.unit_mix) && f.unit_mix.some(u => u.avg_
   ? f.unit_mix.filter(u => u.avg_carpet_sqft || u.carpet_sqft_per_unit).map(u => `${u.type}: ${u.avg_carpet_sqft ? 'avg ' : ''}${sqft(u.avg_carpet_sqft || u.carpet_sqft_per_unit)} sq ft`).join(' · ')
   : f.carpet_area || f.total_carpet_area || '';
 const dash = '<span class="cell-sub">—</span>';
+// Complete and clean registry data (server: readyGaps in lib/scraped.ts).
+const isReady = r => Array.isArray(r.ready_gaps) && !r.ready_gaps.length;
 
 export async function renderScraped(page, params) {
   const tab = params.get('tab') || 'all';
@@ -50,7 +52,7 @@ export async function renderScraped(page, params) {
   const live = all.filter(r => !r.deleted), added = live.filter(r => r.submission_id), deleted = all.filter(r => r.deleted);
   const enriched = live.filter(r => r.enrichment_status === 'Pending Review');
   const base = tab === 'added' ? added : tab === 'deleted' ? deleted : tab === 'enriched' ? enriched
-    : tab === 'data' ? live.filter(r => factsById.has(r.id)).map(r => ({ ...r, facts: factsById.get(r.id) })) : live;
+    : tab === 'data' ? live.filter(r => factsById.has(r.id) && isReady(r)).map(r => ({ ...r, facts: factsById.get(r.id) })) : live;
 
   page.innerHTML = '';
   const head = h(`<div class="page-head">
@@ -67,7 +69,7 @@ export async function renderScraped(page, params) {
   page.appendChild(h(`<div class="tabs" role="tablist">
     <a class="tab ${tab === 'all' ? 'on' : ''}" href="#/scraped?tab=all">All scraped data<span class="n">${live.length}</span></a>
     <a class="tab ${tab === 'enriched' ? 'on' : ''}" href="#/scraped?tab=enriched" title="Facts added from the official registry project pages. Not on the map; review before adding to Projects.">Enriched — Review Pending<span class="n">${enriched.length}</span></a>
-    <a class="tab ${tab === 'data' ? 'on' : ''}" href="#/scraped?tab=data" title="The data added to each enriched project, one column per fact. Check it, then add to Projects / publish.">Added data — Check &amp; go live<span class="n">${live.filter(r => r.enrichment_status).length}</span></a>
+    <a class="tab ${tab === 'data' ? 'on' : ''}" href="#/scraped?tab=data" title="Only enriched records whose registry data is complete and clean, one column per fact. Check them, then add to Projects / publish.">Added data — Check &amp; go live<span class="n">${live.filter(isReady).length}</span></a>
     <a class="tab ${tab === 'added' ? 'on' : ''}" href="#/scraped?tab=added">Added to Projects<span class="n">${added.length}</span></a>
     <a class="tab ${tab === 'deleted' ? 'on' : ''}" href="#/scraped?tab=deleted">Deleted<span class="n">${deleted.length}</span></a></div>`));
 
@@ -83,16 +85,21 @@ export async function renderScraped(page, params) {
       ${cats.map(c => `<option ${state.cat === c ? 'selected' : ''}>${esc(c)}</option>`).join('')}</select>
     ${tab === 'data' ? `<select class="input" style="max-width:200px" aria-label="Added fact" data-f="has"><option value="">Any added data</option>
       ${Object.entries(HAS).map(([k, l]) => `<option value="${k}" ${state.has === k ? 'selected' : ''}>Has ${esc(l.toLowerCase())} (${base.filter(r => hasFact(r.facts.fields || {}, k)).length})</option>`).join('')}</select>
-    <select class="input" style="max-width:220px" aria-label="Conflicts" data-f="rev"><option value="">Conflicts: any</option>
-      <option value="clean" ${state.rev === 'clean' ? 'selected' : ''}>No conflict (${base.filter(r => !r.facts.review_required.length).length})</option>
-      <option value="conflict" ${state.rev === 'conflict' ? 'selected' : ''}>Needs check — registry differs (${base.filter(r => r.facts.review_required.length).length})</option></select>
+    <select class="input" style="max-width:220px" aria-label="Developer logo" data-f="logo"><option value="">Developer logo: any</option>
+      <option value="yes" ${state.logo === 'yes' ? 'selected' : ''}>Logo matched (${base.filter(r => r.logo).length})</option>
+      <option value="no" ${state.logo === 'no' ? 'selected' : ''}>No logo in Developers (${base.filter(r => !r.logo).length})</option></select>
     <select class="input" style="max-width:200px" aria-label="Projects" data-f="proj"><option value="">Projects: any</option>
       <option value="not" ${state.proj === 'not' ? 'selected' : ''}>Not added yet (${base.filter(r => !r.submission_id).length})</option>
       <option value="added" ${state.proj === 'added' ? 'selected' : ''}>Added, not live (${base.filter(r => r.submission_id && r.project_state !== 'live').length})</option>
       <option value="live" ${state.proj === 'live' ? 'selected' : ''}>Live on map (${base.filter(r => r.project_state === 'live').length})</option></select>` : ''}
     <button class="btn ghost sm" type="button" data-a="selall">Select all matching</button>
   </div>`);
-  if (tab === 'data') page.appendChild(h(`<p class="cell-sub" style="margin:-4px 0 10px">Facts read from the official registry project page (RERA Karnataka / HARERA). Prices are not published by RERA; “Project cost” is the cost declared to RERA. “Add to Projects” copies these facts into the project (configurations, units, towers, land area, amenities, and the rest under Additional details) — check them in the Review queue, then publish.</p>`));
+  if (tab === 'data') page.appendChild(h(`<p class="cell-sub" style="margin:-4px 0 10px"><b>Only complete, clean records are listed:</b> configuration, units, completion date still ahead, project cost, land area and pincode all from the registry, no conflict with the registry list, registration not lapsed / withdrawn / revoked and project not completed.
+    ${(() => { const gaps = {}; live.filter(r => r.ready_gaps?.length).forEach(r => r.ready_gaps.forEach(g => { gaps[g] = (gaps[g] || 0) + 1; }));
+      const n = live.filter(r => r.ready_gaps?.length).length;
+      return n ? `<span title="${esc(Object.entries(gaps).sort((a, b) => b[1] - a[1]).map(([g, c]) => `${g}: ${c}`).join('\n'))}" style="text-decoration:underline dotted">${n.toLocaleString()} other enriched records are left out</span> (still in the Enriched tab). ` : ''; })()}
+    The registry has no photos: add real photos before publishing. Check the developer logo and the location pin of each record.
+    Facts are from the official registry project page (RERA Karnataka / HARERA). Prices are not published by RERA; “Project cost” is the cost declared to RERA. “Add to Projects” copies these facts into the project (configurations, units, towers, land area, amenities, and the rest under Additional details) — check them in the Review queue, then publish.</p>`));
   page.appendChild(toolbar);
 
   const actions = tab === 'deleted' ? [{ act: 'restore', label: 'Restore' }]
@@ -110,7 +117,7 @@ export async function renderScraped(page, params) {
       && (!state.pin || (state.pin === 'ready' ? READY.has(r.pin_check) : r.pin_check === state.pin))
       && (!state.cat || r.status_category === state.cat)
       && (tab !== 'data' || ((!state.has || hasFact(r.facts.fields || {}, state.has))
-        && (!state.rev || (state.rev === 'conflict') === r.facts.review_required.length > 0)
+        && (!state.logo || (state.logo === 'yes') === !!r.logo)
         && (!state.proj || (state.proj === 'not' ? !r.submission_id : state.proj === 'live' ? r.project_state === 'live' : r.submission_id && r.project_state !== 'live'))))
       && (!t ||[r.project_name, r.developer_name, r.rera_number, r.locality, r.district, r.pincode, CITY_LABEL[r.city]].some(x => String(x || '').toLowerCase().includes(t))));
   };
@@ -122,7 +129,7 @@ export async function renderScraped(page, params) {
     const shown = list.slice(state.page * PAGE, state.page * PAGE + PAGE);
     if (!list.length) { wrap.innerHTML = `<div class="pad muted" style="text-align:center;padding:48px">${base.length ? 'No matches.' : tab === 'added' ? 'Nothing added to Projects yet.' : tab === 'enriched' || tab === 'data' ? 'No enriched records waiting for review.' : 'Nothing here.'}</div>`; pager.innerHTML = ''; return; }
     wrap.innerHTML = tab === 'data'
-      ? `<table class="tbl scr-data"><thead><tr><th>Project</th><th>Configurations · units</th><th>Carpet area (RERA)</th><th>Land area</th><th>Start → completion</th><th>Project cost (RERA)</th><th>Amenities</th><th>Registry status</th><th>Check</th><th>Location pin</th><th>Projects</th></tr></thead><tbody></tbody></table>`
+      ? `<table class="tbl scr-data"><thead><tr><th>Logo</th><th>Project</th><th>Configurations · units</th><th>Carpet area (RERA)</th><th>Land area</th><th>Start → completion</th><th>Project cost (RERA)</th><th>Amenities</th><th>Registry status</th><th>Location pin</th><th>Projects</th></tr></thead><tbody></tbody></table>`
       : `<table class="tbl"><thead><tr><th></th><th>Project</th><th>RERA no.</th><th>Location</th><th>Registered</th><th>Registry status</th><th>Location pin</th><th>Projects</th><th>Pin no.</th></tr></thead><tbody></tbody></table>`;
     $('thead tr', wrap).prepend(bulk.headCell(shown.map(r => r.id)));
     const tb = $('tbody', wrap);
@@ -164,8 +171,8 @@ function dataRow(r) {
   const units = [f.total_units != null && `${sqft(f.total_units)} units`, f.towers != null && `${f.towers} tower${f.towers === 1 ? '' : 's'}`, f.total_plots != null && `${sqft(f.total_plots)} plots`].filter(Boolean).join(' · ');
   const types = f.configurations || (Array.isArray(f.unit_mix) ? f.unit_mix.map(u => u.type).join(', ') : '') || f.project_sub_type || '';
   const amen = Array.isArray(f.amenities) ? f.amenities : [];
-  const conflicts = x.review_required || [];
   return h(`<tr class="clickable" tabindex="0">
+    <td style="width:60px;text-align:center">${logoCell(r)}<div class="cell-sub" style="font-size:11px">${r.logo ? 'Matched' : 'No logo'}</div></td>
     <td><div class="cell-title">${esc(r.project_name || 'Untitled')}</div><div class="cell-sub">${esc(r.developer_name || 'Developer not shown')}</div>
       <div class="cell-sub" style="white-space:nowrap">${esc(r.rera_number || '—')} · ${esc([r.locality, CITY_LABEL[r.city]].filter(Boolean).join(', '))}</div></td>
     <td>${types ? esc(types) : dash}${units ? `<div class="cell-sub">${esc(units)}</div>` : ''}${f.plot_sizes ? `<div class="cell-sub">Plots: ${esc([].concat(f.plot_sizes).join(', '))}</div>` : ''}</td>
@@ -175,7 +182,6 @@ function dataRow(r) {
     <td class="cell-sub">${esc(String(f.project_cost || '').replace(/\s*\(.*\)$/, '')) || dash}</td>
     <td class="cell-sub" title="${esc(amen.join(', '))}">${amen.length ? `${amen.length}: ${esc(amen.slice(0, 3).join(', '))}${amen.length > 3 ? '…' : ''}` : dash}</td>
     <td class="cell-sub">${esc(f.registry_project_status || '') || dash}</td>
-    <td>${conflicts.length ? `<span class="badge warn" title="${esc(conflicts.map(c => `${c.field}: current “${c.current}”, registry “${c.registry}” — ${c.reason}`).join('\n'))}">Check ${conflicts.length}</span>` : '<span class="badge ok">OK</span>'}</td>
     <td>${pinBadge(r.pin_check)}</td>
     <td>${stateBadge(r.project_state)}</td></tr>`);
 }
