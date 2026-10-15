@@ -109,6 +109,24 @@ pre-enrichment snapshot:
 Undo: `migration/enrichment/scraped/revert.mjs <snapshot> --all --apply` removes the enrichment and restores `data`
 from the snapshot (skipping any row edited since).
 
+### Correction (15 Oct 2026, 11:40 UTC)
+
+On 188 older HARERA pages a "View Certificate" link sits before the registration status, and the first parser
+saved the link text as `registry_project_status`. `migration/enrichment/scraped/fix-hr-status.mjs` re-read the status
+from the cached official pages with the fixed parser (155 "APPROVED AND CERTIFICATE UPLOADED", 33 "Extension
+Certificate Uploaded"). Only that one enrichment field changed; every row was verified by read-back; 188 lines were added
+to the change log (`corrected_verified`). Backup: `migration/backup/pg-snapshot-2026-10-15T11-40-33-748Z-before-hr-status-fix/`.
+Live tables re-checked at 11:48 UTC: hashes unchanged.
+
+## Review in the admin
+
+Super admin → Scraped data → **Added data — Check & go live** lists every enriched record with the added facts in
+columns (configurations/units, RERA carpet area, land area, start → completion, project cost, amenities, registry
+status, conflicts). Filters: "has <fact>", conflicts, Projects state; CSV export has one column per fact.
+"Add to Projects" now copies the registry facts into the new submission: configurations that match a form option
+exactly, total units, towers, land area (acres) and matching amenities as fields; the rest (project cost, unit mix,
+carpet area, approvals, dates, website, address) under Additional details. It still goes to the Review queue first.
+
 ## Files
 
 - `PROJECT-CHANGE-LOG.csv` — one line per saved value: record id, field, old and new value, source, confidence, date, save status.

@@ -126,6 +126,65 @@ export async function listScraped(): Promise<{ rows: Doc[]; imported_at: string 
   return { rows, imported_at, dataset_generated };
 }
 
+/** The registry facts of every enriched row, for the "Added data" tab (coordinates and description left out). */
+export async function listEnriched(): Promise<Doc[]> {
+  await ensureTable();
+  const res = await query<{ id: string; e: Doc }>(`SELECT id, jsonb_build_object(
+      'fields', (doc->'enrichment'->'fields') - 'registry_latitude' - 'registry_longitude' - 'project_description',
+      'review_required', coalesce(doc->'enrichment'->'review_required', '[]'::jsonb),
+      'source', doc->'enrichment'->'sources'->0, 'regulator', doc->'original'->>'regulator',
+      'data_filled', (SELECT coalesce(jsonb_agg(k), '[]'::jsonb) FROM jsonb_object_keys(coalesce(doc->'enrichment'->'data_filled', '{}'::jsonb)) k)) AS e
+    FROM scraped_projects WHERE doc->'enrichment' IS NOT NULL AND NOT coalesce((doc->>'deleted')::boolean, false)`);
+  return res.rows.map(({ id, e }) => ({ id, ...e }));
+}
+
+// Project form options (public/partners/shared/fields.js) the registry values are matched to exactly.
+const CONFIG_OPTIONS = ['Studio', '1 BHK', '1.5 BHK', '2 BHK', '2.5 BHK', '3 BHK', '3.5 BHK', '4 BHK', '5+ BHK', 'Villa', 'Row House', 'Penthouse', 'Duplex', 'Plot', 'Shop', 'Office', 'Showroom', 'Warehouse', 'Land'];
+const AMENITY_OPTIONS: Record<string, string> = { 'swimming pool': 'Swimming Pool', gym: 'Gym', 'power backup': 'Power Backup', 'cctv surveillance': 'CCTV', cctv: 'CCTV',
+  'club house': 'Clubhouse', clubhouse: 'Clubhouse', 'rain water harvesting': 'Rainwater Harvesting', 'rainwater harvesting': 'Rainwater Harvesting', lifts: 'Lifts', lift: 'Lifts' };
+const unitMixText = (mix: Doc[]) => mix.map((u) => {
+  const sqft = u.avg_carpet_sqft ?? u.carpet_sqft_per_unit, sqm = u.avg_carpet_sqm ?? u.carpet_sqm_per_unit;
+  return `${u.type}: ${u.units} units${sqm ? `, ${u.avg_carpet_sqm ? 'avg ' : ''}${sqm} sq m (${Number(sqft).toLocaleString('en-IN')} sq ft) carpet` : ''}`;
+}).join('; ');
+
+/**
+ * Registry facts of an enriched row for a new Projects submission: only values the registry states
+ * (configurations that match a form option exactly, units, towers, acres, amenities that match an option),
+ * everything else as labelled "additional details". Carpet averages are not turned into a min/max range.
+ */
+export function enrichmentForProject(e: Doc | undefined): { patch: Doc; details: { label: string; value: string }[] } {
+  const f: Doc = e?.fields || {};
+  const patch: Doc = {};
+  if (!e) return { patch, details: [] };
+  // "3BHK + 3T" → "3 BHK", "6 BHK" → "5+ BHK", "Residential plots" → "Plot"; anything else is left to the unit mix.
+  const configs = String(f.configurations || '').split(',').map((s) => s.trim()
+    .replace(/^(\d(?:\.5)?)\s*BHK\b.*$/i, (_m, n) => (Number(n) >= 5 ? '5+ BHK' : `${n} BHK`)).replace(/^(residential\s+)?plots?$/i, 'Plot'))
+    .map((s) => CONFIG_OPTIONS.find((o) => o.toLowerCase() === s.toLowerCase())).filter(Boolean);
+  if (configs.length) patch.configurations = [...new Set(configs)];
+  if (Number.isFinite(f.total_units) && f.total_units > 0) patch.total_units = f.total_units;
+  if (Number.isFinite(f.towers) && f.towers > 0) patch.towers = f.towers;
+  const acres = String(f.land_area || '').match(/([\d,]+(?:\.\d+)?)\s*acres/i);
+  if (acres) patch.land_area_acres = Number(acres[1].replace(/,/g, ''));
+  const amen = (Array.isArray(f.amenities) ? f.amenities : []).map((a: string) => AMENITY_OPTIONS[String(a).toLowerCase().trim()]).filter(Boolean);
+  if (amen.length) patch.amenities = [...new Set(amen)];
+  const rows: [string, unknown][] = [
+    ['Project cost (declared to RERA, not a sale price)', f.project_cost && String(f.project_cost).replace(/\s*\(.*\)$/, '')],
+    ['Unit mix (RERA)', Array.isArray(f.unit_mix) && f.unit_mix.length ? unitMixText(f.unit_mix) : ''],
+    ['Carpet area (RERA)', Array.isArray(f.unit_mix) && f.unit_mix.some((u: Doc) => u.avg_carpet_sqm ?? u.carpet_sqm_per_unit) ? '' : f.carpet_area],
+    ['Total carpet area (RERA)', f.total_carpet_area],
+    ['Land area (RERA)', f.land_area], ['Plot sizes (RERA)', Array.isArray(f.plot_sizes) ? f.plot_sizes.join(', ') : f.plot_sizes],
+    ['Total plots (RERA)', f.total_plots], ['Project sub-type (RERA)', f.project_sub_type],
+    ['Amenities (RERA)', Array.isArray(f.amenities) ? f.amenities.join(', ') : f.amenities],
+    ['Project start date (RERA)', f.project_start_date], ['Proposed completion (RERA)', f.proposed_completion],
+    ['Plan approved by', f.approving_authority], ['Approved plan no.', f.approved_plan_number], ['Plan approval date', f.plan_approval_date],
+    ['DTCP licence', f.dtcp_license], ['Layout plan approval', f.layout_plan_approval_date], ['Building plan approval', f.building_plan_approval_date],
+    ['Water source (RERA)', f.water_source], ['Developer website (as declared to RERA)', f.developer_website],
+    ['Registry project status (project page)', f.registry_project_status], ['Full address (RERA)', f.full_address],
+  ];
+  const details = rows.filter(([, v]) => v != null && String(v).trim() !== '').map(([label, v]) => ({ label, value: String(v) }));
+  return { patch, details };
+}
+
 /** One row with both copies, for the editor. */
 export async function getScraped(id: string): Promise<Doc | null> {
   await ensureTable();

@@ -142,7 +142,7 @@ export function parseHr(detail, form) {
     // Older registrations show a "View Certificate" link before the number ("353 OF 2017 DATED …").
     const cell = detail.slice(st + 1, st + 4).find((x) => x !== 'View Certificate') || '';
     r.reg_no = cell.replace(/\s+DATED.*$/i, '').trim() || null;
-    r.registry_status = detail.slice(st + 1, st + 8).find((x) => /APPROVED|REJECT|LAPSE|REVOK|WITHDRAW|CERTIFICATE|PENDING/i.test(x)) || null;
+    r.registry_status = detail.slice(st + 1, st + 8).find((x) => x !== 'View Certificate' && /APPROVED|REJECT|LAPSE|REVOK|WITHDRAW|CERTIFICATE|PENDING/i.test(x)) || null;
   }
   if (!form || !form.length) return { ...r, ok: !!r.registry_project_name, form: false };
 

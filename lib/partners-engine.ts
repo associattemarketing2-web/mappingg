@@ -2,7 +2,7 @@ import { randomUUID, randomBytes } from 'crypto';
 import { getDb, type Db } from './mongodb';
 import { deleteProjectPin, hideProjectPin, syncProjectPin } from './intake-pins';
 import { moveToTrash } from './trash';
-import { PIN_OK, datasetInfo, getScraped, importDataset, listScraped, markAdded, resetScraped, rowsForAdd, setDeleted, updateScraped } from './scraped';
+import { PIN_OK, datasetInfo, enrichmentForProject, getScraped, importDataset, listEnriched, listScraped, markAdded, resetScraped, rowsForAdd, setDeleted, updateScraped } from './scraped';
 
 // =============================================================================
 // Partners intake engine (MongoDB)
@@ -642,6 +642,9 @@ const RPCS: Record<string, RpcFn> = {
   async admin_scraped_list() {
     try { return { data: await listScraped(), error: null, status: 200 }; } catch (e) { return err(e instanceof Error ? e.message : 'Could not load', 500); }
   },
+  async admin_scraped_enriched() {
+    try { return { data: await listEnriched(), error: null, status: 200 }; } catch (e) { return err(e instanceof Error ? e.message : 'Could not load', 500); }
+  },
   async admin_scraped_get(p) {
     const doc = await getScraped(String(p.p_id || ''));
     return doc ? { data: doc, error: null, status: 200 } : err('Record not found', 404);
@@ -690,14 +693,20 @@ const RPCS: Record<string, RpcFn> = {
         { label: 'Registration date', value: d.registration_date || 'Not shown by the registry' },
         { label: 'Location check', value: d.pin_reason || '' },
       ].filter((x) => x.value);
+      // Facts from the official registry project page (Scraped data → Added data), reviewed by the team before adding.
+      const enr = enrichmentForProject(doc.enrichment);
+      details.push(...enr.details);
       const sub = await prepareInsertDoc(db, 'project_submissions', {
         project_name: d.project_name, developer_name: d.developer_name || null, project_type: d.project_type || null,
         country: o.country || 'India', state: o.state || null, city: CITY_LABEL[d.city] || d.city || null, locality: d.locality || null,
         address: [d.address, d.pincode].filter(Boolean).join(' - ') || null, lat: d.lat, lng: d.lng,
         rera_numbers: d.rera_number ? [d.rera_number] : [], rera_verified_on: o.verified_on || null,
         possession_date_rera: month(d.revised_completion || d.original_completion),
+        ...enr.patch,
         additional_details: details, status: 'in_review', source: 'scraped', scraped_id: doc.id,
-        builder_remarks: 'Added from Scraped data (official RERA registry). No images, price or configuration in the source - add them before publishing.',
+        builder_remarks: doc.enrichment
+          ? 'Added from Scraped data (official RERA registry, with facts from the registry project page). No images or price in the source - add them before publishing.'
+          : 'Added from Scraped data (official RERA registry). No images, price or configuration in the source - add them before publishing.',
       });
       await subs.insertOne(sub);
       await logEvent(db, sub.id, 'created', 'admin', { source: 'scraped', scraped_id: doc.id });
@@ -732,7 +741,7 @@ export const ADMIN_RPCS = new Set([
   'is_admin', 'admin_counts', 'admin_set_status', 'admin_request_changes', 'admin_publish',
   'admin_unpublish', 'admin_find_duplicates', 'admin_regenerate_link', 'admin_delete_submissions', 'admin_delete_builders',
   'admin_scraped_info', 'admin_scraped_import', 'admin_scraped_list', 'admin_scraped_get', 'admin_scraped_update',
-  'admin_scraped_reset', 'admin_scraped_delete', 'admin_scraped_add',
+  'admin_scraped_reset', 'admin_scraped_delete', 'admin_scraped_add', 'admin_scraped_enriched',
 ]);
 export const PUBLIC_RPCS = new Set(['link_open', 'link_save_submission', 'link_delete_draft']);
 
