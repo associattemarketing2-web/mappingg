@@ -13,7 +13,9 @@ import { directory, normDev } from './developers';
 //   original - exactly what the registry showed (refreshed on every import)
 //   data     - the working copy the team edits
 // A re-import refreshes `original` everywhere and `data` only on rows nobody
-// has edited. Deleting is soft (`deleted: true`) so a refresh never brings a
+// has edited or enriched. `enrichment` holds facts read from the official
+// registry project pages (migration/enrichment/scraped/apply.mjs), waiting for
+// review; it never puts a row on the map. Deleting is soft (`deleted: true`) so a refresh never brings a
 // deleted row back and it can be restored.
 
 type Doc = Record<string, any>;
@@ -55,7 +57,8 @@ export async function importDataset(): Promise<{ total: number; added: number; r
       FROM jsonb_array_elements($1::jsonb) e
       ON CONFLICT (id) DO UPDATE SET doc = scraped_projects.doc
         || jsonb_build_object('original', EXCLUDED.doc->'original', 'imported_at', $2::text, 'dataset_generated', $3::text)
-        || CASE WHEN coalesce(scraped_projects.doc->>'edited_at', '') = '' THEN jsonb_build_object('data', EXCLUDED.doc->'original') ELSE '{}'::jsonb END
+        || CASE WHEN coalesce(scraped_projects.doc->>'edited_at', '') = '' AND scraped_projects.doc->'enrichment' IS NULL
+             THEN jsonb_build_object('data', EXCLUDED.doc->'original') ELSE '{}'::jsonb END
       RETURNING (xmax = 0) AS inserted`, [JSON.stringify(chunk), now, ds.generated]);
     for (const row of res.rows) row.inserted ? added++ : refreshed++;
   }
@@ -77,7 +80,10 @@ export async function listScraped(): Promise<{ rows: Doc[]; imported_at: string 
   const res = await query<{ id: string; doc: Doc }>(`SELECT id, jsonb_build_object(
       'data', doc->'data', 'pin_check', doc->'original'->>'pin_check', 'deleted', coalesce((doc->>'deleted')::boolean, false),
       'edited_at', doc->>'edited_at', 'submission_id', doc->>'submission_id', 'added_at', doc->>'added_at',
-      'imported_at', doc->>'imported_at', 'dataset_generated', doc->>'dataset_generated') AS doc FROM scraped_projects`);
+      'imported_at', doc->>'imported_at', 'dataset_generated', doc->>'dataset_generated',
+      'enrichment_status', doc->'enrichment'->>'review_status', 'enriched_at', doc->'enrichment'->>'enriched_at',
+      'enriched_fields', jsonb_array_length(coalesce(doc->'enrichment'->'updated_fields', '[]'::jsonb)),
+      'enrichment_review', jsonb_array_length(coalesce(doc->'enrichment'->'review_required', '[]'::jsonb))) AS doc FROM scraped_projects`);
   const subIds = res.rows.map((r) => r.doc.submission_id).filter(Boolean);
   const subs = new Map<string, Doc>();
   if (subIds.length) {
@@ -110,7 +116,9 @@ export async function listScraped(): Promise<{ rows: Doc[]; imported_at: string 
     const row: Doc = { id, deleted: doc.deleted, edited: !!doc.edited_at, added_at: doc.added_at || null, submission_id: doc.submission_id || null,
       project_state: !doc.submission_id ? null : !sub ? 'removed' : sub.project && live.has(sub.project) ? 'live' : sub.status,
       pin_number: sub?.project ? pinNo.get(sub.project) ?? null : null,
-      logo: logos.get(normDev(d.developer_name)) || null };
+      logo: logos.get(normDev(d.developer_name)) || null,
+      enrichment_status: doc.enrichment_status || null, enriched_at: doc.enriched_at || null,
+      enriched_fields: doc.enriched_fields || 0, enrichment_review: doc.enrichment_review || 0 };
     for (const k of LIST_FIELDS) row[k] = d[k] ?? null;
     row.pin_check = d.pin_check || doc.pin_check || null;
     return row;

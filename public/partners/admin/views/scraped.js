@@ -35,7 +35,8 @@ export async function renderScraped(page, params) {
   if (!all.length) return renderEmpty(page);
 
   const live = all.filter(r => !r.deleted), added = live.filter(r => r.submission_id), deleted = all.filter(r => r.deleted);
-  const base = tab === 'added' ? added : tab === 'deleted' ? deleted : live;
+  const enriched = live.filter(r => r.enrichment_status === 'Pending Review');
+  const base = tab === 'added' ? added : tab === 'deleted' ? deleted : tab === 'enriched' ? enriched : live;
 
   page.innerHTML = '';
   const head = h(`<div class="page-head">
@@ -51,6 +52,7 @@ export async function renderScraped(page, params) {
   </div>`));
   page.appendChild(h(`<div class="tabs" role="tablist">
     <a class="tab ${tab === 'all' ? 'on' : ''}" href="#/scraped?tab=all">All scraped data<span class="n">${live.length}</span></a>
+    <a class="tab ${tab === 'enriched' ? 'on' : ''}" href="#/scraped?tab=enriched" title="Facts added from the official registry project pages. Not on the map; review before adding to Projects.">Enriched — Review Pending<span class="n">${enriched.length}</span></a>
     <a class="tab ${tab === 'added' ? 'on' : ''}" href="#/scraped?tab=added">Added to Projects<span class="n">${added.length}</span></a>
     <a class="tab ${tab === 'deleted' ? 'on' : ''}" href="#/scraped?tab=deleted">Deleted<span class="n">${deleted.length}</span></a></div>`));
 
@@ -90,14 +92,14 @@ export async function renderScraped(page, params) {
     const pages = Math.max(1, Math.ceil(list.length / PAGE));
     if (state.page >= pages) state.page = 0;
     const shown = list.slice(state.page * PAGE, state.page * PAGE + PAGE);
-    if (!list.length) { wrap.innerHTML = `<div class="pad muted" style="text-align:center;padding:48px">${base.length ? 'No matches.' : tab === 'added' ? 'Nothing added to Projects yet.' : 'Nothing here.'}</div>`; pager.innerHTML = ''; return; }
+    if (!list.length) { wrap.innerHTML = `<div class="pad muted" style="text-align:center;padding:48px">${base.length ? 'No matches.' : tab === 'added' ? 'Nothing added to Projects yet.' : tab === 'enriched' ? 'No enriched records waiting for review.' : 'Nothing here.'}</div>`; pager.innerHTML = ''; return; }
     wrap.innerHTML = `<table class="tbl"><thead><tr><th></th><th>Project</th><th>RERA no.</th><th>Location</th><th>Registered</th><th>Registry status</th><th>Location pin</th><th>Projects</th><th>Pin no.</th></tr></thead><tbody></tbody></table>`;
     $('thead tr', wrap).prepend(bulk.headCell(shown.map(r => r.id)));
     const tb = $('tbody', wrap);
     for (const r of shown) {
       const tr = h(`<tr class="clickable" tabindex="0">
         <td style="width:52px">${logoCell(r)}</td>
-        <td><div class="cell-title">${esc(r.project_name || 'Untitled')}${r.edited ? ' <span class="tag-mini">Edited</span>' : ''}</div><div class="cell-sub">${esc(r.developer_name || 'Developer not shown')}</div></td>
+        <td><div class="cell-title">${esc(r.project_name || 'Untitled')}${r.edited ? ' <span class="tag-mini">Edited</span>' : ''}${r.enrichment_status ? ` <span class="tag-mini" title="${esc(`${r.enriched_fields} fields from the official registry · ${r.enrichment_status}${r.enrichment_review ? ` · ${r.enrichment_review} to review` : ''}`)}">Enriched</span>` : ''}</div><div class="cell-sub">${esc(r.developer_name || 'Developer not shown')}</div></td>
         <td class="cell-sub" style="white-space:nowrap">${esc(r.rera_number || '—')}</td>
         <td>${esc([r.locality, CITY_LABEL[r.city]].filter(Boolean).join(', '))}<div class="cell-sub">${esc([r.district, r.pincode].filter(Boolean).join(' · '))}</div></td>
         <td class="cell-sub">${r.registration_date ? esc(r.registration_date) : '<span title="The registry listing shows no date">—</span>'}</td>
@@ -179,6 +181,29 @@ async function bulkAction(act, ids, all) {
   }
 }
 
+// Facts read from the official registry project page (migration/enrichment/scraped/apply.mjs).
+const ENRICH_LABEL = { full_address: 'Full address', taluk: 'Taluk', tehsil: 'Tehsil', pincode: 'Pincode', project_description: 'Description',
+  project_sub_type: 'Project sub-type', registry_project_status: 'Registry project status', configurations: 'Configurations', carpet_area: 'Carpet area',
+  unit_mix: 'Unit mix', plot_sizes: 'Plot sizes', total_units: 'Total units', total_plots: 'Total plots', towers: 'Towers', land_area: 'Land area',
+  total_carpet_area: 'Total carpet area', amenities: 'Amenities', project_start_date: 'Start date', proposed_completion: 'Proposed completion',
+  approving_authority: 'Plan approved by', approved_plan_number: 'Approved plan no.', plan_approval_date: 'Plan approval date',
+  layout_plan_approval_date: 'Layout plan approval', building_plan_approval_date: 'Building plan approval', dtcp_license: 'DTCP licence',
+  project_cost: 'Project cost', water_source: 'Water source', developer_website: 'Developer website (as declared to RERA)',
+  registry_promoter_name: 'Promoter (detail page)', registry_latitude: 'Registry latitude', registry_longitude: 'Registry longitude' };
+function enrichmentBlock(e) {
+  if (!e) return '';
+  const val = (k, v) => k === 'unit_mix' ? v.map(u => `${u.type}: ${u.units} units${u.avg_carpet_sqm ? `, avg ${u.avg_carpet_sqm} sq m carpet` : u.carpet_sqm_per_unit ? `, ${u.carpet_sqm_per_unit} sq m carpet each` : ''}`).join('<br>')
+    : Array.isArray(v) ? esc(v.join(', '))
+    : k === 'developer_website' ? `<a href="${esc(/^https?:/i.test(v) ? v : `https://${v}`)}" target="_blank" rel="noopener nofollow">${esc(v)}</a>` : esc(String(v));
+  const filled = Object.keys(e.data_filled || {});
+  return `<div class="scr-enrich"><h4 style="margin:14px 0 6px">Enriched from the official registry <span class="badge warn">${esc(e.review_status || '')}</span></h4>
+    <p class="cell-sub" style="margin:0 0 6px">${esc(e.verification || '')} · ${esc(formatDate(e.enriched_at))}. Not on the map — review before adding to Projects.${filled.length ? ` Blank fields filled: ${esc(filled.join(', '))}.` : ''}</p>
+    <dl class="scr-facts">${Object.entries(e.fields || {}).map(([k, v]) => `<dt>${esc(ENRICH_LABEL[k] || k)}</dt><dd>${val(k, v)}</dd>`).join('')}
+      ${(e.review_required || []).length ? `<dt>Needs review</dt><dd>${e.review_required.map(r => `${esc(r.field)}: current “${esc(r.current)}”, registry “${esc(r.registry)}” — ${esc(r.reason)}`).join('<br>')}</dd>` : ''}
+      <dt>Sources</dt><dd>${(e.sources || []).map(u => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\//, ''))}</a>`).join('<br>')}${e.source_note ? `<div class="cell-sub">${esc(e.source_note)}</div>` : ''}</dd>
+    </dl></div>`;
+}
+
 // ------------------------------------------------------------------- editor
 const FIELDS = [
   ['project_name', 'Project name'], ['developer_name', 'Developer (legal name)'], ['project_type', 'Project type'], ['rera_number', 'RERA registration no.'],
@@ -217,6 +242,7 @@ async function openEditor(row, onDone) {
           <dt>Data notes</dt><dd class="cell-sub">${esc(o.notes || '')}</dd>
           ${doc.edited_at ? `<dt>Last edited</dt><dd>${esc(formatDate(doc.edited_at))}${doc.edited_by ? ` by ${esc(doc.edited_by)}` : ''}</dd>` : ''}
         </dl>
+        ${enrichmentBlock(doc.enrichment)}
       </div>
     </div>
     <div class="dialog-actions" style="justify-content:space-between">
@@ -281,7 +307,7 @@ async function openEditor(row, onDone) {
 }
 
 function exportCsv(rows) {
-  const cols = ['city', 'pin_number', 'project_name', 'developer_name', 'rera_number', 'locality', 'district', 'pincode', 'lat', 'lng', 'pin_check', 'registration_date', 'status', 'status_category', 'project_type', 'verification', 'project_state', 'edited', 'source_url'];
+  const cols = ['city', 'pin_number', 'project_name', 'developer_name', 'rera_number', 'locality', 'district', 'pincode', 'lat', 'lng', 'pin_check', 'registration_date', 'status', 'status_category', 'project_type', 'verification', 'project_state', 'edited', 'enrichment_status', 'enriched_at', 'enriched_fields', 'source_url'];
   const cell = v => { const s = v == null ? '' : String(v); return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
   const csv = [cols.join(','), ...rows.map(r => cols.map(c => cell(r[c])).join(','))].join('\n');
   const a = document.createElement('a');

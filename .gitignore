@@ -21,6 +21,8 @@
 /migration/backup/supabase-*/
 /migration/backup/pg-snapshot-*/
 /migration/backup/pg-export-*/
+# raw registry pages fetched by migration/enrichment/scraped/ (large; stay local)
+/migration/backup/scraped-enrichment-cache/
 
 # misc
 .DS_Store
