@@ -1,11 +1,12 @@
 // Download the real (Wikimedia Commons, CC-licensed) photos behind the blog
 // covers into migration/blog-photos/ and record their credits in
 // migration/blog-photos/credits.json. One-off: the photos are committed, so
-// seed-blogs.mjs never needs the network.
+// seed-blogs.mjs never needs the network. Photos already in credits.json are
+// skipped, so adding an article only downloads its new photo.
 //
 //   node migration/fetch-blog-photos.mjs
 
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
 
@@ -29,6 +30,8 @@ const PHOTOS = {
   'new-projects-in-kalyan-dombivli-palava-thane': 'Aerial view of completed developments at Palava today.jpg',
   'commercial-property-office-space-in-pune': 'World Trade Center, Kharadi.jpg',
   'upcoming-new-launch-projects-in-pune': 'Skyline of Pune.jpg',
+  'new-projects-in-bengaluru': 'Skyline of Varthur, Bangalore.jpg',
+  'new-projects-in-mumbai-andheri-borivali-south-mumbai': 'Mumbai Skyline with Bandra–Worli Sea Link 25 July 2018 (1).jpg',
 };
 
 const OUT = path.resolve('migration/blog-photos');
@@ -49,8 +52,9 @@ async function get(url, binary) {
   throw new Error(`failed: ${url}`);
 }
 
-const credits = {};
+const credits = JSON.parse(await readFile(path.join(OUT, 'credits.json'), 'utf8').catch(() => '{}'));
 for (const [slug, name] of Object.entries(PHOTOS)) {
+  if (credits[slug]?.title === name.replace(/\.[a-z]+$/i, '')) continue;
   const api = `https://commons.wikimedia.org/w/api.php?action=query&format=json&titles=${encodeURIComponent(`File:${name}`)}` +
     `&prop=imageinfo&iiprop=url|extmetadata&iiurlwidth=2000&iiextmetadatafilter=LicenseShortName|LicenseUrl|Artist`;
   const page = Object.values((await get(api)).query.pages)[0];

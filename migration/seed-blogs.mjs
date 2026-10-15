@@ -70,7 +70,8 @@ function makeHelpers(pins) {
   const href = (p) => `/projects/${projectSlug(p.title, localitiesOf(p.location)[0] || '', Number(p.number))}`;
   const locality = (p) => localitiesOf(p.location)[0] || 'Pune';
   const price = (p) => (p.price || '').trim() || 'Price on request';
-  const cleanRera = (r) => (r && /^P[A-Z0-9]{8,}/.test(r.trim()) ? r.trim() : '');
+  // MahaRERA (P52100054261, PR1264042501296) or Karnataka RERA (PRM/KA/RERA/…).
+  const cleanRera = (r) => (r && /^(P[A-Z0-9]{8,}|PRM\/KA\/RERA\/\d)/.test(r.trim()) ? r.trim() : '');
 
   /** <a> to a project page. */
   const link = (n, text) => {
@@ -78,8 +79,8 @@ function makeHelpers(pins) {
     return `<a href="${href(p)}">${esc(text || p.title)}</a>`;
   };
 
-  /** Comparison table of projects. */
-  const table = (numbers, caption) => {
+  /** Comparison table of projects. `reraLabel` names the RERA column (K-RERA outside Maharashtra). */
+  const table = (numbers, caption, reraLabel = 'MahaRERA no.') => {
     const rows = numbers
       .map(get)
       .map(
@@ -90,7 +91,7 @@ function makeHelpers(pins) {
       )
       .join('');
     return `<div class="table-scroll"><table><caption>${esc(caption)}</caption>` +
-      `<thead><tr><th>Project</th><th>Configuration</th><th>Starting price</th><th>Possession</th><th>MahaRERA no.</th></tr></thead>` +
+      `<thead><tr><th>Project</th><th>Configuration</th><th>Starting price</th><th>Possession</th><th>${esc(reraLabel)}</th></tr></thead>` +
       `<tbody>${rows}</tbody></table></div>`;
   };
 
@@ -1556,6 +1557,174 @@ ${h.table([168, 103, 119], 'Central and luxury launches')}
   };
 }
 
+function bengaluruArticle(h) {
+  const KRERA = 'K-RERA no.';
+  return {
+    slug: 'new-projects-in-bengaluru',
+    title: 'New Projects in Bengaluru (2026): Whitefield, Sarjapur–Anekal, North & South Bengaluru',
+    seo_title: 'New Projects in Bengaluru 2026: Prices & K-RERA',
+    seo_description:
+      '90+ new residential projects in Bengaluru — East (Whitefield), Anekal (Sarjapur), South, North & Yelahanka — with prices from ₹90 Lacs, possession dates and Karnataka RERA numbers.',
+    excerpt:
+      'Every Bengaluru project on our map, area by area: 2 BHK homes from ₹90 Lacs, premium 3 and 4 BHK homes by Sobha, Godrej, Lodha and Puravankara, plotted layouts, and the projects due first — with K-RERA numbers.',
+    tags: ['Bengaluru', 'Bangalore', 'New Projects', 'Whitefield', 'Sarjapur'],
+    cover: {
+      theme: 'forest',
+      kicker: 'City guide',
+      lines: ['New Projects in', 'Bengaluru', '2026 Buyer’s Guide'],
+      stats: [['90+', 'projects tracked'], ['₹90 L', 'homes from'], ['K-RERA', 'numbers listed']],
+      tagline: 'Bengaluru’s live real-estate map',
+    },
+    content: `
+<p>Looking for <strong>new projects in Bengaluru</strong>? India’s technology capital has one of the deepest housing markets in the country, from compact 2 BHK homes near the IT corridors to large townships on the city’s edges. On the <a href="/cities/bengaluru">Mappingg map of Bengaluru</a> we now track more than 90 projects, and most of them show a Karnataka RERA (K-RERA) registration number. This guide sorts them by budget and area so you can shortlist faster.</p>
+
+<h2>How Bengaluru projects are grouped</h2>
+<p>K-RERA registers projects by taluk, so that is how the areas are named on our map:</p>
+<ul>
+  <li><strong>${h.loc('Bengaluru East')}:</strong> Whitefield, Varthur, KR Puram and the eastern IT belt.</li>
+  <li><strong>${h.loc('Anekal')}:</strong> the south-east edge of the city, including Sarjapur, Attibele and Chandapura, where several large townships are coming up.</li>
+  <li><strong>${h.loc('Bengaluru South')}:</strong> the southern suburbs, including Begur, Uttarahalli, Kengeri and the roads leading out of the city to the south.</li>
+  <li><strong>${h.loc('Bengaluru North')}</strong> and <strong>${h.loc('Yelahanka')}:</strong> north Bengaluru, on the side of the city facing the international airport.</li>
+</ul>
+
+${h.gallery([191, 188, 189, 190], 'Bengaluru')}
+
+<h2>Homes under ₹1.5 Cr</h2>
+<p>The lowest starting prices on our map are ${h.link(191)} by Century Real Estate at ₹90 Lacs for 2, 2.5 and 3 BHK homes, and ${h.link(304)} by Brigade Group in Bengaluru East at ₹97 Lacs, which also offers 1 BHK homes. ${h.link(188)} in Yelahanka New Town starts at ₹1.12 Cr and ${h.link(305)} in Bengaluru South at ₹1.22 Cr. In the north, ${h.link(306)} starts at ₹1.45 Cr, and ${h.link(335)} in the south at ₹1.49 Cr.</p>
+${h.table([191, 304, 188, 305, 306, 335], 'Bengaluru projects from under ₹1.5 Cr', KRERA)}
+
+<h2>Premium 3 &amp; 4 BHK homes from ₹2 Cr</h2>
+<p>Most of the larger homes on our map are 3 and 4 BHK apartments by the city’s big developers. ${h.link(299)} in Bengaluru East and ${h.link(337)} both start at ₹2.20 Cr. ${h.link(315)} by Lodha in Anekal starts at ₹2.45 Cr and ${h.link(317)} by Puravankara at ₹2.55 Cr. From around ₹3 Cr, look at ${h.link(338)} in Bengaluru North, ${h.link(341)}, ${h.link(322)} and ${h.link(312)} by Sobha, and ${h.link(189)} by Century Real Estate from ₹4.25 Cr.</p>
+${h.table([299, 337, 315, 317, 338, 341, 322, 312, 189], 'Premium projects in Bengaluru from ₹2 Cr', KRERA)}
+
+<h2>Projects due first: possession in 2028</h2>
+<p>Most new launches in Bengaluru are due between 2029 and 2032. If you want to move in sooner, these projects on our map have the earliest possession dates:</p>
+${h.table([355, 313, 372, 370, 371, 378], 'Bengaluru projects due in 2028', KRERA)}
+<p>Weighing up an early possession date against a better launch price? Our guide to <a href="/blog/ready-to-move-vs-under-construction-flats-pune">ready-to-move vs under-construction flats</a> explains the trade-offs. It is written for Pune, but the logic is the same in Bengaluru.</p>
+
+<h2>Area by area</h2>
+<h3>Bengaluru East: Whitefield and the eastern IT belt</h3>
+<p>Sumadhura Group has the most projects here: ${h.link(318)}, ${h.link(320)}, ${h.link(319)}, ${h.link(334)} and ${h.link(337)}, most due in December 2029. Also on the map are ${h.link(316)} by Prestige Group, ${h.link(340)} by Sattva Group, ${h.link(408)}, ${h.link(413)} and ${h.link(360)}. For commercial space, ${h.link(295)} by Godrej Properties and ${h.link(411)} are both under construction.</p>
+<h3>Anekal: Sarjapur and the south-east townships</h3>
+<p>Prestige Group’s township has three phases on our map: ${h.link(294)}, ${h.link(307)} and ${h.link(308)}. Lodha has ${h.link(344)} and ${h.link(315)}, and ${h.link(298)} by Godrej Properties offers 2 and 3 BHK homes. Other projects include ${h.link(336)}, ${h.link(349)}, ${h.link(380)}, ${h.link(310)}, ${h.link(314)} and ${h.link(321)}.</p>
+<h3>Bengaluru South</h3>
+<p>Provident Housing’s ${h.link(311)} and ${h.link(291)}, ${h.link(296)} by Brigade Group (due July 2029) and ${h.link(300)} by Casagrand (December 2029) are among the larger projects. ${h.link(374)} offers 3 BHK homes, and Sattva Group has ${h.link(343)} and ${h.link(345)}. ${h.link(339)} and ${h.link(342)} are also on the map.</p>
+<h3>Bengaluru North and Yelahanka</h3>
+<p>Bhartiya City has four phases of its Nikoo Homes projects: ${h.link(301)}, ${h.link(302)}, ${h.link(292)} and ${h.link(293)}. Around Yelahanka, ${h.link(348)} offers 3 and 3.5 BHK homes due in March 2029, while ${h.link(346)} by Godrej Properties, ${h.link(309)} by Sattva Group and ${h.link(297)} by Lodha are larger, later projects due in 2030–2032.</p>
+
+<h2>Plotted developments</h2>
+<p>If you’d rather build your own home, these plotted layouts are registered with K-RERA: ${h.link(347)} in Anekal (due August 2028), ${h.link(333)} in Bengaluru North, ${h.link(363)} in Bengaluru South and ${h.link(409)} in Anekal. Check whether a plot is approved for residential use and has clear title before you pay a token amount.</p>
+
+<h2>How to check a K-RERA number</h2>
+<ol>
+  <li>Find the registration number on the developer’s brochure, website or ads. In Karnataka it looks like <code>PRM/KA/RERA/1251/446/PR/…</code>.</li>
+  <li>Search for it on the official Karnataka RERA website, <strong>rera.karnataka.gov.in</strong>, under registered projects.</li>
+  <li>Check that the promoter’s name, project name, address and phase match what you are being sold. Large projects often register each phase separately.</li>
+  <li>Note the completion date the developer declared. That is the date you can hold them to, not the one in the sales pitch.</li>
+</ol>
+<p>The process is similar to Maharashtra’s. Our guide on <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a> explains in more detail what to look for in a RERA registration.</p>
+
+<h2>Checklist before you book in Bengaluru</h2>
+<ol>
+  <li><strong>Check the khata.</strong> Ask whether the property will have an A-khata or a B-khata. It affects loans, building approvals and resale, so get your lawyer to confirm it.</li>
+  <li><strong>Ask about water supply.</strong> In parts of the city, new projects rely on borewells or tankers. Ask how the project will get water and what it costs.</li>
+  <li><strong>Check the commute at peak hours.</strong> Traffic on the Outer Ring Road and around Whitefield and Sarjapur can be slow. Open each project on the <a href="/map">live map</a> to see the roads and metro lines around it.</li>
+  <li><strong>Compare carpet area</strong> and work out the price per sq ft on carpet area, not on the “3 BHK” label.</li>
+  <li><strong>Budget for the extra costs:</strong> stamp duty, registration and GST on under-construction homes. Confirm the current Karnataka rates with your lawyer before you book.</li>
+</ol>
+
+<h2>FAQs: New projects in Bengaluru</h2>
+<h3>What is the cheapest new project in Bengaluru?</h3>
+<p>Among the projects on our map, ${h.link(191)} starts at ₹90 Lacs and ${h.link(304)} in Bengaluru East at ₹97 Lacs. Prices for many other projects aren’t listed yet, so ask the developer for a price sheet.</p>
+<h3>Which area of Bengaluru has the most new projects?</h3>
+<p>On our map, Bengaluru East (Whitefield and around), Anekal (Sarjapur and the south-east) and Bengaluru South have the most new launches, with more than 20 projects each.</p>
+<h3>Which Bengaluru projects can I move into soonest?</h3>
+<p>${h.link(355)} (January 2028), ${h.link(313)} and ${h.link(372)} (March 2028) have the earliest possession dates among the projects in this guide.</p>
+<h3>Where can I see all Bengaluru projects on a map?</h3>
+<p>Open the <a href="/cities/bengaluru">Bengaluru page</a> for the full list, or the <a href="/map">interactive map</a>. Also looking at Mumbai? Read our guide to <a href="/blog/new-projects-in-mumbai-andheri-borivali-south-mumbai">new projects in Mumbai</a>.</p>
+
+<blockquote>Prices, configurations and possession dates are as listed on Mappingg in October 2026 and may change. Always confirm with the developer and on the Karnataka RERA website before you book.</blockquote>
+`,
+  };
+}
+
+function mumbaiArticle(h) {
+  return {
+    slug: 'new-projects-in-mumbai-andheri-borivali-south-mumbai',
+    title: 'New Projects in Mumbai (2026): South Mumbai, Bandra, Khar, Andheri, Borivali & Kurla',
+    seo_title: 'New Projects in Mumbai 2026: Prices & MahaRERA',
+    seo_description:
+      'New residential projects in Mumbai — Worli, Sewri, Sion, Bandra, Khar, Andheri, Borivali & Kurla — with prices, configurations, possession dates and MahaRERA numbers. Studios from ₹70 Lacs.',
+    excerpt:
+      'Every Mumbai project on our map, from studio homes in Andheri East and family 2–4 BHKs in Sion to sea-facing residences in Worli, Khar and Bandra — sorted by area, with MahaRERA numbers.',
+    tags: ['Mumbai', 'Andheri', 'Borivali', 'South Mumbai', 'New Projects'],
+    cover: {
+      theme: 'dusk',
+      kicker: 'City guide',
+      lines: ['New Projects in', 'Mumbai', '2026 Buyer’s Guide'],
+      stats: [['35+', 'projects tracked'], ['₹70 L', 'studios from'], ['MahaRERA', 'numbers listed']],
+      tagline: 'Pune & Mumbai’s live real-estate map',
+    },
+    content: `
+<p>Looking for <strong>new projects in Mumbai</strong>? Land is scarce in Mumbai, so most new homes come from redevelopment of old buildings and mill lands, or from tall towers on small plots. That makes it more important than in most cities to check exactly what you are buying. On the <a href="/cities/mumbai">Mappingg map of Mumbai &amp; MMR</a> we track more than 35 projects inside the city, and most of them show a MahaRERA number. This guide sorts them by area.</p>
+
+<h2>How Mumbai is divided</h2>
+<p>MahaRERA lists Mumbai projects by district and taluka, which is how the areas are named on our map:</p>
+<ul>
+  <li><strong>${h.loc('Mumbai City')}:</strong> the island city, from Colaba and Worli up to Sewri, Dadar and Sion.</li>
+  <li><strong>${h.loc('Andheri')}:</strong> the western suburbs from Bandra and Khar to Andheri.</li>
+  <li><strong>${h.loc('Borivali')}:</strong> the northern western suburbs, from Goregaon and Malad to Borivali and Dahisar.</li>
+  <li><strong>${h.loc('Kurla')}:</strong> the eastern suburbs, including Kurla, Ghatkopar, Chembur and beyond.</li>
+</ul>
+
+${h.gallery([137, 139, 140, 141, 142, 145], 'Mumbai')}
+
+<h2>South and Central Mumbai</h2>
+<p>The island city has some of the biggest launches on our map. Raymond Realty’s The Address by GS in Sion has five towers registered separately (${h.link(288, 'A')}, ${h.link(280, 'B')}, ${h.link(287, 'C')}, ${h.link(286, 'D')} and ${h.link(279, 'E')}), all with 2, 3 and 4 BHK homes. Lodha has ${h.link(276)} with 3 and 4 BHK homes and ${h.link(277)}. ${h.link(289)} by Rustomjee offers 2 and 3 BHK homes, and ${h.link(278)} by K Raheja Corp and ${h.link(399)} are also under construction.</p>
+<p>Bombay Realty’s Three ICC is registered as three separate wings: ${h.link(290)}, ${h.link(285)} and ${h.link(284)}. That’s a good example of why you should check the MahaRERA number for your own wing, not just the project.</p>
+${h.table([288, 280, 287, 286, 279, 276, 277, 289, 278, 290, 285, 284, 399], 'New projects in South & Central Mumbai')}
+
+<h2>Bandra, Khar and Andheri</h2>
+<p>At the top of the market, ${h.link(195)} by Panchshil Realty in Bandra West offers 4.5 BHK residences at ₹23 Cr, due in December 2028. In Khar West, Platinum Corp’s ${h.link(137)} starts at ₹6 Cr for 2 and 3 BHK homes, and ${h.link(143)} is also under construction. Godrej Properties has two phases of Godrej Bandra Bay (${h.link(275, 'Phase 2')} and ${h.link(274, 'Phase 3')}).</p>
+<p>Andheri West has four Platinum Corp projects: ${h.link(139)}, ${h.link(140)}, ${h.link(141)} and ${h.link(142)}. Several offer “Jodi” options, where two adjoining flats are combined into one larger home. For a lower budget, ${h.link(145)} in Andheri East offers studio apartments for about ₹70–80 Lacs, due in December 2028.</p>
+${h.table([195, 137, 143, 145, 139, 140, 141, 142], 'Projects in Bandra, Khar & Andheri')}
+<p>Other projects in the Andheri taluka include ${h.link(387)} (3 BHK), ${h.link(282)}, ${h.link(400)}, ${h.link(402)} and ${h.link(404)}. ${h.link(281)} and ${h.link(283)} by Lotus Developers are commercial projects.</p>
+
+<h2>Borivali, Malad and Goregaon</h2>
+<p>The northern suburbs offer more space for the money. Projects on our map include ${h.link(273)} by Raheja Universal, ${h.link(383)} by Arkade Developers, ${h.link(403)} by Pranav Constructions, ${h.link(405)}, and two HUM Developers projects, ${h.link(406)} and ${h.link(407)}. ${h.link(397)} is a commercial tower.</p>
+${h.table([273, 383, 403, 405, 406, 407, 398], 'New projects in the Borivali taluka')}
+
+<h2>Kurla and the eastern suburbs</h2>
+<p>${h.link(396)} by Matrix Constructions and ${h.link(401)} are under construction in the Kurla taluka.</p>
+${h.table([396, 401], 'New projects in the Kurla taluka')}
+
+<h2>Looking beyond city limits?</h2>
+<p>If Mumbai prices are beyond your budget, the wider MMR offers far more space for the money. ${h.link(250)} in Vasai West is an upcoming project with 2, 3 and 4 BHK homes from ₹1.25 Cr to ₹2.25 Cr. Also see our guides to <a href="/blog/new-projects-in-navi-mumbai">new projects in Navi Mumbai</a> and <a href="/blog/new-projects-in-kalyan-dombivli-palava-thane">Kalyan, Dombivli, Palava &amp; Thane</a>.</p>
+
+<h2>Checklist before you book in Mumbai</h2>
+<ol>
+  <li><strong>Verify the MahaRERA number for your wing or tower.</strong> Large projects register each wing or phase separately. Here’s <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>.</li>
+  <li><strong>For redevelopment projects, read the details.</strong> Ask how many flats go to existing residents and how many are for sale, and check that the society has signed the development agreement.</li>
+  <li><strong>Compare carpet area.</strong> Mumbai flats are small and expensive, so the price per sq ft of carpet area matters more than the BHK label.</li>
+  <li><strong>Check parking.</strong> Many towers have limited or puzzle parking, which may cost extra.</li>
+  <li><strong>Budget for stamp duty.</strong> In Mumbai it is 6% (5% stamp duty plus 1% metro cess), with a 1% concession for women buyers, plus registration and GST on under-construction homes. Our guide to <a href="/blog/stamp-duty-registration-charges-pune">stamp duty and registration charges</a> explains how these costs add up.</li>
+</ol>
+
+<h2>FAQs: New projects in Mumbai</h2>
+<h3>What is the cheapest new project in Mumbai on Mappingg?</h3>
+<p>Among the projects with a listed price, ${h.link(145)} in Andheri East has studio apartments for about ₹70–80 Lacs. Many Mumbai projects don’t list prices on our map yet, so ask the developer for a price sheet.</p>
+<h3>What is a Jodi flat?</h3>
+<p>A Jodi flat is two adjoining flats sold together so they can be combined into one larger home. Make sure the agreement and the MahaRERA-approved plans allow the combination.</p>
+<h3>What do Mumbai MahaRERA numbers starting with PR, PC and PM mean?</h3>
+<p>Newer MahaRERA numbers start with PR for residential, PC for commercial and PM for mixed-use projects. For example, ${h.link(281)} (<code>PC1180002602099</code>) is a commercial project.</p>
+<h3>Where can I see all Mumbai projects on a map?</h3>
+<p>Open the <a href="/cities/mumbai">Mumbai &amp; MMR page</a> for the full list, or the <a href="/map">interactive map</a>.</p>
+
+<blockquote>Prices, configurations and possession dates are as listed on Mappingg in October 2026 and may change. Always confirm with the developer and on MahaRERA before you book.</blockquote>
+`,
+  };
+}
+
 // ---- photos ---------------------------------------------------------------------
 
 const PHOTO_DIR = path.resolve('migration/blog-photos');
@@ -1567,6 +1736,7 @@ const PHOTO_POSITION = {
   'how-to-check-maharera-registration-number': 'bottom',
   'new-projects-in-navi-mumbai': 'bottom',
   'luxury-flats-villas-in-pune': 'right',
+  'new-projects-in-bengaluru': 'bottom',
 };
 
 /** CC licences require attribution and a note that the photo was changed. */
@@ -1616,7 +1786,7 @@ async function main() {
     westPuneArticle(h), pcmcArticle(h), eastPuneArticle(h), readyVsUcArticle(h),
     underOneCroreArticle(h), stampDutyArticle(h), threeBhkArticle(h), homeLoanArticle(h),
     twoBhkArticle(h), luxuryArticle(h), naviMumbaiArticle(h), kalyanDombivliArticle(h),
-    commercialArticle(h), upcomingArticle(h),
+    commercialArticle(h), upcomingArticle(h), bengaluruArticle(h), mumbaiArticle(h),
   ];
 
   // Sanity: every slug used by the articles' internal links must be stable.
