@@ -9,7 +9,7 @@ import { SITE_URL } from '@/lib/seo/config';
 
 // Regenerate the crawlable content periodically (ISR) — fast to serve, fresh
 // enough for search engines, and cheap on the database.
-export const revalidate = 600;
+export const revalidate = 3600;
 
 export default async function MapPage() {
   // Office markers and land parcels stay on the map itself but aren't listed as projects.

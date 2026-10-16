@@ -80,7 +80,7 @@ export default function TrafficPanel() {
   useEffect(() => { load(days); }, [days]); // eslint-disable-line react-hooks/exhaustive-deps
   // "Active now" stays live: refresh every 30 s while the tab is open.
   useEffect(() => {
-    const t = setInterval(() => { if (document.visibilityState === 'visible') load(); }, 30_000);
+    const t = setInterval(() => { if (document.visibilityState === 'visible') load(); }, 120_000);
     return () => clearInterval(t);
   }); // eslint-disable-line react-hooks/exhaustive-deps
 

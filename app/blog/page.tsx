@@ -7,7 +7,7 @@ import SiteHeader from '@/components/SiteHeader';
 import { SITE_URL } from '@/lib/seo/config';
 import { blogPageCount, blogPageHref as pageHref, blogPageSlice, parseBlogPage, type PageParam } from '@/lib/blog-pagination';
 
-export const revalidate = 600;
+export const revalidate = 3600;
 
 // 9 articles per page; page 1 is /blog, later pages /blog?page=N (lib/blog-pagination.ts).
 

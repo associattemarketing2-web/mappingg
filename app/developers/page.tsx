@@ -3,7 +3,7 @@ import SeoShell from '@/components/seo/SeoShell';
 import { getDeveloperGroups } from '@/lib/seo/entities';
 import { itemListSchema, jsonLd } from '@/lib/seo/schema';
 
-export const revalidate = 600;
+export const revalidate = 3600;
 
 export default async function DevelopersIndex() {
   const groups = await getDeveloperGroups();

@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import EntityListing from '@/components/seo/EntityListing';
 import { getStatusGroups, getLocalityGroups, findGroup, STATUS_ROUTES } from '@/lib/seo/entities';
 
-export const revalidate = 600;
+export const revalidate = 3600;
 // Closed set (3 indexed statuses) → prerender + hard-404 on unknown slugs.
 export const dynamicParams = false;
 export async function generateStaticParams() {

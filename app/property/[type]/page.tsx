@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import EntityListing from '@/components/seo/EntityListing';
 import { getTypeGroups, getLocalityGroups, findGroup } from '@/lib/seo/entities';
 
-export const revalidate = 600;
+export const revalidate = 3600;
 // Closed vocabulary of property types → prerender + hard-404 on unknown slugs.
 export const dynamicParams = false;
 export async function generateStaticParams() {

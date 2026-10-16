@@ -159,7 +159,10 @@
     self._listeners.forEach(function (l) {
       if (l.table) self._signature(l.table).then(function (sig) { self._sigs[l.table] = sig; });
     });
+    // Polled every 2 min and only while the tab is visible: each check is a
+    // serverless call, and every open map tab was polling every 15s.
     self._timer = setInterval(function () {
+      if (typeof document !== 'undefined' && document.visibilityState === 'hidden') return;
       self._listeners.forEach(function (l) {
         if (!l.table) return;
         self._signature(l.table).then(function (sig) {
@@ -171,7 +174,7 @@
           }
         });
       });
-    }, 15000);
+    }, 120000);
     if (typeof cb === 'function') cb('SUBSCRIBED');
     return self;
   };

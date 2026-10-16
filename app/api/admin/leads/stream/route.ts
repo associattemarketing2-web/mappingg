@@ -16,7 +16,7 @@ const STREAM_MS = 280_000;
 // and pushes a `changed` event when it moves. The client then refetches the
 // authoritative list — so there are never duplicate records or notifications,
 // and EventSource's built-in auto-reconnect handles dropped connections.
-const POLL_MS = 5000;
+const POLL_MS = 30_000;
 const HEARTBEAT_MS = 25000; // keep intermediaries from closing an idle stream
 
 // Covers both lead sources: contact-form leads and map "Enquire" requests.

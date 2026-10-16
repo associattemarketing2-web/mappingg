@@ -8,7 +8,7 @@ import {
   cityOf,
 } from '@/lib/seo/entities';
 
-export const revalidate = 600;
+export const revalidate = 3600;
 // Closed set (Pune / Mumbai-MMR) → prerender + hard-404 on unknown.
 export const dynamicParams = false;
 export async function generateStaticParams() {

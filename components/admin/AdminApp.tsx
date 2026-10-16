@@ -903,12 +903,22 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
   // Near-real-time updates via SSE: refetch when the server signals a lead
   // table changed. EventSource auto-reconnects on drop; we refetch
   // authoritative data so no duplicate rows/notifications can appear.
+  // The stream is a long-running serverless function, so it is only kept open
+  // while the tab is visible; coming back refetches and reopens it.
   useEffect(() => {
-    const es = new EventSource('/api/admin/leads/stream', { withCredentials: true });
-    es.addEventListener('ready', () => setLive(true));
-    es.addEventListener('changed', () => { void load(true); });
-    es.onerror = () => setLive(false); // EventSource will retry automatically
-    return () => es.close();
+    let es: EventSource | null = null;
+    const open = () => {
+      if (es) return;
+      es = new EventSource('/api/admin/leads/stream', { withCredentials: true });
+      es.addEventListener('ready', () => setLive(true));
+      es.addEventListener('changed', () => { void load(true); });
+      es.onerror = () => setLive(false); // EventSource will retry automatically
+    };
+    const close = () => { es?.close(); es = null; setLive(false); };
+    const onVis = () => { if (document.visibilityState === 'hidden') close(); else { void load(true); open(); } };
+    if (document.visibilityState !== 'hidden') open();
+    document.addEventListener('visibilitychange', onVis);
+    return () => { document.removeEventListener('visibilitychange', onVis); close(); };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const pick = useSelection();
