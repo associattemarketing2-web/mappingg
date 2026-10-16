@@ -142,6 +142,6 @@ export async function GET(req: NextRequest) {
 
   const res = NextResponse.json(body);
   // Public, short-lived shared cache (pins change only via the editor).
-  res.headers.set('Cache-Control', 'public, max-age=15, s-maxage=30, stale-while-revalidate=300');
+  res.headers.set('Cache-Control', 'public, max-age=60, s-maxage=300, stale-while-revalidate=3600');
   return res;
 }

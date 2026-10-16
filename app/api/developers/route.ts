@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
   const id = req.nextUrl.searchParams.get('id');
   try {
     if (id) return NextResponse.json({ data: { logo: await logoData(id) } }, { headers: { 'Cache-Control': 'private, no-store' } });
-    return NextResponse.json({ data: await directory() }, { headers: { 'Cache-Control': 'public, max-age=30, s-maxage=30, stale-while-revalidate=300' } });
+    return NextResponse.json({ data: await directory() }, { headers: { 'Cache-Control': 'public, max-age=60, s-maxage=300, stale-while-revalidate=3600' } });
   } catch (e) {
     console.error('[developers]', e);
     return NextResponse.json({ data: [], error: { message: 'Could not load developers' } }, { status: 500 });
