@@ -32,6 +32,8 @@ const PHOTOS = {
   'upcoming-new-launch-projects-in-pune': 'Skyline of Pune.jpg',
   'new-projects-in-bengaluru': 'Skyline of Varthur, Bangalore.jpg',
   'new-projects-in-mumbai-andheri-borivali-south-mumbai': 'Mumbai Skyline with Bandra–Worli Sea Link 25 July 2018 (1).jpg',
+  'new-projects-in-kothrud-koregaon-park-central-pune': 'Kothrud full view.JPG',
+  'documents-to-check-before-buying-flat-pune': 'Pune Municipal Corporation building in October 2023.jpg',
 };
 
 const OUT = path.resolve('migration/blog-photos');

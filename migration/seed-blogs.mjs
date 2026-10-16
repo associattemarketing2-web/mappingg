@@ -1725,6 +1725,183 @@ ${h.table([396, 401], 'New projects in the Kurla taluka')}
   };
 }
 
+function centralPuneArticle(h) {
+  return {
+    slug: 'new-projects-in-kothrud-koregaon-park-central-pune',
+    title: 'New Projects in Kothrud, Koregaon Park, Kalyani Nagar & Central Pune (2026)',
+    seo_title: 'New Projects in Kothrud & Koregaon Park Pune 2026',
+    seo_description:
+      'New flats in Kothrud, Warje, Koregaon Park, Kalyani Nagar, the old city peths, NIBM & Undri — prices from ₹62 Lacs, BHK options, possession dates and MahaRERA numbers.',
+    excerpt:
+      'Established Pune neighbourhoods rarely get new projects, so each launch matters. Here are the new homes in Kothrud, Warje, Koregaon Park, Kalyani Nagar, the peths, NIBM and Undri, with prices, possession dates and MahaRERA numbers.',
+    tags: ['Kothrud', 'Koregaon Park', 'Kalyani Nagar', 'Pune', 'New Projects'],
+    cover: {
+      theme: 'ember',
+      kicker: 'Locality guide',
+      lines: ['New Projects in', 'Kothrud, KP &', 'Central Pune'],
+      stats: [['₹62 L', '2 BHK from'], ['2–5 BHK', 'plus shops'], ['2026–31', 'possession']],
+    },
+    content: `
+<p>Most new homes in Pune are coming up on the city’s edges: Hinjewadi, Wagholi, Kharadi and beyond. Buyers who want to stay in <strong>Kothrud, Koregaon Park, Kalyani Nagar or the old city</strong> have far fewer choices, because land in these established areas is scarce and most new supply comes from redevelopment. This guide lists the new projects in these neighbourhoods on <a href="/map">Mappingg’s live map</a>, plus the closest options in South Pune, with prices, possession dates and MahaRERA numbers where the developer has shared them.</p>
+
+<h2>Why buy in an established Pune neighbourhood?</h2>
+<ul>
+  <li><strong>Everything is already built:</strong> schools, hospitals, markets and roads are in place, so you are not waiting years for the area to develop.</li>
+  <li><strong>Metro access:</strong> Kothrud and Kalyani Nagar are both on the Pune Metro’s Aqua Line, which runs from Vanaz to Ramwadi.</li>
+  <li><strong>Steady resale demand:</strong> people who grew up in these areas tend to want to stay, which supports resale value.</li>
+  <li><strong>The trade-off:</strong> prices per sq ft are higher, plots are smaller and many projects are redevelopments, so you get fewer amenities than in a large suburban township.</li>
+</ul>
+
+${h.gallery([209, 161, 164, 38, 194, 146])}
+
+<h2>New projects in Kothrud, Warje and Bhugaon</h2>
+<p>Kothrud is West Pune’s best-known family neighbourhood, and most new launches here are by Kundan Spaces and Majestique Landmark. Near ${h.loc('Kothrud', 'Vanaz')}, ${h.link(209)} offers 2, 3 and 4 BHK homes from ₹1.75 Cr to ₹4.15 Cr, due in December 2028, and ${h.link(161)} by Kundan Spaces has 2, 2.5 and 3 BHK homes next to Vanaz Metro Station (price on request). In Dahanukar Colony, ${h.link(159)} lists 3 BHK homes of 1,115 sq ft at ₹2.7 Cr, 3.5 BHK homes at ₹3.7 Cr and 4 BHK homes at ₹4.9 Cr, with retail shops from ₹1.2 Cr. ${h.link(160)}, also in Dahanukar Colony, combines high-street shops with 3, 3.5 and 4 BHK homes from ₹2.70 Cr.</p>
+<p>For a lower budget, look just beyond Kothrud. ${h.link(266)} in Bhugaon, off Paud Road, offers 2, 3 and 4 bedroom homes from ₹82 Lacs to ₹1.6 Cr, due in 2028 (MahaRERA <code>P52100078709</code>). Near Chandani Chowk in ${h.loc('Warje')}, ${h.link(214)} offers 2 BHK homes from ₹1.10 Cr to ₹1.64 Cr, due in December 2028.</p>
+${h.table([209, 161, 159, 160, 266, 214], 'New projects in Kothrud, Warje & Bhugaon')}
+<p>For shops and offices, ${h.link(220)} in Vanaz has units from ₹1.8 Cr, due in June 2027. In ${h.loc('Aundh')}, ${h.link(181)} by ASAP Spaces offers 4.5 BHK residences from ₹4.80 Cr, due in November 2026.</p>
+
+<h2>New projects in Koregaon Park and Kalyani Nagar</h2>
+<p>Koregaon Park and Kalyani Nagar are East Pune’s premium addresses, close to the airport, Kharadi’s offices and the city’s best-known restaurants. Most new homes here are large 3, 4 and 5 BHK apartments. The exception is ${h.link(164)} by Kundan Spaces in Koregaon Park NX, near Ghorpadi, which offers 2, 3 and Jodi 4 BHK homes from ₹1.20 Cr and is nearing possession.</p>
+<p>In ${h.loc('Koregaon Park')}, ${h.link(118)} on Lane 5 offers 3, 3.5 and 4.5 BHK homes from ₹4.59 Cr (December 2028), and ${h.link(38)} on North Main Road in the KP Annexe offers 3, 4 and 5 BHK homes from ₹3.86 Cr (June 2029). In ${h.loc('Kalyani Nagar')}, ${h.link(194)} has 3 and 4 BHK homes from ₹3.58 Cr to ₹4.33 Cr (September 2028), and ${h.link(103)} has 3, 4 and 5 BHK homes from ₹4.25 Cr (December 2030). Next door in ${h.loc('Viman Nagar')}, ${h.link(136)} offers 3.5 and 4.5 BHK homes from ₹3.72 Cr.</p>
+${h.table([164, 118, 38, 194, 103, 136], 'New projects in Koregaon Park, Kalyani Nagar & Viman Nagar')}
+<p>At the very top of the market, ${h.link(197)} in Kalyani Nagar is ready to move, from ₹15.58 Cr. Our guide to <a href="/blog/luxury-flats-villas-in-pune">luxury flats and villas in Pune</a> covers more homes above ₹3 Cr.</p>
+
+<h2>New projects in the old city: Sadashiv Peth and Mangalwar Peth</h2>
+<p>In the peths, new homes almost always come from redeveloping old wadas and buildings. ${h.link(146)} by Naiknavare Developers in ${h.loc('Sadashiv Peth')} is a mixed-use project with shops, offices and 2, 3 and 4 BHK homes from ₹1.09 Cr, due in December 2029. In ${h.loc('Mangalwar Peth')}, ${h.link(168)} by Birla Estate offers 2, 3 and 4 BHK homes from ₹1.73 Cr, due in September 2031 (MahaRERA <code>PR1262022501044</code>).</p>
+${h.table([146, 168], 'New projects in the old city')}
+<p>For retail, ${h.link(254)} in Sadashiv Peth has showrooms and offices from ₹84 Lacs and ${h.link(158)} on Laxmi Road has premium shops and showrooms. Our guide to <a href="/blog/commercial-property-office-space-in-pune">commercial property in Pune</a> covers them in more detail.</p>
+
+<h2>South Pune: NIBM and Undri</h2>
+<p>If central Pune is beyond your budget, NIBM and Undri offer the lowest prices in this guide while staying close to Camp and Kondhwa. ${h.link(211)} at Undri Chowk has 2 and 3 BHK homes from ₹62 Lacs to ₹82 Lacs, due in December 2027. In ${h.loc('NIBM')}, ${h.link(235)} offers 2 and 3 BHK homes from ₹90 Lacs to ₹1.4 Cr, due in December 2026 (MahaRERA <code>PM1260002501030</code>), and ${h.link(109)} by VTP Group has shops and showrooms.</p>
+${h.table([211, 235], 'New projects in NIBM & Undri')}
+<p>Our guide to <a href="/blog/flats-under-1-crore-in-pune">flats under ₹1 crore in Pune</a> lists more options at this budget across the city.</p>
+
+<h2>Checklist for buying in an established neighbourhood</h2>
+<ol>
+  <li><strong>For redevelopment projects, check the society’s consent.</strong> Ask whether the existing residents have signed the development agreement and how many flats go to them versus how many are for sale.</li>
+  <li><strong>Verify the MahaRERA number for your wing.</strong> Here’s <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>.</li>
+  <li><strong>Check parking.</strong> Small plots often mean stack or puzzle parking, which may cost extra.</li>
+  <li><strong>Compare carpet area.</strong> Prices per sq ft are high here, so a 100 sq ft difference can mean ₹15–25 Lacs.</li>
+  <li><strong>Check the documents.</strong> Our guide to the <a href="/blog/documents-to-check-before-buying-flat-pune">documents to check before buying a flat in Pune</a> covers the approvals, title and RERA papers to ask for.</li>
+</ol>
+
+<h2>FAQs: New projects in central Pune</h2>
+<h3>What is the cheapest new project in Kothrud?</h3>
+<p>Among the projects on our map, ${h.link(266)} in Bhugaon, off Paud Road, starts at ₹82 Lacs. Inside Kothrud itself, ${h.link(209)} near Vanaz starts at ₹1.75 Cr.</p>
+<h3>Are there 2 BHK flats in Koregaon Park?</h3>
+<p>Yes, but few. ${h.link(164)} in Koregaon Park NX offers 2 BHK homes from ₹1.20 Cr. Most other new projects in Koregaon Park and Kalyani Nagar are 3 BHK and larger, starting above ₹3.5 Cr.</p>
+<h3>Which projects in this guide are closest to possession?</h3>
+<p>${h.link(164)} is nearing possession, ${h.link(181)} in Aundh is due in November 2026 and ${h.link(235)} in NIBM in December 2026. Looking for a home you can move into now? Browse <a href="/status/ready-to-move">ready-to-move projects</a>.</p>
+<h3>Where can I see all these projects on a map?</h3>
+<p>Open the <a href="/map">interactive map</a>, or browse by area: ${h.loc('Kothrud')}, ${h.loc('Koregaon Park')}, ${h.loc('Kalyani Nagar')}, ${h.loc('NIBM')} and ${h.loc('Undri')}. Comparing more localities? Read our guide to the <a href="/blog/best-areas-to-buy-property-in-pune">best areas to buy property in Pune</a>.</p>
+
+<blockquote>Prices, configurations and possession dates are as listed on Mappingg in October 2026. Developers may change them at any time, so always confirm with the developer and on MahaRERA before you book.</blockquote>
+`,
+  };
+}
+
+function documentsArticle(h) {
+  return {
+    slug: 'documents-to-check-before-buying-flat-pune',
+    title: 'Documents to Check Before Buying a Flat in Pune (2026 Checklist)',
+    seo_title: 'Documents to Check Before Buying a Flat in Pune',
+    seo_description:
+      'The complete document checklist for buying a flat in Pune — MahaRERA registration, title search, 7/12 extract, commencement & occupancy certificates, agreement for sale and resale papers.',
+    excerpt:
+      'Before you pay for a flat in Pune, ask for these documents: the MahaRERA registration, title search, land records, building approvals, occupancy certificate and, for resale flats, the society papers. Here is what each one proves.',
+    tags: ['Home Buying Guide', 'Property Documents', 'Pune', 'MahaRERA', 'Maharashtra'],
+    cover: {
+      theme: 'slate',
+      kicker: 'Buyer’s guide',
+      lines: ['Documents to Check', 'Before Buying a', 'Flat in Pune'],
+      stats: [['12', 'key documents'], ['30 yrs', 'title search'], ['OC', 'before you move in']],
+    },
+    content: `
+<p>A flat is usually the most expensive thing you will ever buy, and most problems that buyers in Pune face later (delays, title disputes, no water connection, trouble getting a loan or reselling) can be spotted early in the paperwork. This checklist explains <strong>which documents to check before buying a flat in Pune</strong>, what each one proves and where to get it. Most of it applies across Maharashtra.</p>
+
+<h2>Quick checklist</h2>
+<div class="table-scroll"><table>
+<caption>Documents to ask for when buying a flat in Pune</caption>
+<thead><tr><th>Document</th><th>What it proves</th><th>New flat</th><th>Resale flat</th></tr></thead>
+<tbody>
+<tr><td>MahaRERA registration</td><td>The project is registered and has a committed completion date</td><td>Yes</td><td>If still under construction</td></tr>
+<tr><td>Title search report</td><td>The seller has clear ownership of the land and flat</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>7/12 extract or property card</td><td>Who owns the land, as per government land records</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Development agreement &amp; power of attorney</td><td>The developer has the landowner’s permission to build and sell</td><td>Yes</td><td>—</td></tr>
+<tr><td>Approved building plan</td><td>The building and your flat were sanctioned by the planning authority</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Commencement certificate (CC)</td><td>Construction was allowed to start, and up to which floor</td><td>Yes</td><td>—</td></tr>
+<tr><td>Occupancy certificate (OC)</td><td>The building is complete as approved and fit to live in</td><td>At possession</td><td>Yes</td></tr>
+<tr><td>Bank NOC / mortgage details</td><td>Any loan on the project or flat won’t affect your unit</td><td>If mortgaged</td><td>If on loan</td></tr>
+<tr><td>Allotment letter &amp; agreement for sale</td><td>Your flat, price, payment plan and possession date</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Index II</td><td>The sale agreement was registered with the sub-registrar</td><td>After registration</td><td>For every past sale</td></tr>
+<tr><td>Society share certificate &amp; NOC</td><td>The seller is a society member and the society has no objection</td><td>—</td><td>Yes</td></tr>
+<tr><td>Tax, electricity &amp; maintenance receipts</td><td>No unpaid dues pass to you</td><td>—</td><td>Yes</td></tr>
+</tbody></table></div>
+
+<h2>1. MahaRERA registration</h2>
+<p>For any under-construction project, start here. Under RERA, a project that must be registered cannot be advertised, booked or sold until it has a MahaRERA number. The MahaRERA website also shows the promoter, the approved plans, the registered carpet areas and the completion date the developer has committed to. Here’s <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a> step by step. Mappingg shows the number on each <a href="/projects">project page</a> wherever the developer has shared it.</p>
+
+<h2>2. Title search report</h2>
+<p>A lawyer searches the records at the sub-registrar’s office, usually going back 30 years, to trace who has owned the land and whether it has been mortgaged, sold twice or is under dispute. The result is a title search report and title certificate. Many developers share one from their own lawyer. For a large purchase it is worth paying your own lawyer to check it independently. Banks also run their own legal check before approving a home loan on a project.</p>
+
+<h2>3. Land records: 7/12 extract or property card</h2>
+<p>The <strong>7/12 extract</strong> (saat-baara utara) records who owns a piece of land and what it is used for. It is the main land record for land outside city survey limits, which covers much of the land on Pune’s edges. Inside older city areas, the equivalent is the <strong>property card</strong>. Both can be checked online on the Maharashtra government’s land records portal. Check that the owner’s name matches the landowner in the development agreement, and look for any loans or court cases noted on it.</p>
+<p>If the land was once agricultural, ask for the <strong>non-agricultural (NA) order</strong> or proof that the land is treated as non-agricultural under the current rules, so that it can legally be used for housing.</p>
+
+<h2>4. Development agreement and power of attorney</h2>
+<p>In many Pune projects, the developer does not own the land. Instead, the landowner signs a development agreement and a power of attorney that let the developer build and sell flats. Check that these are registered, that they cover your building and that the developer is allowed to sell your flat (some flats may be reserved for the landowner).</p>
+
+<h2>5. Approved building plan and commencement certificate</h2>
+<p>The planning authority approves the building plan and issues a <strong>commencement certificate (CC)</strong> before work can start. In Pune that is the PMC or PCMC inside city limits, and PMRDA for most of the surrounding region. A CC may cover only some floors at first, so check that it covers the floor you are buying. Compare your flat’s layout and carpet area with the approved plan, not just the brochure.</p>
+
+<h2>6. Occupancy certificate (OC)</h2>
+<p>The <strong>occupancy certificate</strong> confirms the building was completed as approved and is fit to live in. Without it, you may struggle to get permanent water and electricity connections, a home loan or a buyer when you sell. For a ready-to-move flat, ask to see the OC before you pay. For an under-construction flat, the OC should be in place when you take possession. Our guide to <a href="/blog/ready-to-move-vs-under-construction-flats-pune">ready-to-move vs under-construction flats</a> explains why it matters when you compare the two.</p>
+
+<h2>7. Bank NOC and mortgage details</h2>
+<p>Developers often take construction loans against the land or the project. That is normal, but you should know about it. Ask whether the project is mortgaged and, if so, for an NOC from the lender confirming it has no objection to your flat being sold. For a resale flat with a home loan, the seller’s bank must release the original documents and give a letter confirming the loan is closed.</p>
+
+<h2>8. Allotment letter and agreement for sale</h2>
+<p>The allotment letter confirms your flat number, price and payment plan. Under RERA, a developer cannot take more than 10% of the price before signing a <strong>registered agreement for sale</strong>. The agreement should list the carpet area, the price, the payment schedule, the possession date, the amenities and the penalty if the developer is late. Read it before you sign, and make sure stamp duty is paid on it. Our guide to <a href="/blog/stamp-duty-registration-charges-pune">stamp duty and registration charges in Pune</a> explains the costs.</p>
+
+<h2>9. Index II</h2>
+<p>Once a sale agreement is registered, the sub-registrar records it, and the extract of that record is called <strong>Index II</strong>. Keep yours safe. For a resale flat, ask for the Index II of every earlier sale, so you can confirm the chain of ownership is complete and registered.</p>
+
+<h2>Extra documents for a resale flat</h2>
+<ul>
+  <li><strong>The full chain of agreements</strong>, from the original sale by the developer to the current owner.</li>
+  <li><strong>Society share certificate</strong> in the seller’s name, and an <strong>NOC from the society</strong> for the sale.</li>
+  <li><strong>Conveyance deed:</strong> check whether the developer has transferred the land and building to the society. If not, the society may need to apply for deemed conveyance.</li>
+  <li><strong>Property tax, electricity and maintenance receipts</strong> up to date, plus a letter from the society confirming no dues.</li>
+  <li><strong>OC and approved plan</strong>, to confirm the flat hasn’t been altered or extended illegally.</li>
+</ul>
+
+<h2>Red flags</h2>
+<ul>
+  <li>The developer won’t share the title report, approvals or MahaRERA number, or says they are “in process” when asking you to pay.</li>
+  <li>The name on the 7/12 extract or property card doesn’t match the landowner or developer.</li>
+  <li>The CC doesn’t cover your floor, or the flat on offer isn’t in the approved plan.</li>
+  <li>A ready-to-move flat with no OC.</li>
+  <li>Requests to pay in cash, or to an individual instead of the developer’s project account.</li>
+</ul>
+
+<h2>Shortlisting projects?</h2>
+<p>Use the <a href="/map">live map</a> to compare projects by location, price and possession date, and see the MahaRERA number on each project page. If you need a home soon, browse <a href="/status/ready-to-move">ready-to-move projects</a>, where you can ask to see the OC straight away. Projects nearing possession, such as ${h.link(164)} in Koregaon Park NX, should be close to getting theirs. Planning the money side too? Read our guide to <a href="/blog/home-loan-emi-eligibility-pune">home loan EMI and eligibility</a>.</p>
+
+<h2>FAQs: Property documents in Pune</h2>
+<h3>Can I buy a flat without an occupancy certificate?</h3>
+<p>You can sign the agreement while a project is under construction, but don’t take possession of or pay the final amount for a completed flat until the OC is issued. Without it you may face problems with utilities, loans and resale.</p>
+<h3>How many years should a title search cover?</h3>
+<p>Lawyers and banks usually check at least 30 years of records.</p>
+<h3>Where can I check the 7/12 extract and property card?</h3>
+<p>On the Maharashtra government’s land records portal (Mahabhumi). You can view them online and download digitally signed copies for a small fee.</p>
+<h3>Does a home loan approval mean the documents are fine?</h3>
+<p>It is a good sign, because the bank runs its own legal and technical check. But the bank is protecting its loan, not you, so still have the key documents checked by your own lawyer.</p>
+
+<blockquote>This guide is general information, not legal advice. Rules and procedures change, so for a specific purchase have the documents checked by a property lawyer and verify project details on the official MahaRERA website.</blockquote>
+`,
+  };
+}
+
 // ---- photos ---------------------------------------------------------------------
 
 const PHOTO_DIR = path.resolve('migration/blog-photos');
@@ -1787,6 +1964,7 @@ async function main() {
     underOneCroreArticle(h), stampDutyArticle(h), threeBhkArticle(h), homeLoanArticle(h),
     twoBhkArticle(h), luxuryArticle(h), naviMumbaiArticle(h), kalyanDombivliArticle(h),
     commercialArticle(h), upcomingArticle(h), bengaluruArticle(h), mumbaiArticle(h),
+    centralPuneArticle(h), documentsArticle(h),
   ];
 
   // Sanity: every slug used by the articles' internal links must be stable.
