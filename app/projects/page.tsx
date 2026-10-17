@@ -1,7 +1,7 @@
 import EntityListing from '@/components/seo/EntityListing';
 import { getPublicPins, getLocalityGroups, getStatusGroups } from '@/lib/seo/entities';
 
-export const revalidate = 600;
+export const revalidate = 3600;
 
 export default async function ProjectsIndex() {
   const [pins, locs, statuses] = await Promise.all([getPublicPins(), getLocalityGroups(), getStatusGroups()]);

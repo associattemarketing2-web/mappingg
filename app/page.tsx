@@ -14,7 +14,7 @@ import { SITE, SITE_URL } from '@/lib/seo/config';
 
 // ISR: served static & fast, but re-renders periodically so admin-set SEO values
 // (Search Console verification, GTM) from the shared layout show up without a redeploy.
-export const revalidate = 600;
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   // Absolute: the brand is already in the title, so skip the layout's ' — Mappingg' suffix.

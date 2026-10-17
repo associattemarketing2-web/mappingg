@@ -28,7 +28,7 @@ const fmtDate = (d?: string) =>
 // before the response starts streaming — so they produce a real 404 / 308
 // status. (The root loading.tsx streams every page, so a notFound() thrown only
 // in the page body would arrive after a 200 had already been sent.)
-export const revalidate = 600;
+export const revalidate = 3600;
 
 const specRows = (pin: Pin): { k: string; v: string }[] =>
   [

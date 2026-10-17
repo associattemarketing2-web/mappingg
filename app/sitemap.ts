@@ -13,10 +13,10 @@ import {
 } from '@/lib/seo/entities';
 import { developerIndexing, localityIndexing, projectIndexing } from '@/lib/seo/indexing';
 
-// Regenerate at most every 10 minutes so newly published blog posts and new
+// Regenerate at most once an hour so newly published blog posts and new
 // projects/localities appear without a redeploy (search engines re-fetch
 // sitemaps periodically anyway).
-export const revalidate = 600;
+export const revalidate = 3600;
 
 // Public, crawlable pages + every published blog post + all derived SEO
 // entities (projects, localities, developers, cities, status, property types).

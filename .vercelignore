@@ -1,0 +1,16 @@
+# Research data, scripts and reports the site never reads at build or run time.
+# Leaving them out keeps each deploy upload ~180 MB smaller (faster, cheaper builds).
+/Developer_Projects
+/maharera-data
+/seo-doc
+/docs
+/shots
+/tests
+/users data
+/Buyer_Leads
+/migration
+/*.zip
+/MIGRATION-REPORT.md
+/PERFORMANCE_AUDIT.md
+/PERFORMANCE_OPTIMIZATION_REPORT.md
+/render.yaml

@@ -31,7 +31,7 @@ export default function DevNotificationBell({ onOpenProjects }: { onOpenProjects
   }
   useEffect(() => {
     load();
-    const t = setInterval(load, 60000);
+    const t = setInterval(() => { if (document.visibilityState === 'visible') load(); }, 180_000);
     window.addEventListener('focus', load);
     return () => { clearInterval(t); window.removeEventListener('focus', load); };
   }, []);

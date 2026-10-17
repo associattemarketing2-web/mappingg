@@ -10,7 +10,7 @@ import { usePathname } from 'next/navigation';
 // No cookies or storage; events go out in small batches with sendBeacon.
 // Staff areas are never tracked.
 const SKIP = /^\/(dashboard|s-admin|intake|partners|api)(\/|$)/;
-const HEARTBEAT_MS = 60_000;
+const HEARTBEAT_MS = 120_000; // < ACTIVE_MINUTES (5) in lib/site-analytics.ts
 
 type Ev = { k: 'pv'; p: string; r?: string; u?: string; w?: number } | { k: 'click'; p: string; l: string; h?: string } | { k: 'hb'; p: string } | { k: 'search'; p: string; l: string };
 // The site's search boxes: the home page "ask" form and the live map's search.
@@ -120,7 +120,7 @@ export default function SiteTracker() {
     }, HEARTBEAT_MS);
     const onHide = () => { if (document.visibilityState === 'hidden') flush(); };
     document.addEventListener('visibilitychange', onHide);
-    const t = setInterval(flush, 5000);
+    const t = setInterval(flush, 15_000);
     return () => {
       document.removeEventListener('click', onClick, { capture: true });
       document.removeEventListener('keydown', onKey, true);

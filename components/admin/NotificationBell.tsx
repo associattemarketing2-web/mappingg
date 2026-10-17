@@ -48,7 +48,7 @@ export default function NotificationBell({ onOpenProjects, onOpenAccount, onPend
   }
   useEffect(() => {
     load();
-    const t = setInterval(load, 60000);
+    const t = setInterval(() => { if (document.visibilityState === 'visible') load(); }, 180_000);
     const onFocus = () => load();
     window.addEventListener('focus', onFocus);
     return () => { clearInterval(t); window.removeEventListener('focus', onFocus); };

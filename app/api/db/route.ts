@@ -137,7 +137,9 @@ async function handle(op: DbOp, devEditorView = false, ip = '', visitor = ip, pa
   }
   // A map is loading its pins: pre-encode the marker thumbnails it is about to
   // request, in a few batched queries (no-op if done in the last few minutes).
-  if (op.table === 'pins' && op.action === 'select' && !result.error && !scopedPins) warmPinThumbs();
+  // Skipped on Vercel: every new serverless instance re-encoded all thumbnails (CPU), and
+  // /api/media responses are cached by the CDN forever anyway.
+  if (!process.env.VERCEL && op.table === 'pins' && op.action === 'select' && !result.error && !scopedPins) warmPinThumbs();
 
   // Stored images (pin logos, brochures, infra icons) go out as cacheable URLs, not inline base64.
   let data = result.data ? withMediaUrls(op.table, result.data) : result.data;
@@ -149,7 +151,7 @@ async function handle(op: DbOp, devEditorView = false, ip = '', visitor = ip, pa
   // Cache only shared, non-personalised reads of public tables. A developer's
   // owner-scoped pins are personal, so they are never publicly cached.
   if (op.action === 'select' && PUBLIC_TABLES.has(op.table) && !staff && !scopedPins) {
-    res.headers.set('Cache-Control', 'public, max-age=15, s-maxage=30, stale-while-revalidate=300');
+    res.headers.set('Cache-Control', 'public, max-age=60, s-maxage=300, stale-while-revalidate=3600');
   } else {
     res.headers.set('Cache-Control', 'private, no-store');
   }

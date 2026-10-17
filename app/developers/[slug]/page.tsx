@@ -9,7 +9,7 @@ import { slugify } from '@/lib/seo/slug';
 // before the response starts streaming — so they produce a real 404 / 308
 // status. (The root loading.tsx streams every page, so a notFound() thrown only
 // in the page body would arrive after a 200 had already been sent.)
-export const revalidate = 600;
+export const revalidate = 3600;
 
 export default async function DeveloperPage({ params }: { params: { slug: string } }) {
   const g = await findGroup(getDeveloperGroups, params.slug);

@@ -13,7 +13,7 @@ import { slugify } from '@/lib/seo/slug';
 import { LOCALITY_GUIDES } from '@/lib/seo/locality-guides';
 import { formatBhk, formatLakhs, summarizeLocality } from '@/lib/seo/locality-summary';
 
-export const revalidate = 600;
+export const revalidate = 3600;
 // Localities are a closed set (matched from lib/locality.ts KNOWN) → prerender
 // them all and hard-404 on anything else (no soft-200). A new locality is a code
 // change to KNOWN, i.e. a deploy, so static params stay correct.

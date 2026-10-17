@@ -5,7 +5,7 @@ import SiteHeader from '@/components/SiteHeader';
 
 import { SITE, SITE_URL } from '@/lib/seo/config';
 
-export const revalidate = 600;
+export const revalidate = 3600;
 
 function fmt(d?: string | null) {
   return d ? new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';

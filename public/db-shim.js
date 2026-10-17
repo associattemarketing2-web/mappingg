@@ -28,6 +28,15 @@
     if (typeof window !== 'undefined' && window.MAPPINGG_DEV_EDIT) h['X-Mg-Scope'] = 'dev-editor';
     return h;
   }
+  // Extra query for read URLs. The editor uses its own URL (&scope=dev-editor), and
+  // the team/admin pages add a per-page-load token, so neither ever gets a public
+  // response the CDN cached for the live map (hidden pins, minutes-old data).
+  var STAFF_PAGE = typeof location !== 'undefined' && /^\/(dashboard|s-admin)(\/|$)/.test(location.pathname);
+  var PAGE_TOKEN = STAFF_PAGE ? '&fresh=' + Date.now().toString(36) : '';
+  function readSuffix() {
+    var dev = (typeof window !== 'undefined' && window.MAPPINGG_DEV_EDIT) ? '&scope=dev-editor' : '';
+    return dev + PAGE_TOKEN;
+  }
 
   function PostgrestBuilder(table) {
     this._table = table;
@@ -93,10 +102,7 @@
     // POST. Both share the same op shape on the server.
     var request;
     if (op.action === 'select') {
-      // The editor's reads use their own URL (&scope=dev-editor), so the browser
-      // never reuses a cached public-map response for them, or vice versa.
-      var devScope = (typeof window !== 'undefined' && window.MAPPINGG_DEV_EDIT) ? '&scope=dev-editor' : '';
-      request = fetch(DB_ENDPOINT + '?op=' + encodeURIComponent(JSON.stringify(op)) + devScope, {
+      request = fetch(DB_ENDPOINT + '?op=' + encodeURIComponent(JSON.stringify(op)) + readSuffix(), {
         method: 'GET',
         headers: scopeHeaders(),
         credentials: 'same-origin',
@@ -139,11 +145,12 @@
     return this;
   };
   RealtimeChannel.prototype._signature = function (table) {
-    return fetch(DB_ENDPOINT, {
-      method: 'POST',
-      headers: scopeHeaders({ 'Content-Type': 'application/json' }),
+    // GET so the CDN answers most checks without running a function.
+    var op = { table: table, action: 'select', columns: 'id,updated_at' };
+    return fetch(DB_ENDPOINT + '?op=' + encodeURIComponent(JSON.stringify(op)) + readSuffix(), {
+      method: 'GET',
+      headers: scopeHeaders({}),
       credentials: 'same-origin',
-      body: JSON.stringify({ table: table, action: 'select', columns: 'id,updated_at' }),
     }).then(function (r) { return r.json(); }).then(function (b) {
       var rows = (b && b.data) || [];
       var max = '';
@@ -159,7 +166,10 @@
     self._listeners.forEach(function (l) {
       if (l.table) self._signature(l.table).then(function (sig) { self._sigs[l.table] = sig; });
     });
+    // Polled every 2 min and only while the tab is visible: each check is a
+    // serverless call, and every open map tab was polling every 15s.
     self._timer = setInterval(function () {
+      if (typeof document !== 'undefined' && document.visibilityState === 'hidden') return;
       self._listeners.forEach(function (l) {
         if (!l.table) return;
         self._signature(l.table).then(function (sig) {
@@ -171,7 +181,7 @@
           }
         });
       });
-    }, 15000);
+    }, 120000);
     if (typeof cb === 'function') cb('SUBSCRIBED');
     return self;
   };
