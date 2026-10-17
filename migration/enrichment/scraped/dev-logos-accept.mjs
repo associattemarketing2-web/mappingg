@@ -19,7 +19,7 @@ const url = new URL(process.env.DATABASE_URL);
 url.searchParams.delete('sslmode');
 const db = new pg.Client({ connectionString: url.toString(), ssl: { rejectUnauthorized: false } });
 await db.connect();
-const ids = JSON.parse(readFileSync('migration/backup/scraped-enrichment-cache/ready-ids.json', 'utf8'));
+const ids = JSON.parse(readFileSync(process.env.IDS_FILE || 'migration/backup/scraped-enrichment-cache/ready-ids.json', 'utf8'));
 const recs = (await db.query(`SELECT doc->'data'->>'developer_name' dev, doc->'data'->>'project_name' p FROM scraped_projects WHERE id = ANY($1)`, [ids])).rows;
 const dirRows = (await db.query(`SELECT doc->>'name' name, doc->'aliases' aliases, (coalesce(doc->>'logo','') <> '') has FROM developers`)).rows;
 await db.end();

@@ -26,7 +26,7 @@ const url = new URL(process.env.DATABASE_URL);
 url.searchParams.delete('sslmode');
 const db = new pg.Client({ connectionString: url.toString(), ssl: { rejectUnauthorized: false }, query_timeout: 120000 });
 await db.connect();
-const ids = JSON.parse(readFileSync('migration/backup/scraped-enrichment-cache/ready-ids.json', 'utf8'));
+const ids = JSON.parse(readFileSync(process.env.IDS_FILE || 'migration/backup/scraped-enrichment-cache/ready-ids.json', 'utf8'));
 const { rows } = await db.query(`SELECT doc->'data'->>'developer_name' dev, doc->'data'->>'project_name' p, doc->'data'->>'rera_number' rera,
   doc->'data'->>'locality' loc FROM scraped_projects WHERE id = ANY($1)`, [ids]);
 await db.end();
@@ -45,11 +45,11 @@ const projKey = (p) => squash(String(p).toLowerCase().replace(/\b(phase|tower|bl
 const devs = new Map();
 for (const r of rows) {
   const d = devs.get(r.dev) || { dev: r.dev, projects: [], reras: [] };
-  d.projects.push(r.p); if (r.rera) d.reras.push(squash(r.rera));
+  d.projects.push(r.p); if (r.rera) d.reras.push(squash(r.rera), squash(r.rera.split('/')[0])); // UP RERA: 'UPRERAPRJ528653/07/2026' is shown as 'UPRERAPRJ528653'
   devs.set(r.dev, d);
 }
 
-const idx = JSON.parse(readFileSync(path.join(CACHE, 'portal-index.json'), 'utf8'));
+const idx = JSON.parse(readFileSync(path.join(CACHE, process.env.INDEX_FILE || 'portal-index.json'), 'utf8'));
 const PRIORITY = ['housiey.com', 'squareyards.com', 'nobroker.in', 'propsoch.com', 'homznspace.com', 'homebazaar.com'];
 const pages = PRIORITY.flatMap((h) => (idx[h] || []).filter((u) => h !== 'nobroker.in' || /prjt/.test(u))
   .map((u) => ({ host: h, u, key: squash(new URL(u).pathname) })));

@@ -20,10 +20,14 @@ const ROOTS = [
   'https://www.homznspace.com/sitemaps.xml',
   'https://www.homebazaar.com/sitemap.xml',
 ];
-// Child sitemaps worth opening: project / builder lists, Bangalore ones where the portal splits by city.
-const CHILD = /project|builder|developer|bangalore|bengaluru|new-?launch|property-sitemap|sitemap\d*\.xml$|houssed-sitemap/i;
-const SKIPCHILD = /blog|news|rent|pg|commercial|mumbai|pune|delhi|gurgaon|gurugram|noida|chennai|hyderabad|kolkata|ahmedabad|thane|navi|kochi|goa|jaipur|lucknow|chandigarh|indore|nagpur|mysore|coimbatore|locality|localities|listing|resale|agent|associates|location-review/i;
-const KEEP = /bangalore|bengaluru|blr/i;
+// Child sitemaps worth opening: project / builder lists, this city's where the portal splits by city
+// (CITY_RE, default Bangalore; e.g. CITY_RE='noida|greater-noida|gautam' INDEX_FILE=portal-index-noida.json).
+const CITY_RE = process.env.CITY_RE || 'bangalore|bengaluru|blr';
+const CHILD = new RegExp(`project|builder|developer|new-?launch|property-sitemap|sitemap\\d*\\.xml$|houssed-sitemap|${CITY_RE}`, 'i');
+const OTHER_CITIES = ['bangalore', 'bengaluru', 'mumbai', 'pune', 'delhi', 'gurgaon', 'gurugram', 'noida', 'chennai', 'hyderabad', 'kolkata', 'ahmedabad', 'thane', 'navi', 'kochi', 'goa', 'jaipur',
+  'lucknow', 'chandigarh', 'indore', 'nagpur', 'mysore', 'coimbatore'].filter((c) => !new RegExp(CITY_RE, 'i').test(c));
+const SKIPCHILD = new RegExp(`blog|news|rent|pg|commercial|locality|localities|listing|resale|agent|associates|location-review|${OTHER_CITIES.join('|')}`, 'i');
+const KEEP = new RegExp(process.env.CITY_RE || 'bangalore|bengaluru|blr', 'i');
 const PAGE = /project|builder|developer|prjt|\/pdp\/|-pid-|\/projects?\//i;
 
 async function get(u) {
@@ -56,4 +60,4 @@ for (const root of ROOTS) {
   out[host] = [...urls];
   console.log(host, 'sitemaps', seen.size, 'pages', urls.size);
 }
-writeFileSync(path.join(CACHE, 'portal-index.json'), JSON.stringify(out));
+writeFileSync(path.join(CACHE, process.env.INDEX_FILE || 'portal-index.json'), JSON.stringify(out));

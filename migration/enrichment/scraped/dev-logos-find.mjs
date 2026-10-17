@@ -32,7 +32,7 @@ const url = new URL(process.env.DATABASE_URL);
 url.searchParams.delete('sslmode');
 const db = new pg.Client({ connectionString: url.toString(), ssl: { rejectUnauthorized: false }, query_timeout: 120000 });
 await db.connect();
-const ids = JSON.parse(readFileSync('migration/backup/scraped-enrichment-cache/ready-ids.json', 'utf8'));
+const ids = JSON.parse(readFileSync(process.env.IDS_FILE || 'migration/backup/scraped-enrichment-cache/ready-ids.json', 'utf8'));
 const { rows } = await db.query(`SELECT doc->'data'->>'developer_name' dev, doc->'data'->>'project_name' p,
   doc->'enrichment'->'fields'->>'developer_website' web FROM scraped_projects WHERE id = ANY($1)`, [ids]);
 await db.end();
@@ -194,7 +194,8 @@ async function one(d) {
   const cands = new Map(declared.map((h) => [h, 'declared to RERA']));
   const name = d.dev.replace(/\b(M\/?s\.?|pvt\.?|private|ltd\.?|limited|llp)\b/gi, ' ').replace(/\s+/g, ' ').trim();
   const proj = [...d.projects][0] || '';
-  for (const q of [`${name} Bangalore real estate developer`, `${proj} ${name} Bangalore`]) {
+  const CITY = process.env.CITY || "Bangalore";
+  for (const q of [`${name} ${CITY} real estate developer`, `${proj} ${name} ${CITY}`]) {
     for (const u of await search(q)) { const h = domainOf(u); if (h && !SKIP.test(h) && !cands.has(h) && cands.size < 7) cands.set(h, 'web search'); }
   }
   let pick = null;

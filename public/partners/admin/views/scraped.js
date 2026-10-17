@@ -5,7 +5,7 @@ import { h, esc, $, $$, formatDate, toast, confirmDialog, friendlyError } from '
 import { ctx, refreshCounts } from '../context.js';
 import { createBulk } from '../bulk.js';
 
-const CITY_LABEL = { Mumbai: 'Mumbai', Thane: 'Thane', Kalyan_Dombivli: 'Kalyan-Dombivli', Pune: 'Pune', Gurugram: 'Gurugram', Bengaluru: 'Bengaluru' };
+const CITY_LABEL = { Mumbai: 'Mumbai', Thane: 'Thane', Kalyan_Dombivli: 'Kalyan-Dombivli', Pune: 'Pune', Gurugram: 'Gurugram', Noida: 'Noida / Greater Noida', Bengaluru: 'Bengaluru' };
 const PIN = {
   verified: { label: 'Location verified', tone: 'ok', help: 'Coordinates inside the area, pincode matches, not a shared area pin.' },
   manual: { label: 'Set by hand', tone: 'info', help: 'Location placed by the team.' },

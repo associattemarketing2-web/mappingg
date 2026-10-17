@@ -1,12 +1,16 @@
 {
   "_note": "RERA promoter (legal / project-company) names → the existing Super admin → Developers entry whose logo they use. Checked by hand on 16 Oct 2026: same group per the website declared to RERA or the company name. Applied by dev-logos-apply.mjs as `aliases`.",
   "Sobha": [
-    "SOBHA LIMITED"
+    "SOBHA LIMITED",
+    "SOBHA LIMITED ATLASPUR CONSTRUCTION AND DEVELOPERS PRIVATE LIMITED"
   ],
   "Godrej Properties": [
     "Godrej Properties Limited",
     "Godrej Projects Development Limited",
-    "Universal Metro Properties LLP"
+    "Universal Metro Properties LLP",
+    "ROSEBERRY ESTATE LLP",
+    "GODREJ PROPERTIES LIMITED",
+    "AR LANDCRAFT LLP"
   ],
   "Casagrand": [
     "CASA GRANDE GARDEN CITY BUILDERS PVT LTD",

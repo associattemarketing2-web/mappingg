@@ -207,9 +207,12 @@ export function readyGaps(d: Doc, e: Doc | undefined, today = new Date().toISOSt
   if (f.total_units == null && f.total_plots == null) g.push('No unit / plot count');
   if (!f.proposed_completion) g.push('No proposed completion date');
   else if (f.proposed_completion < today) g.push('Proposed completion date has passed');
-  if (!f.project_cost) g.push('No project cost');
+  // UP RERA does not publish the project cost, so it is not required there.
+  if (!f.project_cost && d.regulator !== 'UP RERA') g.push('No project cost');
+  if (/default on QPR/i.test(d.status_category || '')) g.push('Promoter in default on quarterly progress reports (registry flag)');
   if (!f.land_area) g.push('No land area');
-  if (!(d.pincode || f.pincode)) g.push('No pincode');
+  // UP RERA often shows no pincode; there the verified registry point stands in for it.
+  if (!(d.pincode || f.pincode) && !(d.regulator === 'UP RERA' && d.pin_check === 'verified')) g.push('No pincode');
   if (!d.project_name || !d.developer_name || !d.rera_number || !d.locality) g.push('Name, developer, RERA no. or locality missing');
   if (CLOSED.test(d.status_category || '') || f.registry_project_status === 'Completed') g.push('Registration closed or project completed');
   return g;
