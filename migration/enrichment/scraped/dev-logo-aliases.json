@@ -1,38 +1,135 @@
 {
   "_note": "RERA promoter (legal / project-company) names → the existing Super admin → Developers entry whose logo they use. Checked by hand on 16 Oct 2026: same group per the website declared to RERA or the company name. Applied by dev-logos-apply.mjs as `aliases`.",
-  "Sobha": ["SOBHA LIMITED"],
-  "Godrej Properties": ["Godrej Properties Limited", "Godrej Projects Development Limited", "Universal Metro Properties LLP"],
-  "Casagrand": ["CASA GRANDE GARDEN CITY BUILDERS PVT LTD", "CASAGRAND LOTUS PRIVATE LIMITED"],
-  "Assetz": ["APG SKYWARDS PRIVATE LIMITED", "APG COMMUNITY DEVELOPMENT PRIVATE LIMITED", "APG GREEN HOMES PRIVATE LIMITED", "APG TOWNSHIPS PRIVATE LIMITED",
-    "APG PREMIUM RESIDENTIAL PRIVATE LIMITED", "APG HABITAT PRIVATE LIMITED", "APG IMPERIAL HOMES PRIVATE LIMITED", "APG Intelli Homes Private Limited",
-    "Assetz Whitefield Homes Private Limited", "Infraedge Management Services Pvt Ltd", "IINSPIRA WORLDCITY PROJECTS PRIVATE LIMITED",
-    "GOKULAM SHELTERS PRIVATE LIMITED", "Sambhav Ventures Realty LLP", "NETRA SOFTWARE TECHNOLOGIES PRIVATE LIMITED", "Elite Projects"],
-  "Prestige Group": ["PRESTIGE ESTATES PROJECTS LTD", "PRESTIGE ACRES PRIVATE LIMITED", "APEX REALTY MANAGEMENT PRIVATE LIMITED"],
-  "Graviti Living Spaces": ["Graviti Living Spaces (India) Pvt Ltd"],
-  "Kumar World": ["KUMAR PROPERTIES PRIVATE LIMITED"],
-  "Sumadhura Group": ["SUMADHURA INFRACON PRIVATE LIMITED", "SUMADHURA HOMES LLP"],
-  "Century Real Estate": ["Century Silicon City Private Limited", "Century Dwellings Private Limited"],
-  "Lodha": ["Lodha Developers Limited"],
-  "Nambiar Builders": ["Nambiar EnsembleResidential Projects LLP", "Nambiar Builders Private Limited"],
-  "Amigo Shelters": ["AMIGO SHELTERS PVT LTD"],
-  "Abhee Ventures": ["ABHEE VENTURES PRIVATE LIMITED"],
-  "Brigade Group": ["Brigade Enterprises Ltd", "Brigade Tetrarch Private Limited"],
-  "ISTA Spaces": ["MSR DWELLING PRIVATE LIMITED", "Ashrith Vciti Projects"],
-  "Trifecta Projects": ["TRIFECTA PROJECTS PRIVATE LIMITED"],
-  "Mahindra Lifespaces": ["MAHINDRA LIFESPACE DEVELOPERS LIMITED"],
-  "Signature Dwellings": ["SIGNATURE DWELLINGS PRIVATE LIMITED"],
-  "Provident Housing": ["Provident Housing Limited", "Provident White Oaks LLP"],
-  "MANA Projects": ["MANA PROJECTS PRIVATE LIMITED", "MANA PROJECTS PVT LTD"],
-  "KNS Infrastructure": ["KNS INFRASTRUCTURE PRIVATE LIMITED"],
-  "Vajram Group": ["VAJRAM ESTATES PRIVATE LIMITED"],
-  "DS-MAX Properties": ["DS Max Properties Private Limited"],
-  "Birla Estate": ["Birla Estates Private Limited", "VARDHITA PROPERTIES PRIVATE LIMITED"],
-  "GRC Infra": ["GRC Infra Pvt. Ltd."],
-  "Sipani Properties": ["SIPANI DEVELOPERS PRIVATE LIMITED"],
-  "Sattva Group": ["Sattva Resi Private Limited", "SATTVA DEVELOPERS PRIVATE LIMITED"],
-  "Bhartiya City": ["Bhartiya Urban Private Limited"],
-  "Arvind SmartSpaces": ["Arvind SmartSpaces Limited"],
-  "Puravankara": ["Puravankara Limited"],
-  "Valmark": ["VALMARK DEVELOPERS PRIVATE LIMITED"],
-  "Elite Estates": ["M/s. Elite Estates"]
+  "Sobha": [
+    "SOBHA LIMITED"
+  ],
+  "Godrej Properties": [
+    "Godrej Properties Limited",
+    "Godrej Projects Development Limited",
+    "Universal Metro Properties LLP"
+  ],
+  "Casagrand": [
+    "CASA GRANDE GARDEN CITY BUILDERS PVT LTD",
+    "CASAGRAND LOTUS PRIVATE LIMITED"
+  ],
+  "Assetz": [
+    "APG SKYWARDS PRIVATE LIMITED",
+    "APG COMMUNITY DEVELOPMENT PRIVATE LIMITED",
+    "APG GREEN HOMES PRIVATE LIMITED",
+    "APG TOWNSHIPS PRIVATE LIMITED",
+    "APG PREMIUM RESIDENTIAL PRIVATE LIMITED",
+    "APG HABITAT PRIVATE LIMITED",
+    "APG IMPERIAL HOMES PRIVATE LIMITED",
+    "APG Intelli Homes Private Limited",
+    "Assetz Whitefield Homes Private Limited",
+    "Infraedge Management Services Pvt Ltd",
+    "IINSPIRA WORLDCITY PROJECTS PRIVATE LIMITED",
+    "GOKULAM SHELTERS PRIVATE LIMITED",
+    "Sambhav Ventures Realty LLP",
+    "NETRA SOFTWARE TECHNOLOGIES PRIVATE LIMITED",
+    "Elite Projects",
+    "VEDANT HOMES"
+  ],
+  "Prestige Group": [
+    "PRESTIGE ESTATES PROJECTS LTD",
+    "PRESTIGE ACRES PRIVATE LIMITED",
+    "APEX REALTY MANAGEMENT PRIVATE LIMITED"
+  ],
+  "Graviti Living Spaces": [
+    "Graviti Living Spaces (India) Pvt Ltd"
+  ],
+  "Kumar World": [
+    "KUMAR PROPERTIES PRIVATE LIMITED"
+  ],
+  "Sumadhura Group": [
+    "SUMADHURA INFRACON PRIVATE LIMITED",
+    "SUMADHURA HOMES LLP"
+  ],
+  "Century Real Estate": [
+    "Century Silicon City Private Limited",
+    "Century Dwellings Private Limited",
+    "Suruchi Properties Private Limited",
+    "REALKRAFT VENTURES LLP"
+  ],
+  "Lodha": [
+    "Lodha Developers Limited"
+  ],
+  "Nambiar Builders": [
+    "Nambiar EnsembleResidential Projects LLP",
+    "Nambiar Builders Private Limited"
+  ],
+  "Amigo Shelters": [
+    "AMIGO SHELTERS PVT LTD"
+  ],
+  "Abhee Ventures": [
+    "ABHEE VENTURES PRIVATE LIMITED"
+  ],
+  "Brigade Group": [
+    "Brigade Enterprises Ltd",
+    "Brigade Tetrarch Private Limited"
+  ],
+  "ISTA Spaces": [
+    "MSR DWELLING PRIVATE LIMITED",
+    "Ashrith Vciti Projects"
+  ],
+  "Trifecta Projects": [
+    "TRIFECTA PROJECTS PRIVATE LIMITED"
+  ],
+  "Mahindra Lifespaces": [
+    "MAHINDRA LIFESPACE DEVELOPERS LIMITED"
+  ],
+  "Signature Dwellings": [
+    "SIGNATURE DWELLINGS PRIVATE LIMITED"
+  ],
+  "Provident Housing": [
+    "Provident Housing Limited",
+    "Provident White Oaks LLP"
+  ],
+  "MANA Projects": [
+    "MANA PROJECTS PRIVATE LIMITED",
+    "MANA PROJECTS PVT LTD",
+    "COLLAB PROJECTS LLP"
+  ],
+  "KNS Infrastructure": [
+    "KNS INFRASTRUCTURE PRIVATE LIMITED"
+  ],
+  "Vajram Group": [
+    "VAJRAM ESTATES PRIVATE LIMITED"
+  ],
+  "DS-MAX Properties": [
+    "DS Max Properties Private Limited"
+  ],
+  "Birla Estate": [
+    "Birla Estates Private Limited",
+    "VARDHITA PROPERTIES PRIVATE LIMITED"
+  ],
+  "GRC Infra": [
+    "GRC Infra Pvt. Ltd."
+  ],
+  "Sipani Properties": [
+    "SIPANI DEVELOPERS PRIVATE LIMITED"
+  ],
+  "Sattva Group": [
+    "Sattva Resi Private Limited",
+    "SATTVA DEVELOPERS PRIVATE LIMITED"
+  ],
+  "Bhartiya City": [
+    "Bhartiya Urban Private Limited"
+  ],
+  "Arvind SmartSpaces": [
+    "Arvind SmartSpaces Limited"
+  ],
+  "Puravankara": [
+    "Puravankara Limited",
+    "KVN Property Holdings LLP"
+  ],
+  "Valmark": [
+    "VALMARK DEVELOPERS PRIVATE LIMITED"
+  ],
+  "Elite Estates": [
+    "M/s. Elite Estates"
+  ],
+  "Shapporji Pallonji Real Estate": [
+    "Relationship Properties Private Limited"
+  ]
 }

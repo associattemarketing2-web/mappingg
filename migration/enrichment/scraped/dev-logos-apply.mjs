@@ -13,7 +13,7 @@
 // Only the `developers` table changes; scraped records, pins and projects are not touched. A snapshot of the
 // table is saved first, and every change is listed in DEVELOPER-LOGOS.csv.
 
-import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, appendFileSync, existsSync, readdirSync } from 'node:fs';
 import { randomUUID } from 'node:crypto';
 import path from 'node:path';
 import pg from 'pg';
@@ -77,7 +77,17 @@ for (const a of accepted) {
   const existing = byName.get(normDev(name)) || a.devs.map((d) => byName.get(normDev(d))).find(Boolean);
   const names = a.devs.filter((d) => normDev(d) !== normDev(existing?.doc.name || name));
   if (existing) {
-    if (existing.doc.logo) { console.warn(`skip ${a.host}: “${existing.doc.name}” already has a logo — add it to dev-logo-aliases.json if it is the same developer`); continue; }
+    if (existing.doc.logo) {
+      // Same brand name (a portal's label, or another promoter of this run): the entry's logo stands, the promoters become aliases.
+      if (normDev(existing.doc.name) !== normDev(name)) { console.warn(`skip ${a.site}: “${existing.doc.name}” already has a logo — add it to dev-logo-aliases.json if it is the same developer`); continue; }
+      const have = new Set((existing.doc.aliases || []).map(normDev));
+      const add = names.filter((d) => !have.has(normDev(d)));
+      if (!add.length) continue;
+      existing.doc = { ...existing.doc, aliases: [...(existing.doc.aliases || []), ...add], updated_at: now };
+      const prev = changes.find((c) => c.id === existing.id);
+      if (prev) { prev.doc = existing.doc; prev.aliases.push(...add); } else changes.push({ id: existing.id, name: existing.doc.name, action: 'aliases added (existing logo)', aliases: add, site: '', doc: existing.doc });
+      continue;
+    }
     const have = new Set((existing.doc.aliases || []).map(normDev));
     existing.doc = { ...existing.doc, logo, aliases: [...(existing.doc.aliases || []), ...names.filter((d) => !have.has(normDev(d)))], updated_at: now };
     changes.push({ id: existing.id, name: existing.doc.name, action: 'logo added to existing entry', aliases: names, site: a.site, doc: existing.doc });
@@ -105,6 +115,8 @@ for (const c of changes) {
   else await db.query(`UPDATE developers SET doc = $2 WHERE id = $1`, [c.id, c.doc]);
 }
 await db.query('COMMIT');
-writeFileSync(OUT, lines.join('\n') + '\n');
+// Appended, so every run stays in the log (the header is written once).
+if (existsSync(OUT)) appendFileSync(OUT, lines.slice(1).map((l) => l + '\n').join(''));
+else writeFileSync(OUT, lines.join('\n') + '\n');
 console.log(`Saved. Log: ${path.relative(process.cwd(), OUT)}`);
 await db.end();
