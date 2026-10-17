@@ -24,6 +24,10 @@ const initials = s => esc(String(s || '?').replace(/[^A-Za-z0-9 ]/g, '').trim().
 const logoCell = r => r.logo ? `<img class="scr-logo" src="${esc(r.logo)}" alt="" loading="lazy">` : `<span class="scr-logo none" title="No logo in Developers directory">${initials(r.developer_name)}</span>`;
 
 const state = { page: 0, term: '', city: '', pin: '', cat: '', has: '', logo: '', proj: '', edited: '' };
+// Page, search and filters survive a refresh of this browser tab.
+const STATE_KEY = 'mg_scraped_view';
+try { Object.assign(state, JSON.parse(sessionStorage.getItem(STATE_KEY) || '{}')); } catch { /* fresh view */ }
+const saveState = () => { try { sessionStorage.setItem(STATE_KEY, JSON.stringify(state)); } catch { /* not kept */ } };
 
 // "Added data" tab: the facts added from the official registry project pages, one column per fact.
 const HAS = { configurations: 'Configurations', unit_mix: 'Unit mix', carpet: 'Carpet area', total_units: 'Total units', towers: 'Towers', total_plots: 'Plots',
@@ -143,6 +147,7 @@ export async function renderScraped(page, params) {
     const list = filtered();
     const pages = Math.max(1, Math.ceil(list.length / PAGE));
     if (state.page >= pages) state.page = 0;
+    saveState();
     const shown = list.slice(state.page * PAGE, state.page * PAGE + PAGE);
     if (!list.length) { wrap.innerHTML = `<div class="pad muted" style="text-align:center;padding:48px">${base.length ? 'No matches.' : tab === 'added' ? 'Nothing added to Projects yet.' : tab === 'enriched' || tab === 'data' ? 'No enriched records waiting for review.' : 'Nothing here.'}</div>`; pager.innerHTML = ''; return; }
     wrap.innerHTML = tab === 'data'

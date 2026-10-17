@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { usePersistedState } from './usePersistedState';
 
 // Super admin → Developers: the developer directory, ONE logo per developer
 // (lib/developers.ts). In the Map Editor, typing a developer's name suggests it
@@ -56,7 +57,7 @@ async function call(method: string, query = '', body?: unknown) {
 export default function DevelopersPanel({ flash }: { flash: Flash }) {
   const [rows, setRows] = useState<Dev[] | null>(null);
   const [q, setQ] = useState('');
-  const [filter, setFilter] = useState<Filter>('all');
+  const [filter, setFilter] = usePersistedState<Filter>('developers.filter', 'all', ['all', 'nologo', 'mismatch']);
   const [adding, setAdding] = useState(false);
   const [editing, setEditing] = useState<string | null>(null);
   const [open, setOpen] = useState<string | null>(null);

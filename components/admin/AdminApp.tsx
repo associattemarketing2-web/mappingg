@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { usePersistedState } from './usePersistedState';
 import SettingsForm from './SettingsForm';
 import ProfileForm from './ProfileForm';
 import DevProjectsPanel, { type DevProject } from './DevProjectsPanel';
@@ -845,10 +846,11 @@ const PIN_STATUS: Record<string, string> = { available: 'Ready to move', under_c
 function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => void; isOwner: boolean }) {
   const [bySource, setBySource] = useState<Record<LeadSource, Lead[]>>({ map: [], signup: [], contact: [] });
   // Opens on buyer accounts: every buyer who signed up is a lead there.
-  const [source, setSource] = useState<LeadSource>('signup');
+  // Source and status filter survive a refresh (sessionStorage).
+  const [source, setSource] = usePersistedState<LeadSource>('leads.source', 'signup', ['signup', 'map', 'contact']);
   const [loading, setLoading] = useState(true);
   const [q, setQ] = useState('');
-  const [filter, setFilter] = useState<'all' | 'due' | Lead['status']>('all');
+  const [filter, setFilter] = usePersistedState<'all' | 'due' | Lead['status']>('leads.filter', 'all', ['all', 'due', ...LEAD_STAGES.map((s) => s.key)]);
   const [role, setRole] = useState<'all' | PersonRole>('all');
   const [loc, setLoc] = useState('');
   const [sel, setSel] = useState<Lead | null>(null);
@@ -1633,7 +1635,7 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
   const [rows, setRows] = useState<Account[]>([]);
   const [loading, setLoading] = useState(true);
   const [q, setQ] = useState('');
-  const [filter, setFilter] = useState<'all' | Account['role'] | 'pending' | 'rejected'>('all');
+  const [filter, setFilter] = usePersistedState<'all' | Account['role'] | 'pending' | 'rejected'>('accounts.filter', 'all');
   const [loc, setLoc] = useState('');
   const [rejectReason, setRejectReason] = useState('');
   const [rejecting, setRejecting] = useState(false);
@@ -1646,7 +1648,7 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
   const [feedFilter, setFeedFilter] = useState<(typeof FEED_FILTERS)[number][0]>('all');
   const [feedShown, setFeedShown] = useState(12);
   const [timeline, setTimeline] = useState<AccountEvent[] | null>(null);
-  const [view, setView] = useState<'accounts' | 'activity'>('accounts');
+  const [view, setView] = usePersistedState<'accounts' | 'activity'>('accounts.view', 'accounts', ['accounts', 'activity']);
   const [devProjects, setDevProjects] = useState<DevProject[] | null>(null);
   // Super admin editing an account's details (name, login email, WhatsApp, sign-up fields).
   const [editAcc, setEditAcc] = useState<{ name: string; email: string; mobile: string; profile: Record<string, string> } | null>(null);
@@ -2618,13 +2620,25 @@ export default function AdminApp({ user }: { user: AdminUser }) {
   const MENU_TABS = ['profile', 'settings'];
   const tabRow = visible.filter((k) => !MENU_TABS.includes(k));
   const [tab, setTab] = useState(visible[0] || 'dashboard');
-  // Deep link: /dashboard/s-admin?tab=projects (used by the old submissions page).
+  // The open tab lives in the URL (/dashboard/s-admin?tab=projects), so a refresh
+  // reopens it and the link can be shared. Read once on load, written on every change.
+  const tabFromUrl = useRef(false);
   useEffect(() => {
     try {
       const t = new URLSearchParams(window.location.search).get('tab');
       if (t && visible.includes(t)) setTab(t);
     } catch { /* ignore */ }
+    tabFromUrl.current = true;
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (!tabFromUrl.current) return;
+    try {
+      const url = new URL(window.location.href);
+      if (url.searchParams.get('tab') === tab) return;
+      url.searchParams.set('tab', tab);
+      window.history.replaceState(window.history.state, '', url);
+    } catch { /* ignore */ }
+  }, [tab]);
   // Developer projects waiting for approval (badge on the tab) and what to focus when opened.
   const [projPending, setProjPending] = useState(0);
   const [projFocus, setProjFocus] = useState<{ ownerId?: string; projectId?: string } | null>(null);

@@ -87,6 +87,11 @@ async function enter(user) {
     return;
   }
   drawShell();
+  // Reopen where the admin was: inside the super admin this app is an iframe that
+  // reloads at plain /intake, so the last page is remembered for this browser tab.
+  if (!location.hash || location.hash === '#') {
+    try { const last = sessionStorage.getItem(LAST_PAGE); if (last && last.startsWith('#/')) history.replaceState(null, '', last); } catch {}
+  }
   window.addEventListener('hashchange', route);
   route();
 }
@@ -163,6 +168,7 @@ function setupSide() {
 }
 
 let lastHash = '';
+const LAST_PAGE = 'mg_intake_last_page';
 async function route() {
   if (ctx.leaveGuard && location.hash !== lastHash) {
     const ok = await ctx.leaveGuard();
@@ -170,6 +176,8 @@ async function route() {
   }
   ctx.leaveGuard = null;
   lastHash = location.hash;
+  // "new" creates a record — never replay it on reload.
+  try { if (location.hash.startsWith('#/') && !location.hash.startsWith('#/new')) sessionStorage.setItem(LAST_PAGE, location.hash); } catch {}
   const [path, query] = (location.hash.replace(/^#/, '') || '/queue').split('?');
   const parts = path.split('/').filter(Boolean);
   const params = new URLSearchParams(query || '');

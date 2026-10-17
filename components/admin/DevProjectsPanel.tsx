@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { BulkBar, PickOne, useSelection } from './bulk';
+import { usePersistedState } from './usePersistedState';
 
 // Super admin → "Developer projects": every project a developer added from their
 // dashboard, who added it, and its approval state. New and edited projects stay
@@ -70,7 +71,7 @@ export default function DevProjectsPanel({ flash, isOwner, onPendingChange, focu
   onFocusDone?: () => void;
 }) {
   const [items, setItems] = useState<DevProject[] | null>(null);
-  const [filter, setFilter] = useState<Filter>('pending');
+  const [filter, setFilter] = usePersistedState<Filter>('devprojects.filter', 'pending', ['pending', 'delete', 'approved', 'rejected', 'all']);
   const [dev, setDev] = useState('');
   const [q, setQ] = useState('');
   const [busy, setBusy] = useState('');
