@@ -1902,6 +1902,183 @@ function documentsArticle(h) {
   };
 }
 
+function carpetAreaArticle() {
+  return {
+    slug: 'carpet-area-vs-built-up-vs-super-built-up-area',
+    title: 'Carpet Area vs Built-up vs Super Built-up Area: What You Actually Pay For (RERA Guide)',
+    seo_title: 'Carpet Area vs Built-up vs Super Built-up Area (RERA)',
+    seo_description:
+      'What carpet, built-up and super built-up area mean under RERA, how loading works, and how to compare flats by price per sq ft of carpet area. With worked examples.',
+    excerpt:
+      'A flat sold as 1,050 sq ft may have only 700 sq ft of usable floor. Here is what carpet, built-up and super built-up area mean under RERA, and how to compare two flats fairly.',
+    tags: ['Carpet Area', 'RERA', 'Home Buying Guide', 'Pune', 'Price per sq ft'],
+    cover: {
+      theme: 'metro',
+      kicker: 'Buyer’s guide',
+      lines: ['Carpet vs', 'Built-up vs', 'Super Built-up'],
+      stats: [['Sec 2(k)', 'RERA definition'], ['10.764', 'sq ft per sq m'], ['±3%', 'allowed variation']],
+    },
+    content: `
+<p>Two flats can be advertised at the same size and still have very different amounts of floor you can actually use. The difference is in which “area” the number refers to: <strong>carpet</strong>, <strong>built-up</strong> or <strong>super built-up</strong>. Since RERA, the carpet area is the figure that counts. This guide explains each term, how “loading” inflates the advertised size, and how to compare flats fairly.</p>
+
+<h2>Carpet area: the floor you can use</h2>
+<p>The Real Estate (Regulation and Development) Act, 2016 defines carpet area in <strong>Section 2(k)</strong> as the <em>net usable floor area of an apartment</em>. It:</p>
+<ul>
+  <li><strong>includes</strong> the area under the internal partition walls of the flat;</li>
+  <li><strong>excludes</strong> the external walls, the area under service shafts, and your exclusive balcony, verandah and open terrace.</li>
+</ul>
+<p>Under RERA, flats are sold on the basis of carpet area, and the carpet area must be stated in the agreement for sale. That is why MahaRERA project pages and agreements show it, usually in square metres.</p>
+
+<h2>Built-up area</h2>
+<p>Built-up area is the carpet area <strong>plus</strong> the thickness of the external walls and, as most developers use the term, the balconies and dry areas that belong to your flat. It is not defined in the RERA Act, so different developers count it differently. As a rough guide, it is often 10–20% more than the carpet area.</p>
+
+<h2>Super built-up area (saleable area)</h2>
+<p>Super built-up area adds your share of the <strong>common areas</strong> to the built-up area: lobbies, staircases, lift wells, corridors, and sometimes the clubhouse, gym or other amenities. The share of common area added is called <strong>loading</strong>. Before RERA, many flats were priced on super built-up area, which made a flat look larger and the rate per sq ft look lower.</p>
+
+<div class="table-scroll"><table>
+<caption>The three areas at a glance</caption>
+<thead><tr><th></th><th>Carpet area</th><th>Built-up area</th><th>Super built-up area</th></tr></thead>
+<tbody>
+<tr><td>What it covers</td><td>Usable floor inside the flat, including internal walls</td><td>Carpet + external walls + your balconies and dry areas</td><td>Built-up + your share of common areas</td></tr>
+<tr><td>Defined in the RERA Act?</td><td>Yes, Section 2(k)</td><td>No</td><td>No</td></tr>
+<tr><td>Typical size vs carpet</td><td>—</td><td>Often 10–20% more</td><td>Often 30–50% more</td></tr>
+</tbody></table></div>
+<p>The percentages are typical ranges, not rules. Always ask for the exact carpet area of the flat you are buying.</p>
+
+<h2>Worked example: the same flat, three prices per sq ft</h2>
+<p>Take a 2 BHK priced at ₹1 crore, with a RERA carpet area of 700 sq ft. The brochure calls it a 1,050 sq ft flat (super built-up).</p>
+<div class="table-scroll"><table>
+<caption>One ₹1 crore flat, measured two ways</caption>
+<thead><tr><th>Area used</th><th>Size</th><th>Price per sq ft</th></tr></thead>
+<tbody>
+<tr><td>Super built-up</td><td>1,050 sq ft</td><td>₹9,524</td></tr>
+<tr><td>RERA carpet</td><td>700 sq ft</td><td>₹14,286</td></tr>
+</tbody></table></div>
+<p>The loading here is 50% (1,050 ÷ 700 = 1.5). The flat is no cheaper because its advertised rate is lower; it is the same flat. Only the price per sq ft of <strong>carpet</strong> area tells you what you pay for usable space.</p>
+
+<h2>How to compare two flats fairly</h2>
+<p>Divide the all-inclusive price by the RERA carpet area. For example:</p>
+<div class="table-scroll"><table>
+<caption>Comparing two flats by carpet area</caption>
+<thead><tr><th>Flat</th><th>Price</th><th>RERA carpet area</th><th>Price per sq ft of carpet</th></tr></thead>
+<tbody>
+<tr><td>Flat A</td><td>₹95 Lacs</td><td>650 sq ft</td><td>₹14,615</td></tr>
+<tr><td>Flat B</td><td>₹1.02 crore</td><td>720 sq ft</td><td>₹14,167</td></tr>
+</tbody></table></div>
+<p>Flat B costs more in total but less for every square foot you can use. Check that both prices include the same things (parking, floor rise, club membership, GST), or the comparison won’t be fair. Our guide to <a href="/blog/stamp-duty-registration-charges-pune">stamp duty and hidden costs</a> lists what to ask for.</p>
+
+<h2>Balconies, terraces and “usable carpet”</h2>
+<p>Some brochures quote a “usable carpet” or “carpet + balcony” figure. Balconies and terraces are useful space, but under RERA they are not part of the carpet area. If a developer shows them, make sure they are listed separately, and compare flats on the RERA carpet area alone.</p>
+
+<h2>Square metres and square feet</h2>
+<p>MahaRERA documents usually give areas in square metres. <strong>1 sq m = 10.764 sq ft</strong>, so a carpet area of 65 sq m is about 700 sq ft.</p>
+
+<h2>What if the flat turns out smaller?</h2>
+<p>MahaRERA’s model agreement for sale allows the final carpet area to vary by up to 3% from the agreed figure. If it is smaller by more than that, the developer has to refund the excess amount paid for the missing area; if it is larger, the developer can ask for payment only within the limit set in the agreement. Read this clause in your agreement before you sign it, and measure the flat at possession.</p>
+
+<h2>Checklist before you book</h2>
+<ol>
+  <li>Ask for the <strong>RERA carpet area</strong> of the specific flat, in writing.</li>
+  <li>Check it against the project’s MahaRERA page. Our guide shows <a href="/blog/how-to-check-maharera-registration-number">how to find it</a>.</li>
+  <li>Get balconies, terraces and parking listed separately from the carpet area.</li>
+  <li>Compare projects by <strong>all-inclusive price ÷ carpet area</strong>.</li>
+  <li>Read the area-variation clause in the agreement.</li>
+</ol>
+<p>Shortlisting? Compare projects by location, price and possession date on the <a href="/map">live map</a>, or start with <a href="/blog/2-bhk-flats-in-pune">2 BHK</a> and <a href="/blog/3-bhk-flats-in-pune">3 BHK flats in Pune</a>.</p>
+
+<h2>FAQs</h2>
+<h3>Is the price of a flat based on carpet area under RERA?</h3>
+<p>Yes. Under RERA, flats are sold on the basis of carpet area, and the agreement for sale must state it.</p>
+<h3>Is a balcony included in carpet area?</h3>
+<p>No. Section 2(k) of the RERA Act excludes exclusive balconies, verandahs and open terraces from the carpet area.</p>
+<h3>What is a normal loading percentage?</h3>
+<p>It varies by project. Super built-up area is often 30–50% more than the carpet area; projects with large amenities tend to have higher loading.</p>
+<h3>How do I convert square metres to square feet?</h3>
+<p>Multiply by 10.764. For example, 60 sq m × 10.764 = about 646 sq ft.</p>
+
+<blockquote>This guide is general information, not legal advice. Check the carpet area and the terms of your agreement with the developer and a property lawyer before you book.</blockquote>
+`,
+  };
+}
+
+function possessionDelayArticle() {
+  return {
+    slug: 'possession-delay-rera-buyer-rights-maharera-complaint',
+    title: 'Possession Delayed? Your Rights Under RERA and How to File a MahaRERA Complaint',
+    seo_title: 'Flat Possession Delayed? RERA Rights & MahaRERA Complaint',
+    seo_description:
+      'If your flat’s possession is delayed, RERA Section 18 lets you take a refund with interest or claim interest for every month of delay. How it works in Maharashtra and how to file a MahaRERA complaint.',
+    excerpt:
+      'When the possession date in your agreement passes, RERA gives you a choice: leave the project with a refund and interest, or stay and get interest for every month of delay. Here is how it works in Maharashtra.',
+    tags: ['RERA', 'MahaRERA', 'Possession Delay', 'Home Buyer Rights', 'Maharashtra'],
+    cover: {
+      theme: 'mint',
+      kicker: 'Buyer’s rights',
+      lines: ['Possession', 'Delayed? Your', 'RERA Rights'],
+      stats: [['Sec 18', 'refund or interest'], ['MCLR+2%', 'interest rate'], ['5 yrs', 'defect liability']],
+    },
+    content: `
+<p>An under-construction flat comes with a promised possession date. When that date passes, many buyers don’t know what they can do. The Real Estate (Regulation and Development) Act, 2016 (RERA) gives you clear rights, and in Maharashtra you can enforce them through MahaRERA. This guide explains them in plain language.</p>
+
+<h2>Which date counts?</h2>
+<p>Your rights are counted from the <strong>possession date in your registered agreement for sale</strong>. The developer may show a later “revised completion date” on the MahaRERA project page; that does not, by itself, change the date you agreed to. Keep a copy of the agreement and every payment receipt.</p>
+
+<h2>Your two options under Section 18</h2>
+<p>If the developer fails to complete the project or hand over possession by the agreed date, <strong>Section 18</strong> of the RERA Act lets you choose:</p>
+<div class="table-scroll"><table>
+<caption>What Section 18 gives you</caption>
+<thead><tr><th>If you…</th><th>You are entitled to</th></tr></thead>
+<tbody>
+<tr><td>Withdraw from the project</td><td>A refund of the amount you paid, with interest at the prescribed rate, plus compensation</td></tr>
+<tr><td>Stay in the project</td><td>Interest for every month of delay, until you are given possession</td></tr>
+</tbody></table></div>
+<p>Compensation is decided separately by MahaRERA’s adjudicating officer, based on the loss you can show.</p>
+
+<h2>How much interest?</h2>
+<p>In Maharashtra, the MahaRERA rules set the interest rate at the <strong>State Bank of India’s highest marginal cost of lending rate (MCLR) plus 2%</strong>. The same rate applies whether the developer pays you or you pay the developer late, so check the current SBI MCLR when you work out a claim.</p>
+
+<h2>Other protections worth knowing</h2>
+<ul>
+  <li><strong>10% advance limit (Section 13):</strong> a developer cannot take more than 10% of the flat’s cost as an advance or application fee before a registered agreement for sale is signed.</li>
+  <li><strong>Separate project account (Section 4):</strong> 70% of the money collected from buyers must be kept in a separate bank account and used only for that project’s land and construction.</li>
+  <li><strong>Quarterly updates (Section 11):</strong> the developer must update the project’s progress on its MahaRERA page every quarter. Checking it regularly gives you early warning of a delay.</li>
+  <li><strong>Five years of defect liability (Section 14):</strong> if you find a structural defect, or a defect in workmanship, quality or services, within five years of possession, the developer must fix it within 30 days at no charge. If they don’t, you can claim compensation.</li>
+</ul>
+
+<h2>Step by step: what to do when possession is late</h2>
+<ol>
+  <li><strong>Check the project’s MahaRERA page.</strong> Look at the quarterly progress, the revised completion date and any extension. Our guide shows <a href="/blog/how-to-check-maharera-registration-number">how to find a project on MahaRERA</a>.</li>
+  <li><strong>Write to the developer.</strong> Ask, by email or letter, for the expected possession date and the delay interest due under Section 18. Keep copies of everything.</li>
+  <li><strong>Decide: stay or exit.</strong> Staying means interest until possession; exiting means a refund with interest. Think about how far along the project is and how much you have paid.</li>
+  <li><strong>Try conciliation.</strong> MahaRERA runs a conciliation and dispute resolution forum where buyers and developers can settle without a full hearing.</li>
+  <li><strong>File a complaint.</strong> If that fails, file a complaint online on the MahaRERA website under Section 31, with your agreement, payment receipts and correspondence. Claims for compensation go to the adjudicating officer.</li>
+  <li><strong>Appeal if needed.</strong> An order of MahaRERA can be appealed to the Maharashtra Real Estate Appellate Tribunal, generally within 60 days.</li>
+</ol>
+
+<h2>Before you book: how to lower the risk of delay</h2>
+<ul>
+  <li>Check the developer’s record on their earlier projects: were they delivered on time, and do any show long extensions?</li>
+  <li>Compare the possession date in the agreement with the completion date on MahaRERA.</li>
+  <li>Prefer a construction-linked payment plan, so your payments follow actual progress.</li>
+  <li>Look at a <a href="/status/ready-to-move">ready-to-move flat</a> if you need a home by a fixed date. Our guide to <a href="/blog/ready-to-move-vs-under-construction-flats-pune">ready-to-move vs under-construction flats</a> weighs up the choice.</li>
+  <li>Have the documents checked before you pay. See our list of <a href="/blog/documents-to-check-before-buying-flat-pune">documents to check before buying a flat</a>.</li>
+</ul>
+
+<h2>FAQs</h2>
+<h3>Can I get a full refund if possession is delayed?</h3>
+<p>Under Section 18, if you choose to withdraw, you are entitled to a refund of the amount paid with interest at the prescribed rate, plus compensation as decided by the adjudicating officer.</p>
+<h3>Do I lose my rights if I stay in the project?</h3>
+<p>No. If you stay, you are entitled to interest for every month of delay until possession.</p>
+<h3>What interest rate applies in Maharashtra?</h3>
+<p>SBI’s highest marginal cost of lending rate (MCLR) plus 2%, under the MahaRERA rules.</p>
+<h3>Do I need a lawyer to file a MahaRERA complaint?</h3>
+<p>You can file the complaint online yourself, but a lawyer can help with large claims, compensation and hearings.</p>
+
+<blockquote>This guide is general information, not legal advice. Rules, rates and procedures change, and every case depends on its agreement and facts. For a claim, speak to a property lawyer and check the current procedure on the official MahaRERA website.</blockquote>
+`,
+  };
+}
+
 // ---- photos ---------------------------------------------------------------------
 
 const PHOTO_DIR = path.resolve('migration/blog-photos');
@@ -1964,7 +2141,7 @@ async function main() {
     underOneCroreArticle(h), stampDutyArticle(h), threeBhkArticle(h), homeLoanArticle(h),
     twoBhkArticle(h), luxuryArticle(h), naviMumbaiArticle(h), kalyanDombivliArticle(h),
     commercialArticle(h), upcomingArticle(h), bengaluruArticle(h), mumbaiArticle(h),
-    centralPuneArticle(h), documentsArticle(h),
+    centralPuneArticle(h), documentsArticle(h), carpetAreaArticle(), possessionDelayArticle(),
   ];
 
   // Sanity: every slug used by the articles' internal links must be stable.
