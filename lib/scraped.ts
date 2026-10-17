@@ -3,7 +3,7 @@ import path from 'node:path';
 import { gunzipSync } from 'node:zlib';
 import { query } from './pg';
 import { usingMongo } from './mongodb';
-import { directory, normDev } from './developers';
+import { logosByName, normDev } from './developers';
 
 // "Scraped data" for Projects Intake: projects collected from official RERA
 // registries (MahaRERA, Haryana RERA - Gurugram, RERA Karnataka), cleaned in
@@ -111,8 +111,8 @@ export async function listScraped(): Promise<{ rows: Doc[]; imported_at: string 
     const byPin = new Map(pins.map((p) => [p.id, p]));
     pr.rows.forEach((r) => { const p = r.pin_id ? byPin.get(r.pin_id) : null; pinNo.set(r.id, p && !p.hidden && p.num != null ? Number(p.num) : null); });
   }
-  const logos = new Map<string, string>();
-  try { for (const d of await directory()) if (d.logo) logos.set(normDev(d.name), d.logo); } catch { /* directory unavailable: no logos */ }
+  let logos = new Map<string, string>();
+  try { logos = await logosByName(); } catch { /* directory unavailable: no logos */ }
 
   let imported_at: string | null = null, dataset_generated: string | null = null;
   const rows = res.rows.map(({ id, doc }) => {

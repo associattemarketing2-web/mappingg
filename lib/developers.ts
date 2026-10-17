@@ -20,6 +20,9 @@ export interface Developer {
   name: string;
   /** base64 data: URL (or an http URL) — never sent to the browser as-is, see toClient(). */
   logo?: string | null;
+  /** Other names of the same developer — the legal / project-company names used on RERA
+   *  ("SOBHA LIMITED", "Provident White Oaks LLP") — that get this logo too. */
+  aliases?: string[];
   created_at: string;
   updated_at: string;
 }
@@ -138,6 +141,18 @@ export async function listDevelopers(): Promise<DeveloperRow[]> {
     .sort((a, b) => b.projects - a.projects || a.name.localeCompare(b.name));
 }
 
+const aliasKeys = (d: { aliases?: string[] }) => (d.aliases || []).map(normDev).filter(Boolean);
+
+/** Logo URL per developer name and alias (normDev keys), for lists that only show the logo. */
+export async function logosByName(): Promise<Map<string, string>> {
+  await syncFromPins();
+  const devs = await devDocs();
+  const out = new Map<string, string>();
+  for (const d of devs) { const u = logoUrl(d); if (u && normDev(d.name)) out.set(normDev(d.name), u); }
+  for (const d of devs) { const u = logoUrl(d); if (u) for (const a of aliasKeys(d)) if (!out.has(a)) out.set(a, u); }
+  return out;
+}
+
 /** Small list for the map editor's suggestions: name + logo thumbnail URL. */
 export async function directory(): Promise<{ id: string; name: string; logo: string | null }[]> {
   await syncFromPins();
@@ -192,9 +207,11 @@ let logoIdx: { at: number; byName: Map<string, { logo: string; fp: string }>; fp
 async function logoIndex() {
   if (logoIdx && Date.now() - logoIdx.at < 60_000) return logoIdx;
   await ensureTable();
-  const devs = await (await coll()).find({}, { projection: { name: 1, logo: 1 } }).toArray();
+  const devs = await (await coll()).find({}, { projection: { name: 1, logo: 1, aliases: 1 } }).toArray();
   const byName = new Map<string, { logo: string; fp: string }>();
+  // Names first, then aliases, so an alias never hides another developer's own entry.
   for (const d of devs) if (d.logo && normDev(d.name)) byName.set(normDev(d.name), { logo: d.logo, fp: fingerprint(d.logo) });
+  for (const d of devs) if (d.logo) for (const a of aliasKeys(d)) if (!byName.has(a)) byName.set(a, { logo: d.logo, fp: fingerprint(d.logo) });
   logoIdx = { at: Date.now(), byName, fps: new Set([...byName.values()].map((x) => x.fp)) };
   return logoIdx;
 }
