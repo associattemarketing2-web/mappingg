@@ -23,7 +23,7 @@ const stateBadge = s => { if (!s) return '<span class="cell-sub">—</span>'; co
 const initials = s => esc(String(s || '?').replace(/[^A-Za-z0-9 ]/g, '').trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase() || '?');
 const logoCell = r => r.logo ? `<img class="scr-logo" src="${esc(r.logo)}" alt="" loading="lazy">` : `<span class="scr-logo none" title="No logo in Developers directory">${initials(r.developer_name)}</span>`;
 
-const state = { page: 0, term: '', city: '', pin: '', cat: '', has: '', logo: '', proj: '' };
+const state = { page: 0, term: '', city: '', pin: '', cat: '', has: '', logo: '', proj: '', edited: '' };
 
 // "Added data" tab: the facts added from the official registry project pages, one column per fact.
 const HAS = { configurations: 'Configurations', unit_mix: 'Unit mix', carpet: 'Carpet area', total_units: 'Total units', towers: 'Towers', total_plots: 'Plots',
@@ -40,6 +40,14 @@ const isReady = r => Array.isArray(r.ready_gaps) && !r.ready_gaps.length;
 
 export async function renderScraped(page, params) {
   const tab = params.get('tab') || 'all';
+  // A click on a summary card (…&s=1) opens exactly that list: other filters are cleared.
+  if (params.get('s')) {
+    Object.assign(state, { page: 0, term: '', city: '', pin: '', cat: '', has: '', logo: '', proj: '', edited: '' });
+    for (const k of ['pin', 'proj', 'edited']) if (params.get(k)) state[k] = params.get(k);
+    // Only once: a later re-render (bulk action, reload) keeps whatever filters are set by then.
+    params.delete('s');
+    try { history.replaceState(null, '', location.hash.replace(/&s=1\b/, '')); } catch { /* fine without */ }
+  }
   if (params.get('city')) state.city = params.get('city');
   page.innerHTML = '<div class="muted pad">Loading scraped data…</div>';
   const [{ data, error }, facts] = await Promise.all([ctx.client.rpc('admin_scraped_list'), tab === 'data' ? ctx.client.rpc('admin_scraped_enriched') : null]);
@@ -59,13 +67,17 @@ export async function renderScraped(page, params) {
     <div><h1>Scraped data</h1><p>Official RERA registry records${data.dataset_generated ? ` · dataset ${esc(formatDate(data.dataset_generated))}` : ''}${data.imported_at ? ` · imported ${esc(formatDate(data.imported_at))}` : ''}. Nothing goes on the map until you publish it.</p></div>
     <div style="display:flex;gap:8px"><button class="btn ghost" data-a="import">Refresh from dataset</button><button class="btn ghost" data-a="csv">Export CSV</button></div></div>`);
   page.appendChild(head);
-  page.appendChild(h(`<div class="stats">
-    <div class="card stat"><div class="v">${live.length.toLocaleString()}</div><div class="l">Scraped records</div></div>
-    <div class="card stat"><div class="v">${live.filter(r => READY.has(r.pin_check)).length.toLocaleString()}</div><div class="l">Location verified · ready to add</div></div>
-    <div class="card stat"><div class="v">${added.length.toLocaleString()}</div><div class="l">Added to Projects</div></div>
-    <div class="card stat"><div class="v">${added.filter(r => r.project_state === 'live').length.toLocaleString()}</div><div class="l">Live on the map</div></div>
-    <div class="card stat"><div class="v">${live.filter(r => r.edited).length.toLocaleString()}</div><div class="l">Edited by team</div></div>
-  </div>`));
+  // Each card opens the list it counts.
+  const only = (k) => ['pin', 'proj', 'edited'].every((x) => (x === k ? true : !state[x])) && !state.term && !state.city && !state.cat;
+  const cards = [
+    [live.length, 'Scraped records', 'tab=all', tab === 'all' && only(null)],
+    [live.filter(r => READY.has(r.pin_check)).length, 'Location verified · ready to add', 'tab=all&pin=ready', tab === 'all' && state.pin === 'ready' && only('pin')],
+    [added.length, 'Added to Projects', 'tab=added', tab === 'added' && only(null)],
+    [added.filter(r => r.project_state === 'live').length, 'Live on the map', 'tab=added&proj=live', tab === 'added' && state.proj === 'live' && only('proj')],
+    [live.filter(r => r.edited).length, 'Edited by team', 'tab=all&edited=1', tab === 'all' && state.edited === '1' && only('edited')],
+  ];
+  page.appendChild(h(`<div class="stats">${cards.map(([n, l, q, on]) =>
+    `<a class="card stat ${on ? 'on' : ''}" href="#/scraped?${q}&s=1" title="Show these records"${on ? ' aria-current="true"' : ''}><div class="v">${n.toLocaleString()}</div><div class="l">${l}</div></a>`).join('')}</div>`));
   page.appendChild(h(`<div class="tabs" role="tablist">
     <a class="tab ${tab === 'all' ? 'on' : ''}" href="#/scraped?tab=all">All scraped data<span class="n">${live.length}</span></a>
     <a class="tab ${tab === 'enriched' ? 'on' : ''}" href="#/scraped?tab=enriched" title="Facts added from the official registry project pages. Not on the map; review before adding to Projects.">Enriched — Review Pending<span class="n">${enriched.length}</span></a>
@@ -75,6 +87,10 @@ export async function renderScraped(page, params) {
 
   const cities = Object.keys(CITY_LABEL).map(c => [c, base.filter(r => r.city === c).length]);
   const cats = [...new Set(base.map(r => r.status_category).filter(Boolean))].sort();
+  const projSelect = () => `<select class="input" style="max-width:200px" aria-label="Projects" data-f="proj"><option value="">Projects: any</option>
+      ${tab === 'added' ? '' : `<option value="not" ${state.proj === 'not' ? 'selected' : ''}>Not added yet (${base.filter(r => !r.submission_id).length})</option>`}
+      <option value="added" ${state.proj === 'added' ? 'selected' : ''}>Added, not live (${base.filter(r => r.submission_id && r.project_state !== 'live').length})</option>
+      <option value="live" ${state.proj === 'live' ? 'selected' : ''}>Live on map (${base.filter(r => r.project_state === 'live').length})</option></select>`;
   const toolbar = h(`<div class="toolbar">
     <input class="input" type="search" placeholder="Search project, developer, RERA no., locality, pincode…" aria-label="Search" value="${esc(state.term)}">
     <select class="input" style="max-width:190px" aria-label="City" data-f="city"><option value="">All cities (${base.length})</option>
@@ -83,15 +99,15 @@ export async function renderScraped(page, params) {
       ${Object.entries(PIN).map(([k, p]) => `<option value="${k}" ${state.pin === k ? 'selected' : ''}>${p.label}</option>`).join('')}</select>
     <select class="input" style="max-width:240px" aria-label="Registry status" data-f="cat"><option value="">Any registry status</option>
       ${cats.map(c => `<option ${state.cat === c ? 'selected' : ''}>${esc(c)}</option>`).join('')}</select>
+    <select class="input" style="max-width:170px" aria-label="Edited" data-f="edited"><option value="">Edited or not</option>
+      <option value="1" ${state.edited === '1' ? 'selected' : ''}>Edited by team (${base.filter(r => r.edited).length})</option></select>
+    ${tab === 'added' ? projSelect() : ''}
     ${tab === 'data' ? `<select class="input" style="max-width:200px" aria-label="Added fact" data-f="has"><option value="">Any added data</option>
       ${Object.entries(HAS).map(([k, l]) => `<option value="${k}" ${state.has === k ? 'selected' : ''}>Has ${esc(l.toLowerCase())} (${base.filter(r => hasFact(r.facts.fields || {}, k)).length})</option>`).join('')}</select>
     <select class="input" style="max-width:220px" aria-label="Developer logo" data-f="logo"><option value="">Developer logo: any</option>
       <option value="yes" ${state.logo === 'yes' ? 'selected' : ''}>Logo matched (${base.filter(r => r.logo).length})</option>
       <option value="no" ${state.logo === 'no' ? 'selected' : ''}>No logo in Developers (${base.filter(r => !r.logo).length})</option></select>
-    <select class="input" style="max-width:200px" aria-label="Projects" data-f="proj"><option value="">Projects: any</option>
-      <option value="not" ${state.proj === 'not' ? 'selected' : ''}>Not added yet (${base.filter(r => !r.submission_id).length})</option>
-      <option value="added" ${state.proj === 'added' ? 'selected' : ''}>Added, not live (${base.filter(r => r.submission_id && r.project_state !== 'live').length})</option>
-      <option value="live" ${state.proj === 'live' ? 'selected' : ''}>Live on map (${base.filter(r => r.project_state === 'live').length})</option></select>` : ''}
+    ${projSelect()}` : ''}
     <button class="btn ghost sm" type="button" data-a="selall">Select all matching</button>
   </div>`);
   if (tab === 'data') page.appendChild(h(`<p class="cell-sub" style="margin:-4px 0 10px"><b>Only complete, clean records are listed:</b> configuration, units, completion date still ahead, project cost, land area and pincode all from the registry, no conflict with the registry list, registration not lapsed / withdrawn / revoked and project not completed.
@@ -116,9 +132,10 @@ export async function renderScraped(page, params) {
     return base.filter(r => (!state.city || r.city === state.city)
       && (!state.pin || (state.pin === 'ready' ? READY.has(r.pin_check) : r.pin_check === state.pin))
       && (!state.cat || r.status_category === state.cat)
+      && (!state.edited || r.edited)
+      && (!state.proj || (state.proj === 'not' ? !r.submission_id : state.proj === 'live' ? r.project_state === 'live' : r.submission_id && r.project_state !== 'live'))
       && (tab !== 'data' || ((!state.has || hasFact(r.facts.fields || {}, state.has))
-        && (!state.logo || (state.logo === 'yes') === !!r.logo)
-        && (!state.proj || (state.proj === 'not' ? !r.submission_id : state.proj === 'live' ? r.project_state === 'live' : r.submission_id && r.project_state !== 'live'))))
+        && (!state.logo || (state.logo === 'yes') === !!r.logo)))
       && (!t ||[r.project_name, r.developer_name, r.rera_number, r.locality, r.district, r.pincode, CITY_LABEL[r.city]].some(x => String(x || '').toLowerCase().includes(t))));
   };
   const draw = () => {
