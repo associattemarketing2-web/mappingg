@@ -182,16 +182,20 @@ export function enrichmentForProject(e: Doc | undefined): { patch: Doc; details:
   if (acres) patch.land_area_acres = Number(acres[1].replace(/,/g, ''));
   const amen = (Array.isArray(f.amenities) ? f.amenities : []).map((a: string) => AMENITY_OPTIONS[String(a).toLowerCase().trim()]).filter(Boolean);
   if (amen.length) patch.amenities = [...new Set(amen)];
+  // Facts read from the developer's own project page (devpage-facts.mjs) are labelled as such, not as RERA.
+  const src = (k: string) => (e.field_sources?.[k]?.source === 'developer_official_site' ? 'developer website' : 'RERA');
   const rows: [string, unknown][] = [
     ['Project cost (declared to RERA, not a sale price)', f.project_cost && String(f.project_cost).replace(/\s*\(.*\)$/, '')],
     ['Unit mix (RERA)', Array.isArray(f.unit_mix) && f.unit_mix.length ? unitMixText(f.unit_mix) : ''],
-    ['Carpet area (RERA)', Array.isArray(f.unit_mix) && f.unit_mix.some((u: Doc) => u.avg_carpet_sqm ?? u.carpet_sqm_per_unit) ? '' : f.carpet_area],
+    [`Carpet area (${src('carpet_area')})`, Array.isArray(f.unit_mix) && f.unit_mix.some((u: Doc) => u.avg_carpet_sqm ?? u.carpet_sqm_per_unit) ? '' : f.carpet_area],
     ['Total carpet area (RERA)', f.total_carpet_area],
-    ['Land area (RERA)', f.land_area], ['Plot sizes (RERA)', Array.isArray(f.plot_sizes) ? f.plot_sizes.join(', ') : f.plot_sizes],
+    [`Land area (${src('land_area')})`, f.land_area], ['Plot sizes (RERA)', Array.isArray(f.plot_sizes) ? f.plot_sizes.join(', ') : f.plot_sizes],
     ['Total plots (RERA)', f.total_plots], ['Project sub-type (RERA)', f.project_sub_type],
-    ['Amenities (RERA)', Array.isArray(f.amenities) ? f.amenities.join(', ') : f.amenities],
+    [`Amenities (${src('amenities')})`, Array.isArray(f.amenities) ? f.amenities.join(', ') : f.amenities],
     ['Project start date (RERA)', f.project_start_date],
-    [e.source_type === 'developer_official_site' ? 'Possession date (developer website)' : 'Proposed completion (RERA)', f.proposed_completion],
+    [e.source_type === 'developer_official_site' && e.field_sources?.proposed_completion?.source !== 'maharera_certificate'
+      ? 'Possession date (developer website)' : 'Proposed completion (RERA)', f.proposed_completion],
+    ['RERA completion (registration certificate)', f.rera_completion], ['RERA registration certificate', f.registration_certificate],
     ['Possession wording (developer website)', f.possession_text], ['Developer project page', f.developer_project_page],
     ['Plan approved by', f.approving_authority], ['Approved plan no.', f.approved_plan_number], ['Plan approval date', f.plan_approval_date],
     ['DTCP licence', f.dtcp_license], ['Layout plan approval', f.layout_plan_approval_date], ['Building plan approval', f.building_plan_approval_date],
