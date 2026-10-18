@@ -34,6 +34,8 @@ const PHOTOS = {
   'new-projects-in-mumbai-andheri-borivali-south-mumbai': 'Mumbai Skyline with Bandra–Worli Sea Link 25 July 2018 (1).jpg',
   'new-projects-in-kothrud-koregaon-park-central-pune': 'Kothrud full view.JPG',
   'documents-to-check-before-buying-flat-pune': 'Pune Municipal Corporation building in October 2023.jpg',
+  'carpet-area-vs-built-up-vs-super-built-up-area': 'Baner from Baner Pashan Biodiversity Park.JPG',
+  'possession-delay-rera-buyer-rights-maharera-complaint': 'Scaffolding for a building under construction.jpg',
 };
 
 const OUT = path.resolve('migration/blog-photos');
