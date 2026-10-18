@@ -1,0 +1,32 @@
+// Re-reads the written workbooks and CSVs and checks they agree with each other and with the snapshot.
+const fs = require('fs'), path = require('path'); const ExcelJS = require('exceljs'); const C = require('./common.js');
+const csvRows = (f) => fs.readFileSync(path.join(C.ROOT, f), 'utf8').replace(/^\ufeff/, '').split(/\r\n/).length - 1;
+let fail = 0; const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) fail++; };
+(async () => {
+  const snap = C.loadRecords().length;
+  const g = new ExcelJS.Workbook(); await g.xlsx.readFile(path.join(C.ROOT, 'GAP_REPORT.xlsx'));
+  const all = g.getWorksheet('All Records');
+  ok(all.rowCount - 1 === snap, `GAP_REPORT All Records rows ${all.rowCount - 1} = snapshot Pune+Mumbai ${snap}`);
+  ok(csvRows('Gap_Report_Records.csv') === snap, `Gap_Report_Records.csv rows = ${snap}`);
+  const hdr = all.getRow(1).values; const ci = (n) => hdr.indexOf(n);
+  const vals = (n) => { const out = []; all.eachRow((r, i) => { if (i > 1) out.push(r.getCell(ci(n)).value); }); return out; };
+  const rera = vals('rera_number'); ok(new Set(rera).size === rera.length, `RERA numbers unique (${new Set(rera).size})`);
+  ok(rera.every((v) => typeof v === 'string' && /^P[RMCP]\d{13}$|^P5\d{10}$/.test(v)), 'RERA numbers stored as text in MahaRERA format');
+  const L = vals('lat'), G = vals('lng'), chk = vals('location_check');
+  ok(L.every((v, i) => v == null ? G[i] == null : typeof v === 'number' && typeof G[i] === 'number'), `coordinates stored as numbers (${L.filter((v) => v != null).length})`);
+  const outside = L.map((v, i) => i).filter((i) => L[i] != null && !(L[i] > 15.5 && L[i] < 22.1 && G[i] > 72.5 && G[i] < 80.9));
+  console.log(`INFO ${outside.length} point(s) outside Maharashtra: ${outside.map((i) => rera[i] + ' ' + L[i] + ',' + G[i]).join('; ')}`);
+  ok(outside.every((i) => chk[i] !== 'verified'), 'every point outside Maharashtra is already flagged (not "verified")');
+  ok(vals('city').every((c) => ['Pune', 'Mumbai'].includes(c)), 'only Pune and Mumbai (no Thane / Kalyan-Dombivli)');
+  ok(vals('go_live_eligible').filter((v) => v === 'YES').length === 0, 'go-live eligible = 0 (registry details pending)');
+  const s = new ExcelJS.Workbook(); await s.xlsx.readFile(path.join(C.ROOT, 'SAMPLE_40_Verified.xlsx'));
+  const sr = s.getWorksheet('Sample Records'); ok(sr.rowCount - 1 === 40 && csvRows('Sample_40_Records.csv') === 40, 'sample has 40 rows in xlsx and csv');
+  const sh = sr.getRow(1).values; const col = (n) => { const o = []; sr.eachRow((r, i) => { if (i > 1) o.push(r.getCell(sh.indexOf(n)).value); }); return o; };
+  ok(col('city').filter((c) => c === 'Pune').length === 20 && col('city').filter((c) => c === 'Mumbai').length === 20, '20 Pune + 20 Mumbai');
+  ok(col('record_status').every((v) => ['verified_official', 'verified_official_plus_secondary', 'partially_verified', 'unverified', 'conflicting_sources'].includes(v)), 'record_status values allowed');
+  ok(col('logo_status').every((v, i) => v !== 'verified_official' || col('logo_url')[i]), 'every verified logo has a URL');
+  ok(col('go_live_eligible').every((v) => v === 'NO'), 'no sample record marked go-live eligible');
+  ok(col('record_status').every((v) => v !== 'verified_official'), 'no sample record marked fully verified');
+  for (const w of [g, s]) w.eachSheet((ws) => ok(ws.views?.[0]?.state === 'frozen' && !!ws.autoFilter, `${ws.name}: frozen header + filter`));
+  console.log(fail ? `${fail} check(s) failed` : 'all checks passed'); process.exit(fail ? 1 : 0);
+})();

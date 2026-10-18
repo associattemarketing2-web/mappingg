@@ -1,0 +1,182 @@
+{
+  "_note": "Pune + Mumbai developer logos, checked by hand 18 Oct 2026. 'aliases' = RERA promoter names linked to an EXISTING Super admin -> Developers entry that already has a logo. 'new' = a new entry whose logo is taken from the developer's own website. evidence = why the RERA name is that company. Names whose link was not proven (Rohan Developers, L&T Parel Project, Kohinoor CTNL, Adani Developers, Goel Ganga India, Majestique Housing, Mantra*, The Pride Realty, Arkade Paradigm) are deliberately left out.",
+  "aliases": [
+    {
+      "entry": "Lodha",
+      "names": [
+        "MACROTECH DEVELOPERS LIMITED",
+        "Macrotech Developers Limited"
+      ],
+      "evidence": "official: lodhagroup.com/investor-relations - 'Lodha Developers Limited (Formerly known as Macrotech Developers)'"
+    },
+    {
+      "entry": "Rustomjee",
+      "names": [
+        "KEYSTONE REALTORS LIMITED"
+      ],
+      "evidence": "official: rustomjee.com structured data names 'Keystone Realtors Limited'"
+    },
+    {
+      "entry": "Kolte Patil Developers",
+      "names": [
+        "KOLTE-PATIL DEVELOPERS LIMITED"
+      ],
+      "evidence": "official: koltepatil.com - 'Kolte-Patil Developers Limited'"
+    },
+    {
+      "entry": "Godrej Properties",
+      "names": [
+        "GODREJ RESIDENCY PRIVATE LIMITED"
+      ],
+      "evidence": "company name: Godrej Residency Pvt Ltd is a Godrej Properties subsidiary"
+    },
+    {
+      "entry": "Prestige Group",
+      "names": [
+        "PRESTIGE MULUND REALTY PRIVATE LIMITED"
+      ],
+      "evidence": "company name: Prestige group project company (Mulund)"
+    },
+    {
+      "entry": "Runwal Enterprises",
+      "names": [
+        "RUNWAL DEVELOPERS PVT LTD",
+        "Runwal Developers Limited",
+        "Runwal Apartments Private Limited",
+        "Runwal Construction Private Limited",
+        "Runwal Real Estates Private Limited"
+      ],
+      "evidence": "company name: Runwal group companies (runwal.com unreachable - TLS error)"
+    },
+    {
+      "entry": "Wadhwa Group",
+      "names": [
+        "Wadhwa Group Holdings Private Limited",
+        "Wadhwa Residency Pvt Ltd"
+      ],
+      "evidence": "company name"
+    },
+    {
+      "entry": "Raheja Universal",
+      "names": [
+        "Raheja Universal (Pvt.) Ltd."
+      ],
+      "evidence": "exact company name"
+    },
+    {
+      "entry": "Shraddha Prime Projects",
+      "names": [
+        "Shraddha Prime Projects Limited"
+      ],
+      "evidence": "exact company name"
+    },
+    {
+      "entry": "Kumar World",
+      "names": [
+        "Kumar Properties and Real Estate Pvt. Ltd."
+      ],
+      "evidence": "company name: Kumar Properties (entry already lists KUMAR PROPERTIES PRIVATE LIMITED)"
+    },
+    {
+      "entry": "Villas Javdekar",
+      "names": [
+        "Vilas Javdekar Eco Shelters Private Limited",
+        "Vilas Javdekar & Sanjeevani Developers LLP"
+      ],
+      "evidence": "company name: Vilas Javdekar Developers (javdekars.com)"
+    }
+  ],
+  "new": [
+    {
+      "name": "Suraj Estate Developers",
+      "names": [
+        "SURAJ ESTATE DEVELOPERS LTD"
+      ],
+      "site": "https://surajestate.com/",
+      "logo_src": "https://surajestate.com/wp-content/uploads/2024/08/cropped-Suraj_Horizontal_logo-removebg-preview.png",
+      "evidence": "official: site text 'Suraj Estate Developers Ltd.'",
+      "office": "301, 3rd Floor, Aman Chambers, Veer Savarkar Marg, Opp. Bengal Chemicals, Prabhadevi, Mumbai 400025"
+    },
+    {
+      "name": "MHADA",
+      "names": [
+        "MHADA",
+        "MAHARASHTRA HOUSING AND AREA DEVELOPMENT AUTHORITY",
+        "MUMBAI HOUSING AND AREA DEVELOPMENT BOARD",
+        "Mumbai Housing And Area Development Board"
+      ],
+      "site": "https://mhada.gov.in/en",
+      "logo_src": "https://mhada.gov.in/themes/custom/mhada/images/mobile-logo.png",
+      "evidence": "official: mhada.gov.in; the site lists 'Mumbai Board' among MHADA's boards",
+      "office": "Grihanirman Bhavan, Kalanagar, Bandra (E), Mumbai 400051"
+    },
+    {
+      "name": "Kanakia Group",
+      "names": [
+        "KANAKIA SPACES REALTY PRIVATE LIMITED",
+        "KANAKIA TRANSPARENT DEVELOPERS PRIVATE LIMITED"
+      ],
+      "site": "https://www.kanakia.com/",
+      "logo_src": "https://www.kanakia.com/assets/img/2117857677Kanakia-Logo.png",
+      "evidence": "company name; logo from kanakia.com"
+    },
+    {
+      "name": "Oberoi Realty",
+      "names": [
+        "Oberoi Realty Limited"
+      ],
+      "site": "https://www.oberoirealty.com/",
+      "logo_src": "https://d3dy70zhjs5mi1.cloudfront.net/s3fs-public/inline-images/logo-footer_0.png",
+      "evidence": "exact company name; logo from oberoirealty.com (alt 'Oberoirealty Logo')"
+    },
+    {
+      "name": "Dosti Realty",
+      "names": [
+        "DOSTI REALTY LIMITED"
+      ],
+      "site": "https://dostirealty.com/",
+      "logo_src": "https://assets.dostirealty.com/uploads/dosti_full_logo_1a122c7082.png",
+      "evidence": "exact company name; logo from dostirealty.com"
+    },
+    {
+      "name": "Shapoorji Pallonji Real Estate",
+      "names": [
+        "Shapporji Pallonji Real Estate"
+      ],
+      "site": "https://shapoorjirealestate.com/",
+      "logo_src": "https://shapoorjirealestate.com/assets/common/vectors/icon_sp-logo-1.svg",
+      "evidence": "official: Vyomora listed on shapoorjirealestate.com (RERA spells the promoter 'Shapporji')",
+      "office": "SP Center 41/44, Minoo Desai Marg, Colaba, Mumbai 400005"
+    },
+    {
+      "name": "Ranjekar Realty",
+      "names": [
+        "Ranjekar Realty LLP"
+      ],
+      "site": "https://www.ranjekarrealty.com/",
+      "logo_src": "https://www.ranjekarrealty.com/images/logo-b.svg",
+      "evidence": "official: site footer 'Ranjekar Realty LLP'",
+      "office": "YASH K6/4 Erandwane Housing Society, Erandwane, Pune 411004"
+    },
+    {
+      "name": "My Home Group",
+      "names": [
+        "My Home Group"
+      ],
+      "site": "https://www.myhomeconstructions.com/",
+      "logo_src": "https://www.myhomeconstructions.com/assets/myhome/logo.svg",
+      "evidence": "official: header logo (alt \"My Home Group\") on myhomeconstructions.com",
+      "dark_tile": true
+    },
+    {
+      "name": "Rajapushpa Properties",
+      "names": [
+        "Rajapushpa Properties"
+      ],
+      "site": "https://rajapushpa.in/",
+      "logo_src": "https://rajapushpa.in/assets/logo.svg",
+      "evidence": "official: logo on rajapushpa.in",
+      "dark_tile": true
+    }
+  ]
+}

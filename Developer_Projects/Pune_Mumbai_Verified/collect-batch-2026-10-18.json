@@ -1,0 +1,5145 @@
+{
+ "run": "2026-10-18T07:52:56.904Z",
+ "A": [],
+ "B": [
+  {
+   "rera": "P51700079927",
+   "city": "Thane",
+   "project": "Codename LIT Tower C",
+   "promoter": "Camrose Realtors Private Limited",
+   "brand": "Adani Realty",
+   "page": "https://www.adanirealty.com/residential-projects/mumbai/codename-lit-thane",
+   "pin": "no_coordinates",
+   "bhk": "",
+   "possession": "2031-12",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, verified_location"
+  },
+  {
+   "rera": "P02400009478",
+   "city": "Hyderabad",
+   "project": "Aparna Moonstone",
+   "promoter": "Aparna Constructions",
+   "brand": "Aparna Constructions",
+   "page": "https://www.aparnaconstructions.com/project/apartments/aparna-moonstone",
+   "pin": "no_coordinates",
+   "bhk": "3 BHK, 4 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P02200010754",
+   "city": "Hyderabad",
+   "project": "Aparna Prive",
+   "promoter": "Aparna Constructions",
+   "brand": "Aparna Constructions",
+   "page": "https://www.aparnaconstructions.com/project/bungalows/aparna-prive",
+   "pin": "no_coordinates",
+   "bhk": "5 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100079533",
+   "city": "Pune",
+   "project": "Birla Punya Phase 1",
+   "promoter": "Birla Estates Private Limited",
+   "brand": "Birla Estate",
+   "page": "https://www.birlaestates.com/birla-punya-pune/",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK, 3 BHK, 4 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "PP1240002502953",
+   "city": "Palghar",
+   "project": "Birla Mrida",
+   "promoter": "Birla Estates Private Limited",
+   "brand": "Birla Estate",
+   "page": "https://www.birlaestates.com/birla-mrida-boisar/",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51900077140",
+   "city": "Mumbai",
+   "project": "Birla Anayu",
+   "promoter": "Birla Estates Private Limited",
+   "brand": "Birla Estate",
+   "page": "https://www.birlaestates.com/birla-anayu/",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51900031916",
+   "city": "Mumbai",
+   "project": "Birla Niyaara Phase-1",
+   "promoter": "Aditya Birla Real Estate Limited",
+   "brand": "Birla Estate",
+   "page": "https://www.birlaestates.com/birla-niyaara-worli/",
+   "pin": "unconfirmed",
+   "bhk": "4 BHK, 5 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51900054455",
+   "city": "Mumbai",
+   "project": "Birla Niyaara Phase-2",
+   "promoter": "Aditya Birla Real Estate Limited",
+   "brand": "Birla Estate",
+   "page": "https://www.birlaestates.com/birla-niyaara-worli/",
+   "pin": "unconfirmed",
+   "bhk": "4 BHK, 5 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51700019178",
+   "city": "Thane",
+   "project": "Birla Vanya - Phase 1",
+   "promoter": "Century Textiles & Industries Ltd",
+   "brand": "Birla Estate",
+   "page": "https://www.birlaestates.com/birla-vanya/index.aspx",
+   "pin": "unconfirmed",
+   "bhk": "1 BHK, 2 BHK, 3 BHK, 4 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "PR1261012500295",
+   "city": "Pune",
+   "project": "Birla Evam Phase 1",
+   "promoter": "Vypak Properties Private Limited",
+   "brand": "Birla Estate",
+   "page": "https://www.birlaestates.com/birla-evam-manjari/",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK, 3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51900025142",
+   "city": "Mumbai",
+   "project": "DOSTI EASTERN BAY - PHASE 1",
+   "promoter": "DOSTI REALTY LTD",
+   "brand": "Dosti Realty",
+   "page": "https://dostirealty.com/project/dosti-eastern-bay",
+   "pin": "no_coordinates",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51900030769",
+   "city": "Mumbai",
+   "project": "DOSTI EASTERN BAY- PHASE 2",
+   "promoter": "DOSTI REALTY LTD",
+   "brand": "Dosti Realty",
+   "page": "https://dostirealty.com/project/dosti-eastern-bay",
+   "pin": "no_coordinates",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51900032067",
+   "city": "Mumbai",
+   "project": "DOSTI EASTERN BAY - PHASE 3",
+   "promoter": "DOSTI REALTY LTD",
+   "brand": "Dosti Realty",
+   "page": "https://dostirealty.com/project/dosti-eastern-bay",
+   "pin": "no_coordinates",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51700034985",
+   "city": "Thane",
+   "project": "DOSTI PLANET NORTH - SECTOR 3",
+   "promoter": "CHALAMA INFRAPROPERTIES PRIVATE LIMITED",
+   "brand": "Dosti Realty",
+   "page": "https://dostirealty.com/project/dosti-planet-north",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51700077484",
+   "city": "Thane",
+   "project": "DOSTI WEST COUNTY - PHASE 5 - DOSTI OLIVE - WING A",
+   "promoter": "DOSTI ENTERPRISES",
+   "brand": "Dosti Realty",
+   "page": "https://dostirealty.com/project/dosti-olive",
+   "pin": "no_coordinates",
+   "bhk": "3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51700054037",
+   "city": "Thane",
+   "project": "DOSTI WEST COUNTY - PHASE 5 - DOSTI OLIVE - WING B",
+   "promoter": "DOSTI ENTERPRISES",
+   "brand": "Dosti Realty",
+   "page": "https://dostirealty.com/project/dosti-olive",
+   "pin": "no_coordinates",
+   "bhk": "3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51700025834",
+   "city": "Thane",
+   "project": "DOSTI WEST COUNTY - PHASE 4- DOSTI PINE",
+   "promoter": "DOSTI ENTERPRISES",
+   "brand": "Dosti Realty",
+   "page": "https://dostirealty.com/project/dosti-pine",
+   "pin": "no_coordinates",
+   "bhk": "2 BHK, 3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51700033640",
+   "city": "Thane",
+   "project": "Dosti West County - Dosti Nest - Phase 1",
+   "promoter": "DOSTI ENTERPRISES",
+   "brand": "Dosti Realty",
+   "page": "https://dostirealty.com/project/dosti-nest",
+   "pin": "no_coordinates",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51700033663",
+   "city": "Thane",
+   "project": "Dosti West County - Dosti Nest - Phase 2",
+   "promoter": "DOSTI ENTERPRISES",
+   "brand": "Dosti Realty",
+   "page": "https://dostirealty.com/project/dosti-nest",
+   "pin": "approximate",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51700049724",
+   "city": "Thane",
+   "project": "Dosti West County - Dosti Nest - Phase 3",
+   "promoter": "DOSTI ENTERPRISES",
+   "brand": "Dosti Realty",
+   "page": "https://dostirealty.com/project/dosti-nest",
+   "pin": "no_coordinates",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51700050253",
+   "city": "Thane",
+   "project": "Dosti West County - Dosti Nest - Phase 4",
+   "promoter": "DOSTI ENTERPRISES",
+   "brand": "Dosti Realty",
+   "page": "https://dostirealty.com/project/dosti-nest",
+   "pin": "no_coordinates",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51700032666",
+   "city": "Thane",
+   "project": "DOSTI WEST COUNTY - DOSTI TULIP",
+   "promoter": "DOSTI ENTERPRISES",
+   "brand": "Dosti Realty",
+   "page": "https://dostirealty.com/project/dosti-tulip",
+   "pin": "no_coordinates",
+   "bhk": "2 BHK, 3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "PM1331012500812",
+   "city": "Thane",
+   "project": "DOSTI PRIMUS-PHASE 1",
+   "promoter": "DOSTI ENTERPRISES",
+   "brand": "Dosti Realty",
+   "page": "https://dostirealty.com/project/dosti-primus",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "PC1330002600012",
+   "city": "Thane",
+   "project": "ONE DOSTI",
+   "promoter": "Dosti Enterprises",
+   "brand": "Dosti Realty",
+   "page": "https://dostirealty.com/project/one-dosti",
+   "pin": "verified",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion"
+  },
+  {
+   "rera": "P52100077092",
+   "city": "Pune",
+   "project": "Dosti Greenscapes - Phase 4",
+   "promoter": "DOSTI REALTY LIMITED",
+   "brand": "Dosti Realty",
+   "page": "https://dostirealty.com/project/dosti-boulevard",
+   "pin": "no_coordinates",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "PR1260002501660",
+   "city": "Pune",
+   "project": "Pratik Nagar Palladio Kothrud Central",
+   "promoter": "Vilas Javdekar Infinitee Developers Pvt. Ltd.",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/ongoing-projects/vj-indiworks-kothrud-central.html",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "PR1260002501182",
+   "city": "Pune",
+   "project": "Palladio LaViento",
+   "promoter": "Vilas Javdekar Eco Developers Pvt. Ltd.",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/ongoing-projects/palladio-laviento.html",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "PC1260002500692",
+   "city": "Pune",
+   "project": "VJ IndiWorks Kharadi Central",
+   "promoter": "Vilas Javdekar Eco Homes",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/ongoing-projects/vj-indiworks-kharadi-central.html",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100046122",
+   "city": "Pune",
+   "project": "YashONE Eternitee Phase 1",
+   "promoter": "Vilas Javdekar Infinitee Developers Pvt. Ltd.",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/ongoing-projects/yashone-eternitee.html",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100052676",
+   "city": "Pune",
+   "project": "Yashone Eternitee Phase 2",
+   "promoter": "Vilas Javdekar Infinitee Developers Pvt. Ltd.",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/ongoing-projects/yashone-eternitee.html",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100050636",
+   "city": "Pune",
+   "project": "Portia Grande",
+   "promoter": "Vilas Javdekar Eco Homes",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/ongoing-projects/portia-grande.html",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100050357",
+   "city": "Pune",
+   "project": "Palladio Kharadi Central",
+   "promoter": "Vilas Javdekar Eco Homes",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/ongoing-projects/pkc-palladio-kharadi-central.html",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100000114",
+   "city": "Pune",
+   "project": "Prudentia - Phase 1",
+   "promoter": "Vilas Javdekar Eco Shelters Private Limited",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/completed-projects/prudentia-towers.html",
+   "pin": "verified",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion"
+  },
+  {
+   "rera": "P52100000775",
+   "city": "Pune",
+   "project": "Yashwin E,F,G",
+   "promoter": "Vilas Javdekar Eco Homes",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/completed-projects/yashwin-2-0.html",
+   "pin": "verified",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion"
+  },
+  {
+   "rera": "P52100017306",
+   "city": "Pune",
+   "project": "Palladio Phase 2",
+   "promoter": "Vilas Javdekar Eco Developers Pvt. Ltd.",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/completed-projects/palladio-wakad.html",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100013149",
+   "city": "Pune",
+   "project": "Yashwin A",
+   "promoter": "Vilas Javdekar Eco Homes",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/completed-projects/yashwin-a.html",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100014585",
+   "city": "Pune",
+   "project": "YashONE Phase - I",
+   "promoter": "Vilas Javdekar Eco Homes",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/completed-projects/yashone.html",
+   "pin": "verified",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion"
+  },
+  {
+   "rera": "P52100020910",
+   "city": "Pune",
+   "project": "YashONE Wakad Central",
+   "promoter": "Vilas Javdekar Eco Shelters Private Limited",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/completed-projects/yashone-wakad-central.html",
+   "pin": "verified",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion"
+  },
+  {
+   "rera": "P52100019468",
+   "city": "Pune",
+   "project": "YashONE Hinjawadi - Phase 1",
+   "promoter": "Vilas Javdekar Eco Shelters Private Limited",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/completed-projects/yashone-hinjawadi.html",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100024108",
+   "city": "Pune",
+   "project": "YashONE Hinjawadi - Phase II",
+   "promoter": "Vilas Javdekar Eco Shelters Private Limited",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/completed-projects/yashone-hinjawadi.html",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100025982",
+   "city": "Pune",
+   "project": "Yashwin SukhNiwas",
+   "promoter": "GROWISA ADVISORS",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/completed-projects/yashwin-sukhniwas.html",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100017756",
+   "city": "Pune",
+   "project": "Yashwin Encore",
+   "promoter": "Vilas Javdekar Lifestyle Developers Pvt. Ltd.",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/completed-projects/yashwin-encore.html",
+   "pin": "verified",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion"
+  },
+  {
+   "rera": "P52100028030",
+   "city": "Pune",
+   "project": "VJ IndiLife",
+   "promoter": "VILAS JAVDEKAR GREENSCAPE DEVELOPERS LLP",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/completed-projects/vj-indilife.html",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100028229",
+   "city": "Pune",
+   "project": "YashONE Infinitee - Phase I",
+   "promoter": "Vilas Javdekar Infinitee Developers Pvt. Ltd.",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/completed-projects/yashone-infinitee.html",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100026213",
+   "city": "Pune",
+   "project": "Yashwin Orizzonte - Phase I",
+   "promoter": "VILAS JAVDEKAR GREENSCAPE DEVELOPERS LLP",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/completed-projects/yashwin-orizzonte.html",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100028652",
+   "city": "Pune",
+   "project": "Yashwin SuperNova",
+   "promoter": "Vilas Javdekar Eco Shelters Private Limited",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/completed-projects/yashwin-supernova.html",
+   "pin": "verified",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion"
+  },
+  {
+   "rera": "P52100034523",
+   "city": "Pune",
+   "project": "Yashwin NuovoCentro",
+   "promoter": "Vilas Javdekar Lifestyle Developers Pvt. Ltd.",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/completed-projects/yashwin-ync.html",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100026304",
+   "city": "Pune",
+   "project": "VJ Grand Central",
+   "promoter": "Vilas Javdekar Eco Shelters Private Limited",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/pre-leased-properties/vj-grand-central.html",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100028755",
+   "city": "Pune",
+   "project": "VJ Town Centre",
+   "promoter": "Vilas Javdekar Eco Shelters Private Limited",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/pre-leased-properties/vj-town-centre.html",
+   "pin": "verified",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion"
+  },
+  {
+   "rera": "P51800000224",
+   "city": "Mumbai",
+   "project": "KANAKIA RAINFOREST",
+   "promoter": "KANAKIA SPACES REALTY PRIVATE LIMITED",
+   "brand": "Kanakia Group",
+   "page": "https://www.kanakia.com/project/kanakia-rainforest",
+   "pin": "unconfirmed",
+   "bhk": "1 BHK, 2 BHK, 3 BHK, 4 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51800022936",
+   "city": "Mumbai",
+   "project": "KANAKIA ZENWORLD PHASE II",
+   "promoter": "KANAKIA SPACES REALTY PRIVATE LIMITED",
+   "brand": "Kanakia Group",
+   "page": "https://www.kanakia.com/project/zenworld",
+   "pin": "no_coordinates",
+   "bhk": "1 BHK, 2 BHK, 3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51800008343",
+   "city": "Mumbai",
+   "project": "KANAKIA ZENWORLD PHASE I",
+   "promoter": "KANAKIA SPACES REALTY PRIVATE LIMITED",
+   "brand": "Kanakia Group",
+   "page": "https://www.kanakia.com/project/zenworld",
+   "pin": "verified",
+   "bhk": "1 BHK, 2 BHK, 3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion"
+  },
+  {
+   "rera": "P52000035082",
+   "city": "Raigad",
+   "project": "KANAKIA GREENBERG",
+   "promoter": "KANAKIA SPACES REALTY PVT LTD",
+   "brand": "Kanakia Group",
+   "page": "https://www.kanakia.com/project/kanakia-greenberg",
+   "pin": "no_coordinates",
+   "bhk": "1 BHK, 2 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51700051409",
+   "city": "Thane",
+   "project": "KANAKIA BEVERLY HEIGHTS",
+   "promoter": "ATITHYA INN PRIVATE LIMITED",
+   "brand": "Kanakia Group",
+   "page": "https://www.kanakia.com/project/kanakia-beverly-heights",
+   "pin": "unconfirmed",
+   "bhk": "1 BHK, 2 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "PR1261012600258",
+   "city": "Pune",
+   "project": "THE WINDS PHASE-1, SECTOR 1B AT AVIAN VALLEY",
+   "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/ongoing/the-winds",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK, 3 BHK, 2.5 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "PM1261012502409",
+   "city": "Pune",
+   "project": "LIFE REPUBLIC SECTOR R31/31st AVENUE – ECHOES/PHASE – 1",
+   "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/ongoing/life-republic/echoes",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK, 2.5 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100079623",
+   "city": "Pune",
+   "project": "LIFE REPUBLIC SECTOR R14/14TH AVENUE - QRIOUS/PHASE - I",
+   "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/ongoing/life-republic/qrious",
+   "pin": "no_coordinates",
+   "bhk": "2 BHK, 3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100079424",
+   "city": "Pune",
+   "project": "Life Republic Sector R34/34th Avenue - Duet/Phase I",
+   "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/ongoing/life-republic/duet",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "PM1261012500469",
+   "city": "Pune",
+   "project": "LIFE REPUBLIC SECTOR R34/34TH AVENUE-DUET/PHASE - II",
+   "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/ongoing/life-republic/duet",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100077008",
+   "city": "Pune",
+   "project": "Life Republic Sector R5/5th Avenue - Canvas/Phase I",
+   "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/ongoing/life-republic/canvas",
+   "pin": "unconfirmed",
+   "bhk": "3 BHK, 4 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100076743",
+   "city": "Pune",
+   "project": "SPRINGSHIRE",
+   "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/ongoing/springshire",
+   "pin": "approximate",
+   "bhk": "2 BHK, 3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100047921",
+   "city": "Pune",
+   "project": "Life Republic Sector R13/13th Avenue/Aros/Phase I",
+   "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/ongoing/life-republic/aros",
+   "pin": "no_coordinates",
+   "bhk": "2 BHK, 3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100054550",
+   "city": "Pune",
+   "project": "Life Republic Sector R13/13th Avenue/Aros/Phase-II",
+   "promoter": "KOLTE-PATIL INTEGRATED TOWNSHIPS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/ongoing/life-republic/aros",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK, 3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100007612",
+   "city": "Pune",
+   "project": "CITY VISTA",
+   "promoter": "KOLTE-PATIL REAL ESTATE PRIVATE LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/commercial-properties/ongoing/city-vista",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100003760",
+   "city": "Pune",
+   "project": "CITY AVENUE",
+   "promoter": "CARNATION LANDMARKS LLP",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/commercial-properties/ongoing/city-avenue",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100056265",
+   "city": "Pune",
+   "project": "Giga Platinum - Tower B",
+   "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/commercial-properties/ongoing/giga",
+   "pin": "no_coordinates",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "PR1180002502702",
+   "city": "Mumbai",
+   "project": "VIVERE",
+   "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/mumbai/residential-properties/ongoing/vivere",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK, 3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "PR1180002500850",
+   "city": "Mumbai",
+   "project": "SERENOVA",
+   "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/mumbai/residential-properties/ongoing/serenova",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK, 3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51800049048",
+   "city": "Mumbai",
+   "project": "ALORA",
+   "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/mumbai/residential-properties/ongoing/alora",
+   "pin": "no_coordinates",
+   "bhk": "2 BHK, 3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100024374",
+   "city": "Pune",
+   "project": "24K Sereno Building E",
+   "promoter": "NOW Realty Promoters and Builders Private Limited",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/completed/24k-sereno",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100053702",
+   "city": "Pune",
+   "project": "1 PRESIDENTIAL SERENO BUILDING F",
+   "promoter": "NOW Realty Promoters and Builders Private Limited",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/completed/24k-sereno",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100052151",
+   "city": "Pune",
+   "project": "24K Manor - Tower A",
+   "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/ongoing/24k-manor",
+   "pin": "no_coordinates",
+   "bhk": "3 BHK, 4 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100048241",
+   "city": "Pune",
+   "project": "Life Republic Sector R17A/17A Avenue-Sound of Soul/Phase-I",
+   "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/completed/life-republic/soundofsoul",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100027629",
+   "city": "Pune",
+   "project": "Life Republic/Sector R10/10th Avenue/Universe/Phase-I",
+   "promoter": "KOLTE-PATIL PLANET REAL ESTATE PRIVATE LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/completed/life-republic/universe",
+   "pin": "no_coordinates",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100034733",
+   "city": "Pune",
+   "project": "Life Republic/Sector R10/10th Avenue/Universe/Phase III",
+   "promoter": "KOLTE-PATIL PLANET REAL ESTATE PRIVATE LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/completed/life-republic/universe",
+   "pin": "no_coordinates",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100030072",
+   "city": "Pune",
+   "project": "Life Republic/Sector R10/10th Avenue/Universe/Phase-II",
+   "promoter": "KOLTE-PATIL PLANET REAL ESTATE PRIVATE LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/completed/life-republic/universe",
+   "pin": "no_coordinates",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100017116",
+   "city": "Pune",
+   "project": "LIFE REPUBLIC SECTOR R9-ORO AVENUE",
+   "promoter": "KOLTE-PATIL INTEGRATED TOWNSHIPS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/completed/life-republic/oro-avenue",
+   "pin": "no_coordinates",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100022278",
+   "city": "Pune",
+   "project": "Life Republic - Sector R 17 B - 17 B Avenue - Nora",
+   "promoter": "KOLTE-PATIL INTEGRATED TOWNSHIPS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/completed/life-republic/nora",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100022154",
+   "city": "Pune",
+   "project": "Life Republic Sector R7- 7th Avenue- i Towers",
+   "promoter": "KOLTE-PATIL INTEGRATED TOWNSHIPS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/completed/life-republic/i-towers",
+   "pin": "unconfirmed",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51900034289",
+   "city": "Mumbai",
+   "project": "RAHEJA MODERN VIVAREA NORTH TOWER",
+   "promoter": "K RAHEJA CORP REAL ESTATE PRIVATE LIMITED",
+   "brand": "K Raheja Corp",
+   "page": "https://www.krahejacorphomes.com/project/modern-vivarea/",
+   "pin": "no_coordinates",
+   "bhk": "4 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51900034288",
+   "city": "Mumbai",
+   "project": "RAHEJA MODERN VIVAREA SOUTH TOWER",
+   "promoter": "K RAHEJA CORP REAL ESTATE PRIVATE LIMITED",
+   "brand": "K Raheja Corp",
+   "page": "https://www.krahejacorphomes.com/project/modern-vivarea/",
+   "pin": "no_coordinates",
+   "bhk": "4 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51800079669",
+   "city": "Mumbai",
+   "project": "Avalon - Tower B",
+   "promoter": "V HOTELS LTD",
+   "brand": "Lodha",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-avalon-juhu",
+   "pin": "mismatch",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52000078856",
+   "city": "Raigad",
+   "project": "Alibaug Townhouses",
+   "promoter": "Lodha Developers Limited",
+   "brand": "Lodha",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-alibaug",
+   "pin": "no_coordinates",
+   "bhk": "",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51900046567",
+   "city": "Mumbai",
+   "project": "Lodha Bellevue",
+   "promoter": "Lodha Developers Limited",
+   "brand": "Lodha",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-bellevue-mahalaxmi",
+   "pin": "unconfirmed",
+   "bhk": "3 BHK, 4 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51700052243",
+   "city": "Thane",
+   "project": "Olivia Tower -B",
+   "promoter": "LODHA DEVELOPERS LIMITED",
+   "brand": "Lodha",
+   "page": "https://www.lodhagroup.com/palava-city/projects/residential-property-in-dombivli/casa-olivia",
+   "pin": "no_coordinates",
+   "bhk": "3 BHK",
+   "possession": "2027-03",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, verified_location"
+  },
+  {
+   "rera": "PM1181012502957",
+   "city": "Mumbai",
+   "project": "Mahindra Rainforest Phase 1",
+   "promoter": "Anthurium Developers Limited",
+   "brand": "Mahindra Lifespaces",
+   "page": "https://www.mahindralifespaces.com/residential/mumbai-properties/mahindra-rainforest/",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK, 3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "PR1181012502956",
+   "city": "Mumbai",
+   "project": "Mahindra Rainforest Phase 2",
+   "promoter": "Anthurium Developers Limited",
+   "brand": "Mahindra Lifespaces",
+   "page": "https://www.mahindralifespaces.com/residential/mumbai-properties/mahindra-rainforest/",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK, 3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51800054671",
+   "city": "Mumbai",
+   "project": "Mahindra Vista Phase 1",
+   "promoter": "Mahindra Lifespace Developers limited",
+   "brand": "Mahindra Lifespaces",
+   "page": "https://www.mahindralifespaces.com/residential/mumbai-properties/mahindra-vista/",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK, 3 BHK, 4 BHK",
+   "possession": "2030-12",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, verified_location"
+  },
+  {
+   "rera": "P51800079147",
+   "city": "Mumbai",
+   "project": "Mahindra Vista Phase 2",
+   "promoter": "Mahindra Lifespace Developers limited",
+   "brand": "Mahindra Lifespaces",
+   "page": "https://www.mahindralifespaces.com/residential/mumbai-properties/mahindra-vista/",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK, 3 BHK, 4 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51700076963",
+   "city": "Thane",
+   "project": "Mahindra Happinest Kalyan - 2 Project B",
+   "promoter": "Mahindra Lifespace Developers limited",
+   "brand": "Mahindra Lifespaces",
+   "page": "https://www.mahindralifespaces.com/residential/mumbai-properties/mahindra-happinest-kalyan-2/",
+   "pin": "unconfirmed",
+   "bhk": "1 BHK, 2 BHK",
+   "possession": "2028-12",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, verified_location"
+  },
+  {
+   "rera": "P52100078592",
+   "city": "Pune",
+   "project": "Mahindra IvyLush Tower C and Tower D",
+   "promoter": "Mahindra Lifespace Developers limited",
+   "brand": "Mahindra Lifespaces",
+   "page": "https://www.mahindralifespaces.com/residential/pune-properties/mahindra-ivylush/",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK, 3 BHK, 4 BHK",
+   "possession": "2030-08",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, verified_location"
+  },
+  {
+   "rera": "P02400010883",
+   "city": "Hyderabad",
+   "project": "My Home Vyoma",
+   "promoter": "My Home Group",
+   "brand": "My Home Group",
+   "page": "https://www.myhomeconstructions.com/my-home-vyoma",
+   "pin": "no_coordinates",
+   "bhk": "3 BHK, 4 BHK",
+   "possession": "",
+   "logo": false,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location, developer_logo"
+  },
+  {
+   "rera": "P02400007342",
+   "city": "Hyderabad",
+   "project": "My Home Grava",
+   "promoter": "My Home Group",
+   "brand": "My Home Group",
+   "page": "https://www.myhomeconstructions.com/my-home-grava",
+   "pin": "no_coordinates",
+   "bhk": "4 BHK",
+   "possession": "",
+   "logo": false,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location, developer_logo"
+  },
+  {
+   "rera": "P02400006812",
+   "city": "Hyderabad",
+   "project": "My Home Apas",
+   "promoter": "My Home Group",
+   "brand": "My Home Group",
+   "page": "https://www.myhomeconstructions.com/my-home-apas",
+   "pin": "no_coordinates",
+   "bhk": "3 BHK",
+   "possession": "",
+   "logo": false,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location, developer_logo"
+  },
+  {
+   "rera": "P02400005469",
+   "city": "Hyderabad",
+   "project": "My Home 99",
+   "promoter": "My Home Group",
+   "brand": "My Home Group",
+   "page": "https://www.myhomeconstructions.com/my-home-99",
+   "pin": "no_coordinates",
+   "bhk": "4 BHK",
+   "possession": "",
+   "logo": false,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location, developer_logo"
+  },
+  {
+   "rera": "P02400004696",
+   "city": "Hyderabad",
+   "project": "My Home Nishada",
+   "promoter": "My Home Group",
+   "brand": "My Home Group",
+   "page": "https://www.myhomeconstructions.com/my-home-nishada",
+   "pin": "no_coordinates",
+   "bhk": "",
+   "possession": "",
+   "logo": false,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, configurations, proposed_completion, verified_location, developer_logo"
+  },
+  {
+   "rera": "P02400003777",
+   "city": "Hyderabad",
+   "project": "My Home Raka",
+   "promoter": "My Home Group",
+   "brand": "My Home Group",
+   "page": "https://www.myhomeconstructions.com/my-home-raka",
+   "pin": "no_coordinates",
+   "bhk": "3 BHK",
+   "possession": "",
+   "logo": false,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location, developer_logo"
+  },
+  {
+   "rera": "P52100017650",
+   "city": "Pune",
+   "project": "Purva Aspire",
+   "promoter": "Puravankara Limited",
+   "brand": "Puravankara",
+   "page": "https://www.puravankara.com/residential/pune/purva-aspire",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK, 3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51700079811",
+   "city": "Thane",
+   "project": "Purva Panorama Tower C",
+   "promoter": "Purva Oak Private Limited",
+   "brand": "Puravankara",
+   "page": "https://www.puravankara.com/residential/mumbai/purva-panorama",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK, 3 BHK",
+   "possession": "2031-03-31",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, verified_location"
+  },
+  {
+   "rera": "P02400009520",
+   "city": "Hyderabad",
+   "project": "Skyra",
+   "promoter": "Rajapushpa Properties",
+   "brand": "Rajapushpa Properties",
+   "page": "https://rajapushpa.in/projects/residential/skyra-apartments-kokapet-hyderabad",
+   "pin": "no_coordinates",
+   "bhk": "3 BHK, 4 BHK",
+   "possession": "2030-04",
+   "logo": false,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, verified_location, developer_logo"
+  },
+  {
+   "rera": "P02400002487",
+   "city": "Hyderabad",
+   "project": "Provincia",
+   "promoter": "Rajapushpa Properties",
+   "brand": "Rajapushpa Properties",
+   "page": "https://rajapushpa.in/projects/residential/provincia-apartments-narsingi-hyderabad",
+   "pin": "no_coordinates",
+   "bhk": "2 BHK, 3 BHK",
+   "possession": "",
+   "logo": false,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location, developer_logo"
+  },
+  {
+   "rera": "P02400007500",
+   "city": "Hyderabad",
+   "project": "Infina",
+   "promoter": "Rajapushpa Properties",
+   "brand": "Rajapushpa Properties",
+   "page": "https://rajapushpa.in/projects/residential/infina-apartments-narsingi-hyderabad",
+   "pin": "no_coordinates",
+   "bhk": "3 BHK, 4 BHK",
+   "possession": "2028-11",
+   "logo": false,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, verified_location, developer_logo"
+  },
+  {
+   "rera": "P02400007302",
+   "city": "Hyderabad",
+   "project": "Casa Luxura",
+   "promoter": "Rajapushpa Properties",
+   "brand": "Rajapushpa Properties",
+   "page": "https://rajapushpa.in/projects/residential/casa-luxura-apartments-kokapet-hyderabad",
+   "pin": "no_coordinates",
+   "bhk": "4 BHK",
+   "possession": "2028-11",
+   "logo": false,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, verified_location, developer_logo"
+  },
+  {
+   "rera": "P02400006086",
+   "city": "Hyderabad",
+   "project": "Pristinia",
+   "promoter": "Rajapushpa Properties",
+   "brand": "Rajapushpa Properties",
+   "page": "https://rajapushpa.in/projects/residential/pristinia-apartments-kokapet-hyderabad",
+   "pin": "no_coordinates",
+   "bhk": "3 BHK, 4 BHK",
+   "possession": "",
+   "logo": false,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location, developer_logo"
+  },
+  {
+   "rera": "P51700050803",
+   "city": "Thane",
+   "project": "RUSTOMJEE LA VIE WING A",
+   "promoter": "Kapstone Constructions Private Limited",
+   "brand": "Rustomjee",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-uptown-urbania-la-vie-thane/",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK, 3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P51700053110",
+   "city": "Thane",
+   "project": "RUSTOMJEE LA VIE WING B",
+   "promoter": "Kapstone Constructions Private Limited",
+   "brand": "Rustomjee",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-uptown-urbania-la-vie-thane/",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK, 3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "PR1330002501473",
+   "city": "Thane",
+   "project": "RUSTOMJEE LA VIE Wing D",
+   "promoter": "Kapstone Constructions Private Limited",
+   "brand": "Rustomjee",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-uptown-urbania-la-vie-thane/",
+   "pin": "unconfirmed",
+   "bhk": "2 BHK, 3 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100052376",
+   "city": "Pune",
+   "project": "Golfland I and II",
+   "promoter": "IMAGE REALTY PRIVATE LIMITED",
+   "brand": "Shapporji Pallonji Real Estate",
+   "page": "https://shapoorjirealestate.com/residential/vanaha-golfland",
+   "pin": "unconfirmed",
+   "bhk": "3 BHK, 4 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100052522",
+   "city": "Pune",
+   "project": "Golfland III and IV",
+   "promoter": "IMAGE REALTY PRIVATE LIMITED",
+   "brand": "Shapporji Pallonji Real Estate",
+   "page": "https://shapoorjirealestate.com/residential/vanaha-golfland",
+   "pin": "unconfirmed",
+   "bhk": "3 BHK, 4 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100052531",
+   "city": "Pune",
+   "project": "Golfland V and VI",
+   "promoter": "IMAGE REALTY PRIVATE LIMITED",
+   "brand": "Shapporji Pallonji Real Estate",
+   "page": "https://shapoorjirealestate.com/residential/vanaha-golfland",
+   "pin": "no_coordinates",
+   "bhk": "3 BHK, 4 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  },
+  {
+   "rera": "P52100052530",
+   "city": "Pune",
+   "project": "Golfland VII and VIII",
+   "promoter": "IMAGE REALTY PRIVATE LIMITED",
+   "brand": "Shapporji Pallonji Real Estate",
+   "page": "https://shapoorjirealestate.com/residential/vanaha-golfland",
+   "pin": "no_coordinates",
+   "bhk": "3 BHK, 4 BHK",
+   "possession": "",
+   "logo": true,
+   "missing": "total_units, land_area, project_cost, unit_mix, carpet_area, proposed_completion, verified_location"
+  }
+ ],
+ "B2": [
+  {
+   "rera": "PR1260002600301",
+   "city": "Pune",
+   "project": "Bramhand One",
+   "promoter": "SWAMI SAMARTH BUILDCORP",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002600143",
+   "city": "Pune",
+   "project": "ADITYA CLASSIC",
+   "promoter": "AADISHREE CAPITAL",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002600727",
+   "city": "Pune",
+   "project": "NEEL-PRAKASH",
+   "promoter": "VAKRATUNDA REALTORS",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1261012600728",
+   "city": "Pune",
+   "project": "Shankeshwar Kingsland Phase 1",
+   "promoter": "Shankeshwar Homes Pvt Ltd",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002600231",
+   "city": "Pune",
+   "project": "PALAASH DHANSHRI",
+   "promoter": "DHANSHRI SAHKARI GRUHRACHNA SANSTHA MARYADIT",
+   "pin": "approximate",
+   "logo": false
+  },
+  {
+   "rera": "PR1261012601480",
+   "city": "Pune",
+   "project": "HARICO DIVAAM TOWER 2",
+   "promoter": "SENTOSA LANDMARKS",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002600173",
+   "city": "Pune",
+   "project": "NEELRATNA",
+   "promoter": "Kotibhaskar Infrastructures &Developers Pvt.Ltd.",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1261012600142",
+   "city": "Pune",
+   "project": "6, Boulevard",
+   "promoter": "SMP Namrata Lotus Landmarks LLP",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PM1260002600993",
+   "city": "Pune",
+   "project": "The Privve",
+   "promoter": "Mansion Creators",
+   "pin": "approximate",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002600893",
+   "city": "Pune",
+   "project": "Crystal Tower Phase 2",
+   "promoter": "Jadhav Civil Project",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002600087",
+   "city": "Pune",
+   "project": "NHC One",
+   "promoter": "DHANANJAY NANA HINGANE",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PM1260002601060",
+   "city": "Pune",
+   "project": "SHASHWAT SAI RATNA",
+   "promoter": "Shree Sai Ram Properties",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002601686",
+   "city": "Pune",
+   "project": "NAKSHATRA ANGAN C BUILDING",
+   "promoter": "SARVESH REALTY",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002600710",
+   "city": "Pune",
+   "project": "Siddhivinayak Vishwa",
+   "promoter": "M/S Sai Ganesh Ventures",
+   "pin": "approximate",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002601168",
+   "city": "Pune",
+   "project": "Anand Terraces A Building",
+   "promoter": "ASHISH DEVELOPERS",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002600985",
+   "city": "Pune",
+   "project": "LEO VILLAS",
+   "promoter": "PRATHMESH BUILDERS",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002600369",
+   "city": "Pune",
+   "project": "VTP CIELO MHADA",
+   "promoter": "DELAS REALCON LLP",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PM1260002600636",
+   "city": "Pune",
+   "project": "PHULE MANSION CO-OPERATIVE HOUSING SOCIETY LIMITED",
+   "promoter": "SHREESHA LANDMARK LLP",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002600581",
+   "city": "Pune",
+   "project": "MADHUKOSH",
+   "promoter": "NAKSHATRA CREATIONS",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002600549",
+   "city": "Pune",
+   "project": "Audumber Prarthi",
+   "promoter": "Nest Vera Buildcon",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PM1260002600384",
+   "city": "Pune",
+   "project": "Stellaris",
+   "promoter": "UNITARY CITYSPACE PRIVATE LIMITED",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002600531",
+   "city": "Pune",
+   "project": "SUN GLORY",
+   "promoter": "Jindal Mittal Graha Nirman Pvt. Ltd.",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002600188",
+   "city": "Pune",
+   "project": "MIAMI-A1-A2-A3-B2",
+   "promoter": "PRIDE BUILDERS LLP",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "P52100081097",
+   "city": "Pune",
+   "project": "Mysha",
+   "promoter": "Mrs Druti Pravin Totlani",
+   "pin": "no_coordinates",
+   "logo": false
+  },
+  {
+   "rera": "PM1261012600913",
+   "city": "Pune",
+   "project": "AUGUST TOWERS PH 2",
+   "promoter": "Bramhacorp Limited",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002601641",
+   "city": "Pune",
+   "project": "Sukhwani Palmera Reserves Phase I",
+   "promoter": "Sukhwani Associates",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PC1260002600906",
+   "city": "Pune",
+   "project": "Arise Capital",
+   "promoter": "Vinode Wakadkar Buildcon LLP",
+   "pin": "approximate",
+   "logo": false
+  },
+  {
+   "rera": "P52100081068",
+   "city": "Pune",
+   "project": "G V LANDMARK",
+   "promoter": "GV-LANDMARK LLP",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1261012600415",
+   "city": "Pune",
+   "project": "24 Aanand P2",
+   "promoter": "BJ Constructions",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002601713",
+   "city": "Pune",
+   "project": "Bliss Estates Phase 2",
+   "promoter": "BENJAMIN MICHAEL MANUEL",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1261012601568",
+   "city": "Pune",
+   "project": "Anika Piccadilly Phase 4",
+   "promoter": "Arun Pitamber Sheth",
+   "pin": "approximate",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002601569",
+   "city": "Pune",
+   "project": "RATNAKAR",
+   "promoter": "SUVIDHASANKALP REALTORS PRIVATE LIMITED",
+   "pin": "approximate",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002601801",
+   "city": "Pune",
+   "project": "SHREE HEIGHTS",
+   "promoter": "R R Associates",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1262022601361",
+   "city": "Pune",
+   "project": "THE RISING PHASE-3",
+   "promoter": "SANIKET BUILDCON",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002602269",
+   "city": "Pune",
+   "project": "Anmol Crest",
+   "promoter": "Anmol Properties",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PC1260002601271",
+   "city": "Pune",
+   "project": "Skyi First Commercial",
+   "promoter": "ENERRGIA SKYI REALTY",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1260002601584",
+   "city": "Pune",
+   "project": "Indraprastha Ayodhya",
+   "promoter": "INDRAPRASTHA INFINITY",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1261012601751",
+   "city": "Pune",
+   "project": "VENKATESH VANAYA - WING – N (MHADA)- PHASE - 8",
+   "promoter": "SVBPL HOMES PVT LTD",
+   "pin": "unconfirmed",
+   "logo": false
+  },
+  {
+   "rera": "PR1261012601239",
+   "city": "Pune",
+   "project": "VENKATESH VANAYA-WING-A, B & C–PHASE-6",
+   "promoter": "SVBPL HOMES PVT LTD",
+   "pin": "unconfirmed",
+   "logo": false
+  }
+ ],
+ "C": [
+  {
+   "rera": "P51700032812",
+   "page": "https://www.adanirealty.com/residential-projects/mumbai/9-pbr",
+   "brand": "Adani Realty",
+   "why": "registry name \"9PBR TOWER B1\" not on the developer page \"Adani 9 PBR Navi Mumbai: Price & Floor Plans\""
+  },
+  {
+   "rera": "P51700033690",
+   "page": "https://www.adanirealty.com/residential-projects/mumbai/9-pbr",
+   "brand": "Adani Realty",
+   "why": "registry name \"9PBR TOWER B2\" not on the developer page \"Adani 9 PBR Navi Mumbai: Price & Floor Plans\""
+  },
+  {
+   "rera": "P51700033678",
+   "page": "https://www.adanirealty.com/residential-projects/mumbai/9-pbr",
+   "brand": "Adani Realty",
+   "why": "registry name \"9PBR TOWER C1\" not on the developer page \"Adani 9 PBR Navi Mumbai: Price & Floor Plans\""
+  },
+  {
+   "rera": "P51700076870",
+   "page": "https://www.adanirealty.com/residential-projects/mumbai/9-pbr",
+   "brand": "Adani Realty",
+   "why": "registry name \"9PBR TOWER C2\" not on the developer page \"Adani 9 PBR Navi Mumbai: Price & Floor Plans\""
+  },
+  {
+   "rera": "P52100018596",
+   "page": "https://www.adanirealty.com/residential-projects/pune/atelier-greens",
+   "brand": "Adani Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P02400003722",
+   "page": "https://www.aparnaconstructions.com/location/gachibowli",
+   "brand": "Aparna Constructions",
+   "why": "Telangana number on a page that is not one project's own page"
+  },
+  {
+   "rera": "P02500000269",
+   "page": "https://www.aparnaconstructions.com/location/gachibowli",
+   "brand": "Aparna Constructions",
+   "why": "Telangana number on a page that is not one project's own page"
+  },
+  {
+   "rera": "P02400007601",
+   "page": "https://www.aparnaconstructions.com/location/tellapur",
+   "brand": "Aparna Constructions",
+   "why": "Telangana number on a page that is not one project's own page"
+  },
+  {
+   "rera": "P02200006615",
+   "page": "https://www.aparnaconstructions.com/project/apartments/aparna-synergy-apartments-for-sale-in-gandimaisamma",
+   "brand": "Aparna Constructions",
+   "why": "probably already live as pin #503 \"SYNERGY\" (no RERA no. on the pin)"
+  },
+  {
+   "rera": "P51800052119",
+   "page": "https://www.ashar.in/projects/thelegendbyashar/",
+   "brand": "Ashar Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700056361",
+   "page": "https://www.ashar.in/projects/ashar-merac/",
+   "brand": "Ashar Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700079691",
+   "page": "https://www.ashar.in/projects/ashar-merac/",
+   "brand": "Ashar Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700047432",
+   "page": "https://www.ashar.in/projects/ashar-pulse/",
+   "brand": "Ashar Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700034211",
+   "page": "https://www.ashar.in/projects/ashar-arize/",
+   "brand": "Ashar Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700034565",
+   "page": "https://www.ashar.in/projects/ashar-arize/",
+   "brand": "Ashar Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800045812",
+   "page": "https://www.ashar.in/projects/ashar-titan/",
+   "brand": "Ashar Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700032665",
+   "page": "https://www.ashar.in/projects/ashar-axis/",
+   "brand": "Ashar Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700034721",
+   "page": "https://www.ashar.in/projects/ashar-arize-retail/",
+   "brand": "Ashar Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1331012502243",
+   "page": "https://www.birlaestates.com/birla-taranya-thane/",
+   "brand": "Birla Estate",
+   "why": "already on the live map (pin #174)"
+  },
+  {
+   "rera": "PR1262022501044",
+   "page": "https://www.birlaestates.com/birla-punya-pune/",
+   "brand": "Birla Estate",
+   "why": "already on the live map (pin #168)"
+  },
+  {
+   "rera": "P51700029755",
+   "page": "https://www.birlaestates.com/birla-vanya/index.aspx",
+   "brand": "Birla Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700048333",
+   "page": "https://dostirealty.com/project/dosti-greater-thane",
+   "brand": "Dosti Realty",
+   "why": "registry name \"DGT - Sector 3A - Cluster 2 - Phase 3\" not on the developer page \"Dosti Greater Thane Homes in Kalher | Dosti Realty\""
+  },
+  {
+   "rera": "P51900026976",
+   "page": "https://dostirealty.com/project/dosti-mezzo-22",
+   "brand": "Dosti Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700056278",
+   "page": "https://dostirealty.com/project/dosti-willow",
+   "brand": "Dosti Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700054424",
+   "page": "https://dostirealty.com/project/dosti-maple",
+   "brand": "Dosti Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1330002502719",
+   "page": "https://dostirealty.com/project/dosti-604",
+   "brand": "Dosti Realty",
+   "why": "registry name \"Dosti 604\" not on the developer page \"Dosti 604 Thane Luxury Residences at Wagle Estate | Dosti Realty\""
+  },
+  {
+   "rera": "P51700049421",
+   "page": "https://dostirealty.com/project/dosti-eden",
+   "brand": "Dosti Realty",
+   "why": "registry name \"Dosti Desire - Phase 2\" not on the developer page \"Dosti Eden - Premium 2 & 3 BHK Flats in Brahmand, Thane | Dosti Realty\""
+  },
+  {
+   "rera": "P51800053351",
+   "page": "https://www.ektaworld.com/project-evaana-khar-west.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800051748",
+   "page": "https://www.ektaworld.com/project-elitus-santacruz.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800046149",
+   "page": "https://www.ektaworld.com/project-ekta-crest.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800009353",
+   "page": "https://www.ektaworld.com/project-lakeriviera-powai.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800018480",
+   "page": "https://www.ektaworld.com/project-lakeriviera-powai.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100018720",
+   "page": "https://www.ektaworld.com/project-godrej-rejuve-details.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800021089",
+   "page": "https://www.ektaworld.com/project-verve-khar.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800005021",
+   "page": "https://www.ektaworld.com/project-trinity-santacruz.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800001826",
+   "page": "https://www.ektaworld.com/project-eros-khar.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800000908",
+   "page": "https://www.ektaworld.com/project-corner-view-details.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800001112",
+   "page": "https://www.ektaworld.com/project-panorama-details.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800001523",
+   "page": "https://www.ektaworld.com/project-maplewood-details.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1180002502359",
+   "page": "https://www.ektaworld.com/ekta-victoria-bandra-west.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800076914",
+   "page": "https://www.ektaworld.com/eden62-juhu.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900079841",
+   "page": "https://www.ektaworld.com/ekta-the-one-pali-hill.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800000947",
+   "page": "https://www.ektaworld.com/ekta-tripolis-goregaon-west.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800000731",
+   "page": "https://www.ektaworld.com/ekta-tripolis-goregaon-west.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51600001224",
+   "page": "https://www.ektaworld.com/greenville-nashik.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51600000685",
+   "page": "https://www.ektaworld.com/greenville-nashik.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51600001510",
+   "page": "https://www.ektaworld.com/greenville-nashik.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800001494",
+   "page": "https://www.ektaworld.com/westbay-bandra.html",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1261012500289",
+   "page": "https://www.gera.in/projects/residential/pune/ongoing/gera-s-avive-towers-east-kharadi/overview",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100011031",
+   "page": "https://www.gera.in/projects/residential/pune/ongoing/the-crown-at-gera-s-isle-royale/overview",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100052259",
+   "page": "https://www.gera.in/projects/childcentric-homes/pune/ongoing/gera-s-island-of-joy/overview",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100052474",
+   "page": "https://www.gera.in/projects/childcentric-homes/pune/ongoing/gera-s-island-of-joy/overview",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100077635",
+   "page": "https://www.gera.in/projects/childcentric-homes/pune/ongoing/gera-s-joy-on-the-treetops/overview",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100031802",
+   "page": "https://www.gera.in/projects/childcentric-homes/pune/ongoing/gera-s-planet-of-joy/overview",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100031809",
+   "page": "https://www.gera.in/projects/childcentric-homes/pune/ongoing/gera-s-planet-of-joy/overview",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100031875",
+   "page": "https://www.gera.in/projects/childcentric-homes/pune/ongoing/gera-s-planet-of-joy/overview",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100031876",
+   "page": "https://www.gera.in/projects/childcentric-homes/pune/ongoing/gera-s-planet-of-joy/overview",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100022737",
+   "page": "https://www.gera.in/projects/commercial/pune/ongoing/gera-s-343-crest/overview",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100030184",
+   "page": "https://www.gera.in/projects/commercial/pune/ongoing/gera-s-imperium-gateway/overview",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100030167",
+   "page": "https://www.gera.in/projects/commercial/pune/ongoing/gera-s-imperium-gateway/overview",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100001786",
+   "page": "https://www.gera.in/projects/leasing-commercial/pune/ongoing/gera-s-imperium-rise/overview",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P02400001263",
+   "page": "https://www.honerhomes.com/projects/honerhomes-2bhk",
+   "brand": "Honer Homes",
+   "why": "Telangana number on a page that is not one project's own page"
+  },
+  {
+   "rera": "P02200005923",
+   "page": "https://www.honerhomes.com/projects/honerhomes-4bhk",
+   "brand": "Honer Homes",
+   "why": "Telangana number on a page that is not one project's own page"
+  },
+  {
+   "rera": "P02400004513",
+   "page": "https://www.honerhomes.com/projects/honerhomes-5bhk",
+   "brand": "Honer Homes",
+   "why": "Telangana number on a page that is not one project's own page"
+  },
+  {
+   "rera": "PR1180002600200",
+   "page": "https://www.houseofhiranandani.com/properties-in-chembur",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800031613",
+   "page": "https://www.houseofhiranandani.com/residential-projects/mumbai/castalia",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700077268",
+   "page": "https://www.houseofhiranandani.com/residential-projects/thane/westgate",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700051114",
+   "page": "https://www.houseofhiranandani.com/residential-projects/thane/estate",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700050457",
+   "page": "https://www.houseofhiranandani.com/residential-projects/thane/belicia",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700050785",
+   "page": "https://www.houseofhiranandani.com/flats-in-kalyan",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PC1330002502695",
+   "page": "https://www.houseofhiranandani.com/commercial-projects/thane/trafford",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1260002502961",
+   "page": "https://www.javdekars.com/projects/ongoing-projects/palladio-presidential-suites.html",
+   "brand": "Villas Javdekar",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100050364",
+   "page": "https://www.javdekars.com/projects/ongoing-projects/vj-central-avenue.html",
+   "brand": "Villas Javdekar",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100046510",
+   "page": "https://www.javdekars.com/projects/ongoing-projects/yashwin-enchante.html",
+   "brand": "Villas Javdekar",
+   "why": "probably already live as pin #100 \"VJ Yashwin Enchante\" (no RERA no. on the pin)"
+  },
+  {
+   "rera": "P52100051590",
+   "page": "https://www.javdekars.com/projects/ongoing-projects/palladio-balewadi-central.html",
+   "brand": "Villas Javdekar",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100025592",
+   "page": "https://www.javdekars.com/projects/pre-leased-properties/vj-one-avenue.html",
+   "brand": "Villas Javdekar",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100048338",
+   "page": "https://www.joyvillehomes.com/joyville-celestia/",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100026451",
+   "page": "https://www.joyvillehomes.com/joyville-skyluxe-hadapsar/",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900000444",
+   "page": "https://www.joyvillehomes.com/joyville-virar/",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1180002600863",
+   "page": "https://www.kalpataru.com/mumbai/kalpataru-vian",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800033272",
+   "page": "https://www.kalpataru.com/mumbai/kalpataru-summit",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800056013",
+   "page": "https://www.kalpataru.com/mumbai/kalpataru-amare",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800077381",
+   "page": "https://www.kalpataru.com/mumbai/kalpataru-advay",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1180002501787",
+   "page": "https://www.kalpataru.com/mumbai/kalpataru-verbina",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100003084",
+   "page": "https://www.kalpataru.com/projects-in-lonavala",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52000031831",
+   "page": "https://www.kalpataru.com/navi-mumbai/projects-in-panvel",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52000027454",
+   "page": "https://www.kalpataru.com/navi-mumbai/projects-in-panvel",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52000047146",
+   "page": "https://www.kalpataru.com/projects-in-raigad",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52000050704",
+   "page": "https://www.kalpataru.com/projects-in-raigad",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52000051573",
+   "page": "https://www.kalpataru.com/projects-in-raigad",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900047321",
+   "page": "https://www.kalpataru.com/mumbai/kalpataru-prive",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800000810",
+   "page": "https://www.kalpataru.com/mumbai/projects-in-goregaon-west",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800027059",
+   "page": "https://www.kalpataru.com/mumbai/kalpataru-vienta",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800023768",
+   "page": "https://www.kalpataru.com/mumbai/kalpataru-vienta",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800027273",
+   "page": "https://www.kalpataru.com/mumbai/kalpataru-elegante",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800023840",
+   "page": "https://www.kalpataru.com/mumbai/kalpataru-elitus",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900045295",
+   "page": "https://www.kalpataru.com/mumbai/kalpataru-azuro",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800004029",
+   "page": "https://www.kalpataru.com/mumbai/kalpataru-magnus",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900034316",
+   "page": "https://www.kalpataru.com/mumbai/kalpataru-oceana",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100077659",
+   "page": "https://www.kalpataru.com/pune/kalpataru-blossoms-sinhagad-road",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100077649",
+   "page": "https://www.kalpataru.com/pune/kalpataru-blossoms-sinhagad-road",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100077750",
+   "page": "https://www.kalpataru.com/pune/kalpataru-blossoms-sinhagad-road",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800077219",
+   "page": "https://www.kalpataru.com/mumbai/kalpataru-virtus",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700077178",
+   "page": "https://www.koltepatil.com/navi-mumbai/residential-properties/ongoing/la-vita",
+   "brand": "Kolte Patil Developers",
+   "why": "probably already live as pin #421 \"CAMELLIA VITAL\" (no RERA no. on the pin)"
+  },
+  {
+   "rera": "P51800028506",
+   "page": "https://www.krahejacorphomes.com/2-bhk-flats-in-nibm-pune/",
+   "brand": "K Raheja Corp",
+   "why": "registry name \"RAHEJA ASCENCIO\" not on the developer page \"2 BHK Flats in NIBM, Pune | K Raheja Corp Homes\""
+  },
+  {
+   "rera": "P51800077483",
+   "page": "https://www.krahejacorphomes.com/project/raheja-antares/",
+   "brand": "K Raheja Corp",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800079836",
+   "page": "https://www.krahejacorphomes.com/project/raheja-antares/",
+   "brand": "K Raheja Corp",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900054129",
+   "page": "https://www.krahejacorphomes.com/project/raheja-amaltis/",
+   "brand": "K Raheja Corp",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900054152",
+   "page": "https://www.krahejacorphomes.com/project/raheja-amaltis/",
+   "brand": "K Raheja Corp",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800051079",
+   "page": "https://www.krahejacorphomes.com/project/maestro/",
+   "brand": "K Raheja Corp",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800046901",
+   "page": "https://www.krahejacorphomes.com/project/valletta/",
+   "brand": "K Raheja Corp",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1332022501923",
+   "page": "https://www.krahejacorphomes.com/project/rahejajadecity/juinagar/navimumbai/",
+   "brand": "K Raheja Corp",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1332022501578",
+   "page": "https://www.krahejacorphomes.com/project/rahejajadecity/juinagar/navimumbai/",
+   "brand": "K Raheja Corp",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1332022501592",
+   "page": "https://www.krahejacorphomes.com/project/rahejajadecity/juinagar/navimumbai/",
+   "brand": "K Raheja Corp",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700080277",
+   "page": "https://www.krahejacorphomes.com/project/rahejajadecity/juinagar/navimumbai/",
+   "brand": "K Raheja Corp",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100077444",
+   "page": "https://www.krahejacorphomes.com/project/helios/",
+   "brand": "K Raheja Corp",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100054218",
+   "page": "https://www.krahejacorphomes.com/project/raheja-galaxy/",
+   "brand": "K Raheja Corp",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100054163",
+   "page": "https://www.krahejacorphomes.com/project/raheja-galaxy/",
+   "brand": "K Raheja Corp",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100059576",
+   "page": "https://www.krahejacorphomes.com/project/raheja-galaxy/",
+   "brand": "K Raheja Corp",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100033399",
+   "page": "https://www.krahejacorphomes.com/project/raheja-stellar/",
+   "brand": "K Raheja Corp",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100052201",
+   "page": "https://www.krahejacorphomes.com/project/raheja-sterling/",
+   "brand": "K Raheja Corp",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100051113",
+   "page": "https://www.krahejacorphomes.com/project/raheja-viva-in-pune/",
+   "brand": "K Raheja Corp",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100026088",
+   "page": "https://www.krahejacorphomes.com/project/estrella-pune/",
+   "brand": "K Raheja Corp",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1260002501597",
+   "page": "https://www.krahejacorphomes.com/baner-annex/",
+   "brand": "K Raheja Corp",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1261012600932",
+   "page": "https://krisala.com/aventis-2-25-bhk-3-25-bhk-flats-in-tathawade-pune/",
+   "brand": "Krisala Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100080336",
+   "page": "https://krisala.com/aventis-2-25-bhk-3-25-bhk-flats-in-tathawade-pune/",
+   "brand": "Krisala Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1261012600924",
+   "page": "https://krisala.com/aventis-2-25-bhk-3-25-bhk-flats-in-tathawade-pune/",
+   "brand": "Krisala Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100055641",
+   "page": "https://krisala.com/41-luxovert-2-bhk-3-bhk-and-4-bhk-flats-in-tathawade-pune/",
+   "brand": "Krisala Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100051790",
+   "page": "https://krisala.com/41-zillenia-2-bhk-3-bhk-flats-in-punawale-pune/",
+   "brand": "Krisala Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100045292",
+   "page": "https://krisala.com/41-cosmo-nxt-2-2-25-2-75-bhk-flats-tathawade/",
+   "brand": "Krisala Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1260002500133",
+   "page": "https://krisala.com/zoy-plus-residential-flats-in-hinjawadi-phase-1-pune/",
+   "brand": "Krisala Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100079401",
+   "page": "https://krisala.com/shakai-japanese-themed-studio-homes-tathawade/",
+   "brand": "Krisala Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100030903",
+   "page": "https://krisala.com/41-cityhub-commercial-spaces-hadapsar/",
+   "brand": "Krisala Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100029844",
+   "page": "https://krisala.com/41-cosmo-2-2-25-2-75-bhk-flats-tathawade/",
+   "brand": "Krisala Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100077945",
+   "page": "https://krisala.com/41-commune-studio-apartments-wakad-pune/",
+   "brand": "Krisala Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100055409",
+   "page": "https://krisala.com/41-west-world-1-rk-1-bhk-studio-apartment-in-balewadi-pune/",
+   "brand": "Krisala Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100032580",
+   "page": "https://krisala.com/41-evoke-commercial-2-3-bhk-flats-ravet/",
+   "brand": "Krisala Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100050059",
+   "page": "https://krisala.com/41-presidency-towers-furnished-serviced-studio-apartment-pune/",
+   "brand": "Krisala Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100078925",
+   "page": "https://krisala.com/41-zillenia-phase-2-punawale/",
+   "brand": "Krisala Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PM1260002400027",
+   "page": "https://krisala.com/41-commune-studio-residences-co-working-spaces-hinjawadi/",
+   "brand": "Krisala Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700077650",
+   "page": "https://www.lntrealty.com/residences/evara-heights-luxury-2-3-4-bhk-flats-in-thane/",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700077678",
+   "page": "https://www.lntrealty.com/residences/evara-heights-luxury-2-3-4-bhk-flats-in-thane/",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1330002502967",
+   "page": "https://www.lntrealty.com/residences/evara-heights-luxury-2-3-4-bhk-flats-in-thane/",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700077681",
+   "page": "https://www.lntrealty.com/residences/evara-heights-luxury-2-3-4-bhk-flats-in-thane/",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900046369",
+   "page": "https://www.lntrealty.com/residences/luxury-2-3-bhk-flats-in-island-cove-mahim-mumbai/",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900080584",
+   "page": "https://www.lntrealty.com/residences/luxury-2-3-bhk-flats-in-island-cove-mahim-mumbai/",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1170002500784",
+   "page": "https://www.lntrealty.com/residences/luxury-2-3-bhk-flats-in-island-cove-mahim-mumbai/",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900054969",
+   "page": "https://www.lntrealty.com/residences/the-gateway-3-4-bhk-flats-in-sewri/",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800023075",
+   "page": "https://www.lntrealty.com/residences/flats-in-mulund-mumbai-rejuve360/",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700045802",
+   "page": "https://www.lntrealty.com/residences/west-square-seawoods-residences-navi-mumbai/",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700045794",
+   "page": "https://www.lntrealty.com/residences/west-square-seawoods-residences-navi-mumbai/",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700045795",
+   "page": "https://www.lntrealty.com/residences/west-square-seawoods-residences-navi-mumbai/",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700045793",
+   "page": "https://www.lntrealty.com/residences/west-square-seawoods-residences-navi-mumbai/",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700056254",
+   "page": "https://www.lntrealty.com/residences/west-manor-seawoods-residences-navi-mumbai/",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800033618",
+   "page": "https://www.lntrealty.com/offices/lt-realty-elixir-drive/",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800033984",
+   "page": "https://www.lntrealty.com/offices/lt-realty-elixir-drive/",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800034053",
+   "page": "https://www.lntrealty.com/offices/lt-realty-elixir-drive/",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1170002502174",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-elise-worli",
+   "brand": "Lodha",
+   "why": "already in Scraped data"
+  },
+  {
+   "rera": "P51900034949",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-malabar",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900046594",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-bellevue-mahalaxmi",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1330002600931",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-thane/lodha-belmont",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900053592",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-sea-face",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800046322",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/casa-evergreen-vikhroli",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800054475",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/casa-evergreen-vikhroli",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700032990",
+   "page": "https://www.lodhagroup.com/palava-city/projects/residential-property-in-dombivli/casa-foresta",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700020131",
+   "page": "https://www.lodhagroup.com/palava-city/projects/residential-property-in-dombivli/casa-magnolia-by-lodha",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700052337",
+   "page": "https://www.lodhagroup.com/palava-city/projects/residential-property-in-dombivli/casa-premier",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700052950",
+   "page": "https://www.lodhagroup.com/palava-city/projects/residential-property-in-dombivli/casa-premier",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700052237",
+   "page": "https://www.lodhagroup.com/palava-city/projects/residential-property-in-dombivli/casa-premier",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800048862",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-andheri/lodha-acenza",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800052417",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-andheri/lodha-acenza",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100079692",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-altero-wakad",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800077358",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-borivali/lodha-altus",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900034170",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-wadala/lodha-aura",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1170002502863",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-aureus-sewri",
+   "brand": "Lodha",
+   "why": "already in Scraped data"
+  },
+  {
+   "rera": "P51800014891",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-jogeshwari/lodha-bel-air",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800014860",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-jogeshwari/lodha-bel-air",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100024215",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-bella-vita-nibm",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100035060",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-bella-vita-nibm",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100045768",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-bella-vita-nibm",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100034751",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-bella-vita-nibm",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800033966",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-powai/lodha-bellagio",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800034759",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-powai/lodha-bellagio",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700024815",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-thane/lodha-bellavista",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700024060",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-thane/lodha-bellavista",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100020190",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-belmondo",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100020172",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-belmondo",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1180002400022",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-corinthia-lbs-marg",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1180002400044",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-corinthia-lbs-marg",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800054551",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-andheri/lodha-cullinan",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900049433",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-matunga/lodha-divino",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900051742",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-matunga/lodha-divino",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900051743",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-matunga/lodha-divino",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700046312",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-thane/lodha-elanor",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700046313",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-thane/lodha-elanor",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1180002501965",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-elaris-vikhroli",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100052703",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-estilo-kharadi",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100054436",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-estilo-kharadi",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800020147",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-andheri/lodha-eternis",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800026509",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-andheri/lodha-eternis",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700055647",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-dombivli/lodha-golfview",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700077356",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-dombivli/lodha-hanging-gardens",
+   "brand": "Lodha",
+   "why": "already on the live map (pin #147)"
+  },
+  {
+   "rera": "P52100054113",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-magnus-hinjewadi",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1260002502009",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-magnus-hinjewadi",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900046132",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-marq",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1261012400049",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-massimo-baner",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900046324",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-wadala/lodha-new-cuffe-parade",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100050987",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-one",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700079035",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-dombivli/lodha-opulis-kalyan-shil-road",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1260002400041",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-palais-kothrud",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800031360",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mulund/lodha-regalia",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800018893",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mulund/lodha-regalia",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800053072",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-riservo-vikhroli",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800053253",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-riservo-vikhroli",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800054375",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-riservo-vikhroli",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800078490",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-riservo-vikhroli",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700020155",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-dombivli/lodha-serenity-palava",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1180002501771",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-jogeshwari/lodha-sovrano",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1180002501743",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-jogeshwari/lodha-sovrano",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1180002501764",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-jogeshwari/lodha-sovrano",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700016375",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-thane/lodha-splendora",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700053017",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-thane/lodha-stella",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1260002502408",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-sylvan-hinjewadi-phase-3",
+   "brand": "Lodha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PM1170002600357",
+   "page": "https://www.mahindralifespaces.com/residential/mumbai-properties/mahindra-beaconhill/",
+   "brand": "Mahindra Lifespaces",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1181012500087",
+   "page": "https://www.mahindralifespaces.com/residential/mumbai-properties/mahindra-marina64/",
+   "brand": "Mahindra Lifespaces",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1181012500523",
+   "page": "https://www.mahindralifespaces.com/residential/mumbai-properties/mahindra-marina64/",
+   "brand": "Mahindra Lifespaces",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1182022502265",
+   "page": "https://www.mahindralifespaces.com/residential/mumbai-properties/mahindra-marina64/",
+   "brand": "Mahindra Lifespaces",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700022981",
+   "page": "https://www.mahindralifespaces.com/residential/mumbai-properties/mahindra-happinest-kalyan/",
+   "brand": "Mahindra Lifespaces",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700023209",
+   "page": "https://www.mahindralifespaces.com/residential/mumbai-properties/mahindra-happinest-kalyan/",
+   "brand": "Mahindra Lifespaces",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100055161",
+   "page": "https://www.mahindralifespaces.com/residential/pune-properties/mahindra-ivylush/",
+   "brand": "Mahindra Lifespaces",
+   "why": "registry name \"Mahindra Codename Crown Tower A and Tower B\" not on the developer page \"Mahindra IvyLush | 2, 3 & 4 BHK Flats in Kharadi, Pune\""
+  },
+  {
+   "rera": "P52100055162",
+   "page": "https://www.mahindralifespaces.com/residential/pune-properties/mahindra-ivylush/",
+   "brand": "Mahindra Lifespaces",
+   "why": "registry name \"Mahindra Codename Crown Tower E\" not on the developer page \"Mahindra IvyLush | 2, 3 & 4 BHK Flats in Kharadi, Pune\""
+  },
+  {
+   "rera": "P52100053150",
+   "page": "https://www.mahindralifespaces.com/residential/bangalore-properties/mahindra-newhaven/",
+   "brand": "Mahindra Lifespaces",
+   "why": "registry name \"Mahindra Citadel - Bastion J , K\" not on the developer page \"Mahindra NewHaven: 3.5 & 4 BHK Flats at Hosur Road, Bengaluru\""
+  },
+  {
+   "rera": "P52000048049",
+   "page": "https://www.mahindralifespaces.com/residential/alibaug-properties/mahindra-meridian/",
+   "brand": "Mahindra Lifespaces",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100031125",
+   "page": "https://majestiqueproperties.com/project/2bhk-3bhk-majestique-swapnangan-dhayari/",
+   "brand": "Majestique Landmark",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100050004",
+   "page": "https://majestiqueproperties.com/project/2bhk-3bhk-majestique-memories-nibm-annexe/",
+   "brand": "Majestique Landmark",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100013482",
+   "page": "https://majestiqueproperties.com/project/2bhk-3bhk-majestique-memories-nibm-annexe/",
+   "brand": "Majestique Landmark",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100046463",
+   "page": "https://majestiqueproperties.com/project/3bhk-4bhk-the-ornate-baner-pune/",
+   "brand": "Majestique Landmark",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100046445",
+   "page": "https://majestiqueproperties.com/project/2bhk-3bhk-flats-balewadi-pune/",
+   "brand": "Majestique Landmark",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100047314",
+   "page": "https://majestiqueproperties.com/project/2bhk-3bhk-flats-balewadi-pune/",
+   "brand": "Majestique Landmark",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100032450",
+   "page": "https://majestiqueproperties.com/project/2bhk-3bhk-majestique-marbella-kharadi/",
+   "brand": "Majestique Landmark",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100051012",
+   "page": "https://majestiqueproperties.com/project/2bhk-3bhk-majestique-marbella-kharadi/",
+   "brand": "Majestique Landmark",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100025991",
+   "page": "https://majestiqueproperties.com/project/2bhk-3bhk-flats-nibm-majestique-ephelia/",
+   "brand": "Majestique Landmark",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100051801",
+   "page": "https://majestiqueproperties.com/project/2bhk-3bhk-flats-nibm-majestique-ephelia/",
+   "brand": "Majestique Landmark",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100052216",
+   "page": "https://naiknavare.com/1-bhk-flats-in-pune",
+   "brand": "Naiknavare Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100000240",
+   "page": "https://naiknavare.com/1-bhk-flats-in-pune",
+   "brand": "Naiknavare Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100080806",
+   "page": "https://naiknavare.com/2-bhk-flats-in-pune",
+   "brand": "Naiknavare Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1260002601201",
+   "page": "https://naiknavare.com/kutumb-woods-2-3-4-bhk-flats-in-talegaon-pune",
+   "brand": "Naiknavare Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PP1260002502669",
+   "page": "https://naiknavare.com/kutumb-bhoomi-phase-ii-na-plots-talegaon-pune",
+   "brand": "Naiknavare Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100080816",
+   "page": "https://naiknavare.com/dwarka-business-square-commercial-office-space-shops-showrooms-chakan-pune",
+   "brand": "Naiknavare Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100022523",
+   "page": "https://naiknavare.com/commercial-office-shops-spaces-7-business-square-at-ganesh-khind-road-shivajinagar-pune/",
+   "brand": "Naiknavare Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100029724",
+   "page": "https://naiknavare.com/avon-vista-2-3-bhk-flats-in-balewadi-pune",
+   "brand": "Naiknavare Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100047658",
+   "page": "https://naiknavare.com/avasa-meadows-fully-serviced-na-plots-in-talegaon-pune",
+   "brand": "Naiknavare Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100021179",
+   "page": "https://naiknavare.com/neelaya-1-2-bhk-flats-in-talegaon-dabhade-pune",
+   "brand": "Naiknavare Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100000371",
+   "page": "https://naiknavare.com/aranya-by-naiknavare",
+   "brand": "Naiknavare Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100017914",
+   "page": "https://naiknavare.com/aranya-by-naiknavare",
+   "brand": "Naiknavare Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100000485",
+   "page": "https://naiknavare.com/the-spires-4-5-bhk-luxury-flats-in-aundh-pune",
+   "brand": "Naiknavare Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100078605",
+   "page": "https://www.nyatigroup.com/luxury-projects/nyati-evania",
+   "brand": "Nyati Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100056152",
+   "page": "https://www.nyatigroup.com/luxury-projects/nyati-evania",
+   "brand": "Nyati Group",
+   "why": "already on the live map (pin #194)"
+  },
+  {
+   "rera": "P52100076789",
+   "page": "https://www.nyatigroup.com/luxury-projects/nyati-evania",
+   "brand": "Nyati Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100078873",
+   "page": "https://www.nyatigroup.com/luxury-projects/nyati-evania",
+   "brand": "Nyati Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800027667",
+   "page": "https://www.oberoirealty.com/mumbai-real-estate/residential/elysian-by-oberoi-realty",
+   "brand": "Oberoi Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800031456",
+   "page": "https://www.oberoirealty.com/mumbai-real-estate/residential/elysian-by-oberoi-realty",
+   "brand": "Oberoi Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800050677",
+   "page": "https://www.oberoirealty.com/mumbai-real-estate/residential/elysian-by-oberoi-realty",
+   "brand": "Oberoi Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800006141",
+   "page": "https://www.oberoirealty.com/residential/eternia-mulund-west",
+   "brand": "Oberoi Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800002656",
+   "page": "https://www.oberoirealty.com/residential/enigma-mulund-west",
+   "brand": "Oberoi Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700050312",
+   "page": "https://www.oberoirealty.com/residential/forestville-by-oberoi-realty",
+   "brand": "Oberoi Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800003582",
+   "page": "https://www.oberoirealty.com/residential/sky-city-borivali-east",
+   "brand": "Oberoi Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800018404",
+   "page": "https://www.oberoirealty.com/residential/sky-city-borivali-east",
+   "brand": "Oberoi Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800028419",
+   "page": "https://www.oberoirealty.com/residential/sky-city-borivali-east",
+   "brand": "Oberoi Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800047575",
+   "page": "https://www.oberoirealty.com/residential/sky-city-borivali-east",
+   "brand": "Oberoi Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800017154",
+   "page": "https://www.oberoirealty.com/residential/maxima",
+   "brand": "Oberoi Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800004199",
+   "page": "https://www.oberoirealty.com/residential/prisma-andheri-east",
+   "brand": "Oberoi Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800005229",
+   "page": "https://www.oberoirealty.com/residential/esquire-goregaon-east",
+   "brand": "Oberoi Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1331012400078",
+   "page": "https://www.oberoirealty.com/oberoi-garden-city/thane",
+   "brand": "Oberoi Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1260002503013",
+   "page": "https://www.panchshil.com/luxury-residences/57-avenue",
+   "brand": "Panchshil Realty",
+   "why": "already on the live map (pin #15)"
+  },
+  {
+   "rera": "PR1170002501331",
+   "page": "https://www.panchshil.com/luxury-residences/omnia-residences",
+   "brand": "Panchshil Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100034062",
+   "page": "https://www.panchshil.com/luxury-residences/yoo-villas",
+   "brand": "Panchshil Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100010632",
+   "page": "https://www.panchshil.com/luxury-residences/yoo-villas",
+   "brand": "Panchshil Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100052083",
+   "page": "https://www.panchshil.com/luxury-residences/yoo-villas",
+   "brand": "Panchshil Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100004202",
+   "page": "https://www.panchshil.com/luxury-residences/eon-waterfront",
+   "brand": "Panchshil Realty",
+   "why": "already on the live map (pin #82)"
+  },
+  {
+   "rera": "P52100002528",
+   "page": "https://www.panchshil.com/luxury-residences/panchshil-towers",
+   "brand": "Panchshil Realty",
+   "why": "already on the live map (pin #83)"
+  },
+  {
+   "rera": "P52100017890",
+   "page": "https://www.panchshil.com/luxury-residences/soho",
+   "brand": "Panchshil Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900051735",
+   "page": "https://www.piramalrealty.com/projects/residential-projects/5-bhk-flats-in-south-mumbai",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800054164",
+   "page": "https://www.piramalrealty.com/projects/residential-projects/5-bhk-flats-in-mulund",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800079254",
+   "page": "https://www.piramalrealty.com/projects/residential-projects/5-bhk-flats-in-mulund",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700024023",
+   "page": "https://www.piramalrealty.com/projects/residential-projects/1-bhk-flats-in-thane",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700024580",
+   "page": "https://www.piramalrealty.com/projects/residential-projects/1-bhk-flats-in-thane",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1332022601156",
+   "page": "https://www.piramalrealty.com/projects/residential-projects/3-bhk-flats-in-thane",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800014021",
+   "page": "https://www.piramalrealty.com/projects/residential-projects/1-bhk-flats-in-mumbai",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800005983",
+   "page": "https://www.piramalrealty.com/projects/residential-projects/1-bhk-flats-in-mumbai",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800018099",
+   "page": "https://www.piramalrealty.com/projects/residential-projects/1-bhk-flats-in-mumbai",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800031310",
+   "page": "https://www.piramalrealty.com/projects/residential-projects/1-bhk-flats-in-mumbai",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700003535",
+   "page": "https://www.piramalrealty.com/projects/residential-projects/3-bhk-flats-in-thane",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700003793",
+   "page": "https://www.piramalrealty.com/projects/residential-projects/3-bhk-flats-in-thane",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700003283",
+   "page": "https://www.piramalrealty.com/projects/residential-projects/4-bhk-flats-in-thane",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100005377",
+   "page": "https://www.puravankara.com/residential/pune/purva-silversand",
+   "brand": "Puravankara",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100007566",
+   "page": "https://www.puravankara.com/residential/pune/purva-silversand",
+   "brand": "Puravankara",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1260002500773",
+   "page": "https://www.ranjekarrealty.com/projects/ongoing-projects/rakhi.html",
+   "brand": "Ranjekar Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1260002501211",
+   "page": "https://www.ranjekarrealty.com/projects/ongoing-projects/dhanashree.html",
+   "brand": "Ranjekar Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1260002501036",
+   "page": "https://www.ranjekarrealty.com/projects/ongoing-projects/bhagyashree.html",
+   "brand": "Ranjekar Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100052840",
+   "page": "https://www.ranjekarrealty.com/projects/ongoing-projects/umashankar-prasad.html",
+   "brand": "Ranjekar Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100056212",
+   "page": "https://www.ranjekarrealty.com/projects/ongoing-projects/tirth.html",
+   "brand": "Ranjekar Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100047337",
+   "page": "https://www.ranjekarrealty.com/projects/ongoing-projects/punyaee-business-square.html",
+   "brand": "Ranjekar Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100052758",
+   "page": "https://www.ranjekarrealty.com/projects/ongoing-projects/dhanasampada.html",
+   "brand": "Ranjekar Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100077568",
+   "page": "https://www.ranjekarrealty.com/projects/ongoing-projects/snehbhavan.html",
+   "brand": "Ranjekar Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100051675",
+   "page": "https://www.ranjekarrealty.com/projects/ongoing-projects/avantika.html",
+   "brand": "Ranjekar Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100049328",
+   "page": "https://www.ranjekarrealty.com/projects/ongoing-projects/vasundhara.html",
+   "brand": "Ranjekar Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100078704",
+   "page": "https://www.ranjekarrealty.com/projects/ongoing-projects/saukhyam.html",
+   "brand": "Ranjekar Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100078167",
+   "page": "https://www.ranjekarrealty.com/projects/ongoing-projects/anupam-heights.html",
+   "brand": "Ranjekar Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1260002502069",
+   "page": "https://www.ranjekarrealty.com/projects/ongoing-projects/shreeji.html",
+   "brand": "Ranjekar Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800006705",
+   "page": "https://raunakgroup.com/project/raunak-centrum/",
+   "brand": "Raunak Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800033269",
+   "page": "https://raunakgroup.com/project/raunak-centrum/",
+   "brand": "Raunak Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700020921",
+   "page": "https://raunakgroup.com/project/unnathi-woods-supreme/",
+   "brand": "Raunak Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700033762",
+   "page": "https://raunakgroup.com/project/raunak-golden-ticket/",
+   "brand": "Raunak Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700033757",
+   "page": "https://raunakgroup.com/project/raunak-golden-ticket/",
+   "brand": "Raunak Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700033972",
+   "page": "https://raunakgroup.com/project/raunak-golden-ticket/",
+   "brand": "Raunak Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700048307",
+   "page": "https://raunakgroup.com/project/raunak-white-house/",
+   "brand": "Raunak Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700052635",
+   "page": "https://raunakgroup.com/project/raunak-imperial/",
+   "brand": "Raunak Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700045210",
+   "page": "https://raunakgroup.com/project/raunak-serene/",
+   "brand": "Raunak Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700009540",
+   "page": "https://raunakgroup.com/project/raunak-residency/",
+   "brand": "Raunak Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700052460",
+   "page": "https://raunakgroup.com/project/raunak-fortuna/",
+   "brand": "Raunak Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700005880",
+   "page": "https://raunakgroup.com/project/viraj-tower/",
+   "brand": "Raunak Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700005363",
+   "page": "https://raunakgroup.com/project/viraj-tower/",
+   "brand": "Raunak Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700007033",
+   "page": "https://raunakgroup.com/project/viraj-tower/",
+   "brand": "Raunak Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700028435",
+   "page": "https://raunakgroup.com/project/raunak-108/",
+   "brand": "Raunak Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700046674",
+   "page": "https://raunakgroup.com/project/raunak-bliss/",
+   "brand": "Raunak Group",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PM1331012502632",
+   "page": "https://raymondrealty.in/residential-property/ten-x-district-9-thane",
+   "brand": "Raymond Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PM1331012502633",
+   "page": "https://raymondrealty.in/residential-property/ten-x-district-9-thane",
+   "brand": "Raymond Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700052442",
+   "page": "https://raymondrealty.in/commercial-property/ten-x-vibes-thane",
+   "brand": "Raymond Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700049592",
+   "page": "https://raymondrealty.in/residential-property/ten-x-era-thane",
+   "brand": "Raymond Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700049520",
+   "page": "https://raymondrealty.in/residential-property/ten-x-era-thane",
+   "brand": "Raymond Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700053528",
+   "page": "https://raymondrealty.in/residential-property/ten-x-era-thane",
+   "brand": "Raymond Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1170002501905",
+   "page": "https://raymondrealty.in/residential-property/the-address-by-gs-wadala",
+   "brand": "Raymond Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1170002501904",
+   "page": "https://raymondrealty.in/residential-property/the-address-by-gs-wadala",
+   "brand": "Raymond Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1170002501878",
+   "page": "https://raymondrealty.in/residential-property/the-address-by-gs-wadala",
+   "brand": "Raymond Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1170002501879",
+   "page": "https://raymondrealty.in/residential-property/the-address-by-gs-wadala",
+   "brand": "Raymond Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1335052500430",
+   "page": "https://raymondrealty.in/residential-property/the-address-by-gs-season-3-thane",
+   "brand": "Raymond Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700052008",
+   "page": "https://raymondrealty.in/residential-property/the-address-by-gs-season-2-thane",
+   "brand": "Raymond Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700053947",
+   "page": "https://raymondrealty.in/residential-property/the-address-by-gs-season-2-thane",
+   "brand": "Raymond Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700077861",
+   "page": "https://raymondrealty.in/residential-property/the-address-by-gs-season-2-thane",
+   "brand": "Raymond Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700031762",
+   "page": "https://raymondrealty.in/residential-property/invictus-by-gs-thane",
+   "brand": "Raymond Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700045829",
+   "page": "https://raymondrealty.in/residential-property/the-address-by-gs-thane",
+   "brand": "Raymond Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1335052500426",
+   "page": "https://raymondrealty.in/residential-property/invictus-by-gs-tower-b-thane",
+   "brand": "Raymond Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700077214",
+   "page": "https://raymondrealty.in/commercial-property/park-avenue-thane",
+   "brand": "Raymond Realty",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100000816",
+   "page": "https://rohanbuilders.com/pune-homes/ishan/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100000610",
+   "page": "https://rohanbuilders.com/pune-homes/leher-2/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100000705",
+   "page": "https://rohanbuilders.com/pune-homes/leher-2/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100000796",
+   "page": "https://rohanbuilders.com/pune-homes/leher-2/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100000794",
+   "page": "https://rohanbuilders.com/pune-homes/leher-3/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100000486",
+   "page": "https://rohanbuilders.com/pune-homes/kritika/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100017870",
+   "page": "https://rohanbuilders.com/pune-homes/ipsita/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100018764",
+   "page": "https://rohanbuilders.com/pune-homes/prathama/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100025655",
+   "page": "https://rohanbuilders.com/pune-homes/abhilasha-2/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100025681",
+   "page": "https://rohanbuilders.com/pune-homes/abhilasha-2/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100019664",
+   "page": "https://rohanbuilders.com/pune-homes/ananta/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100019678",
+   "page": "https://rohanbuilders.com/pune-homes/ananta/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100019997",
+   "page": "https://rohanbuilders.com/pune-homes/ananta/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100076652",
+   "page": "https://rohanbuilders.com/pune-homes/saroha/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100080076",
+   "page": "https://rohanbuilders.com/pune-homes/abhilasha-4/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100052972",
+   "page": "https://rohanbuilders.com/pune-homes/harita/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100052298",
+   "page": "https://rohanbuilders.com/pune-homes/ekam/",
+   "brand": "Rohan Builders",
+   "why": "probably already live as pin #332 \"Rohan Ekam Phase 3\" (no RERA no. on the pin)"
+  },
+  {
+   "rera": "PR1261012502532",
+   "page": "https://rohanbuilders.com/pune-homes/ekam/",
+   "brand": "Rohan Builders",
+   "why": "probably already live as pin #332 \"Rohan Ekam Phase 3\" (no RERA no. on the pin)"
+  },
+  {
+   "rera": "PR1262022601327",
+   "page": "https://rohanbuilders.com/pune-homes/ekam/",
+   "brand": "Rohan Builders",
+   "why": "already in Scraped data"
+  },
+  {
+   "rera": "P52100050746",
+   "page": "https://rohanbuilders.com/pune-homes/nidita/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100078282",
+   "page": "https://rohanbuilders.com/pune-homes/nidita/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100050453",
+   "page": "https://rohanbuilders.com/pune-homes/abhilasha-3/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100046719",
+   "page": "https://rohanbuilders.com/pune-homes/viti/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100023186",
+   "page": "https://rohanbuilders.com/pune-homes/anand/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100023451",
+   "page": "https://rohanbuilders.com/pune-homes/anand/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1330002600445",
+   "page": "https://rohanbuilders.com/mumbai-homes/adira/",
+   "brand": "Rohan Builders",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800031973",
+   "page": "https://www.rustomjee.com/projects/commercial/rustomjee-bella-business-spaces/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800029526",
+   "page": "https://www.rustomjee.com/projects/commercial/rustomjee-bella-business-spaces/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PC1180002500764",
+   "page": "https://www.rustomjee.com/projects/commercial/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700077224",
+   "page": "https://www.rustomjee.com/projects/villa-plots/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800049755",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-ashiana-juhu/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800033333",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-parishram-bandra-pali-hill/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700032262",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-uptown-urbania-la-familia-thane/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700032205",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-uptown-urbania-la-familia-thane/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700046128",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-uptown-urbania-la-familia-thane/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700053109",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-uptown-urbania-la-vie-thane/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800079537",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-prive-bkc-annexe/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1170002501979",
+   "page": "https://www.rustomjee.com/projects/residential/vista-bay-parel-extension/",
+   "brand": "Rustomjee",
+   "why": "already in Scraped data"
+  },
+  {
+   "rera": "P51700079209",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-urban-woods/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700079484",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-urban-woods/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700079096",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-urban-woods/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700079483",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-urban-woods/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800076673",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-ocean-vista/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900066547",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-180-bayview/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900066548",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-180-bayview/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700077136",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-verdant-vistas/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700077134",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-verdant-vistas/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800053988",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-stella-bandra/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800080217",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-crescent/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800080156",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-cliff-tower/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800080624",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-balmoral-golflinks/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1180002502115",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-balmoral-golflinks/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800080027",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-balmoral-golflinks/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800054920",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-panorama/",
+   "brand": "Rustomjee",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1260002500246",
+   "page": "https://shapoorjirealestate.com/residential/vanaha-verdant",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1180002502933",
+   "page": "https://shapoorjirealestate.com/residential/nine-arcs",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1260002503056",
+   "page": "https://shapoorjirealestate.com/residential/tree-clouds",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "already on the live map (pin #113)"
+  },
+  {
+   "rera": "PR1260002600999",
+   "page": "https://shapoorjirealestate.com/residential/vyomora",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PM1181012503066",
+   "page": "https://shapoorjirealestate.com/residential/one-hills",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800028474",
+   "page": "https://shapoorjirealestate.com/residential/bkc-28",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800005668",
+   "page": "https://shapoorjirealestate.com/residential/heartland",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800007641",
+   "page": "https://shapoorjirealestate.com/residential/heartland",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800012386",
+   "page": "https://shapoorjirealestate.com/residential/heartland",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PP1261012501803",
+   "page": "https://shapoorjirealestate.com/residential/treetopia",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100028031",
+   "page": "https://shapoorjirealestate.com/residential/vanaha",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100028082",
+   "page": "https://shapoorjirealestate.com/residential/vanaha",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100028033",
+   "page": "https://shapoorjirealestate.com/residential/vanaha",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700033243",
+   "page": "https://shapoorjirealestate.com/residential/skyraa",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800001443",
+   "page": "https://shapoorjirealestate.com/residential/the-designate",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800002564",
+   "page": "https://shapoorjirealestate.com/residential/vicinia",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100015190",
+   "page": "https://shapoorjirealestate.com/residential/sp-residency",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100030065",
+   "page": "https://shapoorjirealestate.com/residential/vanaha-springs",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100030142",
+   "page": "https://shapoorjirealestate.com/residential/vanaha-springs",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100030086",
+   "page": "https://shapoorjirealestate.com/residential/vanaha-springs",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1170002501523",
+   "page": "https://www.sobha.com/city/mumbai/sobha-inizio",
+   "brand": "Sobha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100020034",
+   "page": "https://www.sobha.com/pune/sobha-nesara",
+   "brand": "Sobha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100020057",
+   "page": "https://www.sobha.com/pune/sobha-nesara",
+   "brand": "Sobha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100020062",
+   "page": "https://www.sobha.com/pune/sobha-nesara",
+   "brand": "Sobha",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800028821",
+   "page": "https://www.sunteckindia.com/pinnacle",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800030947",
+   "page": "https://www.sunteckindia.com/pinnacle",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800022233",
+   "page": "https://www.sunteckindia.com/crest",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800014845",
+   "page": "https://www.sunteckindia.com/icon",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800007921",
+   "page": "https://www.sunteckindia.com/signia-pearl",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700011528",
+   "page": "https://www.sunteckindia.com/signia-waterfront",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800001281",
+   "page": "https://www.sunteckindia.com/1st-&-2nd-avenue",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800002637",
+   "page": "https://www.sunteckindia.com/1st-&-2nd-avenue",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800023072",
+   "page": "https://www.sunteckindia.com/4th-avenue",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700050166",
+   "page": "https://www.sunteckindia.com/sky-park",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700050167",
+   "page": "https://www.sunteckindia.com/sky-park",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700055703",
+   "page": "https://www.sunteckindia.com/sky-park",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700053439",
+   "page": "https://www.sunteckindia.com/crescentpark-kalyan/",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51700053312",
+   "page": "https://www.sunteckindia.com/crescentpark-kalyan/",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51800014646",
+   "page": "https://www.sunteckindia.com/gilbird",
+   "brand": null,
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900054054",
+   "page": "https://surajestate.com/project/suraj-lumina/",
+   "brand": "Suraj Estate Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900031447",
+   "page": "https://surajestate.com/project/suraj-vitalis-1bhk-2bhk-in-mahim/",
+   "brand": "Suraj Estate Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900032173",
+   "page": "https://surajestate.com/project/eterna/",
+   "brand": "Suraj Estate Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900047891",
+   "page": "https://surajestate.com/project/park-view-2/",
+   "brand": "Suraj Estate Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PC1170002501460",
+   "page": "https://surajestate.com/project/one-business-bay/",
+   "brand": "Suraj Estate Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PM1170002500261",
+   "page": "https://surajestate.com/project/aureva/",
+   "brand": "Suraj Estate Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1170002500887",
+   "page": "https://surajestate.com/project/park-view-1/",
+   "brand": "Suraj Estate Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51900028729",
+   "page": "https://surajestate.com/project/suraj-emmanuel/",
+   "brand": "Suraj Estate Developers",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P51600001313",
+   "page": "https://www.vascon.com/residential/vista",
+   "brand": "Vascon",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100016242",
+   "page": "https://www.vascon.com/residential/amenities.php",
+   "brand": "Vascon",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100016237",
+   "page": "https://www.vascon.com/residential/amenities.php",
+   "brand": "Vascon",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "P52100016293",
+   "page": "https://www.vascon.com/residential/amenities.php",
+   "brand": "Vascon",
+   "why": "MahaRERA listing not looked up yet / did not answer"
+  },
+  {
+   "rera": "PR1261012600482",
+   "why": "already on the live map / in Projects"
+  },
+  {
+   "rera": "PR1261012600653",
+   "why": "already on the live map / in Projects"
+  },
+  {
+   "rera": "PR1262022601936",
+   "why": "already in Scraped data"
+  }
+ ],
+ "restore_review": [
+  {
+   "rera": "P51800055125",
+   "id": "scr_2fb19582de592fb6",
+   "page": "https://www.adanirealty.com/residential-projects/mumbai/airica",
+   "brand": "Adani Realty",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51800055166",
+   "id": "scr_449b306f20490fed",
+   "page": "https://www.adanirealty.com/residential-projects/mumbai/airica",
+   "brand": "Adani Realty",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900033194",
+   "id": "scr_7f5f41214eb99964",
+   "page": "https://www.adanirealty.com/residential-projects/mumbai/the-views",
+   "brand": "Adani Realty",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900031165",
+   "id": "scr_7ae33cd7c1129606",
+   "page": "https://www.adanirealty.com/residential-projects/mumbai/the-views",
+   "brand": "Adani Realty",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51800004889",
+   "id": "scr_5789020072cadf6c",
+   "page": "https://www.adanirealty.com/residential-projects/mumbai/ten-bkc",
+   "brand": "Adani Realty",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51800047539",
+   "id": "scr_84c53895ceacda7d",
+   "page": "https://www.adanirealty.com/residential-projects/mumbai/linkbay-residences",
+   "brand": "Adani Realty",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900000192",
+   "id": "scr_c165e12e8a2da277",
+   "page": "https://www.ektaworld.com/project-invictus-dadar.html",
+   "brand": null,
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "PR1180002602042",
+   "id": "scr_76936cdb321ba118",
+   "page": "https://www.houseofhiranandani.com/4-bhk-in-mumbai",
+   "brand": null,
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51700000413",
+   "id": "scr_4d4673f390ee53ea",
+   "page": "https://www.houseofhiranandani.com/1-bhk-flats-in-thane",
+   "brand": null,
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P52100000011",
+   "id": "scr_79a83dc63f3cacd8",
+   "page": "https://www.javdekars.com/projects/completed-projects/yashwin-jeevan.html",
+   "brand": "Villas Javdekar",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P52100000012",
+   "id": "scr_1641c667b5506a80",
+   "page": "https://www.javdekars.com/projects/completed-projects/yashwin-anand.html",
+   "brand": "Villas Javdekar",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P52100000037",
+   "id": "scr_6eee100239e8e981",
+   "page": "https://www.javdekars.com/projects/completed-projects/yashwin-hinjawadi.html",
+   "brand": "Villas Javdekar",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "PM1180002600918",
+   "id": "scr_26846411d78ed9ed",
+   "page": "https://www.kalpataru.com/mumbai/kalpataru-elaara-goregaon-west",
+   "brand": null,
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51800000591",
+   "id": "scr_28f82b585252ef4f",
+   "page": "https://www.kalpataru.com/mumbai/projects-in-goregaon-west",
+   "brand": null,
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51800000482",
+   "id": "scr_b79dc01b343010ae",
+   "page": "https://www.kalpataru.com/mumbai/projects-in-goregaon-west",
+   "brand": null,
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51800000579",
+   "id": "scr_15950b4b73dffbcc",
+   "page": "https://www.kalpataru.com/mumbai/projects-in-goregaon-west",
+   "brand": null,
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900019426",
+   "id": "scr_0bab648e81fb01a4",
+   "page": "https://www.kalpataru.com/mumbai/matru-ashish-by-kalpataru",
+   "brand": null,
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51800000122",
+   "id": "scr_e714dbb7d9687e76",
+   "page": "https://www.kanakia.com/project/kanakia-paris",
+   "brand": "Kanakia Group",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900000206",
+   "id": "scr_6d1a691a92dece0c",
+   "page": "https://www.kanakia.com/project/kanakia-miami",
+   "brand": "Kanakia Group",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51800000388",
+   "id": "scr_144299f0dc7bcd32",
+   "page": "https://www.kanakia.com/project/kanakia-sevens",
+   "brand": "Kanakia Group",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51800000123",
+   "id": "scr_ffebef62ee162e7e",
+   "page": "https://www.kanakia.com/project/kanakia-hollywood",
+   "brand": "Kanakia Group",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51800000121",
+   "id": "scr_3770613b9aa8ec46",
+   "page": "https://www.kanakia.com/project/kanakia-wall-street",
+   "brand": "Kanakia Group",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "PM1261012600748",
+   "id": "scr_135ca796f840ed84",
+   "page": "https://www.koltepatil.com/pune/residential-properties/ongoing/the-reserve",
+   "brand": "Kolte Patil Developers",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P52100051765",
+   "id": "scr_c8806d6791fc665c",
+   "page": "https://www.koltepatil.com/pune/residential-properties/ongoing/life-republic/atmos",
+   "brand": "Kolte Patil Developers",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P52100056082",
+   "id": "scr_4cc28b6ce3dc68bd",
+   "page": "https://www.koltepatil.com/pune/residential-properties/ongoing/life-republic/atmos",
+   "brand": "Kolte Patil Developers",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P52100051876",
+   "id": "scr_9e2241a4f6ed1d7c",
+   "page": "https://www.koltepatil.com/pune/residential-properties/ongoing/life-republic/24kespada",
+   "brand": "Kolte Patil Developers",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900000841",
+   "id": "scr_b8315764c3099611",
+   "page": "https://www.krahejacorphomes.com/project/raheja-artesia-in-worli-south-mumbai/",
+   "brand": "K Raheja Corp",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900019931",
+   "id": "scr_84454012e8f9af9a",
+   "page": "https://www.krahejacorphomes.com/project/raheja-vivarea-in-mahalaxmi-south-mumbai/",
+   "brand": "K Raheja Corp",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "PM1180002600813",
+   "id": "scr_b3a98c012fc7f478",
+   "page": "https://www.lntrealty.com/residences/ahana-2-3-4-bhk-flats-in-malad/",
+   "brand": null,
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "PM1180002600814",
+   "id": "scr_06711a96125854a5",
+   "page": "https://www.lntrealty.com/residences/ahana-2-3-4-bhk-flats-in-malad/",
+   "brand": null,
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "PM1330002600565",
+   "id": "scr_4e6a376d9c2f2721",
+   "page": "https://www.lntrealty.com/residences/vayam-2-3-bhk-flats-in-wagle-estate-thane-mulund-corridor/",
+   "brand": null,
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "PM1330002600564",
+   "id": "scr_6a052f9069f1ff7c",
+   "page": "https://www.lntrealty.com/residences/vayam-2-3-bhk-flats-in-wagle-estate-thane-mulund-corridor/",
+   "brand": null,
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900014984",
+   "id": "scr_b8a71a6c0359f80b",
+   "page": "https://www.lodhagroup.com/projects/commercial-property-in-mumbai/one-lodha-place",
+   "brand": "Lodha",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900001339",
+   "id": "scr_9db033ed4d64f018",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-worli/lodha-trump-tower",
+   "brand": "Lodha",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900014937",
+   "id": "scr_38df46461879d8b7",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-worli/lodha-adrina",
+   "brand": "Lodha",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51800000293",
+   "id": "scr_f170c347b1048cd8",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-andheri/lodha-eternis",
+   "brand": "Lodha",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900000567",
+   "id": "scr_e3ac2bcbb2c62f78",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-wadala/lodha-evoq",
+   "brand": "Lodha",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51800000195",
+   "id": "scr_a2c33b50c168b627",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-goregaon/lodha-fiorenza",
+   "brand": "Lodha",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P52100047587",
+   "id": "scr_a60e376fa3562d05",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-giardino-kharadi",
+   "brand": "Lodha",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P52100051552",
+   "id": "scr_d6142ac87df5e8aa",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-giardino-kharadi",
+   "brand": "Lodha",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P52100048326",
+   "id": "scr_7a95abf74c72e83f",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-giardino-kharadi",
+   "brand": "Lodha",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P52100050123",
+   "id": "scr_8e1ffce05d7c33f3",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-giardino-kharadi",
+   "brand": "Lodha",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900000367",
+   "id": "scr_70af3919cac4c04c",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-wadala/lodha-new-cuffe-parade",
+   "brand": "Lodha",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900015715",
+   "id": "scr_f6a351a6263620a9",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-wadala/lodha-new-cuffe-parade",
+   "brand": "Lodha",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51700000258",
+   "id": "scr_05100d11aa84bee8",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-thane/lodha-splendora",
+   "brand": "Lodha",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51700000659",
+   "id": "scr_2e863879b7a28224",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-thane/lodha-splendora",
+   "brand": "Lodha",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51700000199",
+   "id": "scr_ea87283588c0b616",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-thane/lodha-splendora",
+   "brand": "Lodha",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "PR1261012602102",
+   "id": "scr_d05c03ca02f333af",
+   "page": "https://www.mahindralifespaces.com/residential/pune-properties/mahindra-rivenza/",
+   "brand": "Mahindra Lifespaces",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "PM1261012602103",
+   "id": "scr_1ccd950f25e3c3f2",
+   "page": "https://www.mahindralifespaces.com/residential/pune-properties/mahindra-rivenza/",
+   "brand": "Mahindra Lifespaces",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P52100000013",
+   "id": "scr_0df14c9057c92bf3",
+   "page": "https://naiknavare.com/neelaya-1-2-bhk-flats-in-talegaon-dabhade-pune",
+   "brand": "Naiknavare Developers",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900012115",
+   "id": "scr_84731e1f98bad8cd",
+   "page": "https://www.oberoirealty.com/",
+   "brand": "Oberoi Realty",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "PR1180002600318",
+   "id": "scr_258b8823102a40aa",
+   "page": "https://www.oberoirealty.com/residential/oceanic",
+   "brand": "Oberoi Realty",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900003324",
+   "id": "scr_ce6256aa302a1801",
+   "page": "https://www.piramalrealty.com/projects/residential-projects/5-bhk-flats-in-south-mumbai",
+   "brand": null,
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900018039",
+   "id": "scr_13f082f9382d97db",
+   "page": "https://www.piramalrealty.com/projects/residential-projects/ready-to-move-5-bhk-flats-in-mumbai",
+   "brand": null,
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900020330",
+   "id": "scr_697ab9480860b108",
+   "page": "https://www.piramalrealty.com/projects/residential-projects/ready-to-move-3-bhk-flats-in-mumbai",
+   "brand": null,
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900015854",
+   "id": "scr_a0204d964d4e1df0",
+   "page": "https://www.piramalrealty.com/projects/residential-projects/ready-to-move-flats-in-mahalaxmi",
+   "brand": null,
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900016482",
+   "id": "scr_b8a3048b5ac3e636",
+   "page": "https://www.piramalrealty.com/projects/residential-projects/4-bhk-flats-in-mahalaxmi",
+   "brand": null,
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900021057",
+   "id": "scr_deae1a4ad326b10e",
+   "page": "https://www.piramalrealty.com/project-mahalaxmi",
+   "brand": null,
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P52100026016",
+   "id": "scr_e689813074d3d111",
+   "page": "https://www.puravankara.com/residential/pune/purva-emerald-bay",
+   "brand": "Puravankara",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P52100026022",
+   "id": "scr_e253be19ccc10b0e",
+   "page": "https://www.puravankara.com/residential/pune/purva-emerald-bay",
+   "brand": "Puravankara",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P52100026020",
+   "id": "scr_5e82c2179d7e9969",
+   "page": "https://www.puravankara.com/residential/pune/purva-emerald-bay",
+   "brand": "Puravankara",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P52100078951",
+   "id": "scr_bbf9228ca72844ef",
+   "page": "https://www.puravankara.com/residential/pune/purva-atmosphere-pune",
+   "brand": "Puravankara",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P52100078943",
+   "id": "scr_889712ea61230725",
+   "page": "https://www.puravankara.com/residential/pune/purva-atmosphere-pune",
+   "brand": "Puravankara",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P52100079539",
+   "id": "scr_83c9a41ae61d8f8e",
+   "page": "https://rohanbuilders.com/pune-homes/harita/",
+   "brand": "Rohan Builders",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "PR1263032501085",
+   "id": "scr_83718d7ee34f2f15",
+   "page": "https://rohanbuilders.com/pune-homes/harita/",
+   "brand": "Rohan Builders",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900003268",
+   "id": "scr_f0e81c586a29768f",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-crown-prabhadevi/",
+   "brand": "Rustomjee",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900006367",
+   "id": "scr_8853c4d15535f000",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-crown-prabhadevi/",
+   "brand": "Rustomjee",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "PR1180002601227",
+   "id": "scr_7122e269fdb64171",
+   "page": "https://www.rustomjee.com/projects/residential/ozone-skye-goregaon-west/",
+   "brand": "Rustomjee",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51800054573",
+   "id": "scr_d7f8c9d8cbee88bf",
+   "page": "https://shapoorjirealestate.com/residential/bkc-9",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900050998",
+   "id": "scr_0099afa3d7a7b590",
+   "page": "https://shapoorjirealestate.com/residential/the-odyssey",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "PM1181012503072",
+   "id": "scr_de37428b803bfdd2",
+   "page": "https://shapoorjirealestate.com/residential/one-hills",
+   "brand": "Shapporji Pallonji Real Estate",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900008207",
+   "id": "scr_5aa9fb4c65ad7596",
+   "page": "https://surajestate.com/project/the-palette-apartments-in-dadar/",
+   "brand": "Suraj Estate Developers",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900007257",
+   "id": "scr_8885b5e190176276",
+   "page": "https://surajestate.com/project/ocean-star/",
+   "brand": "Suraj Estate Developers",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900007777",
+   "id": "scr_553c76c0776f5556",
+   "page": "https://surajestate.com/project/ocean-star/",
+   "brand": "Suraj Estate Developers",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "P51900021954",
+   "id": "scr_2d535bf9ca33cf70",
+   "page": "https://surajestate.com/project/ave-maria/",
+   "brand": "Suraj Estate Developers",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "PR1331012601575",
+   "id": "scr_cf1fe4b786ef540b",
+   "page": "https://tatarealty.in/property-in-ghansoli/orbis-phase-1",
+   "brand": "Tata Realty",
+   "why": "deleted on 18 Oct; developer page still lists it - review before restoring"
+  },
+  {
+   "rera": "PM1260002601964",
+   "id": "scr_156ba34598a57027",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PR1260002601773",
+   "id": "scr_ab138482935a1a08",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PM1260002601089",
+   "id": "scr_0082b59be6749687",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PM1260002600754",
+   "id": "scr_45c9aa03fc534a17",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PM1260002600753",
+   "id": "scr_f6a5f9f9e2daa016",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PR1260002601774",
+   "id": "scr_1a7ce2385f71a208",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PR1260002600790",
+   "id": "scr_c6bb6f0c96999979",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PR1260002601322",
+   "id": "scr_903623917103a6c5",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PR1260002600379",
+   "id": "scr_74221593d878aa2f",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PR1261012601494",
+   "id": "scr_f0494ac2294a9cda",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PM1260002601761",
+   "id": "scr_35dbd9d2d69ae018",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PR1261012601304",
+   "id": "scr_d471b1644521107c",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PM1260002600744",
+   "id": "scr_61271021b1654907",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PR1260002601571",
+   "id": "scr_9c21cab86034eb95",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PR1260002600909",
+   "id": "scr_3b9ec29548c6a389",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PR1261012601206",
+   "id": "scr_c08405a1a8cede20",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PR1260002601010",
+   "id": "scr_0b957aa78cd2c805",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PR1261012601229",
+   "id": "scr_78d2f6dbcdce912d",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PR1260002601389",
+   "id": "scr_67f57a796ad2f081",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PR1260002601305",
+   "id": "scr_a745b93ec6656c51",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PR1260002601339",
+   "id": "scr_8450909f454abf0a",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PC1260002601241",
+   "id": "scr_b8dba2a335d7be5d",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PM1260002601788",
+   "id": "scr_64f80ded679aef67",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PR1260002602216",
+   "id": "scr_ec30383877d31e7b",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PM1260002601661",
+   "id": "scr_5ab92a94af1187ee",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PM1260002602021",
+   "id": "scr_ddd13e1a8ac1f0a7",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PR1260002601349",
+   "id": "scr_da36cc20aaf92612",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  },
+  {
+   "rera": "PR1260002601240",
+   "id": "scr_9ae04eea91fdd7d8",
+   "why": "deleted on 18 Oct; still on the MahaRERA listing (listing only, no new facts)"
+  }
+ ]
+}

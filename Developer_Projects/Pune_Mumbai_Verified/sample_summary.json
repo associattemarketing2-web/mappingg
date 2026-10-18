@@ -1,0 +1,138 @@
+{
+  "checked": "2026-10-18",
+  "metrics": [
+    {
+      "metric": "records in sample",
+      "Pune": 20,
+      "Mumbai": 20,
+      "Total": 40
+    },
+    {
+      "metric": "developer has an official website we could read",
+      "Pune": 7,
+      "Mumbai": 2,
+      "Total": 9
+    },
+    {
+      "metric": "developer identity confirmed on official site",
+      "Pune": 6,
+      "Mumbai": 1,
+      "Total": 7
+    },
+    {
+      "metric": "project listed on official site",
+      "Pune": 4,
+      "Mumbai": 0,
+      "Total": 4
+    },
+    {
+      "metric": "RERA number shown on official project page",
+      "Pune": 2,
+      "Mumbai": 0,
+      "Total": 2
+    },
+    {
+      "metric": "logo verified_official",
+      "Pune": 6,
+      "Mumbai": 1,
+      "Total": 7
+    },
+    {
+      "metric": "logo candidate (identity unconfirmed)",
+      "Pune": 1,
+      "Mumbai": 1,
+      "Total": 2
+    },
+    {
+      "metric": "logo missing",
+      "Pune": 13,
+      "Mumbai": 18,
+      "Total": 31
+    },
+    {
+      "metric": "logo already in app (any source)",
+      "Pune": 6,
+      "Mumbai": 4,
+      "Total": 10
+    },
+    {
+      "metric": "developer office address verified",
+      "Pune": 3,
+      "Mumbai": 1,
+      "Total": 4
+    },
+    {
+      "metric": "developer office coordinates",
+      "Pune": 0,
+      "Mumbai": 1,
+      "Total": 1
+    },
+    {
+      "metric": "project address from official site",
+      "Pune": 4,
+      "Mumbai": 0,
+      "Total": 4
+    },
+    {
+      "metric": "site point consistent (pincode or official locality)",
+      "Pune": 16,
+      "Mumbai": 14,
+      "Total": 30
+    },
+    {
+      "metric": "site point is a shared placeholder",
+      "Pune": 4,
+      "Mumbai": 0,
+      "Total": 4
+    },
+    {
+      "metric": "site point area differs - needs check",
+      "Pune": 0,
+      "Mumbai": 6,
+      "Total": 6
+    },
+    {
+      "metric": "exact project-site coordinates verified",
+      "Pune": 0,
+      "Mumbai": 0,
+      "Total": 0
+    },
+    {
+      "metric": "registry BHK / units / land / cost / completion available",
+      "Pune": 0,
+      "Mumbai": 0,
+      "Total": 0
+    },
+    {
+      "metric": "record_status verified_official",
+      "Pune": 0,
+      "Mumbai": 0,
+      "Total": 0
+    },
+    {
+      "metric": "record_status partially_verified",
+      "Pune": 20,
+      "Mumbai": 20,
+      "Total": 40
+    },
+    {
+      "metric": "go-live eligible",
+      "Pune": 0,
+      "Mumbai": 0,
+      "Total": 0
+    }
+  ],
+  "logo_checks": {
+    "https://shapoorjirealestate.com/assets/common/vectors/icon_sp-logo-1.svg": "loads (HTTP 200, image/svg+xml)",
+    "https://www.mahindralifespaces.com/images/logo-white.svg": "loads (HTTP 200, image/svg+xml)",
+    "https://www.malpani.com/nav-logo.png": "loads (HTTP 200, image/png)",
+    "https://naiknavare.com/assets/img/naiknavare-logo-blue.svg": "loads (HTTP 200, image/svg+xml)",
+    "https://www.ranjekarrealty.com/images/logo.svg": "loads (HTTP 200, image/svg+xml)",
+    "https://www.mayfairhousing.com/Content/assets/img/logo/logo.png": "loads (HTTP 200, image/png)",
+    "https://lotusdevelopers.com/template/front_assets/img/logo/logo-small.png": "loads (HTTP 200, image/png)"
+  },
+  "shared_points": {
+    "points": 115,
+    "records": 533
+  }
+}

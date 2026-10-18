@@ -1,0 +1,77 @@
+{
+  "_note": "Hand-checked evidence for the 20 Pune + 20 Mumbai sample, checked 2026-10-18. Only the developer's own website counts as official evidence; portals (Housiey, SquareYards, JLL Homes, CityAir, ghar.tv, etc.) are noted as secondary and never used to fill a value. Pages fetched are cached in ../cache/pages (git-ignored).",
+  "developers": {
+    "shapoorji": {
+      "match": ["Shapporji Pallonji Real Estate"],
+      "brand": "Shapoorji Pallonji Real Estate (SPRE)", "website": "https://shapoorjirealestate.com/",
+      "identity": "confirmed", "identity_note": "Vyomora is listed on the official site as an SPRE project in Hinjawadi, Pune. RERA list spells the promoter 'Shapporji' (typo as published, kept).",
+      "logo_url": "https://shapoorjirealestate.com/assets/common/vectors/icon_sp-logo-1.svg", "logo_page": "https://shapoorjirealestate.com/", "logo_status": "verified_official",
+      "office_address": "SP Center 41/44, Minoo Desai Marg, Colaba, Mumbai - 400005", "office_source": "https://shapoorjirealestate.com/residential/vyomora/", "office_status": "verified_official",
+      "phone": "+91 8046808543", "phone_source": "https://shapoorjirealestate.com/"
+    },
+    "mahindra": {
+      "match": ["Mahindra Lifespace Developers limited"],
+      "brand": "Mahindra Lifespaces", "website": "https://www.mahindralifespaces.com/",
+      "identity": "confirmed", "identity_note": "Official project page shows both RERA numbers PR1261012602102 and PM1261012602103.",
+      "logo_url": "https://www.mahindralifespaces.com/images/logo-white.svg", "logo_page": "https://www.mahindralifespaces.com/", "logo_status": "verified_official", "logo_note": "White version (for dark headers); a coloured version was not found on the page.",
+      "office_address": null, "office_status": "missing", "office_note": "No office address on the pages read.",
+      "phone": "1800 267 1010", "phone_source": "https://www.mahindralifespaces.com/"
+    },
+    "malpani": {
+      "match": ["Malpani Estates"],
+      "brand": "Malpani Group", "website": "https://www.malpani.com/",
+      "identity": "unconfirmed", "identity_note": "malpani.com is the Malpani Group site, but it is a script-only page; M Soul Strings could not be found on it. Portals attribute M-Soul Strings (Baner-Pashan Link Road) to Malpani Group.",
+      "logo_url": "https://www.malpani.com/nav-logo.png", "logo_page": "https://www.malpani.com/", "logo_status": "candidate_unconfirmed",
+      "office_address": null, "office_status": "missing"
+    },
+    "naiknavare": {
+      "match": ["Naiknavare Developers"],
+      "brand": "Naiknavare Developers Pvt. Ltd.", "website": "https://naiknavare.com/",
+      "identity": "developer_confirmed_project_not_listed", "identity_note": "Official site lists ongoing/SRA projects; 'Shridhar Bhalchandra' (new registration) is not on it yet.",
+      "logo_url": "https://naiknavare.com/assets/img/naiknavare-logo-blue.svg", "logo_page": "https://naiknavare.com/", "logo_status": "verified_official",
+      "office_address": null, "office_status": "missing"
+    },
+    "ranjekar": {
+      "match": ["Ranjekar Realty LLP"],
+      "brand": "Ranjekar Realty", "website": "https://www.ranjekarrealty.com/",
+      "identity": "developer_confirmed_project_not_listed", "identity_note": "Official site footer names 'Ranjekar Realty LLP' (same legal name as RERA). 'Madhughat' is not on the ongoing-projects page yet.",
+      "logo_url": "https://www.ranjekarrealty.com/images/logo.svg", "logo_page": "https://www.ranjekarrealty.com/", "logo_status": "verified_official",
+      "office_address": "YASH K6/4 Erandwane Housing Society, Erandwane, Opposite Sevasadan School, Near Dinanath Mangeshkar Hospital, Pune 411004", "office_source": "https://www.ranjekarrealty.com/", "office_status": "verified_official",
+      "phone": "+91 8087 333 599", "email": "sales@ranjekarrealty.com", "phone_source": "https://www.ranjekarrealty.com/"
+    },
+    "mayfair": {
+      "match": ["Mayfair Housing"],
+      "brand": "Mayfair Housing", "website": "https://www.mayfairhousing.com/",
+      "identity": "developer_confirmed_project_not_listed", "identity_note": "Official site exists; 'Mayfair Aarambh' was not found on the pages read (projects pages return 404).",
+      "logo_url": "https://www.mayfairhousing.com/Content/assets/img/logo/logo.png", "logo_page": "https://www.mayfairhousing.com/", "logo_status": "verified_official",
+      "office_address": null, "office_status": "partial", "office_note": "Only pincode 400 058 shown on the homepage.",
+      "phone": "022 67232300", "email": "enquiry@mayfairhousing.com", "phone_source": "https://www.mayfairhousing.com/"
+    },
+    "lotus": {
+      "match": ["Lotus Developers"],
+      "brand": "Lotus Developers (Sri Lotus Developers & Realty Ltd)?", "website": "https://lotusdevelopers.com/",
+      "identity": "unconfirmed", "identity_note": "lotusdevelopers.com is Sri Lotus Developers (Juhu). 'Lotus Sky Plaza' was not found on its site or NSE filings, so the RERA promoter 'Lotus Developers' is not confirmed to be the same company.",
+      "logo_url": "https://lotusdevelopers.com/template/front_assets/img/logo/logo-small.png", "logo_page": "https://lotusdevelopers.com/", "logo_status": "candidate_unconfirmed",
+      "office_address": "5th & 6th Floor, Lotus Tower, 1 Jai Hind Society, N. S. Road No. 12/A, JVPD Scheme, Juhu, Mumbai 400049", "office_source": "https://lotusdevelopers.com/", "office_status": "verified_official_if_same_company",
+      "office_lat": 19.10778710932244, "office_lng": 72.82976358416336, "office_coord_source": "map point in the page script of https://lotusdevelopers.com/"
+    }
+  },
+  "rejected_sources": [
+    { "domain": "uniquepune.com", "for": "ANNR Unique Realty LLP (Que 101)", "reason": "Site is 'Unique Enterprises', a cab service - different company. Logo NOT used." },
+    { "domain": "rachanagroup.com", "for": "RACHANA DEVELOPERS (Prasun Srishti)", "reason": "Rachana Group of Warangal, Telangana - different company. Logo NOT used." },
+    { "domain": "shethrealty.com", "for": "SHETH LANDMARK LLP (Viraasat)", "reason": "Sheth Realty, Koregaon Park Pune - not shown to be the Mumbai promoter. Logo NOT used." },
+    { "domain": "ranadebagade.com, akshaybuildcon.com, mandorinfra.com, ambitestates.com, viragroup.co.in, shraddhaprime.com", "for": "guessed domains", "reason": "Do not exist (DNS not found)." },
+    { "domain": "jhamtanigroup.com", "for": "JHAMTANI REALTY PRIVATE LIMITED", "reason": "Connection refused." },
+    { "domain": "poddarhousing.com", "for": "MATUSHREE REAL ESTATE DEVELOPERS (Poddar Highgarden)", "reason": "Expired TLS certificate; not read. Link between Matushree and Poddar not confirmed." }
+  ],
+  "projects": {
+    "PR1261012602102": { "official_page": "https://www.mahindralifespaces.com/residential/pune-properties/mahindra-rivenza/", "rera_on_official_page": "yes", "address": "Mahindra Rivenza, Baner Annex, off Baner-Hinjawadi Road, Pune, Maharashtra 412115", "bhk_published": "2, 3 & 4 BHK (project-level, page title)", "phase_note": "Official page covers both phases; BHK is not given per phase." },
+    "PM1261012602103": { "official_page": "https://www.mahindralifespaces.com/residential/pune-properties/mahindra-rivenza/", "rera_on_official_page": "yes", "address": "Mahindra Rivenza, Baner Annex, off Baner-Hinjawadi Road, Pune, Maharashtra 412115", "bhk_published": "2, 3 & 4 BHK (project-level, page title)", "phase_note": "Official page covers both phases; BHK is not given per phase." },
+    "PM1261012602248": { "official_page": "https://shapoorjirealestate.com/residential/vyomora/", "rera_on_official_page": "no - page shows only PR1260002600999", "address": "Shapoorji Pallonji Vyomora, Off Maan Village Road, Near Phase 1, Hinjawadi, Pune - 411057", "bhk_published": "2, 3 & 4 BHK (project-level)", "phase_note": "Phase 3 number not on the official page; linked to Vyomora by name only." },
+    "PM1261012602233": { "official_page": "https://shapoorjirealestate.com/residential/vyomora/", "rera_on_official_page": "no - page shows only PR1260002600999", "address": "Shapoorji Pallonji Vyomora, Off Maan Village Road, Near Phase 1, Hinjawadi, Pune - 411057", "bhk_published": "2, 3 & 4 BHK (project-level)", "phase_note": "Phase 2 number not on the official page; linked to Vyomora by name only." },
+    "PR1262022602232": { "official_page": null, "secondary": ["https://www.homebazaar.com/builders/malpani-estates", "https://cityair.in/m-soul-strings-wing-c-pashan-pune-rera-project.html"], "note": "Portals place M-Soul Strings on Baner-Pashan Link Road, Pashan 411021 (matches the registry pincode). Not used as evidence." },
+    "PM1260002601985": { "official_page": null, "secondary": ["https://www.jllhomes.co.in/apartments-new/pune/twin-duville-avira-3-bhk-flat-mundhwa-1285-sqft"], "note": "Portal shows the same RERA number and promoter (Twin Bungalows Mundhwa LLP); no official site found." },
+    "PR1260002602104": { "note": "No web evidence; registry point is a shared approximate point (same as PR1261012602130)." },
+    "PR1261012602130": { "note": "Outside the sample; shares the same approximate point as PR1260002602104." }
+  }
+}

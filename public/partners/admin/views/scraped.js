@@ -119,7 +119,7 @@ export async function renderScraped(page, params) {
       const n = live.filter(r => r.ready_gaps?.length).length;
       return n ? `<span title="${esc(Object.entries(gaps).sort((a, b) => b[1] - a[1]).map(([g, c]) => `${g}: ${c}`).join('\n'))}" style="text-decoration:underline dotted">${n.toLocaleString()} other enriched records are left out</span> (still in the Enriched tab). ` : ''; })()}
     The registry has no photos: add real photos before publishing. Check the developer logo and the location pin of each record.
-    Facts are from the official registry project page (RERA Karnataka / HARERA). Prices are not published by RERA; “Project cost” is the cost declared to RERA. “Add to Projects” copies these facts into the project (configurations, units, towers, land area, amenities, and the rest under Additional details) — check them in the Review queue, then publish.</p>`));
+    Facts are from the official registry project page (RERA Karnataka / HARERA / UP RERA). <b>MahaRERA (Pune / Mumbai)</b> project pages need a CAPTCHA, so those rows use the developer's own project page instead (it must show the same RERA number, the BHK types and a possession date; location pin verified; developer logo matched) — their units, land area and project cost show “Pending (MahaRERA)”. Prices are not published by RERA; “Project cost” is the cost declared to RERA. “Add to Projects” copies these facts into the project (configurations, units, towers, land area, amenities, and the rest under Additional details) — check them in the Review queue, then publish.</p>`));
   page.appendChild(toolbar);
 
   const actions = tab === 'deleted' ? [{ act: 'restore', label: 'Restore' }]
@@ -193,15 +193,19 @@ function dataRow(r) {
   const units = [f.total_units != null && `${sqft(f.total_units)} units`, f.towers != null && `${f.towers} tower${f.towers === 1 ? '' : 's'}`, f.total_plots != null && `${sqft(f.total_plots)} plots`].filter(Boolean).join(' · ');
   const types = f.configurations || (Array.isArray(f.unit_mix) ? f.unit_mix.map(u => u.type).join(', ') : '') || f.project_sub_type || '';
   const amen = Array.isArray(f.amenities) ? f.amenities : [];
+  // MahaRERA rows with facts from the developer's own website: registry-only facts stay visibly pending.
+  const dev = x.source_type === 'developer_official_site';
+  const pend = dev ? '<span class="tag-mini" title="Only on the MahaRERA project page (CAPTCHA) - not collected">Pending (MahaRERA)</span>' : dash;
   return h(`<tr class="clickable" tabindex="0">
     <td style="width:60px;text-align:center">${logoCell(r)}<div class="cell-sub" style="font-size:11px">${r.logo ? 'Matched' : 'No logo'}</div></td>
     <td><div class="cell-title">${esc(r.project_name || 'Untitled')}</div><div class="cell-sub">${esc(r.developer_name || 'Developer not shown')}</div>
-      <div class="cell-sub" style="white-space:nowrap">${esc(r.rera_number || '—')} · ${esc([r.locality, CITY_LABEL[r.city]].filter(Boolean).join(', '))}</div></td>
-    <td>${types ? esc(types) : dash}${units ? `<div class="cell-sub">${esc(units)}</div>` : ''}${f.plot_sizes ? `<div class="cell-sub">Plots: ${esc([].concat(f.plot_sizes).join(', '))}</div>` : ''}</td>
-    <td class="cell-sub" style="max-width:260px">${esc(carpetText(f)) || dash}</td>
-    <td class="cell-sub">${esc(f.land_area || '') || dash}</td>
-    <td class="cell-sub" style="white-space:nowrap">${f.project_start_date || f.proposed_completion ? `${esc(f.project_start_date || '?')} → ${esc(f.proposed_completion || '?')}` : dash}</td>
-    <td class="cell-sub">${esc(String(f.project_cost || '').replace(/\s*\(.*\)$/, '')) || dash}</td>
+      <div class="cell-sub" style="white-space:nowrap">${esc(r.rera_number || '—')} · ${esc([r.locality, CITY_LABEL[r.city]].filter(Boolean).join(', '))}</div>
+      ${dev && x.source ? `<div class="cell-sub"><a href="${esc(x.source)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Developer page ↗</a> · facts from developer website</div>` : ''}</td>
+    <td>${types ? esc(types) : dash}${units ? `<div class="cell-sub">${esc(units)}</div>` : dev ? `<div class="cell-sub">Units: ${pend}</div>` : ''}${f.plot_sizes ? `<div class="cell-sub">Plots: ${esc([].concat(f.plot_sizes).join(', '))}</div>` : ''}</td>
+    <td class="cell-sub" style="max-width:260px">${esc(carpetText(f)) || (dev ? pend : dash)}</td>
+    <td class="cell-sub">${esc(f.land_area || '') || (dev ? pend : dash)}</td>
+    <td class="cell-sub" style="white-space:nowrap">${f.project_start_date || f.proposed_completion ? `${esc(f.project_start_date || '?')} → ${esc(f.proposed_completion || '?')}` : dash}${dev && f.proposed_completion ? `<div class="cell-sub" title="${esc(f.possession_text || '')}">possession, developer website</div>` : ''}</td>
+    <td class="cell-sub">${esc(String(f.project_cost || '').replace(/\s*\(.*\)$/, '')) || (dev ? pend : dash)}</td>
     <td class="cell-sub" title="${esc(amen.join(', '))}">${amen.length ? `${amen.length}: ${esc(amen.slice(0, 3).join(', '))}${amen.length > 3 ? '…' : ''}` : dash}</td>
     <td class="cell-sub">${esc(f.registry_project_status || '') || dash}</td>
     <td>${pinBadge(r.pin_check)}</td>
@@ -312,6 +316,7 @@ async function openEditor(row, onDone) {
         <p class="cell-sub" style="margin:6px 0 0">${esc(d.pin_reason || '')} Drag the pin to correct it — that marks the location “Set by hand”.</p>
         <div class="scr-noimg">No project images in the official registry listing. Add photos in the Review queue after adding to Projects.</div>
         <dl class="scr-facts">
+          ${doc.enrichment?.location_check ? `<dt>Location check (OpenStreetMap)</dt><dd><strong>${esc(doc.enrichment.location_check.result)}</strong> — ${esc(doc.enrichment.location_check.note || '')}</dd>` : ''}
           <dt>Registry status</dt><dd>${esc([o.status, o.status_category].filter(Boolean).join(' — ') || '—')}</dd>
           ${o.valid_up_to ? `<dt>Registration valid up to</dt><dd>${esc(o.valid_up_to)}</dd>` : ''}
           ${o.nclt_proposed_completion ? `<dt>Proposed completion (NCLT list)</dt><dd>${esc(o.nclt_proposed_completion)}</dd>` : ''}

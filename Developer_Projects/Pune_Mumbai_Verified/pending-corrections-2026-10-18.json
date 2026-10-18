@@ -1,0 +1,122 @@
+[
+ {
+  "id": "scr_d05c03ca02f333af",
+  "rera": "PR1261012602102",
+  "project": "Mahindra Rivenza Phase 1",
+  "notes": "already live as pin #198 \"Mahindra Rivenza\" -> review_required"
+ },
+ {
+  "id": "scr_1ccd950f25e3c3f2",
+  "rera": "PM1261012602103",
+  "project": "Mahindra Rivenza Phase 2",
+  "notes": "already live as pin #198 \"Mahindra Rivenza\" -> review_required"
+ },
+ {
+  "id": "scr_2fb19582de592fb6",
+  "rera": "P51800055125",
+  "project": "AIRICA TOWER 1",
+  "notes": "date 2029-12-31 -> project_level_possession; pin unconfirmed -> verified (0.09 km)"
+ },
+ {
+  "id": "scr_449b306f20490fed",
+  "rera": "P51800055166",
+  "project": "AIRICA TOWER 4",
+  "notes": "date 2029-12-31 -> project_level_possession; pin unconfirmed -> verified (0.09 km)"
+ },
+ {
+  "id": "scr_7f5f41214eb99964",
+  "rera": "P51900033194",
+  "project": "THE VIEWS II",
+  "notes": "date 2026-12-31 -> project_level_possession"
+ },
+ {
+  "id": "scr_7ae33cd7c1129606",
+  "rera": "P51900031165",
+  "project": "THE VIEWS",
+  "notes": "date 2026-12-31 -> project_level_possession; pin unconfirmed -> verified (0.19 km)"
+ },
+ {
+  "id": "scr_5789020072cadf6c",
+  "rera": "P51800004889",
+  "project": "TEN BKC",
+  "notes": "pin unconfirmed -> verified (0.11 km)"
+ },
+ {
+  "id": "scr_c8806d6791fc665c",
+  "rera": "P52100051765",
+  "project": "Life Republic Sector R22/22nd Avenue - Atmos/Phase - I",
+  "notes": "date 2027-10 -> project_level_possession"
+ },
+ {
+  "id": "scr_4cc28b6ce3dc68bd",
+  "rera": "P52100056082",
+  "project": "Life Republic Sector R22/22nd Avenue - Atmos/Phase-II",
+  "notes": "date 2027-10 -> project_level_possession"
+ },
+ {
+  "id": "scr_a60e376fa3562d05",
+  "rera": "P52100047587",
+  "project": "Kharadi Pune Phase I - Tower 1 to 4",
+  "notes": "date 2025-04 -> project_level_possession"
+ },
+ {
+  "id": "scr_d6142ac87df5e8aa",
+  "rera": "P52100051552",
+  "project": "Kharadi Pune Phase II -Tower 6",
+  "notes": "date 2025-04 -> project_level_possession"
+ },
+ {
+  "id": "scr_7a95abf74c72e83f",
+  "rera": "P52100048326",
+  "project": "Kharadi Pune Phase I -Tower 5",
+  "notes": "date 2025-04 -> project_level_possession"
+ },
+ {
+  "id": "scr_8e1ffce05d7c33f3",
+  "rera": "P52100050123",
+  "project": "Kharadi Pune Phase II Tower 7",
+  "notes": "date 2025-04 -> project_level_possession"
+ },
+ {
+  "id": "scr_e689813074d3d111",
+  "rera": "P52100026016",
+  "project": "Emerald Bay Building 2",
+  "notes": "date 2026-12-31 -> project_level_possession"
+ },
+ {
+  "id": "scr_e253be19ccc10b0e",
+  "rera": "P52100026022",
+  "project": "Emerald Bay Building 3",
+  "notes": "date 2026-12-31 -> project_level_possession"
+ },
+ {
+  "id": "scr_5e82c2179d7e9969",
+  "rera": "P52100026020",
+  "project": "Emerald Bay Building 11",
+  "notes": "date 2026-12-31 -> project_level_possession"
+ },
+ {
+  "id": "scr_bbf9228ca72844ef",
+  "rera": "P52100078951",
+  "project": "Purva Atmosphere Tower 2",
+  "notes": "date 2030-12-31 -> project_level_possession"
+ },
+ {
+  "id": "scr_889712ea61230725",
+  "rera": "P52100078943",
+  "project": "Purva Atmosphere Tower 3",
+  "notes": "date 2030-12-31 -> project_level_possession"
+ },
+ {
+  "id": "scr_83c9a41ae61d8f8e",
+  "rera": "P52100079539",
+  "project": "ROHAN HARITA PHASE 2",
+  "notes": "date 2029-12 -> project_level_possession; pin unconfirmed -> verified (0.04 km)"
+ },
+ {
+  "id": "scr_83718d7ee34f2f15",
+  "rera": "PR1263032501085",
+  "project": "ROHAN HARITA PHASE 3",
+  "notes": "date 2029-12 -> project_level_possession; pin unconfirmed -> verified (0.04 km)"
+ }
+]

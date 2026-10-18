@@ -14,3 +14,5 @@
 /PERFORMANCE_AUDIT.md
 /PERFORMANCE_OPTIMIZATION_REPORT.md
 /render.yaml
+# The mobile app is a separate Expo project (built with EAS, not Vercel).
+/mapping_app

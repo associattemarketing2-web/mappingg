@@ -86,7 +86,9 @@ export async function listScraped(): Promise<{ rows: Doc[]; imported_at: string 
       'enrichment_review', jsonb_array_length(coalesce(doc->'enrichment'->'review_required', '[]'::jsonb)),
       -- just the facts readyGaps() looks at
       'ready_e', CASE WHEN doc->'enrichment' IS NULL THEN NULL ELSE jsonb_build_object('review_required', doc->'enrichment'->'review_required',
+        'source_type', doc->'enrichment'->'source_type',
         'fields', jsonb_strip_nulls(jsonb_build_object('configurations', doc->'enrichment'->'fields'->'configurations',
+          'rera_on_official_page', doc->'enrichment'->'fields'->'rera_on_official_page',
           'total_units', doc->'enrichment'->'fields'->'total_units', 'total_plots', doc->'enrichment'->'fields'->'total_plots',
           'proposed_completion', doc->'enrichment'->'fields'->'proposed_completion', 'project_cost', doc->'enrichment'->'fields'->'project_cost',
           'land_area', doc->'enrichment'->'fields'->'land_area', 'pincode', doc->'enrichment'->'fields'->'pincode',
@@ -128,7 +130,11 @@ export async function listScraped(): Promise<{ rows: Doc[]; imported_at: string 
       enriched_fields: doc.enriched_fields || 0, enrichment_review: doc.enrichment_review || 0 };
     for (const k of LIST_FIELDS) row[k] = d[k] ?? null;
     row.pin_check = d.pin_check || doc.pin_check || null;
-    if (doc.ready_e) row.ready_gaps = readyGaps(d, doc.ready_e);
+    if (doc.ready_e) {
+      row.ready_gaps = readyGaps(d, doc.ready_e);
+      // Developer-website facts (MahaRERA): the developer's own logo is part of the identity check.
+      if (isDevSiteFacts(d, doc.ready_e) && !row.logo) row.ready_gaps.push('No developer logo');
+    }
     return row;
   });
   return { rows, imported_at, dataset_generated };
@@ -141,6 +147,7 @@ export async function listEnriched(): Promise<Doc[]> {
       'fields', (doc->'enrichment'->'fields') - 'registry_latitude' - 'registry_longitude' - 'project_description',
       'review_required', coalesce(doc->'enrichment'->'review_required', '[]'::jsonb),
       'source', doc->'enrichment'->'sources'->0, 'regulator', doc->'original'->>'regulator',
+      'source_type', doc->'enrichment'->>'source_type', 'pending_fields', doc->'enrichment'->'pending_fields',
       'data_filled', (SELECT coalesce(jsonb_agg(k), '[]'::jsonb) FROM jsonb_object_keys(coalesce(doc->'enrichment'->'data_filled', '{}'::jsonb)) k)) AS e
     FROM scraped_projects WHERE doc->'enrichment' IS NOT NULL AND NOT coalesce((doc->>'deleted')::boolean, false)`);
   return res.rows.map(({ id, e }) => ({ id, ...e }));
@@ -183,7 +190,9 @@ export function enrichmentForProject(e: Doc | undefined): { patch: Doc; details:
     ['Land area (RERA)', f.land_area], ['Plot sizes (RERA)', Array.isArray(f.plot_sizes) ? f.plot_sizes.join(', ') : f.plot_sizes],
     ['Total plots (RERA)', f.total_plots], ['Project sub-type (RERA)', f.project_sub_type],
     ['Amenities (RERA)', Array.isArray(f.amenities) ? f.amenities.join(', ') : f.amenities],
-    ['Project start date (RERA)', f.project_start_date], ['Proposed completion (RERA)', f.proposed_completion],
+    ['Project start date (RERA)', f.project_start_date],
+    [e.source_type === 'developer_official_site' ? 'Possession date (developer website)' : 'Proposed completion (RERA)', f.proposed_completion],
+    ['Possession wording (developer website)', f.possession_text], ['Developer project page', f.developer_project_page],
     ['Plan approved by', f.approving_authority], ['Approved plan no.', f.approved_plan_number], ['Plan approval date', f.plan_approval_date],
     ['DTCP licence', f.dtcp_license], ['Layout plan approval', f.layout_plan_approval_date], ['Building plan approval', f.building_plan_approval_date],
     ['Water source (RERA)', f.water_source], ['Developer website (as declared to RERA)', f.developer_website],
@@ -194,6 +203,10 @@ export function enrichmentForProject(e: Doc | undefined): { patch: Doc; details:
 }
 
 const CLOSED = /Lapsed|Withdrawn|Revoked|Transferred|Superseded/i;
+/** A MahaRERA row whose facts come from the developer's own website (not the CAPTCHA-protected registry page). */
+export function isDevSiteFacts(d: Doc, e: Doc | undefined): boolean {
+  return d?.regulator === 'MahaRERA' && e?.source_type === 'developer_official_site';
+}
 /**
  * Why an enriched row is not complete enough to go live ([] = complete): every key fact present and taken
  * from the registry, no conflict with the list, a configuration the project form knows, a completion date
@@ -202,15 +215,24 @@ const CLOSED = /Lapsed|Withdrawn|Revoked|Transferred|Superseded/i;
 export function readyGaps(d: Doc, e: Doc | undefined, today = new Date().toISOString().slice(0, 10)): string[] {
   if (!e) return ['Not enriched'];
   const f: Doc = e.fields || {}, g: string[] = [];
+  // MahaRERA project pages sit behind a CAPTCHA/login. Approved by the owner on 18 Oct 2026: a MahaRERA row may go
+  // live on facts from the developer's OWN project page instead, when that page shows the row's RERA number, its BHK
+  // types and a possession date, the registry location pin is verified and the developer logo matches (checked in
+  // listScraped). Units, land area and project cost are then shown as "pending (MahaRERA)" instead of required.
+  const devSite = isDevSiteFacts(d, e);
   if ((e.review_required || []).length) g.push('Registry differs from the list (conflict)');
   if (!enrichmentForProject(e).patch.configurations) g.push('No configuration matching the project form');
-  if (f.total_units == null && f.total_plots == null) g.push('No unit / plot count');
+  if (f.total_units == null && f.total_plots == null && !devSite) g.push('No unit / plot count');
   if (!f.proposed_completion) g.push('No proposed completion date');
   else if (f.proposed_completion < today) g.push('Proposed completion date has passed');
   // UP RERA does not publish the project cost, so it is not required there.
-  if (!f.project_cost && d.regulator !== 'UP RERA') g.push('No project cost');
+  if (!f.project_cost && d.regulator !== 'UP RERA' && !devSite) g.push('No project cost');
   if (/default on QPR/i.test(d.status_category || '')) g.push('Promoter in default on quarterly progress reports (registry flag)');
-  if (!f.land_area) g.push('No land area');
+  if (!f.land_area && !devSite) g.push('No land area');
+  if (devSite) {
+    if (f.rera_on_official_page !== true) g.push('RERA number not shown on the developer page');
+    if (!PIN_OK.has(d.pin_check)) g.push('Location pin not verified');
+  }
   // UP RERA often shows no pincode; there the verified registry point stands in for it.
   if (!(d.pincode || f.pincode) && !(d.regulator === 'UP RERA' && d.pin_check === 'verified')) g.push('No pincode');
   if (!d.project_name || !d.developer_name || !d.rera_number || !d.locality) g.push('Name, developer, RERA no. or locality missing');

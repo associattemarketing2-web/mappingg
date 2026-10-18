@@ -1,0 +1,20 @@
+[
+  {
+    "id": "adb51919-7192-4449-92da-9ce6db8f122e",
+    "action": "new developer entry",
+    "name": "My Home Group",
+    "names": [],
+    "evidence": "official: header logo (alt \"My Home Group\") on myhomeconstructions.com",
+    "size": "628x360",
+    "isNew": true
+  },
+  {
+    "id": "0e040212-abef-4d5e-8d87-ee3105fa175c",
+    "action": "new developer entry",
+    "name": "Rajapushpa Properties",
+    "names": [],
+    "evidence": "official: logo on rajapushpa.in",
+    "size": "475x360",
+    "isNew": true
+  }
+]

@@ -1,0 +1,2395 @@
+{
+ "run": "2026-10-18T06:43:11.974Z",
+ "records": [
+  {
+   "rera": "P51800055125",
+   "project": "AIRICA TOWER 1",
+   "promoter": "JAI HIND OIL MILLS COMPANY",
+   "brand": "Adani Realty",
+   "page": "https://www.adanirealty.com/residential-projects/mumbai/airica",
+   "configs": "3 BHK",
+   "possession": "2029-12-31",
+   "possession_dates": "2029-12-31",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51800055166",
+   "project": "AIRICA TOWER 4",
+   "promoter": "JAI HIND OIL MILLS COMPANY",
+   "brand": "Adani Realty",
+   "page": "https://www.adanirealty.com/residential-projects/mumbai/airica",
+   "configs": "3 BHK",
+   "possession": "2029-12-31",
+   "possession_dates": "2029-12-31",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51900033194",
+   "project": "THE VIEWS II",
+   "promoter": "AGNEL DEVELOPERS",
+   "brand": "Adani Realty",
+   "page": "https://www.adanirealty.com/residential-projects/mumbai/the-views",
+   "configs": "3 BHK",
+   "possession": "2026-12-31",
+   "possession_dates": "2026-12-31",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51900031165",
+   "project": "THE VIEWS",
+   "promoter": "AGNEL DEVELOPERS",
+   "brand": "Adani Realty",
+   "page": "https://www.adanirealty.com/residential-projects/mumbai/the-views",
+   "configs": "3 BHK",
+   "possession": "2026-12-31",
+   "possession_dates": "2026-12-31",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51800004889",
+   "project": "TEN BKC",
+   "promoter": "MIG (Bandra) Realtors & Builders Private Limited",
+   "brand": "Adani Realty",
+   "page": "https://www.adanirealty.com/residential-projects/mumbai/ten-bkc",
+   "configs": "5 BHK",
+   "possession": "2024-06",
+   "possession_dates": "2024-06",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51800047539",
+   "project": "LINKBAY RESIDENCES PHASE I",
+   "promoter": "PORTSMOUTH BUILDCON PRIVATE LIMITED",
+   "brand": "Adani Realty",
+   "page": "https://www.adanirealty.com/residential-projects/mumbai/linkbay-residences",
+   "configs": "4 BHK",
+   "possession": "2028-10-31",
+   "possession_dates": "2028-10-31",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P52100051765",
+   "project": "Life Republic Sector R22/22nd Avenue - Atmos/Phase - I",
+   "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/ongoing/life-republic/atmos",
+   "configs": "3 BHK, 2 BHK, 2.5 BHK",
+   "possession": "2027-10",
+   "possession_dates": "2027-10",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P52100056082",
+   "project": "Life Republic Sector R22/22nd Avenue - Atmos/Phase-II",
+   "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/ongoing/life-republic/atmos",
+   "configs": "3 BHK, 2 BHK, 2.5 BHK",
+   "possession": "2027-10",
+   "possession_dates": "2027-10",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P52100051876",
+   "project": "Life Republic Sector R31/31st Avenue/24K-Espada",
+   "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/ongoing/life-republic/24kespada",
+   "configs": "4 BHK, 5 BHK",
+   "possession": "2026-10",
+   "possession_dates": "2026-10",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P52100047587",
+   "project": "Kharadi Pune Phase I - Tower 1 to 4",
+   "promoter": "Lodha Developers Limited",
+   "brand": "Lodha",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-giardino-kharadi",
+   "configs": "2 BHK, 3 BHK",
+   "possession": "2025-04",
+   "possession_dates": "2025-04",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P52100051552",
+   "project": "Kharadi Pune Phase II -Tower 6",
+   "promoter": "Lodha Developers Limited",
+   "brand": "Lodha",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-giardino-kharadi",
+   "configs": "2 BHK, 3 BHK",
+   "possession": "2025-04",
+   "possession_dates": "2025-04",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P52100048326",
+   "project": "Kharadi Pune Phase I -Tower 5",
+   "promoter": "Lodha Developers Limited",
+   "brand": "Lodha",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-giardino-kharadi",
+   "configs": "2 BHK, 3 BHK",
+   "possession": "2025-04",
+   "possession_dates": "2025-04",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P52100050123",
+   "project": "Kharadi Pune Phase II Tower 7",
+   "promoter": "Lodha Developers Limited",
+   "brand": "Lodha",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-pune/lodha-giardino-kharadi",
+   "configs": "2 BHK, 3 BHK",
+   "possession": "2025-04",
+   "possession_dates": "2025-04",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "PR1261012602102",
+   "project": "Mahindra Rivenza Phase 1",
+   "promoter": "Mahindra Lifespace Developers limited",
+   "brand": "Mahindra Lifespaces",
+   "page": "https://www.mahindralifespaces.com/residential/pune-properties/mahindra-rivenza/",
+   "configs": "2 BHK, 3 BHK, 4 BHK",
+   "possession": "2031-12-30",
+   "possession_dates": "2031-12-30",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "PM1261012602103",
+   "project": "Mahindra Rivenza Phase 2",
+   "promoter": "Mahindra Lifespace Developers limited",
+   "brand": "Mahindra Lifespaces",
+   "page": "https://www.mahindralifespaces.com/residential/pune-properties/mahindra-rivenza/",
+   "configs": "2 BHK, 3 BHK, 4 BHK",
+   "possession": "2031-12-30",
+   "possession_dates": "2031-12-30",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P52100026016",
+   "project": "Emerald Bay Building 2",
+   "promoter": "Pune Projects LLP",
+   "brand": "Puravankara",
+   "page": "https://www.puravankara.com/residential/pune/purva-emerald-bay",
+   "configs": "2 BHK, 3 BHK",
+   "possession": "2026-12-31",
+   "possession_dates": "2026-12-31",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P52100026022",
+   "project": "Emerald Bay Building 3",
+   "promoter": "Pune Projects LLP",
+   "brand": "Puravankara",
+   "page": "https://www.puravankara.com/residential/pune/purva-emerald-bay",
+   "configs": "2 BHK, 3 BHK",
+   "possession": "2026-12-31",
+   "possession_dates": "2026-12-31",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P52100026020",
+   "project": "Emerald Bay Building 11",
+   "promoter": "Pune Projects LLP",
+   "brand": "Puravankara",
+   "page": "https://www.puravankara.com/residential/pune/purva-emerald-bay",
+   "configs": "2 BHK, 3 BHK",
+   "possession": "2026-12-31",
+   "possession_dates": "2026-12-31",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P52100078951",
+   "project": "Purva Atmosphere Tower 2",
+   "promoter": "Pune Projects LLP",
+   "brand": "Puravankara",
+   "page": "https://www.puravankara.com/residential/pune/purva-atmosphere-pune",
+   "configs": "2 BHK, 3 BHK",
+   "possession": "2030-12-31",
+   "possession_dates": "2030-12-31",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P52100078943",
+   "project": "Purva Atmosphere Tower 3",
+   "promoter": "Pune Projects LLP",
+   "brand": "Puravankara",
+   "page": "https://www.puravankara.com/residential/pune/purva-atmosphere-pune",
+   "configs": "2 BHK, 3 BHK",
+   "possession": "2030-12-31",
+   "possession_dates": "2030-12-31",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P52100079539",
+   "project": "ROHAN HARITA PHASE 2",
+   "promoter": "ROHAN BUILDERS & DEVELOPERS PRIVATE LIMITED",
+   "brand": "Rohan Builders",
+   "page": "https://rohanbuilders.com/pune-homes/harita/",
+   "configs": "1 BHK, 2 BHK, 3 BHK, 4 BHK",
+   "possession": "2029-12",
+   "possession_dates": "2029-12",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "PR1263032501085",
+   "project": "ROHAN HARITA PHASE 3",
+   "promoter": "ROHAN BUILDERS & DEVELOPERS PRIVATE LIMITED",
+   "brand": "Rohan Builders",
+   "page": "https://rohanbuilders.com/pune-homes/harita/",
+   "configs": "1 BHK, 2 BHK, 3 BHK, 4 BHK",
+   "possession": "2029-12",
+   "possession_dates": "2029-12",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51800054573",
+   "project": "BKC 9",
+   "promoter": "Vakratunda Buildcon Private Limited",
+   "brand": "Shapporji Pallonji Real Estate",
+   "page": "https://shapoorjirealestate.com/residential/bkc-9",
+   "configs": "2 BHK, 3 BHK",
+   "possession": "2028-07",
+   "possession_dates": "2028-07",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51900050998",
+   "project": "Shapoorji Pallonji The Odyssey 1",
+   "promoter": "Floreat Investments Private Limited",
+   "brand": "Shapporji Pallonji Real Estate",
+   "page": "https://shapoorjirealestate.com/residential/the-odyssey",
+   "configs": "3 BHK",
+   "possession": "2030-10",
+   "possession_dates": "2030-10",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P52100000011",
+   "project": "Yashwin Jeevan",
+   "promoter": "Vilas Javdekar & Sanjeevani Developers LLP",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/completed-projects/yashwin-jeevan.html",
+   "configs": "",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P52100000012",
+   "project": "Yashwin Anand",
+   "promoter": "Vilas Javdekar & Sanjeevani Developers LLP",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/completed-projects/yashwin-anand.html",
+   "configs": "",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P52100000037",
+   "project": "YASHWIN HINJAWADI",
+   "promoter": "Vilas Javdekar Eco Shelters Private Limited",
+   "brand": "Villas Javdekar",
+   "page": "https://www.javdekars.com/projects/completed-projects/yashwin-hinjawadi.html",
+   "configs": "",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51800000122",
+   "project": "KANAKIA PARIS",
+   "promoter": "KANAKIA SPACES REALTY PRIVATE LIMITED",
+   "brand": "Kanakia Group",
+   "page": "https://www.kanakia.com/project/kanakia-paris",
+   "configs": "2 BHK, 3 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51900000206",
+   "project": "KANAKIA MIAMI",
+   "promoter": "KANAKIA SPACES REALTY PRIVATE LIMITED",
+   "brand": "Kanakia Group",
+   "page": "https://www.kanakia.com/project/kanakia-miami",
+   "configs": "2 BHK, 3 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51800000388",
+   "project": "KANAKIA SEVENS",
+   "promoter": "KANAKIA SPACES REALTY PRIVATE LIMITED",
+   "brand": "Kanakia Group",
+   "page": "https://www.kanakia.com/project/kanakia-sevens",
+   "configs": "1 BHK, 2 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51800000123",
+   "project": "KANAKIA HOLLYWOOD",
+   "promoter": "KANAKIA SPACES REALTY PRIVATE LIMITED",
+   "brand": "Kanakia Group",
+   "page": "https://www.kanakia.com/project/kanakia-hollywood",
+   "configs": "2 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51800000121",
+   "project": "KANAKIA WALLSTREET WING A",
+   "promoter": "KANAKIA SPACES REALTY PRIVATE LIMITED",
+   "brand": "Kanakia Group",
+   "page": "https://www.kanakia.com/project/kanakia-wall-street",
+   "configs": "",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": false,
+   "new_row": false,
+   "result": "skipped: name mismatch"
+  },
+  {
+   "rera": "PM1261012600748",
+   "project": "Vyana Phase-I-T5, T6, T7 at The Reserve",
+   "promoter": "KOLTE-PATIL DEVELOPERS LIMITED",
+   "brand": "Kolte Patil Developers",
+   "page": "https://www.koltepatil.com/pune/residential-properties/ongoing/the-reserve",
+   "configs": "2 BHK, 3 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51900000841",
+   "project": "ARTESIA - RESIDENTIAL WING CONSTRUCTED ON PART OF THE PROJECT LAND",
+   "promoter": "K RAHEJA PRIVATE LIMITED",
+   "brand": "K Raheja Corp",
+   "page": "https://www.krahejacorphomes.com/project/raheja-artesia-in-worli-south-mumbai/",
+   "configs": "4 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51900019931",
+   "project": "TOWER E OF BUILDING NO 3-PHASE OF PROJECT NAMED VIVAREA BEING CONSTRUCTED ON PORTION OF PROJECT LAND",
+   "promoter": "GENEXT HARDWARE & PARKS PRIVATE LIMITED",
+   "brand": "K Raheja Corp",
+   "page": "https://www.krahejacorphomes.com/project/raheja-vivarea-in-mahalaxmi-south-mumbai/",
+   "configs": "3 BHK, 4 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "PR1170002502174",
+   "project": "Lodha Worli Residential Project",
+   "promoter": "Lodha",
+   "brand": "Lodha",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-elise-worli",
+   "configs": "",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51900014984",
+   "project": "One Lodha Place",
+   "promoter": "MACROTECH DEVELOPERS LIMITED",
+   "brand": "Lodha",
+   "page": "https://www.lodhagroup.com/projects/commercial-property-in-mumbai/one-lodha-place",
+   "configs": "",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51900001339",
+   "project": "LODHA PARK",
+   "promoter": "MACROTECH DEVELOPERS LIMITED",
+   "brand": "Lodha",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-worli/lodha-trump-tower",
+   "configs": "3 BHK, 4 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": false,
+   "new_row": false,
+   "result": "skipped: name mismatch"
+  },
+  {
+   "rera": "P51900014937",
+   "project": "Lodha Adrina",
+   "promoter": "LODHA DEVELOPERS LIMITED",
+   "brand": "Lodha",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-worli/lodha-adrina",
+   "configs": "2 BHK, 3 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "PR1170002502863",
+   "project": "Lodha Sewri Project",
+   "promoter": "Lodha",
+   "brand": "Lodha",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-mumbai/lodha-aureus-sewri",
+   "configs": "3 BHK, 4 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51800000293",
+   "project": "LODHA ETERNIS IDYLLIA B, SERENA B, NATURA B AND C",
+   "promoter": "MACROTECH DEVELOPERS LIMITED",
+   "brand": "Lodha",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-andheri/lodha-eternis",
+   "configs": "2 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51900000567",
+   "project": "NEW CUFFE PARADE - LODHA EVOQ 41st Floor",
+   "promoter": "MACROTECH DEVELOPERS LIMITED",
+   "brand": "Lodha",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-wadala/lodha-evoq",
+   "configs": "3 BHK, 4 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51800000195",
+   "project": "Lodha Fiorenza",
+   "promoter": "MACROTECH DEVELOPERS LIMITED",
+   "brand": "Lodha",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-goregaon/lodha-fiorenza",
+   "configs": "2 BHK, 3 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51900000367",
+   "project": "NEW CUFFE PARADE - LODHA ENCHANTE",
+   "promoter": "MACROTECH DEVELOPERS LIMITED",
+   "brand": "Lodha",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-wadala/lodha-new-cuffe-parade",
+   "configs": "3 BHK, 4 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51900015715",
+   "project": "New Cuffe Parade - Lodha Gardenia",
+   "promoter": "MACROTECH DEVELOPERS LIMITED",
+   "brand": "Lodha",
+   "page": "https://www.lodhagroup.com/projects/residential-property-in-wadala/lodha-new-cuffe-parade",
+   "configs": "3 BHK, 4 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P52100000013",
+   "project": "NEELAYA",
+   "promoter": "NAIKNAVARE BUILDCON PVT LTD",
+   "brand": "Naiknavare Developers",
+   "page": "https://naiknavare.com/neelaya-1-2-bhk-flats-in-talegaon-dabhade-pune",
+   "configs": "1 BHK, 2 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51900012115",
+   "project": "Three Sixty West",
+   "promoter": "Oasis Realty",
+   "brand": "Oberoi Realty",
+   "page": "https://www.oberoirealty.com/",
+   "configs": "",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": false,
+   "new_row": false,
+   "result": "skipped: name mismatch"
+  },
+  {
+   "rera": "PR1180002600318",
+   "project": "Oceanic",
+   "promoter": "Oberoi Realty Limited",
+   "brand": "Oberoi Realty",
+   "page": "https://www.oberoirealty.com/residential/oceanic",
+   "configs": "",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "PR1262022601327",
+   "project": "Rohan Ekam Phase 3",
+   "promoter": "Rohan Builders",
+   "brand": "Rohan Builders",
+   "page": "https://rohanbuilders.com/pune-homes/ekam/",
+   "configs": "2 BHK, 3 BHK, 4 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51900003268",
+   "project": "RUSTOMJEE CROWN - PHASE I",
+   "promoter": "Realgem Buildtech Private Limited",
+   "brand": "Rustomjee",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-crown-prabhadevi/",
+   "configs": "3 BHK, 4 BHK, 5 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51900006367",
+   "project": "RUSTOMJEE CROWN -PHASE II",
+   "promoter": "REAL GEM BUILDTECH PRIVATE LIMITED",
+   "brand": "Rustomjee",
+   "page": "https://www.rustomjee.com/projects/residential/rustomjee-crown-prabhadevi/",
+   "configs": "3 BHK, 4 BHK, 5 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "PR1170002501979",
+   "project": "Rustomjee Vista Bay",
+   "promoter": "Rustomjee",
+   "brand": "Rustomjee",
+   "page": "https://www.rustomjee.com/projects/residential/vista-bay-parel-extension/",
+   "configs": "2 BHK, 3 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "PR1180002601227",
+   "project": "Rustomjee Ozone Skye",
+   "promoter": "KEYSTONE REALTORS LIMITED",
+   "brand": "Rustomjee",
+   "page": "https://www.rustomjee.com/projects/residential/ozone-skye-goregaon-west/",
+   "configs": "2 BHK, 3 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "PM1181012503072",
+   "project": "NP 1.2 B",
+   "promoter": "S D CORPORATION PRIVATE LIMITED",
+   "brand": "Shapporji Pallonji Real Estate",
+   "page": "https://shapoorjirealestate.com/residential/one-hills",
+   "configs": "3 BHK, 4 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": false,
+   "new_row": false,
+   "result": "skipped: name mismatch"
+  },
+  {
+   "rera": "P51900008207",
+   "project": "PALETTE",
+   "promoter": "SURAJ ESTATE DEVELOPERS LTD",
+   "brand": "Suraj Estate Developers",
+   "page": "https://surajestate.com/project/the-palette-apartments-in-dadar/",
+   "configs": "2 BHK, 3 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51900007257",
+   "project": "OCEAN STAR I",
+   "promoter": "SURAJ ESTATE DEVELOPERS LTD",
+   "brand": "Suraj Estate Developers",
+   "page": "https://surajestate.com/project/ocean-star/",
+   "configs": "2 BHK, 3 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51900007777",
+   "project": "OCEAN STAR II",
+   "promoter": "SURAJ ESTATE DEVELOPERS LTD",
+   "brand": "Suraj Estate Developers",
+   "page": "https://surajestate.com/project/ocean-star/",
+   "configs": "2 BHK, 3 BHK",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P51900021954",
+   "project": "Ave Maria Apartment",
+   "promoter": "SURAJ ESTATE DEVELOPERS LTD",
+   "brand": "Suraj Estate Developers",
+   "page": "https://surajestate.com/project/ave-maria/",
+   "configs": "",
+   "possession": null,
+   "possession_dates": "",
+   "name_match": true,
+   "new_row": false,
+   "result": "skipped: already enriched"
+  },
+  {
+   "rera": "P52100053150",
+   "project": "Mahindra Citadel - Bastion J , K",
+   "promoter": "Mahindra Lifespace Developers limited",
+   "brand": "Mahindra Lifespaces",
+   "page": "https://www.mahindralifespaces.com/residential/bangalore-properties/mahindra-newhaven/",
+   "configs": "3.5 BHK, 4 BHK",
+   "possession": "2029-12",
+   "possession_dates": "2029-12",
+   "name_match": false,
+   "new_row": true,
+   "result": "skipped: name mismatch"
+  }
+ ],
+ "skipped": [
+  {
+   "rera": "P51800000121",
+   "why": "registry name \"KANAKIA WALLSTREET WING A\" not on the developer page (Kanakia Wall Street | Commercial Office Space in Andheri East)"
+  },
+  {
+   "rera": "P51900001339",
+   "why": "registry name \"LODHA PARK\" not on the developer page (Lodha Trump Tower - Premium 3 BHK & 4 BHK Flats in Worli | Lodha)"
+  },
+  {
+   "rera": "P51700000258",
+   "why": "existing row is Thane"
+  },
+  {
+   "rera": "P51700000659",
+   "why": "existing row is Thane"
+  },
+  {
+   "rera": "P51700000199",
+   "why": "existing row is Thane"
+  },
+  {
+   "rera": "P51900012115",
+   "why": "registry name \"Three Sixty West\" not on the developer page (Luxury Homes in Mumbai & Gurugram | Oberoi Realty)"
+  },
+  {
+   "rera": "PM1181012503072",
+   "why": "registry name \"NP 1.2 B\" not on the developer page (Shapoorji Pallonji One Hills | 3 & 4 BHK Flats in Kandivali East | Premium High-Rise Residences)"
+  },
+  {
+   "rera": "P51700079927",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100018596",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700077178",
+   "why": "district Thane (not Pune / Mumbai)"
+  },
+  {
+   "rera": "P51700052243",
+   "why": "district Thane (not Pune / Mumbai)"
+  },
+  {
+   "rera": "P51700076963",
+   "why": "district Thane (not Pune / Mumbai)"
+  },
+  {
+   "rera": "P52100053150",
+   "why": "registry name \"Mahindra Citadel - Bastion J , K\" not on the developer page (Mahindra NewHaven: 3.5 & 4 BHK Flats at Hosur Road, Bengaluru)"
+  },
+  {
+   "rera": "P51700079811",
+   "why": "district Thane (not Pune / Mumbai)"
+  },
+  {
+   "rera": "PR1260002500773",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1260002501211",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1260002501036",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100052840",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100056212",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100052758",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100077568",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100051675",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100049328",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100078704",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100078167",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1260002502069",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100052972",
+   "why": "MahaRERA listing did not answer"
+  },
+  {
+   "rera": "P51700032812",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700033690",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700033678",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700076870",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1331012502243",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100079533",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1262022501044",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PP1240002502953",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1261012500295",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900077140",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900031916",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900054455",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700019178",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700029755",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700048333",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900025142",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900030769",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900032067",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700034985",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900026976",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700056278",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700054424",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700077484",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700054037",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700025834",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700033640",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700033663",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700049724",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700050253",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700032666",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1330002502719",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PM1331012500812",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PC1330002600012",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100077092",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700049421",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1260002501660",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1260002502961",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1260002501182",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100050364",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PC1260002500692",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100046122",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100052676",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100046510",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100050636",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100050357",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100051590",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100000114",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100000775",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100017306",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100013149",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100014585",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100020910",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100019468",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100024108",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100025982",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100017756",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100028030",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100028229",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100026213",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100028652",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100034523",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100025592",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100026304",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100028755",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800000224",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800022936",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800008343",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52000035082",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700051409",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1261012600258",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PM1261012502409",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100079623",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100079424",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PM1261012500469",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100077008",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100076743",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100047921",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100054550",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100007612",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100003760",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100056265",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1180002502702",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1180002500850",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800049048",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100024374",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100053702",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100052151",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100048241",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100027629",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100034733",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100030072",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100017116",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100022278",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100022154",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800028506",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900034289",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900034288",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800077483",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800079836",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900054129",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900054152",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800051079",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800046901",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1332022501923",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1332022501578",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1332022501592",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700080277",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100077444",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100054218",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100054163",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100059576",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100033399",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100052201",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100051113",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100026088",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1260002501597",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1261012600932",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100080336",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1261012600924",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100055641",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100051790",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100045292",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1260002500133",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100079401",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100030903",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100029844",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100077945",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100055409",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100032580",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100050059",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100078925",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PM1260002400027",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800079669",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900034949",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52000078856",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900046567",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900046594",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1330002600931",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900053592",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800046322",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800054475",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700032990",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700020131",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700052337",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700052950",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700052237",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800048862",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800052417",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100079692",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800077358",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900034170",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800014891",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800014860",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100024215",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100035060",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100045768",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100034751",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800033966",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800034759",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700024815",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700024060",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100020190",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100020172",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1180002400022",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1180002400044",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800054551",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900049433",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900051742",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900051743",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700046312",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700046313",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1180002501965",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100052703",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100054436",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800020147",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800026509",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700055647",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700077356",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100054113",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1260002502009",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900046132",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1261012400049",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900046324",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100050987",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700079035",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1260002400041",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800031360",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800018893",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800053072",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800053253",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800054375",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800078490",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700020155",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1180002501771",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1180002501743",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1180002501764",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700016375",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700053017",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1260002502408",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PM1170002600357",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PM1181012502957",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1181012502956",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1181012500087",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1181012500523",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1182022502265",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800054671",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800079147",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700022981",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700023209",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100055161",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100055162",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100078592",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52000048049",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100031125",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100050004",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100013482",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100046463",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100046445",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100047314",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100032450",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100051012",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100025991",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100051801",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100052216",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100000240",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100080806",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1260002601201",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PP1260002502669",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100080816",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100022523",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100029724",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100047658",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100021179",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100000371",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100017914",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100000485",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100078605",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100056152",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100076789",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100078873",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800027667",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800031456",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800050677",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800006141",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800002656",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700050312",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800003582",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800018404",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800028419",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800047575",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800017154",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800004199",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800005229",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1331012400078",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1260002503013",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1170002501331",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100034062",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100010632",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100052083",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100004202",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100002528",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100017890",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100005377",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100007566",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100017650",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100047337",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PM1331012502632",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PM1331012502633",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700052442",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700049592",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700049520",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700053528",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1170002501905",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1170002501904",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1170002501878",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1170002501879",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1335052500430",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700052008",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700053947",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700077861",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700031762",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700045829",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1335052500426",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700077214",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100000816",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100000610",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100000705",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100000796",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100000794",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100000486",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100017870",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100018764",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100025655",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100025681",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100019664",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100019678",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100019997",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100076652",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100080076",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100052298",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1261012502532",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100050746",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100078282",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100050453",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100046719",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100023186",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100023451",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1330002600445",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800031973",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800029526",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PC1180002500764",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700077224",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800049755",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800033333",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700032262",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700032205",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700046128",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700050803",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700053110",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700053109",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1330002501473",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800079537",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700079209",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700079484",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700079096",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700079483",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800076673",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900066547",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900066548",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700077136",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700077134",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800053988",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800080217",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800080156",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800080624",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1180002502115",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800080027",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800054920",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1260002500246",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1180002502933",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1260002503056",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1260002600999",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PM1181012503066",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800028474",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800005668",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800007641",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800012386",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PP1261012501803",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100028031",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100028082",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100028033",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100052376",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100052522",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100052531",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100052530",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51700033243",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800001443",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51800002564",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100015190",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100030065",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100030142",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100030086",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1170002501523",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100020034",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100020057",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100020062",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900054054",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900031447",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900032173",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900047891",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PC1170002501460",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PM1170002500261",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "PR1170002500887",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51900028729",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P51600001313",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100016242",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100016237",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  },
+  {
+   "rera": "P52100016293",
+   "why": "not in Scraped data; developer page lacks BHK or possession date (not looked up)"
+  }
+ ],
+ "aliases": []
+}
