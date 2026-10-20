@@ -108,7 +108,7 @@ export default function SiteHeader() {
     <header className={`shd${scrolled ? ' scrolled' : ''}`}>
       <div className="shd-wrap">
         <div className="shd-bar">
-          <Link href="/" className="shd-brand" aria-label="Mappingg home" onClick={() => setOpen(false)}>
+          <Link href="/" className="shd-brand" aria-label="Mappingg.com home" onClick={() => setOpen(false)}>
             <span className="mark" aria-hidden="true" />
             <b>Mappingg<em>.com</em></b>
           </Link>

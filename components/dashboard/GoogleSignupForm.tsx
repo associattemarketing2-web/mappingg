@@ -92,7 +92,7 @@ export default function GoogleSignupForm({ name: googleName, email, initialRole 
   return (
     <div className="bp">
       <header className="bp-top">
-        <a className="bp-brand" href="/" aria-label="Mappingg home"><span className="mark" aria-hidden="true" /><b>Mappingg<em>.com</em></b></a>
+        <a className="bp-brand" href="/" aria-label="Mappingg.com home"><span className="mark" aria-hidden="true" /><b>Mappingg<em>.com</em></b></a>
       </header>
 
       <main className="bp-main" style={{ maxWidth: 640 }}>

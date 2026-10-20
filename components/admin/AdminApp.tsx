@@ -14,6 +14,7 @@ import { BulkBar, PickOne, useSelection } from './bulk';
 import TrafficPanel from './TrafficPanel';
 import DevelopersPanel from './DevelopersPanel';
 import DeveloperApiPanel from './DeveloperApiPanel';
+import { FULL_EDIT_EVENT, submissionForPin } from './fullEdit';
 import { ChartCard, DayHeatmap, Donut, HBars, STATUS_META, StatTile, StatusStack, TYPE_COLORS, WeekColumns, dayStats } from './SeoCharts';
 
 export interface AdminUser {
@@ -208,10 +209,12 @@ function MapPanel() {
 // The partners intake app (bulk CSV/Excel upload, review queue, builders &
 // links, live projects) runs as a self-contained app under /s-admin and is
 // embedded here so it lives inside the super admin too. It shares this session.
-function IntakePanel() {
+// `hash` opens a specific screen, e.g. #/review/<id> for "Edit all details" on a pin;
+// changing only the hash navigates inside the already-loaded app (no reload).
+function IntakePanel({ hash = '' }: { hash?: string }) {
   return (
     <div className="adm-panel" style={{ padding: 0, overflow: 'hidden' }}>
-      <iframe title="Projects intake" src="/intake" className="adm-frame" />
+      <iframe title="Projects intake" src={`/intake${hash}`} className="adm-frame" />
     </div>
   );
 }
@@ -2654,6 +2657,44 @@ export default function AdminApp({ user }: { user: AdminUser }) {
     if (KEEP_ALIVE.includes(k) && visible.includes(k)) setWarm((w) => (w.includes(k) ? w : [...w, k]));
   };
   useEffect(() => { warmUp(tab); }, [tab]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // "Edit all details" on any project (Developers, Developer projects, or the Map
+  // Editor iframe via postMessage): open its full Projects Intake form — the one
+  // form with every field. Staff without the intake tab get it in a new browser tab.
+  const [intakeHash, setIntakeHash] = useState('');
+  const openFullEdit = async (pinId: string) => {
+    try {
+      const { submission_id, created } = await submissionForPin(pinId);
+      const hash = `#/review/${encodeURIComponent(submission_id)}?from=pin&t=${Date.now()}`;
+      if (visible.includes('intake')) {
+        setIntakeHash(hash);
+        setWarm((w) => (w.includes('intake') ? w : [...w, 'intake']));
+        setTab('intake');
+      } else {
+        window.open(`/intake${hash}`, '_blank', 'noopener');
+      }
+      flash(created ? 'Full form created from this pin — Publish it to update the map' : 'Opened the full project form');
+    } catch (e) {
+      flash(e instanceof Error ? e.message : 'Could not open the full form', true);
+    }
+  };
+  const openFullEditRef = useRef(openFullEdit);
+  openFullEditRef.current = openFullEdit;
+  useEffect(() => {
+    const onEvent = (e: Event) => {
+      const id = (e as CustomEvent<{ pinId?: string }>).detail?.pinId;
+      if (id) openFullEditRef.current(String(id));
+    };
+    // The Map Editor runs in a same-origin iframe and posts { type, pinId }.
+    const onMessage = (e: MessageEvent) => {
+      if (e.origin !== window.location.origin) return;
+      const d = e.data as { type?: string; pinId?: string } | null;
+      if (d && d.type === FULL_EDIT_EVENT && d.pinId) openFullEditRef.current(String(d.pinId));
+    };
+    window.addEventListener(FULL_EDIT_EVENT, onEvent);
+    window.addEventListener('message', onMessage);
+    return () => { window.removeEventListener(FULL_EDIT_EVENT, onEvent); window.removeEventListener('message', onMessage); };
+  }, []);
   const [menuOpen, setMenuOpen] = useState(false);
   // Developer/partner accounts waiting for verification — shown as a badge on the Accounts tab.
   const [pendingCount, setPendingCount] = useState(0);
@@ -2773,7 +2814,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
         <div className="adm-content" style={tab === 'map' || tab === 'intake' ? { maxWidth: 'none', padding: 0 } : undefined}>
           {tab === 'dashboard' && <DashboardPanel onGo={(t) => visible.includes(t) && setTab(t)} />}
           {warm.includes('map') && <div hidden={tab !== 'map'}><MapPanel /></div>}
-          {warm.includes('intake') && <div hidden={tab !== 'intake'}><IntakePanel /></div>}
+          {warm.includes('intake') && <div hidden={tab !== 'intake'}><IntakePanel hash={intakeHash} /></div>}
           {tab === 'developers' && <DevelopersPanel flash={flash} />}
           {tab === 'leads' && <LeadsPanel flash={flash} isOwner={isOwner} />}
           {tab === 'projects' && (

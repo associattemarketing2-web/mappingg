@@ -3,6 +3,7 @@ import { getDb } from './mongodb';
 import { runDbOp } from './db-engine';
 import { developerLogo } from './developers';
 import { resolveMapsLink } from './maps-link';
+import { keepPinValues } from './pin-to-intake';
 
 // Projects published from "Projects Intake" (the bulk-upload / builder-link
 // system) live in their own `projects` table, but the live map and the Map
@@ -77,8 +78,13 @@ async function nextPinNumber(): Promise<number> {
   return n;
 }
 
-/** Create or update the map pin for a published intake project. */
-export async function syncProjectPin(project: Doc, googleMapsLink?: string): Promise<PinSyncResult> {
+/**
+ * Create or update the map pin for a published intake project.
+ * `keepPinValues`: the submission was opened from an existing pin (all-fields
+ * editing) — any value the form left empty keeps what the pin already shows,
+ * including its own photo when no cover image was uploaded.
+ */
+export async function syncProjectPin(project: Doc, googleMapsLink?: string, opts: { keepPinValues?: boolean } = {}): Promise<PinSyncResult> {
   const db = await getDb();
   const pins = db.collection<Doc>('pins');
   const existing = (project.pin_id && (await pins.findOne({ id: project.pin_id })))
@@ -100,10 +106,14 @@ export async function syncProjectPin(project: Doc, googleMapsLink?: string): Pro
     };
   }
 
-  const fields = pinFieldsFrom(project, lat as number, lng as number);
+  let fields = pinFieldsFrom(project, lat as number, lng as number);
+  const keepOwnPhoto = !!(opts.keepPinValues && existing?.image && !project.cover_image_url);
   // The developer's logo (Super admin → Developers) is the pin picture; the cover photo only if there is none.
-  const logo = await developerLogo(fields.developer);
+  // A pin edited through its full form keeps its own picture unless a cover image was uploaded.
+  const logo = keepOwnPhoto ? null : await developerLogo(fields.developer);
   if (logo) fields.image = logo;
+  if (keepOwnPhoto) delete fields.image;
+  if (existing && opts.keepPinValues) fields = keepPinValues(fields, existing);
   if (existing) {
     const res = await runDbOp({ table: 'pins', action: 'update', filters: [{ op: 'eq', col: 'id', val: existing.id }], values: fields }, true);
     if (res.error) throw new Error(res.error.message);

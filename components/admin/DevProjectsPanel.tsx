@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { BulkBar, PickOne, useSelection } from './bulk';
 import { usePersistedState } from './usePersistedState';
+import { requestFullEdit } from './fullEdit';
 
 // Super admin → "Developer projects": every project a developer added from their
 // dashboard, who added it, and its approval state. New and edited projects stay
@@ -409,6 +410,11 @@ export default function DevProjectsPanel({ flash, isOwner, onPendingChange, focu
                     <button className={`adm-btn ${p.state === 'pending' ? 'primary' : 'ghost'} sm`} onClick={() => openReview(p)}>
                       <i className="fas fa-magnifying-glass" /> {p.state === 'pending' && isOwner ? 'Review details & approve' : 'View all details'}
                     </button>
+                    {isOwner && (
+                      <button type="button" className="adm-btn ghost sm" onClick={() => requestFullEdit(p.id)} title="Open every field of this project in the full Projects Intake form">
+                        <i className="fas fa-pen-to-square" /> Edit all details
+                      </button>
+                    )}
                     {p.state === 'approved' && (
                       <a className="adm-btn ghost sm" href={`/map?pin=${encodeURIComponent(p.id)}`} target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /> View on map</a>
                     )}
@@ -443,7 +449,8 @@ export default function DevProjectsPanel({ flash, isOwner, onPendingChange, focu
             <div className="acs-d-contact">
               {review.owner.email && <a className="adm-btn ghost sm" href={`mailto:${review.owner.email}`}><i className="fas fa-envelope" /> Email developer</a>}
               {review.owner.mobile && <a className="adm-btn ghost sm" href={`https://wa.me/${review.owner.mobile.replace(/\D/g, '')}`} target="_blank" rel="noopener"><i className="fab fa-whatsapp" /> WhatsApp</a>}
-              {isOwner && info && !editing && <button className="adm-btn ghost sm" onClick={startEdit}><i className="fas fa-pen" /> Edit details</button>}
+              {isOwner && info && !editing && <button className="adm-btn ghost sm" onClick={startEdit}><i className="fas fa-pen" /> Quick edit</button>}
+              {isOwner && !editing && <button className="adm-btn primary sm" onClick={() => requestFullEdit(review.id)} title="Every field: price, configuration, RERA, media, amenities, sales contact…"><i className="fas fa-pen-to-square" /> Edit all details</button>}
             </div>
             {review.admin_edited_at && !editing && (
               <p className="dp-admin-edit"><i className="fas fa-user-pen" /> Details corrected by {review.admin_edited_by || 'Mappingg'} · {fullDate(review.admin_edited_at)}</p>

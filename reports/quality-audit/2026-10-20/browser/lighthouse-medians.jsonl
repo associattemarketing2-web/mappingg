@@ -1,0 +1,16 @@
+{"route":"/","build":"before","runs":3,"perf":72,"a11y":100,"bp":100,"seo":100,"fcp_ms":3274,"lcp_ms":4923,"tbt_ms":101,"cls":0,"si_ms":4080,"total_kb":362,"html_kb":43,"failed_a11y":"label-content-name-mismatch"}
+{"route":"/","build":"after","runs":3,"perf":80,"a11y":100,"bp":100,"seo":100,"fcp_ms":2808,"lcp_ms":3933,"tbt_ms":148,"cls":0,"si_ms":3657,"total_kb":362,"html_kb":44,"failed_a11y":""}
+{"route":"/projects","build":"before","runs":3,"perf":73,"a11y":100,"bp":100,"seo":100,"fcp_ms":1862,"lcp_ms":3223,"tbt_ms":777,"cls":0,"si_ms":3370,"total_kb":267,"html_kb":140,"failed_a11y":"label-content-name-mismatch"}
+{"route":"/projects","build":"after","runs":3,"perf":88,"a11y":100,"bp":100,"seo":100,"fcp_ms":1245,"lcp_ms":2686,"tbt_ms":346,"cls":0,"si_ms":2909,"total_kb":193,"html_kb":20,"failed_a11y":""}
+{"route":"/projects/mantra-melange-kharadi-21","build":"before","runs":3,"perf":92,"a11y":100,"bp":100,"seo":100,"fcp_ms":1087,"lcp_ms":2644,"tbt_ms":204,"cls":0,"si_ms":3336,"total_kb":297,"html_kb":16,"failed_a11y":"label-content-name-mismatch"}
+{"route":"/projects/mantra-melange-kharadi-21","build":"after","runs":3,"perf":92,"a11y":100,"bp":100,"seo":100,"fcp_ms":1100,"lcp_ms":2671,"tbt_ms":220,"cls":0,"si_ms":3339,"total_kb":164,"html_kb":16,"failed_a11y":""}
+{"route":"/cities/bengaluru","build":"before","runs":3,"perf":80,"a11y":100,"bp":96,"seo":100,"fcp_ms":1485,"lcp_ms":2945,"tbt_ms":544,"cls":0,"si_ms":2972,"total_kb":202,"html_kb":75,"failed_a11y":"label-content-name-mismatch"}
+{"route":"/cities/bengaluru","build":"after","runs":3,"perf":88,"a11y":100,"bp":100,"seo":100,"fcp_ms":1089,"lcp_ms":2555,"tbt_ms":269,"cls":0,"si_ms":3571,"total_kb":147,"html_kb":19,"failed_a11y":""}
+{"route":"/blog/new-projects-in-bengaluru","build":"before","runs":3,"perf":92,"a11y":100,"bp":100,"seo":100,"fcp_ms":1296,"lcp_ms":3037,"tbt_ms":142,"cls":0,"si_ms":2382,"total_kb":370,"html_kb":27,"failed_a11y":"label-content-name-mismatch"}
+{"route":"/blog/new-projects-in-bengaluru","build":"after","runs":3,"perf":88,"a11y":100,"bp":100,"seo":100,"fcp_ms":1294,"lcp_ms":3172,"tbt_ms":238,"cls":0,"si_ms":2534,"total_kb":370,"html_kb":27,"failed_a11y":""}
+{"route":"/faq","build":"before","runs":3,"perf":87,"a11y":100,"bp":100,"seo":100,"fcp_ms":2471,"lcp_ms":3371,"tbt_ms":0,"cls":0,"si_ms":3509,"total_kb":293,"html_kb":11,"failed_a11y":"label-content-name-mismatch"}
+{"route":"/faq","build":"after","runs":3,"perf":87,"a11y":100,"bp":100,"seo":100,"fcp_ms":2470,"lcp_ms":3370,"tbt_ms":23,"cls":0,"si_ms":3502,"total_kb":293,"html_kb":11,"failed_a11y":""}
+{"route":"/map","build":"before","runs":3,"perf":25,"a11y":99,"bp":96,"seo":92,"fcp_ms":28426,"lcp_ms":71352,"tbt_ms":5439,"cls":0,"si_ms":28426,"total_kb":1597,"html_kb":94,"failed_a11y":"heading-order"}
+{"route":"/map","build":"after","runs":3,"perf":25,"a11y":98,"bp":96,"seo":92,"fcp_ms":32536,"lcp_ms":76326,"tbt_ms":4963,"cls":0,"si_ms":32536,"total_kb":1509,"html_kb":7,"failed_a11y":"heading-order"}
+done
+exit 0

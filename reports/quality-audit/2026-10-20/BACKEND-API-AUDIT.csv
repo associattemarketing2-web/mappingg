@@ -1,0 +1,65 @@
+﻿endpoint,methods,permissions,guards_found_in_code,validation,live_auth_probe,known_issue_or_change,tests
+/api/admin/accounts,GET PATCH DELETE,staff; owner (admin) for some actions,perm user zod adminRole,zod schema,"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/admin/accounts/activity,GET,staff with the matching permission,perm,manual / none needed (GET),"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/admin/backups,GET POST,staff; owner (admin) for some actions,user zod runDbOp adminRole,zod schema,"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/admin/blogs,GET POST PUT DELETE,staff with the matching permission,perm user zod,zod schema,"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/admin/developer-api,GET POST,staff; owner (admin) for some actions,user zod adminRole,zod schema,"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/admin/developers,GET POST PATCH DELETE,staff with the matching permission,perm,manual / none needed (GET),"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/admin/employees,GET POST PUT DELETE,staff; owner (admin) for some actions,user zod adminRole,zod schema,"3/3 refused (anonymous, forged token, signed token of a non-existent account): 403",,
+/api/admin/leads,GET PATCH DELETE,staff; owner (admin) for some actions,perm user zod adminRole,zod schema,"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/admin/leads/stream,GET,staff with the matching permission,perm,manual / none needed (GET),not probed (mutation or public),,
+/api/admin/notifications,GET POST,staff with the matching permission,perm user,manual / none needed (GET),"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/admin/password,POST,staff,user zod,zod schema,not probed (mutation or public),Risk: changing a password does not sign out other sessions,
+/api/admin/profile,GET PUT,staff,user zod,zod schema,"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/admin/search-console,GET,staff with the matching permission,perm,manual / none needed (GET),"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/admin/seo-insights,GET,staff with the matching permission,perm,manual / none needed (GET),"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/admin/settings,GET POST,staff with the matching permission,perm zod,zod schema,"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/admin/stats,GET,staff; owner (admin) for some actions,staff adminRole,manual / none needed (GET),"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/admin/submissions,GET POST DELETE PATCH,staff; owner (admin) for some actions,perm user zod runDbOp adminRole,zod schema,"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/admin/traffic,GET,staff,staff,manual / none needed (GET),"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/auth/google/callback,GET,public (rate-limited where it accepts credentials),(none),manual / none needed (GET),not probed (mutation or public),,
+/api/auth/google/complete,POST,public (rate-limited where it accepts credentials),ratelimit zod,zod schema,not probed (mutation or public),,
+/api/auth/google/start,GET,public (rate-limited where it accepts credentials),(none),manual / none needed (GET),not probed (mutation or public),,
+/api/auth/login,POST,public (rate-limited where it accepts credentials),ratelimit zod,zod schema,not probed (mutation or public),FIXED: account with no role defaulted to admin; now least privilege (buyer),
+/api/auth/logout,POST,public (rate-limited where it accepts credentials),user,manual / none needed (GET),not probed (mutation or public),"Risk: stateless 60-day JWT; logout clears the cookie only, other sessions stay valid until expiry or account deletion",
+/api/auth/otp,POST,public (rate-limited where it accepts credentials),ratelimit zod,zod schema,not probed (mutation or public),,
+/api/auth/reset-password,POST,public (rate-limited where it accepts credentials),ratelimit zod,zod schema,not probed (mutation or public),,
+/api/auth/session,GET,public (rate-limited where it accepts credentials),user,manual / none needed (GET),"3/3 refused (anonymous, forged token, signed token of a non-existent account): 200",,
+/api/auth/signup,POST,public (rate-limited where it accepts credentials),ratelimit zod,zod schema,not probed (mutation or public),,
+/api/contact,POST,"public, rate-limited",ratelimit,manual / none needed (GET),not probed (mutation or public),,tests/contact-submission.test.ts
+/api/db,GET POST,public read of map tables; writes staff/developer-scoped; lead insert public + rate-limited,staff user ratelimit zod runDbOp,zod schema,not probed (mutation or public),"By design: admin ""hide on card"" switches are presentation only — values stay in public JSON (needed e.g. for marker colours)",tests/helpers/api-db + consent tests
+/api/developers,GET,public read,(none),manual / none needed (GET),not probed (mutation or public),,
+/api/map/pins,GET,public read,(none),manual / none needed (GET),not probed (mutation or public),,
+/api/media/[table]/[id],GET,public for live pins; hidden pins staff-only,staff,manual / none needed (GET),not probed (mutation or public),,
+/api/my/compare,GET PUT,signed-in user (own data only),user zod,zod schema,"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/my/enquire,POST,signed-in user (own data only),staff user,manual / none needed (GET),not probed (mutation or public),,
+/api/my/favorites,GET PUT,signed-in user (own data only),user zod,zod schema,"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/my/mobile,POST,signed-in user (own data only),user zod,zod schema,not probed (mutation or public),,
+/api/my/notifications,GET POST,signed-in user (own data only),user,manual / none needed (GET),"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/my/profile,GET PUT,signed-in user (own data only),user zod,zod schema,"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/my/projects,GET POST PATCH DELETE,signed-in user (own data only),user zod,zod schema,"3/3 refused (anonymous, forged token, signed token of a non-existent account): 401",,
+/api/partners/db,POST,staff (project-media public read only),staff zod,zod schema,not probed (mutation or public),,
+/api/partners/fn/[name],POST,"public (rate-limited, Google short-link hosts only)",(none),manual / none needed (GET),not probed (mutation or public),FIXED: had no rate limit; now 30/min per IP and URL length capped,
+/api/partners/rpc/[name],POST,staff (project-media public read only),staff,manual / none needed (GET),not probed (mutation or public),,
+/api/partners/storage,POST GET,staff (project-media public read only),staff,manual / none needed (GET),"0/3 refused (anonymous, forged token, signed token of a non-existent account): 400",,
+/api/rpc/restore_pin_from_history,POST,public read,staff zod,zod schema,not probed (mutation or public),,
+/api/track,POST,"public, rate-limited",staff user ratelimit zod,zod schema,not probed (mutation or public),,
+/api/v1/[...path],GET,"partner API key with scope (lib/api-platform), except /health and /openapi.json",(none),apiRoute query schema,covered by tests/api-platform.test.ts,,"tests/api-platform.test.ts, api-enquiries, api-openapi"
+/api/v1/blogs,GET,"partner API key with scope (lib/api-platform), except /health and /openapi.json",(none),apiRoute query schema,covered by tests/api-platform.test.ts,,"tests/api-platform.test.ts, api-enquiries, api-openapi"
+/api/v1/blogs/[slug],GET,"partner API key with scope (lib/api-platform), except /health and /openapi.json",(none),apiRoute query schema,covered by tests/api-platform.test.ts,,"tests/api-platform.test.ts, api-enquiries, api-openapi"
+/api/v1/categories,GET,"partner API key with scope (lib/api-platform), except /health and /openapi.json",(none),apiRoute query schema,covered by tests/api-platform.test.ts,,"tests/api-platform.test.ts, api-enquiries, api-openapi"
+/api/v1/developers,GET,"partner API key with scope (lib/api-platform), except /health and /openapi.json",(none),apiRoute query schema,covered by tests/api-platform.test.ts,,"tests/api-platform.test.ts, api-enquiries, api-openapi"
+/api/v1/developers/[id],GET,"partner API key with scope (lib/api-platform), except /health and /openapi.json",(none),apiRoute query schema,covered by tests/api-platform.test.ts,,"tests/api-platform.test.ts, api-enquiries, api-openapi"
+/api/v1/enquiries,POST,"partner API key with scope (lib/api-platform), except /health and /openapi.json",(none),apiRoute query schema,covered by tests/api-platform.test.ts,,"tests/api-platform.test.ts, api-enquiries, api-openapi"
+/api/v1/health,GET,"partner API key with scope (lib/api-platform), except /health and /openapi.json",(none),apiRoute query schema,covered by tests/api-platform.test.ts,,"tests/api-platform.test.ts, api-enquiries, api-openapi"
+/api/v1/localities,GET,"partner API key with scope (lib/api-platform), except /health and /openapi.json",(none),apiRoute query schema,covered by tests/api-platform.test.ts,,"tests/api-platform.test.ts, api-enquiries, api-openapi"
+/api/v1/localities/[id],GET,"partner API key with scope (lib/api-platform), except /health and /openapi.json",(none),apiRoute query schema,covered by tests/api-platform.test.ts,,"tests/api-platform.test.ts, api-enquiries, api-openapi"
+/api/v1/map/infrastructure,GET,"partner API key with scope (lib/api-platform), except /health and /openapi.json",(none),apiRoute query schema,covered by tests/api-platform.test.ts,,"tests/api-platform.test.ts, api-enquiries, api-openapi"
+/api/v1/map/pins,GET,"partner API key with scope (lib/api-platform), except /health and /openapi.json",(none),apiRoute query schema,covered by tests/api-platform.test.ts,,"tests/api-platform.test.ts, api-enquiries, api-openapi"
+/api/v1/metadata,GET,"partner API key with scope (lib/api-platform), except /health and /openapi.json",(none),apiRoute query schema,covered by tests/api-platform.test.ts,,"tests/api-platform.test.ts, api-enquiries, api-openapi"
+/api/v1/openapi.json,GET,"partner API key with scope (lib/api-platform), except /health and /openapi.json",(none),apiRoute query schema,covered by tests/api-platform.test.ts,,"tests/api-platform.test.ts, api-enquiries, api-openapi"
+/api/v1/projects,GET,"partner API key with scope (lib/api-platform), except /health and /openapi.json",(none),apiRoute query schema,covered by tests/api-platform.test.ts,,"tests/api-platform.test.ts, api-enquiries, api-openapi"
+/api/v1/projects/[id],GET,"partner API key with scope (lib/api-platform), except /health and /openapi.json",(none),apiRoute query schema,covered by tests/api-platform.test.ts,,"tests/api-platform.test.ts, api-enquiries, api-openapi"
+/api/v1/sample/projects,GET,"partner API key with scope (lib/api-platform), except /health and /openapi.json",(none),apiRoute query schema,covered by tests/api-platform.test.ts,,"tests/api-platform.test.ts, api-enquiries, api-openapi"
+/manifest.webmanifest,GET,public read,(none),manual / none needed (GET),not probed (mutation or public),,
+/rest/v1/map_settings,GET,public read,(none),manual / none needed (GET),not probed (mutation or public),,

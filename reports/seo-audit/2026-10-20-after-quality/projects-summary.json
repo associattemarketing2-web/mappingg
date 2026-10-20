@@ -1,0 +1,41 @@
+{
+  "public_pins": 968,
+  "property_projects": 965,
+  "not_projects": 3,
+  "indexable_projects": 936,
+  "noindex_placeholders": 29,
+  "by_city": {
+    "Pune": 259,
+    "Delhi NCR": 81,
+    "Mumbai & MMR": 120,
+    "Hyderabad": 12,
+    "Bengaluru": 491,
+    "Dubai": 1,
+    "Nashik": 1
+  },
+  "missing": {
+    "price": 758,
+    "configuration": 215,
+    "RERA number": 162,
+    "photo": 1,
+    "possession": 234,
+    "carpet area": 768,
+    "developer": 42,
+    "description": 861,
+    "locality not recognised": 38
+  },
+  "with_rera": 803,
+  "all_caps_names": 466,
+  "duplicate_name_locality": 16,
+  "generic_names": 56,
+  "slug_changes": 0,
+  "hidden_field_pins": 4,
+  "title_over_72": 0,
+  "unique_titles": 959,
+  "unique_descriptions": 958,
+  "localities": 170,
+  "developers": 569,
+  "blog_posts": 22,
+  "published_posts": 22,
+  "keyword_rows": 1706
+}

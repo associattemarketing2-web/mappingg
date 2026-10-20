@@ -86,7 +86,8 @@
 .seo-pager .pg-num, .seo-pager .pg-step { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; min-height: 40px; padding: 0 12px; border: 1px solid var(--seo-line); border-radius: 10px; background: var(--seo-surface); color: var(--seo-ink-2); text-decoration: none; font-size: 0.9rem; font-weight: 600; }
 .seo-pager a:hover { border-color: var(--seo-accent); color: var(--seo-accent); }
 .seo-pager .pg-num.on { background: var(--seo-ink-2); border-color: var(--seo-ink-2); color: #fff; }
-.seo-pager .pg-step.off { color: var(--seo-faint); }
+/* Inactive Previous/Next: readable (4.9:1) but visibly not a link. */
+.seo-pager .pg-step.off { color: var(--seo-muted); background: var(--seo-surface); border-style: dashed; }
 .seo-pager .pg-gap { align-self: center; color: var(--seo-muted); padding: 0 2px; }
 
 .seo-faq { border-top: 1px solid var(--seo-subtle); }

@@ -404,8 +404,9 @@ async function main() {
         if (l.path === item.path) continue;
         inbound.set(l.path, (inbound.get(l.path) || 0) + 1);
         if (!linkTargets.has(l.path)) linkTargets.set(l.path, item.path);
-        // Follow query-string links only on the blog paginator; map/filter params are app state.
-        if (!l.path.includes('?') || /^\/blog\?page=\d+$/.test(l.path)) enqueue(l.path, 'link');
+        // Follow query-string links only for pagination (?page=N on the blog and project
+        // listings); map/filter params are app state.
+        if (!l.path.includes('?') || /^\/[a-z0-9/-]*\?page=\d+$/.test(l.path)) enqueue(l.path, 'link');
       }
     });
     process.stdout.write(`\r[seo-audit] ${pages.size}/${queue.length} pages  (${Math.round((Date.now() - t0) / 1000)} s)   `);

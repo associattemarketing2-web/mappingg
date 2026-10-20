@@ -5,7 +5,7 @@ import { h, esc, $, toast, friendlyError, statusBadge, formatDateTime, timeAgo, 
   linkUrl, whatsappUrl, copyText, fileNameFromPath } from '../../shared/lib.js';
 import { ctx, setLeaveGuard, refreshCounts, previewUrl } from '../context.js';
 
-const SOURCE = { link: 'Builder link', excel: 'Excel upload', csv: 'CSV upload', admin: 'Added by team', scraped: 'Scraped data (RERA registry)' };
+const SOURCE = { link: 'Builder link', excel: 'Excel upload', csv: 'CSV upload', admin: 'Added by team', scraped: 'Scraped data (RERA registry)', map_pin: 'Map pin (edit all details)' };
 const SAVE_KEYS = [...FIELDS.filter(f => f.type !== 'pin').map(f => f.key), 'lat', 'lng'];
 
 export async function createManualSubmission(builderId) {

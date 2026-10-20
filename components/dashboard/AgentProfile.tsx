@@ -68,7 +68,7 @@ export default function AgentProfile({ account, projects }: { account: AgentAcco
   return (
     <div className="dsh bp">
       <header className="bp-top">
-        <a className="bp-brand" href="/" aria-label="Mappingg home"><span className="mark" aria-hidden="true" /><b>Mappingg<em>.com</em></b></a>
+        <a className="bp-brand" href="/" aria-label="Mappingg.com home"><span className="mark" aria-hidden="true" /><b>Mappingg<em>.com</em></b></a>
         <div className="bp-top-actions">
           <a className="bp-btn primary" href="/map"><i className="fas fa-map-location-dot" /> <span className="bp-hide-sm">Open live map</span></a>
           <SignOutButton className="bp-btn ghost" />
