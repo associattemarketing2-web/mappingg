@@ -1,6 +1,6 @@
 # Bug-fix changelog — 20 Oct 2026
 
-Most of these changes are in commit `8bc5332` ("ok", made by you at 02:04 while this pass was in progress). The last map-bundle edits — status-chip wrapping and the load-failure notice — are still **uncommitted** in `public/legacy/public-map.json`.
+All code changes below are in your commits `8bc5332` and `8c2389b` (both "ok", pushed to origin while this pass ran). Only the report files written after that are uncommitted.
 
 | # | Severity | Defect | Root cause | Fix (files) | Evidence |
 | --- | --- | --- | --- | --- | --- |
@@ -21,3 +21,10 @@ Most of these changes are in commit `8bc5332` ("ok", made by you at 02:04 while 
 | 15 | Low | Breadcrumb and mobile-menu contact links < 24px tall | Inline links with no padding | Min height 24px (`app/seo.css`, `components/site-header.css`) | Measured in Chrome before fix |
 | 16 | Low | Project CTA buttons overflowed at 320px | No wrap | `flex-wrap` (`app/seo.css`) | Code |
 | 17 | Low | Lint error introduced mid-pass (raw apostrophe in JSX) | — | Escaped (`app/developer-api/page.tsx`) | `next lint` clean |
+| 18 | Medium | Every page failed Lighthouse `label-content-name-mismatch`: the logo link's accessible name "Mappingg home" did not contain its visible text "Mappingg.com" | Label written independently of the visible text | `aria-label="Mappingg.com home"` in the site header, info pages and dashboard headers | Lighthouse: audit passes on all 6 non-map routes |
+| 19 | Low | (regression from this pass, fixed) New pager's inactive "← Previous" had 1.6:1 contrast; blog pager's had ~2.6:1 | Faint colour / 45% opacity | Muted text (4.8–4.9:1) on white, dashed border (`app/seo.css`, `app/blog/blog.css`) | Lighthouse colour-contrast passes |
+| 20 | Low | (regression from this pass, fixed) Screen-reader-only links on `/map` were 1px focusable targets | Visually hidden links | Removed; the hidden block keeps a heading and description only (`app/map/page.tsx`) | Lighthouse target-size passes |
+
+## Feature added on request: "Edit all details"
+
+Every project opened in s-admin (Map Editor pin, Developers tab, Developer projects) can now be edited in the full Projects Intake form with all fields; publishing updates the same pin. Details, safety rules and a manual test checklist: **FULL-EDIT-FEATURE.md**. Files: `lib/pin-to-intake.ts` (new), `lib/partners-engine.ts`, `lib/intake-pins.ts`, `components/admin/fullEdit.ts` (new), `components/admin/AdminApp.tsx`, `DevelopersPanel.tsx`, `DevProjectsPanel.tsx`, `public/legacy/team-editor.json`, `public/partners/shared/fields.js`, `public/partners/admin/views/queue.js`, `review.js`. Tests: `tests/pin-to-intake.test.ts`, `tests/pin-full-edit.test.ts`.

@@ -37,7 +37,9 @@ Prefilling only moves values the form can hold **exactly**:
 
 On Publish, any field left empty in the form **keeps the pin's current value** (only for pin-opened submissions — normal intake publishing is unchanged). The "Price" and "Configuration" publish checks accept a value carried over "(as on the map)", so editing, say, the description does not force re-typing a price the form cannot represent.
 
-Note: **Publish makes the project live** (as it always has in intake). For a developer's project that is still pending approval, publishing from the full form approves it without the developer notification that the Developer projects "Approve" button sends.
+Note: **Publish makes the project live** (as it always has in intake). For a developer's project that is still pending approval, publishing from the full form makes it live without the "project approved" entry that the Developer projects **Approve** button writes to the developer's activity log — so approve there first, then use Edit all details.
+
+**Deleting**: once such a submission has been *published*, deleting it in Projects Intake also deletes its map pin (the same rule intake already applies to its own projects; the pin goes to Backups → Recycle bin and can be restored). Deleting an unpublished one only removes the submission.
 
 ## Files
 

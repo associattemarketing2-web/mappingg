@@ -53,3 +53,12 @@ Nothing below was changed in production. Items marked *approval* need your decis
 - Google index status: unknown (no Search Console access).
 - Browser tests ran headless Chrome on Windows; no Safari / iOS / Android device testing.
 - Admin, signed-in and write workflows: see C1–C3.
+
+## E. Added after the "Edit all details" request
+
+| # | Sev | Item | Notes |
+| --- | --- | --- | --- |
+| E1 | High | **"Edit all details" not yet clicked through in a browser** | Needs a staff login. Logic is covered by integration tests; please run the 4-step checklist in FULL-EDIT-FEATURE.md before deploying. |
+| E2 | Medium | Pending developer projects published from the full form skip the "project approved" activity entry | Approve in Developer projects first, then edit all details. Could be automated later. |
+| E3 | Medium | Any staff session can call the Projects Intake admin actions, even employees without the "intake" permission (pre-existing: `/api/partners/rpc/*` checks staff only) | Add `hasPermission('intake')` to that route if employees should be limited. Not changed here because it alters who can use intake today. |
+| E4 | Low | The repo's `.next` folder was overwritten by another process at 02:44–02:50 while a test server used it | Builds for measurement were moved to separate worktrees; if you run `next dev`, run `npm run build` again before `next start`. |

@@ -49,3 +49,9 @@ Map at 375 and 1440px: markers load (983 in 2–5 s), touch and mouse pan, wheel
 
 - No redesign of the homepage, map UI or admin; no new icon library (the site uses a Font Awesome subset consistently; the blog's no-cover placeholder still uses an emoji fallback inside the icon element).
 - The legacy map bundle keeps a hidden `<h1>Associatte Interactive Map</h1>` (old brand name). Its CSS may rely on the tag, so it was left for a change where the map's own source is edited.
+
+## Added after the Lighthouse run
+
+- Logo links' accessible name now starts with the visible text ("Mappingg.com home") — site header, info pages, dashboard headers.
+- Inactive pager steps (blog and project lists) readable at 4.8–4.9:1 with a dashed border.
+- **"Edit all details"** buttons in s-admin (Map Editor pin header, Developers tab rows and project view, Developer projects rows and drawer) open the full Projects Intake form — see FULL-EDIT-FEATURE.md. Not yet verified in a browser.
