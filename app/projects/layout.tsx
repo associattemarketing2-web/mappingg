@@ -1,14 +1,18 @@
 import type { Metadata } from 'next';
 import { buildSectionMetadata } from '@/lib/seo/metadata';
+import { getPublicPins, citiesPhrase } from '@/lib/seo/entities';
 
 // SEO metadata for /projects lives here; page.tsx renders the content.
-export const metadata: Metadata = buildSectionMetadata({
-  title: 'Real Estate Projects in Pune & MMR',
-  description:
-    'Browse real estate projects across Pune and the Mumbai Metropolitan Region — by locality, developer, status and property type, with configurations, pricing and possession timelines.',
-  path: '/projects',
-  keywords: ['real estate projects Pune', 'property projects Mumbai', 'new projects MMR'],
-});
+// The cities in the title come from the mapped projects, so it stays true as coverage grows.
+export async function generateMetadata(): Promise<Metadata> {
+  const pins = await getPublicPins();
+  const where = citiesPhrase(pins, 3);
+  return buildSectionMetadata({
+    title: `Real Estate Projects in ${where}`,
+    description: `Browse ${pins.length} real estate projects in ${citiesPhrase(pins, 5)} by city, locality, developer and status, with prices, RERA numbers and possession dates.`,
+    path: '/projects',
+  });
+}
 
 export default function ProjectsLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;

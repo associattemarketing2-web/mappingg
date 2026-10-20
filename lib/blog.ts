@@ -56,8 +56,14 @@ export function readingTime(html?: string): number {
   return Math.max(1, Math.round(words / 200));
 }
 
-/** Published posts, newest first — for the public blog and sitemap. */
-export async function listPublished(): Promise<BlogPost[]> {
+/**
+ * Published posts, newest first. Returns [] if the read fails (the developer API
+ * relies on that). Website pages and the sitemap pass { strict: true }: a failed
+ * read then throws instead of looking like "no posts" — which had turned DB
+ * hiccups into 404s on /blog?page=2 and could cache a sitemap without articles.
+ * (At build time strict reads still fall back to [], so a deploy never fails.)
+ */
+export async function listPublished(opts: { strict?: boolean } = {}): Promise<BlogPost[]> {
   try {
     const db = await getDb();
     const rows = await (await coll(db))
@@ -65,7 +71,8 @@ export async function listPublished(): Promise<BlogPost[]> {
       .sort({ published_at: -1, created_at: -1 })
       .toArray();
     return rows.map((r) => clean(r) as BlogPost);
-  } catch {
+  } catch (e) {
+    if (opts.strict && process.env.NEXT_PHASE !== 'phase-production-build') throw e;
     return [];
   }
 }
@@ -85,6 +92,12 @@ export const getBySlug = cache(async (slug: string): Promise<BlogPost | null> =>
   } catch {
     return null;
   }
+});
+
+/** getBySlug for the article page: null only when no such post; a failed read throws (no false 404). */
+export const getPublishedPost = cache(async (slug: string): Promise<BlogPost | null> => {
+  const db = await getDb();
+  return clean(await (await coll(db)).findOne({ slug, status: 'published' }));
 });
 
 export async function getById(id: string): Promise<BlogPost | null> {

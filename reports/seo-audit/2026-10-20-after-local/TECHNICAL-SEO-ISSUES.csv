@@ -1,0 +1,286 @@
+﻿severity,code,url,detail,fix,status
+high,title-duplicate,/projects/eldeco-live-by-the-greens-phase-iii-momnathal-624,"""Eldeco Live by the Greens Phase -III in Momnathal | 3 BHK — Mappingg"" shared by 2 pages: /projects/eldeco-live-by-the-greens-phase-iii-momnathal-625",Make each title unique,open
+high,title-duplicate,/projects/eldeco-live-by-the-greens-phase-iii-momnathal-625,"""Eldeco Live by the Greens Phase -III in Momnathal | 3 BHK — Mappingg"" shared by 2 pages: /projects/eldeco-live-by-the-greens-phase-iii-momnathal-624",Make each title unique,open
+high,title-duplicate,/projects/mantra-melange-kharadi-21,"""Mantra Melange in Kharadi, Pune | Price, 2 and 3 BHK, RERA — Mappingg"" shared by 2 pages: /projects/mantra-melange-kharadi-75",Make each title unique,open
+high,title-duplicate,/projects/mantra-melange-kharadi-75,"""Mantra Melange in Kharadi, Pune | Price, 2 and 3 BHK, RERA — Mappingg"" shared by 2 pages: /projects/mantra-melange-kharadi-21",Make each title unique,open
+high,title-duplicate,/projects/splendid-evora-anekal-423,"""Splendid Evora in Anekal, Bengaluru | 3 and 4 BHK, RERA — Mappingg"" shared by 2 pages: /projects/splendid-evora-anekal-424",Make each title unique,open
+high,title-duplicate,/projects/splendid-evora-anekal-424,"""Splendid Evora in Anekal, Bengaluru | 3 and 4 BHK, RERA — Mappingg"" shared by 2 pages: /projects/splendid-evora-anekal-423",Make each title unique,open
+high,title-duplicate,/projects/vj-town-centre-mulshi-604,"""VJ Town Centre in Mulshi, Pune | RERA — Mappingg"" shared by 2 pages: /projects/vj-town-centre-mulshi-605",Make each title unique,open
+high,title-duplicate,/projects/vj-town-centre-mulshi-605,"""VJ Town Centre in Mulshi, Pune | RERA — Mappingg"" shared by 2 pages: /projects/vj-town-centre-mulshi-604",Make each title unique,open
+high,title-duplicate,/projects/whiteland-blissville-sector-76-562,"""Whiteland Blissville in Sector 76, Delhi NCR | RERA — Mappingg"" shared by 2 pages: /projects/whiteland-blissville-sector-76-596",Make each title unique,open
+high,title-duplicate,/projects/whiteland-blissville-sector-76-596,"""Whiteland Blissville in Sector 76, Delhi NCR | RERA — Mappingg"" shared by 2 pages: /projects/whiteland-blissville-sector-76-562",Make each title unique,open
+high,title-duplicate,/projects/yashwin-supernova-mulshi-602,"""Yashwin SuperNova in Mulshi, Pune | RERA — Mappingg"" shared by 2 pages: /projects/yashwin-supernova-mulshi-603",Make each title unique,open
+high,title-duplicate,/projects/yashwin-supernova-mulshi-603,"""Yashwin SuperNova in Mulshi, Pune | RERA — Mappingg"" shared by 2 pages: /projects/yashwin-supernova-mulshi-602",Make each title unique,open
+medium,canonical-other-url,/projects/codename-autobiography-by-jhamtani-116,points to /projects/yoo-one-116,Confirm this page should be canonicalised elsewhere,open
+medium,description-duplicate,/blog,shared by 3 pages: /blog?page=3 /blog?page=2,Make each description unique,open
+medium,description-duplicate,/blog?page=2,shared by 3 pages: /blog /blog?page=3,Make each description unique,open
+medium,description-duplicate,/blog?page=3,shared by 3 pages: /blog /blog?page=2,Make each description unique,open
+medium,description-duplicate,/projects/eldeco-live-by-the-greens-phase-iii-momnathal-624,shared by 2 pages: /projects/eldeco-live-by-the-greens-phase-iii-momnathal-625,Make each description unique,open
+medium,description-duplicate,/projects/eldeco-live-by-the-greens-phase-iii-momnathal-625,shared by 2 pages: /projects/eldeco-live-by-the-greens-phase-iii-momnathal-624,Make each description unique,open
+medium,description-duplicate,/projects/kohinoor-viva-pixel-phase-1-dhanori-261,shared by 2 pages: /projects/kohinoor-viva-pixel-phase-2-dhanori-260,Make each description unique,open
+medium,description-duplicate,/projects/kohinoor-viva-pixel-phase-2-dhanori-260,shared by 2 pages: /projects/kohinoor-viva-pixel-phase-1-dhanori-261,Make each description unique,open
+medium,description-duplicate,/projects/mantra-melange-kharadi-21,shared by 2 pages: /projects/mantra-melange-kharadi-75,Make each description unique,open
+medium,description-duplicate,/projects/mantra-melange-kharadi-75,shared by 2 pages: /projects/mantra-melange-kharadi-21,Make each description unique,open
+medium,description-duplicate,/projects/santiago-sunrise-sanghvi-239,shared by 2 pages: /projects/santiago-sunrise-sanghvi-243,Make each description unique,open
+medium,description-duplicate,/projects/santiago-sunrise-sanghvi-243,shared by 2 pages: /projects/santiago-sunrise-sanghvi-239,Make each description unique,open
+medium,description-duplicate,/projects/splendid-evora-anekal-423,shared by 2 pages: /projects/splendid-evora-anekal-424,Make each description unique,open
+medium,description-duplicate,/projects/splendid-evora-anekal-424,shared by 2 pages: /projects/splendid-evora-anekal-423,Make each description unique,open
+medium,description-duplicate,/projects/vj-town-centre-mulshi-604,shared by 2 pages: /projects/vj-town-centre-mulshi-605,Make each description unique,open
+medium,description-duplicate,/projects/vj-town-centre-mulshi-605,shared by 2 pages: /projects/vj-town-centre-mulshi-604,Make each description unique,open
+medium,description-duplicate,/projects/yashwin-supernova-mulshi-602,shared by 2 pages: /projects/yashwin-supernova-mulshi-603,Make each description unique,open
+medium,description-duplicate,/projects/yashwin-supernova-mulshi-603,shared by 2 pages: /projects/yashwin-supernova-mulshi-602,Make each description unique,open
+medium,html-heavy,/cities/bengaluru,662 KB of HTML,Paginate or trim inline data,open
+medium,html-heavy,/projects,1226 KB of HTML,Paginate or trim inline data,open
+medium,html-heavy,/property/residentialgroup-housing,587 KB of HTML,Paginate or trim inline data,open
+medium,html-heavy,/status/under-construction,1150 KB of HTML,Paginate or trim inline data,open
+medium,indexable-not-in-sitemap,/developer-api/reference,discovered via source,Add to sitemap or noindex if low value,open
+medium,thin-content,/cities,92 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developer-api/reference,0 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/abhee-ventures-private-limited,100 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/apg-habitat-private-limited,107 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/bhartiya-city,94 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/birla-estates-private-limited,90 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/bombay-realty,69 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/bren-corporation-private-limited,94 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/brigade-enterprises-ltd,87 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/brigade-group,80 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/century-real-estate,106 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/dosti-enterprises,144 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/dosti-realty-ltd,94 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/ds-max-properties,78 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/ds-max-properties-private-limited,139 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/godrej-properties,146 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/godrej-properties-limited,132 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/jhamtani-group,71 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/kapstone-constructions-private-limited,92 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/kns-propworth-llp,80 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/kolte-patil-developers-limited,102 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/krisala-developers,74 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/krisala-hiranandani-township,76 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/kumar-corp,70 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/kundan-spaces,136 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/kvir-towers-private-limited,103 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/lodha-developers-limited,138 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/magarpatta-group,75 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/mahindra-lifespace-developers-limited,131 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/majestique-landmark,147 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/mantra-properties,121 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/marvel-realtors,77 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/max-global-developers,99 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/ms-psr-builders-and-developers,103 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/my-home-group,103 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/mythri-builders,90 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/naiknavare-developers,72 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/neobuild-ventures-llp,93 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/nirala-infratech-private-limited,88 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/nyati-group,65 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/panchshil-realty,140 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/paradise-group,110 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/platinum-corp,78 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/pranav-constructions,64 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/prestige-estates-projects-ltd,96 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/prestige-group,84 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/pristine-properties,70 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/raheja-universal,65 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/rajapushpa-properties,71 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/raymond-realty,113 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/santiago-reality,124 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/sattva-group,77 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/sattva-resi-private-limited,107 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/shapporji-pallonji-real-estate,78 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/sobha,83 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/subha-luxury-projects-llp,81 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/sumadhura-group,100 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/sumadhura-infracon-private-limited,100 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/today-group,102 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/vilas-javdekar-eco-homes,101 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/vilas-javdekar-eco-shelters-private-limited,147 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/vilas-javdekar-infinitee-developers-pvt-ltd,96 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/wondrous-buildmart-private-limited,92 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/locations/mawal,146 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/mundhwa-map-3d,11 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/projects/amar-quantum-tech-park-45,130 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/projects/ap4-wagholi-96,141 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/projects/breeza-mundhwa-56,145 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/projects/lodha-estilo-98,145 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/projects/lodha-giardino-97,104 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/projects/power-heights-residency-32,145 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/projects/shreeji-devine-nerul-128,147 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/property,36 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/property/3-bed-suites-retail,119 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/property/residential-commercial,115 words of visible text,"Add useful, page-specific content or noindex",open
+low,description-long,/,243 chars,Trim to ~155–160 chars,open
+low,description-long,/blog/documents-to-check-before-buying-flat-pune,187 chars,Trim to ~155–160 chars,open
+low,description-long,/blog/flats-under-1-crore-in-pune,180 chars,Trim to ~155–160 chars,open
+low,description-long,/blog/home-loan-emi-eligibility-pune,176 chars,Trim to ~155–160 chars,open
+low,description-long,/blog/luxury-flats-villas-in-pune,182 chars,Trim to ~155–160 chars,open
+low,description-long,/blog/new-projects-in-bengaluru,180 chars,Trim to ~155–160 chars,open
+low,description-long,/blog/new-projects-in-east-pune-hadapsar-viman-nagar-lohegaon,172 chars,Trim to ~155–160 chars,open
+low,description-long,/blog/new-projects-in-mumbai-andheri-borivali-south-mumbai,189 chars,Trim to ~155–160 chars,open
+low,description-long,/blog/new-projects-in-navi-mumbai,180 chars,Trim to ~155–160 chars,open
+low,description-long,/blog/new-projects-in-pimpri-chinchwad-pcmc,173 chars,Trim to ~155–160 chars,open
+low,description-long,/blog/stamp-duty-registration-charges-pune,184 chars,Trim to ~155–160 chars,open
+low,description-long,/blog/upcoming-new-launch-projects-in-pune,185 chars,Trim to ~155–160 chars,open
+low,description-long,/cities,181 chars,Trim to ~155–160 chars,open
+low,description-long,/developer-api,190 chars,Trim to ~155–160 chars,open
+low,description-long,/developers,177 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/ace-infracity-developers-private-limited,173 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/anemones-hospitality-and-hotels-private-limited,180 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/apex-realty-management-private-limited,171 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/apg-community-development-private-limited,174 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/apg-premium-residential-private-limited,172 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/aura-infrabiz-llp-lotus-srs-buildtech-private-limited,186 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/blessings-homz-pvt-ltd-blessings-homz-pvt-ltd,178 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/casa-grande-garden-city-builders-pvt-ltd,173 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/central-government-employees-welfare-housing-organ,183 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/earthcon-constructions-private-limited,171 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/emerald-haven-properties-private-limited,173 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/emerald-haven-residences-private-limited,173 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/gkr-avinya-constructions-g-raghavendra-reddy,179 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/godrej-properties,173 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/godrej-properties-limited,171 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/goodliving-infrastructure-private-limited,174 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/grandus-infra-projects-private-limited,171 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/happiness-harmony-property-developers-private-limited,186 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/homekraft-infra-private-limited-fest-homes-developers-pvt-ltd,196 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/house-of-colors-developers-private-limited,175 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/iinspira-worldcity-projects-private-limited,176 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/infraedge-management-services-pvt-ltd,171 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/inspira-infinity-limited-liability-partnership,179 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/jayalakshmi-exports-and-imports-private-limited,180 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/magnolia-infrastructure-development-limited,176 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/mahindra-lifespace-developers-limited,186 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/misi-infraa-sr-properties-private-limited,175 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/ms-bricks-and-milestones-projects-llp,171 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/ms-cardinal-energy-and-infrastructure-private-limited,188 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/ms-iinspira-eco-springs-private-limited,173 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/ms-sudarshanfamily-mall-private-limited,173 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/ms-vdb-infra-and-realty-private-limited,173 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/nambiar-ensembleresidential-projects-llp,173 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/netra-software-technologies-private-limited,177 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/northwind-estates-private-limited-assotech-infrastructure-private-limited,206 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/parmesh-construction-company-limited-yashoda-super-speciality-hospitals-pvt-ltd,214 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/radiance-realty-developers-india-limited,174 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/rlp-trendsquares-projects-private-limited,174 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/rroyal-indraprastha-cinnamon-citadel-llp,173 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/rroyal-indraprastha-infra-private-limited,174 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/saiven-developers-and-constructions-pvt-ltd,176 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/sakura-blossom-prop-madhu-kumar-b-s,172 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/shirja-real-estate-solutions-pvt-ltd,171 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/sobha-limited-atlaspur-construction-and-developers-private-limited,199 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/spectra-constructions-private-limited,171 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/stellar-spring-projects-private-limited,173 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/thipparthi-constructions-and-housing-pvt-ltd,177 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/total-environment-building-systems-pvt-ltd,175 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/total-environment-constructions-private-limited,180 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/urbanize-land-holdings-private-limited,172 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/v2-holdings-housing-development-private-limited,180 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/vaswani-estates-developers-private-limited,175 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/vdb-infra-and-realty-pvt-ltd-inspira-builders-llp,184 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/vilas-javdekar-eco-shelters-private-limited,172 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/vilas-javdekar-infinitee-developers-pvt-ltd,174 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/vilas-javdekar-lifestyle-developers-pvt-ltd,173 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/vista-spaces-sun-champaka-private-limited,176 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/whiteland-corporation-private-limited,171 chars,Trim to ~155–160 chars,open
+low,description-long,/developers/willow-1-infrastructures-private-limited,173 chars,Trim to ~155–160 chars,open
+low,description-long,/features,184 chars,Trim to ~155–160 chars,open
+low,description-long,/how-it-works,189 chars,Trim to ~155–160 chars,open
+low,description-long,/locations,205 chars,Trim to ~155–160 chars,open
+low,description-long,/locations/revenue-estate-of-village-dho-rka,171 chars,Trim to ~155–160 chars,open
+low,description-long,/locations/revenue-estate-of-village-waz-irpur,173 chars,Trim to ~155–160 chars,open
+low,description-long,/locations/yamuna-expressway-industrial-development-area,183 chars,Trim to ~155–160 chars,open
+low,description-long,/projects,209 chars,Trim to ~155–160 chars,open
+low,description-long,/property,173 chars,Trim to ~155–160 chars,open
+low,heading-skip,/,1 skipped heading level(s),Use h2 → h3 in order,open
+low,heading-skip,/cities,1 skipped heading level(s),Use h2 → h3 in order,open
+low,heading-skip,/developer-api/reference,1 skipped heading level(s),Use h2 → h3 in order,open
+low,heading-skip,/developers,1 skipped heading level(s),Use h2 → h3 in order,open
+low,heading-skip,/property,1 skipped heading level(s),Use h2 → h3 in order,open
+low,img-no-dimensions,/,81 image(s) without width/height,Set width/height to avoid layout shift,open
+low,img-no-dimensions,/blog,9 image(s) without width/height,Set width/height to avoid layout shift,open
+low,img-no-dimensions,/blog?page=2,9 image(s) without width/height,Set width/height to avoid layout shift,open
+low,img-no-dimensions,/blog?page=3,4 image(s) without width/height,Set width/height to avoid layout shift,open
+low,link-to-redirect,/projects/codename-autobiography-by-jhamtani-116,"1 hop(s) → /projects/yoo-one-116, linked from /map",Link straight to the final URL,open
+low,title-all-caps,/developers/ms-anand-group-and-c-somashekar,M/s ANAND GROUP AND C SOMASHEKAR Projects in Bengaluru — Mappingg,Show imported ALL-CAPS names in title case,open
+low,title-all-caps,/developers/ms-ds-and-jaks-developers,M/s. DS AND JAKS DEVELOPERS Projects in Bengaluru — Mappingg,Show imported ALL-CAPS names in title case,open
+low,title-all-caps,/developers/ms-kns-infra-plotluxe-llp,M/s. KNS INFRA PLOTLUXE LLP Projects in Bengaluru — Mappingg,Show imported ALL-CAPS names in title case,open
+low,title-all-caps,/developers/ms-psr-builders-and-developers,M/s PSR BUILDERS AND DEVELOPERS Projects in Bengaluru — Mappingg,Show imported ALL-CAPS names in title case,open
+low,title-all-caps,/developers/ms-suwarnayuga-properties-llp,M/s. SUWARNAYUGA PROPERTIES LLP Projects in Bengaluru — Mappingg,Show imported ALL-CAPS names in title case,open
+low,title-all-caps,/projects/life-republic-sector-r3131st-avenue-echoesphase-1-mulshi-729,LIFE REPUBLIC SECTOR R31/31st AVENUE – ECHOES/PHASE – 1 — Mappingg,Show imported ALL-CAPS names in title case,open
+low,title-long,/,"72 chars: Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/about,73 chars: About Us — Live Real Estate Project Map by Associatte PropTech — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers,"89 chars: Real Estate Developers & Builders in Bengaluru, Pune, Mumbai, Delhi NCR & more — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/ace-infracity-developers-private-limited,73 chars: Ace Infracity Developers Private Limited Projects in Delhi NCR — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/anemones-hospitality-and-hotels-private-limited,80 chars: Anemones Hospitality and Hotels Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/apex-realty-management-private-limited,71 chars: Apex Realty Management Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/apg-community-development-private-limited,74 chars: Apg Community Development Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/apg-premium-residential-private-limited,72 chars: Apg Premium Residential Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/aura-infrabiz-llp-lotus-srs-buildtech-private-limited,86 chars: Aura Infrabiz LLP Lotus SRS Buildtech Private Limited Projects in Delhi NCR — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/blessings-homz-pvt-ltd-blessings-homz-pvt-ltd,78 chars: Blessings Homz Pvt Ltd Blessings Homz Pvt Ltd Projects in Delhi NCR — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/casa-grande-garden-city-builders-pvt-ltd,73 chars: Casa Grande Garden City Builders Pvt Ltd Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/central-government-employees-welfare-housing-organ,83 chars: Central Government Employees Welfare Housing Organ Projects in Delhi NCR — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/earthcon-constructions-private-limited,71 chars: Earthcon Constructions Private Limited Projects in Delhi NCR — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/emerald-haven-properties-private-limited,73 chars: Emerald Haven Properties Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/emerald-haven-residences-private-limited,73 chars: Emerald Haven Residences Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/gkr-avinya-constructions-g-raghavendra-reddy,79 chars: GKR Avinya Constructions (G Raghavendra Reddy) Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/godrej-properties,"71 chars: Godrej Properties Projects in Bengaluru, Mumbai, Pune & more — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/goodliving-infrastructure-private-limited,74 chars: Goodliving Infrastructure Private Limited Projects in Delhi NCR — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/grandus-infra-projects-private-limited,71 chars: Grandus Infra Projects Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/happiness-harmony-property-developers-private-limited,86 chars: Happiness Harmony Property Developers Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/homekraft-infra-private-limited-fest-homes-developers-pvt-ltd,96 chars: Homekraft Infra Private Limited Fest Homes Developers Pvt. Ltd. Projects in Delhi NCR — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/house-of-colors-developers-private-limited,75 chars: House of Colors Developers Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/iinspira-worldcity-projects-private-limited,76 chars: Iinspira Worldcity Projects Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/inspira-infinity-limited-liability-partnership,79 chars: Inspira Infinity Limited Liability Partnership Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/jayalakshmi-exports-and-imports-private-limited,80 chars: Jayalakshmi Exports and Imports Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/magnolia-infrastructure-development-limited,76 chars: Magnolia Infrastructure Development Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/mahindra-lifespace-developers-limited,"85 chars: Mahindra Lifespace Developers Limited Projects in Mumbai, Bengaluru & Pune — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/misi-infraa-sr-properties-private-limited,74 chars: Misi Infraa SR Properties Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/ms-bricks-and-milestones-projects-llp,71 chars: M/s Bricks and Milestones Projects LLP Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/ms-cardinal-energy-and-infrastructure-private-limited,88 chars: M/s Cardinal Energy and Infrastructure Private Limited. Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/ms-iinspira-eco-springs-private-limited,73 chars: M/s Iinspira Eco Springs Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/ms-sudarshanfamily-mall-private-limited,73 chars: M/s Sudarshanfamily Mall Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/ms-vdb-infra-and-realty-private-limited,73 chars: M/S VDB Infra and Realty Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/nambiar-ensembleresidential-projects-llp,73 chars: Nambiar EnsembleResidential Projects LLP Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/netra-software-technologies-private-limited,76 chars: Netra Software Technologies Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/northwind-estates-private-limited-assotech-infrastructure-private-limited,106 chars: Northwind Estates Private Limited Assotech Infrastructure Private Limited Projects in Delhi NCR — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/parmesh-construction-company-limited-yashoda-super-speciality-hospitals-pvt-ltd,114 chars: Parmesh Construction Company Limited Yashoda Super Speciality Hospitals Pvt. Ltd. Projects in Delhi NCR — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/radiance-realty-developers-india-limited,73 chars: Radiance Realty Developers India Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/rlp-trendsquares-projects-private-limited,74 chars: RLP Trendsquares Projects Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/rroyal-indraprastha-cinnamon-citadel-llp,73 chars: Rroyal Indraprastha Cinnamon Citadel LLP Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/rroyal-indraprastha-infra-private-limited,74 chars: Rroyal Indraprastha Infra Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/saiven-developers-and-constructions-pvt-ltd,76 chars: Saiven Developers and Constructions Pvt Ltd Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/sakura-blossom-prop-madhu-kumar-b-s,72 chars: SAKURA BLOSSOM (Prop : Madhu Kumar B S) Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/shirja-real-estate-solutions-pvt-ltd,71 chars: Shirja Real Estate Solutions Pvt. Ltd. Projects in Delhi NCR — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/sobha-limited-atlaspur-construction-and-developers-private-limited,99 chars: Sobha Limited Atlaspur Construction and Developers Private Limited Projects in Delhi NCR — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/stellar-spring-projects-private-limited,72 chars: Stellar Spring Projects Private Limited Projects in Delhi NCR — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/thipparthi-constructions-and-housing-pvt-ltd,77 chars: Thipparthi Constructions And Housing Pvt Ltd Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/total-environment-building-systems-pvt-ltd,75 chars: Total Environment Building Systems Pvt Ltd Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/total-environment-constructions-private-limited,80 chars: Total Environment Constructions Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/urbanize-land-holdings-private-limited,71 chars: Urbanize Land Holdings Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/v2-holdings-housing-development-private-limited,80 chars: V2 Holdings Housing Development Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/vaswani-estates-developers-private-limited,75 chars: Vaswani Estates Developers Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/vdb-infra-and-realty-pvt-ltd-inspira-builders-llp,84 chars: VDB Infra and Realty Pvt Ltd & Inspira Builders LLP Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/vilas-javdekar-eco-shelters-private-limited,71 chars: Vilas Javdekar Eco Shelters Private Limited Projects in Pune — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/vilas-javdekar-infinitee-developers-pvt-ltd,73 chars: Vilas Javdekar Infinitee Developers Pvt. Ltd. Projects in Pune — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/vilas-javdekar-lifestyle-developers-pvt-ltd,73 chars: Vilas Javdekar Lifestyle Developers Pvt. Ltd. Projects in Pune — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/vista-spaces-sun-champaka-private-limited,76 chars: Vista Spaces Sun (champaka) Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/willow-1-infrastructures-private-limited,73 chars: Willow 1 infrastructures Private Limited Projects in Bengaluru — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/locations,"79 chars: Real Estate by Locality in Bengaluru, Pune, Mumbai, Delhi NCR & more — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/locations/revenue-estate-of-village-dho-rka,"79 chars: Real Estate Projects in Revenue Estate of Village Dho Rka, Delhi NCR — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/locations/revenue-estate-of-village-waz-irpur,"81 chars: Real Estate Projects in Revenue Estate of Village Waz Irpur, Delhi NCR — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/locations/yamuna-expressway-industrial-development-area,"91 chars: Real Estate Projects in Yamuna Expressway Industrial Development Area, Delhi NCR — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/map,"71 chars: Live Real Estate Project Map — Pune, Mumbai, Bengaluru & NCR — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects,"76 chars: Real Estate Projects in Bengaluru, Pune, Mumbai, Delhi NCR & more — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects/24-high-business-park-juinagar-127,"79 chars: 24 High Business Park in Juinagar, Mumbai & MMR | Location & Details — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects/a-advani-new-commercial-mundhwa-72,"72 chars: A Advani New Commercial in Mundhwa, Pune | Location & Details — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects/ap81-by-amar-pristine-mundhwa-41,"72 chars: AP81 by Amar & Pristine in Mundhwa, Pune | Location & Details — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects/attrium-mundwa-by-vtp-group-mundhwa-95,"76 chars: Attrium Mundwa by VTP Group in Mundhwa, Pune | Location & Details — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects/delta-new-palm-beach-airoli-175,"76 chars: Delta New Palm Beach in Airoli, Mumbai & MMR | Location & Details — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects/jade-city-raheja-juinagar-130,"74 chars: Jade City Raheja in Juinagar, Mumbai & MMR | Location & Details — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects/kohinoor-business-towers-mundhwa-48,"73 chars: Kohinoor Business Towers in Mundhwa, Pune | Location & Details — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects/mantra-highstreet-offices-mundhwa-53,"76 chars: Mantra Highstreet & Offices in Mundhwa, Pune | Location & Details — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects/platinum-crest-andheri-140,"71 chars: Platinum Crest in Andheri, Mumbai & MMR | Location & Details — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects/raheja-lunaris-juinagar-129,"72 chars: Raheja Lunaris in Juinagar, Mumbai & MMR | Location & Details — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects/sai-world-pyramid-juinagar-133,"75 chars: Sai World Pyramid in Juinagar, Mumbai & MMR | Location & Details — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects/sector-zero-delta-tricity-176,73 chars: Sector Zero Delta Tricity in Mumbai & MMR | Location & Details — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/status/under-construction,"72 chars: Under Construction Projects in Bengaluru, Pune, Mumbai & more — Mappingg",Keep under ~60–65 chars so it is not truncated,open

@@ -1,10 +1,14 @@
 import { notFound } from 'next/navigation';
 import EntityListing from '@/components/seo/EntityListing';
-import { getTypeGroups, getLocalityGroups, findGroup } from '@/lib/seo/entities';
+import { getTypeGroups, getLocalityGroups, findGroup, citiesPhrase } from '@/lib/seo/entities';
 
 export const revalidate = 3600;
-// Closed vocabulary of property types → prerender + hard-404 on unknown slugs.
-export const dynamicParams = false;
+// Property types come from the live project data, so new ones appear between deploys.
+// Known ones are prerendered; a new one renders on first request (ISR). Unknown
+// slugs get a real 404 from this route's layout.tsx (generateMetadata), which
+// runs before streaming starts. (dynamicParams = false
+// used to 404 any page added after the last build, e.g. /locations/wanowri.)
+export const dynamicParams = true;
 export async function generateStaticParams() {
   return (await getTypeGroups()).map((g) => ({ type: g.slug }));
 }
@@ -27,8 +31,8 @@ export default async function PropertyTypePage({ params }: { params: { type: str
         { name: g.label, path: `/property/${g.slug}` },
       ]}
       eyebrow="Property type"
-      title={`${g.label} Projects in Pune & MMR`}
-      lede={`${g.label} real estate projects across Pune and the Mumbai Metropolitan Region, with developer, locality, configuration and pricing details.`}
+      title={`${g.label} Projects in ${citiesPhrase(g.pins)}`}
+      lede={`${g.label} real estate projects in ${citiesPhrase(g.pins)}, with developer, locality, configuration and pricing details.`}
       stats={[{ b: g.count, span: `${g.label} projects` }]}
       pins={g.pins}
       projectsHeading={`${g.label} projects (${g.count})`}
@@ -37,7 +41,7 @@ export default async function PropertyTypePage({ params }: { params: { type: str
       faqs={[
         {
           q: `How many ${g.label.toLowerCase()} projects are listed?`,
-          a: `Mappingg currently maps ${g.count} ${g.label.toLowerCase()} project${g.count === 1 ? '' : 's'} across Pune and the Mumbai Metropolitan Region.`,
+          a: `Mappingg currently maps ${g.count} ${g.label.toLowerCase()} project${g.count === 1 ? '' : 's'} in ${citiesPhrase(g.pins, 5)}.`,
         },
       ]}
     />

@@ -19,13 +19,9 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   // Absolute: the brand is already in the title, so skip the layout's ' — Mappingg' suffix.
   title: { absolute: 'Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai' },
+  // ~155 chars so Google shows it whole; meta keywords dropped (search engines ignore them).
   description:
-    'Mappingg puts every live real estate project on one interactive map — with project status, MahaRERA-verified RERA numbers, possession dates, upcoming infrastructure and nearby places. Explore live projects in Pune, Mumbai and Dubai at no cost.',
-  keywords: [
-    'real estate map Pune', 'property projects Pune', 'MahaRERA verified projects', 'new launches Pune',
-    'flats in Mundhwa', 'Kharadi projects', 'Magarpatta property', 'Hadapsar flats', 'ready to move Pune',
-    'under construction projects Pune', 'plotted projects Pune', 'Dubai property projects', 'Dubai off-plan projects', 'Mappingg', 'Associatte',
-  ],
+    'Every live real estate project on one interactive map — status, RERA numbers, possession dates and infrastructure. Pune, Mumbai, Bengaluru, Delhi NCR & Dubai.',
   alternates: { canonical: SITE_URL },
   openGraph: {
     type: 'website',

@@ -17,9 +17,20 @@ export default async function CitiesIndex() {
       />
       <header className="seo-hero">
         <div className="eyebrow">Cities</div>
-        <h1>Real Estate by City</h1>
+        <h1>Real Estate Projects by City</h1>
         <p className="lede">Pick a city to explore its localities, developers and projects.</p>
       </header>
+      <section className="seo-section">
+        <div className="seo-prose">
+          <p>
+            Mappingg maps {groups.reduce((n, g) => n + g.count, 0)} projects across {groups.length} cities
+            {groups.length ? ` — ${groups.map((g) => `${g.label} (${g.count})`).join(', ')}` : ''}. Each city page
+            lists every project we track there, grouped by locality and construction status, with links to the
+            developers building in that city. Every project is also a pin on the live map, so you can see exactly
+            where it sits and what roads, metro lines and other infrastructure are planned nearby.
+          </p>
+        </div>
+      </section>
       <section className="seo-section">
         <div className="seo-grid">
           {groups.map((g) => (

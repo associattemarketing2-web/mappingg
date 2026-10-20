@@ -15,7 +15,8 @@ export function organizationSchema() {
     url: SITE.url,
     logo: SITE.logo,
     description: SITE.description,
-    areaServed: ['Pune', 'Mumbai Metropolitan Region', 'Dubai'],
+    // Cities with mapped projects (hub pages in lib/seo/city.ts), plus Dubai listings.
+    areaServed: ['Pune', 'Mumbai Metropolitan Region', 'Bengaluru', 'Delhi NCR', 'Hyderabad', 'Dubai'],
     email: EMAIL,
     telephone: WHATSAPP_DISPLAY,
     sameAs: SOCIALS.map((s) => s.href),
@@ -92,6 +93,8 @@ export function projectSchema(opts: {
   city?: string;
   lat?: number;
   lng?: number;
+  /** RERA registration id, shown on the page; emitted as an identifier. */
+  reraNumber?: string;
 }) {
   const geo = opts.lat && opts.lng ? { '@type': 'GeoCoordinates', latitude: opts.lat, longitude: opts.lng } : undefined;
   return {
@@ -101,6 +104,7 @@ export function projectSchema(opts: {
     description: opts.description || undefined,
     url: abs(opts.url),
     image: opts.image ? abs(opts.image) : undefined,
+    identifier: opts.reraNumber ? { '@type': 'PropertyValue', propertyID: 'RERA registration number', value: opts.reraNumber } : undefined,
     address: {
       '@type': 'PostalAddress',
       addressLocality: opts.locality || undefined,

@@ -3,12 +3,24 @@ import { runDbOp } from '@/lib/db-engine';
 import { withMediaUrls } from '@/lib/pin-media';
 import { localitiesOf } from '@/lib/locality';
 import { slugify, projectSlug, projectNumberFromSlug } from './slug';
-import { cityFrom, CITY_LABELS, hasCityHub, type CityKey } from './city';
+import { cityFrom, CITY_LABELS, citiesPhrase as phraseFor, hasCityHub, type CityKey } from './city';
 import { isPropertyProject } from './project-filter';
-import { displayDeveloperName } from './developer-name';
+import { displayDeveloperName, displayPlaceName } from './developer-name';
+import { applyFieldVisibility, displayProjectName } from './project-meta';
 
-/** Developer name in display form (case/spacing only; slugs are unaffected). */
-const withDisplayName = <T extends { developer?: string }>(p: T): T => (p.developer ? { ...p, developer: displayDeveloperName(p.developer) } : p);
+/**
+ * Public form of a pin: fields the admin hid from the public card are removed
+ * (same switches as the live map), and ALL-CAPS project/developer names are shown
+ * in title case. Display only — slugify() ignores case, so URLs don't change.
+ */
+const withDisplayName = <T extends Pin>(raw: T): T => {
+  const p = applyFieldVisibility(raw);
+  return {
+    ...p,
+    ...(p.title ? { title: displayProjectName(p.title) } : {}),
+    ...(p.developer ? { developer: displayDeveloperName(p.developer) } : {}),
+  };
+};
 
 // -----------------------------------------------------------------------------
 // SEO entity layer. "Projects" are the public `pins` (224 rows). Locations,
@@ -36,6 +48,9 @@ export interface Pin {
   lat?: number;
   lng?: number;
   youtube_video_url?: string;
+  rera_number?: string;
+  /** Admin switches for the public card: { price: false } hides the price. */
+  field_visibility?: Record<string, unknown> | null;
   image?: string; // base64 on the raw row; a /api/media URL after withMediaUrls
   brochure_image?: string;
   created_at?: string;
@@ -44,8 +59,9 @@ export interface Pin {
 
 // lat/lng are needed to tell which city a project is in (lib/seo/city.ts).
 // description is needed to tell empty placeholder pages apart (lib/seo/indexing.ts).
+// field_visibility is needed so listings never show a field the admin hid.
 const LIST_COLUMNS =
-  'id,number,title,type,status,price,configuration,sqft,possession_timeline,launch_date,developer,location,key_usp,description,lat,lng,updated_at';
+  'id,number,title,type,status,price,configuration,sqft,possession_timeline,launch_date,developer,location,key_usp,description,rera_number,field_visibility,lat,lng,updated_at';
 
 export const STATUS_ROUTES = [
   { slug: 'upcoming', label: 'Upcoming', match: ['upcoming'] },
@@ -80,10 +96,10 @@ export const getPublicPins = cache(async (): Promise<Pin[]> => {
       { table: 'pins', action: 'select', columns: LIST_COLUMNS, order: { col: 'number', ascending: true } },
       false,
     );
-    if (res.error || !Array.isArray(res.data)) return [];
+    if (res.error || !Array.isArray(res.data)) throw new Error(`pins read failed: ${res.error || 'no data'}`);
     return (res.data as Pin[]).filter(isPropertyProject).map(withDisplayName);
-  } catch {
-    return [];
+  } catch (e) {
+    return dbFailure(e, []);
   }
 });
 
@@ -94,16 +110,34 @@ export const getPinByNumber = cache(async (n: number): Promise<Pin | null> => {
       { table: 'pins', action: 'select', filters: [{ op: 'eq', col: 'number', val: n }], single: true },
       false,
     );
-    if (res.error || !res.data) return null;
+    // No such (public) pin → a real 404. Any other error is a failed read, not a missing page.
+    if (res.status === 406 || (!res.error && !res.data)) return null;
+    if (res.error) throw new Error(`pin ${n} read failed: ${res.error}`);
     // Not a property project (office marker, land parcel) → no project page (404).
     if (!isPropertyProject(res.data as Pin)) return null;
     // Request an optimized ~1000px WebP cover (served by /api/media) rather than
     // the full-size base64 original, so the project page stays fast (P0).
     return withDisplayName(withMediaUrls('pins', res.data, { width: 1000 }) as Pin);
-  } catch {
-    return null;
+  } catch (e) {
+    return dbFailure(e, null);
   }
 });
+
+/**
+ * A failed database read must not look like "no projects" or "no such project":
+ * that turned brief DB hiccups into 404s on valid pages and empty listings that
+ * ISR then cached for an hour. At request time we throw instead — Next keeps
+ * serving the last good cached page, or returns a 5xx that crawlers retry.
+ * During `next build` (where the DB may be unreachable) the old fallback is kept,
+ * so a deploy never fails on it; those pages regenerate on the first request.
+ */
+function dbFailure<T>(e: unknown, fallback: T): T {
+  if (process.env.NEXT_PHASE === 'phase-production-build') {
+    console.warn('[seo] DB read failed during build; using empty fallback:', (e as Error)?.message || e);
+    return fallback;
+  }
+  throw e;
+}
 
 /** Resolve a /projects/<slug> URL to its pin via the trailing number (any title prefix matches). */
 export async function getPinBySlug(slug: string): Promise<Pin | null> {
@@ -113,8 +147,13 @@ export async function getPinBySlug(slug: string): Promise<Pin | null> {
 
 // ---- derivations ----------------------------------------------------------
 
+/** Localities named in a location, in display form (same slugs as the raw names). */
+export function placesOf(location?: string): string[] {
+  return localitiesOf(location).map(displayPlaceName).filter(Boolean);
+}
+
 export function primaryLocality(pin: Pin): string {
-  return localitiesOf(pin.location)[0] || '';
+  return placesOf(pin.location)[0] || '';
 }
 
 export function cityOf(pin: Pin): CityKey {
@@ -122,6 +161,11 @@ export function cityOf(pin: Pin): CityKey {
 }
 
 export { CITY_LABELS, hasCityHub, type CityKey };
+
+/** The cities these projects are in, e.g. "Bengaluru, Pune & Mumbai" (lib/seo/city.ts). */
+export function citiesPhrase(pins: Pin[], max = 3): string {
+  return phraseFor(pins.map(cityOf), max);
+}
 
 export function typeLabel(type?: string): string {
   const t = (type || '').trim();
@@ -158,7 +202,7 @@ export const getLocalityGroups = cache(async (): Promise<Group[]> => {
   const pins = await getPublicPins();
   const map = new Map<string, Group>();
   for (const p of pins) {
-    for (const loc of localitiesOf(p.location)) {
+    for (const loc of placesOf(p.location)) {
       const slug = slugify(loc);
       if (!slug) continue;
       const g = map.get(slug) || { slug, label: loc, count: 0, pins: [] };

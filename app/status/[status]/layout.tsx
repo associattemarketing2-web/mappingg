@@ -1,16 +1,19 @@
 import type { Metadata } from 'next';
-import { getStatusGroups, findGroup } from '@/lib/seo/entities';
+import { notFound } from 'next/navigation';
+import { getStatusGroups, findGroup, citiesPhrase } from '@/lib/seo/entities';
 import { buildMetadata } from '@/lib/seo/metadata';
+import { TITLE_BUDGET } from '@/lib/seo/project-meta';
 
 // SEO metadata for /status/<status> lives here; page.tsx renders the listing.
 export async function generateMetadata({ params }: { params: { status: string } }): Promise<Metadata> {
   const g = await findGroup(getStatusGroups, params.status);
-  if (!g) return { title: 'Not found', robots: { index: false, follow: false } };
+  if (!g) notFound();
+  const where = citiesPhrase(g.pins);
+  const title = `${g.label} Projects in ${where}`;
   return buildMetadata({
-    title: `${g.label} Projects in Pune & MMR`,
-    description: `Explore ${g.count} ${g.label.toLowerCase()} real estate project${g.count === 1 ? '' : 's'} across Pune and the Mumbai Metropolitan Region — locations, developers, pricing and configurations on Mappingg.`,
+    title: title.length <= TITLE_BUDGET ? title : `${g.label} Projects in ${citiesPhrase(g.pins, 2)}`,
+    description: `Explore ${g.count} ${g.label.toLowerCase()} real estate project${g.count === 1 ? '' : 's'} in ${where} — locations, developers, pricing and configurations on Mappingg.`,
     path: `/status/${g.slug}`,
-    keywords: [`${g.label.toLowerCase()} projects Pune`, `${g.label.toLowerCase()} property Pune`],
   });
 }
 

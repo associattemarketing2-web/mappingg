@@ -1,11 +1,13 @@
 import EntityListing from '@/components/seo/EntityListing';
-import { getPublicPins, getLocalityGroups, getStatusGroups } from '@/lib/seo/entities';
+import { getPublicPins, getLocalityGroups, getStatusGroups, getCityGroups, citiesPhrase } from '@/lib/seo/entities';
 
 export const revalidate = 3600;
 
 export default async function ProjectsIndex() {
-  const [pins, locs, statuses] = await Promise.all([getPublicPins(), getLocalityGroups(), getStatusGroups()]);
+  const [pins, locs, statuses, cities] = await Promise.all([getPublicPins(), getLocalityGroups(), getStatusGroups(), getCityGroups()]);
+  const where = citiesPhrase(pins, 4);
   const related = [
+    ...cities.map((c) => ({ label: `Projects in ${c.label}`, path: `/cities/${c.slug}`, count: c.count })),
     ...statuses.map((s) => ({ label: s.label, path: `/status/${s.slug}`, count: s.count })),
     ...locs.slice(0, 10).map((l) => ({ label: l.label, path: `/locations/${l.slug}`, count: l.count })),
   ];
@@ -13,20 +15,20 @@ export default async function ProjectsIndex() {
     <EntityListing
       crumbs={[{ name: 'Home', path: '/' }, { name: 'Projects', path: '/projects' }]}
       eyebrow="All projects"
-      title="Real Estate Projects in Pune & MMR"
-      lede="Every project we map across Pune and the Mumbai Metropolitan Region, with developer, status, configuration and pricing details — and a live map to see exactly where each one is."
+      title={`Real Estate Projects in ${where}`}
+      lede={`Every project we map in ${citiesPhrase(pins, 6)}, with developer, status, configuration and pricing details — and a live map to see exactly where each one is.`}
       stats={[
         { b: pins.length, span: 'Projects mapped' },
         { b: locs.length, span: 'Localities' },
       ]}
       pins={pins}
       projectsHeading={`All projects (${pins.length})`}
-      relatedTitle="Browse by location & status"
+      relatedTitle="Browse by city, status & locality"
       related={related}
       faqs={[
         {
           q: 'How many real estate projects are listed on Mappingg?',
-          a: `Mappingg currently maps ${pins.length} projects across Pune and the Mumbai Metropolitan Region, spanning ${locs.length} localities. New projects are added regularly.`,
+          a: `Mappingg currently maps ${pins.length} projects in ${citiesPhrase(pins, 6)}, spanning ${locs.length} localities. New projects are added regularly.`,
         },
         {
           q: 'Can I see where each project is located?',

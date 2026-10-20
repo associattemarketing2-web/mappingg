@@ -15,7 +15,11 @@ export const revalidate = 3600;
 export function generateMetadata({ searchParams }: { searchParams?: { page?: PageParam } }): Metadata {
   const page = parseBlogPage(searchParams?.page);
   if (page === 1) return {};
-  return { title: `Blog — Page ${page}`, alternates: { canonical: `${SITE_URL}${pageHref(page)}` } };
+  return {
+    title: `Blog — Page ${page}`,
+    description: `Page ${page} of the Mappingg blog: more locality guides, budget guides and buying tips for Pune, Mumbai and Bengaluru.`,
+    alternates: { canonical: `${SITE_URL}${pageHref(page)}` },
+  };
 }
 
 function fmt(d?: string | null) {
@@ -25,7 +29,7 @@ function fmt(d?: string | null) {
 const Footer = BlogFooter;
 
 export default async function BlogIndex({ searchParams }: { searchParams?: { page?: PageParam } }) {
-  const all = await listPublished();
+  const all = await listPublished({ strict: true });
   const pages = blogPageCount(all.length);
   const page = parseBlogPage(searchParams?.page);
   const posts = blogPageSlice(all, page);
@@ -53,8 +57,8 @@ export default async function BlogIndex({ searchParams }: { searchParams?: { pag
       <header className="blog-hero">
         <div className="wrap">
           <span className="eyebrow">Mappingg Blog</span>
-          <h1>Pune &amp; Mumbai real estate, made clear</h1>
-          <p>Locality guides, budget guides and buying tips for Pune and the Mumbai Metropolitan Region — from the team behind the live project map.</p>
+          <h1>Pune, Mumbai &amp; Bengaluru real estate, made clear</h1>
+          <p>Locality guides, budget guides and buying tips for Pune, the Mumbai Metropolitan Region and Bengaluru — from the team behind the live project map.</p>
         </div>
       </header>
 

@@ -16,9 +16,10 @@ export const SITE = {
   url: SITE_URL,
   name: 'Mappingg',
   legalName: 'Associatte PropTech Pvt Ltd',
-  tagline: 'Live Real Estate Project Map for Pune & MMR',
+  tagline: 'Live Real Estate Project Map for Pune, Mumbai, Bengaluru & NCR',
+  // Main markets by mapped projects (Oct 2026: Bengaluru, Pune, Mumbai & MMR, Delhi NCR, Hyderabad).
   description:
-    'Explore a live, interactive map of real estate projects across Pune and the Mumbai Metropolitan Region — colour-coded by status, with developer, pricing, configuration and infrastructure details.',
+    'Explore a live, interactive map of real estate projects across Pune, Mumbai & MMR, Bengaluru, Delhi NCR and Hyderabad — colour-coded by status, with developer, RERA, pricing, configuration and infrastructure details.',
   logo: `${SITE_URL}/img/Associattelogo.png`,
   // 1200x630 share image (migration/og-image.mjs). Pages with their own image use that instead.
   ogFallback: `${SITE_URL}/og/mappingg-og-v1.jpg`,

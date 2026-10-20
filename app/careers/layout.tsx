@@ -3,7 +3,7 @@ import { buildMetadata } from '@/lib/seo/metadata';
 
 // SEO metadata for /careers lives here; page.tsx renders the content.
 export const metadata: Metadata = buildMetadata({
-  title: 'Careers',
+  title: 'Careers — PropTech Jobs in Pune',
   description:
     'Work with the team behind Mappingg, the live real estate project map by Associatte PropTech in Pune.',
   path: '/careers',

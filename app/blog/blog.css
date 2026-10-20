@@ -109,3 +109,4 @@
 
 .blog-foot-main { display: flex; flex-direction: column; gap: 4px; }
 .blog-foot-contact a { color: var(--forest); font-weight: 600; }
+.article .back a:hover { color: var(--forest); }

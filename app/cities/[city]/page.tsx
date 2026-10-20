@@ -7,10 +7,16 @@ import {
   findGroup,
   cityOf,
 } from '@/lib/seo/entities';
+import { guidesFor } from '@/lib/seo/blog-links';
+import { listPublished } from '@/lib/blog';
 
 export const revalidate = 3600;
-// Closed set (Pune / Mumbai-MMR) → prerender + hard-404 on unknown.
-export const dynamicParams = false;
+// City hubs come from the live project data, so new ones appear between deploys.
+// Known ones are prerendered; a new one renders on first request (ISR). Unknown
+// slugs get a real 404 from this route's layout.tsx (generateMetadata), which
+// runs before streaming starts. (dynamicParams = false
+// used to 404 any page added after the last build, e.g. /locations/wanowri.)
+export const dynamicParams = true;
 export async function generateStaticParams() {
   return (await getCityGroups()).map((g) => ({ city: g.slug }));
 }
@@ -19,7 +25,9 @@ export default async function CityPage({ params }: { params: { city: string } })
   const g = await findGroup(getCityGroups, params.city);
   if (!g) notFound();
 
-  const [allLocs, statuses] = await Promise.all([getLocalityGroups(), getStatusGroups()]);
+  const [allLocs, statuses, cities, posts] = await Promise.all([getLocalityGroups(), getStatusGroups(), getCityGroups(), listPublished()]);
+  const guides = guidesFor(g.slug, posts).map((p) => ({ label: `Guide: ${p.title}`, path: `/blog/${p.slug}` }));
+  const otherCities = cities.filter((c) => c.slug !== g.slug).map((c) => ({ label: `Projects in ${c.label}`, path: `/cities/${c.slug}`, count: c.count }));
   const localitiesHere = allLocs
     .filter((l) => l.pins[0] && cityOf(l.pins[0]) === g.slug)
     .slice(0, 16)
@@ -45,14 +53,15 @@ export default async function CityPage({ params }: { params: { city: string } })
       ]}
       prose={
         <p>
-          {g.label} is one of two regions Mappingg covers. Start from a locality below to focus on a specific
-          micro-market, or browse every project in the city here.
+          Mappingg maps {g.count} project{g.count === 1 ? '' : 's'} in {g.label}, across {localitiesHere.length}{' '}
+          {localitiesHere.length === 1 ? 'locality' : 'localities'} we track. Start from a locality below to focus on a
+          specific micro-market, or browse every project in the city here.
         </p>
       }
       pins={g.pins}
       projectsHeading={`All projects in ${g.label} (${g.count})`}
       relatedTitle={`Localities in ${g.label}`}
-      related={[...statusHere, ...localitiesHere]}
+      related={[...guides, ...statusHere, ...localitiesHere, ...otherCities]}
       faqs={[
         {
           q: `How many real estate projects are there in ${g.label} on Mappingg?`,

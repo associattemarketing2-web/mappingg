@@ -38,7 +38,7 @@ export default async function MapPage() {
           unchanged, but fully indexable — gives Google real text about every
           project and area, which is what drives organic discovery. */}
       <div className="sr-only">
-        <h1>Mappingg — Live interactive real estate project map for Pune and the Mumbai Metropolitan Region</h1>
+        <h1>Mappingg — Live interactive real estate project map for Pune, Mumbai, Bengaluru, Delhi NCR and Hyderabad</h1>
         <p>
           Browse {projects.length} live real estate projects on an interactive map, colour-coded by
           status (available, under construction, upcoming, sold), with developer, configuration,

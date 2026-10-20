@@ -21,6 +21,9 @@ const LINKS = [
 ];
 // Secondary links shown only in the mobile menu, where the footer is a long scroll away.
 const MORE_LINKS = [
+  { href: '/projects', label: 'All projects' },
+  { href: '/cities', label: 'Cities' },
+  { href: '/locations', label: 'Localities' },
   { href: '/developers', label: 'Developers' },
   { href: '/property', label: 'Property types' },
   { href: '/about', label: 'About' },
