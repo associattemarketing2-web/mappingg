@@ -15,6 +15,13 @@ export const dynamic = 'force-dynamic';
 // used to be a MongoDB GridFS bucket.
 const BUCKETS = new Set(['submission-media', 'project-media']);
 const MAX_BYTES = 25 * 1024 * 1024;
+// Vercel rejects a request (and an unstreamed response) over 4.5 MB before it
+// reaches this function (413 FUNCTION_PAYLOAD_TOO_LARGE), which is why brochure
+// PDFs failed with a server error. Bigger files are sent in parts (the browser
+// splits them — public/partners/partners-shim.js), each part kept as its own
+// temporary row until the last one arrives and the file is put back together.
+const MAX_PARTS = Math.ceil(MAX_BYTES / (3 * 1024 * 1024)) + 1;
+const partKey = (uploadId: string, i: number) => `.parts/${uploadId}/${i}`;
 
 function key(bucket: string, path: string) { return `${bucket}/${path}`; }
 
@@ -40,6 +47,15 @@ async function saveFile(filename: string, contentType: string, metadata: Record<
      VALUES ($1, $2, $3::jsonb, $4)`,
     [filename, contentType, JSON.stringify(metadata), buf],
   );
+}
+
+async function deleteFile(filename: string) {
+  if (usingMongo()) {
+    const bucket = await gridfs();
+    for (const f of await bucket.find({ filename }).toArray()) await bucket.delete(f._id);
+    return;
+  }
+  await query(`DELETE FROM "partners_media" WHERE filename = $1`, [filename]);
 }
 
 async function loadFile(filename: string): Promise<{ content_type: string; data: Buffer } | null> {
@@ -103,9 +119,37 @@ export async function POST(req: NextRequest) {
   }
   if (!allowed) return NextResponse.json({ data: null, error: { message: 'Not authorized' } }, { status: 401 });
 
-  const buf = Buffer.from(await file.arrayBuffer());
+  let buf = Buffer.from(await file.arrayBuffer());
   if (buf.byteLength > MAX_BYTES) {
     return NextResponse.json({ data: null, error: { message: 'File is larger than 25 MB.' } }, { status: 413 });
+  }
+
+  // One part of a bigger file: part / parts / uploadId (see the note at the top).
+  const parts = Number(form.get('parts') || 1);
+  if (parts > 1) {
+    const part = Number(form.get('part'));
+    const uploadId = String(form.get('uploadId') || '');
+    if (!Number.isInteger(parts) || parts > MAX_PARTS || !Number.isInteger(part) || part < 0 || part >= parts || !/^[A-Za-z0-9-]{8,64}$/.test(uploadId)) {
+      return NextResponse.json({ data: null, error: { message: 'Invalid upload part' } }, { status: 400 });
+    }
+    const partName = key(bucketName, partKey(uploadId, part));
+    if (part < parts - 1) {
+      await saveFile(partName, 'application/octet-stream', { bucket: bucketName, path, part: String(part) }, buf);
+      return NextResponse.json({ data: { path, part }, error: null });
+    }
+    // Last part: put the file back together from the earlier ones.
+    const chunks: Buffer[] = [];
+    for (let i = 0; i < parts - 1; i++) {
+      const prev = await loadFile(key(bucketName, partKey(uploadId, i)));
+      if (!prev) return NextResponse.json({ data: null, error: { message: 'Upload was interrupted — please try again.' } }, { status: 409 });
+      chunks.push(prev.data);
+    }
+    chunks.push(buf);
+    buf = Buffer.concat(chunks);
+    for (let i = 0; i < parts - 1; i++) await deleteFile(key(bucketName, partKey(uploadId, i))).catch(() => {});
+    if (buf.byteLength > MAX_BYTES) {
+      return NextResponse.json({ data: null, error: { message: 'File is larger than 25 MB.' } }, { status: 413 });
+    }
   }
 
   const filename = key(bucketName, path);
@@ -115,6 +159,8 @@ export async function POST(req: NextRequest) {
 }
 
 // ----------------------------------------------------------------- serve
+const STREAM_OVER = 4 * 1024 * 1024;
+const STREAM_PIECE = 256 * 1024;
 export async function GET(req: NextRequest) {
   const bucketName = req.nextUrl.searchParams.get('bucket') || '';
   const path = req.nextUrl.searchParams.get('path') || '';
@@ -154,12 +200,21 @@ export async function GET(req: NextRequest) {
       return new NextResponse(small, { headers: { 'Content-Type': 'image/webp', 'Content-Length': String(small.byteLength), 'Cache-Control': publicCache } });
     }
   }
+  const headers: Record<string, string> = { 'Content-Type': ct, 'Cache-Control': isPublic ? publicCache : 'private, no-store' };
+  // Files over Vercel's 4.5 MB response limit (brochure PDFs) are streamed in pieces.
+  if (body.byteLength > STREAM_OVER) {
+    let at = 0;
+    const stream = new ReadableStream<Uint8Array>({
+      pull(ctrl) {
+        if (at >= body.byteLength) { ctrl.close(); return; }
+        ctrl.enqueue(new Uint8Array(body.subarray(at, at + STREAM_PIECE)));
+        at += STREAM_PIECE;
+      },
+    });
+    return new NextResponse(stream, { status: 200, headers });
+  }
   return new NextResponse(new Uint8Array(body), {
     status: 200,
-    headers: {
-      'Content-Type': ct,
-      'Content-Length': String(body.byteLength),
-      'Cache-Control': isPublic ? publicCache : 'private, no-store',
-    },
+    headers: { ...headers, 'Content-Length': String(body.byteLength) },
   });
 }

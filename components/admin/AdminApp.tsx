@@ -811,6 +811,8 @@ interface Lead {
   } | null;
   // Map enquiries only: how many times they tapped "Enquire now" on this project, and when last.
   enquiry_clicks?: number; last_enquired_at?: string | null;
+  // Map enquiries only: when they tapped "Book Site Visit" on the project.
+  site_visit_requested_at?: string | null;
   // Enquiries sent by a partner website through the Developer API (POST /api/v1/enquiries).
   integration?: { app_id: string; app_name: string; website: string; source_page?: string; reference?: string } | null;
   // Map enquiries only: the enquirer's account (buyer, agent or developer), if they have one.
@@ -822,7 +824,7 @@ interface Lead {
   // Buyer sign-ups only: that buyer's account activity.
   buyer?: {
     last_login_at: string | null; login_count: number; profile: Record<string, string>; account_exists: boolean;
-    enquiries: { at: string; project: { id: string; title: string; number: number | null; location: string } }[];
+    enquiries: { at: string; site_visit?: boolean; project: { id: string; title: string; number: number | null; location: string } }[];
     compare: { id: string; title: string; number: number | null; location: string }[];
   };
 }
@@ -941,9 +943,9 @@ const PIN_STATUS: Record<string, string> = { available: 'Ready to move', under_c
 
 function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => void; isOwner: boolean }) {
   const [bySource, setBySource] = useState<Record<LeadSource, Lead[]>>({ map: [], signup: [], contact: [] });
-  // Opens on buyer accounts: every buyer who signed up is a lead there.
-  // Source and status filter survive a refresh (sessionStorage).
-  const [source, setSource] = usePersistedState<LeadSource>('leads.source', 'signup', ['signup', 'map', 'contact']);
+  // Opens on map enquiries (people who tapped Enquire / Book site visit on a project) —
+  // for the super admin and employees alike. Source and status filter survive a refresh (sessionStorage).
+  const [source, setSource] = usePersistedState<LeadSource>('leads.src', 'map', ['map', 'signup', 'contact']);
   const [loading, setLoading] = useState(true);
   const [q, setQ] = useState('');
   const [filter, setFilter] = usePersistedState<'all' | 'due' | Lead['status']>('leads.filter', 'all', ['all', 'due', ...LEAD_STAGES.map((s) => s.key)]);
@@ -987,9 +989,9 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
     if (!silent) setLoading(true);
     try {
       const get = (s: LeadSource) => fetch(`/api/admin/leads?source=${s}`, { credentials: 'same-origin' }).then((r) => r.json());
-      // Employees only work buyer-account leads.
+      // Employees work the map enquiries and buyer accounts transferred to them.
       const none = Promise.resolve({ data: [] });
-      const [m, su, c] = await Promise.all([isOwner ? get('map') : none, get('signup'), isOwner ? get('contact') : none]);
+      const [m, su, c] = await Promise.all([get('map'), get('signup'), isOwner ? get('contact') : none]);
       setBySource({ map: Array.isArray(m.data) ? m.data : [], signup: Array.isArray(su.data) ? su.data : [], contact: Array.isArray(c.data) ? c.data : [] });
       setTruncated({
         ...(m.truncated ? { map: Number(m.total) } : {}), ...(su.truncated ? { signup: Number(su.total) } : {}), ...(c.truncated ? { contact: Number(c.total) } : {}),
@@ -1149,21 +1151,21 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
 
   return (
     <>
-      {isOwner && <div className="lead-src" role="tablist" aria-label="Lead source">
-        <button role="tab" aria-selected={isSignup} className={isSignup ? 'on' : ''} onClick={() => switchSource('signup')}>
-          <i className="fas fa-user-plus" /> Buyer accounts <span className="n">{bySource.signup.length}</span>
-        </button>
+      <div className="lead-src" role="tablist" aria-label="Lead source">
         <button role="tab" aria-selected={isMap} className={isMap ? 'on' : ''} onClick={() => switchSource('map')}>
           <i className="fas fa-map-location-dot" /> Map enquiries <span className="n">{bySource.map.length}</span>
         </button>
-        <button role="tab" aria-selected={source === 'contact'} className={source === 'contact' ? 'on' : ''} onClick={() => switchSource('contact')}>
-          <i className="fas fa-envelope" /> Contact form <span className="n">{bySource.contact.length}</span>
+        <button role="tab" aria-selected={isSignup} className={isSignup ? 'on' : ''} onClick={() => switchSource('signup')}>
+          <i className="fas fa-user-plus" /> Buyer accounts <span className="n">{bySource.signup.length}</span>
         </button>
-      </div>}
+        {isOwner && <button role="tab" aria-selected={source === 'contact'} className={source === 'contact' ? 'on' : ''} onClick={() => switchSource('contact')}>
+          <i className="fas fa-envelope" /> Contact form <span className="n">{bySource.contact.length}</span>
+        </button>}
+      </div>
 
       {!isOwner && (
         <p className="muted" style={{ fontSize: 13, margin: '0 0 10px' }}>
-          <i className="fas fa-user-tie" /> Buyers assigned to you. Call or WhatsApp them, move them through the pipeline (Contacted → Site visit → Negotiation → Booked), add notes and set the next follow-up — the super admin sees everything you do.
+          <i className="fas fa-user-tie" /> Map enquiries and buyers assigned to you. Call or WhatsApp them, move them through the pipeline (Contacted → Site visit → Negotiation → Booked), add notes and set the next follow-up — the super admin sees everything you do.
         </p>
       )}
       <div className="crm-stats">
@@ -1176,14 +1178,14 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
 
       <div className="adm-panel">
         <div className="adm-panel-head">
-          <h3>{!isOwner ? 'My buyer leads' : isMap ? 'Map enquiries' : isSignup ? 'Buyer accounts' : 'Contact leads'} {list.length ? `(${list.length})` : ''}</h3>
+          <h3>{!isOwner ? (isMap ? 'My map enquiries' : 'My buyer leads') : isMap ? 'Map enquiries' : isSignup ? 'Buyer accounts' : 'Contact leads'} {list.length ? `(${list.length})` : ''}</h3>
           <div className="crm-tools">
             <span className="crm-live" title={live ? 'Live — updates automatically' : 'Reconnecting…'} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 12, color: live ? '#2f7a3c' : '#9a6a00' }}>
               <i className="fas fa-circle" style={{ fontSize: 8, color: live ? '#2f7a3c' : '#c9861f' }} /> {live ? 'Live' : 'Offline'}
             </span>
             <input className="crm-search" placeholder={isMap ? 'Search name, email, phone, project…' : 'Search name, email, phone…'} value={q} onChange={(e) => setQ(e.target.value)} />
             {isMap && <LocationSelect items={bySource.map} value={loc} onChange={setLoc} />}
-            {isOwner && isSignup && (
+            {isOwner && (isSignup || isMap) && (
               <select className="crm-select" aria-label="Filter by employee" value={assignee} onChange={(e) => setAssignee(e.target.value)}>
                 <option value="">Assigned to: anyone</option>
                 <option value={UNASSIGNED}>Not assigned ({all.filter((l) => !l.assigned_to).length})</option>
@@ -1236,7 +1238,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
           <div className="adm-empty">
             <i className={`fas ${isMap ? 'fa-map-location-dot' : isSignup ? 'fa-user-plus' : 'fa-address-book'}`} />
             <p>{all.length === 0
-              ? (!isOwner ? 'No leads have been transferred to you yet. The super admin will assign buyers to you.'
+              ? (!isOwner ? 'No leads have been transferred to you yet. The super admin will assign them to you.'
                 : isMap ? 'No map enquiries yet. When someone taps Enquire on a project card on the live map, it appears here.'
                 : isSignup ? 'No buyer accounts yet. When a buyer creates an account, they appear here as a lead.'
                   : 'No leads yet. Submissions from the Contact form appear here.')
@@ -1251,7 +1253,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
               <option value="">Set status…</option>
               {LEAD_STAGES.map((st) => <option key={st.key} value={st.key}>{st.label}</option>)}
             </select>
-            {staff.length > 0 && isSignup && (
+            {staff.length > 0 && (isSignup || isMap) && (
               <select className="crm-select" value="" disabled={busy} aria-label="Transfer selected leads to an employee"
                 onChange={(e) => { if (e.target.value) assignMany(pick.of(list.map((l) => l.id)), e.target.value); }}>
                 <option value="">Transfer to…</option>
@@ -1328,6 +1330,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
                     </td>
                     <td className="muted" title={fullDate(l.created_at)}>
                       {leadWhen(l.created_at)}
+                      {isMap && l.site_visit_requested_at && <small style={{ display: 'block', color: '#2f7a3c', fontWeight: 600 }} title={fullDate(l.site_visit_requested_at)}><i className="fas fa-calendar-check" /> Site visit requested · {leadWhen(l.site_visit_requested_at)}</small>}
                       {isMap && (l.enquiry_clicks || 1) > 1 && <small style={{ display: 'block' }}>{l.enquiry_clicks}× · last {leadWhen(l.last_enquired_at || undefined)}</small>}
                     </td>
                     <td><button className="adm-btn ghost sm" onClick={(e) => { e.stopPropagation(); open(l); }}>Open</button></td>
@@ -1399,7 +1402,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
               </div>
             </div>
 
-            {isOwner && isSignup && <div className="crm-block">
+            {isOwner && (isSignup || isMap) && <div className="crm-block">
               <h4>Transferred to</h4>
               {staff.length ? (
                 <select className="crm-select" value={sel.assigned_to || ''} disabled={busy} onChange={(e) => assign(sel, e.target.value)} aria-label="Transfer this lead to an employee">
@@ -1455,6 +1458,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
                     <tr><td className="muted">Enquirer type</td><td>{ROLE_META[sel.role || 'buyer'].label}</td></tr>
                     <tr><td className="muted">How</td><td>{sel.account?.signed_in ? 'Enquire now while signed in' : 'Enquiry form (not signed in)'}</td></tr>
                     <tr><td className="muted">First enquired</td><td>{fullDate(sel.created_at)}</td></tr>
+                    {sel.site_visit_requested_at && <tr><td className="muted">Site visit</td><td><b style={{ color: '#2f7a3c' }}>Requested</b> · {fullDate(sel.site_visit_requested_at)}</td></tr>}
                     <tr><td className="muted">Times tapped</td><td>{sel.enquiry_clicks || 1}</td></tr>
                     {(sel.enquiry_clicks || 1) > 1 && <tr><td className="muted">Last enquired</td><td>{fullDate(sel.last_enquired_at)}</td></tr>}
                   </tbody>
@@ -1532,6 +1536,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
                       {sel.buyer.enquiries.map((e, i) => (
                         <li key={i}>
                           <a href={`/map?pin=${encodeURIComponent(e.project.id)}`} target="_blank" rel="noopener">{e.project.title}{e.project.number != null ? ` #${e.project.number}` : ''}</a>
+                          {e.site_visit && <small style={{ color: '#2f7a3c', fontWeight: 600 }}><i className="fas fa-calendar-check" /> Site visit requested</small>}
                           <small>{e.project.location || ''}{e.at ? ` · ${leadWhen(e.at)}` : ''}</small>
                         </li>
                       ))}

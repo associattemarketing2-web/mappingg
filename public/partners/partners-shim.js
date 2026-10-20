@@ -102,16 +102,30 @@
 
   // ---------------------------------------------------------------- storage
   function StorageBucket(bucket) { this._bucket = bucket; }
+  // The host (Vercel) refuses any request over 4.5 MB, so bigger files (brochure
+  // PDFs) go up in 3 MB parts, one after another; the server joins them.
+  var PART = 3 * 1024 * 1024;
   StorageBucket.prototype.upload = function (path, file, opts) {
-    var fd = new FormData();
-    fd.append('bucket', this._bucket);
-    fd.append('path', path);
-    fd.append('file', file);
-    if (opts && opts.contentType) fd.append('contentType', opts.contentType);
+    var bucket = this._bucket;
+    var type = (opts && opts.contentType) || file.type || '';
     var tok = tokenFromUrl();
     var url = STORAGE + (tok ? '?t=' + encodeURIComponent(tok) : '');
-    return jsonFetch(url, { method: 'POST', credentials: 'same-origin', body: fd })
-      .then(function (r) { return { data: r.error ? null : { path: path }, error: r.error }; });
+    var parts = Math.max(1, Math.ceil(file.size / PART));
+    var uploadId = 'u' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+    function send(i) {
+      var fd = new FormData();
+      fd.append('bucket', bucket);
+      fd.append('path', path);
+      fd.append('file', parts > 1 ? file.slice(i * PART, (i + 1) * PART) : file);
+      if (type) fd.append('contentType', type);
+      if (parts > 1) { fd.append('parts', String(parts)); fd.append('part', String(i)); fd.append('uploadId', uploadId); }
+      return jsonFetch(url, { method: 'POST', credentials: 'same-origin', body: fd }).then(function (r) {
+        if (!r.error && r.status >= 400) r.error = { message: r.status === 413 ? 'File is too large to upload.' : 'Upload failed (' + r.status + ')' };
+        if (r.error || i + 1 >= parts) return { data: r.error ? null : { path: path }, error: r.error };
+        return send(i + 1);
+      });
+    }
+    return send(0);
   };
   StorageBucket.prototype.download = function (path) {
     var url = STORAGE + '?bucket=' + encodeURIComponent(this._bucket) + '&path=' + encodeURIComponent(path);

@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
   if (!user) return NextResponse.json({ error: { message: 'Please sign in' } }, { status: 401 });
   const parsed = parseEnquireRequest(await req.json().catch(() => null));
   if (!parsed.ok) return NextResponse.json({ error: { message: 'Invalid request' } }, { status: 400 });
-  const { pin_id, consent } = parsed;
+  const { pin_id, consent, site_visit } = parsed;
 
   // Staff browsing the map just see the details — they aren't leads.
   if (isStaffRole(user.role)) return NextResponse.json({ data: { ok: true, lead: false } });
@@ -44,41 +44,49 @@ export async function POST(req: NextRequest) {
   const role = ['buyer', 'agent', 'developer'].includes(String(me.role)) ? String(me.role) : 'buyer';
 
   const leads = db.collection<{ _id: string; [k: string]: unknown }>('leads');
-  const existing = await leads.findOne({ account_id: user.id, pin_id }, { projection: { id: 1 } });
+  const existing = await leads.findOne({ account_id: user.id, pin_id }, { projection: { id: 1, site_visit_requested_at: 1 } });
   const now = new Date().toISOString();
+  // "Book Site Visit": flagged on the same lead so the CRM shows it next to the project.
+  const visitAgain = site_visit && !!existing?.site_visit_requested_at;
+  const visit = site_visit ? { site_visit_requested_at: now } : {};
   if (existing) {
     // Tapped Enquire now again on the same project: keep the one lead, but record
     // the repeat so the CRM shows how often (and when last) they asked.
     // A new explicit opt-in is saved; a repeat without one never removes an earlier choice.
     const optIn = consent.call || consent.whatsapp ? { consent } : {};
-    await leads.updateOne({ id: existing.id }, { $set: { last_enquired_at: now, updated_at: now, ...optIn }, $inc: { enquiry_clicks: 1 } });
+    await leads.updateOne({ id: existing.id }, { $set: { last_enquired_at: now, updated_at: now, ...optIn, ...visit }, $inc: { enquiry_clicks: 1 } });
   } else {
     const id = randomUUID();
     await leads.insertOne({
       _id: id, id, pin_id, role, name, whatsapp, email, consent,
       source: 'Signed-in account', account_id: user.id, status: 'new', notes: '',
-      enquiry_clicks: 1, last_enquired_at: now,
+      enquiry_clicks: 1, last_enquired_at: now, ...visit,
       created_at: now, updated_at: now,
     });
   }
   const project = String(pin.title || `#${pin.number ?? ''}`);
-  if (!existing) {
-    pushToCrm({ name, mobile: whatsapp, email, project, builder: String(pin.developer || ''), source: 'Map "Enquire now" (signed-in account)', page: pageOf(req), extra: [['Account type', role], ['Opted in to', optInSummary(consent)]], ip: visitorIp(req) });
-    notifyAdmin(`New enquiry: ${project} — ${name}`, {
-      title: 'New enquiry from the live map',
-      body: [`${esc(name)} asked about <b>${esc(project)}</b>.`],
+  if (!existing || (site_visit && !visitAgain)) {
+    pushToCrm({ name, mobile: whatsapp, email, project, builder: String(pin.developer || ''), source: site_visit ? 'Map "Book Site Visit" (signed-in account)' : 'Map "Enquire now" (signed-in account)', page: pageOf(req), extra: [['Account type', role], ['Opted in to', optInSummary(consent)]], ip: visitorIp(req) });
+    notifyAdmin(`${site_visit ? 'Site visit request' : 'New enquiry'}: ${project} — ${name}`, {
+      title: site_visit ? 'Site visit request from the live map' : 'New enquiry from the live map',
+      body: [site_visit ? `${esc(name)} wants to visit <b>${esc(project)}</b>. Call them to fix a time.` : `${esc(name)} asked about <b>${esc(project)}</b>.`],
       rows: [['Name', name], ['Email', email], ['WhatsApp', whatsapp], ['Account type', role], ['Project', project]],
       cta: { label: 'Open leads', href: '/dashboard/s-admin' },
     }, email);
     queueMail({
       to: email,
-      subject: `Your enquiry for ${project} — Mappingg`,
-      html: layout({ title: 'We received your enquiry', body: [`Hi ${esc(name.split(' ')[0])},`, `Thanks for your interest in <b>${esc(project)}</b>. Our team will contact you on WhatsApp shortly.`] }),
+      subject: site_visit ? `Your site visit request for ${project} — Mappingg` : `Your enquiry for ${project} — Mappingg`,
+      html: layout({
+        title: site_visit ? 'We received your site visit request' : 'We received your enquiry',
+        body: [`Hi ${esc(name.split(' ')[0])},`, site_visit
+          ? `Thanks for booking a site visit to <b>${esc(project)}</b>. Our team will call you shortly to fix a date and time.`
+          : `Thanks for your interest in <b>${esc(project)}</b>. Our team will contact you on WhatsApp shortly.`],
+      }),
     });
   }
   return NextResponse.json({
     data: {
-      ok: true, lead: true, already: !!existing, name, whatsapp, email, role, project: String(pin.title || `#${pin.number ?? ''}`),
+      ok: true, lead: true, already: site_visit ? visitAgain : !!existing, site_visit, name, whatsapp, email, role, project: String(pin.title || `#${pin.number ?? ''}`),
       consent: { enquiry: consent.enquiry, call: consent.call, whatsapp: consent.whatsapp },
     },
   }, { headers: { 'Cache-Control': 'private, no-store' } });

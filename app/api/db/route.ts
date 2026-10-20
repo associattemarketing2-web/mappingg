@@ -73,7 +73,13 @@ async function handle(op: DbOp, devEditorView = false, ip = '', visitor = ip, pa
     if (!checked.length || checked.some((c) => !c.ok)) {
       return NextResponse.json({ data: null, error: { message: 'Please agree to the Privacy Policy and Terms to continue.' } }, { status: 400 });
     }
-    op = { ...op, values: Array.isArray(op.values) ? checked.map((c) => c.values) : checked[0].values };
+    // "Book Site Visit" from the project panel: recorded by the server as a timestamp.
+    const now = new Date().toISOString();
+    const vals = checked.map(({ values: { site_visit, site_visit_requested_at, ...v } }) => {
+      void site_visit_requested_at;
+      return site_visit === true ? { ...v, site_visit_requested_at: now } : v;
+    });
+    op = { ...op, values: Array.isArray(op.values) ? vals : vals[0] };
   }
   // A signed-in developer is scoped to their own pins everywhere: they see only
   // their projects on the live map and in the map editor, and any pin they
@@ -106,10 +112,11 @@ async function handle(op: DbOp, devEditorView = false, ip = '', visitor = ip, pa
       const project = pin ? String(pin.title || `#${pin.number ?? ''}`) : '';
       pushToCrm({
         name: String(v.name || ''), mobile: String(v.whatsapp || ''), email: String(v.email || ''), project, builder: String(pin?.developer || ''),
-        source: 'Map enquiry form', page, extra: [['Role', v.role], ['Opted in to', optInSummary(v.consent as ConsentRecord)]], message: String(v.message || ''), ip: visitor,
+        source: v.site_visit_requested_at ? 'Map "Book Site Visit" form' : 'Map enquiry form', page, extra: [['Role', v.role], ['Opted in to', optInSummary(v.consent as ConsentRecord)]], message: String(v.message || ''), ip: visitor,
       });
-      notifyAdmin(`New enquiry${project ? `: ${project}` : ''} — ${String(v.name || 'visitor')}`, {
-        title: 'New enquiry from the live map',
+      const visit = !!v.site_visit_requested_at;
+      notifyAdmin(`${visit ? 'Site visit request' : 'New enquiry'}${project ? `: ${project}` : ''} — ${String(v.name || 'visitor')}`, {
+        title: visit ? 'Site visit request from the live map' : 'New enquiry from the live map',
         body: [],
         rows: [['Name', v.name], ['WhatsApp', v.whatsapp], ['Email', v.email], ['Role', v.role], ['Project', project], ['Message', v.message]],
         cta: { label: 'Open leads', href: '/dashboard/s-admin' },

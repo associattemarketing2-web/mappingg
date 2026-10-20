@@ -129,7 +129,7 @@ async function withBuyerActivity(rows: Record<string, any>[]) {
   const emails = rows.map((r) => String(r.email || '').toLowerCase()).filter(Boolean);
   const enq = await db.collection('leads').find(
     { $or: [{ account_id: { $in: ids } }, { email: { $in: emails } }] },
-    { projection: { account_id: 1, email: 1, pin_id: 1, created_at: 1 } },
+    { projection: { account_id: 1, email: 1, pin_id: 1, created_at: 1, site_visit_requested_at: 1 } },
   ).sort({ created_at: -1 }).toArray() as Record<string, any>[];
   const pinIds = Array.from(new Set([...enq.map((e) => String(e.pin_id)), ...users.flatMap((u) => (Array.isArray(u.compare_pins) ? u.compare_pins.map(String) : []))]));
   const pins = pinIds.length
@@ -147,7 +147,7 @@ async function withBuyerActivity(rows: Record<string, any>[]) {
         last_login_at: u?.last_login_at || r.last_login_at || null,
         login_count: Number(u?.login_count ?? r.login_count ?? 0),
         profile: u?.profile || {},
-        enquiries: mine.map((e) => ({ at: e.created_at, project: proj(String(e.pin_id)) })).filter((e) => e.project),
+        enquiries: mine.map((e) => ({ at: e.created_at, site_visit: !!e.site_visit_requested_at, project: proj(String(e.pin_id)) })).filter((e) => e.project),
         compare: (Array.isArray(u?.compare_pins) ? u!.compare_pins.map(String) : []).map(proj).filter(Boolean),
         account_exists: !!u,
       },
@@ -180,8 +180,8 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ data: items });
   }
   const source = sourceOf(req.nextUrl.searchParams.get('source'));
-  // Employees only work buyer-account leads; map enquiries and the contact form stay with the super admin.
-  if (source !== 'signup' && (await getCurrentUser())?.role !== 'admin') return NextResponse.json({ data: [], total: 0, truncated: false });
+  // Employees work buyer-account leads and map enquiries transferred to them; the contact form stays with the super admin.
+  if (source === 'contact' && (await getCurrentUser())?.role !== 'admin') return NextResponse.json({ data: [], total: 0, truncated: false });
   // Every buyer account is a lead — add any that are missing (older accounts etc.).
   if (source === 'signup') await syncBuyerLeads();
   const db = await getDb();
@@ -259,7 +259,7 @@ export async function PATCH(req: NextRequest) {
     ev({ type: 'follow_up', to: follow_up_at || '' });
   }
   if (assigned_to !== undefined) {
-    if (source !== 'signup') return NextResponse.json({ error: { message: 'Only buyer-account leads can be transferred.' } }, { status: 400 });
+    if (source === 'contact') return NextResponse.json({ error: { message: 'Contact-form leads cannot be transferred.' } }, { status: 400 });
     if (assigned_to === null) {
       if (cur.assigned_to) ev({ type: 'unassigned', from: String(cur.assigned_name || '') });
       Object.assign(patch, { assigned_to: null, assigned_name: null, assigned_email: null, assigned_at: null, assigned_by: me.email });
