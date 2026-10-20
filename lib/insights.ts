@@ -56,3 +56,16 @@ export function perDay(dates: unknown[], weeks = 26) {
   }
   return { today, days: [...counts.entries()].map(([date, count]) => ({ date, count })) };
 }
+
+/**
+ * Rows created on one India-time day (YYYY-MM-DD), newest first — the same day
+ * rule as perDay(), so a heatmap square and its project list always agree.
+ */
+export function createdOnDay<T extends { created_at?: unknown }>(rows: T[], day: string): T[] {
+  return rows
+    .filter((r) => {
+      const d = new Date(String(r.created_at || ''));
+      return !Number.isNaN(d.getTime()) && dayKeyIST(d) === day;
+    })
+    .sort((a, b) => String(b.created_at).localeCompare(String(a.created_at)));
+}
