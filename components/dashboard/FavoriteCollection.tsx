@@ -102,7 +102,7 @@ export default function FavoriteCollection({ name, initial }: { name: string; in
                 ['Carpet area', c.sqft],
                 ['Starting price', c.price],
                 ['Possession', c.possession],
-                ['MahaRERA no.', c.rera],
+                ['RERA no.', c.rera],
               ].filter(([, v]) => v);
               return (
                 <li key={c.id} className="fav-card">

@@ -15,7 +15,7 @@ const POSTER = '/video/how-mappingg-works-v1.jpg';
 const STEPS = [
   { at: 3.2, icon: 'fas fa-map-location-dot', title: 'Explore the live map', text: 'Every project is a pin on a real map of Pune and Mumbai, colour-coded as available, under construction, upcoming or sold.' },
   { at: 12.7, icon: 'fas fa-magnifying-glass-location', title: 'Search where you want to buy', text: 'Type a locality such as Kharadi or Thane, or tap Near Me, and the map takes you straight there.' },
-  { at: 20.6, icon: 'fas fa-scale-balanced', title: 'Compare the details', text: 'Tap a pin for the price, configuration, carpet area, possession date, MahaRERA number and the project video.' },
+  { at: 20.6, icon: 'fas fa-scale-balanced', title: 'Compare the details', text: 'Tap a pin for the price, configuration, carpet area, possession date, RERA number and the project video.' },
   { at: 27.6, icon: 'fas fa-comments', title: 'Enquire in one tap', text: 'Share your name and WhatsApp number once, and the team gets back to you about the project you viewed.' },
 ];
 const END = 38.0; // the closing card starts here

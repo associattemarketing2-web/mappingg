@@ -176,7 +176,7 @@ export default function MapAuthGate() {
           Sign in to explore the live map
         </h2>
         <p style={{ margin: '0 0 20px', fontSize: 14, lineHeight: 1.5, color: '#4a5a54' }}>
-          See every live project with status, MahaRERA-verified RERA numbers, pricing and nearby
+          See every live project with status, RERA numbers, pricing and nearby
           infrastructure. It takes under a minute.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>

@@ -42,7 +42,7 @@ export const LANDING_BODY = `
       </div>
       <p class="dev-note">Developer or channel partner? <a href="#" class="open-signup" data-role="developer">List your project</a> · <a href="#" class="open-signup" data-role="agent">Join as partner</a></p>
       <div class="hero-trust">
-        <span><i class="fas fa-shield-halved"></i>RERA numbers verified on MahaRERA</span>
+        <span><i class="fas fa-shield-halved"></i>RERA numbers from official state registries</span>
         <span><i class="fas fa-leaf"></i>Green-certified filter</span>
       </div>
     </div>
@@ -75,7 +75,7 @@ export const LANDING_BODY = `
         <p>You've used your 3 complimentary searches. Create a buyer account to open every pin, price and possession date.</p>
         <ul class="lock-perks">
           <li><i class="fas fa-check"></i>Full details for every project</li>
-          <li><i class="fas fa-check"></i>MahaRERA-verified RERA numbers</li>
+          <li><i class="fas fa-check"></i>RERA numbers from official registries</li>
           <li><i class="fas fa-check"></i>Nearby schools, metro & new roads</li>
         </ul>
         <button type="button" class="btn btn-primary btn-lg lock-buyer" data-role="buyer"><i class="fas fa-house-chimney"></i> Continue as a buyer</button>
@@ -104,7 +104,7 @@ export const LANDING_BODY = `
     <div class="showcase">
       <div class="stack">
         <div class="card reveal d1">
-          <div class="card-label">Project card <span class="pill park"><i class="fas fa-circle-check"></i> MahaRERA verified</span></div>
+          <div class="card-label">Project card <span class="pill park"><i class="fas fa-circle-check"></i> RERA registered</span></div>
           <div class="rera-row"><div class="qr" aria-hidden="true"></div><div><div class="rera-title">Sample Residences</div><div class="rera-no">P5210000XXXX · Mundhwa</div></div></div>
           <div class="timeline"><div><span>Original possession</span><strong>Dec 2026</strong></div><div><span>Revised possession</span><strong class="late">Jun 2027</strong></div></div>
         </div>
@@ -138,13 +138,13 @@ export const LANDING_BODY = `
 <div class="strip" aria-hidden="true">
   <div class="strip-track">
     <div class="strip-item"><i class="fas fa-location-dot"></i>Live project pins</div>
-    <div class="strip-item"><i class="fas fa-shield-halved"></i>MahaRERA verified</div>
+    <div class="strip-item"><i class="fas fa-shield-halved"></i>Official RERA data</div>
     <div class="strip-item"><i class="fas fa-road"></i>Infrastructure updates</div>
     <div class="strip-item"><i class="fas fa-satellite"></i>Satellite view</div>
     <div class="strip-item"><i class="fas fa-location-crosshairs"></i>Near me</div>
     <div class="strip-item"><i class="fab fa-whatsapp"></i>WhatsApp enquiries</div>
     <div class="strip-item"><i class="fas fa-location-dot"></i>Live project pins</div>
-    <div class="strip-item"><i class="fas fa-shield-halved"></i>MahaRERA verified</div>
+    <div class="strip-item"><i class="fas fa-shield-halved"></i>Official RERA data</div>
     <div class="strip-item"><i class="fas fa-road"></i>Infrastructure updates</div>
     <div class="strip-item"><i class="fas fa-satellite"></i>Satellite view</div>
     <div class="strip-item"><i class="fas fa-location-crosshairs"></i>Near me</div>
@@ -235,7 +235,7 @@ export const LANDING_BODY = `
         <p>Every project card answers the questions buyers ask first — no calls, no digging.</p>
         <ul class="flist">
           <li><i class="fas fa-signal"></i><div><b>Project status</b><span>Available, sold, under construction or upcoming.</span></div></li>
-          <li><i class="fas fa-shield-halved"></i><div><b>MahaRERA-verified RERA number</b><span>Checked on the official MahaRERA website, with a link to verify it yourself.</span></div></li>
+          <li><i class="fas fa-shield-halved"></i><div><b>RERA registration number</b><span>From the official state registry (MahaRERA, RERA Karnataka, Haryana RERA or UP RERA), with a link to verify it yourself.</span></div></li>
           <li><i class="fas fa-calendar-check"></i><div><b>Possession dates</b><span>Original and revised dates, side by side.</span></div></li>
         </ul>
       </div>
@@ -398,11 +398,11 @@ export const LANDING_BODY = `
       <a href="/map" class="btn btn-primary live-link">Open the live map <i class="fas fa-arrow-right"></i></a>
     </div>
     <div class="faq-list reveal d1">
-      <details class="faq-item" open><summary>What is Mappingg?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Mappingg is a live map of real estate projects. Each project is a pin with its status, MahaRERA-verified RERA number, possession dates and what's nearby, so you can understand it in seconds.</p></details>
+      <details class="faq-item" open><summary>What is Mappingg?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Mappingg is a live map of real estate projects. Each project is a pin with its status, RERA registration number, possession dates and what's nearby, so you can understand it in seconds.</p></details>
       <details class="faq-item"><summary>What is in it for buyers and investors?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Buyers and investors can explore the map, view project details, compare locations, understand nearby infrastructure and discover upcoming developments — all in one place.</p></details>
       <details class="faq-item"><summary>What infrastructure do you show?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Metro lines, ring roads, flyovers, bridges and road widening around each area — marked as completed, ongoing or planned — so you can see how a location is set to change.</p></details>
       <details class="faq-item"><summary>Which areas are covered?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Projects in India — Pune, Mumbai &amp; MMR, Bengaluru, Delhi NCR and Hyderabad — and Dubai, UAE, with more cities coming soon.</p></details>
-      <details class="faq-item"><summary>How do you verify projects?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Every RERA number is checked on the official <a href="https://maharera.maharashtra.gov.in/" target="_blank" rel="noopener">MahaRERA website</a> before the project goes live. Each project card also links to MahaRERA, so you can verify it yourself in one tap.</p></details>
+      <details class="faq-item"><summary>How do you verify projects?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Each RERA number comes from, or is checked against, the official registry of the project's state: the <a href="https://maharera.maharashtra.gov.in/" target="_blank" rel="noopener">MahaRERA website</a> for Maharashtra, and the matching state registry elsewhere, such as RERA Karnataka, Haryana RERA or UP RERA. Each project card shows the number with a link to the registry that issued it, so you can verify it yourself in one tap.</p></details>
       <details class="faq-item"><summary>How can I list my project?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Create a developer account and share your RERA number, location and project details. Once we verify your RERA number on the MahaRERA website, your project goes live on the map.</p></details>
       
     </div>
@@ -448,7 +448,7 @@ export const LANDING_BODY = `
       <div><h3>Company</h3><ul><li><a href="/about">About</a></li><li><a href="/blog">Blog</a></li><li><a href="/careers">Careers</a></li><li><a href="/privacy">Privacy policy</a></li></ul></div>
     </div>
     <div class="footer-bottom"><div>© 2026 Mappingg.com. All rights reserved.</div><div class="legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/cookies">Cookies</a><a href="/disclaimer">Disclaimer</a><a href="/map-data">Map data</a></div></div>
-    <p class="disclaimer">RERA numbers are verified on the <a href="https://maharera.maharashtra.gov.in/" target="_blank" rel="noopener">MahaRERA website</a>. Other project information comes from developers and is shown for reference only. Please confirm all details with the developer and MahaRERA before making a decision.</p>
+    <p class="disclaimer">RERA numbers come from the official state RERA registries (for Maharashtra, the <a href="https://maharera.maharashtra.gov.in/" target="_blank" rel="noopener">MahaRERA website</a>). Other project information comes from developers and is shown for reference only. Please confirm all details with the developer and the state RERA authority before making a decision.</p>
   </div>
 </footer>
 
@@ -466,7 +466,7 @@ export const LANDING_BODY = `
         <span class="pinlabel s-sold" style="left:52%;top:86%"><span class="pdot"></span>Sold</span>
       </div>
       <div class="benefits"><h5 id="benefitsTitle">What you get as a Buyer</h5><ul id="benefitsList"></ul></div>
-      <div class="trust"><span><i class="fas fa-shield-halved"></i>RERA verified on MahaRERA</span><span><i class="fas fa-lock"></i>Your details stay private</span></div>
+      <div class="trust"><span><i class="fas fa-shield-halved"></i>RERA numbers from official registries</span><span><i class="fas fa-lock"></i>Your details stay private</span></div>
     </aside>
     <div class="auth-main">
       <div class="modal-head"><h2 id="modalTitle">Create your account</h2><p id="modalSub">Takes less than a minute.</p></div>

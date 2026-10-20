@@ -1,4 +1,7 @@
+import type { Metadata } from 'next';
+import { paginate, type PageParam } from '@/lib/seo/paginate';
 import { notFound } from 'next/navigation';
+import { pagedMetadata, statusMeta } from '@/lib/seo/listing-meta';
 import EntityListing from '@/components/seo/EntityListing';
 import { getStatusGroups, getLocalityGroups, findGroup, STATUS_ROUTES, citiesPhrase } from '@/lib/seo/entities';
 
@@ -9,9 +12,20 @@ export async function generateStaticParams() {
   return STATUS_ROUTES.map((s) => ({ status: s.slug }));
 }
 
-export default async function StatusPage({ params }: { params: { status: string } }) {
+type Props = { params: { status: string }; searchParams?: { page?: PageParam } };
+
+// Page 2+ (?page=N) gets its own title and self-canonical; page 1 uses the layout's.
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+  const g = await findGroup(getStatusGroups, params.status);
+  const pg = g && paginate(g.pins, searchParams?.page);
+  return g && pg ? pagedMetadata(statusMeta(g), pg.page, pg.pages) : {};
+}
+
+export default async function StatusPage({ params, searchParams }: Props) {
   const g = await findGroup(getStatusGroups, params.status);
   if (!g) notFound();
+  const pg = paginate(g.pins, searchParams?.page);
+  if (!pg) notFound();
 
   const locs = await getLocalityGroups();
   const where = citiesPhrase(g.pins);
@@ -31,7 +45,8 @@ export default async function StatusPage({ params }: { params: { status: string 
       title={`${g.label} Projects in ${where}`}
       lede={`${g.label} real estate projects in ${where}, with developer, locality, configuration and pricing details.`}
       stats={[{ b: g.count, span: `${g.label} projects` }]}
-      pins={g.pins}
+      pins={pg.items}
+      pagination={{ ...pg, base: `/status/${g.slug}` }}
       projectsHeading={`${g.label} projects (${g.count})`}
       relatedTitle="Other statuses & localities"
       related={related}

@@ -73,6 +73,21 @@ export function reraNumber(v?: string): string {
   return /\d{3,}/.test(r) ? r : '';
 }
 
+/**
+ * The registry that issued a RERA number, from its format, with the registry's
+ * website. Same rules as the live map's project panel (public/legacy/public-map.json).
+ * Unknown formats return a generic name and no link — never a guess.
+ */
+export function reraRegistry(rera?: string): { name: string; url: string } {
+  const n = clean(rera).split(/\s*[,;]\s*|\s+\/\s+|\s+/)[0] || '';
+  if (/^P5\d{10}$|^P[RCM]\d{10,}$/i.test(n)) return { name: 'MahaRERA', url: 'https://maharera.maharashtra.gov.in/projects-search-result' };
+  if (/^PRM\/KA\/RERA\//i.test(n)) return { name: 'RERA Karnataka', url: 'https://rera.karnataka.gov.in/' };
+  if (/^(GGM\/|RC\/REP\/HARERA|HRERA)/i.test(n)) return { name: 'Haryana RERA', url: 'https://haryanarera.gov.in/' };
+  if (/^UPRERA/i.test(n)) return { name: 'UP RERA', url: 'https://www.up-rera.in/' };
+  if (/^P0\d{10}$/i.test(n)) return { name: 'Telangana RERA', url: 'https://rerait.telangana.gov.in/' };
+  return { name: 'RERA', url: '' };
+}
+
 /** "2, 3 and 4 BHK" from the configuration field, or '' when it names no BHK. */
 export function bhkLabel(configuration?: string): string {
   return formatBhk(bhkOptions(configuration).sort((a, b) => a - b));
@@ -115,7 +130,8 @@ export function projectTitle(p: ProjectFields, locality: string, city: string): 
       const t = n ? `${head} | ${facets.slice(0, n).join(', ')}` : head;
       if (t.length <= TITLE_BUDGET || (!where && n === 0)) {
         // A long name alone still beats a truncated facet list; keep a fallback suffix when room allows.
-        if (n === 0 && !facets.length && t.length + 12 <= TITLE_BUDGET) return `${t} | Location & Details`;
+        const suffix = ' | Location & Details';
+        if (n === 0 && !facets.length && t.length + suffix.length <= TITLE_BUDGET) return t + suffix;
         return t;
       }
     }
@@ -245,7 +261,15 @@ export function projectFaqs(p: ProjectFields, locality: string, city: string): {
     price ? { q: `What is the price of ${name}?`, a: `The listed price of ${name} is ${price}. Prices change often, so confirm the current price sheet with the developer before you decide.` } : null,
     bhk ? { q: `What configurations are available in ${name}?`, a: `${name} lists ${bhk} homes (${clean(p.configuration)}).` } : null,
     rera
-      ? { q: `What is the RERA number of ${name}?`, a: `${name} is listed with RERA registration number ${rera}. You can check it on your state RERA website before booking.` }
+      ? (() => {
+          const reg = reraRegistry(rera);
+          return {
+            q: `What is the RERA number of ${name}?`,
+            a: reg.url
+              ? `${name} is listed with ${reg.name} registration number ${rera}. You can check it on the ${reg.name} website before booking.`
+              : `${name} is listed with RERA registration number ${rera}. You can check it on the state RERA website before booking.`,
+          };
+        })()
       : null,
     status || possession
       ? {

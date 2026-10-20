@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { getPublishedPost as getBySlug } from '@/lib/blog';
 
 import { SITE, SITE_URL } from '@/lib/seo/config';
+import { clip } from '@/lib/seo/project-meta';
 
 // SEO metadata for /blog/<slug> lives here; page.tsx renders the article.
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
@@ -17,7 +18,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     : [{ url: SITE.ogFallback, width: 1200, height: 630, alt: SITE.ogFallbackAlt }];
   return {
     title,
-    description,
+    // Search results show ~160 characters; some stored descriptions run longer, so
+    // cut at a word boundary here (social cards keep the full text).
+    description: clip(description, 160),
     alternates: { canonical: url },
     openGraph: {
       type: 'article',

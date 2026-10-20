@@ -22,7 +22,7 @@ const ROWS: { label: string; val: (p: CmpProject) => string }[] = [
   { label: 'Location', val: (p) => p.location },
   { label: 'Status', val: (p) => STATUS[p.status] || p.status },
   { label: 'Property type', val: (p) => p.type },
-  { label: 'MahaRERA no.', val: (p) => p.rera_number },
+  { label: 'RERA no.', val: (p) => p.rera_number },
   { label: 'Configuration', val: (p) => p.configuration },
   { label: 'Carpet area', val: (p) => p.sqft },
   { label: 'Starting price', val: (p) => p.price },

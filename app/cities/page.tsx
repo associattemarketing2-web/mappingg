@@ -25,13 +25,14 @@ export default async function CitiesIndex() {
           <p>
             Mappingg maps {groups.reduce((n, g) => n + g.count, 0)} projects across {groups.length} cities
             {groups.length ? ` — ${groups.map((g) => `${g.label} (${g.count})`).join(', ')}` : ''}. Each city page
-            lists every project we track there, grouped by locality and construction status, with links to the
-            developers building in that city. Every project is also a pin on the live map, so you can see exactly
-            where it sits and what roads, metro lines and other infrastructure are planned nearby.
+            lists every project we track there, with links to its localities, to projects by construction status and
+            to our buying guides for the city. Every project is also a pin on the live map, so you can see exactly
+            where it sits and any roads, metro lines or other infrastructure we track nearby.
           </p>
         </div>
       </section>
       <section className="seo-section">
+        <h2>All cities</h2>
         <div className="seo-grid">
           {groups.map((g) => (
             <Link key={g.slug} href={`/cities/${g.slug}`} className="seo-card">

@@ -18,7 +18,7 @@ import {
 } from '@/lib/seo/entities';
 import { slugify } from '@/lib/seo/slug';
 import { projectSchema, faqSchema, videoSchema, youtubeId, jsonLd } from '@/lib/seo/schema';
-import { projectFaqs, projectSummary, reraNumber } from '@/lib/seo/project-meta';
+import { projectFaqs, projectSummary, reraNumber, reraRegistry } from '@/lib/seo/project-meta';
 
 const fmtDate = (d?: string) =>
   d ? new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
@@ -41,7 +41,8 @@ const specRows = (pin: Pin): { k: string; v: string }[] =>
     { k: 'Price', v: pin.price || '' },
     { k: 'Possession', v: pin.possession_timeline || '' },
     { k: 'Launch', v: pin.launch_date || '' },
-    { k: 'RERA registration', v: reraNumber(pin.rera_number) },
+    // Names the issuing registry ("MahaRERA registration", "RERA Karnataka registration").
+    { k: `${reraRegistry(pin.rera_number).name} registration`, v: reraNumber(pin.rera_number) },
   ].filter((r) => r.v);
 
 export default async function ProjectDetail({ params }: { params: { slug: string } }) {

@@ -1908,7 +1908,7 @@ function carpetAreaArticle() {
     title: 'Carpet Area vs Built-up vs Super Built-up Area: What You Actually Pay For (RERA Guide)',
     seo_title: 'Carpet Area vs Built-up vs Super Built-up Area (RERA)',
     seo_description:
-      'What carpet, built-up and super built-up area mean under RERA, how loading works, and how to compare flats by price per sq ft of carpet area. With worked examples.',
+      'What carpet, built-up and super built-up area mean under RERA, how loading works, and how to compare flats by price per sq ft of carpet area.',
     excerpt:
       'A flat sold as 1,050 sq ft may have only 700 sq ft of usable floor. Here is what carpet, built-up and super built-up area mean under RERA, and how to compare two flats fairly.',
     tags: ['Carpet Area', 'RERA', 'Home Buying Guide', 'Pune', 'Price per sq ft'],
@@ -2007,7 +2007,7 @@ function possessionDelayArticle() {
     title: 'Possession Delayed? Your Rights Under RERA and How to File a MahaRERA Complaint',
     seo_title: 'Flat Possession Delayed? RERA Rights & MahaRERA Complaint',
     seo_description:
-      'If your flat’s possession is delayed, RERA Section 18 lets you take a refund with interest or claim interest for every month of delay. How it works in Maharashtra and how to file a MahaRERA complaint.',
+      'Possession delayed? RERA Section 18 lets you take a refund with interest or claim interest for each month of delay. How it works and how to file on MahaRERA.',
     excerpt:
       'When the possession date in your agreement passes, RERA gives you a choice: leave the project with a refund and interest, or stay and get interest for every month of delay. Here is how it works in Maharashtra.',
     tags: ['RERA', 'MahaRERA', 'Possession Delay', 'Home Buyer Rights', 'Maharashtra'],

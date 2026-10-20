@@ -1,10 +1,25 @@
+import type { Metadata } from 'next';
+import { paginate, type PageParam } from '@/lib/seo/paginate';
+import { notFound } from 'next/navigation';
 import EntityListing from '@/components/seo/EntityListing';
+import { pagedMetadata, projectsMeta } from '@/lib/seo/listing-meta';
 import { getPublicPins, getLocalityGroups, getStatusGroups, getCityGroups, citiesPhrase } from '@/lib/seo/entities';
 
 export const revalidate = 3600;
 
-export default async function ProjectsIndex() {
+type Props = { searchParams?: { page?: PageParam } };
+
+// Page 2+ (?page=N) gets its own title and self-canonical; page 1 uses the layout's.
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+  const pins = await getPublicPins();
+  const pg = paginate(pins, searchParams?.page);
+  return pg ? pagedMetadata(projectsMeta(pins), pg.page, pg.pages) : {};
+}
+
+export default async function ProjectsIndex({ searchParams }: Props) {
   const [pins, locs, statuses, cities] = await Promise.all([getPublicPins(), getLocalityGroups(), getStatusGroups(), getCityGroups()]);
+  const pg = paginate(pins, searchParams?.page);
+  if (!pg) notFound();
   const where = citiesPhrase(pins, 4);
   const related = [
     ...cities.map((c) => ({ label: `Projects in ${c.label}`, path: `/cities/${c.slug}`, count: c.count })),
@@ -21,7 +36,8 @@ export default async function ProjectsIndex() {
         { b: pins.length, span: 'Projects mapped' },
         { b: locs.length, span: 'Localities' },
       ]}
-      pins={pins}
+      pins={pg.items}
+      pagination={{ ...pg, base: '/projects' }}
       projectsHeading={`All projects (${pins.length})`}
       relatedTitle="Browse by city, status & locality"
       related={related}

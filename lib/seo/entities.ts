@@ -96,30 +96,10 @@ export const getPublicPins = cache(async (): Promise<Pin[]> => {
       { table: 'pins', action: 'select', columns: LIST_COLUMNS, order: { col: 'number', ascending: true } },
       false,
     );
-    if (res.error || !Array.isArray(res.data)) throw new Error(`pins read failed: ${res.error || 'no data'}`);
+    if (res.error || !Array.isArray(res.data)) throw new Error(`pins read failed: ${res.error?.message || 'no data'}`);
     return (res.data as Pin[]).filter(isPropertyProject).map(withDisplayName);
   } catch (e) {
     return dbFailure(e, []);
-  }
-});
-
-/** One pin by its number, WITH images converted to cacheable /api/media URLs. */
-export const getPinByNumber = cache(async (n: number): Promise<Pin | null> => {
-  try {
-    const res = await runDbOp(
-      { table: 'pins', action: 'select', filters: [{ op: 'eq', col: 'number', val: n }], single: true },
-      false,
-    );
-    // No such (public) pin → a real 404. Any other error is a failed read, not a missing page.
-    if (res.status === 406 || (!res.error && !res.data)) return null;
-    if (res.error) throw new Error(`pin ${n} read failed: ${res.error}`);
-    // Not a property project (office marker, land parcel) → no project page (404).
-    if (!isPropertyProject(res.data as Pin)) return null;
-    // Request an optimized ~1000px WebP cover (served by /api/media) rather than
-    // the full-size base64 original, so the project page stays fast (P0).
-    return withDisplayName(withMediaUrls('pins', res.data, { width: 1000 }) as Pin);
-  } catch (e) {
-    return dbFailure(e, null);
   }
 });
 
@@ -139,10 +119,41 @@ function dbFailure<T>(e: unknown, fallback: T): T {
   throw e;
 }
 
-/** Resolve a /projects/<slug> URL to its pin via the trailing number (any title prefix matches). */
+/**
+ * Every public property project carrying pin number `n`, in the same order the
+ * single lookup used. Normally one; two projects can share a number by mistake
+ * (e.g. 116: "Yoo One" and "Codename Autobiography by Jhamtani").
+ */
+export const getPinsByNumber = cache(async (n: number): Promise<Pin[]> => {
+  try {
+    const res = await runDbOp(
+      { table: 'pins', action: 'select', filters: [{ op: 'eq', col: 'number', val: n }] },
+      false,
+    );
+    // An empty list is a real 404; a failed read throws (never a false "not found").
+    if (res.error || !Array.isArray(res.data)) throw new Error(`pin ${n} read failed: ${res.error?.message || 'no data'}`);
+    // Office markers and land parcels have no project page. Covers are requested as
+    // an optimized ~1000px WebP from /api/media, not the full-size original.
+    return (res.data as Pin[])
+      .filter(isPropertyProject)
+      .map((row) => withDisplayName(withMediaUrls('pins', row, { width: 1000 }) as Pin));
+  } catch (e) {
+    return dbFailure(e, []);
+  }
+});
+
+/**
+ * Resolve a /projects/<slug> URL to its pin via the trailing number (any title
+ * prefix matches, and the layout redirects to the canonical slug). When two
+ * projects share the number, the one whose canonical slug is the URL wins, so
+ * each keeps its own page; any other prefix resolves to the first, as before.
+ */
 export async function getPinBySlug(slug: string): Promise<Pin | null> {
   const n = projectNumberFromSlug(slug);
-  return n == null ? null : getPinByNumber(n);
+  if (n == null) return null;
+  const pins = await getPinsByNumber(n);
+  if (pins.length <= 1) return pins[0] || null;
+  return pins.find((p) => slugForProject(p) === slug) || pins[0];
 }
 
 // ---- derivations ----------------------------------------------------------

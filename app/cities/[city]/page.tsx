@@ -1,4 +1,7 @@
+import type { Metadata } from 'next';
+import { paginate, type PageParam } from '@/lib/seo/paginate';
 import { notFound } from 'next/navigation';
+import { cityMeta, pagedMetadata } from '@/lib/seo/listing-meta';
 import EntityListing from '@/components/seo/EntityListing';
 import {
   getCityGroups,
@@ -21,15 +24,27 @@ export async function generateStaticParams() {
   return (await getCityGroups()).map((g) => ({ city: g.slug }));
 }
 
-export default async function CityPage({ params }: { params: { city: string } }) {
+type Props = { params: { city: string }; searchParams?: { page?: PageParam } };
+
+// Page 2+ (?page=N) gets its own title and self-canonical; page 1 uses the layout's.
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+  const g = await findGroup(getCityGroups, params.city);
+  const pg = g && paginate(g.pins, searchParams?.page);
+  return g && pg ? pagedMetadata(cityMeta(g), pg.page, pg.pages) : {};
+}
+
+export default async function CityPage({ params, searchParams }: Props) {
   const g = await findGroup(getCityGroups, params.city);
   if (!g) notFound();
+  const pg = paginate(g.pins, searchParams?.page);
+  if (!pg) notFound();
 
   const [allLocs, statuses, cities, posts] = await Promise.all([getLocalityGroups(), getStatusGroups(), getCityGroups(), listPublished()]);
   const guides = guidesFor(g.slug, posts).map((p) => ({ label: `Guide: ${p.title}`, path: `/blog/${p.slug}` }));
   const otherCities = cities.filter((c) => c.slug !== g.slug).map((c) => ({ label: `Projects in ${c.label}`, path: `/cities/${c.slug}`, count: c.count }));
-  const localitiesHere = allLocs
-    .filter((l) => l.pins[0] && cityOf(l.pins[0]) === g.slug)
+  const allHere = allLocs.filter((l) => l.pins[0] && cityOf(l.pins[0]) === g.slug);
+  const localityCount = allHere.length;
+  const localitiesHere = allHere
     .slice(0, 16)
     .map((l) => ({ label: l.label, path: `/locations/${l.slug}`, count: l.count }));
   const statusHere = statuses
@@ -49,23 +64,24 @@ export default async function CityPage({ params }: { params: { city: string } })
       lede={`Projects across ${g.label}, organised by locality, developer and status — with a live, colour-coded map of where everything is and what infrastructure is coming.`}
       stats={[
         { b: g.count, span: 'Projects' },
-        { b: localitiesHere.length, span: 'Localities' },
+        { b: localityCount, span: 'Localities' },
       ]}
       prose={
         <p>
-          Mappingg maps {g.count} project{g.count === 1 ? '' : 's'} in {g.label}, across {localitiesHere.length}{' '}
-          {localitiesHere.length === 1 ? 'locality' : 'localities'} we track. Start from a locality below to focus on a
+          Mappingg maps {g.count} project{g.count === 1 ? '' : 's'} in {g.label}, across {localityCount}{' '}
+          {localityCount === 1 ? 'locality' : 'localities'} we track. Start from a locality below to focus on a
           specific micro-market, or browse every project in the city here.
         </p>
       }
-      pins={g.pins}
+      pins={pg.items}
+      pagination={{ ...pg, base: `/cities/${g.slug}` }}
       projectsHeading={`All projects in ${g.label} (${g.count})`}
       relatedTitle={`Localities in ${g.label}`}
       related={[...guides, ...statusHere, ...localitiesHere, ...otherCities]}
       faqs={[
         {
           q: `How many real estate projects are there in ${g.label} on Mappingg?`,
-          a: `Mappingg currently maps ${g.count} project${g.count === 1 ? '' : 's'} across ${localitiesHere.length} localit${localitiesHere.length === 1 ? 'y' : 'ies'} in ${g.label}.`,
+          a: `Mappingg currently maps ${g.count} project${g.count === 1 ? '' : 's'} across ${localityCount} localit${localityCount === 1 ? 'y' : 'ies'} in ${g.label}.`,
         },
       ]}
     />

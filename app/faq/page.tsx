@@ -5,11 +5,11 @@ import { plainText } from '@/lib/seo/node-text';
 
 
 const FAQS = [
-  { q: 'What is Mappingg?', a: <>Mappingg is a live map of real estate projects. Each project is a pin with its status, MahaRERA-verified RERA number, possession dates and what&apos;s nearby, so you can understand it in seconds.</> },
+  { q: 'What is Mappingg?', a: <>Mappingg is a live map of real estate projects. Each project is a pin with its status, RERA registration number, possession dates and what&apos;s nearby, so you can understand it in seconds.</> },
   { q: 'What is in it for buyers and investors?', a: <>Buyers and investors can explore the map, view project details, compare locations, understand nearby infrastructure and discover upcoming developments — all in one place.</> },
   { q: 'What infrastructure do you show?', a: <>Metro lines, ring roads, flyovers, bridges and road widening around each area — marked as completed, ongoing or planned — so you can see how a location is set to change.</> },
   { q: 'Which areas are covered?', a: <>Projects in India — Pune, Mumbai & MMR, Bengaluru, Delhi NCR and Hyderabad — and Dubai, UAE, with more cities coming soon.</> },
-  { q: 'How do you verify projects?', a: <>Every RERA number is checked on the official <a href="https://maharera.maharashtra.gov.in/" target="_blank" rel="noopener noreferrer">MahaRERA website</a> before the project goes live. Each project card also links to MahaRERA, so you can verify it yourself in one tap.</> },
+  { q: 'How do you verify projects?', a: <>Each RERA number comes from, or is checked against, the official registry of the project&apos;s state: the <a href="https://maharera.maharashtra.gov.in/" target="_blank" rel="noopener noreferrer">MahaRERA website</a> for Maharashtra, and the matching state registry elsewhere, such as RERA Karnataka, Haryana RERA or UP RERA. Each project card shows the number with a link to the registry that issued it, so you can verify it yourself in one tap.</> },
   { q: 'How can I contact Mappingg?', a: <>Email us at <a href={`mailto:${EMAIL}`}>{EMAIL}</a> or message us on WhatsApp at <a href={WHATSAPP_URL} target="_blank" rel="noopener">{WHATSAPP_DISPLAY}</a>. You can also follow us on {SOCIALS.map((s, i) => <span key={s.name}>{i ? (i === SOCIALS.length - 1 ? ' and ' : ', ') : ''}<a href={s.href} target="_blank" rel="noopener">{s.name}</a></span>)} for new projects and area updates.</> },
   { q: 'How can I list my project?', a: <>Create a developer account and share your RERA number, location and project details. Once we verify your RERA number on the MahaRERA website, your project goes live on the map.</> },
 ];

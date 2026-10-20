@@ -9,7 +9,7 @@ const VIEWS = [
   { icon: 'fas fa-tags', tone: 'road', title: 'Area labels', text: 'Localities and main roads labelled, so you always know where you are.' },
   { icon: 'fas fa-school', tone: '', title: 'Nearby places', text: 'Schools, hospitals and metro stations around each project, in one view.' },
   { icon: 'fas fa-road', tone: 'road', title: 'Infrastructure', text: 'Metro lines, ring roads, flyovers and bridges — completed, ongoing or planned.' },
-  { icon: 'fas fa-circle-info', tone: 'water', title: 'Project info', text: 'Status, MahaRERA-verified RERA number and possession dates for every project.' },
+  { icon: 'fas fa-circle-info', tone: 'water', title: 'Project info', text: 'Status, RERA registration number and possession dates, wherever the project has them.' },
   { icon: 'fas fa-border-all', tone: 'earth', title: 'Plot layouts', text: 'Plotted projects open into a plot-by-plot layout with availability.' },
 ];
 

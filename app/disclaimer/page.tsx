@@ -27,10 +27,10 @@ const sections: LegalSection[] = [
         <div className="note">
           <i className="fas fa-shield-halved" aria-hidden="true" />
           <span>
-            RERA numbers are verified on the{' '}
-            <a href="https://maharera.maharashtra.gov.in/" target="_blank" rel="noopener">MahaRERA website</a>. Other
+            RERA numbers come from the official state RERA registries (for Maharashtra, the{' '}
+            <a href="https://maharera.maharashtra.gov.in/" target="_blank" rel="noopener">MahaRERA website</a>). Other
             project information comes from developers and is shown for reference only. Please confirm all details with the
-            developer and MahaRERA before making a decision.
+            developer and the state RERA authority before making a decision.
           </span>
         </div>
       </>
@@ -65,7 +65,7 @@ const sections: LegalSection[] = [
       <p>
         The same applies to everything we share on our Instagram, LinkedIn, YouTube and Facebook pages and on WhatsApp,
         including project videos, posts, reels and brochures. These are for information only, are not an offer to sell,
-        and may not reflect later changes to a project. Please confirm all details with the developer and MahaRERA.
+        and may not reflect later changes to a project. Please confirm all details with the developer and the state RERA authority.
       </p>
     ),
   },

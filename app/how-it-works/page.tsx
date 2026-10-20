@@ -7,7 +7,7 @@ const BUYER_SEES = [
   { icon: 'fas fa-circle-half-stroke', tone: '', title: 'Live status', text: 'Available, under construction, upcoming or sold — colour-coded on the map.' },
   { icon: 'fas fa-indian-rupee-sign', tone: 'road', title: 'Price & configuration', text: 'Starting price, BHK options and carpet area, where the developer shares them.' },
   { icon: 'fas fa-calendar-check', tone: 'water', title: 'Possession date', text: 'The listed possession timeline, so you can plan your move.' },
-  { icon: 'fas fa-certificate', tone: 'earth', title: 'MahaRERA number', text: 'Shown on the project card so you can check it on the MahaRERA website.' },
+  { icon: 'fas fa-certificate', tone: 'earth', title: 'RERA number', text: 'Shown on the project card with a link to the state RERA website, so you can check it yourself.' },
   { icon: 'fas fa-route', tone: 'water', title: 'What is nearby', text: 'Roads, metro lines and nearby places on the same map.' },
   { icon: 'fas fa-comments', tone: '', title: 'One-tap enquiry', text: 'Ask about a project once and the team gets back to you.' },
 ];

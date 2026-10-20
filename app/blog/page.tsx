@@ -73,7 +73,7 @@ export default async function BlogIndex({ searchParams }: { searchParams?: { pag
               <a className="post-card" href={`/blog/${p.slug}`} key={p.id}>
                 {p.cover_image ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img className="post-cover" src={p.cover_image} alt={p.title} loading="lazy" />
+                  <img className="post-cover" src={p.cover_image} alt={p.title} width={1200} height={630} loading="lazy" decoding="async" />
                 ) : (
                   <div className="post-cover ph"><i className="fas fa-newspaper" aria-hidden="true">📰</i></div>
                 )}

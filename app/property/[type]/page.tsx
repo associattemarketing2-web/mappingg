@@ -1,4 +1,7 @@
+import type { Metadata } from 'next';
+import { paginate, type PageParam } from '@/lib/seo/paginate';
 import { notFound } from 'next/navigation';
+import { pagedMetadata, typeMeta } from '@/lib/seo/listing-meta';
 import EntityListing from '@/components/seo/EntityListing';
 import { getTypeGroups, getLocalityGroups, findGroup, citiesPhrase } from '@/lib/seo/entities';
 
@@ -13,9 +16,20 @@ export async function generateStaticParams() {
   return (await getTypeGroups()).map((g) => ({ type: g.slug }));
 }
 
-export default async function PropertyTypePage({ params }: { params: { type: string } }) {
+type Props = { params: { type: string }; searchParams?: { page?: PageParam } };
+
+// Page 2+ (?page=N) gets its own title and self-canonical; page 1 uses the layout's.
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+  const g = await findGroup(getTypeGroups, params.type);
+  const pg = g && paginate(g.pins, searchParams?.page);
+  return g && pg ? pagedMetadata(typeMeta(g), pg.page, pg.pages) : {};
+}
+
+export default async function PropertyTypePage({ params, searchParams }: Props) {
   const g = await findGroup(getTypeGroups, params.type);
   if (!g) notFound();
+  const pg = paginate(g.pins, searchParams?.page);
+  if (!pg) notFound();
 
   const [types, locs] = await Promise.all([getTypeGroups(), getLocalityGroups()]);
   const related = [
@@ -34,7 +48,8 @@ export default async function PropertyTypePage({ params }: { params: { type: str
       title={`${g.label} Projects in ${citiesPhrase(g.pins)}`}
       lede={`${g.label} real estate projects in ${citiesPhrase(g.pins)}, with developer, locality, configuration and pricing details.`}
       stats={[{ b: g.count, span: `${g.label} projects` }]}
-      pins={g.pins}
+      pins={pg.items}
+      pagination={{ ...pg, base: `/property/${g.slug}` }}
       projectsHeading={`${g.label} projects (${g.count})`}
       relatedTitle="Other types & localities"
       related={related}

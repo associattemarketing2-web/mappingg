@@ -5,7 +5,7 @@ import { buildMetadata } from '@/lib/seo/metadata';
 export const metadata: Metadata = buildMetadata({
   title: 'Features — Project Pins, Infrastructure & Map Layers',
   description:
-    'See every real estate project differently — project pins by status, map and satellite views, area labels, nearby places, upcoming infrastructure, project info and plot-by-plot layouts.',
+    'Project pins by status, map and satellite views, area labels, nearby places, upcoming infrastructure, project details and plot-by-plot layouts.',
   path: '/features',
 });
 

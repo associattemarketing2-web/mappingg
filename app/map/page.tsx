@@ -1,77 +1,42 @@
+import Link from 'next/link';
 import LegacyApp from '@/components/LegacyApp';
 import LegacyPreloads from '@/components/LegacyPreloads';
 import MapAuthGate from '@/components/MapAuthGate';
-import { getSeoProjects, statusLabel, AREAS_PUNE, AREAS_MMR } from '@/lib/seo-data';
-import { slugForProject } from '@/lib/seo/entities';
-import { isPropertyProject } from '@/lib/seo/project-filter';
+import { getPublicPins, getCityGroups, citiesPhrase } from '@/lib/seo/entities';
 
-import { SITE_URL } from '@/lib/seo/config';
-
-// Regenerate the crawlable content periodically (ISR) — fast to serve, fresh
-// enough for search engines, and cheap on the database.
+// Regenerate the text below periodically (ISR) — fast to serve and cheap on the database.
 export const revalidate = 3600;
 
 export default async function MapPage() {
-  // Office markers and land parcels stay on the map itself but aren't listed as projects.
-  const projects = (await getSeoProjects()).filter(isPropertyProject);
-
-  const projectPath = (p: (typeof projects)[number]) => `/projects/${slugForProject({ ...p, number: p.number ?? 0 })}`;
-  // Organization + WebSite come from the root layout; this page adds the project list.
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    name: 'Mapped real estate projects',
-    numberOfItems: projects.length,
-    itemListElement: projects.slice(0, 200).map((p, i) => ({
-      '@type': 'ListItem',
-      position: i + 1,
-      name: p.title || `Project #${p.number ?? ''}`.trim(),
-      url: `${SITE_URL}${projectPath(p)}`,
-    })),
-  };
+  // The map loads its own data in the browser, so a failed read here must never
+  // take the page down — the description just drops its numbers.
+  const [pins, cities] = await Promise.all([getPublicPins(), getCityGroups()]).catch(() => [[], []] as [Awaited<ReturnType<typeof getPublicPins>>, Awaited<ReturnType<typeof getCityGroups>>]);
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-
-      {/* Crawlable content for search engines. Visually hidden so the map UI is
-          unchanged, but fully indexable — gives Google real text about every
-          project and area, which is what drives organic discovery. */}
+      {/* A heading and short description for screen-reader users — the map itself
+          is visual — plus links to the same projects as accessible lists. This
+          used to also hold every project and long area lists for crawlers only;
+          /projects and the city and locality pages now show those visibly. */}
       <div className="sr-only">
-        <h1>Mappingg — Live interactive real estate project map for Pune, Mumbai, Bengaluru, Delhi NCR and Hyderabad</h1>
+        <h1>Live real estate project map</h1>
         <p>
-          Browse {projects.length} live real estate projects on an interactive map, colour-coded by
-          status (available, under construction, upcoming, sold), with developer, configuration,
-          carpet area, price, possession timeline and nearby infrastructure such as metro stations,
-          bridges, schools and hospitals.
+          An interactive map of {pins.length ? `${pins.length} real estate projects in ${citiesPhrase(pins, 5)}` : 'real estate projects'}, colour-coded by status,
+          with each project&apos;s developer, configuration, price, RERA number and possession date where listed.
         </p>
-        <h2>Areas covered in Pune</h2>
-        <p>{AREAS_PUNE.join(', ')}.</p>
-        <h2>Areas covered in the Mumbai region</h2>
-        <p>{AREAS_MMR.join(', ')}.</p>
-
-        {projects.length > 0 && (
-          <nav aria-label="All mapped projects">
-            <h2>Projects on the map</h2>
-            <ul>
-              {projects.map((p) => (
-                <li key={p.id}>
-                  <a href={projectPath(p)}>
-                    {p.title || `Project #${p.number ?? ''}`}
-                    {p.location ? ` — ${p.location}` : ''}
-                    {p.status ? ` (${statusLabel(p.status)})` : ''}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        )}
+        <nav aria-label="Projects as a list">
+          <ul>
+            <li><Link href="/projects">Browse all projects as a list</Link></li>
+            {cities.map((c) => (
+              <li key={c.slug}><Link href={`/cities/${c.slug}`}>Projects in {c.label}</Link></li>
+            ))}
+          </ul>
+        </nav>
       </div>
 
       <LegacyPreloads slug="public-map" />
       <LegacyApp slug="public-map" />
-      {/* Guests get a short peek, then a sign-in prompt. Server HTML above stays
-          crawlable so the map page keeps its SEO. */}
+      {/* Guests get a short peek, then a sign-in prompt. */}
       <MapAuthGate />
     </>
   );

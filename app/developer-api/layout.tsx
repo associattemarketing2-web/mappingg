@@ -5,7 +5,7 @@ import { buildSectionMetadata } from '@/lib/seo/metadata';
 export const metadata: Metadata = buildSectionMetadata({
   title: 'Developer API — Real Estate Project Data',
   description:
-    'Mappingg Developer API: key-based access to public real-estate project, developer, locality, map and article data for approved partners, plus secure enquiry submission into the Mappingg CRM.',
+    'Key-based API access to public real estate project, developer, locality, map and article data for approved partners, plus secure enquiry submission.',
   path: '/developer-api',
 });
 
