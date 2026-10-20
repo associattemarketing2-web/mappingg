@@ -192,6 +192,13 @@ export function completeness(sub) {
 }
 
 // Mirrors publish_blockers() in the database
+// A submission opened from an existing map pin ("Edit all details") lists pin values
+// the form could not hold exactly under Additional details, e.g. "Price (as on the
+// map)". Publishing keeps them on the pin, so they satisfy the matching check.
+// Labels must match lib/pin-to-intake.ts.
+const keptOnPin = (sub, label) => sub.source === 'map_pin'
+  && (sub.additional_details || []).some(d => d && d.label === label && String(d.value || '').trim());
+
 export function publishBlockers(sub) {
   const m = [];
   if (!sub.project_name) m.push('Project name');
@@ -199,8 +206,10 @@ export function publishBlockers(sub) {
   if (!sub.country) m.push('Country');
   if (!sub.city) m.push('City');
   if (sub.lat == null || sub.lng == null) m.push('Map pin');
-  if (['Residential', 'Commercial', 'Mixed-Use'].includes(sub.project_type) && !(sub.configurations || []).length) m.push('Configuration');
-  if (!sub.price_on_request && sub.price_min == null && sub.price_max == null) m.push('Price (or Price on request)');
+  if (['Residential', 'Commercial', 'Mixed-Use'].includes(sub.project_type) && !(sub.configurations || []).length
+    && !keptOnPin(sub, 'Configuration (as on the map)')) m.push('Configuration');
+  if (!sub.price_on_request && sub.price_min == null && sub.price_max == null
+    && !keptOnPin(sub, 'Price (as on the map)')) m.push('Price (or Price on request)');
   if (sub.country === 'India' && !(sub.rera_numbers || []).length && !sub.compliance_override) m.push('RERA number (required in India)');
   return m;
 }

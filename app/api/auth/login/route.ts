@@ -6,6 +6,7 @@ import { PUBLIC_ROLES, createSessionToken, homePathFor, setSessionCookie } from 
 import { recordLogin } from '@/lib/activity';
 import { homeForAccount, verificationOf } from '@/lib/verification';
 import { clientIp, rateLimit } from '@/lib/rate-limit';
+import { roleOrDefault } from '@/lib/auth-role';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -43,7 +44,7 @@ export async function POST(req: NextRequest) {
   const sessionUser = {
     id: String(user.id || user._id),
     email: String(user.email),
-    role: String(user.role || 'admin'),
+    role: roleOrDefault(user.role),
   };
   const token = await createSessionToken(sessionUser);
   setSessionCookie(token);

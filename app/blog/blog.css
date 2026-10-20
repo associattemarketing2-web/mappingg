@@ -55,7 +55,8 @@
 .blog-pager .pg-num, .blog-pager .pg-step { display: inline-flex; align-items: center; justify-content: center; min-width: 42px; height: 42px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--fg); font-weight: 600; font-size: 14px; transition: border-color .15s, color .15s, background .15s; }
 .blog-pager a:hover { border-color: var(--forest); color: var(--forest); }
 .blog-pager .pg-num.on { background: var(--forest); border-color: var(--forest); color: #fff; }
-.blog-pager .pg-step.off { opacity: .45; }
+/* Inactive Previous/Next: readable (4.8:1) but visibly not a link. */
+.blog-pager .pg-step.off { color: var(--muted); background: var(--card); border-style: dashed; }
 @media (max-width: 620px) { .blog-pager .pg-step { padding: 0 12px; font-size: 13px; } }
 
 /* article */
@@ -109,3 +110,4 @@
 
 .blog-foot-main { display: flex; flex-direction: column; gap: 4px; }
 .blog-foot-contact a { color: var(--forest); font-weight: 600; }
+.article .back a:hover { color: var(--forest); }

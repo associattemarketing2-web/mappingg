@@ -4,9 +4,9 @@ import './blog.css';
 
 // SEO metadata for /blog lives here; page.tsx renders the content.
 export const metadata: Metadata = buildSectionMetadata({
-  title: 'Blog — Pune & Mumbai Real Estate Guides, Insights & News',
+  title: 'Real Estate Blog — Pune, Mumbai & Bengaluru Buying Guides',
   description:
-    'Practical guides, locality insights and market news for buying property in Pune and the Mumbai Metropolitan Region — RERA, possession, pricing, stamp duty, home loans and more, from the Mappingg team.',
+    'Locality guides, budget guides and buying tips for Pune, Mumbai & MMR and Bengaluru — RERA, possession, pricing, stamp duty, home loans and more, from the Mappingg team.',
   path: '/blog',
   keywords: [
     'Pune real estate blog', 'property buying guide Pune', 'MahaRERA guide', 'Pune property news',

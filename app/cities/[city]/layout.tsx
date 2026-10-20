@@ -1,17 +1,15 @@
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { getCityGroups, findGroup } from '@/lib/seo/entities';
 import { buildMetadata } from '@/lib/seo/metadata';
+import { cityMeta } from '@/lib/seo/listing-meta';
 
-// SEO metadata for /cities/<city> lives here; page.tsx renders the listing.
+// SEO metadata for /cities/<city> lives here; page.tsx renders the listing
+// (and overrides title/canonical for ?page=N).
 export async function generateMetadata({ params }: { params: { city: string } }): Promise<Metadata> {
   const g = await findGroup(getCityGroups, params.city);
-  if (!g) return { title: 'City not found', robots: { index: false, follow: false } };
-  return buildMetadata({
-    title: `Real Estate Projects in ${g.label}`,
-    description: `Explore ${g.count} real estate project${g.count === 1 ? '' : 's'} across ${g.label} — by locality, developer and status, with an interactive map on Mappingg.`,
-    path: `/cities/${g.slug}`,
-    keywords: [`real estate projects ${g.label}`, `property in ${g.label}`],
-  });
+  if (!g) notFound();
+  return buildMetadata(cityMeta(g));
 }
 
 export default function CityLayout({ children }: { children: React.ReactNode }) {

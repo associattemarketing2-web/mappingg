@@ -2,9 +2,9 @@ import { localitiesOf } from '../locality';
 
 // Which city a project is in. Pins are placed on the map by hand, so their
 // coordinates are the most reliable signal; the free-text location is the
-// fallback for pins without usable coordinates. Pune and Mumbai/MMR have hub
-// pages (/cities/<key>); the other cities are named correctly in titles and
-// schema but have too few projects for a hub page of their own.
+// fallback for pins without usable coordinates. Cities with enough projects have
+// hub pages (/cities/<key>); the others are named correctly in titles and schema
+// but have too few projects for a hub page of their own.
 
 export type CityKey = 'pune' | 'mumbai' | 'hyderabad' | 'bengaluru' | 'dubai' | 'nashik' | 'delhi';
 
@@ -18,8 +18,38 @@ export const CITY_LABELS: Record<CityKey, string> = {
   delhi: 'Delhi NCR',
 };
 
-/** Cities with a /cities/<key> hub page. */
-export const HUB_CITIES: readonly CityKey[] = ['pune', 'mumbai'];
+/** Short names for running text ("Pune, Bengaluru & Mumbai"). */
+export const CITY_SHORT: Record<CityKey, string> = {
+  pune: 'Pune',
+  mumbai: 'Mumbai',
+  hyderabad: 'Hyderabad',
+  bengaluru: 'Bengaluru',
+  dubai: 'Dubai',
+  nashik: 'Nashik',
+  delhi: 'Delhi NCR',
+};
+
+/**
+ * Cities with a /cities/<key> hub page: each had 10+ mapped projects when added
+ * (Oct 2026: Bengaluru 491, Pune 259, Mumbai & MMR 120, Delhi NCR 81, Hyderabad 12).
+ * Dubai and Nashik (1 project each) stay without a hub — a one-item list is thin.
+ */
+export const HUB_CITIES: readonly CityKey[] = ['pune', 'mumbai', 'bengaluru', 'delhi', 'hyderabad'];
+
+/**
+ * "Bengaluru, Pune & Mumbai" / "Bengaluru, Pune, Mumbai & more" — the cities a
+ * set of projects actually covers, most projects first. Keeps hub titles and
+ * copy true as coverage changes, instead of a hard-coded region.
+ */
+export function citiesPhrase(keys: CityKey[], max = 3): string {
+  const counts = new Map<CityKey, number>();
+  for (const k of keys) counts.set(k, (counts.get(k) || 0) + 1);
+  const names = [...counts.entries()].sort((a, b) => b[1] - a[1]).map(([k]) => CITY_SHORT[k]);
+  if (!names.length) return 'India';
+  if (names.length === 1) return names[0];
+  if (names.length > max) return `${names.slice(0, max).join(', ')} & more`;
+  return `${names.slice(0, -1).join(', ')} & ${names[names.length - 1]}`;
+}
 
 export function hasCityHub(key: CityKey): boolean {
   return HUB_CITIES.includes(key);

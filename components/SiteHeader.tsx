@@ -21,6 +21,9 @@ const LINKS = [
 ];
 // Secondary links shown only in the mobile menu, where the footer is a long scroll away.
 const MORE_LINKS = [
+  { href: '/projects', label: 'All projects' },
+  { href: '/cities', label: 'Cities' },
+  { href: '/locations', label: 'Localities' },
   { href: '/developers', label: 'Developers' },
   { href: '/property', label: 'Property types' },
   { href: '/about', label: 'About' },
@@ -105,7 +108,7 @@ export default function SiteHeader() {
     <header className={`shd${scrolled ? ' scrolled' : ''}`}>
       <div className="shd-wrap">
         <div className="shd-bar">
-          <Link href="/" className="shd-brand" aria-label="Mappingg home" onClick={() => setOpen(false)}>
+          <Link href="/" className="shd-brand" aria-label="Mappingg.com home" onClick={() => setOpen(false)}>
             <span className="mark" aria-hidden="true" />
             <b>Mappingg<em>.com</em></b>
           </Link>

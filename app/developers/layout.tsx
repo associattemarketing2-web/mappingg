@@ -1,14 +1,16 @@
 import type { Metadata } from 'next';
 import { buildSectionMetadata } from '@/lib/seo/metadata';
+import { getPublicPins, citiesPhrase } from '@/lib/seo/entities';
 
 // SEO metadata for /developers lives here; page.tsx renders the content.
-export const metadata: Metadata = buildSectionMetadata({
-  title: 'Real Estate Developers in Pune & MMR',
-  description:
-    'Browse real estate developers building across Pune and the Mumbai Metropolitan Region, and explore their projects, locations and current status on Mappingg.',
-  path: '/developers',
-  keywords: ['real estate developers Pune', 'builders Pune', 'developers MMR'],
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const where = citiesPhrase(await getPublicPins(), 3);
+  return buildSectionMetadata({
+    title: `Real Estate Developers in ${where}`,
+    description: `Browse real estate developers building in ${where}, and explore each builder's projects, locations, RERA numbers and current status on Mappingg.`,
+    path: '/developers',
+  });
+}
 
 export default function DevelopersLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;

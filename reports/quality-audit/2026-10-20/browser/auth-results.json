@@ -1,0 +1,771 @@
+[
+ {
+  "who": "anonymous",
+  "path": "/api/admin/accounts",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/admin/accounts/activity",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/admin/backups",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/admin/blogs",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/admin/developer-api",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/admin/developers",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/admin/employees",
+  "status": 403,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/admin/leads",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/admin/notifications",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/admin/profile",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/admin/search-console",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/admin/seo-insights",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/admin/settings",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/admin/stats",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/admin/submissions",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/admin/traffic",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/my/compare",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/my/favorites",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/my/notifications",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/my/profile",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/my/projects",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/partners/storage",
+  "status": 400,
+  "location": "",
+  "ok": false,
+  "sample": "{\"error\":{\"message\":\"Missing bucket or path\"}}"
+ },
+ {
+  "who": "anonymous",
+  "path": "/dashboard",
+  "status": 307,
+  "location": "/?signin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/dashboard/s-admin",
+  "status": 307,
+  "location": "/?admin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/dashboard/s-admin/map",
+  "status": 307,
+  "location": "/?admin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/dashboard/s-admin/submissions",
+  "status": 307,
+  "location": "/?admin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/dashboard/developer",
+  "status": 307,
+  "location": "/?signin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/dashboard/buyer/favorites",
+  "status": 307,
+  "location": "/?signin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/s-admin",
+  "status": 307,
+  "location": "/dashboard/s-admin",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/dashboard/map",
+  "status": 307,
+  "location": "/?signin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/admin/accounts",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/admin/accounts/activity",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/admin/backups",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/admin/blogs",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/admin/developer-api",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/admin/developers",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/admin/employees",
+  "status": 403,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/admin/leads",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/admin/notifications",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/admin/profile",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/admin/search-console",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/admin/seo-insights",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/admin/settings",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/admin/stats",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/admin/submissions",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/admin/traffic",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/my/compare",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/my/favorites",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/my/notifications",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/my/profile",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/my/projects",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/api/partners/storage",
+  "status": 400,
+  "location": "",
+  "ok": false,
+  "sample": "{\"error\":{\"message\":\"Missing bucket or path\"}}"
+ },
+ {
+  "who": "forged",
+  "path": "/dashboard",
+  "status": 307,
+  "location": "/?signin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/dashboard/s-admin",
+  "status": 307,
+  "location": "/?admin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/dashboard/s-admin/map",
+  "status": 307,
+  "location": "/?admin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/dashboard/s-admin/submissions",
+  "status": 307,
+  "location": "/?admin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/dashboard/developer",
+  "status": 307,
+  "location": "/?signin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/dashboard/buyer/favorites",
+  "status": 307,
+  "location": "/?signin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/s-admin",
+  "status": 307,
+  "location": "/dashboard/s-admin",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "forged",
+  "path": "/dashboard/map",
+  "status": 307,
+  "location": "/?signin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/admin/accounts",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/admin/accounts/activity",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/admin/backups",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/admin/blogs",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/admin/developer-api",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/admin/developers",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/admin/employees",
+  "status": 403,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/admin/leads",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/admin/notifications",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/admin/profile",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/admin/search-console",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/admin/seo-insights",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/admin/settings",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/admin/stats",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/admin/submissions",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/admin/traffic",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/my/compare",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/my/favorites",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/my/notifications",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/my/profile",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/my/projects",
+  "status": 401,
+  "location": "",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/partners/storage",
+  "status": 400,
+  "location": "",
+  "ok": false,
+  "sample": "{\"error\":{\"message\":\"Missing bucket or path\"}}"
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/dashboard",
+  "status": 307,
+  "location": "/?signin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/dashboard/s-admin",
+  "status": 307,
+  "location": "/?admin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/dashboard/s-admin/map",
+  "status": 307,
+  "location": "/?admin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/dashboard/s-admin/submissions",
+  "status": 307,
+  "location": "/?admin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/dashboard/developer",
+  "status": 307,
+  "location": "/?signin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/dashboard/buyer/favorites",
+  "status": 307,
+  "location": "/?signin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/s-admin",
+  "status": 307,
+  "location": "/dashboard/s-admin",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/dashboard/map",
+  "status": 307,
+  "location": "/?signin=1",
+  "ok": true,
+  "sample": ""
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/auth/session",
+  "status": 200,
+  "ok": true,
+  "sample": "{\"session\":null}"
+ },
+ {
+  "who": "forged",
+  "path": "/api/auth/session",
+  "status": 200,
+  "ok": true,
+  "sample": "{\"session\":null}"
+ },
+ {
+  "who": "ghostAdmin",
+  "path": "/api/auth/session",
+  "status": 200,
+  "ok": true,
+  "sample": "{\"session\":null}"
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/db select leads",
+  "status": 401,
+  "ok": true,
+  "sample": "{\"data\":null,\"error\":{\"message\":\"Not authorized\"}}"
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/db select pins_history",
+  "status": 401,
+  "ok": true,
+  "sample": "{\"data\":null,\"error\":{\"message\":\"Not authorized\"}}"
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/db select users",
+  "status": 401,
+  "ok": true,
+  "sample": "{\"data\":null,\"error\":{\"message\":\"Not authorized\"}}"
+ },
+ {
+  "who": "anonymous",
+  "path": "/api/db select contact_leads",
+  "status": 401,
+  "ok": true,
+  "sample": "{\"data\":null,\"error\":{\"message\":\"Not authorized\"}}"
+ }
+]

@@ -3,7 +3,7 @@ import { buildMetadata } from '@/lib/seo/metadata';
 
 // SEO metadata for /about lives here; page.tsx renders the content.
 export const metadata: Metadata = buildMetadata({
-  title: 'About Us',
+  title: 'About Us — Real Estate Project Map by Associatte PropTech',
   description:
     'Mappingg puts every live real estate project on one interactive map. A product by Associatte PropTech, Pune.',
   path: '/about',

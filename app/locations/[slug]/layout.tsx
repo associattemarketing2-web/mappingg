@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { getLocalityGroups, findGroup, cityOf, CITY_LABELS } from '@/lib/seo/entities';
 import { buildMetadata } from '@/lib/seo/metadata';
 import { localityIndexing } from '@/lib/seo/indexing';
@@ -6,7 +7,7 @@ import { localityIndexing } from '@/lib/seo/indexing';
 // SEO metadata for /locations/<slug> lives here; page.tsx renders the listing.
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const g = await findGroup(getLocalityGroups, params.slug);
-  if (!g) return { title: 'Locality not found', robots: { index: false, follow: false } };
+  if (!g) notFound();
   const city = g.pins[0] ? CITY_LABELS[cityOf(g.pins[0])] : '';
   return buildMetadata({
     title: `Real Estate Projects in ${g.label}${city ? `, ${city}` : ''}`,

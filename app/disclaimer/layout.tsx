@@ -5,7 +5,7 @@ import { buildMetadata } from '@/lib/seo/metadata';
 export const metadata: Metadata = buildMetadata({
   title: 'Disclaimer',
   description:
-    'Project information on Mappingg.com is for reference only. Please confirm all details with the developer and MahaRERA.',
+    'Project information on Mappingg.com is for reference only. Please confirm all details with the developer and the state RERA authority.',
   path: '/disclaimer',
 });
 

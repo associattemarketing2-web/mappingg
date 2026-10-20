@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { requestFullEdit } from './fullEdit';
 import { usePersistedState } from './usePersistedState';
 
 // Super admin → Developers: the developer directory, ONE logo per developer
@@ -293,12 +294,13 @@ function ProjectDetail({ p, dev, busy, onBack, onUseDevLogo, onUpload }: { p: De
       {d?.about && <p className="dvl-about">{d.about}</p>}
 
       <div className="dvl-detail-acts">
-        {dev.logo && !p.hasLogo && <button type="button" className="adm-btn primary sm" disabled={busy} onClick={onUseDevLogo}><i className="fas fa-wand-magic-sparkles" /> Use developer logo</button>}
+        <button type="button" className="adm-btn primary sm" disabled={busy} onClick={() => requestFullEdit(p.id)}><i className="fas fa-pen-to-square" /> Edit all details</button>
+        {dev.logo && !p.hasLogo && <button type="button" className="adm-btn ghost sm" disabled={busy} onClick={onUseDevLogo}><i className="fas fa-wand-magic-sparkles" /> Use developer logo</button>}
         <button type="button" className="adm-btn ghost sm" disabled={busy} onClick={onUpload}><i className="fas fa-upload" /> Upload a different logo</button>
         <a className="adm-btn ghost sm" href={`/map?pin=${encodeURIComponent(p.id)}`} target="_blank" rel="noopener"><i className="fas fa-map-location-dot" /> View on map</a>
         {d?.page && <a className="adm-btn ghost sm" href={d.page} target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /> Project page</a>}
       </div>
-      <p className="muted dvl-foot">To change other details (price, status, possession…), edit this project in the Map Editor.</p>
+      <p className="muted dvl-foot"><b>Edit all details</b> opens this project in the full Projects Intake form (every field: price, configuration, RERA, media, amenities, sales contact…). Publishing it there updates this same pin.</p>
     </div>
   );
 }
@@ -430,6 +432,7 @@ function DeveloperDrawer({ dev, initialProject, flash, onClose, onChanged, onEdi
                         <button type="button" className="adm-btn ghost sm" disabled={busy} onClick={() => applyDevLogo([p.id])} title={`Use the ${dev.name} logo`}>Use developer logo</button>
                       )}
                       <button type="button" className="adm-btn ghost sm" disabled={busy} onClick={() => pickUpload([p.id])} title="Upload a different logo for this project"><i className="fas fa-upload" /> Upload</button>
+                      <button type="button" className="adm-btn ghost sm" disabled={busy} onClick={() => requestFullEdit(p.id)} title="Edit every detail of this project" aria-label={`Edit all details of ${p.title}`}><i className="fas fa-pen-to-square" /> Edit</button>
                       <a className="dvl-icon" href={`/map?pin=${encodeURIComponent(p.id)}`} target="_blank" rel="noopener" title="View on map" aria-label={`View ${p.title} on map`}><i className="fas fa-map-location-dot" /></a>
                     </span>
                   </li>

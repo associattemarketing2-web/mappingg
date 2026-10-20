@@ -90,7 +90,7 @@ export default function InfoPage({
         <div className="container">
           <div className="cols">
             <div className="about">
-              <Link href="/" className="brand" aria-label="Mappingg home">
+              <Link href="/" className="brand" aria-label="Mappingg.com home">
                 <span className="mark" aria-hidden="true" />
                 <b>Mappingg<em>.com</em></b>
               </Link>

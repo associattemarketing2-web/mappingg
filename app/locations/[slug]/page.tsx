@@ -12,12 +12,16 @@ import {
 import { slugify } from '@/lib/seo/slug';
 import { LOCALITY_GUIDES } from '@/lib/seo/locality-guides';
 import { formatBhk, formatLakhs, summarizeLocality } from '@/lib/seo/locality-summary';
+import { guidesFor } from '@/lib/seo/blog-links';
+import { listPublished } from '@/lib/blog';
 
 export const revalidate = 3600;
-// Localities are a closed set (matched from lib/locality.ts KNOWN) → prerender
-// them all and hard-404 on anything else (no soft-200). A new locality is a code
-// change to KNOWN, i.e. a deploy, so static params stay correct.
-export const dynamicParams = false;
+// Localities come from the live project data, so new ones appear between deploys.
+// Known ones are prerendered; a new one renders on first request (ISR). Unknown
+// slugs get a real 404 from this route's layout.tsx (generateMetadata), which
+// runs before streaming starts. (dynamicParams = false
+// used to 404 any page added after the last build, e.g. /locations/wanowri.)
+export const dynamicParams = true;
 export async function generateStaticParams() {
   return (await getLocalityGroups()).map((g) => ({ slug: g.slug }));
 }
@@ -30,11 +34,13 @@ export default async function LocationPage({ params }: { params: { slug: string 
   const city = CITY_LABELS[cityKey];
 
   // Other localities in the same city + developers active here, for internal links.
-  const [allLocs, devGroups, statuses] = await Promise.all([
+  const [allLocs, devGroups, statuses, posts] = await Promise.all([
     getLocalityGroups(),
     getDeveloperGroups(),
     getStatusGroups(),
+    listPublished(), // lenient: a blog read failure just drops the guide links
   ]);
+  const guides = guidesFor(g.slug, posts).map((p) => ({ label: `Guide: ${p.title}`, path: `/blog/${p.slug}` }));
   const nearbyLocs = allLocs
     .filter((l) => l.slug !== g.slug && l.pins[0] && cityOf(l.pins[0]) === cityKey)
     .slice(0, 8)
@@ -45,7 +51,8 @@ export default async function LocationPage({ params }: { params: { slug: string 
   const statusHere = statuses
     .map((s) => ({ ...s, n: s.pins.filter((p) => g.pins.some((gp) => gp.number === p.number)).length }))
     .filter((s) => s.n > 0)
-    .map((s) => ({ label: `${s.label} in ${g.label}`, path: `/status/${s.slug}`, count: s.n }));
+    // The status pages cover every city, so the link names that (and shows its own count).
+    .map((s) => ({ label: `All ${s.label.toLowerCase()} projects`, path: `/status/${s.slug}`, count: s.count }));
 
   // Area guide (top localities) + a paragraph of facts from the projects' own data.
   const guide = LOCALITY_GUIDES[g.slug];
@@ -100,8 +107,8 @@ export default async function LocationPage({ params }: { params: { slug: string 
       }
       pins={g.pins}
       projectsHeading={`Projects in ${g.label} (${g.count})`}
-      relatedTitle="Nearby localities & developers"
-      related={[...statusHere, ...nearbyLocs, ...devsHere]}
+      relatedTitle="Guides, nearby localities & developers"
+      related={[...guides, ...statusHere, ...nearbyLocs, ...devsHere]}
       faqs={[
         ...(priceFaq ? [priceFaq] : []),
         {

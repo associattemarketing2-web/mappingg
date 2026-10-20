@@ -21,7 +21,14 @@
     "db:indexes": "node migration/create-indexes.mjs",
     "seed:admin": "node migration/seed-admin.mjs",
     "migrate:project-images": "node migration/migrate-project-images.mjs",
-    "test": "node --experimental-transform-types --import ./tests/register.mjs --test \"tests/**/*.test.ts\""
+    "test": "node --experimental-transform-types --import ./tests/register.mjs --test \"tests/**/*.test.ts\"",
+    "seo:audit": "node scripts/seo-audit/run.mjs",
+    "seo:projects": "node --experimental-transform-types --no-warnings --import ./tests/register.mjs scripts/seo-audit/projects.mts",
+    "seo:summary": "node scripts/seo-audit/summary.mjs",
+    "seo:metadata": "node scripts/seo-audit/crawl.mjs --focus=metadata",
+    "seo:sitemap": "node scripts/seo-audit/crawl.mjs --focus=sitemap",
+    "seo:links": "node scripts/seo-audit/crawl.mjs --focus=links",
+    "seo:schema": "node scripts/seo-audit/crawl.mjs --focus=schema"
   },
   "engines": {
     "node": "24.x"

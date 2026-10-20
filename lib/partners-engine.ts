@@ -1,6 +1,7 @@
 import { randomUUID, randomBytes } from 'crypto';
 import { getDb, type Db } from './mongodb';
 import { deleteProjectPin, hideProjectPin, syncProjectPin } from './intake-pins';
+import { pinToSubmission } from './pin-to-intake';
 import { moveToTrash } from './trash';
 import { PIN_OK, datasetInfo, enrichmentForProject, getScraped, importDataset, listEnriched, listScraped, markAdded, resetScraped, rowsForAdd, setDeleted, updateScraped } from './scraped';
 
@@ -436,7 +437,13 @@ const RPCS: Record<string, RpcFn> = {
     // Put the project on the live map (the map reads `pins`, not `projects`).
     let map: { pin_id: string | null; pin_number: number | null; on_map: boolean; map_note: string };
     try {
-      const r = await syncProjectPin({ ...projectDoc, pin_id: (existingProject as any)?.pin_id }, sub.google_maps_link || undefined);
+      // A submission opened from an existing pin (admin_open_for_pin) updates that pin,
+      // and never blanks a pin value its form left empty.
+      const r = await syncProjectPin(
+        { ...projectDoc, pin_id: (existingProject as any)?.pin_id || sub.source_pin_id },
+        sub.google_maps_link || undefined,
+        { keepPinValues: !!sub.source_pin_id },
+      );
       map = { pin_id: r.pinId, pin_number: r.number, on_map: r.onMap, map_note: r.note };
     } catch (e) {
       map = { pin_id: null, pin_number: null, on_map: false, map_note: `Published, but the map pin could not be created: ${e instanceof Error ? e.message : 'error'}` };
@@ -721,6 +728,46 @@ const RPCS: Record<string, RpcFn> = {
     return { data: out, error: null, status: 200 };
   },
 
+  // ------------------------------------------------------- admin_open_for_pin
+  // The full Projects Intake form for a map pin, so every project can be edited
+  // with all intake fields from anywhere in the super-admin (Map Editor,
+  // Developers, Developer projects). Returns the submission to open:
+  //  - a pin published from intake → its existing submission;
+  //  - any other pin → a new "in review" submission prefilled from the pin and
+  //    linked to it (source_pin_id), so publishing updates that same pin. A
+  //    second call returns the same submission. Nothing on the map changes here.
+  async admin_open_for_pin(p, _ctx) {
+    const pinId = String(p.p_pin_id || '');
+    if (!pinId) return err('No pin given', 400);
+    const db = await getDb();
+    const pin = (await db.collection<AnyDoc>('pins').findOne({ id: pinId })) as any;
+    if (!pin) return err('Pin not found', 404);
+    const subs = coll(db, 'project_submissions');
+
+    if (pin.intake_project_id) {
+      const project = (await coll(db, 'projects').findOne({ id: String(pin.intake_project_id) })) as any;
+      const sub = (project?.submission_id && (await subs.findOne({ id: project.submission_id })))
+        || (await subs.findOne({ published_project_id: String(pin.intake_project_id) }));
+      if (sub) return { data: { submission_id: (sub as any).id, created: false }, error: null, status: 200 };
+    }
+    const linked = await subs.findOne({ source_pin_id: pinId });
+    if (linked) return { data: { submission_id: (linked as any).id, created: false }, error: null, status: 200 };
+
+    const { fields, kept } = pinToSubmission(pin);
+    const sub = await prepareInsertDoc(db, 'project_submissions', {
+      ...fields,
+      additional_details: kept,
+      status: 'in_review',
+      source: 'map_pin',
+      source_pin_id: pinId,
+      builder_remarks: `Opened from map pin #${pin.number ?? '—'} to edit all details. Publishing updates that same pin (same number and page). `
+        + 'Values the form could not hold exactly are listed under Additional details and stay on the pin unless you fill the matching field.',
+    });
+    await subs.insertOne(sub);
+    await logEvent(db, sub.id, 'created', 'admin', { source: 'map_pin', pin_id: pinId, pin_number: pin.number ?? null });
+    return { data: { submission_id: sub.id, created: true }, error: null, status: 200 };
+  },
+
   // --------------------------------------------------------- link_delete_draft
   async link_delete_draft(p, _ctx) {
     const db = await getDb();
@@ -741,7 +788,7 @@ export const ADMIN_RPCS = new Set([
   'is_admin', 'admin_counts', 'admin_set_status', 'admin_request_changes', 'admin_publish',
   'admin_unpublish', 'admin_find_duplicates', 'admin_regenerate_link', 'admin_delete_submissions', 'admin_delete_builders',
   'admin_scraped_info', 'admin_scraped_import', 'admin_scraped_list', 'admin_scraped_get', 'admin_scraped_update',
-  'admin_scraped_reset', 'admin_scraped_delete', 'admin_scraped_add', 'admin_scraped_enriched',
+  'admin_scraped_reset', 'admin_scraped_delete', 'admin_scraped_add', 'admin_scraped_enriched', 'admin_open_for_pin',
 ]);
 export const PUBLIC_RPCS = new Set(['link_open', 'link_save_submission', 'link_delete_draft']);
 

@@ -1,25 +1,14 @@
 import type { Metadata } from 'next';
 
-import { SITE, SITE_URL } from '@/lib/seo/config';
+import { buildMetadata } from '@/lib/seo/metadata';
 
 // SEO metadata for /map lives here; page.tsx renders the content.
-export const metadata: Metadata = {
-  title: 'Live Real Estate Map — Projects in Pune & MMR',
+export const metadata: Metadata = buildMetadata({
+  title: 'Live Project Map — Pune, Mumbai, Bengaluru & Delhi NCR',
   description:
-    'Explore a live, interactive map of real estate projects across Pune (Mundhwa, Kharadi, Magarpatta, Hadapsar, Viman Nagar, Wagholi, Kothrud) and the Mumbai region (Andheri, Khar, Vashi, Nerul, Kharghar, Thane, Dombivli, Palava). Colour-coded by status with developer, pricing, configuration, carpet area, possession and infrastructure details.',
-  keywords: [
-    'real estate map', 'property map Pune', 'projects in Mundhwa', 'Kharadi projects',
-    'Magarpatta property', 'Hadapsar flats', 'MMR real estate', 'new launches Pune',
-    'under construction projects', 'ready to move flats', 'Mappingg', 'Associatte Proptech',
-  ],
-  alternates: { canonical: `${SITE_URL}/map` },
-  openGraph: {
-    title: 'Mappingg Live Map — Real Estate Projects, Pune & MMR',
-    description: 'Explore live projects, upcoming launches and infrastructure across Pune and the Mumbai region.',
-    url: `${SITE_URL}/map`,
-    images: [{ url: SITE.ogFallback, width: 1200, height: 630, alt: SITE.ogFallbackAlt }],
-  },
-};
+    'Every mapped real estate project on one live map, colour-coded by status — with developer, price, configuration, RERA number, possession and nearby infrastructure.',
+  path: '/map',
+});
 
 export default function MapLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;

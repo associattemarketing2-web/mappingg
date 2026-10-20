@@ -37,7 +37,7 @@ export default function AddMobileForm({ name, email, google }: { name: string; e
   return (
     <div className="bp">
       <header className="bp-top">
-        <a className="bp-brand" href="/" aria-label="Mappingg home"><span className="mark" aria-hidden="true" /><b>Mappingg<em>.com</em></b></a>
+        <a className="bp-brand" href="/" aria-label="Mappingg.com home"><span className="mark" aria-hidden="true" /><b>Mappingg<em>.com</em></b></a>
         <div className="bp-top-actions">
           <button type="button" className="bp-btn ghost" onClick={signOut}><i className="fas fa-right-from-bracket" /> <span className="bp-hide-sm">Sign out</span></button>
         </div>

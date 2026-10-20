@@ -4,7 +4,7 @@ import InfoPage, { CtaBand, MiniMap, OfficialChannels } from '@/components/InfoP
 
 const FEATURES = [
   { icon: 'fas fa-location-dot', tone: '', title: 'Live projects', text: 'Every pin is a real project, colour-coded by status, with developer, configuration and possession details.' },
-  { icon: 'fas fa-shield-halved', tone: 'water', title: 'Verified RERA numbers', text: 'RERA registration numbers are checked on the MahaRERA website, so you know exactly what you’re looking at.' },
+  { icon: 'fas fa-shield-halved', tone: 'water', title: 'Official RERA numbers', text: 'RERA registration numbers come from each state’s official RERA registry, so you know exactly what you’re looking at.' },
   { icon: 'fas fa-road', tone: 'road', title: 'Upcoming infrastructure', text: 'Metro lines, flyovers and roads being built nearby, with their current status and expected timelines.' },
   { icon: 'fas fa-school', tone: 'earth', title: 'What’s nearby', text: 'Schools, hospitals, metro stations and everyday places around each project, in one view.' },
 ];
@@ -54,7 +54,7 @@ export default function AboutPage() {
                 { x: 72, y: 58, color: 'earth', icon: 'fas fa-building' },
                 { x: 20, y: 60, color: 'grey', icon: 'fas fa-clock' },
               ]}
-              tag={{ icon: 'fas fa-shield-halved', title: 'RERA verified', text: 'Checked on the MahaRERA website' }}
+              tag={{ icon: 'fas fa-shield-halved', title: 'Official RERA data', text: 'From state RERA registries' }}
             />
           </div>
         </div>

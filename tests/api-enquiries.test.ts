@@ -18,6 +18,14 @@ const ADMIN = 'owner@test';
 const SITE = 'https://partner.example';
 
 let ip = 0;
+
+// The CRM push is fire-and-forget and first does a geo-IP lookup, which can take
+// well over the 30 ms post() waits when the whole suite runs in parallel. Wait
+// for the push itself (bounded) instead of a fixed sleep.
+async function until(ok: () => boolean, ms = 5000) {
+  const end = Date.now() + ms;
+  while (!ok() && Date.now() < end) await new Promise((r) => setTimeout(r, 20));
+}
 async function post(key: string | null, body: unknown, opts: { raw?: string; type?: string } = {}) {
   const headers: Record<string, string> = { 'x-forwarded-for': `10.9.0.${(ip++ % 250) + 1}`, 'content-type': opts.type ?? 'application/json' };
   if (key) headers.authorization = `Bearer ${key}`;
@@ -105,6 +113,7 @@ test('authorised submission → 201 receipt; lead stored in the CRM `leads` tabl
   assert.equal(lead.consent.text, body.consent.text);
   assert.match(lead.consent.version, /:v3$/);
   // Same follow-up as other enquiries: pushed to the sales CRM once.
+  await until(() => crmPushes.length > pushesBefore);
   assert.equal(crmPushes.length, pushesBefore + 1);
   assert.match(crmPushes.at(-1)!.remark, /Partner website \(partner\.example\) via Mappingg API/);
   assert.equal(crmPushes.at(-1)!.project, 'Test Towers');

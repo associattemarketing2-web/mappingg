@@ -21,6 +21,7 @@ export default async function PropertyIndex() {
         <p className="lede">Browse projects by the kind of property — pick a type to see every matching project.</p>
       </header>
       <section className="seo-section">
+        <h2>All property types</h2>
         <div className="seo-grid">
           {groups.map((g) => (
             <Link key={g.slug} href={`/property/${g.slug}`} className="seo-card">

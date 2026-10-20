@@ -4,6 +4,7 @@ import ProjectCard from '@/components/seo/ProjectCard';
 import type { Pin } from '@/lib/seo/entities';
 import { slugForProject } from '@/lib/seo/entities';
 import { itemListSchema, faqSchema, jsonLd } from '@/lib/seo/schema';
+import Pager from '@/components/seo/Pager';
 
 export interface RelatedPill {
   label: string;
@@ -26,15 +27,19 @@ export default function EntityListing(props: {
   relatedTitle?: string;
   related?: RelatedPill[];
   faqs?: { q: string; a: string }[];
+  /** For long lists: `pins` is this page's slice; intro and FAQs show on page 1 only. */
+  pagination?: { page: number; pages: number; total: number; from: number; base: string };
 }) {
-  const { pins } = props;
+  const { pins, pagination: pg } = props;
+  const first = !pg || pg.page === 1;
+  const faqs = first ? props.faqs : undefined;
   const listItems = pins.map((p) => ({
     name: p.title || `Project #${p.number}`,
     path: `/projects/${slugForProject(p)}`,
   }));
   const schemas: object[] = [];
   if (listItems.length) schemas.push(itemListSchema(listItems));
-  if (props.faqs && props.faqs.length) schemas.push(faqSchema(props.faqs));
+  if (faqs && faqs.length) schemas.push(faqSchema(faqs));
 
   return (
     <SeoShell crumbs={props.crumbs}>
@@ -58,7 +63,7 @@ export default function EntityListing(props: {
         )}
       </header>
 
-      {props.prose && (
+      {first && props.prose && (
         <section className="seo-section">
           <div className="seo-prose">{props.prose}</div>
         </section>
@@ -66,6 +71,11 @@ export default function EntityListing(props: {
 
       <section className="seo-section">
         <h2>{props.projectsHeading || `Projects (${pins.length})`}</h2>
+        {pg && pg.pages > 1 && (
+          <p className="seo-range">
+            Showing {pg.from}–{pg.from + pins.length - 1} of {pg.total} · page {pg.page} of {pg.pages}
+          </p>
+        )}
         {pins.length > 0 ? (
           <div className="seo-grid">
             {pins.map((p) => (
@@ -75,6 +85,7 @@ export default function EntityListing(props: {
         ) : (
           <p className="seo-prose">No projects listed here yet. Explore the <Link href="/map">live map</Link>.</p>
         )}
+        {pg && <Pager base={pg.base} page={pg.page} pages={pg.pages} label="Project list pages" />}
       </section>
 
       {props.related && props.related.length > 0 && (
@@ -91,10 +102,10 @@ export default function EntityListing(props: {
         </section>
       )}
 
-      {props.faqs && props.faqs.length > 0 && (
+      {faqs && faqs.length > 0 && (
         <section className="seo-section seo-faq">
           <h2>Frequently asked questions</h2>
-          {props.faqs.map((f) => (
+          {faqs.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
               <p>{f.a}</p>

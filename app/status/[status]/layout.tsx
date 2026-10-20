@@ -1,17 +1,15 @@
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { getStatusGroups, findGroup } from '@/lib/seo/entities';
 import { buildMetadata } from '@/lib/seo/metadata';
+import { statusMeta } from '@/lib/seo/listing-meta';
 
-// SEO metadata for /status/<status> lives here; page.tsx renders the listing.
+// SEO metadata for /status/<status> lives here; page.tsx renders the listing
+// (and overrides title/canonical for ?page=N).
 export async function generateMetadata({ params }: { params: { status: string } }): Promise<Metadata> {
   const g = await findGroup(getStatusGroups, params.status);
-  if (!g) return { title: 'Not found', robots: { index: false, follow: false } };
-  return buildMetadata({
-    title: `${g.label} Projects in Pune & MMR`,
-    description: `Explore ${g.count} ${g.label.toLowerCase()} real estate project${g.count === 1 ? '' : 's'} across Pune and the Mumbai Metropolitan Region — locations, developers, pricing and configurations on Mappingg.`,
-    path: `/status/${g.slug}`,
-    keywords: [`${g.label.toLowerCase()} projects Pune`, `${g.label.toLowerCase()} property Pune`],
-  });
+  if (!g) notFound();
+  return buildMetadata(statusMeta(g));
 }
 
 export default function StatusLayout({ children }: { children: React.ReactNode }) {

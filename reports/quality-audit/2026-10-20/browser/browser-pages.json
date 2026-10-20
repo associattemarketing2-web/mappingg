@@ -1,0 +1,5297 @@
+{
+ "base": "http://localhost:3100",
+ "started": "2026-10-20T08:19:41.184Z",
+ "pages": [
+  {
+   "route": "/",
+   "width": 320,
+   "status": 200,
+   "ms": 4558,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/",
+   "width": 375,
+   "status": 304,
+   "ms": 3001,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/",
+   "width": 430,
+   "status": 200,
+   "ms": 2035,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/",
+   "width": 768,
+   "status": 0,
+   "ms": 2726,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/",
+   "width": 1024,
+   "status": 0,
+   "ms": 2740,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/",
+   "width": 1440,
+   "status": 0,
+   "ms": 2521,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/",
+   "width": 1920,
+   "status": 0,
+   "ms": 2362,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/map",
+   "width": 320,
+   "status": 0,
+   "ms": 3941,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 0,
+   "imgsBroken": [],
+   "h1": [
+    "Live real estate project map",
+    "Associatte Interactive Map"
+   ],
+   "fontSmall": 0,
+   "title": "Live Project Map — Pune, Mumbai, Bengaluru & Delhi NCR — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/map",
+   "width": 375,
+   "status": 0,
+   "ms": 22530,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 0,
+   "imgsBroken": [],
+   "h1": [
+    "Live real estate project map",
+    "Associatte Interactive Map"
+   ],
+   "fontSmall": 0,
+   "title": "Live Project Map — Pune, Mumbai, Bengaluru & Delhi NCR — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 4
+  },
+  {
+   "route": "/map",
+   "width": 430,
+   "status": 0,
+   "ms": 17909,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 0,
+   "imgsBroken": [],
+   "h1": [
+    "Live real estate project map",
+    "Associatte Interactive Map"
+   ],
+   "fontSmall": 0,
+   "title": "Live Project Map — Pune, Mumbai, Bengaluru & Delhi NCR — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 7
+  },
+  {
+   "route": "/map",
+   "width": 768,
+   "status": 0,
+   "ms": 27121,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 0,
+   "imgsBroken": [],
+   "h1": [
+    "Live real estate project map",
+    "Associatte Interactive Map"
+   ],
+   "fontSmall": 0,
+   "title": "Live Project Map — Pune, Mumbai, Bengaluru & Delhi NCR — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 7
+  },
+  {
+   "route": "/map",
+   "width": 1024,
+   "status": 0,
+   "ms": 22910,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 0,
+   "imgsBroken": [],
+   "h1": [
+    "Live real estate project map",
+    "Associatte Interactive Map"
+   ],
+   "fontSmall": 0,
+   "title": "Live Project Map — Pune, Mumbai, Bengaluru & Delhi NCR — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 7
+  },
+  {
+   "route": "/map",
+   "width": 1440,
+   "status": 0,
+   "ms": 14277,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 0,
+   "imgsBroken": [],
+   "h1": [
+    "Live real estate project map",
+    "Associatte Interactive Map"
+   ],
+   "fontSmall": 0,
+   "title": "Live Project Map — Pune, Mumbai, Bengaluru & Delhi NCR — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 4
+  },
+  {
+   "route": "/map",
+   "width": 1920,
+   "status": 0,
+   "ms": 18773,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 0,
+   "imgsBroken": [],
+   "h1": [
+    "Live real estate project map",
+    "Associatte Interactive Map"
+   ],
+   "fontSmall": 0,
+   "title": "Live Project Map — Pune, Mumbai, Bengaluru & Delhi NCR — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 6
+  },
+  {
+   "route": "/projects",
+   "width": 320,
+   "status": 0,
+   "ms": 3653,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru, Pune, Mumbai, Delhi NCR & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects",
+   "width": 375,
+   "status": 0,
+   "ms": 2154,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru, Pune, Mumbai, Delhi NCR & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects",
+   "width": 430,
+   "status": 0,
+   "ms": 2128,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru, Pune, Mumbai, Delhi NCR & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects",
+   "width": 768,
+   "status": 0,
+   "ms": 2544,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru, Pune, Mumbai, Delhi NCR & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects",
+   "width": 1024,
+   "status": 0,
+   "ms": 2596,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru, Pune, Mumbai, Delhi NCR & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects",
+   "width": 1440,
+   "status": 0,
+   "ms": 4335,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru, Pune, Mumbai, Delhi NCR & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 3
+  },
+  {
+   "route": "/projects",
+   "width": 1920,
+   "status": 0,
+   "ms": 2573,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru, Pune, Mumbai, Delhi NCR & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects?page=2",
+   "width": 320,
+   "status": 0,
+   "ms": 2017,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru, Pune, Mumbai, Delhi NCR & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 2 of 21 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects?page=2",
+   "width": 375,
+   "status": 0,
+   "ms": 2098,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru, Pune, Mumbai, Delhi NCR & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 2 of 21 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects?page=2",
+   "width": 430,
+   "status": 0,
+   "ms": 2568,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru, Pune, Mumbai, Delhi NCR & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 2 of 21 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects?page=2",
+   "width": 768,
+   "status": 0,
+   "ms": 2563,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru, Pune, Mumbai, Delhi NCR & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 2 of 21 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects?page=2",
+   "width": 1024,
+   "status": 0,
+   "ms": 2595,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru, Pune, Mumbai, Delhi NCR & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 2 of 21 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects?page=2",
+   "width": 1440,
+   "status": 0,
+   "ms": 4481,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru, Pune, Mumbai, Delhi NCR & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 2 of 21 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects?page=2",
+   "width": 1920,
+   "status": 0,
+   "ms": 2587,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru, Pune, Mumbai, Delhi NCR & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 2 of 21 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects?page=999",
+   "width": 320,
+   "status": 0,
+   "ms": 2553,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "This spot isn't on the map"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects?page=999",
+   "width": 375,
+   "status": 0,
+   "ms": 3609,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "This spot isn't on the map"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects?page=999",
+   "width": 430,
+   "status": 0,
+   "ms": 3356,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "This spot isn't on the map"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects?page=999",
+   "width": 768,
+   "status": 0,
+   "ms": 3029,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "This spot isn't on the map"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects?page=999",
+   "width": 1024,
+   "status": 0,
+   "ms": 2552,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "This spot isn't on the map"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects?page=999",
+   "width": 1440,
+   "status": 0,
+   "ms": 2895,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "This spot isn't on the map"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects?page=999",
+   "width": 1920,
+   "status": 0,
+   "ms": 2133,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "This spot isn't on the map"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/mantra-melange-kharadi-21",
+   "width": 320,
+   "status": 0,
+   "ms": 2587,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 5,
+   "imgsBroken": [],
+   "h1": [
+    "Mantra Melange"
+   ],
+   "fontSmall": 0,
+   "title": "Mantra Melange in Kharadi, Pune | Price, 2 and 3 BHK, RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/mantra-melange-kharadi-21",
+   "width": 375,
+   "status": 0,
+   "ms": 2119,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 5,
+   "imgsBroken": [],
+   "h1": [
+    "Mantra Melange"
+   ],
+   "fontSmall": 0,
+   "title": "Mantra Melange in Kharadi, Pune | Price, 2 and 3 BHK, RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/mantra-melange-kharadi-21",
+   "width": 430,
+   "status": 0,
+   "ms": 2455,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 5,
+   "imgsBroken": [],
+   "h1": [
+    "Mantra Melange"
+   ],
+   "fontSmall": 0,
+   "title": "Mantra Melange in Kharadi, Pune | Price, 2 and 3 BHK, RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/mantra-melange-kharadi-21",
+   "width": 768,
+   "status": 0,
+   "ms": 3187,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 5,
+   "imgsBroken": [],
+   "h1": [
+    "Mantra Melange"
+   ],
+   "fontSmall": 0,
+   "title": "Mantra Melange in Kharadi, Pune | Price, 2 and 3 BHK, RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/mantra-melange-kharadi-21",
+   "width": 1024,
+   "status": 0,
+   "ms": 2605,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 5,
+   "imgsBroken": [],
+   "h1": [
+    "Mantra Melange"
+   ],
+   "fontSmall": 0,
+   "title": "Mantra Melange in Kharadi, Pune | Price, 2 and 3 BHK, RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/mantra-melange-kharadi-21",
+   "width": 1440,
+   "status": 0,
+   "ms": 3096,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 5,
+   "imgsBroken": [],
+   "h1": [
+    "Mantra Melange"
+   ],
+   "fontSmall": 0,
+   "title": "Mantra Melange in Kharadi, Pune | Price, 2 and 3 BHK, RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/mantra-melange-kharadi-21",
+   "width": 1920,
+   "status": 0,
+   "ms": 2767,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 5,
+   "imgsBroken": [],
+   "h1": [
+    "Mantra Melange"
+   ],
+   "fontSmall": 0,
+   "title": "Mantra Melange in Kharadi, Pune | Price, 2 and 3 BHK, RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/splendid-evora-anekal-423",
+   "width": 320,
+   "status": 0,
+   "ms": 2863,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 5,
+   "imgsBroken": [],
+   "h1": [
+    "Splendid Evora"
+   ],
+   "fontSmall": 0,
+   "title": "Splendid Evora in Anekal, Bengaluru | 3 and 4 BHK, RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/splendid-evora-anekal-423",
+   "width": 375,
+   "status": 0,
+   "ms": 2797,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 5,
+   "imgsBroken": [],
+   "h1": [
+    "Splendid Evora"
+   ],
+   "fontSmall": 0,
+   "title": "Splendid Evora in Anekal, Bengaluru | 3 and 4 BHK, RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/splendid-evora-anekal-423",
+   "width": 430,
+   "status": 0,
+   "ms": 2543,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 5,
+   "imgsBroken": [],
+   "h1": [
+    "Splendid Evora"
+   ],
+   "fontSmall": 0,
+   "title": "Splendid Evora in Anekal, Bengaluru | 3 and 4 BHK, RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/splendid-evora-anekal-423",
+   "width": 768,
+   "status": 0,
+   "ms": 2659,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 5,
+   "imgsBroken": [],
+   "h1": [
+    "Splendid Evora"
+   ],
+   "fontSmall": 0,
+   "title": "Splendid Evora in Anekal, Bengaluru | 3 and 4 BHK, RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/splendid-evora-anekal-423",
+   "width": 1024,
+   "status": 0,
+   "ms": 3775,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 5,
+   "imgsBroken": [],
+   "h1": [
+    "Splendid Evora"
+   ],
+   "fontSmall": 0,
+   "title": "Splendid Evora in Anekal, Bengaluru | 3 and 4 BHK, RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/splendid-evora-anekal-423",
+   "width": 1440,
+   "status": 0,
+   "ms": 2814,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 5,
+   "imgsBroken": [],
+   "h1": [
+    "Splendid Evora"
+   ],
+   "fontSmall": 0,
+   "title": "Splendid Evora in Anekal, Bengaluru | 3 and 4 BHK, RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/splendid-evora-anekal-423",
+   "width": 1920,
+   "status": 0,
+   "ms": 2631,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 5,
+   "imgsBroken": [],
+   "h1": [
+    "Splendid Evora"
+   ],
+   "fontSmall": 0,
+   "title": "Splendid Evora in Anekal, Bengaluru | 3 and 4 BHK, RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/yoo-one-116",
+   "width": 320,
+   "status": 0,
+   "ms": 2073,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Yoo One"
+   ],
+   "fontSmall": 0,
+   "title": "Yoo One in Pune | Price, 3.5 and 4.5 BHK, Possession — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/yoo-one-116",
+   "width": 375,
+   "status": 0,
+   "ms": 1884,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Yoo One"
+   ],
+   "fontSmall": 0,
+   "title": "Yoo One in Pune | Price, 3.5 and 4.5 BHK, Possession — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/yoo-one-116",
+   "width": 430,
+   "status": 0,
+   "ms": 1895,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Yoo One"
+   ],
+   "fontSmall": 0,
+   "title": "Yoo One in Pune | Price, 3.5 and 4.5 BHK, Possession — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/yoo-one-116",
+   "width": 768,
+   "status": 0,
+   "ms": 2618,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Yoo One"
+   ],
+   "fontSmall": 0,
+   "title": "Yoo One in Pune | Price, 3.5 and 4.5 BHK, Possession — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/yoo-one-116",
+   "width": 1024,
+   "status": 0,
+   "ms": 2628,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Yoo One"
+   ],
+   "fontSmall": 0,
+   "title": "Yoo One in Pune | Price, 3.5 and 4.5 BHK, Possession — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/yoo-one-116",
+   "width": 1440,
+   "status": 0,
+   "ms": 2905,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Yoo One"
+   ],
+   "fontSmall": 0,
+   "title": "Yoo One in Pune | Price, 3.5 and 4.5 BHK, Possession — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/yoo-one-116",
+   "width": 1920,
+   "status": 0,
+   "ms": 2638,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Yoo One"
+   ],
+   "fontSmall": 0,
+   "title": "Yoo One in Pune | Price, 3.5 and 4.5 BHK, Possession — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/codename-autobiography-by-jhamtani-116",
+   "width": 320,
+   "status": 0,
+   "ms": 2835,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Codename Autobiography by Jhamtani"
+   ],
+   "fontSmall": 0,
+   "title": "Codename Autobiography by Jhamtani in Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/codename-autobiography-by-jhamtani-116",
+   "width": 375,
+   "status": 0,
+   "ms": 2332,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Codename Autobiography by Jhamtani"
+   ],
+   "fontSmall": 0,
+   "title": "Codename Autobiography by Jhamtani in Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/codename-autobiography-by-jhamtani-116",
+   "width": 430,
+   "status": 0,
+   "ms": 4771,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Codename Autobiography by Jhamtani"
+   ],
+   "fontSmall": 0,
+   "title": "Codename Autobiography by Jhamtani in Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/codename-autobiography-by-jhamtani-116",
+   "width": 768,
+   "status": 0,
+   "ms": 3253,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Codename Autobiography by Jhamtani"
+   ],
+   "fontSmall": 0,
+   "title": "Codename Autobiography by Jhamtani in Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/codename-autobiography-by-jhamtani-116",
+   "width": 1024,
+   "status": 0,
+   "ms": 2586,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Codename Autobiography by Jhamtani"
+   ],
+   "fontSmall": 0,
+   "title": "Codename Autobiography by Jhamtani in Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/codename-autobiography-by-jhamtani-116",
+   "width": 1440,
+   "status": 0,
+   "ms": 2857,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Codename Autobiography by Jhamtani"
+   ],
+   "fontSmall": 0,
+   "title": "Codename Autobiography by Jhamtani in Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/codename-autobiography-by-jhamtani-116",
+   "width": 1920,
+   "status": 0,
+   "ms": 2578,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Codename Autobiography by Jhamtani"
+   ],
+   "fontSmall": 0,
+   "title": "Codename Autobiography by Jhamtani in Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/does-not-exist-99999",
+   "width": 320,
+   "status": 0,
+   "ms": 2441,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "This spot isn't on the map"
+   ],
+   "fontSmall": 0,
+   "title": "",
+   "console": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/does-not-exist-99999",
+   "width": 375,
+   "status": 0,
+   "ms": 2668,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "This spot isn't on the map"
+   ],
+   "fontSmall": 0,
+   "title": "",
+   "console": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/does-not-exist-99999",
+   "width": 430,
+   "status": 0,
+   "ms": 3276,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "This spot isn't on the map"
+   ],
+   "fontSmall": 0,
+   "title": "",
+   "console": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/does-not-exist-99999",
+   "width": 768,
+   "status": 0,
+   "ms": 2666,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "This spot isn't on the map"
+   ],
+   "fontSmall": 0,
+   "title": "",
+   "console": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/does-not-exist-99999",
+   "width": 1024,
+   "status": 0,
+   "ms": 3954,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "This spot isn't on the map"
+   ],
+   "fontSmall": 0,
+   "title": "",
+   "console": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/does-not-exist-99999",
+   "width": 1440,
+   "status": 0,
+   "ms": 4335,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "This spot isn't on the map"
+   ],
+   "fontSmall": 0,
+   "title": "",
+   "console": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/projects/does-not-exist-99999",
+   "width": 1920,
+   "status": 0,
+   "ms": 2615,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "This spot isn't on the map"
+   ],
+   "fontSmall": 0,
+   "title": "",
+   "console": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities",
+   "width": 320,
+   "status": 0,
+   "ms": 4305,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects by City"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects by City — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities",
+   "width": 375,
+   "status": 0,
+   "ms": 2350,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects by City"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects by City — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities",
+   "width": 430,
+   "status": 0,
+   "ms": 2168,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects by City"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects by City — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities",
+   "width": 768,
+   "status": 0,
+   "ms": 1701,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects by City"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects by City — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities",
+   "width": 1024,
+   "status": 0,
+   "ms": 2615,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects by City"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects by City — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities",
+   "width": 1440,
+   "status": 0,
+   "ms": 2671,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects by City"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects by City — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities",
+   "width": 1920,
+   "status": 0,
+   "ms": 2587,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects by City"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects by City — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities/bengaluru",
+   "width": 320,
+   "status": 0,
+   "ms": 2964,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities/bengaluru",
+   "width": 375,
+   "status": 0,
+   "ms": 3630,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities/bengaluru",
+   "width": 430,
+   "status": 0,
+   "ms": 2546,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities/bengaluru",
+   "width": 768,
+   "status": 0,
+   "ms": 2595,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities/bengaluru",
+   "width": 1024,
+   "status": 0,
+   "ms": 2646,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities/bengaluru",
+   "width": 1440,
+   "status": 0,
+   "ms": 2766,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities/bengaluru",
+   "width": 1920,
+   "status": 0,
+   "ms": 2387,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities/bengaluru?page=3",
+   "width": 320,
+   "status": 0,
+   "ms": 2066,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru — Page 3 of 11 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities/bengaluru?page=3",
+   "width": 375,
+   "status": 0,
+   "ms": 2037,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru — Page 3 of 11 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities/bengaluru?page=3",
+   "width": 430,
+   "status": 0,
+   "ms": 2058,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru — Page 3 of 11 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities/bengaluru?page=3",
+   "width": 768,
+   "status": 0,
+   "ms": 2592,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru — Page 3 of 11 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities/bengaluru?page=3",
+   "width": 1024,
+   "status": 0,
+   "ms": 2610,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru — Page 3 of 11 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities/bengaluru?page=3",
+   "width": 1440,
+   "status": 0,
+   "ms": 2776,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru — Page 3 of 11 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/cities/bengaluru?page=3",
+   "width": 1920,
+   "status": 0,
+   "ms": 3675,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Bengaluru"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Bengaluru — Page 3 of 11 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/locations",
+   "width": 320,
+   "status": 0,
+   "ms": 2520,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate by Locality in Pune & MMR"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate by Locality in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/locations",
+   "width": 375,
+   "status": 0,
+   "ms": 2067,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate by Locality in Pune & MMR"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate by Locality in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/locations",
+   "width": 430,
+   "status": 0,
+   "ms": 2495,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate by Locality in Pune & MMR"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate by Locality in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/locations",
+   "width": 768,
+   "status": 0,
+   "ms": 3023,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate by Locality in Pune & MMR"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate by Locality in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/locations",
+   "width": 1024,
+   "status": 0,
+   "ms": 7924,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate by Locality in Pune & MMR"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate by Locality in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/locations",
+   "width": 1440,
+   "status": 0,
+   "ms": 4923,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate by Locality in Pune & MMR"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate by Locality in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/locations",
+   "width": 1920,
+   "status": 0,
+   "ms": 4433,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate by Locality in Pune & MMR"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate by Locality in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/locations/kharadi",
+   "width": 320,
+   "status": 0,
+   "ms": 3261,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Kharadi"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Kharadi, Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/locations/kharadi",
+   "width": 375,
+   "status": 0,
+   "ms": 2052,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Kharadi"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Kharadi, Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/locations/kharadi",
+   "width": 430,
+   "status": 0,
+   "ms": 1893,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Kharadi"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Kharadi, Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/locations/kharadi",
+   "width": 768,
+   "status": 0,
+   "ms": 2432,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Kharadi"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Kharadi, Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/locations/kharadi",
+   "width": 1024,
+   "status": 0,
+   "ms": 2314,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Kharadi"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Kharadi, Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/locations/kharadi",
+   "width": 1440,
+   "status": 0,
+   "ms": 2782,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Kharadi"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Kharadi, Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/locations/kharadi",
+   "width": 1920,
+   "status": 0,
+   "ms": 2615,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Projects in Kharadi"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Projects in Kharadi, Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers",
+   "width": 320,
+   "status": 0,
+   "ms": 5892,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers",
+   "width": 375,
+   "status": 0,
+   "ms": 3806,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Developers in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Developers in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers",
+   "width": 430,
+   "status": 0,
+   "ms": 3672,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Developers in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Developers in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers",
+   "width": 768,
+   "status": 0,
+   "ms": 2554,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Developers in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Developers in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers",
+   "width": 1024,
+   "status": 0,
+   "ms": 3639,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Developers in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Developers in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers",
+   "width": 1440,
+   "status": 0,
+   "ms": 3790,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Developers in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Developers in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers",
+   "width": 1920,
+   "status": 0,
+   "ms": 3265,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Developers in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Developers in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers?page=2",
+   "width": 320,
+   "status": 0,
+   "ms": 2062,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Developers in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Developers in Bengaluru, Pune, Mumbai & more — Page 2 of 6 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers?page=2",
+   "width": 375,
+   "status": 0,
+   "ms": 2098,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Developers in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Developers in Bengaluru, Pune, Mumbai & more — Page 2 of 6 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers?page=2",
+   "width": 430,
+   "status": 0,
+   "ms": 3554,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Developers in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Developers in Bengaluru, Pune, Mumbai & more — Page 2 of 6 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers?page=2",
+   "width": 768,
+   "status": 0,
+   "ms": 2300,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Developers in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Developers in Bengaluru, Pune, Mumbai & more — Page 2 of 6 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers?page=2",
+   "width": 1024,
+   "status": 0,
+   "ms": 3362,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Developers in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Developers in Bengaluru, Pune, Mumbai & more — Page 2 of 6 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers?page=2",
+   "width": 1440,
+   "status": 0,
+   "ms": 2752,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Developers in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Developers in Bengaluru, Pune, Mumbai & more — Page 2 of 6 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers?page=2",
+   "width": 1920,
+   "status": 0,
+   "ms": 2725,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Real Estate Developers in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Developers in Bengaluru, Pune, Mumbai & more — Page 2 of 6 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers/kolte-patil-developers",
+   "width": 320,
+   "status": 0,
+   "ms": 2328,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Kolte Patil Developers — Projects"
+   ],
+   "fontSmall": 0,
+   "title": "Kolte Patil Developers Projects in Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers/kolte-patil-developers",
+   "width": 375,
+   "status": 0,
+   "ms": 2170,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Kolte Patil Developers — Projects"
+   ],
+   "fontSmall": 0,
+   "title": "Kolte Patil Developers Projects in Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers/kolte-patil-developers",
+   "width": 430,
+   "status": 0,
+   "ms": 1967,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Kolte Patil Developers — Projects"
+   ],
+   "fontSmall": 0,
+   "title": "Kolte Patil Developers Projects in Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers/kolte-patil-developers",
+   "width": 768,
+   "status": 0,
+   "ms": 2593,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Kolte Patil Developers — Projects"
+   ],
+   "fontSmall": 0,
+   "title": "Kolte Patil Developers Projects in Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers/kolte-patil-developers",
+   "width": 1024,
+   "status": 0,
+   "ms": 2682,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Kolte Patil Developers — Projects"
+   ],
+   "fontSmall": 0,
+   "title": "Kolte Patil Developers Projects in Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers/kolte-patil-developers",
+   "width": 1440,
+   "status": 0,
+   "ms": 2734,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Kolte Patil Developers — Projects"
+   ],
+   "fontSmall": 0,
+   "title": "Kolte Patil Developers Projects in Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developers/kolte-patil-developers",
+   "width": 1920,
+   "status": 0,
+   "ms": 2613,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Kolte Patil Developers — Projects"
+   ],
+   "fontSmall": 0,
+   "title": "Kolte Patil Developers Projects in Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/status/under-construction",
+   "width": 320,
+   "status": 0,
+   "ms": 2629,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Under Construction Projects in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Under Construction Projects in Bengaluru, Pune & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/status/under-construction",
+   "width": 375,
+   "status": 0,
+   "ms": 1971,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Under Construction Projects in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Under Construction Projects in Bengaluru, Pune & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/status/under-construction",
+   "width": 430,
+   "status": 0,
+   "ms": 1990,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Under Construction Projects in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Under Construction Projects in Bengaluru, Pune & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/status/under-construction",
+   "width": 768,
+   "status": 0,
+   "ms": 2603,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Under Construction Projects in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Under Construction Projects in Bengaluru, Pune & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/status/under-construction",
+   "width": 1024,
+   "status": 0,
+   "ms": 2584,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Under Construction Projects in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Under Construction Projects in Bengaluru, Pune & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/status/under-construction",
+   "width": 1440,
+   "status": 0,
+   "ms": 2833,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Under Construction Projects in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Under Construction Projects in Bengaluru, Pune & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/status/under-construction",
+   "width": 1920,
+   "status": 0,
+   "ms": 2326,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "Under Construction Projects in Bengaluru, Pune, Mumbai & more"
+   ],
+   "fontSmall": 0,
+   "title": "Under Construction Projects in Bengaluru, Pune & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/property",
+   "width": 320,
+   "status": 0,
+   "ms": 1986,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Explore by Property Type"
+   ],
+   "fontSmall": 0,
+   "title": "Property Types in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/property",
+   "width": 375,
+   "status": 0,
+   "ms": 1785,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Explore by Property Type"
+   ],
+   "fontSmall": 0,
+   "title": "Property Types in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/property",
+   "width": 430,
+   "status": 0,
+   "ms": 1689,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Explore by Property Type"
+   ],
+   "fontSmall": 0,
+   "title": "Property Types in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/property",
+   "width": 768,
+   "status": 0,
+   "ms": 2713,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Explore by Property Type"
+   ],
+   "fontSmall": 0,
+   "title": "Property Types in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/property",
+   "width": 1024,
+   "status": 0,
+   "ms": 2598,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Explore by Property Type"
+   ],
+   "fontSmall": 0,
+   "title": "Property Types in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/property",
+   "width": 1440,
+   "status": 0,
+   "ms": 2738,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Explore by Property Type"
+   ],
+   "fontSmall": 0,
+   "title": "Property Types in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/property",
+   "width": 1920,
+   "status": 0,
+   "ms": 2632,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Explore by Property Type"
+   ],
+   "fontSmall": 0,
+   "title": "Property Types in Bengaluru, Pune, Mumbai & more — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog",
+   "width": 320,
+   "status": 0,
+   "ms": 3710,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Pune, Mumbai & Bengaluru real estate, made clear"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Blog — Pune, Mumbai & Bengaluru Buying Guides — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog",
+   "width": 375,
+   "status": 0,
+   "ms": 2376,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Pune, Mumbai & Bengaluru real estate, made clear"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Blog — Pune, Mumbai & Bengaluru Buying Guides — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog",
+   "width": 430,
+   "status": 0,
+   "ms": 2172,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Pune, Mumbai & Bengaluru real estate, made clear"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Blog — Pune, Mumbai & Bengaluru Buying Guides — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog",
+   "width": 768,
+   "status": 0,
+   "ms": 2346,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Pune, Mumbai & Bengaluru real estate, made clear"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Blog — Pune, Mumbai & Bengaluru Buying Guides — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog",
+   "width": 1024,
+   "status": 0,
+   "ms": 2247,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Pune, Mumbai & Bengaluru real estate, made clear"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Blog — Pune, Mumbai & Bengaluru Buying Guides — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog",
+   "width": 1440,
+   "status": 0,
+   "ms": 3829,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Pune, Mumbai & Bengaluru real estate, made clear"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Blog — Pune, Mumbai & Bengaluru Buying Guides — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 3
+  },
+  {
+   "route": "/blog",
+   "width": 1920,
+   "status": 0,
+   "ms": 2423,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Pune, Mumbai & Bengaluru real estate, made clear"
+   ],
+   "fontSmall": 0,
+   "title": "Real Estate Blog — Pune, Mumbai & Bengaluru Buying Guides — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog?page=2",
+   "width": 320,
+   "status": 0,
+   "ms": 2016,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Pune, Mumbai & Bengaluru real estate, made clear"
+   ],
+   "fontSmall": 0,
+   "title": "Blog — Page 2 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog?page=2",
+   "width": 375,
+   "status": 0,
+   "ms": 2436,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Pune, Mumbai & Bengaluru real estate, made clear"
+   ],
+   "fontSmall": 0,
+   "title": "Blog — Page 2 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog?page=2",
+   "width": 430,
+   "status": 0,
+   "ms": 2019,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Pune, Mumbai & Bengaluru real estate, made clear"
+   ],
+   "fontSmall": 0,
+   "title": "Blog — Page 2 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog?page=2",
+   "width": 768,
+   "status": 0,
+   "ms": 2352,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Pune, Mumbai & Bengaluru real estate, made clear"
+   ],
+   "fontSmall": 0,
+   "title": "Blog — Page 2 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog?page=2",
+   "width": 1024,
+   "status": 0,
+   "ms": 2248,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Pune, Mumbai & Bengaluru real estate, made clear"
+   ],
+   "fontSmall": 0,
+   "title": "Blog — Page 2 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog?page=2",
+   "width": 1440,
+   "status": 0,
+   "ms": 2707,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Pune, Mumbai & Bengaluru real estate, made clear"
+   ],
+   "fontSmall": 0,
+   "title": "Blog — Page 2 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog?page=2",
+   "width": 1920,
+   "status": 0,
+   "ms": 2421,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Pune, Mumbai & Bengaluru real estate, made clear"
+   ],
+   "fontSmall": 0,
+   "title": "Blog — Page 2 — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog/new-projects-in-bengaluru",
+   "width": 320,
+   "status": 0,
+   "ms": 2214,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "New Projects in Bengaluru (2026): Whitefield, Sarjapur–Anekal, North & South Ben"
+   ],
+   "fontSmall": 0,
+   "title": "New Projects in Bengaluru 2026: Prices & K-RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog/new-projects-in-bengaluru",
+   "width": 375,
+   "status": 0,
+   "ms": 2576,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "New Projects in Bengaluru (2026): Whitefield, Sarjapur–Anekal, North & South Ben"
+   ],
+   "fontSmall": 0,
+   "title": "New Projects in Bengaluru 2026: Prices & K-RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog/new-projects-in-bengaluru",
+   "width": 430,
+   "status": 0,
+   "ms": 2408,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "New Projects in Bengaluru (2026): Whitefield, Sarjapur–Anekal, North & South Ben"
+   ],
+   "fontSmall": 0,
+   "title": "New Projects in Bengaluru 2026: Prices & K-RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog/new-projects-in-bengaluru",
+   "width": 768,
+   "status": 0,
+   "ms": 2622,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "New Projects in Bengaluru (2026): Whitefield, Sarjapur–Anekal, North & South Ben"
+   ],
+   "fontSmall": 0,
+   "title": "New Projects in Bengaluru 2026: Prices & K-RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog/new-projects-in-bengaluru",
+   "width": 1024,
+   "status": 0,
+   "ms": 2658,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "New Projects in Bengaluru (2026): Whitefield, Sarjapur–Anekal, North & South Ben"
+   ],
+   "fontSmall": 0,
+   "title": "New Projects in Bengaluru 2026: Prices & K-RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog/new-projects-in-bengaluru",
+   "width": 1440,
+   "status": 0,
+   "ms": 2612,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "New Projects in Bengaluru (2026): Whitefield, Sarjapur–Anekal, North & South Ben"
+   ],
+   "fontSmall": 0,
+   "title": "New Projects in Bengaluru 2026: Prices & K-RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/blog/new-projects-in-bengaluru",
+   "width": 1920,
+   "status": 0,
+   "ms": 2684,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 4,
+   "imgsBroken": [],
+   "h1": [
+    "New Projects in Bengaluru (2026): Whitefield, Sarjapur–Anekal, North & South Ben"
+   ],
+   "fontSmall": 0,
+   "title": "New Projects in Bengaluru 2026: Prices & K-RERA — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/faq",
+   "width": 320,
+   "status": 0,
+   "ms": 2192,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Questions, answered"
+   ],
+   "fontSmall": 0,
+   "title": "FAQ — Coverage, RERA Checks & Listing Projects — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/faq",
+   "width": 375,
+   "status": 0,
+   "ms": 2136,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Questions, answered"
+   ],
+   "fontSmall": 0,
+   "title": "FAQ — Coverage, RERA Checks & Listing Projects — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/faq",
+   "width": 430,
+   "status": 0,
+   "ms": 1893,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Questions, answered"
+   ],
+   "fontSmall": 0,
+   "title": "FAQ — Coverage, RERA Checks & Listing Projects — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/faq",
+   "width": 768,
+   "status": 0,
+   "ms": 1942,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Questions, answered"
+   ],
+   "fontSmall": 0,
+   "title": "FAQ — Coverage, RERA Checks & Listing Projects — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/faq",
+   "width": 1024,
+   "status": 0,
+   "ms": 1926,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Questions, answered"
+   ],
+   "fontSmall": 0,
+   "title": "FAQ — Coverage, RERA Checks & Listing Projects — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/faq",
+   "width": 1440,
+   "status": 0,
+   "ms": 3577,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Questions, answered"
+   ],
+   "fontSmall": 0,
+   "title": "FAQ — Coverage, RERA Checks & Listing Projects — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/faq",
+   "width": 1920,
+   "status": 0,
+   "ms": 1832,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Questions, answered"
+   ],
+   "fontSmall": 0,
+   "title": "FAQ — Coverage, RERA Checks & Listing Projects — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/about",
+   "width": 320,
+   "status": 0,
+   "ms": 1923,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Every project, mapped and verified"
+   ],
+   "fontSmall": 0,
+   "title": "About Us — Real Estate Project Map by Associatte PropTech — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/about",
+   "width": 375,
+   "status": 0,
+   "ms": 2203,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Every project, mapped and verified"
+   ],
+   "fontSmall": 0,
+   "title": "About Us — Real Estate Project Map by Associatte PropTech — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/about",
+   "width": 430,
+   "status": 0,
+   "ms": 1847,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Every project, mapped and verified"
+   ],
+   "fontSmall": 0,
+   "title": "About Us — Real Estate Project Map by Associatte PropTech — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/about",
+   "width": 768,
+   "status": 0,
+   "ms": 1933,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Every project, mapped and verified"
+   ],
+   "fontSmall": 0,
+   "title": "About Us — Real Estate Project Map by Associatte PropTech — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/about",
+   "width": 1024,
+   "status": 0,
+   "ms": 1955,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Every project, mapped and verified"
+   ],
+   "fontSmall": 0,
+   "title": "About Us — Real Estate Project Map by Associatte PropTech — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/about",
+   "width": 1440,
+   "status": 0,
+   "ms": 2285,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Every project, mapped and verified"
+   ],
+   "fontSmall": 0,
+   "title": "About Us — Real Estate Project Map by Associatte PropTech — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/about",
+   "width": 1920,
+   "status": 0,
+   "ms": 1981,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Every project, mapped and verified"
+   ],
+   "fontSmall": 0,
+   "title": "About Us — Real Estate Project Map by Associatte PropTech — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/contact",
+   "width": 320,
+   "status": 0,
+   "ms": 2147,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Talk to the Mappingg team"
+   ],
+   "fontSmall": 0,
+   "title": "Contact Us — Project Enquiries & Listings — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/contact",
+   "width": 375,
+   "status": 0,
+   "ms": 2405,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Talk to the Mappingg team"
+   ],
+   "fontSmall": 0,
+   "title": "Contact Us — Project Enquiries & Listings — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/contact",
+   "width": 430,
+   "status": 0,
+   "ms": 2064,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Talk to the Mappingg team"
+   ],
+   "fontSmall": 0,
+   "title": "Contact Us — Project Enquiries & Listings — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/contact",
+   "width": 768,
+   "status": 0,
+   "ms": 2106,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Talk to the Mappingg team"
+   ],
+   "fontSmall": 0,
+   "title": "Contact Us — Project Enquiries & Listings — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/contact",
+   "width": 1024,
+   "status": 0,
+   "ms": 2180,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Talk to the Mappingg team"
+   ],
+   "fontSmall": 0,
+   "title": "Contact Us — Project Enquiries & Listings — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/contact",
+   "width": 1440,
+   "status": 0,
+   "ms": 2462,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Talk to the Mappingg team"
+   ],
+   "fontSmall": 0,
+   "title": "Contact Us — Project Enquiries & Listings — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/contact",
+   "width": 1920,
+   "status": 0,
+   "ms": 2195,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Talk to the Mappingg team"
+   ],
+   "fontSmall": 0,
+   "title": "Contact Us — Project Enquiries & Listings — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/features",
+   "width": 320,
+   "status": 0,
+   "ms": 1808,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "See every project, differently"
+   ],
+   "fontSmall": 0,
+   "title": "Features — Project Pins, Infrastructure & Map Layers — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/features",
+   "width": 375,
+   "status": 0,
+   "ms": 2007,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "See every project, differently"
+   ],
+   "fontSmall": 0,
+   "title": "Features — Project Pins, Infrastructure & Map Layers — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/features",
+   "width": 430,
+   "status": 0,
+   "ms": 1867,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "See every project, differently"
+   ],
+   "fontSmall": 0,
+   "title": "Features — Project Pins, Infrastructure & Map Layers — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/features",
+   "width": 768,
+   "status": 0,
+   "ms": 1790,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "See every project, differently"
+   ],
+   "fontSmall": 0,
+   "title": "Features — Project Pins, Infrastructure & Map Layers — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/features",
+   "width": 1024,
+   "status": 0,
+   "ms": 1864,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "See every project, differently"
+   ],
+   "fontSmall": 0,
+   "title": "Features — Project Pins, Infrastructure & Map Layers — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/features",
+   "width": 1440,
+   "status": 0,
+   "ms": 2391,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "See every project, differently"
+   ],
+   "fontSmall": 0,
+   "title": "Features — Project Pins, Infrastructure & Map Layers — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/features",
+   "width": 1920,
+   "status": 0,
+   "ms": 1921,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "See every project, differently"
+   ],
+   "fontSmall": 0,
+   "title": "Features — Project Pins, Infrastructure & Map Layers — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/how-it-works",
+   "width": 320,
+   "status": 0,
+   "ms": 1954,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "How Mappingg works for buyers and developers"
+   ],
+   "fontSmall": 0,
+   "title": "How It Works — For Home Buyers & Developers — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/how-it-works",
+   "width": 375,
+   "status": 0,
+   "ms": 2193,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "How Mappingg works for buyers and developers"
+   ],
+   "fontSmall": 0,
+   "title": "How It Works — For Home Buyers & Developers — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/how-it-works",
+   "width": 430,
+   "status": 0,
+   "ms": 1916,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "How Mappingg works for buyers and developers"
+   ],
+   "fontSmall": 0,
+   "title": "How It Works — For Home Buyers & Developers — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/how-it-works",
+   "width": 768,
+   "status": 0,
+   "ms": 1879,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "How Mappingg works for buyers and developers"
+   ],
+   "fontSmall": 0,
+   "title": "How It Works — For Home Buyers & Developers — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/how-it-works",
+   "width": 1024,
+   "status": 0,
+   "ms": 2026,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "How Mappingg works for buyers and developers"
+   ],
+   "fontSmall": 0,
+   "title": "How It Works — For Home Buyers & Developers — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/how-it-works",
+   "width": 1440,
+   "status": 0,
+   "ms": 2373,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "How Mappingg works for buyers and developers"
+   ],
+   "fontSmall": 0,
+   "title": "How It Works — For Home Buyers & Developers — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/how-it-works",
+   "width": 1920,
+   "status": 0,
+   "ms": 1930,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "How Mappingg works for buyers and developers"
+   ],
+   "fontSmall": 0,
+   "title": "How It Works — For Home Buyers & Developers — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developer-api",
+   "width": 320,
+   "status": 0,
+   "ms": 2224,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Mappingg Developer API"
+   ],
+   "fontSmall": 0,
+   "title": "Developer API — Real Estate Project Data — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developer-api",
+   "width": 375,
+   "status": 0,
+   "ms": 2085,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Mappingg Developer API"
+   ],
+   "fontSmall": 0,
+   "title": "Developer API — Real Estate Project Data — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developer-api",
+   "width": 430,
+   "status": 0,
+   "ms": 1871,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Mappingg Developer API"
+   ],
+   "fontSmall": 0,
+   "title": "Developer API — Real Estate Project Data — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developer-api",
+   "width": 768,
+   "status": 0,
+   "ms": 2194,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Mappingg Developer API"
+   ],
+   "fontSmall": 0,
+   "title": "Developer API — Real Estate Project Data — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developer-api",
+   "width": 1024,
+   "status": 0,
+   "ms": 2111,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Mappingg Developer API"
+   ],
+   "fontSmall": 0,
+   "title": "Developer API — Real Estate Project Data — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developer-api",
+   "width": 1440,
+   "status": 0,
+   "ms": 2493,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Mappingg Developer API"
+   ],
+   "fontSmall": 0,
+   "title": "Developer API — Real Estate Project Data — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/developer-api",
+   "width": 1920,
+   "status": 0,
+   "ms": 2152,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Mappingg Developer API"
+   ],
+   "fontSmall": 0,
+   "title": "Developer API — Real Estate Project Data — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/disclaimer",
+   "width": 320,
+   "status": 0,
+   "ms": 1973,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Please read first"
+   ],
+   "fontSmall": 0,
+   "title": "Disclaimer — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/disclaimer",
+   "width": 375,
+   "status": 0,
+   "ms": 2260,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Please read first"
+   ],
+   "fontSmall": 0,
+   "title": "Disclaimer — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/disclaimer",
+   "width": 430,
+   "status": 0,
+   "ms": 1930,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Please read first"
+   ],
+   "fontSmall": 0,
+   "title": "Disclaimer — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/disclaimer",
+   "width": 768,
+   "status": 0,
+   "ms": 1850,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Please read first"
+   ],
+   "fontSmall": 0,
+   "title": "Disclaimer — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/disclaimer",
+   "width": 1024,
+   "status": 0,
+   "ms": 2079,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Please read first"
+   ],
+   "fontSmall": 0,
+   "title": "Disclaimer — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/disclaimer",
+   "width": 1440,
+   "status": 0,
+   "ms": 2279,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Please read first"
+   ],
+   "fontSmall": 0,
+   "title": "Disclaimer — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/disclaimer",
+   "width": 1920,
+   "status": 0,
+   "ms": 2005,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 3,
+   "imgsBroken": [],
+   "h1": [
+    "Please read first"
+   ],
+   "fontSmall": 0,
+   "title": "Disclaimer — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/signin",
+   "width": 320,
+   "status": 200,
+   "ms": 2133,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/signin",
+   "width": 375,
+   "status": 200,
+   "ms": 2332,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/signin",
+   "width": 430,
+   "status": 200,
+   "ms": 2109,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/signin",
+   "width": 768,
+   "status": 200,
+   "ms": 2402,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/signin",
+   "width": 1024,
+   "status": 200,
+   "ms": 2176,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/signin",
+   "width": 1440,
+   "status": 200,
+   "ms": 3003,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/signin",
+   "width": 1920,
+   "status": 200,
+   "ms": 2223,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/dashboard",
+   "width": 320,
+   "status": 200,
+   "ms": 2729,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/dashboard",
+   "width": 375,
+   "status": 200,
+   "ms": 2385,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/dashboard",
+   "width": 430,
+   "status": 200,
+   "ms": 2338,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/dashboard",
+   "width": 768,
+   "status": 200,
+   "ms": 2418,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/dashboard",
+   "width": 1024,
+   "status": 200,
+   "ms": 2323,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/dashboard",
+   "width": 1440,
+   "status": 200,
+   "ms": 2753,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/dashboard",
+   "width": 1920,
+   "status": 200,
+   "ms": 2382,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/dashboard/s-admin",
+   "width": 320,
+   "status": 200,
+   "ms": 2218,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/dashboard/s-admin",
+   "width": 375,
+   "status": 200,
+   "ms": 2452,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/dashboard/s-admin",
+   "width": 430,
+   "status": 200,
+   "ms": 2435,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/dashboard/s-admin",
+   "width": 768,
+   "status": 200,
+   "ms": 2378,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/dashboard/s-admin",
+   "width": 1024,
+   "status": 200,
+   "ms": 2386,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/dashboard/s-admin",
+   "width": 1440,
+   "status": 200,
+   "ms": 2839,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/dashboard/s-admin",
+   "width": 1920,
+   "status": 200,
+   "ms": 2430,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 2,
+   "imgsBroken": [],
+   "h1": [
+    "Every property project, mapped and verified."
+   ],
+   "fontSmall": 0,
+   "title": "Mappingg.com — Every Property Project, Mapped & Verified | India & Dubai",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/mundhwa-map-3d",
+   "width": 320,
+   "status": 0,
+   "ms": 4646,
+   "vw": 320,
+   "sw": 320,
+   "overflow": false,
+   "offenders": [],
+   "small": 0,
+   "imgsBroken": [],
+   "h1": [
+    "3D map of real estate projects and infrastructure around Mundhwa, Pune",
+    "Associatte Interactive Map — 3D"
+   ],
+   "fontSmall": 0,
+   "title": "3D Project Map — Mundhwa, Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/mundhwa-map-3d",
+   "width": 375,
+   "status": 0,
+   "ms": 24244,
+   "vw": 375,
+   "sw": 375,
+   "overflow": false,
+   "offenders": [],
+   "small": 0,
+   "imgsBroken": [],
+   "h1": [
+    "3D map of real estate projects and infrastructure around Mundhwa, Pune",
+    "Associatte Interactive Map — 3D"
+   ],
+   "fontSmall": 0,
+   "title": "3D Project Map — Mundhwa, Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/mundhwa-map-3d",
+   "width": 430,
+   "status": 0,
+   "ms": 10154,
+   "vw": 430,
+   "sw": 430,
+   "overflow": false,
+   "offenders": [],
+   "small": 0,
+   "imgsBroken": [],
+   "h1": [
+    "3D map of real estate projects and infrastructure around Mundhwa, Pune",
+    "Associatte Interactive Map — 3D"
+   ],
+   "fontSmall": 0,
+   "title": "3D Project Map — Mundhwa, Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/mundhwa-map-3d",
+   "width": 768,
+   "status": 0,
+   "ms": 4441,
+   "vw": 768,
+   "sw": 768,
+   "overflow": false,
+   "offenders": [],
+   "small": 0,
+   "imgsBroken": [],
+   "h1": [
+    "3D map of real estate projects and infrastructure around Mundhwa, Pune",
+    "Associatte Interactive Map — 3D"
+   ],
+   "fontSmall": 0,
+   "title": "3D Project Map — Mundhwa, Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/mundhwa-map-3d",
+   "width": 1024,
+   "status": 0,
+   "ms": 6499,
+   "vw": 1024,
+   "sw": 1024,
+   "overflow": false,
+   "offenders": [],
+   "small": 0,
+   "imgsBroken": [],
+   "h1": [
+    "3D map of real estate projects and infrastructure around Mundhwa, Pune",
+    "Associatte Interactive Map — 3D"
+   ],
+   "fontSmall": 0,
+   "title": "3D Project Map — Mundhwa, Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/mundhwa-map-3d",
+   "width": 1440,
+   "status": 0,
+   "ms": 9620,
+   "vw": 1440,
+   "sw": 1440,
+   "overflow": false,
+   "offenders": [],
+   "small": 0,
+   "imgsBroken": [],
+   "h1": [
+    "3D map of real estate projects and infrastructure around Mundhwa, Pune",
+    "Associatte Interactive Map — 3D"
+   ],
+   "fontSmall": 0,
+   "title": "3D Project Map — Mundhwa, Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  },
+  {
+   "route": "/mundhwa-map-3d",
+   "width": 1920,
+   "status": 0,
+   "ms": 2494,
+   "vw": 1920,
+   "sw": 1920,
+   "overflow": false,
+   "offenders": [],
+   "small": 0,
+   "imgsBroken": [],
+   "h1": [
+    "3D map of real estate projects and infrastructure around Mundhwa, Pune",
+    "Associatte Interactive Map — 3D"
+   ],
+   "fontSmall": 0,
+   "title": "3D Project Map — Mundhwa, Pune — Mappingg",
+   "console": [],
+   "pageErrors": [],
+   "failed": [],
+   "blocked_count": 1
+  }
+ ],
+ "keyboard": {
+  "/projects": [
+   {
+    "tag": "a",
+    "text": "Mappingg.com",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Home",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Live map",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "How it works",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Features",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Blog",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Contact",
+    "visible": true
+   },
+   {
+    "tag": "button",
+    "text": "Sign in",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Open live map",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Home",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "1 Residency by BurgundyMantra ",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Epitome by Ram IndiaRam India ",
+    "visible": true
+   }
+  ],
+  "/projects/mantra-melange-kharadi-21": [
+   {
+    "tag": "a",
+    "text": "Mappingg.com",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Home",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Live map",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "How it works",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Features",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Blog",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Contact",
+    "visible": true
+   },
+   {
+    "tag": "button",
+    "text": "Sign in",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Open live map",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Home",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Pune",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Kharadi",
+    "visible": true
+   }
+  ],
+  "/blog": [
+   {
+    "tag": "a",
+    "text": "Mappingg.com",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Home",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Live map",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "How it works",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Features",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Blog",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Contact",
+    "visible": true
+   },
+   {
+    "tag": "button",
+    "text": "Sign in",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Open live map",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Home Buying GuideProperty Docu",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "KothrudKoregaon ParkKalyani Na",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "MumbaiAndheriBorivaliNew Proje",
+    "visible": true
+   }
+  ],
+  "/faq": [
+   {
+    "tag": "a",
+    "text": "Mappingg.com",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Home",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Live map",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "How it works",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Features",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Blog",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Contact",
+    "visible": true
+   },
+   {
+    "tag": "button",
+    "text": "Sign in",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Open live map",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Home",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Explore the live map",
+    "visible": true
+   },
+   {
+    "tag": "a",
+    "text": "Still have questions?",
+    "visible": true
+   }
+  ]
+ },
+ "finished": "2026-10-20T08:33:30.854Z"
+}

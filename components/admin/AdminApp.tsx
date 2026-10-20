@@ -14,6 +14,7 @@ import { BulkBar, PickOne, useSelection } from './bulk';
 import TrafficPanel from './TrafficPanel';
 import DevelopersPanel from './DevelopersPanel';
 import DeveloperApiPanel from './DeveloperApiPanel';
+import { FULL_EDIT_EVENT, requestFullEdit, submissionForPin } from './fullEdit';
 import { ChartCard, DayHeatmap, Donut, HBars, STATUS_META, StatTile, StatusStack, TYPE_COLORS, WeekColumns, dayStats } from './SeoCharts';
 
 export interface AdminUser {
@@ -67,8 +68,99 @@ function useToast() {
 }
 
 /* ------------------------------- Dashboard ------------------------------- */
+
+type DayProject = {
+  id: string; number: number | null; title: string; developer: string; location: string; status: string; type: string;
+  price: string; configuration: string; rera: string; created_at: string; hidden: boolean; pending: boolean; rejected: boolean;
+  origin: 'intake' | 'developer' | 'map'; page: string | null;
+};
+const DAY_PAGE = 40;
+const ORIGIN_LABEL: Record<DayProject['origin'], string> = { intake: 'From Projects Intake', developer: 'Added by a developer', map: 'Added on the map' };
+
+/** The projects created on one day (click a square in "Projects created day by day"). */
+function DayProjects({ date, onClose }: { date: string; onClose: () => void }) {
+  const [rows, setRows] = useState<DayProject[] | null>(null);
+  const [error, setError] = useState('');
+  const [q, setQ] = useState('');
+  const [shown, setShown] = useState(DAY_PAGE);
+  const boxRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    let off = false;
+    setRows(null); setError(''); setQ(''); setShown(DAY_PAGE);
+    fetch(`/api/admin/pins-by-day?date=${encodeURIComponent(date)}`, { credentials: 'same-origin' })
+      .then(async (r) => { const b = await r.json().catch(() => ({})); if (!r.ok || b.error) throw new Error(b?.error?.message || `Could not load (${r.status})`); return b.data.projects as DayProject[]; })
+      .then((list) => { if (!off) setRows(list); })
+      .catch((e) => { if (!off) setError(e instanceof Error ? e.message : 'Could not load the projects'); });
+    // Bring the list into view (it opens under the calendar).
+    requestAnimationFrame(() => boxRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }));
+    return () => { off = true; };
+  }, [date]);
+
+  const term = q.trim().toLowerCase();
+  const list = (rows || []).filter((p) => !term || [p.title, p.developer, p.location, p.rera, String(p.number ?? '')].some((v) => v.toLowerCase().includes(term)));
+  const day = new Date(date + 'T00:00:00Z').toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+  const time = (iso: string) => { const d = new Date(iso); return Number.isNaN(d.getTime()) ? '' : d.toLocaleTimeString('en-IN', { hour: 'numeric', minute: '2-digit', timeZone: 'Asia/Kolkata' }); };
+
+  return (
+    <div className="day-pj" ref={boxRef} aria-live="polite">
+      <div className="day-pj-head">
+        <h4>{day}{rows ? ` — ${rows.length} project${rows.length === 1 ? '' : 's'} created` : ''}</h4>
+        <div className="day-pj-tools">
+          {rows && rows.length > 6 && (
+            <label className="acs-search">
+              <i className="fas fa-magnifying-glass" />
+              <input type="search" placeholder="Search name, developer, RERA, #" value={q} onChange={(e) => { setQ(e.target.value); setShown(DAY_PAGE); }} aria-label="Search this day's projects" />
+            </label>
+          )}
+          <button type="button" className="adm-btn ghost sm" onClick={onClose}><i className="fas fa-xmark" /> Close</button>
+        </div>
+      </div>
+      {error ? <p className="muted"><i className="fas fa-triangle-exclamation" /> {error}</p>
+        : !rows ? <p className="muted"><i className="fas fa-spinner fa-spin" /> Loading projects…</p>
+          : !list.length ? <p className="muted">{rows.length ? 'No project matches your search.' : 'No projects were created on this day.'}</p>
+            : (<>
+              <ul className="day-pj-list">
+                {list.slice(0, shown).map((p) => (
+                  <li key={p.id}>
+                    <div className="day-pj-main">
+                      <b>{p.number != null ? `#${p.number} · ` : ''}{p.title || 'Untitled project'}</b>
+                      <small>{[p.developer, p.location].filter(Boolean).join(' · ') || '—'}{p.created_at ? ` · added ${time(p.created_at)}` : ''}</small>
+                      <div className="day-pj-tags">
+                        {p.status && <span className="day-pj-tag">{STATUS_META[p.status]?.label || p.status}</span>}
+                        {p.type && <span className="day-pj-tag">{p.type}</span>}
+                        <span className="day-pj-tag muted">{ORIGIN_LABEL[p.origin]}</span>
+                        {p.hidden && <span className="day-pj-tag muted">Hidden on the map</span>}
+                        {p.pending && <span className="day-pj-tag warn">Waiting for approval</span>}
+                        {p.rejected && <span className="day-pj-tag warn">Not approved</span>}
+                        {!p.price && <span className="day-pj-tag warn">No price</span>}
+                      </div>
+                    </div>
+                    <div className="day-pj-acts">
+                      <button type="button" className="adm-btn primary sm" onClick={() => requestFullEdit(p.id)} title="Every field: price, configuration, RERA, media, amenities, sales contact…">
+                        <i className="fas fa-pen-to-square" /> Edit all details
+                      </button>
+                      <a className="adm-btn ghost sm" href={`/map?pin=${encodeURIComponent(p.id)}`} target="_blank" rel="noopener"><i className="fas fa-map-location-dot" /> View on map</a>
+                      {p.page && <a className="adm-btn ghost sm" href={p.page} target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /> Project page</a>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              {list.length > shown && (
+                <div className="day-pj-more">
+                  <button type="button" className="adm-btn ghost sm" onClick={() => setShown((n) => n + DAY_PAGE)}>
+                    Show more ({list.length - shown} left)
+                  </button>
+                </div>
+              )}
+            </>)}
+    </div>
+  );
+}
+
 function DashboardPanel({ onGo }: { onGo: (t: string) => void }) {
   const [s, setS] = useState<any>(null);
+  // A day picked on the "Projects created day by day" calendar (shows its projects).
+  const [pickedDay, setPickedDay] = useState<string | null>(null);
   useEffect(() => {
     fetch('/api/admin/stats', { credentials: 'same-origin' })
       .then((r) => r.json()).then((b) => setS(b.data)).catch(() => setS({ dbOk: false }));
@@ -119,7 +211,7 @@ function DashboardPanel({ onGo }: { onGo: (t: string) => void }) {
 
       <ChartCard
         title="Projects created day by day"
-        subtitle="Each square is one day (India time) for the last 6 months — grey means no new projects that day"
+        subtitle="Each square is one day (India time) for the last 6 months — grey means no new projects that day. Click a day to see its projects."
         table={{ head: ['Day', 'Projects created'], rows: [...daily.days].filter((d: { count: number }) => d.count > 0).reverse().map((d: { date: string; count: number }) => [longDay(d.date), d.count]) }}
       >
         {(show, hide) => (
@@ -136,7 +228,9 @@ function DashboardPanel({ onGo }: { onGo: (t: string) => void }) {
               <div><b>{ds.streak}</b><span>day streak<br /><small>in a row, up to today</small></span></div>
               <div><b>{ds.busiest ? ds.busiest.count : 0}</b><span>busiest day<br /><small>{ds.busiest ? longDay(ds.busiest.date) : '—'}</small></span></div>
             </div>
-            <DayHeatmap days={daily.days} today={daily.today} show={show} hide={hide} />
+            <DayHeatmap days={daily.days} today={daily.today} show={show} hide={hide}
+              picked={pickedDay} onPick={(d) => setPickedDay((cur) => (cur === d ? null : d))} />
+            {pickedDay && <DayProjects date={pickedDay} onClose={() => setPickedDay(null)} />}
           </>
         )}
       </ChartCard>
@@ -208,10 +302,12 @@ function MapPanel() {
 // The partners intake app (bulk CSV/Excel upload, review queue, builders &
 // links, live projects) runs as a self-contained app under /s-admin and is
 // embedded here so it lives inside the super admin too. It shares this session.
-function IntakePanel() {
+// `hash` opens a specific screen, e.g. #/review/<id> for "Edit all details" on a pin;
+// changing only the hash navigates inside the already-loaded app (no reload).
+function IntakePanel({ hash = '' }: { hash?: string }) {
   return (
     <div className="adm-panel" style={{ padding: 0, overflow: 'hidden' }}>
-      <iframe title="Projects intake" src="/intake" className="adm-frame" />
+      <iframe title="Projects intake" src={`/intake${hash}`} className="adm-frame" />
     </div>
   );
 }
@@ -2654,6 +2750,44 @@ export default function AdminApp({ user }: { user: AdminUser }) {
     if (KEEP_ALIVE.includes(k) && visible.includes(k)) setWarm((w) => (w.includes(k) ? w : [...w, k]));
   };
   useEffect(() => { warmUp(tab); }, [tab]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // "Edit all details" on any project (Developers, Developer projects, or the Map
+  // Editor iframe via postMessage): open its full Projects Intake form — the one
+  // form with every field. Staff without the intake tab get it in a new browser tab.
+  const [intakeHash, setIntakeHash] = useState('');
+  const openFullEdit = async (pinId: string) => {
+    try {
+      const { submission_id, created } = await submissionForPin(pinId);
+      const hash = `#/review/${encodeURIComponent(submission_id)}?from=pin&t=${Date.now()}`;
+      if (visible.includes('intake')) {
+        setIntakeHash(hash);
+        setWarm((w) => (w.includes('intake') ? w : [...w, 'intake']));
+        setTab('intake');
+      } else {
+        window.open(`/intake${hash}`, '_blank', 'noopener');
+      }
+      flash(created ? 'Full form created from this pin — Publish it to update the map' : 'Opened the full project form');
+    } catch (e) {
+      flash(e instanceof Error ? e.message : 'Could not open the full form', true);
+    }
+  };
+  const openFullEditRef = useRef(openFullEdit);
+  openFullEditRef.current = openFullEdit;
+  useEffect(() => {
+    const onEvent = (e: Event) => {
+      const id = (e as CustomEvent<{ pinId?: string }>).detail?.pinId;
+      if (id) openFullEditRef.current(String(id));
+    };
+    // The Map Editor runs in a same-origin iframe and posts { type, pinId }.
+    const onMessage = (e: MessageEvent) => {
+      if (e.origin !== window.location.origin) return;
+      const d = e.data as { type?: string; pinId?: string } | null;
+      if (d && d.type === FULL_EDIT_EVENT && d.pinId) openFullEditRef.current(String(d.pinId));
+    };
+    window.addEventListener(FULL_EDIT_EVENT, onEvent);
+    window.addEventListener('message', onMessage);
+    return () => { window.removeEventListener(FULL_EDIT_EVENT, onEvent); window.removeEventListener('message', onMessage); };
+  }, []);
   const [menuOpen, setMenuOpen] = useState(false);
   // Developer/partner accounts waiting for verification — shown as a badge on the Accounts tab.
   const [pendingCount, setPendingCount] = useState(0);
@@ -2773,7 +2907,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
         <div className="adm-content" style={tab === 'map' || tab === 'intake' ? { maxWidth: 'none', padding: 0 } : undefined}>
           {tab === 'dashboard' && <DashboardPanel onGo={(t) => visible.includes(t) && setTab(t)} />}
           {warm.includes('map') && <div hidden={tab !== 'map'}><MapPanel /></div>}
-          {warm.includes('intake') && <div hidden={tab !== 'intake'}><IntakePanel /></div>}
+          {warm.includes('intake') && <div hidden={tab !== 'intake'}><IntakePanel hash={intakeHash} /></div>}
           {tab === 'developers' && <DevelopersPanel flash={flash} />}
           {tab === 'leads' && <LeadsPanel flash={flash} isOwner={isOwner} />}
           {tab === 'projects' && (

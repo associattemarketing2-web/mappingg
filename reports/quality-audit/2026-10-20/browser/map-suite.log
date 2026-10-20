@@ -1,0 +1,22 @@
+PASS  map loads markers (desktop) — 983 markers in 3455 ms
+PASS  guest sees sign-in prompt over the map — ["🗺️Sign in to explore the live mapSee every live project with status, MahaRERA-v","We use cookiesEssential cookies keep you signed in and 
+PASS  mouse-wheel zoom zooms the map in — marker spread 559740 → 3765466 px
+PASS  drag pans the map — pane moved -200,-100 px
+FAIL  clicking a marker opens project details
+PASS  no uncaught JS errors on load and interaction
+PASS  no failed same-site requests
+FAIL  deep link ?pin= (maharera) shows the right RERA registry — {"title":"","label":null,"code":[],"href":null}
+FAIL  deep link ?pin= (karnataka) shows the right RERA registry — {"title":"","label":null,"code":[],"href":null}
+FAIL  deep link ?pin= (haryana) shows the right RERA registry — {"title":"","label":null,"code":[],"href":null}
+FAIL  deep link ?pin= (up) shows the right RERA registry — {"title":"","label":null,"code":[],"href":null}
+PASS  deep link ?pin= (noRera) shows the right RERA registry — {"title":"","label":null,"code":[],"href":null}
+PASS  map loads markers (mobile 375px) — 983 markers in 2187 ms
+PASS  mobile map has no horizontal scroll — 0px
+PASS  touch drag pans the map (mobile) — pane moved -80,-80 px
+PASS  no uncaught JS errors (mobile)
+FAIL  mobile project panel fits the screen — null
+PASS  pins request failure: page stays up (no uncaught errors) — markers=983; message=""; errors=
+FAIL  pins request failure: user is told something went wrong — no visible message
+PASS  repeated map navigation: no JS errors, markers not duplicated — heap MB per round: 12, 14, 23, 15; markers after 4 rounds: 983
+7 failed of 20
+exit 0

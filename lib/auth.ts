@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers';
 import { SignJWT, jwtVerify } from 'jose';
+import { roleOrDefault } from './auth-role';
 
 // Server-side authentication helpers. Replaces Supabase Auth (GoTrue).
 //
@@ -41,7 +42,7 @@ export async function verifySessionToken(token: string): Promise<SessionUser | n
     return {
       id: String(payload.sub),
       email: String(payload.email || ''),
-      role: String(payload.role || 'admin'),
+      role: roleOrDefault(payload.role),
     };
   } catch {
     return null;
@@ -88,7 +89,7 @@ async function currentRoleOf(user: SessionUser): Promise<string | null> {
     const { getDb } = await import('./mongodb');
     const db = await getDb();
     const doc = await db.collection('users').findOne({ id: user.id }, { projection: { role: 1 } });
-    const role = doc ? String(doc.role || 'admin') : null; // same default as login
+    const role = doc ? roleOrDefault(doc.role) : null; // same default as login
     if (accountCheck.size > 5000) accountCheck.clear();
     accountCheck.set(user.id, { role, exp: Date.now() + ACCOUNT_TTL_MS });
     return role;

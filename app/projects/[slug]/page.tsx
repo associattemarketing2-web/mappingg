@@ -11,13 +11,14 @@ import {
   statusRouteSlug,
   typeLabel,
   slugForProject,
+  placesOf,
   CITY_LABELS,
   hasCityHub,
   type Pin,
 } from '@/lib/seo/entities';
-import { localitiesOf } from '@/lib/locality';
 import { slugify } from '@/lib/seo/slug';
 import { projectSchema, faqSchema, videoSchema, youtubeId, jsonLd } from '@/lib/seo/schema';
+import { projectFaqs, projectSummary, reraNumber, reraRegistry } from '@/lib/seo/project-meta';
 
 const fmtDate = (d?: string) =>
   d ? new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
@@ -40,6 +41,8 @@ const specRows = (pin: Pin): { k: string; v: string }[] =>
     { k: 'Price', v: pin.price || '' },
     { k: 'Possession', v: pin.possession_timeline || '' },
     { k: 'Launch', v: pin.launch_date || '' },
+    // Names the issuing registry ("MahaRERA registration", "RERA Karnataka registration").
+    { k: `${reraRegistry(pin.rera_number).name} registration`, v: reraNumber(pin.rera_number) },
   ].filter((r) => r.v);
 
 export default async function ProjectDetail({ params }: { params: { slug: string } }) {
@@ -62,6 +65,12 @@ export default async function ProjectDetail({ params }: { params: { slug: string
     : [];
   const related = [...nearby, ...byDev].slice(0, 6);
 
+  // Facts-only overview (each sentence appears only when its field is filled).
+  const overview = projectSummary(pin, loc, city, {
+    sameLocality: loc ? all.filter((p) => p.number !== pin.number && primaryLocality(p) === loc).length : 0,
+    sameDeveloper: pin.developer ? all.filter((p) => p.number !== pin.number && p.developer === pin.developer).length : 0,
+  });
+
   const crumbs = [
     { name: 'Home', path: '/' },
     ...(hasCityHub(cityKey) ? [{ name: city, path: `/cities/${cityKey}` }] : []),
@@ -69,17 +78,8 @@ export default async function ProjectDetail({ params }: { params: { slug: string
     { name, path: `/projects/${slugForProject(pin)}` },
   ];
 
-  const faqs = [
-    loc && {
-      q: `Where is ${name} located?`,
-      a: `${name} is located in ${loc}${city ? `, ${city}` : ''}. You can see its exact position, surrounding infrastructure and nearby projects on the Mappingg live map.`,
-    },
-    pin.developer && { q: `Who is the developer of ${name}?`, a: `${name} is developed by ${pin.developer}.` },
-    pin.status && {
-      q: `What is the current status of ${name}?`,
-      a: `${name} is currently ${statusLabel(pin.status).toLowerCase()}${pin.possession_timeline ? `, with possession ${pin.possession_timeline}` : ''}.`,
-    },
-  ].filter(Boolean) as { q: string; a: string }[];
+  // Every answer comes from a field shown on this page (lib/seo/project-meta.ts).
+  const faqs = projectFaqs(pin, loc, city);
 
   const schema = projectSchema({
     name,
@@ -90,6 +90,7 @@ export default async function ProjectDetail({ params }: { params: { slug: string
     city,
     lat: pin.lat,
     lng: pin.lng,
+    reraNumber: reraNumber(pin.rera_number),
   });
 
   const vid = youtubeId(pin.youtube_video_url);
@@ -107,7 +108,7 @@ export default async function ProjectDetail({ params }: { params: { slug: string
     ...(hasCityHub(cityKey) ? [{ label: `Real estate in ${city}`, path: `/cities/${cityKey}` }] : []),
   ];
   // Other localities this project touches (projects often span 2 areas).
-  const otherLocs = localitiesOf(pin.location)
+  const otherLocs = placesOf(pin.location)
     .filter((l) => l !== loc)
     .map((l) => ({ label: l, path: `/locations/${slugify(l)}` }));
 
@@ -139,8 +140,13 @@ export default async function ProjectDetail({ params }: { params: { slug: string
               width={720}
               height={450}
               decoding="async"
+              fetchPriority="high"
             />
           )}
+          <div className="seo-section seo-prose">
+            <h2>{name} overview</h2>
+            <p>{overview.join(' ')}</p>
+          </div>
           {pin.description && (
             <div className="seo-section seo-prose">
               <h2>About {name}</h2>

@@ -226,7 +226,7 @@ const sections: LegalSection[] = [
       <>
         <p>
           The Mappingg Developer API gives approved partners read access to the same public data shown on mappingg.com:
-          projects (name, developer, locality, configuration, published price, possession, MahaRERA number where listed,
+          projects (name, developer, locality, configuration, published price, possession, RERA number where listed,
           coordinates and image), developers, localities, map pins, infrastructure markers and published articles.
         </p>
         <p>
@@ -478,7 +478,7 @@ curl -s "${BASE}/map/pins?north=18.60&south=18.50&east=73.98&west=73.88&zoom=14"
         </p>
         <p>
           Project details come from developers and are shown for reference only (see our <Link href="/disclaimer">disclaimer</Link>).
-          MahaRERA numbers are as listed — verify them on the MahaRERA website before relying on them. Use of the API is also
+          RERA numbers are as listed — verify them on the issuing state&apos;s RERA website before relying on them. Use of the API is also
           covered by our <Link href="/terms">terms of use</Link> and <Link href="/privacy">privacy policy</Link>.
         </p>
       </>

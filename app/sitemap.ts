@@ -44,6 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/cookies`, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${SITE_URL}/disclaimer`, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${SITE_URL}/map-data`, changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${SITE_URL}/developer-api`, changeFrequency: 'monthly', priority: 0.4 },
   ];
 
   // Derived entity routes (never throws — each getter is cached & fail-safe).
@@ -54,7 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     getCityGroups(),
     getStatusGroups(),
     getTypeGroups(),
-    listPublished(),
+    listPublished({ strict: true }),
   ]);
 
   // lastModified comes only from real change dates: a value that is always "now"

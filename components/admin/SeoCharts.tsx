@@ -239,9 +239,12 @@ export function dayStats(days: { date: string; count: number }[], today: string)
   return { activeDays: active.length, totalDays: days.length, todayCount, streak, busiest, lastActive };
 }
 
-export function DayHeatmap({ days, today, show, hide }: {
+export function DayHeatmap({ days, today, show, hide, onPick, picked }: {
   days: { date: string; count: number }[]; today: string;
   show: (e: React.PointerEvent, t: string, l: string[]) => void; hide: () => void;
+  /** Click / Enter on a day with projects → list them (dashboard). */
+  onPick?: (date: string) => void;
+  picked?: string | null;
 }) {
   // Columns of 7 (Mon..Sun); the last week may be partial (future days left blank).
   const weeks: ({ date: string; count: number } | null)[][] = [];
@@ -257,15 +260,26 @@ export function DayHeatmap({ days, today, show, hide }: {
         <div className="viz-heat-months" aria-hidden="true">
           {weeks.map((w, i) => <span key={i}>{i === 0 || monthOf(w) !== monthOf(weeks[i - 1]) ? monthOf(w) : ''}</span>)}
         </div>
-        <div className="viz-heat-grid" role="img" aria-label="Projects created per day">
+        <div className="viz-heat-grid" role={onPick ? 'group' : 'img'} aria-label={onPick ? 'Projects created per day — choose a day to see its projects' : 'Projects created per day'}>
           {weeks.map((w, i) => (
             <div className="viz-heat-col" key={i}>
-              {w.map((d, j) => d ? (
-                <span key={j} className={`viz-heat-cell${d.date === today ? ' is-today' : ''}`} style={{ background: HEAT[heatStep(d.count)] }}
-                  onPointerMove={(e) => show(e, dayFmt(d.date, { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }) + (d.date === today ? ' (today)' : ''),
-                    [d.count ? `${fmt(d.count)} project${d.count === 1 ? '' : 's'} created` : 'No projects created'])}
-                  onPointerLeave={hide} />
-              ) : <span key={j} className="viz-heat-cell is-future" />)}
+              {w.map((d, j) => {
+                if (!d) return <span key={j} className="viz-heat-cell is-future" />;
+                const label = dayFmt(d.date, { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }) + (d.date === today ? ' (today)' : '');
+                const lines = [d.count ? `${fmt(d.count)} project${d.count === 1 ? '' : 's'} created` : 'No projects created', ...(onPick && d.count ? ['Click to see them'] : [])];
+                const cls = `viz-heat-cell${d.date === today ? ' is-today' : ''}${picked === d.date ? ' is-picked' : ''}`;
+                const common = {
+                  className: cls,
+                  style: { background: HEAT[heatStep(d.count)] },
+                  onPointerMove: (e: React.PointerEvent) => show(e, label, lines),
+                  onPointerLeave: hide,
+                };
+                // Days with projects are buttons (mouse, touch and keyboard); empty days stay plain.
+                return onPick && d.count ? (
+                  <button key={j} type="button" {...common} className={`${cls} is-clickable`} aria-pressed={picked === d.date}
+                    aria-label={`${label}: ${fmt(d.count)} project${d.count === 1 ? '' : 's'} created`} onClick={() => { hide(); onPick(d.date); }} />
+                ) : <span key={j} {...common} />;
+              })}
             </div>
           ))}
         </div>
