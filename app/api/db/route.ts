@@ -12,6 +12,7 @@ import { notifyAdmin } from '@/lib/mailer';
 import { pageOf, pushToCrm, visitorIp } from '@/lib/crm';
 import { autoLogo, pinImageDigest } from '@/lib/developers';
 import { mapLeadConsent, optInSummary, type ConsentRecord } from '@/lib/consent';
+import { siteVisitSlot } from '@/lib/site-visit';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -75,9 +76,12 @@ async function handle(op: DbOp, devEditorView = false, ip = '', visitor = ip, pa
     }
     // "Book Site Visit" from the project panel: recorded by the server as a timestamp.
     const now = new Date().toISOString();
-    const vals = checked.map(({ values: { site_visit, site_visit_requested_at, ...v } }) => {
-      void site_visit_requested_at;
-      return site_visit === true ? { ...v, site_visit_requested_at: now } : v;
+    const vals = checked.map(({ values: { site_visit, site_visit_requested_at, site_visit_date, site_visit_time, visit_date, visit_time, ...v } }) => {
+      void site_visit_requested_at; void site_visit_date; void site_visit_time;
+      if (site_visit !== true) return v;
+      const day = typeof visit_date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(visit_date) ? visit_date : null;
+      const time = typeof visit_time === 'string' && visit_time.trim() ? visit_time.trim().slice(0, 40) : null;
+      return { ...v, site_visit_requested_at: now, site_visit_date: day, site_visit_time: time };
     });
     op = { ...op, values: Array.isArray(op.values) ? vals : vals[0] };
   }
@@ -112,13 +116,13 @@ async function handle(op: DbOp, devEditorView = false, ip = '', visitor = ip, pa
       const project = pin ? String(pin.title || `#${pin.number ?? ''}`) : '';
       pushToCrm({
         name: String(v.name || ''), mobile: String(v.whatsapp || ''), email: String(v.email || ''), project, builder: String(pin?.developer || ''),
-        source: v.site_visit_requested_at ? 'Map "Book Site Visit" form' : 'Map enquiry form', page, extra: [['Role', v.role], ['Opted in to', optInSummary(v.consent as ConsentRecord)]], message: String(v.message || ''), ip: visitor,
+        source: v.site_visit_requested_at ? 'Map "Book Site Visit" form' : 'Map enquiry form', page, extra: [['Role', v.role], ['Opted in to', optInSummary(v.consent as ConsentRecord)], ...(v.site_visit_requested_at ? [['Site visit', siteVisitSlot(v.site_visit_date, v.site_visit_time) || 'Not chosen'] as [string, string]] : [])], message: String(v.message || ''), ip: visitor,
       });
       const visit = !!v.site_visit_requested_at;
       notifyAdmin(`${visit ? 'Site visit request' : 'New enquiry'}${project ? `: ${project}` : ''} — ${String(v.name || 'visitor')}`, {
         title: visit ? 'Site visit request from the live map' : 'New enquiry from the live map',
         body: [],
-        rows: [['Name', v.name], ['WhatsApp', v.whatsapp], ['Email', v.email], ['Role', v.role], ['Project', project], ['Message', v.message]],
+        rows: [['Name', v.name], ['WhatsApp', v.whatsapp], ['Email', v.email], ['Role', v.role], ['Project', project], ...(visit ? [['Site visit', siteVisitSlot(v.site_visit_date, v.site_visit_time) || 'Not chosen'] as [string, string]] : []), ['Message', v.message]],
         cta: { label: 'Open leads', href: '/dashboard/s-admin' },
       }, typeof v.email === 'string' && v.email ? v.email : undefined);
     }

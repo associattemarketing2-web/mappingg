@@ -813,6 +813,8 @@ interface Lead {
   enquiry_clicks?: number; last_enquired_at?: string | null;
   // Map enquiries only: when they tapped "Book Site Visit" on the project.
   site_visit_requested_at?: string | null;
+  // …and the day + time slot they picked, e.g. "Sat, 25 Oct 2026 · 10:00 AM – 12:00 PM".
+  site_visit_slot?: string;
   // Enquiries sent by a partner website through the Developer API (POST /api/v1/enquiries).
   integration?: { app_id: string; app_name: string; website: string; source_page?: string; reference?: string } | null;
   // Map enquiries only: the enquirer's account (buyer, agent or developer), if they have one.
@@ -824,7 +826,7 @@ interface Lead {
   // Buyer sign-ups only: that buyer's account activity.
   buyer?: {
     last_login_at: string | null; login_count: number; profile: Record<string, string>; account_exists: boolean;
-    enquiries: { at: string; site_visit?: boolean; project: { id: string; title: string; number: number | null; location: string } }[];
+    enquiries: { at: string; site_visit?: boolean; site_visit_slot?: string; project: { id: string; title: string; number: number | null; location: string } }[];
     compare: { id: string; title: string; number: number | null; location: string }[];
   };
 }
@@ -1330,7 +1332,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
                     </td>
                     <td className="muted" title={fullDate(l.created_at)}>
                       {leadWhen(l.created_at)}
-                      {isMap && l.site_visit_requested_at && <small style={{ display: 'block', color: '#2f7a3c', fontWeight: 600 }} title={fullDate(l.site_visit_requested_at)}><i className="fas fa-calendar-check" /> Site visit requested · {leadWhen(l.site_visit_requested_at)}</small>}
+                      {isMap && l.site_visit_requested_at && <small style={{ display: 'block', color: '#2f7a3c', fontWeight: 600 }} title={fullDate(l.site_visit_requested_at)}><i className="fas fa-calendar-check" /> Site visit: {l.site_visit_slot || `requested ${leadWhen(l.site_visit_requested_at)}`}</small>}
                       {isMap && (l.enquiry_clicks || 1) > 1 && <small style={{ display: 'block' }}>{l.enquiry_clicks}× · last {leadWhen(l.last_enquired_at || undefined)}</small>}
                     </td>
                     <td><button className="adm-btn ghost sm" onClick={(e) => { e.stopPropagation(); open(l); }}>Open</button></td>
@@ -1458,7 +1460,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
                     <tr><td className="muted">Enquirer type</td><td>{ROLE_META[sel.role || 'buyer'].label}</td></tr>
                     <tr><td className="muted">How</td><td>{sel.account?.signed_in ? 'Enquire now while signed in' : 'Enquiry form (not signed in)'}</td></tr>
                     <tr><td className="muted">First enquired</td><td>{fullDate(sel.created_at)}</td></tr>
-                    {sel.site_visit_requested_at && <tr><td className="muted">Site visit</td><td><b style={{ color: '#2f7a3c' }}>Requested</b> · {fullDate(sel.site_visit_requested_at)}</td></tr>}
+                    {sel.site_visit_requested_at && <tr><td className="muted">Site visit</td><td><b style={{ color: '#2f7a3c' }}>{sel.site_visit_slot || 'Requested'}</b><small className="muted" style={{ display: 'block' }}>Booked {fullDate(sel.site_visit_requested_at)}</small></td></tr>}
                     <tr><td className="muted">Times tapped</td><td>{sel.enquiry_clicks || 1}</td></tr>
                     {(sel.enquiry_clicks || 1) > 1 && <tr><td className="muted">Last enquired</td><td>{fullDate(sel.last_enquired_at)}</td></tr>}
                   </tbody>
@@ -1536,7 +1538,7 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
                       {sel.buyer.enquiries.map((e, i) => (
                         <li key={i}>
                           <a href={`/map?pin=${encodeURIComponent(e.project.id)}`} target="_blank" rel="noopener">{e.project.title}{e.project.number != null ? ` #${e.project.number}` : ''}</a>
-                          {e.site_visit && <small style={{ color: '#2f7a3c', fontWeight: 600 }}><i className="fas fa-calendar-check" /> Site visit requested</small>}
+                          {e.site_visit && <small style={{ color: '#2f7a3c', fontWeight: 600 }}><i className="fas fa-calendar-check" /> Site visit{e.site_visit_slot ? `: ${e.site_visit_slot}` : ' requested'}</small>}
                           <small>{e.project.location || ''}{e.at ? ` · ${leadWhen(e.at)}` : ''}</small>
                         </li>
                       ))}

@@ -15,9 +15,12 @@ const schema = z.object({
   consent_whatsapp: z.boolean().optional(),
   // "Book Site Visit" on the project panel instead of "Enquire now".
   site_visit: z.boolean().optional(),
+  // The day (YYYY-MM-DD) and time slot the visitor picked for the visit.
+  visit_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+  visit_time: z.string().trim().max(40).optional(),
 });
 
-export type EnquireRequest = { ok: true; pin_id: string; site_visit: boolean; consent: ConsentRecord } | { ok: false };
+export type EnquireRequest = { ok: true; pin_id: string; site_visit: boolean; visit_date: string; visit_time: string; consent: ConsentRecord } | { ok: false };
 
 export function parseEnquireRequest(raw: unknown, now: Date = new Date()): EnquireRequest {
   const p = schema.safeParse(raw);
@@ -26,6 +29,8 @@ export function parseEnquireRequest(raw: unknown, now: Date = new Date()): Enqui
     ok: true,
     pin_id: p.data.pin_id,
     site_visit: p.data.site_visit === true,
+    visit_date: p.data.site_visit === true ? p.data.visit_date || '' : '',
+    visit_time: p.data.site_visit === true ? p.data.visit_time || '' : '',
     consent: buildConsent('enquireSignedIn', { enquiry: true, call: p.data.consent_call, whatsapp: p.data.consent_whatsapp }, now),
   };
 }

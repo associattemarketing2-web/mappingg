@@ -8,6 +8,7 @@ import { getCurrentUser } from '@/lib/auth';
 import { idsParam, moveToTrash } from '@/lib/trash';
 import { syncBuyerLeads } from '@/lib/signup-leads';
 import { listEmployees } from '@/lib/staff';
+import { siteVisitSlot } from '@/lib/site-visit';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -70,6 +71,7 @@ function mapLead(doc: Record<string, any>, pin?: Pin) {
       configuration: pin.configuration || '', sqft: pin.sqft || '', possession: pin.possession_timeline || '',
     } : null,
     enquiry_clicks: Number(l.enquiry_clicks) || 1,
+    site_visit_slot: l.site_visit_requested_at ? siteVisitSlot(l.site_visit_date, l.site_visit_time) : '',
     last_enquired_at: l.last_enquired_at || l.created_at || null,
     locations: localitiesOf(pin?.location),
   };
@@ -129,7 +131,7 @@ async function withBuyerActivity(rows: Record<string, any>[]) {
   const emails = rows.map((r) => String(r.email || '').toLowerCase()).filter(Boolean);
   const enq = await db.collection('leads').find(
     { $or: [{ account_id: { $in: ids } }, { email: { $in: emails } }] },
-    { projection: { account_id: 1, email: 1, pin_id: 1, created_at: 1, site_visit_requested_at: 1 } },
+    { projection: { account_id: 1, email: 1, pin_id: 1, created_at: 1, site_visit_requested_at: 1, site_visit_date: 1, site_visit_time: 1 } },
   ).sort({ created_at: -1 }).toArray() as Record<string, any>[];
   const pinIds = Array.from(new Set([...enq.map((e) => String(e.pin_id)), ...users.flatMap((u) => (Array.isArray(u.compare_pins) ? u.compare_pins.map(String) : []))]));
   const pins = pinIds.length
@@ -147,7 +149,7 @@ async function withBuyerActivity(rows: Record<string, any>[]) {
         last_login_at: u?.last_login_at || r.last_login_at || null,
         login_count: Number(u?.login_count ?? r.login_count ?? 0),
         profile: u?.profile || {},
-        enquiries: mine.map((e) => ({ at: e.created_at, site_visit: !!e.site_visit_requested_at, project: proj(String(e.pin_id)) })).filter((e) => e.project),
+        enquiries: mine.map((e) => ({ at: e.created_at, site_visit: !!e.site_visit_requested_at, site_visit_slot: siteVisitSlot(e.site_visit_date, e.site_visit_time), project: proj(String(e.pin_id)) })).filter((e) => e.project),
         compare: (Array.isArray(u?.compare_pins) ? u!.compare_pins.map(String) : []).map(proj).filter(Boolean),
         account_exists: !!u,
       },
