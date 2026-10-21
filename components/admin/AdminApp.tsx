@@ -515,10 +515,18 @@ function BlogsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
         method: editId ? 'PUT' : 'POST', headers: { 'Content-Type': 'application/json' },
         credentials: 'same-origin', body: JSON.stringify(payload),
       });
-      if (!r.ok) throw new Error();
+      if (!r.ok) {
+        // Say what to fix (field too long etc.) instead of a bare "Save failed".
+        const b = await r.json().catch(() => null);
+        const why = b?.error?.message && b.error.message !== 'Invalid post' ? b.error.message
+          : r.status === 413 ? 'The post is too large — use a cover image URL instead of uploading, or shorten the content.'
+          : r.status === 401 ? 'Your session has expired — sign in again.' : `Server error (${r.status}).`;
+        flash(`Not saved: ${why}`, true);
+        return;
+      }
       flash(status === 'published' ? 'Published!' : 'Saved as draft');
       setView('list'); load();
-    } catch { flash('Save failed', true); } finally { setSaving(false); }
+    } catch { flash('Not saved: could not reach the server — check your connection and try again.', true); } finally { setSaving(false); }
   }
   const set = (k: string, v: string) => setForm((f: any) => ({ ...f, [k]: v }));
   const fmt = (d?: string) => (d ? new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '—');
