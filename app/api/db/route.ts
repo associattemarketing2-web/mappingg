@@ -55,6 +55,15 @@ function withoutHistoryImages(data: unknown): unknown {
   return Array.isArray(data) ? data.map(strip) : strip(data);
 }
 
+function withoutBrochureUrl(data: unknown): unknown {
+  const strip = (p: unknown) => {
+    if (!p || typeof p !== 'object' || !('brochure_url' in p)) return p;
+    const { brochure_url, ...rest } = p as Record<string, unknown>;
+    return { ...rest, has_brochure_file: typeof brochure_url === 'string' && brochure_url.trim() !== '' };
+  };
+  return Array.isArray(data) ? data.map(strip) : strip(data);
+}
+
 function invalid(details?: unknown) {
   return NextResponse.json({ data: null, error: { message: 'Invalid request', details } }, { status: 400 });
 }
@@ -157,6 +166,9 @@ async function handle(op: DbOp, devEditorView = false, ip = '', visitor = ip, pa
   // History lists only show each entry's number/name; the stored copy keeps its
   // images in the database (and backups), and restores happen server-side.
   if (op.table === 'pins_history' && op.action === 'select' && data) data = withoutHistoryImages(data);
+  // Only staff get a pin's brochure file URL; the live map gets a flag and opens
+  // it through /api/brochure, which decides who may download it.
+  if (op.table === 'pins' && op.action === 'select' && !staff && data) data = withoutBrochureUrl(data);
   const res = NextResponse.json({ data, error: result.error }, { status: result.status });
 
   // Cache only shared, non-personalised reads of public tables. A developer's

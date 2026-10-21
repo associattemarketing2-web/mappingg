@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import sharp from 'sharp';
 import { trimLogo } from '@/lib/media-cache';
-import { GridFSBucket } from 'mongodb';
 import { query } from '@/lib/pg';
-import { getMongoDb, usingMongo } from '@/lib/mongodb';
+import { usingMongo } from '@/lib/mongodb';
+import { loadPartnersFile, partnersGridfs } from '@/lib/partners-media';
 import { getStaffUser } from '@/lib/auth';
 import { tokenIsValid } from '@/lib/partners-engine';
 
@@ -25,9 +25,8 @@ const partKey = (uploadId: string, i: number) => `.parts/${uploadId}/${i}`;
 
 function key(bucket: string, path: string) { return `${bucket}/${path}`; }
 
-// On MongoDB the files live in a GridFS bucket (files can exceed the 16 MB
-// document limit); on Postgres in the partners_media table.
-const gridfs = async () => new GridFSBucket(await getMongoDb(), { bucketName: 'partners_media' });
+const gridfs = partnersGridfs;
+const loadFile = loadPartnersFile;
 
 async function saveFile(filename: string, contentType: string, metadata: Record<string, string>, buf: Buffer) {
   if (usingMongo()) {
@@ -56,24 +55,6 @@ async function deleteFile(filename: string) {
     return;
   }
   await query(`DELETE FROM "partners_media" WHERE filename = $1`, [filename]);
-}
-
-async function loadFile(filename: string): Promise<{ content_type: string; data: Buffer } | null> {
-  if (usingMongo()) {
-    const bucket = await gridfs();
-    const [f] = await bucket.find({ filename }).sort({ uploadDate: -1 }).limit(1).toArray();
-    if (!f) return null;
-    const chunks: Buffer[] = [];
-    await new Promise<void>((resolve, reject) => {
-      bucket.openDownloadStream(f._id).on('data', (c: Buffer) => chunks.push(c)).on('end', () => resolve()).on('error', reject);
-    });
-    return { content_type: String(f.metadata?.contentType || ''), data: Buffer.concat(chunks) };
-  }
-  const res = await query<{ content_type: string; data: Buffer }>(
-    `SELECT content_type, data FROM "partners_media" WHERE filename = $1 ORDER BY upload_date DESC LIMIT 1`,
-    [filename],
-  );
-  return res.rows[0] || null;
 }
 
 // Small WebP thumbnails (?w=96 for map markers) of public project images, kept
