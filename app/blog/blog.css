@@ -39,7 +39,9 @@
 @media (max-width: 620px) { .blog-grid { grid-template-columns: 1fr; } }
 .post-card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; }
 .post-card:hover { transform: translateY(-4px); box-shadow: 0 24px 50px -30px rgba(16,36,30,.5); }
-.post-cover { aspect-ratio: 16/9; object-fit: cover; background: var(--accent-50); width: 100%; }
+/* Covers are 1200×630 with text on them: keep that exact shape so nothing is cropped.
+   height:auto overrides the img's height="630" attribute, which made them 630px tall. */
+.post-cover { aspect-ratio: 1200/630; width: 100%; height: auto; object-fit: cover; background: var(--accent-50); }
 .post-cover.ph { display: grid; place-items: center; color: var(--accent); font-size: 30px; }
 .post-body { padding: 18px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .post-tags { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -76,7 +78,7 @@
 .article-body ul, .article-body ol { margin: 0 0 18px; padding-left: 24px; }
 .article-body li { margin-bottom: 8px; }
 .article-body a { color: var(--water); font-weight: 600; text-decoration: underline; }
-.article-body img { border-radius: 14px; margin: 20px 0; border: 1px solid var(--line); }
+.article-body img { height: auto; border-radius: 14px; margin: 20px 0; border: 1px solid var(--line); }
 .article-body blockquote { margin: 20px 0; padding: 14px 20px; border-left: 4px solid var(--accent); background: var(--accent-50); border-radius: 0 12px 12px 0; color: #2b352f; }
 .article-body code { background: #eef1ec; padding: 2px 6px; border-radius: 6px; font-size: .9em; }
 .article-body small { color: var(--muted); font-size: 13px; }
