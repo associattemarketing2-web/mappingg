@@ -618,6 +618,9 @@
   .mpg .divider::before, .mpg .divider::after { content: ''; flex: 1; height: 1px; background: var(--line); }
   .mpg .btn-google { width: 100%; padding: 12px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font: 600 14px var(--f); display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
   .mpg .btn-google svg { width: 18px; height: 18px; }
+  .mpg .btn-wa { width: 100%; padding: 12px; border-radius: 999px; border: 1px solid #25d366; background: #fff; color: #128c7e; font: 600 14px var(--f); display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
+  .mpg .btn-wa i { font-size: 18px; color: #25d366; }
+  .mpg .btn-wa:hover { background: #f0fdf4; }
   .mpg .auth-form .btn-primary, .mpg .success .btn { width: 100%; padding: 15px; font-size: 15px; }
   .mpg .success { display: none; flex-direction: column; align-items: center; gap: 12px; padding: 24px 0 6px; text-align: center; }
   .mpg .success.is-active { display: flex; animation: fadeUp .3s ease; }
@@ -1255,5 +1258,5 @@
   .mpg .otp-block input { letter-spacing: 6px; font-size: 18px; font-weight: 600; }
   .mpg .otp-meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 6px; font-size: 12px; color: var(--muted); }
   .mpg .otp-meta a { color: var(--forest); font-weight: 600; text-decoration: none; white-space: nowrap; }
-  .mpg #forgotForm .otp-intro { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .mpg #forgotForm .otp-intro, .mpg #waLoginForm .otp-intro { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5; }
   .mpg #fp-step2:not([hidden]) { display: flex; flex-direction: column; gap: 14px; }

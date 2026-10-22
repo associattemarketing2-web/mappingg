@@ -91,7 +91,7 @@ export async function logActivity(e: {
 }
 
 /** Records a successful sign-in: an activity row plus last_login_at / login_count on the account. */
-export async function recordLogin(user: { id: string; email: string; name?: string; role?: string }, method: 'password' | 'google') {
+export async function recordLogin(user: { id: string; email: string; name?: string; role?: string }, method: 'password' | 'google' | 'whatsapp') {
   try {
     const db = await getDb();
     await db.collection('users').updateOne(
@@ -99,7 +99,7 @@ export async function recordLogin(user: { id: string; email: string; name?: stri
       { $set: { last_login_at: new Date().toISOString() }, $inc: { login_count: 1 } },
     );
   } catch { /* never block sign-in */ }
-  await logActivity({ ...user, user_id: user.id, type: 'login', detail: method === 'google' ? 'Signed in with Google' : 'Signed in with email' });
+  await logActivity({ ...user, user_id: user.id, type: 'login', detail: method === 'google' ? 'Signed in with Google' : method === 'whatsapp' ? 'Signed in with a WhatsApp code' : 'Signed in with email' });
   // Buyers: keep their lead in the Leads section up to date with this login.
   if (user.role === 'buyer') await touchBuyerLead(user.id);
 }

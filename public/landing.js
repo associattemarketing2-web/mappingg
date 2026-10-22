@@ -399,6 +399,7 @@
     tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === which));
     signinForm.classList.toggle('is-active', isIn); signupForm.classList.toggle('is-active', !isIn);
     if (forgotForm) forgotForm.classList.remove('is-active');
+    if (byId('waLoginForm')) byId('waLoginForm').classList.remove('is-active');
     successView.classList.remove('is-active'); byId('roleBlock').hidden = false; byId('authTabs').hidden = false;
     byId('modalTitle').textContent = isIn ? 'Sign in' : (currentRole() === 'buyer' ? 'Explore every project' : 'Create your account');
     byId('modalSub').textContent = reason || (isIn ? 'Choose your account type, then sign in.' : 'Takes less than a minute.');
@@ -491,65 +492,70 @@
   }
   document.querySelectorAll('.phone-in').forEach(mgWirePhone);
   let signingUp = false;
-  // Email verification code for sign-up: the server returns a signed ticket that
-  // goes back with the code (see /api/auth/otp).
-  const suOtp = { ticket: '', email: '' };
+  // WhatsApp verification codes: the server returns a signed ticket that goes
+  // back with the code (see /api/auth/otp).
+  const phoneOf = (inputId, codeId) => {
+    const digits = ((byId(inputId) && byId(inputId).value) || '').replace(/\D/g, '');
+    return digits.length === 10 ? (((byId(codeId) && byId(codeId).value) || '+91') + ' ' + digits) : '';
+  };
+  const suOtp = { ticket: '', key: '' };
   function resetSignupCode() {
-    suOtp.ticket = ''; suOtp.email = '';
+    suOtp.ticket = ''; suOtp.key = '';
     if (byId('su-otp-block')) byId('su-otp-block').hidden = true;
     if (byId('su-otp')) byId('su-otp').value = '';
   }
-  function requestCode(email, purpose, name) {
+  function requestCode(body) {
     return fetch('/api/auth/otp', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin',
-      body: JSON.stringify({ email, purpose, name }),
+      body: JSON.stringify(body),
     }).then(r => r.json().then(b => ({ ok: r.ok, b }))).then(({ ok, b }) => {
-      if (ok && b.data && b.data.ticket) return b.data.ticket;
+      if (ok && b.data && b.data.ticket) return b.data;
       throw new Error((b.error && b.error.message) || 'Could not send the code');
     }, () => { throw new Error('Network error — please try again'); });
   }
-  function sendSignupCode(email, name) {
+  function sendSignupCode(email, mobile, name) {
     const btn = byId('signupBtn');
     if (btn) { btn.disabled = true; btn.textContent = 'Sending code…'; }
     signingUp = true;
-    requestCode(email, 'signup', name).then(ticket => {
-      suOtp.ticket = ticket; suOtp.email = email;
+    requestCode({ email, mobile, name, purpose: 'signup' }).then(d => {
+      suOtp.ticket = d.ticket; suOtp.key = email + '|' + mobile;
       byId('su-otp-block').hidden = false;
-      byId('su-otp-hint').textContent = 'We emailed a 6-digit code to ' + email + '.';
+      byId('su-otp-hint').textContent = 'We sent a 6-digit code on WhatsApp to ' + d.to + '.';
       byId('su-otp').focus();
-      toast('Verification code sent to ' + email, 'fa-envelope');
+      toast('Code sent on WhatsApp to ' + d.to, 'fa-check');
       if (btn) btn.textContent = 'Verify & create account';
     }).catch(err => {
       toast(err.message, 'fa-triangle-exclamation');
       if (btn) btn.textContent = ROLES[currentRole()].cta;
     }).then(() => { signingUp = false; if (btn) btn.disabled = false; });
   }
-  if (byId('su-email')) byId('su-email').addEventListener('input', () => { if (suOtp.ticket) { resetSignupCode(); byId('signupBtn').textContent = ROLES[currentRole()].cta; } });
+  ['su-email', 'su-phone', 'su-phone-code'].forEach(id => {
+    if (byId(id)) byId(id).addEventListener(id === 'su-phone-code' ? 'change' : 'input', () => { if (suOtp.ticket) { resetSignupCode(); byId('signupBtn').textContent = ROLES[currentRole()].cta; } });
+  });
   if (byId('su-otp-resend')) byId('su-otp-resend').addEventListener('click', e => {
     e.preventDefault(); if (signingUp) return;
-    const mail = (byId('su-email').value || '').trim().toLowerCase();
-    if (mail) sendSignupCode(mail, (byId('su-name').value || '').trim());
+    const mail = (byId('su-email').value || '').trim().toLowerCase(), mobile = phoneOf('su-phone', 'su-phone-code');
+    if (mail && mobile) sendSignupCode(mail, mobile, (byId('su-name').value || '').trim());
   });
   if (signupForm) on(signupForm, 'submit', e => {
     e.preventDefault(); if (signingUp || !signupForm.reportValidity()) return;
     const role = currentRole(), fd = Object.fromEntries(new FormData(signupForm));
     // Only the active role's fieldset is enabled, so fd holds just that role's extras.
-    const { name, email, mobile: phoneDigits, ...profile } = fd;
+    const { name, email, mobile: _digits, ...profile } = fd;
     // WhatsApp: country code (default +91) + exactly 10 digits → "+91 9876543210".
-    const digits = String(phoneDigits || '').replace(/\D/g, '');
-    if (digits.length !== 10) { toast('Please enter a valid 10-digit mobile number', 'fa-triangle-exclamation'); byId('su-phone') && byId('su-phone').focus(); return; }
-    const mobile = ((byId('su-phone-code') && byId('su-phone-code').value) || '+91') + ' ' + digits;
+    const mobile = phoneOf('su-phone', 'su-phone-code');
+    if (!mobile) { toast('Please enter a valid 10-digit mobile number', 'fa-triangle-exclamation'); byId('su-phone') && byId('su-phone').focus(); return; }
     const mail = (email || '').trim().toLowerCase();
-    // Step 1: email a 6-digit code. Step 2 (same button): create the account with it.
-    if (!suOtp.ticket || suOtp.email !== mail) { sendSignupCode(mail, (name || '').trim()); return; }
+    // Step 1: WhatsApp a 6-digit code. Step 2 (same button): create the account with it.
+    if (!suOtp.ticket || suOtp.key !== mail + '|' + mobile) { sendSignupCode(mail, mobile, (name || '').trim()); return; }
     const otp = (byId('su-otp').value || '').replace(/\D/g, '');
-    if (otp.length !== 6) { toast('Enter the 6-digit code we emailed you', 'fa-triangle-exclamation'); byId('su-otp').focus(); return; }
+    if (otp.length !== 6) { toast('Enter the 6-digit code we sent on WhatsApp', 'fa-triangle-exclamation'); byId('su-otp').focus(); return; }
     const btn = byId('signupBtn'); const label = btn ? btn.textContent : '';
     if (btn) { btn.disabled = true; btn.textContent = 'Creating account…'; }
     signingUp = true;
     fetch('/api/auth/signup', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin',
-      body: JSON.stringify({ role, name: (name || '').trim(), email: mail, mobile: (mobile || '').trim(), password: byId('su-pass').value, profile, otp, ticket: suOtp.ticket }),
+      body: JSON.stringify({ role, name: (name || '').trim(), email: mail, mobile, password: byId('su-pass').value, profile, otp, ticket: suOtp.ticket }),
     }).then(r => r.json().then(b => ({ ok: r.ok, b }))).then(({ ok, b }) => {
       signingUp = false; if (btn) { btn.disabled = false; btn.textContent = label; }
       if (ok && b.user) {
@@ -564,51 +570,112 @@
       toast('Network error — please try again', 'fa-triangle-exclamation');
     });
   });
-  /* ---------- Forgot password: email code → new password ---------- */
-  const fp = { ticket: '', email: '', busy: false };
-  function openForgot() {
-    signinForm.classList.remove('is-active'); signupForm.classList.remove('is-active'); successView.classList.remove('is-active');
-    forgotForm.classList.add('is-active');
+  /* ---------- Side forms (WhatsApp sign-in, forgot password) ---------- */
+  const waLoginForm = byId('waLoginForm');
+  function showSideForm(form, title, sub) {
+    [signinForm, signupForm, successView, forgotForm, waLoginForm].forEach(f => f && f.classList.remove('is-active'));
+    form.classList.add('is-active');
     byId('roleBlock').hidden = true; byId('authTabs').hidden = true;
-    byId('modalTitle').textContent = 'Reset your password';
-    byId('modalSub').textContent = 'We’ll email you a 6-digit code.';
-    fp.ticket = ''; byId('fp-step2').hidden = true; byId('forgotBtn').textContent = 'Send code';
+    byId('modalTitle').textContent = title; byId('modalSub').textContent = sub;
+  }
+  /* ---------- Sign in with a WhatsApp code ---------- */
+  const wa = { ticket: '', mobile: '', busy: false };
+  function openWaLogin() {
+    showSideForm(waLoginForm, 'Sign in with WhatsApp', 'We’ll send a 6-digit code to your WhatsApp.');
+    wa.ticket = ''; byId('wa-otp-block').hidden = true; byId('wa-otp').value = ''; byId('waLoginBtn').textContent = 'Send code on WhatsApp';
+    byId('wa-phone').focus();
+  }
+  function sendLoginCode() {
+    const mobile = phoneOf('wa-phone', 'wa-phone-code');
+    if (!mobile) { toast('Please enter a valid 10-digit mobile number', 'fa-triangle-exclamation'); byId('wa-phone').focus(); return; }
+    const btn = byId('waLoginBtn'); wa.busy = true; btn.disabled = true; btn.textContent = 'Sending code…';
+    requestCode({ mobile, purpose: 'login' }).then(d => {
+      wa.ticket = d.ticket; wa.mobile = mobile;
+      byId('wa-otp-block').hidden = false;
+      byId('wa-otp-hint').textContent = 'Code sent on WhatsApp to ' + d.to + '.';
+      byId('wa-otp').focus();
+      toast('Code sent on WhatsApp to ' + d.to, 'fa-check');
+      btn.textContent = 'Verify & sign in';
+    }).catch(err => { toast(err.message, 'fa-triangle-exclamation'); btn.textContent = 'Send code on WhatsApp'; })
+      .then(() => { wa.busy = false; btn.disabled = false; });
+  }
+  if (waLoginForm) {
+    byId('waLoginLink').addEventListener('click', e => { e.preventDefault(); openWaLogin(); });
+    byId('wa-back').addEventListener('click', e => { e.preventDefault(); openModal('signin'); });
+    byId('wa-resend').addEventListener('click', e => { e.preventDefault(); if (!wa.busy) sendLoginCode(); });
+    ['wa-phone', 'wa-phone-code'].forEach(id => byId(id).addEventListener(id === 'wa-phone' ? 'input' : 'change', () => {
+      if (wa.ticket) { wa.ticket = ''; byId('wa-otp-block').hidden = true; byId('waLoginBtn').textContent = 'Send code on WhatsApp'; }
+    }));
+    on(waLoginForm, 'submit', e => {
+      e.preventDefault(); if (wa.busy) return;
+      if (!wa.ticket) { sendLoginCode(); return; }
+      const otp = (byId('wa-otp').value || '').replace(/\D/g, '');
+      if (otp.length !== 6) { toast('Enter the 6-digit code we sent on WhatsApp', 'fa-triangle-exclamation'); byId('wa-otp').focus(); return; }
+      const btn = byId('waLoginBtn'); wa.busy = true; btn.disabled = true; btn.textContent = 'Signing in…';
+      fetch('/api/auth/otp-login', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin',
+        body: JSON.stringify({ mobile: wa.mobile, otp, ticket: wa.ticket }),
+      }).then(r => r.json().then(b => ({ ok: r.ok, b }))).then(({ ok, b }) => {
+        if (ok && b.user) {
+          wa.ticket = '';
+          waLoginForm.classList.remove('is-active');
+          success({ name: b.user.name || 'there', email: b.user.email, role: b.user.role, verified: b.user.verified }, false);
+          setTimeout(() => { window.location.href = b.redirect || '/dashboard'; }, 900);
+        } else toast((b.error && b.error.message) || 'Could not sign you in', 'fa-triangle-exclamation');
+      }).catch(() => toast('Network error — please try again', 'fa-triangle-exclamation'))
+        .then(() => { wa.busy = false; btn.disabled = false; if (wa.ticket) btn.textContent = 'Verify & sign in'; });
+    });
+  }
+  /* ---------- Forgot password: WhatsApp code → new password ---------- */
+  const fp = { ticket: '', id: null, busy: false };
+  function openForgot() {
+    showSideForm(forgotForm, 'Reset your password', 'We’ll send a 6-digit code to your WhatsApp.');
+    fp.ticket = ''; byId('fp-step2').hidden = true; byId('forgotBtn').textContent = 'Send code on WhatsApp';
     byId('fp-email').value = byId('si-email').value || ''; byId('fp-otp').value = ''; byId('fp-pass').value = '';
     byId('fp-email').focus();
   }
+  // The field takes the account email or its 10-digit mobile number.
+  function resetIdentity() {
+    const v = (byId('fp-email').value || '').trim();
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return { email: v.toLowerCase() };
+    const d = v.replace(/\D/g, '');
+    if (d.length === 10) return { mobile: '+91 ' + d };
+    if (v.startsWith('+') && d.length > 10) return { mobile: v };
+    return null;
+  }
   function sendResetCode() {
-    const email = (byId('fp-email').value || '').trim().toLowerCase();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { toast('Enter a valid email address', 'fa-triangle-exclamation'); byId('fp-email').focus(); return; }
+    const id = resetIdentity();
+    if (!id) { toast('Enter your email or 10-digit mobile number', 'fa-triangle-exclamation'); byId('fp-email').focus(); return; }
     const btn = byId('forgotBtn'); fp.busy = true; btn.disabled = true; btn.textContent = 'Sending code…';
-    requestCode(email, 'reset').then(ticket => {
-      fp.ticket = ticket; fp.email = email;
+    requestCode(Object.assign({ purpose: 'reset' }, id)).then(d => {
+      fp.ticket = d.ticket; fp.id = id;
       byId('fp-step2').hidden = false;
-      byId('fp-otp-hint').textContent = 'Code sent to ' + email + '.';
+      byId('fp-otp-hint').textContent = 'Code sent on WhatsApp to ' + d.to + '.';
       byId('fp-otp').focus();
-      toast('Code sent to ' + email, 'fa-envelope');
+      toast('Code sent on WhatsApp to ' + d.to, 'fa-check');
       btn.textContent = 'Set new password';
-    }).catch(err => { toast(err.message, 'fa-triangle-exclamation'); btn.textContent = 'Send code'; })
+    }).catch(err => { toast(err.message, 'fa-triangle-exclamation'); btn.textContent = 'Send code on WhatsApp'; })
       .then(() => { fp.busy = false; btn.disabled = false; });
   }
   if (forgotForm) {
     byId('forgotLink').addEventListener('click', e => { e.preventDefault(); openForgot(); });
     byId('fp-back').addEventListener('click', e => { e.preventDefault(); openModal('signin'); });
     byId('fp-resend').addEventListener('click', e => { e.preventDefault(); if (!fp.busy) sendResetCode(); });
-    byId('fp-email').addEventListener('input', () => { if (fp.ticket) { fp.ticket = ''; byId('fp-step2').hidden = true; byId('forgotBtn').textContent = 'Send code'; } });
+    byId('fp-email').addEventListener('input', () => { if (fp.ticket) { fp.ticket = ''; byId('fp-step2').hidden = true; byId('forgotBtn').textContent = 'Send code on WhatsApp'; } });
     on(forgotForm, 'submit', e => {
       e.preventDefault(); if (fp.busy) return;
       if (!fp.ticket) { sendResetCode(); return; }
       const otp = (byId('fp-otp').value || '').replace(/\D/g, ''), password = byId('fp-pass').value;
-      if (otp.length !== 6) { toast('Enter the 6-digit code we emailed you', 'fa-triangle-exclamation'); byId('fp-otp').focus(); return; }
+      if (otp.length !== 6) { toast('Enter the 6-digit code we sent on WhatsApp', 'fa-triangle-exclamation'); byId('fp-otp').focus(); return; }
       if (password.length < 8) { toast('Use at least 8 characters for the new password', 'fa-triangle-exclamation'); byId('fp-pass').focus(); return; }
       const btn = byId('forgotBtn'); fp.busy = true; btn.disabled = true; btn.textContent = 'Saving…';
       fetch('/api/auth/reset-password', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin',
-        body: JSON.stringify({ email: fp.email, otp, ticket: fp.ticket, password }),
+        body: JSON.stringify(Object.assign({ otp, ticket: fp.ticket, password }, fp.id)),
       }).then(r => r.json().then(b => ({ ok: r.ok, b }))).then(({ ok, b }) => {
         if (ok) {
           toast('Password changed — sign in with your new password', 'fa-circle-check');
-          const mail = fp.email; fp.ticket = '';
+          const mail = (b.data && b.data.email) || ''; fp.ticket = '';
           openModal('signin'); byId('si-email').value = mail; byId('si-pass').value = ''; byId('si-pass').focus();
         } else toast((b.error && b.error.message) || 'Could not reset the password', 'fa-triangle-exclamation');
       }).catch(() => toast('Network error — please try again', 'fa-triangle-exclamation'))

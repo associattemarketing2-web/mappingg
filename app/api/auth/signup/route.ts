@@ -22,7 +22,7 @@ const base = z.object({
   email: z.string().trim().toLowerCase().email(),
   mobile: z.string().trim().max(24),
   password: z.string().min(8).max(200),
-  // The 6-digit code emailed by /api/auth/otp (purpose 'signup') and its ticket.
+  // The 6-digit WhatsApp code from /api/auth/otp (purpose 'signup') and its ticket.
   otp: z.string().trim().max(12),
   ticket: z.string().max(1000),
 });
@@ -42,8 +42,9 @@ export async function POST(req: NextRequest) {
   const limited = rateLimit(`signup:${clientIp(req)}`, 10, 60 * 60_000) || rateLimit(`signup-otp:${email}`, 8, 15 * 60_000);
   if (limited) return limited;
 
-  // The email must be verified with the code we sent to it.
-  const badOtp = checkOtp(parsed.data.ticket, parsed.data.otp, email, 'signup');
+  // The WhatsApp number must be verified with the code we sent to it; the
+  // ticket is bound to that exact number.
+  const badOtp = checkOtp(parsed.data.ticket, parsed.data.otp, email, 'signup', mobile);
   if (badOtp) return NextResponse.json({ error: { message: badOtp, code: 'otp' } }, { status: 400 });
 
   const db = await getDb();
@@ -56,7 +57,8 @@ export async function POST(req: NextRequest) {
   const now = new Date().toISOString();
   try {
     await users.insertOne({
-      _id: id, id, email, name, mobile, role, profile, email_verified: true,
+      _id: id, id, email, name, mobile, role, profile,
+      mobile_verified: true,
       password_hash: await bcrypt.hash(password, 12),
       // Buyers get full access at once; developers and agents wait until the
       // super admin checks their details (MahaRERA number etc.).
