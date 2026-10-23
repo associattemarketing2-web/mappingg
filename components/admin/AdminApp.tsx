@@ -14,6 +14,7 @@ import { BulkBar, PickOne, useSelection } from './bulk';
 import TrafficPanel from './TrafficPanel';
 import DevelopersPanel from './DevelopersPanel';
 import DeveloperApiPanel from './DeveloperApiPanel';
+import WhatsAppPanel from './WhatsAppPanel';
 import { FULL_EDIT_EVENT, requestFullEdit, submissionForPin } from './fullEdit';
 import { ChartCard, DayHeatmap, Donut, HBars, STATUS_META, StatTile, StatusStack, TYPE_COLORS, WeekColumns, dayStats } from './SeoCharts';
 
@@ -29,6 +30,7 @@ const GRANTABLE = [
   { key: 'map', label: 'Map Editor', icon: 'fa-map-location-dot', desc: 'Add & edit project pins, infra and roads' },
   { key: 'intake', label: 'Projects Intake', icon: 'fa-file-arrow-up', desc: 'Bulk CSV upload, review queue & builder links' },
   { key: 'leads', label: 'Leads / CRM', icon: 'fa-address-book', desc: 'Contact enquiries & lead pipeline' },
+  { key: 'whatsapp', label: 'WhatsApp', icon: 'fa-comments', desc: 'WhatsApp chats, AI auto-replies, OTP & automations' },
   { key: 'accounts', label: 'Accounts', icon: 'fa-users', desc: 'Buyer, developer & partner sign-ups' },
   { key: 'blogs', label: 'Blogs', icon: 'fa-newspaper', desc: 'Write & publish SEO articles' },
   { key: 'seo', label: 'SEO & Health', icon: 'fa-chart-line', desc: 'View search & site health' },
@@ -42,6 +44,7 @@ const TAB_META: Record<string, { label: string; icon: string }> = {
   intake: { label: 'Projects Intake', icon: 'fa-file-arrow-up' },
   projects: { label: 'Developer projects', icon: 'fa-map-pin' },
   leads: { label: 'Leads', icon: 'fa-address-book' },
+  whatsapp: { label: 'WhatsApp', icon: 'fa-comments' },
   accounts: { label: 'Accounts', icon: 'fa-users' },
   backups: { label: 'Backups', icon: 'fa-database' },
   blogs: { label: 'Blogs', icon: 'fa-newspaper' },
@@ -951,7 +954,7 @@ const fullDate = (d?: string | null) => (d ? new Date(d).toLocaleString('en-IN',
 const accountRole = (r?: string) => ROLE_META[(PEOPLE_ROLES as readonly string[]).includes(String(r)) ? (r as PersonRole) : 'buyer'];
 const PIN_STATUS: Record<string, string> = { available: 'Ready to move', under_construction: 'Under construction', upcoming: 'Upcoming', sold: 'Sold out' };
 
-function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => void; isOwner: boolean }) {
+function LeadsPanel({ flash, isOwner, focusId, onFocusDone }: { flash: (m: string, e?: boolean) => void; isOwner: boolean; focusId?: string | null; onFocusDone?: () => void }) {
   const [bySource, setBySource] = useState<Record<LeadSource, Lead[]>>({ map: [], signup: [], contact: [] });
   // Opens on map enquiries (people who tapped Enquire / Book site visit on a project) —
   // for the super admin and employees alike. Source and status filter survive a refresh (sessionStorage).
@@ -1023,6 +1026,14 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
     document.addEventListener('visibilitychange', onVis);
     return () => { clearInterval(t); document.removeEventListener('visibilitychange', onVis); };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Opened from another tab (e.g. a WhatsApp chat's lead): show that contact lead.
+  useEffect(() => {
+    if (!focusId || loading) return;
+    const l = bySource.contact.find((x) => x.id === focusId) || bySource.signup.find((x) => x.id === focusId);
+    if (l) { setSource(bySource.contact.includes(l) ? 'contact' : 'signup'); open(l); } else flash('That lead is not in your list', true);
+    onFocusDone?.();
+  }, [focusId, loading]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const pick = useSelection();
   function switchSource(s: LeadSource) {
@@ -2722,7 +2733,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
   const { flash, node: toastNode } = useToast();
 
   const visible = isOwner
-    ? ['dashboard', 'map', 'developers', 'projects', 'intake', 'leads', 'accounts', 'blogs', 'employees', 'backups', 'devapi', 'seo', 'settings', 'profile']
+    ? ['dashboard', 'map', 'developers', 'projects', 'intake', 'leads', 'whatsapp', 'accounts', 'blogs', 'employees', 'backups', 'devapi', 'seo', 'settings', 'profile']
     // Employees get no site-wide Dashboard overview — they open straight on their
     // leads (only the ones transferred to them), plus any other tab the super admin granted.
     : [...GRANTABLE.map((g) => g.key).filter((k) => user.permissions.includes(k)).sort((a, b) => Number(b === 'leads') - Number(a === 'leads')).flatMap((k) => (k === 'intake' ? ['projects', 'intake'] : k === 'map' ? ['map', 'developers'] : [k])), 'profile'];
@@ -2754,6 +2765,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
   const [projPending, setProjPending] = useState(0);
   const [projFocus, setProjFocus] = useState<{ ownerId?: string; projectId?: string } | null>(null);
   const [accountFocus, setAccountFocus] = useState<string | null>(null);
+  const [leadFocus, setLeadFocus] = useState<string | null>(null);
   const openProjects = (f?: { ownerId?: string; projectId?: string }) => { setProjFocus(f || null); setTab('projects'); };
   const openAccount = (id: string) => { setAccountFocus(id); setTab('accounts'); };
   // The Map Editor and Projects Intake are whole apps in iframes. Once opened
@@ -2924,7 +2936,8 @@ export default function AdminApp({ user }: { user: AdminUser }) {
           {warm.includes('map') && <div hidden={tab !== 'map'}><MapPanel /></div>}
           {warm.includes('intake') && <div hidden={tab !== 'intake'}><IntakePanel hash={intakeHash} /></div>}
           {tab === 'developers' && <DevelopersPanel flash={flash} />}
-          {tab === 'leads' && <LeadsPanel flash={flash} isOwner={isOwner} />}
+          {tab === 'leads' && <LeadsPanel flash={flash} isOwner={isOwner} focusId={leadFocus} onFocusDone={() => setLeadFocus(null)} />}
+          {tab === 'whatsapp' && <WhatsAppPanel flash={flash} onOpenLead={visible.includes('leads') ? (id) => { setLeadFocus(id); setTab('leads'); } : undefined} />}
           {tab === 'projects' && (
             <DevProjectsPanel flash={flash} isOwner={isOwner} onPendingChange={setProjPending} focus={projFocus} onFocusDone={() => setProjFocus(null)} />
           )}

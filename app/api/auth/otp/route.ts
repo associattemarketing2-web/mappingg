@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
     }
     // Bound to the number, so the account is created with the number that got the code.
     const { code, ticket } = issueOtp(email, 'signup', mobile);
-    if (!(await whatsappOtp(mobile, code, parsed.data.name))) return fail(SEND_FAILED, 502);
+    if (!(await whatsappOtp(mobile, code, parsed.data.name, 'signup'))) return fail(SEND_FAILED, 502);
     return sent(ticket, maskPhone(mobile));
   }
 
@@ -73,6 +73,6 @@ export async function POST(req: NextRequest) {
     ? `${String(user.id || user._id)}|${String(user.last_login_at || '')}`
     : String(user.password_hash || 'none');
   const { code, ticket } = issueOtp(identity, purpose, bind);
-  if (!(await whatsappOtp(to, code, user.name ? String(user.name) : undefined))) return fail(SEND_FAILED, 502);
+  if (!(await whatsappOtp(to, code, user.name ? String(user.name) : undefined, purpose))) return fail(SEND_FAILED, 502);
   return sent(ticket, maskPhone(to));
 }
