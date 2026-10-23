@@ -61,7 +61,7 @@ async function run(): Promise<number> {
     const welcome = r.purpose === 'buyer_welcome';
     const saved = await logMessage({
       id: r.id, phone: r.phone, direction: 'out', author: 'system', kind: welcome ? 'template' : 'otp',
-      template: welcome ? (process.env.WHATSAPP_BUYER_WELCOME_TEMPLATE || 'byres_account_created') : (process.env.WHATSAPP_TEMPLATE || 'mapping_mobile_verification'),
+      template: welcome ? 'byres_account_created' : (process.env.WHATSAPP_TEMPLATE || 'mapping_mobile_verification'),
       purpose: r.purpose, status: 'sent', derived: true, created_at: r.at,
       body: welcome ? 'Buyer account created — congratulations message' : `Verification code for ${PURPOSE_LABEL[r.purpose as OtpPurpose]} (code hidden)`,
     }, { name: r.name });

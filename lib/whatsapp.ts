@@ -3,7 +3,7 @@ import { logMessage, updateStatus, type OtpPurpose, type WaAuthor, type WaKind, 
 // WhatsApp messages through the WhatsApp Business API provider (GABS):
 //   - OTP codes: approved "mapping_mobile_verification" template, with the code
 //     in its BODY and again in its URL button (copy-code / autofill link).
-//   - Buyer welcome: "byres_account_created" template, no variables.
+//   - Buyer welcome: "buyers_account_created" template, no variables.
 //   - Chat replies (AI or staff): free text. WhatsApp only delivers these within
 //     24 hours of the customer's last message; outside that, use a template.
 // Every send is logged for the s-admin WhatsApp panel (lib/wa-store.ts); OTP
@@ -16,7 +16,7 @@ import { logMessage, updateStatus, type OtpPurpose, type WaAuthor, type WaKind, 
 //   WHATSAPP_CAMPAIGN_ID  campaign_id (optional)
 //   WHATSAPP_TEMPLATE     template name, default mapping_mobile_verification
 //   WHATSAPP_TEMPLATE_LANG  default en_US
-//   WHATSAPP_BUYER_WELCOME_TEMPLATE  sent after a buyer signs up, default byres_account_created
+//   WHATSAPP_BUYER_WELCOME_TEMPLATE  sent after a buyer signs up, default buyers_account_created
 //   WHATSAPP_TEXT_API_URL free-text (session) message endpoint, default
 //                         https://app.getgabs.com/whatsappbusiness/send-message
 
@@ -137,7 +137,9 @@ export async function whatsappOtp(mobile: string, code: string, name?: string, p
 
 /** "Congratulations — your account is fully created" message to a new buyer (no variables). */
 export async function whatsappBuyerWelcome(mobile: string, name?: string): Promise<boolean> {
-  const template = process.env.WHATSAPP_BUYER_WELCOME_TEMPLATE || 'byres_account_created';
+  // "byres_account_created" was the old welcome template — never send it, even if the server env still names it.
+  const fromEnv = process.env.WHATSAPP_BUYER_WELCOME_TEMPLATE;
+  const template = fromEnv && fromEnv !== 'byres_account_created' ? fromEnv : 'buyers_account_created';
   const r = await post(templateUrl(), mobile, name, { type: 'template', template: { name: template, language: lang() } },
     { author: 'system', kind: 'template', template, purpose: 'buyer_welcome', body: 'Buyer account created — congratulations message' });
   return r.ok;
