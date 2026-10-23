@@ -1,4 +1,3 @@
-import { randomUUID } from 'node:crypto';
 import { getDb } from './mongodb';
 
 // Every buyer who creates an account also becomes a lead in the super admin's
@@ -25,29 +24,42 @@ export function buyerNeeds(profile: Profile = {}, provider?: string): string {
   return parts.length ? `${how}. ${parts.join(' · ')}` : `${how} — no preferences given yet.`;
 }
 
-/** Adds the lead for a new buyer account. Never throws (sign-up must not fail because of it). */
-export async function addBuyerSignupLead(a: SignupAccount): Promise<void> {
-  try {
-    const db = await getDb();
-    const leads = db.collection<{ _id: string; [k: string]: unknown }>('contact_leads');
-    if (await leads.findOne({ account_id: a.id }, { projection: { id: 1 } })) return;
-    const id = randomUUID();
-    const now = a.created_at || new Date().toISOString();
-    await leads.insertOne({
-      _id: id, id,
-      name: a.name || a.email.split('@')[0],
-      email: a.email,
-      phone: a.mobile || '',
-      subject: 'New buyer account',
-      message: buyerNeeds(a.profile, a.provider),
-      source: 'Buyer sign-up',
-      account_id: a.id,
-      status: 'new', notes: '',
-      created_at: now, updated_at: now,
-    });
-  } catch (e) {
-    console.warn('[signup-leads] could not add lead:', e instanceof Error ? e.message : e);
+const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
+const isDuplicate = (e: unknown) => ['23505', 11000].includes((e as { code?: string | number })?.code as string | number);
+
+/** Adds the lead for a new buyer account. Never throws (sign-up must not fail because of it).
+ *  The hosted database drops a request now and then, so a failed write is retried
+ *  a few times — a buyer whose lead write failed would otherwise be missing from
+ *  Leads until the next sync. Returns whether the buyer now has a lead. */
+export async function addBuyerSignupLead(a: SignupAccount): Promise<boolean> {
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const db = await getDb();
+      const leads = db.collection<{ _id: string; [k: string]: unknown }>('contact_leads');
+      if (await leads.findOne({ account_id: a.id }, { projection: { id: 1 } })) return true;
+      // One id per account, so two syncs racing each other can't add the lead twice.
+      const id = `buyer-${a.id}`;
+      const now = a.created_at || new Date().toISOString();
+      await leads.insertOne({
+        _id: id, id,
+        name: a.name || a.email.split('@')[0],
+        email: a.email,
+        phone: a.mobile || '',
+        subject: 'New buyer account',
+        message: buyerNeeds(a.profile, a.provider),
+        source: 'Buyer sign-up',
+        account_id: a.id,
+        status: 'new', notes: '',
+        created_at: now, updated_at: now,
+      });
+      return true;
+    } catch (e) {
+      if (isDuplicate(e)) return true; // added meanwhile by another request
+      console.warn(`[signup-leads] could not add lead (attempt ${attempt}):`, e instanceof Error ? e.message : e);
+      if (attempt < 3) await wait(400 * attempt);
+    }
   }
+  return false;
 }
 
 /** A buyer signed in: make sure they have a lead and stamp it with the login, so
@@ -82,13 +94,15 @@ export async function syncBuyerLeads(): Promise<number> {
       { role: 'buyer' },
       { projection: { id: 1, name: 1, email: 1, mobile: 1, profile: 1, provider: 1, created_at: 1 } },
     ).toArray()).filter((u) => u.id && !have.has(String(u.id)));
+    let added = 0;
     for (const u of missing) {
-      await addBuyerSignupLead({
+      if (await addBuyerSignupLead({
         id: String(u.id), name: u.name as string | undefined, email: String(u.email || ''), mobile: u.mobile as string | undefined,
         profile: u.profile as Profile | undefined, provider: u.provider === 'google' ? 'google' : 'password', created_at: u.created_at as string | undefined,
-      });
+      })) added++;
     }
-    return missing.length;
+    if (missing.length) console.info(`[signup-leads] sync: ${added}/${missing.length} missing buyer leads added`);
+    return added;
   } catch (e) {
     console.warn('[signup-leads] could not sync buyer leads:', e instanceof Error ? e.message : e);
     return 0;

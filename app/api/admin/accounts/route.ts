@@ -10,7 +10,7 @@ import { localitiesOf, localitiesOfAll } from '@/lib/locality';
 import { logActivity } from '@/lib/activity';
 import { accountStats, type AccountLite } from '@/lib/account-insights';
 import { idsParam, moveToTrash } from '@/lib/trash';
-import { addBuyerSignupLead } from '@/lib/signup-leads';
+import { addBuyerSignupLead, syncBuyerLeads } from '@/lib/signup-leads';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -29,6 +29,9 @@ const unauthorized = () => NextResponse.json({ error: { message: 'Not authorized
 
 export async function GET() {
   if (!(await hasPermission('accounts'))) return unauthorized();
+  // Every buyer listed here must also be a lead in Leads → Buyer accounts —
+  // add any whose lead was never written (e.g. a database blip at sign-up).
+  await syncBuyerLeads();
   const db = await getDb();
   const rows = await db.collection<AnyDoc>('users').find(ROLE_FILTER).sort({ created_at: -1 }).limit(10000).toArray();
 
