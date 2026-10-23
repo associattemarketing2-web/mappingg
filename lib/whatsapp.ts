@@ -1,4 +1,4 @@
-// WhatsApp OTP messages through the WhatsApp Business API provider, using the
+// WhatsApp messages (OTP codes, buyer welcome) through the WhatsApp Business API provider, using the
 // approved "mapping_mobile_verification" template. The template has the code
 // in its BODY and again in its URL button (copy-code / autofill link).
 //
@@ -9,6 +9,7 @@
 //   WHATSAPP_CAMPAIGN_ID  campaign_id (optional)
 //   WHATSAPP_TEMPLATE     template name, default mapping_mobile_verification
 //   WHATSAPP_TEMPLATE_LANG  default en_US
+//   WHATSAPP_BUYER_WELCOME_TEMPLATE  sent after a buyer signs up, default byres_account_created
 
 export function whatsappConfigured(): boolean {
   return Boolean(process.env.WHATSAPP_API_URL && process.env.WHATSAPP_API_KEY);
@@ -41,8 +42,8 @@ async function logDelivery(messageId: string): Promise<void> {
   }
 }
 
-/** Sends the 6-digit code on WhatsApp. Resolves false (never throws) on any failure. */
-export async function whatsappOtp(mobile: string, code: string, name?: string): Promise<boolean> {
+/** POSTs one template message to GABS. Resolves false (never throws) on any failure. */
+async function sendTemplate(mobile: string, name: string | undefined, template: Record<string, unknown>): Promise<boolean> {
   if (!whatsappConfigured()) return false;
   const to = toWaNumber(mobile);
   if (to.length < 11) return false;
@@ -55,14 +56,7 @@ export async function whatsappOtp(mobile: string, code: string, name?: string): 
     to,
     receiver_name: (name || 'Mappingg user').slice(0, 60),
     type: 'template',
-    template: {
-      name: process.env.WHATSAPP_TEMPLATE || 'mapping_mobile_verification',
-      language: { code: process.env.WHATSAPP_TEMPLATE_LANG || 'en_US' },
-      components: [
-        { type: 'BODY', parameters: [{ type: 'text', text: code }] },
-        { type: 'button', sub_type: 'URL', index: 0, parameters: [{ type: 'text', text: code }] },
-      ],
-    },
+    template,
   };
   try {
     const res = await fetch(process.env.WHATSAPP_API_URL as string, {
@@ -79,16 +73,36 @@ export async function whatsappOtp(mobile: string, code: string, name?: string): 
     const st = String(json.status ?? json.success ?? '').toLowerCase();
     const failed = !res.ok || st === 'false' || st === 'error' || st === 'failed' || Boolean(json.error);
     if (failed) {
-      console.error('[whatsapp] send failed', res.status, text.slice(0, 500));
+      console.error('[whatsapp] send failed', template.name, res.status, text.slice(0, 500));
       return false;
     }
     // "accepted" only means GABS queued it — log the real delivery result a bit later.
     const id = (json.messages as { id?: string }[] | undefined)?.[0]?.id;
-    console.log('[whatsapp] accepted', to.slice(0, 4) + '…' + to.slice(-2), id || text.slice(0, 200));
+    console.log('[whatsapp] accepted', template.name, to.slice(0, 4) + '…' + to.slice(-2), id || text.slice(0, 200));
     if (id) setTimeout(() => { void logDelivery(id); }, 15_000);
     return true;
   } catch (e) {
     console.error('[whatsapp] send error', (e as Error).message);
     return false;
   }
+}
+
+/** Sends the 6-digit code on WhatsApp. Resolves false (never throws) on any failure. */
+export function whatsappOtp(mobile: string, code: string, name?: string): Promise<boolean> {
+  return sendTemplate(mobile, name, {
+    name: process.env.WHATSAPP_TEMPLATE || 'mapping_mobile_verification',
+    language: { code: process.env.WHATSAPP_TEMPLATE_LANG || 'en_US' },
+    components: [
+      { type: 'BODY', parameters: [{ type: 'text', text: code }] },
+      { type: 'button', sub_type: 'URL', index: 0, parameters: [{ type: 'text', text: code }] },
+    ],
+  });
+}
+
+/** "Congratulations — your account is fully created" message to a new buyer (no variables). */
+export function whatsappBuyerWelcome(mobile: string, name?: string): Promise<boolean> {
+  return sendTemplate(mobile, name, {
+    name: process.env.WHATSAPP_BUYER_WELCOME_TEMPLATE || 'byres_account_created',
+    language: { code: process.env.WHATSAPP_TEMPLATE_LANG || 'en_US' },
+  });
 }

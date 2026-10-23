@@ -6,6 +6,7 @@ import { getDb } from '@/lib/mongodb';
 import { createSessionToken, homePathFor, setSessionCookie } from '@/lib/auth';
 import { logActivity, recordLogin } from '@/lib/activity';
 import { addBuyerSignupLead } from '@/lib/signup-leads';
+import { whatsappBuyerWelcome } from '@/lib/whatsapp';
 import { clientIp, rateLimit } from '@/lib/rate-limit';
 import { withRoleProfiles } from '@/lib/signup-profile';
 import { clearPendingGoogleSignup, getPendingGoogleSignup } from '@/lib/google-signup';
@@ -68,7 +69,11 @@ export async function POST(req: NextRequest) {
   }
 
   const sessionUser = { id, email, role };
-  if (role === 'buyer') await addBuyerSignupLead({ id, name, email, mobile, profile: profile as Record<string, string>, provider: 'google', created_at: now });
+  if (role === 'buyer') {
+    await addBuyerSignupLead({ id, name, email, mobile, profile: profile as Record<string, string>, provider: 'google', created_at: now });
+    // Congratulations message on WhatsApp. Never throws — a failed send does not block sign-up.
+    await whatsappBuyerWelcome(mobile, name);
+  }
   await logActivity({
     user_id: id, email, name, role, type: 'signup',
     detail: role === 'buyer' ? 'Buyer account created with Google' : `${role === 'developer' ? 'Developer' : 'Channel partner'} account created with Google — awaiting verification`,
