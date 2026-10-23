@@ -27,6 +27,24 @@ export function buyerNeeds(profile: Profile = {}, provider?: string): string {
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const isDuplicate = (e: unknown) => ['23505', 11000].includes((e as { code?: string | number })?.code as string | number);
 
+/** The lead row for a buyer account. One id per account, so two syncs racing
+ *  each other can't add the lead twice. */
+export function buyerLeadDoc(a: SignupAccount) {
+  const now = a.created_at || new Date().toISOString();
+  return {
+    id: `buyer-${a.id}`,
+    name: a.name || a.email.split('@')[0],
+    email: a.email,
+    phone: a.mobile || '',
+    subject: 'New buyer account',
+    message: buyerNeeds(a.profile, a.provider),
+    source: 'Buyer sign-up',
+    account_id: a.id,
+    status: 'new', notes: '',
+    created_at: now, updated_at: now,
+  };
+}
+
 /** Adds the lead for a new buyer account. Never throws (sign-up must not fail because of it).
  *  The hosted database drops a request now and then, so a failed write is retried
  *  a few times — a buyer whose lead write failed would otherwise be missing from
@@ -37,21 +55,8 @@ export async function addBuyerSignupLead(a: SignupAccount): Promise<boolean> {
       const db = await getDb();
       const leads = db.collection<{ _id: string; [k: string]: unknown }>('contact_leads');
       if (await leads.findOne({ account_id: a.id }, { projection: { id: 1 } })) return true;
-      // One id per account, so two syncs racing each other can't add the lead twice.
-      const id = `buyer-${a.id}`;
-      const now = a.created_at || new Date().toISOString();
-      await leads.insertOne({
-        _id: id, id,
-        name: a.name || a.email.split('@')[0],
-        email: a.email,
-        phone: a.mobile || '',
-        subject: 'New buyer account',
-        message: buyerNeeds(a.profile, a.provider),
-        source: 'Buyer sign-up',
-        account_id: a.id,
-        status: 'new', notes: '',
-        created_at: now, updated_at: now,
-      });
+      const doc = buyerLeadDoc(a);
+      await leads.insertOne({ _id: doc.id, ...doc });
       return true;
     } catch (e) {
       if (isDuplicate(e)) return true; // added meanwhile by another request
@@ -88,23 +93,28 @@ export async function touchBuyerLead(userId: string): Promise<void> {
  *  (two indexed reads). Never throws. Returns how many leads were added. */
 export async function syncBuyerLeads(): Promise<number> {
   try {
-    const db = await getDb();
-    const have = new Set((await db.collection('contact_leads').find({ account_id: { $exists: true } }, { projection: { account_id: 1 } }).toArray()).map((l) => String(l.account_id)));
-    const missing = (await db.collection('users').find(
-      { role: 'buyer' },
-      { projection: { id: 1, name: 1, email: 1, mobile: 1, profile: 1, provider: 1, created_at: 1 } },
-    ).toArray()).filter((u) => u.id && !have.has(String(u.id)));
+    const missing = await buyersWithoutLead();
     let added = 0;
-    for (const u of missing) {
-      if (await addBuyerSignupLead({
-        id: String(u.id), name: u.name as string | undefined, email: String(u.email || ''), mobile: u.mobile as string | undefined,
-        profile: u.profile as Profile | undefined, provider: u.provider === 'google' ? 'google' : 'password', created_at: u.created_at as string | undefined,
-      })) added++;
-    }
+    for (const a of missing) if (await addBuyerSignupLead(a)) added++;
     if (missing.length) console.info(`[signup-leads] sync: ${added}/${missing.length} missing buyer leads added`);
     return added;
   } catch (e) {
     console.warn('[signup-leads] could not sync buyer leads:', e instanceof Error ? e.message : e);
     return 0;
   }
+}
+
+/** Buyer accounts that have no lead row (yet). Throws on a database error. */
+export async function buyersWithoutLead(): Promise<SignupAccount[]> {
+  const db = await getDb();
+  const have = new Set((await db.collection('contact_leads').find({ account_id: { $exists: true } }, { projection: { account_id: 1 } }).toArray()).map((l) => String(l.account_id)));
+  return (await db.collection('users').find(
+    { role: 'buyer' },
+    { projection: { id: 1, name: 1, email: 1, mobile: 1, profile: 1, provider: 1, created_at: 1 } },
+  ).toArray())
+    .filter((u) => u.id && !have.has(String(u.id)))
+    .map((u) => ({
+      id: String(u.id), name: u.name as string | undefined, email: String(u.email || ''), mobile: u.mobile as string | undefined,
+      profile: u.profile as Profile | undefined, provider: u.provider === 'google' ? 'google' as const : 'password' as const, created_at: u.created_at as string | undefined,
+    }));
 }

@@ -6,12 +6,14 @@ import { hasPermission } from '@/lib/staff';
 import { localitiesOf } from '@/lib/locality';
 import { getCurrentUser } from '@/lib/auth';
 import { idsParam, moveToTrash } from '@/lib/trash';
-import { syncBuyerLeads } from '@/lib/signup-leads';
+import { addBuyerSignupLead, buyerLeadDoc, buyersWithoutLead, syncBuyerLeads } from '@/lib/signup-leads';
 import { listEmployees } from '@/lib/staff';
 import { siteVisitSlot } from '@/lib/site-visit';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
+// Loading buyer accounts also adds any missing buyer leads first — give it room on a slow database.
+export const maxDuration = 60;
 
 // CRM leads. Admin-only; needs the 'leads' permission (the owner always has it).
 // Three sources:
@@ -189,10 +191,19 @@ export async function GET(req: NextRequest) {
   const db = await getDb();
   const coll = db.collection(SOURCES[source]);
   const filter = { ...SOURCE_FILTER[source], ...(await leadScope()) };
-  const [rows, total] = await Promise.all([
+  let [rows, total] = await Promise.all([
     coll.find(filter).sort({ created_at: -1 }).limit(LEADS_LIMIT).toArray() as Promise<Record<string, any>[]>,
     coll.countDocuments(filter),
   ]);
+  // The super admin sees every buyer account here — also one whose lead row
+  // could not be written (it is listed from the account and saved on first edit).
+  if (source === 'signup' && (await getCurrentUser())?.role === 'admin') {
+    const unsaved = (await buyersWithoutLead().catch(() => [])).map(buyerLeadDoc);
+    if (unsaved.length) {
+      rows = [...unsaved, ...rows].sort((a, b) => String(b.created_at || '').localeCompare(String(a.created_at || '')));
+      total += unsaved.length;
+    }
+  }
   const data = source === 'map' ? await withProjects(rows) : source === 'signup' ? await withBuyerActivity(rows) : rows.map((r) => strip(r));
   // `total` lets the panel say so if older leads were left out (never silently).
   return NextResponse.json({ data, total, truncated: total > rows.length });
@@ -240,7 +251,15 @@ export async function PATCH(req: NextRequest) {
   const source = sourceOf(parsed.data.source);
   const db = await getDb();
   const coll = db.collection(SOURCES[source]);
-  const cur = (await coll.findOne({ id, ...(await leadScope()) })) as Record<string, any> | null;
+  let cur = (await coll.findOne({ id, ...(await leadScope()) })) as Record<string, any> | null;
+  // A buyer listed straight from their account (no lead row yet): save the row now.
+  if (!cur && source === 'signup' && isOwner && id.startsWith('buyer-')) {
+    const u = await db.collection('users').findOne({ id: id.slice('buyer-'.length), role: 'buyer' }) as Record<string, any> | null;
+    if (u && await addBuyerSignupLead({
+      id: String(u.id), name: u.name, email: String(u.email || ''), mobile: u.mobile, profile: u.profile,
+      provider: u.provider === 'google' ? 'google' : 'password', created_at: u.created_at,
+    })) cur = (await coll.findOne({ account_id: String(u.id) })) as Record<string, any> | null;
+  }
   if (!cur) return NextResponse.json({ error: { message: 'Lead not found' } }, { status: 404 });
 
   const now = new Date().toISOString();
@@ -284,8 +303,8 @@ export async function PATCH(req: NextRequest) {
     patch.last_activity_at = now;
     patch.last_activity_by = by.by_name;
   }
-  await coll.updateOne({ id }, { $set: patch });
-  const row = (await coll.findOne({ id })) as Record<string, any> | null;
+  await coll.updateOne({ id: cur.id }, { $set: patch });
+  const row = (await coll.findOne({ id: cur.id })) as Record<string, any> | null;
   if (!row) return NextResponse.json({ data: null });
   const data = source === 'map' ? (await withProjects([row]))[0] : strip(row);
   return NextResponse.json({ data });

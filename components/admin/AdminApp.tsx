@@ -1001,14 +1001,22 @@ function LeadsPanel({ flash, isOwner, focusId, onFocusDone }: { flash: (m: strin
   async function load(silent = false) {
     if (!silent) setLoading(true);
     try {
-      const get = (s: LeadSource) => fetch(`/api/admin/leads?source=${s}`, { credentials: 'same-origin' }).then((r) => r.json());
+      // Each source loads on its own: one failing request (e.g. a slow database)
+      // must not leave the other tabs showing an old list. A failed source keeps
+      // its previous rows and the admin is told.
+      const get = (s: LeadSource) => fetch(`/api/admin/leads?source=${s}`, { credentials: 'same-origin', cache: 'no-store' })
+        .then((r) => (r.ok ? r.json() : null)).then((b) => (b && Array.isArray(b.data) ? b : null)).catch(() => null);
       // Employees work the map enquiries and buyer accounts transferred to them.
       const none = Promise.resolve({ data: [] });
       const [m, su, c] = await Promise.all([get('map'), get('signup'), isOwner ? get('contact') : none]);
-      setBySource({ map: Array.isArray(m.data) ? m.data : [], signup: Array.isArray(su.data) ? su.data : [], contact: Array.isArray(c.data) ? c.data : [] });
-      setTruncated({
-        ...(m.truncated ? { map: Number(m.total) } : {}), ...(su.truncated ? { signup: Number(su.total) } : {}), ...(c.truncated ? { contact: Number(c.total) } : {}),
-      });
+      setBySource((prev) => ({ map: m ? m.data : prev.map, signup: su ? su.data : prev.signup, contact: c ? c.data : prev.contact }));
+      setTruncated((prev) => ({
+        ...prev,
+        ...(m ? { map: m.truncated ? Number(m.total) : undefined } : {}),
+        ...(su ? { signup: su.truncated ? Number(su.total) : undefined } : {}),
+        ...(c ? { contact: c.truncated ? Number(c.total) : undefined } : {}),
+      }));
+      if (!m || !su || !c) flash(`Could not load ${[!m && 'map enquiries', !su && 'buyer accounts', !c && 'contact leads'].filter(Boolean).join(', ')} — tap Refresh`, true);
     } catch { if (!silent) flash('Could not load leads', true); } finally { if (!silent) setLoading(false); }
   }
   useEffect(() => { load(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
