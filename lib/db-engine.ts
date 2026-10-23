@@ -55,10 +55,42 @@ const PUBLIC_READ = new Set([
 // round-trips (which measured ~0.25s warm and ~5s cold). Writes invalidate the
 // affected table. Private tables (leads/pins_history) are never cached.
 // Stored on globalThis so it survives dev hot-reloads.
+//
+// Two guards keep a burst of visitors (or a crawler opening many pages at once)
+// from turning into a pile of identical full-table scans — each `pins` scan
+// reads ~40 MB because images live inside the rows, and 20+ of them at once
+// queued every other query on the database for 15 s+:
+//   - single-flight: concurrent misses for the same read share ONE query;
+//   - stale-while-revalidate: for STALE_MS after expiry the last result is
+//     served at once while one background query refreshes it.
+// A write bumps the table's generation, so a refresh that started before the
+// write can never put pre-write data back into the cache.
 const CACHE_TTL_MS = 30_000;
+const STALE_MS = 10 * 60_000;
 type CacheEntry = { data: unknown; exp: number };
-const g = globalThis as unknown as { __pubReadCache?: Map<string, CacheEntry> };
+const g = globalThis as unknown as {
+  __pubReadCache?: Map<string, CacheEntry>;
+  __pubInflight?: Map<string, Promise<unknown>>;
+  __pubGen?: Map<string, number>;
+};
 const readCache: Map<string, CacheEntry> = g.__pubReadCache || (g.__pubReadCache = new Map());
+const inflight: Map<string, Promise<unknown>> = g.__pubInflight || (g.__pubInflight = new Map());
+const generation: Map<string, number> = g.__pubGen || (g.__pubGen = new Map());
+
+/** Runs `load` once for all concurrent callers of `key`; caches the result unless the table was written meanwhile. */
+function sharedRead<T>(key: string, table: string, load: () => Promise<T>): Promise<T> {
+  const running = inflight.get(key) as Promise<T> | undefined;
+  if (running) return running;
+  const gen = generation.get(table) || 0;
+  const p = load()
+    .then((data) => {
+      if ((generation.get(table) || 0) === gen) readCache.set(key, { data, exp: Date.now() + CACHE_TTL_MS });
+      return data;
+    })
+    .finally(() => { inflight.delete(key); });
+  inflight.set(key, p);
+  return p;
+}
 
 function cacheKey(op: DbOp, isAuthed: boolean): string {
   return [
@@ -74,6 +106,7 @@ function cacheKey(op: DbOp, isAuthed: boolean): string {
 
 /** Drops cached public reads of `table` — call after writing a map table outside runDbOp. */
 export function invalidateTable(table: string) {
+  generation.set(table, (generation.get(table) || 0) + 1);
   for (const key of readCache.keys()) {
     if (key.startsWith(table + '|')) readCache.delete(key);
   }
@@ -200,12 +233,10 @@ export async function runDbOp(op: DbOp, isAuthed: boolean, opts: RunDbOpts = {})
         // shared public cache.
         const canCache = PUBLIC_READ.has(op.table) && !devPins;
         const key = canCache ? cacheKey(op, isAuthed) : '';
-        if (canCache) {
-          const hit = readCache.get(key);
-          if (hit && hit.exp > Date.now()) {
-            return { data: hit.data, error: null, status: 200 };
-          }
-        }
+        const answer = (rows: unknown[]): DbResult => {
+          if (!op.single) return { data: rows, error: null, status: 200 };
+          return rows.length ? { data: rows[0], error: null, status: 200 } : err('No rows found', 406, 'PGRST116');
+        };
 
         const query = buildQuery(op.filters);
         if (op.table === 'pins') {
@@ -226,18 +257,23 @@ export async function runDbOp(op: DbOp, isAuthed: boolean, opts: RunDbOpts = {})
           : op.table === 'pins_history'
             ? { nested: { field: 'row_data', keys: MEDIA_FIELDS.pins } }
             : undefined;
-        let cursor = coll.find(query, { ...(projection ? { projection } : {}), mediaDigest });
-        if (op.order) cursor = cursor.sort({ [op.order.col]: op.order.ascending ? 1 : -1 });
-        if (op.limit != null) cursor = cursor.limit(op.limit);
-        const rows = (await cursor.toArray()).map((d) => clean(d as Record<string, unknown>));
+        const load = async () => {
+          let cursor = coll.find(query, { ...(projection ? { projection } : {}), mediaDigest });
+          if (op.order) cursor = cursor.sort({ [op.order.col]: op.order.ascending ? 1 : -1 });
+          if (op.limit != null) cursor = cursor.limit(op.limit);
+          return (await cursor.toArray()).map((d) => clean(d as Record<string, unknown>));
+        };
+        if (!canCache) return answer(await load());
 
-        if (op.single) {
-          if (rows.length === 0) return err('No rows found', 406, 'PGRST116');
-          if (canCache) readCache.set(key, { data: rows[0], exp: Date.now() + CACHE_TTL_MS });
-          return { data: rows[0], error: null, status: 200 };
+        const hit = readCache.get(key);
+        const now = Date.now();
+        if (hit && hit.exp > now) return answer(hit.data as unknown[]);
+        if (hit && hit.exp + STALE_MS > now) {
+          // Slightly old: answer now, refresh in the background (one query, however many callers).
+          sharedRead(key, op.table, load).catch((e) => console.error(`[db-engine] ${op.table} refresh`, e));
+          return answer(hit.data as unknown[]);
         }
-        if (canCache) readCache.set(key, { data: rows, exp: Date.now() + CACHE_TTL_MS });
-        return { data: rows, error: null, status: 200 };
+        return answer(await sharedRead(key, op.table, load));
       }
 
       case 'insert': {
