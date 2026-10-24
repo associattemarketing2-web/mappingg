@@ -37,6 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/mundhwa-map-3d`, changeFrequency: 'weekly', priority: 0.6 },
     { url: `${SITE_URL}/about`, changeFrequency: 'monthly', priority: 0.5 },
     { url: `${SITE_URL}/contact`, changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${SITE_URL}/buyer-requirement`, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${SITE_URL}/careers`, changeFrequency: 'monthly', priority: 0.3 },
     { url: `${SITE_URL}/advertise`, changeFrequency: 'monthly', priority: 0.3 },
     { url: `${SITE_URL}/privacy`, changeFrequency: 'yearly', priority: 0.3 },
