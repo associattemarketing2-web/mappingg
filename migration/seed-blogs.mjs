@@ -1,7 +1,8 @@
 // Seed the public blog with SEO articles built from the live project data.
 //
-//   node --env-file=.env migration/seed-blogs.mjs [--dry-run]
+//   node --env-file=.env migration/seed-blogs.mjs [--dry-run] [--only=slug-a,slug-b]
 //
+// --only seeds just the named posts; every other post is left untouched.
 // --dry-run renders the covers and builds every article but writes nothing to
 // the database — use it to commit the new covers before the posts go live.
 //
@@ -2135,7 +2136,7 @@ async function upsert(post) {
 async function main() {
   const pins = await loadPins();
   const h = makeHelpers(pins);
-  const articles = [
+  let articles = [
     mundhwaArticle(h), puneAreasArticle(h), kharadiArticle(h), reraArticle(h),
     westPuneArticle(h), pcmcArticle(h), eastPuneArticle(h), readyVsUcArticle(h),
     underOneCroreArticle(h), stampDutyArticle(h), threeBhkArticle(h), homeLoanArticle(h),
@@ -2143,6 +2144,16 @@ async function main() {
     commercialArticle(h), upcomingArticle(h), bengaluruArticle(h), mumbaiArticle(h),
     centralPuneArticle(h), documentsArticle(h), carpetAreaArticle(), possessionDelayArticle(),
   ];
+
+  // --only=slug-a,slug-b seeds just those posts and leaves the rest (and the old
+  // placeholder) alone.
+  const onlyArg = process.argv.find((a) => a.startsWith('--only='));
+  const only = onlyArg ? onlyArg.slice(7).split(',').map((s) => s.trim()).filter(Boolean) : null;
+  if (only) {
+    const unknown = only.filter((s) => !articles.some((a) => a.slug === s));
+    if (unknown.length) throw new Error(`unknown slug(s): ${unknown.join(', ')}`);
+    articles = articles.filter((a) => only.includes(a.slug));
+  }
 
   // Sanity: every slug used by the articles' internal links must be stable.
   for (const a of articles) if (slugify(a.slug) !== a.slug) throw new Error(`bad slug ${a.slug}`);
@@ -2167,7 +2178,7 @@ async function main() {
     return;
   }
 
-  for (const slug of OLD_SLUGS) {
+  for (const slug of only ? [] : OLD_SLUGS) {
     const res = await pool.query(`delete from posts where doc @> $1::jsonb`, [JSON.stringify({ slug })]);
     if (res.rowCount) console.log(`Removed: /blog/${slug}`);
   }

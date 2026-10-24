@@ -43,6 +43,15 @@ export const CONSENT_FORMS = {
       whatsapp: 'Associatte PropTech (Mappingg) may message me on WhatsApp or SMS about matching projects and offers.',
     },
   },
+  requirement: {
+    version: 'buyer-requirement-2026-10',
+    source: 'Buyer requirement form (/buyer-requirement)',
+    text: {
+      enquiry: 'I agree that Associatte PropTech (Mappingg) may contact me by phone, email or WhatsApp about homes that match this requirement, as described in the Privacy Policy.',
+      call: 'Associatte PropTech (Mappingg) may also call me about other projects and offers.',
+      whatsapp: 'Associatte PropTech (Mappingg) may also message me on WhatsApp or SMS about other projects and offers.',
+    },
+  },
   enquireSignedIn: {
     version: 'signed-in-enquire-2026-10',
     source: 'Signed-in "Enquire now" on the live map',

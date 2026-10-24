@@ -13,6 +13,7 @@ import SearchConsolePanel from './SearchConsolePanel';
 import { BulkBar, PickOne, useSelection } from './bulk';
 import TrafficPanel from './TrafficPanel';
 import DevelopersPanel from './DevelopersPanel';
+import BuyerLeadsPanel from './BuyerLeadsPanel';
 import DeveloperApiPanel from './DeveloperApiPanel';
 import WhatsAppPanel from './WhatsAppPanel';
 import { FULL_EDIT_EVENT, requestFullEdit, submissionForPin } from './fullEdit';
@@ -45,6 +46,7 @@ const TAB_META: Record<string, { label: string; icon: string }> = {
   projects: { label: 'Developer projects', icon: 'fa-map-pin' },
   leads: { label: 'Leads', icon: 'fa-address-book' },
   whatsapp: { label: 'WhatsApp', icon: 'fa-comments' },
+  buyerleads: { label: 'Buyer leads', icon: 'fa-people-roof' },
   accounts: { label: 'Accounts', icon: 'fa-users' },
   backups: { label: 'Backups', icon: 'fa-database' },
   blogs: { label: 'Blogs', icon: 'fa-newspaper' },
@@ -2741,7 +2743,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
   const { flash, node: toastNode } = useToast();
 
   const visible = isOwner
-    ? ['dashboard', 'map', 'developers', 'projects', 'intake', 'leads', 'whatsapp', 'accounts', 'blogs', 'employees', 'backups', 'devapi', 'seo', 'settings', 'profile']
+    ? ['dashboard', 'map', 'developers', 'projects', 'intake', 'leads', 'buyerleads', 'whatsapp', 'accounts', 'blogs', 'employees', 'backups', 'devapi', 'seo', 'settings', 'profile']
     // Employees get no site-wide Dashboard overview — they open straight on their
     // leads (only the ones transferred to them), plus any other tab the super admin granted.
     : [...GRANTABLE.map((g) => g.key).filter((k) => user.permissions.includes(k)).sort((a, b) => Number(b === 'leads') - Number(a === 'leads')).flatMap((k) => (k === 'intake' ? ['projects', 'intake'] : k === 'map' ? ['map', 'developers'] : [k])), 'profile'];
@@ -2946,6 +2948,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
           {tab === 'developers' && <DevelopersPanel flash={flash} />}
           {tab === 'leads' && <LeadsPanel flash={flash} isOwner={isOwner} focusId={leadFocus} onFocusDone={() => setLeadFocus(null)} />}
           {tab === 'whatsapp' && <WhatsAppPanel flash={flash} onOpenLead={visible.includes('leads') ? (id) => { setLeadFocus(id); setTab('leads'); } : undefined} />}
+          {tab === 'buyerleads' && isOwner && <BuyerLeadsPanel flash={flash} onOpenLeads={() => setTab('leads')} />}
           {tab === 'projects' && (
             <DevProjectsPanel flash={flash} isOwner={isOwner} onPendingChange={setProjPending} focus={projFocus} onFocusDone={() => setProjFocus(null)} />
           )}
