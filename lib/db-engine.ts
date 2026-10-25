@@ -2,6 +2,7 @@ import { randomUUID } from 'crypto';
 import { getDb, type Db } from './mongodb';
 import { MEDIA_FIELDS } from './pin-media';
 import { PHONE_ERROR, normalizePhone } from './phone';
+import { bustTable } from './data-cache';
 
 // Our documents use string uuid _id values (not ObjectId), so we type
 // collections loosely to keep the driver's strict _id typing out of the way.
@@ -65,7 +66,11 @@ const PUBLIC_READ = new Set([
 //     served at once while one background query refreshes it.
 // A write bumps the table's generation, so a refresh that started before the
 // write can never put pre-write data back into the cache.
+// Visitors' reads stay fresh 5 min (every write clears them at once, see
+// invalidateTable — each DB query is a billed operation); staff reads only 30 s,
+// so the editor never looks stale when another server instance made the change.
 const CACHE_TTL_MS = 30_000;
+const PUBLIC_CACHE_TTL_MS = 300_000;
 const STALE_MS = 10 * 60_000;
 type CacheEntry = { data: unknown; exp: number };
 const g = globalThis as unknown as {
@@ -84,7 +89,8 @@ function sharedRead<T>(key: string, table: string, load: () => Promise<T>): Prom
   const gen = generation.get(table) || 0;
   const p = load()
     .then((data) => {
-      if ((generation.get(table) || 0) === gen) readCache.set(key, { data, exp: Date.now() + CACHE_TTL_MS });
+      const ttl = key.split('|')[1] === 'public' ? PUBLIC_CACHE_TTL_MS : CACHE_TTL_MS; // see cacheKey
+      if ((generation.get(table) || 0) === gen) readCache.set(key, { data, exp: Date.now() + ttl });
       return data;
     })
     .finally(() => { inflight.delete(key); });
@@ -110,6 +116,8 @@ export function invalidateTable(table: string) {
   for (const key of readCache.keys()) {
     if (key.startsWith(table + '|')) readCache.delete(key);
   }
+  // Also the shared website cache (project pages, site settings) on every instance.
+  bustTable(table);
 }
 
 // Tables the client is never allowed to write to directly (history is captured

@@ -48,8 +48,15 @@ export default function NotificationBell({ onOpenProjects, onOpenAccount, onPend
   }
   useEffect(() => {
     load();
-    const t = setInterval(() => { if (document.visibilityState === 'visible') load(); }, 180_000);
-    const onFocus = () => load();
+    // Every 5 min while visible, and on focus at most once a minute (each check is a DB read).
+    let last = Date.now();
+    const refresh = () => {
+      if (document.visibilityState !== 'visible' || Date.now() - last < 60_000) return;
+      last = Date.now();
+      load();
+    };
+    const t = setInterval(refresh, 300_000);
+    const onFocus = refresh;
     window.addEventListener('focus', onFocus);
     return () => { clearInterval(t); window.removeEventListener('focus', onFocus); };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps

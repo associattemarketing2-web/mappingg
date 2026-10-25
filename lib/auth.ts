@@ -77,7 +77,7 @@ export function clearSessionCookie() {
 // user so this costs one indexed lookup per user per ACCOUNT_TTL_MS, not one per
 // request. A database error falls back to the signed token (never locks
 // everyone out during a blip); a missing account is treated as signed out.
-const ACCOUNT_TTL_MS = 30_000;
+const ACCOUNT_TTL_MS = 120_000; // 2 min: every check is a billed database operation
 type AccountCheck = { role: string | null; exp: number };
 const g = globalThis as unknown as { __accountCheck?: Map<string, AccountCheck> };
 const accountCheck: Map<string, AccountCheck> = g.__accountCheck || (g.__accountCheck = new Map());

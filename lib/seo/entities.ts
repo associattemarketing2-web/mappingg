@@ -1,5 +1,6 @@
 import { cache } from 'react';
 import { runDbOp } from '@/lib/db-engine';
+import { cachedRead } from '@/lib/data-cache';
 import { withMediaUrls } from '@/lib/pin-media';
 import { localitiesOf } from '@/lib/locality';
 import { slugify, projectSlug, projectNumberFromSlug } from './slug';
@@ -90,14 +91,20 @@ export function statusRouteSlug(status?: string): string | null {
 
 /** Every public pin that is a property project (lib/seo/project-filter.ts), lightweight
  *  (no base64 images). Office markers and land parcels stay on the map but are left out. */
+// Shared data cache (lib/data-cache.ts): every pin write clears it at once, so the
+// 10-minute window only matters for writes made outside the app.
+const readPublicPins = cachedRead('seo-public-pins', ['pins'], 600, async (): Promise<Pin[]> => {
+  const res = await runDbOp(
+    { table: 'pins', action: 'select', columns: LIST_COLUMNS, order: { col: 'number', ascending: true } },
+    false,
+  );
+  if (res.error || !Array.isArray(res.data)) throw new Error(`pins read failed: ${res.error?.message || 'no data'}`);
+  return (res.data as Pin[]).filter(isPropertyProject).map(withDisplayName);
+});
+
 export const getPublicPins = cache(async (): Promise<Pin[]> => {
   try {
-    const res = await runDbOp(
-      { table: 'pins', action: 'select', columns: LIST_COLUMNS, order: { col: 'number', ascending: true } },
-      false,
-    );
-    if (res.error || !Array.isArray(res.data)) throw new Error(`pins read failed: ${res.error?.message || 'no data'}`);
-    return (res.data as Pin[]).filter(isPropertyProject).map(withDisplayName);
+    return await readPublicPins();
   } catch (e) {
     return dbFailure(e, []);
   }
@@ -124,19 +131,23 @@ function dbFailure<T>(e: unknown, fallback: T): T {
  * single lookup used. Normally one; two projects can share a number by mistake
  * (e.g. 116: "Yoo One" and "Codename Autobiography by Jhamtani").
  */
+const readPinsByNumber = cachedRead('seo-pins-by-number', ['pins'], 600, async (n: number): Promise<Pin[]> => {
+  const res = await runDbOp(
+    { table: 'pins', action: 'select', filters: [{ op: 'eq', col: 'number', val: n }] },
+    false,
+  );
+  // An empty list is a real 404; a failed read throws (never a false "not found").
+  if (res.error || !Array.isArray(res.data)) throw new Error(`pin ${n} read failed: ${res.error?.message || 'no data'}`);
+  // Office markers and land parcels have no project page. Covers are requested as
+  // an optimized ~1000px WebP from /api/media, not the full-size original.
+  return (res.data as Pin[])
+    .filter(isPropertyProject)
+    .map((row) => withDisplayName(withMediaUrls('pins', row, { width: 1000 }) as Pin));
+});
+
 export const getPinsByNumber = cache(async (n: number): Promise<Pin[]> => {
   try {
-    const res = await runDbOp(
-      { table: 'pins', action: 'select', filters: [{ op: 'eq', col: 'number', val: n }] },
-      false,
-    );
-    // An empty list is a real 404; a failed read throws (never a false "not found").
-    if (res.error || !Array.isArray(res.data)) throw new Error(`pin ${n} read failed: ${res.error?.message || 'no data'}`);
-    // Office markers and land parcels have no project page. Covers are requested as
-    // an optimized ~1000px WebP from /api/media, not the full-size original.
-    return (res.data as Pin[])
-      .filter(isPropertyProject)
-      .map((row) => withDisplayName(withMediaUrls('pins', row, { width: 1000 }) as Pin));
+    return await readPinsByNumber(n);
   } catch (e) {
     return dbFailure(e, []);
   }

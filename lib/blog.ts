@@ -1,6 +1,7 @@
 import { randomUUID } from 'crypto';
 import { cache } from 'react';
 import { getDb, type Db } from './mongodb';
+import { bustTable, cachedRead } from './data-cache';
 
 // Blog / articles backend. Posts live in the `posts` collection and power both
 // the public, SEO-friendly /blog pages and the super-admin blog manager.
@@ -63,14 +64,26 @@ export function readingTime(html?: string): number {
  * hiccups into 404s on /blog?page=2 and could cache a sitemap without articles.
  * (At build time strict reads still fall back to [], so a deploy never fails.)
  */
+// Public blog reads go through the shared data cache (lib/data-cache.ts): the
+// blog index renders on every request (it reads ?page=), and post writes below
+// clear the cache at once. 10 minutes covers posts seeded by script.
+const readPublished = cachedRead('blog-published', ['posts'], 600, async (): Promise<BlogPost[]> => {
+  const db = await getDb();
+  const rows = await (await coll(db))
+    .find({ status: 'published' })
+    .sort({ published_at: -1, created_at: -1 })
+    .toArray();
+  return rows.map((r) => clean(r) as BlogPost);
+});
+
+const readPublishedPost = cachedRead('blog-post', ['posts'], 600, async (slug: string): Promise<BlogPost | null> => {
+  const db = await getDb();
+  return clean(await (await coll(db)).findOne({ slug, status: 'published' }));
+});
+
 export async function listPublished(opts: { strict?: boolean } = {}): Promise<BlogPost[]> {
   try {
-    const db = await getDb();
-    const rows = await (await coll(db))
-      .find({ status: 'published' })
-      .sort({ published_at: -1, created_at: -1 })
-      .toArray();
-    return rows.map((r) => clean(r) as BlogPost);
+    return await readPublished();
   } catch (e) {
     if (opts.strict && process.env.NEXT_PHASE !== 'phase-production-build') throw e;
     return [];
@@ -87,18 +100,14 @@ export async function listAll(): Promise<BlogPost[]> {
 // cache(): generateMetadata and the page both need the post — one query per request.
 export const getBySlug = cache(async (slug: string): Promise<BlogPost | null> => {
   try {
-    const db = await getDb();
-    return clean(await (await coll(db)).findOne({ slug, status: 'published' }));
+    return await readPublishedPost(slug);
   } catch {
     return null;
   }
 });
 
 /** getBySlug for the article page: null only when no such post; a failed read throws (no false 404). */
-export const getPublishedPost = cache(async (slug: string): Promise<BlogPost | null> => {
-  const db = await getDb();
-  return clean(await (await coll(db)).findOne({ slug, status: 'published' }));
-});
+export const getPublishedPost = cache(async (slug: string): Promise<BlogPost | null> => readPublishedPost(slug));
 
 export async function getById(id: string): Promise<BlogPost | null> {
   const db = await getDb();
@@ -154,6 +163,7 @@ export async function createPost(input: BlogInput): Promise<BlogPost> {
     published_at: status === 'published' ? now : null,
   };
   await c.insertOne(doc);
+  bustTable('posts');
   return clean(doc) as BlogPost;
 }
 
@@ -183,12 +193,14 @@ export async function updatePost(id: string, input: BlogInput): Promise<BlogPost
   if (status === 'published' && !existing.published_at) patch.published_at = now;
   if (status === 'draft') patch.published_at = null;
   await c.updateOne({ id }, { $set: patch });
+  bustTable('posts');
   return clean(await c.findOne({ id }));
 }
 
 export async function deletePost(id: string): Promise<boolean> {
   const db = await getDb();
   const res = await (await coll(db)).deleteOne({ id });
+  bustTable('posts');
   return res.deletedCount > 0;
 }
 
