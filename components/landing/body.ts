@@ -251,7 +251,7 @@ export const LANDING_BODY = `
                 <p class="pv-title">Sample Residences</p>
                 <div class="pv-meta">Sample Developers</div>
                 <div class="pv-meta">Mundhwa, Pune</div>
-                <div><span class="pv-status">Under Construction</span><span class="pv-type">Residential</span></div>
+                <div class="pv-pills"><span class="pv-status">Under Construction</span><span class="pv-type">Residential</span></div>
               </div>
             </div>
             <div class="pv-body">

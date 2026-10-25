@@ -1072,10 +1072,19 @@
     display: flex; align-items: center; justify-content: center; font-size: 18px; line-height: 1;
     background: rgba(255,255,255,.95); color: var(--pv-ink); box-shadow: 0 2px 8px rgba(27,36,48,.18);
   }
-  .mpg .pv-top { display: grid; grid-template-columns: 44% 56%; border-bottom: 1px solid var(--pv-line); }
+  .mpg .pv-top { display: grid; grid-template-columns: 40% 60%; border-bottom: 1px solid var(--pv-line); }
   .mpg .pv-logo { display: flex; align-items: center; justify-content: center; min-height: 120px; padding: 8px; border-right: 1px solid var(--pv-line); }
   .mpg .pv-logo svg { width: 100%; max-width: 120px; height: auto; display: block; }
-  .mpg .pv-head { padding: 10px 34px 10px 10px; min-width: 0; }
+  /* Each line beside the logo stays on one line: landing.js shrinks it a little
+     to fit, and a line still too long wraps (.pv-fit-wrap). Only the name
+     keeps room for the × button. */
+  .mpg .pv-head { padding: 10px; min-width: 0; display: flex; flex-direction: column; justify-content: center; }
+  .mpg .pv-head .pv-title { padding-right: 26px; white-space: nowrap; overflow: hidden; }
+  .mpg .pv-head .pv-meta { white-space: nowrap; overflow: hidden; overflow-wrap: normal; }
+  .mpg .pv-head .pv-pills { display: flex; flex-wrap: nowrap; gap: 4px; overflow: hidden; font-size: 10.5px; }
+  .mpg .pv-head .pv-pills .pv-status, .mpg .pv-head .pv-pills .pv-type { flex: none; margin: 0; font-size: inherit; padding: .25em .8em; }
+  .mpg .pv-head .pv-fit-wrap { white-space: normal; overflow-wrap: anywhere; }
+  .mpg .pv-head .pv-pills.pv-fit-wrap { flex-wrap: wrap; }
   .mpg .pv-title { font-family: 'Playfair Display', Georgia, serif; font-size: 15px; font-weight: 700; color: var(--pv-ink); line-height: 1.35; margin: 0 0 4px; }
   .mpg .pv-head > div { margin-bottom: 5px; }
   .mpg .pv-head > div:last-child { margin-bottom: 0; }

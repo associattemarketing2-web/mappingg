@@ -31,7 +31,7 @@ export function featuredCardHtml(p: FeaturedProject): string {
               <div class="pv-head">
                 <p class="pv-title">${esc(p.title)}</p>
                 ${meta(p.developer)}${meta(p.location)}
-                ${pills ? `<div>${pills}</div>` : ''}
+                ${pills ? `<div class="pv-pills">${pills}</div>` : ''}
               </div>
             </div>
             <div class="pv-body">
