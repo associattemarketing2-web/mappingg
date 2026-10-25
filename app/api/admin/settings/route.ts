@@ -16,6 +16,8 @@ const schema = z.object({
   search_console_verification: z.string().trim().max(200).regex(/^[A-Za-z0-9_\-]*$/).optional(),
   ga_measurement_id: z.string().trim().regex(/^(G-[A-Z0-9]{4,20})?$/i, 'Use a GA4 measurement ID like G-ABC1234').optional(),
   youtube_video_url: z.string().max(400).optional(),
+  // City the super-admin Overview opens on (a CityKey such as "pune"; "" = all cities).
+  admin_default_city: z.string().trim().max(40).regex(/^[a-z]*$/).optional(),
 });
 
 export async function GET() {

@@ -10,12 +10,14 @@ import { WHATSAPP_NUMBER } from '@/lib/contact';
 import NotificationBell from './NotificationBell';
 import PhoneInput from '@/components/PhoneInput';
 import SearchConsolePanel from './SearchConsolePanel';
-import { BulkBar, PickOne, useSelection } from './bulk';
+import { BulkBar, PickAll, PickOne, useSelection } from './bulk';
 import TrafficPanel from './TrafficPanel';
 import DevelopersPanel from './DevelopersPanel';
 import BuyerLeadsPanel from './BuyerLeadsPanel';
 import DeveloperApiPanel from './DeveloperApiPanel';
 import WhatsAppPanel from './WhatsAppPanel';
+import { PageHead, StatCard } from './PageHead';
+import OverviewMap, { loadProjectIndex, matchProjects, type ProjectHit } from './OverviewMap';
 import { FULL_EDIT_EVENT, requestFullEdit, submissionForPin } from './fullEdit';
 import { ChartCard, DayHeatmap, Donut, HBars, STATUS_META, StatTile, StatusStack, TYPE_COLORS, WeekColumns, dayStats } from './SeoCharts';
 
@@ -38,24 +40,39 @@ const GRANTABLE = [
   { key: 'settings', label: 'Settings', icon: 'fa-gear', desc: 'Edit analytics & verification' },
 ];
 
-const TAB_META: Record<string, { label: string; icon: string }> = {
-  dashboard: { label: 'Dashboard', icon: 'fa-gauge-high' },
-  map: { label: 'Map Editor', icon: 'fa-map-location-dot' },
-  developers: { label: 'Developers', icon: 'fa-building' },
-  intake: { label: 'Projects Intake', icon: 'fa-file-arrow-up' },
-  projects: { label: 'Developer projects', icon: 'fa-map-pin' },
-  leads: { label: 'Leads', icon: 'fa-address-book' },
-  whatsapp: { label: 'WhatsApp', icon: 'fa-comments' },
-  buyerleads: { label: 'Buyer leads', icon: 'fa-people-roof' },
-  accounts: { label: 'Accounts', icon: 'fa-users' },
-  backups: { label: 'Backups', icon: 'fa-database' },
-  blogs: { label: 'Blogs', icon: 'fa-newspaper' },
-  employees: { label: 'Employees', icon: 'fa-users-gear' },
-  devapi: { label: 'Developer API', icon: 'fa-plug' },
-  seo: { label: 'SEO & Health', icon: 'fa-chart-line' },
-  settings: { label: 'Settings', icon: 'fa-gear' },
-  profile: { label: 'Profile', icon: 'fa-user' },
+const TAB_META: Record<string, { label: string; icon: string; desc: string }> = {
+  dashboard: { label: 'Overview', icon: 'fa-house', desc: 'Today at a glance' },
+  map: { label: 'Map Editor', icon: 'fa-map-location-dot', desc: 'Manage pins & locations' },
+  developers: { label: 'Developers', icon: 'fa-building', desc: 'Builder directory & logos' },
+  intake: { label: 'Projects Intake', icon: 'fa-file-arrow-up', desc: 'Add new projects, bulk CSV & review' },
+  projects: { label: 'Developer projects', icon: 'fa-map-pin', desc: 'Approve & publish to the map' },
+  leads: { label: 'Leads', icon: 'fa-address-book', desc: 'Enquiries & lead pipeline' },
+  whatsapp: { label: 'WhatsApp', icon: 'fa-comments', desc: 'Chats, auto-replies & automations' },
+  buyerleads: { label: 'Buyer leads', icon: 'fa-people-roof', desc: 'Buyer requirements & lead sources' },
+  accounts: { label: 'Accounts', icon: 'fa-users', desc: 'Buyer, developer & partner sign-ups' },
+  backups: { label: 'Backups', icon: 'fa-database', desc: 'Backups & recycle bin' },
+  blogs: { label: 'Blogs', icon: 'fa-newspaper', desc: 'Write & publish SEO articles' },
+  employees: { label: 'Employees', icon: 'fa-users-gear', desc: 'Teammates & their access' },
+  devapi: { label: 'Developer API', icon: 'fa-plug', desc: 'Partner websites & API keys' },
+  seo: { label: 'SEO & Health', icon: 'fa-chart-line', desc: 'Search, traffic & site health' },
+  settings: { label: 'Settings', icon: 'fa-gear', desc: 'Analytics & verification' },
+  profile: { label: 'Profile', icon: 'fa-user', desc: 'Your name, photo & password' },
 };
+
+// The top navigation: each group opens a dropdown of its sections (one-section
+// groups open it directly). Every section keeps its own tab key, so ?tab= links,
+// permissions and "Edit all details" work as before.
+const NAV: { key: string; label: string; icon: string; tabs: string[] }[] = [
+  { key: 'overview', label: 'Overview', icon: 'fa-house', tabs: ['dashboard'] },
+  { key: 'mapproj', label: 'Map & Projects', icon: 'fa-map', tabs: ['map', 'intake', 'projects'] },
+  { key: 'leads', label: 'CRM & Leads', icon: 'fa-user-group', tabs: ['leads', 'buyerleads', 'accounts'] },
+  { key: 'developers', label: 'Developers', icon: 'fa-building', tabs: ['developers'] },
+  { key: 'content', label: 'Content & SEO', icon: 'fa-file-lines', tabs: ['blogs', 'seo'] },
+  { key: 'comms', label: 'Communication', icon: 'fa-comment-dots', tabs: ['whatsapp'] },
+  { key: 'integrations', label: 'Integrations & API', icon: 'fa-plug', tabs: ['devapi'] },
+  { key: 'team', label: 'Team & Administration', icon: 'fa-users-gear', tabs: ['employees'] },
+  { key: 'settings', label: 'Settings', icon: 'fa-gear', tabs: ['settings', 'backups', 'profile'] },
+];
 
 function useToast() {
   const [toast, setToast] = useState<{ msg: string; err?: boolean } | null>(null);
@@ -162,24 +179,131 @@ function DayProjects({ date, onClose }: { date: string; onClose: () => void }) {
   );
 }
 
-function DashboardPanel({ onGo }: { onGo: (t: string) => void }) {
-  const [s, setS] = useState<any>(null);
+type Tally = { key: string; count: number };
+interface CityStat { key: string; label: string; count: number; center: [number, number] | null; byType: Tally[]; byLocality: Tally[] }
+
+function mergeTallies(lists: Tally[][]): Tally[] {
+  const m = new Map<string, number>();
+  for (const l of lists) for (const t of l) m.set(t.key, (m.get(t.key) || 0) + t.count);
+  return [...m.entries()].sort((a, b) => b[1] - a[1]).map(([key, count]) => ({ key, count }));
+}
+
+function timeAgo(at: string): string {
+  const s = Math.max(0, (Date.now() - new Date(at).getTime()) / 1000);
+  if (!Number.isFinite(s)) return '';
+  if (s < 60) return 'just now';
+  if (s < 3600) return `${Math.floor(s / 60)}m ago`;
+  if (s < 86400) return `${Math.floor(s / 3600)}h ago`;
+  if (s < 86400 * 30) return `${Math.floor(s / 86400)}d ago`;
+  return new Date(at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+}
+
+const ACTIVITY_ICON: Record<string, { icon: string; tone: string }> = {
+  project: { icon: 'fa-plus', tone: 'green' },
+  blog: { icon: 'fa-pen', tone: 'amber' },
+  developer: { icon: 'fa-user-group', tone: 'blue' },
+  enquiry: { icon: 'fa-comment-dots', tone: 'violet' },
+  employee: { icon: 'fa-user-plus', tone: 'green' },
+};
+
+function KpiCard({ icon, tone, value, label, growth, onClick }: { icon: string; tone: string; value: number; label: string; growth?: number | null; onClick?: () => void }) {
+  return (
+    <button type="button" className="ov-kpi" onClick={onClick}>
+      <span className={`ov-kpi-ic ${tone}`}><i className={`fas ${icon}`} /></span>
+      <span className="ov-kpi-row">
+        <span className="ov-kpi-main"><b>{value.toLocaleString('en-IN')}</b><span>{label}</span></span>
+        <span className="ov-kpi-delta">
+          {growth == null || growth === 0
+            ? <em className="flat">—</em>
+            : <em className="up"><i className="fas fa-arrow-trend-up" /> {growth}%</em>}
+          <small>vs last month</small>
+        </span>
+      </span>
+    </button>
+  );
+}
+
+function TypeDonut({ slices, total }: { slices: { label: string; count: number; color: string }[]; total: number }) {
+  const R = 52, C = 2 * Math.PI * R;
+  let off = 0;
+  return (
+    <div className="ov-donut">
+      <svg viewBox="0 0 140 140" role="img" aria-label={`${total} projects by type`}>
+        <circle cx="70" cy="70" r={R} fill="none" stroke="#eef1ee" strokeWidth="20" />
+        {slices.map((s) => {
+          const len = total ? (s.count / total) * C : 0;
+          const el = <circle key={s.label} cx="70" cy="70" r={R} fill="none" stroke={s.color} strokeWidth="20"
+            strokeDasharray={`${len} ${C - len}`} strokeDashoffset={-off} transform="rotate(-90 70 70)"><title>{`${s.label}: ${s.count}`}</title></circle>;
+          off += len;
+          return el;
+        })}
+        <text x="70" y="70" textAnchor="middle" className="ov-donut-v">{total.toLocaleString('en-IN')}</text>
+        <text x="70" y="88" textAnchor="middle" className="ov-donut-l">Projects</text>
+      </svg>
+      <table className="ov-donut-legend">
+        <tbody>
+          {slices.map((s) => (
+            <tr key={s.label}>
+              <td><span className="dot" style={{ background: s.color }} />{s.label}</td>
+              <td className="n">{s.count.toLocaleString('en-IN')}</td>
+              <td className="p">{total ? Math.round((s.count / total) * 100) : 0}%</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function LeadsTrend({ days }: { days: { date: string; count: number }[] }) {
+  const W = 520, H = 120, P = { l: 26, r: 10, t: 10, b: 22 };
+  const max = Math.max(4, ...days.map((d) => d.count));
+  const step = Math.ceil(max / 4);
+  const top = step * 4;
+  const x = (i: number) => P.l + (i * (W - P.l - P.r)) / Math.max(1, days.length - 1);
+  const y = (v: number) => P.t + (1 - v / top) * (H - P.t - P.b);
+  const line = days.map((d, i) => `${x(i)},${y(d.count)}`).join(' ');
+  const label = (d: string) => new Date(d + 'T00:00:00Z').toLocaleDateString('en-IN', { day: 'numeric', month: 'short', timeZone: 'UTC' });
+  const ticks = days.length ? [0, 7, 14, 21, days.length - 1].filter((i) => i < days.length) : [];
+  return (
+    <svg className="ov-trend" viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Enquiries per day, last 30 days">
+      {[0, 1, 2, 3, 4].map((k) => (
+        <g key={k}>
+          <line x1={P.l} x2={W - P.r} y1={y(k * step)} y2={y(k * step)} className="grid" />
+          <text x={P.l - 6} y={y(k * step) + 3} textAnchor="end">{k * step}</text>
+        </g>
+      ))}
+      {days.length > 1 && <polygon points={`${x(0)},${y(0)} ${line} ${x(days.length - 1)},${y(0)}`} className="area" />}
+      <polyline points={line} className="line" />
+      {days.map((d, i) => (
+        <circle key={d.date} cx={x(i)} cy={y(d.count)} r={d.count ? 3 : 2} className="pt"><title>{`${label(d.date)}: ${d.count} enquir${d.count === 1 ? 'y' : 'ies'}`}</title></circle>
+      ))}
+      {ticks.map((i) => <text key={i} x={x(i)} y={H - 4} textAnchor="middle">{label(days[i].date)}</text>)}
+    </svg>
+  );
+}
+
+function DashboardPanel({ s, city, userName, onGo, can }: { s: any; city: string; userName: string; onGo: (t: string) => void; can: (t: string) => boolean }) {
   // A day picked on the "Projects created day by day" calendar (shows its projects).
   const [pickedDay, setPickedDay] = useState<string | null>(null);
-  useEffect(() => {
-    fetch('/api/admin/stats', { credentials: 'same-origin' })
-      .then((r) => r.json()).then((b) => setS(b.data)).catch(() => setS({ dbOk: false }));
-  }, []);
+  const [hour, setHour] = useState<number | null>(null);
+  useEffect(() => { setHour(new Date().getHours()); }, []);
   if (!s) return <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>;
 
   const ch = s.charts || { byStatus: [], byType: [], newProjects: [], enquiries: [], addedThisMonth: 0, hiddenPins: 0 };
+  const ov = s.overview || { cities: [], leadsDaily: [], growth: {}, directory: 0, recent: [] };
+  const cities: CityStat[] = ov.cities || [];
+  const inCity = city ? cities.filter((c) => c.key === city) : cities;
+  const cityLabel = city ? (cities.find((c) => c.key === city)?.label || 'this city') : 'all cities';
+  const byType = mergeTallies(inCity.map((c) => c.byType));
+  const typeTotal = byType.reduce((a, t) => a + t.count, 0);
+  const typeSlices = [...byType.slice(0, 4), ...(byType.length > 4 ? [{ key: 'Other', count: byType.slice(4).reduce((a, t) => a + t.count, 0) }] : [])]
+    .map((t) => ({ label: t.key, count: t.count, color: TYPE_COLORS[t.key] || TYPE_COLORS.Other }));
+  const byLoc = mergeTallies(inCity.map((c) => c.byLocality)).slice(0, 5);
+  const locMax = Math.max(1, ...byLoc.map((l) => l.count));
+
   const publicPins = ch.byStatus.reduce((a: number, x: { count: number }) => a + x.count, 0);
   const statusSlices = ch.byStatus.map((x: { key: string; count: number }) => ({ key: x.key, label: STATUS_META[x.key]?.label || x.key, count: x.count, color: STATUS_META[x.key]?.color || '#9b9a94' }));
-  // At most 6 slices: the 5 biggest types, the rest folded into "Other".
-  const topTypes = ch.byType.slice(0, 5);
-  const restTypes = ch.byType.slice(5).reduce((a: number, x: { count: number }) => a + x.count, 0);
-  const typeSlices = [...topTypes, ...(restTypes ? [{ key: 'Other', count: restTypes }] : [])]
-    .map((x: { key: string; count: number }) => ({ key: x.key, label: x.key, count: x.count, color: TYPE_COLORS[x.key] || TYPE_COLORS.Other }));
   const pct = (n: number, d: number) => (d ? Math.round((n / d) * 100) : 0);
   const weekLabel = (w: string) => new Date(w + 'T00:00:00Z').toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
   const newTotal = ch.newProjects.reduce((a: number, w: { count: number }) => a + w.count, 0);
@@ -195,15 +319,35 @@ function DashboardPanel({ onGo }: { onGo: (t: string) => void }) {
     { ok: s.seo?.gtm ? 'ok' : 'warn', b: 'Google Tag Manager', v: s.seo?.gtm ? 'Set' : 'Not set' },
     { ok: s.seo?.ga ? 'ok' : 'warn', b: 'Google Analytics 4', v: s.seo?.ga ? 'Set' : 'Not set' },
   ];
+  const greeting = hour == null ? 'Welcome' : hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+  const leads30 = (ov.leadsDaily || []).reduce((a: number, d: { count: number }) => a + d.count, 0);
+
+  const actions = [
+    { k: 'intake', icon: 'fa-plus', tone: 'green', b: 'Add Project', s: 'List a new project' },
+    { k: 'developers', icon: 'fa-building', tone: 'amber', b: 'Manage Developers', s: 'Add / edit developers' },
+    { k: 'leads', icon: 'fa-user-group', tone: 'blue', b: 'View Leads', s: 'Check new enquiries' },
+    { k: 'blogs', icon: 'fa-file-lines', tone: 'violet', b: 'Create Blog', s: 'Publish new content' },
+    { k: 'map', icon: 'fa-map', tone: 'teal', b: 'Map Editor', s: 'Edit pins & locations' },
+    { k: 'whatsapp', icon: 'fa-whatsapp', brand: true, tone: 'wa', b: 'WhatsApp', s: 'Send updates / campaigns' },
+  ].filter((a) => can(a.k));
 
   return (
-    <div className="viz">
-      <div className="viz-tiles dash-tiles">
-        <StatTile label="Projects on the map" value={(s.pins ?? 0).toLocaleString('en-IN')}
-          note={`${ch.addedThisMonth} added this month${ch.hiddenPins ? ` · ${ch.hiddenPins} hidden` : ''}`} />
-        <StatTile label="Enquiries" value={String(s.enquiriesTotal ?? 0)} note={`${enqTotal} in the last 12 weeks`} />
-        <StatTile label="Blog posts live" value={String(s.posts?.published ?? 0)} note={`${s.posts?.draft ?? 0} draft${(s.posts?.draft ?? 0) === 1 ? '' : 's'}`} />
-        <StatTile label="Infrastructure & roads" value={String((s.infra ?? 0) + (s.roads ?? 0))} note={`${s.infra ?? 0} markers · ${s.roads ?? 0} roads`} />
+    <div className="ov">
+      <div className="ov-top">
+        <section className="ov-hero">
+          <div className="ov-hero-text">
+            <small>Welcome back{userName ? `, ${userName}` : ''}</small>
+            <h2>{greeting}{userName ? <>,<br /><span className="ov-hero-name">{userName.split(/\s+/)[0]}</span></> : ''}</h2>
+            <p>Here&apos;s what&apos;s happening on Mappingg today.</p>
+          </div>
+          <div className="ov-hero-img" aria-hidden="true" title="Pune — photo: Andy Hay, CC BY 2.0" />
+        </section>
+        <div className="ov-kpis">
+          <KpiCard icon="fa-building" tone="green" value={s.pins ?? 0} label="Projects on Map" growth={ov.growth?.pins} onClick={() => onGo('map')} />
+          <KpiCard icon="fa-users" tone="amber" value={ov.directory ?? 0} label="Developers" growth={ov.growth?.developers} onClick={() => onGo('developers')} />
+          <KpiCard icon="fa-bullseye" tone="blue" value={s.enquiriesTotal ?? 0} label="Lead Enquiries" growth={ov.growth?.enquiries} onClick={() => onGo('leads')} />
+          <KpiCard icon="fa-file-lines" tone="violet" value={s.posts?.published ?? 0} label="Blog Posts" growth={ov.growth?.posts} onClick={() => onGo('blogs')} />
+        </div>
       </div>
 
       {pending > 0 && (
@@ -214,80 +358,125 @@ function DashboardPanel({ onGo }: { onGo: (t: string) => void }) {
         </button>
       )}
 
-      <ChartCard
-        title="Projects created day by day"
-        subtitle="Each square is one day (India time) for the last 6 months — grey means no new projects that day. Click a day to see its projects."
-        table={{ head: ['Day', 'Projects created'], rows: [...daily.days].filter((d: { count: number }) => d.count > 0).reverse().map((d: { date: string; count: number }) => [longDay(d.date), d.count]) }}
-      >
-        {(show, hide) => (
-          <>
-            <div className={`day-today ${ds.todayCount ? 'yes' : 'no'}`}>
-              <i className={`fas ${ds.todayCount ? 'fa-circle-check' : 'fa-circle-minus'}`} aria-hidden="true" />
-              <span>{ds.todayCount
-                ? <b>Today: {ds.todayCount} project{ds.todayCount === 1 ? '' : 's'} created</b>
-                : <><b>Today: no projects created yet</b>{ds.lastActive ? <> · last new project on {longDay(ds.lastActive)}</> : null}</>}</span>
+      <div className="ov-mid">
+        <OverviewMap onOpenEditor={can('map') ? () => onGo('map') : undefined} />
+        <div className="ov-side">
+          <section className="ov-card">
+            <div className="ov-card-head"><h3><i className="fas fa-bolt ov-bolt" /> Quick Actions</h3></div>
+            <div className="ov-actions">
+              {actions.map((a) => (
+                <button type="button" key={a.k} className={`ov-action ${a.tone}`} onClick={() => onGo(a.k)}>
+                  <span className="ic"><i className={`${a.brand ? 'fab' : 'fas'} ${a.icon}`} /></span>
+                  <i className="fas fa-arrow-right go" />
+                  <b>{a.b}</b><small>{a.s}</small>
+                </button>
+              ))}
             </div>
-            <div className="day-stats">
-              <div><b>{ds.activeDays}</b><span>days with new projects<br /><small>out of {ds.totalDays}</small></span></div>
-              <div><b>{ds.totalDays - ds.activeDays}</b><span>days with none</span></div>
-              <div><b>{ds.streak}</b><span>day streak<br /><small>in a row, up to today</small></span></div>
-              <div><b>{ds.busiest ? ds.busiest.count : 0}</b><span>busiest day<br /><small>{ds.busiest ? longDay(ds.busiest.date) : '—'}</small></span></div>
-            </div>
-            <DayHeatmap days={daily.days} today={daily.today} show={show} hide={hide}
-              picked={pickedDay} onPick={(d) => setPickedDay((cur) => (cur === d ? null : d))} />
-            {pickedDay && <DayProjects date={pickedDay} onClose={() => setPickedDay(null)} />}
-          </>
-        )}
-      </ChartCard>
-
-      <div className="viz-grid2">
-        <ChartCard
-          title="Projects by status" subtitle="Same colours as the live map"
-          table={{ head: ['Status', 'Projects', 'Share'], rows: statusSlices.map((x: { label: string; count: number }) => [x.label, x.count, `${pct(x.count, publicPins)}%`]) }}
-        >
-          {(show, hide) => <Donut slices={statusSlices} centerValue={publicPins.toLocaleString('en-IN')} centerLabel="public projects" show={show} hide={hide} />}
-        </ChartCard>
-        <ChartCard
-          title="Projects by type" subtitle="Residential, commercial and more"
-          table={{ head: ['Type', 'Projects', 'Share'], rows: typeSlices.map((x: { label: string; count: number }) => [x.label, x.count, `${pct(x.count, publicPins)}%`]) }}
-        >
-          {(show, hide) => <Donut slices={typeSlices} centerValue={String(typeSlices.length)} centerLabel={typeSlices.length === 1 ? 'type' : 'types'} show={show} hide={hide} />}
-        </ChartCard>
+          </section>
+          <section className="ov-card">
+            <div className="ov-card-head"><h3><i className="fas fa-file-lines" /> Recent Activity</h3></div>
+            {(ov.recent || []).length ? (
+              <ul className="ov-activity">
+                {ov.recent.map((r: { kind: string; title: string; detail: string; at: string }, i: number) => {
+                  const m = ACTIVITY_ICON[r.kind] || ACTIVITY_ICON.project;
+                  return (
+                    <li key={i}>
+                      <span className={`ic ${m.tone}`}><i className={`fas ${m.icon}`} /></span>
+                      <span className="t"><b>{r.title}</b><small>{r.detail}</small></span>
+                      <time dateTime={r.at}>{timeAgo(r.at)}</time>
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : <p className="muted ov-none">Nothing new yet.</p>}
+          </section>
+        </div>
       </div>
 
-      <div className="viz-grid2">
-        <ChartCard
-          title="Projects added per week" subtitle={`${newTotal} in the last 12 weeks`}
-          table={{ head: ['Week of', 'New projects'], rows: ch.newProjects.map((w: { week: string; count: number }) => [weekLabel(w.week), w.count]) }}
-        >
-          {(show, hide) => <WeekColumns data={ch.newProjects} noun={['project', 'projects']} show={show} hide={hide} />}
-        </ChartCard>
-        <ChartCard
-          title="Enquiries per week" subtitle={enqTotal ? `${enqTotal} in the last 12 weeks` : 'No enquiries in the last 12 weeks yet'}
-          table={{ head: ['Week of', 'Enquiries'], rows: ch.enquiries.map((w: { week: string; count: number }) => [weekLabel(w.week), w.count]) }}
-        >
-          {(show, hide) => <WeekColumns data={ch.enquiries} noun={['enquiry', 'enquiries']} show={show} hide={hide} />}
-        </ChartCard>
+      <div className="ov-bottom">
+        <section className="ov-card">
+          <div className="ov-card-head"><h3>Projects by Type</h3><span className="ov-chip">{city ? cityLabel : 'All locations'}</span></div>
+          {typeTotal ? <TypeDonut slices={typeSlices} total={typeTotal} /> : <p className="muted ov-none">No projects in {cityLabel} yet.</p>}
+        </section>
+        <section className="ov-card">
+          <div className="ov-card-head"><h3>Top Locations (Projects)</h3><span className="ov-chip">{city ? cityLabel : 'All locations'}</span></div>
+          {byLoc.length ? (
+            <div className="ov-bars">
+              {byLoc.map((l, i) => (
+                <div className="ov-bar" key={l.key}>
+                  <span className="n">{l.key}</span>
+                  <span className="track"><span style={{ width: `${(l.count / locMax) * 100}%`, opacity: 1 - i * 0.12 }} /></span>
+                  <span className="v">{l.count.toLocaleString('en-IN')}</span>
+                </div>
+              ))}
+            </div>
+          ) : <p className="muted ov-none">No localities in {cityLabel} yet.</p>}
+        </section>
+        <section className="ov-card">
+          <div className="ov-card-head"><h3>Leads Trend</h3><span className="ov-chip">Last 30 days · {leads30}</span></div>
+          <LeadsTrend days={ov.leadsDaily || []} />
+        </section>
       </div>
 
-      <div className="viz-grid2">
-        <div className="adm-panel">
-          <div className="adm-panel-head"><h3>Quick actions</h3></div>
-          <div className="dash-actions">
-            <button onClick={() => onGo('map')}><i className="fas fa-map-location-dot" /><span><b>Map editor</b><small>Add & edit project pins</small></span></button>
-            <button onClick={() => onGo('leads')}><i className="fas fa-address-book" /><span><b>Leads</b><small>Reply to enquiries</small></span></button>
-            <button onClick={() => onGo('blogs')}><i className="fas fa-newspaper" /><span><b>Blogs</b><small>Write SEO articles</small></span></button>
-            <button onClick={() => onGo('projects')}><i className="fas fa-map-pin" /><span><b>Developer projects</b><small>Approve & publish to the map</small></span></button>
-            <a href="/map" target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /><span><b>Live site</b><small>See what visitors see</small></span></a>
+      <h3 className="ov-more">More insights</h3>
+      <div className="viz">
+        <ChartCard
+          title="Projects created day by day"
+          subtitle="Each square is one day (India time) for the last 6 months — grey means no new projects that day. Click a day to see its projects."
+          table={{ head: ['Day', 'Projects created'], rows: [...daily.days].filter((d: { count: number }) => d.count > 0).reverse().map((d: { date: string; count: number }) => [longDay(d.date), d.count]) }}
+        >
+          {(show, hide) => (
+            <>
+              <div className={`day-today ${ds.todayCount ? 'yes' : 'no'}`}>
+                <i className={`fas ${ds.todayCount ? 'fa-circle-check' : 'fa-circle-minus'}`} aria-hidden="true" />
+                <span>{ds.todayCount
+                  ? <b>Today: {ds.todayCount} project{ds.todayCount === 1 ? '' : 's'} created</b>
+                  : <><b>Today: no projects created yet</b>{ds.lastActive ? <> · last new project on {longDay(ds.lastActive)}</> : null}</>}</span>
+              </div>
+              <div className="day-stats">
+                <div><b>{ds.activeDays}</b><span>days with new projects<br /><small>out of {ds.totalDays}</small></span></div>
+                <div><b>{ds.totalDays - ds.activeDays}</b><span>days with none</span></div>
+                <div><b>{ds.streak}</b><span>day streak<br /><small>in a row, up to today</small></span></div>
+                <div><b>{ds.busiest ? ds.busiest.count : 0}</b><span>busiest day<br /><small>{ds.busiest ? longDay(ds.busiest.date) : '—'}</small></span></div>
+              </div>
+              <DayHeatmap days={daily.days} today={daily.today} show={show} hide={hide}
+                picked={pickedDay} onPick={(d) => setPickedDay((cur) => (cur === d ? null : d))} />
+              {pickedDay && <DayProjects date={pickedDay} onClose={() => setPickedDay(null)} />}
+            </>
+          )}
+        </ChartCard>
+
+        <div className="viz-grid2">
+          <ChartCard
+            title="Projects by status" subtitle="Same colours as the live map"
+            table={{ head: ['Status', 'Projects', 'Share'], rows: statusSlices.map((x: { label: string; count: number }) => [x.label, x.count, `${pct(x.count, publicPins)}%`]) }}
+          >
+            {(show, hide) => <Donut slices={statusSlices} centerValue={publicPins.toLocaleString('en-IN')} centerLabel="public projects" show={show} hide={hide} />}
+          </ChartCard>
+          <div className="adm-panel">
+            <div className="adm-panel-head"><h3>Website health</h3><button className="adm-btn ghost sm" onClick={() => onGo('seo')}>Full report</button></div>
+            <div className="adm-health">
+              {health.map((h) => (
+                <div className="adm-health-row" key={h.b}><span className={`dot ${h.ok}`} /><div><b>{h.b}</b></div><span className="val">{h.v}</span></div>
+              ))}
+              <div className="adm-health-row"><span className="dot ok" /><div><b>Infrastructure &amp; roads</b></div><span className="val">{s.infra ?? 0} markers · {s.roads ?? 0} roads</span></div>
+            </div>
           </div>
         </div>
-        <div className="adm-panel">
-          <div className="adm-panel-head"><h3>Website health</h3><button className="adm-btn ghost sm" onClick={() => onGo('seo')}>Full report</button></div>
-          <div className="adm-health">
-            {health.map((h) => (
-              <div className="adm-health-row" key={h.b}><span className={`dot ${h.ok}`} /><div><b>{h.b}</b></div><span className="val">{h.v}</span></div>
-            ))}
-          </div>
+
+        <div className="viz-grid2">
+          <ChartCard
+            title="Projects added per week" subtitle={`${newTotal} in the last 12 weeks`}
+            table={{ head: ['Week of', 'New projects'], rows: ch.newProjects.map((w: { week: string; count: number }) => [weekLabel(w.week), w.count]) }}
+          >
+            {(show, hide) => <WeekColumns data={ch.newProjects} noun={['project', 'projects']} show={show} hide={hide} />}
+          </ChartCard>
+          <ChartCard
+            title="Enquiries per week" subtitle={enqTotal ? `${enqTotal} in the last 12 weeks` : 'No enquiries in the last 12 weeks yet'}
+            table={{ head: ['Week of', 'Enquiries'], rows: ch.enquiries.map((w: { week: string; count: number }) => [weekLabel(w.week), w.count]) }}
+          >
+            {(show, hide) => <WeekColumns data={ch.enquiries} noun={['enquiry', 'enquiries']} show={show} hide={hide} />}
+          </ChartCard>
         </div>
       </div>
     </div>
@@ -439,11 +628,28 @@ function SeoPanel() {
 }
 
 /* -------------------------------- Blogs ---------------------------------- */
-interface Post { id: string; slug: string; title: string; status: 'draft' | 'published'; updated_at?: string; }
+interface Post {
+  id: string; slug: string; title: string; status: 'draft' | 'published';
+  cover_image?: string; tags?: string[]; created_at?: string; updated_at?: string; published_at?: string | null;
+}
+// Category chip colours, picked from the category name so each keeps its colour.
+const CAT_COLORS = ['#2a78d6', '#7c4ddb', '#0f7a55', '#c98a2c', '#d1435b', '#1baf7a', '#b0924f', '#3b6ea5'];
+function catColor(name: string) {
+  let h = 0;
+  for (const ch of name) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  return name === 'Uncategorised' ? '#9b9a94' : CAT_COLORS[h % CAT_COLORS.length];
+}
 const EMPTY_BLOG = { title: '', slug: '', excerpt: '', content: '', cover_image: '', tags: '', author: 'Mappingg Team', seo_title: '', seo_description: '' };
 
-function BlogsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
+function BlogsPanel({ flash, onGo }: { flash: (m: string, e?: boolean) => void; onGo?: (t: string) => void }) {
   const [posts, setPosts] = useState<Post[]>([]);
+  // Page views per post slug (null = not available).
+  const [views, setViews] = useState<Record<string, number> | null>(null);
+  const [q, setQ] = useState('');
+  const [status, setStatus] = usePersistedState<'all' | 'published' | 'draft'>('blogs-status', 'all', ['all', 'published', 'draft']);
+  const [sort, setSort] = usePersistedState<'latest' | 'oldest' | 'views' | 'title'>('blogs-sort', 'latest', ['latest', 'oldest', 'views', 'title']);
+  const [cat, setCat] = useState('');
+  const [menuFor, setMenuFor] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState<'list' | 'form'>('list');
   const [editId, setEditId] = useState<string | null>(null);
@@ -456,6 +662,7 @@ function BlogsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
       const r = await fetch('/api/admin/blogs', { credentials: 'same-origin' });
       const b = await r.json();
       setPosts(Array.isArray(b.data) ? b.data : []);
+      setViews(b.views && typeof b.views === 'object' ? b.views : null);
     } catch { flash('Could not load posts', true); } finally { setLoading(false); }
   }
   useEffect(() => { load(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -573,52 +780,224 @@ function BlogsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
     );
   }
 
+  // ---- list view: filters, categories (each post's first tag), views
+  const totalViews = views ? Object.values(views).reduce((a, n) => a + n, 0) : null;
+  const viewsOf = (p: Post) => (views ? views[p.slug] || 0 : null);
+  const catOf = (p: Post) => (p.tags && p.tags[0] ? p.tags[0] : 'Uncategorised');
+  const published = posts.filter((p) => p.status === 'published').length;
+  const drafts = posts.filter((p) => p.status !== 'published');
+  const cats = (() => {
+    const m = new Map<string, number>();
+    for (const p of posts) m.set(catOf(p), (m.get(catOf(p)) || 0) + 1);
+    return [...m.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  })();
+  const t = q.trim().toLowerCase();
+  const shown = posts
+    .filter((p) => (status === 'all' ? true : status === 'published' ? p.status === 'published' : p.status !== 'published'))
+    .filter((p) => !cat || catOf(p) === cat)
+    .filter((p) => !t || [p.title, p.slug, ...(p.tags || [])].some((v) => v && v.toLowerCase().includes(t)))
+    .sort((a, b) => {
+      if (sort === 'title') return a.title.localeCompare(b.title);
+      if (sort === 'views') return (viewsOf(b) || 0) - (viewsOf(a) || 0);
+      const d = String(b.updated_at || b.created_at || '').localeCompare(String(a.updated_at || a.created_at || ''));
+      return sort === 'oldest' ? -d : d;
+    });
+  const shownIds = shown.map((p) => p.id);
+  const compact = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, '')}K` : String(n));
+  async function copyLink(p: Post) {
+    try { await navigator.clipboard.writeText(`${window.location.origin}/blog/${p.slug}`); flash('Link copied'); } catch { flash('Could not copy the link', true); }
+  }
+
   return (
-    <div className="adm-panel">
-      <div className="adm-panel-head">
-        <h3>All posts {posts.length ? `(${posts.length})` : ''}</h3>
-        <button className="adm-btn primary sm" onClick={openNew}><i className="fas fa-plus" /> New post</button>
+    <div className="bg">
+      <section className="bg-head">
+        <div className="bg-title">
+          <span className="bg-title-ic"><i className="fas fa-file-lines" /></span>
+          <div><h2>Blogs</h2><p>Create, manage and publish blog posts for Mappingg.com</p></div>
+        </div>
+        <div className="bg-stats">
+          <button type="button" className={`bg-stat green${status === 'all' ? ' on' : ''}`} onClick={() => { setStatus('all'); setCat(''); }}>
+            <span className="ic"><i className="fas fa-file-lines" /></span><span><b>{posts.length}</b><small>Total Posts</small></span>
+          </button>
+          <button type="button" className={`bg-stat teal${status === 'published' ? ' on' : ''}`} onClick={() => setStatus('published')}>
+            <span className="ic"><i className="fas fa-check" /></span><span><b>{published}</b><small>Published</small></span>
+          </button>
+          <button type="button" className={`bg-stat amber${status === 'draft' ? ' on' : ''}`} onClick={() => setStatus('draft')}>
+            <span className="ic"><i className="far fa-clock" /></span><span><b>{drafts.length}</b><small>Drafts</small></span>
+          </button>
+          <div className="bg-stat rose" title="Page views of all blog posts over the last 180 days (signed-in team members are not counted)">
+            <span className="ic"><i className="fas fa-eye" /></span><span><b>{totalViews == null ? '—' : compact(totalViews)}</b><small>Total Views</small></span>
+          </div>
+        </div>
+        <button type="button" className="bg-new" onClick={openNew}><i className="fas fa-plus" /> New Blog Post</button>
+      </section>
+
+      <div className="bg-body">
+        <section className="bg-card bg-main">
+          <div className="bg-card-head">
+            <h3>{cat ? `${cat} (${shown.length})` : `All Blog Posts (${posts.length})`}</h3>
+            <div className="bg-tools">
+              <label className="bg-search">
+                <i className="fas fa-magnifying-glass" />
+                <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search posts by title, slug…" aria-label="Search posts" />
+              </label>
+              <select className="ov-select" value={status} onChange={(e) => setStatus(e.target.value as typeof status)} aria-label="Status">
+                <option value="all">All Status</option>
+                <option value="published">Published</option>
+                <option value="draft">Drafts</option>
+              </select>
+              <select className="ov-select" value={sort} onChange={(e) => setSort(e.target.value as typeof sort)} aria-label="Sort">
+                <option value="latest">Latest First</option>
+                <option value="oldest">Oldest First</option>
+                <option value="views">Most Viewed</option>
+                <option value="title">Title A–Z</option>
+              </select>
+            </div>
+          </div>
+
+          {loading ? (
+            <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>
+          ) : posts.length === 0 ? (
+            <div className="adm-empty"><i className="fas fa-newspaper" /><p>No posts yet. Create your first SEO article.</p></div>
+          ) : (
+            <>
+              {sel.of(shownIds).length > 0 && (
+                <BulkBar sel={sel} ids={shownIds} hint="">
+                  <button className="adm-btn primary sm" onClick={() => setStatusMany(sel.of(shownIds), 'published')}><i className="fas fa-globe" /> Publish</button>
+                  <button className="adm-btn ghost sm" onClick={() => setStatusMany(sel.of(shownIds), 'draft')}><i className="fas fa-eye-slash" /> Make draft</button>
+                  <button className="adm-btn danger sm" onClick={() => { const ids = sel.of(shownIds); if (confirm(`Delete ${ids.length} post${ids.length === 1 ? '' : 's'}? They move to Backups → Recycle bin, where you can restore them.`)) removeMany(ids); }}><i className="fas fa-trash" /> Delete</button>
+                </BulkBar>
+              )}
+              {shown.length === 0 ? (
+                <div className="adm-empty"><i className="fas fa-filter" /><p>No posts match these filters.</p>
+                  <button className="adm-btn ghost sm" onClick={() => { setQ(''); setStatus('all'); setCat(''); }}>Show all posts</button></div>
+              ) : (
+                <div className="bg-table-wrap">
+                  <table className="bg-table">
+                    <thead>
+                      <tr>
+                        <th className="pick"><PickAll sel={sel} ids={shownIds} label="Select all shown posts" /></th>
+                        <th>#</th><th>Thumbnail</th><th>Title</th><th>Slug</th><th>Status</th><th>Category</th><th>Views</th><th>Updated</th><th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {shown.map((p, i) => (
+                        <tr key={p.id} className={sel.has(p.id) ? 'picked' : undefined}>
+                          <td className="pick"><PickOne sel={sel} id={p.id} label={p.title} /></td>
+                          <td className="num">{i + 1}</td>
+                          <td className="thumb">
+                            {p.cover_image
+                              // eslint-disable-next-line @next/next/no-img-element
+                              ? <img src={p.cover_image} alt="" loading="lazy" />
+                              : <span className="ph"><i className="far fa-image" /></span>}
+                          </td>
+                          <td className="title"><button type="button" onClick={() => openEdit(p.id)}>{p.title}</button></td>
+                          <td className="slug">{p.slug}</td>
+                          <td><span className={`bg-status ${p.status === 'published' ? 'pub' : 'draft'}`}>{p.status === 'published' ? 'Published' : 'Draft'}</span></td>
+                          <td><button type="button" className="bg-cat" style={{ ['--c' as string]: catColor(catOf(p)) }} onClick={() => setCat(catOf(p))} title={(p.tags || []).join(', ') || 'No tags'}>{catOf(p)}</button></td>
+                          <td className="views">{viewsOf(p) == null ? '—' : viewsOf(p)!.toLocaleString('en-IN')}</td>
+                          <td className="date">{fmt(p.updated_at || p.created_at)}</td>
+                          <td>
+                            <div className="bg-acts">
+                              <button type="button" onClick={() => openEdit(p.id)} title="Edit" aria-label={`Edit ${p.title}`}><i className="fas fa-pen" /></button>
+                              {p.status === 'published'
+                                ? <a href={`/blog/${p.slug}`} target="_blank" rel="noopener" title="Open on the website" aria-label="Open on the website"><i className="fas fa-arrow-up-right-from-square" /></a>
+                                : <span className="off" title="Drafts are not on the website yet"><i className="fas fa-arrow-up-right-from-square" /></span>}
+                              <div className="bg-more">
+                                <button type="button" onClick={() => setMenuFor((m) => (m === p.id ? null : p.id))} title="More" aria-label="More actions" aria-expanded={menuFor === p.id}><i className="fas fa-ellipsis-vertical" /></button>
+                                {menuFor === p.id && (
+                                  <div className="bg-menu" onMouseLeave={() => setMenuFor(null)}>
+                                    {p.status === 'published'
+                                      ? <button type="button" onClick={() => { setMenuFor(null); setStatusMany([p.id], 'draft'); }}><i className="fas fa-eye-slash" /> Make draft</button>
+                                      : <button type="button" onClick={() => { setMenuFor(null); setStatusMany([p.id], 'published'); }}><i className="fas fa-globe" /> Publish</button>}
+                                    {p.status === 'published' && <button type="button" onClick={() => { setMenuFor(null); copyLink(p); }}><i className="fas fa-link" /> Copy link</button>}
+                                    <button type="button" className="danger" onClick={() => { setMenuFor(null); remove(p); }}><i className="fas fa-trash" /> Delete</button>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </>
+          )}
+        </section>
+
+        <aside className="bg-side">
+          <section className="bg-card">
+            <h3>Quick Actions</h3>
+            <div className="bg-quick">
+              <button type="button" className="primary" onClick={openNew}><i className="fas fa-plus" /> New Blog Post</button>
+              <button type="button" onClick={() => document.getElementById('bg-cats')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}><i className="fas fa-folder" /> Manage Categories</button>
+              {onGo && <button type="button" onClick={() => onGo('seo')}><i className="fas fa-chart-column" /> SEO &amp; Analytics</button>}
+              <a href="/blog" target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /> View blog</a>
+            </div>
+          </section>
+
+          <section className="bg-card" id="bg-cats">
+            <div className="bg-card-head sm"><h3>Categories</h3>{cat && <button type="button" className="bg-link" onClick={() => setCat('')}>Clear</button>}</div>
+            <ul className="bg-cats">
+              <li><button type="button" className={!cat ? 'on' : ''} onClick={() => setCat('')}><span className="dot" style={{ background: 'var(--forest)' }} />All Categories<b>{posts.length}</b></button></li>
+              {cats.map(([c, n]) => (
+                <li key={c}><button type="button" className={cat === c ? 'on' : ''} onClick={() => setCat(c)}><span className="dot" style={{ background: catColor(c) }} />{c}<b>{n}</b></button></li>
+              ))}
+            </ul>
+            <p className="bg-hint">A post&apos;s category is its first tag — change it in the post&apos;s Tags field.</p>
+          </section>
+
+          <section className="bg-card">
+            <div className="bg-card-head sm"><h3>Recent Drafts</h3>{drafts.length > 0 && <button type="button" className="bg-link" onClick={() => { setStatus('draft'); setCat(''); }}>View all</button>}</div>
+            {drafts.length ? (
+              <ul className="bg-drafts">
+                {[...drafts].sort((a, b) => String(b.updated_at || '').localeCompare(String(a.updated_at || ''))).slice(0, 4).map((p) => (
+                  <li key={p.id}><button type="button" onClick={() => openEdit(p.id)}><i className="far fa-file-lines" /><span><b>{p.title}</b><small>Edited {fmt(p.updated_at || p.created_at)}</small></span></button></li>
+                ))}
+              </ul>
+            ) : (
+              <div className="bg-nodrafts">
+                <i className="far fa-file-lines" />
+                <p>No draft posts</p>
+                <button type="button" className="bg-link" onClick={openNew}>Create a new blog post <i className="fas fa-arrow-right" /></button>
+              </div>
+            )}
+          </section>
+        </aside>
       </div>
-      {loading ? (
-        <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>
-      ) : posts.length === 0 ? (
-        <div className="adm-empty"><i className="fas fa-newspaper" /><p>No posts yet. Create your first SEO article.</p></div>
-      ) : (
-        <>
-        <BulkBar sel={sel} ids={posts.map((p) => p.id)} hint={`Select all ${posts.length} posts — or tick posts to publish, unpublish or delete them together`}>
-          <button className="adm-btn primary sm" onClick={() => setStatusMany(sel.of(posts.map((p) => p.id)), 'published')}><i className="fas fa-globe" /> Publish</button>
-          <button className="adm-btn ghost sm" onClick={() => setStatusMany(sel.of(posts.map((p) => p.id)), 'draft')}><i className="fas fa-eye-slash" /> Make draft</button>
-          <button className="adm-btn danger sm" onClick={() => { const ids = sel.of(posts.map((p) => p.id)); if (confirm(`Delete ${ids.length} post${ids.length === 1 ? '' : 's'}? They move to Backups → Recycle bin, where you can restore them.`)) removeMany(ids); }}><i className="fas fa-trash" /> Delete</button>
-        </BulkBar>
-        <table className="adm-table">
-          <thead><tr><th className="pick" /><th>Title</th><th>Status</th><th>Updated</th><th>Actions</th></tr></thead>
-          <tbody>
-            {posts.map((p) => (
-              <tr key={p.id} className={sel.has(p.id) ? 'picked' : undefined}>
-                <td className="pick"><PickOne sel={sel} id={p.id} label={p.title} /></td>
-                <td className="t-title">{p.title}<small>/blog/{p.slug}</small></td>
-                <td><span className={`adm-badge ${p.status === 'published' ? 'ok' : 'muted'}`}>{p.status === 'published' ? 'Published' : 'Draft'}</span></td>
-                <td className="muted">{fmt(p.updated_at)}</td>
-                <td><div className="adm-actions">
-                  <button className="adm-btn ghost sm" onClick={() => openEdit(p.id)}><i className="fas fa-pen" /> Edit</button>
-                  {p.status === 'published' && <a className="adm-btn ghost sm" href={`/blog/${p.slug}`} target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /></a>}
-                  <button className="adm-btn danger sm" onClick={() => remove(p)}><i className="fas fa-trash" /></button>
-                </div></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        </>
-      )}
     </div>
   );
 }
 
 /* ------------------------------ Employees -------------------------------- */
-interface Emp { id: string; email: string; name?: string; permissions: string[]; mobile?: string; created_at?: string; }
+interface Emp { id: string; email: string; name?: string; permissions: string[]; mobile?: string; avatar?: string; created_at?: string; last_login_at?: string; login_count?: number; }
 
-function EmployeesPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
+function EmployeesPanel({ flash, owner, onProfile }: {
+  flash: (m: string, e?: boolean) => void;
+  /** The signed-in super admin, listed first. */
+  owner?: { name?: string; email: string; avatar?: string };
+  onProfile?: () => void;
+}) {
   const [list, setList] = useState<Emp[]>([]);
+  const [pane, setPane] = usePersistedState<'employees' | 'roles' | 'activity'>('team.pane', 'employees', ['employees', 'roles', 'activity']);
+  const [q, setQ] = useState('');
+  const [perm, setPerm] = useState('');
+  const [status, setStatus] = useState<'' | 'active' | 'inactive'>('');
+  const [menuFor, setMenuFor] = useState<string | null>(null);
+  // Activity Log: what the team did on leads (same feed as Leads → Team activity).
+  const [feed, setFeed] = useState<LeadEvent[] | null>(null);
+  const [feedWho, setFeedWho] = useState('');
+  async function loadFeed() {
+    setFeed(null);
+    try {
+      const r = await fetch('/api/admin/leads?activity=1', { credentials: 'same-origin' });
+      const b = await r.json();
+      setFeed(r.ok && Array.isArray(b.data) ? b.data : []);
+    } catch { setFeed([]); }
+  }
+  useEffect(() => { if (pane === 'activity') loadFeed(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState<'list' | 'form'>('list');
   const [editId, setEditId] = useState<string | null>(null);
@@ -712,38 +1091,203 @@ function EmployeesPanel({ flash }: { flash: (m: string, e?: boolean) => void }) 
     );
   }
 
+  // ---- list view
+  const ACTIVE_DAYS = 30;
+  const isActive = (e: { last_login_at?: string }) => !!e.last_login_at && Date.now() - new Date(e.last_login_at).getTime() < ACTIVE_DAYS * 86_400_000;
+  const fullAccess = (e: Emp) => GRANTABLE.every((g) => e.permissions.includes(g.key));
+  const activeN = list.filter(isActive).length;
+  const t = q.trim().toLowerCase();
+  const shown = list.filter((e) =>
+    (!t || [e.name, e.email, e.mobile, ...e.permissions.map((p) => TAB_META[p]?.label)].some((v) => v && v.toLowerCase().includes(t)))
+    && (!perm || (perm === '__full' ? fullAccess(e) : perm === '__none' ? !e.permissions.length : e.permissions.includes(perm)))
+    && (!status || (status === 'active' ? isActive(e) : !isActive(e))));
+  const ownerShown = !!owner && (!t || [owner.name, owner.email, 'super admin'].some((v) => v && v.toLowerCase().includes(t))) && (!perm || perm === '__full') && status !== 'inactive';
+  const ini = (s: string) => s.split(/[\s@.]+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase() || '?';
+  const AV_TONES = ['#0f5c47', '#2a78d6', '#7c4ddb', '#c98a2c', '#d1435b', '#0f7a55'];
+  const avTone = (s: string) => AV_TONES[[...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 0) % AV_TONES.length];
+  const day = (d?: string) => (d ? new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '—');
+  const ids = shown.map((e) => e.id);
+
   return (
-    <div className="adm-panel">
-      <div className="adm-panel-head">
-        <h3>Employees {list.length ? `(${list.length})` : ''}</h3>
-        <button className="adm-btn primary sm" onClick={openNew}><i className="fas fa-user-plus" /> Add employee</button>
+    <div className="tm">
+      <PageHead icon="fa-users-gear" title="Team & Administration" sub="Manage team members, their access to each section and what they do on leads.">
+        <button type="button" className="pg-btn" onClick={openNew}><i className="fas fa-plus" /> Add Employee</button>
+      </PageHead>
+
+      <div className="pg-tabs" role="tablist">
+        {([['employees', 'Employees'], ['roles', 'Access Roles'], ['activity', 'Activity Log']] as const).map(([k, l]) => (
+          <button key={k} type="button" role="tab" aria-selected={pane === k} className={pane === k ? 'on' : ''} onClick={() => { setPane(k); if (k === 'activity' && feed === null) loadFeed(); }}>{l}</button>
+        ))}
       </div>
-      {loading ? (
-        <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>
-      ) : list.length === 0 ? (
-        <div className="adm-empty"><i className="fas fa-users-gear" /><p>No employees yet. Add teammates and choose which tabs they can access.</p></div>
-      ) : (
+
+      {pane === 'employees' && (
         <>
-        <BulkBar sel={sel} ids={list.map((e) => e.id)} hint={`Select all ${list.length} employees — or tick some to remove them together`}>
-          <button className="adm-btn danger sm" onClick={() => { const ids = sel.of(list.map((e) => e.id)); if (confirm(`Remove ${ids.length} employee${ids.length === 1 ? '' : 's'}? They will lose access. You can restore them from Backups → Recycle bin.`)) removeMany(ids); }}><i className="fas fa-trash" /> Remove</button>
-        </BulkBar>
-        <table className="adm-table">
-          <thead><tr><th className="pick" /><th>Employee</th><th>Access</th><th>Actions</th></tr></thead>
-          <tbody>
-            {list.map((e) => (
-              <tr key={e.id} className={sel.has(e.id) ? 'picked' : undefined}>
-                <td className="pick"><PickOne sel={sel} id={e.id} label={e.name || e.email} /></td>
-                <td className="t-title">{e.name || e.email}<small>{e.email}{e.mobile ? ` · ${e.mobile}` : ''}</small></td>
-                <td>{e.permissions.length ? e.permissions.map((p) => <span key={p} className="adm-badge muted" style={{ marginRight: 4 }}>{TAB_META[p]?.label || p}</span>) : <span className="muted">Dashboard only</span>}</td>
-                <td><div className="adm-actions">
-                  <button className="adm-btn ghost sm" onClick={() => openEdit(e)}><i className="fas fa-pen" /> Edit</button>
-                  <button className="adm-btn danger sm" onClick={() => remove(e)}><i className="fas fa-trash" /></button>
-                </div></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+          <div className="sc-row four">
+            <StatCard icon="fa-users" tone="violet" value={list.length} label="Total Employees" on={!status && !perm} onClick={() => { setStatus(''); setPerm(''); }} />
+            <StatCard icon="fa-user-check" tone="green" value={activeN} label="Active" on={status === 'active'} onClick={() => setStatus(status === 'active' ? '' : 'active')} title={`Signed in during the last ${ACTIVE_DAYS} days`} />
+            <StatCard icon="fa-user-clock" tone="rose" value={list.length - activeN} label="Inactive" on={status === 'inactive'} onClick={() => setStatus(status === 'inactive' ? '' : 'inactive')} title={`No sign-in in the last ${ACTIVE_DAYS} days`} />
+            <StatCard icon="fa-user-shield" tone="blue" value={list.filter(fullAccess).length + (owner ? 1 : 0)} label="Admin Users" on={perm === '__full'} onClick={() => setPerm(perm === '__full' ? '' : '__full')} title="The super admin plus employees with access to every section" />
+          </div>
+
+          <section className="pg-card">
+            <div className="pg-card-head">
+              <label className="pg-search">
+                <i className="fas fa-magnifying-glass" />
+                <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search name, email or access…" aria-label="Search employees" />
+              </label>
+              <div className="pg-tools">
+                <select className="ov-select" value={perm} onChange={(e) => setPerm(e.target.value)} aria-label="Access">
+                  <option value="">All Roles</option>
+                  <option value="__full">Full access</option>
+                  {GRANTABLE.map((g) => <option key={g.key} value={g.key}>{g.label}</option>)}
+                  <option value="__none">Overview only</option>
+                </select>
+                <select className="ov-select" value={status} onChange={(e) => setStatus(e.target.value as typeof status)} aria-label="Status">
+                  <option value="">Status</option>
+                  <option value="active">Active</option>
+                  <option value="inactive">Inactive</option>
+                </select>
+              </div>
+            </div>
+
+            {loading ? (
+              <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>
+            ) : list.length === 0 && !owner ? (
+              <div className="adm-empty"><i className="fas fa-users-gear" /><p>No employees yet. Add teammates and choose which tabs they can access.</p></div>
+            ) : (
+              <>
+                {sel.of(ids).length > 0 && (
+                  <BulkBar sel={sel} ids={ids} hint="">
+                    <button className="adm-btn danger sm" onClick={() => { const pickedIds = sel.of(ids); if (confirm(`Remove ${pickedIds.length} employee${pickedIds.length === 1 ? '' : 's'}? They will lose access. You can restore them from Backups → Recycle bin.`)) removeMany(pickedIds); }}><i className="fas fa-trash" /> Remove</button>
+                  </BulkBar>
+                )}
+                <div className="table-scroll">
+                  <table className="pg-table tm-table">
+                    <thead>
+                      <tr><th className="pick"><PickAll sel={sel} ids={ids} label="Select all shown employees" /></th><th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>Status</th><th>Last Login</th><th>Actions</th></tr>
+                    </thead>
+                    <tbody>
+                      {ownerShown && owner && (
+                        <tr className="tm-owner">
+                          <td className="pick" />
+                          <td><span className="tm-person"><span className="tm-av" style={{ background: '#0f5c47' }}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            {owner.avatar ? <img src={owner.avatar} alt="" /> : ini(owner.name || owner.email)}</span><b>{owner.name || owner.email.split('@')[0]}</b></span></td>
+                          <td className="muted">{owner.email}</td>
+                          <td className="muted">—</td>
+                          <td><span className="tm-role admin">Super Admin</span></td>
+                          <td><span className="tm-st on">Active</span></td>
+                          <td className="muted">You</td>
+                          <td><div className="bg-acts">{onProfile && <button type="button" onClick={onProfile} title="Edit your profile" aria-label="Edit your profile"><i className="fas fa-pen" /></button>}</div></td>
+                        </tr>
+                      )}
+                      {shown.map((e) => (
+                        <tr key={e.id} className={sel.has(e.id) ? 'picked' : undefined}>
+                          <td className="pick"><PickOne sel={sel} id={e.id} label={e.name || e.email} /></td>
+                          <td><span className="tm-person"><span className="tm-av" style={{ background: avTone(e.email) }}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            {e.avatar ? <img src={e.avatar} alt="" /> : ini(e.name || e.email)}</span><b>{e.name || e.email.split('@')[0]}</b></span></td>
+                          <td className="muted">{e.email}</td>
+                          <td className="muted">{e.mobile || '—'}</td>
+                          <td>
+                            {fullAccess(e) ? <span className="tm-role admin">Full access</span>
+                              : e.permissions.length
+                                ? <span className="tm-roles">{e.permissions.map((p) => <span key={p} className={`tm-role p-${p}`}>{TAB_META[p]?.label || p}</span>)}</span>
+                                : <span className="tm-role">Overview only</span>}
+                          </td>
+                          <td><span className={`tm-st${isActive(e) ? ' on' : ''}`}>{isActive(e) ? 'Active' : 'Inactive'}</span></td>
+                          <td className="muted" title={e.last_login_at ? fullDate(e.last_login_at) : 'Has not signed in yet'}>{e.last_login_at ? day(e.last_login_at) : 'Never'}{e.login_count ? <small className="tm-sub">{e.login_count} sign-in{e.login_count === 1 ? '' : 's'}</small> : null}</td>
+                          <td>
+                            <div className="bg-acts">
+                              <button type="button" onClick={() => openEdit(e)} title="Edit" aria-label={`Edit ${e.name || e.email}`}><i className="fas fa-pen" /></button>
+                              <div className="bg-more">
+                                <button type="button" onClick={() => setMenuFor((m) => (m === e.id ? null : e.id))} title="More" aria-label="More actions" aria-expanded={menuFor === e.id}><i className="fas fa-ellipsis-vertical" /></button>
+                                {menuFor === e.id && (
+                                  <div className="bg-menu" onMouseLeave={() => setMenuFor(null)}>
+                                    {e.mobile && <a className="bg-menu-a" href={`https://wa.me/${e.mobile.replace(/\D/g, '')}`} target="_blank" rel="noopener" onClick={() => setMenuFor(null)}><i className="fab fa-whatsapp" /> WhatsApp</a>}
+                                    <a className="bg-menu-a" href={`mailto:${e.email}`} onClick={() => setMenuFor(null)}><i className="fas fa-envelope" /> Email</a>
+                                    <button type="button" className="danger" onClick={() => { setMenuFor(null); remove(e); }}><i className="fas fa-trash" /> Remove</button>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {!shown.length && !ownerShown && (
+                  <div className="adm-empty"><i className="fas fa-filter" /><p>No team members match these filters.</p>
+                    <button className="adm-btn ghost sm" onClick={() => { setQ(''); setPerm(''); setStatus(''); }}>Show everyone</button></div>
+                )}
+              </>
+            )}
+          </section>
         </>
+      )}
+
+      {pane === 'roles' && (
+        <section className="pg-card">
+          <div className="pg-card-head"><h3>Access Roles</h3><span className="muted tm-sub">Who can open each section. Change it from an employee&apos;s Edit screen.</span></div>
+          <div className="tm-roles-grid">
+            <div className="tm-rcard admin">
+              <span className="ic"><i className="fas fa-crown" /></span>
+              <div><b>Super Admin</b><small>Every section, plus Employees, Backups and Developer API.</small></div>
+              <span className="tm-who">{owner ? (owner.name || owner.email) : '—'}</span>
+            </div>
+            {GRANTABLE.map((g) => {
+              const who = list.filter((e) => e.permissions.includes(g.key));
+              return (
+                <div className="tm-rcard" key={g.key}>
+                  <span className="ic"><i className={`fas ${g.icon}`} /></span>
+                  <div><b>{g.label}</b><small>{g.desc}</small></div>
+                  <span className="tm-who">
+                    {who.length ? (
+                      <span className="tm-stack" title={who.map((e) => e.name || e.email).join(', ')}>
+                        {who.slice(0, 5).map((e) => <span key={e.id} className="tm-av sm" style={{ background: avTone(e.email) }}>{ini(e.name || e.email)}</span>)}
+                        <em>{who.length} member{who.length === 1 ? '' : 's'}</em>
+                      </span>
+                    ) : <span className="muted">No one yet</span>}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+          <p className="adm-note" style={{ marginTop: 16 }}><i className="fas fa-circle-info" /><span>Everyone can see the Overview and their own Profile. Employees only see the leads transferred to them.</span></p>
+        </section>
+      )}
+
+      {pane === 'activity' && (
+        <section className="pg-card">
+          <div className="pg-card-head">
+            <h3>Activity Log</h3>
+            <div className="pg-tools">
+              <select className="ov-select" value={feedWho} onChange={(e) => setFeedWho(e.target.value)} aria-label="Filter by person">
+                <option value="">Everyone</option>
+                {Array.from(new Map((feed || []).map((e) => [e.by_id || '', e.by_name || 'Someone'])).entries()).map(([id, n]) => <option key={id} value={id}>{n}</option>)}
+              </select>
+              <button type="button" className="adm-btn ghost sm" onClick={loadFeed}><i className="fas fa-rotate" /> Refresh</button>
+            </div>
+          </div>
+          <p className="muted tm-sub" style={{ margin: '0 0 10px' }}>Notes, status changes, follow-ups and transfers on leads, newest first. Sign-ins are in the Last Login column.</p>
+          {feed === null ? <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>
+            : !feed.filter((e) => !feedWho || e.by_id === feedWho).length ? <div className="adm-empty"><i className="fas fa-clock-rotate-left" /><p>Nothing yet. When anyone adds a note, changes a status or sets a follow-up on a lead, it shows here.</p></div>
+              : (
+                <ul className="tm-feed">
+                  {feed.filter((e) => !feedWho || e.by_id === feedWho).map((e) => (
+                    <li key={`${e.lead_id}-${e.id}`}>
+                      <span className="tm-av sm" style={{ background: avTone(e.by_name || '?') }}>{ini(e.by_name || '?')}</span>
+                      <div>
+                        <b>{e.by_name || 'Someone'}</b> <span className="muted">on</span> <b>{e.lead_name || 'a lead'}</b>
+                        <span className="tm-ev"><i className={`fas ${LEAD_EVENT_ICON[e.type]}`} /> {leadEventText(e)}</span>
+                      </div>
+                      <time title={fullDate(e.at)}>{leadWhen(e.at)}</time>
+                    </li>
+                  ))}
+                </ul>
+              )}
+        </section>
       )}
     </div>
   );
@@ -1187,209 +1731,263 @@ function LeadsPanel({ flash, isOwner, focusId, onFocusDone }: { flash: (m: strin
   const initials = (l: Lead) => (l.name || l.email || '?').slice(0, 2).toUpperCase();
   const roleCount = (r: PersonRole) => bySource.map.filter((l) => l.role === r && matchesLocation(l, loc)).length;
 
+  // Header numbers for the source being viewed (after type / location / employee filters).
+  const monthAgo = Date.now() - 30 * 86_400_000;
+  const new30 = scoped.filter((l) => l.created_at && new Date(l.created_at).getTime() >= monthAgo).length;
+  const visits = scoped.filter((l) => l.status === 'site_visit' || !!l.site_visit_requested_at).length;
+  const totalAll = bySource.map.length + bySource.signup.length + (isOwner ? bySource.contact.length : 0);
+  const sourceLabel = isMap ? 'Map enquiries' : isSignup ? 'Buyer accounts' : 'Contact form';
+  const digits = (p?: string) => (p || '').replace(/\D/g, '');
+  const STAGE_DOT: Record<string, string> = {
+    all: '#0f7a55', due: '#d1435b', new: '#2a78d6', contacted: '#0f5c47', not_answered: '#9b9a94', call_back: '#c98a2c',
+    site_visit: '#7c4ddb', negotiation: '#d1435b', won: '#1f8a4c', lost: '#6b746e', spam: '#b4b9b5',
+  };
+
   return (
     <>
-      <div className="lead-src" role="tablist" aria-label="Lead source">
-        <button role="tab" aria-selected={isMap} className={isMap ? 'on' : ''} onClick={() => switchSource('map')}>
-          <i className="fas fa-map-location-dot" /> Map enquiries <span className="n">{bySource.map.length}</span>
-        </button>
-        <button role="tab" aria-selected={isSignup} className={isSignup ? 'on' : ''} onClick={() => switchSource('signup')}>
-          <i className="fas fa-user-plus" /> Buyer accounts <span className="n">{bySource.signup.length}</span>
-        </button>
-        {isOwner && <button role="tab" aria-selected={source === 'contact'} className={source === 'contact' ? 'on' : ''} onClick={() => switchSource('contact')}>
-          <i className="fas fa-envelope" /> Contact form <span className="n">{bySource.contact.length}</span>
-        </button>}
-      </div>
+    <div className="crm2">
+      <PageHead icon="fa-address-book" title="CRM & Leads" sub="Manage enquiries, follow-ups and convert leads into site visits.">
+        {isOwner && <button type="button" className="pg-btn ghost" onClick={() => { setTeamOpen(true); loadTeamFeed(); }}><i className="fas fa-clock-rotate-left" /> Team activity</button>}
+        <button type="button" className="pg-btn" onClick={() => load()}><i className="fas fa-rotate" /> Refresh leads</button>
+      </PageHead>
 
       {!isOwner && (
-        <p className="muted" style={{ fontSize: 13, margin: '0 0 10px' }}>
+        <p className="muted crm2-note">
           <i className="fas fa-user-tie" /> Map enquiries and buyers assigned to you. Call or WhatsApp them, move them through the pipeline (Contacted → Site visit → Negotiation → Booked), add notes and set the next follow-up — the super admin sees everything you do.
         </p>
       )}
-      <div className="crm-stats">
-        {([['all', isOwner ? 'Total' : 'My leads'], ['due', 'Follow-up due'], ...LEAD_STAGES.map((st) => [st.key, st.label])] as [typeof filter, string][]).map(([k, lbl]) => (
-          <button key={k} className={`crm-stat${filter === k ? ' on' : ''} s-${k}`} onClick={() => setFilter(k)}>
-            <div className="v">{counts[k]}</div><div className="l">{lbl}</div>
-          </button>
-        ))}
+
+      <div className="sc-row five">
+        <StatCard icon="fa-file-lines" tone="green" value={totalAll.toLocaleString('en-IN')} label={isOwner ? 'Total Leads' : 'My Leads'} title="All sources together" />
+        <StatCard icon="fa-file-circle-plus" tone="blue" value={new30.toLocaleString('en-IN')} label="New (Last 30 days)" title={`${sourceLabel} received in the last 30 days`} />
+        <StatCard icon="fa-calendar-check" tone="amber" value={counts.due.toLocaleString('en-IN')} label="Follow-up due" on={filter === 'due'} onClick={() => setFilter(filter === 'due' ? 'all' : 'due')} />
+        <StatCard icon="fa-calendar-days" tone="violet" value={visits.toLocaleString('en-IN')} label="Site Visits Booked" on={filter === 'site_visit'} onClick={() => setFilter(filter === 'site_visit' ? 'all' : 'site_visit')} title="Leads at the Site visit stage or who booked a visit on the map" />
+        <StatCard icon="fa-check" tone="teal" value={counts.won.toLocaleString('en-IN')} label="Converted" on={filter === 'won'} onClick={() => setFilter(filter === 'won' ? 'all' : 'won')} title="Leads marked Booked" />
       </div>
 
-      <div className="adm-panel">
-        <div className="adm-panel-head">
-          <h3>{!isOwner ? (isMap ? 'My map enquiries' : 'My buyer leads') : isMap ? 'Map enquiries' : isSignup ? 'Buyer accounts' : 'Contact leads'} {list.length ? `(${list.length})` : ''}</h3>
-          <div className="crm-tools">
-            <span className="crm-live" title={live ? 'Live — updates automatically' : 'Reconnecting…'} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 12, color: live ? '#2f7a3c' : '#9a6a00' }}>
-              <i className="fas fa-circle" style={{ fontSize: 8, color: live ? '#2f7a3c' : '#c9861f' }} /> {live ? 'Live' : 'Offline'}
-            </span>
-            <input className="crm-search" placeholder={isMap ? 'Search name, email, phone, project…' : 'Search name, email, phone…'} value={q} onChange={(e) => setQ(e.target.value)} />
-            {isMap && <LocationSelect items={bySource.map} value={loc} onChange={setLoc} />}
-            {isOwner && (isSignup || isMap) && (
-              <select className="crm-select" aria-label="Filter by employee" value={assignee} onChange={(e) => setAssignee(e.target.value)}>
-                <option value="">Assigned to: anyone</option>
-                <option value={UNASSIGNED}>Not assigned ({all.filter((l) => !l.assigned_to).length})</option>
-                {staff.map((e) => <option key={e.id} value={e.id}>{e.name} ({all.filter((l) => l.assigned_to === e.id).length})</option>)}
-              </select>
-            )}
-            {isOwner && <button className="adm-btn ghost sm" onClick={() => { setTeamOpen(true); loadTeamFeed(); }}><i className="fas fa-clock-rotate-left" /> Team activity</button>}
-            <button className="adm-btn ghost sm" onClick={() => load()}><i className="fas fa-rotate" /> Refresh</button>
-          </div>
-        </div>
-
-        {isMap && (
-          <p className="muted" style={{ fontSize: 13, margin: '0 0 8px' }}>
-            Only people who tapped <b>Enquire</b> on a project card. Every buyer who created an account is under{' '}
-            <button type="button" className="link-btn" onClick={() => switchSource('signup')}>Buyer accounts</button>.
-          </p>
-        )}
-        {isMap && (
-          <div className="adm-filterbar">
-            <div className="adm-seg" role="group" aria-label="Enquirer type">
-              <button className={role === 'all' ? 'on' : ''} onClick={() => setRole('all')}>All types <span className="n">{bySource.map.filter((l) => matchesLocation(l, loc)).length}</span></button>
-              {PEOPLE_ROLES.map((r) => (
-                <button key={r} className={role === r ? 'on' : ''} onClick={() => setRole(r)}>
-                  <i className={`fas ${ROLE_META[r].icon}`} /> {ROLE_META[r].label} <span className="n">{roleCount(r)}</span>
-                </button>
-              ))}
-            </div>
-            {isOwner && (
-              <div className="dl-group">
-                <span className="lbl"><i className="fas fa-download" /> Download</span>
-                {PEOPLE_ROLES.map((r) => (
-                  <button key={r} className="adm-btn ghost sm" disabled={!forDownload(r).length} onClick={() => downloadMap(r)} title={`Download ${ROLE_META[r].label} enquiries as CSV`}>
-                    {ROLE_META[r].short} ({forDownload(r).length})
+      <div className="crm2-body">
+        <aside className="crm2-side">
+          <section className="pg-card crm2-nav">
+            <ul>
+              {([['all', isOwner ? 'All Leads' : 'My Leads'], ['due', 'Follow-up due'], ...LEAD_STAGES.map((st) => [st.key, st.label])] as [typeof filter, string][]).map(([k, lbl]) => (
+                <li key={k}>
+                  <button type="button" className={filter === k ? 'on' : ''} onClick={() => setFilter(k)}>
+                    <span className="dot" style={{ background: STAGE_DOT[k] || '#9b9a94' }} />{lbl}<b>{counts[k].toLocaleString('en-IN')}</b>
                   </button>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section className="pg-card crm2-nav">
+            <h4>Lead Sources</h4>
+            <ul>
+              <li><button type="button" className={isMap ? 'on' : ''} onClick={() => switchSource('map')}><i className="fas fa-map-location-dot" />Map enquiries<b>{bySource.map.length}</b></button></li>
+              <li><button type="button" className={isSignup ? 'on' : ''} onClick={() => switchSource('signup')}><i className="fas fa-user-plus" />Buyer accounts<b>{bySource.signup.length}</b></button></li>
+              {isOwner && <li><button type="button" className={source === 'contact' ? 'on' : ''} onClick={() => switchSource('contact')}><i className="fas fa-envelope" />Contact form<b>{bySource.contact.length}</b></button></li>}
+            </ul>
+          </section>
+          {isMap && (
+            <section className="pg-card crm2-nav">
+              <h4>Enquirer Type</h4>
+              <ul>
+                <li><button type="button" className={role === 'all' ? 'on' : ''} onClick={() => setRole('all')}><i className="fas fa-users" />All types<b>{bySource.map.filter((l) => matchesLocation(l, loc)).length}</b></button></li>
+                {PEOPLE_ROLES.map((r) => (
+                  <li key={r}><button type="button" className={role === r ? 'on' : ''} onClick={() => setRole(r)}><i className={`fas ${ROLE_META[r].icon}`} />{ROLE_META[r].label}<b>{roleCount(r)}</b></button></li>
                 ))}
-              </div>
-            )}
-          </div>
-        )}
-        {!isMap && (
-          <div className="adm-filterbar">
-            <span className="muted" style={{ fontSize: 13 }}>{isSignup ? 'Every buyer who created an account (newest first), with what they are looking for.' : <>Messages sent from the website&apos;s Contact page.</>}</span>
-            {isOwner && <button className="adm-btn ghost sm" disabled={!list.length} onClick={downloadContact}><i className="fas fa-file-csv" /> Download CSV ({list.length})</button>}
-          </div>
-        )}
-
-        {loading ? (
-          <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>
-        ) : list.length === 0 ? (
-          <div className="adm-empty">
-            <i className={`fas ${isMap ? 'fa-map-location-dot' : isSignup ? 'fa-user-plus' : 'fa-address-book'}`} />
-            <p>{all.length === 0
-              ? (!isOwner ? 'No leads have been transferred to you yet. The super admin will assign them to you.'
-                : isMap ? 'No map enquiries yet. When someone taps Enquire on a project card on the live map, it appears here.'
-                : isSignup ? 'No buyer accounts yet. When a buyer creates an account, they appear here as a lead.'
-                  : 'No leads yet. Submissions from the Contact form appear here.')
-              : 'Nothing matches these filters.'}</p>
-          </div>
-        ) : (
-          <>
-          {isOwner && (
-          <BulkBar sel={pick} ids={list.slice(0, LEADS_RENDER_CAP).map((l) => l.id)} hint={`Select all ${Math.min(list.length, LEADS_RENDER_CAP)} shown — or tick leads to update or delete them together`}>
-            <select className="crm-select" value="" disabled={busy} aria-label="Set status of selected leads"
-              onChange={(e) => { if (e.target.value) setStatusMany(pick.of(list.map((l) => l.id)), e.target.value as Lead['status']); }}>
-              <option value="">Set status…</option>
-              {LEAD_STAGES.map((st) => <option key={st.key} value={st.key}>{st.label}</option>)}
-            </select>
-            {staff.length > 0 && (isSignup || isMap) && (
-              <select className="crm-select" value="" disabled={busy} aria-label="Transfer selected leads to an employee"
-                onChange={(e) => { if (e.target.value) assignMany(pick.of(list.map((l) => l.id)), e.target.value); }}>
-                <option value="">Transfer to…</option>
-                {staff.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
-                <option value={UNASSIGNED}>Nobody (unassign)</option>
-              </select>
-            )}
-            <button className="adm-btn ghost sm" disabled={busy} title="Share the selected leads' details — you choose the app and contact"
-              onClick={() => { const ids = pick.of(list.map((l) => l.id)); shareWithAnyone(joinLeads(list.filter((l) => ids.includes(l.id)))); }}>
-              <i className="fas fa-share-nodes" /> Share
-            </button>
-            {waStaff.length > 0 && (
-              <select className="crm-select" value="" disabled={busy} aria-label="Send selected leads to an employee on WhatsApp"
-                onChange={(e) => { if (e.target.value) { const ids = pick.of(list.map((l) => l.id)); sendToEmployee(list.filter((l) => ids.includes(l.id)), e.target.value); } }}>
-                <option value="">WhatsApp to employee…</option>
-                {waStaff.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
-              </select>
-            )}
-            <button className="adm-btn danger sm" disabled={busy} onClick={() => { const ids = pick.of(list.map((l) => l.id)); if (confirm(`Delete ${ids.length} lead${ids.length === 1 ? '' : 's'}? You can restore them from Backups → Recycle bin.`)) removeMany(ids); }}><i className="fas fa-trash" /> Delete</button>
-          </BulkBar>
+              </ul>
+            </section>
           )}
-          <div className="table-scroll">
-            <table className="adm-table crm-table">
-              <thead>
-                {isMap
-                  ? <tr><th className="pick" /><th>Lead</th><th>Type</th><th>Project</th><th>Location</th><th>Account</th><th>Status</th><th>Received</th><th></th></tr>
-                  : isSignup
-                    ? <tr><th className="pick" /><th>Buyer</th><th>Looking for</th><th>Last login</th><th>Activity</th><th>Status</th><th>Signed up</th><th></th></tr>
-                    : <tr><th className="pick" /><th>Lead</th><th>Topic</th><th>Status</th><th>Received</th><th></th></tr>}
-              </thead>
-              <tbody>
-                {list.slice(0, LEADS_RENDER_CAP).map((l) => (
-                  <tr key={l.id} className={`crm-row${pick.has(l.id) ? ' picked' : ''}`} onClick={() => open(l)}>
-                    <td className="pick" onClick={(e) => e.stopPropagation()}>{isOwner && <PickOne sel={pick} id={l.id} label={l.name || l.email || 'lead'} />}</td>
-                    <td className="t-title">
-                      <span className="crm-ini">{initials(l)}</span>
-                      <span className="crm-id"><b>{l.name}</b><small>{l.email || l.phone || '—'}</small>
-                        {isSignup && l.buyer && !l.buyer.account_exists && <small style={{ color: 'var(--muted)' }}><i className="fas fa-user-xmark" /> Account deleted</small>}</span>
-                    </td>
-                    {isMap ? (
-                      <>
-                        <td><i className={`fas ${ROLE_META[l.role || 'buyer'].icon}`} style={{ color: 'var(--muted)', marginRight: 6 }} />{ROLE_META[l.role || 'buyer'].label}</td>
-                        <td>{projectName(l) || <span className="muted">Project removed</span>}</td>
-                        <td>{l.locations?.length ? <span className="loc-tags">{l.locations.map((x) => <span className="loc-tag" key={x}>{x}</span>)}</span> : <span className="muted">—</span>}</td>
-                        <td>
-                          {l.account ? (
-                            <span className="ml-acc">
-                              <span className="ml-badge"><i className="fas fa-user-check" /> {l.account.signed_in ? 'Signed in' : 'Has account'} · {accountRole(l.account.role).short.replace(/s$/, '')}</span>
-                              <small>{l.account.last_login_at ? `Last login ${leadWhen(l.account.last_login_at)}` : 'No login yet'}{l.account.login_count ? ` · ${l.account.login_count} sign-in${l.account.login_count === 1 ? '' : 's'}` : ''}</small>
-                            </span>
-                          ) : <span className="muted">Guest</span>}
+          {isOwner && (
+            <section className="pg-card crm2-nav">
+              <h4>Download CSV</h4>
+              {isMap ? (
+                <div className="crm2-dl">
+                  {PEOPLE_ROLES.map((r) => (
+                    <button key={r} type="button" disabled={!forDownload(r).length} onClick={() => downloadMap(r)} title={`Download ${ROLE_META[r].label} enquiries as CSV`}>
+                      <i className="fas fa-file-csv" /> {ROLE_META[r].short}<b>{forDownload(r).length}</b>
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <div className="crm2-dl">
+                  <button type="button" disabled={!list.length} onClick={downloadContact}><i className="fas fa-file-csv" /> {isSignup ? 'Buyer accounts' : 'Contact leads'}<b>{list.length}</b></button>
+                </div>
+              )}
+              <p className="crm2-hint">Downloads follow the filters you have set.</p>
+            </section>
+          )}
+        </aside>
+
+        <section className="pg-card crm2-main">
+          <div className="pg-card-head">
+            <h3>
+              {!isOwner ? (isMap ? 'My map enquiries' : 'My buyer leads') : `All ${sourceLabel}`} ({list.length.toLocaleString('en-IN')})
+              <span className={`crm2-live${live ? '' : ' off'}`} title={live ? 'Live — updates automatically' : 'Reconnecting…'}><i className="fas fa-circle" /> {live ? 'Live' : 'Offline'}</span>
+            </h3>
+            <div className="pg-tools">
+              <label className="pg-search">
+                <i className="fas fa-magnifying-glass" />
+                <input placeholder={isMap ? 'Search name, phone, project…' : 'Search name, email, phone…'} value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search leads" />
+              </label>
+              {isMap && <LocationSelect items={bySource.map} value={loc} onChange={setLoc} />}
+              {isOwner && (isSignup || isMap) && (
+                <select className="crm-select" aria-label="Filter by employee" value={assignee} onChange={(e) => setAssignee(e.target.value)}>
+                  <option value="">Assigned to: anyone</option>
+                  <option value={UNASSIGNED}>Not assigned ({all.filter((l) => !l.assigned_to).length})</option>
+                  {staff.map((e) => <option key={e.id} value={e.id}>{e.name} ({all.filter((l) => l.assigned_to === e.id).length})</option>)}
+                </select>
+              )}
+            </div>
+          </div>
+
+          <p className="muted crm2-note">
+            {isMap
+              ? <>Only people who tapped <b>Enquire</b> on a project card. Every buyer who created an account is under{' '}
+                <button type="button" className="link-btn" onClick={() => switchSource('signup')}>Buyer accounts</button>.</>
+              : isSignup ? 'Every buyer who created an account (newest first), with what they are looking for.'
+                : <>Messages sent from the website&apos;s Contact page.</>}
+          </p>
+
+          {loading ? (
+            <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>
+          ) : list.length === 0 ? (
+            <div className="adm-empty">
+              <i className={`fas ${isMap ? 'fa-map-location-dot' : isSignup ? 'fa-user-plus' : 'fa-address-book'}`} />
+              <p>{all.length === 0
+                ? (!isOwner ? 'No leads have been transferred to you yet. The super admin will assign them to you.'
+                  : isMap ? 'No map enquiries yet. When someone taps Enquire on a project card on the live map, it appears here.'
+                  : isSignup ? 'No buyer accounts yet. When a buyer creates an account, they appear here as a lead.'
+                    : 'No leads yet. Submissions from the Contact form appear here.')
+                : 'Nothing matches these filters.'}</p>
+            </div>
+          ) : (
+            <>
+            {isOwner && (
+            <BulkBar sel={pick} ids={list.slice(0, LEADS_RENDER_CAP).map((l) => l.id)} hint={`Select all ${Math.min(list.length, LEADS_RENDER_CAP)} shown — or tick leads to update or delete them together`}>
+              <select className="crm-select" value="" disabled={busy} aria-label="Set status of selected leads"
+                onChange={(e) => { if (e.target.value) setStatusMany(pick.of(list.map((l) => l.id)), e.target.value as Lead['status']); }}>
+                <option value="">Set status…</option>
+                {LEAD_STAGES.map((st) => <option key={st.key} value={st.key}>{st.label}</option>)}
+              </select>
+              {staff.length > 0 && (isSignup || isMap) && (
+                <select className="crm-select" value="" disabled={busy} aria-label="Transfer selected leads to an employee"
+                  onChange={(e) => { if (e.target.value) assignMany(pick.of(list.map((l) => l.id)), e.target.value); }}>
+                  <option value="">Transfer to…</option>
+                  {staff.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
+                  <option value={UNASSIGNED}>Nobody (unassign)</option>
+                </select>
+              )}
+              <button className="adm-btn ghost sm" disabled={busy} title="Share the selected leads' details — you choose the app and contact"
+                onClick={() => { const ids = pick.of(list.map((l) => l.id)); shareWithAnyone(joinLeads(list.filter((l) => ids.includes(l.id)))); }}>
+                <i className="fas fa-share-nodes" /> Share
+              </button>
+              {waStaff.length > 0 && (
+                <select className="crm-select" value="" disabled={busy} aria-label="Send selected leads to an employee on WhatsApp"
+                  onChange={(e) => { if (e.target.value) { const ids = pick.of(list.map((l) => l.id)); sendToEmployee(list.filter((l) => ids.includes(l.id)), e.target.value); } }}>
+                  <option value="">WhatsApp to employee…</option>
+                  {waStaff.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
+                </select>
+              )}
+              <button className="adm-btn danger sm" disabled={busy} onClick={() => { const ids = pick.of(list.map((l) => l.id)); if (confirm(`Delete ${ids.length} lead${ids.length === 1 ? '' : 's'}? You can restore them from Backups → Recycle bin.`)) removeMany(ids); }}><i className="fas fa-trash" /> Delete</button>
+            </BulkBar>
+            )}
+            <div className="table-scroll">
+              <table className="adm-table crm-table crm2-table">
+                <thead>
+                  {isMap
+                    ? <tr><th className="pick" /><th>Name</th><th>Contact</th><th>Project Interest</th><th>Status</th><th>Created</th><th className="acts">Actions</th></tr>
+                    : isSignup
+                      ? <tr><th className="pick" /><th>Name</th><th>Contact</th><th>Looking for</th><th>Activity</th><th>Status</th><th>Signed up</th><th className="acts">Actions</th></tr>
+                      : <tr><th className="pick" /><th>Name</th><th>Contact</th><th>Topic</th><th>Status</th><th>Created</th><th className="acts">Actions</th></tr>}
+                </thead>
+                <tbody>
+                  {list.slice(0, LEADS_RENDER_CAP).map((l) => (
+                    <tr key={l.id} className={`crm-row${pick.has(l.id) ? ' picked' : ''}`} onClick={() => open(l)}>
+                      <td className="pick" onClick={(e) => e.stopPropagation()}>{isOwner && <PickOne sel={pick} id={l.id} label={l.name || l.email || 'lead'} />}</td>
+                      <td className="crm2-name">
+                        <b>{l.name || '—'}</b>
+                        {isMap && (
+                          <small><i className={`fas ${ROLE_META[l.role || 'buyer'].icon}`} /> {ROLE_META[l.role || 'buyer'].short.replace(/s$/, '')}
+                            {l.account
+                              ? <span className="crm2-acc" title={`${l.account.last_login_at ? `Last login ${leadWhen(l.account.last_login_at)}` : 'No login yet'}${l.account.login_count ? ` · ${l.account.login_count} sign-in${l.account.login_count === 1 ? '' : 's'}` : ''}`}>
+                                  <i className="fas fa-user-check" /> {l.account.signed_in ? 'Signed in' : 'Has account'}
+                                </span>
+                              : <span className="crm2-acc guest">Guest</span>}
+                          </small>
+                        )}
+                        {isMap && l.account && <small className="muted">{l.account.last_login_at ? `Last login ${leadWhen(l.account.last_login_at)}` : 'No login yet'}{l.account.login_count ? ` · ${l.account.login_count} sign-in${l.account.login_count === 1 ? '' : 's'}` : ''}</small>}
+                        {isSignup && l.buyer && !l.buyer.account_exists && <small className="muted"><i className="fas fa-user-xmark" /> Account deleted</small>}
+                      </td>
+                      <td className="crm2-contact">{l.phone && <span>{l.phone}</span>}{l.email && <small title={l.email}>{l.email}</small>}{!l.phone && !l.email && <span className="muted">—</span>}</td>
+                      {isMap ? (
+                        <td className="crm2-proj">
+                          <span>{projectName(l) || <span className="muted">Project removed</span>}</span>
+                          {l.locations?.length ? <span className="loc-tags">{l.locations.map((x) => <span className="loc-tag" key={x}>{x}</span>)}</span> : null}
                         </td>
-                      </>
-                    ) : isSignup ? (
-                      <>
-                        <td>{buyerWants(l) || <span className="muted">—</span>}</td>
-                        <td>{l.buyer?.last_login_at ? <span title={new Date(l.buyer.last_login_at).toLocaleString('en-IN')}>{leadWhen(l.buyer.last_login_at)}</span> : <span className="muted">Not yet</span>}</td>
-                        <td className="muted">
-                          {[
-                            l.buyer?.login_count ? `${l.buyer.login_count} sign-in${l.buyer.login_count === 1 ? '' : 's'}` : '',
-                            l.buyer?.enquiries.length ? `${l.buyer.enquiries.length} enquir${l.buyer.enquiries.length === 1 ? 'y' : 'ies'}` : '',
-                            l.buyer?.compare.length ? `${l.buyer.compare.length} in compare` : '',
-                          ].filter(Boolean).join(' · ') || '—'}
+                      ) : isSignup ? (
+                        <>
+                          <td className="crm2-proj">{buyerWants(l) || <span className="muted">—</span>}</td>
+                          <td className="crm2-small">
+                            <span>{l.buyer?.last_login_at ? <span title={new Date(l.buyer.last_login_at).toLocaleString('en-IN')}>Last login {leadWhen(l.buyer.last_login_at)}</span> : <span className="muted">Not signed in yet</span>}</span>
+                            <small className="muted">
+                              {[
+                                l.buyer?.login_count ? `${l.buyer.login_count} sign-in${l.buyer.login_count === 1 ? '' : 's'}` : '',
+                                l.buyer?.enquiries.length ? `${l.buyer.enquiries.length} enquir${l.buyer.enquiries.length === 1 ? 'y' : 'ies'}` : '',
+                                l.buyer?.compare.length ? `${l.buyer.compare.length} in compare` : '',
+                              ].filter(Boolean).join(' · ') || '—'}
+                            </small>
+                          </td>
+                        </>
+                      ) : (
+                        <td className="crm2-proj">
+                          <span>{l.subject || '—'}</span>
+                          {l.message && <small className="muted crm2-msg" title={l.message}>{l.message}</small>}
                         </td>
-                      </>
-                    ) : (
-                      <td>{l.subject || '—'}</td>
-                    )}
-                    <td>
-                      <span className={`crm-pill ${l.status}`}>{stageLabel(l.status)}</span>
-                      {isOwner && l.assigned_name && <small className="muted" style={{ display: 'block', marginTop: 3 }} title="Transferred to"><i className="fas fa-user-tie" /> {l.assigned_name}</small>}
-                      {l.follow_up_at && <small style={{ display: 'block', marginTop: 3, color: isOverdue(l.follow_up_at) ? '#b42318' : 'var(--muted)' }} title={fullDate(l.follow_up_at)}><i className="fas fa-calendar-check" /> {isOverdue(l.follow_up_at) ? 'Overdue' : 'Follow-up'} {leadWhen(l.follow_up_at)}</small>}
-                      {l.last_activity_at && <small className="muted" style={{ display: 'block', marginTop: 3 }} title={fullDate(l.last_activity_at)}>Updated by {l.last_activity_by} · {leadWhen(l.last_activity_at)}</small>}
-                    </td>
-                    <td className="muted" title={fullDate(l.created_at)}>
-                      {leadWhen(l.created_at)}
-                      {isMap && l.site_visit_requested_at && <small style={{ display: 'block', color: '#2f7a3c', fontWeight: 600 }} title={fullDate(l.site_visit_requested_at)}><i className="fas fa-calendar-check" /> Site visit: {l.site_visit_slot || `requested ${leadWhen(l.site_visit_requested_at)}`}</small>}
-                      {isMap && (l.enquiry_clicks || 1) > 1 && <small style={{ display: 'block' }}>{l.enquiry_clicks}× · last {leadWhen(l.last_enquired_at || undefined)}</small>}
-                    </td>
-                    <td><button className="adm-btn ghost sm" onClick={(e) => { e.stopPropagation(); open(l); }}>Open</button></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          </>
-        )}
-        {!loading && truncated[source] != null && (
-          <div className="adm-empty" style={{ padding: '12px 0' }}>
-            <p>Only the newest {bySource[source].length} of {truncated[source]} leads are loaded here. Older leads are kept in the database.</p>
-          </div>
-        )}
-        {!loading && list.length > LEADS_RENDER_CAP && (
-          <div className="adm-empty" style={{ padding: '12px 0' }}>
-            <p>Showing the first {LEADS_RENDER_CAP} of {list.length}. Use search or a filter to narrow down.</p>
-          </div>
-        )}
+                      )}
+                      <td className="crm2-status">
+                        <span className={`crm-pill ${l.status}`}>{stageLabel(l.status)}</span>
+                        {isOwner && l.assigned_name && <small className="muted" title="Transferred to"><i className="fas fa-user-tie" /> {l.assigned_name}</small>}
+                        {l.follow_up_at && <small style={{ color: isOverdue(l.follow_up_at) ? '#b42318' : 'var(--muted)' }} title={fullDate(l.follow_up_at)}><i className="fas fa-calendar-check" /> {isOverdue(l.follow_up_at) ? 'Overdue' : 'Follow-up'} {leadWhen(l.follow_up_at)}</small>}
+                        {l.last_activity_at && <small className="muted" title={fullDate(l.last_activity_at)}>By {l.last_activity_by} · {leadWhen(l.last_activity_at)}</small>}
+                      </td>
+                      <td className="crm2-date" title={fullDate(l.created_at)}>
+                        <span>{l.created_at ? new Date(l.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '—'}</span>
+                        <small className="muted">{leadWhen(l.created_at)}</small>
+                        {isMap && l.site_visit_requested_at && <small className="crm2-visit" title={fullDate(l.site_visit_requested_at)}><i className="fas fa-calendar-check" /> Visit: {l.site_visit_slot || `requested ${leadWhen(l.site_visit_requested_at)}`}</small>}
+                        {isMap && (l.enquiry_clicks || 1) > 1 && <small className="muted">{l.enquiry_clicks}× · last {leadWhen(l.last_enquired_at || undefined)}</small>}
+                      </td>
+                      <td className="acts" onClick={(e) => e.stopPropagation()}>
+                        <div className="crm2-acts">
+                          {l.phone
+                            ? <a href={`tel:${l.phone.replace(/\s/g, '')}`} title={`Call ${l.phone}`} aria-label={`Call ${l.name}`}><i className="fas fa-phone" /></a>
+                            : <span className="off" title="No phone number"><i className="fas fa-phone" /></span>}
+                          {digits(l.phone)
+                            ? <a href={`https://wa.me/${digits(l.phone)}`} target="_blank" rel="noopener" title="WhatsApp" aria-label={`WhatsApp ${l.name}`}><i className="fab fa-whatsapp" /></a>
+                            : l.email ? <a href={`mailto:${l.email}`} title={`Email ${l.email}`} aria-label={`Email ${l.name}`}><i className="fas fa-envelope" /></a>
+                              : <span className="off"><i className="fab fa-whatsapp" /></span>}
+                          <button type="button" onClick={() => open(l)} title="Open lead — notes, follow-up, status, transfer" aria-label={`Open ${l.name}`}><i className="fas fa-ellipsis-vertical" /></button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            </>
+          )}
+          {!loading && truncated[source] != null && (
+            <div className="adm-empty" style={{ padding: '12px 0' }}>
+              <p>Only the newest {bySource[source].length} of {truncated[source]} leads are loaded here. Older leads are kept in the database.</p>
+            </div>
+          )}
+          {!loading && list.length > LEADS_RENDER_CAP && (
+            <div className="adm-empty" style={{ padding: '12px 0' }}>
+              <p>Showing the first {LEADS_RENDER_CAP} of {list.length}. Use search or a filter to narrow down.</p>
+            </div>
+          )}
+        </section>
       </div>
+    </div>
 
       {teamOpen && (
         <div className="crm-drawer-overlay" onClick={() => setTeamOpen(false)}>
@@ -2744,6 +3342,93 @@ function BackupsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
 }
 
 /* ------------------------------- Shell ----------------------------------- */
+/* ------------------------- Settings: extra sections ------------------------ */
+/** What the admin is told about, and this device's app preference. */
+function NotificationsSettings({ bell, locked, onToggleLock, onGo }: { bell: boolean; locked: boolean; onToggleLock: () => void; onGo: (t: string) => void }) {
+  const rows: [string, string, string, string][] = [
+    ['fa-user-plus', 'New developer & channel-partner sign-ups', 'They wait for your approval in Accounts.', 'accounts'],
+    ['fa-map-pin', 'Projects added or edited by developers', 'They go live only after you approve them in Project Management.', 'projects'],
+    ['fa-trash-can', 'Delete requests and deleted projects', 'Developers asking to remove a project, and projects they removed.', 'projects'],
+    ['fa-calendar-check', 'Lead follow-ups due', 'Not in the bell — shown in CRM & Leads → Follow-up due, overdue ones in red.', 'leads'],
+  ];
+  return (
+    <>
+      <section className="pg-card st-sec">
+        <div className="st-sec-head"><div><h3>Notifications</h3><p>What you are alerted to, and where to act on it.</p></div></div>
+        {!bell && <p className="adm-note"><i className="fas fa-circle-info" /><span>The bell appears for team members who can open Accounts or Project Management.</span></p>}
+        <ul className="st-list">
+          {rows.map(([icon, title, desc, tab]) => (
+            <li key={title}>
+              <span className="ic"><i className={`fas ${icon}`} /></span>
+              <span className="t"><b>{title}</b><small>{desc}</small></span>
+              <button type="button" className="adm-btn ghost sm" onClick={() => onGo(tab)}>Open</button>
+            </li>
+          ))}
+        </ul>
+        <p className="st-hint"><i className="fas fa-circle-info" /> Opening the bell marks everything in it as read for you; other team members keep their own unread count.</p>
+      </section>
+      <section className="pg-card st-sec">
+        <div className="st-sec-head"><div><h3>This Device</h3><p>Preferences saved in this browser only.</p></div></div>
+        <ul className="st-list">
+          <li>
+            <span className="ic"><i className={`fas ${locked ? 'fa-lock' : 'fa-lock-open'}`} /></span>
+            <span className="t"><b>Open the installed app straight to the super admin</b><small>{locked ? 'On — the app opens on this panel.' : 'Off — the app opens on the home page.'}</small></span>
+            <button type="button" role="switch" aria-checked={locked} className={`st-switch${locked ? ' on' : ''}`} onClick={onToggleLock} aria-label="Lock the app to this panel"><span /></button>
+          </li>
+        </ul>
+      </section>
+    </>
+  );
+}
+
+/** Everything the team did on leads (notes, status changes, follow-ups, transfers). */
+function ActivityLogSettings({ onOpenLeads }: { onOpenLeads: () => void }) {
+  const [feed, setFeed] = useState<LeadEvent[] | null>(null);
+  const [who, setWho] = useState('');
+  async function load() {
+    setFeed(null);
+    try {
+      const r = await fetch('/api/admin/leads?activity=1', { credentials: 'same-origin' });
+      const b = await r.json();
+      setFeed(r.ok && Array.isArray(b.data) ? b.data : []);
+    } catch { setFeed([]); }
+  }
+  useEffect(() => { load(); }, []);
+  const shown = (feed || []).filter((e) => !who || e.by_id === who);
+  const ini = (n: string) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase() || '?';
+  return (
+    <section className="pg-card st-sec">
+      <div className="st-sec-head">
+        <div><h3>Activity Log</h3><p>Notes, status changes, follow-ups and transfers on leads, newest first.</p></div>
+        <div className="pg-tools">
+          <select className="ov-select" value={who} onChange={(e) => setWho(e.target.value)} aria-label="Filter by person">
+            <option value="">Everyone</option>
+            {Array.from(new Map((feed || []).map((e) => [e.by_id || '', e.by_name || 'Someone'])).entries()).map(([id, n]) => <option key={id} value={id}>{n}</option>)}
+          </select>
+          <button type="button" className="adm-btn ghost sm" onClick={load}><i className="fas fa-rotate" /> Refresh</button>
+        </div>
+      </div>
+      {feed === null ? <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>
+        : !shown.length ? <div className="adm-empty"><i className="fas fa-clock-rotate-left" /><p>Nothing yet. When anyone adds a note, changes a status or sets a follow-up on a lead, it shows here.</p></div>
+          : (
+            <ul className="tm-feed">
+              {shown.map((e) => (
+                <li key={`${e.lead_id}-${e.id}`}>
+                  <span className="tm-av sm" style={{ background: '#0f5c47' }}>{ini(e.by_name || '?')}</span>
+                  <div>
+                    <b>{e.by_name || 'Someone'}</b> <span className="muted">on</span> <b>{e.lead_name || 'a lead'}</b>
+                    <span className="tm-ev"><i className={`fas ${LEAD_EVENT_ICON[e.type]}`} /> {leadEventText(e)}</span>
+                  </div>
+                  <time title={fullDate(e.at)}>{leadWhen(e.at)}</time>
+                </li>
+              ))}
+            </ul>
+          )}
+      <p className="st-hint"><i className="fas fa-circle-info" /> Open a lead from <button type="button" className="link-btn" onClick={onOpenLeads}>CRM &amp; Leads</button> to see its full timeline.</p>
+    </section>
+  );
+}
+
 export default function AdminApp({ user }: { user: AdminUser }) {
   const router = useRouter();
   const isOwner = user.role === 'admin';
@@ -2755,26 +3440,18 @@ export default function AdminApp({ user }: { user: AdminUser }) {
     // leads (only the ones transferred to them), plus any other tab the super admin granted.
     : [...GRANTABLE.map((g) => g.key).filter((k) => user.permissions.includes(k)).sort((a, b) => Number(b === 'leads') - Number(a === 'leads')).flatMap((k) => (k === 'intake' ? ['projects', 'intake'] : k === 'map' ? ['map', 'developers'] : [k])), 'profile'];
 
-  // Profile, Settings and Backups live in the top-right account menu, not the tab row.
-  const MENU_TABS = ['profile', 'settings', 'backups'];
-  // Related tabs share one button in the tab row; inside it a small switch picks
-  // between them. Each keeps its own key, so ?tab=intake / ?tab=buyerleads links,
-  // permissions and "Edit all details" work as before.
-  const TAB_GROUPS: Record<string, string[]> = {
-    map: ['map', 'intake'],
-    leads: ['leads', 'buyerleads', 'accounts'],
-    developers: ['developers', 'projects'],
-  };
-  const groupOf = (k: string) => Object.keys(TAB_GROUPS).find((g) => TAB_GROUPS[g].includes(k)) || k;
-  const membersOf = (g: string) => (TAB_GROUPS[g] || [g]).filter((k) => visible.includes(k));
-  const tabRow = [...new Set(visible.filter((k) => !MENU_TABS.includes(k)).map(groupOf))];
+  const navGroups = NAV.map((g) => ({ ...g, tabs: g.tabs.filter((k) => visible.includes(k)) })).filter((g) => g.tabs.length);
   const [tab, setTab] = useState(visible[0] || 'dashboard');
   // The open tab lives in the URL (/dashboard/s-admin?tab=projects), so a refresh
   // reopens it and the link can be shared. Read once on load, written on every change.
   const tabFromUrl = useRef(false);
+  // The ?tab= the page was opened with, read once: in development React runs
+  // effects twice, and by the second run the URL already says the default tab.
+  const openedTab = useRef<string | null | undefined>(undefined);
   useEffect(() => {
     try {
-      const t = new URLSearchParams(window.location.search).get('tab');
+      if (openedTab.current === undefined) openedTab.current = new URLSearchParams(window.location.search).get('tab');
+      const t = openedTab.current;
       if (t && visible.includes(t)) setTab(t);
     } catch { /* ignore */ }
     tabFromUrl.current = true;
@@ -2845,11 +3522,86 @@ export default function AdminApp({ user }: { user: AdminUser }) {
   const [menuOpen, setMenuOpen] = useState(false);
   // Developer/partner accounts waiting for verification — shown as a badge on the Accounts tab.
   const [pendingCount, setPendingCount] = useState(0);
+  // Site numbers for the Overview (and the pending badge) — one request per page load.
+  const [stats, setStats] = useState<any>(null);
   useEffect(() => {
-    if (!visible.includes('accounts')) return;
+    if (!visible.includes('accounts') && !visible.includes('dashboard')) return;
     fetch('/api/admin/stats', { credentials: 'same-origin' })
-      .then((r) => r.json()).then((b) => setPendingCount(Number(b?.data?.accounts?.pending) || 0)).catch(() => {});
+      .then((r) => r.json())
+      .then((b) => { setStats(b?.data || { dbOk: false }); setPendingCount(Number(b?.data?.accounts?.pending) || 0); })
+      .catch(() => setStats({ dbOk: false }));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  // City picker in the top bar: moves the Overview map and filters its charts.
+  const cities: CityStat[] = stats?.overview?.cities || [];
+  // '__default' = not picked in this tab yet → the Default Location from Settings → General.
+  const [cityPick, setCity] = usePersistedState<string>('city', '__default');
+  const wanted = cityPick === '__default' ? (stats?.defaultCity ?? 'pune') : cityPick;
+  const city = cities.some((c) => c.key === wanted) ? wanted : '';
+  // Settings page: which section is open (General, SEO, Notifications, Activity log share the 'settings' tab).
+  const [stSec, setStSec] = usePersistedState<string>('settings.sec', 'general');
+  const [today, setToday] = useState('');
+  useEffect(() => { setToday(new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })); }, []);
+
+  // Top-bar search: sections, projects, developers and localities.
+  const [q, setQ] = useState('');
+  const [searchFocus, setSearchFocus] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false); // phones: the field opens over the bar
+  const [projIndex, setProjIndex] = useState<ProjectHit[]>([]);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const searchInput = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    const onDown = (e: PointerEvent) => { if (searchRef.current && !searchRef.current.contains(e.target as Node)) { setSearchFocus(false); setSearchOpen(false); } };
+    document.addEventListener('pointerdown', onDown);
+    return () => document.removeEventListener('pointerdown', onDown);
+  }, []);
+  const closeSearch = () => { setQ(''); setSearchFocus(false); setSearchOpen(false); searchInput.current?.blur(); };
+  const searchHits = (() => {
+    const t = q.trim().toLowerCase();
+    if (!t) return [];
+    const go = (k: string) => () => { closeSearch(); setTab(k); };
+    const has = (v?: string) => !!v && v.toLowerCase().includes(t);
+    const sections = visible.filter((k) => has(`${TAB_META[k].label} ${TAB_META[k].desc}`)).slice(0, 4)
+      .map((k) => ({ icon: TAB_META[k].icon, title: TAB_META[k].label, sub: TAB_META[k].desc, go: go(k) }));
+    const projects = matchProjects(projIndex, q, 5).map((p) => ({
+      icon: 'fa-location-dot', title: p.title, sub: `${[p.locality, p.developer].filter(Boolean).join(' · ') || 'Project'} — edit all details`,
+      go: () => { closeSearch(); openFullEdit(p.id); },
+    }));
+    const uniq = (xs: (string | undefined)[]) => [...new Set(xs.filter((x): x is string => has(x)))];
+    const devs = visible.includes('developers')
+      ? uniq(projIndex.map((p) => p.developer)).slice(0, 3).map((d) => ({ icon: 'fa-building', title: d, sub: `${projIndex.filter((p) => p.developer === d).length} projects — open Developers`, go: go('developers') }))
+      : [];
+    const places = visible.includes('map')
+      ? uniq(projIndex.map((p) => p.locality)).slice(0, 3).map((l) => ({ icon: 'fa-map-pin', title: l, sub: `${projIndex.filter((p) => p.locality === l).length} projects — open Map Editor`, go: go('map') }))
+      : [];
+    return [...sections, ...projects, ...devs, ...places];
+  })();
+
+  // Navigation dropdowns. Fixed-position so the scrollable tab row never clips them.
+  const [navOpen, setNavOpen] = useState<string | null>(null);
+  const [navPos, setNavPos] = useState({ left: 0, top: 0 });
+  const navRef = useRef<HTMLElement>(null);
+  const ddRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!navOpen) return;
+    const onDown = (e: PointerEvent) => {
+      const t = e.target as Node;
+      if (ddRef.current?.contains(t) || navRef.current?.contains(t)) return;
+      setNavOpen(null);
+    };
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setNavOpen(null); };
+    const close = () => setNavOpen(null);
+    document.addEventListener('pointerdown', onDown);
+    document.addEventListener('keydown', onKey);
+    window.addEventListener('resize', close);
+    navRef.current?.addEventListener('scroll', close);
+    const nav = navRef.current;
+    return () => {
+      document.removeEventListener('pointerdown', onDown);
+      document.removeEventListener('keydown', onKey);
+      window.removeEventListener('resize', close);
+      nav?.removeEventListener('scroll', close);
+    };
+  }, [navOpen]);
   /** Items waiting on the admin in one section (accounts to verify, projects to approve). */
   const badgeOf = (k: string) => (k === 'accounts' ? pendingCount : k === 'projects' ? projPending : 0);
   const [avatar, setAvatar] = useState(user.avatar || '');
@@ -2907,7 +3659,49 @@ export default function AdminApp({ user }: { user: AdminUser }) {
           <span className="mark" aria-hidden="true" />
           <span><b>Mappingg<em>.com</em></b><small>{isOwner ? 'Super admin' : 'Team panel'}</small></span>
         </a>
+
+        <div className={`adm2-search${searchOpen ? ' open' : ''}`} ref={searchRef}>
+          <i className="fas fa-magnifying-glass" />
+          <input
+            ref={searchInput}
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            onFocus={() => { setSearchFocus(true); loadProjectIndex().then(setProjIndex); }}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') { setQ(''); setSearchOpen(false); (e.target as HTMLInputElement).blur(); }
+              if (e.key === 'Enter') searchHits[0]?.go();
+            }}
+            placeholder="Search projects, developers, locations, sections…"
+            aria-label="Search"
+          />
+          {searchOpen && <button type="button" className="adm2-search-x" onClick={() => { setQ(''); setSearchOpen(false); }} aria-label="Close search"><i className="fas fa-xmark" /></button>}
+          {searchFocus && q.trim() && (
+            <div className="adm2-search-pop">
+              {searchHits.length ? searchHits.map((h, i) => (
+                <button type="button" key={i} onMouseDown={(e) => e.preventDefault()} onClick={h.go}>
+                  <span className="ic"><i className={`fas ${h.icon}`} /></span>
+                  <span><b>{h.title}</b><small>{h.sub}</small></span>
+                </button>
+              )) : <p className="muted">No matches for “{q.trim()}”.</p>}
+            </div>
+          )}
+        </div>
+
         <div className="adm2-top-right" ref={menuRef}>
+          <button type="button" className="adm2-pill adm2-search-btn" onClick={() => { setSearchOpen(true); setTimeout(() => searchInput.current?.focus(), 30); }} aria-label="Search">
+            <i className="fas fa-magnifying-glass" />
+          </button>
+          {cities.length > 0 && (
+            <label className="adm2-pill adm2-city">
+              <i className="fas fa-location-dot" />
+              <select value={city} onChange={(e) => setCity(e.target.value)} aria-label="City">
+                <option value="">All cities</option>
+                {cities.map((c) => <option key={c.key} value={c.key}>{c.label}</option>)}
+              </select>
+              <i className="fas fa-chevron-down caret" />
+            </label>
+          )}
+          <span className="adm2-pill adm2-date"><i className="far fa-calendar" /> {today}</span>
           {(visible.includes('projects') || visible.includes('accounts')) && (
             <NotificationBell
               flash={(m) => flash(m)}
@@ -2916,15 +3710,15 @@ export default function AdminApp({ user }: { user: AdminUser }) {
               onOpenAccount={(id) => (visible.includes('accounts') ? openAccount(id) : undefined)}
             />
           )}
-          <a className="adm-chip" href="/map" target="_blank" rel="noopener" title="Open the live map"><i className="fas fa-arrow-up-right-from-square" /> <span className="adm-hide-sm">View site</span></a>
-          <button className="adm-chip" onClick={() => setMenuOpen((v) => !v)}>
+          <a className="adm2-pill adm2-viewsite" href="/map" target="_blank" rel="noopener" title="Open the live map"><i className="fas fa-arrow-up-right-from-square" /> <span className="adm-hide-sm">View site</span></a>
+          <button className="adm2-user" onClick={() => setMenuOpen((v) => !v)}>
             <span className="who">
               {avatar
                 // eslint-disable-next-line @next/next/no-img-element
                 ? <img src={avatar} alt="" />
                 : initials}
             </span>
-            <span className="who-meta"><b>{displayName || user.email.split('@')[0]}</b><small>{isOwner ? 'Owner' : 'Employee'}</small></span>
+            <span className="who-meta"><b>{displayName || user.email.split('@')[0]}</b><small>{isOwner ? 'Super Admin' : 'Employee'}</small></span>
             <i className="fas fa-chevron-down" />
           </button>
           {menuOpen && (
@@ -2946,86 +3740,173 @@ export default function AdminApp({ user }: { user: AdminUser }) {
         </div>
       </header>
 
-      <nav className="adm2-tabs">
-        {tabRow.map((g) => {
-          const members = membersOf(g);
-          const k = members[0];
-          if (!k) return null;
-          const active = members.includes(tab);
-          // A grouped tab shows the total of its sections' badges (e.g. Accounts
+      <nav className="adm2-tabs" ref={navRef}>
+        {navGroups.map((g) => {
+          const active = g.tabs.includes(tab);
+          // A group shows the total of its sections' badges (e.g. Accounts
           // waiting for verification appear on Leads).
-          const waiting = members.reduce((n, m) => n + badgeOf(m), 0);
+          const waiting = g.tabs.reduce((n, m) => n + badgeOf(m), 0);
+          const single = g.tabs.length === 1;
           return (
             <button
-              key={g}
-              className={`adm2-tab${active ? ' active' : ''}`}
-              onClick={() => { if (!active) setTab(k); }}
-              onPointerEnter={() => warmUp(k)}
-              onFocus={() => warmUp(k)}
+              key={g.key}
+              className={`adm2-tab${active ? ' active' : ''}${navOpen === g.key ? ' open' : ''}`}
+              aria-haspopup={single ? undefined : 'menu'}
+              aria-expanded={single ? undefined : navOpen === g.key}
+              onClick={(e) => {
+                if (single) { setTab(g.tabs[0]); setNavOpen(null); return; }
+                const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
+                setNavPos({ left: Math.max(8, Math.min(r.left, window.innerWidth - 268)), top: r.bottom + 6 });
+                setNavOpen((o) => (o === g.key ? null : g.key));
+              }}
+              onPointerEnter={() => g.tabs.forEach(warmUp)}
+              onFocus={() => g.tabs.forEach(warmUp)}
             >
-              <i className={`fas ${TAB_META[k].icon}`} /> {TAB_META[k].label}
+              <i className={`fas ${g.icon}`} /> {g.label}
               {waiting > 0 && <span className="tab-badge" title={`${waiting} waiting for review`}>{waiting}</span>}
+              {!single && <i className="fas fa-chevron-down caret" />}
             </button>
           );
         })}
       </nav>
 
-      {membersOf(groupOf(tab)).length > 1 && (
-        <div className="adm2-subtabs" role="tablist">
-          {membersOf(groupOf(tab)).map((k) => (
-            <button
-              key={k}
-              role="tab"
-              aria-selected={tab === k}
-              className={tab === k ? 'on' : ''}
-              onClick={() => setTab(k)}
-              onPointerEnter={() => warmUp(k)}
-              onFocus={() => warmUp(k)}
-            >
-              <i className={`fas ${TAB_META[k].icon}`} /> {TAB_META[k].label}
-              {badgeOf(k) > 0 && (
-                <span className="tab-badge" title={k === 'accounts' ? `${badgeOf(k)} waiting for verification` : `${badgeOf(k)} waiting for approval`}>{badgeOf(k)}</span>
-              )}
-            </button>
-          ))}
-        </div>
-      )}
+      {navOpen && (() => {
+        const g = navGroups.find((x) => x.key === navOpen);
+        if (!g) return null;
+        return (
+          <div className="adm2-dd" role="menu" ref={ddRef} style={{ left: navPos.left, top: navPos.top }}>
+            {g.tabs.map((k) => (
+              <button
+                key={k}
+                role="menuitem"
+                className={tab === k ? 'on' : ''}
+                onClick={() => { setTab(k); setNavOpen(null); }}
+                onPointerEnter={() => warmUp(k)}
+              >
+                <i className={`fas ${TAB_META[k].icon}`} />
+                <span><b>{TAB_META[k].label}</b><small>{TAB_META[k].desc}</small></span>
+                {badgeOf(k) > 0 && (
+                  <span className="tab-badge" title={k === 'accounts' ? `${badgeOf(k)} waiting for verification` : `${badgeOf(k)} waiting for approval`}>{badgeOf(k)}</span>
+                )}
+              </button>
+            ))}
+          </div>
+        );
+      })()}
 
-      <main className={`adm2-main${membersOf(groupOf(tab)).length > 1 ? ' has-subtabs' : ''}`}>
-        <div className="adm-content" style={tab === 'map' || tab === 'intake' ? { maxWidth: 'none', padding: 0 } : undefined}>
-          {tab === 'dashboard' && <DashboardPanel onGo={(t) => visible.includes(t) && setTab(t)} />}
+      <main className="adm2-main">
+        <div className="adm-content" style={tab === 'map' || tab === 'intake' ? { maxWidth: 'none', padding: 0 } : { maxWidth: 1480 }}>
+          {tab === 'dashboard' && (
+            <DashboardPanel s={stats} city={city} userName={displayName || user.email.split('@')[0]} onGo={(t) => visible.includes(t) && setTab(t)} can={(t) => visible.includes(t)} />
+          )}
           {warm.includes('map') && <div hidden={tab !== 'map'}><MapPanel /></div>}
           {warm.includes('intake') && <div hidden={tab !== 'intake'}><IntakePanel hash={intakeHash} /></div>}
           {tab === 'developers' && <DevelopersPanel flash={flash} />}
           {tab === 'leads' && <LeadsPanel flash={flash} isOwner={isOwner} focusId={leadFocus} onFocusDone={() => setLeadFocus(null)} />}
-          {tab === 'whatsapp' && <WhatsAppPanel flash={flash} onOpenLead={visible.includes('leads') ? (id) => { setLeadFocus(id); setTab('leads'); } : undefined} />}
-          {tab === 'buyerleads' && isOwner && <BuyerLeadsPanel flash={flash} onOpenLeads={() => setTab('leads')} />}
+          {tab === 'whatsapp' && (
+            <div className="pg-wrap pg-wa">
+              <PageHead icon="fa-comments" title="WhatsApp" sub="Chats with buyers, AI auto-replies, OTP sign-ins and automations." />
+              <WhatsAppPanel flash={flash} onOpenLead={visible.includes('leads') ? (id) => { setLeadFocus(id); setTab('leads'); } : undefined} />
+            </div>
+          )}
+          {tab === 'buyerleads' && isOwner && (
+            <div className="pg-wrap">
+              <PageHead icon="fa-people-roof" title="Buyer Leads" sub="Buyer requirements, consent and where every lead came from.">
+                <button type="button" className="pg-btn ghost" onClick={() => setTab('leads')}><i className="fas fa-address-book" /> Work leads in CRM</button>
+              </PageHead>
+              <BuyerLeadsPanel flash={flash} onOpenLeads={() => setTab('leads')} />
+            </div>
+          )}
           {tab === 'projects' && (
-            <DevProjectsPanel flash={flash} isOwner={isOwner} onPendingChange={setProjPending} focus={projFocus} onFocusDone={() => setProjFocus(null)} />
+            <div className="pg-wrap pg-projects">
+              <PageHead icon="fa-map-pin" title="Project Management" sub="Projects developers add from their dashboard — they go live on the map only after you approve them.">
+                {visible.includes('intake') && <button type="button" className="pg-btn" onClick={() => setTab('intake')}><i className="fas fa-plus" /> Add Project</button>}
+              </PageHead>
+              <DevProjectsPanel flash={flash} isOwner={isOwner} onPendingChange={setProjPending} focus={projFocus} onFocusDone={() => setProjFocus(null)} />
+            </div>
           )}
           {tab === 'accounts' && (
-            <AccountsPanel
-              flash={flash} isOwner={isOwner} onPendingChange={setPendingCount}
-              focusId={accountFocus} onFocusDone={() => setAccountFocus(null)}
-              onOpenProjects={visible.includes('projects') ? openProjects : undefined}
-            />
+            <div className="pg-wrap">
+              <PageHead icon="fa-users" title="Accounts" sub="Buyer, developer and channel-partner sign-ups — verify partners and see their activity." />
+              <AccountsPanel
+                flash={flash} isOwner={isOwner} onPendingChange={setPendingCount}
+                focusId={accountFocus} onFocusDone={() => setAccountFocus(null)}
+                onOpenProjects={visible.includes('projects') ? openProjects : undefined}
+              />
+            </div>
           )}
-          {tab === 'blogs' && <BlogsPanel flash={flash} />}
-          {tab === 'employees' && isOwner && <EmployeesPanel flash={flash} />}
-          {tab === 'backups' && isOwner && <BackupsPanel flash={flash} />}
-          {tab === 'devapi' && isOwner && <DeveloperApiPanel flash={flash} />}
-          {tab === 'seo' && <SeoPanel />}
-          {tab === 'settings' && <SettingsForm />}
-          {tab === 'profile' && (
-            <ProfileForm
-              email={user.email}
-              role={user.role}
-              name={user.name}
-              permissions={user.permissions}
-              avatar={avatar}
-              onProfileSaved={({ name, avatar: a }) => { setDisplayName(name); setAvatar(a); }}
-            />
+          {tab === 'blogs' && <BlogsPanel flash={flash} onGo={(t) => visible.includes(t) && setTab(t)} />}
+          {tab === 'employees' && isOwner && <EmployeesPanel flash={flash} owner={{ name: displayName, email: user.email, avatar }} onProfile={() => setTab('profile')} />}
+          {tab === 'devapi' && isOwner && (
+            <div className="pg-wrap">
+              <PageHead icon="fa-plug" title="Integrations & API" sub="Partner websites that send enquiries and read projects through the Developer API." />
+              <DeveloperApiPanel flash={flash} />
+            </div>
           )}
+          {tab === 'seo' && (
+            <div className="pg-wrap">
+              <PageHead icon="fa-chart-line" title="SEO & Analytics" sub="Website traffic, Google Search Console, site health and ranking checklist.">
+                {visible.includes('settings') && <button type="button" className="pg-btn ghost" onClick={() => setTab('settings')}><i className="fas fa-gear" /> Analytics settings</button>}
+              </PageHead>
+              <SeoPanel />
+            </div>
+          )}
+          {(tab === 'settings' || tab === 'profile' || tab === 'backups') && (() => {
+            const SETTINGS_SECS = ['general', 'seo', 'notifications', 'activity'];
+            const current = tab === 'backups' ? 'backups'
+              : tab === 'profile' ? (stSec === 'security' ? 'security' : 'profile')
+                : SETTINGS_SECS.includes(stSec) ? stSec : 'general';
+            const canSettings = visible.includes('settings');
+            const items: { key: string; icon: string; label: string; tab: string; show: boolean; out?: boolean }[] = [
+              { key: 'general', icon: 'fa-gear', label: 'General', tab: 'settings', show: canSettings },
+              { key: 'profile', icon: 'fa-user', label: 'Profile', tab: 'profile', show: true },
+              { key: 'notifications', icon: 'fa-bell', label: 'Notifications', tab: 'settings', show: canSettings },
+              { key: 'integrations', icon: 'fa-plug', label: 'Integrations', tab: 'devapi', show: visible.includes('devapi'), out: true },
+              { key: 'seo', icon: 'fa-chart-line', label: 'SEO & Analytics', tab: 'settings', show: canSettings },
+              { key: 'security', icon: 'fa-shield-halved', label: 'Security', tab: 'profile', show: true },
+              { key: 'backups', icon: 'fa-database', label: 'Backups', tab: 'backups', show: visible.includes('backups') },
+              { key: 'activity', icon: 'fa-clock-rotate-left', label: 'Activity Log', tab: 'settings', show: canSettings && isOwner },
+            ];
+            return (
+              <div className="st">
+                <PageHead icon="fa-gear" title="Settings" sub="Manage your account, integrations and platform configuration." />
+                <div className="st-body">
+                  <nav className="pg-card st-nav" aria-label="Settings sections">
+                    {items.filter((it) => it.show).map((it) => (
+                      <button key={it.key} type="button" className={current === it.key ? 'on' : ''} onClick={() => { setStSec(it.key); setTab(it.tab); }}>
+                        <i className={`fas ${it.icon}`} /> {it.label}
+                        {it.out && <i className="fas fa-arrow-right st-go" aria-hidden="true" />}
+                      </button>
+                    ))}
+                  </nav>
+                  <div className="st-main">
+                    {tab === 'settings' && current === 'general' && <SettingsForm view="general" cities={cities} />}
+                    {tab === 'settings' && current === 'seo' && <SettingsForm view="seo" cities={cities} />}
+                    {tab === 'settings' && current === 'notifications' && (
+                      <NotificationsSettings
+                        bell={visible.includes('projects') || visible.includes('accounts')}
+                        locked={locked} onToggleLock={toggleLock}
+                        onGo={(t) => visible.includes(t) && setTab(t)}
+                      />
+                    )}
+                    {tab === 'settings' && current === 'activity' && isOwner && <ActivityLogSettings onOpenLeads={() => setTab('leads')} />}
+                    {tab === 'backups' && isOwner && <BackupsPanel flash={flash} />}
+                    {tab === 'profile' && (
+                      <ProfileForm
+                        email={user.email}
+                        role={user.role}
+                        name={user.name}
+                        permissions={user.permissions}
+                        avatar={avatar}
+                        section={current === 'security' ? 'security' : 'profile'}
+                        onProfileSaved={({ name, avatar: a }) => { setDisplayName(name); setAvatar(a); }}
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
         </div>
       </main>
 

@@ -27,6 +27,7 @@ export default function ProfileForm({
   permissions = [],
   avatar: initialAvatar = '',
   onProfileSaved,
+  section,
 }: {
   email: string;
   role: string;
@@ -34,7 +35,11 @@ export default function ProfileForm({
   permissions?: string[];
   avatar?: string;
   onProfileSaved?: (p: { name: string; avatar: string }) => void;
+  /** Settings shows Profile and Security as separate pages; without it, both. */
+  section?: 'profile' | 'security';
 }) {
+  const showProfile = section !== 'security';
+  const showSecurity = section !== 'profile';
   const isOwner = role === 'admin';
   const isStaff = role === 'admin' || role === 'employee';
   const [name, setName] = useState(initialName);
@@ -120,8 +125,8 @@ export default function ProfileForm({
 
   return (
     <>
-      <form className="adm-panel" onSubmit={saveProfile}>
-        <div className="adm-panel-head"><h3>Your profile</h3></div>
+      {showProfile && <form className="adm-panel" onSubmit={saveProfile}>
+        <div className="adm-panel-head"><div><h3>Your Profile</h3><p className="st-desc">Your name, photo and WhatsApp number.</p></div></div>
         <div className="adm-profile">
           <div className="adm-avatar" aria-hidden="true">
             {avatar ? (
@@ -159,10 +164,10 @@ export default function ProfileForm({
             <i className="fas fa-floppy-disk" /> {savingProfile ? 'Saving…' : 'Save profile'}
           </button>
         </div>
-      </form>
+      </form>}
 
       <div className="adm-panel">
-        <div className="adm-panel-head"><h3>Account</h3></div>
+        <div className="adm-panel-head"><div><h3>{showProfile ? 'Account' : 'Account & Access'}</h3><p className="st-desc">Your sign-in email, role and the sections you can open.</p></div></div>
         <div className="adm-grid2">
           <div className="adm-field"><label>Email</label><input value={email} disabled /></div>
           <div className="adm-field"><label>Role</label><input value={ROLE_LABELS[role] || role} disabled /></div>
@@ -183,15 +188,15 @@ export default function ProfileForm({
         )}
       </div>
 
-      <form className="adm-panel" onSubmit={changePassword}>
-        <div className="adm-panel-head"><h3>Change password</h3></div>
+      {showSecurity && <form className="adm-panel" onSubmit={changePassword}>
+        <div className="adm-panel-head"><div><h3>Change Password</h3><p className="st-desc">Use at least 8 characters. You stay signed in on this device.</p></div></div>
         <div className="adm-field"><label>Current password</label><input type="password" value={current} onChange={(e) => setCurrent(e.target.value)} autoComplete="current-password" required /></div>
         <div className="adm-grid2">
           <div className="adm-field"><label>New password</label><input type="password" value={next} onChange={(e) => setNext(e.target.value)} autoComplete="new-password" minLength={8} required /></div>
           <div className="adm-field"><label>Confirm new password</label><input type="password" value={confirm} onChange={(e) => setConfirm(e.target.value)} autoComplete="new-password" required /></div>
         </div>
         <div className="adm-actions"><button className="adm-btn primary" disabled={savingPw}><i className="fas fa-key" /> {savingPw ? 'Saving…' : 'Update password'}</button></div>
-      </form>
+      </form>}
 
       {toast && <div className={`adm-toast show${toast.err ? ' err' : ''}`}><i className={`fas ${toast.err ? 'fa-triangle-exclamation' : 'fa-circle-check'}`} />{toast.msg}</div>}
     </>

@@ -5,6 +5,7 @@ import { hasPermission } from '@/lib/staff';
 import { listAll, getById, createPost, updatePost, deletePost } from '@/lib/blog';
 import { getCurrentUser } from '@/lib/auth';
 import { idsParam, moveToTrash } from '@/lib/trash';
+import { blogViews } from '@/lib/site-analytics';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -80,7 +81,9 @@ export async function GET(req: NextRequest) {
     if (!post) return NextResponse.json({ error: { message: 'Not found' } }, { status: 404 });
     return NextResponse.json({ data: post });
   }
-  return NextResponse.json({ data: await listAll() });
+  // Views per post come from the site's own page-view log; a failed read just leaves them blank.
+  const [data, views] = await Promise.all([listAll(), blogViews().catch(() => null)]);
+  return NextResponse.json({ data, views });
 }
 
 // POST → create

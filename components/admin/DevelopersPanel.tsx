@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { requestFullEdit } from './fullEdit';
 import { usePersistedState } from './usePersistedState';
+import { PageHead, StatCard } from './PageHead';
+import { cityFrom, CITY_SHORT } from '@/lib/seo/city';
 
 // Super admin → Developers: the developer directory, ONE logo per developer
 // (lib/developers.ts). In the Map Editor, typing a developer's name suggests it
@@ -60,6 +62,9 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
   const [q, setQ] = useState('');
   const [filter, setFilter] = usePersistedState<Filter>('developers.filter', 'all', ['all', 'nologo', 'mismatch']);
   const [adding, setAdding] = useState(false);
+  const [city, setCity] = useState('');
+  const [sort, setSort] = usePersistedState<'name' | 'projects' | 'updated'>('developers.sort', 'name', ['name', 'projects', 'updated']);
+  const [layout, setLayout] = usePersistedState<'grid' | 'list'>('developers.layout', 'grid', ['grid', 'list']);
   const [editing, setEditing] = useState<string | null>(null);
   const [open, setOpen] = useState<string | null>(null);
   // A project to show straight away when the developer panel opens.
@@ -93,38 +98,65 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
   };
   const openDev = rows?.find((r) => r.id === open);
   const editDev = rows?.find((r) => r.id === editing);
+  const dupesRef = useRef<HTMLElement>(null);
+  const [menuFor, setMenuFor] = useState<string | null>(null);
+  // Long duplicate lists push the developer cards far down: show a few, the rest on request.
+  const [allDupes, setAllDupes] = useState(false);
+  const DUPES_SHOWN = 3;
+
+  // Cities each developer builds in (from its projects' locations), most projects first.
+  const citiesOf = useMemo(() => {
+    const m = new Map<string, string[]>();
+    for (const d of rows || []) {
+      const c = new Map<string, number>();
+      for (const p of d.list || []) { const k = CITY_SHORT[cityFrom(p.location)]; c.set(k, (c.get(k) || 0) + 1); }
+      m.set(d.id, [...c.entries()].sort((a, b) => b[1] - a[1]).map(([k]) => k));
+    }
+    return m;
+  }, [rows]);
+  const allCities = useMemo(() => {
+    const c = new Map<string, number>();
+    for (const d of rows || []) for (const k of citiesOf.get(d.id) || []) c.set(k, (c.get(k) || 0) + 1);
+    return [...c.entries()].sort((a, b) => b[1] - a[1]);
+  }, [rows, citiesOf]);
+  const list = shown
+    .filter((d) => !city || (citiesOf.get(d.id) || []).includes(city))
+    .sort((a, b) => (sort === 'projects' ? b.projects - a.projects || a.name.localeCompare(b.name)
+      : sort === 'updated' ? String(b.updated_at || '').localeCompare(String(a.updated_at || ''))
+        : a.name.localeCompare(b.name)));
+  const chipText = (d: Dev) => {
+    const st = logoState(d);
+    return st === 'none' ? 'No logo yet' : st === 'some' ? `Logo on ${d.logoInUse} of ${d.projects}` : d.projects ? 'Logo on all projects' : 'Logo added';
+  };
+  const more = (d: Dev) => (
+    <div className="bg-more dvl2-more">
+      <button type="button" onClick={(e) => { e.stopPropagation(); setMenuFor((m) => (m === d.id ? null : d.id)); }} title="More" aria-label={`More actions for ${d.name}`} aria-expanded={menuFor === d.id}><i className="fas fa-ellipsis-vertical" /></button>
+      {menuFor === d.id && (
+        <div className="bg-menu" onMouseLeave={() => setMenuFor(null)}>
+          <button type="button" onClick={() => { setMenuFor(null); openDevAt(d.id); }}><i className="fas fa-list" /> View projects &amp; logos</button>
+          <button type="button" onClick={() => { setMenuFor(null); setEditing(d.id); }}><i className="fas fa-pen" /> {d.logo ? 'Edit name / logo' : 'Add logo'}</button>
+        </div>
+      )}
+    </div>
+  );
 
   return (
-    <div className="dvl">
-      <div className="dvl-head">
-        <div>
-          <h2><i className="fas fa-building" /> Developers</h2>
-          <p className="muted">Click a developer to see all their projects and set the logo shown on each project.</p>
-        </div>
-        <button className="adm-btn primary" onClick={() => setAdding(true)}><i className="fas fa-plus" /> Add developer</button>
-      </div>
+    <div className="dvl dvl2">
+      <PageHead icon="fa-building" title="Developers" sub="Manage developer profiles, logos and their project mappings.">
+        <button type="button" className="pg-btn" onClick={() => setAdding(true)}><i className="fas fa-plus" /> Add Developer</button>
+      </PageHead>
 
       {adding && <AddCard onCancel={() => setAdding(false)} onSaved={() => { setAdding(false); flash('Developer added'); load(); }} flash={flash} />}
 
-      {rows && rows.length > 0 && (
-        <div className="dvl-stats">
-          <button type="button" className={`dvl-stat${filter === 'all' ? ' on' : ''}`} onClick={() => setFilter('all')}>
-            <i className="fas fa-building" /><b>{counts.all}</b><span>Developers</span>
-          </button>
-          <div className="dvl-stat static">
-            <i className="fas fa-map-pin" /><b>{totalProjects}</b><span>Projects on the map</span>
-          </div>
-          <button type="button" className={`dvl-stat warn${filter === 'nologo' ? ' on' : ''}`} onClick={() => setFilter('nologo')} disabled={!counts.nologo}>
-            <i className="fas fa-image" /><b>{counts.nologo}</b><span>Need a logo</span>
-          </button>
-          <button type="button" className={`dvl-stat warn${filter === 'mismatch' ? ' on' : ''}`} onClick={() => setFilter('mismatch')} disabled={!counts.mismatch}>
-            <i className="fas fa-circle-exclamation" /><b>{counts.mismatch}</b><span>Logo missing on some projects</span>
-          </button>
-        </div>
-      )}
+      <div className="sc-row four">
+        <StatCard icon="fa-building" tone="green" value={counts.all.toLocaleString('en-IN')} label="Total Developers" on={filter === 'all'} onClick={() => setFilter('all')} />
+        <StatCard icon="fa-map-location-dot" tone="blue" value={totalProjects.toLocaleString('en-IN')} label="Mapped on Map" title="Projects on the map that belong to these developers" />
+        <StatCard icon="fa-image" tone="amber" value={counts.nologo.toLocaleString('en-IN')} label="Need a Logo" on={filter === 'nologo'} onClick={() => setFilter(filter === 'nologo' ? 'all' : 'nologo')} disabled={!counts.nologo} />
+        <StatCard icon="fa-clone" tone="rose" value={dupes.length.toLocaleString('en-IN')} label="Duplicates Found" onClick={() => dupesRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })} disabled={!dupes.length} />
+      </div>
 
       {dupes.length > 0 && (
-        <section className="dvl-dupes">
+        <section className="dvl-dupes" ref={dupesRef}>
           <header>
             <i className="fas fa-clone" />
             <div>
@@ -133,7 +165,7 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
             </div>
           </header>
           <ul>
-            {dupes.map((g) => (
+            {(allDupes ? dupes : dupes.slice(0, DUPES_SHOWN)).map((g) => (
               <li key={groupKey(g)}>
                 <div className="dvl-dupe-names">
                   {g.map((d, j) => (
@@ -154,49 +186,64 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
               </li>
             ))}
           </ul>
+          {dupes.length > DUPES_SHOWN && (
+            <button type="button" className="dvl2-dupes-more" onClick={() => setAllDupes((v) => !v)} aria-expanded={allDupes}>
+              {allDupes ? <>Show fewer <i className="fas fa-chevron-up" /></> : <>Show all {dupes.length} possible duplicates <i className="fas fa-chevron-down" /></>}
+            </button>
+          )}
         </section>
       )}
 
-      <div className="dvl-bar dvl-tools">
-        <label className="dvl-search"><i className="fas fa-magnifying-glass" aria-hidden="true" />
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search developer or project…" aria-label="Search developer or project" />
+      <div className="pg-card dvl2-bar">
+        <label className="pg-search grow"><i className="fas fa-magnifying-glass" aria-hidden="true" />
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search developer or project name…" aria-label="Search developer or project" />
         </label>
-        <select className="crm-select" value={filter} onChange={(e) => setFilter(e.target.value as Filter)} aria-label="Show">
-          <option value="all">Show all</option>
+        <select className="ov-select" value={city} onChange={(e) => setCity(e.target.value)} aria-label="Location">
+          <option value="">All Locations</option>
+          {allCities.map(([c, n]) => <option key={c} value={c}>{c} ({n})</option>)}
+        </select>
+        <select className="ov-select" value={filter} onChange={(e) => setFilter(e.target.value as Filter)} aria-label="Show">
+          <option value="all">All logos</option>
           <option value="nologo">No logo yet ({counts.nologo})</option>
           <option value="mismatch">Logo missing on some projects ({counts.mismatch})</option>
         </select>
+        <select className="ov-select" value={sort} onChange={(e) => setSort(e.target.value as typeof sort)} aria-label="Sort">
+          <option value="name">Sort by Name</option>
+          <option value="projects">Most Projects</option>
+          <option value="updated">Recently Updated</option>
+        </select>
+        <div className="pg-seg" role="group" aria-label="Layout">
+          <button type="button" className={layout === 'grid' ? 'on' : ''} onClick={() => setLayout('grid')} aria-label="Grid view" title="Grid view"><i className="fas fa-table-cells-large" /></button>
+          <button type="button" className={layout === 'list' ? 'on' : ''} onClick={() => setLayout('list')} aria-label="List view" title="List view"><i className="fas fa-list" /></button>
+        </div>
       </div>
 
       {!rows ? <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading developers…</p></div>
-        : !shown.length ? <div className="adm-empty"><i className="fas fa-building" /><p>{rows.length ? 'Nothing matches your search.' : 'No developers yet — add one, or add a developer name to a pin in the Map Editor.'}</p></div>
-          : (
-            <ul className="dvl-cards">
-              {shown.map((d) => {
+        : !list.length ? <div className="adm-empty"><i className="fas fa-building" /><p>{rows.length ? 'Nothing matches your search.' : 'No developers yet — add one, or add a developer name to a pin in the Map Editor.'}</p></div>
+          : layout === 'grid' ? (
+            <ul className="dvl2-grid">
+              {list.map((d) => {
                 // Searching a project name lists the matching projects first.
                 const all = d.list || [];
                 const items = s && !d.name.toLowerCase().includes(s) ? all.filter((p) => p.title.toLowerCase().includes(s)) : all;
                 const st = logoState(d);
+                const cities = citiesOf.get(d.id) || [];
                 return (
-                  <li key={d.id} className={`dvl-dcard s-${st}`}>
-                    <div className="dvl-dcard-top">
-                      <span className={`dvl-logo${d.logo ? '' : ' empty'}`} aria-hidden="true">
+                  <li key={d.id} className={`dvl2-card s-${st}`}>
+                    <button type="button" className="dvl2-card-main" onClick={() => openDevAt(d.id)} aria-label={`${d.name} — view projects & logos`}>
+                      <span className={`dvl2-logo${d.logo ? '' : ' empty'}`} aria-hidden="true">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        {d.logo ? <img src={thumb(d.logo)} alt="" loading="lazy" /> : <i className="fas fa-image" />}
+                        {d.logo ? <img src={thumb(d.logo)} alt="" loading="lazy" /> : <span>{d.name.slice(0, 2).toUpperCase()}</span>}
                       </span>
-                      <div className="dvl-dcard-id">
+                      <span className="dvl2-id">
                         <b title={d.name}>{d.name}</b>
-                        <span className="muted">{d.projects ? `${d.projects} project${d.projects === 1 ? '' : 's'}` : 'No projects yet'}</span>
-                      </div>
-                    </div>
-
-                    <span className={`dvl-chip s-${st}`}>
-                      <i className={`fas ${st === 'ok' ? 'fa-circle-check' : 'fa-circle-exclamation'}`} />
-                      {st === 'none' ? 'No logo yet' : st === 'some' ? `Logo on ${d.logoInUse} of ${d.projects}` : d.projects ? 'Logo on all projects' : 'Logo added'}
-                    </span>
-
-                    {items.length > 0 ? (
-                      <ul className="dvl-dcard-list">
+                        <small>{d.projects ? `${d.projects} Project${d.projects === 1 ? '' : 's'}` : 'No projects yet'}{cities.length ? ` • ${cities.slice(0, 2).join(', ')}${cities.length > 2 ? ` +${cities.length - 2}` : ''}` : ''}</small>
+                        <span className={`dvl2-chip s-${st}`}><i className={`fas ${st === 'ok' ? 'fa-circle-check' : 'fa-circle-exclamation'}`} /> {chipText(d)}</span>
+                      </span>
+                    </button>
+                    {more(d)}
+                    {items.length > 0 && (
+                      <ul className="dvl2-projects">
                         {items.slice(0, FIRST).map((p) => (
                           <li key={p.id}>
                             <button type="button" onClick={() => openDevAt(d.id, p.id)} title={`${projName(p)}${p.location ? ` — ${p.location}` : ''} · click for details`}>
@@ -207,15 +254,47 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
                         ))}
                         {items.length > FIRST && <li className="more"><button type="button" onClick={() => openDevAt(d.id)}>+ {items.length - FIRST} more</button></li>}
                       </ul>
-                    ) : <p className="muted dvl-dcard-empty">No projects on the map use this name yet.</p>}
-
-                    <button type="button" className="adm-btn sm dvl-dcard-btn" onClick={() => openDevAt(d.id)}>
-                      View projects &amp; logos <i className="fas fa-arrow-right" />
-                    </button>
+                    )}
                   </li>
                 );
               })}
             </ul>
+          ) : (
+            <div className="pg-card dvl2-listwrap">
+              <div className="table-scroll">
+                <table className="pg-table dvl2-table">
+                  <thead><tr><th>Developer</th><th>Projects</th><th>Locations</th><th>Logo</th><th>Updated</th><th>Actions</th></tr></thead>
+                  <tbody>
+                    {list.map((d) => {
+                      const st = logoState(d);
+                      return (
+                        <tr key={d.id}>
+                          <td>
+                            <button type="button" className="dvl2-row-id" onClick={() => openDevAt(d.id)}>
+                              <span className={`dvl2-logo sm${d.logo ? '' : ' empty'}`} aria-hidden="true">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                {d.logo ? <img src={thumb(d.logo)} alt="" loading="lazy" /> : <span>{d.name.slice(0, 2).toUpperCase()}</span>}
+                              </span>
+                              <b>{d.name}</b>
+                            </button>
+                          </td>
+                          <td>{d.projects}</td>
+                          <td className="muted">{(citiesOf.get(d.id) || []).join(', ') || '—'}</td>
+                          <td><span className={`dvl2-chip s-${st}`}><i className={`fas ${st === 'ok' ? 'fa-circle-check' : 'fa-circle-exclamation'}`} /> {chipText(d)}</span></td>
+                          <td className="muted">{d.updated_at ? new Date(d.updated_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '—'}</td>
+                          <td>
+                            <div className="bg-acts">
+                              <button type="button" onClick={() => setEditing(d.id)} title="Edit name / logo" aria-label={`Edit ${d.name}`}><i className="fas fa-pen" /></button>
+                              <button type="button" onClick={() => openDevAt(d.id)} title="View projects & logos" aria-label={`Projects of ${d.name}`}><i className="fas fa-list" /></button>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           )}
 
       {openDev && !editDev && (

@@ -165,6 +165,32 @@ export async function recordEvents(events: SiteEvent[]): Promise<void> {
 
 // ----------------------------------------------------------------- reporting
 
+/**
+ * Page views per blog post (keyed by slug) over the stored history (RETENTION_DAYS),
+ * for the Views column in the super-admin blog manager. One grouped query.
+ */
+export async function blogViews(): Promise<Record<string, number>> {
+  await ensureTable();
+  const out: Record<string, number> = {};
+  const add = (path: unknown, count: unknown) => {
+    const slug = String(path || '').replace(/^\/blog\//, '').replace(/\/+$/, '');
+    if (slug && !slug.includes('/')) out[slug] = (out[slug] || 0) + (Number(count) || 0);
+  };
+  if (usingMongo()) {
+    const rows = await (await getMongoDb()).collection('site_events').aggregate([
+      { $match: { kind: 'pv', path: { $regex: '^/blog/.' } } },
+      { $group: { _id: '$path', n: { $sum: 1 } } },
+    ]).toArray();
+    for (const r of rows) add(r._id, r.n);
+  } else {
+    const { rows } = await query<{ path: string; n: string }>(
+      `SELECT path, COUNT(*) AS n FROM site_events WHERE kind = 'pv' AND path LIKE '/blog/_%' GROUP BY path`,
+    );
+    for (const r of rows) add(r.path, r.n);
+  }
+  return out;
+}
+
 export interface GeoCountry { code: string; name: string; visitors: number }
 /** `code` is ISO 3166-2 ("IN-MH") so it can be drawn on a map. */
 export interface GeoRegion { code: string; countryCode: string; name: string; country: string; visitors: number }

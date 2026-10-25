@@ -27,6 +27,9 @@ export interface StaffMember {
   avatar?: string;
   created_at?: string;
   updated_at?: string;
+  /** Last successful sign-in and how many there have been (set by lib/activity.ts). */
+  last_login_at?: string;
+  login_count?: number;
 }
 
 function clean(doc: Record<string, unknown> | null): StaffMember | null {
@@ -41,6 +44,8 @@ function clean(doc: Record<string, unknown> | null): StaffMember | null {
     avatar: (doc.avatar as string) || '',
     created_at: doc.created_at as string,
     updated_at: doc.updated_at as string,
+    last_login_at: (doc.last_login_at as string) || undefined,
+    login_count: Number(doc.login_count) || 0,
   };
 }
 

@@ -7,6 +7,8 @@ export interface PublicSettings {
   search_console_verification?: string;
   ga_measurement_id?: string;
   youtube_video_url?: string;
+  /** City the super-admin Overview opens on ("" = all cities). */
+  admin_default_city?: string;
 }
 
 // The site's own Google IDs. Used whenever the admin Settings field is empty,
@@ -25,7 +27,7 @@ const readSettingsRow = cachedRead('site-settings', ['map_settings'], 3600, asyn
   const db = await getDb();
   return (await db.collection('map_settings').findOne(
     { id: 1 },
-    { projection: { gtm_container_id: 1, search_console_verification: 1, ga_measurement_id: 1, youtube_video_url: 1 } },
+    { projection: { gtm_container_id: 1, search_console_verification: 1, ga_measurement_id: 1, youtube_video_url: 1, admin_default_city: 1 } },
   )) as Record<string, unknown> | null;
 });
 
@@ -48,5 +50,6 @@ export const getPublicSettings = cache(async (): Promise<PublicSettings> => {
     search_console_verification: GSC_RE.test(gsc) ? gsc : DEFAULT_GSC_VERIFICATION,
     ga_measurement_id: GA_RE.test(ga) ? ga : DEFAULT_GA_ID,
     youtube_video_url: (row?.youtube_video_url as string) || '',
+    admin_default_city: typeof row?.admin_default_city === 'string' ? row.admin_default_city : undefined,
   };
 });
