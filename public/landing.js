@@ -44,6 +44,25 @@
     } else play();
   });
 
+  /* ---------- Featured project card: one line per text row ---------- */
+  // Shrinks the name, developer, location and status pills a little until each
+  // fits on one line beside the logo; a row still too long wraps, so nothing is cut.
+  const fitPvHead = () => document.querySelectorAll('.pv-head').forEach(head => {
+    const shrink = (el, min) => {
+      el.classList.remove('pv-fit-wrap'); el.style.fontSize = '';
+      let size = parseFloat(getComputedStyle(el).fontSize) || 12;
+      while (el.scrollWidth > el.clientWidth + 1 && size > min) { size -= 0.5; el.style.fontSize = size + 'px'; }
+      if (el.scrollWidth > el.clientWidth + 1) el.classList.add('pv-fit-wrap');
+    };
+    head.querySelectorAll('.pv-title').forEach(el => shrink(el, 11));
+    head.querySelectorAll('.pv-meta').forEach(el => shrink(el, 10));
+    head.querySelectorAll('.pv-pills').forEach(el => shrink(el, 8));
+  });
+  fitPvHead();
+  if (document.fonts && document.fonts.status !== 'loaded') document.fonts.ready.then(fitPvHead);
+  let pvFitTimer;
+  on(window, 'resize', () => { clearTimeout(pvFitTimer); pvFitTimer = setTimeout(fitPvHead, 150); });
+
   /* ---------- Nav ---------- */
   const menuBtn = byId('menuBtn'), mobileMenu = byId('mobileMenu');
   const setMenu = open => { mobileMenu.classList.toggle('is-open', open); menuBtn.setAttribute('aria-expanded', open); menuBtn.innerHTML = open ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };

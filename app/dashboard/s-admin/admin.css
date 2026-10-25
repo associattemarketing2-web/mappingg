@@ -136,7 +136,18 @@ a.adm-chip { padding: 7px 12px; }
 .adm-hint { color: var(--muted); font-size: 12px; }
 .adm-perm-badges { display: flex; gap: 6px; flex-wrap: wrap; }
 
+/* Switch between tabs that share one tab-row button (Map Editor | Projects Intake,
+   Leads / CRM | Buyer leads). The full-height iframes shrink by its 44px. */
+.adm2-subtabs { display: flex; gap: 4px; height: 44px; align-items: center; padding: 0 16px; background: #fff; border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
+.adm2-subtabs::-webkit-scrollbar { display: none; }
+.adm2-subtabs button { flex-shrink: 0; display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: none; font: 600 12.5px var(--font); color: var(--muted); cursor: pointer; white-space: nowrap; transition: .15s; }
+.adm2-subtabs button i { font-size: 12px; }
+.adm2-subtabs button:hover { color: var(--fg); background: var(--bg); }
+.adm2-subtabs button.on { background: var(--accent-50); border-color: var(--accent); color: var(--forest); }
+.adm2-main.has-subtabs .adm-frame { height: calc(100vh - 168px); height: calc(100dvh - 168px); }
+
 @media (max-width: 720px) {
+  .adm2-main.has-subtabs .adm-frame { height: calc(100vh - 160px); height: calc(100dvh - 160px); }
   .adm-cards { grid-template-columns: 1fr 1fr; }
   .adm-grid2, .adm-perms { grid-template-columns: 1fr; }
   .adm-content { padding: 16px; }

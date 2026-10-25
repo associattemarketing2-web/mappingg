@@ -2748,9 +2748,15 @@ export default function AdminApp({ user }: { user: AdminUser }) {
     // leads (only the ones transferred to them), plus any other tab the super admin granted.
     : [...GRANTABLE.map((g) => g.key).filter((k) => user.permissions.includes(k)).sort((a, b) => Number(b === 'leads') - Number(a === 'leads')).flatMap((k) => (k === 'intake' ? ['projects', 'intake'] : k === 'map' ? ['map', 'developers'] : [k])), 'profile'];
 
-  // Profile and Settings live in the top-right account menu, not the tab row.
-  const MENU_TABS = ['profile', 'settings'];
-  const tabRow = visible.filter((k) => !MENU_TABS.includes(k));
+  // Profile, Settings and Backups live in the top-right account menu, not the tab row.
+  const MENU_TABS = ['profile', 'settings', 'backups'];
+  // Related tabs share one button in the tab row; inside it a small switch picks
+  // between them. Each keeps its own key, so ?tab=intake / ?tab=buyerleads links,
+  // permissions and "Edit all details" work as before.
+  const TAB_GROUPS: Record<string, string[]> = { map: ['map', 'intake'], leads: ['leads', 'buyerleads'] };
+  const groupOf = (k: string) => Object.keys(TAB_GROUPS).find((g) => TAB_GROUPS[g].includes(k)) || k;
+  const membersOf = (g: string) => (TAB_GROUPS[g] || [g]).filter((k) => visible.includes(k));
+  const tabRow = [...new Set(visible.filter((k) => !MENU_TABS.includes(k)).map(groupOf))];
   const [tab, setTab] = useState(visible[0] || 'dashboard');
   // The open tab lives in the URL (/dashboard/s-admin?tab=projects), so a refresh
   // reopens it and the link can be shared. Read once on load, written on every change.
@@ -2911,6 +2917,9 @@ export default function AdminApp({ user }: { user: AdminUser }) {
           {menuOpen && (
             <div className="adm2-menu">
               <button className={tab === 'profile' ? 'on' : ''} onClick={() => { setTab('profile'); setMenuOpen(false); }}><i className="fas fa-user" /> Profile</button>
+              {visible.includes('backups') && (
+                <button className={tab === 'backups' ? 'on' : ''} onClick={() => { setTab('backups'); setMenuOpen(false); }}><i className="fas fa-database" /> Backups</button>
+              )}
               {visible.includes('settings') && (
                 <button className={tab === 'settings' ? 'on' : ''} onClick={() => { setTab('settings'); setMenuOpen(false); }}><i className="fas fa-gear" /> Settings</button>
               )}
@@ -2925,22 +2934,46 @@ export default function AdminApp({ user }: { user: AdminUser }) {
       </header>
 
       <nav className="adm2-tabs">
-        {tabRow.map((k) => (
-          <button
-            key={k}
-            className={`adm2-tab${tab === k ? ' active' : ''}`}
-            onClick={() => setTab(k)}
-            onPointerEnter={() => warmUp(k)}
-            onFocus={() => warmUp(k)}
-          >
-            <i className={`fas ${TAB_META[k].icon}`} /> {TAB_META[k].label}
-            {k === 'accounts' && pendingCount > 0 && <span className="tab-badge" title={`${pendingCount} waiting for verification`}>{pendingCount}</span>}
-            {k === 'projects' && projPending > 0 && <span className="tab-badge" title={`${projPending} waiting for approval`}>{projPending}</span>}
-          </button>
-        ))}
+        {tabRow.map((g) => {
+          const members = membersOf(g);
+          const k = members[0];
+          if (!k) return null;
+          const active = members.includes(tab);
+          return (
+            <button
+              key={g}
+              className={`adm2-tab${active ? ' active' : ''}`}
+              onClick={() => { if (!active) setTab(k); }}
+              onPointerEnter={() => warmUp(k)}
+              onFocus={() => warmUp(k)}
+            >
+              <i className={`fas ${TAB_META[k].icon}`} /> {TAB_META[k].label}
+              {k === 'accounts' && pendingCount > 0 && <span className="tab-badge" title={`${pendingCount} waiting for verification`}>{pendingCount}</span>}
+              {k === 'projects' && projPending > 0 && <span className="tab-badge" title={`${projPending} waiting for approval`}>{projPending}</span>}
+            </button>
+          );
+        })}
       </nav>
 
-      <main className="adm2-main">
+      {membersOf(groupOf(tab)).length > 1 && (
+        <div className="adm2-subtabs" role="tablist">
+          {membersOf(groupOf(tab)).map((k) => (
+            <button
+              key={k}
+              role="tab"
+              aria-selected={tab === k}
+              className={tab === k ? 'on' : ''}
+              onClick={() => setTab(k)}
+              onPointerEnter={() => warmUp(k)}
+              onFocus={() => warmUp(k)}
+            >
+              <i className={`fas ${TAB_META[k].icon}`} /> {TAB_META[k].label}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <main className={`adm2-main${membersOf(groupOf(tab)).length > 1 ? ' has-subtabs' : ''}`}>
         <div className="adm-content" style={tab === 'map' || tab === 'intake' ? { maxWidth: 'none', padding: 0 } : undefined}>
           {tab === 'dashboard' && <DashboardPanel onGo={(t) => visible.includes(t) && setTab(t)} />}
           {warm.includes('map') && <div hidden={tab !== 'map'}><MapPanel /></div>}

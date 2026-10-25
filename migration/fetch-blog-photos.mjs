@@ -36,6 +36,8 @@ const PHOTOS = {
   'documents-to-check-before-buying-flat-pune': 'Pune Municipal Corporation building in October 2023.jpg',
   'carpet-area-vs-built-up-vs-super-built-up-area': 'Baner from Baner Pashan Biodiversity Park.JPG',
   'possession-delay-rera-buyer-rights-maharera-complaint': 'Scaffolding for a building under construction.jpg',
+  'site-visit-checklist-before-buying-flat-pune': 'STP, residential building construction and Mutha River clogged with water hyacinth as seen from Rajaram Bridge in Pune.jpg',
+  'occupancy-certificate-oc-completion-certificate-pune': 'Magarpatta Residential Apartments (2).JPG',
 };
 
 const OUT = path.resolve('migration/blog-photos');

@@ -2080,6 +2080,184 @@ function possessionDelayArticle() {
   };
 }
 
+function siteVisitArticle() {
+  return {
+    slug: 'site-visit-checklist-before-buying-flat-pune',
+    title: 'Site Visit Checklist: 25 Things to Check Before You Book a Flat in Pune',
+    seo_title: 'Site Visit Checklist Before Buying a Flat in Pune',
+    seo_description:
+      'What to check on a site visit before booking a flat: the approach road, construction progress, the sample flat, water, parking, sunlight and the cost sheet.',
+    excerpt:
+      'A sample flat is built to impress. Here is what to check on the site itself, from the road you will drive every day to the water supply, so the flat you book matches the one you were shown.',
+    tags: ['Site Visit', 'Home Buying Guide', 'Pune', 'Checklist', 'Under Construction'],
+    cover: {
+      theme: 'morning',
+      kicker: 'Buyer’s checklist',
+      lines: ['Site Visit', 'Checklist Before', 'You Book'],
+      stats: [['25', 'things to check'], ['2 visits', 'peak + off-peak'], ['In writing', 'cost sheet']],
+    },
+    content: `
+<p>Most buyers decide on a flat after one or two site visits. On those visits you are usually shown the sales office and a furnished sample flat, both designed to look their best. This checklist covers what to look at beyond them, so you can judge the project, the location and the deal before you pay a booking amount.</p>
+
+<h2>Before you go</h2>
+<ol>
+  <li><strong>Check the RERA registration.</strong> Find the project on MahaRERA and note its registration number, promised completion date and the latest quarterly progress update. Our guide shows <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>.</li>
+  <li><strong>Shortlist on the map.</strong> Look at the project’s location, nearby schools, hospitals and metro stations, and other projects around it on the <a href="/map">live map</a>.</li>
+  <li><strong>Ask for the carpet area and price in advance.</strong> Get the RERA carpet area of the flats you are interested in and the all-inclusive price, so the visit is about checking, not just listening. See <a href="/blog/carpet-area-vs-built-up-vs-super-built-up-area">carpet vs built-up vs super built-up area</a>.</li>
+  <li><strong>Plan two visits.</strong> One on a weekday at peak hours, one on a weekend. Traffic, noise and the feel of the area change a lot between the two.</li>
+</ol>
+
+<h2>On the way: the location</h2>
+<ol start="5">
+  <li><strong>Drive your daily route.</strong> Time the trip from the site to your office, your children’s school and the nearest main road at the hour you would actually travel.</li>
+  <li><strong>Look at the last kilometre.</strong> Is the approach road paved, wide enough for two cars and lit at night? A narrow internal road can matter more than distance from the highway.</li>
+  <li><strong>Notice what is next door.</strong> Open land nearby may be built on later. Check for nallahs, low-lying ground (ask how it fared in the last monsoon), highways, railway lines, industrial units and the airport flight path, particularly around Lohegaon.</li>
+  <li><strong>Check daily needs.</strong> Groceries, a pharmacy, a hospital and public transport within a short distance make a big difference to life after possession.</li>
+</ol>
+
+<h2>At the site: construction and quality</h2>
+<ol start="9">
+  <li><strong>Compare progress with the paperwork.</strong> If MahaRERA says the slabs are complete up to the 12th floor, you should see that on site. A large gap is an early warning of delay.</li>
+  <li><strong>Look at the work, not just the finished lobby.</strong> Ask to see an under-construction floor. Check the quality of plaster, wall lines and how the site is kept. A tidy, safe site usually reflects a well-run project.</li>
+  <li><strong>See the tower and floor you would buy.</strong> Your flat’s view, light and noise depend on the exact tower, floor and direction it faces. Ask to stand on that floor, or the closest one that is built.</li>
+  <li><strong>Check sunlight and ventilation.</strong> Note which direction the living room and bedrooms face, and whether the windows open onto another tower a few metres away.</li>
+  <li><strong>Ask about the building materials and fittings.</strong> Get the brands and specifications for flooring, windows, doors, plumbing and electrical fittings in writing, as part of the agreement.</li>
+</ol>
+
+<h2>The sample flat</h2>
+<ol start="14">
+  <li><strong>Ask what is not included.</strong> Sample flats often show false ceilings, wardrobes, modular kitchens, premium flooring and lighting that come at extra cost or not at all.</li>
+  <li><strong>Measure it.</strong> Carry a measuring tape, or use your phone. Compare the room sizes with the floor plan of the flat you would buy. Sample flats sometimes use smaller furniture or remove internal walls to feel larger.</li>
+  <li><strong>Check the actual layout.</strong> Your flat may be a mirror image, or a different unit type, from the sample. Confirm the exact unit number and its plan.</li>
+</ol>
+
+<h2>Water, power and parking</h2>
+<ol start="17">
+  <li><strong>Ask where the water will come from.</strong> Municipal supply, borewell or tankers? Many newer areas around Pune depend on tankers for years after possession, which adds to maintenance.</li>
+  <li><strong>Ask about power backup.</strong> Is backup for lifts, common areas and your flat included, and up to what load?</li>
+  <li><strong>Get parking in writing.</strong> Is the parking covered or open, and is a specific slot allotted? Check that the ramps and turning space suit the car you drive.</li>
+  <li><strong>Check the amenities’ status.</strong> Find out which amenities, like the clubhouse or pool, are built and which are planned for a later phase, and when.</li>
+</ol>
+
+<h2>Questions for the sales team</h2>
+<ol start="21">
+  <li>What is the possession date in the agreement, and what is the completion date on MahaRERA?</li>
+  <li>Which approvals are in place, and which are pending? (See our list of <a href="/blog/documents-to-check-before-buying-flat-pune">documents to check before buying a flat</a>.)</li>
+  <li>What is the payment plan, and is it linked to construction stages?</li>
+  <li>What will the monthly maintenance be, and how much is collected in advance?</li>
+  <li>Can I have the full <strong>cost sheet</strong> in writing, including GST, parking, floor rise, club membership, maintenance deposit, stamp duty and registration? Our guide to <a href="/blog/stamp-duty-registration-charges-pune">stamp duty and hidden costs</a> lists what to look for.</li>
+</ol>
+
+<h2>After the visit</h2>
+<p>Put your notes into a simple table so you can compare projects side by side:</p>
+<div class="table-scroll"><table>
+<caption>A simple comparison sheet</caption>
+<thead><tr><th>Check</th><th>Project A</th><th>Project B</th></tr></thead>
+<tbody>
+<tr><td>All-inclusive price ÷ RERA carpet area</td><td></td><td></td></tr>
+<tr><td>Peak-hour travel time to work</td><td></td><td></td></tr>
+<tr><td>Construction progress vs MahaRERA update</td><td></td><td></td></tr>
+<tr><td>Possession date in agreement</td><td></td><td></td></tr>
+<tr><td>Water source</td><td></td><td></td></tr>
+<tr><td>Parking (covered / open, allotted?)</td><td></td><td></td></tr>
+<tr><td>Monthly maintenance</td><td></td><td></td></tr>
+</tbody></table></div>
+<p>Don’t pay a booking amount on the day of the first visit, however good the “today only” offer sounds. Under RERA, a developer cannot take more than 10% of the price as an advance before a registered agreement for sale. If you are weighing an under-construction flat against a finished one, read <a href="/blog/ready-to-move-vs-under-construction-flats-pune">ready-to-move vs under-construction flats</a>.</p>
+
+<h2>FAQs</h2>
+<h3>How many site visits should I make before booking?</h3>
+<p>At least two: one on a weekday at peak hours and one on a weekend. Visit again before signing the agreement if anything has changed.</p>
+<h3>Is the sample flat the same as the flat I will get?</h3>
+<p>Not always. The layout, sizes, fittings and furnishings can differ. Confirm the exact unit, its floor plan and the specifications in writing.</p>
+<h3>Should I visit during the monsoon?</h3>
+<p>If you can, yes. It shows how the approach road and the area handle heavy rain, and whether there is waterlogging nearby.</p>
+<h3>What should I carry on a site visit?</h3>
+<p>The project’s RERA number, a list of questions, a measuring tape (or a phone app), and your phone to take photos and note travel times.</p>
+
+<blockquote>This checklist is general information, not legal or financial advice. Verify project details on the official MahaRERA website and have the documents checked by a property lawyer before you pay.</blockquote>
+`,
+  };
+}
+
+function occupancyCertificateArticle() {
+  return {
+    slug: 'occupancy-certificate-oc-completion-certificate-pune',
+    title: 'Occupancy Certificate (OC) vs Completion Certificate: Why Pune Buyers Must Check Before Possession',
+    seo_title: 'Occupancy Certificate (OC) vs Completion Certificate',
+    seo_description:
+      'What an occupancy certificate (OC) and completion certificate are, why you should not take possession without an OC, and what RERA says about them.',
+    excerpt:
+      'The occupancy certificate is the document that says a building is fit to live in. Here is what it is, how it differs from a completion certificate, and why you should ask for it before you take the keys.',
+    tags: ['Occupancy Certificate', 'RERA', 'Possession', 'Home Buyer Rights', 'Pune'],
+    cover: {
+      theme: 'golden',
+      kicker: 'Buyer’s guide',
+      lines: ['Occupancy', 'Certificate (OC)', 'Explained'],
+      stats: [['Sec 11(4)(b)', 'developer gets OC'], ['2 months', 'to take possession'], ['Sec 17', 'conveyance deed']],
+    },
+    content: `
+<p>When an under-construction project is finished, the keys are only half the handover. The other half is the paperwork, and the most important document in it is the <strong>occupancy certificate</strong>, or OC. This guide explains what an OC is, how it differs from a completion certificate, and what to check before you take possession.</p>
+
+<h2>What is an occupancy certificate (OC)?</h2>
+<p>An OC is issued by the local planning authority (in the Pune region, usually the Pune Municipal Corporation, the Pimpri Chinchwad Municipal Corporation or PMRDA) after it inspects a finished building. It certifies that the building was built according to the sanctioned plans and is fit to be occupied, with provision for water, sanitation and electricity.</p>
+<p>The RERA Act defines it in <strong>Section 2(zf)</strong> as the certificate, by whatever name called, issued by the competent authority permitting occupation of a building.</p>
+
+<h2>What is a completion certificate?</h2>
+<p>A completion certificate (defined in <strong>Section 2(q)</strong> of the RERA Act) certifies that the project has been developed according to the sanctioned plan, layout plan and specifications. Different authorities use different names and steps for it, and in many cities the completion and occupancy certificates are issued together or as one document.</p>
+<p>Don’t confuse it with the <strong>commencement certificate</strong>, which is often also called a “CC” in Maharashtra. A commencement certificate is the permission to <em>start</em> construction, issued before work begins.</p>
+
+<div class="table-scroll"><table>
+<caption>Three certificates buyers hear about</caption>
+<thead><tr><th>Certificate</th><th>When it is issued</th><th>What it says</th></tr></thead>
+<tbody>
+<tr><td>Commencement certificate</td><td>Before construction starts</td><td>The building plans are approved and work can begin</td></tr>
+<tr><td>Completion certificate</td><td>When construction is finished</td><td>The project was built as per the sanctioned plans</td></tr>
+<tr><td>Occupancy certificate (OC)</td><td>After inspection of the finished building</td><td>The building is fit to be lived in</td></tr>
+</tbody></table></div>
+
+<h2>What RERA says</h2>
+<ul>
+  <li><strong>The developer must get it (Section 11(4)(b)).</strong> The promoter is responsible for obtaining the completion certificate or the occupancy certificate, or both, and making it available to buyers individually or to their association.</li>
+  <li><strong>Conveyance follows the OC (Section 17).</strong> The developer must execute a registered conveyance deed in your favour and transfer the common areas to the association. Where no local law sets a period, the RERA Act sets a deadline of three months from the date of the OC. In Maharashtra, if a developer does not convey the land and building to the society, the society can apply for deemed conveyance.</li>
+  <li><strong>Buyers take possession after the OC (Section 19(10)).</strong> Every buyer must take physical possession of the flat within two months of the occupancy certificate being issued.</li>
+</ul>
+
+<h2>Why you should not move in without an OC</h2>
+<ul>
+  <li><strong>The building has not been cleared as fit to live in.</strong> It may not match the approved plans, and the authority could act against unauthorised occupation.</li>
+  <li><strong>Utilities can be a problem.</strong> Permanent water and electricity connections are usually tied to the OC.</li>
+  <li><strong>Loans and resale get harder.</strong> Many banks ask for the OC before they lend on a resale flat, so a flat without one can be harder to sell later.</li>
+  <li><strong>Conveyance is held up.</strong> Without the OC, the society cannot get the land and building transferred to it.</li>
+</ul>
+<p>If the possession date has passed and the developer is offering “fit-out possession” without an OC, read <a href="/blog/possession-delay-rera-buyer-rights-maharera-complaint">your rights when possession is delayed</a>.</p>
+
+<h2>Part OC</h2>
+<p>Large projects in Pune are often built in phases, and the authority may issue a <strong>part occupancy certificate</strong> for some towers, wings or floors. If you are buying in such a project, check that the part OC covers your specific building and floor.</p>
+
+<h2>How to check the OC</h2>
+<ol>
+  <li><strong>Ask the developer for a copy</strong> before you take possession, and keep it with your agreement and payment receipts.</li>
+  <li><strong>Check the details:</strong> the issuing authority, the date, the survey number, and the building, wing and floors it covers.</li>
+  <li><strong>Look at the project’s MahaRERA page,</strong> where developers upload their approvals and completion documents. Our guide shows <a href="/blog/how-to-check-maharera-registration-number">how to find a project on MahaRERA</a>.</li>
+  <li><strong>For a resale flat,</strong> ask the seller or the housing society for the OC before you pay a token amount.</li>
+</ol>
+<p>The OC is one of several papers to check. See the full list of <a href="/blog/documents-to-check-before-buying-flat-pune">documents to check before buying a flat</a>, or skip the wait by looking at <a href="/status/ready-to-move">ready-to-move projects</a>.</p>
+
+<h2>FAQs</h2>
+<h3>Can I take possession of a flat without an OC?</h3>
+<p>You shouldn’t. Under the RERA Act, possession follows the OC, and living in a building without one can cause problems with utilities, loans, resale and conveyance.</p>
+<h3>Who is responsible for getting the OC?</h3>
+<p>The developer. Section 11(4)(b) of the RERA Act makes the promoter responsible for obtaining it and making it available to buyers.</p>
+<h3>Is a completion certificate the same as an OC?</h3>
+<p>Not exactly. A completion certificate says the project was built as per the sanctioned plans; an OC says the building is fit to occupy. Some authorities issue them together.</p>
+<h3>What is a part OC?</h3>
+<p>An occupancy certificate for only some towers, wings or floors of a project. Check that it covers your flat.</p>
+
+<blockquote>This guide is general information, not legal advice. Rules and procedures differ between authorities and change over time. Have the documents checked by a property lawyer and verify project details on the official MahaRERA website.</blockquote>
+`,
+  };
+}
+
 // ---- photos ---------------------------------------------------------------------
 
 const PHOTO_DIR = path.resolve('migration/blog-photos');
@@ -2143,6 +2321,7 @@ async function main() {
     twoBhkArticle(h), luxuryArticle(h), naviMumbaiArticle(h), kalyanDombivliArticle(h),
     commercialArticle(h), upcomingArticle(h), bengaluruArticle(h), mumbaiArticle(h),
     centralPuneArticle(h), documentsArticle(h), carpetAreaArticle(), possessionDelayArticle(),
+    siteVisitArticle(), occupancyCertificateArticle(),
   ];
 
   // --only=slug-a,slug-b seeds just those posts and leaves the rest (and the old
