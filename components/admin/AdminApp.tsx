@@ -2726,7 +2726,11 @@ export default function AdminApp({ user }: { user: AdminUser }) {
   // Related tabs share one button in the tab row; inside it a small switch picks
   // between them. Each keeps its own key, so ?tab=intake / ?tab=buyerleads links,
   // permissions and "Edit all details" work as before.
-  const TAB_GROUPS: Record<string, string[]> = { map: ['map', 'intake'], leads: ['leads', 'buyerleads'] };
+  const TAB_GROUPS: Record<string, string[]> = {
+    map: ['map', 'intake'],
+    leads: ['leads', 'buyerleads', 'accounts'],
+    developers: ['developers', 'projects'],
+  };
   const groupOf = (k: string) => Object.keys(TAB_GROUPS).find((g) => TAB_GROUPS[g].includes(k)) || k;
   const membersOf = (g: string) => (TAB_GROUPS[g] || [g]).filter((k) => visible.includes(k));
   const tabRow = [...new Set(visible.filter((k) => !MENU_TABS.includes(k)).map(groupOf))];
@@ -2811,6 +2815,8 @@ export default function AdminApp({ user }: { user: AdminUser }) {
     fetch('/api/admin/stats', { credentials: 'same-origin' })
       .then((r) => r.json()).then((b) => setPendingCount(Number(b?.data?.accounts?.pending) || 0)).catch(() => {});
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  /** Items waiting on the admin in one section (accounts to verify, projects to approve). */
+  const badgeOf = (k: string) => (k === 'accounts' ? pendingCount : k === 'projects' ? projPending : 0);
   const [avatar, setAvatar] = useState(user.avatar || '');
   const [displayName, setDisplayName] = useState(user.name || '');
   const initials = (displayName || user.email || '?').slice(0, 2).toUpperCase();
@@ -2911,6 +2917,9 @@ export default function AdminApp({ user }: { user: AdminUser }) {
           const k = members[0];
           if (!k) return null;
           const active = members.includes(tab);
+          // A grouped tab shows the total of its sections' badges (e.g. Accounts
+          // waiting for verification appear on Leads).
+          const waiting = members.reduce((n, m) => n + badgeOf(m), 0);
           return (
             <button
               key={g}
@@ -2920,8 +2929,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
               onFocus={() => warmUp(k)}
             >
               <i className={`fas ${TAB_META[k].icon}`} /> {TAB_META[k].label}
-              {k === 'accounts' && pendingCount > 0 && <span className="tab-badge" title={`${pendingCount} waiting for verification`}>{pendingCount}</span>}
-              {k === 'projects' && projPending > 0 && <span className="tab-badge" title={`${projPending} waiting for approval`}>{projPending}</span>}
+              {waiting > 0 && <span className="tab-badge" title={`${waiting} waiting for review`}>{waiting}</span>}
             </button>
           );
         })}
@@ -2940,6 +2948,9 @@ export default function AdminApp({ user }: { user: AdminUser }) {
               onFocus={() => warmUp(k)}
             >
               <i className={`fas ${TAB_META[k].icon}`} /> {TAB_META[k].label}
+              {badgeOf(k) > 0 && (
+                <span className="tab-badge" title={k === 'accounts' ? `${badgeOf(k)} waiting for verification` : `${badgeOf(k)} waiting for approval`}>{badgeOf(k)}</span>
+              )}
             </button>
           ))}
         </div>
