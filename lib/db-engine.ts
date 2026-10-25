@@ -2,6 +2,7 @@ import { randomUUID } from 'crypto';
 import { getDb, type Db } from './mongodb';
 import { MEDIA_FIELDS } from './pin-media';
 import { PHONE_ERROR, normalizePhone } from './phone';
+import { bustTable } from './data-cache';
 
 // Our documents use string uuid _id values (not ObjectId), so we type
 // collections loosely to keep the driver's strict _id typing out of the way.
@@ -55,7 +56,11 @@ const PUBLIC_READ = new Set([
 // round-trips (which measured ~0.25s warm and ~5s cold). Writes invalidate the
 // affected table. Private tables (leads/pins_history) are never cached.
 // Stored on globalThis so it survives dev hot-reloads.
+// Visitors' reads are kept 5 min (every write clears them at once, see
+// invalidateTable); staff reads only 30 s, so the editor never looks stale when
+// another server instance made the change.
 const CACHE_TTL_MS = 30_000;
+const PUBLIC_CACHE_TTL_MS = 300_000;
 type CacheEntry = { data: unknown; exp: number };
 const g = globalThis as unknown as { __pubReadCache?: Map<string, CacheEntry> };
 const readCache: Map<string, CacheEntry> = g.__pubReadCache || (g.__pubReadCache = new Map());
@@ -77,6 +82,8 @@ export function invalidateTable(table: string) {
   for (const key of readCache.keys()) {
     if (key.startsWith(table + '|')) readCache.delete(key);
   }
+  // Also the shared website cache (project pages, site settings) on every instance.
+  bustTable(table);
 }
 
 // Tables the client is never allowed to write to directly (history is captured
@@ -200,6 +207,7 @@ export async function runDbOp(op: DbOp, isAuthed: boolean, opts: RunDbOpts = {})
         // shared public cache.
         const canCache = PUBLIC_READ.has(op.table) && !devPins;
         const key = canCache ? cacheKey(op, isAuthed) : '';
+        const ttl = isAuthed ? CACHE_TTL_MS : PUBLIC_CACHE_TTL_MS;
         if (canCache) {
           const hit = readCache.get(key);
           if (hit && hit.exp > Date.now()) {
@@ -233,10 +241,10 @@ export async function runDbOp(op: DbOp, isAuthed: boolean, opts: RunDbOpts = {})
 
         if (op.single) {
           if (rows.length === 0) return err('No rows found', 406, 'PGRST116');
-          if (canCache) readCache.set(key, { data: rows[0], exp: Date.now() + CACHE_TTL_MS });
+          if (canCache) readCache.set(key, { data: rows[0], exp: Date.now() + ttl });
           return { data: rows[0], error: null, status: 200 };
         }
-        if (canCache) readCache.set(key, { data: rows, exp: Date.now() + CACHE_TTL_MS });
+        if (canCache) readCache.set(key, { data: rows, exp: Date.now() + ttl });
         return { data: rows, error: null, status: 200 };
       }
 

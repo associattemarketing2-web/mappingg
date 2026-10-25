@@ -31,9 +31,16 @@ export default function DevNotificationBell({ onOpenProjects }: { onOpenProjects
   }
   useEffect(() => {
     load();
-    const t = setInterval(() => { if (document.visibilityState === 'visible') load(); }, 180_000);
-    window.addEventListener('focus', load);
-    return () => { clearInterval(t); window.removeEventListener('focus', load); };
+    // Every 5 min while visible, and on focus at most once a minute (each check is a DB read).
+    let last = Date.now();
+    const refresh = () => {
+      if (document.visibilityState !== 'visible' || Date.now() - last < 60_000) return;
+      last = Date.now();
+      load();
+    };
+    const t = setInterval(refresh, 300_000);
+    window.addEventListener('focus', refresh);
+    return () => { clearInterval(t); window.removeEventListener('focus', refresh); };
   }, []);
 
   useEffect(() => {

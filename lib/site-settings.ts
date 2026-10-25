@@ -1,5 +1,6 @@
 import { cache } from 'react';
 import { getDb } from './mongodb';
+import { cachedRead } from './data-cache';
 
 export interface PublicSettings {
   gtm_container_id?: string;
@@ -18,16 +19,22 @@ export const GTM_RE = /^GTM-[A-Z0-9]{1,20}$/i;
 export const GSC_RE = /^[A-Za-z0-9_-]{1,200}$/;
 export const GA_RE = /^G-[A-Z0-9]{4,20}$/i;
 
+// The settings row is read by the root layout on every render, so it is kept in
+// the shared data cache (lib/data-cache.ts); saving Settings clears it at once.
+const readSettingsRow = cachedRead('site-settings', ['map_settings'], 3600, async () => {
+  const db = await getDb();
+  return (await db.collection('map_settings').findOne(
+    { id: 1 },
+    { projection: { gtm_container_id: 1, search_console_verification: 1, ga_measurement_id: 1, youtube_video_url: 1 } },
+  )) as Record<string, unknown> | null;
+});
+
 // Reads the single site-settings row. Wrapped in React.cache so it runs at most
 // once per request, and never throws (a DB blip must not break rendering).
 export const getPublicSettings = cache(async (): Promise<PublicSettings> => {
   let row: Record<string, unknown> | null = null;
   try {
-    const db = await getDb();
-    row = await db.collection('map_settings').findOne(
-      { id: 1 },
-      { projection: { gtm_container_id: 1, search_console_verification: 1, ga_measurement_id: 1, youtube_video_url: 1 } },
-    );
+    row = await readSettingsRow();
   } catch {
     row = null;
   }

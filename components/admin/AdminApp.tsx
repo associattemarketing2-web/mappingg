@@ -1003,13 +1003,20 @@ function LeadsPanel({ flash, isOwner }: { flash: (m: string, e?: boolean) => voi
   // Near-real-time updates via SSE: refetch when the server signals a lead
   // table changed. EventSource auto-reconnects on drop; we refetch
   // authoritative data so no duplicate rows/notifications can appear.
-  // Refresh every 2 min while the tab is visible, and on coming back to it. (The SSE
+  // Refresh every 5 min while the tab is visible, and on coming back to it (at most
+  // once a minute — each refresh costs several database operations). (The SSE
   // stream at /api/admin/leads/stream kept a serverless function running the whole
   // time the panel was open, which used up the hosting CPU/memory quota.)
   useEffect(() => {
     setLive(true);
-    const t = setInterval(() => { if (document.visibilityState === 'visible') void load(true); }, 120_000);
-    const onVis = () => { if (document.visibilityState === 'visible') void load(true); };
+    let last = Date.now();
+    const refresh = () => {
+      if (document.visibilityState !== 'visible' || Date.now() - last < 60_000) return;
+      last = Date.now();
+      void load(true);
+    };
+    const t = setInterval(refresh, 300_000);
+    const onVis = refresh;
     document.addEventListener('visibilitychange', onVis);
     return () => { clearInterval(t); document.removeEventListener('visibilitychange', onVis); };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps

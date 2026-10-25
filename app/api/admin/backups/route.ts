@@ -6,6 +6,7 @@ import { runDbOp, restorePinFromHistory, invalidateTable } from '@/lib/db-engine
 import { forgetAccount } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
 import { listTrash, purgeTrash, restoreFromTrash } from '@/lib/trash';
+import { bustTable } from '@/lib/data-cache';
 import {
   KEEP_SNAPSHOTS, collectAll, createSnapshot, ensureDailySnapshot, listSnapshots, liveCounts, readSnapshot, readSnapshotGz,
 } from '@/lib/backup';
@@ -205,6 +206,7 @@ export async function POST(req: NextRequest) {
         if (d.collection === 'pins') invalidateTable('pins');
         if (d.collection === 'users') forgetAccount(String(d.doc.id));
         if (d.collection === 'posts') {
+          bustTable('posts');
           try { revalidatePath('/blog'); revalidatePath('/sitemap.xml'); revalidatePath(`/blog/${String(d.doc.slug)}`); } catch { /* outside a request */ }
         }
       }
