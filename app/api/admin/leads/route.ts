@@ -310,6 +310,52 @@ export async function PATCH(req: NextRequest) {
   return NextResponse.json({ data });
 }
 
+// A lead the super admin adds by hand (phone call, walk-in, referral, ad…). It is
+// kept with the contact-form leads (`contact_leads`) under the source picked.
+// Keep in step with MANUAL_SOURCES in components/admin/AdminApp.tsx (the Add Lead form).
+const MANUAL_SOURCES = ['Phone call', 'Walk-in', 'Referral', 'WhatsApp', 'Website', 'Google Ads', 'Facebook Ads', 'Instagram', 'Other'] as const;
+const createSchema = z.object({
+  name: z.string().trim().min(1).max(120),
+  phone: z.string().trim().max(30).optional().default(''),
+  email: z.string().trim().max(160).optional().default(''),
+  source: z.enum(MANUAL_SOURCES),
+  subject: z.string().trim().max(200).optional().default(''),
+  location: z.string().trim().max(120).optional().default(''),
+  message: z.string().trim().max(2000).optional().default(''),
+  status: z.enum(STATUSES).optional().default('new'),
+  follow_up_at: z.string().max(40).nullable().optional(),
+}).refine((d) => d.phone || d.email, { message: 'Add a phone number or an email.' })
+  .refine((d) => !d.email || z.string().email().safeParse(d.email).success, { message: 'That email address does not look right.' });
+
+export async function POST(req: NextRequest) {
+  if (!(await hasPermission('leads'))) return unauthorized();
+  const me = await getCurrentUser();
+  if (me?.role !== 'admin') return NextResponse.json({ error: { message: 'Only the super admin can add leads.' } }, { status: 403 });
+  const parsed = createSchema.safeParse(await req.json().catch(() => null));
+  if (!parsed.success) {
+    return NextResponse.json({ error: { message: parsed.error.issues[0]?.message || 'Invalid request' } }, { status: 400 });
+  }
+  const d = parsed.data;
+  if (d.follow_up_at && Number.isNaN(Date.parse(d.follow_up_at))) {
+    return NextResponse.json({ error: { message: 'Invalid follow-up date' } }, { status: 400 });
+  }
+  const db = await getDb();
+  const now = new Date().toISOString();
+  const meDoc = await db.collection('users').findOne({ id: me.id }, { projection: { name: 1 } });
+  const byName = String(meDoc?.name || me.email);
+  const id = randomUUID();
+  const event: LeadEvent = { id: randomUUID(), at: now, type: 'note', text: `Lead added by hand (${d.source})`, by_id: me.id, by_name: byName, by_role: 'admin' };
+  const doc = {
+    _id: id, id,
+    name: d.name, phone: d.phone, email: d.email.toLowerCase(), subject: d.subject, location: d.location, message: d.message,
+    source: d.source, status: d.status, notes: '', follow_up_at: d.follow_up_at || null,
+    added_by: me.email, created_at: now, updated_at: now,
+    activity: [event], last_activity_at: now, last_activity_by: byName,
+  };
+  await db.collection<{ _id: string; [k: string]: any }>('contact_leads').insertOne(doc);
+  return NextResponse.json({ data: strip(doc) }, { status: 201 });
+}
+
 export async function DELETE(req: NextRequest) {
   if (!(await hasPermission('leads'))) return unauthorized();
   if ((await getCurrentUser())?.role !== 'admin') return NextResponse.json({ error: { message: 'Leads are view-only for employees.' } }, { status: 403 });

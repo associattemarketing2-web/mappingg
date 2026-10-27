@@ -1356,6 +1356,8 @@ interface Lead {
   id: string; name: string; email?: string; phone?: string; subject?: string;
   message?: string; source?: string; status: 'new' | 'contacted' | 'not_answered' | 'call_back' | 'site_visit' | 'negotiation' | 'won' | 'lost' | 'spam';
   notes?: string; created_at?: string; updated_at?: string;
+  // Leads added by hand (Add Lead): where they are looking, and who added them.
+  location?: string; added_by?: string;
   // The employee this lead was transferred to (any source).
   assigned_to?: string | null; assigned_name?: string | null; assigned_at?: string | null; assigned_by?: string | null;
   // CRM work on the lead: timeline (newest first), next follow-up, last touch.
@@ -1458,10 +1460,9 @@ const buyerWants = (l: Lead) => {
   const pf = l.buyer?.profile || {};
   return [pf.configuration, pf.budget, pf.area].filter(Boolean).join(' · ');
 };
-// Cap how many lead rows hit the DOM at once so the table stays fast even with
-// thousands of leads. Counts/filters still run over the full set; the admin
-// narrows with search/status to reach older rows.
-const LEADS_RENDER_CAP = 300;
+// The lead table is paged so it stays fast with thousands of leads; counts,
+// filters and downloads still run over the full list.
+const LEAD_PAGE_SIZES = ['10', '25', '50', '100'] as const;
 const UNASSIGNED = '__none';
 
 // Real-estate sales pipeline, in order.
@@ -1500,6 +1501,91 @@ const fullDate = (d?: string | null) => (d ? new Date(d).toLocaleString('en-IN',
 const accountRole = (r?: string) => ROLE_META[(PEOPLE_ROLES as readonly string[]).includes(String(r)) ? (r as PersonRole) : 'buyer'];
 const PIN_STATUS: Record<string, string> = { available: 'Ready to move', under_construction: 'Under construction', upcoming: 'Upcoming', sold: 'Sold out' };
 
+// CRM & Leads page pieces: KPI cards with a 14-day sparkline, avatars, status icons.
+const DAY_MS = 86_400_000;
+/** How many of these dates fall on each of the last `days` days (oldest first). */
+function daySeries(dates: (string | null | undefined)[], days = 14) {
+  const out: number[] = new Array(days).fill(0);
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const t0 = today.getTime() - (days - 1) * DAY_MS;
+  for (const d of dates) {
+    if (!d) continue;
+    const i = Math.floor((new Date(d).getTime() - t0) / DAY_MS);
+    if (i >= 0 && i < days) out[i]++;
+  }
+  return out;
+}
+/** Last 30 days vs the 30 before, in %; null when there is nothing to compare with. */
+function growthPct(dates: (string | null | undefined)[]) {
+  const now = Date.now();
+  let cur = 0, prev = 0;
+  for (const d of dates) {
+    if (!d) continue;
+    const t = new Date(d).getTime();
+    if (t > now) continue;
+    if (t > now - 30 * DAY_MS) cur++; else if (t > now - 60 * DAY_MS) prev++;
+  }
+  return prev ? Math.round(((cur - prev) / prev) * 100) : null;
+}
+const KPI_HEX: Record<string, string> = { green: '#1f8a4c', blue: '#2a78d6', amber: '#e08a1e', violet: '#7c4ddb', teal: '#0f7a55' };
+function Sparkline({ data, tone }: { data: number[]; tone: string }) {
+  const w = 96, h = 30, c = KPI_HEX[tone] || '#0f7a55';
+  const max = Math.max(1, ...data);
+  const step = w / Math.max(1, data.length - 1);
+  const line = data.map((v, i) => `${i ? 'L' : 'M'}${(i * step).toFixed(1)},${(h - 3 - (v / max) * (h - 8)).toFixed(1)}`).join(' ');
+  const id = `ck-spark-${tone}`;
+  return (
+    <svg className="ck-spark" viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" aria-hidden="true">
+      <defs><linearGradient id={id} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor={c} stopOpacity=".22" /><stop offset="1" stopColor={c} stopOpacity="0" /></linearGradient></defs>
+      <path d={`${line} L${w},${h} L0,${h} Z`} fill={`url(#${id})`} />
+      <path d={line} fill="none" stroke={c} strokeWidth="1.8" strokeLinejoin="round" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+    </svg>
+  );
+}
+function CrmKpi({ icon, tone, value, label, title, series, growth, on, onClick }: {
+  icon: string; tone: string; value: number; label: string; title?: string; series: number[]; growth?: number | null; on?: boolean; onClick?: () => void;
+}) {
+  const inner = (
+    <>
+      <span className={`ck-ic ${tone}`} aria-hidden="true"><i className={`fas ${icon}`} /></span>
+      <span className="ck-t"><b>{value.toLocaleString('en-IN')}</b><small>{label}</small></span>
+      <span className="ck-trend">
+        {growth != null && <em className={growth >= 0 ? 'up' : 'down'} title="Last 30 days vs the 30 before"><i className={`fas fa-arrow-${growth >= 0 ? 'up' : 'down'}`} /> {Math.abs(growth)}%</em>}
+        <Sparkline data={series} tone={tone} />
+      </span>
+    </>
+  );
+  return onClick
+    ? <button type="button" className={`ck${on ? ' on' : ''}`} onClick={onClick} title={title} aria-pressed={!!on}>{inner}</button>
+    : <div className="ck" title={title}>{inner}</div>;
+}
+const AV_TONES = ['rose', 'green', 'blue', 'amber', 'violet', 'teal'];
+const avTone = (s: string) => AV_TONES[Array.from(s || '?').reduce((a, c) => a + c.charCodeAt(0), 0) % AV_TONES.length];
+const nameInitials = (s: string) => {
+  const w = s.trim().split(/\s+/).filter(Boolean);
+  return (w.length > 1 ? w[0][0] + w[1][0] : (w[0] || '?').slice(0, 2)).toUpperCase();
+};
+// Sources for a lead added by hand — keep in step with app/api/admin/leads/route.ts.
+const MANUAL_SOURCES = ['Phone call', 'Walk-in', 'Referral', 'WhatsApp', 'Website', 'Google Ads', 'Facebook Ads', 'Instagram', 'Other'] as const;
+/** Icon + colour for a contact-list lead's source (contact form, WhatsApp chat, or one picked in Add Lead). */
+const CONTACT_SOURCE_META: Record<string, { icon: string; tone: string; label?: string }> = {
+  'contact-form': { icon: 'fas fa-envelope', tone: 'amber', label: 'Contact Form' },
+  'WhatsApp chat': { icon: 'fab fa-whatsapp', tone: 'green' },
+  'Phone call': { icon: 'fas fa-phone', tone: 'teal' },
+  'Walk-in': { icon: 'fas fa-person-walking', tone: 'violet' },
+  Referral: { icon: 'fas fa-user-group', tone: 'amber' },
+  WhatsApp: { icon: 'fab fa-whatsapp', tone: 'green' },
+  Website: { icon: 'fas fa-globe', tone: 'blue' },
+  'Google Ads': { icon: 'fab fa-google', tone: 'blue' },
+  'Facebook Ads': { icon: 'fab fa-facebook', tone: 'blue' },
+  Instagram: { icon: 'fab fa-instagram', tone: 'rose' },
+  Other: { icon: 'fas fa-circle-dot', tone: 'teal' },
+};
+const STAGE_ICON: Record<string, string> = {
+  new: 'fa-bolt', contacted: 'fa-phone', not_answered: 'fa-phone-slash', call_back: 'fa-clock-rotate-left', site_visit: 'fa-calendar-check',
+  negotiation: 'fa-handshake', won: 'fa-circle-check', lost: 'fa-circle-xmark', spam: 'fa-ban',
+};
+
 function LeadsPanel({ flash, isOwner, focusId, onFocusDone }: { flash: (m: string, e?: boolean) => void; isOwner: boolean; focusId?: string | null; onFocusDone?: () => void }) {
   const [bySource, setBySource] = useState<Record<LeadSource, Lead[]>>({ map: [], signup: [], contact: [] });
   // Opens on map enquiries (people who tapped Enquire / Book site visit on a project) —
@@ -1515,6 +1601,45 @@ function LeadsPanel({ flash, isOwner, focusId, onFocusDone }: { flash: (m: strin
   const [busy, setBusy] = useState(false);
   const [noteDraft, setNoteDraft] = useState('');
   const [followDraft, setFollowDraft] = useState('');
+  // The open lead's panel: which tab, and whether it sits beside the table (wide screens) or slides over.
+  const [ptab, setPtab] = useState<'overview' | 'activity' | 'notes'>('overview');
+  const noteRef = useRef<HTMLTextAreaElement>(null);
+  const [docked, setDocked] = useState(false);
+  useEffect(() => {
+    const m = window.matchMedia('(min-width: 1600px)');
+    const on = () => setDocked(m.matches);
+    on(); m.addEventListener('change', on);
+    return () => m.removeEventListener('change', on);
+  }, []);
+  const [sort, setSort] = useState<'new' | 'old' | 'activity'>('new');
+  // Table paging (rows per page survives a refresh in this tab).
+  const [page, setPage] = useState(1);
+  const [perPageS, setPerPage] = usePersistedState<(typeof LEAD_PAGE_SIZES)[number]>('leads.perPage', '25', LEAD_PAGE_SIZES);
+  const perPage = Number(perPageS);
+  // Add Lead (super admin): a lead from a call, walk-in, referral, ad…
+  const EMPTY_ADD = { name: '', phone: '', email: '', source: 'Phone call' as (typeof MANUAL_SOURCES)[number], subject: '', location: '', message: '', status: 'new' as Lead['status'], follow_up: '' };
+  const [addOpen, setAddOpen] = useState(false);
+  const [addForm, setAddForm] = useState(EMPTY_ADD);
+  const [adding, setAdding] = useState(false);
+  async function addLead() {
+    if (!addForm.name.trim()) { flash('Enter the lead’s name', true); return; }
+    if (!addForm.phone.trim() && !addForm.email.trim()) { flash('Add a phone number or an email', true); return; }
+    setAdding(true);
+    try {
+      const { follow_up, ...rest } = addForm;
+      const r = await fetch('/api/admin/leads', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin',
+        body: JSON.stringify({ ...rest, follow_up_at: follow_up ? new Date(follow_up).toISOString() : null }),
+      });
+      const b = await r.json().catch(() => null);
+      if (!r.ok || !b?.data) throw new Error(b?.error?.message || 'Could not add the lead');
+      const lead = b.data as Lead;
+      setBySource((s) => ({ ...s, contact: [lead, ...s.contact] }));
+      setAddOpen(false); setAddForm(EMPTY_ADD);
+      switchSource('contact'); open(lead);
+      flash(`Lead added — ${lead.name}`);
+    } catch (e) { flash(e instanceof Error ? e.message : 'Could not add the lead', true); } finally { setAdding(false); }
+  }
   // Super admin: everything the team did on leads.
   const [teamFeed, setTeamFeed] = useState<LeadEvent[] | null>(null);
   const [teamOpen, setTeamOpen] = useState(false);
@@ -1636,11 +1761,11 @@ function LeadsPanel({ flash, isOwner, focusId, onFocusDone }: { flash: (m: strin
       return;
     }
     downloadCsv(fileSlug('contact-leads'),
-      ['Name', 'Email', 'Phone', 'Topic', 'Message', 'Status', 'Notes', 'Received'],
-      list.map((l) => [l.name, l.email, l.phone, l.subject, l.message, stageLabel(l.status), l.notes, csvDate(l.created_at)]));
+      ['Name', 'Email', 'Phone', 'Source', 'Topic / looking for', 'Location', 'Message', 'Status', 'Notes', 'Received'],
+      list.map((l) => [l.name, l.email, l.phone, l.source, l.subject, l.location, l.message, stageLabel(l.status), l.notes, csvDate(l.created_at)]));
   }
 
-  function open(l: Lead) { setSel(l); setNotes(l.notes || ''); setNoteDraft(''); setFollowDraft(toLocalInput(l.follow_up_at)); }
+  function open(l: Lead) { setSel(l); setPtab('overview'); setNotes(l.notes || ''); setNoteDraft(''); setFollowDraft(toLocalInput(l.follow_up_at)); }
   async function addNote() {
     if (!sel || !noteDraft.trim()) return;
     if (await patch(sel.id, { add_note: noteDraft.trim() })) { setNoteDraft(''); flash('Note added'); }
@@ -1728,425 +1853,197 @@ function LeadsPanel({ flash, isOwner, focusId, onFocusDone }: { flash: (m: strin
     flash(`${ok} lead${ok === 1 ? '' : 's'} marked ${stageLabel(status)}${ok < ids.length ? `, ${ids.length - ok} failed` : ''}`, ok < ids.length);
   }
 
-  const initials = (l: Lead) => (l.name || l.email || '?').slice(0, 2).toUpperCase();
+  const initials = (l: Lead) => nameInitials(l.name || l.email || '?');
   const roleCount = (r: PersonRole) => bySource.map.filter((l) => l.role === r && matchesLocation(l, loc)).length;
 
   // Header numbers for the source being viewed (after type / location / employee filters).
   const monthAgo = Date.now() - 30 * 86_400_000;
   const new30 = scoped.filter((l) => l.created_at && new Date(l.created_at).getTime() >= monthAgo).length;
-  const visits = scoped.filter((l) => l.status === 'site_visit' || !!l.site_visit_requested_at).length;
-  const totalAll = bySource.map.length + bySource.signup.length + (isOwner ? bySource.contact.length : 0);
+  const visitLeads = scoped.filter((l) => l.status === 'site_visit' || !!l.site_visit_requested_at);
+  const visits = visitLeads.length;
+  const allLeads = [...bySource.map, ...bySource.signup, ...(isOwner ? bySource.contact : [])];
+  const totalAll = allLeads.length;
   const sourceLabel = isMap ? 'Map enquiries' : isSignup ? 'Buyer accounts' : 'Contact form';
+  const isContact = !isMap && !isSignup;
   const digits = (p?: string) => (p || '').replace(/\D/g, '');
-  const STAGE_DOT: Record<string, string> = {
-    all: '#0f7a55', due: '#d1435b', new: '#2a78d6', contacted: '#0f5c47', not_answered: '#9b9a94', call_back: '#c98a2c',
-    site_visit: '#7c4ddb', negotiation: '#d1435b', won: '#1f8a4c', lost: '#6b746e', spam: '#b4b9b5',
-  };
+  const dueLeads = scoped.filter((l) => isDue(l.follow_up_at) && !isClosed(l.status));
+  const wonLeads = scoped.filter((l) => l.status === 'won');
+  const visitDate = (l: Lead) => l.site_visit_requested_at || (l.status === 'site_visit' ? l.updated_at : null);
 
-  return (
-    <>
-    <div className="crm2">
-      <PageHead icon="fa-address-book" title="CRM & Leads" sub="Manage enquiries, follow-ups and convert leads into site visits.">
-        {isOwner && <button type="button" className="pg-btn ghost" onClick={() => { setTeamOpen(true); loadTeamFeed(); }}><i className="fas fa-clock-rotate-left" /> Team activity</button>}
-        <button type="button" className="pg-btn" onClick={() => load()}><i className="fas fa-rotate" /> Refresh leads</button>
-      </PageHead>
+  // Sort: newest first (as loaded), oldest first, or most recently worked on. Follow-up due keeps its own order.
+  const ts = (d?: string | null) => (d ? new Date(d).getTime() : 0);
+  const ordered = filter === 'due' || sort === 'new' ? list
+    : [...list].sort((a, b) => (sort === 'old'
+      ? ts(a.created_at) - ts(b.created_at)
+      : ts(b.last_activity_at || b.created_at) - ts(a.last_activity_at || a.created_at)));
+  // Back to page 1 whenever the list itself changes (source, stage, search, filters, sort, page size).
+  const listKey = [source, filter, q, role, loc, assignee, sort, perPage].join('|');
+  useEffect(() => { setPage(1); }, [listKey]);
+  const pageCount = Math.max(1, Math.ceil(ordered.length / perPage));
+  const pg = Math.min(page, pageCount);
+  const firstRow = (pg - 1) * perPage;
+  const shown = ordered.slice(firstRow, firstRow + perPage);
+  const shownIds = shown.map((l) => l.id);
+  /** 1 … 4 5 6 … 20 — every page when there are few. */
+  const pageList: (number | '…')[] = pageCount <= 7
+    ? Array.from({ length: pageCount }, (_, i) => i + 1)
+    : pg <= 4 ? [1, 2, 3, 4, 5, '…', pageCount]
+      : pg >= pageCount - 3 ? [1, '…', pageCount - 4, pageCount - 3, pageCount - 2, pageCount - 1, pageCount]
+        : [1, '…', pg - 1, pg, pg + 1, '…', pageCount];
+  // Stage tabs above the table; the less-used stages sit under "More stages".
+  const STAGE_TABS: (typeof filter)[] = ['all', 'new', 'due', 'site_visit', 'won', 'lost', 'spam'];
+  const MORE_STAGES: Lead['status'][] = ['contacted', 'not_answered', 'call_back', 'negotiation'];
+  const stageTabLabel = (k: typeof filter) => (k === 'all' ? (isOwner ? 'All Leads' : 'My Leads') : k === 'due' ? 'Follow-up' : k === 'site_visit' ? 'Site Visits' : k === 'won' ? 'Converted' : stageLabel(k));
+  const activeFilters = (role !== 'all' ? 1 : 0) + (assignee ? 1 : 0) + (sort !== 'new' ? 1 : 0);
+  /** What they want (configuration · budget) and where (project / area), for the table and the lead panel. */
+  const wantOf = (l: Lead) => isMap
+    ? [l.project?.configuration, l.project?.price].filter(Boolean).join(' · ') || [l.account?.profile?.configuration, l.account?.profile?.budget].filter(Boolean).join(' · ')
+    : isSignup ? [l.buyer?.profile?.configuration, l.buyer?.profile?.budget].filter(Boolean).join(' · ') : l.subject || '';
+  const showAssign = isOwner && !isContact;
 
-      {!isOwner && (
-        <p className="muted crm2-note">
-          <i className="fas fa-user-tie" /> Map enquiries and buyers assigned to you. Call or WhatsApp them, move them through the pipeline (Contacted → Site visit → Negotiation → Booked), add notes and set the next follow-up — the super admin sees everything you do.
-        </p>
-      )}
+  const srcInfo = (l: Lead) => isMap
+    ? (l.integration
+      ? { icon: 'fas fa-globe', tone: 'teal', label: 'Partner website', sub: l.integration.website }
+      : { icon: 'fas fa-map-location-dot', tone: 'blue', label: 'Map Enquiry', sub: ROLE_META[l.role || 'buyer'].short.replace(/s$/, '') })
+    : isSignup ? { icon: 'fas fa-user-plus', tone: 'green', label: 'Buyer Account', sub: 'Signed up on the site' }
+      : (() => {
+        const m = CONTACT_SOURCE_META[l.source || 'contact-form'] || { icon: 'fas fa-envelope', tone: 'amber' };
+        return { icon: m.icon, tone: m.tone, label: m.label || l.source || 'Contact Form', sub: l.added_by ? 'Added by hand' : '' };
+      })();
+  const locationOf = (l: Lead) => isMap
+    ? (l.locations?.length ? l.locations.join(', ') : l.project?.location || '')
+    : isSignup ? l.buyer?.profile?.area || '' : l.location || '';
 
-      <div className="sc-row five">
-        <StatCard icon="fa-file-lines" tone="green" value={totalAll.toLocaleString('en-IN')} label={isOwner ? 'Total Leads' : 'My Leads'} title="All sources together" />
-        <StatCard icon="fa-file-circle-plus" tone="blue" value={new30.toLocaleString('en-IN')} label="New (Last 30 days)" title={`${sourceLabel} received in the last 30 days`} />
-        <StatCard icon="fa-calendar-check" tone="amber" value={counts.due.toLocaleString('en-IN')} label="Follow-up due" on={filter === 'due'} onClick={() => setFilter(filter === 'due' ? 'all' : 'due')} />
-        <StatCard icon="fa-calendar-days" tone="violet" value={visits.toLocaleString('en-IN')} label="Site Visits Booked" on={filter === 'site_visit'} onClick={() => setFilter(filter === 'site_visit' ? 'all' : 'site_visit')} title="Leads at the Site visit stage or who booked a visit on the map" />
-        <StatCard icon="fa-check" tone="teal" value={counts.won.toLocaleString('en-IN')} label="Converted" on={filter === 'won'} onClick={() => setFilter(filter === 'won' ? 'all' : 'won')} title="Leads marked Booked" />
-      </div>
-
-      <div className="crm2-body">
-        <aside className="crm2-side">
-          <section className="pg-card crm2-nav">
-            <ul>
-              {([['all', isOwner ? 'All Leads' : 'My Leads'], ['due', 'Follow-up due'], ...LEAD_STAGES.map((st) => [st.key, st.label])] as [typeof filter, string][]).map(([k, lbl]) => (
-                <li key={k}>
-                  <button type="button" className={filter === k ? 'on' : ''} onClick={() => setFilter(k)}>
-                    <span className="dot" style={{ background: STAGE_DOT[k] || '#9b9a94' }} />{lbl}<b>{counts[k].toLocaleString('en-IN')}</b>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </section>
-          <section className="pg-card crm2-nav">
-            <h4>Lead Sources</h4>
-            <ul>
-              <li><button type="button" className={isMap ? 'on' : ''} onClick={() => switchSource('map')}><i className="fas fa-map-location-dot" />Map enquiries<b>{bySource.map.length}</b></button></li>
-              <li><button type="button" className={isSignup ? 'on' : ''} onClick={() => switchSource('signup')}><i className="fas fa-user-plus" />Buyer accounts<b>{bySource.signup.length}</b></button></li>
-              {isOwner && <li><button type="button" className={source === 'contact' ? 'on' : ''} onClick={() => switchSource('contact')}><i className="fas fa-envelope" />Contact form<b>{bySource.contact.length}</b></button></li>}
-            </ul>
-          </section>
-          {isMap && (
-            <section className="pg-card crm2-nav">
-              <h4>Enquirer Type</h4>
-              <ul>
-                <li><button type="button" className={role === 'all' ? 'on' : ''} onClick={() => setRole('all')}><i className="fas fa-users" />All types<b>{bySource.map.filter((l) => matchesLocation(l, loc)).length}</b></button></li>
-                {PEOPLE_ROLES.map((r) => (
-                  <li key={r}><button type="button" className={role === r ? 'on' : ''} onClick={() => setRole(r)}><i className={`fas ${ROLE_META[r].icon}`} />{ROLE_META[r].label}<b>{roleCount(r)}</b></button></li>
-                ))}
-              </ul>
-            </section>
-          )}
-          {isOwner && (
-            <section className="pg-card crm2-nav">
-              <h4>Download CSV</h4>
-              {isMap ? (
-                <div className="crm2-dl">
-                  {PEOPLE_ROLES.map((r) => (
-                    <button key={r} type="button" disabled={!forDownload(r).length} onClick={() => downloadMap(r)} title={`Download ${ROLE_META[r].label} enquiries as CSV`}>
-                      <i className="fas fa-file-csv" /> {ROLE_META[r].short}<b>{forDownload(r).length}</b>
-                    </button>
-                  ))}
-                </div>
-              ) : (
-                <div className="crm2-dl">
-                  <button type="button" disabled={!list.length} onClick={downloadContact}><i className="fas fa-file-csv" /> {isSignup ? 'Buyer accounts' : 'Contact leads'}<b>{list.length}</b></button>
-                </div>
-              )}
-              <p className="crm2-hint">Downloads follow the filters you have set.</p>
-            </section>
-          )}
-        </aside>
-
-        <section className="pg-card crm2-main">
-          <div className="pg-card-head">
-            <h3>
-              {!isOwner ? (isMap ? 'My map enquiries' : 'My buyer leads') : `All ${sourceLabel}`} ({list.length.toLocaleString('en-IN')})
-              <span className={`crm2-live${live ? '' : ' off'}`} title={live ? 'Live — updates automatically' : 'Reconnecting…'}><i className="fas fa-circle" /> {live ? 'Live' : 'Offline'}</span>
-            </h3>
-            <div className="pg-tools">
-              <label className="pg-search">
-                <i className="fas fa-magnifying-glass" />
-                <input placeholder={isMap ? 'Search name, phone, project…' : 'Search name, email, phone…'} value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search leads" />
-              </label>
-              {isMap && <LocationSelect items={bySource.map} value={loc} onChange={setLoc} />}
-              {isOwner && (isSignup || isMap) && (
-                <select className="crm-select" aria-label="Filter by employee" value={assignee} onChange={(e) => setAssignee(e.target.value)}>
-                  <option value="">Assigned to: anyone</option>
-                  <option value={UNASSIGNED}>Not assigned ({all.filter((l) => !l.assigned_to).length})</option>
-                  {staff.map((e) => <option key={e.id} value={e.id}>{e.name} ({all.filter((l) => l.assigned_to === e.id).length})</option>)}
-                </select>
-              )}
-            </div>
-          </div>
-
-          <p className="muted crm2-note">
-            {isMap
-              ? <>Only people who tapped <b>Enquire</b> on a project card. Every buyer who created an account is under{' '}
-                <button type="button" className="link-btn" onClick={() => switchSource('signup')}>Buyer accounts</button>.</>
-              : isSignup ? 'Every buyer who created an account (newest first), with what they are looking for.'
-                : <>Messages sent from the website&apos;s Contact page.</>}
-          </p>
-
-          {loading ? (
-            <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>
-          ) : list.length === 0 ? (
-            <div className="adm-empty">
-              <i className={`fas ${isMap ? 'fa-map-location-dot' : isSignup ? 'fa-user-plus' : 'fa-address-book'}`} />
-              <p>{all.length === 0
-                ? (!isOwner ? 'No leads have been transferred to you yet. The super admin will assign them to you.'
-                  : isMap ? 'No map enquiries yet. When someone taps Enquire on a project card on the live map, it appears here.'
-                  : isSignup ? 'No buyer accounts yet. When a buyer creates an account, they appear here as a lead.'
-                    : 'No leads yet. Submissions from the Contact form appear here.')
-                : 'Nothing matches these filters.'}</p>
-            </div>
-          ) : (
-            <>
-            {isOwner && (
-            <BulkBar sel={pick} ids={list.slice(0, LEADS_RENDER_CAP).map((l) => l.id)} hint={`Select all ${Math.min(list.length, LEADS_RENDER_CAP)} shown — or tick leads to update or delete them together`}>
-              <select className="crm-select" value="" disabled={busy} aria-label="Set status of selected leads"
-                onChange={(e) => { if (e.target.value) setStatusMany(pick.of(list.map((l) => l.id)), e.target.value as Lead['status']); }}>
-                <option value="">Set status…</option>
-                {LEAD_STAGES.map((st) => <option key={st.key} value={st.key}>{st.label}</option>)}
-              </select>
-              {staff.length > 0 && (isSignup || isMap) && (
-                <select className="crm-select" value="" disabled={busy} aria-label="Transfer selected leads to an employee"
-                  onChange={(e) => { if (e.target.value) assignMany(pick.of(list.map((l) => l.id)), e.target.value); }}>
-                  <option value="">Transfer to…</option>
-                  {staff.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
-                  <option value={UNASSIGNED}>Nobody (unassign)</option>
-                </select>
-              )}
-              <button className="adm-btn ghost sm" disabled={busy} title="Share the selected leads' details — you choose the app and contact"
-                onClick={() => { const ids = pick.of(list.map((l) => l.id)); shareWithAnyone(joinLeads(list.filter((l) => ids.includes(l.id)))); }}>
-                <i className="fas fa-share-nodes" /> Share
-              </button>
-              {waStaff.length > 0 && (
-                <select className="crm-select" value="" disabled={busy} aria-label="Send selected leads to an employee on WhatsApp"
-                  onChange={(e) => { if (e.target.value) { const ids = pick.of(list.map((l) => l.id)); sendToEmployee(list.filter((l) => ids.includes(l.id)), e.target.value); } }}>
-                  <option value="">WhatsApp to employee…</option>
-                  {waStaff.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
-                </select>
-              )}
-              <button className="adm-btn danger sm" disabled={busy} onClick={() => { const ids = pick.of(list.map((l) => l.id)); if (confirm(`Delete ${ids.length} lead${ids.length === 1 ? '' : 's'}? You can restore them from Backups → Recycle bin.`)) removeMany(ids); }}><i className="fas fa-trash" /> Delete</button>
-            </BulkBar>
-            )}
-            <div className="table-scroll">
-              <table className="adm-table crm-table crm2-table">
-                <thead>
-                  {isMap
-                    ? <tr><th className="pick" /><th>Name</th><th>Contact</th><th>Project Interest</th><th>Status</th><th>Created</th><th className="acts">Actions</th></tr>
-                    : isSignup
-                      ? <tr><th className="pick" /><th>Name</th><th>Contact</th><th>Looking for</th><th>Activity</th><th>Status</th><th>Signed up</th><th className="acts">Actions</th></tr>
-                      : <tr><th className="pick" /><th>Name</th><th>Contact</th><th>Topic</th><th>Status</th><th>Created</th><th className="acts">Actions</th></tr>}
-                </thead>
-                <tbody>
-                  {list.slice(0, LEADS_RENDER_CAP).map((l) => (
-                    <tr key={l.id} className={`crm-row${pick.has(l.id) ? ' picked' : ''}`} onClick={() => open(l)}>
-                      <td className="pick" onClick={(e) => e.stopPropagation()}>{isOwner && <PickOne sel={pick} id={l.id} label={l.name || l.email || 'lead'} />}</td>
-                      <td className="crm2-name">
-                        <b>{l.name || '—'}</b>
-                        {isMap && (
-                          <small><i className={`fas ${ROLE_META[l.role || 'buyer'].icon}`} /> {ROLE_META[l.role || 'buyer'].short.replace(/s$/, '')}
-                            {l.account
-                              ? <span className="crm2-acc" title={`${l.account.last_login_at ? `Last login ${leadWhen(l.account.last_login_at)}` : 'No login yet'}${l.account.login_count ? ` · ${l.account.login_count} sign-in${l.account.login_count === 1 ? '' : 's'}` : ''}`}>
-                                  <i className="fas fa-user-check" /> {l.account.signed_in ? 'Signed in' : 'Has account'}
-                                </span>
-                              : <span className="crm2-acc guest">Guest</span>}
-                          </small>
-                        )}
-                        {isMap && l.account && <small className="muted">{l.account.last_login_at ? `Last login ${leadWhen(l.account.last_login_at)}` : 'No login yet'}{l.account.login_count ? ` · ${l.account.login_count} sign-in${l.account.login_count === 1 ? '' : 's'}` : ''}</small>}
-                        {isSignup && l.buyer && !l.buyer.account_exists && <small className="muted"><i className="fas fa-user-xmark" /> Account deleted</small>}
-                      </td>
-                      <td className="crm2-contact">{l.phone && <span>{l.phone}</span>}{l.email && <small title={l.email}>{l.email}</small>}{!l.phone && !l.email && <span className="muted">—</span>}</td>
-                      {isMap ? (
-                        <td className="crm2-proj">
-                          <span>{projectName(l) || <span className="muted">Project removed</span>}</span>
-                          {l.locations?.length ? <span className="loc-tags">{l.locations.map((x) => <span className="loc-tag" key={x}>{x}</span>)}</span> : null}
-                        </td>
-                      ) : isSignup ? (
-                        <>
-                          <td className="crm2-proj">{buyerWants(l) || <span className="muted">—</span>}</td>
-                          <td className="crm2-small">
-                            <span>{l.buyer?.last_login_at ? <span title={new Date(l.buyer.last_login_at).toLocaleString('en-IN')}>Last login {leadWhen(l.buyer.last_login_at)}</span> : <span className="muted">Not signed in yet</span>}</span>
-                            <small className="muted">
-                              {[
-                                l.buyer?.login_count ? `${l.buyer.login_count} sign-in${l.buyer.login_count === 1 ? '' : 's'}` : '',
-                                l.buyer?.enquiries.length ? `${l.buyer.enquiries.length} enquir${l.buyer.enquiries.length === 1 ? 'y' : 'ies'}` : '',
-                                l.buyer?.compare.length ? `${l.buyer.compare.length} in compare` : '',
-                              ].filter(Boolean).join(' · ') || '—'}
-                            </small>
-                          </td>
-                        </>
-                      ) : (
-                        <td className="crm2-proj">
-                          <span>{l.subject || '—'}</span>
-                          {l.message && <small className="muted crm2-msg" title={l.message}>{l.message}</small>}
-                        </td>
-                      )}
-                      <td className="crm2-status">
-                        <span className={`crm-pill ${l.status}`}>{stageLabel(l.status)}</span>
-                        {isOwner && l.assigned_name && <small className="muted" title="Transferred to"><i className="fas fa-user-tie" /> {l.assigned_name}</small>}
-                        {l.follow_up_at && <small style={{ color: isOverdue(l.follow_up_at) ? '#b42318' : 'var(--muted)' }} title={fullDate(l.follow_up_at)}><i className="fas fa-calendar-check" /> {isOverdue(l.follow_up_at) ? 'Overdue' : 'Follow-up'} {leadWhen(l.follow_up_at)}</small>}
-                        {l.last_activity_at && <small className="muted" title={fullDate(l.last_activity_at)}>By {l.last_activity_by} · {leadWhen(l.last_activity_at)}</small>}
-                      </td>
-                      <td className="crm2-date" title={fullDate(l.created_at)}>
-                        <span>{l.created_at ? new Date(l.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '—'}</span>
-                        <small className="muted">{leadWhen(l.created_at)}</small>
-                        {isMap && l.site_visit_requested_at && <small className="crm2-visit" title={fullDate(l.site_visit_requested_at)}><i className="fas fa-calendar-check" /> Visit: {l.site_visit_slot || `requested ${leadWhen(l.site_visit_requested_at)}`}</small>}
-                        {isMap && (l.enquiry_clicks || 1) > 1 && <small className="muted">{l.enquiry_clicks}× · last {leadWhen(l.last_enquired_at || undefined)}</small>}
-                      </td>
-                      <td className="acts" onClick={(e) => e.stopPropagation()}>
-                        <div className="crm2-acts">
-                          {l.phone
-                            ? <a href={`tel:${l.phone.replace(/\s/g, '')}`} title={`Call ${l.phone}`} aria-label={`Call ${l.name}`}><i className="fas fa-phone" /></a>
-                            : <span className="off" title="No phone number"><i className="fas fa-phone" /></span>}
-                          {digits(l.phone)
-                            ? <a href={`https://wa.me/${digits(l.phone)}`} target="_blank" rel="noopener" title="WhatsApp" aria-label={`WhatsApp ${l.name}`}><i className="fab fa-whatsapp" /></a>
-                            : l.email ? <a href={`mailto:${l.email}`} title={`Email ${l.email}`} aria-label={`Email ${l.name}`}><i className="fas fa-envelope" /></a>
-                              : <span className="off"><i className="fab fa-whatsapp" /></span>}
-                          <button type="button" onClick={() => open(l)} title="Open lead — notes, follow-up, status, transfer" aria-label={`Open ${l.name}`}><i className="fas fa-ellipsis-vertical" /></button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            </>
-          )}
-          {!loading && truncated[source] != null && (
-            <div className="adm-empty" style={{ padding: '12px 0' }}>
-              <p>Only the newest {bySource[source].length} of {truncated[source]} leads are loaded here. Older leads are kept in the database.</p>
-            </div>
-          )}
-          {!loading && list.length > LEADS_RENDER_CAP && (
-            <div className="adm-empty" style={{ padding: '12px 0' }}>
-              <p>Showing the first {LEADS_RENDER_CAP} of {list.length}. Use search or a filter to narrow down.</p>
-            </div>
-          )}
-        </section>
-      </div>
-    </div>
-
-      {teamOpen && (
-        <div className="crm-drawer-overlay" onClick={() => setTeamOpen(false)}>
-          <aside className="crm-drawer" onClick={(e) => e.stopPropagation()} aria-label="Team activity on leads">
-            <div className="crm-drawer-head">
-              <div className="crm-id big"><span className="crm-ini"><i className="fas fa-clock-rotate-left" /></span><span><b>Team activity</b><small>Notes, status changes, follow-ups and transfers on leads</small></span></div>
-              <button className="adm-btn ghost sm" onClick={() => setTeamOpen(false)} aria-label="Close"><i className="fas fa-xmark" /></button>
-            </div>
-            <select className="crm-select" value={teamWho} onChange={(e) => setTeamWho(e.target.value)} aria-label="Filter by person" style={{ marginBottom: 10 }}>
-              <option value="">Everyone</option>
-              {Array.from(new Map((teamFeed || []).map((e) => [e.by_id || '', e.by_name || 'Someone'])).entries()).map(([id, name]) => <option key={id} value={id}>{name}</option>)}
-            </select>
-            {teamFeed === null ? <p className="crm-meta"><i className="fas fa-spinner fa-spin" /> Loading…</p>
-              : !teamFeed.filter((e) => !teamWho || e.by_id === teamWho).length ? <p className="crm-meta">Nothing yet. When anyone adds a note, changes a status or sets a follow-up, it shows here.</p>
-                : (
-                  <ul className="bl-list">
-                    {teamFeed.filter((e) => !teamWho || e.by_id === teamWho).map((e) => (
-                      <li key={`${e.lead_id}-${e.id}`}>
-                        <button type="button" className="link-btn" style={{ textAlign: 'left' }} onClick={() => openFromFeed(e)}>
-                          <b>{e.by_name || 'Someone'}</b> on <b>{e.lead_name || 'a lead'}</b>
-                        </button>
-                        <span><i className={`fas ${LEAD_EVENT_ICON[e.type]}`} style={{ color: 'var(--muted)', marginRight: 6 }} />{leadEventText(e)}</span>
-                        <small title={fullDate(e.at)}>{leadWhen(e.at)}</small>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-          </aside>
+  const detail = sel && (
+    <aside className={`crm3-panel${docked ? ' docked' : ''}`} onClick={(e) => e.stopPropagation()} aria-label={`Lead: ${sel.name || sel.email || ''}`}>
+      <div className="crm3-ph">
+        <span className={`crm3-av lg ${avTone(sel.name || sel.email || '')}`}>{initials(sel)}</span>
+        <div className="crm3-ph-t">
+          <div className="crm3-ph-name"><b>{sel.name || '—'}</b><span className={`crm3-pill ${sel.status}`}><i className={`fas ${STAGE_ICON[sel.status] || 'fa-circle'}`} />{stageLabel(sel.status)}</span></div>
+          <small>{isMap ? ROLE_META[sel.role || 'buyer'].label : isSignup ? 'Buyer account' : (sel.subject || 'Contact form')}</small>
+          {sel.phone && <a href={`tel:${sel.phone.replace(/\s/g, '')}`}><i className="fas fa-phone" /> {sel.phone}</a>}
+          {sel.email && <a href={`mailto:${sel.email}`} title={sel.email}><i className="fas fa-envelope" /> <span>{sel.email}</span></a>}
         </div>
-      )}
+        <button type="button" className="crm3-x" onClick={() => setSel(null)} aria-label="Close"><i className="fas fa-xmark" /></button>
+      </div>
 
-      {sel && (
-        <div className="crm-drawer-overlay" onClick={() => setSel(null)}>
-          <aside className="crm-drawer" onClick={(e) => e.stopPropagation()}>
-            <div className="crm-drawer-head">
-              <div className="crm-id big"><span className="crm-ini">{initials(sel)}</span><span><b>{sel.name}</b><small>{isMap ? ROLE_META[sel.role || 'buyer'].label : sel.subject}</small></span></div>
-              <button className="adm-btn ghost sm" onClick={() => setSel(null)}><i className="fas fa-xmark" /></button>
-            </div>
+      <div className="crm3-ptabs" role="tablist">
+        {([['overview', 'Overview'], ['activity', `Activity${sel.activity?.length ? ` (${sel.activity.length})` : ''}`], ['notes', 'Notes']] as const).map(([k, lbl]) => (
+          <button key={k} type="button" role="tab" aria-selected={ptab === k} className={ptab === k ? 'on' : ''} onClick={() => setPtab(k)}>{lbl}</button>
+        ))}
+      </div>
 
-            <div className="crm-block">
-              <h4>Status</h4>
-              <div className={`crm-status ${sel.status}`}>
-                <span className="dot" aria-hidden="true" />
-                <select className="crm-select" value={sel.status} disabled={busy} aria-label="Lead status"
-                  onChange={(e) => setStatus(sel, e.target.value as Lead['status'])}>
-                  {LEAD_STAGES.map((s) => <option key={s.key} value={s.key}>{s.label}</option>)}
-                </select>
+      <div className="crm3-pbody">
+        {ptab === 'overview' && (
+          <>
+            <dl className="crm3-kv">
+              <div><dt><i className="fas fa-house" /> {isContact ? 'Topic' : 'Looking for'}</dt><dd>{wantOf(sel) || '—'}</dd></div>
+              <div><dt><i className="fas fa-location-dot" /> Location</dt><dd>{locationOf(sel) || '—'}</dd></div>
+              {isMap && <div><dt><i className="fas fa-building" /> Project</dt><dd>{projectName(sel) || 'Project removed'}</dd></div>}
+              <div><dt><i className="fas fa-globe" /> Source</dt><dd>{srcInfo(sel).label}{srcInfo(sel).sub ? <small>{srcInfo(sel).sub}</small> : null}</dd></div>
+              <div>
+                <dt><i className="fas fa-circle-half-stroke" /> Status</dt>
+                <dd>
+                  <select className="crm-select" value={sel.status} disabled={busy} aria-label="Lead status" onChange={(e) => setStatus(sel, e.target.value as Lead['status'])}>
+                    {LEAD_STAGES.map((s) => <option key={s.key} value={s.key}>{s.label}</option>)}
+                  </select>
+                </dd>
               </div>
-            </div>
-
-            {isOwner && (isSignup || isMap) && <div className="crm-block">
-              <h4>Transferred to</h4>
-              {staff.length ? (
-                <select className="crm-select" value={sel.assigned_to || ''} disabled={busy} onChange={(e) => assign(sel, e.target.value)} aria-label="Transfer this lead to an employee">
-                  <option value="">Nobody yet</option>
-                  {sel.assigned_to && !staff.some((e) => e.id === sel.assigned_to) && <option value={sel.assigned_to}>{sel.assigned_name || 'Former employee'}</option>}
-                  {staff.map((e) => <option key={e.id} value={e.id}>{e.name} · {e.email}</option>)}
-                </select>
-              ) : <p className="crm-meta" style={{ marginTop: 0 }}>No employees with access to Leads yet — add one under Employees and tick Leads.</p>}
-              {sel.assigned_to && sel.assigned_at && <p className="crm-meta">Since {leadWhen(sel.assigned_at)}{sel.assigned_by ? ` · by ${sel.assigned_by}` : ''}</p>}
-            </div>}
-
-            <div className="crm-contact">
-              {sel.email && <a className="adm-btn ghost sm" href={`mailto:${sel.email}`}><i className="fas fa-envelope" /> {sel.email}</a>}
-              {sel.phone && <a className="adm-btn ghost sm" href={`tel:${sel.phone.replace(/\s/g, '')}`}><i className="fas fa-phone" /> {sel.phone}</a>}
-              {/* Super admin: one Share button for the lead's details. Employees chat with the buyer instead. */}
-              {isOwner
-                ? <button type="button" className="adm-btn primary sm" onClick={() => shareWithAnyone(leadShareText(sel))} title="Share this lead's details — you choose the app and contact"><i className="fas fa-share-nodes" /> Share</button>
-                : sel.phone && <a className="adm-btn ghost sm" target="_blank" rel="noopener" href={`https://wa.me/${sel.phone.replace(/\D/g, '')}`}><i className="fab fa-whatsapp" /> WhatsApp</a>}
-            </div>
-
-            {isOwner && (
-              <div className="crm-block lead-wa">
-                <h4><i className="fab fa-whatsapp" /> Send to an employee on WhatsApp</h4>
-                {waStaff.length ? (
-                  <div className="lead-wa-btns">
-                    {/* The employee this lead is transferred to comes first. */}
-                    {[...waStaff].sort((a, b) => Number(b.id === sel.assigned_to) - Number(a.id === sel.assigned_to)).map((e) => (
-                      <button key={e.id} type="button" className={`adm-btn sm ${e.id === sel.assigned_to ? 'primary' : 'ghost'}`} onClick={() => sendToEmployee([sel], e.id)} title={`Open WhatsApp to ${e.mobile} with this lead`}>
-                        <i className="fab fa-whatsapp" /> {e.name}{e.id === sel.assigned_to ? ' (assigned)' : ''}
-                      </button>
-                    ))}
+              {showAssign && (
+                <div>
+                  <dt><i className="fas fa-user-tie" /> Assigned to</dt>
+                  <dd>
+                    {staff.length ? (
+                      <select className="crm-select" value={sel.assigned_to || ''} disabled={busy} onChange={(e) => assign(sel, e.target.value)} aria-label="Transfer this lead to an employee">
+                        <option value="">Nobody yet</option>
+                        {sel.assigned_to && !staff.some((e) => e.id === sel.assigned_to) && <option value={sel.assigned_to}>{sel.assigned_name || 'Former employee'}</option>}
+                        {staff.map((e) => <option key={e.id} value={e.id}>{e.name} · {e.email}</option>)}
+                      </select>
+                    ) : <small>No employees with access to Leads yet — add one under Employees and tick Leads.</small>}
+                    {sel.assigned_to && sel.assigned_at && <small>Since {leadWhen(sel.assigned_at)}{sel.assigned_by ? ` · by ${sel.assigned_by}` : ''}</small>}
+                  </dd>
+                </div>
+              )}
+              <div><dt><i className="fas fa-calendar-plus" /> {isSignup ? 'Signed up' : 'Created on'}</dt><dd>{fullDate(sel.created_at)}</dd></div>
+              <div><dt><i className="fas fa-clock" /> Last activity</dt><dd>{sel.last_activity_at ? <>{leadWhen(sel.last_activity_at)}<small>by {sel.last_activity_by}</small></> : '—'}</dd></div>
+              <div>
+                <dt><i className="fas fa-calendar-check" /> Next follow-up</dt>
+                <dd>
+                  <div className="crm3-follow">
+                    <input className="crm-search" type="datetime-local" value={followDraft} onChange={(e) => setFollowDraft(e.target.value)} aria-label="Next follow-up" />
+                    <button className="adm-btn ghost sm" disabled={busy || !followDraft || toLocalInput(sel.follow_up_at) === followDraft} onClick={() => saveFollowUp()}>Save</button>
+                    {sel.follow_up_at && <button className="adm-btn ghost sm" disabled={busy} onClick={() => saveFollowUp(true)}>Clear</button>}
                   </div>
-                ) : (
-                  <p className="crm-meta" style={{ marginTop: 0 }}>
-                    Add a WhatsApp number to your employees (Employees → Edit) and they show up here.
-                  </p>
-                )}
-                {staff.length > waStaff.length && waStaff.length > 0 && (
-                  <p className="crm-meta" style={{ margin: '6px 0 0' }}>{staff.length - waStaff.length} employee{staff.length - waStaff.length === 1 ? ' has' : 's have'} no WhatsApp number yet (Employees → Edit).</p>
-                )}
+                  {sel.follow_up_at && isOverdue(sel.follow_up_at) && <small style={{ color: '#b42318' }}><i className="fas fa-triangle-exclamation" /> Follow-up was due {leadWhen(sel.follow_up_at)}</small>}
+                </dd>
               </div>
-            )}
+            </dl>
 
             {isMap ? (
               <>
-              <div className="crm-block">
-                <h4>Enquiry</h4>
-                <table className="adm-table">
-                  <tbody>
-                    <tr><td className="muted">Name</td><td>{sel.name}</td></tr>
-                    <tr><td className="muted">Email</td><td>{sel.email || '—'}</td></tr>
-                    <tr><td className="muted">WhatsApp</td><td>{sel.phone || '—'}</td></tr>
-                    <tr><td className="muted">Enquirer type</td><td>{ROLE_META[sel.role || 'buyer'].label}</td></tr>
-                    <tr><td className="muted">How</td><td>{sel.account?.signed_in ? 'Enquire now while signed in' : 'Enquiry form (not signed in)'}</td></tr>
-                    <tr><td className="muted">First enquired</td><td>{fullDate(sel.created_at)}</td></tr>
-                    {sel.site_visit_requested_at && <tr><td className="muted">Site visit</td><td><b style={{ color: '#2f7a3c' }}>{sel.site_visit_slot || 'Requested'}</b><small className="muted" style={{ display: 'block' }}>Booked {fullDate(sel.site_visit_requested_at)}</small></td></tr>}
-                    <tr><td className="muted">Times tapped</td><td>{sel.enquiry_clicks || 1}</td></tr>
-                    {(sel.enquiry_clicks || 1) > 1 && <tr><td className="muted">Last enquired</td><td>{fullDate(sel.last_enquired_at)}</td></tr>}
-                  </tbody>
-                </table>
-              </div>
-              <div className="crm-block">
-                <h4>Asked about</h4>
-                {sel.project ? (
-                  <table className="adm-table">
-                    <tbody>
-                      <tr><td className="muted">Project</td><td>{projectName(sel)}</td></tr>
-                      <tr><td className="muted">Location</td><td>{sel.project.location || '—'}</td></tr>
-                      <tr><td className="muted">Developer</td><td>{sel.project.developer || '—'}</td></tr>
-                      <tr><td className="muted">Status</td><td>{PIN_STATUS[sel.project.status || ''] || sel.project.status || '—'}</td></tr>
-                      <tr><td className="muted">Type</td><td>{sel.project.type || '—'}</td></tr>
-                      <tr><td className="muted">Configuration</td><td>{sel.project.configuration || '—'}</td></tr>
-                      <tr><td className="muted">Size</td><td>{sel.project.sqft || '—'}</td></tr>
-                      <tr><td className="muted">Price</td><td>{sel.project.price || '—'}</td></tr>
-                      <tr><td className="muted">Possession</td><td>{sel.project.possession || '—'}</td></tr>
-                    </tbody>
-                  </table>
-                ) : <p className="crm-msg">This project has since been removed from the map.</p>}
-                {sel.project && (
-                  <div className="adm-actions" style={{ marginTop: 8 }}>
-                    <a className="adm-btn ghost sm" href={`/map?pin=${encodeURIComponent(sel.project.id)}`} target="_blank" rel="noopener"><i className="fas fa-map-location-dot" /> View on map</a>
-                  </div>
-                )}
-              </div>
-              {sel.account ? (
                 <div className="crm-block">
-                  <h4>{accountRole(sel.account.role).label} account {sel.account.signed_in ? <span className="ml-badge"><i className="fas fa-user-check" /> Enquired while signed in</span> : null}</h4>
-                  <div className="acs-stats">
-                    <div><b>{sel.account.last_login_at ? leadWhen(sel.account.last_login_at) : '—'}</b><span>Last login</span></div>
-                    <div><b>{sel.account.login_count}</b><span>Sign-ins</span></div>
-                    <div><b>{sel.account.enquiry_count}</b><span>Enquiries</span></div>
-                  </div>
+                  <h4>Enquiry</h4>
                   <table className="adm-table">
                     <tbody>
-                      <tr><td className="muted">Account name</td><td>{sel.account.name || '—'}</td></tr>
-                      <tr><td className="muted">Account email</td><td>{sel.account.email || '—'}</td></tr>
-                      <tr><td className="muted">Account mobile</td><td>{sel.account.mobile || '—'}</td></tr>
-                      {([['configuration', 'Looking for'], ['budget', 'Budget'], ['area', 'Preferred area'], ['timeline', 'Planning to buy'], ['purpose', 'Buying for']] as const).map(([k, lbl]) => (
-                        <tr key={k}><td className="muted">{lbl}</td><td>{sel.account?.profile?.[k] || '—'}</td></tr>
-                      ))}
-                      <tr><td className="muted">Compare list</td><td>{sel.account.compare_count ? `${sel.account.compare_count} project${sel.account.compare_count === 1 ? '' : 's'}` : '—'}</td></tr>
-                      {sel.account.member_since && <tr><td className="muted">Member since</td><td>{new Date(sel.account.member_since).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</td></tr>}
+                      <tr><td className="muted">Name</td><td>{sel.name}</td></tr>
+                      <tr><td className="muted">Email</td><td>{sel.email || '—'}</td></tr>
+                      <tr><td className="muted">WhatsApp</td><td>{sel.phone || '—'}</td></tr>
+                      <tr><td className="muted">Enquirer type</td><td>{ROLE_META[sel.role || 'buyer'].label}</td></tr>
+                      <tr><td className="muted">How</td><td>{sel.account?.signed_in ? 'Enquire now while signed in' : 'Enquiry form (not signed in)'}</td></tr>
+                      <tr><td className="muted">First enquired</td><td>{fullDate(sel.created_at)}</td></tr>
+                      {sel.site_visit_requested_at && <tr><td className="muted">Site visit</td><td><b style={{ color: '#2f7a3c' }}>{sel.site_visit_slot || 'Requested'}</b><small className="muted" style={{ display: 'block' }}>Booked {fullDate(sel.site_visit_requested_at)}</small></td></tr>}
+                      <tr><td className="muted">Times tapped</td><td>{sel.enquiry_clicks || 1}</td></tr>
+                      {(sel.enquiry_clicks || 1) > 1 && <tr><td className="muted">Last enquired</td><td>{fullDate(sel.last_enquired_at)}</td></tr>}
                     </tbody>
                   </table>
                 </div>
-              ) : (
-                <p className="crm-meta">Guest enquiry — this person doesn&apos;t have an account.</p>
-              )}
+                <div className="crm-block">
+                  <h4>Asked about</h4>
+                  {sel.project ? (
+                    <table className="adm-table">
+                      <tbody>
+                        <tr><td className="muted">Project</td><td>{projectName(sel)}</td></tr>
+                        <tr><td className="muted">Location</td><td>{sel.project.location || '—'}</td></tr>
+                        <tr><td className="muted">Developer</td><td>{sel.project.developer || '—'}</td></tr>
+                        <tr><td className="muted">Status</td><td>{PIN_STATUS[sel.project.status || ''] || sel.project.status || '—'}</td></tr>
+                        <tr><td className="muted">Type</td><td>{sel.project.type || '—'}</td></tr>
+                        <tr><td className="muted">Configuration</td><td>{sel.project.configuration || '—'}</td></tr>
+                        <tr><td className="muted">Size</td><td>{sel.project.sqft || '—'}</td></tr>
+                        <tr><td className="muted">Price</td><td>{sel.project.price || '—'}</td></tr>
+                        <tr><td className="muted">Possession</td><td>{sel.project.possession || '—'}</td></tr>
+                      </tbody>
+                    </table>
+                  ) : <p className="crm-msg">This project has since been removed from the map.</p>}
+                  {sel.project && (
+                    <div className="adm-actions" style={{ marginTop: 8 }}>
+                      <a className="adm-btn ghost sm" href={`/map?pin=${encodeURIComponent(sel.project.id)}`} target="_blank" rel="noopener"><i className="fas fa-map-location-dot" /> View on map</a>
+                    </div>
+                  )}
+                </div>
+                {sel.account ? (
+                  <div className="crm-block">
+                    <h4>{accountRole(sel.account.role).label} account {sel.account.signed_in ? <span className="ml-badge"><i className="fas fa-user-check" /> Enquired while signed in</span> : null}</h4>
+                    <div className="acs-stats">
+                      <div><b>{sel.account.last_login_at ? leadWhen(sel.account.last_login_at) : '—'}</b><span>Last login</span></div>
+                      <div><b>{sel.account.login_count}</b><span>Sign-ins</span></div>
+                      <div><b>{sel.account.enquiry_count}</b><span>Enquiries</span></div>
+                    </div>
+                    <table className="adm-table">
+                      <tbody>
+                        <tr><td className="muted">Account name</td><td>{sel.account.name || '—'}</td></tr>
+                        <tr><td className="muted">Account email</td><td>{sel.account.email || '—'}</td></tr>
+                        <tr><td className="muted">Account mobile</td><td>{sel.account.mobile || '—'}</td></tr>
+                        {([['configuration', 'Looking for'], ['budget', 'Budget'], ['area', 'Preferred area'], ['timeline', 'Planning to buy'], ['purpose', 'Buying for']] as const).map(([k, lbl]) => (
+                          <tr key={k}><td className="muted">{lbl}</td><td>{sel.account?.profile?.[k] || '—'}</td></tr>
+                        ))}
+                        <tr><td className="muted">Compare list</td><td>{sel.account.compare_count ? `${sel.account.compare_count} project${sel.account.compare_count === 1 ? '' : 's'}` : '—'}</td></tr>
+                        {sel.account.member_since && <tr><td className="muted">Member since</td><td>{new Date(sel.account.member_since).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</td></tr>}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : (
+                  <p className="crm-meta">Guest enquiry — this person doesn&apos;t have an account.</p>
+                )}
               </>
             ) : isSignup && sel.buyer ? (
               <>
@@ -2197,34 +2094,64 @@ function LeadsPanel({ flash, isOwner, focusId, onFocusDone }: { flash: (m: strin
             ) : (
               <div className="crm-block"><h4>Message</h4><p className="crm-msg">{sel.message || '—'}</p></div>
             )}
-            <div className="crm-block">
-              <h4>Next follow-up</h4>
-              <div className="acs-inline">
-                <input className="crm-search" type="datetime-local" value={followDraft} onChange={(e) => setFollowDraft(e.target.value)} aria-label="Next follow-up" />
-                <button className="adm-btn ghost sm" disabled={busy || !followDraft || toLocalInput(sel.follow_up_at) === followDraft} onClick={() => saveFollowUp()}>Save</button>
-                {sel.follow_up_at && <button className="adm-btn ghost sm" disabled={busy} onClick={() => saveFollowUp(true)}>Clear</button>}
-              </div>
-              {sel.follow_up_at && isOverdue(sel.follow_up_at) && <p className="crm-meta" style={{ color: '#b42318' }}><i className="fas fa-triangle-exclamation" /> Follow-up was due {leadWhen(sel.follow_up_at)}</p>}
-            </div>
 
+            {isOwner && (
+              <div className="crm-block lead-wa">
+                <h4><i className="fab fa-whatsapp" /> Share this lead</h4>
+                <div className="lead-wa-btns">
+                  <button type="button" className="adm-btn primary sm" onClick={() => shareWithAnyone(leadShareText(sel))} title="Share this lead's details — you choose the app and contact"><i className="fas fa-share-nodes" /> Share</button>
+                  {/* The employee this lead is transferred to comes first. */}
+                  {[...waStaff].sort((a, b) => Number(b.id === sel.assigned_to) - Number(a.id === sel.assigned_to)).map((e) => (
+                    <button key={e.id} type="button" className={`adm-btn sm ${e.id === sel.assigned_to ? 'primary' : 'ghost'}`} onClick={() => sendToEmployee([sel], e.id)} title={`Open WhatsApp to ${e.mobile} with this lead`}>
+                      <i className="fab fa-whatsapp" /> {e.name}{e.id === sel.assigned_to ? ' (assigned)' : ''}
+                    </button>
+                  ))}
+                </div>
+                {!waStaff.length && <p className="crm-meta" style={{ margin: '6px 0 0' }}>Add a WhatsApp number to your employees (Employees → Edit) to send leads to them here.</p>}
+                {staff.length > waStaff.length && waStaff.length > 0 && (
+                  <p className="crm-meta" style={{ margin: '6px 0 0' }}>{staff.length - waStaff.length} employee{staff.length - waStaff.length === 1 ? ' has' : 's have'} no WhatsApp number yet (Employees → Edit).</p>
+                )}
+              </div>
+            )}
+            <p className="crm-meta">{isSignup ? 'Signed up' : 'Received'} {leadWhen(sel.created_at)} · via {isMap ? (sel.integration ? `partner website ${sel.integration.website} (Developer API: ${sel.integration.app_name}; consent stated by the partner)` : 'Enquire on the live map') : (sel.source || 'contact form')}</p>
+          </>
+        )}
+
+        {ptab === 'activity' && (
+          sel.activity?.length ? (
+            <ul className="crm3-timeline">
+              {sel.activity.map((e) => (
+                <li key={e.id}>
+                  <span className="ic"><i className={`fas ${LEAD_EVENT_ICON[e.type]}`} /></span>
+                  <span className="t">
+                    <span>{leadEventText(e)}</span>
+                    <small>{e.by_name || 'Someone'}{e.by_role === 'admin' ? ' (super admin)' : ''} · <span title={fullDate(e.at)}>{leadWhen(e.at)}</span></small>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          ) : <p className="crm-meta">No notes or activity yet. Notes, status changes, follow-ups and transfers show here.</p>
+        )}
+
+        {ptab === 'notes' && (
+          <>
             <div className="crm-block">
-              <h4>Notes &amp; activity {sel.activity?.length ? `(${sel.activity.length})` : ''}</h4>
-              <textarea className="crm-notes" rows={3} value={noteDraft} onChange={(e) => setNoteDraft(e.target.value)} placeholder="e.g. Called — wants a site visit on Saturday" />
+              <h4>Add a note</h4>
+              <textarea ref={noteRef} className="crm-notes" rows={3} value={noteDraft} onChange={(e) => setNoteDraft(e.target.value)} placeholder="e.g. Called — wants a site visit on Saturday" />
               <div className="adm-actions" style={{ marginTop: 8 }}>
                 <button className="adm-btn primary sm" disabled={busy || !noteDraft.trim()} onClick={addNote}><i className="fas fa-plus" /> Add note</button>
               </div>
-              {sel.activity?.length ? (
-                <ul className="bl-list" style={{ marginTop: 10 }}>
-                  {sel.activity.map((e) => (
+              {sel.activity?.some((e) => e.type === 'note') ? (
+                <ul className="crm3-timeline" style={{ marginTop: 12 }}>
+                  {sel.activity.filter((e) => e.type === 'note').map((e) => (
                     <li key={e.id}>
-                      <span><i className={`fas ${LEAD_EVENT_ICON[e.type]}`} style={{ color: 'var(--muted)', marginRight: 6 }} />{leadEventText(e)}</span>
-                      <small>{e.by_name || 'Someone'}{e.by_role === 'admin' ? ' (super admin)' : ''} · <span title={fullDate(e.at)}>{leadWhen(e.at)}</span></small>
+                      <span className="ic"><i className={`fas ${LEAD_EVENT_ICON.note}`} /></span>
+                      <span className="t"><span>{e.text}</span><small>{e.by_name || 'Someone'}{e.by_role === 'admin' ? ' (super admin)' : ''} · <span title={fullDate(e.at)}>{leadWhen(e.at)}</span></small></span>
                     </li>
                   ))}
                 </ul>
-              ) : <p className="crm-meta">No notes or activity yet.</p>}
+              ) : null}
             </div>
-
             {(isOwner || sel.notes) && (
               <div className="crm-block">
                 <h4>Internal notes</h4>
@@ -2239,8 +2166,416 @@ function LeadsPanel({ flash, isOwner, focusId, onFocusDone }: { flash: (m: strin
                 ) : <p className="crm-msg">{sel.notes}</p>}
               </div>
             )}
-            <p className="crm-meta">{isSignup ? 'Signed up' : 'Received'} {leadWhen(sel.created_at)} · via {isMap ? (sel.integration ? `partner website ${sel.integration.website} (Developer API: ${sel.integration.app_name}; consent stated by the partner)` : 'Enquire on the live map') : (sel.source || 'contact form')}</p>
+          </>
+        )}
+      </div>
+
+      <div className="crm3-pfoot four">
+        {sel.phone
+          ? <a className="call" href={`tel:${sel.phone.replace(/\s/g, '')}`}><i className="fas fa-phone" /> Call</a>
+          : <span className="call off"><i className="fas fa-phone" /> Call</span>}
+        {digits(sel.phone)
+          ? <a className="wa" href={`https://wa.me/${digits(sel.phone)}`} target="_blank" rel="noopener"><i className="fab fa-whatsapp" /> WhatsApp</a>
+          : <span className="off wa"><i className="fab fa-whatsapp" /> WhatsApp</span>}
+        {sel.email
+          ? <a className="mail" href={`mailto:${sel.email}`}><i className="fas fa-envelope" /> Email</a>
+          : <span className="off mail"><i className="fas fa-envelope" /> Email</span>}
+        <details className="crm3-pmore">
+          <summary><i className="fas fa-ellipsis" /> More</summary>
+          <div className="crm3-pmore-menu" onClick={(e) => { (e.currentTarget.parentElement as HTMLDetailsElement).open = false; }}>
+            <button type="button" onClick={() => { setPtab('notes'); setTimeout(() => noteRef.current?.focus(), 0); }}><i className="fas fa-file-pen" /> Add note</button>
+            <button type="button" onClick={() => setPtab('activity')}><i className="fas fa-clock-rotate-left" /> Activity</button>
+            {isOwner && <button type="button" onClick={() => shareWithAnyone(leadShareText(sel))}><i className="fas fa-share-nodes" /> Share lead</button>}
+            {isOwner && <button type="button" className="danger" onClick={() => remove(sel)}><i className="fas fa-trash" /> Delete lead</button>}
+          </div>
+        </details>
+      </div>
+    </aside>
+  );
+
+  return (
+    <>
+    <div className="crm3">
+      <header className="crm3-head">
+        <span className="crm3-head-ic" aria-hidden="true"><i className="fas fa-people-group" /></span>
+        <div className="crm3-head-t">
+          <h2>CRM &amp; Leads</h2>
+          <p>Manage enquiries, follow-ups and convert leads into site visits.</p>
+        </div>
+        <div className="crm3-head-art">
+          <button type="button" className="crm3-promo" onClick={() => setFilter('new')} title="Show new leads to work on">
+            <span className="ic" aria-hidden="true"><i className="fas fa-bullseye" /></span>
+            <span>Turn enquiries into site visits</span>
+            <span className="go" aria-hidden="true"><i className="fas fa-arrow-right" /></span>
+          </button>
+        </div>
+        <div className="crm3-head-acts">
+          {isOwner && <button type="button" className="crm3-btn" onClick={() => { setTeamOpen(true); loadTeamFeed(); }}><i className="fas fa-clock-rotate-left" /> Team Activity</button>}
+          {isOwner
+            ? <button type="button" className="crm3-btn primary" onClick={() => setAddOpen(true)}><i className="fas fa-plus" /> Add Lead</button>
+            : <button type="button" className="crm3-btn primary" onClick={() => load()} disabled={loading}><i className={`fas fa-rotate${loading ? ' fa-spin' : ''}`} /> Refresh Leads</button>}
+        </div>
+      </header>
+
+      {!isOwner && (
+        <p className="muted crm2-note">
+          <i className="fas fa-user-tie" /> Map enquiries and buyers assigned to you. Call or WhatsApp them, move them through the pipeline (Contacted → Site visit → Negotiation → Booked), add notes and set the next follow-up — the super admin sees everything you do.
+        </p>
+      )}
+
+      <div className="crm3-kpis">
+        <CrmKpi icon="fa-users" tone="green" value={totalAll} label={isOwner ? 'Total Leads' : 'My Leads'} title="All sources together" series={daySeries(allLeads.map((l) => l.created_at))} growth={growthPct(allLeads.map((l) => l.created_at))} />
+        <CrmKpi icon="fa-file-lines" tone="blue" value={new30} label="New Leads (30 days)" title={`${sourceLabel} received in the last 30 days`} series={daySeries(scoped.map((l) => l.created_at))} growth={growthPct(scoped.map((l) => l.created_at))} />
+        <CrmKpi icon="fa-clock" tone="amber" value={counts.due} label="Follow-up due" title="Follow-ups due today or overdue" series={daySeries(dueLeads.map((l) => l.follow_up_at))} on={filter === 'due'} onClick={() => setFilter(filter === 'due' ? 'all' : 'due')} />
+        <CrmKpi icon="fa-calendar-days" tone="violet" value={visits} label="Site Visits Booked" title="Leads at the Site visit stage or who booked a visit on the map" series={daySeries(visitLeads.map(visitDate))} growth={growthPct(visitLeads.map(visitDate))} on={filter === 'site_visit'} onClick={() => setFilter(filter === 'site_visit' ? 'all' : 'site_visit')} />
+        <CrmKpi icon="fa-check" tone="teal" value={counts.won} label="Converted" title="Leads marked Booked" series={daySeries(wonLeads.map((l) => l.updated_at))} growth={growthPct(wonLeads.map((l) => l.updated_at))} on={filter === 'won'} onClick={() => setFilter(filter === 'won' ? 'all' : 'won')} />
+      </div>
+
+      <div className={`crm3-body${docked && sel ? ' has-panel' : ''}`}>
+        <section className="crm3-main">
+          <div className="crm3-bar">
+            <div className="crm3-tabs" role="tablist" aria-label="Lead stages">
+              {STAGE_TABS.map((k) => (
+                <button key={k} type="button" role="tab" aria-selected={filter === k} className={`crm3-tab${filter === k ? ' on' : ''}${k === 'due' && counts.due > 0 ? ' alert' : ''}`} onClick={() => setFilter(k)} title={k === 'due' ? 'Follow-ups due today or overdue' : undefined}>
+                  {stageTabLabel(k)} ({counts[k].toLocaleString('en-IN')})
+                </button>
+              ))}
+              <select className={`crm3-more${MORE_STAGES.includes(filter as Lead['status']) ? ' on' : ''}`} value={MORE_STAGES.includes(filter as Lead['status']) ? filter : ''} onChange={(e) => setFilter((e.target.value || 'all') as typeof filter)} aria-label="More stages">
+                <option value="">More stages…</option>
+                {MORE_STAGES.map((k) => <option key={k} value={k}>{stageLabel(k)} ({counts[k].toLocaleString('en-IN')})</option>)}
+              </select>
+            </div>
+            <div className="crm3-tools">
+              <label className="crm3-search">
+                <i className="fas fa-magnifying-glass" />
+                <input placeholder={isMap ? 'Search name, email, phone, project…' : 'Search name, email, phone…'} value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search leads" />
+                {q && <button type="button" onClick={() => setQ('')} aria-label="Clear search"><i className="fas fa-xmark" /></button>}
+              </label>
+              {isMap && <LocationSelect items={bySource.map} value={loc} onChange={setLoc} />}
+              <select className="crm-select" aria-label="Lead source" value={source} onChange={(e) => switchSource(e.target.value as LeadSource)}>
+                <option value="map">{isOwner ? 'Map enquiries' : 'My map enquiries'} ({bySource.map.length})</option>
+                <option value="signup">Buyer accounts ({bySource.signup.length})</option>
+                {isOwner && <option value="contact">Contact &amp; added ({bySource.contact.length})</option>}
+              </select>
+              <details className="crm3-dl crm3-filters">
+                <summary className={`crm3-fbtn${activeFilters ? ' on' : ''}`}><i className="fas fa-filter" /> Filters{activeFilters > 0 && <em>{activeFilters}</em>}</summary>
+                <div className="crm3-dl-menu crm3-fmenu">
+                  {isMap && (
+                    <label><span>Enquirer type</span>
+                      <select className="crm-select" value={role} onChange={(e) => setRole(e.target.value as typeof role)}>
+                        <option value="all">All types ({bySource.map.filter((l) => matchesLocation(l, loc)).length})</option>
+                        {PEOPLE_ROLES.map((r) => <option key={r} value={r}>{ROLE_META[r].label} ({roleCount(r)})</option>)}
+                      </select>
+                    </label>
+                  )}
+                  {showAssign && (
+                    <label><span>Assigned to</span>
+                      <select className="crm-select" value={assignee} onChange={(e) => setAssignee(e.target.value)}>
+                        <option value="">Anyone</option>
+                        <option value={UNASSIGNED}>Not assigned ({all.filter((l) => !l.assigned_to).length})</option>
+                        {staff.map((e) => <option key={e.id} value={e.id}>{e.name} ({all.filter((l) => l.assigned_to === e.id).length})</option>)}
+                      </select>
+                    </label>
+                  )}
+                  <label><span>Sort</span>
+                    <select className="crm-select" value={sort} onChange={(e) => setSort(e.target.value as typeof sort)} disabled={filter === 'due'} title={filter === 'due' ? 'Follow-ups are listed by due time' : undefined}>
+                      <option value="new">Newest first</option>
+                      <option value="old">Oldest first</option>
+                      <option value="activity">Recent activity</option>
+                    </select>
+                  </label>
+                  {activeFilters > 0 && <button type="button" className="link-btn" onClick={() => { setRole('all'); setAssignee(''); setSort('new'); }}>Clear filters</button>}
+                </div>
+              </details>
+              {isOwner && (
+                <details className="crm3-dl">
+                  <summary className="crm3-icon" title="Download CSV (follows your filters)" aria-label="Download CSV"><i className="fas fa-download" /></summary>
+                  <div className="crm3-dl-menu" onClick={(e) => { (e.currentTarget.parentElement as HTMLDetailsElement).open = false; }}>
+                    <small>Download CSV — follows your filters</small>
+                    {isMap ? PEOPLE_ROLES.map((r) => (
+                      <button key={r} type="button" disabled={!forDownload(r).length} onClick={() => downloadMap(r)}>
+                        <i className="fas fa-file-csv" /> {ROLE_META[r].label}<b>{forDownload(r).length}</b>
+                      </button>
+                    )) : (
+                      <button type="button" disabled={!list.length} onClick={downloadContact}><i className="fas fa-file-csv" /> {isSignup ? 'Buyer accounts' : 'Contact & added leads'}<b>{list.length}</b></button>
+                    )}
+                  </div>
+                </details>
+              )}
+              <button type="button" className="crm3-icon" onClick={() => load()} disabled={loading} title="Refresh leads" aria-label="Refresh leads"><i className={`fas fa-rotate${loading ? ' fa-spin' : ''}`} /></button>
+            </div>
+          </div>
+
+          <div className="crm3-sub">
+            <span>
+              <b>{!isOwner ? (isMap ? 'My map enquiries' : 'My buyer leads') : `All ${sourceLabel}`}</b> ({list.length.toLocaleString('en-IN')})
+              {filter !== 'all' && <> · {filter === 'due' ? 'Follow-up due' : stageLabel(filter)} <button type="button" className="link-btn" onClick={() => setFilter('all')}>clear</button></>}
+              {' · '}
+              {isMap
+                ? <>Only people who tapped <b>Enquire</b> on a project card. Every buyer who created an account is under{' '}
+                  <button type="button" className="link-btn" onClick={() => switchSource('signup')}>Buyer accounts</button>.</>
+                : isSignup ? 'Every buyer who created an account, with what they are looking for.'
+                  : 'Messages from the website’s Contact page and leads added by hand.'}
+            </span>
+            <span className={`crm2-live${live ? '' : ' off'}`} title={live ? 'Live — updates automatically' : 'Reconnecting…'}><i className="fas fa-circle" /> {live ? 'Live' : 'Offline'}</span>
+          </div>
+
+          {isOwner && pick.of(shownIds).length > 0 && (
+            <BulkBar sel={pick} ids={shownIds} hint="">
+              <select className="crm-select" value="" disabled={busy} aria-label="Set status of selected leads"
+                onChange={(e) => { if (e.target.value) setStatusMany(pick.of(list.map((l) => l.id)), e.target.value as Lead['status']); }}>
+                <option value="">Set status…</option>
+                {LEAD_STAGES.map((st) => <option key={st.key} value={st.key}>{st.label}</option>)}
+              </select>
+              {staff.length > 0 && !isContact && (
+                <select className="crm-select" value="" disabled={busy} aria-label="Transfer selected leads to an employee"
+                  onChange={(e) => { if (e.target.value) assignMany(pick.of(list.map((l) => l.id)), e.target.value); }}>
+                  <option value="">Transfer to…</option>
+                  {staff.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
+                  <option value={UNASSIGNED}>Nobody (unassign)</option>
+                </select>
+              )}
+              <button className="adm-btn ghost sm" disabled={busy} title="Share the selected leads' details — you choose the app and contact"
+                onClick={() => { const ids = pick.of(list.map((l) => l.id)); shareWithAnyone(joinLeads(list.filter((l) => ids.includes(l.id)))); }}>
+                <i className="fas fa-share-nodes" /> Share
+              </button>
+              {waStaff.length > 0 && (
+                <select className="crm-select" value="" disabled={busy} aria-label="Send selected leads to an employee on WhatsApp"
+                  onChange={(e) => { if (e.target.value) { const ids = pick.of(list.map((l) => l.id)); sendToEmployee(list.filter((l) => ids.includes(l.id)), e.target.value); } }}>
+                  <option value="">WhatsApp to employee…</option>
+                  {waStaff.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
+                </select>
+              )}
+              <button className="adm-btn danger sm" disabled={busy} onClick={() => { const ids = pick.of(list.map((l) => l.id)); if (confirm(`Delete ${ids.length} lead${ids.length === 1 ? '' : 's'}? You can restore them from Backups → Recycle bin.`)) removeMany(ids); }}><i className="fas fa-trash" /> Delete</button>
+            </BulkBar>
+          )}
+
+          {loading ? (
+            <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>
+          ) : list.length === 0 ? (
+            <div className="adm-empty">
+              <i className={`fas ${isMap ? 'fa-map-location-dot' : isSignup ? 'fa-user-plus' : 'fa-address-book'}`} />
+              <p>{all.length === 0
+                ? (!isOwner ? 'No leads have been transferred to you yet. The super admin will assign them to you.'
+                  : isMap ? 'No map enquiries yet. When someone taps Enquire on a project card on the live map, it appears here.'
+                  : isSignup ? 'No buyer accounts yet. When a buyer creates an account, they appear here as a lead.'
+                    : 'No leads yet. Submissions from the Contact form and leads you add appear here.')
+                : 'Nothing matches these filters.'}</p>
+            </div>
+          ) : (
+            <div className="crm3-scroll">
+              <table className="crm3-table">
+                <thead>
+                  <tr>
+                    <th className="pick">{isOwner && <PickAll sel={pick} ids={shownIds} label={`Select all ${shownIds.length} on this page`} />}</th>
+                    <th className="num">#</th>
+                    <th>Lead</th>
+                    <th>Contact</th>
+                    <th>{isContact ? 'Topic' : 'Looking For'}</th>
+                    <th>{isMap ? 'Project / Location' : 'Location'}</th>
+                    <th>Source</th>
+                    <th>Status</th>
+                    {showAssign && <th>Assigned To</th>}
+                    <th>Last Activity</th>
+                    <th className="acts">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {shown.map((l, i) => {
+                    const src = srcInfo(l);
+                    const want = wantOf(l);
+                    return (
+                      <tr key={l.id} className={`${pick.has(l.id) ? 'picked' : ''}${sel?.id === l.id ? ' on' : ''}`} onClick={() => open(l)}>
+                        <td className="pick" onClick={(e) => e.stopPropagation()}>{isOwner && <PickOne sel={pick} id={l.id} label={l.name || l.email || 'lead'} />}</td>
+                        <td className="num">{firstRow + i + 1}</td>
+                        <td className="c-lead">
+                          <div className="crm3-lead">
+                            <span className={`crm3-av ${avTone(l.name || l.email || '')}`}>{initials(l)}</span>
+                            <span className="t">
+                              <b>{l.name || '—'}</b>
+                              {isSignup && l.buyer && !l.buyer.account_exists && <small><i className="fas fa-user-xmark" /> Account deleted</small>}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="c-contact">
+                          {l.phone ? <span className="pri">{l.phone}</span> : null}
+                          {l.email && <small className="em" title={l.email}>{l.email}</small>}
+                          {!l.phone && !l.email && <span className="muted">—</span>}
+                        </td>
+                        <td className="c-look">
+                          <span className={want ? 'pri' : 'muted'}>{want || '—'}</span>
+                          {isContact && l.message && <small className="crm2-msg" title={l.message}>{l.message}</small>}
+                        </td>
+                        <td className="c-proj">
+                          {isMap ? (
+                            <>
+                              <span className="pri">{projectName(l) || <span className="muted">Project removed</span>}</span>
+                              {(l.locations?.length || l.project?.location) ? <small>{l.locations?.length ? l.locations.join(', ') : l.project?.location}</small> : null}
+                            </>
+                          ) : (
+                            <span className={locationOf(l) ? 'pri' : 'muted'}>{locationOf(l) || '—'}</span>
+                          )}
+                        </td>
+                        <td className="c-src">
+                          <div className="crm3-src">
+                            <span className={`crm3-src-ic ${src.tone}`}><i className={src.icon} /></span>
+                            <span>
+                              <span className="pri">{src.label}</span>
+                              {isMap && (
+                                <small title={l.account ? `${l.account.last_login_at ? `Last login ${leadWhen(l.account.last_login_at)}` : 'No login yet'}${l.account.login_count ? ` · ${l.account.login_count} sign-in${l.account.login_count === 1 ? '' : 's'}` : ''}` : 'No account'}>
+                                  {src.sub} · {l.account ? <span className="acc"><i className="fas fa-user-check" /> {l.account.signed_in ? 'Signed in' : 'Has account'}</span> : 'Guest'}
+                                </small>
+                              )}
+                              {isContact && src.sub && <small>{src.sub}</small>}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="c-status">
+                          <span className={`crm3-pill ${l.status}`}><i className="dot" />{stageLabel(l.status)}</span>
+                          {l.follow_up_at && <small style={{ color: isOverdue(l.follow_up_at) ? '#b42318' : undefined }} title={fullDate(l.follow_up_at)}><i className="fas fa-calendar-check" /> {isOverdue(l.follow_up_at) ? 'Overdue' : 'Follow-up'} {leadWhen(l.follow_up_at)}</small>}
+                          {isMap && l.site_visit_requested_at && <small className="crm2-visit" title={`${l.site_visit_slot || 'Site visit requested'} · booked ${fullDate(l.site_visit_requested_at)}`}><i className="fas fa-calendar-check" /> Visit {l.site_visit_slot ? l.site_visit_slot.split(' · ')[0] : 'requested'}</small>}
+                        </td>
+                        {showAssign && (
+                          <td className="c-who">
+                            {l.assigned_name
+                              ? <span className="crm3-who" title="Transferred to"><span className={`crm3-av sm solid ${avTone(l.assigned_name)}`}>{nameInitials(l.assigned_name)}</span>{l.assigned_name}</span>
+                              : <span className="crm3-who none"><span className="crm3-av sm"><i className="fas fa-user" /></span>Unassigned</span>}
+                          </td>
+                        )}
+                        <td className="c-last" title={[
+                          `Last activity: ${fullDate(l.last_activity_at || l.created_at)}${l.last_activity_at ? ` by ${l.last_activity_by}` : ''}`,
+                          `${isSignup ? 'Signed up' : 'Received'}: ${fullDate(l.created_at)}`,
+                          isMap && l.account ? `${l.account.last_login_at ? `Last login ${leadWhen(l.account.last_login_at)}` : 'No login yet'}${l.account.login_count ? ` · ${l.account.login_count} sign-ins` : ''}` : '',
+                          isMap && (l.enquiry_clicks || 1) > 1 ? `Tapped Enquire ${l.enquiry_clicks}× · last ${leadWhen(l.last_enquired_at || undefined)}` : '',
+                          isSignup ? [l.buyer?.last_login_at ? `Last login ${leadWhen(l.buyer.last_login_at)}` : 'Not signed in yet', l.buyer?.login_count ? `${l.buyer.login_count} sign-ins` : '', l.buyer?.enquiries.length ? `${l.buyer.enquiries.length} enquiries` : '', l.buyer?.compare.length ? `${l.buyer.compare.length} in compare` : ''].filter(Boolean).join(' · ') : '',
+                        ].filter(Boolean).join(' · ')}>
+                          <span className="pri">{leadWhen(l.last_activity_at || l.created_at)}</span>
+                          <small>
+                            {l.last_activity_at ? `by ${l.last_activity_by}`
+                              : isSignup ? (l.buyer?.last_login_at ? `Last login ${leadWhen(l.buyer.last_login_at)}` : 'Not signed in yet')
+                                : isMap && (l.enquiry_clicks || 1) > 1 ? `${l.enquiry_clicks}× enquired`
+                                  : isMap && l.account?.login_count ? `${l.account.login_count} sign-in${l.account.login_count === 1 ? '' : 's'}`
+                                    : `${isSignup ? 'Signed up' : 'Received'}`}
+                          </small>
+                        </td>
+                        <td className="c-acts" onClick={(e) => e.stopPropagation()}>
+                          <div className="crm3-acts">
+                            {l.phone
+                              ? <a href={`tel:${l.phone.replace(/\s/g, '')}`} title={`Call ${l.phone}`} aria-label={`Call ${l.name}`}><i className="fas fa-phone" /></a>
+                              : <span className="off" title="No phone number"><i className="fas fa-phone" /></span>}
+                            {digits(l.phone)
+                              ? <a className="wa" href={`https://wa.me/${digits(l.phone)}`} target="_blank" rel="noopener" title="WhatsApp" aria-label={`WhatsApp ${l.name}`}><i className="fab fa-whatsapp" /></a>
+                              : l.email ? <a href={`mailto:${l.email}`} title={`Email ${l.email}`} aria-label={`Email ${l.name}`}><i className="fas fa-envelope" /></a>
+                                : <span className="off"><i className="fab fa-whatsapp" /></span>}
+                            <button type="button" onClick={() => open(l)} title="Open lead — notes, follow-up, status, transfer" aria-label={`Open ${l.name}`}><i className="fas fa-ellipsis-vertical" /></button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          )}
+          {!loading && list.length > 0 && (
+            <div className="crm3-foot">
+              <span className="crm3-count">Showing {(firstRow + 1).toLocaleString('en-IN')}–{(firstRow + shown.length).toLocaleString('en-IN')} of {list.length.toLocaleString('en-IN')} leads</span>
+              {pageCount > 1 && (
+                <nav className="crm3-pages" aria-label="Pages">
+                  <button type="button" disabled={pg <= 1} onClick={() => setPage(pg - 1)} aria-label="Previous page"><i className="fas fa-chevron-left" /></button>
+                  {pageList.map((n, i) => (n === '…'
+                    ? <span key={`gap${i}`} className="gap">…</span>
+                    : <button key={n} type="button" className={n === pg ? 'on' : ''} aria-current={n === pg ? 'page' : undefined} onClick={() => setPage(n)}>{n}</button>))}
+                  <button type="button" disabled={pg >= pageCount} onClick={() => setPage(pg + 1)} aria-label="Next page"><i className="fas fa-chevron-right" /></button>
+                </nav>
+              )}
+              <label className="crm3-per">Rows per page
+                <select className="crm-select" value={perPageS} onChange={(e) => setPerPage(e.target.value as typeof perPageS)}>
+                  {LEAD_PAGE_SIZES.map((n) => <option key={n} value={n}>{n}</option>)}
+                </select>
+              </label>
+            </div>
+          )}
+          {!loading && truncated[source] != null && (
+            <div className="adm-empty" style={{ padding: '12px 0' }}>
+              <p>Only the newest {bySource[source].length} of {truncated[source]} leads are loaded here. Older leads are kept in the database.</p>
+            </div>
+          )}
+        </section>
+
+        {docked && detail}
+      </div>
+    </div>
+
+      {teamOpen && (
+        <div className="crm-drawer-overlay" onClick={() => setTeamOpen(false)}>
+          <aside className="crm-drawer" onClick={(e) => e.stopPropagation()} aria-label="Team activity on leads">
+            <div className="crm-drawer-head">
+              <div className="crm-id big"><span className="crm-ini"><i className="fas fa-clock-rotate-left" /></span><span><b>Team activity</b><small>Notes, status changes, follow-ups and transfers on leads</small></span></div>
+              <button className="adm-btn ghost sm" onClick={() => setTeamOpen(false)} aria-label="Close"><i className="fas fa-xmark" /></button>
+            </div>
+            <select className="crm-select" value={teamWho} onChange={(e) => setTeamWho(e.target.value)} aria-label="Filter by person" style={{ marginBottom: 10 }}>
+              <option value="">Everyone</option>
+              {Array.from(new Map((teamFeed || []).map((e) => [e.by_id || '', e.by_name || 'Someone'])).entries()).map(([id, name]) => <option key={id} value={id}>{name}</option>)}
+            </select>
+            {teamFeed === null ? <p className="crm-meta"><i className="fas fa-spinner fa-spin" /> Loading…</p>
+              : !teamFeed.filter((e) => !teamWho || e.by_id === teamWho).length ? <p className="crm-meta">Nothing yet. When anyone adds a note, changes a status or sets a follow-up, it shows here.</p>
+                : (
+                  <ul className="bl-list">
+                    {teamFeed.filter((e) => !teamWho || e.by_id === teamWho).map((e) => (
+                      <li key={`${e.lead_id}-${e.id}`}>
+                        <button type="button" className="link-btn" style={{ textAlign: 'left' }} onClick={() => openFromFeed(e)}>
+                          <b>{e.by_name || 'Someone'}</b> on <b>{e.lead_name || 'a lead'}</b>
+                        </button>
+                        <span><i className={`fas ${LEAD_EVENT_ICON[e.type]}`} style={{ color: 'var(--muted)', marginRight: 6 }} />{leadEventText(e)}</span>
+                        <small title={fullDate(e.at)}>{leadWhen(e.at)}</small>
+                      </li>
+                    ))}
+                  </ul>
+                )}
           </aside>
+        </div>
+      )}
+
+      {addOpen && (
+        <div className="crm3-modal-bg" onClick={() => !adding && setAddOpen(false)}>
+          <form className="crm3-modal" onClick={(e) => e.stopPropagation()} onSubmit={(e) => { e.preventDefault(); addLead(); }} aria-label="Add a lead">
+            <div className="crm3-modal-head">
+              <span className="crm3-modal-ic" aria-hidden="true"><i className="fas fa-user-plus" /></span>
+              <div><h3>Add Lead</h3><p>A lead from a call, walk-in, referral or ad. It is saved under Contact &amp; Added.</p></div>
+              <button type="button" className="crm3-x" onClick={() => setAddOpen(false)} disabled={adding} aria-label="Close"><i className="fas fa-xmark" /></button>
+            </div>
+            <div className="crm3-form">
+              <label className="full"><span>Name *</span><input className="crm-search" required autoFocus value={addForm.name} onChange={(e) => setAddForm({ ...addForm, name: e.target.value })} placeholder="e.g. Neha Joshi" maxLength={120} /></label>
+              <label><span>Phone / WhatsApp</span><input className="crm-search" type="tel" value={addForm.phone} onChange={(e) => setAddForm({ ...addForm, phone: e.target.value })} placeholder="+91 98765 43210" maxLength={30} /></label>
+              <label><span>Email</span><input className="crm-search" type="email" value={addForm.email} onChange={(e) => setAddForm({ ...addForm, email: e.target.value })} placeholder="name@example.com" maxLength={160} /></label>
+              <label><span>Looking for</span><input className="crm-search" value={addForm.subject} onChange={(e) => setAddForm({ ...addForm, subject: e.target.value })} placeholder="e.g. 3 BHK · ₹1.5 – 2.5 Cr" maxLength={200} /></label>
+              <label><span>Location</span><input className="crm-search" value={addForm.location} onChange={(e) => setAddForm({ ...addForm, location: e.target.value })} placeholder="e.g. Kharadi, Pune" maxLength={120} /></label>
+              <label><span>Source</span>
+                <select className="crm-select" value={addForm.source} onChange={(e) => setAddForm({ ...addForm, source: e.target.value as typeof addForm.source })}>
+                  {MANUAL_SOURCES.map((s) => <option key={s} value={s}>{s}</option>)}
+                </select>
+              </label>
+              <label><span>Status</span>
+                <select className="crm-select" value={addForm.status} onChange={(e) => setAddForm({ ...addForm, status: e.target.value as Lead['status'] })}>
+                  {LEAD_STAGES.map((s) => <option key={s.key} value={s.key}>{s.label}</option>)}
+                </select>
+              </label>
+              <label className="full"><span>Next follow-up (optional)</span><input className="crm-search" type="datetime-local" value={addForm.follow_up} onChange={(e) => setAddForm({ ...addForm, follow_up: e.target.value })} /></label>
+              <label className="full"><span>Requirement / message</span><textarea className="crm-notes" rows={3} value={addForm.message} onChange={(e) => setAddForm({ ...addForm, message: e.target.value })} placeholder="What they asked for, budget, timeline…" maxLength={2000} /></label>
+            </div>
+            <p className="crm3-form-hint">Add at least a phone number or an email.</p>
+            <div className="crm3-modal-foot">
+              <button type="button" className="crm3-btn" onClick={() => setAddOpen(false)} disabled={adding}>Cancel</button>
+              <button type="submit" className="crm3-btn primary" disabled={adding}><i className={`fas ${adding ? 'fa-spinner fa-spin' : 'fa-plus'}`} /> {adding ? 'Adding…' : 'Add Lead'}</button>
+            </div>
+          </form>
+        </div>
+      )}
+
+      {sel && !docked && (
+        <div className="crm-drawer-overlay crm3-overlay" onClick={() => setSel(null)}>
+          {detail}
         </div>
       )}
     </>
@@ -3795,7 +4130,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
       })()}
 
       <main className="adm2-main">
-        <div className="adm-content" style={tab === 'map' || tab === 'intake' ? { maxWidth: 'none', padding: 0 } : { maxWidth: 1480 }}>
+        <div className="adm-content" style={tab === 'map' || tab === 'intake' ? { maxWidth: 'none', padding: 0 } : { maxWidth: tab === 'leads' ? 1800 : 1480 }}>
           {tab === 'dashboard' && (
             <DashboardPanel s={stats} city={city} userName={displayName || user.email.split('@')[0]} onGo={(t) => visible.includes(t) && setTab(t)} can={(t) => visible.includes(t)} />
           )}
@@ -3809,14 +4144,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
               <WhatsAppPanel flash={flash} onOpenLead={visible.includes('leads') ? (id) => { setLeadFocus(id); setTab('leads'); } : undefined} />
             </div>
           )}
-          {tab === 'buyerleads' && isOwner && (
-            <div className="pg-wrap">
-              <PageHead icon="fa-people-roof" title="Buyer Leads" sub="Buyer requirements, consent and where every lead came from.">
-                <button type="button" className="pg-btn ghost" onClick={() => setTab('leads')}><i className="fas fa-address-book" /> Work leads in CRM</button>
-              </PageHead>
-              <BuyerLeadsPanel flash={flash} onOpenLeads={() => setTab('leads')} />
-            </div>
-          )}
+          {tab === 'buyerleads' && isOwner && <BuyerLeadsPanel flash={flash} onOpenLeads={() => setTab('leads')} />}
           {tab === 'projects' && (
             <div className="pg-wrap pg-projects">
               <PageHead icon="fa-map-pin" title="Project Management" sub="Projects developers add from their dashboard — they go live on the map only after you approve them.">
@@ -3837,12 +4165,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
           )}
           {tab === 'blogs' && <BlogsPanel flash={flash} onGo={(t) => visible.includes(t) && setTab(t)} />}
           {tab === 'employees' && isOwner && <EmployeesPanel flash={flash} owner={{ name: displayName, email: user.email, avatar }} onProfile={() => setTab('profile')} />}
-          {tab === 'devapi' && isOwner && (
-            <div className="pg-wrap">
-              <PageHead icon="fa-plug" title="Integrations & API" sub="Partner websites that send enquiries and read projects through the Developer API." />
-              <DeveloperApiPanel flash={flash} />
-            </div>
-          )}
+          {tab === 'devapi' && isOwner && <DeveloperApiPanel flash={flash} />}
           {tab === 'seo' && (
             <div className="pg-wrap">
               <PageHead icon="fa-chart-line" title="SEO & Analytics" sub="Website traffic, Google Search Console, site health and ranking checklist.">

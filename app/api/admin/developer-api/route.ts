@@ -55,8 +55,12 @@ export async function GET(req: NextRequest) {
       const [all, usage, events, audit] = await Promise.all([store.listApps(), store.dailyUsage(id, 30), store.recentEvents({ appId: id, limit: 50 }), store.auditTrail(id)]);
       return json({ data: { app, keys: all.find((a) => a.id === id)?.keys || [], usage, events, audit } });
     }
-    const [apps, usage, security] = await Promise.all([store.listApps(), store.usageSummary(), store.recentEvents({ securityOnly: true, limit: 30 })]);
-    return json({ data: { apps, usage, security, scopes: SCOPES, limits: LIMITS } });
+    // daily: requests per app per UTC day (14 days) for the usage chart and trends; recent: the API log.
+    const [apps, usage, security, daily, recent] = await Promise.all([
+      store.listApps(), store.usageSummary(), store.recentEvents({ securityOnly: true, limit: 30 }),
+      store.dailyUsage(null, 14), store.recentEvents({ limit: 100 }),
+    ]);
+    return json({ data: { apps, usage, security, daily, recent, scopes: SCOPES, limits: LIMITS } });
   } catch (e) {
     console.error('[admin/developer-api]', (e as Error).message);
     return fail('Could not load the Developer API data', 500);

@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { StatTile } from './SeoCharts';
 
 // Super admin → Buyer leads. Where every buyer lead comes from (status, real
 // record counts, last successful sync, latest error, setup steps), what the
@@ -40,7 +39,6 @@ const STATUS: Record<Status, { label: string; cls: string; icon: string }> = {
 const GROUPS: [Source['group'], string][] = [['website', 'Mappingg website'], ['ads', 'Ad platforms'], ['import', 'Import'], ['portal', 'Public property portals']];
 const PERMISSION_LABEL: Record<string, string> = { not_reviewed: 'Not reviewed', permission_required: 'Asked / waiting', permitted: 'Permitted in writing', denied: 'Refused' };
 const fmt = (d?: string | null) => (d ? new Date(d).toLocaleString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—');
-const ROWS_CAP = 300;
 
 async function post(body: Record<string, unknown>) {
   const r = await fetch(API, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
@@ -49,14 +47,49 @@ async function post(body: Record<string, unknown>) {
   return b.data;
 }
 
-function Bars({ title, data }: { title: string; data: Tally }) {
-  const max = Math.max(1, ...data.map(([, n]) => n));
+/** Has the buyer told us what they want (not just an area taken from a project)? */
+const hasNeed = (r: Row) => !!(r.bhk || r.budget || r.timeline || (r.area && !r.area_from_project));
+const CLOSED = ['won', 'lost', 'spam'];
+const STAGE_LABEL: Record<string, string> = { new: 'New', contacted: 'Contacted', not_answered: 'Call not answered', call_back: 'Call back', site_visit: 'Site visit', negotiation: 'Negotiation', won: 'Booked', lost: 'Lost', spam: 'Spam' };
+const statusLabel = (s: string) => STAGE_LABEL[s] || (s ? s[0].toUpperCase() + s.slice(1).replace(/_/g, ' ') : '—');
+const statusTone = (s: string) => (s === 'new' ? 'blue' : s === 'won' ? 'ok' : s === 'lost' || s === 'negotiation' ? 'bad' : s === 'site_visit' ? 'violet' : s === 'spam' || s === 'not_answered' ? 'muted' : 'warn');
+const SRC_TONE: Record<string, string> = { website: 'green', ads: 'blue', import: 'amber', portal: 'violet' };
+const initialsOf = (s: string) => { const w = s.trim().split(/\s+/).filter(Boolean); return (w.length > 1 ? w[0][0] + w[1][0] : (w[0] || '?').slice(0, 2)).toUpperCase(); };
+const toneIdx = (s: string) => Array.from(s || '?').reduce((a, c) => a + c.charCodeAt(0), 0) % 5;
+const fmtDay = (d: string) => (d ? new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '—');
+const fmtTime = (d: string) => (d ? new Date(d).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '');
+const DAY = 86_400_000;
+/** Leads per day over the last 14 days (oldest first). */
+function daySeries14(dates: string[]) {
+  const out: number[] = new Array(14).fill(0);
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const t0 = today.getTime() - 13 * DAY;
+  for (const d of dates) { const i = Math.floor((new Date(d).getTime() - t0) / DAY); if (i >= 0 && i < 14) out[i]++; }
+  return out;
+}
+/** Last 30 days vs the 30 before, in % (null when there is nothing to compare). */
+function growth30(dates: string[]) {
+  const now = Date.now(); let cur = 0, prev = 0;
+  for (const d of dates) { const t = new Date(d).getTime(); if (t > now - 30 * DAY) cur++; else if (t > now - 60 * DAY) prev++; }
+  return prev ? Math.round(((cur - prev) / prev) * 100) : null;
+}
+const KPI_HEX: Record<string, string> = { green: '#1f8a4c', blue: '#2a78d6', amber: '#e08a1e', violet: '#7c4ddb' };
+function BlKpi({ icon, tone, title, value, valueNote, note, series, growth }: { icon: string; tone: string; title: string; value: number; valueNote?: string; note: string; series: number[]; growth: number | null }) {
+  const w = 104, h = 32, c = KPI_HEX[tone];
+  const max = Math.max(1, ...series), step = w / (series.length - 1);
+  const line = series.map((v, i) => `${i ? 'L' : 'M'}${(i * step).toFixed(1)},${(h - 3 - (v / max) * (h - 8)).toFixed(1)}`).join(' ');
   return (
-    <div className="bl-bars">
-      <h4>{title}</h4>
-      {data.length ? data.map(([k, n]) => (
-        <div key={k} className="bl-bar"><span className="k" title={k}>{k}</span><span className="t"><span style={{ width: `${(n / max) * 100}%` }} /></span><span className="n">{n}</span></div>
-      )) : <p className="muted">No data yet.</p>}
+    <div className="blk">
+      <span className={`blk-ic ${tone}`} aria-hidden="true"><i className={`fas ${icon}`} /></span>
+      <span className="blk-t"><b className="tt">{title}</b><span className="v">{value.toLocaleString('en-IN')}{valueNote && <em> {valueNote}</em>}</span><small>{note}</small></span>
+      <span className="blk-side">
+        {growth != null && <em className={`blk-badge ${growth >= 0 ? 'up' : 'down'}`} title="Last 30 days vs the 30 before"><i className={`fas fa-arrow-${growth >= 0 ? 'up' : 'down'}`} /> {Math.abs(growth)}%</em>}
+        <svg className="blk-spark" viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" aria-hidden="true">
+          <defs><linearGradient id={`blk-${tone}`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor={c} stopOpacity=".22" /><stop offset="1" stopColor={c} stopOpacity="0" /></linearGradient></defs>
+          <path d={`${line} L${w},${h} L0,${h} Z`} fill={`url(#blk-${tone})`} />
+          <path d={line} fill="none" stroke={c} strokeWidth="1.8" strokeLinejoin="round" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+        </svg>
+      </span>
     </div>
   );
 }
@@ -73,6 +106,13 @@ export default function BuyerLeadsPanel({ flash, onOpenLeads }: { flash: Flash; 
   const [q, setQ] = useState('');
   const [src, setSrc] = useState('');
   const [onlyNeeds, setOnlyNeeds] = useState(false);
+  // List view: received-in range (days, 0 = all), order, paging, the lead being viewed, the breakdown shown.
+  const [range, setRange] = useState(0);
+  const [oldest, setOldest] = useState(false);
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(10);
+  const [view, setView] = useState<Row | null>(null);
+  const [wantTab, setWantTab] = useState('area');
 
   async function load() {
     setLoading(true);
@@ -115,34 +155,214 @@ export default function BuyerLeadsPanel({ flash, onOpenLeads }: { flash: Flash; 
 
   const rows = useMemo(() => {
     const t = q.trim().toLowerCase();
+    const since = range ? Date.now() - range * 86_400_000 : 0;
     return (data?.rows || []).filter((r) =>
       (!src || r.source_id === src) &&
-      (!onlyNeeds || !!(r.bhk || r.budget || r.timeline || (r.area && !r.area_from_project))) &&
-      (!t || [r.name, r.phone, r.email, r.area, r.city, r.project, r.bhk, r.budget].some((v) => v.toLowerCase().includes(t))));
-  }, [data, q, src, onlyNeeds]);
+      (!onlyNeeds || hasNeed(r)) &&
+      (!since || new Date(r.created_at).getTime() >= since) &&
+      (!t || [r.name, r.phone, r.email, r.area, r.city, r.project, r.bhk, r.budget].some((v) => v.toLowerCase().includes(t))))
+      .sort((a, b) => (oldest ? a.created_at.localeCompare(b.created_at) : b.created_at.localeCompare(a.created_at)));
+  }, [data, q, src, onlyNeeds, range, oldest]);
+  // Back to page 1 whenever the list changes.
+  useEffect(() => { setPage(1); }, [q, src, onlyNeeds, range, oldest, perPage]);
 
-  if (loading && !data) return <div className="adm-panel"><div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading buyer leads…</p></div></div>;
-  if (!data) return <div className="adm-panel"><div className="adm-empty"><i className="fas fa-triangle-exclamation" /><p>Could not load buyer leads.</p><button className="adm-btn ghost sm" onClick={load}>Retry</button></div></div>;
+  const head = (count?: number) => (
+    <header className="blv-head">
+      <span className="blv-head-ic" aria-hidden="true"><i className="fas fa-people-group" /></span>
+      <div className="blv-head-t">
+        <h2>Buyer Leads {count != null && <small>({count.toLocaleString('en-IN')})</small>}</h2>
+        <p>Real buyer enquiries captured from multiple sources. Track, qualify and convert into site visits.</p>
+      </div>
+      <div className="blv-head-acts">
+        <button type="button" className="blv-btn icon" onClick={load} disabled={loading} title="Refresh" aria-label="Refresh"><i className={`fas fa-rotate${loading ? ' fa-spin' : ''}`} /></button>
+        <button type="button" className="blv-btn" onClick={onOpenLeads}><i className="fas fa-database" /> Work leads in CRM <i className="fas fa-chevron-right" /></button>
+      </div>
+    </header>
+  );
+
+  if (loading && !data) return <div className="blv">{head()}<div className="blv-card"><div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading buyer leads…</p></div></div></div>;
+  if (!data) return <div className="blv">{head()}<div className="blv-card"><div className="adm-empty"><i className="fas fa-triangle-exclamation" /><p>Could not load buyer leads.</p><button className="adm-btn ghost sm" onClick={load}>Retry</button></div></div></div>;
   const { sources, summary } = data;
 
+  // KPI trends from the loaded rows (14-day sparkline, last 30 days vs the 30 before).
+  const all = data.rows;
+  const isOpen = (r: Row) => !CLOSED.includes(r.status.toLowerCase());
+  const hasConsent = (r: Row) => r.consent.call || r.consent.whatsapp;
+  const at = (xs: Row[]) => xs.map((r) => r.created_at);
+  const breakdowns: [string, string, Tally][] = [['area', 'Top areas', summary.by_area], ['source', 'Sources', summary.by_source], ['bhk', 'Home size', summary.by_bhk], ['budget', 'Budget', summary.by_budget], ['timeline', 'Timeline', summary.by_timeline]];
+  const [, bTitle, bData] = breakdowns.find(([k]) => k === wantTab) || breakdowns[0];
+  // Up to eight bars, the rest summed into "Other" — split over three columns like the design.
+  const bars: Tally = bData.length > 9 ? [...bData.slice(0, 8), ['Other', bData.slice(8).reduce((n, [, c]) => n + c, 0)]] : bData;
+  const bMax = Math.max(1, ...bars.map(([, n]) => n));
+  const cols = [0, 1, 2].map((c) => bars.slice(c * Math.ceil(bars.length / 3), (c + 1) * Math.ceil(bars.length / 3))).filter((c) => c.length);
+
+  const pages = Math.max(1, Math.ceil(rows.length / perPage));
+  const pg = Math.min(page, pages);
+  const first = (pg - 1) * perPage;
+  const shown = rows.slice(first, first + perPage);
+  const pageList: (number | '…')[] = pages <= 7 ? Array.from({ length: pages }, (_, i) => i + 1)
+    : pg <= 4 ? [1, 2, 3, 4, 5, '…', pages] : pg >= pages - 3 ? [1, '…', pages - 4, pages - 3, pages - 2, pages - 1, pages] : [1, '…', pg - 1, pg, pg + 1, '…', pages];
+  const srcOf = (id: string) => sources.find((s) => s.id === id);
+
+  function exportCsv() {
+    const cell = (v: unknown) => { let s = String(v ?? ''); if (/^[=+\-@\t\r]/.test(s)) s = `'${s}`; return `"${s.replace(/"/g, '""')}"`; };
+    const head = ['Name', 'Phone', 'Email', 'Source', 'Area', 'City', 'Area from project', 'BHK', 'Budget', 'Timeline', 'Project', 'Consent: enquiry', 'Consent: call', 'Consent: WhatsApp', 'Consent source', 'Status', 'Received'];
+    const lines = [head, ...rows.map((r) => [r.name, r.phone, r.email, r.source_label, r.area, r.city, r.area_from_project ? 'Yes' : 'No', r.bhk, r.budget, r.timeline, r.project, r.consent.enquiry ? 'Yes' : 'No', r.consent.call ? 'Yes' : 'No', r.consent.whatsapp ? 'Yes' : 'No', r.consent.source, r.status, fmt(r.created_at)])];
+    const blob = new Blob(['﻿' + lines.map((l) => l.map(cell).join(',')).join('\r\n')], { type: 'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = `mappingg-buyer-leads-${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
   return (
-    <>
-      <div className="adm-panel">
-        <div className="adm-panel-head">
-          <h3><i className="fas fa-people-roof" /> Buyer leads</h3>
-          <button className="adm-btn ghost sm" onClick={load} disabled={loading}><i className={`fas fa-rotate${loading ? ' fa-spin' : ''}`} /> Refresh</button>
-        </div>
-        <p className="muted" style={{ margin: '0 0 14px' }}>Every lead below is a real record from your database. Work leads (status, notes, follow-ups) in <button className="bl-link" onClick={onOpenLeads}>Leads</button>.</p>
-        <div className="viz-tiles">
-          <StatTile label="Buyer leads" value={String(summary.total)} note={`${summary.last_30_days} in the last 30 days`} />
-          <StatTile label="Open" value={String(summary.open)} note="not booked, lost or spam" />
-          <StatTile label="With a requirement" value={String(summary.with_requirement)} note="area, BHK, budget or timeline given" />
-          <StatTile label="Opted in" value={`${summary.opted_in_call} call · ${summary.opted_in_whatsapp} WhatsApp`} note={summary.no_consent_record ? `${summary.no_consent_record} older lead(s) have no consent record` : 'marketing opt-ins'} />
-        </div>
+    <div className="blv">
+      {head(summary.total)}
+
+      <div className="blv-kpis">
+        <BlKpi icon="fa-users" tone="green" title="Buyer leads" value={summary.total} note={`${summary.last_30_days.toLocaleString('en-IN')} in the last 30 days`} series={daySeries14(at(all))} growth={growth30(at(all))} />
+        <BlKpi icon="fa-file-lines" tone="blue" title="Open" value={summary.open} note="not booked, lost or spam" series={daySeries14(at(all.filter(isOpen)))} growth={growth30(at(all.filter(isOpen)))} />
+        <BlKpi icon="fa-bullseye" tone="amber" title="With a requirement" value={summary.with_requirement} note="area, BHK, budget or timeline given" series={daySeries14(at(all.filter(hasNeed)))} growth={growth30(at(all.filter(hasNeed)))} />
+        <BlKpi icon="fa-phone" tone="violet" title="Opted in" value={summary.opted_in_call} valueNote={`call · ${summary.opted_in_whatsapp.toLocaleString('en-IN')} WhatsApp`} note={summary.no_consent_record ? `${summary.no_consent_record} older lead(s) have no consent record` : 'marketing opt-ins'} series={daySeries14(at(all.filter(hasConsent)))} growth={growth30(at(all.filter(hasConsent)))} />
       </div>
 
-      <div className="adm-panel">
-        <div className="adm-panel-head"><h3>Lead sources</h3></div>
+      <section className="blv-card blv-want">
+        <div className="blv-want-t">
+          <span className="blv-card-ic"><i className="fas fa-map-location-dot" /></span>
+          <div>
+            <h3>What buyers want</h3>
+            <div className="blv-seg" role="tablist" aria-label="Breakdown">
+              {breakdowns.map(([k, lbl]) => <button key={k} type="button" role="tab" aria-selected={wantTab === k} className={wantTab === k ? 'on' : ''} onClick={() => setWantTab(k)}>{lbl}</button>)}
+            </div>
+            <p>{wantTab === 'area' ? <>Areas marked <i className="fas fa-map-pin" /> in the list come from the project a buyer enquired about, not from something they typed.</> : `${bTitle} across all buyer leads.`}</p>
+          </div>
+        </div>
+        {bars.length ? (
+          <div className="blv-want-cols">
+            {cols.map((col, ci) => (
+              <div key={ci} className="blv-want-col">
+                {col.map(([k, n]) => (
+                  <div key={k} className="blv-bar"><span className="k" title={k}>{k}</span><span className="t"><span style={{ width: `${(n / bMax) * 100}%` }} /></span><span className="n">{n.toLocaleString('en-IN')}</span></div>
+                ))}
+              </div>
+            ))}
+          </div>
+        ) : <p className="muted blv-none">No data yet.</p>}
+      </section>
+
+      <section className="blv-card">
+        <div className="blv-card-head">
+          <span className="blv-card-ic"><i className="fas fa-user-group" /></span>
+          <div className="blv-card-tt">
+            <h3>All buyer leads <small>({rows.length.toLocaleString('en-IN')})</small></h3>
+            <p>Every lead below is a real record from your database. Work leads (status, notes, follow-ups) in <button className="bl-link" onClick={onOpenLeads}>Leads</button>.</p>
+          </div>
+          <div className="blv-tools">
+            <label className="blv-search"><i className="fas fa-magnifying-glass" /><input placeholder="Search name, phone, email, area, project…" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search buyer leads" /></label>
+            <select className="blv-select" value={src} onChange={(e) => setSrc(e.target.value)} aria-label="Source">
+              <option value="">All sources</option>
+              {sources.filter((s) => s.group !== 'portal').map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
+            </select>
+            <label className="blv-select blv-range"><i className="far fa-calendar" />
+              <select value={range} onChange={(e) => setRange(Number(e.target.value))} aria-label="Received">
+                <option value={0}>All time</option><option value={7}>Last 7 days</option><option value={30}>Last 30 days</option><option value={90}>Last 90 days</option>
+              </select>
+            </label>
+            <label className="blv-check"><input type="checkbox" checked={onlyNeeds} onChange={(e) => setOnlyNeeds(e.target.checked)} /> Only with a requirement</label>
+            <button type="button" className="blv-btn primary" onClick={exportCsv} disabled={!rows.length} title="Download the leads shown (with your filters) as CSV"><i className="fas fa-download" /> Export</button>
+          </div>
+        </div>
+
+        {rows.length ? (
+          <>
+            <div className="blv-scroll">
+              <table className="blv-table">
+                <thead>
+                  <tr>
+                    <th className="num">#</th><th>Buyer</th><th>Source</th><th>Area</th><th>BHK</th><th>Budget</th><th>Timeline</th><th>Consent</th><th>Status</th>
+                    <th><button type="button" className="blv-sort" onClick={() => setOldest(!oldest)} title={oldest ? 'Oldest first' : 'Newest first'}>Received <i className={`fas fa-chevron-${oldest ? 'up' : 'down'}`} /></button></th>
+                    <th className="r">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {shown.map((r, i) => {
+                    const s = srcOf(r.source_id);
+                    const st = statusTone(r.status);
+                    return (
+                      <tr key={`${r.crm_tab}:${r.id}`}>
+                        <td className="num">{first + i + 1}</td>
+                        <td className="c-buyer">
+                          <button type="button" className="blv-buyer" onClick={() => setView(r)}>
+                            <span className={`blv-av t${toneIdx(r.name || r.email)}`}>{initialsOf(r.name || r.email || '?')}</span>
+                            <span><b>{r.name || '—'}</b>{r.phone && <small>{r.phone}</small>}{r.email && <small className="em">{r.email}</small>}</span>
+                          </button>
+                        </td>
+                        <td className="c-src"><span className={`blv-src ${SRC_TONE[s?.group || ''] || ''}`}><i className={s?.icon || 'fas fa-circle-dot'} /> {r.source_label}</span></td>
+                        <td className="c-area">
+                          {r.area ? <>{r.area_from_project && <i className="fas fa-map-pin muted" title="From the project they asked about" />} {r.area}{r.city && !r.area.includes(r.city) ? `, ${r.city}` : ''}</> : r.city || '—'}
+                          {r.project && <small title={`Asked about ${r.project}`}>Asked about {r.project}</small>}
+                        </td>
+                        <td className="c-bhk">{r.bhk || '—'}</td>
+                        <td className="c-budget">{r.budget || '—'}</td>
+                        <td className="c-time">{r.timeline || '—'}</td>
+                        <td className="c-consent" title={r.consent.source}>
+                          {r.consent.recorded
+                            ? <span className="blv-pill ok"><i className="fas fa-circle-check" /> {[r.consent.enquiry && 'Enquiry', r.consent.call && 'Call', r.consent.whatsapp && 'WhatsApp'].filter(Boolean).join(' · ') || 'Recorded'}{r.consent.call || r.consent.whatsapp ? '' : ' consent'}</span>
+                            : <span className="blv-pill warn"><i className="fas fa-circle-exclamation" /> Not recorded</span>}
+                        </td>
+                        <td className="c-status"><span className={`blv-pill ${st}`}><i className="dot" /> {statusLabel(r.status)}</span></td>
+                        <td className="c-when">{fmtDay(r.created_at)}<small>{fmtTime(r.created_at)}</small></td>
+                        <td className="c-acts r">
+                          <div className="blv-acts">
+                            <button type="button" onClick={() => setView(r)} title="View details" aria-label={`View ${r.name}`}><i className="fas fa-eye" /></button>
+                            {r.phone ? <a href={`tel:${r.phone.replace(/\s/g, '')}`} title={`Call ${r.phone}`} aria-label={`Call ${r.name}`}><i className="fas fa-phone" /></a> : <span className="off" title="No phone"><i className="fas fa-phone" /></span>}
+                            <details className="blv-more">
+                              <summary aria-label={`More for ${r.name}`}><i className="fas fa-ellipsis-vertical" /></summary>
+                              <div className="blv-menu" onClick={(e) => { (e.currentTarget.parentElement as HTMLDetailsElement).open = false; }}>
+                                <button type="button" onClick={onOpenLeads}><i className="fas fa-database" /> Work in CRM</button>
+                                {r.phone && <a href={`https://wa.me/${r.phone.replace(/\D/g, '')}`} target="_blank" rel="noopener"><i className="fab fa-whatsapp" /> WhatsApp</a>}
+                                {r.email && <a href={`mailto:${r.email}`}><i className="fas fa-envelope" /> Email</a>}
+                                {r.phone && <button type="button" onClick={() => navigator.clipboard?.writeText(r.phone).then(() => flash('Phone copied'), () => flash('Copy failed', true))}><i className="far fa-copy" /> Copy phone</button>}
+                              </div>
+                            </details>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+            <div className="blv-foot">
+              <span>Showing {(first + 1).toLocaleString('en-IN')}–{(first + shown.length).toLocaleString('en-IN')} of {rows.length.toLocaleString('en-IN')} leads</span>
+              {pages > 1 && (
+                <nav className="blv-pages" aria-label="Pages">
+                  <button type="button" disabled={pg <= 1} onClick={() => setPage(pg - 1)} aria-label="Previous page"><i className="fas fa-chevron-left" /></button>
+                  {pageList.map((n, i) => (n === '…' ? <span key={`g${i}`} className="gap">…</span>
+                    : <button key={n} type="button" className={n === pg ? 'on' : ''} aria-current={n === pg ? 'page' : undefined} onClick={() => setPage(n)}>{n}</button>))}
+                  <button type="button" disabled={pg >= pages} onClick={() => setPage(pg + 1)} aria-label="Next page"><i className="fas fa-chevron-right" /></button>
+                </nav>
+              )}
+              <label className="blv-per">Rows per page
+                <select value={perPage} onChange={(e) => setPerPage(Number(e.target.value))}>
+                  {[5, 10, 25, 50, 100].map((n) => <option key={n} value={n}>{n}</option>)}
+                </select>
+              </label>
+            </div>
+          </>
+        ) : <div className="adm-empty"><i className="fas fa-user-group" /><p>No leads match.</p></div>}
+      </section>
+
+      <section className="blv-card">
+        <div className="blv-card-head">
+          <span className="blv-card-ic"><i className="fas fa-plug" /></span>
+          <div className="blv-card-tt">
+            <h3>Lead sources</h3>
+            <p>Where buyer leads come from: connection status, records, last sync and errors — and tools to connect or import more.</p>
+          </div>
+        </div>
+        <div className="blv-sources">
         {GROUPS.map(([g, title]) => {
           const list = sources.filter((s) => s.group === g);
           return (
@@ -222,54 +442,35 @@ export default function BuyerLeadsPanel({ flash, onOpenLeads }: { flash: Flash; 
             </section>
           );
         })}
-      </div>
-
-      <div className="adm-panel">
-        <div className="adm-panel-head"><h3>What buyers want</h3></div>
-        <div className="bl-bars-grid">
-          <Bars title="By source" data={summary.by_source} />
-          <Bars title="Preferred area" data={summary.by_area} />
-          <Bars title="Home size" data={summary.by_bhk} />
-          <Bars title="Budget" data={summary.by_budget} />
-          <Bars title="Buying timeline" data={summary.by_timeline} />
         </div>
-        <p className="muted" style={{ marginTop: 8 }}>Areas marked <i className="fas fa-map-pin" /> in the list come from the project a buyer enquired about, not from something they typed.</p>
-      </div>
+      </section>
 
-      <div className="adm-panel">
-        <div className="adm-panel-head"><h3>All buyer leads <small className="muted">({rows.length})</small></h3></div>
-        <div className="bl-filters">
-          <input className="bl-search" placeholder="Search name, phone, email, area, project…" value={q} onChange={(e) => setQ(e.target.value)} />
-          <select value={src} onChange={(e) => setSrc(e.target.value)}>
-            <option value="">All sources</option>
-            {sources.filter((s) => s.group !== 'portal').map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
-          </select>
-          <label className="bl-check"><input type="checkbox" checked={onlyNeeds} onChange={(e) => setOnlyNeeds(e.target.checked)} /> Only with a requirement</label>
+      {view && (
+        <div className="crm-drawer-overlay" onClick={() => setView(null)}>
+          <aside className="crm-drawer blv-drawer" onClick={(e) => e.stopPropagation()} aria-label={`Buyer lead: ${view.name}`}>
+            <div className="blv-dh">
+              <span className={`blv-av lg t${toneIdx(view.name || view.email)}`}>{initialsOf(view.name || view.email || '?')}</span>
+              <div><b>{view.name || '—'}</b><small>{view.source_label} · {fmt(view.created_at)}</small></div>
+              <button type="button" className="adm-btn ghost sm" onClick={() => setView(null)} aria-label="Close"><i className="fas fa-xmark" /></button>
+            </div>
+            <dl className="blv-kv">
+              {([
+                ['fa-phone', 'Phone', view.phone], ['fa-envelope', 'Email', view.email], ['fa-location-dot', 'Area', view.area ? `${view.area}${view.area_from_project ? ' (from the project they asked about)' : ''}` : ''],
+                ['fa-city', 'City', view.city], ['fa-house', 'BHK', view.bhk], ['fa-indian-rupee-sign', 'Budget', view.budget], ['fa-hourglass-half', 'Timeline', view.timeline],
+                ['fa-building', 'Asked about', view.project], ['fa-circle-half-stroke', 'Status', statusLabel(view.status)],
+                ['fa-shield-halved', 'Consent', view.consent.recorded ? [view.consent.enquiry && 'Enquiry', view.consent.call && 'Call', view.consent.whatsapp && 'WhatsApp'].filter(Boolean).join(' · ') || 'Recorded' : 'Not recorded'],
+                ['fa-file-signature', 'Consent source', view.consent.source], ['fa-folder-open', 'CRM list', view.crm_tab],
+              ] as [string, string, string][]).map(([ic, k, v]) => <div key={k}><dt><i className={`fas ${ic}`} /> {k}</dt><dd>{v || '—'}</dd></div>)}
+            </dl>
+            <div className="blv-dacts">
+              {view.phone && <a className="adm-btn primary sm" href={`tel:${view.phone.replace(/\s/g, '')}`}><i className="fas fa-phone" /> Call</a>}
+              {view.phone && <a className="adm-btn ghost sm" href={`https://wa.me/${view.phone.replace(/\D/g, '')}`} target="_blank" rel="noopener"><i className="fab fa-whatsapp" /> WhatsApp</a>}
+              {view.email && <a className="adm-btn ghost sm" href={`mailto:${view.email}`}><i className="fas fa-envelope" /> Email</a>}
+              <button type="button" className="adm-btn ghost sm" onClick={() => { setView(null); onOpenLeads(); }}><i className="fas fa-database" /> Work in CRM</button>
+            </div>
+          </aside>
         </div>
-        {rows.length ? (
-          <div style={{ overflowX: 'auto' }}>
-            <table className="adm-table bl-table">
-              <thead><tr><th>Buyer</th><th>Source</th><th>Area</th><th>BHK</th><th>Budget</th><th>Timeline</th><th>Consent</th><th>Status</th><th>Received</th></tr></thead>
-              <tbody>
-                {rows.slice(0, ROWS_CAP).map((r) => (
-                  <tr key={`${r.crm_tab}:${r.id}`}>
-                    <td><b>{r.name || '—'}</b><br /><small className="muted">{[r.phone, r.email].filter(Boolean).join(' · ')}</small>{r.project && <><br /><small>Asked about {r.project}</small></>}</td>
-                    <td>{r.source_label}</td>
-                    <td>{r.area ? <>{r.area_from_project && <i className="fas fa-map-pin muted" title="From the project they asked about" />} {r.area}{r.city && !r.area.includes(r.city) ? `, ${r.city}` : ''}</> : r.city || '—'}</td>
-                    <td>{r.bhk || '—'}</td>
-                    <td>{r.budget || '—'}</td>
-                    <td>{r.timeline || '—'}</td>
-                    <td title={r.consent.source}>{r.consent.recorded ? <>{r.consent.enquiry ? 'Enquiry' : '—'}{r.consent.call ? ' · Call' : ''}{r.consent.whatsapp ? ' · WhatsApp' : ''}</> : <span className="muted">Not recorded</span>}</td>
-                    <td>{r.status}</td>
-                    <td className="muted">{fmt(r.created_at)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            {rows.length > ROWS_CAP && <p className="muted">Showing the newest {ROWS_CAP} of {rows.length}. Narrow the search to see others.</p>}
-          </div>
-        ) : <div className="adm-empty"><i className="fas fa-user-group" /><p>No leads match.</p></div>}
-      </div>
+      )}
 
       {log && (
         <div className="bl-modal" role="dialog" aria-modal="true" onClick={(e) => e.target === e.currentTarget && setLog(null)}>
@@ -294,7 +495,7 @@ export default function BuyerLeadsPanel({ flash, onOpenLeads }: { flash: Flash; 
 
       {csvOpen && <CsvImport flash={flash} onClose={() => setCsvOpen(false)} onDone={load} />}
       {portalEdit && <PortalForm initial={portalEdit} flash={flash} onClose={() => setPortalEdit(null)} onDone={load} />}
-    </>
+    </div>
   );
 }
 
