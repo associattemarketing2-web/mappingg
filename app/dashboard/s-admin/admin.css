@@ -2657,3 +2657,60 @@ a.ov-icon-btn { display: grid; place-items: center; }
 }
 .wa-shell > *, .wa-list > *, .wa-list { min-width: 0; }
 .adm-note > span, .adm-note code, .adm-health-row > div, .adm-health-row .val { min-width: 0; overflow-wrap: anywhere; }
+
+/* ================= Overview first row: compact hero + KPI cards ================= */
+.ov-top { align-items: stretch; }
+.ov-hero { min-height: 0; }
+.ov-hero-text { padding: 16px 6px 16px 22px; }
+.ov-hero-text small { font-size: 10.5px; }
+.ov-hero-text h2 { margin: 4px 0 6px; font-size: clamp(20px, 1.7vw, 26px); }
+.ov-hero-text p { font-size: 12.5px; }
+.ov-kpi { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 12px; padding: 12px 14px; }
+.ov-kpi-ic { width: 42px; height: 42px; font-size: 18px; border-radius: 12px; }
+.ov-kpi-ic.blue { font-size: 20px; }
+.ov-kpi-row { flex-direction: column; align-items: flex-start; gap: 4px; min-width: 0; }
+.ov-kpi-main { min-width: 0; max-width: 100%; }
+.ov-kpi-main b { font-size: 22px; }
+.ov-kpi-main span { margin-top: 3px; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ov-kpi-delta { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 5px; text-align: left; }
+.ov-kpi-delta em { display: inline; font-size: 12px; }
+.ov-kpi-delta small { font-size: 10px; }
+@media (max-width: 1280px) {
+  .ov-hero-text h2 br { display: none; }
+}
+@media (max-width: 560px) {
+  .ov-kpis { gap: 10px; }
+  .ov-kpi { padding: 10px 12px; gap: 10px; }
+  .ov-kpi-ic { width: 34px; height: 34px; font-size: 15px; border-radius: 10px; }
+  .ov-kpi-ic.blue { font-size: 17px; }
+  .ov-kpi-main b { font-size: 19px; }
+  .ov-kpi-main span { font-size: 11.5px; }
+  .ov-hero-text { padding: 14px 14px 14px 16px; }
+  .ov-hero-text h2 { font-size: 20px; }
+}
+@media (max-width: 360px) {
+  .ov-kpi { grid-template-columns: 1fr; gap: 8px; }
+}
+
+/* ================= Overview: compact Interactive Project Map ================= */
+.ov-map { padding: 14px; }
+.ov-map .ov-card-head { margin-bottom: 10px; }
+.ov-live { flex: none; height: clamp(340px, 52vh, 460px); min-height: 0; }
+.ov-map.is-full .ov-live { height: calc(100vh - 80px); }
+/* Side by side: the map sets the row height; the side column fits it and Recent Activity scrolls. */
+@media (min-width: 1101px) {
+  .ov-mid { align-items: stretch; }
+  .ov-map { height: auto; }
+  .ov-side { contain: size; display: flex; flex-direction: column; }
+  .ov-side > .ov-card:last-child { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+  .ov-side > .ov-card:last-child .ov-activity { flex: 1; min-height: 0; overflow-y: auto; margin-right: -6px; padding-right: 6px; }
+}
+@media (max-width: 1100px) { .ov-live { height: clamp(320px, 48vh, 420px); } }
+@media (max-width: 720px) {
+  .ov-map { padding: 12px; }
+  .ov-live { height: clamp(280px, 58vh, 380px); }
+  .ov-map .ov-card-head h3 { font-size: 15px; }
+  .ov-map .ov-chip-btn { height: 34px; font-size: 12.5px; }
+  .ov-map .ov-icon-btn { width: 34px; height: 34px; flex: none; }
+}
+@media (max-width: 400px) { .ov-live { height: 280px; } .ov-map { padding: 10px; } }
