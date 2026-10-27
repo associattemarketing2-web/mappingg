@@ -2258,6 +2258,153 @@ function occupancyCertificateArticle() {
   };
 }
 
+function agreementForSaleArticle() {
+  return {
+    slug: 'agreement-for-sale-clauses-to-check-maharera',
+    title: 'Agreement for Sale: 12 Clauses to Check Before You Sign for a Flat in Maharashtra',
+    seo_title: 'Agreement for Sale: Clauses to Check Before Signing',
+    seo_description:
+      'The clauses to read in a builder’s agreement for sale: carpet area, possession date, delay interest, parking, defects, cancellation and payment schedule, with what RERA says.',
+    excerpt:
+      'The agreement for sale decides what you get, when you get it and what happens if things go wrong. Here are the clauses to read line by line before you sign, and what the RERA Act says about each.',
+    tags: ['Agreement for Sale', 'RERA', 'MahaRERA', 'Home Buyer Rights', 'Home Buying Guide'],
+    cover: {
+      theme: 'slate',
+      kicker: 'Buyer’s guide',
+      lines: ['Agreement for', 'Sale: Clauses', 'to Check'],
+      stats: [['10%', 'max before agreement'], ['5 years', 'defect liability'], ['Sec 13', 'registered agreement']],
+    },
+    content: `
+<p>After the booking form, the <strong>agreement for sale</strong> is the most important document you will sign when you buy an under-construction flat. It is registered, it fixes the price, the flat and the possession date, and it is what you will rely on if the project runs late. This guide lists the clauses to read carefully, and what the RERA Act says about them.</p>
+
+<h2>Why the agreement matters</h2>
+<p>Under <strong>Section 13 of the RERA Act</strong>, a developer cannot take more than <strong>10% of the cost</strong> of a flat as an advance or application fee before entering into a written agreement for sale and registering it. The agreement must state the specifications of the flat, the dates and manner of payment, the date of possession and the interest payable on default.</p>
+<p>In Maharashtra, MahaRERA has prescribed a model form of agreement for sale. Developers can add clauses, but they should not dilute the buyer’s rights in the model agreement or the Act. Ask for the draft agreement well before the registration date so you have time to read it, ideally with a property lawyer.</p>
+
+<h2>The clauses to check</h2>
+<ol>
+  <li><strong>The flat itself.</strong> The unit number, floor, wing, building and the project’s MahaRERA registration number should all be written in. Check them against your booking form and the floor plan attached to the agreement.</li>
+  <li><strong>Carpet area.</strong> The price must be based on RERA carpet area: the net usable floor area, excluding external walls, service shafts, and exclusive balconies or terraces. Balconies and terraces should be listed separately. See <a href="/blog/carpet-area-vs-built-up-vs-super-built-up-area">carpet vs built-up vs super built-up area</a>.</li>
+  <li><strong>Total price and what it includes.</strong> Look for a breakup of the agreement value, and a list of other charges: GST, parking, maintenance deposit, society formation, legal charges and so on. Anything not written in can be added later.</li>
+  <li><strong>Payment schedule.</strong> Payments should be linked to construction stages, not to dates. Our guide to <a href="/blog/payment-plans-construction-linked-subvention-flats-pune">payment plans for new flats</a> explains the options.</li>
+  <li><strong>Possession date.</strong> The agreement should state a clear date. Compare it with the completion date on the project’s MahaRERA page. Our guide shows <a href="/blog/how-to-check-maharera-registration-number">how to find a project on MahaRERA</a>.</li>
+  <li><strong>Delay compensation.</strong> Under <strong>Section 18</strong>, if the developer fails to give possession as per the agreement, you can withdraw and get a refund with interest, or stay and get interest for every month of delay. In Maharashtra, the rules set this interest at the State Bank of India’s highest marginal cost of lending rate (MCLR) plus 2%. Read more on <a href="/blog/possession-delay-rera-buyer-rights-maharera-complaint">your rights when possession is delayed</a>.</li>
+  <li><strong>Interest on your late payments.</strong> If you pay late, you pay interest too. Under RERA the rate should be the same both ways, so check that the agreement doesn’t charge you a higher rate than the developer pays you.</li>
+  <li><strong>Force majeure.</strong> RERA lists force majeure as war, flood, drought, fire, cyclone, earthquake or other natural calamities. Be careful of a clause that adds wide extra reasons, like “delay in approvals” or “labour shortage”, to extend the possession date.</li>
+  <li><strong>Parking.</strong> Under RERA, a garage (a covered space with a roof and walls on three sides) can be sold, but open parking is a common area. The type of parking and the slot number should be written in.</li>
+  <li><strong>Specifications and amenities.</strong> The brands and quality of flooring, windows, doors, fittings, lifts and the list of amenities should be attached. Under <strong>Section 14</strong>, the developer cannot change the sanctioned plans and specifications of your flat without your consent.</li>
+  <li><strong>Defect liability.</strong> Under <strong>Section 14(3)</strong>, if you find a structural defect or a defect in workmanship, quality or services within <strong>five years of possession</strong>, the developer must fix it free of charge within 30 days. The agreement should not shorten this period.</li>
+  <li><strong>Cancellation and refund.</strong> Read what happens if you cancel: how much is forfeited and how quickly the rest is refunded. Also check what happens if the developer cancels, which should only be for clear reasons, with notice.</li>
+</ol>
+
+<h2>Other points to look for</h2>
+<ul>
+  <li><strong>Society and conveyance.</strong> The agreement should say when the developer will form the housing society and transfer the land and building to it. This follows the occupancy certificate; see our guide to the <a href="/blog/occupancy-certificate-oc-completion-certificate-pune">occupancy certificate (OC)</a>.</li>
+  <li><strong>Maintenance.</strong> Check how much is collected in advance, for how many months, and from when you start paying it.</li>
+  <li><strong>Transfer of the project.</strong> Under <strong>Section 15</strong>, the developer cannot hand the project over to another developer without the written consent of two-thirds of the buyers and the approval of the authority.</li>
+  <li><strong>Annexures.</strong> The title certificate, the approved plans, the floor plan of your flat and the specifications are usually attached. Make sure they are actually there, and match what you were shown. Our list of <a href="/blog/documents-to-check-before-buying-flat-pune">documents to check before buying a flat</a> covers them.</li>
+</ul>
+
+<h2>Registration and stamp duty</h2>
+<p>The agreement for sale is registered at the sub-registrar’s office, and in Maharashtra stamp duty is paid on it at the time of registration. Get the stamp duty and registration amounts from the developer in advance; our guide to <a href="/blog/stamp-duty-registration-charges-pune">stamp duty and registration charges in Pune</a> shows how they are worked out. Keep the registered agreement, the receipts and the index II safely: you will need them for your home loan, for resale and for any complaint.</p>
+
+<h2>FAQs</h2>
+<h3>Can a developer take more than 10% before the agreement?</h3>
+<p>No. Section 13 of the RERA Act says a developer cannot take more than 10% of the cost as an advance before a registered agreement for sale.</p>
+<h3>Is the agreement for sale the same as the sale deed?</h3>
+<p>No. The agreement for sale is a promise to sell, signed while the flat is being built. Ownership passes later, through the conveyance to the society, or a sale deed for the flat.</p>
+<h3>Can I ask the developer to change a clause?</h3>
+<p>Yes, you can ask, especially for clauses that go beyond the MahaRERA model agreement. Get any change in writing in the agreement itself, not in a side letter.</p>
+<h3>Should I get a lawyer to read the agreement?</h3>
+<p>It is worth it. A property lawyer can check the agreement against the model form and the project’s title documents for a small fee compared with the price of the flat.</p>
+
+<blockquote>This guide is general information, not legal advice. Rules and the MahaRERA model agreement change over time. Have the agreement checked by a property lawyer and verify project details on the official MahaRERA website.</blockquote>
+`,
+  };
+}
+
+function paymentPlansArticle() {
+  return {
+    slug: 'payment-plans-construction-linked-subvention-flats-pune',
+    title: 'Payment Plans for New Flats: Construction-Linked, Down Payment and Subvention Explained',
+    seo_title: 'Construction-Linked vs Down Payment vs Subvention Plans',
+    seo_description:
+      'How construction-linked, down payment, flexi and subvention (20:80) payment plans work for under-construction flats in Pune, their risks, and how to check a demand letter.',
+    excerpt:
+      'The payment plan decides how much of your money is with the developer before your flat is built. Here is how the common plans work, the discount and risk in each, and what to check before you pay a demand letter.',
+    tags: ['Payment Plan', 'Home Loan', 'Under Construction', 'RERA', 'Pune'],
+    cover: {
+      theme: 'ember',
+      kicker: 'Buyer’s guide',
+      lines: ['Payment Plans', 'for New Flats', 'Explained'],
+      stats: [['10%', 'max before agreement'], ['70%', 'in separate account'], ['Stage-wise', 'demand letters']],
+    },
+    content: `
+<p>When you buy an under-construction flat, you don’t pay the full price on day one. You pay in parts, according to a <strong>payment plan</strong>. The plan you choose decides how much of your money the developer holds before the flat is ready, how soon your home loan EMIs start, and how much risk you carry if the project is delayed. This guide explains the common plans and what to check before each payment.</p>
+
+<h2>What RERA says about payments</h2>
+<ul>
+  <li><strong>No more than 10% before the agreement.</strong> Under Section 13 of the RERA Act, a developer cannot take more than 10% of the cost as an advance before a registered agreement for sale. See <a href="/blog/agreement-for-sale-clauses-to-check-maharera">clauses to check in the agreement for sale</a>.</li>
+  <li><strong>The schedule goes in the agreement.</strong> The dates and manner of payment must be written in the agreement.</li>
+  <li><strong>70% goes into a separate account.</strong> Under Section 4(2)(l)(D), developers must deposit 70% of the money collected from buyers in a separate bank account, to be used only for the cost of land and construction of that project. Withdrawals have to be in proportion to the work completed, certified by an engineer, an architect and a chartered accountant.</li>
+  <li><strong>Interest works both ways.</strong> If you pay late, the developer can charge interest; if the developer delivers late, it pays you interest at the same rate.</li>
+</ul>
+
+<h2>The common payment plans</h2>
+<div class="table-scroll"><table>
+<caption>Payment plans at a glance</caption>
+<thead><tr><th>Plan</th><th>How you pay</th><th>Good for</th><th>Main risk</th></tr></thead>
+<tbody>
+<tr><td>Construction-linked (CLP)</td><td>In stages as the building goes up</td><td>Most buyers</td><td>Small; you pay as work is done</td></tr>
+<tr><td>Down payment</td><td>Most of the price soon after booking</td><td>Buyers with cash who want a discount</td><td>Your money is stuck if the project stalls</td></tr>
+<tr><td>Flexi</td><td>A larger first payment, then stages</td><td>Buyers who want some discount with less risk</td><td>Partly the same as down payment</td></tr>
+<tr><td>Subvention (e.g. 20:80)</td><td>A small part upfront; the bank pays the rest to the developer</td><td>Buyers paying rent who can’t afford EMI + rent</td><td>You owe the bank even if the developer defaults</td></tr>
+</tbody></table></div>
+
+<h3>1. Construction-linked plan (CLP)</h3>
+<p>This is the most common plan. After the booking amount and a payment on signing the agreement, each further payment is due when a stage of construction is complete: the plinth, each slab, the walls and plaster, the plumbing and lifts, and finally possession. If work slows down, your payments slow down too. The MahaRERA model agreement follows this approach.</p>
+
+<h3>2. Down payment plan</h3>
+<p>You pay most of the price, often 90% or more, soon after the agreement, usually in return for a discount. The saving can be real, but so is the risk: if the project is delayed or stalls, most of your money is already with the developer. Consider it only with an established developer whose project is well under way.</p>
+
+<h3>3. Flexi plan</h3>
+<p>A middle path: you pay a larger share upfront than in a CLP, for a smaller discount, and the rest is linked to construction.</p>
+
+<h3>4. Subvention plans (20:80, 10:90)</h3>
+<p>You pay a small part of the price, and the bank disburses most of the loan to the developer early. The developer agrees to pay the interest on your loan (the pre-EMI) until possession, so you pay nothing more until then.</p>
+<p>The catch: the loan is in <strong>your</strong> name. If the developer stops paying the interest or the project is delayed, the bank will ask you to pay, even if your flat is not ready. Regulators have cautioned lenders about these schemes in the past. If you take one, read the tripartite agreement between you, the developer and the bank carefully, and know what happens if the developer stops paying.</p>
+
+<h2>Home loans during construction</h2>
+<p>With a construction-linked plan, the bank releases your loan in parts as each demand letter comes in. Until the full loan is disbursed you can choose to pay:</p>
+<ul>
+  <li><strong>Pre-EMI:</strong> interest only on the amount released so far. It is lower now, but you have not started paying off the loan.</li>
+  <li><strong>Full EMI:</strong> the normal EMI from the start, which reduces the loan sooner and the total interest you pay.</li>
+</ul>
+<p>Our guide to <a href="/blog/home-loan-emi-eligibility-pune">home loan EMI and eligibility</a> shows how much you can borrow and what the EMI will be.</p>
+
+<h2>How to check a demand letter</h2>
+<ol>
+  <li><strong>Match the stage.</strong> The letter should name a stage in your agreement’s payment schedule, such as “completion of the 8th slab”.</li>
+  <li><strong>Check the progress.</strong> Compare it with the project’s latest progress update on MahaRERA, and, if you can, with what you see on site. Our guide shows <a href="/blog/how-to-check-maharera-registration-number">how to find a project on MahaRERA</a>.</li>
+  <li><strong>Check the amount.</strong> It should be the agreed percentage of the agreement value, plus GST. Under-construction flats attract 5% GST (1% for affordable housing) on each instalment; see <a href="/blog/ready-to-move-vs-under-construction-flats-pune">ready-to-move vs under-construction flats</a>.</li>
+  <li><strong>Pay to the right account.</strong> Pay only to the bank account named in the agreement or the demand letter on the developer’s letterhead, never in cash, and keep every receipt.</li>
+</ol>
+
+<h2>FAQs</h2>
+<h3>Which payment plan is safest?</h3>
+<p>A construction-linked plan, because your payments follow the actual progress of the building.</p>
+<h3>Is a down payment discount worth it?</h3>
+<p>Only if you trust the developer to deliver on time. Compare the discount with the interest you would earn on the money, and with the risk of a delay.</p>
+<h3>Can a developer ask for payment before the stage is complete?</h3>
+<p>Under a construction-linked plan, a payment is due only when the stage in the agreement is complete. If the progress on MahaRERA or on site does not match, ask the developer for proof before you pay.</p>
+<h3>Who pays the interest if a subvention developer defaults?</h3>
+<p>You do. The loan is in your name, so the bank can ask you to pay even though the developer had agreed to.</p>
+
+<blockquote>This guide is general information, not legal or financial advice. Check the terms with your bank and a property lawyer, and verify project details on the official MahaRERA website before you pay.</blockquote>
+`,
+  };
+}
+
 // ---- photos ---------------------------------------------------------------------
 
 const PHOTO_DIR = path.resolve('migration/blog-photos');
@@ -2270,6 +2417,8 @@ const PHOTO_POSITION = {
   'new-projects-in-navi-mumbai': 'bottom',
   'luxury-flats-villas-in-pune': 'right',
   'new-projects-in-bengaluru': 'bottom',
+  'agreement-for-sale-clauses-to-check-maharera': 'right',
+  'payment-plans-construction-linked-subvention-flats-pune': 'bottom',
 };
 
 /** CC licences require attribution and a note that the photo was changed. */
@@ -2321,7 +2470,7 @@ async function main() {
     twoBhkArticle(h), luxuryArticle(h), naviMumbaiArticle(h), kalyanDombivliArticle(h),
     commercialArticle(h), upcomingArticle(h), bengaluruArticle(h), mumbaiArticle(h),
     centralPuneArticle(h), documentsArticle(h), carpetAreaArticle(), possessionDelayArticle(),
-    siteVisitArticle(), occupancyCertificateArticle(),
+    siteVisitArticle(), occupancyCertificateArticle(), agreementForSaleArticle(), paymentPlansArticle(),
   ];
 
   // --only=slug-a,slug-b seeds just those posts and leaves the rest (and the old
