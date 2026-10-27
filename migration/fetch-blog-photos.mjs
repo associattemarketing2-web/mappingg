@@ -38,6 +38,8 @@ const PHOTOS = {
   'possession-delay-rera-buyer-rights-maharera-complaint': 'Scaffolding for a building under construction.jpg',
   'site-visit-checklist-before-buying-flat-pune': 'STP, residential building construction and Mutha River clogged with water hyacinth as seen from Rajaram Bridge in Pune.jpg',
   'occupancy-certificate-oc-completion-certificate-pune': 'Magarpatta Residential Apartments (2).JPG',
+  'agreement-for-sale-clauses-to-check-maharera': 'Pashan, Pune Skyline.jpg',
+  'payment-plans-construction-linked-subvention-flats-pune': 'South Pune Skyline.jpg',
 };
 
 const OUT = path.resolve('migration/blog-photos');
