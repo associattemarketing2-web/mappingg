@@ -426,8 +426,18 @@
     modal.classList.add('is-open'); document.body.style.overflow = 'hidden';
     // Hides the cookie banner while the modal is open so it can't cover the submit button.
     document.body.classList.add('mpg-auth-open');
+    // "How to use Mappingg" video in the side panel: plays muted while the modal is open
+    // (not with reduced motion — then it waits for a tap on its controls).
+    var vid = byId('authVideo');
+    if (vid) {
+      vid.preload = 'auto';
+      try { if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { var p = vid.play(); if (p && p.catch) p.catch(function () {}); } } catch (e) {}
+    }
   }
-  function closeModal() { modal.classList.remove('is-open'); document.body.style.overflow = ''; document.body.classList.remove('mpg-auth-open'); }
+  function closeModal() {
+    modal.classList.remove('is-open'); document.body.style.overflow = ''; document.body.classList.remove('mpg-auth-open');
+    var vid = byId('authVideo'); if (vid) vid.pause();
+  }
   __cleanups.push(() => document.body.classList.remove('mpg-auth-open'));
   document.querySelectorAll('#roleTiles input').forEach(r => r.addEventListener('change', renderSide));
   tabs.forEach(t => t.addEventListener('click', () => openModal(t.dataset.tab)));
@@ -725,7 +735,18 @@
   fetch('/api/auth/session', { credentials: 'same-origin' }).then(r => r.json()).then(b => {
     const s = b && b.session && b.session.user;
     setUser(s ? { name: s.name || s.email, email: s.email, role: s.role, verified: s.verified } : null);
+    if (!s) promptSignIn();
   }).catch(() => {});
+
+  // Every page load (and refresh): a guest gets the sign-in form shortly after the page
+  // opens. Other pages show the same prompt with a sign-in form (components/SignInPrompt.tsx).
+  function promptSignIn() {
+    try { if (window.self !== window.top) return; } catch (e) { return; }
+    setTimeout(function () {
+      if (!modal || modal.classList.contains('is-open') || getUser()) return;
+      openModal('signin', null, 'Sign in, or create a free account, to explore every project on the live map.');
+    }, 1000);
+  }
 
   // The shared <SiteHeader/> lives outside this markup; it asks us to open the
   // auth modal via a window event instead of a class handler.
@@ -738,6 +759,7 @@
     var q = new URLSearchParams(location.search);
     if (q.get('admin') === '1') openModal('signin', null, 'Sign in to open the admin dashboard.');
     else if (q.get('signin') === '1') openModal('signin');
+    else if (q.get('signup') === '1') openModal('signup');
     // Surface a failed Google sign-in (redirected back here by the OAuth callback).
     var oauthErr = q.get('error');
     if (oauthErr) {

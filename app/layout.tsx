@@ -4,6 +4,7 @@ import PwaRegister from '@/components/PwaRegister';
 import SmoothLinks from '@/components/SmoothLinks';
 import LockRedirect from '@/components/LockRedirect';
 import CookieConsent from '@/components/CookieConsent';
+import SignInPrompt from '@/components/SignInPrompt';
 import IconFont from '@/components/IconFont';
 import SiteTracker from '@/components/SiteTracker';
 import { getPublicSettings } from '@/lib/site-settings';
@@ -120,6 +121,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         {/* Font Awesome subset (~24 KB, bundled with the page CSS) for icons on every page. */}
         <IconFont />
         <CookieConsent />
+        {/* Guests: sign-in popup with the "How to use" video, once per visit (not on home/map/dashboards/legal pages). */}
+        <SignInPrompt />
         <SiteTracker />
         <PwaRegister />
         {/* The "Install app" button lives in the super-admin layout only. */}

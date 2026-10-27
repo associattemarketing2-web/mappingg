@@ -460,11 +460,10 @@ export const LANDING_BODY = `
       <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Mappingg<em>.com</em></span></a>
       <h3 id="sideTitle">Find, check and compare every project</h3>
       <p id="sideSub">See live status, verified RERA numbers and possession dates for projects across India and Dubai.</p>
-      <div class="side-map" aria-hidden="true">
-        <span class="pinlabel s-available" style="left:28%;top:48%"><span class="pdot"></span>Available</span>
-        <span class="pinlabel s-construction" style="left:66%;top:40%"><span class="pdot"></span>₹1.05 Cr</span>
-        <span class="pinlabel s-sold" style="left:52%;top:86%"><span class="pdot"></span>Sold</span>
-      </div>
+      <figure class="side-video">
+        <video id="authVideo" src="/video/how-mappingg-works-v1.mp4" poster="/video/how-mappingg-works-v1.jpg" muted playsinline loop controls preload="none" aria-label="How to use Mappingg: a 40-second walkthrough of the live map"></video>
+        <figcaption><i class="fas fa-circle-play"></i> How to use Mappingg <span>· 40 sec</span></figcaption>
+      </figure>
       <div class="benefits"><h5 id="benefitsTitle">What you get as a Buyer</h5><ul id="benefitsList"></ul></div>
       <div class="trust"><span><i class="fas fa-shield-halved"></i>RERA numbers from official registries</span><span><i class="fas fa-lock"></i>Your details stay private</span></div>
     </aside>

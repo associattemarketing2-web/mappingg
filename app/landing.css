@@ -564,6 +564,12 @@
   .mpg .auth-side > p { font-size: 14px; color: var(--text); margin-top: -10px; }
   .mpg .side-map { position: relative; height: 150px; border-radius: 18px; overflow: hidden; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='720' viewBox='0 0 1200 720'%3E %3Crect width='1200' height='720' fill='%23f6f4ee'/%3E %3Cg fill='%23ece8de'%3E%3Crect x='40' y='40' width='210' height='120' rx='10'/%3E%3Crect x='290' y='30' width='150' height='150' rx='10'/%3E%3Crect x='700' y='40' width='180' height='110' rx='10'/%3E%3Crect x='920' y='50' width='230' height='100' rx='10'/%3E%3Crect x='60' y='470' width='200' height='190' rx='10'/%3E%3Crect x='560' y='480' width='160' height='170' rx='10'/%3E%3Crect x='760' y='500' width='190' height='150' rx='10'/%3E%3Crect x='980' y='470' width='180' height='200' rx='10'/%3E%3Crect x='300' y='520' width='210' height='150' rx='10'/%3E%3C/g%3E %3Cg fill='%23d6ebce' stroke='%23c3e0b8' stroke-width='3'%3E%3Cpath d='M470 40h190v130H470z'/%3E%3Cpath d='M40 250c60-30 150-20 190 30s-20 110-110 110S20 300 40 250z'/%3E%3Cpath d='M990 250h160v150H990z'/%3E%3C/g%3E %3Cpath d='M-40 430C120 380 260 470 430 410S720 300 860 350S1100 440 1240 390' fill='none' stroke='%2393c2e8' stroke-width='46' stroke-linecap='round'/%3E %3Cpath d='M-40 430C120 380 260 470 430 410S720 300 860 350S1100 440 1240 390' fill='none' stroke='%23a9d0ef' stroke-width='38' stroke-linecap='round'/%3E %3Cellipse cx='640' cy='250' rx='60' ry='34' fill='%23a9d0ef' stroke='%2393c2e8' stroke-width='4'/%3E %3Cg fill='none' stroke-linecap='round'%3E %3Cpath d='M0 200H1200M0 455H1200M270 0V720M540 0V720M740 0V720M960 0V720M0 20L620 720' stroke='%23e2ded3' stroke-width='14'/%3E %3Cpath d='M0 200H1200M0 455H1200M270 0V720M540 0V720M740 0V720M960 0V720M0 20L620 720' stroke='%23ffffff' stroke-width='9'/%3E %3Cpath d='M-20 110C300 150 620 70 1220 140' stroke='%23eab95e' stroke-width='18'/%3E %3Cpath d='M-20 110C300 150 620 70 1220 140' stroke='%23f6d58f' stroke-width='12'/%3E %3C/g%3E%3C/svg%3E") center / 700px auto; border: 1px solid var(--line); }
   .mpg .side-map .pinlabel { transform: translate(-50%, -100%); }
+  /* "How to use Mappingg" video in the auth modal's side panel */
+  .mpg .side-video { margin: 0; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: #0d1f19; box-shadow: 0 14px 30px -18px rgba(13,31,25,.55); }
+  .mpg .side-video video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #0d1f19; }
+  .mpg .side-video figcaption { display: flex; align-items: center; gap: 8px; padding: 9px 12px; background: #fff; font-size: 13px; font-weight: 600; color: var(--ink, #13201b); }
+  .mpg .side-video figcaption i { color: var(--forest, #0f5c47); }
+  .mpg .side-video figcaption span { font-weight: 500; color: var(--muted, #6b7a74); }
   .mpg .benefits h5 { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--water); margin-bottom: 12px; }
   .mpg .benefits ul { list-style: none; display: grid; gap: 9px; }
   .mpg .benefits li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--text); animation: fadeUp .35s ease both; }
@@ -1269,3 +1275,9 @@
   .mpg .otp-meta a { color: var(--forest); font-weight: 600; text-decoration: none; white-space: nowrap; }
   .mpg #forgotForm .otp-intro, .mpg #waLoginForm .otp-intro { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5; }
   .mpg #fp-step2:not([hidden]) { display: flex; flex-direction: column; gap: 14px; }
+
+/* Phones: keep the "How to use" video but drop the long benefits list, so the sign-in form stays close. */
+@media (max-width: 560px) {
+  .mpg .auth-side .benefits { display: none; }
+  .mpg .side-video video { max-height: 190px; }
+}
