@@ -1,0 +1,2049 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=3" />
+<meta http-equiv="Cache-Control" content="max-age=3600, public">
+    <title>About Us</title>
+       
+
+
+
+<!-- Google Tag Manager -->
+<script>(function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PDGG4PK');</script>
+<!-- End Google Tag Manager -->
+
+
+<link rel='shortcut icon' type='image/x-icon' href='/site/templates/favicon.ico' />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/site/templates/assets/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/site/templates/assets/css/owl.carousel.min.css">
+<link rel="stylesheet" type="text/css" href="/site/templates/assets/css/main.css">
+
+<!-- cannonical -->
+<link rel="canonical"
+    href="https://www.finolexpipes.com/about-us/">
+
+<script src="/site/templates/assets/js/jq-3.7.1.js"></script>
+
+<script type="text/javascript">
+    var root = "/";
+    var template_url = "/site/templates/";
+    sessionStorage.setItem("template_url", "/site/templates/");
+    sessionStorage.setItem("root", "/");
+</script>
+
+
+	<meta charset="utf-8">
+	
+	<meta property="og:title" content="About Finolex Pipes | Leading Pipe Manufacturer in India" />
+	<meta property="og:description"
+		content="Finolex Pipes manufactures fittings for plumbing, sewerage & drainage systems for residential & commercial sectors & CPVC piping systems for industrial & infrastructure projects. Know more about Finolex Pipes!" />
+	<meta property="og:image" content="https://www.finolexpipes.com/site/templates/assets/images/logo.png" />
+	<meta name="title" content="About Finolex Pipes | Leading Pipe Manufacturer in India">
+	<meta name="description"
+		content="Finolex Pipes manufactures fittings for plumbing, sewerage & drainage systems for residential & commercial sectors & CPVC piping systems for industrial & infrastructure projects. Know more about Finolex Pipes!">
+	<meta name="keywords"
+		content="About Finolex pipes,pipes & fittings manufacturers in india,cpvc pipe manufacturers in india">
+	<meta itemprop="image" content="https://www.finolexpipes.com/site/templates/assets/images/logo.png" />
+
+	<link rel="stylesheet" type="text/css" href="/site/templates/assets/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/site/templates/assets/css/about.min.css">
+</head>
+
+<body>
+	<div class="header fw">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col headerparent">
+				<header>
+					<a href="/" class="logo">
+						<img src="/site/templates/assets/images/homepage/finolex-logo.webp" alt="Finolex Pipes logo" width="140" height="55"     fetchpriority="high"     decoding="async">
+					</a>
+					<!-- <div class="getintouch show-xs">
+						<a href="#"><span>GET IN TOUCH</span></a>
+					</div> -->
+					<div class="humberger d-block d-sm-none">
+						<span>&nbsp;</span>
+						<span>&nbsp;</span>
+						<span>&nbsp;</span>
+						<span>&nbsp;</span>
+					</div>
+
+					<nav class="d-block d-sm-none mobilenav">
+						<ul class="fristmenu">
+							<li class="submenu_mo">
+								<a class='navlink'									href="https://www.finolexpipes.com/product/" data-text="Products">Products</a>
+								<span class="arrowupdown">&nbsp;</span>
+								<ul class="fw secondmenu">
+									<li>
+										<a class='navlinksec' href="https://www.finolexpipes.com/agriculture-products/"
+											data-text="Agriculture Pipes and Fittings">Agriculture Pipes and
+											Fittings</a>
+										<span class="arrowupdown">&nbsp;</span>
+										<ul class="fw thirdmenu">
+																							<li>
+													<a href="https://www.finolexpipes.com/agriculture-products/agriculture-pipes-fittings/" data-text="Agriculture Pipes &amp; Fittings">
+														Agriculture Pipes &amp; Fittings													</a>
+												</li>
+
+																								<li>
+													<a href="https://www.finolexpipes.com/agriculture-products/casing-pipes/" data-text="Casing Pipes">
+														Casing Pipes													</a>
+												</li>
+
+																								<li>
+													<a href="https://www.finolexpipes.com/agriculture-products/column-pipes/" data-text="Column Pipes">
+														Column Pipes													</a>
+												</li>
+
+																								<li>
+													<a href="https://www.finolexpipes.com/agriculture-products/solvent-cement-lubricants-agri-products/" data-text="Solvent Cement &amp; Lubricant">
+														Solvent Cement &amp; Lubricant													</a>
+												</li>
+
+																						</ul>
+									</li>
+									<li>
+										<a class='navlinksec' href="https://www.finolexpipes.com/plumbing-products/"
+											data-text="Plumbing and Sanitation Pipes and Fittings">Plumbing and
+											Sanitation Pipes and Fittings</a>
+										<span class="arrowupdown"></span>
+										<ul class="fw thirdmenu">
+																								<li class="active">
+														<a href="https://www.finolexpipes.com/plumbing-products/astm-pipes-fittings/" data-text="ASTM Pipes &amp; Fittings">
+															ASTM Pipes &amp; Fittings														</a>
+													</li>
+																										<li class="active">
+														<a href="https://www.finolexpipes.com/plumbing-products/cpvc-pipes-and-fittings/" data-text="CPVC Pipes &amp; Fittings">
+															CPVC Pipes &amp; Fittings														</a>
+													</li>
+																										<li class="active">
+														<a href="https://www.finolexpipes.com/plumbing-products/swr-pipes-fittings/" data-text="SWR Pipes &amp; Fittings">
+															SWR Pipes &amp; Fittings														</a>
+													</li>
+																										<li class="active">
+														<a href="https://www.finolexpipes.com/plumbing-products/sewerage-pipes/" data-text="Sewerage pipes">
+															Sewerage pipes														</a>
+													</li>
+																										<li class="active">
+														<a href="https://www.finolexpipes.com/plumbing-products/solvent-cement-plumbing-products/" data-text="Solvent Cement, Lubricant &amp; Primer">
+															Solvent Cement, Lubricant &amp; Primer														</a>
+													</li>
+																							</ul>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a class='navlink'									href="https://www.finolexpipes.com/investors/shareholding-pattern/"
+									data-text="Investors">Investors</a>
+								<span class="arrowupdown"></span>
+								<ul class="fw secondmenu">
+																			<li>
+											<a href="https://www.finolexpipes.com/investors/shareholding-pattern/" data-text="Share Holding Pattern" class=''>
+												Share Holding Pattern											</a>
+										</li>
+																				<li>
+											<a href="https://www.finolexpipes.com/investors/financials/" data-text="Financials" class=''>
+												Financials											</a>
+										</li>
+																				<li>
+											<a href="https://www.finolexpipes.com/investors/policies-code-of-conduct/" data-text="Policies &amp; Code Of Conduct" class=''>
+												Policies &amp; Code Of Conduct											</a>
+										</li>
+																				<li>
+											<a href="https://www.finolexpipes.com/investors/compliance-report/" data-text="Investors Compliances" class=''>
+												Investors Compliances											</a>
+										</li>
+																				<li>
+											<a href="https://www.finolexpipes.com/investors/analyst-coverage/" data-text="Analyst Coverage" class=''>
+												Analyst Coverage											</a>
+										</li>
+																				<li>
+											<a href="https://www.finolexpipes.com/investors/corporate-governance/" data-text="Corporate Governance" class=''>
+												Corporate Governance											</a>
+										</li>
+																				<li>
+											<a href="https://www.finolexpipes.com/investors/investors-relations-centre/" data-text="Investor Relations Contact Details" class=''>
+												Investor Relations Contact Details											</a>
+										</li>
+																		</ul>
+							</li>
+							<li>
+								<a class='navlink'									href="https://www.finolexpipes.com/esg/"
+									data-text="ESG">
+									ESG								</a>
+								
+							</li>
+
+							<li>
+								<a class='navlink'									href="https://www.finolexpipes.com/csr/" data-text="CSR">
+									CSR								</a>
+								
+							</li>
+
+							<!-- <li>
+								<a class='navlink' href="#" data-text="Media">Media</a>
+								<span class="arrowupdown"></span>
+								<ul class="fw secondmenu">						
+									<li>
+										<a href="#" data-text="Blogs">Blogs</a>
+									</li>						
+									<li>
+										<a href="#" data-text="News">News</a>
+									</li>
+									<li>
+										<a href="#" data-text="Press Releases">Press Releases</a>
+									</li>
+								</ul>
+							</li> -->
+							<li>
+								<a class='navlink'									href="https://www.finolexpipes.com/career/" data-text="Careers">
+									Career								</a>
+								<!-- <span class="arrowupdown"></span> -->
+								<!-- <ul class="fw secondmenu">
+									<li>
+										<a href="#" data-text="Jobs">Jobs</a>
+									</li>
+									<li>
+										<a href="#" data-text="Dealership">Dealership</a>
+									</li>
+									<li>
+										<a href="#" data-text="Merchandise">Merchandise</a>
+									</li>
+								</ul> -->
+							</li>
+							<li>
+								<a class='navlink'									href="https://www.finolexpipes.com/dealers/" data-text="Retailers">
+									Locate Us
+								</a>
+								<span class="arrowupdown"></span>
+								<ul class="fw secondmenu">
+									<!-- <li>
+										<a href="https://www.finolexpipes.com/store-locator/"
+											data-text="" class=''>
+											Retailers
+										</a>
+									</li> -->
+									<li>
+										<a href="https://www.finolexpipes.com/dealers/"
+											data-text="" class=''>
+											<!--  -->
+											Dealers
+										</a>
+									</li>
+								</ul>
+							</li>
+							<!-- <li>
+								<a class='navlink'									href="" data-text="">
+									Locate Us
+								</a>
+								<ul class="fw normal">
+									<li>
+										<a href="https://www.finolexpipes.com/store-locator/" data-text="">
+											Retailers
+										</a>
+									</li>
+									<li>
+										<a href="https://www.finolexpipes.com/dealers/"
+											data-text="Dealers">
+											Dealers
+										</a>
+									</li>
+								</ul>
+							</li> -->
+							<li>
+								<a class='navlink active'									href="https://www.finolexpipes.com/about-us/" data-text="About Us">About Us</a>
+								<span class="arrowupdown"></span>
+								<ul class="fw secondmenu">
+									<li>
+										<a href="https://www.finolexpipes.com/about-us/"
+											data-text="About Finolex Industries">About
+											Finolex Industries</a>
+									</li>
+									<li>
+										<a href="https://www.finolexpipes.com/about-us/#team" data-text="Our Board">Our
+											Board</a>
+									</li>
+									<li>
+										<a href="https://www.finolexpipes.com/about-us/#plants"
+											data-text="Our Manufacturing Plants">Our
+											Manufacturing Plants</a>
+									</li>
+									<li>
+										<a href="https://www.finolexpipes.com/about-us/#journey" data-text="Our Journey">Our
+											Journey</a>
+									</li>
+									<li>
+										<a href="https://www.finolexpipes.com/about-us/#awards"
+											data-text="Awards & Achievements">Awards &
+											Achievements</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a class='navlink'									href="https://www.finolexpipes.com/blog/" data-text="Blog">Blog</a>
+							</li>
+							<li>
+								<a class='navlink'									href="https://finolex.vardimakers.com/" data-text="Merchandise">Merchandise</a>
+							</li>
+						</ul>
+						<div class="stockindicator">
+							<a href="#" class="active nse_stock">
+								<div class="stockindicatorarrow"></div><span>NSE </span>
+							</a>
+							<!-- <a href="#">
+								<div class="stockindicatorarrow_neg"></div><span>BSE 172.05</span>
+							</a> -->
+						</div>
+					</nav>
+
+					<a href="https://www.finolexpipes.com/contact-us/" class="btn-1 contact_btn_mo">
+						<span>Contact Us</span>
+						<div class="arrow">&nbsp;</div>
+					</a>
+
+					<nav class="d-none d-sm-block desktopnav">
+						<div class="fw inside">
+							<ul class="menu">
+								<li class="submenu submenumulti">
+									<a class='navlink'										href="https://www.finolexpipes.com/product/" data-text="Products">Products</a>
+									<div class="fw multi">
+										<div class="fw insidemulti">
+											<div class="fw optionmenu">
+												<a href="https://www.finolexpipes.com/agriculture-products/" class="active"
+													rel="optionnav01"
+													data-text="Agriculture Pipes and Fittings">Agriculture Pipes and
+													Fittings<span class="arrow"></span></a>
+												<a href="https://www.finolexpipes.com/plumbing-products/" rel="optionnav02"
+													data-text="Plumbing and Sanitation Pipes and Fittings">Plumbing and
+													Sanitation Pipes and Fittings<span class="arrow"></span></a>
+											</div>
+											<ul class="optionnav" id="optionnav01" style="display: block;">
+																									<li>
+														<a href="https://www.finolexpipes.com/agriculture-products/agriculture-pipes-fittings/" data-text="Agriculture Pipes &amp; Fittings">
+															Agriculture Pipes &amp; Fittings														</a>
+													</li>
+
+																										<li>
+														<a href="https://www.finolexpipes.com/agriculture-products/casing-pipes/" data-text="Casing Pipes">
+															Casing Pipes														</a>
+													</li>
+
+																										<li>
+														<a href="https://www.finolexpipes.com/agriculture-products/column-pipes/" data-text="Column Pipes">
+															Column Pipes														</a>
+													</li>
+
+																										<li>
+														<a href="https://www.finolexpipes.com/agriculture-products/solvent-cement-lubricants-agri-products/" data-text="Solvent Cement &amp; Lubricant">
+															Solvent Cement &amp; Lubricant														</a>
+													</li>
+
+																								</ul>
+											<ul class="optionnav" id="optionnav02">
+																										<li>
+															<a href="https://www.finolexpipes.com/plumbing-products/astm-pipes-fittings/" data-text="ASTM Pipes &amp; Fittings">
+																ASTM Pipes &amp; Fittings															</a>
+														</li>
+																												<li>
+															<a href="https://www.finolexpipes.com/plumbing-products/cpvc-pipes-and-fittings/" data-text="CPVC Pipes &amp; Fittings">
+																CPVC Pipes &amp; Fittings															</a>
+														</li>
+																												<li>
+															<a href="https://www.finolexpipes.com/plumbing-products/swr-pipes-fittings/" data-text="SWR Pipes &amp; Fittings">
+																SWR Pipes &amp; Fittings															</a>
+														</li>
+																												<li>
+															<a href="https://www.finolexpipes.com/plumbing-products/sewerage-pipes/" data-text="Sewerage pipes">
+																Sewerage pipes															</a>
+														</li>
+																												<li>
+															<a href="https://www.finolexpipes.com/plumbing-products/solvent-cement-plumbing-products/" data-text="Solvent Cement, Lubricant &amp; Primer">
+																Solvent Cement, Lubricant &amp; Primer															</a>
+														</li>
+																									</ul>
+										</div>
+									</div>
+								</li>
+								<li class="submenu">
+									<a class='navlink' href="https://www.finolexpipes.com/investors/shareholding-pattern/"
+										data-text="Investors">Investors</a>
+									<ul class="fw normal">
+																					<li>
+												<a href="https://www.finolexpipes.com/investors/shareholding-pattern/" data-text="Share Holding Pattern" class=''>
+													Share Holding Pattern												</a>
+											</li>
+																						<li>
+												<a href="https://www.finolexpipes.com/investors/financials/" data-text="Financials" class=''>
+													Financials												</a>
+											</li>
+																						<li>
+												<a href="https://www.finolexpipes.com/investors/policies-code-of-conduct/" data-text="Policies &amp; Code Of Conduct" class=''>
+													Policies &amp; Code Of Conduct												</a>
+											</li>
+																						<li>
+												<a href="https://www.finolexpipes.com/investors/compliance-report/" data-text="Investors Compliances" class=''>
+													Investors Compliances												</a>
+											</li>
+																						<li>
+												<a href="https://www.finolexpipes.com/investors/analyst-coverage/" data-text="Analyst Coverage" class=''>
+													Analyst Coverage												</a>
+											</li>
+																						<li>
+												<a href="https://www.finolexpipes.com/investors/corporate-governance/" data-text="Corporate Governance" class=''>
+													Corporate Governance												</a>
+											</li>
+																						<li>
+												<a href="https://www.finolexpipes.com/investors/investors-relations-centre/" data-text="Investor Relations Contact Details" class=''>
+													Investor Relations Contact Details												</a>
+											</li>
+																				</ul>
+								</li>
+								<li class="submenu">
+									<a class='navlink'										href="https://www.finolexpipes.com/esg/"
+										data-text="ESG">
+										ESG									</a>
+									
+								</li>
+
+								<li class="submenu">
+									<a class='navlink'										href="https://www.finolexpipes.com/csr/"
+										data-text="CSR">
+										CSR									</a>
+									
+								</li>
+
+								<!-- <li class="submenu">
+								<a class='navlink' href="#" data-text="Media">Media</a>
+								<ul class="fw normal">						
+									<li>
+										<a href="#" data-text="Blogs">Blogs</a>
+									</li>						
+									<li>
+										<a href="#" data-text="News">News</a>
+									</li>
+									<li>
+										<a href="#" data-text="Press Releases">Press Releases</a>
+									</li>
+								</ul>
+								</li> -->
+								<li class="submenu">
+									<a class='navlink'										href="https://www.finolexpipes.com/career/" data-text="Careers">
+										Career									</a>
+									<!-- <ul class="fw normal">
+										<li>
+											<a href="https://www.finolexpipes.com/career/" data-text="Jobs">Jobs</a>
+										</li>
+										<li>
+											<a href="https://www.finolexpipes.com/dealers/" data-text="Jobs">
+												Dealers											</a>
+										</li>
+									</ul> -->
+								</li>
+								<li class="submenu">
+									<a class='navlink'										href="https://www.finolexpipes.com/dealers/" data-text="Retailers">
+										Locate Us
+									</a>
+									<ul class="fw normal">
+										<!-- <li>
+											<a href="https://www.finolexpipes.com/store-locator/" data-text=""
+												class=''>
+												Retailers
+											</a>
+										</li> -->
+										<li>
+											<a href="https://www.finolexpipes.com/dealers/" data-text="" class=''>
+												Dealers
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li class="submenu">
+									<a class='navlink active'										href="https://www.finolexpipes.com/about-us/" data-text="About Us">About Us</a>
+									<ul class="fw normal">
+										<li>
+											<a href="https://www.finolexpipes.com/about-us/"
+												data-text="About Finolex Industries">About
+												Finolex Industries</a>
+										</li>
+										<li>
+											<a href="https://www.finolexpipes.com/about-us/#team" data-text="Our Board">Our
+												Board</a>
+										</li>
+										<li>
+											<a href="https://www.finolexpipes.com/about-us/#plants"
+												data-text="Our Manufacturing Plants">Our
+												Manufacturing Plants</a>
+										</li>
+										<li>
+											<a href="https://www.finolexpipes.com/about-us/#journey" data-text="Our Journey">Our
+												Journey</a>
+										</li>
+										<li>
+											<a href="https://www.finolexpipes.com/about-us/#awards"
+												data-text="Awards & Achievements">Awards &
+												Achievements</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a class='navlink' href="https://www.finolexpipes.com/blog/"
+										data-text="Blog">Blog</a>
+								</li>
+								<li>
+									<a class='navlink' href="https://finolex.vardimakers.com/"
+										data-text="Merchandise">Merchandise</a>
+								</li>
+							</ul>
+							<ul class="fw nsebse">
+								<li class="search d-none d-sm-block">
+									<a class='navlink'										aria-label="search">&nbsp;</a>
+								</li>
+								<li class="stockindicator d-none d-sm-block">
+									<a href="#" class="active nse_stock">
+										<div class="stockindicatorarrow"></div><span>NSE </span>
+									</a>
+									<!-- <a href="#">
+										<div class="stockindicatorarrow_neg"></div><span>BSE 172.05</span>
+									</a> -->
+								</li>
+							</ul>
+						</div>
+					</nav>
+					<div class="contactbtn d-none d-sm-block">
+						<a href="https://www.finolexpipes.com/contact-us/" class="btn-1"><span>Contact Us</span>
+							<div class="arrow">&nbsp;</div>
+						</a>
+					</div>
+					<div class="search d-block d-sm-none ddd">
+						<!-- <a href="https://www.finolexpipes.com/" aria-label="search">&nbsp;</a> -->
+						<a class='navlink'							aria-label="search">&nbsp;</a>
+					</div>
+				</header>
+			</div>
+		</div>
+	</div>
+
+	<section id="search_popup">
+		<div class="search_field">
+			<input id="top-search" type="search" placeholder="Search" autofocus>
+		</div>
+		<div class="search_list">
+			<ul>
+			</ul>
+			<script>
+				function cleanText(text) {
+    return text.replace(/[^a-zA-Z0-9 ]/g, '');
+}
+				const searchArray = localStorage.getItem("searchHistory") ? localStorage.getItem("searchHistory").split(',') : null;
+				const searchSet = new Set(searchArray);
+								searchSet.size>0?localStorage.setItem("searchHistory", Array.from(searchSet)):"";
+				searchSet.forEach(element => {
+					$("div.search_list > ul").prepend("<li class='searchSuggestion' onclick='window.location = `https://www.finolexpipes.com/search-page/?q="+element+"`'>" + cleanText(element) + "</li>");
+				});
+			</script>
+		</div>
+	</section>
+</div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.finolexpipes.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Plumbing and Sanitation Pipes and Fittings",
+      "item": "https://www.finolexpipes.com/plumbing-products/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "CPVC Pipes & Fittings"
+    }
+  ]
+}
+</script>
+	<br><br><br><br>
+	<section class="content-container">
+		<div class="main-container">
+			<div class="breadcrumb">
+				<ul class="cs-container fz-14 cl-0 fw-n">
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						About Us					</li>
+				</ul>
+			</div>
+			<div class="tab-nav">
+				<ul class="cs-container fz-16 fw-m">
+					<li>
+						<a href="#about" class="cl-0">About Finolex Industries</a>
+					</li>
+					<li>
+						<a href="#team" class="cl-0">Our Board</a>
+					</li>
+					<li>
+						<a href="#plants" class="cl-0">Our Manufacturing Plants</a>
+					</li>
+					<li>
+						<a href="#journey" class="cl-0">Our Journey</a>
+					</li>
+					<li>
+						<a href="#awards" class="cl-0">Awards &amp; Achievements</a>
+					</li>
+				</ul>
+			</div>
+			<div id="about" class="inner-page-ttl-wrp uk-flex uk-flex-center uk-flex-middle uk-margin-large-bottom"
+				style="background: url('/site/templates/assets/images/banner-3.png')no-repeat bottom center;background-size: 100%;">
+				<h1 class="ttl fw-b cl-w uk-text-uppercase">
+					ABOUT US				</h1>
+			</div>
+			<div class="cs-container uk-margin-large-bottom">
+				<h2
+					class="sec-ttl-3 uk-text-center uk-position-relative fz-26 cl-blu fw-b uk-margin-small-bottom uk-text-capitalize">
+					<div class="ttl fz-26">
+						The Finolex Way					</div>
+					<span></span>
+				</h2>
+				<div class="fz-18 cl-5 fw-l uk-text-center uk-margin-large-bottom">
+					<p>Once our customers install our pipes, they completely forget about us. We take great pride in this dependable quality that gives farmers, plumbers and home owners one less thing to worry about. This quality focus is not just restricted to our products, but defines every aspect of our functioning. Whether quality support for our dealers, vendors and suppliers. Quality opportunities to our employees. Superior quality of life, education and health of the people we serve through our various social responsibility initiatives.</p>				</div>
+				<!--div class="uk-grid uk-margin-medium-bottom">
+										<div class="uk-width-1-2@s bg-w uk-margin-medium-bottom">
+							<div class="vm-box uk-flex uk-flex-top">
+								<img src="" class="uk-flex-none" alt="">
+								<div class="uk-margin-small-left">
+									<h3 class="sec-ttl-4 fz-26 uk-position-relative cl-blu uk-margin-remove-top  fw-b uk-text-capitalize">We are in the business of</h3>
+									<div class="fz-18 fw-n cl-5 uk-margin-bottom"><p>manufacturing high-quality PVC pipes and fittings. Serving as the life-supporting circulatory system for water and waste, across India – flowing in and out of farms and fields, industries, homes and cities. We do this with integrity, personal accountability, and by putting relationships above all else.</p></div>
+									<!--a href="" class="read-more fz-18 cl-5 fw-b uk-text-capitalize uk-flex-inline uk-flex-center uk-flex-middle">
+										read more
+									</a>
+								</div>
+							</div>
+						</div>						<div class="uk-width-1-2@s bg-w uk-margin-medium-bottom">
+							<div class="vm-box uk-flex uk-flex-top">
+								<img src="" class="uk-flex-none" alt="">
+								<div class="uk-margin-small-left">
+									<h3 class="sec-ttl-4 fz-26 uk-position-relative cl-blu uk-margin-remove-top  fw-b uk-text-capitalize">Our core drivers</h3>
+									<div class="fz-18 fw-n cl-5 uk-margin-bottom"><p>is to support and transform lives. Of our customers, end-users, stakeholders, employees, and the under-privileged. Positively transforming every human, material, and environment we engage with. Creating a legacy that inspires, and unites.</p></div>
+									<!--a href="" class="read-more fz-18 cl-5 fw-b uk-text-capitalize uk-flex-inline uk-flex-center uk-flex-middle">
+										read more
+									</a>
+								</div>
+							</div>
+						</div>
+
+			</div-->
+			</div>
+
+			<section class="why-finolex uk-margin-large-bottom">
+				<div class="cs-container">
+					<h2
+						class="sec-ttl-3 uk-text-center uk-position-relative fz-26 cl-blu fw-b uk-margin-small-bottom uk-text-capitalize">
+						<div class="ttl fz-26">
+							Fundamentally Finolex						</div>
+						<span></span>
+					</h2>
+					<div class="fz-18 cl-5 fw-l uk-text-center">
+						<p>To stay focused on making superior quality pipes and fittings, and nothing else but that, for forty years, is no mean feat. Aligning every decision, every action, every resource towards delivering quality pipes and fittings. To choose to do just one thing, and do it well. So that our customers can continue to rely on the pipes they laid down years ago. Now, that’s Finolex.</p>
+
+<p>Our focus is single-minded. When we choose to diversify, it’s upstream with an open sea jetty to manage our raw materials, and downstream into last mile fulfilment. When we evolve, it has to be in our understanding of customer expectations and finding better machines and processes to meet those expectations. When we choose to expand, it is into newer markets, delivering our pipes and fittings to newer customers. And when we measure our growth, it is in reputation. The effect of which reflects in our bottom line - growing manifold in the last decade.</p>
+
+<p>Over the last forty years, we have steadily added depth to our company, instead of spreading ourselves wide and thin. Consistently delivering the exact same products that fulfil the exact same promise. Every time. That’s what makes us a strong brand, with a strong network, and even stronger goodwill. That’s what makes us Finolex.</p>					</div>
+				</div>
+			</section>
+
+			<section id="founder" class="out-team uk-margin-large-bottom">
+				<div class="cs-container">
+					<h2
+						class="sec-ttl-3 uk-text-center uk-position-relative fz-26 cl-blu fw-b uk-margin-large-bottom uk-text-capitalize">
+						<div class="ttl">Our founder</div>
+						<span></span>
+					</h2>
+
+					<div class="uk-flex founder-txt-wrp uk-flex-top">
+						<img src="/site/templates/assets/images/founder.png"
+							class="uk-flex-none founder-img uk-margin-bottom" alt="Late Shri Pralhad P. Chhabria">
+						<div class="founder-right">
+							<h3 class="fz-32 fw-b cl-blu uk-margin-remove founder-ttl">Late Shri Pralhad P. Chhabria</h3>
+							<div class="fz-18 fw-n cl-0 uk-margin-medium-bottom">12th March 1930 - 5th May 2016</div>
+							<div class="uk-margin-medium-bottom quote-txt">
+								<div class="fz-22 cl-60 fw-b lh-2">Finolex Group was established in 1958 by Late Shri Pralhad P. Chhabria. He built the organisation on the belief that true success is found with “quality in mind and sincerity in heart”.
+								</div>
+							</div>
+							<div class="fw-18 cl-0 fw-b">
+							
+								Today, we continue to uphold the foundation he left behind. His legacy of discipline, technical precision, and commitment to world-class manufacturing remains the benchmark for every product that carries the Finolex name.
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</section>
+
+
+			<!-- sectio our team -->
+
+			<section id="team" class="out-team uk-margin-medium-bottom">
+				<div class="cs-container">
+					<h2
+						class="sec-ttl-3 uk-text-center uk-position-relative fz-26 cl-blu fw-b uk-margin-small-bottom uk-text-capitalize">
+						<div class="ttl">our board</div>
+						<span></span>
+					</h2>
+					<div class="team-list">
+						<ul class="uk-flex uk-flex-wrap uk-grid uk-child-width-1-3@m uk-child-width-1-2 uk-flex-center">
+															<li class="uk-text-center uk-margin-medium-bottom">
+									<img src="/site/assets/files/1644/our-team-prakash-1.png" class="uk-margin-small-bottom" alt="Mr. Prakash P. Chhabria - Executive Chairman at Finolex">
+									<div class="fz-18 fw-b cl-5">
+										Mr. Prakash P. Chhabria									</div>
+									<div class="fz-16 fw-l cl-5">
+										Executive Chairman									</div>
+								</li>
+																<li class="uk-text-center uk-margin-medium-bottom">
+									<img src="/site/assets/files/4150/our-team-ritu-1.png" class="uk-margin-small-bottom" alt="Mrs. Ritu P. Chhabria - Non-Executive Non-Independent Director at Finolex Pipes">
+									<div class="fz-18 fw-b cl-5">
+										Mrs. Ritu P. Chhabria									</div>
+									<div class="fz-16 fw-l cl-5">
+										Non-Executive Non-Independent Director									</div>
+								</li>
+																<li class="uk-text-center uk-margin-medium-bottom">
+									<img src="/site/assets/files/4157/our-team-kanchan-1.png" class="uk-margin-small-bottom" alt="Mrs. Kanchan U. Chitale - Independent Director at Finolex Pipes">
+									<div class="fz-18 fw-b cl-5">
+										Mrs. Kanchan U. Chitale									</div>
+									<div class="fz-16 fw-l cl-5">
+										Independent Director									</div>
+								</li>
+																<li class="uk-text-center uk-margin-medium-bottom">
+									<img src="/site/assets/files/150018/mr__udipt_agarwal.png" class="uk-margin-small-bottom" alt="">
+									<div class="fz-18 fw-b cl-5">
+										Mr. Udipt Agarwal									</div>
+									<div class="fz-16 fw-l cl-5">
+										Managing Director									</div>
+								</li>
+																<li class="uk-text-center uk-margin-medium-bottom">
+									<img src="/site/assets/files/150020/mr__rambabu_sanka.png" class="uk-margin-small-bottom" alt="">
+									<div class="fz-18 fw-b cl-5">
+										Mr. Rambabu Sanka									</div>
+									<div class="fz-16 fw-l cl-5">
+										Director Technical									</div>
+								</li>
+																<li class="uk-text-center uk-margin-medium-bottom">
+									<img src="/site/assets/files/148870/mr__debabrata_sarkar.png" class="uk-margin-small-bottom" alt="">
+									<div class="fz-18 fw-b cl-5">
+										Mr. Debabrata Sarkar									</div>
+									<div class="fz-16 fw-l cl-5">
+										Independent Director									</div>
+								</li>
+																<li class="uk-text-center uk-margin-medium-bottom">
+									<img src="/site/assets/files/148871/mr__aditya_sapru.png" class="uk-margin-small-bottom" alt="">
+									<div class="fz-18 fw-b cl-5">
+										Mr. Aditya Sapru									</div>
+									<div class="fz-16 fw-l cl-5">
+										Independent Director									</div>
+								</li>
+																<li class="uk-text-center uk-margin-medium-bottom">
+									<img src="/site/assets/files/148872/mr__munesh_khanna.png" class="uk-margin-small-bottom" alt="Mr. Munesh Khanna Independent Director at Finolex">
+									<div class="fz-18 fw-b cl-5">
+										Mr. Munesh Khanna									</div>
+									<div class="fz-16 fw-l cl-5">
+										Independent Director									</div>
+								</li>
+																<li class="uk-text-center uk-margin-medium-bottom">
+									<img src="/site/assets/files/148874/mr__vijay_bhatt.png" class="uk-margin-small-bottom" alt="">
+									<div class="fz-18 fw-b cl-5">
+										Mr. Vijay Bhatt									</div>
+									<div class="fz-16 fw-l cl-5">
+										Independent Director									</div>
+								</li>
+																<li class="uk-text-center uk-margin-medium-bottom">
+									<img src="/site/assets/files/148885/pradeepudhas.png" class="uk-margin-small-bottom" alt="">
+									<div class="fz-18 fw-b cl-5">
+										Mr. Pradeep Udhas									</div>
+									<div class="fz-16 fw-l cl-5">
+										Independent Director									</div>
+								</li>
+														</ul>
+					</div>
+
+				</div>
+			</section>
+
+
+
+			<!-- Leadership -->
+			<!--<section id="core-members" class="out-team   bg-fa">
+				<div class="cs-container">
+					<h2
+						class="sec-ttl-3 uk-text-center uk-position-relative fz-26 cl-blu fw-b uk-margin-small-bottom uk-text-capitalize">
+						<div class="ttl">Leadership</div>
+						<span></span>
+					</h2>
+					<div class="team-list">
+						<ul class="uk-flex uk-flex-wrap uk-grid uk-child-width-1-3@m uk-child-width-1-2 uk-flex-center">
+															<li class="uk-text-center uk-margin-medium-bottom">
+																			<img src="/site/assets/files/148885/pradeepudhas.png" class="uk-margin-small-bottom" alt="">
+																			<div class="fz-18 fw-b cl-5">
+										Mr. Pradeep Udhas									</div>
+									<div class="fz-16 fw-l cl-5">
+										Independent Director									</div>
+								</li>
+								
+						</ul>
+					</div>
+
+				</div>
+			</section> -->
+<!-- Language Dropdown 
+<section class="langauge-dropdown  py-5">
+	<div class="cs-container">
+<h2 class="sec-ttl-3 uk-text-center uk-position-relative fz-26 cl-blu   uk-inline-block w-100 fw-b   uk-text-capitalize"> <div class="ttl">
+							Download
+						</div>
+						<span></span>
+					</h2>
+		<div class="d-md-flex d-grid justify-content-center align-items-center gap-4">
+	 <p class="m-0 p-0 text-center text-md-start">Select Language</p>
+			<select class="form-select" id="lang-dropdown" name="lang-dropdown">
+				<option selected="" disabled="">Select Language</option>
+				<option value="english">English</option>
+				<option value="hindi">Hindi</option>
+				<option value="marathi">Marathi</option>
+				<option value="french">French</option>
+			</select>
+	 
+		</div>
+	</div>
+</section> -->
+
+			<!-- section - manufacturing-->
+			<section id="plants" class="manu-plants bg-fa  ">
+				<div class="cs-container mx-auto">
+					<h2
+						class="sec-ttl-3 uk-text-center uk-position-relative fz-26 cl-blu uk-margin-medium-top uk-inline-block w-100 fw-b uk-margin-small-bottom uk-text-capitalize">
+						<div class="ttl">
+							Our Manufacturing Ethos						</div>
+						<span></span>
+					</h2>
+					<div class="fz-18 fw-l cl-5 uk-text-center uk-margin-medium-bottom">
+						<p>Our quality towers tall because of the solid foundation our manufacturing operations offer. With ISO 9001:2015 certified plants – two in Maharashtra, in Ratnagiri and Urse; and a third in Masar, Gujarat. Every plant has been instrumental in helping us deliver quality and reliable products across the country. With every employee on the floor aligned to the bigger picture, holding themselves personally accountable for the output, and the reputation we enjoy out in the world.</p>
+
+<p>Our flagship facility in Ratnagiri, spread over 650 acres, consists of an open sea cryogenic jetty and storage facility to receive raw materials, a PVC resin manufacturing facility in technical collaboration with Uhde GmbH, Germany, with Hoechst technology, and a PVC pipe manufacturing facility. In house resin manufacture ensures that all our pipe manufacturing facilities in all locations receive a dedicated supply of consistent and superior quality resin. But the thing that really drives our machines across all plants, is the ethos we share. Our common passion for quality.</p>
+
+<h3>A Network of Trust</h3>
+
+<p>We have over 900 dealers and 21,000 retail touchpoints across the country. Many of the people in this network have been with us for over 30 years, as members of our parivaar, our family. Over the decades, we have earned their trust, and they, ours, as families do. Their faith in us has, in turn, inspired their customers, many of whom swear by our products. Creating a beautifully interwoven tapestry of partnerships. An interconnected network of collaboration and trust, that is as enduring as the pipes and fittings we make.</p>					</div>
+					<div class="uk-text-center">
+						<img src="/site/assets/files/1637/map-1.jpg" class="mx-w-100 uk-margin-bottom" alt="Finolex locations shown on the map">
+						<!-- <ul class="plants-list uk-flex-inline uk-flex-center uk-margin-large-bottom">
+						<li class="uk-flex uk-flex-middle uk-margin-medium-right">
+							<div class="cl-box" style="background: #0095da;"></div>
+							<div class="fz-16 fw-l cl-5 uk-text-capitalize uk-margin-small-left">Head Office</div>
+						</li>
+						<li class="uk-flex uk-flex-middle uk-margin-medium-right">
+							<div class="cl-box" style="background: #4dedd1;"></div>
+							<div class="fz-16 fw-l cl-5 uk-text-capitalize uk-margin-small-left">Brand Office</div>
+						</li>
+						<li class="uk-flex uk-flex-middle uk-margin-medium-right">
+							<div class="cl-box" style="background: #45618f;"></div>
+							<div class="fz-16 fw-l cl-5 uk-text-capitalize uk-margin-small-left">Depots</div>
+						</li>
+						<li class="uk-flex uk-flex-middle uk-margin-medium-right">
+							<div class="cl-box" style="background: #ff7189;"></div>
+							<div class="fz-16 fw-l cl-5 uk-text-capitalize uk-margin-small-left">Upcoming Units</div>
+						</li>
+						<li class="uk-flex uk-flex-middle">
+							<div class="cl-box" style="background: #fdbf6d;"></div>
+							<div class="fz-16 fw-l cl-5 uk-text-capitalize uk-margin-small-left">Manifacturing Units</div>
+						</li>
+					</ul> -->
+					</div>
+				</div>
+			</section>
+
+			<!-- Section - our journey -->
+			<section id="journey" class="our-journey">
+				<div class="cs-container">
+					<h2
+						class="sec-ttl-3 uk-text-center uk-position-relative fz-26 cl-blu uk-margin-medium-top uk-inline-block w-100 fw-b uk-margin-small-bottom uk-text-capitalize">
+						<div class="ttl">our journey</div>
+						<span></span>
+					</h2>
+					<div id="timeline">
+						<ul id="dates">
+															<li><a href="#2026">
+										2026									</a></li>
+																<li><a href="#2021">
+										2021									</a></li>
+																<li><a href="#2020">
+										2020									</a></li>
+																<li><a href="#2019">
+										2019									</a></li>
+																<li><a href="#2013">
+										2013									</a></li>
+																<li><a href="#2012">
+										2012									</a></li>
+																<li><a href="#2009">
+										2009									</a></li>
+																<li><a href="#2008">
+										2008									</a></li>
+																<li><a href="#2007">
+										2007									</a></li>
+																<li><a href="#2006">
+										2006									</a></li>
+																<li><a href="#2002">
+										2002									</a></li>
+																<li><a href="#1999">
+										1999									</a></li>
+																<li><a href="#1996">
+										1996									</a></li>
+																<li><a href="#1994">
+										1994									</a></li>
+																<li><a href="#1985">
+										1985									</a></li>
+																<li><a href="#1981">
+										1981									</a></li>
+														</ul>
+						<ul id="issues">
+															<li id="2026">
+									<img src="/site/assets/files/150096/45_year.png" width="300px" style="border-radius:20px;" alt="In 2026, Finolex Industries completed 45 years." />
+									<div class="tl-txt-box">
+										<div class="year-big">
+											2026										</div>
+										<p>
+											<p>Celebrating 45 years of establishment of Finolex Industries and taking ahead the values inculcated by our founder Late Shri. Pralhad P. Chhabria.</p>										</p>
+									</div>
+								</li>
+																<li id="2021">
+									<img src="/site/assets/files/6578/about-journey-img-02.png" width="300px" style="border-radius:20px;" alt="In 2021, Finolex Industries completed 40 years." />
+									<div class="tl-txt-box">
+										<div class="year-big">
+											2021										</div>
+										<p>
+											<p>Celebrating 45 years of establishment of Finolex Industries and taking ahead the values inculcated by our founder Late Shri. Pralhad P. Chhabria.</p>										</p>
+									</div>
+								</li>
+																<li id="2020">
+									<img src="/site/assets/files/6577/about-journey-img-01.png" width="300px" style="border-radius:20px;" alt="Finolex Pipes - CSR efforts during the Covid pandemic" />
+									<div class="tl-txt-box">
+										<div class="year-big">
+											2020										</div>
+										<p>
+											<p>Stepped up CSR efforts during the Covid pandemic with donations of Ventilators, oxygen concentrators, medical equipment, PPE kits, ration kits and sanitizers.</p>										</p>
+									</div>
+								</li>
+																<li id="2019">
+									<img src="/site/assets/files/1649/tl-1.png" width="300px" style="border-radius:20px;" alt="In 2019, Finolex installed capacity of the pipes segment increased to 3,70,000 MT p.a." />
+									<div class="tl-txt-box">
+										<div class="year-big">
+											2019										</div>
+										<p>
+											<p>Installed capacity of pipes segment increased to 3,70,000 MT p.a.</p>										</p>
+									</div>
+								</li>
+																<li id="2013">
+									<img src="/site/assets/files/1650/tl-2.png" width="300px" style="border-radius:20px;" alt="" />
+									<div class="tl-txt-box">
+										<div class="year-big">
+											2013										</div>
+										<p>
+											<p>EPVC capacity increased from 10,000 MT to 20,000 MT p.a.</p>										</p>
+									</div>
+								</li>
+																<li id="2012">
+									<img src="/site/assets/files/1651/1996.jpg" width="300px" style="border-radius:20px;" alt="" />
+									<div class="tl-txt-box">
+										<div class="year-big">
+											2012										</div>
+										<p>
+											<p>FIL started a new manufacturing plant at Masar, near Vadodara in Gujarat.</p>										</p>
+									</div>
+								</li>
+																<li id="2009">
+									<img src="/site/assets/files/5302/2009.jpg" width="300px" style="border-radius:20px;" alt="In 2009, Finolex unit for manufacturing agricultural pipes and casing pipes at Urse" />
+									<div class="tl-txt-box">
+										<div class="year-big">
+											2009										</div>
+										<p>
+											<p>FIL started a brand new state-of-the-art unit for manufacturing agricultural pipes and casing pipes at Urse, Pune, with the capacity of 28,000 MT p.a.</p>										</p>
+									</div>
+								</li>
+																<li id="2008">
+									<img src="/site/assets/files/5301/2008.jpg" width="300px" style="border-radius:20px;" alt="Finolex Pipes - introduced LEAD FREE Plumbing pipes in 2008" />
+									<div class="tl-txt-box">
+										<div class="year-big">
+											2008										</div>
+										<p>
+											<p>Taking a step further with advancement in technology, FIL introduced LEAD FREE Plumbing pipes as per ASTM Standards.</p>										</p>
+									</div>
+								</li>
+																<li id="2007">
+									<img src="/site/assets/files/5300/2007.jpg" width="300px" style="border-radius:20px;" alt="Finolex Pipes - introduced Underground Sewerage Pipes in 2007" />
+									<div class="tl-txt-box">
+										<div class="year-big">
+											2007										</div>
+										<p>
+											<p>FIL introduced Underground Sewerage Pipes as per IS: 15328 – 2003.</p>										</p>
+									</div>
+								</li>
+																<li id="2006">
+									<img src="/site/assets/files/1653/2006-1.png" width="300px" style="border-radius:20px;" alt="In 2006, Finolex Industries Ltd. completed 25 years." />
+									<div class="tl-txt-box">
+										<div class="year-big">
+											2006										</div>
+										<p>
+											<p>Finolex Industries Ltd., proudly celebrated 25 years of its success and the PVC Resin capacity was expanded from 1,30,000 MT to 2,60,000 MT. Further expanding its product range, FIL added ASTM fittings to its product portfolio.</p>										</p>
+									</div>
+								</li>
+																<li id="2002">
+									<img src="/site/assets/files/5299/2002.jpg" width="300px" style="border-radius:20px;" alt="In 2002, Finolex PVC Pipes and PVC Resin plants at Ratnagiri were awarded the IS14001 certificate." />
+									<div class="tl-txt-box">
+										<div class="year-big">
+											2002										</div>
+										<p>
+											<p>PVC Pipes and PVC Resin plants at Ratnagiri were awarded the IS14001 certificate for Environment Management Systems</p>										</p>
+									</div>
+								</li>
+																<li id="1999">
+									<img src="/site/assets/files/1654/1999.jpg" width="300px" style="border-radius:20px;" alt="" />
+									<div class="tl-txt-box">
+										<div class="year-big">
+											1999										</div>
+										<p>
+											<p>FIL also started manufacturing PVC pipes at Ratnagiri to meet its growing demand and introduced ASTM Pipes to cater to the need of the Plumbing sector</p>										</p>
+									</div>
+								</li>
+																<li id="1996">
+									<img src="/site/assets/files/5298/1996-min_0x260.jpg" width="300px" style="border-radius:20px;" alt="Finolex Pipes became India’s first manufacturer of PVC pipes and fittings in 1996" />
+									<div class="tl-txt-box">
+										<div class="year-big">
+											1996										</div>
+										<p>
+											<p>FIL became India’s first manufacturer of PVC pipes and fittings to be awarded the ISO 9001: 2000 certification.</p>										</p>
+									</div>
+								</li>
+																<li id="1994">
+									<img src="/site/assets/files/5297/1994.jpg" width="300px" style="border-radius:20px;" alt="Finolex Pipes set up a PVC Resin plant near Ratnagiri in 1994" />
+									<div class="tl-txt-box">
+										<div class="year-big">
+											1994										</div>
+										<p>
+											<p>FIL set up a state-of-the-art PVC Resin plant near Ratnagiri on the West Coast of Maharashtra State. The 130,000 MT PVC plant was set up in technical collaboration with Uhde GmbH of Germany and under technology license from Hoechst AG. FIL manufactures suspension PVC as well as emulsion/paste PVC.</p>										</p>
+									</div>
+								</li>
+																<li id="1985">
+									<img src="/site/assets/files/5278/1985.jpg" width="300px" style="border-radius:20px;" alt="In 1985, FIL pioneered the concept of “Ringfit’ pressure pipes." />
+									<div class="tl-txt-box">
+										<div class="year-big">
+											1985										</div>
+										<p>
+											<p>FIL pioneered the concept of “Ringfit’ pressure pipes.</p>										</p>
+									</div>
+								</li>
+																<li id="1981">
+									<img src="/site/assets/files/5296/1981-1.png" width="300px" style="border-radius:20px;" alt="In 1981, Finolex was incorporated pvc pipes manufacturer in Pune." />
+									<div class="tl-txt-box">
+										<div class="year-big">
+											1981										</div>
+										<p>
+											<p>Finolex Industries Limited (FIL) was incorporated and had a modest beginning as a rigid PVC (Poly Vinyl Chloride) pipes manufacturer with a manufacturing plant in Pune.</p>										</p>
+									</div>
+								</li>
+														</ul>
+						<div id="grad_left"></div>
+						<div id="grad_right"></div>
+						<a href="#" id="next">+</a>
+						<a href="#" id="prev">-</a>
+					</div>
+				</div>
+			</section>
+
+
+
+
+			<!-- section - awards -->
+			<section id="awards" class="awards uk-margin-large-bottom">
+				<div class="cs-container">
+					<h2
+						class="sec-ttl-3 uk-text-center uk-position-relative fz-26 cl-blu uk-margin-medium-top uk-inline-block w-100 fw-b uk-margin-small-bottom uk-text-capitalize">
+						<div class="ttl">
+							Awards &amp; Achievements						</div>
+						<span></span>
+					</h2>
+ <div class="uk-position-relative slider-parent-div"  >
+					<div class=" uk-visible-toggle uk-light" tabindex="-1" uk-slider="finite: true;">
+
+					
+						<ul
+							class="uk-slider-items uk-child-width-1-1  uk-child-width-1-3@m uk-child-width-1-3@s uk-grid">
+															<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2025											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>We are grateful to be recognized as a ‘Great Place to Work’ for the third consecutive year!</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2025											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Won two awards at the Eggfirst Chalo Bharat Conclave! Our Navratri campaign bagged Gold for the 'Best Use of Animation in a Social Media Campaign,' while our Diwali campaign earned Bronze for the 'Best Occasion-Based Marketing Campaign.'</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2025											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Our Diwali film has won the prestigious E4M #IndianMarketingAward in the ‘Holiday, Seasonal, or Festival Marketing’ category</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2025											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Humbled to be recognized for "Badhte Kadam by Finolex," our initiative at Mahakumbh focused on supporting devotees with essentials like caps and walking sticks</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2025											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>"ET Trendies 2025" award for their Diwali campaign, an achievement that celebrates the campaign's artistry, commitment, and teamwork</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2025											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>E4M Golden Mikes 2025 for our Kumbh Mela radio campaign with Big FM, awarded in the Best Single Commercial category<br />
+ </p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2025											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Recognition with Purpose: Humbled to be recognized at the Afaqs Marketers Xcellence Awards</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2024											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Marketing Campaign of the Year (Water &amp; Wastewater Management) for “Save Today For Better Tomorrow”</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2023 - 24											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Prestigious Brand<br />
+of Asia Awards</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2022											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Mr. Prakash Chhabria wins Entrepreneur of The Year 2022 Award, at IBEF</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2022											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Economic Times Rotary CSR Award for Distinguished Service to Society</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2022											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>IndiaCSR Best Innovative CSR Practices in Education</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2022											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Responsible Care Certification - Indian Chemical Council</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2021											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>World CSR Day Award February 2021</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2021											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Yuva Unstoppable 2021 Changemaker Award (COVID19 Efforts)</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2020											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>CSR Times Award (Silver) - COVID 19 Efforts</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2020											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Best Boiler User Award by Government of Maharashtra</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2019											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Corporate Tycoons (Excellence CSR Award) 2019 - MMF &amp; FIL</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2019											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>ET NOW Rotary CSR Awards - MMF and FIL</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2018											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Corporate Tycoons (Business Excellence Award in CSR Category) - MMF and FIL</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2016											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Bluedart Global CSR Excellence and Leadership Awards</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2015											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Rated "Very Good Safety System" by NSC-India</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2015											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>"Best Safety Practices Award“ by Directorate of Industrial Safety aand Health &amp; NSC</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2014											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Green Manufacturing Excellence Award - Frost &amp; Sullivan</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2013											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Supply Chain Enterprise Icon of the Year</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2009											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>National Energy Conservation Award - Ministry of Power - 2009</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2008											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>MEDA first prize for Energy Conservation</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2004											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Green Tech Environmental Gold Award 2003-04</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2003											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Prashansa Patra -by NSC India</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2002											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Industrial Safety Award by NSC Maha Chapter</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2001											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>National Safety Council (NSC)- Maharashtra Chapter awarded</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											2000											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Lowest Accident Frequency Rate Award</p>										</div>
+									</div>
+								</li>
+																<li>
+									<div class="uk-panel">
+										<div class="w-100 uk-text-center fz-12 fw-b cl-blu  ">
+											1999											<span></span>
+										</div>
+									 
+										<div class="fz-14 cl-5 fw-l">
+											<p>Dr. R. J. Rathi Award for Environmental Pollution Control</p>										</div>
+									</div>
+								</li>
+														</ul>
+	<a class="uk-position-center-left-out uk-position-center-left uk-position-small  " href="#"
+							uk-slidenav-previous uk-slider-item="previous"></a>
+						<a class="uk-position-center-right-out uk-position-center-right uk-position-small  " href="#" uk-slidenav-next
+							uk-slider-item="next"></a>
+
+					</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</section>
+	<footer class="fw pr">
+	<div class="container" style="position:relative; z-index:1;">
+		<div class="row">
+			<div class="col-12 col-sm-9">
+				<div class="fw logofirst_mo d-block d-sm-none">
+					<a href="#"><img src="/site/templates/assets/images/homepage/Logo_transparent_footer.png"
+							alt="Logo-2" style='background: #fff100;'></a>
+				</div>
+				<div class="footerfirst">
+					<div class="footernav">
+						<h6>Products</h6>
+						<ul>
+							<li>
+								<a class='navlink'									href="https://www.finolexpipes.com/agriculture-products/">Agriculture Pipes and Fittings</a>
+							</li>
+							<li>
+								<a class='navlink'									href="https://www.finolexpipes.com/plumbing-products/">Plumbing and Sanitation Pipes <br>and
+									Fittings</a>
+							</li>
+						</ul>
+					</div>
+					<div class="footernav">
+						<h6>Investors</h6>
+						<ul>
+															<li>
+									<a class='navlink'										href="https://www.finolexpipes.com/investors/shareholding-pattern/" data-text="Share Holding Pattern" aria-label="Share Holding Pattern">
+										Share Holding Pattern									</a>
+								</li>
+																<li>
+									<a class='navlink'										href="https://www.finolexpipes.com/investors/financials/" data-text="Financials" aria-label="Financials">
+										Financials									</a>
+								</li>
+																<li>
+									<a class='navlink'										href="https://www.finolexpipes.com/investors/policies-code-of-conduct/" data-text="Policies &amp; Code Of Conduct" aria-label="Policies &amp; Code Of Conduct">
+										Policies &amp; Code Of Conduct									</a>
+								</li>
+																<li>
+									<a class='navlink'										href="https://www.finolexpipes.com/investors/compliance-report/" data-text="Investors Compliances" aria-label="Investors Compliances">
+										Investors Compliances									</a>
+								</li>
+																<li>
+									<a class='navlink'										href="https://www.finolexpipes.com/investors/analyst-coverage/" data-text="Analyst Coverage" aria-label="Analyst Coverage">
+										Analyst Coverage									</a>
+								</li>
+																<li>
+									<a class='navlink'										href="https://www.finolexpipes.com/investors/corporate-governance/" data-text="Corporate Governance" aria-label="Corporate Governance">
+										Corporate Governance									</a>
+								</li>
+																<li>
+									<a class='navlink'										href="https://www.finolexpipes.com/investors/investors-relations-centre/" data-text="Investor Relations Contact Details" aria-label="Investor Relations Contact Details">
+										Investor Relations Contact Details									</a>
+								</li>
+														</ul>
+					</div>
+					<div class="footernav">
+						<h6>Environmental, Social and Governance (ESG)</h6>
+						<ul>
+							<li>
+								<a class='navlink' 
+								href="https://www.finolexpipes.com/sustainability/">Sustainability</a>
+							</li>
+							<li>
+								<a class='navlink' 
+								href="https://www.finolexpipes.com/csr/">Corporate Social Responsibility (CSR)</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="footernav">
+						<h6>Locate Us</h6>
+						<ul>
+							<!-- <li>
+								<a class='navlink active'									href="https://www.finolexpipes.com/store-locator/">Retailers</a>
+							</li> -->
+							<li>
+								<a class='navlink active'									href="https://www.finolexpipes.com/dealers/#journey">Dealers</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="footernav">
+						<h6>
+							<a style="color: white;" class='navlink active'								href="https://www.finolexpipes.com/about-us/">About Us
+							</a>
+						</h6>
+						<br>
+						<br>
+						<h6>
+							<a class='navlink'								href="https://www.finolexpipes.com/career/" data-text="Careers"
+								style="color: inherit;">
+								Career							</a>
+						</h6>
+					</div>
+
+					<!-- <div class="footernav">
+						<h6><a href="mailto:fil@finolexind.com" style="color: inherit;">Dealerships</a></h6>
+					</div> -->
+
+					<!-- <div class="footernav">		
+						<h6>Media</h6>
+						<ul>
+							<li>
+								<a class='navlink' href="#">News</a>
+							</li>
+							<li>
+								<a class='navlink' href="#">Press Releases</a>
+							</li>
+						</ul>
+					</div> -->
+
+				</div>
+			</div>
+			<div class="col-12 col-sm-3">
+				<div class="footersecond fw">
+					<a href="#" class="d-none d-sm-block"><img
+							src="/site/templates/assets/images/homepage/Logo_transparent_footer.png" alt="Logo-2" style='width: 100%; height: auto; background: #fff100;'></a>
+					<div class="footernav">
+						<h6>Contact Us:</h6>
+						<ul>
+							<li>
+								<span>Email: </span><a href="mailto:fil@finolexind.com">fil@finolexind.com</a>
+							</li>
+							<li>
+								<span>Toll Free No.: </span><a href="tel:18002003466">1800-200-3466</a>
+							</li>
+							<li>
+								<span>CIN: L40108PN1981PLC024153</span>
+							</li>
+						</ul>
+					</div>
+					<div class="social fw">
+						<ul>
+							<li><a href="https://www.facebook.com/finolexpipesandfittings/" target="_blank" aria-label="finolexpipes facebook"><img
+										src="/site/templates/assets/images/homepage/common/ic_fb.svg" alt="Facebook icon"></a></li>
+							<li><a href="https://www.instagram.com/finolexpipesandfittings?igsh=MXI1a2tiMm91NGtkZw==" target="_blank" aria-label="finolexpipes instagram"><img
+										src="/site/templates/assets/images/homepage/common/ic_inst.svg" alt="Instagram icon"></a></li>
+							
+							<li><a href="https://www.youtube.com/channel/UC53laHlNZTYkUx6crpusvQw" target="_blank" aria-label="finolexpipes youtube"><img
+										src="/site/templates/assets/images/homepage/common/ic_yt.svg" alt="Youtube icon"></a></li>
+							<li><a href="https://www.linkedin.com/company/finolex-industries-ltd/" target="_blank" aria-label="finolexpipes linkedin"><img
+										src="/site/templates/assets/images/homepage/common/ic_ln.svg" alt="Linkedin icon"></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="fw copyright">
+					<p><span><a href="https://www.finolexpipes.com/tnc/" target="_blank">Terms & Conditions</a> &nbsp;&nbsp;|
+							&nbsp;&nbsp;<a href="https://www.finolexpipes.com/privacy-notice" target="_blank">Data Privacy Notice</a>&nbsp;&nbsp;|
+							&nbsp;&nbsp;© 2026 Finolex Industries Ltd.</span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<img src="/site/templates/assets/images/homepage/common/pipes_bg.webp" alt="pipe" class="imgfooter">
+</footer>
+<a href="javascript:void(0)" id="delear_icon" class="dealernow dealer_open_form"><span>Become a Dealer / Retailer</span> <img
+		src="/site/templates/assets/images/homepage/common/broker-dealer-icon.svg" alt="Become a Dealer / Retailer"></a>
+ <a href="javascript:void(0)"  id="dealer_product_page_icon" class=" dealernow "><span>Become a Dealer / Retailer</span> <img
+		src="/site/templates/assets/images/homepage/common/broker-dealer-icon.svg" alt="Become a Dealer / Retailer"></a>
+<a href="javascript:void(0)" id="career_sticky_icon" class="enquirynow  "><span>Interested to join the Finolex Parivar</span> <img
+		src="/site/templates/assets/images/homepage/common/man-with-tie.svg" alt="Interested to join the Finolex Parivar"></a>
+<a href="https://wa.me/9118002020322?text=Hi" target="_blank" class="whatsapp"><span>Chat with us</span> <img
+		src="/site/templates/assets/images/homepage/common/whatsapp.svg" alt="Chat with us"></a> 
+
+
+<!-- Enquiry Form -->
+<section id="enquiry_form_container" class="enquiry_container">
+	<a href="javascript:void(0)" class="close_popup" aria-label="close_popup">
+		<img src="/site/templates/assets/images/homepage/common/close.svg" alt="Close icon">
+	</a>
+	<div class="form_inner">
+		<h4>Enquiry Form</h4>
+		<form method="post" id="enquire_form" onsubmit="return validateEnquiryForm('enquire_form')">
+			<div class="row">
+				<div class="col-12 col-sm-6">
+					<div class="form-group">
+						<label for="name">Name *</label>
+						<input type="text" name="name" id="enquiryName" class="form-control required" placeholder="Enter Name">
+						<div class="error-msg" id="errenquiryName"></div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-6">
+					<div class="form-group">
+						<label for="email">Email-ID *</label>
+						<input type="email" name="emailid" id="enquiryEmailAddress" class="form-control required" placeholder="Enter Email-ID">
+						<div class="error-msg" id="errenquiryEmailAddress"></div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 col-sm-6">
+					<div class="form-group">
+						<label for="mobile">Mobile Number *</label>
+						<input type="text" name="mobileno" id="enquiryNum" class="form-control required" placeholder="Enter Mobile Number">
+						<div class="error-msg" id="errenquirymobnum"></div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-6">
+					<div class="form-group">
+						<label for="productName">Product Name *</label>
+						<input type="text" name="materialcode" id="enquiryProductName" class="form-control required" placeholder="Enter Product Name">
+						<div class="error-msg" id="errenquiryProductName"></div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 col-sm-6">
+					<div class="form-group">
+						<label for="state">State *</label>
+						<select class="form-select" id="enquiryState" name="state">
+					<option selected disabled value="">Select State</option>
+<option value="daman-and-diu">Daman & Diu</option>
+<option value="andaman-and-nicobar-islands">Andaman and Nicobar Islands</option>
+<option value="andhra-pradesh">Andhra Pradesh</option>
+<option value="arunachal-pradesh">Arunachal Pradesh</option>
+<option value="assam">Assam</option>
+<option value="bihar">Bihar</option>
+<option value="chandigarh">Chandigarh</option>
+<option value="chhattisgarh">Chhattisgarh</option>
+<option value="dadra-and-nagar-haveli">Dadra & Nagar Haveli</option>
+<option value="delhi">Delhi</option>
+<option value="goa">Goa</option>
+<option value="gujarat">Gujarat</option>
+<option value="haryana">Haryana</option>
+<option value="himachal-pradesh">Himachal Pradesh</option>
+<option value="jammu-and-kashmir">Jammu and Kashmir</option>
+<option value="jharkhand">Jharkhand</option>
+<option value="karnataka">Karnataka</option>
+<option value="kerala">Kerala</option>
+<option value="ladakh">Ladakh</option>
+<option value="lakshadweep">Lakshadweep</option>
+<option value="madhya-pradesh">Madhya Pradesh</option>
+<option value="maharashtra">Maharashtra</option>
+<option value="manipur">Manipur</option>
+<option value="meghalaya">Meghalaya</option>
+<option value="mizoram">Mizoram</option>
+<option value="nagaland">Nagaland</option>
+<option value="odisha">Odisha</option>
+<option value="puducherry">Puducherry</option>
+<option value="punjab">Punjab</option>
+<option value="rajasthan">Rajasthan</option>
+<option value="sikkim">Sikkim</option>
+<option value="tamil-nadu">Tamil Nadu</option>
+<option value="telangana">Telangana</option>
+<option value="tripura">Tripura</option>
+<option value="uttar-pradesh">Uttar Pradesh</option>
+<option value="uttarakhand">Uttarakhand</option>
+<option value="west-bengal">West Bengal</option>
+						</select>
+						<div class="error-msg" id="errenquiryState"></div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-6">
+					<div class="form-group">
+						<label for="city">City *</label>
+						<input type="text" class="form-control required" placeholder="Enter City" name="city" id="enquiryCity">
+						<div class="error-msg" id="errenquiryCity"></div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 col-sm-6">
+					<div class="form-group">
+						<label for="pincode">Pincode *</label>
+						<input type="text" name="enquirypincode" id="enquirypincode" class="form-control required" placeholder="Pincode">
+						<div class="error-msg" id="errenquiryPincode"></div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-6">
+					<div class="form-group">
+						<label for="query">Put Your Query Here</label>
+						<textarea class="form-control" rows="1" name="query" id="queryf"></textarea>
+					</div>
+				</div> 
+				
+				</div>
+				<div class="row">
+				<div class="col-12">
+    <div class="form-check">
+        <label for="termsCheck" class="form-check-label">
+            <!-- Hidden input to send "0" when checkbox is not checked -->
+            <input type="hidden" name="consent" id="consentHidden" value="0">
+            <!-- Checkbox input to send "1" when checked -->
+            <input 
+                name="consent" 
+                required 
+                type="checkbox" 
+                class="form-check-input" 
+                id="consent" 
+                value="1" 
+                
+            >
+            By clicking on the submit button, I agree to receive a call and/or email from Finolex or its
+            authorised representative(s) as per the calling guidelines avail & also agree to the
+            website’s <a href="https://www.finolexpipes.com/tnc" target="_blank">Terms and Conditions</a> & 
+			<a href="https://www.finolexpipes.com/privacy-notice" target="_blank">Data Privacy Notice</a>
+        </label>
+        
+    </div>
+ 
+</div>
+</div>
+<div class="row d-flex align-items-center">
+	 
+    <div class="col-md-6 col-12">
+        <button id="submitenquiry" type="submit" class="btn-1 btn-2"><span>Submit</span>
+            <div class="arrow">&nbsp;</div>
+        </button>
+    </div>
+</div>
+
+		</form>
+	</div>
+</section>
+
+
+
+	<!-- Product Enquiry Form -->
+	 <section id="dealer_enquiry_form_container" class="enquiry_container">
+	<div id="enquiry_form">
+		<a href="javascript:void(0)" class="dealer_close_popup" aria-label="dealer_close_popup">
+			<img src="/site/templates/assets/images/homepage/common/close.svg" alt="Close icon">
+		</a>
+			<div class="form_inner">
+		<h4>Enquiry Form</h4>
+		<form method="post" id="dealer_enquire_form" onsubmit="return validateEnquiryForm('dealer_enquire_form')">
+			<div class="row">
+				<div class="col-12 col-sm-6">
+					<div class="form-group">
+						<label for="name">Name *</label>
+						<input type="text" name="namedealer" id="namedealer" class="form-control required" placeholder="Enter Name">
+						<div class="error-msg" id="errnamedealer"></div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-6">
+					<div class="form-group">
+						<label for="email">Email-ID *</label>
+						<input type="email" name="emailiddealer" id="emailiddealer" class="form-control required" placeholder="Enter Email-ID">
+						<div class="error-msg" id="erremailiddealer"></div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 col-sm-6">
+					<div class="form-group">
+						<label for="mobile">Mobile Number *</label>
+						<input type="text" name="mobilenodealer" id="mobilenodealer" class="form-control required" placeholder="Enter Mobile Number">
+						<div class="error-msg" id="errmobilenodealer"></div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-6">
+					<div class="form-group">
+						<label for="productName">Product Name *</label>
+						<input type="text" name="materialcodedealer" id="materialcodedealer" class="form-control required" placeholder="Enter Product Name">
+						<div class="error-msg" id="errmaterialcodedealer"></div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 col-sm-6">
+					<div class="form-group">
+						<label for="state">State *</label>
+						<select class="form-select" id="statedealer" name="statedealer">
+					<option selected disabled value="">Select State</option>
+<option value="daman-and-diu">Daman & Diu</option>
+<option value="andaman-and-nicobar-islands">Andaman and Nicobar Islands</option>
+<option value="andhra-pradesh">Andhra Pradesh</option>
+<option value="arunachal-pradesh">Arunachal Pradesh</option>
+<option value="assam">Assam</option>
+<option value="bihar">Bihar</option>
+<option value="chandigarh">Chandigarh</option>
+<option value="chhattisgarh">Chhattisgarh</option>
+<option value="dadra-and-nagar-haveli">Dadra & Nagar Haveli</option>
+<option value="delhi">Delhi</option>
+<option value="goa">Goa</option>
+<option value="gujarat">Gujarat</option>
+<option value="haryana">Haryana</option>
+<option value="himachal-pradesh">Himachal Pradesh</option>
+<option value="jammu-and-kashmir">Jammu and Kashmir</option>
+<option value="jharkhand">Jharkhand</option>
+<option value="karnataka">Karnataka</option>
+<option value="kerala">Kerala</option>
+<option value="ladakh">Ladakh</option>
+<option value="lakshadweep">Lakshadweep</option>
+<option value="madhya-pradesh">Madhya Pradesh</option>
+<option value="maharashtra">Maharashtra</option>
+<option value="manipur">Manipur</option>
+<option value="meghalaya">Meghalaya</option>
+<option value="mizoram">Mizoram</option>
+<option value="nagaland">Nagaland</option>
+<option value="odisha">Odisha</option>
+<option value="puducherry">Puducherry</option>
+<option value="punjab">Punjab</option>
+<option value="rajasthan">Rajasthan</option>
+<option value="sikkim">Sikkim</option>
+<option value="tamil-nadu">Tamil Nadu</option>
+<option value="telangana">Telangana</option>
+<option value="tripura">Tripura</option>
+<option value="uttar-pradesh">Uttar Pradesh</option>
+<option value="uttarakhand">Uttarakhand</option>
+<option value="west-bengal">West Bengal</option>
+						</select>
+						<div class="error-msg" id="errstatedealer"></div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-6">
+					<div class="form-group">
+						<label for="city">City *</label>
+						<input type="text" class="form-control required" placeholder="Enter City" name="citydealer" id="citydealer">
+						<div class="error-msg" id="errcitydealer"></div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 col-sm-6">
+					<div class="form-group">
+						<label for="pincode">Pincode *</label>
+						<input type="text" name="dealerpincode" id="dealerpincode" class="form-control required" placeholder="Pincode">
+						<div class="error-msg" id="errdealerpincode"></div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-6">
+					<div class="form-group">
+						<label for="query">Put Your Query Here</label>
+						<textarea class="form-control" rows="1" name="querydealer" id="querydealer"></textarea>
+					</div>
+				</div> 
+				
+				</div>
+				<div class="row">
+				<div class="col-12">
+    <div class="form-check">
+        <label for="termsCheck" class="form-check-label">
+            <!-- Hidden input to send "0" when checkbox is not checked -->
+            <input type="hidden" name="dealerconsentHidden" id="dealerconsentHidden" value="0">
+            <!-- Checkbox input to send "1" when checked -->
+            <input 
+                name="consent" 
+                required 
+                type="checkbox" 
+                class="form-check-input" 
+                id="consent" 
+                value="1" 
+                
+            >
+            By clicking on the submit button, I agree to receive a call and/or email from Finolex or its
+            authorised representative(s) as per the calling guidelines avail & also agree to the
+            website’s <a href="https://www.finolexpipes.com/tnc" target="_blank">Terms and Conditions</a> & 
+			<a href="https://www.finolexpipes.com/privacy-notice" target="_blank">Data Privacy Notice</a>
+        </label>
+        
+    </div>
+ 
+</div>
+</div>
+<div class="row d-flex align-items-center">
+	 <div class="col-md-6 col-12">
+        <div id="dealer-recaptcha-div" class="g-recaptcha mt-5 mb-0 mt-md-3  "  data-sitekey="6LfoLSYdAAAAADDEpQZ-coIGvnJqwwqqMxs_r35d"></div>
+		<div class="error-msg" id="errdealerRecaptca"></div>
+    </div>
+    <div class="col-md-6 col-12">
+        <button id="dealersubmitenquiry" type="submit" class="btn-1 btn-2"><span>Submit</span>
+            <div class="arrow">&nbsp;</div>
+        </button>
+    </div>
+</div>
+
+		</form>
+	</div>
+	</div>
+	</section>
+<!-- enquiry end -->
+
+<script async defer type="text/javascript" src="/site/templates/assets/js/custom-min.js?v=1793098383"></script>
+<!-- Enquiry Form End -->	<!-- <script src="/site/templates/assets/js/jquery-ui.min.js?v=1793098383" defer></script> -->
+<script type="text/javascript" src="/site/templates/assets/js/uikit.min.js" async defer></script>
+
+<script type="text/javascript" src="/site/templates/assets/js/owl.carousel.min.js" defer></script>
+<script type="text/javascript" src="/site/templates/assets/js/wow.min.js" defer></script>
+<!-- <script type="text/javascript" src="js/jquery.waypoints.min.js" defer></script> -->
+<!-- <script type="text/javascript" src="js/jquery.counterup.min.js" defer></script> -->
+<script type="text/javascript" src="/site/templates/assets/js/homepage.js" defer></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
+<script src="https://www.google.com/recaptcha/api.js" defer></script>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-10988147805" defer></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'AW-10988147805');
+</script>
+<!-- Meta Pixel Code -->
+<script>
+    !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return; n = f.fbq = function () {
+            n.callMethod ?
+            n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        };
+        if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+        n.queue = []; t = b.createElement(e); t.async = !0;
+        t.src = v; s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '674397697306702');
+    fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=674397697306702&ev=PageView&noscript=1" /></noscript>
+
+<!-- End Meta Pixel Code -->
+
+<script>
+    function gtag_report_conversion(url) {
+        var callback = function () {
+            if (typeof (url) != 'undefined') {
+                window.location = url;
+            }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-10988147805/9y96CITJnYQYEN2ox_co',
+            'event_callback': callback
+        });
+        return false;
+    }
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-10988147805"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-10988147805');
+</script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '674397697306702');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=674397697306702&ev=PageView&noscript=1"
+/></noscript>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDGG4PK"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<!-- End Meta Pixel Code -->
+
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-10988147805/9y96CITJnYQYEN2ox_co',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>	<script type="text/javascript" src="/site/templates/assets/js/about.js"></script>
+	<script src="/site/templates/assets/js/jquery.timelinr-0.9.7.js"></script>
+	<!-- Google Tag Manager -->
+	<script>(function (w, d, s, l, i) {
+			w[l] = w[l] || []; w[l].push({
+				'gtm.start':
+					new Date().getTime(), event: 'gtm.js'
+			}); var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+					'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+		})(window, document, 'script', 'dataLayer', 'GTM-M28W7XT');</script>
+	<!-- End Google Tag Manager -->
+	<script>
+		$(function () {
+			$().timelinr({
+				autoPlay: 'false',
+				autoPlayDirection: 'forward'
+			})
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Affordable 1,2 and 3 bhk flats in hinjewadi by megapolis</title>
+	<meta charset="UTF-8">
+	<meta name="slug" content="affordable-1-and-2bhk-flats-in-hinjewadi-by-megapolis">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Find budget-friendly 1,2 &3 bhk flats in hinjewadi by Megapolis. Enjoy living with top-notch amenities which is ideal for families and working individuals.">
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/slick.css" />
+	<link rel="stylesheet" type="text/css" href="css/slick-theme.css" />
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+</head>
+
+<body>
+	<button type="button" class="enquiry_row" data-bs-toggle="modal" data-bs-target="#myModal">
+		<img src="images/enquiry_icon.png">
+		<p>ENQUIRE NOW</p>
+	</button>
+
+	<!-- <a href="https://wa.me/+918806444490" class="whatapp_icon" target="_blank"><img src="images/whatsapp.png"></a> -->
+	<a href="https://api.whatsapp.com/send/?phone=+918806444490&text=Hey!+I’m+interested+in+Megapolis.+Kindly+share+me+the+details." class="whatapp_icon"
+		target="_blank"><img src="images/whatsapp.png"></a>
+
+
+
+	<header class="header">
+		<div class="container-fluid">
+			<div class="header_wrap">
+				<div class="logo">
+					<a href="#"><img class="logo_white" src="images/logo_white.png" alt="logo"></a>
+					<a href="#"><img class="original_logo" src="images/orignal_logo.png" alt="logo"></a>
+				</div>
+				<button type="button" class="toggle_btn"><i class="fa fa-bars" aria-hidden="true"></i></button>
+				<div class="menu">
+					<ul class="menu_list">
+						<li class="nav-item">
+							<a class="nav-link active" href="#">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="about-us.html">About us</a>
+						</li>
+						<li class="nav-item">
+							<span class="dropdown">
+								<a class="nav-link dropdown-toggle" href="javascript:void(0);" id="dropdownMenuLink"
+									data-bs-toggle="dropdown" aria-expanded="false">projects</a>
+								<ul class="dropdown-menu upper_drp" aria-labelledby="dropdownMenuLink">
+									<li class="dropdown dropend">
+										<a class="dropdown-item dropdown-toggle" href="#" id="multilevelDropdownMenu1"
+											data-bs-toggle="dropdown" aria-expanded="false">ONGOING</a>
+										<ul class="dropdown-menu nested_drp" aria-labelledby="multilevelDropdownMenu1">
+											<li><a class="dropdown-item" href="shimmer_detail.html">Megapolis
+												Shimmer</a></li>
+											<li><a class="dropdown-item" href="mystic_detail.html">Megapolis Mystic</a></li>
+											<li><a class="dropdown-item" href="spotlight_detail.html">Megapolis
+													Spotlight </a></li>
+											<li><a class="dropdown-item" href="saffron_detail.html">Megapolis Saffron
+												</a></li>
+										</ul>
+									</li>
+									<li><a class="dropdown-item" href="project.html">UPCOMING</a></li>
+									<li><a class="dropdown-item" href="project.html">COMPLETED</a></li>
+								</ul>
+							</span>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="offer.html">offers</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="life-megapolis.html">life@Megapolis</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://www.megapolis.co.in/megapolis/index.htm"
+								target="blank">virtual zone</a>
+						</li>
+						<!--  <li class="nav-item">
+          <a class="nav-link" href="#">testimonials</a>
+        </li> -->
+						<li class="nav-item">
+							<a class="nav-link" href="contact-us.html">contact us</a>
+						</li>
+
+					</ul>
+
+
+					<ul class="booknow">
+						<li><i class="fa fa-phone" aria-hidden="true"></i><a href="tel:09595330033" class="header_num">
+								+91 9595330033</a></li>
+						<li><a href="https://payu.in/web/567C4A042CB309D36615EE0D42D75557" class="default_btn">book
+								now</a>
+					</ul>
+
+				</div>
+			</div>
+		</div>
+
+
+	</header>
+
+	<section class="video_banner">
+		<video id="banner_video" width="100%" muted autoplay loop playsinline>
+			<source src="video/home_banner2.mp4" type="video/mp4">
+			<!-- <source src="video/home_banner.ogg" type="video/ogg"> -->
+			Your browser does not support the video tag.
+		</video>
+	</section>
+
+	<section class="flatsec">
+		<div class="introflat">
+			<h2>Megapolis Township</h2>
+			<h4>1, 2, and 3 BHK Flats in Hinjawadi IT Park</h4>
+			<p>Live in the lap of luxury with Megapolis, where every moment is a celebration of modern living. Our
+				township in Hinjawadi IT Park offers the perfect blend of comfort, convenience, and style. With over
+				7000 units delivered, we have a range of completed and ongoing projects in the Premium and Smart home
+				segments to choose from.</p>
+			<p>Enjoy a stress-free life within walking distance of your workplace and say goodbye to traffic. Join our
+				community of 25000+ residents who have made Megapolis their home and experience the pinnacle of
+				contemporary living. Come, be a part of our legacy and discover your dream home today!</p>
+			<a href="about-us.html" class="default_btn">Read More</a>
+		</div>
+		<div class="flatimg">
+			<img src="images/home_about.jpg">
+		</div>
+
+	</section>
+
+	<section class="glancesec">
+		<h2>Projects at a Glance</h2>
+		<p>Check out our projects ongoing in full swing. Click on “Read More” for details</p>
+		<div class="glancepicrowsec">
+			<div class="glancecolsec">
+				<img src="images/shimmer.jpg">
+				<div class="glantxt">
+					<h6>homes in hinjawadi</h6>
+					<h4>Shimmer </h4>
+					<p>Apartment <span><i class="fa fa-circle" aria-hidden="true"></i></span> 3 Bhk</p>
+					<a href="shimmer_detail.html">Read More <img src="images/arrow.png"></a>
+				</div>
+			</div>
+			<div class="glancecolsec">
+				<img src="images/project_spotlight_home.jpg">
+				<div class="glantxt">
+					<h6>homes in hinjawadi</h6>
+					<h4>Spotlight</h4>
+					<p>Apartment <span><i class="fa fa-circle" aria-hidden="true"></i></span> 2 Bhk</p>
+					<a href="spotlight_detail.html">Read More <img src="images/arrow.png"></a>
+				</div>
+			</div>
+			<div class="glancecolsec">
+				<img src="images/project_sparkle_home.jpg">
+				<div class="glantxt">
+					<h6>homes in hinjawadi</h6>
+					<h4>Mystic </h4>
+					<p>Apartment <span><i class="fa fa-circle" aria-hidden="true"></i></span> 2 & 3 Bhk</p>
+					<a href="mystic_detail.html">Read More <img src="images/arrow.png"></a>
+				</div>
+			</div>
+
+		</div>
+		<div class="lifemegasec glancesec">
+			<h2>Life@Megapolis</h2>
+			<p>Megapolis has a plethora of in-town facilities that make it a complete township project. </p>
+			<div class="cstm_container">
+				<div class="megabranch">
+					<div class="academysec">
+						<div class="academysectxt">
+							<img class="orange_life_icon" src="images/orange_academy.png">
+							<img class="white_life_icon" src="images/white_academy.png">
+						</div>
+						<h6>Academy</h6>
+						<a href="life-megapolis.html">Read More</a>
+					</div>
+					<div class="academysec">
+						<div class="academysectxt">
+							<img class="orange_life_icon" src="images/orange_care.png">
+							<img class="white_life_icon" src="images/white_care.png">
+						</div>
+						<h6>day care</h6>
+						<a href="life-megapolis.html">Read More</a>
+					</div>
+					<div class="academysec">
+						<div class="academysectxt">
+							<img class="orange_life_icon" src="images/orange_school.png">
+							<img class="white_life_icon" src="images/white_school.png">
+						</div>
+						<h6>School</h6>
+						<a href="life-megapolis.html">Read More</a>
+					</div>
+					<div class="academysec">
+						<div class="academysectxt">
+							<img class="orange_life_icon" src="images/orange_clinic.png">
+							<img class="white_life_icon" src="images/white_clinic.png">
+						</div>
+						<h6>clinic</h6>
+						<a href="life-megapolis.html">Read More</a>
+					</div>
+					<div class="academysec">
+						<div class="academysectxt">
+							<img class="orange_life_icon" src="images/orange_mart.png">
+							<img class="white_life_icon" src="images/white_mart.png">
+						</div>
+						<h6>super market</h6>
+						<a href="life-megapolis.html">Read More</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="virtourbtnsec">
+			<div class="cstm_container">
+				<div class="virtourbtncen">
+					<h4>TAKE A VIRTUAL TOUR OF MEGAPOLIS</h4>
+					<div class="virbtn">
+						<a href="https://www.megapolis.co.in/megapolis/index.htm" class="default_btn">virtual tour</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</section>
+
+
+	<section class="vrtzn">
+		<h2>Virtual Zone</h2>
+		<p>Explore videos, photos, and 360-degree aerial views of the Township.</p>
+		<div class="vrznsec">
+
+			<!-- <div class="virznpic">
+			<img src="images/vertual_zone1.png">
+			<div class="layer_div">
+				<a href="#" class="ghost_btn">Read more</a>
+			</div>
+		</div> -->
+			<div class="virznpic">
+				<img src="images/virtual_zone10.jpg">
+				<!-- <div class="layer_div">
+				<a href="virtual-zone.html" class="ghost_btn">Read more</a>
+			</div> -->
+			</div>
+			<div class="virznpic">
+				<img src="images/virtual_zone11.jpg">
+				<!-- <div class="layer_div">
+				<a href="virtual-zone.html" class="ghost_btn">Read more</a>
+			</div> -->
+			</div>
+			<div class="virznpic">
+				<img src="images/virtual_zone5.jpg">
+				<!-- <div class="layer_div">
+				<a href="virtual-zone.html" class="ghost_btn">Read more</a>
+			</div> -->
+			</div>
+			<div class="virznpic">
+				<img src="images/virtual_zone3.png">
+				<!-- <div class="layer_div">
+				<a href="virtual-zone.html" class="ghost_btn">Read more</a>
+			</div> -->
+			</div>
+			<div class="virznpic">
+				<img src="images/virtual_zone_10.jpg">
+				<!-- <div class="layer_div">
+				<a href="virtual-zone.html" class="ghost_btn">Read more</a>
+			</div> -->
+			</div>
+
+
+			<div class="virznpic">
+				<img src="images/virtual_zone9.jpg">
+				<!-- <div class="layer_div">
+				<a href="virtual-zone.html" class="ghost_btn">Read more</a>
+			</div> -->
+			</div>
+		</div>
+	</section>
+
+	<section class="testimonials_sec">
+		<h2>Client Testimonials</h2>
+
+		<div class="foundersec">
+			<div class="wrap_testimonial">
+				<div class="founintro">
+					<img src="images/testimonial1.jpg">
+					<!-- <div class="initial_name"><sapn>V</sapn></div> -->
+					<p>“The overall experience was ok. Megapolis staff is humble, helpful, and cooperative that is a
+						good part. The apartment is in good condition at the time of possession. Overall experience good
+						from the MEGAPOLIS team/staff.”</p>
+					<div class="foun_name">
+						<div class="fname_write">
+							<!-- <h5>Mr. Vajpayee</h5> -->
+							<h5>Mr. Ankush Kochhar </h5>
+							<!-- <h5>( D-904 ) </h5>	 -->
+						</div>
+					</div>
+
+				</div>
+				<div class="founintro">
+					<img src="images/testimonial2.jpg">
+					<!-- <div class="initial_name"><sapn>K</sapn></div> -->
+					<p>
+						“Overall experience with MEGAPOLIS has been excellent. The staff standing from sales, CRM
+						support team, maintenance, and other support staff have been really good in addressing our
+						questions/doubts and have been very Approachaful for any queries/support. Overall experience on
+						a scale of 10 is 10/10.”
+					</p>
+					<div class="foun_name">
+						<div class="fname_write">
+							<h5>Mr. Naga Kaushik</h5>
+							<!-- <h5>( D-904 ) </h5>	 -->
+						</div>
+					</div>
+
+				</div>
+				<div class="founintro">
+					<img src="images/testimonial3.jpg">
+					<!-- <div class="initial_name"><sapn>B</sapn></div> -->
+					<p>
+						“We have received a flat key today. Very much on time. The flat is very nice. All the
+						Commitments are fulfilled very nicely. All fittings are very excellent. All your team CRM and
+						Engineering are very helpful and kind. We are very very happy to have our flat with you. I
+						congratulate you all on this occasion. Thanking you very very much. Looking forward to a long
+						association with you all.”
+					</p>
+					<div class="foun_name">
+						<div class="fname_write">
+							<h5>Mr. Vivekanand Murali Eatte</h5>
+							<!-- <h5>( D-904 ) </h5>	 -->
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="found_video">
+				<!-- <img src="images/fonder_pic.png"> -->
+				<!-- <iframe width="100%" src="https://www.youtube.com/embed/UjgA_O0so1k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+				<div class="testi_video_row">
+					<div class="testi_video_col">
+						<iframe src="https://www.youtube.com/embed/MIUOY8e-8Hg" title="YouTube video player"
+							frameborder="0"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+							allowfullscreen></iframe>
+					</div>
+					<div class="testi_video_col">
+						<iframe src="https://www.youtube.com/embed/U6E7NhH7LnY" title="YouTube video player"
+							frameborder="0"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+							allowfullscreen></iframe>
+					</div>
+					<div class="testi_video_col">
+						<iframe src="https://www.youtube.com/embed/_b_CZIpeRk4" title="YouTube video player"
+							frameborder="0"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+							allowfullscreen></iframe>
+					</div>
+					<div class="testi_video_col">
+						<iframe src="https://www.youtube.com/embed/3kChH-8vbGM" title="YouTube video player"
+							frameborder="0"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+							allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<section class="enquire_sec ">
+		<h2>Enquire Now</h2>
+		<form action="contact.php" method="post">
+			<div class="enq_sec cstm_container">
+				<div class="name_sec">
+					<input type="text" name="name" placeholder="Name" required="">
+				</div>
+				<div class="name_sec">
+					<input type="text" name="email" placeholder="Email" required="">
+				</div>
+				<div class="name_sec">
+					<input type="number" name="phone" placeholder="WhatsApp No." required="">
+					<p>NOTE: Input 10 digit number without country code</p>
+				</div>
+
+			</div>
+
+			<div class="enq_sub_btn cstm_container">
+				<button type="submit">Submit</button>
+			</div>
+
+		</form>
+	</section>
+
+	<footer>
+		<div class="upper_footer">
+			<div class="cstm_container">
+				<div class="social_row">
+					<div class="logos_row">
+						<a href="#"><img src="images/orignal_logo.png"></a>
+						<a href="#"><img src="images/kumar_logo.png"></a>
+					</div>
+					<div class="social_icons">
+						<p>Follow Us</p>
+						<ul class="social_icons_list">
+							<li><a target="blank" href="https://www.facebook.com/MegapolisTownshipPune"><i
+										class="fa fa-facebook" aria-hidden="true"></i></a></li>
+							<li><a target="blank" href="https://twitter.com/MegapolisPune"><i class="fa fa-twitter"
+										aria-hidden="true"></i></a></li>
+							<li><a target="blank" href="https://www.instagram.com/megapolispune"><i
+										class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							<li><a target="blank"
+									href="https://www.linkedin.com/company/megapolis-pune/?originalSubdomain=in"><i
+										class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+							<li><a target="blank" href="https://www.youtube.com/channel/UCt8-U82ossGIZAHCVU5Iv0w"><i
+										class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="lower_footer">
+			<div class="cstm_container">
+				<div class="footer_menu_row">
+					<div class="footer_menu_col">
+						<h4>Quick Links</h4>
+						<ul>
+							<li><a href="about-us.html#menu2">About Megapolis</a></li>
+							<li><a href="about-us.html#menu5">Awards</a></li>
+							<li><a href="csr.html">CSR</a></li>
+							<li><a href="policies.html">Policies</a></li>
+							<li><a href="project.html">Projects</a></li>
+							<li><a href="crm.html">CRM</a></li>
+							<li><a href="site_photos.html">Site Photos</a></li>
+							<li><a href="contact-us.html">Contact Us </a></li>
+						</ul>
+					</div>
+					<div class="footer_menu_col">
+						<h4>Facilities</h4>
+						<ul>
+							<li><a href="life-megapolis.html#day_care">Maple leaf Pre-school Day Care</a></li>
+							<li><a href="life-megapolis.html#pawar_school">Pawar Public School</a></li>
+							<!-- <li><a href="life-megapolis.html#mbta">Mahesh Bhupati Tennis Academy</a></li> -->
+							<li><a href="life-megapolis.html#bharti_bazar">Bharti Bazaar</a></li>
+							<li><a href="life-megapolis.html#polyclinic">Polyclinic & Pharmacy</a></li>
+							<li><a href="life-megapolis.html#datta_mandir">Datta Mandir</a></li>
+
+
+						</ul>
+					</div>
+					<div class="footer_menu_col">
+						<h4>Site Address</h4>
+						<ul>
+							<li>R-1/1 to R-1/4, Phase-III, Rajiv </li>
+							<li>Gandhi Infotech Park Hinjawadi, </li>
+							<li>Pune 411057, INDIA.</li>
+							<li>Sales Enq.: <a href="tel:02042600888">02042600888</a></li>
+							<li>Phone: <a href="tel:09595330033">+91 9595330033,</a></li>
+							<li>Email: <a href="mailto:info@megapolis.co.in">info@megapolis.co.in</a></li>
+						</ul>
+					</div>
+					<div class="footer_menu_col">
+						<h4>Corporate Office</h4>
+						<ul>
+							<li><b>Kumar Capital</b></li>
+							<li>2413 East Street, Pune, India </li>
+							<li>(20)30583635/660/661/ 662/663</li>
+							<li><a href="mailto:sales@kumarcorp.co.in">sales@kumarcorp.co.in</a></li>
+							<li><a href="https://www.kumarcorp.co.in">www.kumarcorp.co.in</a></li>
+							<li>Sales Enquiry: <a href="tel:09595110011">+91 9595 110011</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="register_row">
+					<img src="images/rera_logo.png">
+					<p>All projects have been registered via MahaRERA registration and available on the website <a
+							href="https://maharera.maharashtra.gov.in/">  maharera.maharashtra.gov.in </a> under registered
+						projects.</p>
+				</div>
+			</div>
+		</div>
+		<div class="cstm_container">
+			<div class="copywrite_row">
+				<p>© 2023 | All Rights Reserved Pegasus Properties Private Limited</p>
+				<a href="privacy_policies.html">Privacy Policy</a>
+			</div>
+		</div>
+	</footer>
+
+	<div class="modal enquiry_frm" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Enquiry Form</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					<form action="contact.php" method="post" id="my-form">
+						<input type="text" name="name" placeholder="Name" class="form-control" required>
+						<input type="number" name="phone" placeholder="Phone" class="form-control" required>
+						<input type="text" name="email" placeholder="Email" class="form-control" required>
+						<select name="subject" class="form-select">
+							<option>Select </option>
+							<option>Megapolis Centrestage</option>
+							<option>Megapolis Saffron</option>
+							<option>Megapolis Mystic</option>
+
+						</select>
+						<div class="text-center">
+							<button type="submit" class="default_btn" id="submit-form">Submit</button>
+						</div>
+					</form>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- <div class="modal" id="loadModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			Modal Header
+			<div class="modal-header ">
+
+				<button type="button" class="btn-close" id="closeModal" data-bs-dismiss="modal"></button>
+			</div>
+
+			Modal body
+			<div class="modal-body pop_img">
+				<a href="https://www.kumarcentrestage.com/"><img src="images/new_pop.jpeg" alt=""></a>
+			</div>
+
+		</div>
+	</div> -->
+</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="js/jquery-1.11.0.min.js"></script>
+	<script src="js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="js/slick.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/lock.js"></script>
+	<script>
+		window.addEventListener('load', async () => {
+			let video = document.querySelector('#banner_video');
+			console.log(video, 'banner_video')
+			try {
+				await video.play();
+			} catch (err) {
+				video.controls = true;
+			}
+		});
+	</script>
+
+
+	<script type="text/javascript">
+		var modal = document.getElementById("loadModal");
+
+		var closeModal = document.getElementById("closeModal");
+
+		// Show the modal when the page loads
+		window.onload = function () {
+			modal.style.display = "block";
+		}
+
+		closeModal.addEventListener("click", function () {
+			modal.style.display = "none";
+
+		});
+	</script>
+</body>
+
+</html>

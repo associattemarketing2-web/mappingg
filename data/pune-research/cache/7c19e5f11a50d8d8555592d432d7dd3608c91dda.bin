@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=10" />
+	<title>About Us | venkys.com</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11" />
+	<link rel="pingback" href="https://venkys.com/xmlrpc.php" />
+	<link rel="alternate" type="application/rss+xml" title="venkys.com &raquo; Feed" href="https://venkys.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="venkys.com &raquo; Comments Feed" href="https://venkys.com/comments/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"https:\/\/venkys.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.4.33"}};
+			!function(e,n,t){var a;function i(e){var t=n.createElement("canvas"),a=t.getContext&&t.getContext("2d"),i=String.fromCharCode;return!(!a||!a.fillText)&&(a.textBaseline="top",a.font="600 32px Arial","flag"===e?(a.fillText(i(55356,56806,55356,56826),0,0),3e3<t.toDataURL().length):"diversity"===e?(a.fillText(i(55356,57221),0,0),t=a.getImageData(16,16,1,1).data,a.fillText(i(55356,57221,55356,57343),0,0),(t=a.getImageData(16,16,1,1).data)[0],t[1],t[2],t[3],!0):("simple"===e?a.fillText(i(55357,56835),0,0):a.fillText(i(55356,57135),0,0),0!==a.getImageData(16,16,1,1).data[0]))}function o(e){var t=n.createElement("script");t.src=e,t.type="text/javascript",n.getElementsByTagName("head")[0].appendChild(t)}t.supports={simple:i("simple"),flag:i("flag"),unicode8:i("unicode8"),diversity:i("diversity")},t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.simple&&t.supports.flag&&t.supports.unicode8&&t.supports.diversity||(a=function(){t.readyCallback()},n.addEventListener?(n.addEventListener("DOMContentLoaded",a,!1),e.addEventListener("load",a,!1)):(e.attachEvent("onload",a),n.attachEvent("onreadystatechange",function(){"complete"===n.readyState&&t.readyCallback()})),(a=t.source||{}).concatemoji?o(a.concatemoji):a.wpemoji&&a.twemoji&&(o(a.twemoji),o(a.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='dashicons-css'  href='https://venkys.com/wp-includes/css/dashicons.min.css?ver=4.4.33' type='text/css' media='all' />
+<link rel='stylesheet' id='thickbox-css'  href='https://venkys.com/wp-includes/js/thickbox/thickbox.css?ver=4.4.33' type='text/css' media='all' />
+<link rel='stylesheet' id='wl-wrgf-swipe-css-css'  href='https://venkys.com/wp-content/plugins/responsive-gallery-with-lightbox/lightbox/swipebox/swipebox.css?ver=4.4.33' type='text/css' media='all' />
+<link rel='stylesheet' id='wrgf-hover-pack-css-css'  href='https://venkys.com/wp-content/plugins/responsive-gallery-with-lightbox/css/hover-pack.css?ver=4.4.33' type='text/css' media='all' />
+<link rel='stylesheet' id='wrgf-boot-strap-css-css'  href='https://venkys.com/wp-content/plugins/responsive-gallery-with-lightbox/css/bootstrap.css?ver=4.4.33' type='text/css' media='all' />
+<link rel='stylesheet' id='wrgf-img-gallery-css-css'  href='https://venkys.com/wp-content/plugins/responsive-gallery-with-lightbox/css/img-gallery.css?ver=4.4.33' type='text/css' media='all' />
+<link rel='stylesheet' id='wrgf-font-awesome-4-css'  href='https://venkys.com/wp-content/plugins/responsive-gallery-with-lightbox/css/font-awesome-latest/css/font-awesome.min.css?ver=4.4.33' type='text/css' media='all' />
+<link rel='stylesheet' id='collapseomatic-css-css'  href='https://venkys.com/wp-content/plugins/jquery-collapse-o-matic/light_style.css?ver=1.6' type='text/css' media='all' />
+<link rel='stylesheet' id='news-manager-front-css'  href='https://venkys.com/wp-content/plugins/news-manager/css/front.css?ver=4.4.33' type='text/css' media='all' />
+<link rel='stylesheet' id='page-in-page-css-0-css'  href='https://venkys.com/wp-content/plugins/page-in-page/inc/style.css?ver=4.4.33' type='text/css' media='all' />
+<link rel='stylesheet' id='resume-style-css'  href='http://venkys.com/wp-content/plugins/resume-submissions-job-postings/css/resume-styles.css?ver=4.4.33' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-pagenavi-css'  href='https://venkys.com/wp-content/plugins/wp-pagenavi/pagenavi-css.css?ver=2.70' type='text/css' media='all' />
+<link rel='stylesheet' id='vantage-style-css'  href='https://venkys.com/wp-content/themes/vantage/style.css?ver=1.4.4' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='https://venkys.com/wp-content/themes/vantage/fontawesome/css/font-awesome.css?ver=4.2.0' type='text/css' media='all' />
+<link rel='stylesheet' id='easy_table_style-css'  href='https://venkys.com/wp-content/plugins/easy-table/themes/default/style.css?ver=1.5.3' type='text/css' media='all' />
+<script type='text/javascript' src='https://venkys.com/wp-includes/js/jquery/jquery.js?ver=1.11.3'></script>
+<script type='text/javascript' src='https://venkys.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='http://venkys.com/wp-content/plugins/onclick-popup/onclick-popup.js?ver=4.4.33'></script>
+<script type='text/javascript' src='https://venkys.com/wp-content/plugins/responsive-gallery-with-lightbox/js/hover-pack.js?ver=4.4.33'></script>
+<script type='text/javascript' src='https://venkys.com/wp-content/plugins/responsive-gallery-with-lightbox/lightbox/swipebox/jquery.swipebox.js?ver=4.4.33'></script>
+<script type='text/javascript' src='https://venkys.com/wp-content/plugins/responsive-gallery-with-lightbox/js/masonry.pkgd.min.js?ver=4.4.33'></script>
+<script type='text/javascript' src='https://venkys.com/wp-content/plugins/responsive-gallery-with-lightbox/js/imagesloaded.pkgd.min.js?ver=4.4.33'></script>
+<script type='text/javascript' src='https://venkys.com/wp-content/plugins/page-in-page/inc/app.js?ver=4.4.33'></script>
+<script type='text/javascript' src='https://venkys.com/wp-content/plugins/popup-builder/javascript/sg_popup_core.js?ver=1'></script>
+<script type='text/javascript' src='http://venkys.com/wp-content/plugins/resume-submissions-job-postings/includes/jQuery/jquery.multi-file.js?ver=4.4.33'></script>
+<script type='text/javascript' src='https://venkys.com/wp-content/themes/vantage/js/jquery.flexslider.min.js?ver=2.1'></script>
+<script type='text/javascript' src='https://venkys.com/wp-content/themes/vantage/js/jquery.touchSwipe.min.js?ver=1.6.6'></script>
+<script type='text/javascript' src='https://venkys.com/wp-content/themes/vantage/js/jquery.theme-main.min.js?ver=1.4.4'></script>
+<script type='text/javascript' src='https://venkys.com/wp-content/themes/vantage/js/jquery.fitvids.min.js?ver=1.0'></script>
+<script type='text/javascript' src='https://venkys.com/wp-content/plugins/simple-popup-plugin/scripts/jquery.cookie.js?ver=4.4.33'></script>
+<script type='text/javascript' src='https://venkys.com/wp-content/plugins/treeview-on-contents/js/jquery.treeview.js?ver=0.1.8'></script>
+<link rel='https://api.w.org/' href='https://venkys.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://venkys.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://venkys.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.4.33" />
+<link rel="canonical" href="https://venkys.com/about-us/" />
+<link rel='shortlink' href='https://venkys.com/?p=11' />
+<link rel="alternate" type="application/json+oembed" href="https://venkys.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fvenkys.com%2Fabout-us%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://venkys.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fvenkys.com%2Fabout-us%2F&#038;format=xml" />
+	<!--Simple Popup Plugin v4.0 / RH Mods-->
+	<script language="javascript" type="text/javascript">
+	<!--
+	var swin=null;
+	function popitup(mypage,w,h,pos,myname,infocus){
+	    if (w!=parseInt(w)||w<=0) w=$width;
+	    if (h!=parseInt(h)||h<=0) h=$height;
+	    if (myname==null){myname="swin"};
+	    var myleft = 0;
+	    var mytop = 0;
+	    if (myleft==0 && mytop==0 && pos!="random"){pos="center"};
+	    if (pos=="random"){myleft=(screen.width)?Math.floor(Math.random()*(screen.width-w)):100;mytop=(screen.height)?Math.floor(Math.random()*((screen.height-h)-75)):100;}
+	    if (pos=="center"){myleft=(screen.width)?(screen.width-w)/2:100;mytop=(screen.height)?(screen.height-h)/2:100;}
+	    settings="width=" + w + ",height=" + h + ",top=" + mytop + ",left=" + myleft + ",scrollbars=yes,location=no,directories=no,status=no,menubar=no,toolbar=no,resizable=no";swin=window.open(mypage,myname,settings);
+	    if (infocus==null || infocus=="front"){swin.focus()};
+	    return false;
+	}
+	// -->
+	</script>
+	<!--/Simple Popup Plugin-->
+	<script type="text/javascript">
+jQuery(document).ready(function() {});</script>
+	<!--[if lt IE 9]>
+		<script src="https://venkys.com/wp-content/themes/vantage/js/html5.js" type="text/javascript"></script>
+	<![endif]-->
+	<!--[if (gte IE 6)&(lte IE 8)]>
+		<script type="text/javascript" src="https://venkys.com/wp-content/themes/vantage/js/selectivizr.js"></script>
+	<![endif]-->
+	<meta name="viewport" content="width=device-width, initial-scale=1" />	<style type="text/css" media="screen">
+		#footer-widgets .widget { width: 33.333%; }
+		@media screen and (max-width: 640px) {
+			#footer-widgets .widget { width: auto; float: none; }
+		}
+	</style>
+	<style type="text/css" id="vantage-footer-widgets">#footer-widgets aside { width : 33.333%; } </style> </head>
+
+<body class="page page-id-11 page-template page-template-templates page-template-template-full page-template-templatestemplate-full-php responsive layout-full no-js panels-style-force-full">
+
+
+<div id="page-wrapper">
+
+	
+	<header id="masthead" class="site-header" role="banner">
+<h3 align="right"><a href="http://venkys.com/?page_id=37">Investors</a></h3>
+
+	<div class="hgroup full-container">
+		<a href="https://venkys.com/" title="venkys.com" rel="home" class="logo"><img src="https://venkys.com/wp-content/uploads/2016/10/Venkys.gif"  class="logo-height-constrain"  width="150"  height="91"  alt="venkys.com Logo"  /></a>
+
+		
+			<div class="support-text">
+				VH Group			</div>
+
+		
+	</div><!-- .hgroup.full-container -->
+
+	
+<nav role="navigation" class="site-navigation main-navigation primary use-sticky-menu">
+
+	<div class="full-container">
+				
+					<div class="menu"><ul><li ><a href="https://venkys.com/"><span class="icon"></span>Home</a></li><li class="page_item page-item-11 current_page_item"><a href="https://venkys.com/about-us/"><span class="icon"></span>About Us</a></li><li class="page_item page-item-1721"><a href="https://venkys.com/locate-us/"><span class="icon"></span>Locate Us</a></li><li class="page_item page-item-1723 page_item_has_children"><a href="https://venkys.com/contact-us/"><span class="icon"></span>Contact Us</a><ul class='children'><li class="page_item page-item-3933"><a href="https://venkys.com/contact-us/jk-tender/"><span class="icon"></span>J&#038;K Tender</a></li><li class="page_item page-item-3615"><a href="https://venkys.com/contact-us/tender/"><span class="icon"></span>East zone Tender</a></li></ul></li><li class="page_item page-item-2317"><a href="https://venkys.com/group-profile/"><span class="icon"></span>Group Profile</a></li><li class="page_item page-item-43"><a href="https://venkys.com/services/"><span class="icon"></span>Jobs</a></li></ul></div>
+			</div>
+</nav><!-- .site-navigation .main-navigation -->
+</header><!-- #masthead .site-header -->
+	
+	
+	
+	<div id="main" class="site-main">
+		<div class="full-container">
+			
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			
+				
+<article id="post-11" class="post-11 page type-page status-publish hentry post">
+
+	<div class="entry-main">
+
+		
+		<header class="entry-header">
+			<h1 class="entry-title">About Us</h1>
+					</header><!-- .entry-header -->
+
+		<div class="entry-content">
+			<table width="100%" height="100%">
+<tr>
+<td width="20%" height="20%"><img src="http://venkys.com/wp-content/uploads/2016/01/sir.jpg" alt="sir" width="150" height="150" class="aligncenter size-full wp-image-2694" /></td>
+<td width="60%" height="60%">
+<p style="text-align: justify;">The <strong>VH group</strong> was established in 1971, when motivated by his wife Late <strong>Smt. Uttaradevi Rao</strong>, our founder Chairman Late <strong>Padmashree Dr. B.V.Rao</strong>, fondly referred to as <strong><em>“The Father of the Indian Poultry Industry”</em></strong>, established <strong>Venkateshwara Hatcheries Pvt. Ltd.</strong> in Pune (India). Today the group is popularly known the world over as “<strong>Venky’s</strong>”. With a unique combination of expertise and experience and supported by strategic collaborations, the company diversified its activities to include <a href="http://www.venkys.com/products/spf-eggs/">SPF eggs</a>, chicken and eggs processing, broiler and layer breeding, genetic research and Poultry diseases diagnostic, Poultry vaccines and feed supplements, vaccine production, bio-security products, Poultry feed &amp; equipments, nutritional health products, soya bean extract and many more. Today the group is the largest fully integrated poultry group in Asia. The VH group today plays proud parent to a number of reputed organizations under its wide umbrella and successfully caters to poultry and its allied sectors.The pioneering efforts of the VH Group have been well rewarded with several national and international awards.</p>
+</td>
+<td width="20%" height="20%"><img src="http://venkys.com/wp-content/uploads/2016/01/manad.jpg" alt="manad" width="150" height="150" class="aligncenter size-full wp-image-2697" /></td>
+</tr>
+</table>
+<h3>Directors Profiles</h3>
+<table width="100%">
+<tr>
+<td widh="30%"><img src="http://venkys.com/wp-content/uploads/2016/01/madam1.jpg" alt="madam1" width="150" height="150" class="aligncenter size-full wp-image-2699" /></td>
+<td width="70%">
+<p align="Justify"><strong>Dr. Anuradha J. Desai,<br />Chairperson, VH Group.<br /></strong><br />
+Mrs. Desai, is the chairperson of the flagship Company, The VH Group. With over 30 years of experience in the poultry industry, her dynamic and capable leadership has propelled the Group to unprecedented success nationally &#038; globally in a span of 30 years. As a Chairperson of the National Egg Co-ordination Committee, she has played a significant role in the quantum leap of egg production, consumption &#038; export in the country. She is the first woman to be elected as President of World Poultry Science Association (IB) for 4 years from 1996.</p>
+</td>
+</tr>
+<tr>
+<td widh="30%"><img src="http://venkys.com/wp-content/uploads/2016/01/sir2.jpg" alt="sir2" width="150" height="150" class="aligncenter size-full wp-image-2701" /></td>
+<td width="70%">
+<p align="Justify"><strong>Mr. B. Venkatesh Rao<br />Joint Managing Director – VH Group,<br />Managing Director,<br />Uttara Foods &#038; Feeds Pvt. Ltd.</strong><br />
+As the Managing Director of Uttara Foods &#038; Feeds Pvt. Ltd. , Mr. Rao has been instrumental in elevating the company to the heights it occupies today. He has by his proactive approach lifted performance of the Company to high level of efficiency and productivity especially operations and marketing of poultry feed. Besides being a joint Managing Director in all the Group’s companies, he is also the Vice-Chairman of the National Egg Co-ordination Committee and a recipient of the prestigious Rajiv Gandhi Excellence Award.</p>
+</td>
+</tr>
+<tr>
+<td widh="30%"><img src="http://venkys.com/wp-content/uploads/2016/01/Image-2-e1518244086520.jpg" alt="Image (2)" width="150" height="179" class="aligncenter size-full wp-image-2837" /></td>
+<td width="70%">
+<p align="Justify"><strong>Mr. B. Balaji Rao<br />Wholetime Director – VH Group,<br />Managing Director,<br />Venky’s (India) Ltd.</strong><br />
+Mr. B. Balaji Rao joined the business at a very young age. Under his leadership, Venky’s (India) Ltd. has excelled in the production of Specific Pathogen Free Eggs, Processed Chicken, Nutritional Health Products &#038; Pet Healthcare Products. He is a Director in all of the Group’s companies.</p>
+</td>
+</tr>
+<tr>
+<td widh="30%"><img src="http://venkys.com/wp-content/uploads/2016/01/sir-4.jpg" alt="sir 4" width="151" height="150" class="aligncenter size-full wp-image-2703" /></td>
+<td width="70%">
+<p align="Justify"><strong>Mr. Jitendra M. Desai,<br />Managing Director,<br />Venkateshwara Research &#038; Breeding Farm Pvt. Ltd.</strong><br />
+Jitendra M Desai is Director of the Company since 1993. He is member of Institute of Chartered Accountants of India and has expertise in corporate structuring, financial management and taxation.He is member of Operations Committee, Share Transfer &#038; Investors Grievances Committee and Audit Committee of Venky’s (India) Limited and member of Operations Committee, Audit Committee and Remuneration Committee of Venkateshwara Hatcheries Private Limited.</p>
+</td>
+</tr>
+</table>
+<table >
+<tr>
+<td>
+<h4 align="center">VH Group Structure</h4>
+<p><a href="http://venkys.com/wp-content/uploads/2016/01/VG-group.jpg" alt="Groupstructure" width="1005" height="595" class="aligncenter size-full wp-image-2307"><img src="http://venkys.com/wp-content/uploads/2016/01/VG-group.jpg" alt="VG group" width="500" height="500" class="aligncenter size-full wp-image-2704" srcset="http://venkys.com/wp-content/uploads/2016/01/VG-group-150x150.jpg 150w, http://venkys.com/wp-content/uploads/2016/01/VG-group-500x500.jpg 500w, http://venkys.com/wp-content/uploads/2016/01/VG-group-400x400.jpg 400w" sizes="(max-width: 500px) 100vw, 500px" /></a></td>
+</tr>
+</table>
+					</div><!-- .entry-content -->
+
+		
+	</div>
+
+</article><!-- #post-11 -->
+				
+			
+		</div><!-- #content .site-content -->
+	</div><!-- #primary .content-area -->
+
+					</div><!-- .full-container -->
+	</div><!-- #main .site-main -->
+
+	
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+
+	<div id="footer-widgets" class="full-container">
+		<aside id="nav_menu-4" class="widget widget_nav_menu"><h3 class="widget-title">Our Services</h3><div class="menu-services-container"><ul id="menu-services" class="menu"><li id="menu-item-1117" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1117"><a href="https://venkys.com/services-2/pdrc/">PDRC</a></li>
+<li id="menu-item-1121" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1121"><a href="https://venkys.com/bromark/">Bromark</a></li>
+<li id="menu-item-1124" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1124"><a href="https://venkys.com/?page_id=1122">IPMT</a></li>
+</ul></div></aside><aside id="nav_menu-5" class="widget widget_nav_menu"><h3 class="widget-title">Our Core Products</h3><div class="menu-core-products-container"><ul id="menu-core-products" class="menu"><li id="menu-item-1130" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1130"><a href="https://venkys.com/vaccines/">Vaccines</a></li>
+<li id="menu-item-1131" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1131"><a href="https://venkys.com/vh-breed/">VH Breed</a></li>
+</ul></div></aside><aside id="nav_menu-6" class="widget widget_nav_menu"><h3 class="widget-title">Our Outlets</h3><div class="menu-our-outlets-container"><ul id="menu-our-outlets" class="menu"><li id="menu-item-1137" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1137"><a href="https://venkys.com/sports-nutrition/">Sports Nutrition</a></li>
+<li id="menu-item-1138" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1138"><a href="https://venkys.com/venkys-xprss/">Venkys Xprss</a></li>
+</ul></div></aside>	</div><!-- #footer-widgets -->
+
+	
+	<div id="theme-attribution">&copy; <a href="https://venkys.com"></a> Venkys India</div>
+</footer><!-- #colophon .site-footer -->
+	
+</div><!-- #page-wrapper -->
+
+
+<script type='text/javascript'>
+var colomatduration = 'fast';
+var colomatslideEffect = 'slideFade';
+</script>
+<style>
+font-color:red;
+</style>
+<link rel='stylesheet' id='jquerytreeview_css-css'  href='https://venkys.com/wp-content/plugins/treeview-on-contents/css/jquery.treeview.css?ver=0.1.8' type='text/css' media='all' />
+<script type='text/javascript'>
+/* <![CDATA[ */
+var thickboxL10n = {"next":"Next >","prev":"< Prev","image":"Image","of":"of","close":"Close","noiframes":"This feature requires inline frames. You have iframes disabled or your browser does not support them.","loadingAnimation":"https:\/\/venkys.com\/wp-includes\/js\/thickbox\/loadingAnimation.gif"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://venkys.com/wp-includes/js/thickbox/thickbox.js?ver=3.1-20121105'></script>
+<script type='text/javascript' src='https://venkys.com/wp-content/plugins/jquery-collapse-o-matic/js/collapse.js?ver=1.6.0'></script>
+<script type='text/javascript' src='https://venkys.com/wp-includes/js/wp-embed.min.js?ver=4.4.33'></script>
+
+</body>
+</html>

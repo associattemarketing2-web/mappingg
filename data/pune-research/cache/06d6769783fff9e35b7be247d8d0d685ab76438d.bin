@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Megapolis</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/slick.css" />
+        <link rel="stylesheet" type="text/css" href="css/slick-theme.css" />
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
+        <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    </head>
+
+    <body>
+        <button type="button" class="enquiry_row" data-bs-toggle="modal" data-bs-target="#myModal">
+            <img src="images/enquiry_icon.png" />
+            <p>ENQUIRE NOW</p>
+        </button>
+        <a href="https://api.whatsapp.com/send/?phone=+918806444490&text=Hey!+I’m+interested+in+Megapolis.+Kindly+share+me+the+details." class="whatapp_icon" target="_blank"><img src="images/whatsapp.png"></a>
+        <header class="header">
+            <div class="container-fluid">
+                <div class="header_wrap">
+                    <div class="logo">
+                        <a href="index.html"><img class="logo_white" src="images/logo_white.png" alt="logo" /></a>
+                        <a href="index.html"><img class="original_logo" src="images/orignal_logo.png" alt="logo" /></a>
+                    </div>
+                    <button type="button" class="toggle_btn"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                    <div class="menu">
+                        <ul class="menu_list">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about-us.html">About us</a>
+                            </li>
+                            <li class="nav-item">
+                                 <span class="dropdown">
+                                    <a class="nav-link dropdown-toggle" href="javascript:void(0);"  id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> projects </a>
+                                    <ul class="dropdown-menu upper_drp" aria-labelledby="dropdownMenuLink">
+
+                                        <li class="dropdown dropend">
+                                            <a class="dropdown-item dropdown-toggle" href="#" id="multilevelDropdownMenu1" data-bs-toggle="dropdown"  aria-expanded="false">ONGOING</a>
+                                            <ul class="dropdown-menu nested_drp" aria-labelledby="multilevelDropdownMenu1">
+                                                <li><a class="dropdown-item" href="shimmer_detail.html">Megapolis
+                                                    Shimmer</a></li>
+                                                <li><a class="dropdown-item" href="mystic_detail.html">Megapolis Mystic</a></li>
+											<li><a class="dropdown-item" href="spotlight_detail.html">Megapolis
+													Spotlight </a></li>
+											<li><a class="dropdown-item" href="saffron_detail.html">Megapolis Saffron
+												</a></li>
+										</ul>
+                                        </li>
+                                        <li><a class="dropdown-item" href="project.html">UPCOMING</a></li>
+                                        <li><a class="dropdown-item" href="project.html">COMPLETED</a></li>
+                                    </ul>
+                                </span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="offer.html">offers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="life-megapolis.html">life@megapolis</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://www.megapolis.co.in/megapolis/index.htm" target="blank">virtual zone</a>
+                            </li>
+                            <!--  <li class="nav-item">
+          <a class="nav-link" href="#">testimonials</a>
+        </li> -->
+                            <li class="nav-item">
+                                <a class="nav-link active" href="contact-us.html">contact us</a>
+                            </li>
+                        </ul>
+
+                        <ul class="booknow">
+                           <li><i class="fa fa-phone" aria-hidden="true"></i><a href="tel:09595330033" class="header_num"> +91 9595330033 </a></li>
+                            <li><a href="https://payu.in/web/567C4A042CB309D36615EE0D42D75557" class="default_btn">book now</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="banner">
+            <img src="images/contactbanner.jpg" />
+            <div class="bannertext">
+                <h1>Contact Us</h1>
+                <p>Home > contact us</p>
+            </div>
+        </section>
+
+        <section class="grey_background">
+            <div class="cstm_container">
+                <div class="office_add">
+                    <div class="coprate_office">
+                        <h5>pune - coprate office</h5>
+                        <h6>
+                            Kumar Capital, 241 East Street,<br />
+                            Camp Area, Pune ,India
+                        </h6>
+                        <p>Phone : +91(20) 30583635/660/662/663</p>
+                        <p>Fax: +91 20 26353365</p>
+                       <!--  <div class="text-center">
+                            <button class="default_btn">VIEW MAP</button>
+                        </div> -->
+                    </div>
+                    <div class="salaes_office coprate_office">
+                        <h5>sales office</h5>
+                        <h6>
+                            Pegasus Properties Private Limited,<br />
+                            R-1/1 to R-1/4 & Phase-III, Rajiv Gandhi <br />
+                            Infotech Park, Hinjawadi,<br />
+                            Pune 411057, India
+                        </h6>
+                      
+                        <p>Phone : +91 9595 330033</p>
+                        <p>Email : info@megapolis.co.in</p>
+                       <!--  <div class="text-center">
+                            <button class="default_btn">VIEW MAP</button>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="conatct_frm">
+            <div class="cstm_container">
+                <h2>Contact Form</h2>
+
+                <form action="contact.php" method="post">
+                  <div class="first_row">
+                    <input type="text" name="name" placeholder="NAME" required="" />
+                    <input type="text" name="email" placeholder="E-MAIL" required="" />
+                  </div>
+                  <div class="first_row">
+                      <input type="number" name="phone" placeholder="MOBILE NO." required="" />
+                      <select class="contact-drop-down" name="subject" >
+                          <option>Select</option>
+                          <option>Dreamcatcher</option>
+                          <option>Sparkle</option>
+                          <option>Spotlight</option>
+                          <option>Saffron</option>
+                      </select>
+                  </div>
+                  <div class="frm_txtarea">
+                      <textarea name="comment" placeholder="MESSAGE"></textarea>
+                  </div>
+                  <div class="cnt_frm_btn">
+                      <button type="submit" class="default_btn">SUBMIT</button>
+                  </div>
+                </form>
+                
+                <div class="google_map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15127.516578635856!2d73.67717454884145!3d18.57948657040569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bb697afb7b8f%3A0x13b31b4fa7765eb3!2sMEGAPOLIS%20SPLENDOUR%2C%20Phase%203%2C%20Hinjawadi%20Rajiv%20Gandhi%20Infotech%20Park%2C%20Hinjawadi%2C%20Pimpri-Chinchwad%2C%20Maharashtra%20411057!5e0!3m2!1sen!2sin!4v1684426015789!5m2!1sen!2sin"
+                        width="100%"
+                        style="border: 0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                    ></iframe>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="upper_footer">
+                <div class="cstm_container">
+                    <div class="social_row">
+                        <div class="logos_row">
+                            <a href="index.html"><img src="images/orignal_logo.png" /></a>
+                            <a href="index.html"><img src="images/kumar_logo.png" /></a>
+                        </div>
+                        <div class="social_icons">
+                            <p>Follow Us</p>
+                            <ul class="social_icons_list">
+                                <li>
+                                    <a target="blank" href="https://www.facebook.com/MegapolisTownshipPune"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a target="blank" href="https://twitter.com/MegapolisPune"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a target="blank" href="https://www.instagram.com/megapolispune"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a target="blank" href="https://www.linkedin.com/company/megapolis-pune/?originalSubdomain=in"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a target="blank" href="https://www.youtube.com/channel/UCt8-U82ossGIZAHCVU5Iv0w"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="lower_footer">
+                <div class="cstm_container">
+                    <div class="footer_menu_row">
+                        <div class="footer_menu_col">
+                            <h4>Quick Links</h4>
+                            <ul>
+                                <li><a href="about-us.html#menu2">About Megapolis</a></li>
+                                <li><a href="about-us.html#menu5">Awards</a></li>
+                                <li><a href="csr.html">CSR</a></li>
+                                <li><a href="policies.html">Policies</a></li>
+                                <li><a href="project.html">Projects</a></li>
+                                <li><a href="crm.html">CRM</a></li>
+                                <li><a href="site_photos.html">Site Photos</a></li>
+                                <li><a href="contact-us.html">Contact Us </a></li>
+                            </ul>
+                        </div>
+                        <div class="footer_menu_col">
+                            <h4>Facilities</h4>
+                            <ul>
+                                <li><a href="life-megapolis.html#day_care">Maple leaf Pre-school Day Care</a></li>
+                                <li><a href="life-megapolis.html#pawar_school">Pawar Public School</a></li>
+                                <!-- <li><a href="life-megapolis.html#mbta">Mahesh Bhupati Tennis Academy</a></li> -->
+                                <li><a href="life-megapolis.html#bharti_bazar">Bharti Bazaar</a></li>
+                                <li><a href="life-megapolis.html#polyclinic">Polyclinic & Pharmacy</a></li>
+                                <li><a href="life-megapolis.html#datta_mandir">Datta Mandir</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer_menu_col">
+                            <h4>Site Address</h4>
+                            <ul>
+                                <li>R-1/1 to R-1/4, Phase-III, Rajiv</li>
+                                <li>Gandhi Infotech Park Hinjawadi,</li>
+                                <li>Pune 411057, INDIA.</li>
+                                <li>Sales Enq.: <a href="tel:02042600888">02042600888</a></li>
+                                <li>Phone: <a href="tel:09595330033">+91 9595330033,</a></li>
+                                <li>Email: <a href="mailto:info@megapolis.co.in">info@megapolis.co.in</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer_menu_col">
+                            <h4>Corporate Office</h4>
+                            <ul>
+                                <li><b>Kumar Capital</b></li>
+                                <li>2413 East Street, Pune, India</li>
+                                <li>(20)30583635/660/661/ 662/663</li>
+                                <li><a href="mailto:sales@kumarcorp.co.in">sales@kumarcorp.co.in</a></li>
+                                <li><a href="https://www.kumarcorp.co.in">www.kumarcorp.co.in</a></li>
+                                <li>Sales Enquiry: <a href="tel:09595110011">+91 9595 110011</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="register_row">
+                        <img src="images/rera_logo.png">
+                        <p>All projects have been registered via MahaRERA registration and available on the website <a href="https:// maharera.maharashtra.gov.in/">  maharera.maharashtra.gov.in </a> under registered projects.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cstm_container">
+                <div class="copywrite_row">
+                    <p>© 2023 | All Rights Reserved Pegasus Properties Private Limited</p>
+                    <a href="privacy_policies.html">Privacy Policy</a>
+                </div>
+            </div>
+        </footer>
+
+        <div class="modal enquiry_frm" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Enquiry Form</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form action="contact.php" method="post" id="my-form">
+                            <input type="text" name="name" placeholder="Name" class="form-control" required />
+                            <input type="number" name="phone" placeholder="Phone" class="form-control" required />
+                            <input type="text" name="email" placeholder="Email" class="form-control" required />
+                            <select name="subject" class="form-select">
+                                <option>Select </option>
+                                <option>Megapolis Dreamcatcher</option>
+                                <option>Megapolis Saffron</option>
+                                <option>Megapolis Sparkle</option>
+                            </select>
+                            <div class="text-center">
+                                <button type="submit" class="default_btn" id="submit-form">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/jquery-migrate-1.2.1.min.js"></script>
+        <script src="js/slick.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        
+    </body>
+</html>

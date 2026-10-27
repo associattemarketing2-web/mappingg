@@ -1,0 +1,2020 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+    <title>One platform for all your contracts | Icertis</title>
+    <link rel="stylesheet" href="https://use.typekit.net/gwo4abq.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet" />
+    <link href="/static/css/main.css?v=n138-U_ImQts_k6LbzQNCS6dRQJqb50QQRJp1EJNEDc" rel="stylesheet" />
+    <script src="/static/js/main.min.js?v=jZ_Bh0Evb6kd09FPPxX1v4DGk0gxh6brRvHe6knn-1A" type="module" defer></script>
+    <script src="/static/js/cookie-consent.min.js?v=Ds30xh_2dogw5MlBKpuY7ppln4neNw_mUpuaFIz1344" type="module" defer></script>
+    <script src="https://cdn.optimizely.com/js/4738191656222720.js"></script>
+
+    
+<meta name="title" content="One platform for all your contracts" />
+<meta name="description" content="Icertis Contract Management (ICM) Platform helps enterprises run contract operations at scale with centralized contracts, instant answers, standardized workflows, faster execution, and integrated systems." />
+    <meta property="og:title" content="One platform for all your contracts">
+    <meta property="og:description"
+          content="Icertis Contract Management (ICM) Platform helps enterprises run contract operations at scale with centralized contracts, instant answers, standardized workflows, faster execution, and integrated systems.">
+<meta property="og:type" content="website">
+
+    <meta property="og:image"
+          content="https://www.icertis.com/contentassets/8b9cdb8d5d964bfd861219a0498888e0/press-release-momentum-social-share-16.jpg">
+
+<meta property="og:url" content="https://www.icertis.com/products/operate/contract-lifecycle-management/">
+<meta http-equiv="Content-Security-Policy" content="script-src blob: data: * &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27;">
+    <link rel="canonical" href="https://www.icertis.com/products/operate/contract-lifecycle-management/" />
+
+    <meta property="idio:mainimage" content="https://www.icertis.com/contentassets/8b9cdb8d5d964bfd861219a0498888e0/press-release-momentum-main-15.jpg" />
+    <meta property="idio:title" content="One platform for all your contracts" />
+    <meta property="article:published_time" content="2026-04-14T12:52:25.0000000&#x2B;00:00" />
+<meta property="idio:sortbybate" content="0001-01-01T00:00:00.0000000" />
+
+    <script>
+_iaq = [ ['client', '50c4ad4bbd7c47879b5be0a416b0562e'], ['track', 'consume'] ]; !function(d,s){var ia=d.createElement(s);ia.async=1,s=d.getElementsByTagName(s)[0],ia.src='//s.usea01.idio.episerver.net/ia.js',s.parentNode.insertBefore(ia,s)}(document,'script');
+</script>
+<script>
+!function(T,l,y){var S=T.location,k="script",D="instrumentationKey",C="ingestionendpoint",I="disableExceptionTracking",E="ai.device.",b="toLowerCase",w="crossOrigin",N="POST",e="appInsightsSDK",t=y.name||"appInsights";(y.name||T[e])&&(T[e]=t);var n=T[t]||function(d){var g=!1,f=!1,m={initialize:!0,queue:[],sv:"5",version:2,config:d};function v(e,t){var n={},a="Browser";return n[E+"id"]=a[b](),n[E+"type"]=a,n["ai.operation.name"]=S&&S.pathname||"_unknown_",n["ai.internal.sdkVersion"]="javascript:snippet_"+(m.sv||m.version),{time:function(){var e=new Date;function t(e){var t=""+e;return 1===t.length&&(t="0"+t),t}return e.getUTCFullYear()+"-"+t(1+e.getUTCMonth())+"-"+t(e.getUTCDate())+"T"+t(e.getUTCHours())+":"+t(e.getUTCMinutes())+":"+t(e.getUTCSeconds())+"."+((e.getUTCMilliseconds()/1e3).toFixed(3)+"").slice(2,5)+"Z"}(),iKey:e,name:"Microsoft.ApplicationInsights."+e.replace(/-/g,"")+"."+t,sampleRate:100,tags:n,data:{baseData:{ver:2}}}}var h=d.url||y.src;if(h){function a(e){var t,n,a,i,r,o,s,c,u,p,l;g=!0,m.queue=[],f||(f=!0,t=h,s=function(){var e={},t=d.connectionString;if(t)for(var n=t.split(";"),a=0;a<n.length;a++){var i=n[a].split("=");2===i.length&&(e[i[0][b]()]=i[1])}if(!e[C]){var r=e.endpointsuffix,o=r?e.location:null;e[C]="https://"+(o?o+".":"")+"dc."+(r||"services.visualstudio.com")}return e}(),c=s[D]||d[D]||"",u=s[C],p=u?u+"/v2/track":d.endpointUrl,(l=[]).push((n="SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details)",a=t,i=p,(o=(r=v(c,"Exception")).data).baseType="ExceptionData",o.baseData.exceptions=[{typeName:"SDKLoadFailed",message:n.replace(/\./g,"-"),hasFullStack:!1,stack:n+"\nSnippet failed to load ["+a+"] -- Telemetry is disabled\nHelp Link: https://go.microsoft.com/fwlink/?linkid=2128109\nHost: "+(S&&S.pathname||"_unknown_")+"\nEndpoint: "+i,parsedStack:[]}],r)),l.push(function(e,t,n,a){var i=v(c,"Message"),r=i.data;r.baseType="MessageData";var o=r.baseData;return o.message='AI (Internal): 99 message:"'+("SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details) ("+n+")").replace(/\"/g,"")+'"',o.properties={endpoint:a},i}(0,0,t,p)),function(e,t){if(JSON){var n=T.fetch;if(n&&!y.useXhr)n(t,{method:N,body:JSON.stringify(e),mode:"cors"});else if(XMLHttpRequest){var a=new XMLHttpRequest;a.open(N,t),a.setRequestHeader("Content-type","application/json"),a.send(JSON.stringify(e))}}}(l,p))}function i(e,t){f||setTimeout(function(){!t&&m.core||a()},500)}var e=function(){var n=l.createElement(k);n.src=h;var e=y[w];return!e&&""!==e||"undefined"==n[w]||(n[w]=e),n.onload=i,n.onerror=a,n.onreadystatechange=function(e,t){"loaded"!==n.readyState&&"complete"!==n.readyState||i(0,t)},n}();y.ld<0?l.getElementsByTagName("head")[0].appendChild(e):setTimeout(function(){l.getElementsByTagName(k)[0].parentNode.appendChild(e)},y.ld||0)}try{m.cookie=l.cookie}catch(p){}function t(e){for(;e.length;)!function(t){m[t]=function(){var e=arguments;g||m.queue.push(function(){m[t].apply(m,e)})}}(e.pop())}var n="track",r="TrackPage",o="TrackEvent";t([n+"Event",n+"PageView",n+"Exception",n+"Trace",n+"DependencyData",n+"Metric",n+"PageViewPerformance","start"+r,"stop"+r,"start"+o,"stop"+o,"addTelemetryInitializer","setAuthenticatedUserContext","clearAuthenticatedUserContext","flush"]),m.SeverityLevel={Verbose:0,Information:1,Warning:2,Error:3,Critical:4};var s=(d.extensionConfig||{}).ApplicationInsightsAnalytics||{};if(!0!==d[I]&&!0!==s[I]){var c="onerror";t(["_"+c]);var u=T[c];T[c]=function(e,t,n,a,i){var r=u&&u(e,t,n,a,i);return!0!==r&&m["_"+c]({message:e,url:t,lineNumber:n,columnNumber:a,error:i}),r},d.autoExceptionInstrumented=!0}return m}(y.cfg);function a(){y.onInit&&y.onInit(n)}(T[t]=n).queue&&0===n.queue.length?(n.queue.push(a),n.trackPageView({})):a()}(window,document,{src: "https://js.monitor.azure.com/scripts/b/ai.2.gbl.min.js", crossOrigin: "anonymous", cfg: {connectionString: 'InstrumentationKey=cb09fcb2-ae20-414d-8894-f957c402a88f;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=ea0978bd-7eca-4562-9cc2-b2e627d525a5', disableCookiesUsage: false }});
+</script>
+
+    <script>
+        window.enabledLanguages = ["en"];
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NHY4GCEFRC" defer></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NHY4GCEFRC');
+    </script>
+    
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MC236GX');</script>
+<!-- End Google Tag Manager -->
+        <section class="raw-code-block">
+            <style>
+.page-content:has(.rich-text-area__meta-bar .meta-bar__link){
+    margin-bottom: 0;
+}
+</style>
+        </section>
+
+    <script type="application/ld&#x2B;json">{
+  "@type": "Organization",
+  "@context": "https://schema.org",
+  "@id": "https://www.icertis.com/#organization",
+  "name": "Icertis",
+  "url": "https://www.icertis.com/",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://www.icertis.com/static/images/icertis-logo.svg?v=1"
+  },
+  "description": "Go beyond contract lifecycle management with Icertis Contract Intelligence. Transform your contracts with an AI-powered platform into structured, connected and on-demand data that automates, processes, reduces risk and maximizes the value of your contracts.",
+  "foundingDate": null,
+  "sameAs": [
+    "https://www.linkedin.com/company/icertis/",
+    "https://www.youtube.com/channel/UCkxr-g3wzTgFFmRbumun6lQ",
+    "http://instagram.com/icertisinc/",
+    "https://twitter.com/icertis"
+  ]
+}</script>
+</head>
+
+<body>
+    
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MC236GX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    
+
+<body class="l-body off-canvas-right" data-off-canvas-breakpoint="1200">
+    <div class="l-surround">
+        <div class="site-peak-desktop-placeholder"> </div>
+        <a href="#main" class="skip-link">
+            Skip to main content
+        </a>
+        
+<header class="site-header l-header slide-over-transition headroom">
+    <div class="main-nav__bar">
+        <div class="l-header__elements">
+            <div class="main-nav__wrap">
+                <!-- Branding placeholder -->
+                <div class="main-nav__logo d-xl-none">
+                    <a href="/">
+                        <img src="/static/images/icertis-logo-new.svg?v=1" alt="Icertis"
+                             width="1041" height="400">
+                    </a>
+                </div>
+
+                    <a href="/contact-us/" class="btn main-nav__btn-icon d-xl-none">
+                        <span class="visually-hidden">Contact</span>
+                        <img src="/static/images/icon-phone.svg" alt="" width="33" height="33" />
+                    </a>
+
+                    <div class="nav-search__toggle--mobile">
+                        <button id="navSearchCollapseToggle" class="btn btn-search btn-search--toggle collapsed"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#navSearchCollapse">
+                            <span class="visually-hidden">Search</span>
+                                <img src="/static/images/icon-search.svg" alt="" width="33" height="33">
+                                <span class="close-symbol inline-icon"></span>
+                            </button>
+                        </div>
+
+                    <!-- Show/hide off-canvas button -->
+                    <button class="toggle-off-canvas toggle-hamburger" type="button" aria-expanded="false"
+                            aria-controls="offCanvasArea"
+                            aria-label="Open Menu">
+                        <span class="toggle-hamburger__wrapper">
+                            <span class="toggle-hamburger__bun"></span>
+                            <span class="toggle-hamburger__bun"></span>
+                            <span class="toggle-hamburger__bun"></span>
+                        </span>
+                    </button>
+                    <!-- Put elements in l-off-canvas container if you want them off canvas -->
+                    <div class="l-off-canvas" id="offCanvasArea" tabindex="-1" aria-labelledby="offCanvasTitle">
+                        <div class="l-off-canvas__helper">
+                            <h4 id="offCanvasTitle" class="sr-only">
+                                Site navigation
+                            </h4>
+                            <!-- Show/hide off-canvas button -->
+                            <div class="off-canvas__toggle-bar shallow-gradient">
+                                <button class="toggle-off-canvas toggle-hamburger toggle-hamburger--to-x" type="button"
+                                        aria-expanded="false" aria-controls="offCanvasArea"
+                                        aria-label="Close">
+                                    <span class="toggle-hamburger__wrapper">
+                                        <span class="toggle-hamburger__bun"></span>
+                                        <span class="toggle-hamburger__bun"></span>
+                                        <span class="toggle-hamburger__bun"></span>
+                                    </span>
+                                </button>
+                                <button class="btn mln-back-button" type="button">
+                                    <img src="/static/images/icon-back-arrow.svg" alt="" width="21" height="21">
+                                    Back to Menu
+                                </button>
+                            </div>
+                            <!-- Navigation -->
+                            <div class="main-nav__container">
+                                <nav class="main-nav mln mln--navbar mln--navbar-slide-over" data-mln-breakpoint="1200"
+                                     aria-label="primary">
+                                    <!-- Navigation list -->
+                                    <!-- Branding placeholder -->
+                                    <div class="main-nav__left">
+                                        <div class="main-nav__logo d-none d-xl-block">
+                                            <a href="/">
+                                                <img src="/static/images/icertis-logo-new.svg"
+                                                     alt="Icertis" width="1041" height="400">
+                                            </a>
+                                        </div>
+                                        <ul class="mln__list">
+                                                <li>
+                                                    <a href="#">
+Products</a>
+                                                    <!-- Mega menu div -->
+                                                    <div class="mln__child__mega-menu">
+                                                        <button type="button" class="btn-close"
+                                                                aria-label="Close"></button>
+                                                        <div class="row">
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__intro mega-menu__col-content">
+                                                                        <h4>Platform</h4>
+                                                                        <div class="mega-menu-heading h4 with-tic-mark">
+                                                                        </div>
+                                                                        
+<p><a title="Platform Overview" href="/products/platform/"> Platform Overview </a></p>
+<p><a title="Platform Overview" href="/products/platform/copilot/"> Vera Copilot</a></p>
+<p><a title="Integrations" href="/products/platform/integrations/">Integrations</a></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+<a href="/products/engage/" aria-label="Learn more about Icertis Engage; Contracting is broken for business teams">Engage </a></p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/products/engage/vera-engage/" title="Vera Engage">Vera Engage</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/engage/vera-composer-agent/" title="Vera Composer Agent">Vera Composer Agent</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/engage/vera-playbook-creation-agent/">Vera Playbook Creation Agent</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/engage/vera-risk-review-agent/">Vera Risk Review Agent</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/engage/vera-redline-agent/" title="Vera Redline Agent">Vera Redline Agent</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+<a title="Operate" href="/products/operate/" aria-label="=">Operate</a></p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/products/operate/contract-lifecycle-management/" title="Icertis Contract Management">Icertis Contract Management</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/operate/vera-obligations/" title="Vera Obligations">Vera Obligations</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/operate/vera-fulfillment-agent/" title="Vera Fulfillment Agent">Vera Fulfillment Agent</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+<a title="Analyze" href="/products/analyze/" aria-label="Learn more about Icertis Analyze - Gain contract insights and analytics">Analyze</a></p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/products/analyze/vera-analytics-standard/" title="Vera Analytics Standard">Vera Analytics Standard</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/analyze/vera-analytics-advanced/" title="Vera Analytics Advanced">Vera Analytics Advanced</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/analyze/ods-and-reporting/">ODS and Reporting</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/analyze/vera-insights-agent/" title="Vera Insights Agent">Vera Insights Agent</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+Solutions</a>
+                                                    <!-- Mega menu div -->
+                                                    <div class="mln__child__mega-menu">
+                                                        <button type="button" class="btn-close"
+                                                                aria-label="Close"></button>
+                                                        <div class="row">
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+Purpose-Built</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/pre-configured-solutions/government/" title="Federal Agencies">Federal Agencies</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/pre-configured-solutions/government-contractors/" title="Government Contractors">Government Contractors</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/pre-configured-solutions/healthcare-provider/" title="Healthcare Providers">Healthcare Providers</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/pre-configured-solutions/ariba/">SAP</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/" title="Explore all solutions">See All &#x2192;</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+By Industry</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/asset-management/" title="Asset Management">Asset Management</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/automotive/" title="Automotive">Automotive</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/banking/">Banking</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/energy/" title="Energy">Energy</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/healthcare-payers/">Healthcare Payers</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/manufacturing/" title="Manufacturing">Manufacturing</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/media-and-telecom/" title="Media and Telecom">Media and Telecom</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/medical-devices/">Medical Devices</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/pharmaceutical-and-life-sciences/">Pharmaceutical &amp; Life Sciences</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/public-sector/" title="Public Sector">Public Sector</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/retail-and-consumer/" title="Retail and Consumer">Retail and Consumer</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/technology-consulting/" title="Technology">Technology</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+By Department</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/departmental-solutions/legal/" title="Legal">Legal</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/departmental-solutions/procurement/">Procurement</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/departmental-solutions/finance/" title="Finance">Finance</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/departmental-solutions/sales/">Sales</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/departmental-solutions/it/">IT</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    
+<p><a href="/research/analyst-reports/gartner-peer-insights-voc/intro/"><img src="/globalassets/graphics/block-graphics/company-nav/small-promo-gartner-voc-2026.png" border="0" alt="gartner" /></a></p>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+<span data-teams="true">Customers</span></a>
+                                                    <!-- Mega menu div -->
+                                                    <div class="mln__child__mega-menu">
+                                                        <button type="button" class="btn-close"
+                                                                aria-label="Close"></button>
+                                                        <div class="row">
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+Our Customers</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/customers/customer-stories/hewlett-packard-enterprise/">HP</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/customers/customer-stories/enbridge/">Enbridge</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/customers/customer-stories/shermco/">Shermco</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/customers/customer-stories/mercedes-benz/">Mercedes Benz</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/customers/customer-stories/" title="Customers Stories">See All &#x2192;</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+<a href="/customers/customer-stories/microsoft-cloud-operations/"><img src="/globalassets/1.-sections/homepage/navbar/microsoft.png" border="0" alt="Microsoft-logo" /></a></p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+<a href="/customers/customer-stories/accenture/"><img src="/globalassets/1.-sections/homepage/navbar/accenture.png" border="0" alt="accenture-logo" /></a></p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+<a href="/customers/customer-stories/accenture/"><img src="/globalassets/1.-sections/homepage/navbar/wilson_sonsini.png" border="0" alt="wilson_sonsini-logo" /></a></p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+Resources</a>
+                                                    <!-- Mega menu div -->
+                                                    <div class="mln__child__mega-menu">
+                                                        <button type="button" class="btn-close"
+                                                                aria-label="Close"></button>
+                                                        <div class="row">
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+Resources Library</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/research/analyst-reports/" title="Analyst &amp; Research Reports">Analyst &amp; Research Reports</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/research/ebooks/" title="White Papers &amp; eBooks">White Papers &amp; eBooks</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+Blog</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/research/blog/" title="The Fine Print">The Fine Print</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+Events</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/research/webinars/" title="Webinars">Webinars</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/company/events/" title="Events">Events</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    
+<p><a href="/research/analyst-reports/state-of-clm-and-ai-powered-contract-intelligence/intro/"><img src="/globalassets/graphics/block-graphics/company-nav/state-of-clm-and-ai-powered-contract-intelligence-v2.png" border="0" alt="state-clm" /></a></p>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+Why Icertis</a>
+                                                    <!-- Mega menu div -->
+                                                    <div class="mln__child__mega-menu">
+                                                        <button type="button" class="btn-close"
+                                                                aria-label="Close"></button>
+                                                        <div class="row">
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+Our Differentiators</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/context-driven-contract-intelligence/">Context-Driven</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/platform/" title="AI-Native Foundation">AI-Native Foundation</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/customers/customer-stories/" title="Enterprise Strength">Enterprise Strength</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/partner/sap/" title="Co-innovation with SAP">Co-innovation with SAP</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/" title="Industry Depth">Industry Depth</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+Our SI Partners</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/partner/accenture/" title="Accenture">Accenture</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/partner/pwc/">PwC</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/partner/deloitte/" title="Deloitte">Deloitte</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/partner/kpmg/" title="KPMG">KPMG</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/partner/find-partners/?partnerType=131#partners">See All &#x2192;</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+Our Tech Partners</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/partner/sap/">SAP</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/partner/microsoft/">Microsoft</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/partner/salesforce/" title="Salesforce">Salesforce</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/partner/whatfix/" title="Whatfix">Whatfix</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/partner/find-partners/?partnerType=52#partners" title="See All">See All &#x2192;</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+Our Company</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/company/" title="About Icertis">About Icertis</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/company/leadership/" title="Leadership Team">Leadership Team</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/company/news/" title="Newsroom">Newsroom</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/company/careers/">Careers</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/company/corporate-social-responsibility/" title="Corporate Social Responsibility">Corporate Social Responsibility</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/information/trust-center/" title="Trust Center">Trust Center</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/contact-us/">Contact Us</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            <li>
+                                                <div class="nav-search__toggle--desktop d-block h-100">
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="nav-search--desktop">
+                                    </div>
+
+                                    <div class="nav-cta-wrap d-none d-xl-flex">
+                                                <a class="btn btn-primary" href="/demo/" title="Talk to an Expert "
+                                                   rel="noreferrer">
+                                                    <span class="d-none d-sm-block d-xl-none d-xxl-block">Talk to an Expert</span>
+                                                        <span class="d-sm-none d-xl-block d-xxl-none">Talk to an Expert </span>
+                                                </a>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+                        <!-- Put more stuff here -->
+
+                    </div>
+                </div>
+                <div class="nav-search--mobile">
+                    <div id="navSearchCollapse" class="search-collapse shallow-gradient collapse">
+                        <div class="search-collapse__content">
+                            <button id="searchClose" type="button" class="btn-close" data-bs-toggle="collapse"
+                                    data-bs-target="#navSearchCollapse"
+                                    aria-label="Close"></button>
+                            <div class="search-collapse__body">
+                                <div class="nav-search__form">
+                                    <p class="h5 mb-3">Search the site</p>
+                                    <div class="search-help__wrap">
+                                        <form class="form-inline mb-4" method="GET" action="/search/">
+                                            <input id="siteSearchInput" name="q"
+                                                   class="form-control form-control-lg search-modal__input" autocomplete="off"
+                                                   type="text" placeholder=""
+                                                   aria-label="Search the site">
+                                            <button class="btn btn-lg btn-primary" type="submit" id="searchBtn">
+                                                <span class="d-none d-xl-inline">Search</span>
+                                                    <img src="/static/images/icon-search.svg" class="d-xl-none" alt=""
+                                                         width="33" height="33">
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+            <a href="/demo/" class="btn btn-primary fixed-cta d-xl-none">
+                Request Demo
+            </a>
+
+        <div class="site-peak-mobile-placeholder">
+            <div class="site-peak">
+            </div>
+        </div>
+
+        <main class="productpage main-wrap l-canvas slide-over-transition " id="main">
+
+    <section class="vera-hero" aria-labelledby="vera-hero-title">
+        <div class="container-fluid px-3 px-lg-5">
+            <div class="vera-hero__surface mx-auto">
+                <div class="vera-hero__grid">
+                    <div class="vera-hero__content">
+                        <nav class="vera-hero__breadcrumb" aria-label="Breadcrumb">
+                            <ol class="breadcrumb mb-0">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                            <li class="breadcrumb-item"><a
+                                                href="/products/platform/">Products</a></li>
+                                            <li class="breadcrumb-item"><a
+                                                href="/products/operate/">Operate</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Icertis Contract Management
+                                            </li>
+                                        </ol>
+                                    </nav>
+
+                                        <h1 class="vera-hero__title" id="vera-hero-title">
+                                            
+One platform for all <br />your contracts
+                                        </h1>
+                                        <div class="vera-hero__copy">
+                                            <p>Icertis Contract Management (ICM) Platform helps enterprises run contract operations at scale with centralized contracts, instant answers, standardized workflows, faster execution, and integrated systems.</p>
+                                        </div>
+
+                                        <div class="vera-hero__actions d-flex flex-wrap">
+
+                                                <a class="btn btn-primary btn-primary--icon" href="/demo/">
+                                                    Demo
+                                                </a>
+                                        </div>
+                                </div>
+
+                                    <div class="vera-hero__media">
+                                            <img class="vera-hero__card vera-hero__card--summary" loading="lazy" src="/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png" alt="" width="1552" height="1127" srcset="/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=36 36w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=54 54w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=109 109w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=70 70w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=140 140w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=180 180w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=360 360w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=200 200w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=400 400w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=275 275w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=550 550w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=300 300w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=600 600w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=304 304w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=608 608w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=303 303w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=606 606w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=318 318w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=637 637w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=330 330w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=660 660w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=491 491w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=982 982w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=492 492w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=985 985w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=600 600w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=1200 1200w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=744 744w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=1488 1488w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=765 765w,&#xA;/contentassets/8b9cdb8d5d964bfd861219a0498888e0/icm-hero-ui-v2.png?width=1530 1530w" />
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                        
+
+<script type="application/ld&#x2B;json">{
+  "@type": "SoftwareApplication",
+  "@context": "https://schema.org",
+  "name": "One platform for all your contracts",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "Icertis Contract Management (ICM) Platform helps enterprises run contract operations at scale with centralized contracts, instant answers, standardized workflows, faster execution, and integrated systems.",
+  "url": "https://www.icertis.com/products/operate/contract-lifecycle-management/",
+  "publisher": {
+    "@id": "https://www.icertis.com/#organization"
+  }
+}</script>
+
+
+
+    <section class="logo-wall">
+        <div class="container-fluid px-lg-5">
+                <p class="logo-wall__description">Trusted by the world&#x27;s best :</p>
+
+            <div class="logo-wall__marquee" aria-label="Trusted by the world&#x27;s best :">
+                <div class="logo-wall__track">
+                    <div class="logo-wall__group logo-wall__group--primary">
+                            <div class="logo-wall__item">
+                                <img src="/globalassets/5.-image-library/customer-logos/microsoft/microsoft-logo-web.svg" alt="" loading="lazy" />
+                            </div>
+                            <div class="logo-wall__item">
+                                <img src="/globalassets/5.-image-library/customer-logos/vw-logo-bar.svg" alt="" loading="lazy" />
+                            </div>
+                            <div class="logo-wall__item">
+                                <img src="/globalassets/5.-image-library/customer-logos/best-buy/best-buy-logo-bar.svg" alt="" loading="lazy" />
+                            </div>
+                            <div class="logo-wall__item">
+                                <img src="/globalassets/5.-image-library/customer-logos/hp-logo-bar.svg" alt="" loading="lazy" />
+                            </div>
+                            <div class="logo-wall__item">
+                                <img src="/globalassets/5.-image-library/customer-logos/accenture/accenture-logo-bar.svg" alt="" loading="lazy" />
+                            </div>
+                    </div>
+
+                    <div class="logo-wall__group" aria-hidden="true">
+                            <div class="logo-wall__item">
+                                <img src="/globalassets/5.-image-library/customer-logos/microsoft/microsoft-logo-web.svg" alt="" loading="lazy" />
+                            </div>
+                            <div class="logo-wall__item">
+                                <img src="/globalassets/5.-image-library/customer-logos/vw-logo-bar.svg" alt="" loading="lazy" />
+                            </div>
+                            <div class="logo-wall__item">
+                                <img src="/globalassets/5.-image-library/customer-logos/best-buy/best-buy-logo-bar.svg" alt="" loading="lazy" />
+                            </div>
+                            <div class="logo-wall__item">
+                                <img src="/globalassets/5.-image-library/customer-logos/hp-logo-bar.svg" alt="" loading="lazy" />
+                            </div>
+                            <div class="logo-wall__item">
+                                <img src="/globalassets/5.-image-library/customer-logos/accenture/accenture-logo-bar.svg" alt="" loading="lazy" />
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+                <section class="content-toc" aria-label="Table of contents">
+                    <div class="content-toc__frame">
+                        <div class="content-toc__bar">
+                            <div class="content-toc__scroller" data-toc-scroller>
+                                <div class="content-toc__rail" data-toc-rail>
+                                    <div class="content-toc__list" role="list">
+                                                <div class="content-toc__item" role="listitem">
+                                                    <a class="content-toc__link" href="#value-proposition" data-toc-link>
+                                                        <span class="content-toc__label">Value Propostion</span>
+                                                    </a>
+                                                </div>
+                                                <div class="content-toc__item" role="listitem">
+                                                    <a class="content-toc__link" href="#social-proof" data-toc-link>
+                                                        <span class="content-toc__label">Testimonials</span>
+                                                    </a>
+                                                </div>
+                                                <div class="content-toc__item" role="listitem">
+                                                    <a class="content-toc__link" href="#how-it-works" data-toc-link>
+                                                        <span class="content-toc__label">How It Works</span>
+                                                    </a>
+                                                </div>
+                                                <div class="content-toc__item" role="listitem">
+                                                    <a class="content-toc__link" href="#customer-stories" data-toc-link>
+                                                        <span class="content-toc__label">Customer Stories</span>
+                                                    </a>
+                                                </div>
+                                                <div class="content-toc__item" role="listitem">
+                                                    <a class="content-toc__link" href="#resources-library" data-toc-link>
+                                                        <span class="content-toc__label">Resources</span>
+                                                    </a>
+                                                </div>
+                                                <div class="content-toc__item" role="listitem">
+                                                    <a class="content-toc__link" href="#contact-us" data-toc-link>
+                                                        <span class="content-toc__label">Contact Us</span>
+                                                    </a>
+                                                </div>
+                                                <div class="content-toc__item" role="listitem">
+                                                    <a class="content-toc__link" href="#faq" data-toc-link>
+                                                        <span class="content-toc__label">FAQs</span>
+                                                    </a>
+                                                </div>
+                                    </div>
+                                    <span class="content-toc__indicator" data-toc-indicator aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+                            <button class="content-toc__next" type="button"
+                                    aria-label="Scroll table of contents" data-toc-next>
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M16.17 12 10.81 6.64l1.41-1.42L20 13l-7.78 7.78-1.41-1.42L16.17 14H4v-2h12.17Z"
+                                          fill="currentColor"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+
+
+                    <section id="value-proposition" data-toc-section>
+
+
+<section class="value-proposition value-proposition--page-default" id="value-proposition" data-toc-section
+         aria-labelledby="value-proposition-title">
+    <div class="container-fluid px-4 px-lg-5">
+        <div class="value-proposition__content">
+                <h2 class="visually-hidden" id="value-proposition-title">Value Proposition</h2>
+                <div class="value-proposition__cards">
+                    
+
+
+<article class="value-proposition__card" style="--value-proposition-bullet-color: #874451; --value-proposition-link-color: #874451;">
+    <div class="value-proposition__card-copy">
+            <div class="value-proposition__card-title">
+Ingest, Organize, and Centralize Contracts</div>
+
+            <div class="value-proposition__card-text">
+                
+Bring legacy and third-party contracts into one repository that becomes your trusted system of record.
+            </div>
+
+        <div class="value-proposition__points">
+            
+<ul>
+<li>Ingest legacy and third party contracts using Discover so teams quickly bring all agreements into one place.</li>
+<li>Use Discover to convert unstructured contract documents into structured, searchable data.</li>
+<li>Maintain a governed repository with indexing, version history, and contract relationships for traceability.</li>
+</ul>
+        </div>
+
+    </div>
+
+        <div class="value-proposition__card-media">
+                <img loading="lazy" src="/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png" alt="" width="1128" height="800" srcset="/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=36 36w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=54 54w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=109 109w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=70 70w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=140 140w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=180 180w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=360 360w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=200 200w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=400 400w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=275 275w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=550 550w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=300 300w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=600 600w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=304 304w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=608 608w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=303 303w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=606 606w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=318 318w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=637 637w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=330 330w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=660 660w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=491 491w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=982 982w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=492 492w,&#xA;/contentassets/aaa31491464342cc933c0a930a3f357f/icm-v1-2.png?width=985 985w" />
+        </div>
+</article>
+
+
+<article class="value-proposition__card" style="--value-proposition-bullet-color: #874451; --value-proposition-link-color: #874451;">
+    <div class="value-proposition__card-copy">
+            <div class="value-proposition__card-title">
+Ask Questions, Get Instant Answers</div>
+
+            <div class="value-proposition__card-text">
+                
+Ask questions to instantly find answers, summaries, and insights across contracts with AI-driven Vera Copilot.
+            </div>
+
+        <div class="value-proposition__points">
+            
+<ul>
+<li>Query in natural language as Vera Copilot interprets intent and runs the search.</li>
+<li>Find summaries, insights, and key information across all contracts, not just one agreement.</li>
+<li>Get more precise results by refining your search using filters in real time.</li>
+</ul>
+        </div>
+
+    </div>
+
+        <div class="value-proposition__card-media">
+                <img loading="lazy" src="/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png" alt="" width="1128" height="800" srcset="/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=36 36w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=54 54w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=109 109w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=70 70w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=140 140w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=180 180w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=360 360w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=200 200w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=400 400w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=275 275w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=550 550w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=300 300w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=600 600w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=304 304w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=608 608w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=303 303w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=606 606w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=318 318w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=637 637w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=330 330w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=660 660w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=491 491w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=982 982w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=492 492w,&#xA;/contentassets/ed9a46e43b2e435d9d012c29ae97ece6/clm_vp2.png?width=985 985w" />
+        </div>
+</article>
+
+
+<article class="value-proposition__card" style="--value-proposition-bullet-color: #874451; --value-proposition-link-color: #874451;">
+    <div class="value-proposition__card-copy">
+            <div class="value-proposition__card-title">
+Easy to Manage, Simple to Administer</div>
+
+            <div class="value-proposition__card-text">
+                
+Move contracts through standardized workflows ,clear ownership, and self-service setup so teams work predictably.
+            </div>
+
+        <div class="value-proposition__points">
+            
+<ul>
+<li>Standardize how contracts move from draft to execution with clear workflows, not ad hoc processes.</li>
+<li>Apply role‑based controls so ownership and accountability stay clear at every stage.</li>
+<li>Enable self‑service administration so teams configure workflows and access without relying on IT.</li>
+</ul>
+        </div>
+
+    </div>
+
+        <div class="value-proposition__card-media">
+                <img loading="lazy" src="/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png" alt="" width="1160" height="964" srcset="/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=36 36w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=54 54w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=109 109w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=70 70w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=140 140w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=180 180w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=360 360w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=200 200w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=400 400w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=275 275w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=550 550w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=300 300w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=600 600w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=304 304w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=608 608w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=303 303w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=606 606w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=318 318w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=637 637w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=330 330w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=660 660w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=491 491w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=982 982w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=492 492w,&#xA;/contentassets/d98eb7b94fb9459fa790ef2967f760cd/icm-v3-2.png?width=985 985w" />
+        </div>
+</article>
+
+
+<article class="value-proposition__card" style="--value-proposition-bullet-color: #874451; --value-proposition-link-color: #874451;">
+    <div class="value-proposition__card-copy">
+            <div class="value-proposition__card-title">
+Create and Negotiate Contracts Faster </div>
+
+            <div class="value-proposition__card-text">
+                
+Execute contracts faster by removing friction across drafting, negotiation, and approvals.
+            </div>
+
+        <div class="value-proposition__points">
+            
+<ul>
+<li>Start from approved templates and clause libraries so drafting never begins from scratch.</li>
+<li>Redline and review contracts directly in Microsoft Word, avoiding version conflicts and email back and forth.</li>
+<li>Collaborate across teams to track and resolve deviations from approved terms as contracts progress.</li>
+</ul>
+        </div>
+
+    </div>
+
+        <div class="value-proposition__card-media">
+                <img loading="lazy" src="/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png" alt="" width="1160" height="964" srcset="/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=36 36w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=54 54w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=109 109w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=70 70w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=140 140w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=180 180w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=360 360w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=200 200w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=400 400w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=275 275w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=550 550w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=300 300w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=600 600w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=304 304w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=608 608w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=303 303w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=606 606w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=318 318w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=637 637w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=330 330w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=660 660w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=491 491w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=982 982w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=492 492w,&#xA;/contentassets/83adb30e874246799c79721333c984d2/icm-v4-2.png?width=985 985w" />
+        </div>
+</article>
+
+
+<article class="value-proposition__card" style="--value-proposition-bullet-color: #874451; --value-proposition-link-color: #874451;">
+    <div class="value-proposition__card-copy">
+            <div class="value-proposition__card-title">
+Contract Where You Work</div>
+
+            <div class="value-proposition__card-text">
+                
+Work within your existing enterprise systems while contracts stay synced and accurate behind the scenes.
+            </div>
+
+        <div class="value-proposition__points">
+            
+<ul>
+<li>Manage contracts directly within SAP, Microsoft, Salesforce, and Workday without leaving daily workflows.</li>
+<li>Keep contract details accurate across all enterprise systems, eliminating the need for manual updates.</li>
+</ul>
+        </div>
+
+    </div>
+
+        <div class="value-proposition__card-media">
+                <img loading="lazy" src="/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png" alt="" width="1128" height="800" srcset="/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=36 36w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=54 54w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=109 109w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=70 70w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=140 140w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=180 180w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=360 360w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=200 200w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=400 400w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=275 275w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=550 550w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=300 300w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=600 600w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=304 304w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=608 608w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=303 303w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=606 606w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=318 318w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=637 637w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=330 330w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=660 660w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=491 491w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=982 982w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=492 492w,&#xA;/contentassets/93813ee051f240b089bd2910ff11417a/icm-v5-2.png?width=985 985w" />
+        </div>
+</article>
+
+                </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="transform-contracts" aria-labelledby="transform-contracts-title">
+    <div class="container-fluid px-4 px-lg-5">
+        <div class="transform-contracts__inner d-flex align-items-center justify-content-between">
+            <div class="transform-contracts__copy">
+                    <h2 class="transform-contracts__title" id="transform-contracts-title">Manage the Full Contract Lifecycle at Scale
+                    </h2>
+            </div>
+                <div class="transform-contracts__actions d-flex flex-wrap">
+                            <a href="/contact-us/" class="btn btn-secondary">Contact Us</a>
+                </div>
+        </div>
+    </div>
+</section>
+</section>
+                    </section>
+                    <section id="social-proof" data-toc-section>
+
+
+<section class="social-proof" id="social-proof" data-toc-section aria-labelledby="social-proof-title">
+    <div class="social-proof__container container-fluid px-4 px-lg-5">
+        <div class="social-proof__inner">
+
+            <div class="social-proof__layout">
+                <div class="social-proof__left">
+                            <article class="social-proof__card social-proof__card--large">
+                                    <div class="social-proof__card-content">
+                                        <p><img src="/globalassets/new-social-proof-section.png" border="0" alt="" /></p>
+                                    </div>
+                            </article>
+                </div>
+
+                <div class="social-proof__right">
+
+                                <article class="social-proof__card social-proof__card--diagonal">
+                                    <div class="social-proof__diag-top">
+                                    </div>
+                                        <div class="social-proof__card-content">
+                                            <p><img src="/globalassets/industry-solution-infograph/gardner-image.png" border="0" alt="" /></p>
+                                        </div>
+                                    <div class="social-proof__diag-bottom">
+                                            <div class="social-proof__diag-bottom-left">
+                                                <p class="social-proof__job-title"> </p>
+                                            </div>
+                                    </div>
+                                </article>
+
+                        <div class="social-proof__right-bottom">
+                                    <article class="social-proof__card social-proof__card--metrics">
+                                            <div class="social-proof__card-content social-proof__card-content--metrics">
+                                                <p><img src="/contentassets/409c05e72c0b4ec0bee8a507a4eb8330/frame-2095587475-1.png" border="0" alt="" /></p>
+                                            </div>
+                                    </article>
+                                <div class="social-proof__certs">
+                                        <div class="social-proof__cert social-proof__cert--1 social-proof__cert--has-text">
+                                            <div class="social-proof__cert-text">
+                                                <p class="text-center"><img src="/globalassets/logo-wall/group-1547757798.png" border="0" alt="" /></p>
+<p class="text-center">Leader in The<br />Forrester Wave&trade;</p>
+                                            </div>
+                                        </div>
+                                        <div class="social-proof__cert social-proof__cert--2 social-proof__cert--has-text">
+                                            <div class="social-proof__cert-text">
+                                                <p class="text-center"><img src="/contentassets/2776e32ea65a44368940c4d0872a7e1b/rectangle-34625195-2.png" border="0" alt="forrester" /></p>
+<p class="text-center">Certified by<br />MGI Research</p>
+                                            </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+                    </section>
+                    <section id="how-it-works" data-toc-section>
+
+<section class="how-it-works" id="how-it-works" data-toc-section aria-labelledby="how-it-works-title">
+    <div class="how-it-works__inner">
+            <header class="how-it-works__header">
+                    <h2 class="how-it-works__title" id="how-it-works-title">How it Works</h2>
+            </header>
+            <div class="how-it-works__carousel" data-carousel>
+                <div class="how-it-works__controls" role="group" aria-label="How it works navigation">
+                    <button class="how-it-works__nav how-it-works__nav--prev" type="button" aria-label="Previous steps"
+                            data-carousel-prev>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M14.77 6.62 9.4 12l5.37 5.38-1.41 1.41L6.57 12l6.79-6.79 1.41 1.41Z"
+                                  fill="currentColor"></path>
+                        </svg>
+                    </button>
+                    <button class="how-it-works__nav how-it-works__nav--next" type="button" aria-label="Next steps"
+                            data-carousel-next>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="m9.23 17.38 5.37-5.38-5.37-5.38 1.41-1.41L17.43 12l-6.79 6.79-1.41-1.41Z"
+                                  fill="currentColor"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="how-it-works__scroller" data-carousel-scroller>
+                    <ol class="how-it-works__grid how-it-works__grid--5 list-unstyled mb-0" data-carousel-track>
+                            <li class="how-it-works__item how-it-works__item--first">
+                                <article class="how-it-works__card" tabindex="0">
+                                    
+                                            <div class="how-it-works__icon" aria-hidden="true">
+                                                <img src="/contentassets/eb1caff6137d43dca50f2deea92016ad/how-it-works-1.svg" alt="" loading="lazy" />
+                                            </div>
+                                            <div class="how-it-works__card-title">
+                                                <span class="visually-hidden">Step 1: </span>
+                                                
+<span class="NormalTextRun SCXW182274519 BCX8">Centralize Contracts</span>
+                                            </div>
+                                            <div class="how-it-works__card-copy mb-0">
+<p><span class="NormalTextRun SCXW182274519 BCX8">Centralize every contract in one governed system of record.</span><span class="NormalTextRun SCXW182274519 BCX8">&nbsp;</span><span class="EOP Selected SCXW182274519 BCX8" data-ccp-props="{&quot;201341983&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:240}">&nbsp;</span></p>
+                                            </div>
+                                    
+                                </article>
+                            </li>
+                            <li class="how-it-works__item how-it-works__item--middle">
+                                <article class="how-it-works__card" tabindex="0">
+                                    
+                                            <div class="how-it-works__icon" aria-hidden="true">
+                                                <img src="/contentassets/8b47a21aad084b46a6b292b9f0ea7829/how-it-works-2.svg" alt="" loading="lazy" />
+                                            </div>
+                                            <div class="how-it-works__card-title">
+                                                <span class="visually-hidden">Step 2: </span>
+                                                
+<span class="NormalTextRun SCXW52059617 BCX8">Ask Anything</span>
+                                            </div>
+                                            <div class="how-it-works__card-copy mb-0">
+<p><span class="NormalTextRun SCXW52059617 BCX8">Ask in natural language for instant answers across contracts</span><span class="NormalTextRun SCXW52059617 BCX8">.</span></p>
+                                            </div>
+                                    
+                                </article>
+                            </li>
+                            <li class="how-it-works__item how-it-works__item--middle">
+                                <article class="how-it-works__card" tabindex="0">
+                                    
+                                            <div class="how-it-works__icon" aria-hidden="true">
+                                                <img src="/contentassets/d9de196fc42049cfbd8dd502543f4cb8/how-it-works-3.svg" alt="" loading="lazy" />
+                                            </div>
+                                            <div class="how-it-works__card-title">
+                                                <span class="visually-hidden">Step 3: </span>
+                                                
+<span class="NormalTextRun SCXW90161689 BCX8">Simplify Administration</span>
+                                            </div>
+                                            <div class="how-it-works__card-copy mb-0">
+<p><span class="NormalTextRun SCXW167366146 BCX8">Standardize workflows with clear ownership and self-service administration.&nbsp;</span><span class="EOP SCXW167366146 BCX8" data-ccp-props="{&quot;201341983&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:240}">&nbsp;</span></p>
+                                            </div>
+                                    
+                                </article>
+                            </li>
+                            <li class="how-it-works__item how-it-works__item--middle">
+                                <article class="how-it-works__card" tabindex="0">
+                                    
+                                            <div class="how-it-works__icon" aria-hidden="true">
+                                                <img src="/contentassets/4a752897cf7c4a92b59fb2e475bf4fd3/how-it-works-4.svg" alt="" loading="lazy" />
+                                            </div>
+                                            <div class="how-it-works__card-title">
+                                                <span class="visually-hidden">Step 4: </span>
+                                                
+<span class="NormalTextRun SCXW249839710 BCX8">Accelerate Contracting</span>
+                                            </div>
+                                            <div class="how-it-works__card-copy mb-0">
+<p><span class="NormalTextRun SCXW259205251 BCX8">Speed drafting, negotiation, and approvals.</span></p>
+                                            </div>
+                                    
+                                </article>
+                            </li>
+                            <li class="how-it-works__item how-it-works__item--last">
+                                <article class="how-it-works__card" tabindex="0">
+                                    
+                                            <div class="how-it-works__icon" aria-hidden="true">
+                                                <img src="/contentassets/03e0eba76e9c42b3898e5221f2f7e6ef/how-it-works-5.svg" alt="" loading="lazy" />
+                                            </div>
+                                            <div class="how-it-works__card-title">
+                                                <span class="visually-hidden">Step 5: </span>
+                                                
+<span class="NormalTextRun SCXW75339662 BCX8">Work Anywhere</span>
+                                            </div>
+                                            <div class="how-it-works__card-copy mb-0">
+<p><span class="NormalTextRun SCXW34370909 BCX8">Access contracts in SAP, Microsoft, Salesforce, and Workday</span><span class="EOP SCXW34370909 BCX8" data-ccp-props="{&quot;201341983&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:240}">.</span></p>
+                                            </div>
+                                    
+                                </article>
+                            </li>
+                    </ol>
+                </div>
+            </div>
+    </div>
+</section>
+                    </section>
+                    <section id="customer-stories" data-toc-section>
+
+
+<section class="customer-stories" id="customer-stories" data-toc-section aria-labelledby="customer-stories-title">
+    <div class="container-fluid px-4 px-lg-5">
+        <div class="customer-stories__inner">
+            <header class="customer-stories__header">
+                <div class="customer-stories__intro">
+                        <h2 class="customer-stories__title" id="customer-stories-title">Customer Stories</h2>
+                        <p class="customer-stories__subtitle mb-0">See how enterprises manage contracts at scale with Icertis</p>
+                </div>
+                    <a class="btn btn-secondary" href="/customers/customer-stories/"
+                       title="See All">
+                        See All
+                    </a>
+            </header>
+
+                <div class="customer-stories__body">
+                    <div class="customer-stories__controls" role="group" aria-label="Customer stories navigation">
+                        <button class="customer-stories__nav customer-stories__nav--prev" type="button"
+                                aria-label="Previous customer stories" data-stories-prev disabled>
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M14.77 6.62 9.4 12l5.37 5.38-1.41 1.41L6.57 12l6.79-6.79 1.41 1.41Z"
+                                      fill="currentColor"></path>
+                            </svg>
+                        </button>
+                        <button class="customer-stories__nav customer-stories__nav--next" type="button"
+                                aria-label="Next customer stories" data-stories-next>
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="m9.23 17.38 5.37-5.38-5.37-5.38 1.41-1.41L17.43 12l-6.79 6.79-1.41-1.41Z"
+                                      fill="currentColor"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="customer-stories__viewport" data-stories-scroller>
+                        <div class="customer-stories__track" data-stories-track>
+
+
+    <article class="customer-stories__card">
+            <div class="customer-stories__brand">
+                <img class="customer-stories__brand-logo" loading="lazy" src="/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png" alt="" width="3116" height="788" srcset="/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=36 36w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=54 54w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=109 109w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=70 70w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=140 140w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=180 180w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=360 360w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=200 200w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=400 400w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=275 275w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=550 550w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=300 300w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=600 600w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=304 304w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=608 608w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=303 303w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=606 606w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=318 318w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=637 637w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=330 330w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=660 660w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=491 491w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=982 982w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=492 492w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=985 985w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=600 600w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=1200 1200w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=744 744w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=1488 1488w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=765 765w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=1530 1530w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=864 864w,&#xA;/contentassets/1ed0aca52fce4a4a81d4516e30689acb/mercedes-benz.png?width=1728 1728w" />
+            </div>
+
+            <h3 class="customer-stories__card-title">
+                    <a href="/customers/customer-stories/mercedes-benz/"
+                       style="text-decoration:none;color:inherit;">Mercedes-Benz Drives Enterprise Transformation with Icertis Contract Intelligence</a>
+            </h3>
+
+
+            <p class="customer-stories__card-copy">Mercedes-Benz, the luxury German automotive manufacturer, competes in a market defined by disruption. Constantly facing new competitors, new regulations, and new technologies.</p>
+
+            <div class="customer-stories__author">
+                <span class="customer-stories__divider" aria-hidden="true"></span>
+                <p class="customer-stories__author-name">Jan Brecht</p>
+            </div>
+    </article>
+
+    <article class="customer-stories__card">
+            <div class="customer-stories__brand">
+                <img class="customer-stories__brand-logo" loading="lazy" src="/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png" alt="" width="2970" height="1241" srcset="/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=36 36w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=54 54w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=109 109w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=70 70w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=140 140w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=180 180w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=360 360w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=200 200w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=400 400w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=275 275w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=550 550w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=300 300w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=600 600w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=304 304w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=608 608w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=303 303w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=606 606w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=318 318w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=637 637w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=330 330w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=660 660w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=491 491w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=982 982w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=492 492w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=985 985w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=600 600w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=1200 1200w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=744 744w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=1488 1488w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=765 765w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=1530 1530w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=864 864w,&#xA;/contentassets/603f01de106b408c99e9776bb385e4ff/hewelett-packard.png?width=1728 1728w" />
+            </div>
+
+            <h3 class="customer-stories__card-title">
+                    <a href="/customers/customer-stories/hewlett-packard-enterprise/"
+                       style="text-decoration:none;color:inherit;">Hewlett Packard Enterprise Powers 100,000 Business Relationships with Icertis </a>
+            </h3>
+
+
+            <p class="customer-stories__card-copy">Discover how Hewlett Packard Enterprises manages over 100,000 contracts with an enterprise-grade contract management system, streamlining their operations and positioning the company for growth.&#xA0;&#xA;&#xA; </p>
+
+            <div class="customer-stories__author">
+                <span class="customer-stories__divider" aria-hidden="true"></span>
+                <p class="customer-stories__author-name">Ralph Bridges</p>
+            </div>
+    </article>
+
+    <article class="customer-stories__card">
+            <div class="customer-stories__brand">
+                <img class="customer-stories__brand-logo" loading="lazy" src="/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png" alt="" width="3650" height="958" srcset="/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=36 36w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=54 54w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=109 109w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=70 70w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=140 140w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=180 180w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=360 360w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=200 200w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=400 400w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=275 275w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=550 550w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=300 300w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=600 600w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=304 304w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=608 608w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=303 303w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=606 606w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=318 318w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=637 637w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=330 330w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=660 660w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=491 491w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=982 982w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=492 492w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=985 985w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=600 600w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=1200 1200w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=744 744w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=1488 1488w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=765 765w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=1530 1530w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=864 864w,&#xA;/contentassets/0cc78ae007cd4946b42ec7228b5a245c/microsft.png?width=1728 1728w" />
+            </div>
+
+            <h3 class="customer-stories__card-title">
+                    <a href="/customers/customer-stories/microsoft/"
+                       style="text-decoration:none;color:inherit;">Microsoft Legal Operations Reduces Contract Review Time by 83% with Icertis</a>
+            </h3>
+
+
+            <p class="customer-stories__card-copy">Leveraging the highly flexible Icertis platform, Microsoft empowers 220,000 with automated contract intelligence.</p>
+
+            <div class="customer-stories__author">
+                <span class="customer-stories__divider" aria-hidden="true"></span>
+                <p class="customer-stories__author-name">Tom Orrison</p>
+            </div>
+    </article>
+
+    <article class="customer-stories__card">
+            <div class="customer-stories__brand">
+                <img class="customer-stories__brand-logo" loading="lazy" src="/contentassets/4430258fa77848d58cee5d411da05646/accenture.png" alt="" width="3018" height="831" srcset="/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=36 36w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=54 54w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=109 109w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=70 70w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=140 140w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=180 180w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=360 360w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=200 200w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=400 400w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=275 275w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=550 550w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=300 300w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=600 600w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=304 304w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=608 608w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=303 303w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=606 606w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=318 318w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=637 637w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=330 330w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=660 660w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=491 491w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=982 982w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=492 492w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=985 985w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=600 600w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=1200 1200w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=744 744w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=1488 1488w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=765 765w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=1530 1530w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=864 864w,&#xA;/contentassets/4430258fa77848d58cee5d411da05646/accenture.png?width=1728 1728w" />
+            </div>
+
+            <h3 class="customer-stories__card-title">
+                    <a href="/customers/customer-stories/accenture/"
+                       style="text-decoration:none;color:inherit;">Icertis Customer Story - Accenture</a>
+            </h3>
+
+
+            <p class="customer-stories__card-copy">Accenture improves the legal experience and unlocks the value of contract data with Icertis Contract Intelligence contract management platform.</p>
+
+            <div class="customer-stories__author">
+                <span class="customer-stories__divider" aria-hidden="true"></span>
+                <p class="customer-stories__author-name">Anand Pandya</p>
+            </div>
+    </article>
+
+    <article class="customer-stories__card">
+            <div class="customer-stories__brand">
+                <img class="customer-stories__brand-logo" loading="lazy" src="/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png" alt="" width="2364" height="449" srcset="/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=36 36w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=54 54w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=109 109w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=70 70w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=140 140w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=180 180w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=360 360w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=200 200w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=400 400w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=275 275w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=550 550w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=300 300w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=600 600w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=304 304w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=608 608w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=303 303w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=606 606w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=318 318w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=637 637w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=330 330w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=660 660w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=491 491w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=982 982w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=492 492w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=985 985w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=600 600w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=1200 1200w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=744 744w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=1488 1488w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=765 765w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=1530 1530w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=864 864w,&#xA;/contentassets/c78d7162681b4baba566144a787cdc54/daimler.png?width=1728 1728w" />
+            </div>
+
+            <h3 class="customer-stories__card-title">
+                    <a href="/customers/customer-stories/daimler/"
+                       style="text-decoration:none;color:inherit;">Daimler Streamlines Sourcing Contracts, Drives Digital Transformation with Icertis Contract Intelligence</a>
+            </h3>
+
+
+            <p class="customer-stories__card-copy">Witness how Daimler, a leading automotive manufacturer, leveraged the power of Icertis Contract Intelligence (ICI) platform to revolutionize their contracting and sourcing processes. Discover how they reduced costs, mitigated supplier risks, and accelerated time-to-market through contract-centric sourcing. Watch the customer story video to learn more.</p>
+
+            <div class="customer-stories__author">
+                <span class="customer-stories__divider" aria-hidden="true"></span>
+                <p class="customer-stories__author-name">Ulrich Ochmann</p>
+            </div>
+    </article>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</section>
+                    </section>
+                    <section id="resources-library" data-toc-section>
+
+<section class="resource-library" id="resources-library" data-toc-section aria-labelledby="resources-library-title">
+    <div class="container-fluid px-4 px-lg-5">
+        <div class="resource-library__inner">
+            <header class="resource-library__header">
+                <div class="resource-library__intro">
+                        <h2 class="resource-library__title" id="resources-library-title">Resources</h2>
+                        <p class="resource-library__subtitle mb-0">Explore guides, research, and insights on enterprise contract management</p>
+                </div>
+                    <a class="btn btn-secondary btn-sm" href="/research/">Browse Library</a>
+            </header>
+
+
+                <div class="resource-library__body" data-carousel>
+                    <div class="resource-library__controls" role="group" aria-label="Resource library navigation">
+                        <button class="resource-library__nav resource-library__nav--prev" type="button"
+                                aria-label="Previous resources" data-carousel-prev>
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M14.77 6.62 9.4 12l5.37 5.38-1.41 1.41L6.57 12l6.79-6.79 1.41 1.41Z"
+                                      fill="currentColor"></path>
+                            </svg>
+                        </button>
+                        <button class="resource-library__nav resource-library__nav--next" type="button"
+                                aria-label="Next resources" data-carousel-next>
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="m9.23 17.38 5.37-5.38-5.37-5.38 1.41-1.41L17.43 12l-6.79 6.79-1.41-1.41Z"
+                                      fill="currentColor"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="resource-library__viewport" data-carousel-scroller>
+                        <div class="resource-library__track" data-carousel-track>
+                                <article class="resource-library__item">
+                                    <div class="resource-library__item-copy">
+                                        <h3 class="resource-library__item-title">
+                                            <a class="resource-library__title-link"
+                                               href="/contracting-basics/6-things-to-consider-when-choosing-enterprise-contract-management-software/">Choose the Right CLM Platform</a>
+                                        </h3>
+                                            <p class="resource-library__item-text mb-0">Understand key criteria enterprises use to evaluate contract management platforms.</p>
+                                        <a class="btn btn-ghost-minaral" href="/contracting-basics/6-things-to-consider-when-choosing-enterprise-contract-management-software/">Read More
+                                        </a>
+                                    </div>
+                                </article>
+                                <article class="resource-library__item">
+                                    <div class="resource-library__item-copy">
+                                        <h3 class="resource-library__item-title">
+                                            <a class="resource-library__title-link"
+                                               href="/research/ebooks/clm-implementation-readiness-assessment-tool/intro/">Assess ICM Platform Readiness</a>
+                                        </h3>
+                                            <p class="resource-library__item-text mb-0">Evaluate organizational readiness for implementing ICM Platform.</p>
+                                        <a class="btn btn-ghost-minaral" href="/research/ebooks/clm-implementation-readiness-assessment-tool/intro/">Read More
+                                        </a>
+                                    </div>
+                                </article>
+                                <article class="resource-library__item">
+                                    <div class="resource-library__item-copy">
+                                        <h3 class="resource-library__item-title">
+                                            <a class="resource-library__title-link"
+                                               href="/company/news/icertis-named-a-leader-in-contract-lifecycle-management-by-premier-research-firm/">Read the Analyst Recognition</a>
+                                        </h3>
+                                            <p class="resource-library__item-text mb-0">Learn why analysts recognize Icertis for enterprise contracting.</p>
+                                        <a class="btn btn-ghost-minaral" href="/company/news/icertis-named-a-leader-in-contract-lifecycle-management-by-premier-research-firm/">Read More
+                                        </a>
+                                    </div>
+                                </article>
+                                <article class="resource-library__item">
+                                    <div class="resource-library__item-copy">
+                                        <h3 class="resource-library__item-title">
+                                            <a class="resource-library__title-link"
+                                               href="/research/blog/new-icertis-ux-experience-redefines-contracting/">Explore the New Icertis Experience</a>
+                                        </h3>
+                                            <p class="resource-library__item-text mb-0">See how modern design improves usability across contract workflows.</p>
+                                        <a class="btn btn-ghost-minaral" href="/research/blog/new-icertis-ux-experience-redefines-contracting/">Read More
+                                        </a>
+                                    </div>
+                                </article>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</section>
+                    </section>
+                    <section id="contact-us" data-toc-section>
+
+<section class="obligation-cta" id="contact-us" data-toc-section aria-labelledby="obligation-cta-title">
+        <div class="obligation-cta__banner">
+            <div class="container-fluid px-4 px-lg-5">
+                <div class="obligation-cta__banner-inner">
+                    <p class="obligation-cta__banner-text mb-0">Join 400&#x2B; enterprises who&#x27;ve made contracts their competitive advantage.</p>
+                </div>
+            </div>
+        </div>
+
+    <div class="container-fluid px-4 px-lg-5">
+        <div class="obligation-cta__inner">
+            <div class="obligation-cta__content">
+                    <h2 class="obligation-cta__title" id="obligation-cta-title">See Icertis Contract Management in Action</h2>
+                    <p class="obligation-cta__copy mb-0">Request a personalized demo and see how teams manage the full contract lifecycle.</p>
+                    <a class="btn btn-primary obligation-cta__button" href="/contact-us/">
+                        Contact Us
+                    </a>
+            </div>
+
+            <div class="obligation-cta__carousel-column">
+                    <div class="obligation-cta__carousel" data-cta-carousel>
+                        <div class="obligation-cta__cards-wrapper">
+                            <div class="obligation-cta__track" data-cta-track>
+                                    <article class="obligation-cta__card" aria-label="Featured customer story">
+                                            <div class="obligation-cta__card-media">
+                                                <img class="obligation-cta__card-logo" loading="lazy" src="/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png" alt="" width="1584" height="584" srcset="/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=36 36w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=54 54w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=109 109w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=70 70w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=140 140w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=180 180w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=360 360w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=200 200w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=400 400w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=275 275w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=550 550w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=300 300w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=600 600w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=304 304w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=608 608w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=303 303w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=606 606w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=318 318w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=637 637w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=330 330w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=660 660w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=491 491w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=982 982w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=492 492w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=985 985w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=600 600w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=1200 1200w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=744 744w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=1488 1488w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=765 765w,&#xA;/contentassets/f7a57f2ebcdb4cc9bb6a19be28e7aac4/mercedes.png?width=1530 1530w" />
+                                            </div>
+                                        <div class="obligation-cta__card-body">
+                                                <h3 class="obligation-cta__card-title">
+                                                    
+                                                        &ldquo;Icertis gives us a single point of truth, analytics capabilities, and seamless integrations with the rest of our enterprise software.&rdquo;
+                                                    
+                                                </h3>
+                                            <span class="obligation-cta__card-divider" aria-hidden="true"></span>
+                                                <div class="obligation-cta__card-meta">
+                                                    <p><strong>Jan Brecht</strong><br />Chief Information Officer, Mercedes-Benz</p>
+                                                </div>
+                                        </div>
+                                    </article>
+                                    <article class="obligation-cta__card" aria-label="Featured customer story">
+                                            <div class="obligation-cta__card-media">
+                                                <img class="obligation-cta__card-logo" loading="lazy" src="/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png" alt="" width="1584" height="584" srcset="/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=36 36w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=54 54w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=109 109w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=70 70w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=140 140w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=180 180w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=360 360w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=200 200w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=400 400w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=275 275w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=550 550w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=300 300w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=600 600w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=304 304w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=608 608w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=303 303w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=606 606w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=318 318w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=637 637w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=330 330w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=660 660w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=491 491w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=982 982w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=492 492w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=985 985w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=600 600w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=1200 1200w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=744 744w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=1488 1488w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=765 765w,&#xA;/contentassets/b1228cbcd74d4f039e34fc4c2dbf1746/cognizant.png?width=1530 1530w" />
+                                            </div>
+                                        <div class="obligation-cta__card-body">
+                                                <h3 class="obligation-cta__card-title">
+                                                    
+                                                        &ldquo;The data I provide from Icertis is the kind of data that helps people make decisions.&rdquo;
+                                                    
+                                                </h3>
+                                            <span class="obligation-cta__card-divider" aria-hidden="true"></span>
+                                                <div class="obligation-cta__card-meta">
+                                                    <p><strong>Frank Marty</strong><br />Global Head of Contract Lifecycle &amp; Risk Management, Cognizant</p>
+                                                </div>
+                                        </div>
+                                    </article>
+                                    <article class="obligation-cta__card" aria-label="Featured customer story">
+                                            <div class="obligation-cta__card-media">
+                                                <img class="obligation-cta__card-logo" loading="lazy" src="/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png" alt="" width="1584" height="584" srcset="/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=36 36w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=54 54w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=109 109w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=70 70w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=140 140w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=180 180w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=360 360w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=200 200w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=400 400w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=275 275w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=550 550w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=300 300w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=600 600w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=304 304w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=608 608w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=303 303w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=606 606w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=318 318w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=637 637w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=330 330w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=660 660w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=491 491w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=982 982w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=492 492w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=985 985w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=600 600w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=1200 1200w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=744 744w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=1488 1488w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=765 765w,&#xA;/contentassets/884f0e93b1c64dc08e8675690d0ecc13/microsoft.png?width=1530 1530w" />
+                                            </div>
+                                        <div class="obligation-cta__card-body">
+                                                <h3 class="obligation-cta__card-title">
+                                                    
+                                                        &ldquo;Icertis has allowed Microsoft to simplify our contracting motions. All 220,000 employees can act as procurement agents and seamlessly flow through our contracting workflows.&rdquo;
+                                                    
+                                                </h3>
+                                            <span class="obligation-cta__card-divider" aria-hidden="true"></span>
+                                                <div class="obligation-cta__card-meta">
+                                                    <p><span data-teams="true"><strong>Tom Orrison</strong><br />Director of Legal Operations, Microsoft</span></p>
+                                                </div>
+                                        </div>
+                                    </article>
+                            </div>
+
+                                <div class="obligation-cta__pagination" data-cta-pagination aria-label="Carousel pagination">
+                                        <button class="obligation-cta__dot obligation-cta__dot--active"
+                                                type="button" aria-label="Go to slide 1" data-cta-dot="0"></button>
+                                        <button class="obligation-cta__dot"
+                                                type="button" aria-label="Go to slide 2" data-cta-dot="1"></button>
+                                        <button class="obligation-cta__dot"
+                                                type="button" aria-label="Go to slide 3" data-cta-dot="2"></button>
+                                </div>
+                        </div>
+
+                    </div>
+
+                    <div class="obligation-cta__badges">
+                            <div class="obligation-cta__badge-item">
+                                <img class="obligation-cta__badge-img" loading="lazy" src="/globalassets/5.-image-library/customer-logos/mercedes-benz/mercedes-logo.svg" alt="" />
+                            </div>
+                            <div class="obligation-cta__badge-item">
+                                <img class="obligation-cta__badge-img" loading="lazy" src="/globalassets/5.-image-library/customer-logos/cognizant/cognizant-logo-bar.svg" alt="" />
+                            </div>
+                            <div class="obligation-cta__badge-item">
+                                <img class="obligation-cta__badge-img" loading="lazy" src="/globalassets/5.-image-library/customer-logos/microsoft/microsoft-logo-web.svg" alt="" />
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+                    </section>
+                    <section id="faq" data-toc-section>
+
+<section class="faq-section" id="faq" data-toc-section aria-labelledby="faq-title">
+    <div class="container-fluid px-4 px-lg-5">
+        <div class="faq-section__inner">
+            <div class="faq-section__intro">
+                    <h2 class="faq-section__title" id="faq-title">FAQs</h2>
+                    <p class="faq-section__subtitle mb-0">Manage the full contract lifecycle with visibility, control, and standardized workflows</p>
+                    <a class="btn btn-underline faq-section__button" href="/contact-us/" title="Contact Us">
+                        Contact Us
+                    </a>
+            </div>
+
+                <div class="faq-section__accordion" data-faq-accordion>
+                    
+
+
+<article class="faq-section__item" data-faq-item>
+        <h3 class="faq-section__heading">
+            <button
+                class="faq-section__trigger"
+                type="button"
+                id="faq-trigger-3754a6b4"
+                aria-expanded="false"
+                aria-controls="faq-panel-3754a6b4"
+                data-faq-trigger
+            >
+                <span class="faq-section__question">What is Icertis Contract Management (ICM) Platform? </span>
+                <span class="faq-section__icon" aria-hidden="true">
+                    <svg viewBox="0 0 18 10" focusable="false">
+                        <path d="M1 9L9 1L17 9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                    </svg>
+                </span>
+            </button>
+        </h3>
+
+        <div class="faq-section__panel" id="faq-panel-3754a6b4" role="region" aria-labelledby="faq-trigger-3754a6b4" data-faq-panel hidden>
+            <p class="faq-section__answer mb-0">Icertis Contract Management (ICM) Platform helps enterprises run contract operations at scale with centralized contracts, standardized workflows, instant answers, and connected enterprise systems. </p>
+        </div>
+</article>
+
+
+<article class="faq-section__item" data-faq-item>
+        <h3 class="faq-section__heading">
+            <button
+                class="faq-section__trigger"
+                type="button"
+                id="faq-trigger-2d987707"
+                aria-expanded="false"
+                aria-controls="faq-panel-2d987707"
+                data-faq-trigger
+            >
+                <span class="faq-section__question">Who uses ICM Platform?</span>
+                <span class="faq-section__icon" aria-hidden="true">
+                    <svg viewBox="0 0 18 10" focusable="false">
+                        <path d="M1 9L9 1L17 9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                    </svg>
+                </span>
+            </button>
+        </h3>
+
+        <div class="faq-section__panel" id="faq-panel-2d987707" role="region" aria-labelledby="faq-trigger-2d987707" data-faq-panel hidden>
+            <p class="faq-section__answer mb-0">ICM Platform is used by large enterprises and regulated organizations across legal, sales, procurement, finance, and compliance teams managing high-volume, complex contracts.    </p>
+        </div>
+</article>
+
+
+<article class="faq-section__item" data-faq-item>
+        <h3 class="faq-section__heading">
+            <button
+                class="faq-section__trigger"
+                type="button"
+                id="faq-trigger-87c3ad87"
+                aria-expanded="false"
+                aria-controls="faq-panel-87c3ad87"
+                data-faq-trigger
+            >
+                <span class="faq-section__question">What are the key features of ICM Platform? </span>
+                <span class="faq-section__icon" aria-hidden="true">
+                    <svg viewBox="0 0 18 10" focusable="false">
+                        <path d="M1 9L9 1L17 9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                    </svg>
+                </span>
+            </button>
+        </h3>
+
+        <div class="faq-section__panel" id="faq-panel-87c3ad87" role="region" aria-labelledby="faq-trigger-87c3ad87" data-faq-panel hidden>
+            <p class="faq-section__answer mb-0">Key ICM Platform features include centralized contract storage, instant answers across contracts, standardized workflows, governance controls, and integrations with enterprise systems.</p>
+        </div>
+</article>
+
+
+<article class="faq-section__item" data-faq-item>
+        <h3 class="faq-section__heading">
+            <button
+                class="faq-section__trigger"
+                type="button"
+                id="faq-trigger-dbf5aa65"
+                aria-expanded="false"
+                aria-controls="faq-panel-dbf5aa65"
+                data-faq-trigger
+            >
+                <span class="faq-section__question">What business problems does ICM Platform solve?</span>
+                <span class="faq-section__icon" aria-hidden="true">
+                    <svg viewBox="0 0 18 10" focusable="false">
+                        <path d="M1 9L9 1L17 9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                    </svg>
+                </span>
+            </button>
+        </h3>
+
+        <div class="faq-section__panel" id="faq-panel-dbf5aa65" role="region" aria-labelledby="faq-trigger-dbf5aa65" data-faq-panel hidden>
+            <p class="faq-section__answer mb-0">ICM Platform  helps enterprises reduce contract risk, improve compliance, increase contract visibility, accelerate execution, and maintain consistent contract operations at scale. </p>
+        </div>
+</article>
+
+
+<article class="faq-section__item" data-faq-item>
+        <h3 class="faq-section__heading">
+            <button
+                class="faq-section__trigger"
+                type="button"
+                id="faq-trigger-8b15aae1"
+                aria-expanded="false"
+                aria-controls="faq-panel-8b15aae1"
+                data-faq-trigger
+            >
+                <span class="faq-section__question">What types of contracts can ICM Platform manage?</span>
+                <span class="faq-section__icon" aria-hidden="true">
+                    <svg viewBox="0 0 18 10" focusable="false">
+                        <path d="M1 9L9 1L17 9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                    </svg>
+                </span>
+            </button>
+        </h3>
+
+        <div class="faq-section__panel" id="faq-panel-8b15aae1" role="region" aria-labelledby="faq-trigger-8b15aae1" data-faq-panel hidden>
+            <p class="faq-section__answer mb-0">ICM Platform manages sales contracts, procurement agreements, NDAs, MSAs, SOWs, and other enterprise contracts across regions, languages, and regulatory requirements.</p>
+        </div>
+</article>
+
+
+<article class="faq-section__item" data-faq-item>
+        <h3 class="faq-section__heading">
+            <button
+                class="faq-section__trigger"
+                type="button"
+                id="faq-trigger-9173d831"
+                aria-expanded="false"
+                aria-controls="faq-panel-9173d831"
+                data-faq-trigger
+            >
+                <span class="faq-section__question">How does ICM Platform support the full contract lifecycle?</span>
+                <span class="faq-section__icon" aria-hidden="true">
+                    <svg viewBox="0 0 18 10" focusable="false">
+                        <path d="M1 9L9 1L17 9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                    </svg>
+                </span>
+            </button>
+        </h3>
+
+        <div class="faq-section__panel" id="faq-panel-9173d831" role="region" aria-labelledby="faq-trigger-9173d831" data-faq-panel hidden>
+            <p class="faq-section__answer mb-0">ICM Platform supports request, drafting, negotiation, approval, execution, and post-execution governance through centralized data and standardized processes. </p>
+        </div>
+</article>
+
+
+<article class="faq-section__item" data-faq-item>
+        <h3 class="faq-section__heading">
+            <button
+                class="faq-section__trigger"
+                type="button"
+                id="faq-trigger-d47159e4"
+                aria-expanded="false"
+                aria-controls="faq-panel-d47159e4"
+                data-faq-trigger
+            >
+                <span class="faq-section__question">Does ICM Platform integrate with enterprise systems?</span>
+                <span class="faq-section__icon" aria-hidden="true">
+                    <svg viewBox="0 0 18 10" focusable="false">
+                        <path d="M1 9L9 1L17 9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                    </svg>
+                </span>
+            </button>
+        </h3>
+
+        <div class="faq-section__panel" id="faq-panel-d47159e4" role="region" aria-labelledby="faq-trigger-d47159e4" data-faq-panel hidden>
+            <p class="faq-section__answer mb-0">Yes. ICM Platform integrates with SAP, Salesforce, Microsoft Dynamics, Microsoft 365, Workday, and other enterprise systems to connect contracts with business workflows.</p>
+        </div>
+</article>
+
+
+<article class="faq-section__item" data-faq-item>
+        <h3 class="faq-section__heading">
+            <button
+                class="faq-section__trigger"
+                type="button"
+                id="faq-trigger-1a0dbd5b"
+                aria-expanded="false"
+                aria-controls="faq-panel-1a0dbd5b"
+                data-faq-trigger
+            >
+                <span class="faq-section__question">How is ICM Platform different from other CLM solutions?</span>
+                <span class="faq-section__icon" aria-hidden="true">
+                    <svg viewBox="0 0 18 10" focusable="false">
+                        <path d="M1 9L9 1L17 9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                    </svg>
+                </span>
+            </button>
+        </h3>
+
+        <div class="faq-section__panel" id="faq-panel-1a0dbd5b" role="region" aria-labelledby="faq-trigger-1a0dbd5b" data-faq-panel hidden>
+            <p class="faq-section__answer mb-0">ICM Platform  combines structured contract data, standardized workflows, instant answers, and enterprise-grade governance to support complex contract operations reliably at scale. </p>
+        </div>
+</article>
+
+                </div>
+        </div>
+    </div>
+</section>
+                    </section>
+
+        </main>
+
+        
+
+        
+
+<footer class="site-footer">
+    <div class="container-fluid">
+        <div class="site-footer__body">
+                <div class="site-footer__section-wrap">
+                        <nav class="site-footer__nav">
+                                <div class="site-footer__nav-section">
+                                        <a class="site-footer__heading h5" href="/products/platform/">
+Products</a>
+                                            <ul class="site-footer__link-list">
+                                                    <li>
+                                                        
+<a href="/products/engage/">Engage</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/products/operate/">Operate</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/products/analyze/">Analyze</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/products/platform/copilot/">Vera Copilot</a>
+                                                    </li>
+                                            </ul>
+                                    </div>
+                                <div class="site-footer__nav-section">
+                                        <a class="site-footer__heading h5" href="/solutions/">
+Solutions</a>
+                                            <ul class="site-footer__link-list">
+                                                    <li>
+                                                        
+<a href="/solutions/industry-solutions/asset-management/">Asset Management</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/solutions/industry-solutions/public-sector/" title="Public Sector">Public Sector</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/solutions/industry-solutions/retail-and-consumer/">Retail and Consumer Goods</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/solutions/industry-solutions/media-and-telecom/">Media and Telecom</a>
+                                                    </li>
+                                            </ul>
+                                    </div>
+                                <div class="site-footer__nav-section">
+                                        <a class="site-footer__heading h5" href="/research/">
+Resources</a>
+                                            <ul class="site-footer__link-list">
+                                                    <li>
+                                                        
+<a href="/research/analyst-reports/">Analyst Reports</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/customers/customer-stories/">Customer Stories</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/research/ebooks/">eBooks</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/research/blog/">Blog</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/learn/">Learn About CLM</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/contracting-basics/">Contracting Basics</a>
+                                                    </li>
+                                            </ul>
+                                    </div>
+                                <div class="site-footer__nav-section">
+                                        <a class="site-footer__heading h5" href="/company/">
+Company</a>
+                                            <ul class="site-footer__link-list">
+                                                    <li>
+                                                        
+<a href="/company/">Company</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/company/news/">News</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/company/careers/">Careers</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/company/events/">Events</a>
+                                                    </li>
+                                            </ul>
+                                    </div>
+                                <div class="site-footer__nav-section">
+                                        <a class="site-footer__heading h5" href="/contracting-basics/">
+Learn</a>
+                                            <ul class="site-footer__link-list">
+                                                    <li>
+                                                        
+<a href="/learn/what-is-contract-management/">What is Contract Management?</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/learn/what-is-contract-intelligence/">What is Contract Intelligence?</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/learn/what-is-contract-lifecycle-management/">What is Contract Lifecycle Management?</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/contracting-basics/contractual-obligations/">What is a Contractual Obligation?</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/learn/what-is-contract-performance/">What is Contract Performance?</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/contracting-basics/what-is-contract-compliance/">What is Contract Compliance?</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/learn/how-generative-ai-is-changing-contract-management/">Generative AI in Contract Management</a>
+                                                    </li>
+                                            </ul>
+                                    </div>
+                            </nav>
+                    </div>
+                <div class="site-footer__disclosure-links">
+                    <div class="site-footer__logo">
+                        <a href="/">
+                            <img src="/static/images/icertis-logo-white-new.svg" alt="Icertis"
+                                 width="125" height="48">
+                        </a>
+                    </div>
+                    <ul class="site-footer__link-list">
+                        <li>
+                            © Copyright 2026 Icertis. All rights reserved.
+                        </li>
+                                <li>
+                                    
+<a href="/information/cookie-policy/" title="Cookie Policy">Cookie Policy</a>
+                                </li>
+                                <li>
+                                    
+<a href="/information/icertis-privacy-statement/" title="Privacy Statement">Privacy Statement</a>
+                                </li>
+                                <li>
+                                    
+<a href="/information/disclaimer/" title="Disclaimer">Disclaimer</a>
+                                </li>
+                                <li>
+                                    
+<a href="/information/foundation/">Foundation</a>
+                                </li>
+                                <li>
+                                    
+<a href="/information/trust-center/">Trust Center</a>
+                                </li>
+                    </ul>
+                        <div class="footer-awards--desktop d-none d-xl-block">
+                        </div>
+                </div>
+                <div class="footer-awards--mobile d-xl-none">
+                    <div class="site-footer__awards">
+                            <ul class="site-footer__social-links-list">
+                                        <li class="site-footer__social-links-item">
+                                            <a href="https://www.linkedin.com/company/icertis/">
+                                                <img src="/static/images/icon-linkedin-small.svg"
+                                                     alt="View our LinkedIn profile" />
+                                            </a>
+                                        </li>
+                                        <li class="site-footer__social-links-item">
+                                            <a href="https://www.youtube.com/channel/UCkxr-g3wzTgFFmRbumun6lQ">
+                                                <img src="/static/images/icon-youtube-small.svg"
+                                                     alt="View our YouTube profile" />
+                                            </a>
+                                        </li>
+                                        <li class="site-footer__social-links-item">
+                                            <a href="http://instagram.com/icertisinc/">
+                                                <img src="/static/images/icon-instagram-small.svg"
+                                                     alt="View our Instagram profile" />
+                                            </a>
+                                        </li>
+                                        <li class="site-footer__social-links-item">
+                                            <a href="https://twitter.com/icertis">
+                                                <img src="/static/images/icon-twitter-small.svg"
+                                                     alt="View our Twitter profile" />
+                                            </a>
+                                        </li>
+                            </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    </div>
+    <div class="modal modal--language fade" id="languageSpeedbump" tabindex="-1" aria-labelledby="languageSpeedbumpLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p class="h3" id="languageSpeedbumpLabel">You are now leaving the FR/DE Icertis website and going to .com.</p>
+      </div>
+      <div class="modal-footer">
+          <a class="btn btn-primary">Ok</a>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+    
+    <script defer="defer" src="/Util/Find/epi-util/find.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){if(typeof FindApi === 'function'){var api = new FindApi();api.setApplicationUrl('/');api.setServiceApiBaseUrl('/find_v2/');api.processEventFromCurrentUri();api.bindWindowEvents();api.bindAClickEvent();api.sendBufferedEvents();}})
+</script>
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+</body>
+
+</html>

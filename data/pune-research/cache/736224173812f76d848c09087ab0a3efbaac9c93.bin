@@ -1,0 +1,1498 @@
+<!doctype html><!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="hi-in" > <![endif]--><!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="hi-in" >        <![endif]--><!--[if IE 8]>    <html class="no-js lt-ie9" lang="hi-in" >               <![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="hi-in"><!--<![endif]--><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="author" content="e-Zest Solutions Inc.">
+    <meta name="description" content="e-Zest is a digital technology innovation partner for organizations, driven by core values of learning, partnership, and a results-driven approach.">
+    <meta name="generator" content="HubSpot">
+    <title>Innovate and Succeed with e-Zest: Your Trusted Partner in Digital Transformation</title>
+    <link rel="shortcut icon" href="https://www.e-zest.com/hubfs/images/sitefavicon.ico">
+    
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="/hs/hsstatic/jquery-libs/static-1.4/jquery/jquery-1.11.2.js"></script>
+<script>hsjQuery = window['jQuery'];</script>
+    <meta property="og:description" content="e-Zest is a digital technology innovation partner for organizations, driven by core values of learning, partnership, and a results-driven approach.">
+    <meta property="og:title" content="Innovate and Succeed with e-Zest: Your Trusted Partner in Digital Transformation">
+    <meta name="twitter:description" content="e-Zest is a digital technology innovation partner for organizations, driven by core values of learning, partnership, and a results-driven approach.">
+    <meta name="twitter:title" content="Innovate and Succeed with e-Zest: Your Trusted Partner in Digital Transformation">
+
+    
+
+    
+    <style>
+a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
+</style>
+
+<link rel="stylesheet" href="https://www.e-zest.com/hubfs/hub_generated/module_assets/1/7031226678/1744535289439/module_IM_-_Navigation_Header.min.css">
+<link rel="stylesheet" href="https://www.e-zest.com/hubfs/hub_generated/module_assets/1/6737190973/1744535256362/module_IM_-_About_Banner.min.css">
+<link rel="stylesheet" href="https://www.e-zest.com/hubfs/hub_generated/module_assets/1/6839208943/1744535275012/module_IM_-_About_SideBar.min.css">
+<link rel="stylesheet" href="https://www.e-zest.com/hubfs/hub_generated/module_assets/1/116316704554/1744536125677/module_Contact_Popup_-_About_Page.min.css">
+<link rel="stylesheet" href="https://www.e-zest.com/hubfs/hub_generated/module_assets/1/115737875893/1741040251672/module_Footer-Horizontal-Dark-GLOBAL-AL.css">
+<link rel="stylesheet" href="https://www.e-zest.com/hubfs/hub_generated/module_assets/1/92486657181/1744535947988/module_EZ-_Contact_Us_Pop_Up_-_AL_-_Clone.min.css">
+    
+
+    
+<!--  Added by GoogleAnalytics4 integration -->
+<script data-cookieconsent="ignore">
+var _hsp = window._hsp = window._hsp || [];
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+var useGoogleConsentModeV2 = true;
+var waitForUpdateMillis = 1000;
+
+
+if (!window._hsGoogleConsentRunOnce) {
+  window._hsGoogleConsentRunOnce = true;
+
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'wait_for_update': waitForUpdateMillis
+  });
+
+  if (useGoogleConsentModeV2) {
+    _hsp.push(['useGoogleConsentModeV2'])
+  } else {
+    _hsp.push(['addPrivacyConsentListener', function(consent){
+      var hasAnalyticsConsent = consent && (consent.allowed || (consent.categories && consent.categories.analytics));
+      var hasAdsConsent = consent && (consent.allowed || (consent.categories && consent.categories.advertisement));
+
+      gtag('consent', 'update', {
+        'ad_storage': hasAdsConsent ? 'granted' : 'denied',
+        'analytics_storage': hasAnalyticsConsent ? 'granted' : 'denied',
+        'ad_user_data': hasAdsConsent ? 'granted' : 'denied',
+        'ad_personalization': hasAdsConsent ? 'granted' : 'denied'
+      });
+    }]);
+  }
+}
+
+gtag('js', new Date());
+gtag('set', 'developer_id.dZTQ1Zm', true);
+gtag('config', 'G-QDP92E98GQ');
+</script>
+<script data-cookieconsent="ignore" async src="https://www.googletagmanager.com/gtag/js?id=G-QDP92E98GQ"></script>
+
+<!-- /Added by GoogleAnalytics4 integration -->
+
+    <link rel="canonical" href="https://www.e-zest.com/about-us">
+
+<meta name="google-site-verification" content="EgK9CCsf1FOxkBf0czbL7-Q5d5bjMtEVm4tsMDjosBk">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Organization",
+  "name": "e-Zest",
+  "url": "https://www.e-zest.com/",
+  "logo": "https://www.e-zest.com/hubfs/AA%20Assets/eZest%20Logo.svg",
+  "image": "https://www.e-zest.com/hubfs/AA%20Assets/eZest%20Logo.svg",
+  "email": "info@e-zest.com",
+  "address": "e-Zest Digital Solutions Pvt. Ltd., 3rd Floor, Building IT-09, Qubix Business Park - SEZ Blueridge, Rajiv Gandhi Infotech Park, Hinjawadi Phase-1, Pune, Maharashtra 411057",
+  "telephone": "+91 8055839378",
+  "award": "e-Zest's Product engineering services featured in Zinnov Zones, Everest Peak Metrics and ISG Provider lens",
+  "numberOfEmployees": {
+    "@type": "QuantitativeValue",
+    "maxValue": "1000"
+  }
+}
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-362796-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script type="text/javascript" src="https://secure.leadforensics.com/js/150446.js"></script>
+<noscript>&lt;img  alt="" src="https://secure.leadforensics.com/150446.png
+  " style="display:none;"&gt;</noscript>
+<!-- Global site tag (gtag.js) - Google Ads: 708626540 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-708626540"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-708626540');
+</script>
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '935394223506138');
+  fbq('track', 'PageView');
+</script>
+<noscript>&lt;img  height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=935394223506138&amp;amp;ev=PageView&amp;amp;noscript=1"&gt;</noscript>
+<!-- End Facebook Pixel Code --> 
+<meta property="og:url" content="https://www.e-zest.com/about-us">
+<meta name="twitter:card" content="summary">
+<meta http-equiv="content-language" content="hi-in">
+<link rel="stylesheet" href="//7052064.fs1.hubspotusercontent-na1.net/hubfs/7052064/hub_generated/template_assets/DEFAULT_ASSET/1791562879442/template_layout.min.css">
+
+
+<link rel="stylesheet" href="https://www.e-zest.com/hubfs/hub_generated/template_assets/1/6594098012/1744416896791/template_IM_-_e-Zest_2018_Style.min.css">
+<link rel="stylesheet" href="https://www.e-zest.com/hubfs/hub_generated/template_assets/1/6698625539/1744416897444/template_IM_-_e-zest_Viewport.min.css">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<style>
+  .about-us .container,
+  .about-us .container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+  }  
+</style>
+    <style>
+.core-value-inner .core-value-content {
+    padding-top: 2.375vw;
+  }
+</style>
+
+</head>
+<body class="about-us   hs-content-id-7150937244 hs-site-page page " style="">
+    <div class="header-container-wrapper">
+    <div class="header-container container-fluid">
+
+<div class="row-fluid-wrapper row-depth-1 row-number-1 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-global_group " style="" data-widget-type="global_group" data-x="0" data-w="12">
+<div class="" data-global-widget-path="generated_global_groups/6607711382.html"><div class="row-fluid-wrapper row-depth-1 row-number-1 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-raw_html " style="" data-widget-type="raw_html" data-x="0" data-w="12">
+<div class="cell-wrapper layout-widget-wrapper">
+<span id="hs_cos_wrapper_module_15439279002581202" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_raw_html" style="" data-hs-cos-general-type="widget" data-hs-cos-type="raw_html"><link href="https://fonts.googleapis.com/css?family=Noto+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto%20Serif:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Fira+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto%20Serif:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Fira+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<!-- <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/blogger-sans-bold-otf" type="text/css"/>
+<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/blogger-sans-otf" type="text/css"/>
+<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/blogger-sans-medium-italic-otf" type="text/css"/>
+<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/blogger-sans-light-otf" type="text/css"/>
+<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/blogger-sans-light-italic-otf" type="text/css"/>
+<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/blogger-sans" type="text/css"/>
+<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/blogger-sans-medium-otf" type="text/css"/>
+<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/blogger-sans-italic-otf" type="text/css"/>
+<link rel="stylesheet" media="screen" href="https://www.e-zest.com/hubfs/website%20font/blogger-sans-bold-otf.otf" type="text/css"/>
+<link rel="stylesheet" media="screen" href="https://www.e-zest.com/hubfs/website%20font/blogger-sans.otf" type="text/css"/>
+<link rel="stylesheet" media="screen" href="https://www.e-zest.com/hubfs/website%20font/blogger-sans-light-otf.otf" type="text/css"/>
+<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/blogger-sans" type="text/css"/>
+<link rel="stylesheet" media="screen" href="https://www.e-zest.com/hubfs/website%20font/blogger-sans-medium-otf.otf" type="text/css"/>
+<link rel="stylesheet" media="screen" href="https://www.e-zest.com/hubfs/website%20font/blogger-sans-italic-otf.otf" type="text/css"/> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css">
+<link rel="stylesheet" href="https://www.mindfieldsglobal.com/hubfs/Website/Career%20Page%20Image/assets/owl.carousel.min.css">
+<script type="text/javascript" src="https://www.mindfieldsglobal.com/hubfs/Website/Career%20Page%20Image/owl.carousel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.js"></script>
+<script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.min.js"></script>
+<link rel="canonical" href="https://www.e-zest.com">
+<a id="top"></a></span>
+</div><!--end layout-widget-wrapper -->
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-2 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-cell header darkHeader" style="" data-widget-type="cell" data-x="0" data-w="12">
+
+<div class="row-fluid-wrapper row-depth-1 row-number-3 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-cell std-width" style="" data-widget-type="cell" data-x="0" data-w="12">
+
+<div class="row-fluid-wrapper row-depth-1 row-number-4 ">
+<div class="row-fluid ">
+<div class="span2 widget-span widget-type-logo ezest-logo" style="" data-widget-type="logo" data-x="0" data-w="2">
+<div class="cell-wrapper layout-widget-wrapper">
+<span id="hs_cos_wrapper_module_154262528996249" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_logo" style="" data-hs-cos-general-type="widget" data-hs-cos-type="logo"><a href="https://www.e-zest.com/" id="hs-link-module_154262528996249" style="border-width:0px;border:0px;"><img src="https://www.e-zest.com/hubfs/images/Logos%20with%20Tagline/Corporate/SVG/e-Zest%20logo_An%20accion%20lab%20company_Colour.svg" class="hs-image-widget " height="150" style="height: auto;width:233px;border-width:0px;border:0px;" width="233" alt="e-Zest logo_An accion lab company_Colour" title="e-Zest logo_An accion lab company_Colour"></a></span></div><!--end layout-widget-wrapper -->
+</div><!--end widget-span -->
+<div class="navigation-content">
+   <div class="advance-menu">
+<div class="span10 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="2" data-w="10">
+<div id="hs_cos_wrapper_module_154753702182882" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-simple_menu" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><span id="hs_cos_wrapper_module_154753702182882_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_simple_menu" style="" data-hs-cos-general-type="widget" data-hs-cos-type="simple_menu"><div id="hs_menu_wrapper_module_154753702182882_" class="hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal" role="navigation" data-sitemap-name="" data-menu-id="" aria-label="Navigation Menu">
+ <ul role="menu">
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="https://www.e-zest.com/our-work" role="menuitem" target="_self">WORK</a></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="https://www.e-zest.com/our-services" aria-haspopup="true" aria-expanded="false" role="menuitem" target="_self">SERVICES</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.e-zest.com/digital-product-engineering-services" role="menuitem" target="_self">Product Engineering</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.e-zest.com/enterprise-data-services" role="menuitem" target="_self">Enterprise Data Services</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.e-zest.com/digital-commerce-services" role="menuitem" target="_self">Digital Commerce</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.e-zest.com/digital-operations" role="menuitem" target="_self">Digital Operations</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.e-zest.com/digital-transformation-consulting-services" role="menuitem" target="_self">Digital Consulting</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.e-zest.com/digital-experience-design" role="menuitem" target="_self">Digital Experience Design</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="https://blog.e-zest.com/" role="menuitem" target="_self">INSIGHTS</a></li>
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="https://www.e-zest.com/careers" role="menuitem" target="_self">CAREERS</a></li>
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="https://www.e-zest.com/enterprise-data-services" role="menuitem" target="_self">ENTERPRISE DATA SERVICES</a></li>
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="https://www.e-zest.com/generative-ai" role="menuitem" target="_self">GENERATIVE AI</a></li>
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="//healthcare.e-zest.com" role="menuitem" target="_self">Healthcare</a></li>
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="https://www.e-zest.com/contact-us" role="menuitem" target="_self">Contact Us</a></li>
+ </ul>
+</div></span></div>
+
+</div><!--end widget-span -->
+</div>
+<div>
+    <button id="myBtn" class="myBtn-menu"></button>
+</div>
+<div class="button_container" id="toggle">
+  <span class="top"></span>
+  <span class="middle"></span>
+  <span class="bottom"></span>
+</div>
+
+</div>
+
+<script>
+$('a').each(function()
+{
+    $(this).attr('title', $(this).text());
+});
+</script>
+
+
+<style>
+ul.hs-menu-children-wrapper {
+    top: 100%;
+  
+}
+li.hs-menu-item.hs-menu-depth-2 {
+    background: #fff;
+}
+  .navigation-content ul{
+  display:inline-block;
+  }
+  .hs-menu-wrapper.hs-menu-flow-horizontal > ul li.hs-item-has-children ul.hs-menu-children-wrapper li a {
+    display: block;
+    white-space: nowrap;
+    overflow: inherit;
+    width: 100%;
+    max-width: 100%;
+}
+.myBtn-menu {
+background: transparent url(https://www.e-zest.com/hubfs/AA%20Assets/search%20%281%29.svg) no-repeat center;
+}
+</style>
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-5 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_15471963194662622" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div class="overlay overlay-new" id="overlay">
+  <nav class="overlay-menu">
+    <div class="nav-feature">
+      <ul>
+        <li>
+          <div class="feature-main">
+            
+            
+            <div class="feature-left">
+              <div class="featured">
+                <img src="https://www.e-zest.com/hubfs/Elevating%20Product%20Engineering%20with%20AI%20and%20ML.jpg" alt="Elevating Product Engineering with AI and ML" class="featured-image">
+                <div class="featured-overlay"></div>
+              </div>
+              <a href="https://blog.e-zest.com" class="sqr"><button>BLOGS</button></a>
+            </div>
+
+            <div class="feature-right">
+              <h4>Elevating Product Engineering with AI and ML</h4> 
+              <p></p><p>As technology evolves and customer choices broaden, there is an increasing ...</p><p></p>
+              <a href="https://blog.e-zest.com/elevating-product-engineering-with-ai-and-ml">Read more</a>
+            </div>
+             
+          </div>
+        </li>
+
+        <li>
+          <div class="feature-main">
+            
+            
+            <div class="feature-left">
+              <div class="featured">
+                <img src="https://www.e-zest.com/hubfs/e-Zest%20%E2%80%93%20An%20Accion%20Labs%20Company%20-%20Gets%20Recognition%20as%20a%20Contender%20in%20the%20ISG%20Provider%20LensTM%20Study%20on%20Digital%20Engineering%20Services%202024.jpg" alt="e-Zest – An Accion Labs Company gets Recognition as a Contender in the ISG Provider Lens™ Study on Digital Engineering Services 2024" class="featured-image">
+                <div class="featured-overlay"></div>
+              </div>
+              <a href="https://blog.e-zest.com/news" class="sqr"><button>NEWS</button></a>
+            </div>
+
+            <div class="feature-right">
+              <h4>e-Zest – An Accion Labs Company gets Recognition as a Contender in the ISG Provider Lens™ Study on Digital Engineering Services 2024</h4> 
+              <p></p><p>We are delighted to announce that e-Zest – An Accion Labs Company has been ...</p><p></p>
+              <a href="https://blog.e-zest.com/news/e-zest-an-accion-labs-company-gets-recognition-as-a-contender-in-the-isg-provider-lens-study-on-digital-engineering-services-2024">Read more</a>
+            </div>
+             
+          </div>
+        </li>
+
+        <li>
+          <div class="feature-main">
+            
+            
+            <div class="feature-left">
+              <div class="featured">
+                <img src="https://www.e-zest.com/hubfs/blog-files/Digital%20Literacy%20Bus%20e-Zest.png" alt="e-Zest Solutions supports Digital Pune Mission" class="featured-image">
+                <div class="featured-overlay"></div>
+              </div>
+              <a href="https://blog.e-zest.com/csr" class="sqr"><button>CSR</button></a>
+            </div>
+
+            <div class="feature-right">
+              <h4>e-Zest Solutions supports Digital Pune Mission</h4> 
+              <p></p><p><strong>Pune, India:</strong> e-Zest Solutions, a leading digital technology innovation ...</p><p></p>
+              <a href="https://blog.e-zest.com/csr/e-zest-solutions-supports-digital-pune-mission">Read more</a>
+            </div>
+             
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="nav-menu">
+      <ul class="right-big">
+        <li><a href="https://www.e-zest.com/our-work">Work</a></li>
+        <li><a href="https://www.e-zest.com/our-services" title="Services">Services</a></li>
+        <li><a href="https://blog.e-zest.com" title="Insights">Insights</a></li>
+        <li><a href="https://www.e-zest.com/careers" title="Careers">Careers</a></li>
+        <li><a href="https://www.e-zest.com/enterprise-data-services" title="Enterprise Data Services">Enterprise Data</a></li>
+        <li><a href="https://www.e-zest.com/generative-ai" title="Generative AI">Generative AI</a></li>
+        <li><a href="https://www.e-zest.com/innovations" title="Innovations">Innovations</a></li>
+        <li><a href="https://healthcare.e-zest.com" title="Healthcare">Healthcare</a></li>      
+        <li><a href="https://www.e-zest.com/about-us" title="About">About</a></li>        
+        <li><a href="https://www.e-zest.com/contact-us" title="Contact Us">Contact</a></li>
+      </ul>
+      <ul class="mobile-menu-cta">
+        <li class="home-cta"><a href="https://blog.e-zest.com/">Blog</a></li>
+        <li class="home-cta"><a href="https://blog.e-zest.com/news">News</a></li>
+        <li class="home-cta"><a href="https://blog.e-zest.com/csr">CSR</a></li>
+      </ul>
+      
+      <ul class="right-social">
+        <li><a href="https://www.linkedin.com/company/e-zest-solutions/"><img src="https://www.e-zest.com/hubfs/icons/linkedin_icon_white.svg" alt="Linkedin Icon"></a></li>
+        <li><a href="https://twitter.com/ezest"><img src="https://www.e-zest.com/hubfs/twitter-logo-silhouette%20(5).svg" alt="Twitter Icon"></a></li>
+        <li><a href="https://www.facebook.com/61259256638"><img src="https://www.e-zest.com/hubfs/facebook-app-logo%20(4).svg" alt="Facebook Icon"></a></li>
+        <li><a href="https://www.instagram.com/ezestsolutions/"><img src="https://www.e-zest.com/hubfs/instagram-logo%20(4).svg" alt="Instagram Icon"></a></li>
+        <li><a href="https://www.youtube.com/user/ezestcorporate"><img src="https://www.e-zest.com/hubfs/icons/youtube_icon_white.svg" alt="Youtube Icon"></a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+
+<a href="#top" class="top-arrow"><img src="https://www.e-zest.com/hubfs/AA%20Assets/top%20button.svg" alt="Go to top icon"></a></div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-6 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-raw_html " style="" data-widget-type="raw_html" data-x="0" data-w="12">
+<div class="cell-wrapper layout-widget-wrapper">
+<span id="hs_cos_wrapper_module_1543838052086115" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_raw_html" style="" data-hs-cos-general-type="widget" data-hs-cos-type="raw_html"><div id="myModal" class="e-modal">
+<div class="modal-content">
+<span class="close"></span>
+<div class="search-content">
+<form action="https://blog.e-zest.com/hs-search-results">
+<input type="search" class="hs-search-field__input" name="term" autocomplete="off" placeholder="Search">
+</form>
+<p>Hit enter to search or ESC to close</p>
+</div>
+</div>
+</div></span>
+</div><!--end layout-widget-wrapper -->
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+</div>
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+    </div><!--end header -->
+</div><!--end header wrapper -->
+
+<div class="body-container-wrapper">
+    <div class="body-container container-fluid">
+
+<div class="row-fluid-wrapper row-depth-1 row-number-1 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_15443780962731347" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div class="about-banner-slider owl-carousel">
+    
+  <div class="about-banner ">
+    <div class="hrt-bg" style="background-image: url('https://www.e-zest.com/hubfs/AA%20Assets/graphics_Digi%20at%20heart_graphics%20%283%29.svg')">
+      <div class="about-content">
+        <h4>About us</h4>
+        <h1>Digital 
+<br>at heart</h1>
+        <p>Innovation is in our DNA, Built 10+ emerging technology toolkits for CDOs</p>
+      </div>
+    </div> 
+  </div>
+   
+</div></div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-2 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_1545289461304650" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div class="about-sidebar-navigation-section">
+
+  <div class="section sidebar-navigation-section">
+    <div class="sidebar-navigation"> 
+      <ul class="navigation">
+        
+        <li><a class="navigation__link" href="#intro">Intro</a></li>
+        
+        <li><a class="navigation__link" href="#leadership">Leadership</a></li>
+        
+        <li><a class="navigation__link" href="#board">Executive Board</a></li>
+        
+        <li><a class="navigation__link" href="#core">Core Values</a></li>
+        
+        <li><a class="navigation__link" href="#csr">CSR</a></li>
+        
+        <li><a class="navigation__link" href="#awards">Awards</a></li>
+        
+      </ul>
+    </div>
+
+    <!---->
+
+    <div class="page-section-group">
+      <!--About Intro----------->   
+      <div class="page-section" id="intro">
+
+        <div class="abt-count">
+          <div class="abt-count-content">
+
+            
+            <p class="inner-count-content">
+              24
+              <br>
+              Years
+            </p>
+            
+            <p class="inner-count-content">
+              1500+
+              <br>
+              Team
+            </p>
+            
+            <p class="inner-count-content">
+              5
+              <br>
+              Countries
+            </p>
+            
+            <div class="count-description">
+              <p>We are an agile digital technology innovation partner for enterprises, public sector organizations and software product companies (ISVs). We at e-Zest - An Accion Labs Company believe that success and innovation happen with a persistent focus on learning, partnership and result-orientation.</p>
+<p><strong>Intent-driven Impact</strong></p>
+<p>Often technology partners miss out on the key intents and get narrowly focused only on execution to "scope and time" defined. At e-Zest - An Accion Labs Company, we believe in focusing on the transformative intent and collaborate with our clients to create outcomes and impact even beyond what was originally articulated.</p>
+<p><strong>Partnering for Enhanced Outcomes</strong></p>
+<p>We understand that true creativity and impact comes from relationships between our team members and client team. The real impact comes when we work closely with the client throughout the rollout, support and maintenance stages of the initiative. This is why many of our clients start with a project and we naturally evolve to be their long-term technology partner.</p>
+<p><strong>Team Alchemy</strong></p>
+<p>We strive to go beyond the traditional definition of teamwork. What we strive for is creating team alchemy. An alchemy catalyzed by a mix of technology expertise, openness to new ideas, sharing, and communicating in a proactive and purposeful manner. We combine rigor needed for enterprise level application with agility and innovativeness of startup mindset.</p>
+            </div>
+          </div>
+        </div>  
+
+        <div class="vision-misson">
+          <div class="vision-misson-group-outer">
+            <div class="vision-misson-group">
+              
+              <div class="v-m-content">
+                <h2>Vision</h2>
+                <p>Be a global digital technology leader, most admired for its people, partnerships &amp; performance.</p>
+              </div>
+              
+              <div class="v-m-content">
+                <h2>Mission</h2>
+                <p>We are committed to customer success by providing innovative digital solutions in the spirit of true partnership.</p>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <!--About LeaderShip----------->   
+      <div class="page-section" id="leadership">
+        <div class="leader-ship">
+          <div class="leader-ship-inner">
+            <h2>Leadership</h2>
+            <div class="leader-group">
+              
+              <div class="leader-item">
+                <a href="//www-e-zest-com.sandbox.hs-sites.com/jaywant-deshpande">
+                  
+                  <img src="https://www.e-zest.com/hubfs/Jaywant.jpg" alt="Jaywant Deshpande">
+                  
+                  <div class="leader-content">
+                    <h3>Jaywant Deshpande</h3>
+                    <p>Chief Solutions Officer at Accion Labs | Founder and CEO at e-Zest</p>	
+                  </div></a>
+              </div>
+              
+              <div class="leader-item">
+                <a href="//www-e-zest-com.sandbox.hs-sites.com/amol-pande">
+                  
+                  <img src="https://www.e-zest.com/hubfs/19-1.jpg" alt="Amol Pande">
+                  
+                  <div class="leader-content">
+                    <h3>Amol Pande</h3>
+                    <p>Chief Sales Officer and Founder</p>	
+                  </div></a>
+              </div>
+              
+              <div class="leader-item">
+                <a href="//www-e-zest-com.sandbox.hs-sites.com/ashish-gupta">
+                  
+                  <img src="https://www.e-zest.com/hubfs/2-4.jpg" alt="Ashish Gupta">
+                  
+                  <div class="leader-content">
+                    <h3>Ashish Gupta</h3>
+                    <p>Chief Technology Officer and Founder</p>	
+                  </div></a>
+              </div>
+              
+              <div class="leader-item">
+                <a href="/sunil-dane">
+                  
+                  <img src="https://www.e-zest.com/hubfs/Sunil%20Dane.png" alt="Sunil Dane">
+                  
+                  <div class="leader-content">
+                    <h3>Sunil Dane</h3>
+                    <p>President (Strategic Accounts) and Founder - e-Zest Solutions Inc.</p>	
+                  </div></a>
+              </div>
+              
+              <div class="leader-item">
+                <a href="/satish-chavan">
+                  
+                  <img src="https://www.e-zest.com/hubfs/Leadership/satish-chavan.jpg" alt="Satish Chavan">
+                  
+                  <div class="leader-content">
+                    <h3>Satish Chavan</h3>
+                    <p>President – e-Zest Solutions Inc.</p>	
+                  </div></a>
+              </div>
+              
+              <div class="leader-item">
+                <a href="/shrikant-shingane">
+                  
+                  <img src="https://www.e-zest.com/hubfs/Shree.jpg" alt="Shrikant Shingane">
+                  
+                  <div class="leader-content">
+                    <h3>Shrikant Shingane</h3>
+                    <p>Founder and Managing Director, e-Zest Solutions GmbH</p>	
+                  </div></a>
+              </div>
+              
+              <div class="leader-item">
+                <a href="/shailesh-kulkarni">
+                  
+                  <img src="https://www.e-zest.com/hubfs/Shailesh%20Kulkarni.png" alt="Shailesh Kulkarni">
+                  
+                  <div class="leader-content">
+                    <h3>Shailesh Kulkarni</h3>
+                    <p>President - Digital Product Engineering</p>	
+                  </div></a>
+              </div>
+              
+              <div class="leader-item">
+                <a href="/girish-chandra">
+                  
+                  <img src="https://www.e-zest.com/hubfs/Girish%20Chandra.png" alt="Girish Chandra">
+                  
+                  <div class="leader-content">
+                    <h3>Girish Chandra</h3>
+                    <p>Chief Evangelist</p>	
+                  </div></a>
+              </div>
+              
+              <div class="leader-item">
+                <a href="/vinay-pandey">
+                  
+                  <img src="https://www.e-zest.com/hubfs/Vinay%20Pande.png" alt="Vinay Pandey">
+                  
+                  <div class="leader-content">
+                    <h3>Vinay Pandey</h3>
+                    <p>Senior Vice President - Consulting Services</p>	
+                  </div></a>
+              </div>
+              
+              <div class="leader-item">
+                <a href="/ameet-gokhale">
+                  
+                  <img src="https://www.e-zest.com/hubfs/Ameet%20Gokhale.jpg" alt="Ameet Gokhale">
+                  
+                  <div class="leader-content">
+                    <h3>Ameet Gokhale</h3>
+                    <p>President – Digital Operations</p>	
+                  </div></a>
+              </div>
+              
+              <div class="leader-item">
+                <a href="/vinod-dhawale">
+                  
+                  <img src="https://www.e-zest.com/hubfs/Vinod%20Dhawale.png" alt="Vinod Dhawale">
+                  
+                  <div class="leader-content">
+                    <h3>Vinod Dhawale</h3>
+                    <p>Senior Vice President - Digital Enterprise Solutions</p>	
+                  </div></a>
+              </div>
+              
+              <div class="leader-item">
+                <a href="/bhushan-bonde">
+                  
+                  <img src="https://www.e-zest.com/hubfs/Bhushan%20Bonde.png" alt="Dr. Bhushan Bonde">
+                  
+                  <div class="leader-content">
+                    <h3>Dr. Bhushan Bonde</h3>
+                    <p>Chief Scientist Healthcare</p>	
+                  </div></a>
+              </div>
+              
+            </div></div></div>
+
+      </div>
+
+       <!--About Board----------->   
+      <div class="page-section" id="board">
+        <div class="leader-ship dorectors">
+          <div class="leader-ship-inner">
+            <h2>Executive Board</h2>
+            <div class="leader-group">
+              
+              <div class="leader-item">
+                <a href="/jaywant-deshpande">
+                  
+                  <img src="https://www.e-zest.com/hubfs/Jaywant%20Deshpande.jpg" alt="Jaywant Deshpande">
+                  
+                  <div class="leader-content">
+                    <h3>Jaywant Deshpande</h3>
+                    <p>CEO and Founder</p>	
+                  </div></a>
+              </div>
+              
+              <div class="leader-item">
+                <a href="/amol-pande">
+                  
+                  <img src="https://www.e-zest.com/hubfs/Amol%20Pande%20-%200.jpg" alt="Amol Pande">
+                  
+                  <div class="leader-content">
+                    <h3>Amol Pande</h3>
+                    <p>Chief Sales Officer and Founder</p>	
+                  </div></a>
+              </div>
+              
+              <div class="leader-item">
+                <a href="/ashish-gupta">
+                  
+                  <img src="https://www.e-zest.com/hubfs/Ashish%20Gupta.jpg" alt="Ashish Gupta">
+                  
+                  <div class="leader-content">
+                    <h3>Ashish Gupta</h3>
+                    <p>Chief Technology Officer &amp; Founder</p>	
+                  </div></a>
+              </div>
+              
+              <div class="leader-item">
+                <a href="/sunil-dane">
+                  
+                  <img src="https://www.e-zest.com/hubfs/Sunil%20Dane.png" alt="Sunil Dane">
+                  
+                  <div class="leader-content">
+                    <h3>Sunil Dane</h3>
+                    <p>President (Strategic Accounts) and Founder - e-Zest Solutions Inc.</p>	
+                  </div></a>
+              </div>
+              
+              <div class="leader-item">
+                <a href="/satish-chavan">
+                  
+                  <img src="https://www.e-zest.com/hubfs/Leadership/satish-chavan.jpg" alt="Satish Chavan">
+                  
+                  <div class="leader-content">
+                    <h3>Satish Chavan</h3>
+                    <p>President - e-Zest Solutions Inc.</p>	
+                  </div></a>
+              </div>
+              
+              <div class="leader-item">
+                <a href="/shrikant-shingane">
+                  
+                  <img src="https://www.e-zest.com/hubfs/Shrikant%20Shingane.jpg" alt="Shrikant Shingane">
+                  
+                  <div class="leader-content">
+                    <h3>Shrikant Shingane</h3>
+                    <p>Founder and Managing Director, e-Zest Solutions GmbH</p>	
+                  </div></a>
+              </div>
+              
+            </div></div></div>
+      </div>
+
+      <!--Core Value----------->   
+      <div class="page-section" id="core"> 
+        <div class="core-value-group">
+          <div class="core-value-inner">
+            <div class="core-value-image">
+              <img src="https://www.e-zest.com/hubfs/THRIVEZ%20at.jpg" alt="Core values ">
+            </div>
+            <div class="core-value-content">
+              <h2>Core values </h2>
+              <p></p><p>Values are the core principles we apply to all our interactions and they help us place importance on the right areas regardless of the immediate opportunities or pressures.</p>
+<p>Values are not defined in isolation, they have to be co-created and adopted by the broad team. When someone is in alignment with the values she/he is said to be culturally aligned to the organization. Besides the basic competency level of technical skills needed, what really differentiates a better or more successful team member is their alignment, practicing and propagating of the core values.</p><p></p>
+              <p class="get-cta">
+                <span id="hs_cos_wrapper_module_1545289461304650_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta"><!--HubSpot Call-to-Action Code -->
+<span class="hs-cta-wrapper" id="hs-cta-wrapper-b2e97a13-6fca-43b9-8be7-196a6036fb2c"><span class="hs-cta-node hs-cta-b2e97a13-6fca-43b9-8be7-196a6036fb2c" id="hs-cta-b2e97a13-6fca-43b9-8be7-196a6036fb2c">
+  <!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/744339/b2e97a13-6fca-43b9-8be7-196a6036fb2c"><img class="hs-cta-img" id="hs-cta-img-b2e97a13-6fca-43b9-8be7-196a6036fb2c" style="border-width:0px;" src="https://no-cache.hubspot.com/cta/default/744339/b2e97a13-6fca-43b9-8be7-196a6036fb2c.png" alt="VISIT THRIVEZ"></a></span></span>
+<!-- end HubSpot Call-to-Action Code --></span>
+              </p>
+            </div>
+          </div>
+        </div>  
+      </div>
+
+      <!--Clients---------->  
+      
+
+      <!--CSR---------->   
+      <div class="page-section" id="csr">    
+        <div class="abt-csr">
+          <div class="abt-csr-grp">
+            <div class="abt-csr-image">
+              
+              <img src="https://www.e-zest.com/hubfs/CSR%20image%20480x320.png" alt="CSR image 480x320">
+              
+            </div>
+            <div class="abt-csr-content">
+              <h2>CSR</h2>
+              <h4></h4>
+              <p>e-Zest - An Accion Labs Company believes that the true drive towards working in a coherent, coexistent environment comes from the satisfaction of extending initiatives for a bigger goal, towards the betterment of the society. While we strive to achieve success in the business realm, we have always been consciously contributing to the various needs of society. Our philosophy echoes the sentiment of philanthropy but in the most engaging form. As a corporate, we are committed through our corporate social responsibility (CSR) activities in giving back to the society in many ways than one.</p>
+            </div>
+          </div>
+          <div class="abt-csr-img-cta-grp">
+            <div class="abt-csr-img-cta-image-1">
+              
+              <img src="https://www.e-zest.com/hubfs/CSR%20image%20602x400.png" alt="CSR image 602x400">
+              
+            </div>
+            <div class="abt-csr-img-cta-image-2">
+              
+              <img src="https://www.e-zest.com/hubfs/CSR%20image%20518x348.png" alt="CSR image 518x348">
+              
+            </div>
+            <div class="abt-csr-img-cta-btn">
+              <p class="get-cta">
+                <span id="hs_cos_wrapper_module_1545289461304650_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta"><!--HubSpot Call-to-Action Code -->
+<span class="hs-cta-wrapper" id="hs-cta-wrapper-9a130d9c-e0c3-4dd2-8ddd-01d21727ca3f"><span class="hs-cta-node hs-cta-9a130d9c-e0c3-4dd2-8ddd-01d21727ca3f" id="hs-cta-9a130d9c-e0c3-4dd2-8ddd-01d21727ca3f">
+  <!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/744339/9a130d9c-e0c3-4dd2-8ddd-01d21727ca3f"><img class="hs-cta-img" id="hs-cta-img-9a130d9c-e0c3-4dd2-8ddd-01d21727ca3f" style="border-width:0px;" src="https://no-cache.hubspot.com/cta/default/744339/9a130d9c-e0c3-4dd2-8ddd-01d21727ca3f.png" alt="VISIT CSR"></a></span></span>
+<!-- end HubSpot Call-to-Action Code --></span>
+              </p>
+            </div>
+          </div>
+        </div>    
+      </div>
+
+      <!--Awards---------->   
+
+      <div class="page-section" id="awards">   
+        <div class="awards-ship">
+          <div class="awards-ship-inner">
+            <h2>Awards</h2>
+            <div class="awards-group">
+
+              
+
+              <div class="awards-item">
+                
+                <div class="awards-item-image awards-item-image-new">
+                  <a href="#"><img src="https://www.e-zest.com/hubfs/Awards%20logo%20resizing-ZINNOV.jpg" alt="Zinnov Zones - Featured in the 'ER&amp;D &amp; IoT Services Report 2020 and 2021'"></a>
+                </div>
+                
+                <div class="leader-content">
+                  <p>Zinnov Zones - Featured in the 'ER&amp;D &amp; IoT Services Report 2020 and 2021'</p>	
+                </div>
+              </div>
+              
+
+              <div class="awards-item">
+                
+                <div class="awards-item-image awards-item-image-new">
+                  <a href="#"><img src="https://www.e-zest.com/hubfs/Awards%20logo%20resizing-SME.jpg" alt="'Most Innovative Company’ award at D&amp;B"></a>
+                </div>
+                
+                <div class="leader-content">
+                  <p>'Most Innovative Company’ award at D&amp;B</p>	
+                </div>
+              </div>
+              
+
+              <div class="awards-item">
+                
+                <div class="awards-item-image awards-item-image-new">
+                  <a href="#"><img src="https://www.e-zest.com/hubfs/Awards%20logo%20resizing-Deloitte.jpg" alt="Deloitte Technology Fast 50 Winner"></a>
+                </div>
+                
+                <div class="leader-content">
+                  <p>Deloitte Technology Fast 50 Winner</p>	
+                </div>
+              </div>
+              
+
+              <div class="awards-item">
+                
+                <div class="leader-content">
+                  <p></p>	
+                </div>
+              </div>
+              
+
+              <div class="awards-item">
+                
+                <div class="awards-item-image awards-item-image-new">
+                  <a href="#"><img src="https://www.e-zest.com/hubfs/CRN_Logo.jpg" alt="e-Zest wins Best Project in 'Artificial Intelligence' at Channel Leadership Summit 2021"></a>
+                </div>
+                
+                <div class="leader-content">
+                  <p>e-Zest wins Best Project in 'Artificial Intelligence' at Channel Leadership Summit 2021</p>	
+                </div>
+              </div>
+              
+            </div>
+
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+    </div>
+
+  </div> 
+</div></div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-3 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_15443711983703056" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"></div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-4 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_168451146769554" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+<section class="about-footer-meta">
+  <div class="dei-footer-metawrap" style="background-image: url('https://www.e-zest.com/hubfs/About%20us%20banner.jpg');">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 style="color:#FFFFFF !important;">Accelerating Business Growth Through Digital Innovation</h2>
+          <a href="https://www.e-zest.com/about-us" class="footer-meta-link" target="_blank" style="background-color:#f06f66;">About e-Zest</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+    </div><!--end body -->
+</div><!--end body wrapper -->
+
+<div class="footer-container-wrapper">
+    <div class="footer-container container-fluid">
+
+<div class="row-fluid-wrapper row-depth-1 row-number-1 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-global_group " style="" data-widget-type="global_group" data-x="0" data-w="12">
+<div class="" data-global-widget-path="generated_global_groups/115738626115.html"><div class="row-fluid-wrapper row-depth-1 row-number-1 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_1684236383762201" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+<section class="footer-horizontal footer-horizontal-v2">
+  <div class="foo-top">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+          <ul class="nav foo-main-menu">
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.e-zest.com/about-us">
+                About
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.e-zest.com/our-services">
+                Services
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.e-zest.com/our-work">
+                Work
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://blog.e-zest.com/">
+                Insights
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://healthcare.e-zest.com/">
+                Healthcare
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.accionlabs.com/">
+                Accion Labs
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="col-md-4 col-social-menu">
+          <ul class="nav justify-content-center foo-social-menu">
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.linkedin.com/company/e-zest-solutions/">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://twitter.com/ezest">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.facebook.com/eZest/">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.instagram.com/ezestsolutions/">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.youtube.com/user/ezestcorporate">
+                <i class="fa fa-youtube-play" aria-hidden="true"></i>
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="col-md-4 col-foo-form">
+          <div class="foo-form">
+            <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+            <script>
+              hbspt.forms.create({
+                portalId: "744339",
+                formId: "22c3f1ae-be53-4109-b02c-7c16cbfd6f26",
+                css:" "
+              });
+            </script>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  <div class="foo-bottom">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+          <ul class="nav foo-location-menu">
+            
+            <li class="nav-item">
+              Dallas
+            </li>
+            
+            <li class="nav-item">
+              Detroit
+            </li>
+            
+            <li class="nav-item">
+              Hannover
+            </li>
+            
+            <li class="nav-item">
+              Vienna
+            </li>
+            
+            <li class="nav-item">
+              London
+            </li>
+            
+            <li class="nav-item">
+              Pune
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="col-md-4 col-copyright">
+          <div class="copy-txt text-center">
+            © 2025 e-Zest Solutions
+          </div>
+        </div>
+        
+        <div class="col-md-4 col-policy">
+          <ul class="nav foo-bottom-menu">
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.e-zest.com/privacypolicy">
+                Privacy Policy
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.e-zest.com/cookie-policy">
+                Cookie Policy
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-2 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_1680703128868146" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><!-- 
+<a href="#test-popup" class="btn open-popup-link EZ-cta">Contact us</a>   -->
+
+<!-- new -->
+<button class="btn " id="btAnimate"><i class="fa fa-comments"></i> Contact us</button>
+<!-- <input type="button"  value="Contact us" class=" "/> -->
+  <div id="divAnim hide-div">      
+        <div id="divC">
+         <div class="l_c_h">
+	     <div class="c_h" id="btHide">
+         <div class="left right_c left_icons">
+<i class="fa fa-angle-down" style="font-size:24px ;color: #01000e;"></i>
+            </div>
+    	<div class="left_c">
+      <div class="left center_icons "><!--center_icons-->
+ <i class="fa fa-comments" style="font-size:24px"></i>    Contact us
+            </div><!--end center_icons-->        	
+        </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="chat_container">
+   
+
+	
+    	<div class="chat_entry">
+        	 <!--[if lte IE 8]>
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+<![endif]-->
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+<script>
+  hbspt.forms.create({
+	portalId: "744339",
+	formId: "7a4e36d0-5c2e-470d-8178-bd2cdf68ccac",
+
+});
+</script>
+        </div>
+    	
+       
+    </div>
+</div>
+
+           
+           
+        </div>
+    </div>
+
+  
+
+
+
+
+
+
+
+
+<!-- end --></div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-3 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-raw_html " style="" data-widget-type="raw_html" data-x="0" data-w="12">
+<div class="cell-wrapper layout-widget-wrapper">
+<span id="hs_cos_wrapper_module_168139482365469" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_raw_html" style="" data-hs-cos-general-type="widget" data-hs-cos-type="raw_html"><script>
+//   ------------------------
+$(document).ready(function(){
+$(".carousel-indicators").addClass("intro");
+});
+var myslied= 1;
+$('#myCarousel').bind('slide.bs.carousel', function (e) {
+myslied = myslied + 1;
+var i;
+for (i = 0; i < 4; i++) {
+$('#Myboxtext'+ i).removeClass('boxtext-'+i+'-ani');
+}
+$('#Myboxtext'+ myslied).addClass('boxtext-'+myslied+'-ani');
+if(myslied == 3){
+myslied= 0;
+}
+});
+$('#myCarousel').bind('slid', function (e) {
+});
+//   -------------------------------------
+if(window.location.href=== "https://blog.e-zest.com/search-results") {
+$("#myBtn").addClass("no-poniter");
+}
+//   -------------------------------------
+$(window).scroll(function() {    
+var scroll = $(window).scrollTop();
+if (scroll >= 500) {
+$(".top-arrow").addClass("top-show");
+} else {
+$(".top-arrow").removeClass("top-show");
+}
+});
+// --------------------------------------------
+$(document).ready(function(){
+// Add smooth scrolling to all links
+$("a").on('click', function(event) {
+// Make sure this.hash has a value before overriding default behavior
+if (this.hash !== "") {
+// Prevent default anchor click behavior
+event.preventDefault();
+// Store hash
+var hash = this.hash;
+// Using jQuery's animate() method to add smooth page scroll
+// The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+$('html, body').animate({
+scrollTop: $(hash).offset().top
+}, 800, function(){
+// Add hash (#) to URL when done scrolling (default click behavior)
+window.location.hash = hash;
+});
+} // End if
+});
+});
+// -------------------------------------------------  
+(function($) {
+$.fn.visible = function(partial) {
+var $t = $(this),
+$w = $(window),
+viewTop = $w.scrollTop(),
+viewBottom = viewTop + $w.height(),
+_top = $t.offset().top,
+_bottom = _top + $t.height(),
+compareTop = partial === true ? _bottom : _top,
+compareBottom = partial === true ? _top : _bottom;
+return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
+};
+})(jQuery);
+var win = $(window);
+var allMods = $(".module");
+allMods.each(function(i, el) {
+var el = $(el);
+if (el.visible(true)) {
+el.addClass("already-visible");
+}
+});
+win.scroll(function(event) {
+allMods.each(function(i, el) {
+var el = $(el);
+if (el.visible(true)) {
+el.addClass("come-in");
+}
+});
+});
+//   -----------------------------------------------
+$('.testi').owlCarousel({
+loop:true,
+margin:0,
+items:1,
+lazyLoad: true,
+autoplay:true,
+dots: true,
+responsive:false
+});
+//   -----------------------------------------------
+$('.solution-slider').owlCarousel({
+loop:true,
+margin:0,
+items:1,
+lazyLoad: true,
+autoplay:true,
+dots: true,
+responsive:false
+});
+//   -----------------------------------------------
+$('#toggle').click(function() {
+$(this).toggleClass('active');
+$('#overlay').toggleClass('open');
+});
+//   -----------------------------------------------
+$('.loop').owlCarousel({
+loop:true,
+margin:0,
+items:1,
+lazyLoad: true,
+autoplay:true,
+dots: true,
+autoplayTimeout: 5000,
+animateOut: 'slideOutLeft',
+animateIn: 'slideInRight'
+});
+//   -----------------------------------------------
+//Detect browser's user agent and add to HTML attribute.
+var doc = document.documentElement;
+doc.setAttribute('data-useragent', navigator.userAgent);
+//Since HubSpot forms are rendered after the DOM builds, you must trigger the manipulation after the window loads
+window.onload = function () {
+//turn autocomplete off for forms on all browsers, except Chrome
+$('form').attr('autocomplete','off');
+$('input').attr('autocomplete','off');
+//turn autocomplete off for forms for Chrome 
+//based on a browser bug noted here: https://bugs.chromium.org/p/chromium/issues/detail?id=370363#c7
+$('html[data-useragent*="Chrome"] form').attr('autocomplete','false');
+$('html[data-useragent*="Chrome"] form input').attr('autocomplete','false');
+$(".form-with-slider-labels .hs-input").focus(function(){
+$(this).closest(".hs-form-field").removeClass("not-focused");
+$(this).closest(".hs-form-field").addClass("has-focus");
+}).blur(function(){
+if( !$(this).val() ) { //check to see if the input has a value
+$(this).closest(".hs-form-field").removeClass("has-focus");
+$(this).closest(".hs-form-field").addClass("not-focused");
+} else {
+$(this).closest(".hs-form-field").addClass("has-value");
+}
+})
+//on input change, if the value is empty, remove "has-value" class.
+$(".form-with-slider-labels .hs-input").on("change paste keyup", function() {
+if( !$(this).val() ) { //check to see if the input has a value
+$(this).closest(".hs-form-field").removeClass("has-value");
+}
+});
+};   
+//   -----------------------------------------------
+$(window).scroll(function() {
+var scrollDistance = $(window).scrollTop();
+$('.page-section').each(function(i) {
+if ($(this).position().top <= scrollDistance) {
+$('.navigation .navigation__link.active').removeClass('active');
+$('.navigation .navigation__link').eq(i).addClass('active');
+}
+});
+}).scroll();
+//   -----------------------------------------------
+$(document).ready(function() {
+$(".sidebar-navigation").stick_in_parent({ offset_top: 0, spacer: false });
+}) 
+//   -----------------------------------------------
+// Get the modal
+var modal = document.getElementById('myModal');
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+modal.style.display = "block";
+}
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+modal.style.display = "none";
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+if (event.target == modal) {
+modal.style.display = "none";
+}
+}
+$(document).keydown(function(event) { 
+if (event.keyCode == 27) { 
+$('#myModal').hide();
+}
+});
+</script></span>
+</div><!--end layout-widget-wrapper -->
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+</div>
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+    </div><!--end footer -->
+</div><!--end footer wrapper -->
+
+    
+<script defer src="/hs/hsstatic/cms-free-branding-lib/static-1.2918/js/index.js"></script>
+<!-- HubSpot performance collection script -->
+<script defer src="/hs/hsstatic/content-cwv-embed/static-1.1293/embed.js"></script>
+<script>
+var hsVars = hsVars || {}; hsVars['language'] = 'hi-in';
+</script>
+
+<script src="/hs/hsstatic/cos-i18n/static-1.53/bundles/project.js"></script>
+<script src="https://www.e-zest.com/hubfs/hub_generated/module_assets/1/7031226678/1744535289439/module_IM_-_Navigation_Header.min.js"></script>
+<script src="https://www.e-zest.com/hubfs/hub_generated/module_assets/1/6737190973/1744535256362/module_IM_-_About_Banner.min.js"></script>
+<script src="https://www.e-zest.com/hubfs/hub_generated/module_assets/1/6736298196/1744535255366/module_IM_-_Footer_CTA.min.js"></script>
+<script src="https://www.e-zest.com/hubfs/hub_generated/module_assets/1/92486657181/1744535947988/module_EZ-_Contact_Us_Pop_Up_-_AL_-_Clone.min.js"></script>
+
+<!-- Start of HubSpot Analytics Code -->
+<script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "standard-page"]);
+_hsq.push(["setCanonicalUrl", "https:\/\/www.e-zest.com\/about-us"]);
+_hsq.push(["setPageId", "7150937244"]);
+_hsq.push(["setContentMetadata", {
+    "contentPageId": 7150937244,
+    "legacyPageId": "7150937244",
+    "contentFolderId": null,
+    "contentGroupId": null,
+    "abTestId": null,
+    "languageVariantId": 7150937244,
+    "languageCode": "hi-in",
+    
+    
+}]);
+</script>
+
+<script type="text/javascript" id="hs-script-loader" async defer src="/hs/scriptloader/744339.js"></script>
+<!-- End of HubSpot Analytics Code -->
+
+
+<script type="text/javascript">
+var hsVars = {
+    render_id: "4801372d-c265-4758-be2d-bc3fdd4f7355",
+    ticks: 1791822981087,
+    page_id: 7150937244,
+    
+    content_group_id: 0,
+    portal_id: 744339,
+    app_hs_base_url: "https://app.hubspot.com",
+    cp_hs_base_url: "https://cp.hubspot.com",
+    language: "hi-in",
+    analytics_page_type: "standard-page",
+    scp_content_type: "",
+    
+    analytics_page_id: "7150937244",
+    category_id: 1,
+    folder_id: 0,
+    is_hubspot_user: false
+}
+</script>
+
+
+<script defer src="/hs/hsstatic/HubspotToolsMenu/static-1.640/js/index.js"></script>
+
+<span id="hs_cos_wrapper_module_145139695009786494" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><p style="text-align: center; font-size: 10px; padding: 0px 50px;">e-Zest is a leading digital innovation partner for enterprises and technology companies that utilizes emerging technologies for creating engaging customers experiences. Being a customer-focused and technology-driven company, it always helps clients in crafting holistic business value for their software development efforts. It offers software development and consulting services for cloud computing, enterprise mobility, big data and analytics, user experience and digital commerce.</p></span>
+<!-- start Custom.css Do Not Remove -->
+<link rel="stylesheet" href="https://www.e-zest.com/hubfs/hub_generated/template_assets/1/5588950391/1744416854516/template_custom.css">
+<script type="text/javascript">
+ var leady_track_key="aNAKJDqM72I7jN1Z";
+ (function(){
+  var l=document.createElement("script");l.type="text/javascript";l.async=true;
+  l.src='https://t.leady.com/'+leady_track_key+"/L.js";
+  var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(l,s);
+ })();
+</script>
+<script type="text/javascript">
+(function(){
+vtid = 111304;var a = document.createElement('script'); a.async=true;
+a.src=('https:'==document.location.protocol ? 'https://' : 'http://') + 'code.visitor-track.com/VisitorTrack2.js';
+var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(a,s);
+})();
+</script>
+<script type="text/javascript">
+_linkedin_partner_id = "322361";
+window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+</script><script type="text/javascript">
+(function(){var s = document.getElementsByTagName("script")[0];
+var b = document.createElement("script");
+b.type = "text/javascript";b.async = true;
+b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+s.parentNode.insertBefore(b, s);})();
+</script>
+<noscript>
+<img height="1" width="1" style="display:none;" alt="" src="https://dc.ads.linkedin.com/collect/?pid=322361&amp;fmt=gif">
+</noscript>
+
+
+    
+    <!-- Generated by the HubSpot Template Builder - template version 1.03 -->
+
+</body></html>

@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <link rel="icon" type="image/png" href="/images/cosmos-bank-2019-fevicon.png" />
+    <title>Contact Us | Cosmos Bank</title>
+
+    <!-- Bootstrap CSS -->
+    
+    <link href="/bootstrap/css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+   
+    <!-- Vendor & Custom CSS -->
+    <link href="/vendor/icofont/icofont.min.css" rel="stylesheet" />
+    <link href="/vendor/animate.css/animate.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/owl-carousel/owl.carousel.css" />
+    <link rel="stylesheet" href="/owl-carousel/owl.theme.css" />
+    <link rel="stylesheet" href="/owl-carousel/owl.transitions.css" />
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Menu styles -->
+    <link rel="stylesheet" href="/css/menu-style.css" />
+    <link rel="stylesheet" href="/css/menu-style2.css" />
+    <link rel="stylesheet" href="/css/menu-style3.css" />
+    <link rel="stylesheet" href="/css/menu-style4.css" />
+    <link rel="stylesheet" href="/css/menu-style5.css" />
+    <link rel="stylesheet" href="/css/menu-style6.css" />
+    <link rel="stylesheet" href="/css/menu-style7.css" />
+    <link rel="stylesheet" href="/css/menu-style8.css" />
+
+    <!-- Page styles -->
+    <link href="/css/homepg-style.css" rel="stylesheet" />
+    <link href="/css/homepg-media-queries.css" rel="stylesheet" />
+    <link href="/css/inner-pg-style.css" rel="stylesheet" />
+    <link href="/css/inner-pg-media-queries.css" rel="stylesheet" />
+    <link href="/css/responsive.css" rel="stylesheet" />
+    <link href="/css/static-inner-pages.css" rel="stylesheet" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha384-/o6I2CkkWC//PSjvWC/eYN7l3xM3tJm8ZzVkCOfp//W05QcE3mlGskpoHB6XqI+B" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/Accessibility.css" />    <!-- Google Ads -->
+    <!-- External tracking JS -->
+
+    <script src="https://www.googletagmanager.com/gtag/js?id=AW-10811343171"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=G-BVTYJV0QYR"></script>
+    <script src="/js/tracking-scripts.js"></script>   
+    <script src="/js/anchor.min.js"></script>
+    <script src="/js/jquery-4.0.0.min.js"></script>
+
+    <!-- Facebook Pixel fallback image (for no JS) -->
+    <noscript>
+        <img height="1" width="1" style="display: none"
+             src="https://www.facebook.com/tr?id=1773580009503867&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- Google Tag Manager -->
+    <script>
+    (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MX35JQN2');</script>
+    <!-- End Google Tag Manager -->
+    <!-- --> 
+    
+    <link rel="stylesheet" href="/css/products-details.css" />
+    <link rel="stylesheet" href="/css/special-slider.css" />
+
+    <link rel="stylesheet" href="/css/wcag-remediation.css?v=20260804r37" />
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MX35JQN2');</script>
+    <!-- End Google Tag Manager -->
+</head>
+<body>
+
+<header data-spy="affix" data-offset-top="197">
+    <div class="container container-95">
+        <div class="row">
+            <div class="col-12">
+                <div class="a11y-toolbar" role="toolbar" aria-label="Accessibility shortcuts">
+                    <a href="#main-content"
+                        class="skip-link"
+                        aria-label="Skip directly to main content">
+                        Skip to main content
+                    </a>
+
+                    <!-- New A+ A- and Invert buttons -->
+                    <div class="a11y-quick-buttons" role="group" aria-label="Quick accessibility controls">
+                        <button id="btn-font-plus"
+                                type="button"
+                                class="a11y-btn a11y-font-plus"
+                                aria-label="Increase text size (A+)">
+                            A+
+                        </button>
+                        <button id="btn-font-minus"
+                                type="button"
+                                class="a11y-btn a11y-font-minus"
+                                aria-label="Decrease text size (A-)">
+                            A-
+                        </button>
+                        <button id="btn-invert-quick"
+                                type="button"
+                                class="a11y-btn a11y-invert"
+                                aria-label="Invert colors"
+                                aria-pressed="false">
+                            ⛶
+                        </button>
+                        <button id="btn-theme-quick"
+                                type="button"
+                                class="a11y-btn a11y-theme"
+                                aria-label="Toggle light or dark theme"
+                                aria-pressed="false">
+                            🌗
+                        </button>
+                    </div>
+
+                    <div id="uw-widget-custom-trigger"
+                         class="uw-widget-custom-trigger position-relative"
+                         role="button"
+                         tabindex="0"
+                         aria-label="Accessibility Options"
+                         data-uw-trigger="true"
+                         aria-haspopup="dialog">
+                        <img src="/images/accessibility_18880251.png" width="30px"
+                             alt="" aria-hidden="true">
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container container-95">
+        <div class="row logo-and-nav-row">
+
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 top-logo-col">
+                <div class="top-logo">
+                    <a href="index">
+                        <img src="images/logo.png" alt="COSMOS CO-OP, BANK LTD Logo">
+                    </a>
+                </div>
+                <!--top-logo end-->
+            </div>
+            <!--col end-->
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 top-nav-col">
+                <nav>
+                    <div id="nav">
+                        <input id="main-menu-state" type="checkbox" />
+                        <label class="main-menu-btn" for="main-menu-state">
+                            <span class="main-menu-btn-icon"></span>
+                            <span class="main-menu-btn-text">Toggle main menu visibility</span>
+                            <span class="main-menu-btn-title" aria-hidden="true">
+                                <span aria-hidden="true" data-icon="h"></span>
+                            </span>
+                        </label>
+                        <ul id="main-menu" class="sm sm-blue collapsed">
+                            <li class="home-li"><a href="index" >Home</a></li>
+                            <li class="about-li drop-down"><a  href="/about-us">About Us</a></li>
+                            <li class="services-li">
+                                <a class="active" href="#">Services <i class="fa fa-angle-down"></i></a>
+                                <ul class="sub-menu">
+
+
+                                        <li><a href="/services?id=11">Safe Deposit Vaults (Lockers)</a></li>
+                                        <li><a href="/services?id=2">Anywhere Banking</a></li>
+                                        <li><a href="/services?id=4">Demat Services</a></li>
+                                        <li><a href="/services?id=5">Foreign Exchange</a></li>
+                                        <li><a href="/services?id=7">Insurance</a></li>
+
+                                </ul>
+                            </li>
+
+                            <li class="resources-li drop-down">
+                                <a  href="#">Resources <i class="fa fa-angle-down"></i></a>
+                                <ul class="sub-menu">
+                                    <li>
+                                        <a href="#">Cosmos Resources <i class="fa fa-angle-right"></i></a>
+                                        <ul class="sub-menu">
+                                            <li><a href="nodal-office">Nodal Office</a></li>
+                                            <li><a href="interest-rates">Interest Rates</a></li>
+                                            <li><a href="service-charges">Service Charges</a></li>
+                                            <li><a href="form-center">Form Center</a></li>
+
+                                            <!--   <li><a href="bcsbi-codes">BCSBI Code</a></li> -->
+                                            <li><a href="customer-centric-policies">Customer Centric Policies</a></li>
+
+                                                <li><a href="/cosmos-resources?id=3">Banking Ombudsman Scheme</a></li>
+                                                <li><a href="/cosmos-resources?id=1">TDS Guidelines</a></li>
+                                                <li><a href="/cosmos-resources?id=2">KYC Documents List</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">Safety <i class="fa fa-angle-right"></i></a>
+                                        <ul class="sub-menu">
+                                                <li><a href="/safety?id=1">Safety</a></li>
+                                                <li><a href="/safety?id=2">Safety Measures</a></li>
+                                                <li><a href="/safety?id=3">Frauds</a></li>
+                                                <li><a href="/safety?id=4">Safe Banking</a></li>
+                                            <li><a href="/RBIGuidelines">RBI Guidelines</a></li>
+                                            <li><a href="/cybersecurityawareness">Cyber Security Awareness</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">Public <i class="fa fa-angle-right"></i></a>
+                                        <ul class="sub-menu">
+                                            <li><a href="annual-general-meeting">Annual General Meeting</a></li>
+                                            <li><a href="annual-reports">Annual Reports</a></li>
+                                            <li><a href="frequently-asked-questions">Frequently Asked Questions</a></li>
+
+                                            <li><a href="public-notice">Public Notice</a></li>
+                                            <li><a href="auction-notice">Auction Notice</a></li>
+                                            <li><a href="display-of-information">Display of Information</a></li>
+                                            <li><a href="regulatory-compliance">Regulatory Compliance</a></li>
+                                            <li><a href="events-and-news">Events & News</a></li>
+                                            <li><a href="IFSC-code">IFSC Code</a></li>
+                                            <li><a href="career-form">Career</a></li>
+                                            <li><a href="unclaimedaccount">Unclaimed Accounts</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">Legal <i class="fa fa-angle-right"></i></a>
+                                        <ul class="sub-menu">
+                                            <li><a href="dnd-registration">Do Not Call - Registration</a></li>
+                                            <li><a href="ourpolicies">Website Usage Terms</a></li>
+                                            <li><a href="ourpolicies">Privacy</a></li>
+                                            <li><a href="ourpolicies">Disclaimer</a></li>
+                                            <li><a href="ourpolicies">Social Media Policy</a></li>
+                                            <li><a href="ourpolicies">UIDAI- Data Privacy Policy</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="lodge-complaint-li drop-down">
+                                <a href="lodge-a-complaint">Lodge A Complaint</a>
+                            </li>
+                            <li class="contact-us-li drop-down">
+                                <a href="#">
+                                    Contact Us <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li><a href="contact-us">Contact Us</a>
+                                    <li><a href="auth/writereaddata/files/2.demat-escalation-matrix_July-2025-Copy.pdf" target="_blank">Demat Escalation Matrix</a>
+                                    <li><a href="career-form">Careers</a>
+                                </ul>
+                            </li>
+                           
+                            <!--<li class="lodge-complaint-li drop-down"><a <%= strContact %> href="#">Lodge A Complaint<i class="fa fa-angle-down"></i></a>
+                                <ul class="sub-menu">
+                                    <li><a href="https://www.cosmosbank.com/lodge-a-complaint#nav-digital-world">Unauthorized electronic Banking Transactions</a>
+                                    <li><a href="https://www.cosmosbank.com/product-services-details?id=9">ATM</a>
+                                    <li><a href="https://www.cosmosbank.com/product-services-details?id=19
+                                        ">Fast Tag</a>
+                                    <li><a href="https://www.cosmosbank.com/product-services-details?id=2">Demat</a>
+                                    <li><a href="https://www.cosmosbank.com/product-details?id=23">Mutual Fund</a>
+                                    <li><a href="https://www.cosmosbank.com/services?id=7">Insurance</a>
+                                    <li><a href="https://www.cosmosbank.com/product-details?id=7">Personal Banking</a>
+                                    <li><a href="https://www.cosmosbank.com/safety?id=3">Financial Crime</a>
+                                    <li><a href="https://www.cosmosbank.com/dnd-registration">DND Registration</a>
+                                </ul>
+                            </li>-->
+
+                            <li class="mobile-side-menu-li"><a href="#">Side Menu</a> </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <!--col end-->
+
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 top-right-icons-col">
+
+                <div class="top-right-icons-wrap">
+
+                    <div class="search-icon-wrap">
+                        <a href="#" role="button" aria-label="Search" aria-expanded="false" aria-haspopup="true"><i class="icofont-search-1" aria-hidden="true"></i></a>
+                        <div class="search-input-div search-input-div2">
+                            <asp:TextBox ID="txtSearch" runat="server" placeholder="" CssClass="top-search-input"></asp:TextBox>
+                            <button runat="server" id="btnSearchRecords" onserverclick="btnSearchRecords_Click"><i class="fa fa-search"></i></button>
+
+                            <div class="close-search-box-btn-div"><i class="fa fa-times" aria-hidden="true"></i></div>
+                            <!--close-search-box-btn-div end-->
+                        </div>
+                        <!--search-input-div end-->
+                    </div>
+                    <!--search-icon-wrap end-->
+
+
+                    <div class="login-icon-wrap desktop-login-icon-wrap">
+                        <a href="https://online.cosmos.bank.in/" target="_blank" class="netbanking-btn">
+
+                            Netbanking Login
+                        </a>
+                    </div>
+
+                    <div class="login-icon-wrap desktop-login-icon-wrap">
+                        <a href="https://www.cosmos.bank.in/online-loans/" target="_blank" class="netbanking-btn">
+
+                            Quick Loans
+                        </a>
+                    </div>
+
+                    <div class="language_btn">
+                        <select class="select-border" id="selectLocale" onchange="lnfyChangeLanguage(this)">
+                            <option value="en-US">EN</option>
+                            <option value="mr_IN">मराठी</option>
+                        </select>
+                    </div>
+                    <!--nav-icon-wrap end-->
+
+
+                    <div class="nav-icon-wrap">
+                        <a href="#" role="button" aria-label="Menu" aria-haspopup="dialog" aria-expanded="false"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                    </div>
+                    <!--nav-icon-wrap end-->
+
+                    <div class="right-side-slider-details-div" role="dialog" aria-modal="true" aria-label="Internet Banking" aria-hidden="true">
+
+                        <div class="close_btn modal_close close_btn-div" role="button" tabindex="0" aria-label="Close"><i class="fa fa-times-circle" aria-hidden="true"></i></div>
+
+                        <img src="images/logo1.jpg" style="width:280px;" alt="" />
+                        <div class="text_holder">
+                            <h2>Internet Banking</h2>
+                            <p>At Cosmos Bank, we are committed to helping you meet all your banking needs to the best of our ability. You can access internet banking portal of our website at any hour of the day. There are no fixed timings to use the facilities. Moreover, enjoy the luxury of getting all the work accomplished at the comfort of your home or office, at any hour that is preferable for you</p>
+                        </div>
+                        <a class="blue-button" target="_blank" href="https://online.cosmosbank.in/">LOGIN</a>
+
+                        <div class="text_holder">
+                            <p>
+                                Plot No-6, S.No-132/B, ICS Colony, Ganeshkhind Road, Pune<br />
+                                +91-20-67086708
+                            </p>
+                            <p>Call Toll Free</p>
+                            <p><a href="tel:1800 233 0234">1800 233 0234</a></p>
+                            <p><a href="mailto:customercare@cosmos.bank.in" target="_blank">customercare@cosmos.bank.in</a> </p>
+
+                            <p>Weekdays Timings: 10.30 a.m. to 6.30 p.m.</p>
+
+                            <p>Holiday  : 2nd & 4th Saturdays and all Sundays</p>
+                        </div>
+
+                    </div>
+                    <!--right-side-slider-details-div end-->
+                    <!--login-icon-wrap end-->
+                    <!--nav-icon-wrap end-->
+
+
+                    <div class="clearfix"></div>
+
+                </div>
+                <!--top-right-icons-wrap end-->
+
+            </div>
+            <!--col end-->
+
+        </div>
+        <!--row end-->
+
+    </div>
+    <!--container end-->
+
+    <div class="quick-loans">
+        <a class="quick-loans-style" href="https://www.cosmos.bank.in/online-loans/index.html">Quick Loans</a>
+    </div>
+    <div class="netbanking">
+        <a class="netbanking-style" href="https://online.cosmos.bank.in/RetailCorporate/#/login/retailcorporate">Net banking</a>
+    </div>
+
+
+    <div class="four-categories-outer-wrap blue-bg-1">
+        <div class="container container-95">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="four-categories-links-wrap" id="tabs">
+                        <ul class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                            <li class="tab-pane " role="presentation"><a class="nav-item nav-link" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General</a></li>
+                            <li class="tab-pane " role="presentation"><a class="nav-item nav-link" id="nav-premium-tab" data-toggle="tab" href="#nav-premium" role="tab" aria-controls="nav-premium" aria-selected="false">Premium</a></li>
+                            <li class="tab-pane " role="presentation"><a class="nav-item nav-link" id="nav-nri-tab" data-toggle="tab" href="#nav-nri" role="tab" aria-controls="nav-nri" aria-selected="false">NRI</a></li>
+                            <li class="tab-pane " role="presentation"><a class="nav-item nav-link" id="nav-business-tab" data-toggle="tab" href="#nav-business" role="tab" aria-controls="nav-business" aria-selected="false">Business</a></li>
+                            <li class="tab-pane " role="presentation"><a class="nav-item nav-link" id="nav-digital-world-tab" data-toggle="tab" href="#nav-digital-world" role="tab" aria-controls="nav-digital-world" aria-selected="false">Digital World</a></li>
+                            <li class="tab-pane tab-pane" role="presentation"><a class="nav-item nav-link" id="nav-banl-form-tab" data-toggle="tab" href="#nav-banl-form" role="tab" aria-controls="nav-banl-form" aria-selected="false">BANL Facility</a></li>
+
+                        </ul>
+                    </div>
+                    <!--four-categories-links-wrap end-->
+                </div>
+                <!--col end-->
+            </div>
+            <!--row end-->
+        </div>
+        <!--container end-->
+    </div>
+
+
+
+    <!--four-categories-outer-wrap end-->
+
+    <div class="accounts-nav-outer-wrap blue-bg-2">
+        <div class="container container-95">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="accounts-nav-links-wrap">
+                        <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+
+                            <div class="tab-pane " id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
+                                <!--<nav class="nav-menu nav-menu-two d-none d-lg-block topmarnav nav-menu-general">-->
+                                <nav>
+                                    <div id="nav2">
+                                        <input id="main-menu-state2" type="checkbox" />
+                                        <label class="main-menu-btn2" for="main-menu-state2">
+                                            <span class="main-menu-btn-icon"></span>
+                                            <span class="main-menu-btn-text">Toggle main menu visibility</span>
+                                            <span class="main-menu-btn-title" aria-hidden="true"><span aria-hidden="true" data-icon="h"></span></span>
+                                        </label>
+
+                                        <ul id="main-menu2" class="sm sm-blue collapsed">
+                                                <li class="loans-li-active">
+                                                    <a href="#">Accounts <i class="fa fa-caret-down"></i></a>
+                                                    <input type="hidden" value="5" />
+                                                    <ul class="sub-menu">
+                                                            <li><a href="/product-details?id=63">PIGMY Deposit Scheme</a></li>
+                                                            <li><a href="/product-details?id=61">COSMO Galgal Zero Balance Savings Account</a></li>
+                                                            <li><a href="/product-details?id=27">Regular Savings Account</a></li>
+                                                            <li><a href="/product-details?id=26">Cosmo Youth Savings Account</a></li>
+                                                            <li><a href="/product-details?id=24">Cosmo Kidz Savings Account</a></li>
+                                                            <li><a href="/product-details?id=42">Fixed Deposit Scheme</a></li>
+                                                            <li><a href="/product-details?id=43">Recurring Deposit Scheme</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="">
+                                                    <a href="#">Loans <i class="fa fa-caret-down"></i></a>
+                                                    <input type="hidden" value="7" />
+                                                    <ul class="sub-menu">
+                                                            <li><a href="/product-details?id=4">Cosmos Property Mortgage Loan</a></li>
+                                                            <li><a href="/product-details?id=7">Cosmo Credit Personal Loan</a></li>
+                                                            <li><a href="/product-details?id=1">Cosmos Home Loan</a></li>
+                                                            <li><a href="/product-details?id=8">Cosmos Car Loan</a></li>
+                                                            <li><a href="/product-details?id=3">Cosmos Two Wheeler Loan</a></li>
+                                                            <li><a href="/product-details?id=5">Cosmos Gold Loan</a></li>
+                                                            <li><a href="/product-details?id=6">Cosmo Education Loan</a></li>
+                                                            <li><a href="/product-details?id=9">Cosmo Gruha Sanjeevani Reverse Mortgage Loan Scheme</a></li>
+                                                            <li><a href="/product-details?id=50">Cosmo Gram Gruh Yojana</a></li>
+                                                    </ul>
+                                                </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!--tab 1 end-->
+
+                            <div class="tab-pane " id="nav-premium" role="tabpanel" aria-labelledby="nav-premium-tab">
+                                <nav>
+                                    <div id="nav3">
+                                        <input id="main-menu-state3" type="checkbox" />
+                                        <label class="main-menu-btn3" for="main-menu-state3">
+                                            <span class="main-menu-btn-icon"></span>
+                                            <span class="main-menu-btn-text">Toggle main menu visibility</span>
+                                            <span class="main-menu-btn-title" aria-hidden="true"><span aria-hidden="true" data-icon="h"></span></span>
+                                        </label>
+
+                                        <ul id="main-menu3" class="sm sm-blue collapsed">
+                                                <li class="loans-li-active">
+                                                    <a href="#">Accounts <i class="fa fa-caret-down"></i></a>
+                                                    <ul class="sub-menu">
+                                                            <li><a href="/product-details?id=59">Prosperity Plus Savings Account</a></li>
+                                                            <li><a href="/product-details?id=58">Profit Plus Savings Account</a></li>
+                                                            <li><a href="/product-details?id=56">Non Callable Deposit Scheme</a></li>
+                                                            <li><a href="/product-details?id=40">Cosmo Premium Savings Account</a></li>
+                                                            <li><a href="/product-details?id=36">Cosmo Premium Salary Savings Account</a></li>
+                                                            <li><a href="/product-details?id=35">Cosmo Premium Plus Savings Account</a></li>
+                                                            <li><a href="/product-details?id=38">Cosmo Royale Saving Account</a></li>
+                                                    </ul>
+                                                </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!--tab 2 end-->
+
+                            <div class="tab-pane " id="nav-nri" role="tabpanel" aria-labelledby="nav-nri-tab">
+                                <nav>
+                                    <div id="nav4">
+                                        <input id="main-menu-state4" type="checkbox" />
+                                        <label class="main-menu-btn4" for="main-menu-state4">
+                                            <span class="main-menu-btn-icon"></span>
+                                            <span class="main-menu-btn-text">Toggle main menu visibility</span>
+                                            <span class="main-menu-btn-title" aria-hidden="true"><span aria-hidden="true" data-icon="h"></span></span>
+                                        </label>
+
+                                        <ul id="main-menu4" class="sm sm-blue collapsed">
+                                                <li class="loans-li-active">
+                                                    <a href="#">Accounts <i class="fa fa-caret-down"></i></a>
+                                                    <ul class="sub-menu">
+                                                            <li><a href="/product-details?id=28">Cosmo FCNR (B) Double Bonanza</a></li>
+                                                            <li><a href="/product-details?id=29">Cosmo FCNR (B) Premium</a></li>
+                                                            <li><a href="/product-details?id=30">Cosmo FCNR (B) Royale Deposit</a></li>
+                                                            <li><a href="/product-details?id=31">Cosmo FCNR (B)</a></li>
+                                                            <li><a href="/product-details?id=32">Cosmo NRI Premium Plus Saving Account</a></li>
+                                                            <li><a href="/product-details?id=39">Cosmo Max Yield NRI Deposit</a></li>
+                                                    </ul>
+                                                </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!--tab 3 end-->
+
+                            <div class="tab-pane " id="nav-business" role="tabpanel" aria-labelledby="nav-business-tab">
+                                <nav>
+                                    <div id="nav5">
+                                        <input id="main-menu-state5" type="checkbox" />
+                                        <label class="main-menu-btn5" for="main-menu-state5">
+                                            <span class="main-menu-btn-icon"></span>
+                                            <span class="main-menu-btn-text">Toggle main menu visibility</span>
+                                            <span class="main-menu-btn-title" aria-hidden="true"><span aria-hidden="true" data-icon="h"></span></span>
+                                        </label>
+
+                                        <ul id="main-menu5" class="sm sm-blue collapsed">
+                                                <li class="loans-li-active">
+                                                    <a href="#">Accounts <i class="fa fa-caret-down"></i></a>
+                                                    <ul class="sub-menu">
+                                                            <li><a href="/product-details?id=60">Growth Plus Current Account</a></li>
+                                                            <li><a href="/product-details?id=25">Cosmos Regular Current Account</a></li>
+                                                            <li><a href="/product-details?id=33">Cosmo Premium Current Account</a></li>
+                                                            <li><a href="/product-details?id=34">Cosmo Premium Plus Current Account</a></li>
+                                                            <li><a href="/product-details?id=37">Cosmos Royale Current Account</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="">
+                                                    <a href="#">Investments <i class="fa fa-caret-down"></i></a>
+                                                    <ul class="sub-menu">
+                                                            <li><a href="/product-details?id=19">Cosmo Care Deposit Scheme</a></li>
+                                                            <li><a href="/product-details?id=20">Cosmo Tax Saver Deposit Scheme</a></li>
+                                                            <li><a href="/product-details?id=21">Deposit Scheme Insurance from DICGC</a></li>
+                                                            <li><a href="/product-details?id=22">Flexi Fixed Deposit (FFD) Scheme &#x2013; Term</a></li>
+                                                            <li><a href="/product-details?id=23">Mutual Fund</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="">
+                                                    <a href="#">Loans <i class="fa fa-caret-down"></i></a>
+                                                    <ul class="sub-menu">
+                                                            <li><a href="/product-details?id=55">Cosmo Hello Doctor Loan Scheme</a></li>
+                                                            <li><a href="/product-details?id=54">Cosmo Merchant Scheme </a></li>
+                                                            <li><a href="/product-details?id=53">Cosmo Udyog Loan Scheme</a></li>
+                                                            <li><a href="/product-details?id=41">Cosmos Professional Comfort Loan Scheme</a></li>
+                                                            <li><a href="/product-details?id=57">Cosmo Pharma Loan Scheme</a></li>
+                                                            <li><a href="/product-details?id=10">Cosmo Krushi Market Finance</a></li>
+                                                            <li><a href="/product-details?id=11">Cosmo Medical Loan Scheme</a></li>
+                                                            <li><a href="/product-details?id=16">Lease Rent Discounting Scheme</a></li>
+                                                            <li><a href="/product-details?id=17">Loan Scheme for SHG/JLG</a></li>
+                                                            <li><a href="/product-details?id=18">Vendor Finance</a></li>
+                                                            <li><a href="/product-details?id=49">Cosmo Small Business Loan Scheme</a></li>
+                                                            <li><a href="/product-details?id=51">Swayamsiddha Loan Scheme</a></li>
+                                                    </ul>
+                                                </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!--tab 4 end-->
+
+                            <div class="tab-pane " id="nav-digital-world" role="tabpanel" aria-labelledby="nav-digital-world-tab">
+                                <nav>
+                                    <div id="nav6">
+                                        <input id="main-menu-state6" type="checkbox" />
+                                        <label class="main-menu-btn6" for="main-menu-state6">
+                                            <span class="main-menu-btn-icon"></span>
+                                            <span class="main-menu-btn-text">Toggle main menu visibility</span>
+                                            <span class="main-menu-btn-title" aria-hidden="true"><span aria-hidden="true" data-icon="h"></span></span>
+                                        </label>
+
+                                        <ul id="main-menu6" class="sm sm-blue collapsed">
+                                                <li class="loans-li-active">
+                                                    <a href="#">Card Services <i class="fa fa-caret-down"></i></a>
+                                                    <ul class="sub-menu">
+                                                            <li><a href="product-services-details?id=24">RuPay</a></li>
+                                                            <li><a href="product-services-details?id=25">VISA</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="">
+                                                    <a href="#">ATM &amp; Kiosk <i class="fa fa-caret-down"></i></a>
+                                                    <ul class="sub-menu">
+                                                            <li><a href="product-services-details?id=9">ATM</a></li>
+                                                            <li><a href="product-services-details?id=10">Passbook Printing Kiosk</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="">
+                                                    <a href="#">E-banking <i class="fa fa-caret-down"></i></a>
+                                                    <ul class="sub-menu">
+                                                            <li runat="server" visible="false" id="liCosmosRewardz"><a href="https://rewards.cosmos.bank.in/" target="_blank">Cosmos Rewardz</a></li>
+                                                            <li><a href="product-services-details?id=6">Cosmo Net - Retail Banking</a></li>
+                                                            <li><a href="product-services-details?id=7">Cosmo Net - Corporate Banking</a></li>
+                                                            <li><a href="product-services-details?id=30">Cosmos Mobile Banking Application &#x2013; New</a></li>
+                                                            <li><a href="product-services-details?id=29">The Cosmo - Galgal App</a></li>
+                                                            <li><a href="product-services-details?id=28">Cosmos WhatsApp Banking</a></li>
+                                                            <li><a href="product-services-details?id=4">Cosmo UPI</a></li>
+                                                            <li><a href="product-services-details?id=8">AePS &#x2013; Aadhaar enabled Payment system</a></li>
+                                                            <li><a href="product-services-details?id=13">Immediate Payment System (IMPS)</a></li>
+                                                            <li><a href="product-services-details?id=14">Missed Call Service</a></li>
+                                                            <li><a href="product-services-details?id=17">TPAP</a></li>
+                                                            <li><a href="product-services-details?id=16">QR Code</a></li>
+                                                            <li><a href="product-services-details?id=19">National Electronic Toll Collection (NETC)  Program</a></li>
+                                                            <li><a href="product-services-details?id=26">National Electronic Fund Transfer (NEFT) Services</a></li>
+                                                            <li><a href="product-services-details?id=27">Real-Time Gross Settlement (RTGS) Services</a></li>
+                                                            <li><a href="product-services-details?id=3">Cosmo GenZ - Old</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="">
+                                                    <a href="#">E-Services <i class="fa fa-caret-down"></i></a>
+                                                    <ul class="sub-menu">
+                                                            <li><a href="product-services-details?id=5">Universal Bill Payment</a></li>
+                                                            <li><a href="product-services-details?id=11">BHARAT BILL PAY SYSTEM (BBPS)</a></li>
+                                                            <li><a href="product-services-details?id=12">E-KYC Services</a></li>
+                                                            <li><a href="product-services-details?id=15">Public Financial Management System (PFMS)</a></li>
+                                                            <li><a href="product-services-details?id=18">APBS</a></li>
+                                                            <li><a href="product-services-details?id=20">E-Mandate Services</a></li>
+                                                            <li><a href="product-services-details?id=21">Income Tax Validation for Filing ITR (Income Tax Returns)</a></li>
+                                                            <li><a href="product-services-details?id=22">NACH -National Automated Clearing House</a></li>
+                                                            <li><a href="product-services-details?id=23">Positive Pay System for Cheques</a></li>
+                                                    </ul>
+                                                </li>
+                                            <li><a class="has-submenu" href="productservicelisting">View All</a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <div class="tab-pane tab-pane" id="nav-banl-form" role="tabpanel" aria-labelledby="nav-banl-form-tab">
+                                <nav>
+                                    <div id="nav8">
+                                        <input id="main-menu-state8" type="checkbox" />
+                                        <label class="main-menu-btn8" for="main-menu-state8">
+                                            <span class="main-menu-btn-icon"></span>
+                                            <span class="main-menu-btn-text">Toggle main menu visibility</span>
+                                            <span class="main-menu-btn-title" aria-hidden="true"><span aria-hidden="true" data-icon="h"></span></span>
+                                        </label>
+
+                                        <ul id="main-menu8" class="sm sm-blue collapsed">
+                                            <li>
+                                                <a class="has-submenu" target="_blank" href="https://www.cosmos.bank.in/auth/writereaddata/Files/BANL%20for%20NEFT%20RTGS_Website%20VR3.pdf">BANL Facility</a>
+
+                                                <ul class="sub-menu">
+                                                    <li>
+                                                        <a target="_blank" href="https://www.cosmos.bank.in/auth/writereaddata/Files/BANL%20for%20NEFT%20RTGS_Website%20VR3.pdf">
+                                                            Beneficiary Account Name Lookup
+                                                            Facility Detail
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!--tab 5 end-->
+                        </div>
+                        <!--tab content end-->
+                    </div>
+                    <!--four-categories-links-wrap end-->
+                </div>
+                <!--col end-->
+            </div>
+            <!--row end-->
+        </div>
+        <!--container end-->
+    </div>
+    <!--four-categories-outer-wrap end-->
+
+</header>
+
+
+<!--Accessibility Section Start-->
+
+
+<div class="uwaw uw-light-theme gradient-head uwaw-initial paid_widget" id="uw-main" style="right: -490px; display: none;" role="dialog" aria-modal="true" aria-label="Accessibility Options">
+    <div class="relative second-panel">
+        <h2>Accessibility Options</h2>
+        <div class="uwaw-close" id="uw-widget-custom-trigger2" role="button" tabindex="0" aria-label="Close">
+            <i class="fa fa-times-circle" aria-hidden="true"></i>
+        </div>
+    </div>
+    <div class="uwaw-body">
+        <div class="h-scroll">
+            <div class="uwaw-features">
+                <div class="uwaw-features__item reset-feature" id="featureItem_sp">
+                    <button id="speak" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="78xrhe"> <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-speaker"> </span> </span> <span class="uwaw-features__item__name">Text To Speech</span> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon_sp" style="display: none;"> </span> </button>
+                </div>
+                <div class="uwaw-features__item reset-feature" id="featureItem" style="display: none;">
+                    <button id="btn-s9" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="d757wo">
+                        <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-bigger-text"> </span> </span><span class="uwaw-features__item__name">Bigger Text</span>
+                        <div class="uwaw-features__item__steps reset-steps" id="featureSteps">
+                            <!-- Steps span tags will be dynamically added here -->
+                        </div> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon" style="display: none;"> </span>
+                    </button>
+                </div>
+                <div class="uwaw-features__item reset-feature" id="featureItem-st" style="display: none;">
+                    <button id="btn-small-text" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="kaanbv">
+                        <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-small-text"> </span> </span><span class="uwaw-features__item__name">Small Text</span>
+                        <div class="uwaw-features__item__steps reset-steps" id="featureSteps-st">
+                            <!-- Steps span tags will be dynamically added here -->
+                        </div> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon-st" style="display: none;"> </span>
+                    </button>
+                </div>
+                <div class="uwaw-features__item reset-feature" id="featureItem-lh">
+                    <button id="btn-s12" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="uav9ne">
+                        <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-line-hight"> </span> </span> <span class="uwaw-features__item__name">Line Height</span>
+                        <div class="uwaw-features__item__steps reset-steps" id="featureSteps-lh">
+                            <!-- Steps span tags will be dynamically added here -->
+                        </div> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon-lh" style="display: none;"> </span>
+                    </button>
+                </div>
+                <div class="uwaw-features__item reset-feature" id="featureItem-ht">
+                    <button id="btn-s10" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="61oue"> <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-highlight-links"> </span> </span> <span class="uwaw-features__item__name">Highlight Links</span> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon-ht" style="display: none;"> </span> </button>
+                </div>
+                <div class="uwaw-features__item reset-feature" id="featureItem-ts">
+                    <button id="btn-s13" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="q93d1r">
+                        <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-text-spacing"> </span> </span> <span class="uwaw-features__item__name">Text Spacing</span>
+                        <div class="uwaw-features__item__steps reset-steps" id="featureSteps-ts">
+                            <!-- Steps span tags will be dynamically added here -->
+                        </div> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon-ts" style="display: none;"> </span>
+                    </button>
+                </div>
+                <div class="uwaw-features__item reset-feature" id="featureItem-df">
+                    <button id="btn-df" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="7bfs4u"> <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-dyslexia-font"> </span> </span> <span class="uwaw-features__item__name">Dyslexia Friendly</span> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon-df" style="display: none;"> </span> </button>
+                </div>
+                <div class="uwaw-features__item reset-feature" id="featureItem-hi">
+                    <button id="btn-s11" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="yxh39g"> <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-hide-images"> </span> </span> <span class="uwaw-features__item__name">Hide Images</span> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon-hi" style="display: none;"> </span> </button>
+                </div>
+                <div class="uwaw-features__item reset-feature" id="featureItem-Cursor">
+                    <button id="btn-cursor" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="edx1s"> <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-cursor"> </span> </span> <span class="uwaw-features__item__name">Cursor</span> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon-cursor" style="display: none;"> </span> </button>
+                </div>
+                <div class="uwaw-features__item reset-feature" id="featureItem-ht-dark" style="display: none;">
+                    <button id="dark-btn" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="g6zpoe"> <span class="uwaw-features__item__name"> <span class="light_dark_icon"> <input type="checkbox" class="light_mode uwaw-featugres__item__i" id="checkbox" aria-label="Toggle light or dark mode"> <label for="colorscheme" class="checkbox-label"> <span class="sr-only">Toggle Dark / Light Mode</span><i class="fas fa-moon-stars"> <span class="ux4g-icon icon-moon"></span> </i> <i class="fas fa-sun"> <span class="ux4g-icon icon-sun"></span> </i> <span class="ball"></span> </label> </span> <span class="uwaw-features__item__name">Toggle Dark / Light Mode</span> </span> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon-ht-dark" style="display: none; pointer-events: none;"> </span> </button>
+                </div> <!-- Invert Colors Widget -->
+                <div class="uwaw-features__item reset-feature" id="featureItem-ic" style="display: none;">
+                    <button id="btn-invert" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="3exuk5"> <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-invert"> </span> </span> <span class="uwaw-features__item__name">Invert Colors</span> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon-ic" style="display: none;"> </span> </button>
+                </div>
+            </div>
+        </div> <!-- Reset Button -->
+    </div>
+    <div class="reset-panel">
+        <!-- copyright accessibility bar -->
+        <div class="copyrights-accessibility">
+            <button class="btn-reset-all" id="reset-all" fdprocessedid="3so1k"><span class="reset-btn-text">Reset All Settings</span></button>
+        </div>
+    </div>
+</div>
+<!--Accessibility Section End-->
+    <main id="main-content" role="main" tabindex="-1">
+
+        
+<section class="banner inner-pg-banner">
+    <div id="themeSlider" class="carousel slide" data-ride="carousel">      
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="imgOverlay"></div>
+                <img src="/auth/writereaddata/images/2506214040Contact Us 1600 X 300.jpg" alt="">
+                <div class="carousel-caption">
+                    <div class="container container-95 home-pg-banner-container inner-pg-banner-container">
+                        <div class="home-pg-banner-text-wrap inner-pg-banner-text-wrap">
+                            <h3>Contact Us</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="breadcrumbs-div">
+        <div class="container container-95">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumbs-inner-div">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a asp-page="/Index">Home</a></li>
+                            <li class="breadcrumb-item active">
+                                <a asp-page="/Contact">Contact Us</a>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+ <section class="get-in-touch-section" id="Writetous">
+            <div class="container container-95">
+                <div class="row">
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="get-in-touch-left-img-wrap">
+                            <img src="images/get-in-touch-left-image.jpg">
+                        </div>
+                        <!--get-in-touch-left-img-wrap end-->
+                    </div>
+                    <!--col end-->
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="get-in-touch-right-col-wrap">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="page-title-div">
+                                        <h2 class="section-title">Get in Touch</h2>
+                                    </div>
+                                </div>
+                                <!--col end-->
+                            </div>
+                            <!--row end-->
+                            
+<div class="row">
+    <div class="col-md-12">
+        <div class="get-in-touch-form-wrap">
+            <div id="formMessage" role="status" aria-live="polite" aria-atomic="true"></div>
+            <form id="getInTouchForm" role="form" aria-label="Get in touch enquiry">
+                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8ID4RhkETBRHqJLWWw0trRXxbw-neYBwiM2OfObevcrhrNTTC1GWm2LKYO9cImAMKJUCNa4VxF9bUyZObrn-6AxL6HaV81HHX7r3a5tXjjRQ5WWh67ZEorBqHbexjhcyOqum6ePIqVoc0nsrSSKOiw4" />
+                <p class="wcag-form-required-note">Fields marked with an asterisk (<span aria-hidden="true">*</span>) are required.</p>
+                <div class="text-danger validation-summary-valid" role="alert" aria-live="assertive" data-valmsg-summary="true"><ul><li style="display:none"></li>
+</ul></div>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="customerType" class="wcag-form-label">Customer Type</label>
+                        <select class="form-control" id="customerType" data-val="true" data-val-regex="Invalid Customer Type." data-val-regex-pattern="^(New|Existing)$" data-val-required="Customer Type is required." name="CustomerType">
+                            <option value="">-- Select Customer Type --</option>
+                            <option value="New">New Customer</option>
+                            <option value="Existing">Existing Customer</option>
+                        </select>
+                        <span class="text-danger field-validation-valid" data-valmsg-for="CustomerType" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="col-md-6 form-group" id="accountNumberGroup">
+                        <label class="wcag-form-label" for="AccountNumber">Account Number</label>
+                        <input class="form-control" placeholder="Account Number" maxlength="16" type="text" data-val="true" data-val-length="Account Number must be 16 characters." data-val-length-max="16" data-val-length-min="16" data-val-regex="Invalid Account Number." data-val-regex-pattern="^[a-zA-Z0-9]*$" id="AccountNumber" name="AccountNumber" value="" />
+                        <span class="text-danger field-validation-valid" data-valmsg-for="AccountNumber" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label class="wcag-form-label" for="FullName">Full Name <span class="wcag-req" aria-hidden="true">*</span></label>
+                        <input class="form-control" placeholder="Full Name" aria-required="true" type="text" data-val="true" data-val-length="The field FullName must be a string with a maximum length of 100." data-val-length-max="100" data-val-regex="Invalid Name." data-val-regex-pattern="^[a-zA-Z\s\.]&#x2B;$" data-val-required="Full Name is required." id="FullName" maxlength="100" name="FullName" value="" />
+                        <span class="text-danger field-validation-valid" data-valmsg-for="FullName" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label class="wcag-form-label" for="MobileNumber">Mobile Number <span class="wcag-req" aria-hidden="true">*</span></label>
+                        <input class="form-control" placeholder="Mobile Number" aria-required="true" aria-describedby="mobileHint" type="text" data-val="true" data-val-regex="Invalid Mobile Number." data-val-regex-pattern="^[6-9][0-9]{9}$" data-val-required="Mobile Number is required." id="MobileNumber" name="MobileNumber" value="" />
+                        <small id="mobileHint" class="wcag-form-hint">Enter a 10-digit mobile number, e.g. 9876543210.</small>
+                        <span class="text-danger field-validation-valid" data-valmsg-for="MobileNumber" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="wcag-form-label" for="Email">Email Address <span class="wcag-req" aria-hidden="true">*</span></label>
+                    <input class="form-control" placeholder="Email Address" aria-required="true" aria-describedby="emailHint" type="email" data-val="true" data-val-email="Invalid Email." data-val-length="The field Email must be a string with a maximum length of 100." data-val-length-max="100" data-val-required="Email is required." id="Email" maxlength="100" name="Email" value="" />
+                    <small id="emailHint" class="wcag-form-hint">Enter a valid email address, e.g. name@example.com.</small>
+                    <span class="text-danger field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="wcag-form-label" for="Comments">Your Comments <span class="wcag-req" aria-hidden="true">*</span></label>
+                    <textarea class="form-control" placeholder="Your Comments" minlength="5" maxlength="500" aria-required="true" aria-describedby="commentsHint" data-val="true" data-val-length="Comments length invalid." data-val-length-max="500" data-val-length-min="5" data-val-required="Comments are required." id="Comments" name="Comments">
+</textarea>
+                    <small id="commentsHint" class="wcag-form-hint">Comments must contain between 5 and 500 characters.</small>
+                    <span class="text-danger field-validation-valid" data-valmsg-for="Comments" data-valmsg-replace="true"></span>
+                </div>
+                <div class="form-group get-in-touch-pg-submit-button-div">
+                    <button type="submit" id="btnGItSubmit" class="submit-button orange-button">Submit</button>
+                </div>
+
+            </form>
+
+
+    </div>
+    <!--get-in-touch-form-wrap end-->
+</div>
+
+                          
+                                <!--col end-->
+                            </div>
+                            <!--row end-->
+                        </div>
+                        <!--get-in-touch-right-col-wrap end-->
+                    </div>
+                    <!--col end-->
+                </div>
+                <!--row end-->
+            </div>
+            <!--container end-->
+        </section>
+
+<section class="locate-us-section" id="BranchLocator">
+                    <div class="locate-us-wrap">
+                        <div class="map-wrap">
+                            <img src="images/map.jpg" alt="" />                           
+                            <div class="location_details" runat="server" id="divLocatorDetails" style="display:none;">
+                                <div class="locator_popup">
+                                    <div class="locator_row" id="branchResult">                                      
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="locate-us-form-box">
+                                <div class="container-fluid container-95">
+
+
+
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="page-title-div">
+                                                <h2 class="section-title">Locate Us</h2>
+                                            </div>
+                                        </div>
+                                        <!--col end-->
+                                    </div>
+                                    <!--row end-->
+
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="search-title">
+                                                <h3>Search for
+                                            <br>
+                                                    Cosmos Bank Branch & ATM </h3>
+                                            </div>
+                                        </div>
+                                        <!--col end-->
+                                    </div>
+                                    <!--row end-->
+
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="locator-form-wrap">
+
+
+                                                <div class="row" runat="server" id="divRadioButtons" visible="false">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <asp:RadioButton ID="rbtnBranch" runat="server" GroupName="BATM" CssClass="form-control" Text="Branch" Checked="true" OnCheckedChanged="rbtnBranch_CheckedChanged" AutoPostBack="true" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <asp:RadioButton ID="rbtnATM" runat="server" GroupName="BATM" CssClass="form-control" Text="ATM" OnCheckedChanged="rbtnBranch_CheckedChanged" AutoPostBack="true" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+      <form id="branchLocatorForm1" method="post">                                       
+                                    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8ID4RhkETBRHqJLWWw0trRXxbw-neYBwiM2OfObevcrhrNTTC1GWm2LKYO9cImAMKJUCNa4VxF9bUyZObrn-6AxL6HaV81HHX7r3a5tXjjRQ5WWh67ZEorBqHbexjhcyOqum6ePIqVoc0nsrSSKOiw4" />
+    <div id="divBranch">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                        <select class="form-control123" id="stateDropdown" name="BranchLocator.SelectedState">
+                            <option value="">-- Select State --</option>
+                                <option value="SELECT STATE">SELECT STATE</option>
+                                <option value="ANDHRA PRADESH">ANDHRA PRADESH</option>
+                                <option value="GUJARAT">GUJARAT</option>
+                                <option value="KARNATAKA">KARNATAKA</option>
+                                <option value="MADHYA PRADESH">MADHYA PRADESH</option>
+                                <option value="MAHARASHTRA">MAHARASHTRA</option>
+                                <option value="TAMILNADU">TAMILNADU</option>
+                                <option value="TELANGANA">TELANGANA</option>
+                        </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <select class="form-control123" id="cityDropdown" name="BranchLocator.SelectedCity">
+                        <option value="">-- Select City --</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <select class="form-control123" id="branchDropdown" name="BranchLocator.SelectedBranch">
+                        <option value="">-- Select Branch --</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group locate-us-submit-button-div">
+                    <button type="submit" id="btnKnowMore1" class="submit-button orange-button">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+
+                                                <div runat="server" id="divATM" visible="false">
+                                                    
+                                                </div>
+                                            </div>
+                                            <!--locator-form-wrap end-->
+                                        </div>
+                                        <!--col end-->
+                                    </div>
+                                    <!--row end-->
+
+
+                                </div>
+                                <!--container end-->
+                            </div>
+                            <!--locate-us-form-box end-->
+                        </div>
+                        <!--map-wrap end-->
+                    </div>
+                    <!--locate-us-wrap end-->
+                </section>
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container container-95">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="about-footer-wrap">
+                    <div class="logo">
+                        <img src="images/logo-2.png" alt="COSMOS CO-OP, BANK LTD Logo">
+                    </div>
+                    <div class="about">
+                        <p>Cosmos Bank, is ready to assist you as always. Reach out to us, by any means of your choice.</p>
+                    </div>
+                    <div class="logo">
+                        <img src="images/dicgc-logo.jpg" alt="DICGC logo with QR code for DICGC website">
+                    </div>
+                    <div class="about">
+                        <p>
+                            (Cosmos Co-operative Bank Ltd., is registered with DICGC)
+                            <br /><a href="https://www.dicgc.org.in/" target="_blank" rel="noopener noreferrer" aria-label="DICGC website (opens in a new window)">https://www.dicgc.org.in</a>
+                        </p>
+                    </div>
+                </div>
+                <!--about-footer-wrap end-->
+            </div>
+            <!--col end-->
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="useful-links-wrap">
+                    <h2>Useful Links</h2>
+                    <ul>
+                        <li><a href="about-us">About Us</a></li>
+                        <li><a href="events-and-news">Events & News</a></li>
+                        <li><a href="IFSC-code">IFSC Codes</a></li>
+                        <li><a href="service-charges">Service Charges</a></li>
+                        <li><a href="citizen-charter">Citizen Charter</a></li>
+                        <li><a href="interest-rates">Interest Rates</a></li>
+                        <li><a href="RBIGuidelines">RBI Guidelines</a></li>
+                       
+
+                    </ul>
+                </div>
+                <!--useful-links-wrap end-->
+            </div>
+            <!--col end-->
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="useful-links-wrap">
+                    <h2>Reach Us</h2>
+                    <ul>
+                        <li><a href="contact-us">Feedback</a></li>
+                        <li><a href="form-center">Online Form Center</a></li>
+                        <li><a href="career-form">Careers</a></li>
+                        <li><a href="dnd-registration">DND Registration</a></li>
+                        <li><a href="frequently-asked-questions">FAQ's</a></li>
+                        <li><a href="lodge-a-complaint">Unauthorized Transaction Complaint</a></li>
+                    </ul>
+                </div>
+                <!--useful-links-wrap end-->
+            </div>
+            <!--col end-->
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="useful-links-wrap support-links-wrap">
+                    <h2>Support</h2>
+                    <ul>
+                        <li>
+                            Call Toll Free:
+                            <br>
+                            <a href="tel:1800 233 0234">1800 233 0234</a>
+                        </li>
+                        <li>
+                            Write to us at :
+                            <br>
+                            <a href="mailto:customercare@cosmos.bank.in">customercare@cosmos.bank.in</a>
+                        </li>
+                        <li>
+                            For Internet Banking Support :
+                            <br>
+                            <a href="mailto:ibhelp@cosmos.bank.in">ibhelp@cosmos.bank.in</a>
+                        </li>
+                        <li>
+                            For Mobile Banking Support :
+                            <br>
+
+                            <a href="mailto:ibhelp@cosmos.bank.in">ibhelp@cosmos.bank.in</a>
+                        </li>
+                        <li>
+                            For ATM Support :
+                            <br>
+                            <a href="mailto:atmhelp@cosmos.bank.in">atmhelp@cosmos.bank.in</a>
+                        </li>
+                        <li>
+                            For FASTag Support :
+                            <br>
+                            <a href="mailto:fastaghelp@cosmos.bank.in">fastaghelp@cosmos.bank.in</a>
+                        </li>
+                        <li>
+                            For Galgal Support :
+                            <br>
+                            <a href="mailto:cosmos.support@galgal.money">cosmos.support@galgal.money</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+                <!--useful-links-wrap end-->
+
+            </div>
+            <!--col end-->
+        </div>
+        <!--row end-->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="single-content need-help-get-in-touch-wrap">
+                    <div class="useful-links-wrap">
+                        <p class="footer-help-heading">
+                            <img src="/images/icon-mobile.svg" alt="">
+                            <a href="https://odr.cosmos.bank.in" target="_blank" rel="noopener noreferrer">ONLINE DISPUTE RESOLUTION (ODR)</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="single-content need-help-get-in-touch-wrap">
+                    <div class="useful-links-wrap">
+                        <p class="footer-help-heading">
+                            <img src="/images/icon-mobile.svg" alt="">
+                            <a href="https://www.cosmos.bank.in/lodge-a-complaint" target="_blank" rel="noopener noreferrer">Unauthorized Electronic Transactions Complaint Registration</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--container end-->
+   
+
+<section class="bottom-social-icons-section">
+    <div class="container container-95">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="copyright-wrap">
+                        <p>&copy; 2026 Cosmos Bank. All rights reserved.</p>
+                </div>
+                <!--about-footer-wrap end-->
+            </div>
+            <!--col end-->
+
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <aside class="social-icons-wrap" role="complementary" aria-label="Social media">
+                    <ul class="wcag-social-list">
+                        <li><a href="https://www.facebook.com/CosmosBank" target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in a new window)"><i class="fa-brands fa-facebook-square fa-2x" aria-hidden="true"></i></a></li>
+                        <li><a href="https://twitter.com/Cosmospune" target="_blank" rel="noopener noreferrer" aria-label="X, formerly Twitter (opens in a new window)"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.instagram.com/cosmos_coop_bank_ltd/" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in a new window)"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.linkedin.com/company/cosmos-bank-pune" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new window)"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.youtube.com/channel/UC3aTT9UXHXHV3lEXCKPIS4A" target="_blank" rel="noopener noreferrer" aria-label="YouTube (opens in a new window)"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></li>
+                    </ul>
+                </aside>
+                <!--social-icons-wrap end-->
+            </div>
+            <!--col end-->
+
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="policy-links-wrap">
+                    <ul>
+                        <li><a href="ourpolicies">Our Policies</a></li>
+                        <li><a href="ourpolicies">Website Usage Terms</a></li>
+                        <li><a href="ourpolicies">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <!--policy-links-wrap end-->
+            </div>
+            <!--col end-->
+        </div>
+        <!--row end-->
+    </div>
+    <!--container end-->
+</section>
+<!--bottom-social-icons-section end-->
+
+<section style="display: none;">
+    <div class="container container-95">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+            </div>
+            <!--col end-->
+        </div>
+        <!--row end-->
+    </div>
+    <!--container end-->
+</section>
+
+<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+ </footer>
+
+<!-- Bootstrap core JavaScript
+<script src="~/bootstrap/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+<!-- script added to below js-->
+<script src="/js/site-footer.js"></script>
+
+    <!-- Bootstrap core JavaScript
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- script added to below js-->
+    <script src="/js/site-footer.js"></script>
+    <script src="/scroller/jquery.liMarquee.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/js/common/common.js" type="text/javascript"></script>
+    <script src="/js/common/common2.js" type="text/javascript"></script>
+    <script src="/js/common/common3.js" type="text/javascript"></script>
+    <script src="/js/common/common4.js" type="text/javascript"></script>
+    <script src="/js/common/common5.js" type="text/javascript"></script>
+    <script src="/js/common/common6.js" type="text/javascript"></script>
+    <script src="/js/common/common7.js" type="text/javascript"></script>
+    <script src="/js/common/common8.js" type="text/javascript"></script>
+    <!-- Add jQuery library for fancy popup -->
+    <script type="text/javascript" src="/source/jquery.fancybox.js"></script>
+    <link rel="stylesheet" type="text/css" href="/source/jquery.fancybox.css" media="screen" />
+
+
+    <!-- about us-->
+    <script src="/js/accordion/smk-accordion.js"></script>
+    <script src="/js/table-sort-script/jquery.dataTables.min.js"></script>
+
+    <link href="/scroller/liMarquee.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/js/accordion/smk-accordion.css" type="text/css">
+    <script type="text/javascript" src="/js/services.js"></script>
+    <script type="text/javascript" src="/js/header-language.js"></script>
+    <script type="text/javascript" src="/js/Accessibility.js"></script>
+    <script type="text/javascript" src="/js/common/indexpage.js?v=20260826a"></script>
+
+    
+    
+    <link type="text/javascript" src="/js/contactus.js" />
+
+
+    <script src="/js/wcag-remediation.js?v=20260804r37"></script>
+
+</body>
+</html>

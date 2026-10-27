@@ -1,0 +1,9220 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+			<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="ltr" dir="ltr" lang="en-US">
+
+<head>
+
+		<!-- Google tag (gtag.js) --> 
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYW17JFHG3"></script> 
+		<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-ZYW17JFHG3'); </script>
+
+	<title>Leadership</title>
+
+	<meta content="initial-scale=1.0, width=device-width" name="viewport" />
+
+			  <!-- Facebook Pixel Code -->
+				<script> 
+			!function(f,b,e,v,n,t,s) 
+			{if(f.fbq)return;n=f.fbq=function(){n.callMethod? 
+			n.callMethod.apply(n,arguments):n.queue.push(arguments)}; 
+			if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0'; 
+			n.queue=[];t=b.createElement(e);t.async=!0; 
+			t.src=v;s=b.getElementsByTagName(e)[0]; 
+			s.parentNode.insertBefore(t,s)}(window,document,'script', 
+			'https://connect.facebook.net/en_US/fbevents.js'); 
+			 fbq('init', '27724305723911330'); 
+			fbq('track', 'PageView'); 
+			</script> 
+			<noscript> 
+			 <img height="1" width="1" 
+			src="https://www.facebook.com/tr?id=27724305723911330&ev=PageView&noscript=1"/> 
+			</noscript> 
+			<!-- End Facebook Pixel Code --> 
+
+
+		<script type="text/javascript"> 
+
+			(function(c,l,a,r,i,t,y){ 
+
+				c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)}; 
+
+				t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i; 
+
+				y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y); 
+
+			})(window, document, "clarity", "script", "yqv5e56mrm"); 
+
+		</script> 
+
+		<!-- Google Tag Manager --> 
+			<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': 
+			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], 
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); 
+			})(window,document,'script','dataLayer','GTM-N8SLJ4QC');
+			</script> 
+<!-- End Google Tag Manager --> 
+
+
+
+	<link rel="stylesheet" href="https://www.kirloskaroilengines.com/o/kirloskar-koel-theme/css/all.min.css"/> 
+    <link rel="stylesheet" href="https://www.kirloskaroilengines.com/o/kirloskar-koel-theme/css/slick-theme.css" />
+    <link rel="stylesheet" href="https://www.kirloskaroilengines.com/o/kirloskar-koel-theme/css/slick.css" />
+	<link rel="stylesheet" href="https://www.kirloskaroilengines.com/o/kirloskar-koel-theme/css/select2.min.css" />
+	<link rel="preload" href="https://www.kirloskaroilengines.com/o/kirloskar-koel-theme/css/bootstrap.min.css">
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="importmap">{"imports":{"react-dom":"/o/frontend-js-react-web/__liferay__/exports/react-dom.js","@clayui/breadcrumb":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$breadcrumb.js","@clayui/form":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$form.js","@clayui/popover":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$popover.js","@clayui/charts":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$charts.js","@clayui/shared":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$shared.js","@clayui/localized-input":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$localized-input.js","@clayui/modal":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$modal.js","@clayui/empty-state":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$empty-state.js","react":"/o/frontend-js-react-web/__liferay__/exports/react.js","@clayui/color-picker":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$color-picker.js","@clayui/navigation-bar":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$navigation-bar.js","@clayui/pagination":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$pagination.js","@clayui/icon":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$icon.js","@clayui/table":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$table.js","@clayui/autocomplete":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$autocomplete.js","@clayui/slider":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$slider.js","@clayui/management-toolbar":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$management-toolbar.js","@clayui/multi-select":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$multi-select.js","@clayui/nav":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$nav.js","@clayui/time-picker":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$time-picker.js","@clayui/provider":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$provider.js","@clayui/upper-toolbar":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$upper-toolbar.js","@clayui/loading-indicator":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$loading-indicator.js","@clayui/panel":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$panel.js","@clayui/drop-down":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$drop-down.js","@clayui/list":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$list.js","@clayui/date-picker":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$date-picker.js","@clayui/label":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$label.js","@clayui/data-provider":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$data-provider.js","@liferay/frontend-js-api/data-set":"/o/frontend-js-dependencies-web/__liferay__/exports/@liferay$js-api$data-set.js","@clayui/core":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$core.js","@liferay/language/":"/o/js/language/","@clayui/pagination-bar":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$pagination-bar.js","@clayui/layout":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$layout.js","@clayui/multi-step-nav":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$multi-step-nav.js","@liferay/frontend-js-api":"/o/frontend-js-dependencies-web/__liferay__/exports/@liferay$js-api.js","@clayui/css":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$css.js","@clayui/toolbar":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$toolbar.js","@clayui/alert":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$alert.js","@clayui/badge":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$badge.js","@clayui/link":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$link.js","@clayui/card":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$card.js","@clayui/progress-bar":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$progress-bar.js","@clayui/tooltip":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$tooltip.js","@clayui/button":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$button.js","@clayui/tabs":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$tabs.js","@clayui/sticker":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$sticker.js"},"scopes":{}}</script><script data-senna-track="temporary">var Liferay = window.Liferay || {};Liferay.Icons = Liferay.Icons || {};Liferay.Icons.controlPanelSpritemap = 'https://www.kirloskaroilengines.com/o/admin-theme/images/clay/icons.svg'; Liferay.Icons.spritemap = 'https://www.kirloskaroilengines.com/o/kirloskar-koel-theme/images/clay/icons.svg';</script>
+<script data-senna-track="permanent" type="text/javascript">window.Liferay = window.Liferay || {}; window.Liferay.CSP = {nonce: ''};</script>
+<script data-senna-track="permanent" src="/combo?browserId=other&minifierType=js&languageId=en_US&t=1789134670064&/o/frontend-js-jquery-web/jquery/jquery.min.js&/o/frontend-js-jquery-web/jquery/init.js&/o/frontend-js-jquery-web/jquery/ajax.js&/o/frontend-js-jquery-web/jquery/bootstrap.bundle.min.js&/o/frontend-js-jquery-web/jquery/collapsible_search.js&/o/frontend-js-jquery-web/jquery/fm.js&/o/frontend-js-jquery-web/jquery/form.js&/o/frontend-js-jquery-web/jquery/popper.min.js&/o/frontend-js-jquery-web/jquery/side_navigation.js" type="text/javascript"></script>
+
+
+<link href="/documents/6887317/6887954/favicon.png/0f11f9b3-1760-53d2-a43b-b9db8c39443a" rel="apple-touch-icon" />
+<link href="/documents/6887317/6887954/favicon.png/0f11f9b3-1760-53d2-a43b-b9db8c39443a" rel="icon" />
+
+
+
+<link class="lfr-css-file" data-senna-track="temporary" href="https://www.kirloskaroilengines.com/o/kirloskar-koel-theme/css/clay.css?browserId=other&amp;themeId=kirloskarkoeltheme_WAR_kirloskarkoeltheme&amp;minifierType=css&amp;languageId=en_US&amp;t=1793016790000" id="liferayAUICSS" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+
+
+	<link href="/combo?browserId=other&amp;minifierType=css&amp;themeId=kirloskarkoeltheme_WAR_kirloskarkoeltheme&amp;languageId=en_US&amp;com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_runt:%2Fo%2Fasset-publisher-web%2Fcss%2Fmain.css&amp;com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_aboutUs:%2Fo%2Fjournal-content-web%2Fcss%2Fmain.css&amp;com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet:%2Fo%2Fproduct-navigation-product-menu-web%2Fcss%2Fmain.css&amp;com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu1:%2Fo%2Fsite-navigation-menu-web%2Fcss%2Fmain.css&amp;t=1793016790000" rel="stylesheet" type="text/css"
+ data-senna-track="temporary" id="ec2e0e6b" />
+
+
+
+
+
+
+
+
+<script type="text/javascript" data-senna-track="temporary">
+	// <![CDATA[
+		var Liferay = Liferay || {};
+
+		Liferay.Browser = {
+			acceptsGzip: function() {
+				return true;
+			},
+
+			
+
+			getMajorVersion: function() {
+				return 0;
+			},
+
+			getRevision: function() {
+				return '';
+			},
+			getVersion: function() {
+				return '';
+			},
+
+			
+
+			isAir: function() {
+				return false;
+			},
+			isChrome: function() {
+				return false;
+			},
+			isEdge: function() {
+				return false;
+			},
+			isFirefox: function() {
+				return false;
+			},
+			isGecko: function() {
+				return false;
+			},
+			isIe: function() {
+				return false;
+			},
+			isIphone: function() {
+				return false;
+			},
+			isLinux: function() {
+				return false;
+			},
+			isMac: function() {
+				return false;
+			},
+			isMobile: function() {
+				return false;
+			},
+			isMozilla: function() {
+				return false;
+			},
+			isOpera: function() {
+				return false;
+			},
+			isRtf: function() {
+				return false;
+			},
+			isSafari: function() {
+				return false;
+			},
+			isSun: function() {
+				return false;
+			},
+			isWebKit: function() {
+				return false;
+			},
+			isWindows: function() {
+				return false;
+			}
+		};
+
+		Liferay.Data = Liferay.Data || {};
+
+		Liferay.Data.ICONS_INLINE_SVG = true;
+
+		Liferay.Data.NAV_SELECTOR = '#navigation';
+
+		Liferay.Data.NAV_SELECTOR_MOBILE = '#navigationCollapse';
+
+		Liferay.Data.isCustomizationView = function() {
+			return false;
+		};
+
+		Liferay.Data.notices = [
+			
+		];
+
+		(function () {
+			var available = {};
+
+			var direction = {};
+
+			
+
+				available['en_US'] = 'English\x20\x28United\x20States\x29';
+				direction['en_US'] = 'ltr';
+
+			
+
+				available['or_IN'] = 'Odia\x20\x28India\x29';
+				direction['or_IN'] = 'ltr';
+
+			
+
+				available['gu_IN'] = 'Gujarati\x20\x28India\x29';
+				direction['gu_IN'] = 'ltr';
+
+			
+
+				available['hi_IN'] = 'Hindi\x20\x28India\x29';
+				direction['hi_IN'] = 'ltr';
+
+			
+
+				available['kn_IN'] = 'Kannada\x20\x28India\x29';
+				direction['kn_IN'] = 'ltr';
+
+			
+
+				available['mr_IN'] = 'Marathi\x20\x28India\x29';
+				direction['mr_IN'] = 'ltr';
+
+			
+
+				available['ta_IN'] = 'Tamil\x20\x28India\x29';
+				direction['ta_IN'] = 'ltr';
+
+			
+
+				available['te_IN'] = 'Telugu\x20\x28India\x29';
+				direction['te_IN'] = 'ltr';
+
+			
+
+			Liferay.Language = {
+				_cache: {},
+				available,
+				direction,
+				get: function(key) {
+					let value = Liferay.Language._cache[key];
+
+					if (value === undefined) {
+						value = key;
+					}
+
+					return value;
+				}
+			};
+		})();
+
+		var featureFlags = {"LPD-10964":false,"LPS-193884":false,"LPS-178642":false,"LPD-11253":false,"LPS-193005":false,"LPS-187284":false,"LPS-187285":false,"LPD-11377":false,"LPD-10562":false,"LPS-114786":false,"COMMERCE-8087":true,"LPD-13311":true,"LRAC-10757":false,"LPS-180090":false,"LPS-178052":false,"LPS-189856":false,"LPD-21414":false,"LPD-19465":false,"LPS-187436":false,"LPS-185892":false,"LPS-186620":false,"LPS-184404":false,"LPS-198183":false,"LPD-15729":false,"LPS-171364":false,"LPD-6378":false,"LPS-153714":false,"LPS-96845":false,"LPD-11848":false,"LPS-170670":false,"LPS-169981":false,"LPS-153839":false,"LPS-177027":false,"LPD-11003":false,"LPD-19843":false,"LPS-114700":false,"LPS-135430":false,"LPS-134060":false,"LPS-164563":false,"LPS-122920":false,"LPD-27222":false,"LPS-199086":false,"LPS-203351":false,"LPD-10588":false,"LPD-13778":true,"LPD-11313":false,"LPD-6368":false,"LPD-10701":false,"LPD-10703":false,"LPS-202104":false,"LPD-19955":false,"LPS-187142":false,"LPD-15596":false,"LPD-11232":false,"LPS-196935":true,"LPS-176691":false,"LPS-197909":false,"LPD-21636":false,"LPD-29516":false,"COMMERCE-8949":false,"LPD-25799":false,"LPD-11228":false,"LPD-30087":false,"LPS-153813":false,"LPS-174455":false,"LPD-17809":false,"COMMERCE-13024":false,"LPS-165482":false,"LPS-193551":false,"LPS-197477":false,"LPD-17965":false,"LPS-174816":false,"LPS-186360":false,"LPS-153332":false,"LPS-179669":false,"LPS-174417":false,"LPD-11147":false,"LPD-31212":false,"LPD-18221":false,"LPS-155284":false,"LRAC-15017":false,"LPD-19870":false,"LPS-200108":false,"LPS-159643":false,"LPS-161033":false,"LPS-164948":false,"LPS-188058":false,"LPS-129412":false,"LPD-24498":false,"LPD-21265":false,"LPS-169837":false,"LPD-20379":false,"LPD-20213":false};
+
+		Liferay.FeatureFlags = Object.keys(featureFlags).reduce(
+			(acc, key) => ({
+				...acc, [key]: featureFlags[key] === 'true' || featureFlags[key] === true
+			}), {}
+		);
+
+		Liferay.PortletKeys = {
+			DOCUMENT_LIBRARY: 'com_liferay_document_library_web_portlet_DLPortlet',
+			DYNAMIC_DATA_MAPPING: 'com_liferay_dynamic_data_mapping_web_portlet_DDMPortlet',
+			ITEM_SELECTOR: 'com_liferay_item_selector_web_portlet_ItemSelectorPortlet'
+		};
+
+		Liferay.PropsValues = {
+			JAVASCRIPT_SINGLE_PAGE_APPLICATION_TIMEOUT: 0,
+			UPLOAD_SERVLET_REQUEST_IMPL_MAX_SIZE: 209715200000000
+		};
+
+		Liferay.ThemeDisplay = {
+
+			
+
+			
+				getLayoutId: function() {
+					return '308';
+				},
+
+				
+
+				getLayoutRelativeControlPanelURL: function() {
+					return '/group/oil-engines-ltd/~/control_panel/manage';
+				},
+
+				getLayoutRelativeURL: function() {
+					return '/about-us/leadership';
+				},
+				getLayoutURL: function() {
+					return 'https://www.kirloskaroilengines.com/about-us/leadership';
+				},
+				getParentLayoutId: function() {
+					return '290';
+				},
+				isControlPanel: function() {
+					return false;
+				},
+				isPrivateLayout: function() {
+					return 'false';
+				},
+				isVirtualLayout: function() {
+					return false;
+				},
+			
+
+			getBCP47LanguageId: function() {
+				return 'en-US';
+			},
+			getCanonicalURL: function() {
+
+				
+
+				return 'https\x3a\x2f\x2fwww\x2ekirloskaroilengines\x2ecom\x2fabout-us\x2fleadership';
+			},
+			getCDNBaseURL: function() {
+				return 'https://www.kirloskaroilengines.com';
+			},
+			getCDNDynamicResourcesHost: function() {
+				return '';
+			},
+			getCDNHost: function() {
+				return '';
+			},
+			getCompanyGroupId: function() {
+				return '20123';
+			},
+			getCompanyId: function() {
+				return '20097';
+			},
+			getDefaultLanguageId: function() {
+				return 'en_US';
+			},
+			getDoAsUserIdEncoded: function() {
+				return '';
+			},
+			getLanguageId: function() {
+				return 'en_US';
+			},
+			getParentGroupId: function() {
+				return '6887317';
+			},
+			getPathContext: function() {
+				return '';
+			},
+			getPathImage: function() {
+				return '/image';
+			},
+			getPathJavaScript: function() {
+				return '/o/frontend-js-web';
+			},
+			getPathMain: function() {
+				return '/c';
+			},
+			getPathThemeImages: function() {
+				return 'https://www.kirloskaroilengines.com/o/kirloskar-koel-theme/images';
+			},
+			getPathThemeRoot: function() {
+				return '/o/kirloskar-koel-theme';
+			},
+			getPlid: function() {
+				return '7020';
+			},
+			getPortalURL: function() {
+				return 'https://www.kirloskaroilengines.com';
+			},
+			getRealUserId: function() {
+				return '20102';
+			},
+			getRemoteAddr: function() {
+				return '10.11.1.142';
+			},
+			getRemoteHost: function() {
+				return '10.11.1.142';
+			},
+			getScopeGroupId: function() {
+				return '6887317';
+			},
+			getScopeGroupIdOrLiveGroupId: function() {
+				return '6887317';
+			},
+			getSessionId: function() {
+				return '';
+			},
+			getSiteAdminURL: function() {
+				return 'https://www.kirloskaroilengines.com/group/oil-engines-ltd/~/control_panel/manage?p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view';
+			},
+			getSiteGroupId: function() {
+				return '6887317';
+			},
+			getURLControlPanel: function() {
+				return '/group/control_panel?refererPlid=7020';
+			},
+			getURLHome: function() {
+				return 'https\x3a\x2f\x2fwww\x2ekirloskaroilengines\x2ecom\x2fweb\x2fguest\x2fhome';
+			},
+			getUserEmailAddress: function() {
+				return '';
+			},
+			getUserId: function() {
+				return '20102';
+			},
+			getUserName: function() {
+				return '';
+			},
+			isAddSessionIdToURL: function() {
+				return false;
+			},
+			isImpersonated: function() {
+				return false;
+			},
+			isSignedIn: function() {
+				return false;
+			},
+
+			isStagedPortlet: function() {
+				
+					
+						return false;
+					
+				
+			},
+
+			isStateExclusive: function() {
+				return false;
+			},
+			isStateMaximized: function() {
+				return false;
+			},
+			isStatePopUp: function() {
+				return false;
+			}
+		};
+
+		var themeDisplay = Liferay.ThemeDisplay;
+
+		Liferay.AUI = {
+
+			
+
+			getCombine: function() {
+				return true;
+			},
+			getComboPath: function() {
+				return '/combo/?browserId=other&minifierType=&languageId=en_US&t=1789134608167&';
+			},
+			getDateFormat: function() {
+				return '%m/%d/%Y';
+			},
+			getEditorCKEditorPath: function() {
+				return '/o/frontend-editor-ckeditor-web';
+			},
+			getFilter: function() {
+				var filter = 'raw';
+
+				
+					
+						filter = 'min';
+					
+					
+
+				return filter;
+			},
+			getFilterConfig: function() {
+				var instance = this;
+
+				var filterConfig = null;
+
+				if (!instance.getCombine()) {
+					filterConfig = {
+						replaceStr: '.js' + instance.getStaticResourceURLParams(),
+						searchExp: '\\.js$'
+					};
+				}
+
+				return filterConfig;
+			},
+			getJavaScriptRootPath: function() {
+				return '/o/frontend-js-web';
+			},
+			getPortletRootPath: function() {
+				return '/html/portlet';
+			},
+			getStaticResourceURLParams: function() {
+				return '?browserId=other&minifierType=&languageId=en_US&t=1789134608167';
+			}
+		};
+
+		Liferay.authToken = 'g2gyJxek';
+
+		
+
+		Liferay.currentURL = '\x2fabout-us\x2fleadership';
+		Liferay.currentURLEncoded = '\x252Fabout-us\x252Fleadership';
+	// ]]>
+</script>
+
+<script data-senna-track="temporary" type="text/javascript">window.__CONFIG__= {basePath: '',combine: true, defaultURLParams: null, explainResolutions: false, exposeGlobal: false, logLevel: 'warn', moduleType: 'module', namespace:'Liferay', nonce: '', reportMismatchedAnonymousModules: 'warn', resolvePath: '/o/js_resolve_modules', url: '/combo/?browserId=other&minifierType=js&languageId=en_US&t=1789134608167&', waitTimeout: 60000};</script><script data-senna-track="permanent" src="/o/frontend-js-loader-modules-extender/loader.js?&mac=9WaMmhziBCkScHZwrrVcOR7VZF4=&browserId=other&languageId=en_US&minifierType=js" type="text/javascript"></script><script data-senna-track="permanent" src="/combo?browserId=other&minifierType=js&languageId=en_US&t=1789134608167&/o/frontend-js-aui-web/aui/aui/aui-min.js&/o/frontend-js-aui-web/liferay/modules.js&/o/frontend-js-aui-web/liferay/aui_sandbox.js&/o/frontend-js-aui-web/aui/attribute-base/attribute-base-min.js&/o/frontend-js-aui-web/aui/attribute-complex/attribute-complex-min.js&/o/frontend-js-aui-web/aui/attribute-core/attribute-core-min.js&/o/frontend-js-aui-web/aui/attribute-observable/attribute-observable-min.js&/o/frontend-js-aui-web/aui/attribute-extras/attribute-extras-min.js&/o/frontend-js-aui-web/aui/event-custom-base/event-custom-base-min.js&/o/frontend-js-aui-web/aui/event-custom-complex/event-custom-complex-min.js&/o/frontend-js-aui-web/aui/oop/oop-min.js&/o/frontend-js-aui-web/aui/aui-base-lang/aui-base-lang-min.js&/o/frontend-js-aui-web/liferay/dependency.js&/o/frontend-js-aui-web/liferay/util.js&/o/oauth2-provider-web/js/liferay.js&/o/frontend-js-web/liferay/dom_task_runner.js&/o/frontend-js-web/liferay/events.js&/o/frontend-js-web/liferay/lazy_load.js&/o/frontend-js-web/liferay/liferay.js&/o/frontend-js-web/liferay/global.bundle.js&/o/frontend-js-web/liferay/portlet.js&/o/frontend-js-web/liferay/workflow.js" type="text/javascript"></script>
+<script data-senna-track="temporary" type="text/javascript">window.Liferay = Liferay || {}; window.Liferay.OAuth2 = {getAuthorizeURL: function() {return 'https://www.kirloskaroilengines.com/o/oauth2/authorize';}, getBuiltInRedirectURL: function() {return 'https://www.kirloskaroilengines.com/o/oauth2/redirect';}, getIntrospectURL: function() { return 'https://www.kirloskaroilengines.com/o/oauth2/introspect';}, getTokenURL: function() {return 'https://www.kirloskaroilengines.com/o/oauth2/token';}, getUserAgentApplication: function(externalReferenceCode) {return Liferay.OAuth2._userAgentApplications[externalReferenceCode];}, _userAgentApplications: {}}</script><script data-senna-track="temporary" type="text/javascript">try {var MODULE_MAIN='calendar-web@5.0.98/index';var MODULE_PATH='/o/calendar-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			calendar: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-calendar-a11y': {
+						path: 'calendar_a11y.js',
+						requires: ['calendar'],
+					},
+					'liferay-calendar-container': {
+						path: 'calendar_container.js',
+						requires: [
+							'aui-alert',
+							'aui-base',
+							'aui-component',
+							'liferay-portlet-base',
+						],
+					},
+					'liferay-calendar-date-picker-sanitizer': {
+						path: 'date_picker_sanitizer.js',
+						requires: ['aui-base'],
+					},
+					'liferay-calendar-interval-selector': {
+						path: 'interval_selector.js',
+						requires: ['aui-base', 'liferay-portlet-base'],
+					},
+					'liferay-calendar-interval-selector-scheduler-event-link': {
+						path: 'interval_selector_scheduler_event_link.js',
+						requires: ['aui-base', 'liferay-portlet-base'],
+					},
+					'liferay-calendar-list': {
+						path: 'calendar_list.js',
+						requires: [
+							'aui-template-deprecated',
+							'liferay-scheduler',
+						],
+					},
+					'liferay-calendar-message-util': {
+						path: 'message_util.js',
+						requires: ['liferay-util-window'],
+					},
+					'liferay-calendar-recurrence-converter': {
+						path: 'recurrence_converter.js',
+						requires: [],
+					},
+					'liferay-calendar-recurrence-dialog': {
+						path: 'recurrence.js',
+						requires: [
+							'aui-base',
+							'liferay-calendar-recurrence-util',
+						],
+					},
+					'liferay-calendar-recurrence-util': {
+						path: 'recurrence_util.js',
+						requires: ['aui-base', 'liferay-util-window'],
+					},
+					'liferay-calendar-reminders': {
+						path: 'calendar_reminders.js',
+						requires: ['aui-base'],
+					},
+					'liferay-calendar-remote-services': {
+						path: 'remote_services.js',
+						requires: [
+							'aui-base',
+							'aui-component',
+							'liferay-calendar-util',
+							'liferay-portlet-base',
+						],
+					},
+					'liferay-calendar-session-listener': {
+						path: 'session_listener.js',
+						requires: ['aui-base', 'liferay-scheduler'],
+					},
+					'liferay-calendar-simple-color-picker': {
+						path: 'simple_color_picker.js',
+						requires: ['aui-base', 'aui-template-deprecated'],
+					},
+					'liferay-calendar-simple-menu': {
+						path: 'simple_menu.js',
+						requires: [
+							'aui-base',
+							'aui-template-deprecated',
+							'event-outside',
+							'event-touch',
+							'widget-modality',
+							'widget-position',
+							'widget-position-align',
+							'widget-position-constrain',
+							'widget-stack',
+							'widget-stdmod',
+						],
+					},
+					'liferay-calendar-util': {
+						path: 'calendar_util.js',
+						requires: [
+							'aui-datatype',
+							'aui-io',
+							'aui-scheduler',
+							'aui-toolbar',
+							'autocomplete',
+							'autocomplete-highlighters',
+						],
+					},
+					'liferay-scheduler': {
+						path: 'scheduler.js',
+						requires: [
+							'async-queue',
+							'aui-datatype',
+							'aui-scheduler',
+							'dd-plugin',
+							'liferay-calendar-a11y',
+							'liferay-calendar-message-util',
+							'liferay-calendar-recurrence-converter',
+							'liferay-calendar-recurrence-util',
+							'liferay-calendar-util',
+							'liferay-scheduler-event-recorder',
+							'liferay-scheduler-models',
+							'promise',
+							'resize-plugin',
+						],
+					},
+					'liferay-scheduler-event-recorder': {
+						path: 'scheduler_event_recorder.js',
+						requires: [
+							'dd-plugin',
+							'liferay-calendar-util',
+							'resize-plugin',
+						],
+					},
+					'liferay-scheduler-models': {
+						path: 'scheduler_models.js',
+						requires: [
+							'aui-datatype',
+							'dd-plugin',
+							'liferay-calendar-util',
+						],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='contacts-web@5.0.61/index';var MODULE_PATH='/o/contacts-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			contactscenter: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-contacts-center': {
+						path: 'main.js',
+						requires: [
+							'aui-io-plugin-deprecated',
+							'aui-toolbar',
+							'autocomplete-base',
+							'datasource-io',
+							'json-parse',
+							'liferay-portlet-base',
+							'liferay-util-window',
+						],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='@liferay/document-library-web@6.0.188/index';var MODULE_PATH='/o/document-library-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			dl: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'document-library-upload-component': {
+						path: 'DocumentLibraryUpload.js',
+						requires: [
+							'aui-component',
+							'aui-data-set-deprecated',
+							'aui-overlay-manager-deprecated',
+							'aui-overlay-mask-deprecated',
+							'aui-parse-content',
+							'aui-progressbar',
+							'aui-template-deprecated',
+							'liferay-search-container',
+							'querystring-parse-simple',
+							'uploader',
+						],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='dynamic-data-mapping-web@5.0.108/index';var MODULE_PATH='/o/dynamic-data-mapping-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	const LiferayAUI = Liferay.AUI;
+
+	AUI().applyConfig({
+		groups: {
+			ddm: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: LiferayAUI.getFilterConfig(),
+				modules: {
+					'liferay-ddm-form': {
+						path: 'ddm_form.js',
+						requires: [
+							'aui-base',
+							'aui-datatable',
+							'aui-datatype',
+							'aui-image-viewer',
+							'aui-parse-content',
+							'aui-set',
+							'aui-sortable-list',
+							'json',
+							'liferay-form',
+							'liferay-map-base',
+							'liferay-translation-manager',
+							'liferay-util-window',
+						],
+					},
+					'liferay-portlet-dynamic-data-mapping': {
+						condition: {
+							trigger: 'liferay-document-library',
+						},
+						path: 'main.js',
+						requires: [
+							'arraysort',
+							'aui-form-builder-deprecated',
+							'aui-form-validator',
+							'aui-map',
+							'aui-text-unicode',
+							'json',
+							'liferay-menu',
+							'liferay-translation-manager',
+							'liferay-util-window',
+							'text',
+						],
+					},
+					'liferay-portlet-dynamic-data-mapping-custom-fields': {
+						condition: {
+							trigger: 'liferay-document-library',
+						},
+						path: 'custom_fields.js',
+						requires: ['liferay-portlet-dynamic-data-mapping'],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='exportimport-web@5.0.92/index';var MODULE_PATH='/o/exportimport-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			exportimportweb: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-export-import-export-import': {
+						path: 'main.js',
+						requires: [
+							'aui-datatype',
+							'aui-dialog-iframe-deprecated',
+							'aui-modal',
+							'aui-parse-content',
+							'aui-toggler',
+							'liferay-portlet-base',
+							'liferay-util-window',
+						],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='frontend-editor-alloyeditor-web@5.0.51/index';var MODULE_PATH='/o/frontend-editor-alloyeditor-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			alloyeditor: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-alloy-editor': {
+						path: 'alloyeditor.js',
+						requires: [
+							'aui-component',
+							'liferay-portlet-base',
+							'timers',
+						],
+					},
+					'liferay-alloy-editor-source': {
+						path: 'alloyeditor_source.js',
+						requires: [
+							'aui-debounce',
+							'liferay-fullscreen-source-editor',
+							'liferay-source-editor',
+							'plugin',
+						],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='frontend-js-components-web@2.0.72/index';var MODULE_PATH='/o/frontend-js-components-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			components: {
+
+				// eslint-disable-next-line
+				mainModule: MODULE_MAIN,
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='@liferay/frontend-js-react-web@5.0.45/index';var MODULE_PATH='/o/frontend-js-react-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			react: {
+
+				// eslint-disable-next-line
+				mainModule: MODULE_MAIN,
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='@liferay/frontend-js-state-web@1.0.25/index';var MODULE_PATH='/o/frontend-js-state-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			state: {
+
+				// eslint-disable-next-line
+				mainModule: MODULE_MAIN,
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='portal-search-web@6.0.139/index';var MODULE_PATH='/o/portal-search-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			search: {
+				base: MODULE_PATH + '/js/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-search-date-facet': {
+						path: 'date_facet.js',
+						requires: ['aui-form-validator'],
+					},
+				},
+				root: MODULE_PATH + '/js/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='portal-workflow-kaleo-designer-web@5.0.137/index';var MODULE_PATH='/o/portal-workflow-kaleo-designer-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			'kaleo-designer': {
+				base: MODULE_PATH + '/designer/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-kaleo-designer-autocomplete-util': {
+						path: 'autocomplete_util.js',
+						requires: ['autocomplete', 'autocomplete-highlighters'],
+					},
+					'liferay-kaleo-designer-definition-diagram-controller': {
+						path: 'definition_diagram_controller.js',
+						requires: [
+							'liferay-kaleo-designer-field-normalizer',
+							'liferay-kaleo-designer-utils',
+						],
+					},
+					'liferay-kaleo-designer-dialogs': {
+						path: 'dialogs.js',
+						requires: ['liferay-util-window'],
+					},
+					'liferay-kaleo-designer-editors': {
+						path: 'editors.js',
+						requires: [
+							'aui-ace-editor',
+							'aui-ace-editor-mode-xml',
+							'aui-base',
+							'aui-datatype',
+							'aui-node',
+							'liferay-kaleo-designer-autocomplete-util',
+							'liferay-kaleo-designer-utils',
+						],
+					},
+					'liferay-kaleo-designer-field-normalizer': {
+						path: 'field_normalizer.js',
+						requires: ['liferay-kaleo-designer-remote-services'],
+					},
+					'liferay-kaleo-designer-nodes': {
+						path: 'nodes.js',
+						requires: [
+							'aui-datatable',
+							'aui-datatype',
+							'aui-diagram-builder',
+							'liferay-kaleo-designer-editors',
+							'liferay-kaleo-designer-utils',
+						],
+					},
+					'liferay-kaleo-designer-remote-services': {
+						path: 'remote_services.js',
+						requires: ['aui-io'],
+					},
+					'liferay-kaleo-designer-templates': {
+						path: 'templates.js',
+						requires: ['aui-tpl-snippets-deprecated'],
+					},
+					'liferay-kaleo-designer-utils': {
+						path: 'utils.js',
+						requires: [],
+					},
+					'liferay-kaleo-designer-xml-definition': {
+						path: 'xml_definition.js',
+						requires: [
+							'aui-base',
+							'aui-component',
+							'dataschema-xml',
+							'datatype-xml',
+						],
+					},
+					'liferay-kaleo-designer-xml-definition-serializer': {
+						path: 'xml_definition_serializer.js',
+						requires: ['escape', 'liferay-kaleo-designer-xml-util'],
+					},
+					'liferay-kaleo-designer-xml-util': {
+						path: 'xml_util.js',
+						requires: ['aui-base'],
+					},
+					'liferay-portlet-kaleo-designer': {
+						path: 'main.js',
+						requires: [
+							'aui-ace-editor',
+							'aui-ace-editor-mode-xml',
+							'aui-tpl-snippets-deprecated',
+							'dataschema-xml',
+							'datasource',
+							'datatype-xml',
+							'event-valuechange',
+							'io-form',
+							'liferay-kaleo-designer-autocomplete-util',
+							'liferay-kaleo-designer-editors',
+							'liferay-kaleo-designer-nodes',
+							'liferay-kaleo-designer-remote-services',
+							'liferay-kaleo-designer-utils',
+							'liferay-kaleo-designer-xml-util',
+							'liferay-util-window',
+						],
+					},
+				},
+				root: MODULE_PATH + '/designer/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='staging-processes-web@5.0.60/index';var MODULE_PATH='/o/staging-processes-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			stagingprocessesweb: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-staging-processes-export-import': {
+						path: 'main.js',
+						requires: [
+							'aui-datatype',
+							'aui-dialog-iframe-deprecated',
+							'aui-modal',
+							'aui-parse-content',
+							'aui-toggler',
+							'liferay-portlet-base',
+							'liferay-util-window',
+						],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}</script>
+
+
+
+
+<script type="text/javascript" data-senna-track="temporary">
+	// <![CDATA[
+		
+			
+				
+		
+
+		
+	// ]]>
+</script>
+
+
+
+
+
+	
+		
+
+			
+
+			
+		
+		
+
+
+
+	
+		
+
+			
+
+			
+		
+		
+
+
+
+	
+		
+
+			
+
+			
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link class="lfr-css-file" data-senna-track="temporary" href="https://www.kirloskaroilengines.com/o/kirloskar-koel-theme/css/main.css?browserId=other&amp;themeId=kirloskarkoeltheme_WAR_kirloskarkoeltheme&amp;minifierType=css&amp;languageId=en_US&amp;t=1793016790000" id="liferayThemeCSS" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+
+	<style data-senna-track="temporary" type="text/css">
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+	</style>
+
+
+<style data-senna-track="temporary" type="text/css">
+	:root {
+		--font-weight-bold: 700;
+		--border-grey1-color: #6E6E6E;
+		--background-accent-darker: #934621;
+		--border-accent-color: #C37C5B;
+		--border-secondary-color: #19988B;
+		--border-grey-color: #58595B;
+		--accent-color: #C37C5B;
+		--border-lightgrey-color: #707070;
+		--text-color-white: #ffffff;
+		--font-weight-light: 300;
+		--spacing-small: 10;
+		--spacing-bigLarge: 140;
+		--font-weight-normal: 400;
+		--spacing-zero: 0;
+		--text-color: #58595B;
+		--border-white-color: #ffffff;
+		--primary-color: #19988B;
+		--background-grey: #EFEFEF;
+		--background-white: #ffffff;
+		--background-secondary: #58595B;
+		--border-grey2-color: #EFEFEF;
+		--secondary-color: #58595B;
+		--text-color-firefly: #062A30;
+		--border-primary-color: #19988B;
+		--tertiary-color: #19988B;
+		--background-firefly: #062A30;
+		--font-weight-medium: 500;
+		--font-weight-semibold: 600;
+		--background-accent: #C37C5B;
+		--spacing-large: 30;
+		--background-primary: #19988B;
+		--spacing-medium: 20;
+		--primary-font: 'Heebo', sans-serif;
+		--body-text-size: 17px;
+		--spacing-extraLarge: 40;
+		--border-firefly-color: #062A30;
+	}
+	:root {
+		--spacing-large: 30px;
+		--spacing-medium: 20px;
+		--spacing-small: 10px;
+		--spacing-bigLarge: 140px;
+		--body-text-size: 17px;
+		--spacing-extraLarge: 40px;
+	}
+</style>
+<link data-senna-track="temporary" href="/o/layout-common-styles/main.css?plid=7020&segmentsExperienceId=7090355&t=17810037936721791292158599" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" data-senna-track="temporary">
+	if (window.Analytics) {
+		window._com_liferay_document_library_analytics_isViewFileEntry = false;
+	}
+</script>
+
+<script type="text/javascript">
+Liferay.on(
+	'ddmFieldBlur', function(event) {
+		if (window.Analytics) {
+			Analytics.send(
+				'fieldBlurred',
+				'Form',
+				{
+					fieldName: event.fieldName,
+					focusDuration: event.focusDuration,
+					formId: event.formId,
+					formPageTitle: event.formPageTitle,
+					page: event.page,
+					title: event.title
+				}
+			);
+		}
+	}
+);
+
+Liferay.on(
+	'ddmFieldFocus', function(event) {
+		if (window.Analytics) {
+			Analytics.send(
+				'fieldFocused',
+				'Form',
+				{
+					fieldName: event.fieldName,
+					formId: event.formId,
+					formPageTitle: event.formPageTitle,
+					page: event.page,
+					title:event.title
+				}
+			);
+		}
+	}
+);
+
+Liferay.on(
+	'ddmFormPageShow', function(event) {
+		if (window.Analytics) {
+			Analytics.send(
+				'pageViewed',
+				'Form',
+				{
+					formId: event.formId,
+					formPageTitle: event.formPageTitle,
+					page: event.page,
+					title: event.title
+				}
+			);
+		}
+	}
+);
+
+Liferay.on(
+	'ddmFormSubmit', function(event) {
+		if (window.Analytics) {
+			Analytics.send(
+				'formSubmitted',
+				'Form',
+				{
+					formId: event.formId,
+					title: event.title
+				}
+			);
+		}
+	}
+);
+
+Liferay.on(
+	'ddmFormView', function(event) {
+		if (window.Analytics) {
+			Analytics.send(
+				'formViewed',
+				'Form',
+				{
+					formId: event.formId,
+					title: event.title
+				}
+			);
+		}
+	}
+);
+
+</script><script>
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<script src="https://www.kirloskaroilengines.com/o/kirloskar-koel-theme/js/slick.min.js" defer></script>
+	<script src="https://www.kirloskaroilengines.com/o/kirloskar-koel-theme/js/select2.min.js" defer></script>
+	
+</head>
+
+<body class="other controls-visible  yui3-skin-sam signed-out public-page site">
+<!-- Google Tag Manager (noscript) --> 
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N8SLJ4QC" 
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> 
+<!-- End Google Tag Manager (noscript) --> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<nav class="quick-access-nav  d-none" id="akld_quickAccessNav">
+		<span class="hide-accessible">Navigation</span>
+		<ul>
+			
+				<li><a href="#main-content">skip-to-content</a></li>
+			
+
+			
+
+		</ul>
+	</nav>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid position-relative" id="wrapper">
+	<header class="header">
+      <div class="container">
+<nav aria-label="Site Pages" class="sort-pages modify-pages ax-nav-header" id="navigation" role="navigation">
+          <a href="https://www.kirloskaroilengines.com" class="logo" title=""
+            ><img
+              src="/image/layout_set_logo?img_id=7480228&amp;t=1791180325129"
+              alt=""
+          /></a>
+          <div class="d-flex align-items-center ax-right-navigation">
+          <div class="ax-navbar">
+            <!-- Links -->
+            <div class="ax-navbar-nav-wrap">
+              <div class="closebtn">Close Menu</div>
+              <ul class="ax-navbar-nav" role="menubar">
+
+                  <li class="selected ax-nav-item" id="layout_290" role="presentation">				
+
+                      <a class="ax-nav-link" href="javascript:void(0)" title="About Us"> About Us <i class="fa-solid fa-angle-down"></i></a>
+                      <div class="ax-mega-menu ax-navbar-tabbing">
+                        <div class="backbtn">Main menu</div>
+                        <div class="container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_journal_content_web_portlet_JournalContentPortlet_  portlet-static portlet-static-end portlet-barebone portlet-journal-content " id="p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_koelaboutUs_">
+		<span id="p_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_koelaboutUs"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_koelaboutUs">
+
+
+	<div class="portlet-content">
+
+		<div class="autofit-float autofit-row portlet-header">
+			<div class="autofit-col autofit-col-expand">
+				<h2 class="portlet-title-text">Koel AboutUs</h2>
+			</div>
+
+			<div class="autofit-col autofit-col-end">
+				<div class="autofit-section">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="visible-interaction">
+
+	
+
+	
+</div>				</div>
+			</div>
+		</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+			
+			
+				
+					
+					
+					
+					
+
+						
+
+						<div class="" data-fragments-editor-item-id="20132-7460160" data-fragments-editor-item-type="fragments-editor-mapped-item" >
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+		<div class="journal-content-article " data-analytics-asset-id="3667675" data-analytics-asset-title="Koel AboutUs" data-analytics-asset-type="web-content" data-analytics-web-content-resource-pk="7460160">
+			
+
+			<style>
+.ax-mega-menu .ax-menu-body .ax-menu-row #services .ax-menu-col .ax-menu-col-item .ax-menu-col-submenu a {
+    display: block;
+    color: var(--secondary-color);
+		margin-top: 5px;
+		text-decoration: underline !important;
+}
+.ax-mega-menu .ax-menu-body .ax-menu-row .ax-menu-col .ax-menu-col-item > a{
+	  color: var(--accent-color);
+}
+.ax-menu-col-submenu a {
+    color: #000;
+    text-decoration: none;
+}
+.ax-menu-col-submenu .custom-link {
+    color: #58595B !important;
+    text-decoration: none;
+}
+
+.ax-menu-col-submenu a:hover {
+    color: var(--primary-color) !important;
+}
+</style>
+					<div class="ax-menu-wrap">
+					<div class="ax-menu-body">
+						<div class="ax-menu-row">
+							<div class="ax-navbar-tabbing-items">
+								<ul>
+													
+												<li>
+													<a href="#aboutus" class="ax-navbar-tabbing-link text-uppercase active">
+														About Us
+													</a>
+											</li>
+								</ul>
+							</div>
+							<div class="ax-navbar-tabbing-content">
+
+										<div id="aboutus" class="ax-tab-content active">
+
+
+
+
+
+							               
+
+             
+
+											
+											<div class="ax-menu-header test">
+												
+                             <a href="/about-us" title="About Us" class="">
+							                 <h2>About Us</h2>
+						                 </a> 
+							          
+					            </div>
+											<div class="ax-tab-content-body">
+                                      
+                                      
+                                      
+                                      
+                                      
+													<ul class="ax-menu-col ">
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/about-us/our-values" class="ax-menu-col-item-link" title="Our Values" target="_self">Our Values</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/about-us/awards-recognition" class="ax-menu-col-item-link" title="Awards & Certifications" target="_self">Awards & Certifications</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/manufacturing-excellence" class="ax-menu-col-item-link" title="Manufacturing Excellence" target="_self">Manufacturing Excellence</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/about-us/board-of-director" class="ax-menu-col-item-link" title="Board of Directors" target="_self">Board of Directors</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/about-us/leadership" class="ax-menu-col-item-link" title="Leadership" target="_self">Leadership</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		
+																	</p>
+
+
+																</div>
+															</li>
+													</ul>
+											</div>
+											<div class="ax-tab-content-footer">
+													<ul>
+															<li>
+																<a href="" title=""></a>
+															</li>
+													</ul>
+											</div>
+										</div>
+							</div>
+						</div>
+					</div>
+				</div>
+<script>
+document.addEventListener("click", function (e) {
+    const link = e.target.closest(".redirect-link");
+    if (link) {
+        e.preventDefault();
+        window.location.href = link.dataset.url;
+    }
+});
+
+
+
+</script>
+
+
+			
+		</div>
+
+		
+
+	
+
+
+
+						</div>
+					
+				
+			
+		
+	
+
+
+
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+                        </div>
+                      </div>
+                  </li>
+
+
+                  <li class=" ax-nav-item" id="layout_80" role="presentation">				
+
+                      <a class="ax-nav-link" href="javascript:void(0)" title="Products"> Products <i class="fa-solid fa-angle-down"></i></a>
+                      <div class="ax-mega-menu ax-navbar-tabbing">
+                        <div class="backbtn">Main menu</div>
+                        <div class="container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_journal_content_web_portlet_JournalContentPortlet_  portlet-static portlet-static-end portlet-barebone portlet-journal-content " id="p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_products_">
+		<span id="p_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_products"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_products">
+
+
+	<div class="portlet-content">
+
+		<div class="autofit-float autofit-row portlet-header">
+			<div class="autofit-col autofit-col-expand">
+				<h2 class="portlet-title-text">Products</h2>
+			</div>
+
+			<div class="autofit-col autofit-col-end">
+				<div class="autofit-section">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="visible-interaction">
+
+	
+
+	
+</div>				</div>
+			</div>
+		</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+			
+			
+				
+					
+					
+					
+					
+
+						
+
+						<div class="" data-fragments-editor-item-id="20132-7475762" data-fragments-editor-item-type="fragments-editor-mapped-item" >
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+		<div class="journal-content-article " data-analytics-asset-id="1766668" data-analytics-asset-title="Products" data-analytics-asset-type="web-content" data-analytics-web-content-resource-pk="7475762">
+			
+
+			<style>
+.ax-mega-menu .ax-menu-body .ax-menu-row #services .ax-menu-col .ax-menu-col-item .ax-menu-col-submenu a {
+    display: block;
+    color: var(--secondary-color);
+		margin-top: 5px;
+		text-decoration: underline !important;
+}
+.ax-mega-menu .ax-menu-body .ax-menu-row .ax-menu-col .ax-menu-col-item > a{
+	  color: var(--accent-color);
+}
+.ax-menu-col-submenu a {
+    color: #000;
+    text-decoration: none;
+}
+.ax-menu-col-submenu .custom-link {
+    color: #58595B !important;
+    text-decoration: none;
+}
+
+.ax-menu-col-submenu a:hover {
+    color: var(--primary-color) !important;
+}
+</style>
+					<div class="ax-menu-wrap">
+					<div class="ax-menu-body">
+						<div class="ax-menu-row">
+							<div class="ax-navbar-tabbing-items">
+								<ul>
+													
+												<li>
+													<a href="#powergen" class="ax-navbar-tabbing-link text-uppercase active">
+														Powergen
+													</a>
+											</li>
+													
+												<li>
+													<a href="#industrial" class="ax-navbar-tabbing-link text-uppercase ">
+														Industrial
+													</a>
+											</li>
+													
+												<li>
+													<a href="#fluiddynamics" class="ax-navbar-tabbing-link text-uppercase ">
+														Fluid Dynamics
+													</a>
+											</li>
+													
+												<li>
+													
+													<a href="#aftermarket" data-url="/productspage"
+       												class="ax-navbar-tabbing-link redirect-link text-uppercase">
+        														After Market
+
+														</a>
+											</li>
+								</ul>
+							</div>
+							<div class="ax-navbar-tabbing-content">
+
+										<div id="powergen" class="ax-tab-content active">
+
+
+
+
+
+							               
+
+             
+
+											
+											<div class="ax-menu-header test">
+												
+                             <a href="/products/power-gen" title="Powergen" class="">
+							                 <h2>Powergen</h2>
+						                 </a> 
+							          
+					            </div>
+											<div class="ax-tab-content-body">
+																			 	
+
+																			 	
+
+																			 	
+
+																			 	
+
+																			 	
+
+																			 	
+
+																			 	
+
+																			 	
+
+																			 	
+
+													<ul class="ax-menu-col powergenTab">
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/power-gen/advanced-manufactured-gensets" class="ax-menu-col-item-link" title="Advanced Manufactured Gensets" target="_self">Advanced Manufactured Gensets</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Discover the innovative world of advanced generator sets (gensets). These reliable power solutions meet modern energy demands, ensuring you have energy for everything from construction sites to emergency backups.
+																	</p>
+
+
+																		<ul class="ax-menu-col-sub-items">
+																				<li class="ax-menu-col-sub-item">
+																					<a href="/products/all-products?product=power-gen&productCategory=sentinel" class="" title="Sentinel" target="_self">Sentinel</a>
+																				</li>
+																				<li class="ax-menu-col-sub-item">
+																					<a href="/products/all-products?product=power-gen&productCategory=optiprime" class="" title="Optiprime" target="_self">Optiprime</a>
+																				</li>
+																				<li class="ax-menu-col-sub-item">
+																					<a href="/products/all-products?product=power-gen&productCategory=hybrid" class="" title="Hybrid" target="_self">Hybrid</a>
+																				</li>
+																				<li class="ax-menu-col-sub-item">
+																					<a href="/products/all-products" class="" title="All Products" target="_self">All Products</a>
+																				</li>
+																				<li class="ax-menu-col-sub-item">
+																					<a href="/products/all-products?product=power-gen&productCategory=png" class="" title="PNG" target="_self">PNG</a>
+																				</li>
+																				<li class="ax-menu-col-sub-item">
+																					<a href="/microgrid-hybrid-solution" class="" title="Microgrid" target="_self">Microgrid</a>
+																				</li>
+																		</ul>
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/power-gen/standard-gensets" class="ax-menu-col-item-link" title="Kirloskar Powergen Standard Gensets" target="_self">Kirloskar Powergen Standard Gensets</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Gensets engineered for proven performance and durability, offering reliable power through diesel powered engines. Trusted choice for industries, commercial facilities and critical operations worldwide.
+																	</p>
+
+
+																		<ul class="ax-menu-col-sub-items">
+																				<li class="ax-menu-col-sub-item">
+																					<a href="/products/all-products?product=power-gen&productCategory=cpcbiv" class="" title="CPCBIV+" target="_self">CPCBIV+</a>
+																				</li>
+																				<li class="ax-menu-col-sub-item">
+																					<a href="/products/all-products?product=power-gen&productCategory=hhp" class="" title="HHP" target="_self">HHP</a>
+																				</li>
+																				<li class="ax-menu-col-sub-item">
+																					<a href="/global-genset-solutions" class="" title="Global Genset" target="_self">Global Genset</a>
+																				</li>
+																		</ul>
+																</div>
+															</li>
+													</ul>
+											</div>
+											<div class="ax-tab-content-footer">
+													<span>
+														Care
+													</span>
+													<ul>
+															<li>
+																<a href="/productspage/genuine-parts" title="Genuine Spares">Genuine Spares</a>
+															</li>
+															<li>
+																<a href="/nulife" title="Refurbishment Request">Refurbishment Request</a>
+															</li>
+															<li>
+																<a href="/care/dealer-locator" title="Dealer Locator">Dealer Locator</a>
+															</li>
+															<li>
+																<a href="/web/oil-engines-ltd/contact-us#brochureFormLabel" title="Get In Touch">Get In Touch</a>
+															</li>
+													</ul>
+											</div>
+										</div>
+
+										<div id="industrial" class="ax-tab-content ">
+
+
+
+
+
+							               
+
+             
+
+											
+											<div class="ax-menu-header test">
+												
+                             <a href="/products/industrial" title="Industrial" class="">
+							                 <h2>Industrial</h2>
+						                 </a> 
+							          
+					            </div>
+											<div class="ax-tab-content-body">
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+													<ul class="ax-menu-col ">
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/industrial/construction" class="ax-menu-col-item-link" title="Construction" target="_self">Construction</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Earth Moving Equipments | Concrete Segment | Material Handling Equipments | Niche Applications
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/industrial/mining" class="ax-menu-col-item-link" title="Mining" target="_self">Mining</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Mining Applications | Compressor Applications | Crusher Applications
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/industrial/defence" class="ax-menu-col-item-link" title="Defence" target="_self">Defence</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Military Grade DG Sets | Industrial Re-Powering |Alternate and Hybrid Power Solutions – Micro Grid, Hydrogen, PNG, BESS |  Precision Engineering Equipments
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/industrial/marine" class="ax-menu-col-item-link" title="Marine" target="_self">Marine</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Propulsion Engines | Auxiliary Engines | Marine Generator Sets – Main or Auxiliary – 50Hz & 60Hz |Specialised Gensets (for Strategic Platforms)
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/industrial/nuclear" class="ax-menu-col-item-link" title="Nuclear" target="_self">Nuclear</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Emergency DG sets (EDG) | Design Extension Condition DG sets (DEC DG) | Engines for Pump sets | Electrical Equipment for Substation & Auxiliary stations
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/industrial/agriculture" class="ax-menu-col-item-link" title="Agriculture" target="_self">Agriculture</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Tractors | Harvestors | Sprayers | Farm Mechanisation
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/industrial/fluid-handling" class="ax-menu-col-item-link" title="Fluid Handling" target="_self">Fluid Handling</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Fire Fighting Applications – Radiator (Water)-Cooled Engines |Heat Exchanger (HE) Cooled |FM/UL Approved Engines |Air-Cooled Engines
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/industrial/railways" class="ax-menu-col-item-link" title="Railways" target="_self">Railways</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Power Car Solutions| Locomotive Auxiliary Power Units (APU) | Customised Gensets for Maintenance| Customised Engines for Track Utility| Specialised Gensets for Railway Application
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/industrial/oil-and-gas" class="ax-menu-col-item-link" title="Oil & Gas" target="_self">Oil & Gas</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Diesel Gensets | Gas Gensets | Alternate and Hybrid Power Solutions – Micro Grid, Hydrogen, BESS | Fire Fighting Solutions | Intelligent Power Monitoring & Control
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="javascript:void(0)" class="ax-menu-col-item-link" title="Firefighting Engineering Calculator" target="_self">Firefighting Engineering Calculator</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		<a class="custom-link" href="https://ffcalculator.kirloskar.com/EngineDeration/Deration" target="_blank">Engine Deration</a> | <a class="custom-link" href="https://ffcalculator.kirloskar.com/ExhaustPressure/Pressure" target="_blank">Exhaust Pressure</a> | <a class="custom-link" href="https://ffcalculator.kirloskar.com/PumpRoom/Ventilation" target="_blank">Pump Room Ventilation</a> | <a class="custom-link" href="https://ffcalculator.kirloskar.com/RawWater/Temperature" target="_blank">Raw Water Temperature Rise</a>
+																	</p>
+
+
+																</div>
+															</li>
+													</ul>
+											</div>
+											<div class="ax-tab-content-footer">
+													<span>
+														Care
+													</span>
+													<ul>
+															<li>
+																<a href="" title="GENUINE SPARES">GENUINE SPARES</a>
+															</li>
+															<li>
+																<a href="" title="REFURBISHMENT REQUEST">REFURBISHMENT REQUEST</a>
+															</li>
+															<li>
+																<a href="" title="DEALER LOCATOR">DEALER LOCATOR</a>
+															</li>
+															<li>
+																<a href="/web/oil-engines-ltd/contact-us#brochureFormLabel" title="GET IN TOUCH">GET IN TOUCH</a>
+															</li>
+													</ul>
+											</div>
+										</div>
+
+										<div id="fluiddynamics" class="ax-tab-content ">
+
+
+
+
+
+							               
+
+             
+
+											
+											<div class="ax-menu-header test">
+												
+                             <a href="/products/all-products?product=fluid-dynamics" title="Fluid Dynamics" class="">
+							                 <h2>Fluid Dynamics</h2>
+						                 </a> 
+							          
+					            </div>
+											<div class="ax-tab-content-body">
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+													<ul class="ax-menu-col ">
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/all-products?product=fluid-dynamics&productCategory=residential-pumps" class="ax-menu-col-item-link" title="Residential Pumps" target="_self">Residential Pumps</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Designed to manage water supply from wells, municipal lines and storage tanks, these pumps ensure consistent water pressure for everyday household use.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/all-products?product=fluid-dynamics&productCategory=agriculture-pumps" class="ax-menu-col-item-link" title="Agriculture Pumps" target="_self">Agriculture Pumps</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Reliable and energy-efficient pumping solutions for irrigation, water transfer and agricultural water management. Built for dependable performance in demanding farming environments.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/all-products?product=fluid-dynamics&productCategory=industrial-pumps" class="ax-menu-col-item-link" title="Industrial Pumps" target="_self">Industrial Pumps</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		High-performance pumping solutions engineered for industrial fluid handling, wastewater and infrastructure applications, delivering durable and efficient operation.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/all-products?product=fluid-dynamics&productCategory=solar-pumps" class="ax-menu-col-item-link" title="Solar Pumps" target="_self">Solar Pumps</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Solar-powered pumping systems that use photovoltaic panels to operate without grid dependency. Ideal for remote locations, they offer sustainable performance with minimal operating costs.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/all-products?product=fluid-dynamics&productCategory=diesel-engines" class="ax-menu-col-item-link" title="Diesel Engine" target="_self">Diesel Engine</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		High-compression engines known for durability, efficiency and high torque, widely used in generators, tractors and heavy-duty equipment.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/all-products?product=fluid-dynamics&productCategory=diesel-pumpset" class="ax-menu-col-item-link" title="Diesel Engine Pumps" target="_self">Diesel Engine Pumps</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Heavy-duty engine-driven pumps built for reliable water transfer in areas without electricity, delivering high torque and efficient long-duration performance.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/all-products?product=fluid-dynamics&productCategory=petrol-pumpset" class="ax-menu-col-item-link" title="Petrol Engine Pumps" target="_self">Petrol Engine Pumps</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Lightweight and portable pumps designed for residential and light commercial water transfer applications, offering easy operation and low maintenance.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/all-products?product=fluid-dynamics&productCategory=control-panel" class="ax-menu-col-item-link" title="Control Panel" target="_self">Control Panel</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Advanced control systems designed for efficient monitoring, operation and management of pumping and fluid-handling applications.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/all-products?product=fluid-dynamics&productCategory=international-business" class="ax-menu-col-item-link" title="International Business - Agriculture" target="_self">International Business - Agriculture</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Integrated agricultural power solutions including diesel gensets, gas-powered gensets, battery energy storage systems (BESS) and intelligent power monitoring systems.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/products/all-products?product=fluid-dynamics&productCategory=international-business" class="ax-menu-col-item-link" title="International Business - Industrial" target="_self">International Business - Industrial</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Engineered fluid-handling solutions for industrial and commercial applications, supporting water, oil and chemical transport across infrastructure and energy sectors.
+																	</p>
+
+
+																</div>
+															</li>
+													</ul>
+											</div>
+											<div class="ax-tab-content-footer">
+													<span>
+														Care
+													</span>
+													<ul>
+															<li>
+																<a href="/productspage/genuine-parts" title="Genuine Spares">Genuine Spares</a>
+															</li>
+															<li>
+																<a href="" title="Refurbishment Request">Refurbishment Request</a>
+															</li>
+															<li>
+																<a href="/care/dealer-locator" title="Dealer Locator">Dealer Locator</a>
+															</li>
+															<li>
+																<a href="/web/oil-engines-ltd/contact-us#brochureFormLabel" title="Get In Touch">Get In Touch</a>
+															</li>
+													</ul>
+											</div>
+										</div>
+
+										<div id="aftermarket" class="ax-tab-content ">
+
+
+
+
+
+							               
+
+             
+
+											
+											<div class="ax-menu-header test">
+												
+                             <a href="/productspage" title="After Market" class="">
+							                 <h2>After Market</h2>
+						                 </a> 
+							          
+					            </div>
+											<div class="ax-tab-content-body">
+                                      
+													<ul class="ax-menu-col ">
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="javascript:void(0)" class="ax-menu-col-item-link" title="" target="_self"></a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		
+																	</p>
+
+
+																</div>
+															</li>
+													</ul>
+											</div>
+											<div class="ax-tab-content-footer">
+													<ul>
+															<li>
+																<a href="" title=""></a>
+															</li>
+															<li>
+																<a href="" title=""></a>
+															</li>
+															<li>
+																<a href="" title=""></a>
+															</li>
+															<li>
+																<a href="" title=""></a>
+															</li>
+													</ul>
+											</div>
+										</div>
+
+										<div id="aftermarket" class="ax-tab-content ">
+
+
+											
+											<div class="ax-menu-header test">
+														    <a href="#"  class="" style="pointer-events: none">
+							                 <h2></h2>
+						                   </a> 
+														 
+							          
+					            </div>
+											<div class="ax-tab-content-body">
+                                      
+													<ul class="ax-menu-col ">
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="javascript:void(0)" class="ax-menu-col-item-link" title="" target="_self"></a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		
+																	</p>
+
+
+																</div>
+															</li>
+													</ul>
+											</div>
+											<div class="ax-tab-content-footer">
+													<ul>
+															<li>
+																<a href="" title=""></a>
+															</li>
+															<li>
+																<a href="" title=""></a>
+															</li>
+															<li>
+																<a href="" title=""></a>
+															</li>
+															<li>
+																<a href="" title=""></a>
+															</li>
+													</ul>
+											</div>
+										</div>
+
+										<div id="aftermarket" class="ax-tab-content ">
+
+
+											
+											<div class="ax-menu-header test">
+														    <a href="#"  class="" style="pointer-events: none">
+							                 <h2></h2>
+						                   </a> 
+														 
+							          
+					            </div>
+											<div class="ax-tab-content-body">
+                                      
+													<ul class="ax-menu-col ">
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="javascript:void(0)" class="ax-menu-col-item-link" title="" target="_self"></a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		
+																	</p>
+
+
+																</div>
+															</li>
+													</ul>
+											</div>
+											<div class="ax-tab-content-footer">
+													<ul>
+															<li>
+																<a href="" title=""></a>
+															</li>
+															<li>
+																<a href="" title=""></a>
+															</li>
+															<li>
+																<a href="" title=""></a>
+															</li>
+															<li>
+																<a href="" title=""></a>
+															</li>
+													</ul>
+											</div>
+										</div>
+							</div>
+						</div>
+					</div>
+				</div>
+<script>
+document.addEventListener("click", function (e) {
+    const link = e.target.closest(".redirect-link");
+    if (link) {
+        e.preventDefault();
+        window.location.href = link.dataset.url;
+    }
+});
+
+
+
+</script>
+
+
+			
+		</div>
+
+		
+
+	
+
+
+
+						</div>
+					
+				
+			
+		
+	
+
+
+
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+                        </div>
+                      </div>
+                  </li>
+
+
+                  <li class=" ax-nav-item" id="layout_258" role="presentation">				
+
+                      <a class="ax-nav-link" href="javascript:void(0)" title="Industries"> Industries <i class="fa-solid fa-angle-down"></i></a>
+                      <div class="ax-mega-menu ax-navbar-tabbing">
+                        <div class="backbtn">Main menu</div>
+                        <div class="container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_journal_content_web_portlet_JournalContentPortlet_  portlet-static portlet-static-end portlet-barebone portlet-journal-content " id="p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_industries_">
+		<span id="p_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_industries"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_industries">
+
+
+	<div class="portlet-content">
+
+		<div class="autofit-float autofit-row portlet-header">
+			<div class="autofit-col autofit-col-expand">
+				<h2 class="portlet-title-text">Industries</h2>
+			</div>
+
+			<div class="autofit-col autofit-col-end">
+				<div class="autofit-section">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="visible-interaction">
+
+	
+
+	
+</div>				</div>
+			</div>
+		</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+			
+			
+				
+					
+					
+					
+					
+
+						
+
+						<div class="" data-fragments-editor-item-id="20132-7460118" data-fragments-editor-item-type="fragments-editor-mapped-item" >
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+		<div class="journal-content-article " data-analytics-asset-id="3721719" data-analytics-asset-title="Industries" data-analytics-asset-type="web-content" data-analytics-web-content-resource-pk="7460118">
+			
+
+			<style>
+@media (min-width: 1199px) {
+	.industries .ax-menu-col-item{
+		flex: 0 0 calc(4 / 12 * 100%) !important;
+	}
+}
+.ax-mega-menu .ax-menu-body .ax-menu-row .ax-menu-col.industries .ax-menu-col-item > a{
+	  color: var(--accent-color);
+	}
+</style>
+					<div class="ax-menu-wrap">
+					<div class="ax-menu-body">
+						<div class="ax-menu-row">
+							<div class="ax-navbar-tabbing-items">
+								<ul>
+													
+												<li>
+													<a href="#industries" class="ax-navbar-tabbing-link text-uppercase active">
+														Industries
+													</a>
+											</li>
+								</ul>
+							</div>
+							<div class="ax-navbar-tabbing-content">
+
+										<div id="industries" class="ax-tab-content active">
+
+
+
+
+
+							               
+
+             
+
+											
+											<div class="ax-menu-header">
+														    <a href="#"  class="" style="pointer-events: none">
+							                 <h2>Industries</h2>
+						                   </a> 
+														 
+							          
+					            </div>
+											<div class="ax-tab-content-body">
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+													<ul class="ax-menu-col  row d-flex industries">
+
+															
+															
+															<li class="ax-menu-col-item col-4">
+																<a href="/industries/civil-aviation-infrastructure" class="ax-menu-col-item-link" title="Civil Aviation Infrastructure" target="_self">Civil Aviation Infrastructure</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		We deliver reliable power solutions and safety systems to ensure uninterrupted and seamless operations at airports. 
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item col-4">
+																<a href="/industries/agriculture" class="ax-menu-col-item-link" title="Agriculture" target="_self">Agriculture</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		We support the agriculture sector with efficient farm machinery and irrigation pump sets to ensure enhanced productivity.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item col-4">
+																<a href="/industries/construction" class="ax-menu-col-item-link" title="Construction" target="_self">Construction</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		We power the construction industry with robust machinery for infrastructure projects and generators for site operations.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item col-4">
+																<a href="/industries/defence" class="ax-menu-col-item-link" title="Defence" target="_self">Defence</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		We strengthen our nation’s defence sector with rugged, reliable and customised power solutions for mission-critical operations.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item col-4">
+																<a href="/industries/food-beverage" class="ax-menu-col-item-link" title="Food & Beverage Processing" target="_self">Food & Beverage Processing</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		We provide automated and efficient organic waste management solutions for the food and beverage industry.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item col-4">
+																<a href="/industries/health-care" class="ax-menu-col-item-link" title="Healthcare" target="_self">Healthcare</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		We enable the healthcare sector with power solutions to ensure the operation of medical equipment and critical care facilities.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item col-4">
+																<a href="/industries/hospitality" class="ax-menu-col-item-link" title="Hospitality" target="_self">Hospitality</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		We facilitate the hospitality industry with power solutions to enable seamless guest experiences and uninterrupted hotel operations.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item col-4">
+																<a href="/industries/infrastructure" class="ax-menu-col-item-link" title="Infrastructure" target="_self">Infrastructure</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		We empower the infrastructure industry with robust machines and genset solutions across operations and development projects.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item col-4">
+																<a href="/industries/it-sector" class="ax-menu-col-item-link" title="IT Sector" target="_self">IT Sector</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		We reinforce the IT sector with reliable and efficient power solutions to ensure data centres and networks remain fully operational.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item col-4">
+																<a href="/industries/manufacturing" class="ax-menu-col-item-link" title="Manufacturing" target="_self">Manufacturing</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		We offer the manufacturing sector dependable power solutions to optimise productivity and enhance operational efficiency.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item col-4">
+																<a href="/industries/marine" class="ax-menu-col-item-link" title="Marine" target="_self">Marine</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		We build robust marine engines and heavy-duty gensets that deliver reliable power to ships, ports, and offshore operations.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item col-4">
+																<a href="/industries/oil-and-gas-" class="ax-menu-col-item-link" title="Oil & Gas" target="_self">Oil & Gas</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		We deliver reliable power and engine solutions that keep the oil and gas sector running safely, efficiently, and without any interruptions.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item col-4">
+																<a href="/industries/pharmaceutical-chemicals" class="ax-menu-col-item-link" title="Pharmaceutical & Chemical" target="_self">Pharmaceutical & Chemical</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		We equip the pharmaceutical and chemical sectors with robust power solutions that ensure safe and efficient operations.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item col-4">
+																<a href="/industries/railways" class="ax-menu-col-item-link" title="Railways" target="_self">Railways</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		We assist the railway sector with efficient power solutions that are reliable, fuel-efficient, and deliver consistent performance.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item col-4">
+																<a href="/industries/real-estate" class="ax-menu-col-item-link" title="Real Estate" target="_self">Real Estate</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		We serve the real estate sector with reliable diesel engines and energy efficient power solutions for uninterrupted power backup.
+																	</p>
+
+
+																</div>
+															</li>
+													</ul>
+											</div>
+											<div class="ax-tab-content-footer">
+													<ul>
+															<li>
+																<a href="" title=""></a>
+															</li>
+													</ul>
+											</div>
+										</div>
+							</div>
+						</div>
+					</div>
+				</div>
+<script>
+document.addEventListener("click", function (e) {
+    const link = e.target.closest(".redirect-link");
+    if (link) {
+        e.preventDefault();
+        window.location.href = link.dataset.url;
+    }
+});
+</script>
+
+
+			
+		</div>
+
+		
+
+	
+
+
+
+						</div>
+					
+				
+			
+		
+	
+
+
+
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+                        </div>
+                      </div>
+                  </li>
+
+
+                  <li class=" ax-nav-item" id="layout_226" role="presentation">				
+
+                      <a class="ax-nav-link" href="javascript:void(0)" title="Care"> Care <i class="fa-solid fa-angle-down"></i></a>
+                      <div class="ax-mega-menu ax-navbar-tabbing">
+                        <div class="backbtn">Main menu</div>
+                        <div class="container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_journal_content_web_portlet_JournalContentPortlet_  portlet-static portlet-static-end portlet-barebone portlet-journal-content " id="p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_koelcare_">
+		<span id="p_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_koelcare"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_koelcare">
+
+
+	<div class="portlet-content">
+
+		<div class="autofit-float autofit-row portlet-header">
+			<div class="autofit-col autofit-col-expand">
+				<h2 class="portlet-title-text">Koel Care</h2>
+			</div>
+
+			<div class="autofit-col autofit-col-end">
+				<div class="autofit-section">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="visible-interaction">
+
+	
+
+	
+</div>				</div>
+			</div>
+		</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+			
+			
+				
+					
+					
+					
+					
+
+						
+
+						<div class="" data-fragments-editor-item-id="20132-7460202" data-fragments-editor-item-type="fragments-editor-mapped-item" >
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+		<div class="journal-content-article " data-analytics-asset-id="3749442" data-analytics-asset-title="Koel Care" data-analytics-asset-type="web-content" data-analytics-web-content-resource-pk="7460202">
+			
+
+			<style>
+.ax-mega-menu .ax-menu-body .ax-menu-row #services .ax-menu-col .ax-menu-col-item .ax-menu-col-submenu a {
+    display: block;
+    color: var(--secondary-color);
+		margin-top: 5px;
+		text-decoration: underline !important;
+}
+.ax-mega-menu .ax-menu-body .ax-menu-row .ax-menu-col .ax-menu-col-item > a{
+	  color: var(--accent-color);
+}
+.ax-menu-col-submenu a {
+    color: #000;
+    text-decoration: none;
+}
+.ax-menu-col-submenu .custom-link {
+    color: #58595B !important;
+    text-decoration: none;
+}
+
+.ax-menu-col-submenu a:hover {
+    color: var(--primary-color) !important;
+}
+</style>
+					<div class="ax-menu-wrap">
+					<div class="ax-menu-body">
+						<div class="ax-menu-row">
+							<div class="ax-navbar-tabbing-items">
+								<ul>
+													
+												<li>
+													<a href="#care" class="ax-navbar-tabbing-link text-uppercase active">
+														Care
+													</a>
+											</li>
+													
+												<li>
+													<a href="#products" class="ax-navbar-tabbing-link text-uppercase ">
+														Products
+													</a>
+											</li>
+													
+												<li>
+													<a href="#services" class="ax-navbar-tabbing-link text-uppercase ">
+														Services
+													</a>
+											</li>
+								</ul>
+							</div>
+							<div class="ax-navbar-tabbing-content">
+
+										<div id="care" class="ax-tab-content active">
+
+
+
+
+
+							               
+
+             
+
+											
+											<div class="ax-menu-header test">
+												
+                             <a href="/care" title="Care" class="">
+							                 <h2>Care</h2>
+						                 </a> 
+							          
+					            </div>
+											<div class="ax-tab-content-body">
+                                      
+                                      
+                                      
+                                      
+													<ul class="ax-menu-col ">
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/care#kirloskar_care" class="ax-menu-col-item-link" title="Kirloskar Care" target="_self">Kirloskar Care</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Connect with our customer support team for aftermarket services and solutions at every step.
+																	</p>
+
+
+																</div>
+															</li>
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="https://ikonnect.kirloskar.com/KOEL" class="ax-menu-col-item-link" title="IKonnect Online" target="_blank">IKonnect Online</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Login to our online portal to access vital data for diagnosing and troubleshooting equipment.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/care/dealer-locator" class="ax-menu-col-item-link" title="Dealer Locator" target="_self">Dealer Locator</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Locate our nearest authorised service centre for genuine spare parts and technician support.
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/care/contact-us" class="ax-menu-col-item-link" title="Contact Us" target="_self">Contact Us</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Feel free to keep in touch anytime to experience prompt and reliable customer service always.
+																	</p>
+
+
+																</div>
+															</li>
+													</ul>
+											</div>
+											<div class="ax-tab-content-footer">
+													<span>
+														Care
+													</span>
+													<ul>
+															<li>
+																<a href="/productspage/genuine-parts" title="Genuine Spares">Genuine Spares</a>
+															</li>
+															<li>
+																<a href="/nulife" title="Refurbishment Request">Refurbishment Request</a>
+															</li>
+															<li>
+																<a href="/care/dealer-locator" title="Dealer Locator">Dealer Locator</a>
+															</li>
+															<li>
+																<a href="/contact-us#brochureFormLabel" title="Get In Touch">Get In Touch</a>
+															</li>
+													</ul>
+											</div>
+										</div>
+
+										<div id="products" class="ax-tab-content ">
+
+
+
+
+
+							               
+
+             
+
+											
+											<div class="ax-menu-header test">
+												
+                             <a href="/productspage" title="Products" class="">
+							                 <h2>Products</h2>
+						                 </a> 
+							          
+					            </div>
+											<div class="ax-tab-content-body">
+                                      
+                                      
+                                      
+                                      
+                                      
+													<ul class="ax-menu-col ">
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/productspage" class="ax-menu-col-item-link" title="All Products" target="_self">All Products</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Range of Kirloskar Care products
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/productspage/genuine-parts" class="ax-menu-col-item-link" title="Genuine Spare Parts" target="_self">Genuine Spare Parts</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Kirloskar Genuine Spare Parts for optimum performance and desired quality standards
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/genuine-oil" class="ax-menu-col-item-link" title="Genuine Oils" target="_self">Genuine Oils</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Guaranteed protection, power and durability for Internal Combustion Engines
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/productspage/industrial-oils" class="ax-menu-col-item-link" title="Industrial Oils" target="_self">Industrial Oils</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Industrial oils made for specific industrial applications
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/nulife" class="ax-menu-col-item-link" title="Kirloskar Nulife" target="_self">Kirloskar Nulife</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Refurbishing and repowering solutions to boost and extend lifespan
+																	</p>
+
+
+																</div>
+															</li>
+													</ul>
+											</div>
+											<div class="ax-tab-content-footer">
+													<span>
+														Care
+													</span>
+													<ul>
+															<li>
+																<a href="/productspage/genuine-parts" title="Genuine Spares">Genuine Spares</a>
+															</li>
+															<li>
+																<a href="" title="Refurbishment Request">Refurbishment Request</a>
+															</li>
+															<li>
+																<a href="/care/dealer-locator" title="Dealer Locator">Dealer Locator</a>
+															</li>
+															<li>
+																<a href="/contact-us#brochureFormLabel" title="Get In Touch">Get In Touch</a>
+															</li>
+													</ul>
+											</div>
+										</div>
+
+										<div id="services" class="ax-tab-content ">
+
+
+
+
+							               
+
+             
+
+											
+											<div class="ax-menu-header test">
+														    <a href="#"  class="" style="pointer-events: none">
+							                 <h2>Services</h2>
+						                   </a> 
+														 
+							          
+												
+													 <a href="https://koelcare.kirloskar.com/Login" class="btn primary-btn" target="_blank">Login</a>
+							
+					            </div>
+											<div class="ax-tab-content-body">
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+													<ul class="ax-menu-col ">
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="https://koelcare.kirloskar.com/Home/SelectQuote" class="ax-menu-col-item-link" title="Bandhan" target="_blank">Bandhan</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Service quotation for gensets <br> <a href="https://koelcare.kirloskar.com/Home/OwnStatus" target="_blank">Check Quotation Status</a>
+																	</p>
+
+
+																</div>
+															</li>
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="https://koelcare.kirloskar.com/Home/BandhanPlus" class="ax-menu-col-item-link" title="Bandhan Plus" target="_blank">Bandhan Plus</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Service contract inclusive of labour and consumables <br> <a href="https://koelcare.kirloskar.com/Home/PlusOwnStatus" target="_blank">Check Quotation Status</a>
+																	</p>
+
+
+																</div>
+															</li>
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="https://koelcare.kirloskar.com/Home/Anubandhan" class="ax-menu-col-item-link" title="Anubandhan" target="_blank">Anubandhan</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Comprehensive Annual Maintenance Contract for diesel gensets across emission norms  <br> <a href="https://koelcare.kirloskar.com/Home/AnuOwnStatus" target="_blank">Check Quotation Status</a>
+																	</p>
+
+
+																</div>
+															</li>
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="https://koelcare.kirloskar.com/Home/AnubandhanPlus" class="ax-menu-col-item-link" title="Anubandhan Plus CPCBII- PG" target="_blank">Anubandhan Plus CPCBII- PG</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Exclusive, customised comprehensive service package for direct purchase and Annual Maintenance Contracts<br> <a href="https://koelcare.kirloskar.com/Home/AnuPlusOwnStatus" target="_blank">Check Quotation Status</a>
+																	</p>
+
+
+																</div>
+															</li>
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="https://koelcare.kirloskar.com/Services/ExtendedWarranty" class="ax-menu-col-item-link" title="Extended Warranty" target="_blank">Extended Warranty</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Warranty agreements to ensure longevity and optimum performance of the engine <br> <a href="https://koelcare.kirloskar.com/Home/WOwnStatus" target="_blank">Check Quotation Status</a>
+																	</p>
+
+
+																</div>
+															</li>
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="https://koelcare.kirloskar.com/Services/KRM" class="ax-menu-col-item-link" title="KRM" target="_blank">KRM</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		Real-time monitoring of Live DG status <br> <a href="https://koelcare.kirloskar.com/Home/KRMOwnStatus" target="_blank">Check Quotation Status</a>
+																	</p>
+
+
+																</div>
+															</li>
+													</ul>
+											</div>
+											<div class="ax-tab-content-footer">
+													<span>
+														Care
+													</span>
+													<ul>
+															<li>
+																<a href="/productspage/genuine-parts" title="Genuine Spares">Genuine Spares</a>
+															</li>
+															<li>
+																<a href="" title="Refurbishment Request">Refurbishment Request</a>
+															</li>
+															<li>
+																<a href="/care/dealer-locator" title="Dealer Locator">Dealer Locator</a>
+															</li>
+															<li>
+																<a href="/contact-us#brochureFormLabel" title="Get In Touch">Get In Touch</a>
+															</li>
+													</ul>
+											</div>
+										</div>
+							</div>
+						</div>
+					</div>
+				</div>
+<script>
+document.addEventListener("click", function (e) {
+    const link = e.target.closest(".redirect-link");
+    if (link) {
+        e.preventDefault();
+        window.location.href = link.dataset.url;
+    }
+});
+
+
+
+</script>
+
+
+			
+		</div>
+
+		
+
+	
+
+
+
+						</div>
+					
+				
+			
+		
+	
+
+
+
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+                        </div>
+                      </div>
+                  </li>
+
+
+                  <li class=" ax-nav-item" id="layout_131" role="presentation">				
+                      <a  class="ax-nav-link" href="https://www.kirloskaroilengines.com/investors" role="menuitem">Investors</a>
+                  </li>
+
+
+                  <li class=" ax-nav-item" id="layout_113" role="presentation">				
+                      <a  class="ax-nav-link" href="https://www.kirloskaroilengines.com/csr" role="menuitem">CSR</a>
+                  </li>
+
+
+                  <li class=" ax-nav-item" id="layout_82" role="presentation">				
+
+                      <a class="ax-nav-link" href="javascript:void(0)" title="Careers"> Careers <i class="fa-solid fa-angle-down"></i></a>
+                      <div class="ax-mega-menu ax-navbar-tabbing">
+                        <div class="backbtn">Main menu</div>
+                        <div class="container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_journal_content_web_portlet_JournalContentPortlet_  portlet-static portlet-static-end portlet-barebone portlet-journal-content " id="p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_careers_">
+		<span id="p_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_careers"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_careers">
+
+
+	<div class="portlet-content">
+
+		<div class="autofit-float autofit-row portlet-header">
+			<div class="autofit-col autofit-col-expand">
+				<h2 class="portlet-title-text">Careers</h2>
+			</div>
+
+			<div class="autofit-col autofit-col-end">
+				<div class="autofit-section">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="visible-interaction">
+
+	
+
+	
+</div>				</div>
+			</div>
+		</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+			
+			
+				
+					
+					
+					
+					
+
+						
+
+						<div class="" data-fragments-editor-item-id="20132-7460231" data-fragments-editor-item-type="fragments-editor-mapped-item" >
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+		<div class="journal-content-article " data-analytics-asset-id="3721258" data-analytics-asset-title="Careers" data-analytics-asset-type="web-content" data-analytics-web-content-resource-pk="7460231">
+			
+
+			<style>
+.ax-mega-menu .ax-menu-body .ax-menu-row #services .ax-menu-col .ax-menu-col-item .ax-menu-col-submenu a {
+    display: block;
+    color: var(--secondary-color);
+		margin-top: 5px;
+		text-decoration: underline !important;
+}
+.ax-mega-menu .ax-menu-body .ax-menu-row .ax-menu-col .ax-menu-col-item > a{
+	  color: var(--accent-color);
+}
+.ax-menu-col-submenu a {
+    color: #000;
+    text-decoration: none;
+}
+.ax-menu-col-submenu .custom-link {
+    color: #58595B !important;
+    text-decoration: none;
+}
+
+.ax-menu-col-submenu a:hover {
+    color: var(--primary-color) !important;
+}
+</style>
+					<div class="ax-menu-wrap">
+					<div class="ax-menu-body">
+						<div class="ax-menu-row">
+							<div class="ax-navbar-tabbing-items">
+								<ul>
+													
+												<li>
+													<a href="#careers" class="ax-navbar-tabbing-link text-uppercase active">
+														Careers
+													</a>
+											</li>
+								</ul>
+							</div>
+							<div class="ax-navbar-tabbing-content">
+
+										<div id="careers" class="ax-tab-content active">
+
+
+
+
+
+							               
+
+             
+
+											
+											<div class="ax-menu-header test">
+												
+                             <a href="/careers" title="Careers" class="">
+							                 <h2>Careers</h2>
+						                 </a> 
+							          
+					            </div>
+											<div class="ax-tab-content-body">
+                                      
+                                      
+                                      
+													<ul class="ax-menu-col ">
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/careers/development-programs" class="ax-menu-col-item-link" title="Development Programmes" target="_self">Development Programmes</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/careers/for-students" class="ax-menu-col-item-link" title="For Students" target="_self">For Students</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		
+																	</p>
+
+
+																</div>
+															</li>
+
+															
+															
+															<li class="ax-menu-col-item">
+																<a href="/careers/growth-stories" class="ax-menu-col-item-link" title="Growth Stories" target="_self">Growth Stories</a>
+																<div class="ax-menu-col-submenu">
+																	<p>
+																		
+																	</p>
+
+
+																</div>
+															</li>
+													</ul>
+											</div>
+											<div class="ax-tab-content-footer">
+													<ul>
+															<li>
+																<a href="" title=""></a>
+															</li>
+													</ul>
+											</div>
+										</div>
+							</div>
+						</div>
+					</div>
+				</div>
+<script>
+document.addEventListener("click", function (e) {
+    const link = e.target.closest(".redirect-link");
+    if (link) {
+        e.preventDefault();
+        window.location.href = link.dataset.url;
+    }
+});
+
+
+
+</script>
+
+
+			
+		</div>
+
+		
+
+	
+
+
+
+						</div>
+					
+				
+			
+		
+	
+
+
+
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+                        </div>
+                      </div>
+                  </li>
+
+
+                  <li class=" ax-nav-item" id="layout_12" role="presentation">				
+                      <a  class="ax-nav-link" href="https://www.kirloskaroilengines.com/global" role="menuitem">Global</a>
+                  </li>
+
+
+                  <li class=" ax-nav-item" id="layout_70" role="presentation">				
+                      <a  class="ax-nav-link" href="https://www.kirloskaroilengines.com/contact-us" role="menuitem">Contact Us</a>
+                  </li>
+
+              </ul>
+            </div>
+          </div>
+          <div class="hamburgerWrapper" >
+            <a href="javascript:void(0)" class="ax-search-btn"
+              ><img src="https://www.kirloskaroilengines.com/o/kirloskar-koel-theme/images/search-icon.svg" alt="Search Icon"
+            /></a>
+            <div class="hamburger">
+              <img src="https://www.kirloskaroilengines.com/o/kirloskar-koel-theme/images/hamburger.svg" alt="" class="hamburger-bar" />
+              <img src="https://www.kirloskaroilengines.com/o/kirloskar-koel-theme/images/menu-close.webp" alt="" class="hamburger-close hide" />
+            </div>
+          </div>
+          </div>
+        </nav>      </div>
+	  <div class="searchBar">
+          <div class="container">
+              <div class="searchBox">
+			  <a href="javascript:void(0)" onclick="searchKeyword('https://www.kirloskaroilengines.com');" id="search-btn" >
+				<span class="ax-search-btn"><img src="https://www.kirloskaroilengines.com/o/kirloskar-koel-theme/images/search-icon.svg" alt="Search Icon"/></span>			
+			  </a>
+                  <input type="text" class="searchInput" id="searchInput" placeholder="Search here" />
+                  <button class="closeBtn">Close</button>
+              </div>
+          </div>
+      </div>
+    </header>
+
+	<section id="content">
+		<h2 class="hide-accessible sr-only" role="heading" aria-level="1">Leadership - KOEL</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+		<div class="layout-content portlet-layout" id="main-content" role="main">
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+	<div class="lfr-layout-structure-item-configurable-spacer lfr-layout-structure-item-cbdd8392-6d1f-1335-6900-bd52ca5874d8 " style=""><div id="fragment-c4c29a06-3e51-a058-afc8-ee2690f05ae6">
+<div class="ax-mt-20-10">
+
+</div>
+</div><script type="module">const configuration = {"desktopSpace":"20","mobileSpace":"10"}; const fragmentElement = document.querySelector('#fragment-c4c29a06-3e51-a058-afc8-ee2690f05ae6'); const fragmentEntryLinkNamespace = 'xwdz'; const fragmentNamespace = 'xwdz'; const layoutMode = 'view';var desktopSpace = configuration.desktopSpace;
+var mobileSpace = configuration.mobileSpace;
+$('.ax-mt-'+desktopSpace+'-'+mobileSpace).css('margin-top','calc('+mobileSpace+'px + ('+desktopSpace+' - '+mobileSpace+') * ((100vw - 360px) / (1920 - 360)))');;</script></div><div class="lfr-layout-structure-item-7d5a15c2-80da-5441-1922-a2039cbc51bd lfr-layout-structure-item-container " style=""><div class="lfr-layout-structure-item-com-liferay-site-navigation-breadcrumb-web-portlet-sitenavigationbreadcrumbportlet lfr-layout-structure-item-c9b0073a-266b-b6cc-0c6d-c34b19982347 " style=""><div id="fragment-efc0b347-2ee3-ce2c-d157-e5e69fce0789">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_site_navigation_breadcrumb_web_portlet_SiteNavigationBreadcrumbPortlet_  portlet-static portlet-static-end portlet-barebone portlet-breadcrumb " id="p_p_id_com_liferay_site_navigation_breadcrumb_web_portlet_SiteNavigationBreadcrumbPortlet_INSTANCE_sonq_">
+		<span id="p_com_liferay_site_navigation_breadcrumb_web_portlet_SiteNavigationBreadcrumbPortlet_INSTANCE_sonq"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_site_navigation_breadcrumb_web_portlet_SiteNavigationBreadcrumbPortlet_INSTANCE_sonq">
+
+	<div class="portlet-content">
+
+		<div class="autofit-float autofit-row portlet-header">
+			<div class="autofit-col autofit-col-expand">
+				<h2 class="portlet-title-text">Breadcrumb</h2>
+			</div>
+
+			<div class="autofit-col autofit-col-end">
+				<div class="autofit-section">
+				</div>
+			</div>
+		</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav aria-label="Breadcrumb" id="_com_liferay_site_navigation_breadcrumb_web_portlet_SiteNavigationBreadcrumbPortlet_INSTANCE_sonq_breadcrumbs-defaultScreen">
+	
+		<div class="container">
+	<ol class="breadcrumb">
+		
+		<li class="breadcrumb-item">
+			<a class="breadcrumb-link" href="/">
+				<span class="breadcrumb-text-truncate">Home</span>
+			</a>
+		</li>
+			
+
+			
+			<li class="breadcrumb-item">
+						<a class="breadcrumb-link" href="https://www.kirloskaroilengines.com/about-us">
+							<span class="breadcrumb-text-truncate">About Us</span>
+						</a>
+			</li>
+			
+
+			
+			<li class="breadcrumb-item">
+					<span class="active breadcrumb-text-truncate">Leadership</span>
+			</li>
+	</ol>
+</div>
+	
+</nav>
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+</div></div></div><div class="lfr-layout-structure-item-basic-component-html lfr-layout-structure-item-34302cb9-e5b2-dafd-8486-9d24bab2b9f5 " style=""><div id="fragment-8ff0df7d-6883-b6d1-1e62-840eed9018e0"> <div class="component-html" data-lfr-editable-id="element-html" data-lfr-editable-type="html"><div class="container">
+  <h2 class="sec_title">Leadership</h2>
+</div>
+ 
+</div></div><style>.component-html img {
+	max-width: 100%;
+}</style></div><div class="lfr-layout-structure-item-configurable-spacer lfr-layout-structure-item-38e81f8d-6c37-5787-55c8-4acbb4059fe4 " style=""><div id="fragment-2d1be278-9f9b-afcf-f5af-2a5ce9771407">
+<div class="ax-mt-10-5">
+
+</div>
+</div><script type="module">const configuration = {"desktopSpace":"10","mobileSpace":"5"}; const fragmentElement = document.querySelector('#fragment-2d1be278-9f9b-afcf-f5af-2a5ce9771407'); const fragmentEntryLinkNamespace = 'xipi'; const fragmentNamespace = 'xipi'; const layoutMode = 'view';var desktopSpace = configuration.desktopSpace;
+var mobileSpace = configuration.mobileSpace;
+$('.ax-mt-'+desktopSpace+'-'+mobileSpace).css('margin-top','calc('+mobileSpace+'px + ('+desktopSpace+' - '+mobileSpace+') * ((100vw - 360px) / (1920 - 360)))');;</script></div><div class="lfr-layout-structure-item-e754d406-f547-0687-7116-f408f3ca83e0 lfr-layout-structure-item-container " style=""><div class="lfr-layout-structure-item-com-liferay-journal-content-web-portlet-journalcontentportlet lfr-layout-structure-item-7fa76cf0-32af-8353-91c5-cf238ca7a873 " style=""><div id="fragment-932abf32-7880-d2f0-925f-626172d779ff">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_journal_content_web_portlet_JournalContentPortlet_  portlet-static portlet-static-end portlet-barebone portlet-journal-content " id="p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_cwjm_">
+		<span id="p_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_cwjm"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_cwjm">
+
+	<div class="portlet-content">
+
+		<div class="autofit-float autofit-row portlet-header">
+			<div class="autofit-col autofit-col-expand">
+				<h2 class="portlet-title-text">Leaders Banner</h2>
+			</div>
+
+			<div class="autofit-col autofit-col-end">
+				<div class="autofit-section">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="visible-interaction">
+
+	
+
+	
+</div>				</div>
+			</div>
+		</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+			
+			
+				
+					
+					
+					
+					
+
+						
+
+						<div class="" data-fragments-editor-item-id="20132-7090374" data-fragments-editor-item-type="fragments-editor-mapped-item">
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+		<div class="journal-content-article " data-analytics-asset-id="4688911" data-analytics-asset-title="Leaders Banner" data-analytics-asset-type="web-content" data-analytics-web-content-resource-pk="7090374">
+			
+
+			<section class="ax-hero-banner">
+  <div class="ax-hero-banner-slider">
+    
+        <div class="banner-wrapper">
+
+            <img class="desktop-img" src="/documents/6887317/6889659/02+About+Us+Leadership+%28Inner+Page+D%29.png/749f84e7-ea45-4174-b636-75582a33d777?t=1779948406897" alt="Desktop Banner Image" />
+
+             
+						<img class="mobile-img" src="/documents/6887317/6889683/02+About+Us+Leadership+%28Inner+Page+M%29.png/2c3f4e27-f7f2-46a4-28a0-34b9d6fc9c36?t=1779948702574" alt="Mobile Banner Image" />
+
+						
+
+ 
+
+
+          <div class="container">
+            <div class="banner-text px-sm-36">
+              <h2 class="banner-title m-0"></h2>
+            </div>
+          </div>
+        </div>
+  </div>
+</section>
+
+<script>
+  function checkMobileView() {
+  var isDesktop = window.innerWidth >= 768;
+ 
+
+  $('.ax-hero-banner-slider .banner-wrapper').each(function () {
+    var $wrapper = $(this);
+    var $desktop = $wrapper.find('.desktop-img img, .desktop-img video, .desktop-img iframe');
+    var $mobile = $wrapper.find('.mobile-img img, .mobile-img video, .mobile-img iframe');
+
+    var desktopImageUrl = $desktop.attr('src') || $desktop.find('source').attr('src');
+    var mobileImageUrl = $mobile.attr('src') || $mobile.find('source').attr('src');
+
+    var finalUrl = isDesktop ? desktopImageUrl : (mobileImageUrl || desktopImageUrl);
+
+    $wrapper.find('img').attr('src', finalUrl);
+  });
+}
+
+  $(document).ready(function() {
+	checkMobileView();
+    $(window).on('resize orientationchange', function () {
+    checkMobileView();
+  });
+    var slideCount = $('.ax-hero-banner-slider .banner-wrapper').length;
+    $('.ax-hero-banner-slider').slick({
+      dots: false,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      adaptiveHeight: true
+    });
+  });
+</script>
+
+
+			
+		</div>
+
+		
+
+	
+
+
+
+						</div>
+					
+				
+			
+		
+	
+
+
+
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+</div></div></div><div class="lfr-layout-structure-item-configurable-spacer lfr-layout-structure-item-ce644d01-4871-b3a2-8213-14b0d7a8a6e9 " style=""><div id="fragment-e6061dc1-f2df-665e-63a0-6a341d2980de">
+<div class="ax-mt-90-45">
+
+</div>
+</div><script type="module">const configuration = {"desktopSpace":"90","mobileSpace":"45"}; const fragmentElement = document.querySelector('#fragment-e6061dc1-f2df-665e-63a0-6a341d2980de'); const fragmentEntryLinkNamespace = 'vfhn'; const fragmentNamespace = 'vfhn'; const layoutMode = 'view';var desktopSpace = configuration.desktopSpace;
+var mobileSpace = configuration.mobileSpace;
+$('.ax-mt-'+desktopSpace+'-'+mobileSpace).css('margin-top','calc('+mobileSpace+'px + ('+desktopSpace+' - '+mobileSpace+') * ((100vw - 360px) / (1920 - 360)))');;</script></div><div class="lfr-layout-structure-item-custom-title-description--no-spacing---copy- lfr-layout-structure-item-e26c3fdc-f348-4d71-4540-9070991f36c9 " style=""><div id="fragment-d1f4a2ba-bdc2-a0df-0126-16b227b74f22"> <div class="container">
+
+  <h3 class="title_underline">
+      <span data-lfr-editable-id="common-heading" data-lfr-editable-type="text">Our Leaders</span>
+  </h3>   
+
+</div>
+</div><style>.fragment_1716 {
+}</style></div><div class="lfr-layout-structure-item-com-liferay-asset-publisher-web-portlet-assetpublisherportlet lfr-layout-structure-item-9d713eff-2533-5ac0-09b0-e15f44547fe7 " style=""><div id="fragment-4fad4bf1-2e6b-2a21-80fc-638d46cfbbc3">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_  portlet-static portlet-static-end portlet-barebone portlet-asset-publisher " id="p_p_id_com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_sslh_">
+		<span id="p_com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_sslh"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_sslh">
+
+	<div class="portlet-content">
+
+		<div class="autofit-float autofit-row portlet-header">
+			<div class="autofit-col autofit-col-expand">
+				<h2 class="portlet-title-text">Asset Publisher</h2>
+			</div>
+
+			<div class="autofit-col autofit-col-end">
+				<div class="autofit-section">
+				</div>
+			</div>
+		</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+	
+		
+			
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+		
+		
+		
+		
+			
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+<div class="container">
+    <div class="row justify-content-center r-gap-20-10">
+
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="ax-director-card">
+                        <div class="ax-header-card">
+                            <div class="ax-imgbox">
+                                    <img src="/documents/d/oil-engines-ltd/ms-gauri-kirloskar-1" alt="Gauri Kirloskar" />
+                            </div>
+                        </div>
+                        <div class="ax-body-card">
+                                <h3 class="ax-director-name">
+                                    Gauri Kirloskar
+                                </h3>
+                                <div class="ax-director-designation">
+                                    Vice-Chairperson and Managing Director - Kirloskar Oil Engines Limited (KOEL)
+                                </div>
+                        </div>
+                        <div class="ax-footer-card">
+                            <div class="ax-button-group">
+                                    <a href="https://www.kirloskaroilengines.com/w/leadership/ms.-gauri-kirloskar" class="btn primary-btn" title="Know more">Know More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+    </div>
+</div>
+
+		
+		
+	
+
+
+
+
+			
+			
+		
+	
+	
+
+
+
+
+
+
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+</div></div><div class="lfr-layout-structure-item-configurable-spacer lfr-layout-structure-item-85392963-a5db-6207-a185-d1a2552c8047 " style=""><div id="fragment-f96cbd0a-f853-9e48-ec2d-e64323afec97">
+<div class="ax-mt-25-13">
+
+</div>
+</div><script type="module">const configuration = {"desktopSpace":"25","mobileSpace":"13"}; const fragmentElement = document.querySelector('#fragment-f96cbd0a-f853-9e48-ec2d-e64323afec97'); const fragmentEntryLinkNamespace = 'ddhw'; const fragmentNamespace = 'ddhw'; const layoutMode = 'view';var desktopSpace = configuration.desktopSpace;
+var mobileSpace = configuration.mobileSpace;
+$('.ax-mt-'+desktopSpace+'-'+mobileSpace).css('margin-top','calc('+mobileSpace+'px + ('+desktopSpace+' - '+mobileSpace+') * ((100vw - 360px) / (1920 - 360)))');;</script></div><div class="lfr-layout-structure-item-fe1298dd-21a9-607d-54f1-c059d84ccd49 lfr-layout-structure-item-container " style=""><div class="lfr-layout-structure-item-com-liferay-asset-publisher-web-portlet-assetpublisherportlet lfr-layout-structure-item-c2d02ccf-5182-6806-2bbd-6f1012ee3f83 " style=""><div id="fragment-2dde8f96-8f3f-8f0f-0fd4-c447653e20b5">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_  portlet-static portlet-static-end portlet-barebone portlet-asset-publisher " id="p_p_id_com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_runt_">
+		<span id="p_com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_runt"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_runt">
+
+	<div class="portlet-content">
+
+		<div class="autofit-float autofit-row portlet-header">
+			<div class="autofit-col autofit-col-expand">
+				<h2 class="portlet-title-text">Asset Publisher</h2>
+			</div>
+
+			<div class="autofit-col autofit-col-end">
+				<div class="autofit-section">
+				</div>
+			</div>
+		</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+	
+		
+			
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+		
+		
+		
+		
+			
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+<div class="container">
+    <div class="row justify-content-center r-gap-20-10">
+
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="ax-director-card">
+                        <div class="ax-header-card">
+                            <div class="ax-imgbox">
+                                    <img src="/documents/d/oil-engines-ltd/mr-rahul-sahai-1" alt="Rahul Sahai" />
+                            </div>
+                        </div>
+                        <div class="ax-body-card">
+                                <h3 class="ax-director-name">
+                                    Rahul Sahai
+                                </h3>
+                                <div class="ax-director-designation">
+                                    Chief Executive Officer - Kirloskar Oil Engines Limited (KOEL)
+                                </div>
+                                <div class="ax-director-designation">
+                                    Managing Director - KOEL Fluid Dynamics Private Limited
+                                </div>
+                        </div>
+                        <div class="ax-footer-card">
+                            <div class="ax-button-group">
+                                    <a href="https://www.kirloskaroilengines.com/w/leadership/mr.-rahul-sahai" class="btn primary-btn" title="Know more">Know More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="ax-director-card">
+                        <div class="ax-header-card">
+                            <div class="ax-imgbox">
+                                    <img src="/documents/d/oil-engines-ltd/mr-sachin-kejriwal-1" alt="Sachin Kejriwal" />
+                            </div>
+                        </div>
+                        <div class="ax-body-card">
+                                <h3 class="ax-director-name">
+                                    Sachin Kejriwal
+                                </h3>
+                                <div class="ax-director-designation">
+                                    Chief Financial Officer - Kirloskar Oil Engines Limited (KOEL)
+                                </div>
+                        </div>
+                        <div class="ax-footer-card">
+                            <div class="ax-button-group">
+                                    <a href="https://www.kirloskaroilengines.com/w/mr.-sachin-kejriwal" class="btn primary-btn" title="Know more">Know More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="ax-director-card">
+                        <div class="ax-header-card">
+                            <div class="ax-imgbox">
+                                    <img src="/documents/d/oil-engines-ltd/ms-kiran-bhagnure-khapre-1" alt="Kiran Bhagnure-Khapre" />
+                            </div>
+                        </div>
+                        <div class="ax-body-card">
+                                <h3 class="ax-director-name">
+                                    Kiran Bhagnure-Khapre
+                                </h3>
+                                <div class="ax-director-designation">
+                                    Chief Human Resources Officer - Kirloskar Oil Engines Limited (KOEL)
+                                </div>
+                        </div>
+                        <div class="ax-footer-card">
+                            <div class="ax-button-group">
+                                    <a href="https://www.kirloskaroilengines.com/w/leadership/ms.-kiran-bhagnure-khapre%C2%A0%C2%A0" class="btn primary-btn" title="Know more">Know More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+    </div>
+</div>
+
+		
+		
+	
+
+
+
+
+			
+			
+		
+	
+	
+
+
+
+
+
+
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+</div></div></div><div class="lfr-layout-structure-item-configurable-spacer lfr-layout-structure-item-7ced11b2-61ed-a3bd-8d6f-aaea79eb4954 " style=""><div id="fragment-e6b84c8b-f43d-de37-bb6f-2d05f50a9997">
+<div class="ax-mt-130-40">
+
+</div>
+</div><script type="module">const configuration = {"desktopSpace":"130","mobileSpace":"40"}; const fragmentElement = document.querySelector('#fragment-e6b84c8b-f43d-de37-bb6f-2d05f50a9997'); const fragmentEntryLinkNamespace = 'bkxe'; const fragmentNamespace = 'bkxe'; const layoutMode = 'view';var desktopSpace = configuration.desktopSpace;
+var mobileSpace = configuration.mobileSpace;
+$('.ax-mt-'+desktopSpace+'-'+mobileSpace).css('margin-top','calc('+mobileSpace+'px + ('+desktopSpace+' - '+mobileSpace+') * ((100vw - 360px) / (1920 - 360)))');;</script></div><div class="lfr-layout-structure-item-get-in-touch lfr-layout-structure-item-35a43551-df52-f648-2b61-e1299f554f0f " style=""><div id="fragment-7368ae9d-62a7-4898-e526-e3d41ff1a7a3"> <div class="container">
+<div class="help-section">
+  <div class="help-text">
+    <h3 data-lfr-editable-id="get-in-touch-heading" data-lfr-editable-type="text">Need help finding the perfect product or system?</h3>
+    <p data-lfr-editable-id="get-in-touch-title" data-lfr-editable-type="text">Let one of our experts guide you.</p>
+  </div>
+	<div class="button-group">
+    <a class="btn white-btn" href="/contact-us#brochureFormLabel" data-lfr-editable-id="get-in-touch" data-lfr-editable-type="link">Get in Touch</a>
+	
+	 <a class="btn white-btn" id="find-all-products" href="/products/all-products" data-lfr-editable-id="find-your-products" data-lfr-editable-type="link" target="_self">Find Your Products</a>
+	</div>
+</div>
+</div>
+</div><script type="module">const configuration = {}; const fragmentElement = document.querySelector('#fragment-7368ae9d-62a7-4898-e526-e3d41ff1a7a3'); const fragmentEntryLinkNamespace = 'sexc'; const fragmentNamespace = 'sexc'; const layoutMode = 'view';$(document).ready(function(){
+        const currentPath = window.location.pathname;
+
+        // Find the part after '/products/'
+        const productPathIndex = currentPath.indexOf('/products/');
+        if (productPathIndex !== -1) {
+            const afterProducts = currentPath.substring(productPathIndex + 10);
+            const parts = afterProducts.split('/').filter(Boolean);
+
+            const params = new URLSearchParams();
+
+            if (parts[0]) {
+                params.append('product', parts[0]);
+            }
+					if(parts[0]){
+					  const newUrl = `${window.location.origin}/products/all-products?${params.toString()}`;
+
+            $('#find-all-products').attr('href', newUrl);
+					}
+           
+            
+        }
+   }); ;</script></div><div class="lfr-layout-structure-item-footer-navigation lfr-layout-structure-item-fb430961-be3a-621a-0fa7-89529db2cfe4 " style=""><div id="fragment-bfab4e1a-632b-9a32-978d-b356ba6f3d47"> <footer class="ax-footer">
+	<div class="container">
+		<div class="ax-footer-logo">
+			<div><img src="/documents/6887317/6887954/Kirloskar-oil-engine-logo.png/0c46202f-1d24-a2fb-ddf3-4b28497ce73c?version=1.0&amp;t=1750336425502" data-fileentryid="6887956" /></div>
+
+		</div>
+		<div class="ax-footer-wrap">
+
+			<div class="row">
+				<div class="col-md-3">
+					<div class="ax-footer-links">
+						<div class="ax-footer-links-header" data-lfr-editable-id="footer-links-header-1" data-lfr-editable-type="text">QUICK LINKS</div>
+						<div class="ax-footer-links-body">
+							<div class="portlet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_  portlet-static portlet-static-end portlet-barebone portlet-navigation " id="p_p_id_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu1_">
+		<span id="p_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu1"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu1">
+
+	<div class="portlet-content">
+
+		<div class="autofit-float autofit-row portlet-header">
+			<div class="autofit-col autofit-col-expand">
+				<h2 class="portlet-title-text">Menu Display</h2>
+			</div>
+
+			<div class="autofit-col autofit-col-end">
+				<div class="autofit-section">
+				</div>
+			</div>
+		</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		
+
+		
+			
+				<ul class="ax-footer-nav">
+				<li><a href="https://www.kirloskaroilengines.com/home" class="trans" title="Home">Home</a></li>
+			<li><a href="https://www.kirloskaroilengines.com/about-us" class="trans" title="About">About</a></li>
+			<li><a href="https://www.kirloskaroilengines.com/care" class="trans" title="Care">Care</a></li>
+			<li><a href="https://www.kirloskaroilengines.com/investors" class="trans" title="Investors">Investors</a></li>
+			<li><a href="https://www.kirloskaroilengines.com/csr" class="trans" title="CSR">CSR</a></li>
+			<li><a href="https://www.kirloskaroilengines.com/care/dealer-locator" class="trans" title="Dealer Locator">Dealer Locator</a></li>
+			<li><a href="https://www.kirloskaroilengines.com/global" class="trans" title="Global">Global</a></li>
+			<li><a href="https://www.kirloskaroilengines.com/contact-us" class="trans" title="Contact Us">Contact Us</a></li>
+</ul>
+			
+			
+		
+	
+	
+	
+	
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="ax-footer-links">
+						<div class="ax-footer-links-header" data-lfr-editable-id="footer-links-header-2" data-lfr-editable-type="text">PRODUCTS</div>
+						<div class="ax-footer-links-body">
+							<div class="portlet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_  portlet-static portlet-static-end portlet-barebone portlet-navigation " id="p_p_id_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu2_">
+		<span id="p_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu2"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu2">
+
+	<div class="portlet-content">
+
+		<div class="autofit-float autofit-row portlet-header">
+			<div class="autofit-col autofit-col-expand">
+				<h2 class="portlet-title-text">Menu Display</h2>
+			</div>
+
+			<div class="autofit-col autofit-col-end">
+				<div class="autofit-section">
+				</div>
+			</div>
+		</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		
+
+		
+			
+				<ul class="ax-footer-nav">
+				<li><a href="https://www.kirloskaroilengines.com/products/power-gen" class="trans" title="Power Gen">Power Gen</a></li>
+			<li><a href="https://www.kirloskaroilengines.com/products/industrial" class="trans" title="Industrial">Industrial</a></li>
+			<li><a href="https://www.kirloskaroilengines.com/products/all-products?product=fluid-dynamics" class="trans" title="Fluid Dynamics">Fluid Dynamics</a></li>
+			<li><a href="https://www.kirloskaroilengines.com/productspage" class="trans" title="After Market">After Market</a></li>
+</ul>
+			
+			
+		
+	
+	
+	
+	
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="ax-footer-links">
+						<div class="ax-footer-links-header" data-lfr-editable-id="footer-links-header-3" data-lfr-editable-type="text">SPARES &amp; SERVICE</div>
+						<div class="ax-footer-links-body">
+							<div class="portlet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_  portlet-static portlet-static-end portlet-barebone portlet-navigation " id="p_p_id_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu3_">
+		<span id="p_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu3"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu3">
+
+	<div class="portlet-content">
+
+		<div class="autofit-float autofit-row portlet-header">
+			<div class="autofit-col autofit-col-expand">
+				<h2 class="portlet-title-text">Menu Display</h2>
+			</div>
+
+			<div class="autofit-col autofit-col-end">
+				<div class="autofit-section">
+				</div>
+			</div>
+		</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		
+
+		
+			
+				<ul class="ax-footer-nav">
+				<li><a href="https://www.kirloskaroilengines.com/care" class="trans" title="Kirloskar Care (Gensets &amp; Engines)">Kirloskar Care (Gensets &amp; Engines)</a></li>
+</ul>
+			
+			
+		
+	
+	
+	
+	
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="ax-footer-links">
+						<div class="ax-footer-links-header" data-lfr-editable-id="footer-links-header-4" data-lfr-editable-type="text">LIMITLESS</div>
+							<div class="ax-footer-links-body">
+								<div class="portlet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_  portlet-static portlet-static-end portlet-barebone portlet-navigation " id="p_p_id_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu4_">
+		<span id="p_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu4"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu4">
+
+	<div class="portlet-content">
+
+		<div class="autofit-float autofit-row portlet-header">
+			<div class="autofit-col autofit-col-expand">
+				<h2 class="portlet-title-text">Menu Display</h2>
+			</div>
+
+			<div class="autofit-col autofit-col-end">
+				<div class="autofit-section">
+				</div>
+			</div>
+		</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		
+
+		
+			
+				<ul class="ax-footer-nav">
+				<li><a href="https://www.kirloskaroilengines.com" target="_blank" class="trans" title="Kirloskar Oil Engines">Kirloskar Oil Engines</a></li>
+			<li><a href="https://kirloskarpneumatic.com" target="_blank" class="trans" title="Kirloskar Pneumatic">Kirloskar Pneumatic</a></li>
+			<li><a href="https://www.kirloskarferrous.com/" target="_blank" class="trans" title="Kirloskar Ferrous">Kirloskar Ferrous</a></li>
+			<li><a href="https://www.kirloskarindustries.com/" target="_blank" class="trans" title="Kirloskar Industries">Kirloskar Industries</a></li>
+			<li><a href="https://www.kirloskarchillers.com/" target="_blank" class="trans" title="Kirloskar Chillers">Kirloskar Chillers</a></li>
+			<li><a href="https://www.kirloskarsolar.com/" target="_blank" class="trans" title="Kirloskar Solar">Kirloskar Solar</a></li>
+			<li><a href="https://www.arkafincap.com/" target="_blank" class="trans" title="Arka Fincap">Arka Fincap</a></li>
+			<li><a href="https://www.avantespaces.com/" target="_blank" class="trans" title="Avante Spaces">Avante Spaces</a></li>
+			<li><a href="https://kim.edu.in/" target="_blank" class="trans" title="Kirloskar Institute of Management">Kirloskar Institute of Management</a></li>
+			<li><a href="https://www.kirloskaramericas.com/" target="_blank" class="trans" title="Kirloskar Americas">Kirloskar Americas</a></li>
+</ul>
+			
+			
+		
+	
+	
+	
+	
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+</div>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ax-footer-info">
+		 <div class="ax-footer-copyright" data-lfr-editable-id="footer-copyright" data-lfr-editable-type="rich-text">© 2026 Kirloskar. All Rights Reserved. The mark ‘Kirloskar’ used in any form as prefix or suffix, ‘i’ and copyright ‘limitless’ as shown are owned by Kirloskar Proprietary Limited and Kirloskar Oil Engines Ltd is the permitted user.</div>
+		 <div class="ax-footer-links-body">
+				<div class="ax-footer-email">
+					<a href="/cdn-cgi/l/email-protection#84edeae2ebefebe1e8c4efedf6e8ebf7efe5f6aae7ebe9" data-lfr-editable-id="footer-email" data-lfr-editable-type="link" class="trans" title="eMail"><span class="__cf_email__" data-cfemail="21484f474e4a4e444d614a48534d4e524a40530f424e4c">[email&#160;protected]</span></a>
+				</div>
+				<ul class="ax-footer-sociallinks">
+					<li><a href="https://www.linkedin.com/company/kirloskar-oil-engines/?originalSubdomain=in" class="trans" title="Linkedin" target="_blank"><i class="ax-linkedin"></i></a></li>
+					<li><a href="https://www.youtube.com/@kirloskaroilengines224" class="trans" title="Youtube" target="_blank"><i class="ax-youtube"></i></a></li>
+					<li><a href="https://www.facebook.com/KirloskarOilEngines01" class="trans" title="Facebook" target="_blank"><i class="ax-facebook"></i></a></li>
+				</ul>
+				<a href="/privacy-policy" data-lfr-editable-id="other-link" data-lfr-editable-type="link" class="privacy-policy" title="Privacy Policy">Privacy Policy</a>
+		 </div>
+		</div>
+	</div>
+</footer></div><style>.fragment_5449 {
+}</style><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module">const configuration = {}; const fragmentElement = document.querySelector('#fragment-bfab4e1a-632b-9a32-978d-b356ba6f3d47'); const fragmentEntryLinkNamespace = 'jexf'; const fragmentNamespace = 'jexf'; const layoutMode = 'view';
+document.addEventListener("DOMContentLoaded", function () {
+    const yearElement = document.getElementById("current-year");
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+});
+;</script></div>
+
+
+
+
+		</div>
+	
+
+
+<form action="#" aria-hidden="true" class="hide" id="hrefFm" method="post" name="hrefFm"><span></span><button hidden type="submit">Hidden</button></form>
+
+	
+	</section>
+
+	<!---<footer id="footer" role="contentinfo">
+		<p class="powered-by">
+Powered by <a href="http://www.liferay.com" rel="external">Liferay</a>		</p>
+	</footer>-->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+	
+		
+
+			
+
+			
+		
+	
+
+
+</script><script>
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+<script type="text/javascript">
+
+	
+		Liferay.Portlet.register('com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu4');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu4_',
+			portletId: 'com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu4',
+			refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d7020\x26p_p_id\x3dcom_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu4\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fabout-us\x252Fleadership',
+			refreshURLData: {}
+		}
+	);
+
+(function() {var $ = AUI.$;var _ = AUI._;
+	var onDestroyPortlet = function () {
+		Liferay.detach('messagePosted', onMessagePosted);
+		Liferay.detach('destroyPortlet', onDestroyPortlet);
+	};
+
+	Liferay.on('destroyPortlet', onDestroyPortlet);
+
+	var onMessagePosted = function (event) {
+		if (window.Analytics) {
+			const eventProperties = {
+				className: event.className,
+				classPK: event.classPK,
+				commentId: event.commentId,
+				text: event.text,
+			};
+
+			const blogNode = document.querySelector(
+				'[data-analytics-asset-id="' + event.classPK + '"]'
+			);
+
+			const dmNode = document.querySelector(
+				'[data-analytics-file-entry-id="' + event.classPK + '"]'
+			);
+
+			if (blogNode) {
+				eventProperties.title = blogNode.dataset.analyticsAssetTitle;
+			}
+			else if (dmNode) {
+				eventProperties.title = dmNode.dataset.analyticsFileEntryTitle;
+			}
+
+			Analytics.send('posted', 'Comment', eventProperties);
+		}
+	};
+
+	Liferay.on('messagePosted', onMessagePosted);
+})();
+
+	function getValueByAttribute(node, attr) {
+		return (
+			node.dataset[attr] ||
+			(node.parentElement && node.parentElement.dataset[attr])
+		);
+	}
+
+	function sendDocumentDownloadedAnalyticsEvent(anchor) {
+		var fileEntryId = getValueByAttribute(
+			anchor,
+			'analyticsFileEntryId'
+		);
+		var title = getValueByAttribute(
+			anchor,
+			'analyticsFileEntryTitle'
+		);
+		var version = getValueByAttribute(
+			anchor,
+			'analyticsFileEntryVersion'
+		);
+
+		if (fileEntryId) {
+			Analytics.send('documentDownloaded', 'Document', {
+				groupId: themeDisplay.getScopeGroupId(),
+				fileEntryId,
+				preview:
+					!!window._com_liferay_document_library_analytics_isViewFileEntry,
+				title,
+				version,
+			});
+		}
+	}
+
+	function handleDownloadClick(event) {
+		if (window.Analytics) {
+			if (event.target.nodeName.toLowerCase() === 'a') {
+				sendDocumentDownloadedAnalyticsEvent(
+					event.target
+				);
+			}
+			else if (
+				event.target.parentNode &&
+				event.target.parentNode.nodeName.toLowerCase() === 'a'
+			) {
+				sendDocumentDownloadedAnalyticsEvent(
+					event.target.parentNode
+				);
+			}
+			else {
+				var target = event.target;
+				var matchTextContent =
+					target.textContent &&
+					target.textContent.toLowerCase() ===
+						'download';
+				var matchTitle =
+					target.title && target.title.toLowerCase() === 'download';
+				var matchAction = target.action === 'download';
+				var matchLexiconIcon = !!target.querySelector(
+					'.lexicon-icon-download'
+				);
+				var matchLexiconClassName = target.classList.contains(
+					'lexicon-icon-download'
+				);
+				var matchParentTitle =
+					target.parentNode &&
+					target.parentNode.title &&
+					target.parentNode.title.toLowerCase() === 'download';
+				var matchParentLexiconClassName =
+					target.parentNode &&
+					target.parentNode.classList.contains('lexicon-icon-download');
+
+				if (
+					matchTextContent ||
+					matchTitle ||
+					matchParentTitle ||
+					matchAction ||
+					matchLexiconIcon ||
+					matchLexiconClassName ||
+					matchParentLexiconClassName
+				) {
+					var selectedFiles = document.querySelectorAll(
+						'.form .custom-control-input:checked'
+					);
+
+					selectedFiles.forEach(({value}) => {
+						var selectedFile = document.querySelector(
+							'[data-analytics-file-entry-id="' + value + '"]'
+						);
+
+						sendDocumentDownloadedAnalyticsEvent(
+							selectedFile
+						);
+					});
+				}
+			}
+		}
+	}
+
+	Liferay.once('destroyPortlet', () => {
+		document.body.removeEventListener(
+			'click',
+			handleDownloadClick
+		);
+	});
+
+	Liferay.once('portletReady', () => {
+		document.body.addEventListener(
+			'click',
+			handleDownloadClick
+		);
+	});
+
+(function() {var $ = AUI.$;var _ = AUI._;
+	var onVote = function (event) {
+		if (window.Analytics) {
+			let title = event.contentTitle;
+
+			if (!title) {
+				const dmNode = document.querySelector(
+					'[data-analytics-file-entry-id="' + event.classPK + '"]'
+				);
+
+				if (dmNode) {
+					title = dmNode.dataset.analyticsFileEntryTitle;
+				}
+			}
+
+			Analytics.send('VOTE', 'Ratings', {
+				className: event.className,
+				classPK: event.classPK,
+				ratingType: event.ratingType,
+				score: event.score,
+				title,
+			});
+		}
+	};
+
+	var onDestroyPortlet = function () {
+		Liferay.detach('ratings:vote', onVote);
+		Liferay.detach('destroyPortlet', onDestroyPortlet);
+	};
+
+	Liferay.on('ratings:vote', onVote);
+	Liferay.on('destroyPortlet', onDestroyPortlet);
+})();
+(function() {var $ = AUI.$;var _ = AUI._;
+	var onShare = function (data) {
+		if (window.Analytics) {
+			Analytics.send('shared', 'SocialBookmarks', {
+				className: data.className,
+				classPK: data.classPK,
+				type: data.type,
+				url: data.url,
+			});
+		}
+	};
+
+	var onDestroyPortlet = function () {
+		Liferay.detach('socialBookmarks:share', onShare);
+		Liferay.detach('destroyPortlet', onDestroyPortlet);
+	};
+
+	Liferay.on('socialBookmarks:share', onShare);
+	Liferay.on('destroyPortlet', onDestroyPortlet);
+})();
+
+	if (window.svg4everybody && Liferay.Data.ICONS_INLINE_SVG) {
+		svg4everybody(
+			{
+				polyfill: true,
+				validate: function (src, svg, use) {
+					return !src || !src.startsWith('#');
+				}
+			}
+		);
+	}
+
+(function() {var $ = AUI.$;var _ = AUI._;
+	Liferay.Util.delegate(
+		document,
+		'focusin',
+		'.portlet',
+		function(event) {
+			event.delegateTarget.closest('.portlet').classList.add('open');
+		}
+	);
+
+	Liferay.Util.delegate(
+		document,
+		'focusout',
+		'.portlet',
+		function(event) {
+			event.delegateTarget.closest('.portlet').classList.remove('open');
+		}
+	);
+})();
+
+	// <![CDATA[
+
+		
+
+		Liferay.currentURL = '\x2fabout-us\x2fleadership';
+		Liferay.currentURLEncoded = '\x252Fabout-us\x252Fleadership';
+
+	// ]]>
+
+
+		// <![CDATA[
+			
+				
+
+				
+
+				
+			
+		// ]]>
+	
+(function() {var $ = AUI.$;var _ = AUI._;
+		import(Liferay.ThemeDisplay.getPathContext() + '/o/frontend-js-web/__liferay__/index.js').then(
+			({openToast}) => {
+				AUI().use(
+					'liferay-session',
+					function() {
+						Liferay.Session = new Liferay.SessionBase(
+							{
+								autoExtend: true,
+								redirectOnExpire: false,
+								redirectUrl: 'https\x3a\x2f\x2fwww\x2ekirloskaroilengines\x2ecom\x2fweb\x2fguest\x2fhome',
+								sessionLength: 900,
+								sessionTimeoutOffset: 70,
+								warningLength: 60
+							}
+						);
+
+						
+					}
+				);
+			}
+		)
+	})();
+
+	
+		Liferay.Portlet.register('com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_koelcare');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_koelcare_',
+			portletId: 'com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_koelcare',
+			refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d7020\x26p_p_id\x3dcom_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_koelcare\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fabout-us\x252Fleadership',
+			refreshURLData: {}
+		}
+	);
+
+(function() {var $ = AUI.$;var _ = AUI._;
+	var assetEntryId =
+		'';
+
+	if (assetEntryId) {
+		window.location.hash = assetEntryId;
+	}
+})();
+
+	
+		Liferay.Portlet.register('com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_runt');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_runt_',
+			portletId: 'com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_runt',
+			refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d7020\x26p_p_id\x3dcom_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_runt\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fabout-us\x252Fleadership',
+			refreshURLData: {}
+		}
+	);
+
+
+	
+		Liferay.Portlet.register('com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_products');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_products_',
+			portletId: 'com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_products',
+			refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d7020\x26p_p_id\x3dcom_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_products\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fabout-us\x252Fleadership',
+			refreshURLData: {}
+		}
+	);
+
+
+	
+		Liferay.Portlet.register('com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_careers');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_careers_',
+			portletId: 'com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_careers',
+			refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d7020\x26p_p_id\x3dcom_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_careers\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fabout-us\x252Fleadership',
+			refreshURLData: {}
+		}
+	);
+
+
+	
+		Liferay.Portlet.register('com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu1');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu1_',
+			portletId: 'com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu1',
+			refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d7020\x26p_p_id\x3dcom_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu1\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fabout-us\x252Fleadership',
+			refreshURLData: {}
+		}
+	);
+
+
+	
+		Liferay.Portlet.register('com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu2');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu2_',
+			portletId: 'com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu2',
+			refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d7020\x26p_p_id\x3dcom_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu2\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fabout-us\x252Fleadership',
+			refreshURLData: {}
+		}
+	);
+
+
+	
+		Liferay.Portlet.register('com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu3');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu3_',
+			portletId: 'com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu3',
+			refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d7020\x26p_p_id\x3dcom_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_jexfnavMenu3\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fabout-us\x252Fleadership',
+			refreshURLData: {}
+		}
+	);
+
+
+	
+		Liferay.Portlet.register('com_liferay_site_navigation_breadcrumb_web_portlet_SiteNavigationBreadcrumbPortlet_INSTANCE_sonq');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_site_navigation_breadcrumb_web_portlet_SiteNavigationBreadcrumbPortlet_INSTANCE_sonq_',
+			portletId: 'com_liferay_site_navigation_breadcrumb_web_portlet_SiteNavigationBreadcrumbPortlet_INSTANCE_sonq',
+			refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d7020\x26p_p_id\x3dcom_liferay_site_navigation_breadcrumb_web_portlet_SiteNavigationBreadcrumbPortlet_INSTANCE_sonq\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fabout-us\x252Fleadership',
+			refreshURLData: {}
+		}
+	);
+
+
+	
+		Liferay.Portlet.register('com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_cwjm');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_cwjm_',
+			portletId: 'com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_cwjm',
+			refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d7020\x26p_p_id\x3dcom_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_cwjm\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fabout-us\x252Fleadership',
+			refreshURLData: {}
+		}
+	);
+
+(function() {var $ = AUI.$;var _ = AUI._;
+	var assetEntryId =
+		'';
+
+	if (assetEntryId) {
+		window.location.hash = assetEntryId;
+	}
+})();
+
+	
+		Liferay.Portlet.register('com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_sslh');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_sslh_',
+			portletId: 'com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_sslh',
+			refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d7020\x26p_p_id\x3dcom_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_sslh\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fabout-us\x252Fleadership',
+			refreshURLData: {}
+		}
+	);
+
+
+	
+		Liferay.Portlet.register('com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_industries');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_industries_',
+			portletId: 'com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_industries',
+			refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d7020\x26p_p_id\x3dcom_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_industries\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fabout-us\x252Fleadership',
+			refreshURLData: {}
+		}
+	);
+
+
+	
+		Liferay.Portlet.register('com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_koelaboutUs');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_koelaboutUs_',
+			portletId: 'com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_koelaboutUs',
+			refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d7020\x26p_p_id\x3dcom_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_koelaboutUs\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fabout-us\x252Fleadership',
+			refreshURLData: {}
+		}
+	);
+
+
+</script><script type="module">
+import {InfoItemActionHandler as ComponentModule} from '/o/layout-taglib/__liferay__/index.js';
+AUI().use(
+  'liferay-menu',
+function(A) {
+{
+Liferay.component('infoItemActionComponent', new ComponentModule({"executeInfoItemActionURL":"https:\/\/www.kirloskaroilengines.com\/c\/portal\/execute_info_item_action?p_l_mode=view&plid=7020","namespace":"","spritemap":"https:\/\/www.kirloskaroilengines.com\/o\/kirloskar-koel-theme\/images\/clay\/icons.svg"}), { destroyOnNavigate: true, portletId: ''});
+}
+(function() {
+var $ = AUI.$;var _ = AUI._;
+	new Liferay.Menu();
+
+	var liferayNotices = Liferay.Data.notices;
+
+	for (var i = 0; i < liferayNotices.length; i++) {
+		Liferay.Util.openToast(liferayNotices[i]);
+	}
+
+})();
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+<script src="https://www.kirloskaroilengines.com/o/kirloskar-koel-theme/js/main.js?browserId=other&amp;minifierType=js&amp;languageId=en_US&amp;t=1793016790000" type="text/javascript"></script>
+
+
+
+
+<script type="module">
+import {main} from '/o/frontend-js-alert-support-web/__liferay__/index.js';
+{
+main();
+}
+
+</script><script type="module">
+import {main} from '/o/frontend-js-collapse-support-web/__liferay__/index.js';
+{
+main();
+}
+
+</script><script type="module">
+import {main} from '/o/frontend-js-dropdown-support-web/__liferay__/index.js';
+{
+main();
+}
+
+</script><script type="module">
+import {main} from '/o/frontend-js-tabs-support-web/__liferay__/index.js';
+{
+main();
+}
+
+</script><script type="module">
+import {main} from '/o/frontend-js-tooltip-support-web/__liferay__/index.js';
+{
+main();
+}
+
+</script><script type="module">
+import {runThirdPartyCookiesInterval} from '/o/cookies-banner-web/__liferay__/index.js';
+{
+runThirdPartyCookiesInterval();
+}
+
+</script><script type="text/javascript">
+Liferay.CustomDialogs = {enabled: false};
+
+</script><script>
+
+</script>
+</body>
+
+</html>
+
+<script>
+$( document ).ready(function() {
+   $("#searchInput").keyup(function(event) {
+		if (event.keyCode === 13) {
+			$("#search-btn").click();
+		}
+	});
+});
+function searchKeyword(url){
+	var searchKey = $("#searchInput").val();
+	if (searchKey == "" || searchKey == null){
+		window.location.href= url + "/search";
+	} else {
+		window.location.href= url + "/search?q=" + searchKey;
+	}
+}
+
+</script>
+
+		
+	
+

@@ -1,0 +1,4427 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+			<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="ltr" dir="ltr" lang="en-US">
+
+<head>
+
+	
+	
+	
+	<title>Board Of Directors - Kirloskar Industries </title>	
+		
+	<meta content="initial-scale=1.0, width=device-width" name="viewport" />
+	<link rel="stylesheet" type="text/css" href="https://www.kirloskarindustries.com/o/kirloskar-common-theme/css/slick.css">
+	
+
+	<link rel="stylesheet" type="text/css" href="https://www.kirloskarindustries.com/o/kirloskar-common-theme/css/swiper-bundle.min.css">
+	<link rel="stylesheet" type="text/css" href="https://www.kirloskarindustries.com/o/kirloskar-common-theme/css/datepicker.css">
+	<link rel="stylesheet" type="text/css" href="https://www.kirloskarindustries.com/o/kirloskar-common-theme/css/font-awesome.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="importmap">{"imports":{"react-dom":"/o/frontend-js-react-web/__liferay__/exports/react-dom.js","@clayui/breadcrumb":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$breadcrumb.js","@clayui/form":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$form.js","@clayui/popover":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$popover.js","@clayui/charts":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$charts.js","@clayui/shared":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$shared.js","@clayui/localized-input":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$localized-input.js","@clayui/modal":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$modal.js","@clayui/empty-state":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$empty-state.js","react":"/o/frontend-js-react-web/__liferay__/exports/react.js","@clayui/color-picker":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$color-picker.js","@clayui/navigation-bar":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$navigation-bar.js","@clayui/pagination":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$pagination.js","@clayui/icon":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$icon.js","@clayui/table":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$table.js","@clayui/autocomplete":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$autocomplete.js","@clayui/slider":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$slider.js","@clayui/management-toolbar":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$management-toolbar.js","@clayui/multi-select":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$multi-select.js","@clayui/nav":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$nav.js","@clayui/time-picker":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$time-picker.js","@clayui/provider":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$provider.js","@clayui/upper-toolbar":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$upper-toolbar.js","@clayui/loading-indicator":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$loading-indicator.js","@clayui/panel":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$panel.js","@clayui/drop-down":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$drop-down.js","@clayui/list":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$list.js","@clayui/date-picker":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$date-picker.js","@clayui/label":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$label.js","@clayui/data-provider":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$data-provider.js","@liferay/frontend-js-api/data-set":"/o/frontend-js-dependencies-web/__liferay__/exports/@liferay$js-api$data-set.js","@clayui/core":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$core.js","@liferay/language/":"/o/js/language/","@clayui/pagination-bar":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$pagination-bar.js","@clayui/layout":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$layout.js","@clayui/multi-step-nav":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$multi-step-nav.js","@liferay/frontend-js-api":"/o/frontend-js-dependencies-web/__liferay__/exports/@liferay$js-api.js","@clayui/css":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$css.js","@clayui/toolbar":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$toolbar.js","@clayui/alert":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$alert.js","@clayui/badge":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$badge.js","@clayui/link":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$link.js","@clayui/card":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$card.js","@clayui/progress-bar":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$progress-bar.js","@clayui/tooltip":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$tooltip.js","@clayui/button":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$button.js","@clayui/tabs":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$tabs.js","@clayui/sticker":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$sticker.js"},"scopes":{}}</script><script data-senna-track="temporary">var Liferay = window.Liferay || {};Liferay.Icons = Liferay.Icons || {};Liferay.Icons.controlPanelSpritemap = 'https://www.kirloskarindustries.com/o/admin-theme/images/clay/icons.svg'; Liferay.Icons.spritemap = 'https://www.kirloskarindustries.com/o/kirloskar-common-theme/images/clay/icons.svg';</script>
+<script data-senna-track="permanent" type="text/javascript">window.Liferay = window.Liferay || {}; window.Liferay.CSP = {nonce: ''};</script>
+<script data-senna-track="permanent" src="/combo?browserId=other&minifierType=js&languageId=en_US&t=1789134670064&/o/frontend-js-jquery-web/jquery/jquery.min.js&/o/frontend-js-jquery-web/jquery/init.js&/o/frontend-js-jquery-web/jquery/ajax.js&/o/frontend-js-jquery-web/jquery/bootstrap.bundle.min.js&/o/frontend-js-jquery-web/jquery/collapsible_search.js&/o/frontend-js-jquery-web/jquery/fm.js&/o/frontend-js-jquery-web/jquery/form.js&/o/frontend-js-jquery-web/jquery/popper.min.js&/o/frontend-js-jquery-web/jquery/side_navigation.js" type="text/javascript"></script>
+
+
+<link href="https://www.kirloskarindustries.com/o/kirloskar-common-theme/images/favicon.ico" rel="apple-touch-icon" />
+<link href="https://www.kirloskarindustries.com/o/kirloskar-common-theme/images/favicon.ico" rel="icon" />
+
+
+
+<link class="lfr-css-file" data-senna-track="temporary" href="https://www.kirloskarindustries.com/o/kirloskar-common-theme/css/clay.css?browserId=other&amp;themeId=kirloskarcommontheme_WAR_kirloskarcommontheme&amp;minifierType=css&amp;languageId=en_US&amp;t=1791872936000" id="liferayAUICSS" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+
+
+	<link href="/combo?browserId=other&amp;minifierType=css&amp;themeId=kirloskarcommontheme_WAR_kirloskarcommontheme&amp;languageId=en_US&amp;com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_ebxp:%2Fo%2Fjournal-content-web%2Fcss%2Fmain.css&amp;com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet:%2Fo%2Fproduct-navigation-product-menu-web%2Fcss%2Fmain.css&amp;com_liferay_segments_experiment_web_internal_portlet_SegmentsExperimentPortlet:%2Fo%2Fsegments-experiment-web%2Fcss%2Fmain.css&amp;t=1791872936000" rel="stylesheet" type="text/css"
+ data-senna-track="temporary" id="27cc61fe" />
+
+
+
+
+
+
+
+
+<script type="text/javascript" data-senna-track="temporary">
+	// <![CDATA[
+		var Liferay = Liferay || {};
+
+		Liferay.Browser = {
+			acceptsGzip: function() {
+				return true;
+			},
+
+			
+
+			getMajorVersion: function() {
+				return 0;
+			},
+
+			getRevision: function() {
+				return '';
+			},
+			getVersion: function() {
+				return '';
+			},
+
+			
+
+			isAir: function() {
+				return false;
+			},
+			isChrome: function() {
+				return false;
+			},
+			isEdge: function() {
+				return false;
+			},
+			isFirefox: function() {
+				return false;
+			},
+			isGecko: function() {
+				return false;
+			},
+			isIe: function() {
+				return false;
+			},
+			isIphone: function() {
+				return false;
+			},
+			isLinux: function() {
+				return false;
+			},
+			isMac: function() {
+				return false;
+			},
+			isMobile: function() {
+				return false;
+			},
+			isMozilla: function() {
+				return false;
+			},
+			isOpera: function() {
+				return false;
+			},
+			isRtf: function() {
+				return false;
+			},
+			isSafari: function() {
+				return false;
+			},
+			isSun: function() {
+				return false;
+			},
+			isWebKit: function() {
+				return false;
+			},
+			isWindows: function() {
+				return false;
+			}
+		};
+
+		Liferay.Data = Liferay.Data || {};
+
+		Liferay.Data.ICONS_INLINE_SVG = true;
+
+		Liferay.Data.NAV_SELECTOR = '#navigation';
+
+		Liferay.Data.NAV_SELECTOR_MOBILE = '#navigationCollapse';
+
+		Liferay.Data.isCustomizationView = function() {
+			return false;
+		};
+
+		Liferay.Data.notices = [
+			
+		];
+
+		(function () {
+			var available = {};
+
+			var direction = {};
+
+			
+
+				available['en_US'] = 'English\x20\x28United\x20States\x29';
+				direction['en_US'] = 'ltr';
+
+			
+
+				available['or_IN'] = 'Odia\x20\x28India\x29';
+				direction['or_IN'] = 'ltr';
+
+			
+
+				available['gu_IN'] = 'Gujarati\x20\x28India\x29';
+				direction['gu_IN'] = 'ltr';
+
+			
+
+				available['hi_IN'] = 'Hindi\x20\x28India\x29';
+				direction['hi_IN'] = 'ltr';
+
+			
+
+				available['kn_IN'] = 'Kannada\x20\x28India\x29';
+				direction['kn_IN'] = 'ltr';
+
+			
+
+				available['mr_IN'] = 'Marathi\x20\x28India\x29';
+				direction['mr_IN'] = 'ltr';
+
+			
+
+				available['ta_IN'] = 'Tamil\x20\x28India\x29';
+				direction['ta_IN'] = 'ltr';
+
+			
+
+				available['te_IN'] = 'Telugu\x20\x28India\x29';
+				direction['te_IN'] = 'ltr';
+
+			
+
+			Liferay.Language = {
+				_cache: {},
+				available,
+				direction,
+				get: function(key) {
+					let value = Liferay.Language._cache[key];
+
+					if (value === undefined) {
+						value = key;
+					}
+
+					return value;
+				}
+			};
+		})();
+
+		var featureFlags = {"LPD-10964":false,"LPS-193884":false,"LPS-178642":false,"LPD-11253":false,"LPS-193005":false,"LPS-187284":false,"LPS-187285":false,"LPD-11377":false,"LPD-10562":false,"LPS-114786":false,"COMMERCE-8087":true,"LPD-13311":true,"LRAC-10757":false,"LPS-180090":false,"LPS-178052":false,"LPS-189856":false,"LPD-21414":false,"LPD-19465":false,"LPS-187436":false,"LPS-185892":false,"LPS-186620":false,"LPS-184404":false,"LPS-198183":false,"LPD-15729":false,"LPS-171364":false,"LPD-6378":false,"LPS-153714":false,"LPS-96845":false,"LPD-11848":false,"LPS-170670":false,"LPS-169981":false,"LPS-153839":false,"LPS-177027":false,"LPD-11003":false,"LPD-19843":false,"LPS-114700":false,"LPS-135430":false,"LPS-134060":false,"LPS-164563":false,"LPS-122920":false,"LPD-27222":false,"LPS-199086":false,"LPS-203351":false,"LPD-10588":false,"LPD-13778":true,"LPD-11313":false,"LPD-6368":false,"LPD-10701":false,"LPD-10703":false,"LPS-202104":false,"LPD-19955":false,"LPS-187142":false,"LPD-15596":false,"LPD-11232":false,"LPS-196935":true,"LPS-176691":false,"LPS-197909":false,"LPD-21636":false,"LPD-29516":false,"COMMERCE-8949":false,"LPD-25799":false,"LPD-11228":false,"LPD-30087":false,"LPS-153813":false,"LPS-174455":false,"LPD-17809":false,"COMMERCE-13024":false,"LPS-165482":false,"LPS-193551":false,"LPS-197477":false,"LPD-17965":false,"LPS-174816":false,"LPS-186360":false,"LPS-153332":false,"LPS-179669":false,"LPS-174417":false,"LPD-11147":false,"LPD-31212":false,"LPD-18221":false,"LPS-155284":false,"LRAC-15017":false,"LPD-19870":false,"LPS-200108":false,"LPS-159643":false,"LPS-161033":false,"LPS-164948":false,"LPS-188058":false,"LPS-129412":false,"LPD-24498":false,"LPD-21265":false,"LPS-169837":false,"LPD-20379":false,"LPD-20213":false};
+
+		Liferay.FeatureFlags = Object.keys(featureFlags).reduce(
+			(acc, key) => ({
+				...acc, [key]: featureFlags[key] === 'true' || featureFlags[key] === true
+			}), {}
+		);
+
+		Liferay.PortletKeys = {
+			DOCUMENT_LIBRARY: 'com_liferay_document_library_web_portlet_DLPortlet',
+			DYNAMIC_DATA_MAPPING: 'com_liferay_dynamic_data_mapping_web_portlet_DDMPortlet',
+			ITEM_SELECTOR: 'com_liferay_item_selector_web_portlet_ItemSelectorPortlet'
+		};
+
+		Liferay.PropsValues = {
+			JAVASCRIPT_SINGLE_PAGE_APPLICATION_TIMEOUT: 0,
+			UPLOAD_SERVLET_REQUEST_IMPL_MAX_SIZE: 209715200000000
+		};
+
+		Liferay.ThemeDisplay = {
+
+			
+
+			
+				getLayoutId: function() {
+					return '7';
+				},
+
+				
+
+				getLayoutRelativeControlPanelURL: function() {
+					return '/group/kil/~/control_panel/manage';
+				},
+
+				getLayoutRelativeURL: function() {
+					return '/about/board-of-directors';
+				},
+				getLayoutURL: function() {
+					return 'https://www.kirloskarindustries.com/about/board-of-directors';
+				},
+				getParentLayoutId: function() {
+					return '5';
+				},
+				isControlPanel: function() {
+					return false;
+				},
+				isPrivateLayout: function() {
+					return 'false';
+				},
+				isVirtualLayout: function() {
+					return false;
+				},
+			
+
+			getBCP47LanguageId: function() {
+				return 'en-US';
+			},
+			getCanonicalURL: function() {
+
+				
+
+				return 'https\x3a\x2f\x2fwww\x2ekirloskarindustries\x2ecom\x2fabout\x2fboard-of-directors';
+			},
+			getCDNBaseURL: function() {
+				return 'https://www.kirloskarindustries.com';
+			},
+			getCDNDynamicResourcesHost: function() {
+				return '';
+			},
+			getCDNHost: function() {
+				return '';
+			},
+			getCompanyGroupId: function() {
+				return '20123';
+			},
+			getCompanyId: function() {
+				return '20097';
+			},
+			getDefaultLanguageId: function() {
+				return 'en_US';
+			},
+			getDoAsUserIdEncoded: function() {
+				return '';
+			},
+			getLanguageId: function() {
+				return 'en_US';
+			},
+			getParentGroupId: function() {
+				return '779558';
+			},
+			getPathContext: function() {
+				return '';
+			},
+			getPathImage: function() {
+				return '/image';
+			},
+			getPathJavaScript: function() {
+				return '/o/frontend-js-web';
+			},
+			getPathMain: function() {
+				return '/c';
+			},
+			getPathThemeImages: function() {
+				return 'https://www.kirloskarindustries.com/o/kirloskar-common-theme/images';
+			},
+			getPathThemeRoot: function() {
+				return '/o/kirloskar-common-theme';
+			},
+			getPlid: function() {
+				return '1926';
+			},
+			getPortalURL: function() {
+				return 'https://www.kirloskarindustries.com';
+			},
+			getRealUserId: function() {
+				return '20102';
+			},
+			getRemoteAddr: function() {
+				return '10.11.1.142';
+			},
+			getRemoteHost: function() {
+				return '10.11.1.142';
+			},
+			getScopeGroupId: function() {
+				return '779558';
+			},
+			getScopeGroupIdOrLiveGroupId: function() {
+				return '779558';
+			},
+			getSessionId: function() {
+				return '';
+			},
+			getSiteAdminURL: function() {
+				return 'https://www.kirloskarindustries.com/group/kil/~/control_panel/manage?p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view';
+			},
+			getSiteGroupId: function() {
+				return '779558';
+			},
+			getURLControlPanel: function() {
+				return '/group/control_panel?refererPlid=1926';
+			},
+			getURLHome: function() {
+				return 'https\x3a\x2f\x2fwww\x2ekirloskarindustries\x2ecom\x2fweb\x2fguest\x2fhome';
+			},
+			getUserEmailAddress: function() {
+				return '';
+			},
+			getUserId: function() {
+				return '20102';
+			},
+			getUserName: function() {
+				return '';
+			},
+			isAddSessionIdToURL: function() {
+				return false;
+			},
+			isImpersonated: function() {
+				return false;
+			},
+			isSignedIn: function() {
+				return false;
+			},
+
+			isStagedPortlet: function() {
+				
+					
+						return false;
+					
+				
+			},
+
+			isStateExclusive: function() {
+				return false;
+			},
+			isStateMaximized: function() {
+				return false;
+			},
+			isStatePopUp: function() {
+				return false;
+			}
+		};
+
+		var themeDisplay = Liferay.ThemeDisplay;
+
+		Liferay.AUI = {
+
+			
+
+			getCombine: function() {
+				return true;
+			},
+			getComboPath: function() {
+				return '/combo/?browserId=other&minifierType=&languageId=en_US&t=1789134608167&';
+			},
+			getDateFormat: function() {
+				return '%m/%d/%Y';
+			},
+			getEditorCKEditorPath: function() {
+				return '/o/frontend-editor-ckeditor-web';
+			},
+			getFilter: function() {
+				var filter = 'raw';
+
+				
+					
+						filter = 'min';
+					
+					
+
+				return filter;
+			},
+			getFilterConfig: function() {
+				var instance = this;
+
+				var filterConfig = null;
+
+				if (!instance.getCombine()) {
+					filterConfig = {
+						replaceStr: '.js' + instance.getStaticResourceURLParams(),
+						searchExp: '\\.js$'
+					};
+				}
+
+				return filterConfig;
+			},
+			getJavaScriptRootPath: function() {
+				return '/o/frontend-js-web';
+			},
+			getPortletRootPath: function() {
+				return '/html/portlet';
+			},
+			getStaticResourceURLParams: function() {
+				return '?browserId=other&minifierType=&languageId=en_US&t=1789134608167';
+			}
+		};
+
+		Liferay.authToken = 'GP7avjYa';
+
+		
+
+		Liferay.currentURL = '\x2fabout\x2fboard-of-directors';
+		Liferay.currentURLEncoded = '\x252Fabout\x252Fboard-of-directors';
+	// ]]>
+</script>
+
+<script data-senna-track="temporary" type="text/javascript">window.__CONFIG__= {basePath: '',combine: true, defaultURLParams: null, explainResolutions: false, exposeGlobal: false, logLevel: 'warn', moduleType: 'module', namespace:'Liferay', nonce: '', reportMismatchedAnonymousModules: 'warn', resolvePath: '/o/js_resolve_modules', url: '/combo/?browserId=other&minifierType=js&languageId=en_US&t=1789134608167&', waitTimeout: 60000};</script><script data-senna-track="permanent" src="/o/frontend-js-loader-modules-extender/loader.js?&mac=9WaMmhziBCkScHZwrrVcOR7VZF4=&browserId=other&languageId=en_US&minifierType=js" type="text/javascript"></script><script data-senna-track="permanent" src="/combo?browserId=other&minifierType=js&languageId=en_US&t=1789134608167&/o/frontend-js-aui-web/aui/aui/aui-min.js&/o/frontend-js-aui-web/liferay/modules.js&/o/frontend-js-aui-web/liferay/aui_sandbox.js&/o/frontend-js-aui-web/aui/attribute-base/attribute-base-min.js&/o/frontend-js-aui-web/aui/attribute-complex/attribute-complex-min.js&/o/frontend-js-aui-web/aui/attribute-core/attribute-core-min.js&/o/frontend-js-aui-web/aui/attribute-observable/attribute-observable-min.js&/o/frontend-js-aui-web/aui/attribute-extras/attribute-extras-min.js&/o/frontend-js-aui-web/aui/event-custom-base/event-custom-base-min.js&/o/frontend-js-aui-web/aui/event-custom-complex/event-custom-complex-min.js&/o/frontend-js-aui-web/aui/oop/oop-min.js&/o/frontend-js-aui-web/aui/aui-base-lang/aui-base-lang-min.js&/o/frontend-js-aui-web/liferay/dependency.js&/o/frontend-js-aui-web/liferay/util.js&/o/oauth2-provider-web/js/liferay.js&/o/frontend-js-web/liferay/dom_task_runner.js&/o/frontend-js-web/liferay/events.js&/o/frontend-js-web/liferay/lazy_load.js&/o/frontend-js-web/liferay/liferay.js&/o/frontend-js-web/liferay/global.bundle.js&/o/frontend-js-web/liferay/portlet.js&/o/frontend-js-web/liferay/workflow.js" type="text/javascript"></script>
+<script data-senna-track="temporary" type="text/javascript">window.Liferay = Liferay || {}; window.Liferay.OAuth2 = {getAuthorizeURL: function() {return 'https://www.kirloskarindustries.com/o/oauth2/authorize';}, getBuiltInRedirectURL: function() {return 'https://www.kirloskarindustries.com/o/oauth2/redirect';}, getIntrospectURL: function() { return 'https://www.kirloskarindustries.com/o/oauth2/introspect';}, getTokenURL: function() {return 'https://www.kirloskarindustries.com/o/oauth2/token';}, getUserAgentApplication: function(externalReferenceCode) {return Liferay.OAuth2._userAgentApplications[externalReferenceCode];}, _userAgentApplications: {}}</script><script data-senna-track="temporary" type="text/javascript">try {var MODULE_MAIN='calendar-web@5.0.98/index';var MODULE_PATH='/o/calendar-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			calendar: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-calendar-a11y': {
+						path: 'calendar_a11y.js',
+						requires: ['calendar'],
+					},
+					'liferay-calendar-container': {
+						path: 'calendar_container.js',
+						requires: [
+							'aui-alert',
+							'aui-base',
+							'aui-component',
+							'liferay-portlet-base',
+						],
+					},
+					'liferay-calendar-date-picker-sanitizer': {
+						path: 'date_picker_sanitizer.js',
+						requires: ['aui-base'],
+					},
+					'liferay-calendar-interval-selector': {
+						path: 'interval_selector.js',
+						requires: ['aui-base', 'liferay-portlet-base'],
+					},
+					'liferay-calendar-interval-selector-scheduler-event-link': {
+						path: 'interval_selector_scheduler_event_link.js',
+						requires: ['aui-base', 'liferay-portlet-base'],
+					},
+					'liferay-calendar-list': {
+						path: 'calendar_list.js',
+						requires: [
+							'aui-template-deprecated',
+							'liferay-scheduler',
+						],
+					},
+					'liferay-calendar-message-util': {
+						path: 'message_util.js',
+						requires: ['liferay-util-window'],
+					},
+					'liferay-calendar-recurrence-converter': {
+						path: 'recurrence_converter.js',
+						requires: [],
+					},
+					'liferay-calendar-recurrence-dialog': {
+						path: 'recurrence.js',
+						requires: [
+							'aui-base',
+							'liferay-calendar-recurrence-util',
+						],
+					},
+					'liferay-calendar-recurrence-util': {
+						path: 'recurrence_util.js',
+						requires: ['aui-base', 'liferay-util-window'],
+					},
+					'liferay-calendar-reminders': {
+						path: 'calendar_reminders.js',
+						requires: ['aui-base'],
+					},
+					'liferay-calendar-remote-services': {
+						path: 'remote_services.js',
+						requires: [
+							'aui-base',
+							'aui-component',
+							'liferay-calendar-util',
+							'liferay-portlet-base',
+						],
+					},
+					'liferay-calendar-session-listener': {
+						path: 'session_listener.js',
+						requires: ['aui-base', 'liferay-scheduler'],
+					},
+					'liferay-calendar-simple-color-picker': {
+						path: 'simple_color_picker.js',
+						requires: ['aui-base', 'aui-template-deprecated'],
+					},
+					'liferay-calendar-simple-menu': {
+						path: 'simple_menu.js',
+						requires: [
+							'aui-base',
+							'aui-template-deprecated',
+							'event-outside',
+							'event-touch',
+							'widget-modality',
+							'widget-position',
+							'widget-position-align',
+							'widget-position-constrain',
+							'widget-stack',
+							'widget-stdmod',
+						],
+					},
+					'liferay-calendar-util': {
+						path: 'calendar_util.js',
+						requires: [
+							'aui-datatype',
+							'aui-io',
+							'aui-scheduler',
+							'aui-toolbar',
+							'autocomplete',
+							'autocomplete-highlighters',
+						],
+					},
+					'liferay-scheduler': {
+						path: 'scheduler.js',
+						requires: [
+							'async-queue',
+							'aui-datatype',
+							'aui-scheduler',
+							'dd-plugin',
+							'liferay-calendar-a11y',
+							'liferay-calendar-message-util',
+							'liferay-calendar-recurrence-converter',
+							'liferay-calendar-recurrence-util',
+							'liferay-calendar-util',
+							'liferay-scheduler-event-recorder',
+							'liferay-scheduler-models',
+							'promise',
+							'resize-plugin',
+						],
+					},
+					'liferay-scheduler-event-recorder': {
+						path: 'scheduler_event_recorder.js',
+						requires: [
+							'dd-plugin',
+							'liferay-calendar-util',
+							'resize-plugin',
+						],
+					},
+					'liferay-scheduler-models': {
+						path: 'scheduler_models.js',
+						requires: [
+							'aui-datatype',
+							'dd-plugin',
+							'liferay-calendar-util',
+						],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='contacts-web@5.0.61/index';var MODULE_PATH='/o/contacts-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			contactscenter: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-contacts-center': {
+						path: 'main.js',
+						requires: [
+							'aui-io-plugin-deprecated',
+							'aui-toolbar',
+							'autocomplete-base',
+							'datasource-io',
+							'json-parse',
+							'liferay-portlet-base',
+							'liferay-util-window',
+						],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='@liferay/document-library-web@6.0.188/index';var MODULE_PATH='/o/document-library-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			dl: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'document-library-upload-component': {
+						path: 'DocumentLibraryUpload.js',
+						requires: [
+							'aui-component',
+							'aui-data-set-deprecated',
+							'aui-overlay-manager-deprecated',
+							'aui-overlay-mask-deprecated',
+							'aui-parse-content',
+							'aui-progressbar',
+							'aui-template-deprecated',
+							'liferay-search-container',
+							'querystring-parse-simple',
+							'uploader',
+						],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='dynamic-data-mapping-web@5.0.108/index';var MODULE_PATH='/o/dynamic-data-mapping-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	const LiferayAUI = Liferay.AUI;
+
+	AUI().applyConfig({
+		groups: {
+			ddm: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: LiferayAUI.getFilterConfig(),
+				modules: {
+					'liferay-ddm-form': {
+						path: 'ddm_form.js',
+						requires: [
+							'aui-base',
+							'aui-datatable',
+							'aui-datatype',
+							'aui-image-viewer',
+							'aui-parse-content',
+							'aui-set',
+							'aui-sortable-list',
+							'json',
+							'liferay-form',
+							'liferay-map-base',
+							'liferay-translation-manager',
+							'liferay-util-window',
+						],
+					},
+					'liferay-portlet-dynamic-data-mapping': {
+						condition: {
+							trigger: 'liferay-document-library',
+						},
+						path: 'main.js',
+						requires: [
+							'arraysort',
+							'aui-form-builder-deprecated',
+							'aui-form-validator',
+							'aui-map',
+							'aui-text-unicode',
+							'json',
+							'liferay-menu',
+							'liferay-translation-manager',
+							'liferay-util-window',
+							'text',
+						],
+					},
+					'liferay-portlet-dynamic-data-mapping-custom-fields': {
+						condition: {
+							trigger: 'liferay-document-library',
+						},
+						path: 'custom_fields.js',
+						requires: ['liferay-portlet-dynamic-data-mapping'],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='exportimport-web@5.0.92/index';var MODULE_PATH='/o/exportimport-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			exportimportweb: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-export-import-export-import': {
+						path: 'main.js',
+						requires: [
+							'aui-datatype',
+							'aui-dialog-iframe-deprecated',
+							'aui-modal',
+							'aui-parse-content',
+							'aui-toggler',
+							'liferay-portlet-base',
+							'liferay-util-window',
+						],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='frontend-editor-alloyeditor-web@5.0.51/index';var MODULE_PATH='/o/frontend-editor-alloyeditor-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			alloyeditor: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-alloy-editor': {
+						path: 'alloyeditor.js',
+						requires: [
+							'aui-component',
+							'liferay-portlet-base',
+							'timers',
+						],
+					},
+					'liferay-alloy-editor-source': {
+						path: 'alloyeditor_source.js',
+						requires: [
+							'aui-debounce',
+							'liferay-fullscreen-source-editor',
+							'liferay-source-editor',
+							'plugin',
+						],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='frontend-js-components-web@2.0.72/index';var MODULE_PATH='/o/frontend-js-components-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			components: {
+
+				// eslint-disable-next-line
+				mainModule: MODULE_MAIN,
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='@liferay/frontend-js-react-web@5.0.45/index';var MODULE_PATH='/o/frontend-js-react-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			react: {
+
+				// eslint-disable-next-line
+				mainModule: MODULE_MAIN,
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='@liferay/frontend-js-state-web@1.0.25/index';var MODULE_PATH='/o/frontend-js-state-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			state: {
+
+				// eslint-disable-next-line
+				mainModule: MODULE_MAIN,
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='portal-search-web@6.0.139/index';var MODULE_PATH='/o/portal-search-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			search: {
+				base: MODULE_PATH + '/js/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-search-date-facet': {
+						path: 'date_facet.js',
+						requires: ['aui-form-validator'],
+					},
+				},
+				root: MODULE_PATH + '/js/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='portal-workflow-kaleo-designer-web@5.0.137/index';var MODULE_PATH='/o/portal-workflow-kaleo-designer-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			'kaleo-designer': {
+				base: MODULE_PATH + '/designer/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-kaleo-designer-autocomplete-util': {
+						path: 'autocomplete_util.js',
+						requires: ['autocomplete', 'autocomplete-highlighters'],
+					},
+					'liferay-kaleo-designer-definition-diagram-controller': {
+						path: 'definition_diagram_controller.js',
+						requires: [
+							'liferay-kaleo-designer-field-normalizer',
+							'liferay-kaleo-designer-utils',
+						],
+					},
+					'liferay-kaleo-designer-dialogs': {
+						path: 'dialogs.js',
+						requires: ['liferay-util-window'],
+					},
+					'liferay-kaleo-designer-editors': {
+						path: 'editors.js',
+						requires: [
+							'aui-ace-editor',
+							'aui-ace-editor-mode-xml',
+							'aui-base',
+							'aui-datatype',
+							'aui-node',
+							'liferay-kaleo-designer-autocomplete-util',
+							'liferay-kaleo-designer-utils',
+						],
+					},
+					'liferay-kaleo-designer-field-normalizer': {
+						path: 'field_normalizer.js',
+						requires: ['liferay-kaleo-designer-remote-services'],
+					},
+					'liferay-kaleo-designer-nodes': {
+						path: 'nodes.js',
+						requires: [
+							'aui-datatable',
+							'aui-datatype',
+							'aui-diagram-builder',
+							'liferay-kaleo-designer-editors',
+							'liferay-kaleo-designer-utils',
+						],
+					},
+					'liferay-kaleo-designer-remote-services': {
+						path: 'remote_services.js',
+						requires: ['aui-io'],
+					},
+					'liferay-kaleo-designer-templates': {
+						path: 'templates.js',
+						requires: ['aui-tpl-snippets-deprecated'],
+					},
+					'liferay-kaleo-designer-utils': {
+						path: 'utils.js',
+						requires: [],
+					},
+					'liferay-kaleo-designer-xml-definition': {
+						path: 'xml_definition.js',
+						requires: [
+							'aui-base',
+							'aui-component',
+							'dataschema-xml',
+							'datatype-xml',
+						],
+					},
+					'liferay-kaleo-designer-xml-definition-serializer': {
+						path: 'xml_definition_serializer.js',
+						requires: ['escape', 'liferay-kaleo-designer-xml-util'],
+					},
+					'liferay-kaleo-designer-xml-util': {
+						path: 'xml_util.js',
+						requires: ['aui-base'],
+					},
+					'liferay-portlet-kaleo-designer': {
+						path: 'main.js',
+						requires: [
+							'aui-ace-editor',
+							'aui-ace-editor-mode-xml',
+							'aui-tpl-snippets-deprecated',
+							'dataschema-xml',
+							'datasource',
+							'datatype-xml',
+							'event-valuechange',
+							'io-form',
+							'liferay-kaleo-designer-autocomplete-util',
+							'liferay-kaleo-designer-editors',
+							'liferay-kaleo-designer-nodes',
+							'liferay-kaleo-designer-remote-services',
+							'liferay-kaleo-designer-utils',
+							'liferay-kaleo-designer-xml-util',
+							'liferay-util-window',
+						],
+					},
+				},
+				root: MODULE_PATH + '/designer/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='staging-processes-web@5.0.60/index';var MODULE_PATH='/o/staging-processes-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			stagingprocessesweb: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-staging-processes-export-import': {
+						path: 'main.js',
+						requires: [
+							'aui-datatype',
+							'aui-dialog-iframe-deprecated',
+							'aui-modal',
+							'aui-parse-content',
+							'aui-toggler',
+							'liferay-portlet-base',
+							'liferay-util-window',
+						],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}</script>
+
+
+
+
+<script type="text/javascript" data-senna-track="temporary">
+	// <![CDATA[
+		
+			
+				
+		
+
+		
+	// ]]>
+</script>
+
+
+
+
+
+	
+		
+
+			
+
+			
+		
+		
+
+
+
+	
+		
+
+			
+
+			
+		
+		
+
+
+
+	
+		
+
+			
+
+			
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link class="lfr-css-file" data-senna-track="temporary" href="https://www.kirloskarindustries.com/o/kirloskar-common-theme/css/main.css?browserId=other&amp;themeId=kirloskarcommontheme_WAR_kirloskarcommontheme&amp;minifierType=css&amp;languageId=en_US&amp;t=1791872936000" id="liferayThemeCSS" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+
+	<style data-senna-track="temporary" type="text/css">
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+	</style>
+
+
+<style data-senna-track="temporary" type="text/css">
+</style>
+<link data-senna-track="temporary" href="/o/layout-common-styles/main.css?plid=1926&segmentsExperienceId=2798622&t=1651568629177" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" data-senna-track="temporary">
+	if (window.Analytics) {
+		window._com_liferay_document_library_analytics_isViewFileEntry = false;
+	}
+</script>
+
+<script type="text/javascript">
+Liferay.on(
+	'ddmFieldBlur', function(event) {
+		if (window.Analytics) {
+			Analytics.send(
+				'fieldBlurred',
+				'Form',
+				{
+					fieldName: event.fieldName,
+					focusDuration: event.focusDuration,
+					formId: event.formId,
+					formPageTitle: event.formPageTitle,
+					page: event.page,
+					title: event.title
+				}
+			);
+		}
+	}
+);
+
+Liferay.on(
+	'ddmFieldFocus', function(event) {
+		if (window.Analytics) {
+			Analytics.send(
+				'fieldFocused',
+				'Form',
+				{
+					fieldName: event.fieldName,
+					formId: event.formId,
+					formPageTitle: event.formPageTitle,
+					page: event.page,
+					title:event.title
+				}
+			);
+		}
+	}
+);
+
+Liferay.on(
+	'ddmFormPageShow', function(event) {
+		if (window.Analytics) {
+			Analytics.send(
+				'pageViewed',
+				'Form',
+				{
+					formId: event.formId,
+					formPageTitle: event.formPageTitle,
+					page: event.page,
+					title: event.title
+				}
+			);
+		}
+	}
+);
+
+Liferay.on(
+	'ddmFormSubmit', function(event) {
+		if (window.Analytics) {
+			Analytics.send(
+				'formSubmitted',
+				'Form',
+				{
+					formId: event.formId,
+					title: event.title
+				}
+			);
+		}
+	}
+);
+
+Liferay.on(
+	'ddmFormView', function(event) {
+		if (window.Analytics) {
+			Analytics.send(
+				'formViewed',
+				'Form',
+				{
+					formId: event.formId,
+					title: event.title
+				}
+			);
+		}
+	}
+);
+
+</script><script>
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<!-- Java script -->
+	<script data-senna-track="permanent" src="https://www.kirloskarindustries.com/o/kirloskar-common-theme/js/jquery.min.js" type="text/javascript" ></script>
+	<script data-senna-track="permanent" src="https://www.kirloskarindustries.com/o/kirloskar-common-theme/js/slick.min.js" type="text/javascript" ></script>
+	<script data-senna-track="permanent" src="https://www.kirloskarindustries.com/o/kirloskar-common-theme/js/device.js" type="text/javascript" ></script>
+	
+	<script data-senna-track="permanent" src="https://www.kirloskarindustries.com/o/kirloskar-common-theme/js/ajaxfileupload.js" type="text/javascript" ></script>
+	<script data-senna-track="permanent" src="https://www.kirloskarindustries.com/o/kirloskar-common-theme/js/datepicker.js" type="text/javascript" ></script>
+	<script data-senna-track="permanent" src="https://www.kirloskarindustries.com/o/kirloskar-common-theme/js/swiper-bundle.min.js" type="text/javascript" ></script>
+	<!-- Java script end -->
+	
+</head>
+
+<body class="other controls-visible  yui3-skin-sam signed-out public-page site">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<nav class="quick-access-nav  d-none" id="uovh_quickAccessNav">
+		<span class="hide-accessible">Navigation</span>
+		<ul>
+			
+				<li><a href="#main-content">skip-to-content</a></li>
+			
+
+			
+
+		</ul>
+	</nav>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid" id="wrapper">
+	<header id="banner" role="banner">
+		<div id="heading" class="d-inline-block">
+			<div aria-level="1" class="site-title" role="heading">
+				<a class="logo custom-logo" href="https://www.kirloskarindustries.com" title="Go to Kirloskar Industries">
+					<img loading="lazy" alt="" src="/image/layout_set_logo?img_id=6819286&amp;t=1791856884804" class="top_logo" />
+				</a>
+					<span class="site-name d-none" title="Go to Kirloskar Industries">
+						Kirloskar Industries
+					</span>
+			</div>
+		</div>
+		<div class="hamburger-icon">
+			<svg class="lexicon-icon opens">
+				<use href="https://www.kirloskarindustries.com/o/kirloskar-common-theme/images/clay/icons.svg#bars" />
+			</svg>
+		</div>
+		
+<nav class="sort-pages modify-pages" id="navigation" role="navigation">
+	<ul aria-label="Site Pages" role="menubar">
+			<li class="selected mainList" id="layout_unknown5" role="presentation">
+				<span class="with_child"></span>
+				<a class="hvr-underline" 
+				   aria-labelledby="layout_unknown5" 
+				   aria-haspopup='true' 
+				   href="https://www.kirloskarindustries.com/about" 
+				    
+				   role="menuitem">
+					<span> About</span>
+				</a>
+					<div class="child-menu">
+						<ul class="childGroup" role="menu">
+								<li class="selected child-list noChild" id="layout_unknown7" role="presentation">
+									<a class="btn-arrow child-link" 
+									   aria-labelledby="layout_unknown7" 
+									   href="https://www.kirloskarindustries.com/about/board-of-directors" 
+									    
+									   role="menuitem">Board Of Directors</a>
+								</li>
+						</ul>
+					</div>
+			</li>
+			<li class=" mainList" id="layout_unknown9" role="presentation">
+				<span class="with_child"></span>
+				<a class="hvr-underline" 
+				   aria-labelledby="layout_unknown9" 
+				    
+				   href="https://www.kirloskarindustries.com/services" 
+				    
+				   role="menuitem">
+					<span> Services</span>
+				</a>
+					<div class="child-menu">
+						<ul class="childGroup" role="menu">
+								<li class=" child-list noChild" id="layout_unknown11" role="presentation">
+									<a class="btn-arrow child-link" 
+									   aria-labelledby="layout_unknown11" 
+									   href="https://www.kirloskarindustries.com/services/innovation-that-transforms-energy-generation" 
+									    
+									   role="menuitem">Innovation that Transforms Energy Generation</a>
+								</li>
+						</ul>
+					</div>
+			</li>
+			<li class=" mainList" id="layout_unknown13" role="presentation">
+				
+				<a class="hvr-underline" 
+				   aria-labelledby="layout_unknown13" 
+				    
+				   href="https://www.kirloskarindustries.com/investors" 
+				    
+				   role="menuitem">
+					<span> Investors</span>
+				</a>
+			</li>
+			<li class=" mainList" id="layout_unknown15" role="presentation">
+				<span class="with_child"></span>
+				<a class="hvr-underline" 
+				   aria-labelledby="layout_unknown15" 
+				    
+				   href="https://www.kirloskarindustries.com/csr" 
+				    
+				   role="menuitem">
+					<span> CSR</span>
+				</a>
+					<div class="child-menu">
+						<ul class="childGroup" role="menu">
+								<li class=" child-list noChild" id="layout_unknown17" role="presentation">
+									<a class="btn-arrow child-link" 
+									   aria-labelledby="layout_unknown17" 
+									   href="https://www.kirloskarindustries.com/csr/kirloskar-vasundhara-international-film-festival" 
+									    
+									   role="menuitem">Kirloskar Vasundhara International Film Festival</a>
+								</li>
+								<li class=" child-list noChild" id="layout_unknown19" role="presentation">
+									<a class="btn-arrow child-link" 
+									   aria-labelledby="layout_unknown19" 
+									   href="https://www.kirloskarindustries.com/csr/kirloskar-wash-initiative" 
+									    
+									   role="menuitem">Kirloskar WaSH Initiative</a>
+								</li>
+						</ul>
+					</div>
+			</li>
+			<li class=" mainList" id="layout_unknown21" role="presentation">
+				<span class="with_child"></span>
+				<a class="hvr-underline" 
+				   aria-labelledby="layout_unknown21" 
+				    
+				   href="https://www.kirloskarindustries.com/careers" 
+				    
+				   role="menuitem">
+					<span> Careers</span>
+				</a>
+					<div class="child-menu">
+						<ul class="childGroup" role="menu">
+								<li class=" child-list noChild" id="layout_unknown133" role="presentation">
+									<a class="btn-arrow child-link" 
+									   aria-labelledby="layout_unknown133" 
+									   href="https://www.kirloskarindustries.com/careers/job-listings" 
+									    
+									   role="menuitem">Job Listings</a>
+								</li>
+						</ul>
+					</div>
+			</li>
+			<li class=" mainList" id="layout_unknown23" role="presentation">
+				
+				<a class="hvr-underline" 
+				   aria-labelledby="layout_unknown23" 
+				    
+				   href="https://www.kirloskarindustries.com/newsroom" 
+				    
+				   role="menuitem">
+					<span> Newsroom</span>
+				</a>
+			</li>
+			<li class=" mainList" id="layout_unknown25" role="presentation">
+				
+				<a class="hvr-underline" 
+				   aria-labelledby="layout_unknown25" 
+				    
+				   href="https://www.kirloskarindustries.com/contact" 
+				    
+				   role="menuitem">
+					<span> Contact</span>
+				</a>
+			</li>
+	</ul>
+	<a class="search" href="javascript:void(0)" onclick="displaySearchBar()">
+		<i class="icon-search"></i>
+	</a>
+</nav>
+	</header>
+	
+	<a class="top-mob-search" href="javascript:void(0)" onclick="displaySearchBar()">
+		<i class="icon-search"></i>
+	</a>
+	
+	<div id="kirloskar-global-search" class="top-search" style="display:none;">
+		<div class="container position-relative cursor_blink">
+			<a href="javascript:void(0)" onclick="searchKeyword('https://www.kirloskarindustries.com');" id="search-btn" >
+				<span class="search-btn"></span>
+			</a>
+			<input type="text" class="search-class" placeholder="Search here" id="searchInput" name="searchInput" />
+			<i class="blink_line"></i>
+			<a href="javascript:void(0)" onclick="hideSearchBar();" id="close-search-btn" >
+				<span class="close-search"></span>
+			</a>
+		</div>
+	</div>
+	
+	<section id="content">
+		<h2 class="hide-accessible" role="heading" aria-level="1">Board Of Directors - Kirloskar Industries</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+		<div class="layout-content portlet-layout" id="main-content" role="main">
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+	<div class="lfr-layout-structure-item-com-liferay-journal-content-web-portlet-journalcontentportlet lfr-layout-structure-item-8bfd17d1-e141-4b45-998e-0fe66dad8079 " style=""><div id="fragment-d3387c5f-70ce-a1d3-0664-c835453289a2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_journal_content_web_portlet_JournalContentPortlet_  portlet-static portlet-static-end portlet-decorate portlet-journal-content " id="p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_ebxp_">
+		<span id="p_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_ebxp"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_ebxp">
+
+	<div class="portlet-content">
+
+		<div class="autofit-float autofit-row portlet-header">
+			<div class="autofit-col autofit-col-expand">
+				<h2 class="portlet-title-text">KIL - About Board Of Directors Static Banner</h2>
+			</div>
+
+			<div class="autofit-col autofit-col-end">
+				<div class="autofit-section">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="visible-interaction">
+
+	
+
+	
+</div>				</div>
+			</div>
+		</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+			
+			
+				
+					
+					
+					
+					
+
+						
+
+						<div class="" data-fragments-editor-item-id="20132-780985" data-fragments-editor-item-type="fragments-editor-mapped-item">
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+		<div class="journal-content-article " data-analytics-asset-id="780983" data-analytics-asset-title="KIL - About Board Of Directors Static Banner" data-analytics-asset-type="web-content" data-analytics-web-content-resource-pk="780985">
+			
+
+			<style>
+.over-img {
+    position: absolute;
+    right: 0;
+    height: 100%;
+}
+.mb-80 .row.filter .col-md-4.col-xs-12.mb-xs-20 .filter-year .btn-group select {
+    width: 220px;
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+	div.slant-nav {
+		position: absolute;
+	}
+}
+@media only screen and (max-width: 1367px) and (min-width: 1023px) {
+.slant-nav h2 {
+    font-size: 24px;
+}
+
+
+div.slant-nav {
+    margin-right: 0;
+    width: 270px;
+    bottom: -90px;
+}
+}
+@media only screen and (min-width: 1368px) {
+    .slant-nav h2 {
+    font-size: 32px;
+}
+div.slant-nav {
+    width: 290px;
+    }
+}
+.content_kil {
+    position: absolute;
+    top: 25%;
+    left: 6%;
+}
+.content_kil h2 {
+    line-height: 1.3;
+	text-transform: inherit;
+	color: #4d4d4d;
+	max-width: 420px;
+	font-family: 'Heebo-regular';
+}
+@media only screen and (max-width: 767px) {
+	img.banner-mask, img.slant-mask-wrap {
+		height: 100%;
+	}
+	.slider-wrap {
+		max-height: 450px;
+	}
+	div.slant-nav {
+		bottom: 15px;
+	}
+	.slider-for div {
+        height: 100%;
+        min-height: 190px;
+    }
+    .slant-nav h2 {
+        font-size: 20px !important;
+        margin-bottom: 0;
+        font-family: 'Heebo-regular';
+    }
+    .banner-image img {
+        border-bottom-right-radius: 80px !important;
+    }
+    .content_kil {
+        top: unset;
+        bottom: 0;
+    }
+    .content_kil h2{
+        font-size: 18px !important;
+        line-height: 1.3;
+        text-transform: inherit;
+        color: #ffffff;
+        max-width: 420px;
+        text-shadow: 1px 2px 2px #d58465;
+        font-family: 'Heebo-Medium';
+        font-size: 18px !important;
+        width: 80%
+    }
+/*    .slider.banner-slider {
+		background: #000;
+	}
+	.banner-image, img.banner-mask, img.slant-mask-wrap {
+		opacity: 0.6;
+	}
+*/
+}
+#press .main .industries.media_home.press-slider.slick-initialized.slick-slider {
+    margin-top: 0;
+}
+footer#footer {
+    margin-top: 5rem;
+}
+#wrapper {overflow: hidden;}
+.row.mt-200 div div#filter-section {
+    margin-top: -130px;
+}
+.icon-angle-left:hover:before, 
+.icon-angle-right:hover:before{
+    color: var(--light-green) !important;
+}
+select {
+    color: inherit;
+}
+div#contact-data div p {
+    margin-bottom: 0;
+}
+.address p {
+    font-size: 16px;
+}
+
+.child-menu .btn-arrow {
+    font-size: 22px;
+    text-transform: capitalize;
+    font-family: 'Heebo-Regular';
+}
+</style>
+
+<section class="position-relative">
+	<div class="container-fluid slider-wrap">
+		<div class="slider slider-for banner-slider">
+				<div class="banner-image" style="margin:0 -0%">
+						<img loading="lazy" data-fileentryid="780786" alt="banner image" src="/documents/779558/780783/BOD_banner.png/6611aba1-b1db-c962-8bd5-b63dd888fb74?t=1651565117645" style="height: 100%; width: 100%;" />
+				</div>
+		</div>
+		
+		<div class="content_kil">
+		</div>
+	</div>
+	
+	
+
+</section>
+
+<script>
+ $("ul li a").click(function() {
+    $(this).parent().addClass('selected');
+
+    });
+</script>
+
+			
+		</div>
+
+		
+
+	
+
+
+
+						</div>
+					
+				
+			
+		
+	
+
+
+
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+</div></div><div class="lfr-layout-structure-item-com-liferay-journal-content-web-portlet-journalcontentportlet lfr-layout-structure-item-94f2eff9-c800-4cf7-be5a-271e80235a56 " style=""><div id="fragment-d7d29028-8303-ca35-79d7-b1f730f7cb60">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_journal_content_web_portlet_JournalContentPortlet_  portlet-static portlet-static-end portlet-decorate portlet-journal-content " id="p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_vdaz_">
+		<span id="p_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_vdaz"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_vdaz">
+
+	<div class="portlet-content">
+
+		<div class="autofit-float autofit-row portlet-header">
+			<div class="autofit-col autofit-col-expand">
+				<h2 class="portlet-title-text">KIL-About Board Of Directors Kirloskar Industries</h2>
+			</div>
+
+			<div class="autofit-col autofit-col-end">
+				<div class="autofit-section">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="visible-interaction">
+
+	
+
+	
+</div>				</div>
+			</div>
+		</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+			
+			
+				
+					
+					
+					
+					
+
+						
+
+						<div class="" data-fragments-editor-item-id="20132-781008" data-fragments-editor-item-type="fragments-editor-mapped-item">
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+		<div class="journal-content-article " data-analytics-asset-id="781006" data-analytics-asset-title="KIL-About Board Of Directors Kirloskar Industries" data-analytics-asset-type="web-content" data-analytics-web-content-resource-pk="781008">
+			
+
+			<style>
+p .button {
+    padding: 0px;
+}
+.people-unit .designation {
+    font-family: 'Heebo-Bold';
+    color: var(--light-green);
+    margin-bottom: 0px;
+}
+.people-unit .din {
+    font-family: 'Heebo-Light';
+    color: #19988b;
+    margin-bottom: 20px;
+}
+.director-listing .people-unit img {
+    max-width: 80% !important;
+}
+
+.director-listing .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 300; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.director-listing .modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: black;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  color: white;
+  height: 5rem;
+}
+
+.modal-header h2 {
+  margin: 10px 15px;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+  color: var(--light-green);
+  text-align: left;
+}
+.name p {
+    margin-top: 10px;
+}
+.content {
+    padding: 10px 30px;
+    overflow: auto;
+    height: 400px;
+    padding-right: 20px;
+}
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.button{
+  color: var(--light-green);
+  background: white;
+  border:none;
+}
+.button:hover, button:focus {
+outline: none;
+}
+@media (max-width: 767px) {
+h2 {
+    font-size: 18px !important;
+}
+.modal-content {
+    width: 90%;
+}
+}
+</style>
+
+
+<section class="directors">
+    <div class="container-fluid container-custom">
+        <div id="board-of-directors-main">
+        	<div id="board-of-directors-content">
+        		    <div class="row mt-40 director-listing">
+            			    <div class="col-md-4 people-unit">
+                					<div class="data-section">
+                						<img loading="lazy" alt="" data-fileentryid="780952" src="/documents/779558/780796/atul-kirloskar-board-of-directors-1.320x320.png/1474c2f1-7e29-7339-5d33-a7cc8432525a?t=1651565154248" class="img-responsive headshot" />
+                							<h2 class="name">Atul. C. Kirloskar</h2>
+                							<p style="text-align:left;" class="designation">Chairman</p>
+                						    <p style="text-align:left;" class="din">DIN : 00007387</p>
+												<div class="">
+														<p></p><p>Mr Atul C. Kirloskar began his career with the erstwhile Kirloskar Cummins Limited in the year 1978, where he started out as a trainee. In December 1981, he was a...</p>
+
+													<p><button class="button" onclick="toggleModal('1')">Read More &gt;&gt;<p></p>
+												</button></p></div>
+
+												<div id="modal-1" class="modal">
+													<div class="modal-content">
+														<div class="modal-header">
+																<h2 class="name">Atul. C. Kirloskar
+																<p style="text-align:left;" class="designation">Chairman</p>
+															</h2>
+															<span class="close">×</span>
+														</div>
+														<div class="content">
+															<p></p><p>Mr Atul C. Kirloskar began his career with the erstwhile Kirloskar Cummins Limited in the year 1978, where he started out as a trainee. In December 1981, he was appointed as the Chief Executive of Cummins Diesel Sales and Services.
+</p><p>
+On 1 November 1984, he was appointed as the Executive Vice President of Kirloskar Oil Engines Limited. He was co-opted on the Board of Kirloskar Industries Limited on 6 August 1985, wherein he took over as the Managing Director. In 1988, he was appointed Vice Chairman of Kirloskar Industries Limited and held the position till 25 July 1998, when he was elected Chairman of the Board of KIL. He was appointed as the Chairman and Managing Director of Kirloskar Oil Engines Limited (then known as Kirloskar Engines India Limited) on 31 March 2010. He was re-designated as the Executive Chairman on 25 January 2012.</p><p></p>
+														</div>
+													</div>
+												</div>
+												
+										
+                					</div>
+                			</div>
+            			    <div class="col-md-4 people-unit">
+                					<div class="data-section">
+                						<img loading="lazy" alt="" data-fileentryid="3269311" src="/documents/779558/780796/George_Verghese_KIL.png/28dbc538-3ec9-e230-badd-f4ef7b7a13cd?t=1747804618414" class="img-responsive headshot" />
+                							<h2 class="name">Mr. George Verghese</h2>
+                							<p style="text-align:left;" class="designation">Managing Director</p>
+                						    <p style="text-align:left;" class="din">DIN : 11068946</p>
+												<div class="">
+														<p></p><p>Mr. George Verghese, Age 44 years, is a dedicated, focused and accomplished professional with over 21 years of experience in the Manufacturing Industry, Informati...</p>
+
+													<p><button class="button" onclick="toggleModal('2')">Read More &gt;&gt;<p></p>
+												</button></p></div>
+
+												<div id="modal-2" class="modal">
+													<div class="modal-content">
+														<div class="modal-header">
+																<h2 class="name">Mr. George Verghese
+																<p style="text-align:left;" class="designation">Managing Director</p>
+															</h2>
+															<span class="close">×</span>
+														</div>
+														<div class="content">
+															<p></p><p>Mr. George Verghese, Age 44 years, is a dedicated, focused and accomplished professional with over 21 years of experience in the Manufacturing Industry, Information Technology Enabled Services and Telecom.</p>
+<p>Mr. Verghese completed his Master’s in Management from XLRI, Jamshedpur, and his engineering degree from the College of Engineering, Munnar.
+</p>
+ <p>Mr. George Verghese joined Kirloskar Management Services Private Limited, a Kirloskar Group Company, in April 2021, as the Vice President - Group Human Resources (HR). He subsequently took on the role of Chief Human Resources Officer (CHRO) and Chief of Staff of Kirloskar Oil Engines Limited (KOEL).</p>
+<p>
+In his leadership role overseeing the Group HR function, Mr. Verghese has spearheaded HR transformation initiatives at the Group level. His contributions include driving key processes such as succession planning, leadership development, the brand refresh project, the business planning process, organisational restructuring, and change management.
+</p>
+
+ <p>Additionally, he plays an integral role in the Group’s business transformation efforts, ensuring that the organisation remain market-relevant while actively driving the broader transformation and change agenda.</p>
+<p>In his role at KOEL, Mr. George Verghese was part of the core leadership team responsible for the company's business turnaround efforts, resulting in significant growth, margin improvement, and enhanced shareholder returns. He contributed to several key strategic initiatives at KOEL, including formulating the overall business strategy, leading business restructuring efforts in alignment with the new strategy, driving channel restructuring, and enhancing product branding and market positioning.</p>
+<p>Mr. Verghese began his career with Dell International Services and has since worked with various Indian and multinational organisations, including Cummins, Reliance Communications, and UST Global, across diverse roles and functions.
+Before joining the Kirloskar Group, he spent 11 years at Cummins, progressing through multiple roles and ultimately serving as the HR Leader for the Aftermarket Business.</p>
+<p>Mr. Verghese has been with the Group for over three years and has already played a big role in key areas like leadership, branding, public relations, data analytics, information technology and culture. In his tenure with the Group over the last 3 years, he has made significant contributions in all these areas, and also has worked closely with the leadership in business-level transformation efforts. He has also helped turn around other businesses in the Group. </p><p></p>
+														</div>
+													</div>
+												</div>
+												
+										
+                					</div>
+                			</div>
+            			    <div class="col-md-4 people-unit">
+                					<div class="data-section">
+                						<img loading="lazy" alt="" data-fileentryid="780928" src="/documents/779558/780796/aditi-chirmule.320x320.png/97ecc7fc-7858-c93d-a69d-bd9b2199328a?t=1651565153810" class="img-responsive headshot" />
+                							<h2 class="name">Aditi Chirmule</h2>
+                							<p style="text-align:left;" class="designation">Executive Director</p>
+                						    <p style="text-align:left;" class="din">DIN : 01138984</p>
+												<div class="">
+														<p></p><p>Aditi Chirmule is an Associate member of the Institute of Company Secretaries of India. She has been associated with the Kirloskar Group since 1989 and has played...</p>
+
+													<p><button class="button" onclick="toggleModal('3')">Read More &gt;&gt;<p></p>
+												</button></p></div>
+
+												<div id="modal-3" class="modal">
+													<div class="modal-content">
+														<div class="modal-header">
+																<h2 class="name">Aditi Chirmule
+																<p style="text-align:left;" class="designation">Executive Director</p>
+															</h2>
+															<span class="close">×</span>
+														</div>
+														<div class="content">
+															<p></p><p>Aditi Chirmule is an Associate member of the Institute of Company Secretaries of India. She has been associated with the Kirloskar Group since 1989 and has played a major role in the internal and external restructuring of businesses and mergers, acquisitions and formation of joint ventures during her association with the Kirloskar Group.</p><p></p>
+														</div>
+													</div>
+												</div>
+												
+										
+                					</div>
+                			</div>
+            			    <div class="col-md-4 people-unit">
+                					<div class="data-section">
+                						<img loading="lazy" alt="" data-fileentryid="780916" src="/documents/779558/780796/anil-alawani-board-of-directors.320x320.png/4876ddf2-58eb-dd3c-e395-d6f6cc31e31c?t=1651565153581" class="img-responsive headshot" />
+                							<h2 class="name">Anil Alawani</h2>
+                							<p style="text-align:left;" class="designation">Non Independent Director</p>
+                						    <p style="text-align:left;" class="din">DIN : 00036153</p>
+												<div class="">
+														<p></p><p>Mr. Anil Alawani is a Chartered Accountant by profession. He has work experience of over 30 years in Import, Export and Labour matters besides his core area of Fi...</p>
+
+													<p><button class="button" onclick="toggleModal('4')">Read More &gt;&gt;<p></p>
+												</button></p></div>
+
+												<div id="modal-4" class="modal">
+													<div class="modal-content">
+														<div class="modal-header">
+																<h2 class="name">Anil Alawani
+																<p style="text-align:left;" class="designation">Non Independent Director</p>
+															</h2>
+															<span class="close">×</span>
+														</div>
+														<div class="content">
+															<p></p><p>Mr. Anil Alawani is a Chartered Accountant by profession. He has work experience of over 30 years in Import, Export and Labour matters besides his core area of Finance, Taxation, Financial Restructuring and Company Law. His abilities in Corporate Tax Planning and Finance helped various organisations in which he was employed. He has retired as Director (Finance) from Kirloskar Oil Engines Limited on 31st August 2005.</p><p></p>
+														</div>
+													</div>
+												</div>
+												
+										
+                					</div>
+                			</div>
+            			    <div class="col-md-4 people-unit">
+                					<div class="data-section">
+                						<img loading="lazy" alt="" data-fileentryid="780904" src="/documents/779558/780796/vinesh-kumar-jairath-board-of-directors.320x320.png/a6ebd77d-ef63-4c81-c01c-802dfae0079b?t=1651565153374" class="img-responsive headshot" />
+                							<h2 class="name">Vinesh Kumar Jairath</h2>
+                							<p style="text-align:left;" class="designation">Non Independent Director</p>
+                						    <p style="text-align:left;" class="din">DIN : 00391684</p>
+												<div class="">
+														<p>Vinesh Kumar Jairath joined the Indian Administrative Service in 1982 and worked in various positions in the Government of Maharashtra and Government of India. Some ...</p>
+
+													<p><button class="button" onclick="toggleModal('5')">Read More &gt;&gt;<p></p>
+												</button></p></div>
+
+												<div id="modal-5" class="modal">
+													<div class="modal-content">
+														<div class="modal-header">
+																<h2 class="name">Vinesh Kumar Jairath
+																<p style="text-align:left;" class="designation">Non Independent Director</p>
+															</h2>
+															<span class="close">×</span>
+														</div>
+														<div class="content">
+															<p>Vinesh Kumar Jairath joined the Indian Administrative Service in 1982 and worked in various positions in the Government of Maharashtra and Government of India. Some of the positions he held during his career in the IAS are Secretary to the Governor of Maharashtra, MD SICOM and Principal Secretary Industries Maharashtra. He took voluntary retirement in March 2008 and since then has been working as an independent consultant in areas of infrastructure, industry and real estate development. He holds a Masters Degree in Development Economics from the University of Manchester, U.K. He holds a Bachelor of Arts Degree in Public Administration and a Bachelor of Laws Degree, both, from the Punjab University, Chandigarh. He is an independent director on the Boards of Tata Motors Limited, Bombay Dyeing &amp; Manufacturing Company Ltd, Go Air Ltd and Wockhardt Ltd. He has over 35 years of experience in public administration, infrastructure planning and development and infrastructure financing, finance, industry, urban development, environmental management while occupying various important positions in the Government and post voluntary retirement on boards of various companies.</p>
+														</div>
+													</div>
+												</div>
+												
+										
+                					</div>
+                			</div>
+            			    <div class="col-md-4 people-unit">
+                					<div class="data-section">
+                						<img loading="lazy" alt="Mr. Rahul Kirloskar" data-fileentryid="5468829" src="/documents/779558/780796/Photo+Mr.+Rahul+Kirloskar.png/49cd0546-c0b7-e47f-dc8a-7d949ae0e545?t=1763123396175" class="img-responsive headshot" />
+                							<h2 class="name">Rahul Kirloskar</h2>
+                							<p style="text-align:left;" class="designation">Non Independent Director</p>
+                						    <p style="text-align:left;" class="din">DIN : 00007319</p>
+												<div class="">
+														<p></p><p>Mr. Rahul Kirloskar (Age 62 years) has been associated with the Kirloskar Group of companies  for more than 37 years. In 1993, he was appointed as the Managing Di...</p>
+
+													<p><button class="button" onclick="toggleModal('6')">Read More &gt;&gt;<p></p>
+												</button></p></div>
+
+												<div id="modal-6" class="modal">
+													<div class="modal-content">
+														<div class="modal-header">
+																<h2 class="name">Rahul Kirloskar
+																<p style="text-align:left;" class="designation">Non Independent Director</p>
+															</h2>
+															<span class="close">×</span>
+														</div>
+														<div class="content">
+															<p></p><p>Mr. Rahul Kirloskar (Age 62 years) has been associated with the Kirloskar Group of companies  for more than 37 years. In 1993, he was appointed as the Managing Director of Kirloskar  Pneumatic Company Limited and in 1998, he took over as Chairman. From 2001 to 2012, he  became the Director of Exports for Kirloskar Oil Engines Limited, wherein the major areas were  expanding export operations for Kirloskar Oil Engines Limited and the entire Kirloskar Group. </p><p>He founded Kirloskar Chillers and has also been the Chairman of Confederation of Indian Industry  (CII) Pune Council as well as Maharashtra State CII Council.
+</p><p></p>
+														</div>
+													</div>
+												</div>
+												
+										
+                					</div>
+                			</div>
+            			    <div class="col-md-4 people-unit">
+                					<div class="data-section">
+                						<img loading="lazy" alt="" data-fileentryid="780856" src="/documents/779558/780796/statish-jamdar-kirloskar-board-of-directors.320x320.png/05f090a3-6862-5891-ee35-c9a74ff0dc80?t=1651565152422" class="img-responsive headshot" />
+                							<h2 class="name">Satish Jamdar</h2>
+                							<p style="text-align:left;" class="designation">Independent Director</p>
+                						    <p style="text-align:left;" class="din">DIN : 00036653</p>
+												<div class="">
+														<p></p><p>Satish Jamdar (age 65), BE (Mech) from IIT, Mumbai, with a vast experience of 43 years, has held leadership positions in several organizations. He completed his m...</p>
+
+													<p><button class="button" onclick="toggleModal('7')">Read More &gt;&gt;<p></p>
+												</button></p></div>
+
+												<div id="modal-7" class="modal">
+													<div class="modal-content">
+														<div class="modal-header">
+																<h2 class="name">Satish Jamdar
+																<p style="text-align:left;" class="designation">Independent Director</p>
+															</h2>
+															<span class="close">×</span>
+														</div>
+														<div class="content">
+															<p></p><p>Satish Jamdar (age 65), BE (Mech) from IIT, Mumbai, with a vast experience of 43 years, has held leadership positions in several organizations. He completed his management studies in the USA and UK. He was an Executive Director on the Board of Blue Star for 13 years of which the last 7 years was as the Managing Director. He retired from the Company as Managing Director in March and as Special Advisor in May 2016.
+</p><p>
+During his overall 20 years with Blue Star, India's leading Air conditioning and Refrigeration Company, he was instrumental in setting up an enhanced Product Development, AC&amp;R Technology and Manufacturing footprint for the Company. This also included the design, manufacture and servicing of products for OEM Customers for the Middle East and European markets.
+</p><p>
+He helped grow the Customer Service business with a host of new offerings related to technology upgrades with remote monitoring, and energy efficiency, among others. He also helped set up a strong global supply chain, including procurement from China and strategic technology partnerships with global suppliers.
+</p><p>
+Prior to this, he was with Siemens, Voltas, GEC Alstom, and BPL Sanyo. During his long corporate stint, he oversaw a wide range of activities related to Manufacturing, Product Development, Supply Chain, Product Service, EPC contracts, International Business Operations, HR, Finance, Corporate Governance and General Management.
+</p><p>
+He had been actively involved with CII (India's largest corporate body) as Chairman of CII Maharashtra State Council and subsequently, as Chairman of CII Western Region Sub-Committees for Inclusive Growth and Ease of Doing Business. He was a member of the CII National Manufacturing Council, as well.
+</p><p>
+He is currently associated with a few select start-up Companies as their Chief Mentor and Business Strategy Advisor. He is also engaged in skill development and inclusive growth programs to help needy youth realize their full potential.</p><p></p>
+														</div>
+													</div>
+												</div>
+												
+										
+                					</div>
+                			</div>
+            			    <div class="col-md-4 people-unit">
+                					<div class="data-section">
+                						<img loading="lazy" alt="" data-fileentryid="1348215" src="/documents/819169/819171/Purvi+Sheth+320x320+%283%29-preview.jpg/20c1364a-391c-5fab-1cb3-d40edc25883b?t=1666354903855" class="img-responsive headshot" />
+                							<h2 class="name">Purvi Sheth</h2>
+                							<p style="text-align:left;" class="designation">Independent Director</p>
+                						    <p style="text-align:left;" class="din">DIN : 06449636</p>
+												<div class="">
+														<p>Mrs. Purvi Sheth has completed her Bachelor of Arts Economics &amp; Political Science from St. Xavier’s College, Bombay (Stood First in Department of Economics &amp; Politic...</p>
+
+													<p><button class="button" onclick="toggleModal('8')">Read More &gt;&gt;<p></p>
+												</button></p></div>
+
+												<div id="modal-8" class="modal">
+													<div class="modal-content">
+														<div class="modal-header">
+																<h2 class="name">Purvi Sheth
+																<p style="text-align:left;" class="designation">Independent Director</p>
+															</h2>
+															<span class="close">×</span>
+														</div>
+														<div class="content">
+															<p>Mrs. Purvi Sheth has completed her Bachelor of Arts Economics &amp; Political Science from St. Xavier’s College, Bombay (Stood First in Department of Economics &amp; Political Science), CPD holder in Business Strategy &amp; Leadership Management from Wharton Business School, USA. She is Certified to be Board Director by IICA &amp; Directors Club, Hunt Partners. She is also a Certified POSH Practitioner (NDIM).<br /><br />
+
+Trained in Writing &amp; Journalism from Xavier Institute of Communication, Bombay and Youngest Certified Leadership Grid Trainer (Blake &amp; Mouton), Youngest Certified GE (General Electric) Recruiter.<br /><br />
+
+She is the CEO of Shilputsi Consultants with an uncommonly strong talent for building and cultivating trusting relationships with high level corporate executives along with outstanding analytical, strategic and problem solving skills. She has the superlative ability to translate solutions into practical and profitable application. She is well known as an expert in the identification, analysis, and resolution of diverse operational HR issues, while simultaneously maintaining cultural context, offering superior solutions/ services. A Skilled presenter, communicator, and trainer, she has had great success impacting organizational &amp; leadership performance. This, combined with her focus on adhering to organizational missions and philosophy while positively impacting team and individual growth, make her a distinguished leader in the HR ecosystem. A second-generation entrepreneur and an accomplished leader, she is responsible for overall business growth and long term development of Shilputsi Consultants. She has been with the firm for over 25 years and is based in Mumbai, India. As an expert consultant and advisor to some of the most prestigious companies, boards and CEOs, her offering has proven value in business growth, leadership development and execution of complex strategic engagements repeatedly contributing to intellectual capital &amp; organizational enhancement.<br /><br />
+
+She is the Chief Curator &amp; Mentor of two Leadership Mentoring franchises of Shilputsi Consultants viz. LICENSE TO LEAD: Online Leadership Development mentoring program for WOMEN leaders and ASCENDENCY: Online Leadership Development mentoring program for high potential young leaders.<br /><br />
+
+Her achievements are viz. Abhyudaya Award Winner for HR Strategist of the year 2022, Executive Council member of Bombay Management Association, Mentor at Acsent Foundation &amp; member of the Women’s Forum. She is a speaker at various industry forums, management institutes and conventions as well as a Guest Columnist at multiple leading publications in India and abroad.<br /><br />
+
+She has in the past been the Youngest Member of jury panel for eight consecutive years to judge Business Today’s “India’s Under 40 Leaders”, Mentor at India Connect, an initiative of Tie (The Indus Entrepreneurs), Mumbai, Committee member of Women Leaders at TIE Stree Shakti, Mentor &amp; Advisor to Entrepreneurship Cell at IIT, Mumbai &amp; Kharagpur, Mentor &amp; Advisor to Entrepreneurship Cell at Jamnalal Bajaj Institute of Management, Mumbai, Jury member and mentor at NEN (National Entrepreneurship Network), Jury &amp; panel Member at TATA INNOVISTA (A Tata group wide innovation contest) for two consecutive years, Advisor to XED GLOBAL, a website for global Executive Education and a three time contributor to UK published INDIA BUSINESS GUIDE.</p>
+														</div>
+													</div>
+												</div>
+												
+										
+                					</div>
+                			</div>
+            			    <div class="col-md-4 people-unit">
+                					<div class="data-section">
+                						<img loading="lazy" alt="Ms. Pallavi Gokhale" data-fileentryid="3387877" src="/documents/779558/780796/MR6A7461_updated_v1.jpg/007e3c02-e3b6-c414-e4f7-f2718e927996?t=1751355411123" class="img-responsive headshot" />
+                							<h2 class="name">Pallavi Gokhale</h2>
+                							<p style="text-align:left;" class="designation">Independent Director</p>
+                						    <p style="text-align:left;" class="din">DIN : 00036369</p>
+												<div class="">
+														<p>Ms. Pallavi Gokhale (Age 53 years) is a Chartered Accountant and Cost Accountant with over two decades of experience in consulting.  <br /><br />
+Through her twenty-plus...</p>
+
+													<p><button class="button" onclick="toggleModal('9')">Read More &gt;&gt;<p></p>
+												</button></p></div>
+
+												<div id="modal-9" class="modal">
+													<div class="modal-content">
+														<div class="modal-header">
+																<h2 class="name">Pallavi Gokhale
+																<p style="text-align:left;" class="designation">Independent Director</p>
+															</h2>
+															<span class="close">×</span>
+														</div>
+														<div class="content">
+															<p>Ms. Pallavi Gokhale (Age 53 years) is a Chartered Accountant and Cost Accountant with over two decades of experience in consulting.  <br /><br />
+Through her twenty-plus years of professional services experience, Ms. Pallavi Gokhale has supported large Indian organisations and multi-nationals across automotive, industrial products, metals and mining and chemical sectors, in ensuring high levels of corporate governance while achieving business objectives. Ms. Pallavi Gokhale comes with deep experience in risk management, process and controls optimisation, digitisation and driving sustainable governance frameworks. <br /><br />
+Ms. Pallavi Gokhale, an ex-partner in EY LLP India, has been in senior leadership roles in the consulting sector and has successfully executed several complex reengineering programs for multi-location, multi-business organisations, contributing to operational efficiencies and creating long-term value. With a strong track record of collaborating with leadership teams, she has been instrumental in partnering with organisations in setting up robust risk management practices.
+<br /><br />
+Ms. Pallavi Gokhale is a director of Gokhale Charity Foundation. She has been appointed as an Additional Director of S. H. Kelkar and Company Limited with effect from 1 July 2025.<br /><br /></p>
+														</div>
+													</div>
+												</div>
+												
+										
+                					</div>
+                			</div>
+            			    <div class="col-md-4 people-unit">
+                					<div class="data-section">
+                						<img loading="lazy" alt="Sathyamoorthy Venkataramani" data-fileentryid="5468847" src="/documents/779558/780796/Photo+-+Mr.+Venkataramani+Sathya+Moorthy.png/1f9e9db7-541c-e235-6f33-550273ad8164?t=1763123504457" class="img-responsive headshot" />
+                							<h2 class="name">Sathyamoorthy Venkataramani</h2>
+                							<p style="text-align:left;" class="designation">Independent Director</p>
+                						    <p style="text-align:left;" class="din">DIN : 00229998</p>
+												<div class="">
+														<p></p><p>Mr. Sathyamoorthy Venkataramani (Age 63 years), is a graduate in science and a Fellow  Chartered Accountant by profession. He has been in the practice of indirect...</p>
+
+													<p><button class="button" onclick="toggleModal('10')">Read More &gt;&gt;<p></p>
+												</button></p></div>
+
+												<div id="modal-10" class="modal">
+													<div class="modal-content">
+														<div class="modal-header">
+																<h2 class="name">Sathyamoorthy Venkataramani
+																<p style="text-align:left;" class="designation">Independent Director</p>
+															</h2>
+															<span class="close">×</span>
+														</div>
+														<div class="content">
+															<p></p><p>Mr. Sathyamoorthy Venkataramani (Age 63 years), is a graduate in science and a Fellow  Chartered Accountant by profession. He has been in the practice of indirect taxes for more than 30  years in the areas of advisory, assessments, appeals, representation before the tribunals,  enforcement authorities, etc. He was associated with the partnership firm 'Singhvi, Dev &amp; Unni',  Chartered Accountants in various capacities such as employee, partner and advisor for around 30  years and is now in independent practice since January 2020. </p><p>He is associated as a member of various committees constituted by trade bodies, professional  associations, chambers of commerce, the Institute of Chartered Accountants of India, etc. He is a  regular speaker as well as a faculty in the areas of sales tax, value added tax and GST at the State  and National level. He has co-authored few books in the subjects of VAT and GST.
+</p><p></p>
+														</div>
+													</div>
+												</div>
+												
+										
+                					</div>
+                			</div>
+            			    <div class="col-md-4 people-unit">
+                					<div class="data-section">
+                						<img loading="lazy" alt="Sumit Mitra " data-fileentryid="5468892" src="/documents/779558/780796/Photo+-+Mr.+Sumit+Mitra.png/7783e5f2-e403-e532-6d25-66d2b26985ff?t=1763123615213" class="img-responsive headshot" />
+                							<h2 class="name">Sumit Mitra</h2>
+                							<p style="text-align:left;" class="designation">Independent Director</p>
+                						    <p style="text-align:left;" class="din">DIN : 07189815</p>
+												<div class="">
+														<p></p><p>Mr. Sumit Mitra (Age 52 years) holds a Master’s degree in Personnel Management from Symbosis  Institute of Business Management, Pune, obtained in 1996. He is the ...</p>
+
+													<p><button class="button" onclick="toggleModal('11')">Read More &gt;&gt;<p></p>
+												</button></p></div>
+
+												<div id="modal-11" class="modal">
+													<div class="modal-content">
+														<div class="modal-header">
+																<h2 class="name">Sumit Mitra
+																<p style="text-align:left;" class="designation">Independent Director</p>
+															</h2>
+															<span class="close">×</span>
+														</div>
+														<div class="content">
+															<p></p><p>Mr. Sumit Mitra (Age 52 years) holds a Master’s degree in Personnel Management from Symbosis  Institute of Business Management, Pune, obtained in 1996. He is the Head of Group HR and  Corporate Services for Godrej Industries Group. Mr. Sumit Mitra joined Godrej as a management  trainee and has spent over 25 years working across different Group businesses, including FMCG,  Real Estate, and Food and Agriculture. He currently leads the people practice and efforts to build  a purposeful, authentic, inclusive Godrej employer brand for 20,000 team members in over 20  countries across Asia, Africa and Latin America. He has been instrumental in making Godrej an  inspiring place to work with an agile and high-performance culture that attracts and engages some  of the best global talent.</p><p>Mr. Sumit plays a key role in due diligence, mergers and acquisitions, change management and  cross-cultural integrations, which form a major part of the Godrej Group's aggressive global  growth strategy. He also spearheads Godrej Good and Green, the Godrej Group's Corporate Social  Responsibility focus on creating shared value opportunities to address social and environmental  concerns.
+</p><p></p>
+														</div>
+													</div>
+												</div>
+												
+										
+                					</div>
+                			</div>
+            			    <div class="col-md-4 people-unit">
+                					<div class="data-section">
+                						<img loading="lazy" alt="" data-fileentryid="8219241" src="/documents/779558/8219239/Sandeep_gokhale.png/e1ab4299-5423-0781-b2d4-dfb24bed2d7b?t=1788243127916" class="img-responsive headshot" />
+                							<h2 class="name">Sandeep Gokhale</h2>
+                							<p style="text-align:left;" class="designation">Independent Director</p>
+                						    <p style="text-align:left;" class="din">DIN : 00693885</p>
+												<div class="">
+														<p></p><p>Mr. Sandeep Gokhale (Age 64 years) holds a Bachelor of Engineering (Electrical) degree and an MBA in Finance. He is a seasoned corporate strategist and project fi...</p>
+
+													<p><button class="button" onclick="toggleModal('12')">Read More &gt;&gt;<p></p>
+												</button></p></div>
+
+												<div id="modal-12" class="modal">
+													<div class="modal-content">
+														<div class="modal-header">
+																<h2 class="name">Sandeep Gokhale
+																<p style="text-align:left;" class="designation">Independent Director</p>
+															</h2>
+															<span class="close">×</span>
+														</div>
+														<div class="content">
+															<p></p><p>Mr. Sandeep Gokhale (Age 64 years) holds a Bachelor of Engineering (Electrical) degree and an MBA in Finance. He is a seasoned corporate strategist and project finance expert with nearly 40 years of experience across the engineering, financial services and natural resources sectors. He currently serves as an Advisor to the JSW Group and holds directorships on the boards of several companies of the JSW Group.
+</p>
+
+<p>
+He began his career in 1984 at Siemens Limited in engineering and sales, followed by a role in ICICI’s project financing division, where he evaluated techno-economic viability and risk. In 1993, he joined Sterlite Industries (later Vedanta Resources), eventually serving as Director of Business Development and driving global mining asset acquisitions and government affairs. From 2009 to March 2022, he served as Group President – Business Development at JSW Group, leading strategic initiatives, asset valuations, joint ventures, and project financing across the natural resources, infrastructure, and real estate sectors.
+</p>
+
+<p>
+Throughout his career, he has collaborated extensively with major government departments, financial institutions, banks, law firms, and consultancy agencies to drive project development, capital raising, asset valuations, restructurings and strategic joint ventures.
+</p><p></p>
+														</div>
+													</div>
+												</div>
+												
+										
+                					</div>
+                			</div>
+            		</div>
+        	</div>
+        </div>
+    </div>
+</section>
+
+<script>
+	$(".close").click(function(){
+		$(".modal").hide();
+	});
+	function toggleModal(count){
+		$("#modal-"+count).css("display","block");
+	}
+</script>
+
+			
+		</div>
+
+		
+
+	
+
+
+
+						</div>
+					
+				
+			
+		
+	
+
+
+
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+</div></div>
+
+
+
+
+		</div>
+	
+
+
+<form action="#" aria-hidden="true" class="hide" id="hrefFm" method="post" name="hrefFm"><span></span><button hidden type="submit">Hidden</button></form>
+
+	
+		
+
+	</section>
+	
+	<footer class="footer mt-100" id="footer" role="contentinfo">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_journal_content_web_portlet_JournalContentPortlet_  portlet-static portlet-static-end portlet-barebone portlet-journal-content " id="p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_kilfootercontent_">
+		<span id="p_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_kilfootercontent"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_kilfootercontent">
+
+
+	<div class="portlet-content">
+
+		<div class="autofit-float autofit-row portlet-header">
+			<div class="autofit-col autofit-col-expand">
+				<h2 class="portlet-title-text">KIL-Footer Content</h2>
+			</div>
+
+			<div class="autofit-col autofit-col-end">
+				<div class="autofit-section">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="visible-interaction">
+
+	
+
+	
+</div>				</div>
+			</div>
+		</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+			
+			
+				
+					
+					
+					
+					
+
+						
+
+						<div class="" data-fragments-editor-item-id="20132-785293" data-fragments-editor-item-type="fragments-editor-mapped-item" >
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+		<div class="journal-content-article " data-analytics-asset-id="785291" data-analytics-asset-title="KIL-Footer Content" data-analytics-asset-type="web-content" data-analytics-web-content-resource-pk="785293">
+			
+
+			<style>
+#apply_form .pad .pb-10.required {
+    position: relative;
+    bottom: 35px;
+}
+p {
+    text-align: justify;
+}
+#contact-data p, .fact-wrap p {
+    text-align: left;
+}
+.social-links li a, p.copyright, .sitemap {
+    color: #000;
+}
+.see_more_link a {
+    color: inherit;
+}
+.see_more_link a:hover {
+    text-decoration: none;
+}
+.features-dropdown {
+    font-family: 'Heebo-Regular';
+    font-size: 16px;
+}
+.download_prod_broch {
+    display: flex;
+    align-items: baseline;
+    color: var(--dark-gray);
+}
+ul.social-icons {
+    position: relative;
+    z-index: 1;
+}
+.limitless_bottom_logo {
+    max-width: 300px !important;
+}
+.privayPolicy{
+    border-left:2px solid #000000;
+    padding-left:5px;
+    margin-right:5px;
+    color:#000000;
+}
+@media (min-width: 768px) {
+    .award-unit img:hover {
+        transform: scale(1.2666, 1.2664);
+        transition: transform .2s,-webkit-transform .2s;
+        cursor: move;
+    }
+    .social-links {
+        text-align: center;
+        margin-left: 20px;
+        float: none;
+    }
+    .bottom-logo {
+      max-width: 230px !important;
+    }
+}
+@media (max-width: 767px) {
+.limitless_bottom_logo {
+    max-width: 100px !important;
+}
+.img-responsive.bottom-logo {
+  max-width: 90px !important;
+}
+.copyright {
+  max-width: 95%;
+}
+}
+
+</style>
+
+
+
+<div class="container-fluid container-custom">
+	<div class="row mb-40">
+		<div class="col-md-4 mb-xs-30">
+			<img loading="lazy" src="/documents/d/kil/kirloskar-industries-logo" class="img-responsive footer-logo" class="footer-logo" width="185" />
+		</div>		
+	
+	</div>
+   	<div class="row all-links">
+			<div class="col-sm">
+				<h4 class="head">QUICK LINKS</h4>
+				<ul class="list-group">
+								<a href="/about">About</a>
+								<a href=""></a>
+								<a href="/services">Services</a>
+								<a href="/investors">Investors</a>
+				</ul>
+			</div>
+		
+			<div class="col-sm">
+					<div class="mb-md-4 pb-md-2"><h4 style="display:none;"></h4></div>
+				<ul class="list-group pt-2">
+					   			<a href="/csr">CSR</a>
+					   			<a href="/newsroom">News</a>
+					   			<a href="/contact">Contact</a>
+				</ul>
+			</div>
+		
+			<div class="col-sm">
+				<h4 class="head">LIMITLESS</h4>
+				<ul class="list-group">
+								<a href="https://www.kirloskaroilengines.com/">Kirloskar Oil Engines</a>
+								<a href="https://www.kirloskarpneumatic.com/">Kirloskar Pneumatic</a>
+								<a href="https://www.kirloskarferrous.com/">Kirloskar Ferrous</a>
+								<a href="https://www.kirloskarindustries.com/">Kirloskar Industries</a>
+								<a href="https://www.kirloskarchillers.com/">Kirloskar Chillers</a>
+								<a href="https://www.kirloskarsolar.com/">Kirloskar Solar</a>
+								<a href="https://www.arkafincap.com/">Arka Fincap</a>
+								<a href="https://www.avantespaces.com/">Avante Spaces</a>
+								<a href="https://kim.edu.in/">Kirloskar Institute of Management</a>
+								<a href="https://www.kirloskaramericas.com/">Kirloskar Americas</a>
+				</ul>
+			</div>
+		
+		<div class="col-sm">
+				<div class="mb-md-4 pb-md-2"><h4 style="display:none;"></h4></div>
+			<ul class="list-group pt-2">
+							<a href=""></a>
+			</ul>
+		</div>
+	</div>
+	<div class="row bottom-text mt-100 mb-100">
+		
+		<div class="col-sm-4 col-md-5 col-xs-12 mb-xs-10">
+			<p class="copyright" id="copyrightsText">© [#YEAR#] Kirloskar. All Rights Reserved. The mark ‘Kirloskar’ used in any form as prefix or suffix, ‘i’ and copyright ‘limitless’ as shown are owned by Kirloskar Proprietary Limited and Kirloskar Industries Limited is the permitted user.   <a class="privayPolicy" href="/privacy-policy"><span>Privacy Policy</span></a></p>
+    		         
+		</div>
+		<div class="col-sm-5 col-md-4 col-xs-12 mb-xs-10">
+			<ul class="social-icons list-inline social-links">
+					<li><a href="https://www.facebook.com/KirloskarLimitless/" target="_blank" rel="noopener noreferrer"><i class="icon-facebook"></i></a></li>
+					<li><a href="https://www.instagram.com/kirloskar_limitless/" target="_blank" rel="noopener noreferrer"><i class="icon-instagram"></i></a></li>
+					<li><a href="https://www.linkedin.com/company/kirloskar-limitless" target="_blank" rel="noopener noreferrer"><i class="icon-linkedin"></i></a></li>
+					<li><a href="https://www.youtube.com/channel/UC0hczv7YmFx7eIjMB6zprEA" target="_blank" rel="noopener noreferrer"><i class="icon-youtube"></i></a></li>
+			</ul>
+		</div>
+	</div>
+	<a class="back-to-top" style="display: block;">
+      <div class="content-wrap">
+        <span class="top-icon">
+            <!-- <i class="fa fa-arrow-up"></i> -->
+            <img loading="lazy" src="/o/kirloskar-common-theme/images/icons/go-top-arrow.png" class="img-responsive" />
+        </span>
+        <span class="go-top-text">TOP </span>
+      </div>
+    </a>
+		<img loading="lazy" src="https://www.kirloskaroilengines.com/documents/779558/779738/footer-logo.element.png/1607e53d-7603-effa-0870-d8ef31f851c8?t=1667212600851" class="img-responsive bottom-logo" />
+</div>
+
+<script>
+$('.back-to-top').click(function(){ 
+      $('html,body').animate({ scrollTop: 0 }, 400);
+      return false; 
+});
+document.addEventListener("DOMContentLoaded", function() {
+    var element = document.getElementById("copyrightsText");
+    if (element) {
+        var currentYear = new Date().getFullYear();
+        element.innerHTML = element.innerHTML.replace(/\[#YEAR#\]/g, currentYear);
+    }
+});
+</script>
+
+			
+		</div>
+
+		
+
+	
+
+
+
+						</div>
+					
+				
+			
+		
+	
+
+
+
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+		
+  	</footer>
+	
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+	
+		
+
+			
+
+			
+		
+	
+
+
+</script><script>
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+<script type="text/javascript">
+
+	
+		Liferay.Portlet.register('com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_ebxp');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_ebxp_',
+			portletId: 'com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_ebxp',
+			refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d1926\x26p_p_id\x3dcom_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_ebxp\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fabout\x252Fboard-of-directors',
+			refreshURLData: {}
+		}
+	);
+
+(function() {var $ = AUI.$;var _ = AUI._;
+	var onDestroyPortlet = function () {
+		Liferay.detach('messagePosted', onMessagePosted);
+		Liferay.detach('destroyPortlet', onDestroyPortlet);
+	};
+
+	Liferay.on('destroyPortlet', onDestroyPortlet);
+
+	var onMessagePosted = function (event) {
+		if (window.Analytics) {
+			const eventProperties = {
+				className: event.className,
+				classPK: event.classPK,
+				commentId: event.commentId,
+				text: event.text,
+			};
+
+			const blogNode = document.querySelector(
+				'[data-analytics-asset-id="' + event.classPK + '"]'
+			);
+
+			const dmNode = document.querySelector(
+				'[data-analytics-file-entry-id="' + event.classPK + '"]'
+			);
+
+			if (blogNode) {
+				eventProperties.title = blogNode.dataset.analyticsAssetTitle;
+			}
+			else if (dmNode) {
+				eventProperties.title = dmNode.dataset.analyticsFileEntryTitle;
+			}
+
+			Analytics.send('posted', 'Comment', eventProperties);
+		}
+	};
+
+	Liferay.on('messagePosted', onMessagePosted);
+})();
+
+	function getValueByAttribute(node, attr) {
+		return (
+			node.dataset[attr] ||
+			(node.parentElement && node.parentElement.dataset[attr])
+		);
+	}
+
+	function sendDocumentDownloadedAnalyticsEvent(anchor) {
+		var fileEntryId = getValueByAttribute(
+			anchor,
+			'analyticsFileEntryId'
+		);
+		var title = getValueByAttribute(
+			anchor,
+			'analyticsFileEntryTitle'
+		);
+		var version = getValueByAttribute(
+			anchor,
+			'analyticsFileEntryVersion'
+		);
+
+		if (fileEntryId) {
+			Analytics.send('documentDownloaded', 'Document', {
+				groupId: themeDisplay.getScopeGroupId(),
+				fileEntryId,
+				preview:
+					!!window._com_liferay_document_library_analytics_isViewFileEntry,
+				title,
+				version,
+			});
+		}
+	}
+
+	function handleDownloadClick(event) {
+		if (window.Analytics) {
+			if (event.target.nodeName.toLowerCase() === 'a') {
+				sendDocumentDownloadedAnalyticsEvent(
+					event.target
+				);
+			}
+			else if (
+				event.target.parentNode &&
+				event.target.parentNode.nodeName.toLowerCase() === 'a'
+			) {
+				sendDocumentDownloadedAnalyticsEvent(
+					event.target.parentNode
+				);
+			}
+			else {
+				var target = event.target;
+				var matchTextContent =
+					target.textContent &&
+					target.textContent.toLowerCase() ===
+						'download';
+				var matchTitle =
+					target.title && target.title.toLowerCase() === 'download';
+				var matchAction = target.action === 'download';
+				var matchLexiconIcon = !!target.querySelector(
+					'.lexicon-icon-download'
+				);
+				var matchLexiconClassName = target.classList.contains(
+					'lexicon-icon-download'
+				);
+				var matchParentTitle =
+					target.parentNode &&
+					target.parentNode.title &&
+					target.parentNode.title.toLowerCase() === 'download';
+				var matchParentLexiconClassName =
+					target.parentNode &&
+					target.parentNode.classList.contains('lexicon-icon-download');
+
+				if (
+					matchTextContent ||
+					matchTitle ||
+					matchParentTitle ||
+					matchAction ||
+					matchLexiconIcon ||
+					matchLexiconClassName ||
+					matchParentLexiconClassName
+				) {
+					var selectedFiles = document.querySelectorAll(
+						'.form .custom-control-input:checked'
+					);
+
+					selectedFiles.forEach(({value}) => {
+						var selectedFile = document.querySelector(
+							'[data-analytics-file-entry-id="' + value + '"]'
+						);
+
+						sendDocumentDownloadedAnalyticsEvent(
+							selectedFile
+						);
+					});
+				}
+			}
+		}
+	}
+
+	Liferay.once('destroyPortlet', () => {
+		document.body.removeEventListener(
+			'click',
+			handleDownloadClick
+		);
+	});
+
+	Liferay.once('portletReady', () => {
+		document.body.addEventListener(
+			'click',
+			handleDownloadClick
+		);
+	});
+
+(function() {var $ = AUI.$;var _ = AUI._;
+	var onVote = function (event) {
+		if (window.Analytics) {
+			let title = event.contentTitle;
+
+			if (!title) {
+				const dmNode = document.querySelector(
+					'[data-analytics-file-entry-id="' + event.classPK + '"]'
+				);
+
+				if (dmNode) {
+					title = dmNode.dataset.analyticsFileEntryTitle;
+				}
+			}
+
+			Analytics.send('VOTE', 'Ratings', {
+				className: event.className,
+				classPK: event.classPK,
+				ratingType: event.ratingType,
+				score: event.score,
+				title,
+			});
+		}
+	};
+
+	var onDestroyPortlet = function () {
+		Liferay.detach('ratings:vote', onVote);
+		Liferay.detach('destroyPortlet', onDestroyPortlet);
+	};
+
+	Liferay.on('ratings:vote', onVote);
+	Liferay.on('destroyPortlet', onDestroyPortlet);
+})();
+(function() {var $ = AUI.$;var _ = AUI._;
+	var onShare = function (data) {
+		if (window.Analytics) {
+			Analytics.send('shared', 'SocialBookmarks', {
+				className: data.className,
+				classPK: data.classPK,
+				type: data.type,
+				url: data.url,
+			});
+		}
+	};
+
+	var onDestroyPortlet = function () {
+		Liferay.detach('socialBookmarks:share', onShare);
+		Liferay.detach('destroyPortlet', onDestroyPortlet);
+	};
+
+	Liferay.on('socialBookmarks:share', onShare);
+	Liferay.on('destroyPortlet', onDestroyPortlet);
+})();
+
+	if (window.svg4everybody && Liferay.Data.ICONS_INLINE_SVG) {
+		svg4everybody(
+			{
+				polyfill: true,
+				validate: function (src, svg, use) {
+					return !src || !src.startsWith('#');
+				}
+			}
+		);
+	}
+
+(function() {var $ = AUI.$;var _ = AUI._;
+	Liferay.Util.delegate(
+		document,
+		'focusin',
+		'.portlet',
+		function(event) {
+			event.delegateTarget.closest('.portlet').classList.add('open');
+		}
+	);
+
+	Liferay.Util.delegate(
+		document,
+		'focusout',
+		'.portlet',
+		function(event) {
+			event.delegateTarget.closest('.portlet').classList.remove('open');
+		}
+	);
+})();
+
+	// <![CDATA[
+
+		
+
+		Liferay.currentURL = '\x2fabout\x2fboard-of-directors';
+		Liferay.currentURLEncoded = '\x252Fabout\x252Fboard-of-directors';
+
+	// ]]>
+
+
+		// <![CDATA[
+			
+				
+
+				
+
+				
+			
+		// ]]>
+	
+(function() {var $ = AUI.$;var _ = AUI._;
+		import(Liferay.ThemeDisplay.getPathContext() + '/o/frontend-js-web/__liferay__/index.js').then(
+			({openToast}) => {
+				AUI().use(
+					'liferay-session',
+					function() {
+						Liferay.Session = new Liferay.SessionBase(
+							{
+								autoExtend: true,
+								redirectOnExpire: false,
+								redirectUrl: 'https\x3a\x2f\x2fwww\x2ekirloskarindustries\x2ecom\x2fweb\x2fguest\x2fhome',
+								sessionLength: 900,
+								sessionTimeoutOffset: 70,
+								warningLength: 60
+							}
+						);
+
+						
+					}
+				);
+			}
+		)
+	})();
+
+	
+		Liferay.Portlet.register('com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_kilfootercontent');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_kilfootercontent_',
+			portletId: 'com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_kilfootercontent',
+			refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d1926\x26p_p_id\x3dcom_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_kilfootercontent\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fabout\x252Fboard-of-directors',
+			refreshURLData: {}
+		}
+	);
+
+
+	
+		Liferay.Portlet.register('com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_vdaz');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_vdaz_',
+			portletId: 'com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_vdaz',
+			refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d1926\x26p_p_id\x3dcom_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_vdaz\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fabout\x252Fboard-of-directors',
+			refreshURLData: {}
+		}
+	);
+
+
+</script><script type="module">
+import {InfoItemActionHandler as ComponentModule} from '/o/layout-taglib/__liferay__/index.js';
+AUI().use(
+  'liferay-menu',
+function(A) {
+{
+Liferay.component('infoItemActionComponent', new ComponentModule({"executeInfoItemActionURL":"https:\/\/www.kirloskarindustries.com\/c\/portal\/execute_info_item_action?p_l_mode=view&plid=1926","namespace":"","spritemap":"https:\/\/www.kirloskarindustries.com\/o\/kirloskar-common-theme\/images\/clay\/icons.svg"}), { destroyOnNavigate: true, portletId: ''});
+}
+(function() {
+var $ = AUI.$;var _ = AUI._;
+	new Liferay.Menu();
+
+	var liferayNotices = Liferay.Data.notices;
+
+	for (var i = 0; i < liferayNotices.length; i++) {
+		Liferay.Util.openToast(liferayNotices[i]);
+	}
+
+})();
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+<script src="https://www.kirloskarindustries.com/o/kirloskar-common-theme/js/main.js?browserId=other&amp;minifierType=js&amp;languageId=en_US&amp;t=1791872936000" type="text/javascript"></script>
+
+
+
+
+<script type="module">
+import {main} from '/o/frontend-js-alert-support-web/__liferay__/index.js';
+{
+main();
+}
+
+</script><script type="module">
+import {main} from '/o/frontend-js-collapse-support-web/__liferay__/index.js';
+{
+main();
+}
+
+</script><script type="module">
+import {main} from '/o/frontend-js-dropdown-support-web/__liferay__/index.js';
+{
+main();
+}
+
+</script><script type="module">
+import {main} from '/o/frontend-js-tabs-support-web/__liferay__/index.js';
+{
+main();
+}
+
+</script><script type="module">
+import {main} from '/o/frontend-js-tooltip-support-web/__liferay__/index.js';
+{
+main();
+}
+
+</script><script type="module">
+import {runThirdPartyCookiesInterval} from '/o/cookies-banner-web/__liferay__/index.js';
+{
+runThirdPartyCookiesInterval();
+}
+
+</script><script type="text/javascript">
+Liferay.CustomDialogs = {enabled: false};
+
+</script><script>
+
+</script>
+
+<script>
+$( document ).ready(function() {
+   $("#searchInput").keyup(function(event) {
+		if (event.keyCode === 13) {
+			$("#search-btn").click();
+		}
+	});
+});
+
+function displaySearchBar(){
+	$("#kirloskar-global-search").slideToggle("slow");
+	var input = document.getElementById('searchInput');
+	input.focus();
+	input.select();
+}
+
+function hideSearchBar(){
+	$("#kirloskar-global-search").slideUp("slow");
+}
+
+function searchKeyword(url){
+	var searchKey = $("#searchInput").val();
+	if (searchKey == "" || searchKey == null){
+		window.location.href= url + "/search";
+	} else {
+		window.location.href= url + "/search?q=" + searchKey;
+	}
+}
+</script>
+
+</body>
+
+</html>
+		
+	
+

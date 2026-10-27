@@ -1,0 +1,3539 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+			<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="ltr" dir="ltr" lang="en-US">
+
+<head>
+
+	
+	
+	
+	<title>Contact - Kirloskar Industries </title>	
+		
+	<meta content="initial-scale=1.0, width=device-width" name="viewport" />
+	<link rel="stylesheet" type="text/css" href="https://www.kirloskarindustries.com/o/kirloskar-common-theme/css/slick.css">
+	
+
+	<link rel="stylesheet" type="text/css" href="https://www.kirloskarindustries.com/o/kirloskar-common-theme/css/swiper-bundle.min.css">
+	<link rel="stylesheet" type="text/css" href="https://www.kirloskarindustries.com/o/kirloskar-common-theme/css/datepicker.css">
+	<link rel="stylesheet" type="text/css" href="https://www.kirloskarindustries.com/o/kirloskar-common-theme/css/font-awesome.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="importmap">{"imports":{"react-dom":"/o/frontend-js-react-web/__liferay__/exports/react-dom.js","@clayui/breadcrumb":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$breadcrumb.js","@clayui/form":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$form.js","@clayui/popover":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$popover.js","@clayui/charts":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$charts.js","@clayui/shared":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$shared.js","@clayui/localized-input":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$localized-input.js","@clayui/modal":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$modal.js","@clayui/empty-state":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$empty-state.js","react":"/o/frontend-js-react-web/__liferay__/exports/react.js","@clayui/color-picker":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$color-picker.js","@clayui/navigation-bar":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$navigation-bar.js","@clayui/pagination":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$pagination.js","@clayui/icon":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$icon.js","@clayui/table":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$table.js","@clayui/autocomplete":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$autocomplete.js","@clayui/slider":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$slider.js","@clayui/management-toolbar":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$management-toolbar.js","@clayui/multi-select":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$multi-select.js","@clayui/nav":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$nav.js","@clayui/time-picker":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$time-picker.js","@clayui/provider":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$provider.js","@clayui/upper-toolbar":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$upper-toolbar.js","@clayui/loading-indicator":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$loading-indicator.js","@clayui/panel":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$panel.js","@clayui/drop-down":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$drop-down.js","@clayui/list":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$list.js","@clayui/date-picker":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$date-picker.js","@clayui/label":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$label.js","@clayui/data-provider":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$data-provider.js","@liferay/frontend-js-api/data-set":"/o/frontend-js-dependencies-web/__liferay__/exports/@liferay$js-api$data-set.js","@clayui/core":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$core.js","@liferay/language/":"/o/js/language/","@clayui/pagination-bar":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$pagination-bar.js","@clayui/layout":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$layout.js","@clayui/multi-step-nav":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$multi-step-nav.js","@liferay/frontend-js-api":"/o/frontend-js-dependencies-web/__liferay__/exports/@liferay$js-api.js","@clayui/css":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$css.js","@clayui/toolbar":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$toolbar.js","@clayui/alert":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$alert.js","@clayui/badge":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$badge.js","@clayui/link":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$link.js","@clayui/card":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$card.js","@clayui/progress-bar":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$progress-bar.js","@clayui/tooltip":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$tooltip.js","@clayui/button":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$button.js","@clayui/tabs":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$tabs.js","@clayui/sticker":"/o/frontend-taglib-clay/__liferay__/exports/@clayui$sticker.js"},"scopes":{}}</script><script data-senna-track="temporary">var Liferay = window.Liferay || {};Liferay.Icons = Liferay.Icons || {};Liferay.Icons.controlPanelSpritemap = 'https://www.kirloskarindustries.com/o/admin-theme/images/clay/icons.svg'; Liferay.Icons.spritemap = 'https://www.kirloskarindustries.com/o/kirloskar-common-theme/images/clay/icons.svg';</script>
+<script data-senna-track="permanent" type="text/javascript">window.Liferay = window.Liferay || {}; window.Liferay.CSP = {nonce: ''};</script>
+<script data-senna-track="permanent" src="/combo?browserId=other&minifierType=js&languageId=en_US&t=1789134670064&/o/frontend-js-jquery-web/jquery/jquery.min.js&/o/frontend-js-jquery-web/jquery/init.js&/o/frontend-js-jquery-web/jquery/ajax.js&/o/frontend-js-jquery-web/jquery/bootstrap.bundle.min.js&/o/frontend-js-jquery-web/jquery/collapsible_search.js&/o/frontend-js-jquery-web/jquery/fm.js&/o/frontend-js-jquery-web/jquery/form.js&/o/frontend-js-jquery-web/jquery/popper.min.js&/o/frontend-js-jquery-web/jquery/side_navigation.js" type="text/javascript"></script>
+
+
+<link href="https://www.kirloskarindustries.com/o/kirloskar-common-theme/images/favicon.ico" rel="apple-touch-icon" />
+<link href="https://www.kirloskarindustries.com/o/kirloskar-common-theme/images/favicon.ico" rel="icon" />
+
+
+
+<link class="lfr-css-file" data-senna-track="temporary" href="https://www.kirloskarindustries.com/o/kirloskar-common-theme/css/clay.css?browserId=other&amp;themeId=kirloskarcommontheme_WAR_kirloskarcommontheme&amp;minifierType=css&amp;languageId=en_US&amp;t=1791872936000" id="liferayAUICSS" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+
+
+	<link href="/combo?browserId=other&amp;minifierType=css&amp;themeId=kirloskarcommontheme_WAR_kirloskarcommontheme&amp;languageId=en_US&amp;com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_isax:%2Fo%2Fjournal-content-web%2Fcss%2Fmain.css&amp;com_liferay_portal_search_web_portlet_SearchPortlet_INSTANCE_templateSearch:%2Fo%2Fportal-search-web%2Fcss%2Fmain.css&amp;com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet:%2Fo%2Fproduct-navigation-product-menu-web%2Fcss%2Fmain.css&amp;com_liferay_product_navigation_user_personal_bar_web_portlet_ProductNavigationUserPersonalBarPortlet:%2Fo%2Fproduct-navigation-user-personal-bar-web%2Fcss%2Fmain.css&amp;com_liferay_segments_experiment_web_internal_portlet_SegmentsExperimentPortlet:%2Fo%2Fsegments-experiment-web%2Fcss%2Fmain.css&amp;com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet:%2Fo%2Fsite-navigation-menu-web%2Fcss%2Fmain.css&amp;t=1791872936000" rel="stylesheet" type="text/css"
+ data-senna-track="temporary" id="e42b6d01" />
+
+
+
+
+
+
+
+
+<script type="text/javascript" data-senna-track="temporary">
+	// <![CDATA[
+		var Liferay = Liferay || {};
+
+		Liferay.Browser = {
+			acceptsGzip: function() {
+				return true;
+			},
+
+			
+
+			getMajorVersion: function() {
+				return 0;
+			},
+
+			getRevision: function() {
+				return '';
+			},
+			getVersion: function() {
+				return '';
+			},
+
+			
+
+			isAir: function() {
+				return false;
+			},
+			isChrome: function() {
+				return false;
+			},
+			isEdge: function() {
+				return false;
+			},
+			isFirefox: function() {
+				return false;
+			},
+			isGecko: function() {
+				return false;
+			},
+			isIe: function() {
+				return false;
+			},
+			isIphone: function() {
+				return false;
+			},
+			isLinux: function() {
+				return false;
+			},
+			isMac: function() {
+				return false;
+			},
+			isMobile: function() {
+				return false;
+			},
+			isMozilla: function() {
+				return false;
+			},
+			isOpera: function() {
+				return false;
+			},
+			isRtf: function() {
+				return false;
+			},
+			isSafari: function() {
+				return false;
+			},
+			isSun: function() {
+				return false;
+			},
+			isWebKit: function() {
+				return false;
+			},
+			isWindows: function() {
+				return false;
+			}
+		};
+
+		Liferay.Data = Liferay.Data || {};
+
+		Liferay.Data.ICONS_INLINE_SVG = true;
+
+		Liferay.Data.NAV_SELECTOR = '#navigation';
+
+		Liferay.Data.NAV_SELECTOR_MOBILE = '#navigationCollapse';
+
+		Liferay.Data.isCustomizationView = function() {
+			return false;
+		};
+
+		Liferay.Data.notices = [
+			
+		];
+
+		(function () {
+			var available = {};
+
+			var direction = {};
+
+			
+
+				available['en_US'] = 'English\x20\x28United\x20States\x29';
+				direction['en_US'] = 'ltr';
+
+			
+
+				available['or_IN'] = 'Odia\x20\x28India\x29';
+				direction['or_IN'] = 'ltr';
+
+			
+
+				available['gu_IN'] = 'Gujarati\x20\x28India\x29';
+				direction['gu_IN'] = 'ltr';
+
+			
+
+				available['hi_IN'] = 'Hindi\x20\x28India\x29';
+				direction['hi_IN'] = 'ltr';
+
+			
+
+				available['kn_IN'] = 'Kannada\x20\x28India\x29';
+				direction['kn_IN'] = 'ltr';
+
+			
+
+				available['mr_IN'] = 'Marathi\x20\x28India\x29';
+				direction['mr_IN'] = 'ltr';
+
+			
+
+				available['ta_IN'] = 'Tamil\x20\x28India\x29';
+				direction['ta_IN'] = 'ltr';
+
+			
+
+				available['te_IN'] = 'Telugu\x20\x28India\x29';
+				direction['te_IN'] = 'ltr';
+
+			
+
+			Liferay.Language = {
+				_cache: {},
+				available,
+				direction,
+				get: function(key) {
+					let value = Liferay.Language._cache[key];
+
+					if (value === undefined) {
+						value = key;
+					}
+
+					return value;
+				}
+			};
+		})();
+
+		var featureFlags = {"LPD-10964":false,"LPS-193884":false,"LPS-178642":false,"LPD-11253":false,"LPS-193005":false,"LPS-187284":false,"LPS-187285":false,"LPD-11377":false,"LPD-10562":false,"LPS-114786":false,"COMMERCE-8087":true,"LPD-13311":true,"LRAC-10757":false,"LPS-180090":false,"LPS-178052":false,"LPS-189856":false,"LPD-21414":false,"LPD-19465":false,"LPS-187436":false,"LPS-185892":false,"LPS-186620":false,"LPS-184404":false,"LPS-198183":false,"LPD-15729":false,"LPS-171364":false,"LPD-6378":false,"LPS-153714":false,"LPS-96845":false,"LPD-11848":false,"LPS-170670":false,"LPS-169981":false,"LPS-153839":false,"LPS-177027":false,"LPD-11003":false,"LPD-19843":false,"LPS-114700":false,"LPS-135430":false,"LPS-134060":false,"LPS-164563":false,"LPS-122920":false,"LPD-27222":false,"LPS-199086":false,"LPS-203351":false,"LPD-10588":false,"LPD-13778":true,"LPD-11313":false,"LPD-6368":false,"LPD-10701":false,"LPD-10703":false,"LPS-202104":false,"LPD-19955":false,"LPS-187142":false,"LPD-15596":false,"LPD-11232":false,"LPS-196935":true,"LPS-176691":false,"LPS-197909":false,"LPD-21636":false,"LPD-29516":false,"COMMERCE-8949":false,"LPD-25799":false,"LPD-11228":false,"LPD-30087":false,"LPS-153813":false,"LPS-174455":false,"LPD-17809":false,"COMMERCE-13024":false,"LPS-165482":false,"LPS-193551":false,"LPS-197477":false,"LPD-17965":false,"LPS-174816":false,"LPS-186360":false,"LPS-153332":false,"LPS-179669":false,"LPS-174417":false,"LPD-11147":false,"LPD-31212":false,"LPD-18221":false,"LPS-155284":false,"LRAC-15017":false,"LPD-19870":false,"LPS-200108":false,"LPS-159643":false,"LPS-161033":false,"LPS-164948":false,"LPS-188058":false,"LPS-129412":false,"LPD-24498":false,"LPD-21265":false,"LPS-169837":false,"LPD-20379":false,"LPD-20213":false};
+
+		Liferay.FeatureFlags = Object.keys(featureFlags).reduce(
+			(acc, key) => ({
+				...acc, [key]: featureFlags[key] === 'true' || featureFlags[key] === true
+			}), {}
+		);
+
+		Liferay.PortletKeys = {
+			DOCUMENT_LIBRARY: 'com_liferay_document_library_web_portlet_DLPortlet',
+			DYNAMIC_DATA_MAPPING: 'com_liferay_dynamic_data_mapping_web_portlet_DDMPortlet',
+			ITEM_SELECTOR: 'com_liferay_item_selector_web_portlet_ItemSelectorPortlet'
+		};
+
+		Liferay.PropsValues = {
+			JAVASCRIPT_SINGLE_PAGE_APPLICATION_TIMEOUT: 0,
+			UPLOAD_SERVLET_REQUEST_IMPL_MAX_SIZE: 209715200000000
+		};
+
+		Liferay.ThemeDisplay = {
+
+			
+
+			
+				getLayoutId: function() {
+					return '25';
+				},
+
+				
+
+				getLayoutRelativeControlPanelURL: function() {
+					return '/group/kil/~/control_panel/manage';
+				},
+
+				getLayoutRelativeURL: function() {
+					return '/contact';
+				},
+				getLayoutURL: function() {
+					return 'https://www.kirloskarindustries.com/contact';
+				},
+				getParentLayoutId: function() {
+					return '0';
+				},
+				isControlPanel: function() {
+					return false;
+				},
+				isPrivateLayout: function() {
+					return 'false';
+				},
+				isVirtualLayout: function() {
+					return false;
+				},
+			
+
+			getBCP47LanguageId: function() {
+				return 'en-US';
+			},
+			getCanonicalURL: function() {
+
+				
+
+				return 'https\x3a\x2f\x2fwww\x2ekirloskarindustries\x2ecom\x2fcontact';
+			},
+			getCDNBaseURL: function() {
+				return 'https://www.kirloskarindustries.com';
+			},
+			getCDNDynamicResourcesHost: function() {
+				return '';
+			},
+			getCDNHost: function() {
+				return '';
+			},
+			getCompanyGroupId: function() {
+				return '20123';
+			},
+			getCompanyId: function() {
+				return '20097';
+			},
+			getDefaultLanguageId: function() {
+				return 'en_US';
+			},
+			getDoAsUserIdEncoded: function() {
+				return '';
+			},
+			getLanguageId: function() {
+				return 'en_US';
+			},
+			getParentGroupId: function() {
+				return '779558';
+			},
+			getPathContext: function() {
+				return '';
+			},
+			getPathImage: function() {
+				return '/image';
+			},
+			getPathJavaScript: function() {
+				return '/o/frontend-js-web';
+			},
+			getPathMain: function() {
+				return '/c';
+			},
+			getPathThemeImages: function() {
+				return 'https://www.kirloskarindustries.com/o/kirloskar-common-theme/images';
+			},
+			getPathThemeRoot: function() {
+				return '/o/kirloskar-common-theme';
+			},
+			getPlid: function() {
+				return '1944';
+			},
+			getPortalURL: function() {
+				return 'https://www.kirloskarindustries.com';
+			},
+			getRealUserId: function() {
+				return '20102';
+			},
+			getRemoteAddr: function() {
+				return '10.11.1.142';
+			},
+			getRemoteHost: function() {
+				return '10.11.1.142';
+			},
+			getScopeGroupId: function() {
+				return '779558';
+			},
+			getScopeGroupIdOrLiveGroupId: function() {
+				return '779558';
+			},
+			getSessionId: function() {
+				return '';
+			},
+			getSiteAdminURL: function() {
+				return 'https://www.kirloskarindustries.com/group/kil/~/control_panel/manage?p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view';
+			},
+			getSiteGroupId: function() {
+				return '779558';
+			},
+			getURLControlPanel: function() {
+				return '/group/control_panel?refererPlid=1944';
+			},
+			getURLHome: function() {
+				return 'https\x3a\x2f\x2fwww\x2ekirloskarindustries\x2ecom\x2fweb\x2fguest\x2fhome';
+			},
+			getUserEmailAddress: function() {
+				return '';
+			},
+			getUserId: function() {
+				return '20102';
+			},
+			getUserName: function() {
+				return '';
+			},
+			isAddSessionIdToURL: function() {
+				return false;
+			},
+			isImpersonated: function() {
+				return false;
+			},
+			isSignedIn: function() {
+				return false;
+			},
+
+			isStagedPortlet: function() {
+				
+					
+						return false;
+					
+				
+			},
+
+			isStateExclusive: function() {
+				return false;
+			},
+			isStateMaximized: function() {
+				return false;
+			},
+			isStatePopUp: function() {
+				return false;
+			}
+		};
+
+		var themeDisplay = Liferay.ThemeDisplay;
+
+		Liferay.AUI = {
+
+			
+
+			getCombine: function() {
+				return true;
+			},
+			getComboPath: function() {
+				return '/combo/?browserId=other&minifierType=&languageId=en_US&t=1789134608167&';
+			},
+			getDateFormat: function() {
+				return '%m/%d/%Y';
+			},
+			getEditorCKEditorPath: function() {
+				return '/o/frontend-editor-ckeditor-web';
+			},
+			getFilter: function() {
+				var filter = 'raw';
+
+				
+					
+						filter = 'min';
+					
+					
+
+				return filter;
+			},
+			getFilterConfig: function() {
+				var instance = this;
+
+				var filterConfig = null;
+
+				if (!instance.getCombine()) {
+					filterConfig = {
+						replaceStr: '.js' + instance.getStaticResourceURLParams(),
+						searchExp: '\\.js$'
+					};
+				}
+
+				return filterConfig;
+			},
+			getJavaScriptRootPath: function() {
+				return '/o/frontend-js-web';
+			},
+			getPortletRootPath: function() {
+				return '/html/portlet';
+			},
+			getStaticResourceURLParams: function() {
+				return '?browserId=other&minifierType=&languageId=en_US&t=1789134608167';
+			}
+		};
+
+		Liferay.authToken = '7c9EH0CB';
+
+		
+
+		Liferay.currentURL = '\x2fcontact';
+		Liferay.currentURLEncoded = '\x252Fcontact';
+	// ]]>
+</script>
+
+<script data-senna-track="temporary" type="text/javascript">window.__CONFIG__= {basePath: '',combine: true, defaultURLParams: null, explainResolutions: false, exposeGlobal: false, logLevel: 'warn', moduleType: 'module', namespace:'Liferay', nonce: '', reportMismatchedAnonymousModules: 'warn', resolvePath: '/o/js_resolve_modules', url: '/combo/?browserId=other&minifierType=js&languageId=en_US&t=1789134608167&', waitTimeout: 60000};</script><script data-senna-track="permanent" src="/o/frontend-js-loader-modules-extender/loader.js?&mac=9WaMmhziBCkScHZwrrVcOR7VZF4=&browserId=other&languageId=en_US&minifierType=js" type="text/javascript"></script><script data-senna-track="permanent" src="/combo?browserId=other&minifierType=js&languageId=en_US&t=1789134608167&/o/frontend-js-aui-web/aui/aui/aui-min.js&/o/frontend-js-aui-web/liferay/modules.js&/o/frontend-js-aui-web/liferay/aui_sandbox.js&/o/frontend-js-aui-web/aui/attribute-base/attribute-base-min.js&/o/frontend-js-aui-web/aui/attribute-complex/attribute-complex-min.js&/o/frontend-js-aui-web/aui/attribute-core/attribute-core-min.js&/o/frontend-js-aui-web/aui/attribute-observable/attribute-observable-min.js&/o/frontend-js-aui-web/aui/attribute-extras/attribute-extras-min.js&/o/frontend-js-aui-web/aui/event-custom-base/event-custom-base-min.js&/o/frontend-js-aui-web/aui/event-custom-complex/event-custom-complex-min.js&/o/frontend-js-aui-web/aui/oop/oop-min.js&/o/frontend-js-aui-web/aui/aui-base-lang/aui-base-lang-min.js&/o/frontend-js-aui-web/liferay/dependency.js&/o/frontend-js-aui-web/liferay/util.js&/o/oauth2-provider-web/js/liferay.js&/o/frontend-js-web/liferay/dom_task_runner.js&/o/frontend-js-web/liferay/events.js&/o/frontend-js-web/liferay/lazy_load.js&/o/frontend-js-web/liferay/liferay.js&/o/frontend-js-web/liferay/global.bundle.js&/o/frontend-js-web/liferay/portlet.js&/o/frontend-js-web/liferay/workflow.js" type="text/javascript"></script>
+<script data-senna-track="temporary" type="text/javascript">window.Liferay = Liferay || {}; window.Liferay.OAuth2 = {getAuthorizeURL: function() {return 'https://www.kirloskarindustries.com/o/oauth2/authorize';}, getBuiltInRedirectURL: function() {return 'https://www.kirloskarindustries.com/o/oauth2/redirect';}, getIntrospectURL: function() { return 'https://www.kirloskarindustries.com/o/oauth2/introspect';}, getTokenURL: function() {return 'https://www.kirloskarindustries.com/o/oauth2/token';}, getUserAgentApplication: function(externalReferenceCode) {return Liferay.OAuth2._userAgentApplications[externalReferenceCode];}, _userAgentApplications: {}}</script><script data-senna-track="temporary" type="text/javascript">try {var MODULE_MAIN='calendar-web@5.0.98/index';var MODULE_PATH='/o/calendar-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			calendar: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-calendar-a11y': {
+						path: 'calendar_a11y.js',
+						requires: ['calendar'],
+					},
+					'liferay-calendar-container': {
+						path: 'calendar_container.js',
+						requires: [
+							'aui-alert',
+							'aui-base',
+							'aui-component',
+							'liferay-portlet-base',
+						],
+					},
+					'liferay-calendar-date-picker-sanitizer': {
+						path: 'date_picker_sanitizer.js',
+						requires: ['aui-base'],
+					},
+					'liferay-calendar-interval-selector': {
+						path: 'interval_selector.js',
+						requires: ['aui-base', 'liferay-portlet-base'],
+					},
+					'liferay-calendar-interval-selector-scheduler-event-link': {
+						path: 'interval_selector_scheduler_event_link.js',
+						requires: ['aui-base', 'liferay-portlet-base'],
+					},
+					'liferay-calendar-list': {
+						path: 'calendar_list.js',
+						requires: [
+							'aui-template-deprecated',
+							'liferay-scheduler',
+						],
+					},
+					'liferay-calendar-message-util': {
+						path: 'message_util.js',
+						requires: ['liferay-util-window'],
+					},
+					'liferay-calendar-recurrence-converter': {
+						path: 'recurrence_converter.js',
+						requires: [],
+					},
+					'liferay-calendar-recurrence-dialog': {
+						path: 'recurrence.js',
+						requires: [
+							'aui-base',
+							'liferay-calendar-recurrence-util',
+						],
+					},
+					'liferay-calendar-recurrence-util': {
+						path: 'recurrence_util.js',
+						requires: ['aui-base', 'liferay-util-window'],
+					},
+					'liferay-calendar-reminders': {
+						path: 'calendar_reminders.js',
+						requires: ['aui-base'],
+					},
+					'liferay-calendar-remote-services': {
+						path: 'remote_services.js',
+						requires: [
+							'aui-base',
+							'aui-component',
+							'liferay-calendar-util',
+							'liferay-portlet-base',
+						],
+					},
+					'liferay-calendar-session-listener': {
+						path: 'session_listener.js',
+						requires: ['aui-base', 'liferay-scheduler'],
+					},
+					'liferay-calendar-simple-color-picker': {
+						path: 'simple_color_picker.js',
+						requires: ['aui-base', 'aui-template-deprecated'],
+					},
+					'liferay-calendar-simple-menu': {
+						path: 'simple_menu.js',
+						requires: [
+							'aui-base',
+							'aui-template-deprecated',
+							'event-outside',
+							'event-touch',
+							'widget-modality',
+							'widget-position',
+							'widget-position-align',
+							'widget-position-constrain',
+							'widget-stack',
+							'widget-stdmod',
+						],
+					},
+					'liferay-calendar-util': {
+						path: 'calendar_util.js',
+						requires: [
+							'aui-datatype',
+							'aui-io',
+							'aui-scheduler',
+							'aui-toolbar',
+							'autocomplete',
+							'autocomplete-highlighters',
+						],
+					},
+					'liferay-scheduler': {
+						path: 'scheduler.js',
+						requires: [
+							'async-queue',
+							'aui-datatype',
+							'aui-scheduler',
+							'dd-plugin',
+							'liferay-calendar-a11y',
+							'liferay-calendar-message-util',
+							'liferay-calendar-recurrence-converter',
+							'liferay-calendar-recurrence-util',
+							'liferay-calendar-util',
+							'liferay-scheduler-event-recorder',
+							'liferay-scheduler-models',
+							'promise',
+							'resize-plugin',
+						],
+					},
+					'liferay-scheduler-event-recorder': {
+						path: 'scheduler_event_recorder.js',
+						requires: [
+							'dd-plugin',
+							'liferay-calendar-util',
+							'resize-plugin',
+						],
+					},
+					'liferay-scheduler-models': {
+						path: 'scheduler_models.js',
+						requires: [
+							'aui-datatype',
+							'dd-plugin',
+							'liferay-calendar-util',
+						],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='contacts-web@5.0.61/index';var MODULE_PATH='/o/contacts-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			contactscenter: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-contacts-center': {
+						path: 'main.js',
+						requires: [
+							'aui-io-plugin-deprecated',
+							'aui-toolbar',
+							'autocomplete-base',
+							'datasource-io',
+							'json-parse',
+							'liferay-portlet-base',
+							'liferay-util-window',
+						],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='@liferay/document-library-web@6.0.188/index';var MODULE_PATH='/o/document-library-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			dl: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'document-library-upload-component': {
+						path: 'DocumentLibraryUpload.js',
+						requires: [
+							'aui-component',
+							'aui-data-set-deprecated',
+							'aui-overlay-manager-deprecated',
+							'aui-overlay-mask-deprecated',
+							'aui-parse-content',
+							'aui-progressbar',
+							'aui-template-deprecated',
+							'liferay-search-container',
+							'querystring-parse-simple',
+							'uploader',
+						],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='dynamic-data-mapping-web@5.0.108/index';var MODULE_PATH='/o/dynamic-data-mapping-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	const LiferayAUI = Liferay.AUI;
+
+	AUI().applyConfig({
+		groups: {
+			ddm: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: LiferayAUI.getFilterConfig(),
+				modules: {
+					'liferay-ddm-form': {
+						path: 'ddm_form.js',
+						requires: [
+							'aui-base',
+							'aui-datatable',
+							'aui-datatype',
+							'aui-image-viewer',
+							'aui-parse-content',
+							'aui-set',
+							'aui-sortable-list',
+							'json',
+							'liferay-form',
+							'liferay-map-base',
+							'liferay-translation-manager',
+							'liferay-util-window',
+						],
+					},
+					'liferay-portlet-dynamic-data-mapping': {
+						condition: {
+							trigger: 'liferay-document-library',
+						},
+						path: 'main.js',
+						requires: [
+							'arraysort',
+							'aui-form-builder-deprecated',
+							'aui-form-validator',
+							'aui-map',
+							'aui-text-unicode',
+							'json',
+							'liferay-menu',
+							'liferay-translation-manager',
+							'liferay-util-window',
+							'text',
+						],
+					},
+					'liferay-portlet-dynamic-data-mapping-custom-fields': {
+						condition: {
+							trigger: 'liferay-document-library',
+						},
+						path: 'custom_fields.js',
+						requires: ['liferay-portlet-dynamic-data-mapping'],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='exportimport-web@5.0.92/index';var MODULE_PATH='/o/exportimport-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			exportimportweb: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-export-import-export-import': {
+						path: 'main.js',
+						requires: [
+							'aui-datatype',
+							'aui-dialog-iframe-deprecated',
+							'aui-modal',
+							'aui-parse-content',
+							'aui-toggler',
+							'liferay-portlet-base',
+							'liferay-util-window',
+						],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='frontend-editor-alloyeditor-web@5.0.51/index';var MODULE_PATH='/o/frontend-editor-alloyeditor-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			alloyeditor: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-alloy-editor': {
+						path: 'alloyeditor.js',
+						requires: [
+							'aui-component',
+							'liferay-portlet-base',
+							'timers',
+						],
+					},
+					'liferay-alloy-editor-source': {
+						path: 'alloyeditor_source.js',
+						requires: [
+							'aui-debounce',
+							'liferay-fullscreen-source-editor',
+							'liferay-source-editor',
+							'plugin',
+						],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='frontend-js-components-web@2.0.72/index';var MODULE_PATH='/o/frontend-js-components-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			components: {
+
+				// eslint-disable-next-line
+				mainModule: MODULE_MAIN,
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='@liferay/frontend-js-react-web@5.0.45/index';var MODULE_PATH='/o/frontend-js-react-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			react: {
+
+				// eslint-disable-next-line
+				mainModule: MODULE_MAIN,
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='@liferay/frontend-js-state-web@1.0.25/index';var MODULE_PATH='/o/frontend-js-state-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			state: {
+
+				// eslint-disable-next-line
+				mainModule: MODULE_MAIN,
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='portal-search-web@6.0.139/index';var MODULE_PATH='/o/portal-search-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			search: {
+				base: MODULE_PATH + '/js/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-search-date-facet': {
+						path: 'date_facet.js',
+						requires: ['aui-form-validator'],
+					},
+				},
+				root: MODULE_PATH + '/js/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='portal-workflow-kaleo-designer-web@5.0.137/index';var MODULE_PATH='/o/portal-workflow-kaleo-designer-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			'kaleo-designer': {
+				base: MODULE_PATH + '/designer/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-kaleo-designer-autocomplete-util': {
+						path: 'autocomplete_util.js',
+						requires: ['autocomplete', 'autocomplete-highlighters'],
+					},
+					'liferay-kaleo-designer-definition-diagram-controller': {
+						path: 'definition_diagram_controller.js',
+						requires: [
+							'liferay-kaleo-designer-field-normalizer',
+							'liferay-kaleo-designer-utils',
+						],
+					},
+					'liferay-kaleo-designer-dialogs': {
+						path: 'dialogs.js',
+						requires: ['liferay-util-window'],
+					},
+					'liferay-kaleo-designer-editors': {
+						path: 'editors.js',
+						requires: [
+							'aui-ace-editor',
+							'aui-ace-editor-mode-xml',
+							'aui-base',
+							'aui-datatype',
+							'aui-node',
+							'liferay-kaleo-designer-autocomplete-util',
+							'liferay-kaleo-designer-utils',
+						],
+					},
+					'liferay-kaleo-designer-field-normalizer': {
+						path: 'field_normalizer.js',
+						requires: ['liferay-kaleo-designer-remote-services'],
+					},
+					'liferay-kaleo-designer-nodes': {
+						path: 'nodes.js',
+						requires: [
+							'aui-datatable',
+							'aui-datatype',
+							'aui-diagram-builder',
+							'liferay-kaleo-designer-editors',
+							'liferay-kaleo-designer-utils',
+						],
+					},
+					'liferay-kaleo-designer-remote-services': {
+						path: 'remote_services.js',
+						requires: ['aui-io'],
+					},
+					'liferay-kaleo-designer-templates': {
+						path: 'templates.js',
+						requires: ['aui-tpl-snippets-deprecated'],
+					},
+					'liferay-kaleo-designer-utils': {
+						path: 'utils.js',
+						requires: [],
+					},
+					'liferay-kaleo-designer-xml-definition': {
+						path: 'xml_definition.js',
+						requires: [
+							'aui-base',
+							'aui-component',
+							'dataschema-xml',
+							'datatype-xml',
+						],
+					},
+					'liferay-kaleo-designer-xml-definition-serializer': {
+						path: 'xml_definition_serializer.js',
+						requires: ['escape', 'liferay-kaleo-designer-xml-util'],
+					},
+					'liferay-kaleo-designer-xml-util': {
+						path: 'xml_util.js',
+						requires: ['aui-base'],
+					},
+					'liferay-portlet-kaleo-designer': {
+						path: 'main.js',
+						requires: [
+							'aui-ace-editor',
+							'aui-ace-editor-mode-xml',
+							'aui-tpl-snippets-deprecated',
+							'dataschema-xml',
+							'datasource',
+							'datatype-xml',
+							'event-valuechange',
+							'io-form',
+							'liferay-kaleo-designer-autocomplete-util',
+							'liferay-kaleo-designer-editors',
+							'liferay-kaleo-designer-nodes',
+							'liferay-kaleo-designer-remote-services',
+							'liferay-kaleo-designer-utils',
+							'liferay-kaleo-designer-xml-util',
+							'liferay-util-window',
+						],
+					},
+				},
+				root: MODULE_PATH + '/designer/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}try {var MODULE_MAIN='staging-processes-web@5.0.60/index';var MODULE_PATH='/o/staging-processes-web';/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+(function () {
+	AUI().applyConfig({
+		groups: {
+			stagingprocessesweb: {
+				base: MODULE_PATH + '/js/legacy/',
+				combine: Liferay.AUI.getCombine(),
+				filter: Liferay.AUI.getFilterConfig(),
+				modules: {
+					'liferay-staging-processes-export-import': {
+						path: 'main.js',
+						requires: [
+							'aui-datatype',
+							'aui-dialog-iframe-deprecated',
+							'aui-modal',
+							'aui-parse-content',
+							'aui-toggler',
+							'liferay-portlet-base',
+							'liferay-util-window',
+						],
+					},
+				},
+				root: MODULE_PATH + '/js/legacy/',
+			},
+		},
+	});
+})();
+} catch(error) {console.error(error);}</script>
+
+
+
+
+<script type="text/javascript" data-senna-track="temporary">
+	// <![CDATA[
+		
+			
+				
+		
+
+		
+	// ]]>
+</script>
+
+
+
+
+
+	
+		
+
+			
+
+			
+		
+		
+
+
+
+	
+		
+
+			
+
+			
+		
+		
+
+
+
+	
+		
+
+			
+
+			
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link class="lfr-css-file" data-senna-track="temporary" href="https://www.kirloskarindustries.com/o/kirloskar-common-theme/css/main.css?browserId=other&amp;themeId=kirloskarcommontheme_WAR_kirloskarcommontheme&amp;minifierType=css&amp;languageId=en_US&amp;t=1791872936000" id="liferayThemeCSS" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+
+	<style data-senna-track="temporary" type="text/css">
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+			
+
+		
+
+	</style>
+
+
+<style data-senna-track="temporary" type="text/css">
+</style>
+<link data-senna-track="temporary" href="/o/layout-common-styles/main.css?plid=1944&segmentsExperienceId=2798631&t=1685102330471" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" data-senna-track="temporary">
+	if (window.Analytics) {
+		window._com_liferay_document_library_analytics_isViewFileEntry = false;
+	}
+</script>
+
+<script type="text/javascript">
+Liferay.on(
+	'ddmFieldBlur', function(event) {
+		if (window.Analytics) {
+			Analytics.send(
+				'fieldBlurred',
+				'Form',
+				{
+					fieldName: event.fieldName,
+					focusDuration: event.focusDuration,
+					formId: event.formId,
+					formPageTitle: event.formPageTitle,
+					page: event.page,
+					title: event.title
+				}
+			);
+		}
+	}
+);
+
+Liferay.on(
+	'ddmFieldFocus', function(event) {
+		if (window.Analytics) {
+			Analytics.send(
+				'fieldFocused',
+				'Form',
+				{
+					fieldName: event.fieldName,
+					formId: event.formId,
+					formPageTitle: event.formPageTitle,
+					page: event.page,
+					title:event.title
+				}
+			);
+		}
+	}
+);
+
+Liferay.on(
+	'ddmFormPageShow', function(event) {
+		if (window.Analytics) {
+			Analytics.send(
+				'pageViewed',
+				'Form',
+				{
+					formId: event.formId,
+					formPageTitle: event.formPageTitle,
+					page: event.page,
+					title: event.title
+				}
+			);
+		}
+	}
+);
+
+Liferay.on(
+	'ddmFormSubmit', function(event) {
+		if (window.Analytics) {
+			Analytics.send(
+				'formSubmitted',
+				'Form',
+				{
+					formId: event.formId,
+					title: event.title
+				}
+			);
+		}
+	}
+);
+
+Liferay.on(
+	'ddmFormView', function(event) {
+		if (window.Analytics) {
+			Analytics.send(
+				'formViewed',
+				'Form',
+				{
+					formId: event.formId,
+					title: event.title
+				}
+			);
+		}
+	}
+);
+
+</script><script>
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<!-- Java script -->
+	<script data-senna-track="permanent" src="https://www.kirloskarindustries.com/o/kirloskar-common-theme/js/jquery.min.js" type="text/javascript" ></script>
+	<script data-senna-track="permanent" src="https://www.kirloskarindustries.com/o/kirloskar-common-theme/js/slick.min.js" type="text/javascript" ></script>
+	<script data-senna-track="permanent" src="https://www.kirloskarindustries.com/o/kirloskar-common-theme/js/device.js" type="text/javascript" ></script>
+	
+	<script data-senna-track="permanent" src="https://www.kirloskarindustries.com/o/kirloskar-common-theme/js/ajaxfileupload.js" type="text/javascript" ></script>
+	<script data-senna-track="permanent" src="https://www.kirloskarindustries.com/o/kirloskar-common-theme/js/datepicker.js" type="text/javascript" ></script>
+	<script data-senna-track="permanent" src="https://www.kirloskarindustries.com/o/kirloskar-common-theme/js/swiper-bundle.min.js" type="text/javascript" ></script>
+	<!-- Java script end -->
+	
+</head>
+
+<body class="other controls-visible  yui3-skin-sam signed-out public-page site">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<nav class="quick-access-nav  d-none" id="rhqp_quickAccessNav">
+		<span class="hide-accessible">Navigation</span>
+		<ul>
+			
+				<li><a href="#main-content">skip-to-content</a></li>
+			
+
+			
+
+		</ul>
+	</nav>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid" id="wrapper">
+	<header id="banner" role="banner">
+		<div id="heading" class="d-inline-block">
+			<div aria-level="1" class="site-title" role="heading">
+				<a class="logo custom-logo" href="https://www.kirloskarindustries.com" title="Go to Kirloskar Industries">
+					<img loading="lazy" alt="" src="/image/layout_set_logo?img_id=6819286&amp;t=1791856884804" class="top_logo" />
+				</a>
+					<span class="site-name d-none" title="Go to Kirloskar Industries">
+						Kirloskar Industries
+					</span>
+			</div>
+		</div>
+		<div class="hamburger-icon">
+			<svg class="lexicon-icon opens">
+				<use href="https://www.kirloskarindustries.com/o/kirloskar-common-theme/images/clay/icons.svg#bars" />
+			</svg>
+		</div>
+		
+<nav class="sort-pages modify-pages" id="navigation" role="navigation">
+	<ul aria-label="Site Pages" role="menubar">
+			<li class=" mainList" id="layout_unknown5" role="presentation">
+				<span class="with_child"></span>
+				<a class="hvr-underline" 
+				   aria-labelledby="layout_unknown5" 
+				    
+				   href="https://www.kirloskarindustries.com/about" 
+				    
+				   role="menuitem">
+					<span> About</span>
+				</a>
+					<div class="child-menu">
+						<ul class="childGroup" role="menu">
+								<li class=" child-list noChild" id="layout_unknown7" role="presentation">
+									<a class="btn-arrow child-link" 
+									   aria-labelledby="layout_unknown7" 
+									   href="https://www.kirloskarindustries.com/about/board-of-directors" 
+									    
+									   role="menuitem">Board Of Directors</a>
+								</li>
+						</ul>
+					</div>
+			</li>
+			<li class=" mainList" id="layout_unknown9" role="presentation">
+				<span class="with_child"></span>
+				<a class="hvr-underline" 
+				   aria-labelledby="layout_unknown9" 
+				    
+				   href="https://www.kirloskarindustries.com/services" 
+				    
+				   role="menuitem">
+					<span> Services</span>
+				</a>
+					<div class="child-menu">
+						<ul class="childGroup" role="menu">
+								<li class=" child-list noChild" id="layout_unknown11" role="presentation">
+									<a class="btn-arrow child-link" 
+									   aria-labelledby="layout_unknown11" 
+									   href="https://www.kirloskarindustries.com/services/innovation-that-transforms-energy-generation" 
+									    
+									   role="menuitem">Innovation that Transforms Energy Generation</a>
+								</li>
+						</ul>
+					</div>
+			</li>
+			<li class=" mainList" id="layout_unknown13" role="presentation">
+				
+				<a class="hvr-underline" 
+				   aria-labelledby="layout_unknown13" 
+				    
+				   href="https://www.kirloskarindustries.com/investors" 
+				    
+				   role="menuitem">
+					<span> Investors</span>
+				</a>
+			</li>
+			<li class=" mainList" id="layout_unknown15" role="presentation">
+				<span class="with_child"></span>
+				<a class="hvr-underline" 
+				   aria-labelledby="layout_unknown15" 
+				    
+				   href="https://www.kirloskarindustries.com/csr" 
+				    
+				   role="menuitem">
+					<span> CSR</span>
+				</a>
+					<div class="child-menu">
+						<ul class="childGroup" role="menu">
+								<li class=" child-list noChild" id="layout_unknown17" role="presentation">
+									<a class="btn-arrow child-link" 
+									   aria-labelledby="layout_unknown17" 
+									   href="https://www.kirloskarindustries.com/csr/kirloskar-vasundhara-international-film-festival" 
+									    
+									   role="menuitem">Kirloskar Vasundhara International Film Festival</a>
+								</li>
+								<li class=" child-list noChild" id="layout_unknown19" role="presentation">
+									<a class="btn-arrow child-link" 
+									   aria-labelledby="layout_unknown19" 
+									   href="https://www.kirloskarindustries.com/csr/kirloskar-wash-initiative" 
+									    
+									   role="menuitem">Kirloskar WaSH Initiative</a>
+								</li>
+						</ul>
+					</div>
+			</li>
+			<li class=" mainList" id="layout_unknown21" role="presentation">
+				<span class="with_child"></span>
+				<a class="hvr-underline" 
+				   aria-labelledby="layout_unknown21" 
+				    
+				   href="https://www.kirloskarindustries.com/careers" 
+				    
+				   role="menuitem">
+					<span> Careers</span>
+				</a>
+					<div class="child-menu">
+						<ul class="childGroup" role="menu">
+								<li class=" child-list noChild" id="layout_unknown133" role="presentation">
+									<a class="btn-arrow child-link" 
+									   aria-labelledby="layout_unknown133" 
+									   href="https://www.kirloskarindustries.com/careers/job-listings" 
+									    
+									   role="menuitem">Job Listings</a>
+								</li>
+						</ul>
+					</div>
+			</li>
+			<li class=" mainList" id="layout_unknown23" role="presentation">
+				
+				<a class="hvr-underline" 
+				   aria-labelledby="layout_unknown23" 
+				    
+				   href="https://www.kirloskarindustries.com/newsroom" 
+				    
+				   role="menuitem">
+					<span> Newsroom</span>
+				</a>
+			</li>
+			<li class="selected mainList" id="layout_unknown25" role="presentation">
+				
+				<a class="hvr-underline" 
+				   aria-labelledby="layout_unknown25" 
+				   aria-haspopup='true' 
+				   href="https://www.kirloskarindustries.com/contact" 
+				    
+				   role="menuitem">
+					<span> Contact</span>
+				</a>
+			</li>
+	</ul>
+	<a class="search" href="javascript:void(0)" onclick="displaySearchBar()">
+		<i class="icon-search"></i>
+	</a>
+</nav>
+	</header>
+	
+	<a class="top-mob-search" href="javascript:void(0)" onclick="displaySearchBar()">
+		<i class="icon-search"></i>
+	</a>
+	
+	<div id="kirloskar-global-search" class="top-search" style="display:none;">
+		<div class="container position-relative cursor_blink">
+			<a href="javascript:void(0)" onclick="searchKeyword('https://www.kirloskarindustries.com');" id="search-btn" >
+				<span class="search-btn"></span>
+			</a>
+			<input type="text" class="search-class" placeholder="Search here" id="searchInput" name="searchInput" />
+			<i class="blink_line"></i>
+			<a href="javascript:void(0)" onclick="hideSearchBar();" id="close-search-btn" >
+				<span class="close-search"></span>
+			</a>
+		</div>
+	</div>
+	
+	<section id="content">
+		<h2 class="hide-accessible" role="heading" aria-level="1">Contact - Kirloskar Industries</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+		<div class="layout-content portlet-layout" id="main-content" role="main">
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+	<div class="lfr-layout-structure-item-com-liferay-journal-content-web-portlet-journalcontentportlet lfr-layout-structure-item-a0e7945c-7e97-4080-943c-9d355061d816 " style=""><div id="fragment-176a8ed5-1da0-679c-7a08-b5240bae1ce3" >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_journal_content_web_portlet_JournalContentPortlet_  portlet-static portlet-static-end portlet-decorate portlet-journal-content " id="p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_isax_">
+		<span id="p_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_isax"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_isax">
+
+	<div class="portlet-content">
+
+		<div class="autofit-float autofit-row portlet-header">
+			<div class="autofit-col autofit-col-expand">
+				<h2 class="portlet-title-text">KIL - Contact Us Content</h2>
+			</div>
+
+			<div class="autofit-col autofit-col-end">
+				<div class="autofit-section">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="visible-interaction">
+
+	
+
+	
+</div>				</div>
+			</div>
+		</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+			
+			
+				
+					
+					
+					
+					
+
+						
+
+						<div class="" data-fragments-editor-item-id="20132-781633" data-fragments-editor-item-type="fragments-editor-mapped-item" >
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+		<div class="journal-content-article " data-analytics-asset-id="781631" data-analytics-asset-title="KIL - Contact Us Content" data-analytics-asset-type="web-content" data-analytics-web-content-resource-pk="781633">
+			
+
+			<style>
+@media (max-width: 991px) {
+.filter select {
+    float: right;
+}
+}
+</style>
+
+<section class="mt-40" style="visibility: visible;">
+	<div class="container-fluid container-custom">
+				<div id="contacts-main-section">
+			<div class="row mb-20">
+				<div class="col-sm-12 col-xs-12 mt-100">
+				</div>
+			</div>
+			<div class="row">
+						<div class="contact-data col-md-6 col-sm-12 mb-40 mb-xs-40">
+								<div class="contact-unit-name">
+									<h3>Company Registered Office(Up to 30.11.2024)</h3>
+								</div>
+								<div class="contact-address">
+									<p>Office No. 801, 8th Floor,<br />
+Cello Platina,<br />
+Fergusson College Road,<br />
+Shivajinagar, Pune - 411 005.</p>
+
+<p><strong>Tel</strong>&nbsp;: 020 - 29704374</p>
+								</div>
+							
+						</div>
+						<div class="contact-data col-md-6 col-sm-12 mb-40 mb-xs-40">
+								<div class="contact-unit-name">
+									<h3>Company Registered Office (With effect from 01.12.2024)</h3>
+								</div>
+								<div class="contact-address">
+									<p>‘One Avante’, Level 14, Karve Road,<br />
+Kothrud, Pune, 411038<br />
+<br />
+<strong>Tel</strong>&nbsp;: 8484009510<br />
+&nbsp; &nbsp; &nbsp; &nbsp;020-69065007</p>
+								</div>
+							
+						</div>
+						<div class="contact-data col-md-6 col-sm-12 mb-40 mb-xs-40">
+								<div class="contact-unit-name">
+									<h3>Executive Director</h3>
+								</div>
+								<div class="contact-name">
+									<p><strong>Aditi Chirmule</strong></p>
+								</div>
+							
+						</div>
+						<div class="contact-data col-md-6 col-sm-12 mb-40 mb-xs-40">
+							
+						</div>
+						<div class="contact-data col-md-6 col-sm-12 mb-40 mb-xs-40">
+								<div class="contact-unit-name">
+									<h3>Company Secretary, Compliance & Nodal Officer</h3>
+								</div>
+								<div class="contact-name">
+									<p><strong>Ashwini Mali</strong></p>
+								</div>
+								<div class="contact-address">
+									<p>Email : <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c2abacb4a7b1b6adb0b0a7aea3b6abadacb182a9abb0aeadb1a9a3b0eca1adaf">[email&#160;protected]</a><br>
+Tel : 020-69065007</p>
+								</div>
+							
+						</div>
+						<div class="contact-data col-md-6 col-sm-12 mb-40 mb-xs-40">
+							
+						</div>
+						<div class="contact-data col-md-6 col-sm-12 mb-40 mb-xs-40">
+								<div class="contact-unit-name">
+									<h3>Registrars And Transfer Agent</h3>
+								</div>
+								<div class="contact-name">
+									<p><strong>MUFG Intime India Private Limited (Formerly known as Link Intime India Private Limited)</strong></p>
+								</div>
+								<div class="contact-address">
+									<p>'Akshay' Complex,<br>
+Block No. 202, 2nd Floor,<br>
+Near Ganesh Temple, Off Dhole Patil Road,<br>
+Pune - 411 001.</p>
+
+<p><strong>Contact Person</strong> : <strong>Umesh Sharma</strong></p>
+
+<p><strong>Email</strong> : <a href="/cdn-cgi/l/email-protection#3545405b50755c5b1b584558461b584053521b565a58" target="_blank"><span class="__cf_email__" data-cfemail="6212170c07220b0c4c0f120f114c0f1704054c010d0f">[email&#160;protected]</span></a>&nbsp;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a href="/cdn-cgi/l/email-protection#d1b8bfa7b4a2a5bea3ffb9b4bda1b5b4a2ba91b8bfffbca1bca2ffbca4b7b6ffb2bebc" target="_blank"><span class="__cf_email__" data-cfemail="dfb6b1a9baacabb0adf1b7bab3afbbbaacb49fb6b1f1b2afb2acf1b2aab9b8f1bcb0b2">[email&#160;protected]</span></a></p>
+
+<p><strong>Tel</strong> : 020 - 26161629 / 26160084<br>
+<strong>Fax</strong> : 020 - 26163503</p>
+
+<p>&nbsp;</p>
+								</div>
+							
+						</div>
+							<div id="contact-miscellaneous" class="mt-2">
+								<p><strong>*The contact details of the Chairman of the Audit Committee for the purpose of Whistle Blower Policy / Vigil Mechanism as follows:</strong></p>
+
+<table style="border-collapse:collapse; width:501px" width="502">
+	<colgroup>
+		<col style="width:194pt" width="259">
+		<col style="width:182pt" width="243">
+	</colgroup>
+	<tbody>
+		<tr>
+			<td class="xl65" style="border-bottom:1px solid black; height:26px; width:259px; text-align:center; vertical-align:middle; white-space:normal; padding-top:1px; padding-right:1px; padding-left:1px; border-top:1px solid black; border-right:1px solid black; border-left:1px solid black"><span style="font-size:15px"><span style="font-weight:700"><span style="color:black"><span style="font-style:normal"><span style="text-decoration:none"><span style="font-family:Calibri,sans-serif">Name</span></span></span></span></span></span></td>
+			<td class="xl65" style="border-bottom:1px solid black; width:243px; text-align:center; vertical-align:middle; white-space:normal; padding-top:1px; padding-right:1px; padding-left:1px; border-top:1px solid black; border-right:1px solid black; border-left:none"><span style="font-size:15px"><span style="font-weight:700"><span style="color:black"><span style="font-style:normal"><span style="text-decoration:none"><span style="font-family:Calibri,sans-serif">&nbsp;Email - ID</span></span></span></span></span></span></td>
+		</tr>
+		<tr>
+			<td class="xl66" style="border-bottom:1px solid black; height:28px; width:259px; text-align:center; vertical-align:middle; white-space:normal; padding-top:1px; padding-right:1px; padding-left:1px; border-top:none; border-right:1px solid black; border-left:1px solid black"><span style="font-size:15px"><span style="color:black"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none"><span style="font-family:Calibri,sans-serif">&nbsp;Mr. Satish Jamdar</span></span></span></span></span></span></td>
+			<td class="xl67" style="border-bottom:1px solid black; width:243px; text-align:center; vertical-align:middle; white-space:normal; padding-top:1px; padding-right:1px; padding-left:1px; border-top:none; border-right:1px solid black; border-left:none"><span style="font-size:15px"><span style="color:#0563c1"><span style="text-decoration:underline"><span style="font-weight:400"><span style="font-style:normal"><span style="font-family:Calibri,sans-serif"><a href="/cdn-cgi/l/email-protection#09626065687c6d607d276a6168607b646867496e64686065276a6664"><span class="__cf_email__" data-cfemail="3b5052575a4e5f524f1558535a5249565a557b5c565a525715585456">[email&#160;protected]</span></a></span></span></span></span></span></span></td>
+		</tr>
+	</tbody>
+</table>
+
+<p><br>
+<br>
+<strong>*As required in Regulation 30(5) of the Listing Regulations, the contact details of the Key Managerial Personnel as authorised by the Board of Directors are as under:&nbsp;</strong></p>
+
+<table style="border-collapse:collapse; width:773px" width="773">
+	<colgroup>
+		<col style="width:275pt" width="367">
+		<col style="width:168pt" width="224">
+		<col style="width:137pt" width="182">
+	</colgroup>
+	<tbody>
+		<tr>
+			<td class="xl65" style="border-bottom:1px solid black; height:45px; width:367px; text-align:center; vertical-align:middle; white-space:normal; padding-top:1px; padding-right:1px; padding-left:1px; border-top:1px solid black; border-right:1px solid black; border-left:1px solid black"><span style="font-size:15px"><span style="font-weight:700"><span style="color:black"><span style="font-style:normal"><span style="text-decoration:none"><span style="font-family:Calibri,sans-serif">Name of Key Managerial Personnel (KMP)&nbsp;&nbsp;</span></span></span></span></span></span></td>
+			<td class="xl65" style="border-bottom:1px solid black; width:224px; text-align:center; vertical-align:middle; white-space:normal; padding-top:1px; padding-right:1px; padding-left:1px; border-top:1px solid black; border-right:1px solid black; border-left:none"><span style="font-size:15px"><span style="font-weight:700"><span style="color:black"><span style="font-style:normal"><span style="text-decoration:none"><span style="font-family:Calibri,sans-serif">&nbsp;Email - ID</span></span></span></span></span></span></td>
+			<td class="xl65" style="border-bottom:1px solid black; width:182px; text-align:center; vertical-align:middle; white-space:normal; padding-top:1px; padding-right:1px; padding-left:1px; border-top:1px solid black; border-right:1px solid black; border-left:none"><span style="font-size:15px"><span style="font-weight:700"><span style="color:black"><span style="font-style:normal"><span style="text-decoration:none"><span style="font-family:Calibri,sans-serif">&nbsp;Telephone&nbsp;No.</span></span></span></span></span></span></td>
+		</tr>
+		<tr>
+		</tr>
+		<tr>
+			<td class="xl66" style="border-bottom:1px solid black; height:24px; width:367px; text-align:center; vertical-align:middle; white-space:normal; padding-top:1px; padding-right:1px; padding-left:1px; border-top:none; border-right:1px solid black; border-left:1px solid black"><span style="font-size:15px"><span style="color:black"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none"><span style="font-family:Calibri,sans-serif">Mr. George Verghese (Managing Director)</span></span></span></span></span></span></td>
+			<td class="xl67" style="border-bottom:1px solid black; width:224px; text-align:center; vertical-align:middle; white-space:normal; padding-top:1px; padding-right:1px; padding-left:1px; border-top:none; border-right:1px solid black; border-left:none"><span style="font-size:15px"><span style="color:#0563c1"><span style="text-decoration:underline"><span style="font-weight:400"><span style="font-style:normal"><span style="font-family:Calibri,sans-serif"><a href="/cdn-cgi/l/email-protection#5c35322a392f28332e2e39303d283533322f1c37352e30332f373d2e723f3331">&nbsp;<span class="__cf_email__" data-cfemail="3851564e5d4b4c574a4a5d54594c5157564b7853514a54574b53594a165b5755">[email&#160;protected]</span>&nbsp;</a></span></span></span></span></span></span></td>
+			<td class="xl66" style="border-bottom:1px solid black; width:182px; text-align:center; vertical-align:middle; white-space:normal; padding-top:1px; padding-right:1px; padding-left:1px; border-top:none; border-right:1px solid black; border-left:none"><span style="font-size:15px"><span style="color:black"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none"><span style="font-family:Calibri,sans-serif">020-69065007</span></span></span></span></span></span></td>
+		</tr>
+		<tr>
+			<td class="xl66" style="border-bottom:1px solid black; height:24px; width:367px; text-align:center; vertical-align:middle; white-space:normal; padding-top:1px; padding-right:1px; padding-left:1px; border-top:none; border-right:1px solid black; border-left:1px solid black"><span style="font-size:15px"><span style="color:black"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none"><span style="font-family:Calibri,sans-serif"> Mrs. Ashwini Mali (Company Secretary)</span></span></span></span></span></span></td>
+			<td class="xl67" style="border-bottom:1px solid black; width:224px; text-align:center; vertical-align:middle; white-space:normal; padding-top:1px; padding-right:1px; padding-left:1px; border-top:none; border-right:1px solid black; border-left:none"><span style="font-size:15px"><span style="color:#0563c1"><span style="text-decoration:underline"><span style="font-weight:400"><span style="font-style:normal"><span style="font-family:Calibri,sans-serif"><a href="/cdn-cgi/l/email-protection#e980879f8c9a9d869b9b8c85889d8086879aa982809b85869a82889bc78a8684">&nbsp;<span class="__cf_email__" data-cfemail="c1a8afb7a4b2b5aeb3b3a4ada0b5a8aeafb281aaa8b3adaeb2aaa0b3efa2aeac">[email&#160;protected]</span>&nbsp;</a></span></span></span></span></span></span></td>
+			<td class="xl66" style="border-bottom:1px solid black; width:182px; text-align:center; vertical-align:middle; white-space:normal; padding-top:1px; padding-right:1px; padding-left:1px; border-top:none; border-right:1px solid black; border-left:none"><span style="font-size:15px"><span style="color:black"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none"><span style="font-family:Calibri,sans-serif">020-69065007</span></span></span></span></span></span></td>
+		</tr>
+		<tr>
+			<td class="xl66" style="border-bottom:1px solid black; height:24px; width:367px; text-align:center; vertical-align:middle; white-space:normal; padding-top:1px; padding-right:1px; padding-left:1px; border-top:none; border-right:1px solid black; border-left:1px solid black"><span style="font-size:15px"><span style="color:black"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none"><span style="font-family:Calibri,sans-serif"> Mr. Bharathan Gopalakrishnan (Chief Financial Officer)</span></span></span></span></span></span></td>
+			<td class="xl67" style="border-bottom:1px solid black; width:224px; text-align:center; vertical-align:middle; white-space:normal; padding-top:1px; padding-right:1px; padding-left:1px; border-top:none; border-right:1px solid black; border-left:none"><span style="font-size:15px"><span style="color:#0563c1"><span style="text-decoration:underline"><span style="font-weight:400"><span style="font-style:normal"><span style="font-family:Calibri,sans-serif"><a href="/cdn-cgi/l/email-protection#157c7b637066617a6767707974617c7a7b66557e7c67797a667e74673b767a78"><span class="__cf_email__" data-cfemail="2d4f454c5f4c59454c43034a6d46445f41425e464c5f034e4240">[email&#160;protected]</span></a></span></span></span></span></span></span></td>
+			<td class="xl66" style="border-bottom:1px solid black; width:182px; text-align:center; vertical-align:middle; white-space:normal; padding-top:1px; padding-right:1px; padding-left:1px; border-top:none; border-right:1px solid black; border-left:none"><span style="font-size:15px"><span style="color:black"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none"><span style="font-family:Calibri,sans-serif">020-69065007</span></span></span></span></span></span></td>
+		</tr>
+	</tbody>
+</table>
+
+<p><br>
+<br>
+<strong>GENERATING AWARENESS ON AVAILABILITY OF DISPUTE RESOLUTION MECHANISM AT STOCK EXCHANGES AGAINST LISTED COMPANIES / REGISTRAR TO AN ISSUE AND SHARE TRANSFER AGENTS (RTAS)</strong><br>
+<br>
+If you have any dispute against the Company and or its Registrar and Share Transfer Agent (RTA) on delay or default in processing your request, as per SEBI circular dated May 30, 2022, you can file for arbitration with Stock Exchange.<br>
+&nbsp;<br>
+For more details, please see the web links of the stock exchanges-<br>
+<a href="https://in.tradingview.com/symbols/BSE-KIRLOSIND/?utm_campaign=single-quote&amp;utm_medium=widget_new&amp;utm_source=www.kirloskarindustries.com" target="_blank">BSE</a><br>
+<a href="https://in.tradingview.com/symbols/NSE-KIRLOSIND/" target="_blank">NSE</a><br>
+<br>
+<a href="https://www.kirloskarindustries.com/documents/779558/2464165/SEBI+Circular+along+with+Model+Tripartite+Agreement.pdf/4e5c0bbe-9537-b4c8-cdee-de3a02e5b587?t=1720149046795" target="_blank">SEBI Circular along with Model Tripartite Agreement</a>&nbsp;<br>
+<br>
+<a href="https://www.kirloskarindustries.com/documents/779558/2464165/SEBI+Circular+dated+September+26%2C+2023.pdf/2b458946-a585-6847-a884-9bfa0264dc76?t=1720149047535" target="_blank">SEBI Circular dated September 26, 2023</a><br>
+<br>
+<a href="https://www.kirloskarindustries.com/documents/779558/2464165/Sebi+Circular+dated+November+17%2C+2023.pdf/3f43380e-cde2-5cbd-6780-a202b19e10e1?t=1720149048097" target="_blank">Sebi Circular dated November 17, 2023</a><br>
+<br>
+<a href="https://www.kirloskarindustries.com/documents/779558/2464165/Sebi+Circular+dated+December+27%2C+2023.pdf/a8b062ae-eaa4-54c5-b141-361e54e45f8e?t=1720149048561" target="_blank">Sebi Circular dated December 27, 2023</a><br>
+<br>
+<strong>CORPORATE IDENTITY NUMBER (CIN)</strong>:<br>
+L70100PN1978PLC088972<br>
+&nbsp;</p>
+							</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+			
+		</div>
+
+		
+
+	
+
+
+
+						</div>
+					
+				
+			
+		
+	
+
+
+
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+</div></div>
+
+
+
+
+		</div>
+	
+
+
+<form action="#" aria-hidden="true" class="hide" id="hrefFm" method="post" name="hrefFm"><span></span><button hidden type="submit">Hidden</button></form>
+
+	
+		
+
+	</section>
+	
+	<footer class="footer mt-100" id="footer" role="contentinfo">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_journal_content_web_portlet_JournalContentPortlet_  portlet-static portlet-static-end portlet-barebone portlet-journal-content " id="p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_kilfootercontent_">
+		<span id="p_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_kilfootercontent"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_kilfootercontent">
+
+
+	<div class="portlet-content">
+
+		<div class="autofit-float autofit-row portlet-header">
+			<div class="autofit-col autofit-col-expand">
+				<h2 class="portlet-title-text">KIL-Footer Content</h2>
+			</div>
+
+			<div class="autofit-col autofit-col-end">
+				<div class="autofit-section">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="visible-interaction">
+
+	
+
+	
+</div>				</div>
+			</div>
+		</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+			
+			
+				
+					
+					
+					
+					
+
+						
+
+						<div class="" data-fragments-editor-item-id="20132-785293" data-fragments-editor-item-type="fragments-editor-mapped-item" >
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+		<div class="journal-content-article " data-analytics-asset-id="785291" data-analytics-asset-title="KIL-Footer Content" data-analytics-asset-type="web-content" data-analytics-web-content-resource-pk="785293">
+			
+
+			<style>
+#apply_form .pad .pb-10.required {
+    position: relative;
+    bottom: 35px;
+}
+p {
+    text-align: justify;
+}
+#contact-data p, .fact-wrap p {
+    text-align: left;
+}
+.social-links li a, p.copyright, .sitemap {
+    color: #000;
+}
+.see_more_link a {
+    color: inherit;
+}
+.see_more_link a:hover {
+    text-decoration: none;
+}
+.features-dropdown {
+    font-family: 'Heebo-Regular';
+    font-size: 16px;
+}
+.download_prod_broch {
+    display: flex;
+    align-items: baseline;
+    color: var(--dark-gray);
+}
+ul.social-icons {
+    position: relative;
+    z-index: 1;
+}
+.limitless_bottom_logo {
+    max-width: 300px !important;
+}
+.privayPolicy{
+    border-left:2px solid #000000;
+    padding-left:5px;
+    margin-right:5px;
+    color:#000000;
+}
+@media (min-width: 768px) {
+    .award-unit img:hover {
+        transform: scale(1.2666, 1.2664);
+        transition: transform .2s,-webkit-transform .2s;
+        cursor: move;
+    }
+    .social-links {
+        text-align: center;
+        margin-left: 20px;
+        float: none;
+    }
+    .bottom-logo {
+      max-width: 230px !important;
+    }
+}
+@media (max-width: 767px) {
+.limitless_bottom_logo {
+    max-width: 100px !important;
+}
+.img-responsive.bottom-logo {
+  max-width: 90px !important;
+}
+.copyright {
+  max-width: 95%;
+}
+}
+
+</style>
+
+
+
+<div class="container-fluid container-custom">
+	<div class="row mb-40">
+		<div class="col-md-4 mb-xs-30">
+			<img loading="lazy" src="/documents/d/kil/kirloskar-industries-logo" class="img-responsive footer-logo" class="footer-logo" width="185" />
+		</div>		
+	
+	</div>
+   	<div class="row all-links">
+			<div class="col-sm">
+				<h4 class="head">QUICK LINKS</h4>
+				<ul class="list-group">
+								<a href="/about">About</a>
+								<a href=""></a>
+								<a href="/services">Services</a>
+								<a href="/investors">Investors</a>
+				</ul>
+			</div>
+		
+			<div class="col-sm">
+					<div class="mb-md-4 pb-md-2"><h4 style="display:none;"></h4></div>
+				<ul class="list-group pt-2">
+					   			<a href="/csr">CSR</a>
+					   			<a href="/newsroom">News</a>
+					   			<a href="/contact">Contact</a>
+				</ul>
+			</div>
+		
+			<div class="col-sm">
+				<h4 class="head">LIMITLESS</h4>
+				<ul class="list-group">
+								<a href="https://www.kirloskaroilengines.com/">Kirloskar Oil Engines</a>
+								<a href="https://www.kirloskarpneumatic.com/">Kirloskar Pneumatic</a>
+								<a href="https://www.kirloskarferrous.com/">Kirloskar Ferrous</a>
+								<a href="https://www.kirloskarindustries.com/">Kirloskar Industries</a>
+								<a href="https://www.kirloskarchillers.com/">Kirloskar Chillers</a>
+								<a href="https://www.kirloskarsolar.com/">Kirloskar Solar</a>
+								<a href="https://www.arkafincap.com/">Arka Fincap</a>
+								<a href="https://www.avantespaces.com/">Avante Spaces</a>
+								<a href="https://kim.edu.in/">Kirloskar Institute of Management</a>
+								<a href="https://www.kirloskaramericas.com/">Kirloskar Americas</a>
+				</ul>
+			</div>
+		
+		<div class="col-sm">
+				<div class="mb-md-4 pb-md-2"><h4 style="display:none;"></h4></div>
+			<ul class="list-group pt-2">
+							<a href=""></a>
+			</ul>
+		</div>
+	</div>
+	<div class="row bottom-text mt-100 mb-100">
+		
+		<div class="col-sm-4 col-md-5 col-xs-12 mb-xs-10">
+			<p class="copyright" id="copyrightsText">© [#YEAR#] Kirloskar. All Rights Reserved. The mark ‘Kirloskar’ used in any form as prefix or suffix, ‘i’ and copyright ‘limitless’ as shown are owned by Kirloskar Proprietary Limited and Kirloskar Industries Limited is the permitted user.   <a class="privayPolicy" href="/privacy-policy"><span>Privacy Policy</span></a></p>
+    		         
+		</div>
+		<div class="col-sm-5 col-md-4 col-xs-12 mb-xs-10">
+			<ul class="social-icons list-inline social-links">
+					<li><a href="https://www.facebook.com/KirloskarLimitless/" target="_blank" rel="noopener noreferrer"><i class="icon-facebook"></i></a></li>
+					<li><a href="https://www.instagram.com/kirloskar_limitless/" target="_blank" rel="noopener noreferrer"><i class="icon-instagram"></i></a></li>
+					<li><a href="https://www.linkedin.com/company/kirloskar-limitless" target="_blank" rel="noopener noreferrer"><i class="icon-linkedin"></i></a></li>
+					<li><a href="https://www.youtube.com/channel/UC0hczv7YmFx7eIjMB6zprEA" target="_blank" rel="noopener noreferrer"><i class="icon-youtube"></i></a></li>
+			</ul>
+		</div>
+	</div>
+	<a class="back-to-top" style="display: block;">
+      <div class="content-wrap">
+        <span class="top-icon">
+            <!-- <i class="fa fa-arrow-up"></i> -->
+            <img loading="lazy" src="/o/kirloskar-common-theme/images/icons/go-top-arrow.png" class="img-responsive" />
+        </span>
+        <span class="go-top-text">TOP </span>
+      </div>
+    </a>
+		<img loading="lazy" src="https://www.kirloskaroilengines.com/documents/779558/779738/footer-logo.element.png/1607e53d-7603-effa-0870-d8ef31f851c8?t=1667212600851" class="img-responsive bottom-logo" />
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+$('.back-to-top').click(function(){ 
+      $('html,body').animate({ scrollTop: 0 }, 400);
+      return false; 
+});
+document.addEventListener("DOMContentLoaded", function() {
+    var element = document.getElementById("copyrightsText");
+    if (element) {
+        var currentYear = new Date().getFullYear();
+        element.innerHTML = element.innerHTML.replace(/\[#YEAR#\]/g, currentYear);
+    }
+});
+</script>
+
+			
+		</div>
+
+		
+
+	
+
+
+
+						</div>
+					
+				
+			
+		
+	
+
+
+
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+		
+  	</footer>
+	
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+	
+		
+
+			
+
+			
+		
+	
+
+
+</script><script>
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+<script type="text/javascript">
+(function() {var $ = AUI.$;var _ = AUI._;
+	var onDestroyPortlet = function () {
+		Liferay.detach('messagePosted', onMessagePosted);
+		Liferay.detach('destroyPortlet', onDestroyPortlet);
+	};
+
+	Liferay.on('destroyPortlet', onDestroyPortlet);
+
+	var onMessagePosted = function (event) {
+		if (window.Analytics) {
+			const eventProperties = {
+				className: event.className,
+				classPK: event.classPK,
+				commentId: event.commentId,
+				text: event.text,
+			};
+
+			const blogNode = document.querySelector(
+				'[data-analytics-asset-id="' + event.classPK + '"]'
+			);
+
+			const dmNode = document.querySelector(
+				'[data-analytics-file-entry-id="' + event.classPK + '"]'
+			);
+
+			if (blogNode) {
+				eventProperties.title = blogNode.dataset.analyticsAssetTitle;
+			}
+			else if (dmNode) {
+				eventProperties.title = dmNode.dataset.analyticsFileEntryTitle;
+			}
+
+			Analytics.send('posted', 'Comment', eventProperties);
+		}
+	};
+
+	Liferay.on('messagePosted', onMessagePosted);
+})();
+
+	function getValueByAttribute(node, attr) {
+		return (
+			node.dataset[attr] ||
+			(node.parentElement && node.parentElement.dataset[attr])
+		);
+	}
+
+	function sendDocumentDownloadedAnalyticsEvent(anchor) {
+		var fileEntryId = getValueByAttribute(
+			anchor,
+			'analyticsFileEntryId'
+		);
+		var title = getValueByAttribute(
+			anchor,
+			'analyticsFileEntryTitle'
+		);
+		var version = getValueByAttribute(
+			anchor,
+			'analyticsFileEntryVersion'
+		);
+
+		if (fileEntryId) {
+			Analytics.send('documentDownloaded', 'Document', {
+				groupId: themeDisplay.getScopeGroupId(),
+				fileEntryId,
+				preview:
+					!!window._com_liferay_document_library_analytics_isViewFileEntry,
+				title,
+				version,
+			});
+		}
+	}
+
+	function handleDownloadClick(event) {
+		if (window.Analytics) {
+			if (event.target.nodeName.toLowerCase() === 'a') {
+				sendDocumentDownloadedAnalyticsEvent(
+					event.target
+				);
+			}
+			else if (
+				event.target.parentNode &&
+				event.target.parentNode.nodeName.toLowerCase() === 'a'
+			) {
+				sendDocumentDownloadedAnalyticsEvent(
+					event.target.parentNode
+				);
+			}
+			else {
+				var target = event.target;
+				var matchTextContent =
+					target.textContent &&
+					target.textContent.toLowerCase() ===
+						'download';
+				var matchTitle =
+					target.title && target.title.toLowerCase() === 'download';
+				var matchAction = target.action === 'download';
+				var matchLexiconIcon = !!target.querySelector(
+					'.lexicon-icon-download'
+				);
+				var matchLexiconClassName = target.classList.contains(
+					'lexicon-icon-download'
+				);
+				var matchParentTitle =
+					target.parentNode &&
+					target.parentNode.title &&
+					target.parentNode.title.toLowerCase() === 'download';
+				var matchParentLexiconClassName =
+					target.parentNode &&
+					target.parentNode.classList.contains('lexicon-icon-download');
+
+				if (
+					matchTextContent ||
+					matchTitle ||
+					matchParentTitle ||
+					matchAction ||
+					matchLexiconIcon ||
+					matchLexiconClassName ||
+					matchParentLexiconClassName
+				) {
+					var selectedFiles = document.querySelectorAll(
+						'.form .custom-control-input:checked'
+					);
+
+					selectedFiles.forEach(({value}) => {
+						var selectedFile = document.querySelector(
+							'[data-analytics-file-entry-id="' + value + '"]'
+						);
+
+						sendDocumentDownloadedAnalyticsEvent(
+							selectedFile
+						);
+					});
+				}
+			}
+		}
+	}
+
+	Liferay.once('destroyPortlet', () => {
+		document.body.removeEventListener(
+			'click',
+			handleDownloadClick
+		);
+	});
+
+	Liferay.once('portletReady', () => {
+		document.body.addEventListener(
+			'click',
+			handleDownloadClick
+		);
+	});
+
+(function() {var $ = AUI.$;var _ = AUI._;
+	var onVote = function (event) {
+		if (window.Analytics) {
+			let title = event.contentTitle;
+
+			if (!title) {
+				const dmNode = document.querySelector(
+					'[data-analytics-file-entry-id="' + event.classPK + '"]'
+				);
+
+				if (dmNode) {
+					title = dmNode.dataset.analyticsFileEntryTitle;
+				}
+			}
+
+			Analytics.send('VOTE', 'Ratings', {
+				className: event.className,
+				classPK: event.classPK,
+				ratingType: event.ratingType,
+				score: event.score,
+				title,
+			});
+		}
+	};
+
+	var onDestroyPortlet = function () {
+		Liferay.detach('ratings:vote', onVote);
+		Liferay.detach('destroyPortlet', onDestroyPortlet);
+	};
+
+	Liferay.on('ratings:vote', onVote);
+	Liferay.on('destroyPortlet', onDestroyPortlet);
+})();
+(function() {var $ = AUI.$;var _ = AUI._;
+	var onShare = function (data) {
+		if (window.Analytics) {
+			Analytics.send('shared', 'SocialBookmarks', {
+				className: data.className,
+				classPK: data.classPK,
+				type: data.type,
+				url: data.url,
+			});
+		}
+	};
+
+	var onDestroyPortlet = function () {
+		Liferay.detach('socialBookmarks:share', onShare);
+		Liferay.detach('destroyPortlet', onDestroyPortlet);
+	};
+
+	Liferay.on('socialBookmarks:share', onShare);
+	Liferay.on('destroyPortlet', onDestroyPortlet);
+})();
+
+	if (window.svg4everybody && Liferay.Data.ICONS_INLINE_SVG) {
+		svg4everybody(
+			{
+				polyfill: true,
+				validate: function (src, svg, use) {
+					return !src || !src.startsWith('#');
+				}
+			}
+		);
+	}
+
+(function() {var $ = AUI.$;var _ = AUI._;
+	Liferay.Util.delegate(
+		document,
+		'focusin',
+		'.portlet',
+		function(event) {
+			event.delegateTarget.closest('.portlet').classList.add('open');
+		}
+	);
+
+	Liferay.Util.delegate(
+		document,
+		'focusout',
+		'.portlet',
+		function(event) {
+			event.delegateTarget.closest('.portlet').classList.remove('open');
+		}
+	);
+})();
+
+	// <![CDATA[
+
+		
+
+		Liferay.currentURL = '\x2fcontact';
+		Liferay.currentURLEncoded = '\x252Fcontact';
+
+	// ]]>
+
+
+		// <![CDATA[
+			
+				
+
+				
+
+				
+			
+		// ]]>
+	
+(function() {var $ = AUI.$;var _ = AUI._;
+		import(Liferay.ThemeDisplay.getPathContext() + '/o/frontend-js-web/__liferay__/index.js').then(
+			({openToast}) => {
+				AUI().use(
+					'liferay-session',
+					function() {
+						Liferay.Session = new Liferay.SessionBase(
+							{
+								autoExtend: true,
+								redirectOnExpire: false,
+								redirectUrl: 'https\x3a\x2f\x2fwww\x2ekirloskarindustries\x2ecom\x2fweb\x2fguest\x2fhome',
+								sessionLength: 900,
+								sessionTimeoutOffset: 70,
+								warningLength: 60
+							}
+						);
+
+						
+					}
+				);
+			}
+		)
+	})();
+
+	
+		Liferay.Portlet.register('com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_isax');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_isax_',
+			portletId: 'com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_isax',
+			refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d1944\x26p_p_id\x3dcom_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_isax\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fcontact',
+			refreshURLData: {}
+		}
+	);
+
+
+	
+		Liferay.Portlet.register('com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_kilfootercontent');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_kilfootercontent_',
+			portletId: 'com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_kilfootercontent',
+			refreshURL: '\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d1944\x26p_p_id\x3dcom_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_kilfootercontent\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fcontact',
+			refreshURLData: {}
+		}
+	);
+
+
+</script><script type="module">
+import {InfoItemActionHandler as ComponentModule} from '/o/layout-taglib/__liferay__/index.js';
+AUI().use(
+  'liferay-menu',
+function(A) {
+{
+Liferay.component('infoItemActionComponent', new ComponentModule({"executeInfoItemActionURL":"https:\/\/www.kirloskarindustries.com\/c\/portal\/execute_info_item_action?p_l_mode=view&plid=1944","namespace":"","spritemap":"https:\/\/www.kirloskarindustries.com\/o\/kirloskar-common-theme\/images\/clay\/icons.svg"}), { destroyOnNavigate: true, portletId: ''});
+}
+(function() {
+var $ = AUI.$;var _ = AUI._;
+	new Liferay.Menu();
+
+	var liferayNotices = Liferay.Data.notices;
+
+	for (var i = 0; i < liferayNotices.length; i++) {
+		Liferay.Util.openToast(liferayNotices[i]);
+	}
+
+})();
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+<script src="https://www.kirloskarindustries.com/o/kirloskar-common-theme/js/main.js?browserId=other&amp;minifierType=js&amp;languageId=en_US&amp;t=1791872936000" type="text/javascript"></script>
+
+
+
+
+<script type="module">
+import {main} from '/o/frontend-js-alert-support-web/__liferay__/index.js';
+{
+main();
+}
+
+</script><script type="module">
+import {main} from '/o/frontend-js-collapse-support-web/__liferay__/index.js';
+{
+main();
+}
+
+</script><script type="module">
+import {main} from '/o/frontend-js-dropdown-support-web/__liferay__/index.js';
+{
+main();
+}
+
+</script><script type="module">
+import {main} from '/o/frontend-js-tabs-support-web/__liferay__/index.js';
+{
+main();
+}
+
+</script><script type="module">
+import {main} from '/o/frontend-js-tooltip-support-web/__liferay__/index.js';
+{
+main();
+}
+
+</script><script type="module">
+import {runThirdPartyCookiesInterval} from '/o/cookies-banner-web/__liferay__/index.js';
+{
+runThirdPartyCookiesInterval();
+}
+
+</script><script type="text/javascript">
+Liferay.CustomDialogs = {enabled: false};
+
+</script><script>
+
+</script>
+
+<script>
+$( document ).ready(function() {
+   $("#searchInput").keyup(function(event) {
+		if (event.keyCode === 13) {
+			$("#search-btn").click();
+		}
+	});
+});
+
+function displaySearchBar(){
+	$("#kirloskar-global-search").slideToggle("slow");
+	var input = document.getElementById('searchInput');
+	input.focus();
+	input.select();
+}
+
+function hideSearchBar(){
+	$("#kirloskar-global-search").slideUp("slow");
+}
+
+function searchKeyword(url){
+	var searchKey = $("#searchInput").val();
+	if (searchKey == "" || searchKey == null){
+		window.location.href= url + "/search";
+	} else {
+		window.location.href= url + "/search?q=" + searchKey;
+	}
+}
+</script>
+
+</body>
+
+</html>
+		
+	
+

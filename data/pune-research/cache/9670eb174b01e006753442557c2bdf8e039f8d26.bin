@@ -1,0 +1,2516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <link rel="icon" type="image/png" href="/images/cosmos-bank-2019-fevicon.png" />
+    <title>About us | Cosmos Bank</title>
+
+    <!-- Bootstrap CSS -->
+    
+    <link href="/bootstrap/css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+   
+    <!-- Vendor & Custom CSS -->
+    <link href="/vendor/icofont/icofont.min.css" rel="stylesheet" />
+    <link href="/vendor/animate.css/animate.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/owl-carousel/owl.carousel.css" />
+    <link rel="stylesheet" href="/owl-carousel/owl.theme.css" />
+    <link rel="stylesheet" href="/owl-carousel/owl.transitions.css" />
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Menu styles -->
+    <link rel="stylesheet" href="/css/menu-style.css" />
+    <link rel="stylesheet" href="/css/menu-style2.css" />
+    <link rel="stylesheet" href="/css/menu-style3.css" />
+    <link rel="stylesheet" href="/css/menu-style4.css" />
+    <link rel="stylesheet" href="/css/menu-style5.css" />
+    <link rel="stylesheet" href="/css/menu-style6.css" />
+    <link rel="stylesheet" href="/css/menu-style7.css" />
+    <link rel="stylesheet" href="/css/menu-style8.css" />
+
+    <!-- Page styles -->
+    <link href="/css/homepg-style.css" rel="stylesheet" />
+    <link href="/css/homepg-media-queries.css" rel="stylesheet" />
+    <link href="/css/inner-pg-style.css" rel="stylesheet" />
+    <link href="/css/inner-pg-media-queries.css" rel="stylesheet" />
+    <link href="/css/responsive.css" rel="stylesheet" />
+    <link href="/css/static-inner-pages.css" rel="stylesheet" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha384-/o6I2CkkWC//PSjvWC/eYN7l3xM3tJm8ZzVkCOfp//W05QcE3mlGskpoHB6XqI+B" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/Accessibility.css" />    <!-- Google Ads -->
+    <!-- External tracking JS -->
+
+    <script src="https://www.googletagmanager.com/gtag/js?id=AW-10811343171"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=G-BVTYJV0QYR"></script>
+    <script src="/js/tracking-scripts.js"></script>   
+    <script src="/js/anchor.min.js"></script>
+    <script src="/js/jquery-4.0.0.min.js"></script>
+
+    <!-- Facebook Pixel fallback image (for no JS) -->
+    <noscript>
+        <img height="1" width="1" style="display: none"
+             src="https://www.facebook.com/tr?id=1773580009503867&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- Google Tag Manager -->
+    <script>
+    (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MX35JQN2');</script>
+    <!-- End Google Tag Manager -->
+    <!-- --> 
+    
+    <link rel="stylesheet" href="/css/ab-pages.css" />
+
+    <link rel="stylesheet" href="/css/wcag-remediation.css?v=20260804r37" />
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MX35JQN2');</script>
+    <!-- End Google Tag Manager -->
+</head>
+<body>
+
+<header data-spy="affix" data-offset-top="197">
+    <div class="container container-95">
+        <div class="row">
+            <div class="col-12">
+                <div class="a11y-toolbar" role="toolbar" aria-label="Accessibility shortcuts">
+                    <a href="#main-content"
+                        class="skip-link"
+                        aria-label="Skip directly to main content">
+                        Skip to main content
+                    </a>
+
+                    <!-- New A+ A- and Invert buttons -->
+                    <div class="a11y-quick-buttons" role="group" aria-label="Quick accessibility controls">
+                        <button id="btn-font-plus"
+                                type="button"
+                                class="a11y-btn a11y-font-plus"
+                                aria-label="Increase text size (A+)">
+                            A+
+                        </button>
+                        <button id="btn-font-minus"
+                                type="button"
+                                class="a11y-btn a11y-font-minus"
+                                aria-label="Decrease text size (A-)">
+                            A-
+                        </button>
+                        <button id="btn-invert-quick"
+                                type="button"
+                                class="a11y-btn a11y-invert"
+                                aria-label="Invert colors"
+                                aria-pressed="false">
+                            ⛶
+                        </button>
+                        <button id="btn-theme-quick"
+                                type="button"
+                                class="a11y-btn a11y-theme"
+                                aria-label="Toggle light or dark theme"
+                                aria-pressed="false">
+                            🌗
+                        </button>
+                    </div>
+
+                    <div id="uw-widget-custom-trigger"
+                         class="uw-widget-custom-trigger position-relative"
+                         role="button"
+                         tabindex="0"
+                         aria-label="Accessibility Options"
+                         data-uw-trigger="true"
+                         aria-haspopup="dialog">
+                        <img src="/images/accessibility_18880251.png" width="30px"
+                             alt="" aria-hidden="true">
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container container-95">
+        <div class="row logo-and-nav-row">
+
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 top-logo-col">
+                <div class="top-logo">
+                    <a href="index">
+                        <img src="images/logo.png" alt="COSMOS CO-OP, BANK LTD Logo">
+                    </a>
+                </div>
+                <!--top-logo end-->
+            </div>
+            <!--col end-->
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 top-nav-col">
+                <nav>
+                    <div id="nav">
+                        <input id="main-menu-state" type="checkbox" />
+                        <label class="main-menu-btn" for="main-menu-state">
+                            <span class="main-menu-btn-icon"></span>
+                            <span class="main-menu-btn-text">Toggle main menu visibility</span>
+                            <span class="main-menu-btn-title" aria-hidden="true">
+                                <span aria-hidden="true" data-icon="h"></span>
+                            </span>
+                        </label>
+                        <ul id="main-menu" class="sm sm-blue collapsed">
+                            <li class="home-li"><a href="index" >Home</a></li>
+                            <li class="about-li drop-down"><a class='active' href="/about-us">About Us</a></li>
+                            <li class="services-li">
+                                <a class="active" href="#">Services <i class="fa fa-angle-down"></i></a>
+                                <ul class="sub-menu">
+
+
+                                        <li><a href="/services?id=11">Safe Deposit Vaults (Lockers)</a></li>
+                                        <li><a href="/services?id=2">Anywhere Banking</a></li>
+                                        <li><a href="/services?id=4">Demat Services</a></li>
+                                        <li><a href="/services?id=5">Foreign Exchange</a></li>
+                                        <li><a href="/services?id=7">Insurance</a></li>
+
+                                </ul>
+                            </li>
+
+                            <li class="resources-li drop-down">
+                                <a  href="#">Resources <i class="fa fa-angle-down"></i></a>
+                                <ul class="sub-menu">
+                                    <li>
+                                        <a href="#">Cosmos Resources <i class="fa fa-angle-right"></i></a>
+                                        <ul class="sub-menu">
+                                            <li><a href="nodal-office">Nodal Office</a></li>
+                                            <li><a href="interest-rates">Interest Rates</a></li>
+                                            <li><a href="service-charges">Service Charges</a></li>
+                                            <li><a href="form-center">Form Center</a></li>
+
+                                            <!--   <li><a href="bcsbi-codes">BCSBI Code</a></li> -->
+                                            <li><a href="customer-centric-policies">Customer Centric Policies</a></li>
+
+                                                <li><a href="/cosmos-resources?id=3">Banking Ombudsman Scheme</a></li>
+                                                <li><a href="/cosmos-resources?id=1">TDS Guidelines</a></li>
+                                                <li><a href="/cosmos-resources?id=2">KYC Documents List</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">Safety <i class="fa fa-angle-right"></i></a>
+                                        <ul class="sub-menu">
+                                                <li><a href="/safety?id=1">Safety</a></li>
+                                                <li><a href="/safety?id=2">Safety Measures</a></li>
+                                                <li><a href="/safety?id=3">Frauds</a></li>
+                                                <li><a href="/safety?id=4">Safe Banking</a></li>
+                                            <li><a href="/RBIGuidelines">RBI Guidelines</a></li>
+                                            <li><a href="/cybersecurityawareness">Cyber Security Awareness</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">Public <i class="fa fa-angle-right"></i></a>
+                                        <ul class="sub-menu">
+                                            <li><a href="annual-general-meeting">Annual General Meeting</a></li>
+                                            <li><a href="annual-reports">Annual Reports</a></li>
+                                            <li><a href="frequently-asked-questions">Frequently Asked Questions</a></li>
+
+                                            <li><a href="public-notice">Public Notice</a></li>
+                                            <li><a href="auction-notice">Auction Notice</a></li>
+                                            <li><a href="display-of-information">Display of Information</a></li>
+                                            <li><a href="regulatory-compliance">Regulatory Compliance</a></li>
+                                            <li><a href="events-and-news">Events & News</a></li>
+                                            <li><a href="IFSC-code">IFSC Code</a></li>
+                                            <li><a href="career-form">Career</a></li>
+                                            <li><a href="unclaimedaccount">Unclaimed Accounts</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">Legal <i class="fa fa-angle-right"></i></a>
+                                        <ul class="sub-menu">
+                                            <li><a href="dnd-registration">Do Not Call - Registration</a></li>
+                                            <li><a href="ourpolicies">Website Usage Terms</a></li>
+                                            <li><a href="ourpolicies">Privacy</a></li>
+                                            <li><a href="ourpolicies">Disclaimer</a></li>
+                                            <li><a href="ourpolicies">Social Media Policy</a></li>
+                                            <li><a href="ourpolicies">UIDAI- Data Privacy Policy</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="lodge-complaint-li drop-down">
+                                <a href="lodge-a-complaint">Lodge A Complaint</a>
+                            </li>
+                            <li class="contact-us-li drop-down">
+                                <a href="#">
+                                    Contact Us <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li><a href="contact-us">Contact Us</a>
+                                    <li><a href="auth/writereaddata/files/2.demat-escalation-matrix_July-2025-Copy.pdf" target="_blank">Demat Escalation Matrix</a>
+                                    <li><a href="career-form">Careers</a>
+                                </ul>
+                            </li>
+                           
+                            <!--<li class="lodge-complaint-li drop-down"><a <%= strContact %> href="#">Lodge A Complaint<i class="fa fa-angle-down"></i></a>
+                                <ul class="sub-menu">
+                                    <li><a href="https://www.cosmosbank.com/lodge-a-complaint#nav-digital-world">Unauthorized electronic Banking Transactions</a>
+                                    <li><a href="https://www.cosmosbank.com/product-services-details?id=9">ATM</a>
+                                    <li><a href="https://www.cosmosbank.com/product-services-details?id=19
+                                        ">Fast Tag</a>
+                                    <li><a href="https://www.cosmosbank.com/product-services-details?id=2">Demat</a>
+                                    <li><a href="https://www.cosmosbank.com/product-details?id=23">Mutual Fund</a>
+                                    <li><a href="https://www.cosmosbank.com/services?id=7">Insurance</a>
+                                    <li><a href="https://www.cosmosbank.com/product-details?id=7">Personal Banking</a>
+                                    <li><a href="https://www.cosmosbank.com/safety?id=3">Financial Crime</a>
+                                    <li><a href="https://www.cosmosbank.com/dnd-registration">DND Registration</a>
+                                </ul>
+                            </li>-->
+
+                            <li class="mobile-side-menu-li"><a href="#">Side Menu</a> </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <!--col end-->
+
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 top-right-icons-col">
+
+                <div class="top-right-icons-wrap">
+
+                    <div class="search-icon-wrap">
+                        <a href="#" role="button" aria-label="Search" aria-expanded="false" aria-haspopup="true"><i class="icofont-search-1" aria-hidden="true"></i></a>
+                        <div class="search-input-div search-input-div2">
+                            <asp:TextBox ID="txtSearch" runat="server" placeholder="" CssClass="top-search-input"></asp:TextBox>
+                            <button runat="server" id="btnSearchRecords" onserverclick="btnSearchRecords_Click"><i class="fa fa-search"></i></button>
+
+                            <div class="close-search-box-btn-div"><i class="fa fa-times" aria-hidden="true"></i></div>
+                            <!--close-search-box-btn-div end-->
+                        </div>
+                        <!--search-input-div end-->
+                    </div>
+                    <!--search-icon-wrap end-->
+
+
+                    <div class="login-icon-wrap desktop-login-icon-wrap">
+                        <a href="https://online.cosmos.bank.in/" target="_blank" class="netbanking-btn">
+
+                            Netbanking Login
+                        </a>
+                    </div>
+
+                    <div class="login-icon-wrap desktop-login-icon-wrap">
+                        <a href="https://www.cosmos.bank.in/online-loans/" target="_blank" class="netbanking-btn">
+
+                            Quick Loans
+                        </a>
+                    </div>
+
+                    <div class="language_btn">
+                        <select class="select-border" id="selectLocale" onchange="lnfyChangeLanguage(this)">
+                            <option value="en-US">EN</option>
+                            <option value="mr_IN">मराठी</option>
+                        </select>
+                    </div>
+                    <!--nav-icon-wrap end-->
+
+
+                    <div class="nav-icon-wrap">
+                        <a href="#" role="button" aria-label="Menu" aria-haspopup="dialog" aria-expanded="false"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                    </div>
+                    <!--nav-icon-wrap end-->
+
+                    <div class="right-side-slider-details-div" role="dialog" aria-modal="true" aria-label="Internet Banking" aria-hidden="true">
+
+                        <div class="close_btn modal_close close_btn-div" role="button" tabindex="0" aria-label="Close"><i class="fa fa-times-circle" aria-hidden="true"></i></div>
+
+                        <img src="images/logo1.jpg" style="width:280px;" alt="" />
+                        <div class="text_holder">
+                            <h2>Internet Banking</h2>
+                            <p>At Cosmos Bank, we are committed to helping you meet all your banking needs to the best of our ability. You can access internet banking portal of our website at any hour of the day. There are no fixed timings to use the facilities. Moreover, enjoy the luxury of getting all the work accomplished at the comfort of your home or office, at any hour that is preferable for you</p>
+                        </div>
+                        <a class="blue-button" target="_blank" href="https://online.cosmosbank.in/">LOGIN</a>
+
+                        <div class="text_holder">
+                            <p>
+                                Plot No-6, S.No-132/B, ICS Colony, Ganeshkhind Road, Pune<br />
+                                +91-20-67086708
+                            </p>
+                            <p>Call Toll Free</p>
+                            <p><a href="tel:1800 233 0234">1800 233 0234</a></p>
+                            <p><a href="mailto:customercare@cosmos.bank.in" target="_blank">customercare@cosmos.bank.in</a> </p>
+
+                            <p>Weekdays Timings: 10.30 a.m. to 6.30 p.m.</p>
+
+                            <p>Holiday  : 2nd & 4th Saturdays and all Sundays</p>
+                        </div>
+
+                    </div>
+                    <!--right-side-slider-details-div end-->
+                    <!--login-icon-wrap end-->
+                    <!--nav-icon-wrap end-->
+
+
+                    <div class="clearfix"></div>
+
+                </div>
+                <!--top-right-icons-wrap end-->
+
+            </div>
+            <!--col end-->
+
+        </div>
+        <!--row end-->
+
+    </div>
+    <!--container end-->
+
+    <div class="quick-loans">
+        <a class="quick-loans-style" href="https://www.cosmos.bank.in/online-loans/index.html">Quick Loans</a>
+    </div>
+    <div class="netbanking">
+        <a class="netbanking-style" href="https://online.cosmos.bank.in/RetailCorporate/#/login/retailcorporate">Net banking</a>
+    </div>
+
+
+    <div class="four-categories-outer-wrap blue-bg-1">
+        <div class="container container-95">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="four-categories-links-wrap" id="tabs">
+                        <ul class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                            <li class="tab-pane " role="presentation"><a class="nav-item nav-link" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">General</a></li>
+                            <li class="tab-pane " role="presentation"><a class="nav-item nav-link" id="nav-premium-tab" data-toggle="tab" href="#nav-premium" role="tab" aria-controls="nav-premium" aria-selected="false">Premium</a></li>
+                            <li class="tab-pane " role="presentation"><a class="nav-item nav-link" id="nav-nri-tab" data-toggle="tab" href="#nav-nri" role="tab" aria-controls="nav-nri" aria-selected="false">NRI</a></li>
+                            <li class="tab-pane " role="presentation"><a class="nav-item nav-link" id="nav-business-tab" data-toggle="tab" href="#nav-business" role="tab" aria-controls="nav-business" aria-selected="false">Business</a></li>
+                            <li class="tab-pane " role="presentation"><a class="nav-item nav-link" id="nav-digital-world-tab" data-toggle="tab" href="#nav-digital-world" role="tab" aria-controls="nav-digital-world" aria-selected="false">Digital World</a></li>
+                            <li class="tab-pane tab-pane" role="presentation"><a class="nav-item nav-link" id="nav-banl-form-tab" data-toggle="tab" href="#nav-banl-form" role="tab" aria-controls="nav-banl-form" aria-selected="false">BANL Facility</a></li>
+
+                        </ul>
+                    </div>
+                    <!--four-categories-links-wrap end-->
+                </div>
+                <!--col end-->
+            </div>
+            <!--row end-->
+        </div>
+        <!--container end-->
+    </div>
+
+
+
+    <!--four-categories-outer-wrap end-->
+
+    <div class="accounts-nav-outer-wrap blue-bg-2">
+        <div class="container container-95">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="accounts-nav-links-wrap">
+                        <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+
+                            <div class="tab-pane " id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
+                                <!--<nav class="nav-menu nav-menu-two d-none d-lg-block topmarnav nav-menu-general">-->
+                                <nav>
+                                    <div id="nav2">
+                                        <input id="main-menu-state2" type="checkbox" />
+                                        <label class="main-menu-btn2" for="main-menu-state2">
+                                            <span class="main-menu-btn-icon"></span>
+                                            <span class="main-menu-btn-text">Toggle main menu visibility</span>
+                                            <span class="main-menu-btn-title" aria-hidden="true"><span aria-hidden="true" data-icon="h"></span></span>
+                                        </label>
+
+                                        <ul id="main-menu2" class="sm sm-blue collapsed">
+                                                <li class="loans-li-active">
+                                                    <a href="#">Accounts <i class="fa fa-caret-down"></i></a>
+                                                    <input type="hidden" value="5" />
+                                                    <ul class="sub-menu">
+                                                            <li><a href="/product-details?id=63">PIGMY Deposit Scheme</a></li>
+                                                            <li><a href="/product-details?id=61">COSMO Galgal Zero Balance Savings Account</a></li>
+                                                            <li><a href="/product-details?id=27">Regular Savings Account</a></li>
+                                                            <li><a href="/product-details?id=26">Cosmo Youth Savings Account</a></li>
+                                                            <li><a href="/product-details?id=24">Cosmo Kidz Savings Account</a></li>
+                                                            <li><a href="/product-details?id=42">Fixed Deposit Scheme</a></li>
+                                                            <li><a href="/product-details?id=43">Recurring Deposit Scheme</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="">
+                                                    <a href="#">Loans <i class="fa fa-caret-down"></i></a>
+                                                    <input type="hidden" value="7" />
+                                                    <ul class="sub-menu">
+                                                            <li><a href="/product-details?id=4">Cosmos Property Mortgage Loan</a></li>
+                                                            <li><a href="/product-details?id=7">Cosmo Credit Personal Loan</a></li>
+                                                            <li><a href="/product-details?id=1">Cosmos Home Loan</a></li>
+                                                            <li><a href="/product-details?id=8">Cosmos Car Loan</a></li>
+                                                            <li><a href="/product-details?id=3">Cosmos Two Wheeler Loan</a></li>
+                                                            <li><a href="/product-details?id=5">Cosmos Gold Loan</a></li>
+                                                            <li><a href="/product-details?id=6">Cosmo Education Loan</a></li>
+                                                            <li><a href="/product-details?id=9">Cosmo Gruha Sanjeevani Reverse Mortgage Loan Scheme</a></li>
+                                                            <li><a href="/product-details?id=50">Cosmo Gram Gruh Yojana</a></li>
+                                                    </ul>
+                                                </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!--tab 1 end-->
+
+                            <div class="tab-pane " id="nav-premium" role="tabpanel" aria-labelledby="nav-premium-tab">
+                                <nav>
+                                    <div id="nav3">
+                                        <input id="main-menu-state3" type="checkbox" />
+                                        <label class="main-menu-btn3" for="main-menu-state3">
+                                            <span class="main-menu-btn-icon"></span>
+                                            <span class="main-menu-btn-text">Toggle main menu visibility</span>
+                                            <span class="main-menu-btn-title" aria-hidden="true"><span aria-hidden="true" data-icon="h"></span></span>
+                                        </label>
+
+                                        <ul id="main-menu3" class="sm sm-blue collapsed">
+                                                <li class="loans-li-active">
+                                                    <a href="#">Accounts <i class="fa fa-caret-down"></i></a>
+                                                    <ul class="sub-menu">
+                                                            <li><a href="/product-details?id=59">Prosperity Plus Savings Account</a></li>
+                                                            <li><a href="/product-details?id=58">Profit Plus Savings Account</a></li>
+                                                            <li><a href="/product-details?id=56">Non Callable Deposit Scheme</a></li>
+                                                            <li><a href="/product-details?id=40">Cosmo Premium Savings Account</a></li>
+                                                            <li><a href="/product-details?id=36">Cosmo Premium Salary Savings Account</a></li>
+                                                            <li><a href="/product-details?id=35">Cosmo Premium Plus Savings Account</a></li>
+                                                            <li><a href="/product-details?id=38">Cosmo Royale Saving Account</a></li>
+                                                    </ul>
+                                                </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!--tab 2 end-->
+
+                            <div class="tab-pane " id="nav-nri" role="tabpanel" aria-labelledby="nav-nri-tab">
+                                <nav>
+                                    <div id="nav4">
+                                        <input id="main-menu-state4" type="checkbox" />
+                                        <label class="main-menu-btn4" for="main-menu-state4">
+                                            <span class="main-menu-btn-icon"></span>
+                                            <span class="main-menu-btn-text">Toggle main menu visibility</span>
+                                            <span class="main-menu-btn-title" aria-hidden="true"><span aria-hidden="true" data-icon="h"></span></span>
+                                        </label>
+
+                                        <ul id="main-menu4" class="sm sm-blue collapsed">
+                                                <li class="loans-li-active">
+                                                    <a href="#">Accounts <i class="fa fa-caret-down"></i></a>
+                                                    <ul class="sub-menu">
+                                                            <li><a href="/product-details?id=28">Cosmo FCNR (B) Double Bonanza</a></li>
+                                                            <li><a href="/product-details?id=29">Cosmo FCNR (B) Premium</a></li>
+                                                            <li><a href="/product-details?id=30">Cosmo FCNR (B) Royale Deposit</a></li>
+                                                            <li><a href="/product-details?id=31">Cosmo FCNR (B)</a></li>
+                                                            <li><a href="/product-details?id=32">Cosmo NRI Premium Plus Saving Account</a></li>
+                                                            <li><a href="/product-details?id=39">Cosmo Max Yield NRI Deposit</a></li>
+                                                    </ul>
+                                                </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!--tab 3 end-->
+
+                            <div class="tab-pane " id="nav-business" role="tabpanel" aria-labelledby="nav-business-tab">
+                                <nav>
+                                    <div id="nav5">
+                                        <input id="main-menu-state5" type="checkbox" />
+                                        <label class="main-menu-btn5" for="main-menu-state5">
+                                            <span class="main-menu-btn-icon"></span>
+                                            <span class="main-menu-btn-text">Toggle main menu visibility</span>
+                                            <span class="main-menu-btn-title" aria-hidden="true"><span aria-hidden="true" data-icon="h"></span></span>
+                                        </label>
+
+                                        <ul id="main-menu5" class="sm sm-blue collapsed">
+                                                <li class="loans-li-active">
+                                                    <a href="#">Accounts <i class="fa fa-caret-down"></i></a>
+                                                    <ul class="sub-menu">
+                                                            <li><a href="/product-details?id=60">Growth Plus Current Account</a></li>
+                                                            <li><a href="/product-details?id=25">Cosmos Regular Current Account</a></li>
+                                                            <li><a href="/product-details?id=33">Cosmo Premium Current Account</a></li>
+                                                            <li><a href="/product-details?id=34">Cosmo Premium Plus Current Account</a></li>
+                                                            <li><a href="/product-details?id=37">Cosmos Royale Current Account</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="">
+                                                    <a href="#">Investments <i class="fa fa-caret-down"></i></a>
+                                                    <ul class="sub-menu">
+                                                            <li><a href="/product-details?id=19">Cosmo Care Deposit Scheme</a></li>
+                                                            <li><a href="/product-details?id=20">Cosmo Tax Saver Deposit Scheme</a></li>
+                                                            <li><a href="/product-details?id=21">Deposit Scheme Insurance from DICGC</a></li>
+                                                            <li><a href="/product-details?id=22">Flexi Fixed Deposit (FFD) Scheme &#x2013; Term</a></li>
+                                                            <li><a href="/product-details?id=23">Mutual Fund</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="">
+                                                    <a href="#">Loans <i class="fa fa-caret-down"></i></a>
+                                                    <ul class="sub-menu">
+                                                            <li><a href="/product-details?id=55">Cosmo Hello Doctor Loan Scheme</a></li>
+                                                            <li><a href="/product-details?id=54">Cosmo Merchant Scheme </a></li>
+                                                            <li><a href="/product-details?id=53">Cosmo Udyog Loan Scheme</a></li>
+                                                            <li><a href="/product-details?id=41">Cosmos Professional Comfort Loan Scheme</a></li>
+                                                            <li><a href="/product-details?id=57">Cosmo Pharma Loan Scheme</a></li>
+                                                            <li><a href="/product-details?id=10">Cosmo Krushi Market Finance</a></li>
+                                                            <li><a href="/product-details?id=11">Cosmo Medical Loan Scheme</a></li>
+                                                            <li><a href="/product-details?id=16">Lease Rent Discounting Scheme</a></li>
+                                                            <li><a href="/product-details?id=17">Loan Scheme for SHG/JLG</a></li>
+                                                            <li><a href="/product-details?id=18">Vendor Finance</a></li>
+                                                            <li><a href="/product-details?id=49">Cosmo Small Business Loan Scheme</a></li>
+                                                            <li><a href="/product-details?id=51">Swayamsiddha Loan Scheme</a></li>
+                                                    </ul>
+                                                </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!--tab 4 end-->
+
+                            <div class="tab-pane " id="nav-digital-world" role="tabpanel" aria-labelledby="nav-digital-world-tab">
+                                <nav>
+                                    <div id="nav6">
+                                        <input id="main-menu-state6" type="checkbox" />
+                                        <label class="main-menu-btn6" for="main-menu-state6">
+                                            <span class="main-menu-btn-icon"></span>
+                                            <span class="main-menu-btn-text">Toggle main menu visibility</span>
+                                            <span class="main-menu-btn-title" aria-hidden="true"><span aria-hidden="true" data-icon="h"></span></span>
+                                        </label>
+
+                                        <ul id="main-menu6" class="sm sm-blue collapsed">
+                                                <li class="loans-li-active">
+                                                    <a href="#">Card Services <i class="fa fa-caret-down"></i></a>
+                                                    <ul class="sub-menu">
+                                                            <li><a href="product-services-details?id=24">RuPay</a></li>
+                                                            <li><a href="product-services-details?id=25">VISA</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="">
+                                                    <a href="#">ATM &amp; Kiosk <i class="fa fa-caret-down"></i></a>
+                                                    <ul class="sub-menu">
+                                                            <li><a href="product-services-details?id=9">ATM</a></li>
+                                                            <li><a href="product-services-details?id=10">Passbook Printing Kiosk</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="">
+                                                    <a href="#">E-banking <i class="fa fa-caret-down"></i></a>
+                                                    <ul class="sub-menu">
+                                                            <li runat="server" visible="false" id="liCosmosRewardz"><a href="https://rewards.cosmos.bank.in/" target="_blank">Cosmos Rewardz</a></li>
+                                                            <li><a href="product-services-details?id=6">Cosmo Net - Retail Banking</a></li>
+                                                            <li><a href="product-services-details?id=7">Cosmo Net - Corporate Banking</a></li>
+                                                            <li><a href="product-services-details?id=30">Cosmos Mobile Banking Application &#x2013; New</a></li>
+                                                            <li><a href="product-services-details?id=29">The Cosmo - Galgal App</a></li>
+                                                            <li><a href="product-services-details?id=28">Cosmos WhatsApp Banking</a></li>
+                                                            <li><a href="product-services-details?id=4">Cosmo UPI</a></li>
+                                                            <li><a href="product-services-details?id=8">AePS &#x2013; Aadhaar enabled Payment system</a></li>
+                                                            <li><a href="product-services-details?id=13">Immediate Payment System (IMPS)</a></li>
+                                                            <li><a href="product-services-details?id=14">Missed Call Service</a></li>
+                                                            <li><a href="product-services-details?id=17">TPAP</a></li>
+                                                            <li><a href="product-services-details?id=16">QR Code</a></li>
+                                                            <li><a href="product-services-details?id=19">National Electronic Toll Collection (NETC)  Program</a></li>
+                                                            <li><a href="product-services-details?id=26">National Electronic Fund Transfer (NEFT) Services</a></li>
+                                                            <li><a href="product-services-details?id=27">Real-Time Gross Settlement (RTGS) Services</a></li>
+                                                            <li><a href="product-services-details?id=3">Cosmo GenZ - Old</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="">
+                                                    <a href="#">E-Services <i class="fa fa-caret-down"></i></a>
+                                                    <ul class="sub-menu">
+                                                            <li><a href="product-services-details?id=5">Universal Bill Payment</a></li>
+                                                            <li><a href="product-services-details?id=11">BHARAT BILL PAY SYSTEM (BBPS)</a></li>
+                                                            <li><a href="product-services-details?id=12">E-KYC Services</a></li>
+                                                            <li><a href="product-services-details?id=15">Public Financial Management System (PFMS)</a></li>
+                                                            <li><a href="product-services-details?id=18">APBS</a></li>
+                                                            <li><a href="product-services-details?id=20">E-Mandate Services</a></li>
+                                                            <li><a href="product-services-details?id=21">Income Tax Validation for Filing ITR (Income Tax Returns)</a></li>
+                                                            <li><a href="product-services-details?id=22">NACH -National Automated Clearing House</a></li>
+                                                            <li><a href="product-services-details?id=23">Positive Pay System for Cheques</a></li>
+                                                    </ul>
+                                                </li>
+                                            <li><a class="has-submenu" href="productservicelisting">View All</a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <div class="tab-pane tab-pane" id="nav-banl-form" role="tabpanel" aria-labelledby="nav-banl-form-tab">
+                                <nav>
+                                    <div id="nav8">
+                                        <input id="main-menu-state8" type="checkbox" />
+                                        <label class="main-menu-btn8" for="main-menu-state8">
+                                            <span class="main-menu-btn-icon"></span>
+                                            <span class="main-menu-btn-text">Toggle main menu visibility</span>
+                                            <span class="main-menu-btn-title" aria-hidden="true"><span aria-hidden="true" data-icon="h"></span></span>
+                                        </label>
+
+                                        <ul id="main-menu8" class="sm sm-blue collapsed">
+                                            <li>
+                                                <a class="has-submenu" target="_blank" href="https://www.cosmos.bank.in/auth/writereaddata/Files/BANL%20for%20NEFT%20RTGS_Website%20VR3.pdf">BANL Facility</a>
+
+                                                <ul class="sub-menu">
+                                                    <li>
+                                                        <a target="_blank" href="https://www.cosmos.bank.in/auth/writereaddata/Files/BANL%20for%20NEFT%20RTGS_Website%20VR3.pdf">
+                                                            Beneficiary Account Name Lookup
+                                                            Facility Detail
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!--tab 5 end-->
+                        </div>
+                        <!--tab content end-->
+                    </div>
+                    <!--four-categories-links-wrap end-->
+                </div>
+                <!--col end-->
+            </div>
+            <!--row end-->
+        </div>
+        <!--container end-->
+    </div>
+    <!--four-categories-outer-wrap end-->
+
+</header>
+
+
+<!--Accessibility Section Start-->
+
+
+<div class="uwaw uw-light-theme gradient-head uwaw-initial paid_widget" id="uw-main" style="right: -490px; display: none;" role="dialog" aria-modal="true" aria-label="Accessibility Options">
+    <div class="relative second-panel">
+        <h2>Accessibility Options</h2>
+        <div class="uwaw-close" id="uw-widget-custom-trigger2" role="button" tabindex="0" aria-label="Close">
+            <i class="fa fa-times-circle" aria-hidden="true"></i>
+        </div>
+    </div>
+    <div class="uwaw-body">
+        <div class="h-scroll">
+            <div class="uwaw-features">
+                <div class="uwaw-features__item reset-feature" id="featureItem_sp">
+                    <button id="speak" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="78xrhe"> <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-speaker"> </span> </span> <span class="uwaw-features__item__name">Text To Speech</span> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon_sp" style="display: none;"> </span> </button>
+                </div>
+                <div class="uwaw-features__item reset-feature" id="featureItem" style="display: none;">
+                    <button id="btn-s9" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="d757wo">
+                        <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-bigger-text"> </span> </span><span class="uwaw-features__item__name">Bigger Text</span>
+                        <div class="uwaw-features__item__steps reset-steps" id="featureSteps">
+                            <!-- Steps span tags will be dynamically added here -->
+                        </div> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon" style="display: none;"> </span>
+                    </button>
+                </div>
+                <div class="uwaw-features__item reset-feature" id="featureItem-st" style="display: none;">
+                    <button id="btn-small-text" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="kaanbv">
+                        <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-small-text"> </span> </span><span class="uwaw-features__item__name">Small Text</span>
+                        <div class="uwaw-features__item__steps reset-steps" id="featureSteps-st">
+                            <!-- Steps span tags will be dynamically added here -->
+                        </div> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon-st" style="display: none;"> </span>
+                    </button>
+                </div>
+                <div class="uwaw-features__item reset-feature" id="featureItem-lh">
+                    <button id="btn-s12" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="uav9ne">
+                        <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-line-hight"> </span> </span> <span class="uwaw-features__item__name">Line Height</span>
+                        <div class="uwaw-features__item__steps reset-steps" id="featureSteps-lh">
+                            <!-- Steps span tags will be dynamically added here -->
+                        </div> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon-lh" style="display: none;"> </span>
+                    </button>
+                </div>
+                <div class="uwaw-features__item reset-feature" id="featureItem-ht">
+                    <button id="btn-s10" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="61oue"> <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-highlight-links"> </span> </span> <span class="uwaw-features__item__name">Highlight Links</span> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon-ht" style="display: none;"> </span> </button>
+                </div>
+                <div class="uwaw-features__item reset-feature" id="featureItem-ts">
+                    <button id="btn-s13" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="q93d1r">
+                        <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-text-spacing"> </span> </span> <span class="uwaw-features__item__name">Text Spacing</span>
+                        <div class="uwaw-features__item__steps reset-steps" id="featureSteps-ts">
+                            <!-- Steps span tags will be dynamically added here -->
+                        </div> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon-ts" style="display: none;"> </span>
+                    </button>
+                </div>
+                <div class="uwaw-features__item reset-feature" id="featureItem-df">
+                    <button id="btn-df" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="7bfs4u"> <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-dyslexia-font"> </span> </span> <span class="uwaw-features__item__name">Dyslexia Friendly</span> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon-df" style="display: none;"> </span> </button>
+                </div>
+                <div class="uwaw-features__item reset-feature" id="featureItem-hi">
+                    <button id="btn-s11" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="yxh39g"> <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-hide-images"> </span> </span> <span class="uwaw-features__item__name">Hide Images</span> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon-hi" style="display: none;"> </span> </button>
+                </div>
+                <div class="uwaw-features__item reset-feature" id="featureItem-Cursor">
+                    <button id="btn-cursor" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="edx1s"> <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-cursor"> </span> </span> <span class="uwaw-features__item__name">Cursor</span> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon-cursor" style="display: none;"> </span> </button>
+                </div>
+                <div class="uwaw-features__item reset-feature" id="featureItem-ht-dark" style="display: none;">
+                    <button id="dark-btn" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="g6zpoe"> <span class="uwaw-features__item__name"> <span class="light_dark_icon"> <input type="checkbox" class="light_mode uwaw-featugres__item__i" id="checkbox" aria-label="Toggle light or dark mode"> <label for="colorscheme" class="checkbox-label"> <span class="sr-only">Toggle Dark / Light Mode</span><i class="fas fa-moon-stars"> <span class="ux4g-icon icon-moon"></span> </i> <i class="fas fa-sun"> <span class="ux4g-icon icon-sun"></span> </i> <span class="ball"></span> </label> </span> <span class="uwaw-features__item__name">Toggle Dark / Light Mode</span> </span> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon-ht-dark" style="display: none; pointer-events: none;"> </span> </button>
+                </div> <!-- Invert Colors Widget -->
+                <div class="uwaw-features__item reset-feature" id="featureItem-ic" style="display: none;">
+                    <button id="btn-invert" class="uwaw-features__item__i" data-uw-reader-content="Enable the UserWay screen reader" aria-label="Enable the UserWay screen reader" aria-pressed="false" fdprocessedid="3exuk5"> <span class="uwaw-features__item__icon"> <span class="ux4g-icon icon-invert"> </span> </span> <span class="uwaw-features__item__name">Invert Colors</span> <span class="tick-active uwaw-features__item__enabled reset-tick" id="tickIcon-ic" style="display: none;"> </span> </button>
+                </div>
+            </div>
+        </div> <!-- Reset Button -->
+    </div>
+    <div class="reset-panel">
+        <!-- copyright accessibility bar -->
+        <div class="copyrights-accessibility">
+            <button class="btn-reset-all" id="reset-all" fdprocessedid="3so1k"><span class="reset-btn-text">Reset All Settings</span></button>
+        </div>
+    </div>
+</div>
+<!--Accessibility Section End-->
+    <main id="main-content" role="main" tabindex="-1">
+
+        
+<section class="banner inner-pg-banner">
+    <div id="themeSlider" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#themeSlider" data-slide-to="0" class="active"></li>
+            <li data-target="#themeSlider" data-slide-to="1"></li>
+            <li data-target="#themeSlider" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="imgOverlay"></div>
+                <img src="/auth/writereaddata/images/12022504531920x457 Cosmos Tower Website banner 1.cleaned.jpg" alt="" aria-hidden="true">
+
+                <div class="carousel-caption">
+                    <div class="container container-95 home-pg-banner-container inner-pg-banner-container">
+                        <div class="home-pg-banner-text-wrap inner-pg-banner-text-wrap">
+                            <h3>About Cosmos Bank</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a class="left carousel-control" href="#themeSlider" data-slide="prev">
+            <span class="fa fa-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#themeSlider" data-slide="next">
+            <span class="fa fa-chevron-right"></span>
+        </a>
+    </div>
+
+    <div class="breadcrumbs-div">
+        <div class="container container-95">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumbs-inner-div">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="Default">Home</a></li>
+                            <!--<li class="breadcrumb-item">
+                                <a id="hypBreadCrumb" href="#" target="_blank">Services</a></li>-->
+                            <li class="breadcrumb-item active">
+                                <a id="hypBreadCrumb" href="about-us">About Us</a>
+                            </li>
+                        </ol>
+                    </div>
+                    <!--breadcrumbs-inner-div end-->
+                </div>
+                <!--col end-->
+
+            </div>
+            <!--row end-->
+        </div>
+        <!--container end-->
+    </div>
+    <!--breadcrumbs-div end-->
+</section>
+<!--banner end-->
+
+<section class="static-page-section">
+    <div class="container container-95">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>The Cosmos Way</h2>
+            </div>
+        </div>
+
+
+
+        <div class="cosmos_way">
+            <div class="cosmos_way_row">
+                    <div class="cosmos_way_box">
+                        <div class="header_title">
+                            <div class="icon_box">
+                                <img src="/auth/writereaddata/images/2505211213_TCWAB_Vision.svg" alt="">
+                            </div>
+                            <h5 class="title" role="heading" aria-level="3"> Vision</h5>
+                        </div>
+                        <ul>
+     <li>To be world-class co-operative bank</li>
+     <li>To deliver a memorable, unique, delightful banking experience</li>
+     <li>To add genuine value to the lives of all those we touch</li>
+     <li>To be the preferred bank for all stakeholders, customers, employees, Investors, vendors partners, associates</li>
+     <li>To be a model global corporate institution</li>
+</ul>
+                    </div>
+                    <div class="cosmos_way_box">
+                        <div class="header_title">
+                            <div class="icon_box">
+                                <img src="/auth/writereaddata/images/2505211241_TCWAB_Mission.svg" alt="">
+                            </div>
+                            <h5 class="title" role="heading" aria-level="3"> Mission</h5>
+                        </div>
+                        <ul>
+     <li>Constantly innovating and thereby ensuring that we lead and not simply follow what is state-of-the-art in banking</li>
+     <li>Maintaining warmth and the personal touch across all relationships through Team Cosmos- a team of knowledgeable, always available, impeccably courteous and dedicated professionals</li>
+     <li>Proactively working towards the full realization of the potential of the co-operative sector, including financial inclusion</li>
+     <li>Ensuring the highest ethical standards, professional integrity, corporate governance and regulatory compliance</li>
+</ul>
+                    </div>
+                    <div class="cosmos_way_box">
+                        <div class="header_title">
+                            <div class="icon_box">
+                                <img src="/auth/writereaddata/images/2505211247_TCWAB_Values.svg" alt="">
+                            </div>
+                            <h5 class="title" role="heading" aria-level="3"> Values</h5>
+                        </div>
+                        <ul>
+     <li>Customer Centricity</li>
+     <li>Continuous Learning</li>
+     <li>Technology with Sensitivity</li>
+     <li>Ethics</li>
+     <li>Transparency</li>
+     <li>Teamwork</li>
+     <li>Operational Efficiency</li>
+     <li>People Empowerment</li>
+</ul>
+                    </div>
+
+            </div>
+        </div>
+
+
+
+        <!--AB-TAB ROW-->
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="tabbable-panel">
+                    <div class="tabbable-line">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#tab_default_1" data-toggle="tab">History</a>
+                            </li>
+                            <li>
+                                <a href="#tab_default_2" data-toggle="tab">Geographical Set-Up</a>
+                            </li>
+                            <li>
+                                <a href="#tab_default_3" data-toggle="tab">Financial Strength</a>
+                            </li>
+                            <li>
+                                <a href="#tab_default_5" data-toggle="tab">Board of Directors</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+
+                            <div class="tab-pane show" id="tab_default_1">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        		<h2>Our History</h2>
+		<p>In the world of Co-operative Banking, Cosmos Co-operative Bank Ltd. holds the record of 120 years of relentless service to its more than 20 lakh satisfied customers through 195 branches in 7 States. Over the past decade, the Bank has made continual progress and has set a model example to co-operative banks by its professional conduct. The bank is committed to maintain the highest level of ethical standards, professional integrity, corporate governance and regulatory compliance. Established with an objective to provide personalized banking services to varied customer base, the bank has served the purpose by understanding the needs of various customers truly and deeply, and designing its products accordingly. Being the member of BCSBI, Bank ensures the highest standards of banking practices to customers.</p>
+		<p>The Board of Directors includes eminent and learned personalities from various professions having proficient approach towards formation of policies. The bank is managed by highly qualified, dedicated, dynamic and sincere Management Team.</p>
+		<p>Cosmos Bank is not just a Multi-state Scheduled Co-operative Bank but a professionally managed <u>'Financial Institution'</u>.</p>
+
+                                    </div>
+
+                                    <div class="emty-row"></div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h2>Cosmos Bank has brought optimum benefits to the Bank's customers like:</h2>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="row">
+
+
+                                            <div class="col-md-2">
+                                                <div class="ben-achiv-bx">
+                                                    <div class="ben-icon">
+                                                        <img src="/auth/writereaddata/images/2304211958_TCWAB_icon-atm.svg">
+                                                    </div>
+                                                    <div class="ben-discription">   Anytime banking through our ATM network</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="ben-achiv-bx">
+                                                    <div class="ben-icon">
+                                                        <img src="/auth/writereaddata/images/2304212153_TCWAB_icon-install.svg">
+                                                    </div>
+                                                    <div class="ben-discription">   Installation of onsite/offsite ATM's at our Branches/ Extension Counters</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="ben-achiv-bx">
+                                                    <div class="ben-icon">
+                                                        <img src="/auth/writereaddata/images/2304212228_TCWAB_icon-atm-2.svg">
+                                                    </div>
+                                                    <div class="ben-discription">   More than 2.49 lacs+ ATMs are connected through Banks and NFS Tie Ups</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="ben-achiv-bx">
+                                                    <div class="ben-icon">
+                                                        <img src="/auth/writereaddata/images/0405214032_TCWAB_icon-transfer.svg">
+                                                    </div>
+                                                    <div class="ben-discription">   Sweep Facility for transfer of funds between accounts of customers</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="ben-achiv-bx">
+                                                    <div class="ben-icon">
+                                                        <img src="/auth/writereaddata/images/0405214101_TCWAB_icon-money-1.svg">
+                                                    </div>
+                                                    <div class="ben-discription">   Facility to transfer funds instantaneously to any account in any of our branch network</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="ben-achiv-bx">
+                                                    <div class="ben-icon">
+                                                        <img src="/auth/writereaddata/images/0405214128_TCWAB_icon-transfer.svg">
+                                                    </div>
+                                                    <div class="ben-discription">   RTGS / NEFT Service for quick transfer of Funds</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="ben-achiv-bx">
+                                                    <div class="ben-icon">
+                                                        <img src="/auth/writereaddata/images/0405214155_TCWAB_icon-money-2.svg">
+                                                    </div>
+                                                    <div class="ben-discription">   Periodic interest on Fixed Deposits in disbursed through the Electronic Clearing Scheme( ECS)</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="ben-achiv-bx">
+                                                    <div class="ben-icon">
+                                                        <img src="/auth/writereaddata/images/0405214217_TCWAB_icon-account.svg">
+                                                    </div>
+                                                    <div class="ben-discription">   Account Statements available through E-mails</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="ben-achiv-bx">
+                                                    <div class="ben-icon">
+                                                        <img src="/auth/writereaddata/images/0405214240_TCWAB_icon-message.svg">
+                                                    </div>
+                                                    <div class="ben-discription">   SMS facility for Account Balance, View of Last Three Transactions and Cheque Status</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="ben-achiv-bx">
+                                                    <div class="ben-icon">
+                                                        <img src="/auth/writereaddata/images/0405214308_TCWAB_icon-network.svg">
+                                                    </div>
+                                                    <div class="ben-discription">   Availability of Franking Facility</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="ben-achiv-bx">
+                                                    <div class="ben-icon">
+                                                        <img src="/auth/writereaddata/images/0405214336_TCWAB_icon-bills-1.svg">
+                                                    </div>
+                                                    <div class="ben-discription">   Pune Corporation Tax acceptance facility Availability of E-Tax Payment facility</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="ben-achiv-bx">
+                                                    <div class="ben-icon">
+                                                        <img src="/auth/writereaddata/images/0405214407_TCWAB_icon-bills-2.svg">
+                                                    </div>
+                                                    <div class="ben-discription">   Utility Bill Payment facility for Telephone, Electric, Mobile Bills, Insurance premiums, Donations etc</div>
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                    <div class="col-md-4" runat="server" visible="false">
+
+                                        <div id="owl-demo1" class="owl-carousel">
+
+                                                <div class="owl-item">
+                                                    <!-- row 1-->
+                                                    <div class="row">
+                                                        <!--left box col -->
+                                                        <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+                                                            <div class="ab-right-box-wrap">
+                                                                <div class="row">
+
+
+                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                        <div class="text-wrap-ab">
+                                                                            <div class="ab-righ-slide-wrap-title">
+                                                                                <h3>
+                                                                                    Facilities
+                                                                                    <asp:Label ID="lblSCID" runat="server" Text='1' Visible="false"></asp:Label>
+                                                                                </h3>
+                                                                            </div>
+                                                                            <!--hero-product-title-wrap end-->
+                                                                            <div class="ab-righ-list">
+
+                                                                                    <ul>
+                                                                                            <li>Anytime banking through our ATM network</li>
+                                                                                            <li>Credit for Industries &amp; Overdraft &amp; Working Capital Loan Schemes1</li>
+                                                                                            <li>Credit for Industries &amp; Overdraft &amp; Working Capital Loan Schemes2</li>
+                                                                                            <li>Installation of onsite/offsite ATM&#x2019;s at our Branches/ Extension Counters</li>
+                                                                                            <li>More than 2.49 lacs&#x2B; ATMs are connected through Banks and NFS Tie Ups</li>
+                                                                                            <li>Sweep Facility for transfer of funds between accounts of customers</li>
+                                                                                            <li>Facility to transfer funds instantaneously to any account in any of our branch network</li>
+                                                                                            <li>RTGS / NEFT Service for quick transfer of Funds</li>
+                                                                                            <li>Periodic interest on Fixed Deposits in disbursed through the Electronic Clearing Scheme (ECS)</li>
+                                                                                            <li>Account Statements available through E-mails</li>
+                                                                                            <li>SMS facility for Account Balance, View of Last Three Transactions and Cheque Status</li>
+                                                                                            <li>Availability of Franking Facility</li>
+                                                                                            <li>Pune Corporation Tax acceptance facility</li>
+                                                                                            <li>Utility Bill Payment facility for Telephone, Electric, Mobile Bills, Insurance premiums, Donations etc</li>
+                                                                                            <li>Availability of E-Tax Payment facility</li>
+                                                                                            <li>Apart from these, we are making payments of Direct taxes and Indirect Taxes on behalf of our customers on their behalf to the Government through the on-line</li>
+                                                                                            <li>Apart from these, we are making payments of Direct taxes and Indirect Taxes on behalf of our customers on their behalf to the Government through the on-line payment system linked with HDFC Bank Ltd./IDBI Bank Ltd.</li>
+                                                                                    </ul>
+
+
+                                                                            </div>
+                                                                            <!--hero-product-table-wrap end-->
+                                                                        </div>
+                                                                        <!--schemes-text-wrap end-->
+                                                                    </div>
+                                                                    <!--col end-->
+                                                                </div>
+                                                                <!--row end-->
+                                                            </div>
+                                                            <!--schemes-box-wrap end-->
+                                                        </div>
+                                                        <!--col end-->
+                                                        <!--left box col end-->
+                                                        <!--right box col-->
+                                                        <!--right box col end-->
+                                                    </div>
+                                                    <!--row end-->
+                                                    <!-- row 1 end-->
+                                                </div>
+                                                <!--owl-item end-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!--tab 2 -->
+                            <div class="tab-pane" id="tab_default_2">
+
+                                		<div class="row">
+				<div class="col-md-12">
+						<h2>Geographical Set-Up</h2>
+					<!--	<p>Financial setup of the bank as on <strong class="orang-cl">31.03.2024 </strong>was <strong class="orang-cl">₹ 35,407.84 Crore</strong>, comprising of deposits of <strong class="orang-cl">₹ 20,216.222 Crore</strong> and advances of <strong class="orang-cl">₹ 15,191.62 Crore</strong>.</p> -->
+						<p>Cosmos Bank operates through <strong class="orang-cl">195 branches in India</strong> spread across <strong class="orang-cl">7 States</strong> and in <strong class="orang-cl">48 Major Cities</strong>, which are as follows </p>
+				</div>
+		</div>
+		<div class="row">
+				<div class="col-md-12">
+						<div class="loan-details-accordion-wrap mutual-funds-table-content-wrap">
+								<div class="accordion-text accordion-table-wrap">
+										<table style="width:100%">
+												<thead>
+														<tr>
+																<th class="text-center border-radius-top-left">S No.</th>
+																<th>State</th>
+																<th class="border-radius-top-right">Cities</th>
+														</tr>
+												</thead>
+												<tbody>
+														<tr>
+																<td class="text-center" width="15%">1</td>
+																<td width="25%">Maharashtra</td>
+																<td width="60%">Mumbai | Pune | Nagpur | Chhatrapati Sambhajinagar| Nashik | Baramati | Jalna | Kolhapur | Satara | Latur | Phaltan | Sangli | <br />Solapur | Bhusawal | Jalgaon | Amravati | Yavatmal | Ichalkaranji | Ahmednagar | Badnera|<br /> Karad</td>
+														</tr>
+														<tr>
+																<td class="text-center">2</td>
+																<td>Gujarat</td>
+																<td>Surat | Ahmedabad | Vadodara | Ankaleshwar | Rajkot | Bhuj | Gandhidham | Bhavnagar | Morbi | Nadiad | Anand | Vapi | Navsari | Gandhinagar | Himmatnagar</td>
+														</tr>
+														<tr>
+																<td class="text-center">3</td>
+																<td>Karnataka</td>
+																<td>Bengaluru | Belgavi | Nipani | Mysuru</td>
+														</tr>
+														<tr>
+																<td class="text-center">4</td>
+																<td>Tamilnadu</td>
+																<td>Chennai | Coimbatore | Hosur</td>
+														</tr>
+														<tr>
+																<td class="text-center">5</td>
+																<td>Andhra Pradesh</td>
+																<td>Vijaywada</td>
+														</tr>
+														<tr>
+																<td class="text-center">6</td>
+																<td>Telangana</td>
+																<td>Hyderabad | Secunderabad | Warangal<br /></td>
+														</tr>
+														<tr>
+																<td class="text-center">7</td>
+																<td>Madhya Pradesh</td>
+																<td>Indore</td>
+														</tr>
+												</tbody>
+										</table>
+								</div>
+								<!--accordion-text end-->
+						</div>
+						<!--loan-details-accordion-wrap end-->
+				</div>
+				<!--col end-->
+		</div>
+
+                            </div>
+                            <!--tab 2 end-->
+                            <!--tab three-->
+                            <div class="tab-pane" id="tab_default_3">
+                                		<div class="row">
+				<div class="col-md-12">
+						<h2>Our Financial Strength</h2>
+						<p>
+						</p>
+						<p>
+            "Cosmos Bank is the oldest leading cooperative bank in India. Over the century, it has strengthened its financial set
+            up through innovative business.
+        </p>
+						<p>
+            Financial Set up of the Bank as on 31.03.2026 is ₹ 44,000.69 Crore, comprising of Deposits of ₹ 26,121.64 Crore and Advances of ₹ 17,879.05 Crore."
+        </p>
+				</div>
+		</div>
+		<div class="row">
+				<div class="col-lg-4">
+						<p style="margin-bottom:0px;">
+								<strong>A] Financials</strong>
+						</p>
+				</div>
+				<div class="col-lg-4">
+						<p style="margin-bottom:0px;">
+								<strong>₹ In Crore</strong>
+						</p>
+				</div>
+		</div>
+		<div class="row">
+				<div class="col-md-12">
+						<div class="loan-details-accordion-wrap mutual-funds-table-content-wrap">
+								<div class="accordion-text accordion-table-wrap">
+										<table style="width:100%">
+												<thead>
+														<tr>
+																<th class="text-center border-radius-top-left">S No.</th>
+																<th>Particulars</th>
+																<th>As on 31.03.2026</th>
+																<th class="border-radius-top-right">As on 31.03.2025</th>
+														</tr>
+												</thead>
+												<tbody>
+														<tr>
+																<td class="text-center" width="15%">1</td>
+																<td width="25%">Share Capital</td>
+																<td width="30%">353.98</td>
+																<td width="30%">349.78</td>
+														</tr>
+														<tr>
+																<td class="text-center" width="15%">2</td>
+																<td width="25%">Reserves & Surplus</td>
+																<td width="30%">2,778.22<br /></td>
+																<td width="30%">2,497.56<br /></td>
+														</tr>
+														<tr>
+																<td class="text-center" width="15%">3</td>
+																<td width="25%">Capital Adequacy Ratio (CRAR) %</td>
+																<td width="30%">15.21%</td>
+																<td width="30%">15.15%</td>
+														</tr>
+                            <tr class="totalbg">
+																<td class="text-center"> </td>
+																<td>Total</td>
+																<td>44,000.69 </td>
+																<td>38,634.27 </td>
+														</tr>
+												</tbody>
+										</table>
+										<table style="width:100%">
+												<tbody>
+														<tr>
+																<td colspan="4" class="deposite">Deposits</td>
+														</tr>
+												</tbody>
+										</table>
+										<table style="width:100%">
+												<tbody>
+														<tr>
+																<td class="text-center" depositswidth="15%">4</td>
+																<td width="25%">Savings Deposit</td>
+																<td width="30%">4,135.15</td>
+																<td width="30%">3,883.95</td>
+														</tr>
+														<tr>
+																<td class="text-center" width="15%">5</td>
+																<td width="25%">Current Deposit</td>
+																<td width="30%">2,544.74</td>
+																<td width="30%">1,984.07</td>
+														</tr>
+														<tr>
+																<td class="text-center" width="15%">6</td>
+																<td width="25%">Fixed Deposit</td>
+																<td width="30%">19,441.73<br /></td>
+																<td width="30%">17,039.18<br /></td>
+														</tr>
+														<tr class="totalbg">
+																<td class="text-center"> </td>
+																<td>Total</td>
+																<td>26,121.64 </td>
+																<td>22,907.20 </td>
+														</tr>
+												</tbody>
+										</table>
+										<table style="width:100%">
+												<tbody>
+														<tr>
+																<td colspan="2" class="deposite">Advances</td>
+														</tr>
+												</tbody>
+										</table>
+										<table style="width:100%">
+												<tbody>
+														<tr>
+																<td class="text-center" width="15%">7</td>
+																<td width="25%">Secured</td>
+																<td width="30%">17,616.15</td>
+																<td width="30%">15,435.54</td>
+														</tr>
+														<tr>
+																<td class="text-center" width="15%">8</td>
+																<td width="25%">Unsecured</td>
+																<td width="30%"> 262.90</td>
+																<td width="30%"> 291.53</td>
+														</tr>
+														<tr class="totalbg">
+																<td class="text-center"> </td>
+																<td>Total</td>
+																<td>17,879.05<br /></td>
+																<td>15,727.07<br /></td>
+														</tr>
+												</tbody>
+										</table>
+										<table style="width:100%">
+												<tbody>
+														<tr>
+																<td class="text-center" width="15%">9</td>
+																<td width="25%">Borrowings</td>
+																<td width="30%">815.40</td>
+																<td width="30%">689.46</td>
+														</tr>
+														<tr>
+																<td class="text-center" width="15%">10</td>
+																<td width="25%">Total Investments</td>
+																<td width="30%">10,465.96</td>
+																<td width="30%">9,035.97</td>
+														</tr>
+														<tr>
+																<td class="text-center" width="15%">11</td>
+																<td width="25%">Overdues (Percentage)</td>
+																<td width="30%">1.91%</td>
+																<td width="30%">2.52%</td>
+														</tr>
+														<tr>
+																<td class="text-center" width="15%">12</td>
+																<td width="25%">Net Profit</td>
+																<td width="30%">118.12 </td>
+																<td width="30%">180.62 </td>
+														</tr>
+														<tr>
+																<td class="text-center" width="15%">13</td>
+																<td width="25%">Previous               Year's Profit c/f</td>
+																<td width="30%">345.31</td>
+																<td width="30%">296.53</td>
+														</tr>
+														<tr>
+																<td class="text-center" width="15%">14</td>
+																<td width="25%">Working               Capital</td>
+																<td width="30%">30,264.61<br /></td>
+																<td width="30%">26,896.03<br /></td>
+														</tr>
+												</tbody>
+										</table>
+								</div>
+								<!--accordion-text end-->
+						</div>
+						<!--loan-details-accordion-wrap end-->
+				</div>
+				<!--col end-->
+		</div>
+		<div class="row">
+				<div class="col-lg-4">
+						<p style="margin-bottom:0px;">
+								<strong>B] Others</strong>
+						</p>
+				</div>
+		</div>
+		<div class="row">
+				<div class="col-md-12">
+						<div class="loan-details-accordion-wrap mutual-funds-table-content-wrap">
+								<div class="accordion-text accordion-table-wrap">
+										<table style="width:100%">
+												<thead>
+														<tr>
+																<th class="text-center border-radius-top-left">S No.</th>
+																<th>Particulars</th>
+																<th>As on 31.03.2026</th>
+																<th class="border-radius-top-right">As on 31.03.2025</th>
+														</tr>
+												</thead>
+												<tbody>
+														<tr>
+																<td class="text-center" width="15%">1</td>
+																<td width="25%">Total Branches</td>
+																<td width="30%">193</td>
+																<td width="30%">183</td>
+														</tr>
+														<tr>
+																<td class="text-center" width="15%">2</td>
+																<td width="25%">Members</td>
+																<td width="30%">119119</td>
+																<td width="30%">113474</td>
+														</tr>
+														<tr>
+																<td class="text-center" width="15%">3</td>
+																<td width="25%">Nominal<br />               Members(Borrowers)</td>
+																<td width="30%">4035</td>
+																<td width="30%">4588</td>
+														</tr>
+														<tr class="totalbg">
+																<td class="text-center"> </td>
+																<td>Total Staff</td>
+																<td>3210</td>
+																<td>3130</td>
+														</tr>
+												</tbody>
+										</table>
+								</div>
+								<!--accordion-text end-->
+						</div>
+						<!--loan-details-accordion-wrap end-->
+				</div>
+				<!--col end-->
+		</div>
+
+                            </div>
+                            <!--tab three end-->
+                            <!--tab four-->
+                            <!--tab four end-->
+                            <!--tab four-->
+                            <div class="tab-pane" id="tab_default_5">
+
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h2>Our Board of Directors</h2>
+                                    </div>
+                                </div>
+
+
+                                <!-- active code below DEsign fundaz 26-12-24 remove diplay none from below -->
+
+                                <div class="bod">
+                                    <div class="bod_row">
+
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <asp:Label ID="lblSCID" runat="server" Text='5' Visible="false"></asp:Label>
+                                                        <img src="/auth/writereaddata/images/0211225151_HMBN_Apte-Sir.jpg" class="img-responsive" alt="Chairman Mr. Sachin Apte">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Mr. Sachin Apte</div>
+                                                        <div class="bod_des">Chairman</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub_title">Chairman</div>
+                                                <div class="bod_point">
+                                                    <div class="bod-point-text">Mr. Sachin Apte has completed his graduation in Civil Engineering & post-graduation in Structural Engineering from the reputed Govt. College of Engineering Pune.</div>
+                                                    <a class="fancybox1 various board-of-directors-read-more-link" style="margin-top:55px;" href="#member_5">Read More</a>
+                                                </div>
+                                            </div>
+                                            <div class="member-detail" id="member_5" style="display: none;">
+                                                <div class="bod_box_inner">
+                                                    <div class="bod_head">
+                                                        <div class="bod_img">
+                                                            <img src="/auth/writereaddata/images/0211225151_HMBN_Apte-Sir.jpg" class="img-responsive" alt="Chairman Mr. Sachin Apte">
+                                                        </div>
+                                                        <div class="bod_name_des_det">
+                                                            <div class="bod_name">Mr. Sachin Apte</div>
+                                                            <div class="bod_des">Chairman</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sub_title">   B.E. (CIVIL) & M.E. (STRUCT) FROM COLLEGE OF ENGINEERING, PUNE.</div>
+                                                    <div class="bod_point">
+
+                                                            <ul>
+                                                                    <li>Mr. Sachin Apte has completed his graduation in Civil Engineering and post-graduation in Structural Engineering from the reputed Govt. College of Engineering Pune.</li>
+                                                                    <li>He is a practicing Civil Engineer, working as a promoter and developer since more than 25 years in India as well as abroad. Also, he is a Management Consultant for different firms, hospitals and trusts. He acts as a Facilitator and Liasoning Consultant for reputed hospitals and educational institutes in Pune. He is a successful entrepreneur in hospitality and restaurant industry. He is an active contributor in education field being associated with renowned educational institutes.</li>
+                                                                    <li>Along with business interests, Mr. Apte is well connected with many social welfare organizations and working towards betterment of the society.</li>
+                                                            </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <asp:Label ID="lblSCID" runat="server" Text='11' Visible="false"></asp:Label>
+                                                        <img src="/auth/writereaddata/images/0608253047_HMBN_Mr. Yeshwant Kasar New addition.jpg" class="img-responsive" alt="Vice-Chairman CA Dr. Yashwant Kasar">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">CA Dr. Yashwant Kasar</div>
+                                                        <div class="bod_des">Vice-Chairman</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub_title">Vice-Chairman</div>
+                                                <div class="bod_point">
+                                                    <div class="bod-point-text">CA Dr. Yashwant Kasar is a Chartered Accountant member of The Institute of Chartered Accountants of India (ICAI) and The Institute of Chartered Accountants in England and Wales (ICAEW-UK), Information Systems Auditor (DISA), Certified Information Sy</div>
+                                                    <a class="fancybox1 various board-of-directors-read-more-link" style="margin-top:55px;" href="#member_11">Read More</a>
+                                                </div>
+                                            </div>
+                                            <div class="member-detail" id="member_11" style="display: none;">
+                                                <div class="bod_box_inner">
+                                                    <div class="bod_head">
+                                                        <div class="bod_img">
+                                                            <img src="/auth/writereaddata/images/0608253047_HMBN_Mr. Yeshwant Kasar New addition.jpg" class="img-responsive" alt="Vice-Chairman CA Dr. Yashwant Kasar">
+                                                        </div>
+                                                        <div class="bod_name_des_det">
+                                                            <div class="bod_name">CA Dr. Yashwant Kasar</div>
+                                                            <div class="bod_des">Vice-Chairman</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sub_title">   Ph.D. (Banking & Finance), FCA (ICAI), ACA (ICAEW-UK), BFP, FAIA, CGEIT, CISA, DISA, PMP</div>
+                                                    <div class="bod_point">
+
+                                                            <ul>
+                                                                    <li>CA Dr. Yashwant Kasar is a Chartered Accountant member of The Institute of Chartered Accountants of India (ICAI) and The Institute of Chartered Accountants in England and Wales (ICAEW-UK), Information Systems Auditor (DISA), Certified Information Systems Auditor (CISA), Certified in Governance of Enterprise IT (CGEIT), Project Management Professional (PMP) and Fellow member of the Association of International Accountants, London. Recently he completed his Ph.D. in Banking &amp; Finance from Savitribai Phule Pune University.</li>
+                                                                    <li>He is the Regional Council Member of Western India Regional Council (WIRC) of The Institute of Chartered Accountants of India for the term 2019-25. He was Vice Chairman of WIRC of ICAI for the year 2022-23. He also served as Chairman of Pune Branch of WIRC for the year 2015-16. An expert in Tax Laws and Finance, he is a regular writer for the articles in various professional publications and newsletters. He has delivered various lectures on the topics of professional interest at various forums.</li>
+                                                                    <li>CA Dr. Yashwant Kasar is the Secretary of CA-COB (Chartered Accountants - Co-Operative Bankers). CA-COB provides a platform to the member Chartered Accountants to share and spread knowledge of changes in banking &amp; deliberate on the challenges faced by UCBs in the best interest of stakeholders.</li>
+                                                            </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <asp:Label ID="lblSCID" runat="server" Text='22' Visible="false"></asp:Label>
+                                                        <img src="/auth/writereaddata/images/0301250840_HMBN_Mrs. Rasika Gupta.jpg" class="img-responsive" alt="Director Dr. Rasika Gupta">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Dr. Rasika Gupta</div>
+                                                        <div class="bod_des">Director</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub_title">Director</div>
+                                                <div class="bod_point">
+                                                    <div class="bod-point-text">Dr. Rasika Gupta is a dynamic Economist with expertise in data analytics, business intelligence, statistical modelling and data strategy working at the nexus of business and technology.</div>
+                                                    <a class="fancybox1 various board-of-directors-read-more-link" style="margin-top:55px;" href="#member_22">Read More</a>
+                                                </div>
+                                            </div>
+                                            <div class="member-detail" id="member_22" style="display: none;">
+                                                <div class="bod_box_inner">
+                                                    <div class="bod_head">
+                                                        <div class="bod_img">
+                                                            <img src="/auth/writereaddata/images/0301250840_HMBN_Mrs. Rasika Gupta.jpg" class="img-responsive" alt="Director Dr. Rasika Gupta">
+                                                        </div>
+                                                        <div class="bod_name_des_det">
+                                                            <div class="bod_name">Dr. Rasika Gupta</div>
+                                                            <div class="bod_des">Director</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sub_title">   M. A., Ph. D Economics</div>
+                                                    <div class="bod_point">
+
+                                                            <ul>
+                                                                    <li>Dr. Rasika Gupta is a dynamic Economist with expertise in data analytics, business intelligence, statistical modelling and data strategy working at the nexus of business and technology. She has vast experience in economic analysis, policy research and data-driven decision making. She completed her Master&#x2019;s in Economics at Gokhale Institute of Politics and Economics, Pune and Doctor of Philosophy in Economics at the prestigious University of Oklahoma, USA. She received her certification in Leadership and Innovation from Massachusetts Institute of Technology, USA. She has worked with PWC in different roles and capacities like Data Scientist, Business Intelligence and Analytics Manager and Advanced Analytics Lead. She has technical expertise in data visualization, programming, operating systems and much more. Her articles and research papers have been published in various journals and magazines.</li>
+                                                            </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <asp:Label ID="lblSCID" runat="server" Text='23' Visible="false"></asp:Label>
+                                                        <img src="/auth/writereaddata/images/0301251535_HMBN_CA Surekha Joshi.jpg" class="img-responsive" alt="Director CA Surekha Joshi">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">CA Surekha Joshi</div>
+                                                        <div class="bod_des">Director</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub_title">Director</div>
+                                                <div class="bod_point">
+                                                    <div class="bod-point-text">CA Surekha Joshi has extensive banking experience of more than 28 years the co-operative banking sector.</div>
+                                                    <a class="fancybox1 various board-of-directors-read-more-link" style="margin-top:55px;" href="#member_23">Read More</a>
+                                                </div>
+                                            </div>
+                                            <div class="member-detail" id="member_23" style="display: none;">
+                                                <div class="bod_box_inner">
+                                                    <div class="bod_head">
+                                                        <div class="bod_img">
+                                                            <img src="/auth/writereaddata/images/0301251535_HMBN_CA Surekha Joshi.jpg" class="img-responsive" alt="Director CA Surekha Joshi">
+                                                        </div>
+                                                        <div class="bod_name_des_det">
+                                                            <div class="bod_name">CA Surekha Joshi</div>
+                                                            <div class="bod_des">Director</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sub_title">   B. Com and M. Com with Distinction, Chartered Accountant</div>
+                                                    <div class="bod_point">
+
+                                                            <ul>
+                                                                    <li>CA Surekha Joshi has extensive banking experience of more than 28 years in the co-operative banking sector. She has effectively handled and headed various departments excelling in retail and wholesale loan processing. With proven track record of success in various roles her vast contribution to the SME portfolio is commendable right from grass root level to leadership role. She specializes in Credit Assessment- wholesale &amp;amp; retail. Her attributes include strong analytical and problem-solving skills. She has left her mark with her apt Leadership qualities and comprehensive Team Management. Her achievements have been recognized by various awards and honours. Presently, she is visiting faculty at Deccan Education Society&#x2019;s Pune University (DESPU) teaching subjects like Finance, Costing &amp;amp; Economics. She also provides Financial Consultancy Services.</li>
+                                                            </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <asp:Label ID="lblSCID" runat="server" Text='7' Visible="false"></asp:Label>
+                                                        <img src="/auth/writereaddata/images/0211225628_HMBN_Gandhi-Sir.jpg" class="img-responsive" alt="Director Mr. Praveenkumar Gandhi">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Mr. Praveenkumar Gandhi</div>
+                                                        <div class="bod_des">Director</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub_title">Director</div>
+                                                <div class="bod_point">
+                                                    <div class="bod-point-text">Mr. Praveenkumar Gandhi is a Chartered Accountant with over 32 years of rich experience in the General Insurance Industry. He holds a degree in Commerce.</div>
+                                                    <a class="fancybox1 various board-of-directors-read-more-link" style="margin-top:55px;" href="#member_7">Read More</a>
+                                                </div>
+                                            </div>
+                                            <div class="member-detail" id="member_7" style="display: none;">
+                                                <div class="bod_box_inner">
+                                                    <div class="bod_head">
+                                                        <div class="bod_img">
+                                                            <img src="/auth/writereaddata/images/0211225628_HMBN_Gandhi-Sir.jpg" class="img-responsive" alt="Director Mr. Praveenkumar Gandhi">
+                                                        </div>
+                                                        <div class="bod_name_des_det">
+                                                            <div class="bod_name">Mr. Praveenkumar Gandhi</div>
+                                                            <div class="bod_des">Director</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sub_title">   Chartered Accountant</div>
+                                                    <div class="bod_point">
+
+                                                            <ul>
+                                                                    <li>Mr. Praveenkumar Gandhi is a Chartered Accountant with over 32 years of rich experience in the General Insurance Industry. He holds a degree in Commerce. He is working as Senior Executive with Insurance Broking firm after retirement. His expertise includes Finance, Treasury Management and Financial Analysis.</li>
+                                                                    <li>He has worked as Deputy General Manager in Finance and Investment Department of General Insurance Corporation of India for about 30 years and also worked as Financial Advisor and General Manager. He has worked in Investment Department of GIC Re the only re-insurance company in India. He holds experience in debt / equity / project finance.</li>
+                                                            </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <asp:Label ID="lblSCID" runat="server" Text='10' Visible="false"></asp:Label>
+                                                        <img src="/auth/writereaddata/images/0211225907_HMBN_Gijare.jpg" class="img-responsive" alt="Director Mr. Ajit Gijare">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Mr. Ajit Gijare</div>
+                                                        <div class="bod_des">Director</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub_title">Director</div>
+                                                <div class="bod_point">
+                                                    <div class="bod-point-text">Mr. Ajit Gijare is a structural engineer, engaged in consultancy for process industries like sugar, iron, copper</div>
+                                                    <a class="fancybox1 various board-of-directors-read-more-link" style="margin-top:55px;" href="#member_10">Read More</a>
+                                                </div>
+                                            </div>
+                                            <div class="member-detail" id="member_10" style="display: none;">
+                                                <div class="bod_box_inner">
+                                                    <div class="bod_head">
+                                                        <div class="bod_img">
+                                                            <img src="/auth/writereaddata/images/0211225907_HMBN_Gijare.jpg" class="img-responsive" alt="Director Mr. Ajit Gijare">
+                                                        </div>
+                                                        <div class="bod_name_des_det">
+                                                            <div class="bod_name">Mr. Ajit Gijare</div>
+                                                            <div class="bod_des">Director</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sub_title">   B.E. (CIVIL), M. E. (STRUCT.) – COLLEGE OF ENGINEERING, PUNE</div>
+                                                    <div class="bod_point">
+
+                                                            <ul>
+                                                                    <li>Mr. Ajit Gijare is a structural engineer, engaged in consultancy for process industries like sugar, iron, copper and automobile industry including residential and commercial projects and other steel structures all over India and few parts of Asia.</li>
+                                                            </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <asp:Label ID="lblSCID" runat="server" Text='24' Visible="false"></asp:Label>
+                                                        <img src="/auth/writereaddata/images/0301251904_HMBN_CA S. Subramaniam.jpg" class="img-responsive" alt="Director CA S. Subramaniam">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">CA S. Subramaniam</div>
+                                                        <div class="bod_des">Director</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub_title">Director</div>
+                                                <div class="bod_point">
+                                                    <div class="bod-point-text">CA S. Subramaniam is practicing Chartered Accountancy since last 35 years.</div>
+                                                    <a class="fancybox1 various board-of-directors-read-more-link" style="margin-top:55px;" href="#member_24">Read More</a>
+                                                </div>
+                                            </div>
+                                            <div class="member-detail" id="member_24" style="display: none;">
+                                                <div class="bod_box_inner">
+                                                    <div class="bod_head">
+                                                        <div class="bod_img">
+                                                            <img src="/auth/writereaddata/images/0301251904_HMBN_CA S. Subramaniam.jpg" class="img-responsive" alt="Director CA S. Subramaniam">
+                                                        </div>
+                                                        <div class="bod_name_des_det">
+                                                            <div class="bod_name">CA S. Subramaniam</div>
+                                                            <div class="bod_des">Director</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sub_title">   B.Sc., FCA</div>
+                                                    <div class="bod_point">
+
+                                                            <ul>
+                                                                    <li>CA S. Subramaniam is practicing Chartered Accountancy since last 35 years. He is the senior partner in M/s Sreedhar, Suresh &amp;amp; Rajagopalan LLP, a Chennai based Chartered Accountants firm which was established in the year 1985. Prior to this he was working with a private firm dealing in portfolio of Income Tax matters. At present his expertise lies in the subjects of Direct Taxes, Audit &amp;amp; Assurance and Due Diligence assignments. His firm has been Central Statutory Auditors for renowned public sector banks and public sector companies.</li>
+                                                            </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <asp:Label ID="lblSCID" runat="server" Text='25' Visible="false"></asp:Label>
+                                                        <img src="/auth/writereaddata/images/0301252207_HMBN_Adv. Ghanshyam Amin.jpg" class="img-responsive" alt="Director Adv. Ghanshyam Amin">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Adv. Ghanshyam Amin</div>
+                                                        <div class="bod_des">Director</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub_title">Director</div>
+                                                <div class="bod_point">
+                                                    <div class="bod-point-text">Mr. Ghanshyam Amin is a veteran of Cooperative Sector with experience of more than 40 years.</div>
+                                                    <a class="fancybox1 various board-of-directors-read-more-link" style="margin-top:55px;" href="#member_25">Read More</a>
+                                                </div>
+                                            </div>
+                                            <div class="member-detail" id="member_25" style="display: none;">
+                                                <div class="bod_box_inner">
+                                                    <div class="bod_head">
+                                                        <div class="bod_img">
+                                                            <img src="/auth/writereaddata/images/0301252207_HMBN_Adv. Ghanshyam Amin.jpg" class="img-responsive" alt="Director Adv. Ghanshyam Amin">
+                                                        </div>
+                                                        <div class="bod_name_des_det">
+                                                            <div class="bod_name">Adv. Ghanshyam Amin</div>
+                                                            <div class="bod_des">Director</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sub_title">   B.Sc., LLB</div>
+                                                    <div class="bod_point">
+
+                                                            <ul>
+                                                                    <li>Mr. Ghanshyam Amin is a veteran of Cooperative Sector with experience of more than 40 years. He has practiced as Senior Advocate in Gujarat High Court. He was also Chairman of Bar Council of Gujarat. He has held many top positions in national and international cooperative sectors such as Vice Chairman of International Cooperative Alliance, Asia Pacific, Geneva, President of National Cooperative Union of India, New Delhi, President of National Council for Cooperative Training, New Delhi, Chairman of Co-operative Bank of India, New Delhi and presently , he is serving as the Vice Chairman of the same. He was also Vice Chairman of National Federation of State Co-operative Bank Association ( NAFSCOB ) Mumbai. He is very active in Gujarat&amp;#39;s cooperative banking sector. He is the Chairman of Gujarat State Cooperative Union, Ahmedabad and Founder Chairman of The Gujarat State Cooperative Credit Societies Federation Ltd, Ahmedabad. He has been the Chairman of Cooperative Bank of Ahmedabad, Ellisbridge Cooperative Bank, The Ahmedabad District Co-operative Bank and Director of The Gujarat State Cooperative Bank Ltd., Ahmedabad. He lead the Board of Management of Cosmos Bank effectively as its Chairman. Additionally, he is active in the field of education and academics. Presently, he is the President of Siddhartha Law College, Gandhinagar &amp;amp; Surat. He was the Ex-Senator of Jawaharlal Nehru University appointed by His Excellency, President of India. He was also Syndicate Member of Gujarat University.</li>
+                                                            </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <asp:Label ID="lblSCID" runat="server" Text='3' Visible="false"></asp:Label>
+                                                        <img src="/auth/writereaddata/images/0211225534_HMBN_Kokare.jpg" class="img-responsive" alt="Director Adv. Pralhad Kokare">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Adv. Pralhad Kokare</div>
+                                                        <div class="bod_des">Director</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub_title">Director</div>
+                                                <div class="bod_point">
+                                                    <div class="bod-point-text">Adv. Pralhad Kokare is Director of the Bank since 2004. He was Vice Chairman of the Bank in 2019-2020 & 2020-2021. He is an expert in co-operative banking and laws, especially Agri Market Act</div>
+                                                    <a class="fancybox1 various board-of-directors-read-more-link" style="margin-top:55px;" href="#member_3">Read More</a>
+                                                </div>
+                                            </div>
+                                            <div class="member-detail" id="member_3" style="display: none;">
+                                                <div class="bod_box_inner">
+                                                    <div class="bod_head">
+                                                        <div class="bod_img">
+                                                            <img src="/auth/writereaddata/images/0211225534_HMBN_Kokare.jpg" class="img-responsive" alt="Director Adv. Pralhad Kokare">
+                                                        </div>
+                                                        <div class="bod_name_des_det">
+                                                            <div class="bod_name">Adv. Pralhad Kokare</div>
+                                                            <div class="bod_des">Director</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sub_title">   M. SC. (AGRI.), LL.B., GDC & A</div>
+                                                    <div class="bod_point">
+
+                                                            <ul>
+                                                                    <li>Adv. Pralhad Kokare is Director of the Bank since 2004. He was Vice Chairman of the Bank in 2019-2020 &amp; 2020-2021.  He is an efficient administrator who has been on the Board of Directors of Cosmos Bank for last 20 years. He has retired as Joint-Registrar of Co-operative Societies from the State Government. He is an expert in co-operative banking and laws, especially Agri Market Act.</li>
+                                                            </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <asp:Label ID="lblSCID" runat="server" Text='13' Visible="false"></asp:Label>
+                                                        <img src="/auth/writereaddata/images/0211220201_HMBN_Tavare.jpg" class="img-responsive" alt="Director Mr. Arvind Tavare">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Mr. Arvind Tavare</div>
+                                                        <div class="bod_des">Director</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub_title">Director</div>
+                                                <div class="bod_point">
+                                                    <div class="bod-point-text">Mr. Arvind Tavare is an accomplished engineering professional, corporate leader, and technology strategist with extensive global experience spanning civil engineering, project management, and digital governance.</div>
+                                                    <a class="fancybox1 various board-of-directors-read-more-link" style="margin-top:55px;" href="#member_13">Read More</a>
+                                                </div>
+                                            </div>
+                                            <div class="member-detail" id="member_13" style="display: none;">
+                                                <div class="bod_box_inner">
+                                                    <div class="bod_head">
+                                                        <div class="bod_img">
+                                                            <img src="/auth/writereaddata/images/0211220201_HMBN_Tavare.jpg" class="img-responsive" alt="Director Mr. Arvind Tavare">
+                                                        </div>
+                                                        <div class="bod_name_des_det">
+                                                            <div class="bod_name">Mr. Arvind Tavare</div>
+                                                            <div class="bod_des">Director</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sub_title">   D.C.E., M.S. Civil (USA), LEED® G.A. (USA), PJM-I (USA)</div>
+                                                    <div class="bod_point">
+
+                                                            <ul>
+                                                                    <li>Academic &amp; Research Excellence:  Mr. Tavare holds a postgraduate Master&#x2019;s Degree in Civil Engineering from the United States. During his studies, he was selected as a Research Scholar by the State of Florida and was honored with a State Research Scholarship. A recognized expert in Construction Management, his academic research was published in the European Journal of Engineering. He also presented his groundbreaking research paper at the prestigious &quot;Construction in the 21st Century&quot; conference in Athens, Greece, in 2004.</li>
+                                                                    <li>Global Infrastructure &amp; Project Management Experience:  With over eight years of international experience as a Project Principal in the United States, Mr. Tavare has a proven track record of directing iconic, high-profile infrastructure projects, including the Miami Performing Arts Center. A strong advocate for sustainable architecture, he is an accredited professional with the U.S. Green Building Council (USGBC) and holds a coveted LEED&#xAE; license to design and execute high-performance, energy-efficient buildings. His corporate excellence in project delivery was recognized globally in 2010 when he received the prestigious Bank of America Assessment Award for Project Management. He further strengthens his domain expertise with credentials such as a Project Management Foundation Certificate from The University of Texas at Dallas and a Six Sigma White Belt Certification.</li>
+                                                                    <li>Corporate Leadership in India:  Upon returning to India, Mr. Tavare assumed the management of a legacy construction corporation based in Pune, alongside leading several other successful business firms.</li>
+                                                                    <li>Banking Governance &amp; Technology Leadership:  Mr. Tavare brings deep technological and strategic foresight to banking governance. He served as the Chairman of the Information Technology Committee for Cosmos Co-operative Bank for six years, driving foundational digital initiatives. He currently guides the bank&#x27;s digital transformation roadmap as a senior member of the IT Strategy Committee after having successfully Chaired the IT Strategy committee for 6 long years.. Frequently recognized for his expertise, he is a recurring panelist and Advisory Committee Member for IBEX India (a premier National Technology Conference) and serves on expert panels for various national technology summits across the country.</li>
+                                                                    <li>Academic Contributions &amp; Training:  Committed to knowledge sharing, Mr. Tavare is a prominent guest teaching faculty member for elite banking institutions:  RBI&#x2019;s College of Agricultural Banking (CAB): Regularly conducts training sessions on IT Banking and governance frameworks. National Urban Co-operative Finance and Development Corporation (NUCFDC): Conducts extensive training programs covering diverse specialized banking subjects. Bank of India (BOI): Serves as a specialized mentor and faculty member training Top IT Executives.</li>
+                                                                    <li>Personal Interests:  Beyond his professional endeavors, Mr. Tavare is a dedicated sports enthusiast with a passionate commitment to Martial Arts and Formula One racing.</li>
+                                                            </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <asp:Label ID="lblSCID" runat="server" Text='26' Visible="false"></asp:Label>
+                                                        <img src="/auth/writereaddata/images/0608253117_HMBN_Mr. Balasaheb Sathe New addition.jpg" class="img-responsive" alt="Director Dr. Balasaheb Sathe">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Dr. Balasaheb Sathe</div>
+                                                        <div class="bod_des">Director</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub_title">Director</div>
+                                                <div class="bod_point">
+                                                    <div class="bod-point-text">Dr. Balasaheb Sathe has extensive teaching experience of more than 29 years.</div>
+                                                    <a class="fancybox1 various board-of-directors-read-more-link" style="margin-top:55px;" href="#member_26">Read More</a>
+                                                </div>
+                                            </div>
+                                            <div class="member-detail" id="member_26" style="display: none;">
+                                                <div class="bod_box_inner">
+                                                    <div class="bod_head">
+                                                        <div class="bod_img">
+                                                            <img src="/auth/writereaddata/images/0608253117_HMBN_Mr. Balasaheb Sathe New addition.jpg" class="img-responsive" alt="Director Dr. Balasaheb Sathe">
+                                                        </div>
+                                                        <div class="bod_name_des_det">
+                                                            <div class="bod_name">Dr. Balasaheb Sathe</div>
+                                                            <div class="bod_des">Director</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sub_title">   M.E. (Civil), Phd., IIT (Bombay)</div>
+                                                    <div class="bod_point">
+
+                                                            <ul>
+                                                                    <li>Dr. Balasaheb Sathe has extensive teaching experience of more than 29 years. His passion for teaching took him abroad to Oman where he taught at Shinas College of Technology, Oman. He specializes in the subject of Water Resource Engineering, Quality Survey, Transportation Engineering, Design of Structures to name a few. He has the honour of his research papers being published in both national and international publications. He has delivered lectures, conducted seminars and training programmes on specialized subjects like remote sensing, image processing, GIS, GPS, Arc GroundHydro, Computer tech, Interpersonal Behaviour and many more topics on water resources application. He has examined technical reports concerning projects, floor forecasts etc. He was part of many international conferences.</li>
+                                                            </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <asp:Label ID="lblSCID" runat="server" Text='27' Visible="false"></asp:Label>
+                                                        <img src="/auth/writereaddata/images/0301252754_HMBN_Mrs. Anushree Malgaonkar.jpg" class="img-responsive" alt="Director Mrs. Anushree Malgaonkar">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Mrs. Anushree Malgaonkar</div>
+                                                        <div class="bod_des">Director</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub_title">Director</div>
+                                                <div class="bod_point">
+                                                    <div class="bod-point-text">Mrs. Anushree Malgaonkar is associated with cooperative sector for more than 25 years.</div>
+                                                    <a class="fancybox1 various board-of-directors-read-more-link" style="margin-top:55px;" href="#member_27">Read More</a>
+                                                </div>
+                                            </div>
+                                            <div class="member-detail" id="member_27" style="display: none;">
+                                                <div class="bod_box_inner">
+                                                    <div class="bod_head">
+                                                        <div class="bod_img">
+                                                            <img src="/auth/writereaddata/images/0301252754_HMBN_Mrs. Anushree Malgaonkar.jpg" class="img-responsive" alt="Director Mrs. Anushree Malgaonkar">
+                                                        </div>
+                                                        <div class="bod_name_des_det">
+                                                            <div class="bod_name">Mrs. Anushree Malgaonkar</div>
+                                                            <div class="bod_des">Director</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sub_title">   B.A.(Hons)</div>
+                                                    <div class="bod_point">
+
+                                                            <ul>
+                                                                    <li>Mrs. Anushree Malgaonkar is associated with cooperative sector for more than 25 years. She has worked in Mumbai District Co-op Bank in various roles such as Branch Manager and SRO. She was Director of Maratha Sahakari Bank for 16 years and Chairman of the Bank for 8 years.&#xA0;She was Director of Mumbai District Co-op Housing Society Federation for 5 years and also Editor of Housing Times published by federation.&#xA0;She is now Director of Mumbai District Nagrik Sahakari Bank Association. She is dedicated to social causes through Sawantwadi Sansthan Maratha Samaj Mumbai as Joint Secretary.</li>
+                                                            </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <asp:Label ID="lblSCID" runat="server" Text='28' Visible="false"></asp:Label>
+                                                        <img src="/auth/writereaddata/images/0301253053_HMBN_Mrs. Rekha Pokale.jpg" class="img-responsive" alt="Director Mrs. Rekha Pokale">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Mrs. Rekha Pokale</div>
+                                                        <div class="bod_des">Director</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub_title">Director</div>
+                                                <div class="bod_point">
+                                                    <div class="bod-point-text">Mrs. Rekha Pokale is associated with cooperative banking sectors since more than a decade.</div>
+                                                    <a class="fancybox1 various board-of-directors-read-more-link" style="margin-top:55px;" href="#member_28">Read More</a>
+                                                </div>
+                                            </div>
+                                            <div class="member-detail" id="member_28" style="display: none;">
+                                                <div class="bod_box_inner">
+                                                    <div class="bod_head">
+                                                        <div class="bod_img">
+                                                            <img src="/auth/writereaddata/images/0301253053_HMBN_Mrs. Rekha Pokale.jpg" class="img-responsive" alt="Director Mrs. Rekha Pokale">
+                                                        </div>
+                                                        <div class="bod_name_des_det">
+                                                            <div class="bod_name">Mrs. Rekha Pokale</div>
+                                                            <div class="bod_des">Director</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sub_title">   M. A.</div>
+                                                    <div class="bod_point">
+
+                                                            <ul>
+                                                                    <li>Mrs. Rekha Pokale is associated with cooperative banking sectors since more than a decade. She is committed to social causes through various NGOs. She has worked for financial empowerment of women through Bachat Gats. She is the Founder of Jijau Mahila Bachat Gat. Through Bandhutva Group, she has undertaken many activities for the benefit of needy people. She is also a member of Yamunakund Trust.</li>
+                                                            </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <asp:Label ID="lblSCID" runat="server" Text='17' Visible="false"></asp:Label>
+                                                        <img src="/auth/writereaddata/images/1205265544_HMBN_updated Staff Representative 12052026.jpg" class="img-responsive" alt="Staff Representative Mr. Milind Pendharkar">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Mr. Milind Pendharkar</div>
+                                                        <div class="bod_des">Staff Representative</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub_title">Staff Representative</div>
+                                                <div class="bod_point">
+                                                    <div class="bod-point-text">Mr. Milind Pendharkar is appointed as Staff Representative. He is a Commerce Graduate and has completed Diploma in Computer Management.</div>
+                                                    <a class="fancybox1 various board-of-directors-read-more-link" style="margin-top:55px;" href="#member_17">Read More</a>
+                                                </div>
+                                            </div>
+                                            <div class="member-detail" id="member_17" style="display: none;">
+                                                <div class="bod_box_inner">
+                                                    <div class="bod_head">
+                                                        <div class="bod_img">
+                                                            <img src="/auth/writereaddata/images/1205265544_HMBN_updated Staff Representative 12052026.jpg" class="img-responsive" alt="Staff Representative Mr. Milind Pendharkar">
+                                                        </div>
+                                                        <div class="bod_name_des_det">
+                                                            <div class="bod_name">Mr. Milind Pendharkar</div>
+                                                            <div class="bod_des">Staff Representative</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sub_title">   B.Com & Diploma in Computer Management</div>
+                                                    <div class="bod_point">
+
+                                                            <ul>
+                                                                    <li>Mr. Milind Pendharkar is appointed as Staff Representative. He is a Commerce Graduate and has completed Diploma in Computer Management. He has been working with Cosmos Bank since last 34years.</li>
+                                                            </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <asp:Label ID="lblSCID" runat="server" Text='16' Visible="false"></asp:Label>
+                                                        <img src="/auth/writereaddata/images/0211220355_HMBN_Thipsay.jpg" class="img-responsive" alt="Managing Director Mrs. Apekshita Thipsay">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Mrs. Apekshita Thipsay</div>
+                                                        <div class="bod_des">Managing Director</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub_title">Managing Director</div>
+                                                <div class="bod_point">
+                                                    <div class="bod-point-text">With over 40+ years of experience in the banking industry, Mrs. Apekshita Thipsay is a highly respected and accomplished senior banker. She has a proven track record of success in credit management, finance, administration and corporate governance</div>
+                                                    <a class="fancybox1 various board-of-directors-read-more-link" style="margin-top:55px;" href="#member_16">Read More</a>
+                                                </div>
+                                            </div>
+                                            <div class="member-detail" id="member_16" style="display: none;">
+                                                <div class="bod_box_inner">
+                                                    <div class="bod_head">
+                                                        <div class="bod_img">
+                                                            <img src="/auth/writereaddata/images/0211220355_HMBN_Thipsay.jpg" class="img-responsive" alt="Managing Director Mrs. Apekshita Thipsay">
+                                                        </div>
+                                                        <div class="bod_name_des_det">
+                                                            <div class="bod_name">Mrs. Apekshita Thipsay</div>
+                                                            <div class="bod_des">Managing Director</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sub_title">   M.com, LLB, CAIIB</div>
+                                                    <div class="bod_point">
+
+                                                            <ul>
+                                                                    <li>With over 40&#x2B; years of experience in the banking industry, Mrs. Apekshita Thipsay is a highly respected and accomplished senior banker. She has a proven track record of success in credit management, finance, administration and corporate governance with strong focus on driving business growth, improving operational efficiency and fostering a culture of innovation and customer centricity.</li>
+                                                                    <li>Throughout her career, she held various leadership positions. She joined Cosmos Bank in 1983, held various responsibilities and rose up to the level of Managing Director of the Bank.</li>
+                                                                    <li>Under her leadership, the Bank has achieved significant milestones viz. achieving business mix of Rs.35000 crore, historic net profit of Rs.384 crore, amalgamation of 4 co-operative banks and branch expansion across various regions.</li>
+                                                                    <li>As a forward-thinking and result oriented leader, she demonstrates the ability to lead the organization and pass on the value to stakeholders. She has been instrumental in implementing various initiatives which include increasing the brand value of the Bank, quality management, creating a culture of ethics and excellence.</li>
+                                                                    <li>She has been honored with numerous awards like &#x2018;Young Achievers Award&#x2019; for her contribution to banking sector in the National Conference of Indian Women&#x2019;s Council, Banking Business Leadership Award- CEO in Top 100 CXO Summit and ICONIC Leaders Award 2024 organized by NAFCUB and NCUI.</li>
+                                                                    <li>She has conducted several training sessions for bankers and also authored many books related to banking sector.</li>
+                                                                    <li>Mrs. Apekshita Thipsay is a member of Managing Committee of Indian Bank&#x2019;s Association (IBA). Utilizing this forum, she is representing views and concerns of the UCB sector in order to strengthen the co-operative movement.</li>
+                                                            </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tab four end-->
+                            <!--tab four-->
+                            <div class="tab-pane" id="tab_default_6">
+
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h2>Our Board of Management</h2>
+                                    </div>
+                                </div>
+
+
+                                <!-- active code below DEsign fundaz 26-12-24 remove diplay none from below -->
+
+                                <div class="bod">
+                                    <div class="bod_row">
+
+                                        <div class="bod_box" style="padding:50px 5px;">
+                                            <div class="bod_head">
+                                                <div class="bod_img">
+                                                    <img src="/auth/writereaddata/images/BOM_CA_MILIND_KALE.png" class="img-responsive">
+                                                </div>
+                                                <div class="bod_name_des_det">
+                                                    <div class="bod_name">CA MILIND KALE</div>
+                                                    <div class="bod_des">B.COM (HON.), F.C.A, GRAD. C.W.A, MBA (FINANCE), DIPLOMA IN JOURNALISM</div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_point" style="margin-top: 40px;">
+                                                <ul>
+                                                    <li>
+                                                        CA Milind Kale completed his schooling at the renowned school Jnana Prabodhini and college
+                                                        education at Ness Wadia College.
+                                                    </li>
+                                                </ul>
+                                                <a class="fancybox1 various board-of-directors-read-more-link" href="#member_100">Read More</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="bod_row">
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <img src="/auth/writereaddata/images/BOM_CA_Jayant_Barve.png" class="img-responsive">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">CA Jayant Barve</div>
+                                                        <div class="bod_des">Chartered Accountant</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <img src="/auth/writereaddata/images/BOM_Adv_Anuradda_Gadale.png" class="img-responsive">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Adv. Anuradda Gadale</div>
+                                                        <div class="bod_des">M. Com, LLM, Dip. IRP, M.A. Literature</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <img src="/auth/writereaddata/images/BOM_Adv_Mukeshkumar_Shah.png" class="img-responsive">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Adv. Mukeshkumar Shah</div>
+                                                        <div class="bod_des">B. Com LL B. LLM CA Inter. ICWA Inter</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <img src="/auth/writereaddata/images/BOM_Mr_Gajanan_Godbole.png" class="img-responsive">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Mr. Gajanan Godbole</div>
+                                                        <div class="bod_des">B. Sc.. MMS Finance. Diploma in Cyber Laws.</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <img src="/auth/writereaddata/images/BOM_Mr_Sanjeev_Khadke.png" class="img-responsive">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Mr. Sanjeev Khadke</div>
+                                                        <div class="bod_des">B. Sc. DBM, MMS, HDC. GDC & A</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <img src="/auth/writereaddata/images/BOM_Mrs_Sunita_Bhor.png" class="img-responsive">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Mrs. Sunita Bhor</div>
+                                                        <div class="bod_des">M.A., B.Ed</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <img src="/auth/writereaddata/images/BOM_Mr_Sushilkumar_Somani.png" class="img-responsive">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Mr. Sushilkumar Somani</div>
+                                                        <div class="bod_des">B.Com, LL.B, DTL, DLL & LW</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <img src="/auth/writereaddata/images/BOM_Mr_Nitin_Patwardhan.png" class="img-responsive">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Mr. Nitin Patwardhan</div>
+                                                        <div class="bod_des">Diploma in Mechanical Engineering</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <img src="/auth/writereaddata/images/BOM_Dr_Achutha_Jois.png" class="img-responsive">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Dr. Achutha Jois</div>
+                                                        <div class="bod_des">Ph. D. Fellow-IIM. PGCPM-IIM MS-Coventry University-UK BE-Bangalore University</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <img src="/auth/writereaddata/images/BOM_Adv_Ajay_Suryawanshi.png" class="img-responsive">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Adv. Ajay Suryawanshi</div>
+                                                        <div class="bod_des">B.Com, LL.B</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bod_box" style="padding:50px 5px;">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <img src="/auth/writereaddata/images/BOM_Mr_Vijay_Kulkarni.png" class="img-responsive">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">Mr. Vijay Kulkarni</div>
+                                                        <div class="bod_des">Diploma in Sanskrit</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="member-detail" id="member_100" style="display: none;">
+                                            <div class="bod_box_inner">
+                                                <div class="bod_head">
+                                                    <div class="bod_img">
+                                                        <img src="/auth/writereaddata/images/BOM_CA_MILIND_KALE.png" class="img-responsive">
+                                                    </div>
+                                                    <div class="bod_name_des_det">
+                                                        <div class="bod_name">CA MILIND KALE</div>
+                                                        <div class="bod_des">B.COM (HON.), F.C.A, GRAD. C.W.A, MBA (FINANCE), DIPLOMA IN JOURNALISM</div>
+                                                    </div>
+                                                </div>
+                                                <div class="bod_point" style="margin-top: 40px;">
+
+                                                    <ul>
+                                                        <li>
+                                                            <p>
+                                                                CA Milind Kale completed his schooling at the renowned school Jnana Prabodhini and college
+                                                                education at Ness Wadia College.
+                                                                Under absolute adverse conditions he completed 5 professional courses viz., Chartered
+                                                                Accountancy, Cost Accountancy, Business Administration, MBA Finance and Journalism within a
+                                                                very short time-span displaying his extraordinary intellect.
+                                                                He started his own Chartered Accountancy practice in 1983. He has taken forward the legacy of
+                                                                three generation of entrepreneurship. Kale family was into numerous businesses at that time.
+                                                                Through those businesses he got opportunity to work extensively in the field of Finance. The main
+                                                                reason for this was his educational qualifications and expertise in the field of Finance and Economy.
+                                                                Thus, was is on the Board of Directors of Cosmos Bank for 25 long years since 1999 and Chairman
+                                                                from 2015 to 2024.
+                                                            </p> <p>
+                                                                Apart from Cooperative Sector, his contribution in the field of education, social work, journalism is
+                                                                well-recognized. He has given impetus to and encouraged Marathi /Maharashtrian Youth to start
+                                                                business through various annual conclaves. He has supported them by economically assisting them
+                                                                through the Bank. He has a special place as Orator in various seminars on Finance and Economy.
+                                                                Kale has also chaired SPPU’s Board of Examiners for Business Management Diploma.
+                                                                To give impetus to women to take on entrepreneurship, he introduced loan scheme especially for
+                                                                women through Cosmos Bank. Women are offered loan at reduced rate of interest through this loan
+                                                                scheme. Under his able leadership Cosmos Bank has funded more than 1500 Self Help Groups to
+                                                                start their home-based business, thus empowering them financially. This has helped more than
+                                                                15000 women to be financial independent. With his active participation, this mission of women
+                                                                empowerment is doing very well.
+                                                            </p>
+                                                            <p>
+                                                                Since last couple of decades, cooperative banks’ image has plummeted due to misappropriation by
+                                                                few banks. To enhance and uplift the image of cooperative banks Chartered Accountants in
+                                                                Cooperative Banks (CACOB) organization is working dedicatedly. Kale is the Vice-Chairman of
+                                                                CACOB, thus adding CACOB with his expertise in cooperative banking sector. He has also been
+                                                                appointed as Co-opted Member of the Director Board of The Maharashtra Urban Cooperative Banks’
+                                                                Federation.
+                                                            </p>
+                                                            <p>
+                                                                He is also elected as the Vice-chairman of Cooperative Bank of India (COBI), New Delhi. Milind Kale
+                                                                is well-known for his transparent values, work ethics, positive yet realistic attitude, futuristic vision,
+                                                                ability to face all challenges resolutely and much more. CA Kale is the elected as Vice President of
+                                                                National Federation of Urban Co-operative Banks &amp; Credit Societies (NAFCUB), New Delhi for the
+                                                                period of 5 years i.e. from year 2024 to 2029.
+                                                            </p>
+                                                        </li>
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tab four end-->
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!--AB-TAB ROW END-->
+
+
+
+
+
+
+    </div>
+    <!--container end-->
+
+</section>
+
+
+
+
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container container-95">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="about-footer-wrap">
+                    <div class="logo">
+                        <img src="images/logo-2.png" alt="COSMOS CO-OP, BANK LTD Logo">
+                    </div>
+                    <div class="about">
+                        <p>Cosmos Bank, is ready to assist you as always. Reach out to us, by any means of your choice.</p>
+                    </div>
+                    <div class="logo">
+                        <img src="images/dicgc-logo.jpg" alt="DICGC logo with QR code for DICGC website">
+                    </div>
+                    <div class="about">
+                        <p>
+                            (Cosmos Co-operative Bank Ltd., is registered with DICGC)
+                            <br /><a href="https://www.dicgc.org.in/" target="_blank" rel="noopener noreferrer" aria-label="DICGC website (opens in a new window)">https://www.dicgc.org.in</a>
+                        </p>
+                    </div>
+                </div>
+                <!--about-footer-wrap end-->
+            </div>
+            <!--col end-->
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="useful-links-wrap">
+                    <h2>Useful Links</h2>
+                    <ul>
+                        <li><a href="about-us">About Us</a></li>
+                        <li><a href="events-and-news">Events & News</a></li>
+                        <li><a href="IFSC-code">IFSC Codes</a></li>
+                        <li><a href="service-charges">Service Charges</a></li>
+                        <li><a href="citizen-charter">Citizen Charter</a></li>
+                        <li><a href="interest-rates">Interest Rates</a></li>
+                        <li><a href="RBIGuidelines">RBI Guidelines</a></li>
+                       
+
+                    </ul>
+                </div>
+                <!--useful-links-wrap end-->
+            </div>
+            <!--col end-->
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="useful-links-wrap">
+                    <h2>Reach Us</h2>
+                    <ul>
+                        <li><a href="contact-us">Feedback</a></li>
+                        <li><a href="form-center">Online Form Center</a></li>
+                        <li><a href="career-form">Careers</a></li>
+                        <li><a href="dnd-registration">DND Registration</a></li>
+                        <li><a href="frequently-asked-questions">FAQ's</a></li>
+                        <li><a href="lodge-a-complaint">Unauthorized Transaction Complaint</a></li>
+                    </ul>
+                </div>
+                <!--useful-links-wrap end-->
+            </div>
+            <!--col end-->
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="useful-links-wrap support-links-wrap">
+                    <h2>Support</h2>
+                    <ul>
+                        <li>
+                            Call Toll Free:
+                            <br>
+                            <a href="tel:1800 233 0234">1800 233 0234</a>
+                        </li>
+                        <li>
+                            Write to us at :
+                            <br>
+                            <a href="mailto:customercare@cosmos.bank.in">customercare@cosmos.bank.in</a>
+                        </li>
+                        <li>
+                            For Internet Banking Support :
+                            <br>
+                            <a href="mailto:ibhelp@cosmos.bank.in">ibhelp@cosmos.bank.in</a>
+                        </li>
+                        <li>
+                            For Mobile Banking Support :
+                            <br>
+
+                            <a href="mailto:ibhelp@cosmos.bank.in">ibhelp@cosmos.bank.in</a>
+                        </li>
+                        <li>
+                            For ATM Support :
+                            <br>
+                            <a href="mailto:atmhelp@cosmos.bank.in">atmhelp@cosmos.bank.in</a>
+                        </li>
+                        <li>
+                            For FASTag Support :
+                            <br>
+                            <a href="mailto:fastaghelp@cosmos.bank.in">fastaghelp@cosmos.bank.in</a>
+                        </li>
+                        <li>
+                            For Galgal Support :
+                            <br>
+                            <a href="mailto:cosmos.support@galgal.money">cosmos.support@galgal.money</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+                <!--useful-links-wrap end-->
+
+            </div>
+            <!--col end-->
+        </div>
+        <!--row end-->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="single-content need-help-get-in-touch-wrap">
+                    <div class="useful-links-wrap">
+                        <p class="footer-help-heading">
+                            <img src="/images/icon-mobile.svg" alt="">
+                            <a href="https://odr.cosmos.bank.in" target="_blank" rel="noopener noreferrer">ONLINE DISPUTE RESOLUTION (ODR)</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="single-content need-help-get-in-touch-wrap">
+                    <div class="useful-links-wrap">
+                        <p class="footer-help-heading">
+                            <img src="/images/icon-mobile.svg" alt="">
+                            <a href="https://www.cosmos.bank.in/lodge-a-complaint" target="_blank" rel="noopener noreferrer">Unauthorized Electronic Transactions Complaint Registration</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--container end-->
+   
+
+<section class="bottom-social-icons-section">
+    <div class="container container-95">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="copyright-wrap">
+                        <p>&copy; 2026 Cosmos Bank. All rights reserved.</p>
+                </div>
+                <!--about-footer-wrap end-->
+            </div>
+            <!--col end-->
+
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <aside class="social-icons-wrap" role="complementary" aria-label="Social media">
+                    <ul class="wcag-social-list">
+                        <li><a href="https://www.facebook.com/CosmosBank" target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in a new window)"><i class="fa-brands fa-facebook-square fa-2x" aria-hidden="true"></i></a></li>
+                        <li><a href="https://twitter.com/Cosmospune" target="_blank" rel="noopener noreferrer" aria-label="X, formerly Twitter (opens in a new window)"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.instagram.com/cosmos_coop_bank_ltd/" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in a new window)"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.linkedin.com/company/cosmos-bank-pune" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new window)"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.youtube.com/channel/UC3aTT9UXHXHV3lEXCKPIS4A" target="_blank" rel="noopener noreferrer" aria-label="YouTube (opens in a new window)"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></li>
+                    </ul>
+                </aside>
+                <!--social-icons-wrap end-->
+            </div>
+            <!--col end-->
+
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="policy-links-wrap">
+                    <ul>
+                        <li><a href="ourpolicies">Our Policies</a></li>
+                        <li><a href="ourpolicies">Website Usage Terms</a></li>
+                        <li><a href="ourpolicies">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <!--policy-links-wrap end-->
+            </div>
+            <!--col end-->
+        </div>
+        <!--row end-->
+    </div>
+    <!--container end-->
+</section>
+<!--bottom-social-icons-section end-->
+
+<section style="display: none;">
+    <div class="container container-95">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+            </div>
+            <!--col end-->
+        </div>
+        <!--row end-->
+    </div>
+    <!--container end-->
+</section>
+
+<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+ </footer>
+
+<!-- Bootstrap core JavaScript
+<script src="~/bootstrap/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+<!-- script added to below js-->
+<script src="/js/site-footer.js"></script>
+
+    <!-- Bootstrap core JavaScript
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- script added to below js-->
+    <script src="/js/site-footer.js"></script>
+    <script src="/scroller/jquery.liMarquee.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/js/common/common.js" type="text/javascript"></script>
+    <script src="/js/common/common2.js" type="text/javascript"></script>
+    <script src="/js/common/common3.js" type="text/javascript"></script>
+    <script src="/js/common/common4.js" type="text/javascript"></script>
+    <script src="/js/common/common5.js" type="text/javascript"></script>
+    <script src="/js/common/common6.js" type="text/javascript"></script>
+    <script src="/js/common/common7.js" type="text/javascript"></script>
+    <script src="/js/common/common8.js" type="text/javascript"></script>
+    <!-- Add jQuery library for fancy popup -->
+    <script type="text/javascript" src="/source/jquery.fancybox.js"></script>
+    <link rel="stylesheet" type="text/css" href="/source/jquery.fancybox.css" media="screen" />
+
+
+    <!-- about us-->
+    <script src="/js/accordion/smk-accordion.js"></script>
+    <script src="/js/table-sort-script/jquery.dataTables.min.js"></script>
+
+    <link href="/scroller/liMarquee.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/js/accordion/smk-accordion.css" type="text/css">
+    <script type="text/javascript" src="/js/services.js"></script>
+    <script type="text/javascript" src="/js/header-language.js"></script>
+    <script type="text/javascript" src="/js/Accessibility.js"></script>
+    <script type="text/javascript" src="/js/common/indexpage.js?v=20260826a"></script>
+
+    
+    
+    <script type="text/javascript" src="/js/about_us.js"></script>
+    <script type="text/javascript" src="/js/accordion/smk-accordion.js"></script>
+
+
+    <script src="/js/wcag-remediation.js?v=20260804r37"></script>
+
+</body>
+</html>

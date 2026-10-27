@@ -1,0 +1,1840 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+    <title>About Icertis | Icertis</title>
+    <link rel="stylesheet" href="https://use.typekit.net/gwo4abq.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet" />
+    <link href="/static/css/main.css?v=n138-U_ImQts_k6LbzQNCS6dRQJqb50QQRJp1EJNEDc" rel="stylesheet" />
+    <script src="/static/js/main.min.js?v=jZ_Bh0Evb6kd09FPPxX1v4DGk0gxh6brRvHe6knn-1A" type="module" defer></script>
+    <script src="/static/js/cookie-consent.min.js?v=Ds30xh_2dogw5MlBKpuY7ppln4neNw_mUpuaFIz1344" type="module" defer></script>
+    <script src="https://cdn.optimizely.com/js/4738191656222720.js"></script>
+
+    
+<meta name="title" content="About Icertis" />
+<meta name="description" content="Icertis is the recognized leader in AI-powered contract lifecycle management (CLM), transforming contracts into strategic advantage. The Icertis Contract Intelligence platform digitizes and structures contracts at scale, enabling businesses to automate contract processes, ensure compliance, and unlock critical insights that drive revenue, manage risk, and accelerate business outcomes." />
+    <meta property="og:title" content="About Icertis">
+    <meta property="og:description"
+          content="Icertis is the recognized leader in AI-powered contract lifecycle management (CLM), transforming contracts into strategic advantage. The Icertis Contract Intelligence platform digitizes and structures contracts at scale, enabling businesses to automate contract processes, ensure compliance, and unlock critical insights that drive revenue, manage risk, and accelerate business outcomes.">
+<meta property="og:type" content="website">
+
+    <meta property="og:image"
+          content="https://www.icertis.com/contentassets/75b46eeb4b2f489788dc9114b7f09b59/press-release-momentum-social-share-5.png">
+
+<meta property="og:url" content="https://www.icertis.com/company/">
+<meta http-equiv="Content-Security-Policy" content="script-src blob: data: * &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27;">
+    <link rel="canonical" href="https://www.icertis.com/company/" />
+
+    <meta property="idio:title" content="About Icertis" />
+    <meta property="article:published_time" content="2026-10-13T10:52:27.0000000&#x2B;00:00" />
+<meta property="idio:sortbybate" content="0001-01-01T00:00:00.0000000" />
+
+    <script>
+_iaq = [ ['client', '50c4ad4bbd7c47879b5be0a416b0562e'], ['track', 'consume'] ]; !function(d,s){var ia=d.createElement(s);ia.async=1,s=d.getElementsByTagName(s)[0],ia.src='//s.usea01.idio.episerver.net/ia.js',s.parentNode.insertBefore(ia,s)}(document,'script');
+</script>
+<script>
+!function(T,l,y){var S=T.location,k="script",D="instrumentationKey",C="ingestionendpoint",I="disableExceptionTracking",E="ai.device.",b="toLowerCase",w="crossOrigin",N="POST",e="appInsightsSDK",t=y.name||"appInsights";(y.name||T[e])&&(T[e]=t);var n=T[t]||function(d){var g=!1,f=!1,m={initialize:!0,queue:[],sv:"5",version:2,config:d};function v(e,t){var n={},a="Browser";return n[E+"id"]=a[b](),n[E+"type"]=a,n["ai.operation.name"]=S&&S.pathname||"_unknown_",n["ai.internal.sdkVersion"]="javascript:snippet_"+(m.sv||m.version),{time:function(){var e=new Date;function t(e){var t=""+e;return 1===t.length&&(t="0"+t),t}return e.getUTCFullYear()+"-"+t(1+e.getUTCMonth())+"-"+t(e.getUTCDate())+"T"+t(e.getUTCHours())+":"+t(e.getUTCMinutes())+":"+t(e.getUTCSeconds())+"."+((e.getUTCMilliseconds()/1e3).toFixed(3)+"").slice(2,5)+"Z"}(),iKey:e,name:"Microsoft.ApplicationInsights."+e.replace(/-/g,"")+"."+t,sampleRate:100,tags:n,data:{baseData:{ver:2}}}}var h=d.url||y.src;if(h){function a(e){var t,n,a,i,r,o,s,c,u,p,l;g=!0,m.queue=[],f||(f=!0,t=h,s=function(){var e={},t=d.connectionString;if(t)for(var n=t.split(";"),a=0;a<n.length;a++){var i=n[a].split("=");2===i.length&&(e[i[0][b]()]=i[1])}if(!e[C]){var r=e.endpointsuffix,o=r?e.location:null;e[C]="https://"+(o?o+".":"")+"dc."+(r||"services.visualstudio.com")}return e}(),c=s[D]||d[D]||"",u=s[C],p=u?u+"/v2/track":d.endpointUrl,(l=[]).push((n="SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details)",a=t,i=p,(o=(r=v(c,"Exception")).data).baseType="ExceptionData",o.baseData.exceptions=[{typeName:"SDKLoadFailed",message:n.replace(/\./g,"-"),hasFullStack:!1,stack:n+"\nSnippet failed to load ["+a+"] -- Telemetry is disabled\nHelp Link: https://go.microsoft.com/fwlink/?linkid=2128109\nHost: "+(S&&S.pathname||"_unknown_")+"\nEndpoint: "+i,parsedStack:[]}],r)),l.push(function(e,t,n,a){var i=v(c,"Message"),r=i.data;r.baseType="MessageData";var o=r.baseData;return o.message='AI (Internal): 99 message:"'+("SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details) ("+n+")").replace(/\"/g,"")+'"',o.properties={endpoint:a},i}(0,0,t,p)),function(e,t){if(JSON){var n=T.fetch;if(n&&!y.useXhr)n(t,{method:N,body:JSON.stringify(e),mode:"cors"});else if(XMLHttpRequest){var a=new XMLHttpRequest;a.open(N,t),a.setRequestHeader("Content-type","application/json"),a.send(JSON.stringify(e))}}}(l,p))}function i(e,t){f||setTimeout(function(){!t&&m.core||a()},500)}var e=function(){var n=l.createElement(k);n.src=h;var e=y[w];return!e&&""!==e||"undefined"==n[w]||(n[w]=e),n.onload=i,n.onerror=a,n.onreadystatechange=function(e,t){"loaded"!==n.readyState&&"complete"!==n.readyState||i(0,t)},n}();y.ld<0?l.getElementsByTagName("head")[0].appendChild(e):setTimeout(function(){l.getElementsByTagName(k)[0].parentNode.appendChild(e)},y.ld||0)}try{m.cookie=l.cookie}catch(p){}function t(e){for(;e.length;)!function(t){m[t]=function(){var e=arguments;g||m.queue.push(function(){m[t].apply(m,e)})}}(e.pop())}var n="track",r="TrackPage",o="TrackEvent";t([n+"Event",n+"PageView",n+"Exception",n+"Trace",n+"DependencyData",n+"Metric",n+"PageViewPerformance","start"+r,"stop"+r,"start"+o,"stop"+o,"addTelemetryInitializer","setAuthenticatedUserContext","clearAuthenticatedUserContext","flush"]),m.SeverityLevel={Verbose:0,Information:1,Warning:2,Error:3,Critical:4};var s=(d.extensionConfig||{}).ApplicationInsightsAnalytics||{};if(!0!==d[I]&&!0!==s[I]){var c="onerror";t(["_"+c]);var u=T[c];T[c]=function(e,t,n,a,i){var r=u&&u(e,t,n,a,i);return!0!==r&&m["_"+c]({message:e,url:t,lineNumber:n,columnNumber:a,error:i}),r},d.autoExceptionInstrumented=!0}return m}(y.cfg);function a(){y.onInit&&y.onInit(n)}(T[t]=n).queue&&0===n.queue.length?(n.queue.push(a),n.trackPageView({})):a()}(window,document,{src: "https://js.monitor.azure.com/scripts/b/ai.2.gbl.min.js", crossOrigin: "anonymous", cfg: {connectionString: 'InstrumentationKey=cb09fcb2-ae20-414d-8894-f957c402a88f;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=ea0978bd-7eca-4562-9cc2-b2e627d525a5', disableCookiesUsage: false }});
+</script>
+
+    <script>
+        window.enabledLanguages = ["en"];
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NHY4GCEFRC" defer></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NHY4GCEFRC');
+    </script>
+    
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MC236GX');</script>
+<!-- End Google Tag Manager -->
+        <section class="raw-code-block">
+            <style>
+.page-content:has(.rich-text-area__meta-bar .meta-bar__link){
+    margin-bottom: 0;
+}
+</style>
+        </section>
+
+    <script type="application/ld&#x2B;json">{
+  "@type": "Organization",
+  "@context": "https://schema.org",
+  "@id": "https://www.icertis.com/#organization",
+  "name": "Icertis",
+  "url": "https://www.icertis.com/",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://www.icertis.com/static/images/icertis-logo.svg?v=1"
+  },
+  "description": "Go beyond contract lifecycle management with Icertis Contract Intelligence. Transform your contracts with an AI-powered platform into structured, connected and on-demand data that automates, processes, reduces risk and maximizes the value of your contracts.",
+  "foundingDate": null,
+  "sameAs": [
+    "https://www.linkedin.com/company/icertis/",
+    "https://www.youtube.com/channel/UCkxr-g3wzTgFFmRbumun6lQ",
+    "http://instagram.com/icertisinc/",
+    "https://twitter.com/icertis"
+  ]
+}</script>
+</head>
+
+<body>
+    
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MC236GX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    
+
+<body class="l-body off-canvas-right" data-off-canvas-breakpoint="1200">
+    <div class="l-surround">
+        <div class="site-peak-desktop-placeholder"> </div>
+        <a href="#main" class="skip-link">
+            Skip to main content
+        </a>
+        
+<header class="site-header l-header slide-over-transition headroom">
+    <div class="main-nav__bar">
+        <div class="l-header__elements">
+            <div class="main-nav__wrap">
+                <!-- Branding placeholder -->
+                <div class="main-nav__logo d-xl-none">
+                    <a href="/">
+                        <img src="/static/images/icertis-logo-new.svg?v=1" alt="Icertis"
+                             width="1041" height="400">
+                    </a>
+                </div>
+
+                    <a href="/contact-us/" class="btn main-nav__btn-icon d-xl-none">
+                        <span class="visually-hidden">Contact</span>
+                        <img src="/static/images/icon-phone.svg" alt="" width="33" height="33" />
+                    </a>
+
+                    <div class="nav-search__toggle--mobile">
+                        <button id="navSearchCollapseToggle" class="btn btn-search btn-search--toggle collapsed"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#navSearchCollapse">
+                            <span class="visually-hidden">Search</span>
+                                <img src="/static/images/icon-search.svg" alt="" width="33" height="33">
+                                <span class="close-symbol inline-icon"></span>
+                            </button>
+                        </div>
+
+                    <!-- Show/hide off-canvas button -->
+                    <button class="toggle-off-canvas toggle-hamburger" type="button" aria-expanded="false"
+                            aria-controls="offCanvasArea"
+                            aria-label="Open Menu">
+                        <span class="toggle-hamburger__wrapper">
+                            <span class="toggle-hamburger__bun"></span>
+                            <span class="toggle-hamburger__bun"></span>
+                            <span class="toggle-hamburger__bun"></span>
+                        </span>
+                    </button>
+                    <!-- Put elements in l-off-canvas container if you want them off canvas -->
+                    <div class="l-off-canvas" id="offCanvasArea" tabindex="-1" aria-labelledby="offCanvasTitle">
+                        <div class="l-off-canvas__helper">
+                            <h4 id="offCanvasTitle" class="sr-only">
+                                Site navigation
+                            </h4>
+                            <!-- Show/hide off-canvas button -->
+                            <div class="off-canvas__toggle-bar shallow-gradient">
+                                <button class="toggle-off-canvas toggle-hamburger toggle-hamburger--to-x" type="button"
+                                        aria-expanded="false" aria-controls="offCanvasArea"
+                                        aria-label="Close">
+                                    <span class="toggle-hamburger__wrapper">
+                                        <span class="toggle-hamburger__bun"></span>
+                                        <span class="toggle-hamburger__bun"></span>
+                                        <span class="toggle-hamburger__bun"></span>
+                                    </span>
+                                </button>
+                                <button class="btn mln-back-button" type="button">
+                                    <img src="/static/images/icon-back-arrow.svg" alt="" width="21" height="21">
+                                    Back to Menu
+                                </button>
+                            </div>
+                            <!-- Navigation -->
+                            <div class="main-nav__container">
+                                <nav class="main-nav mln mln--navbar mln--navbar-slide-over" data-mln-breakpoint="1200"
+                                     aria-label="primary">
+                                    <!-- Navigation list -->
+                                    <!-- Branding placeholder -->
+                                    <div class="main-nav__left">
+                                        <div class="main-nav__logo d-none d-xl-block">
+                                            <a href="/">
+                                                <img src="/static/images/icertis-logo-new.svg"
+                                                     alt="Icertis" width="1041" height="400">
+                                            </a>
+                                        </div>
+                                        <ul class="mln__list">
+                                                <li>
+                                                    <a href="#">
+Products</a>
+                                                    <!-- Mega menu div -->
+                                                    <div class="mln__child__mega-menu">
+                                                        <button type="button" class="btn-close"
+                                                                aria-label="Close"></button>
+                                                        <div class="row">
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__intro mega-menu__col-content">
+                                                                        <h4>Platform</h4>
+                                                                        <div class="mega-menu-heading h4 with-tic-mark">
+                                                                        </div>
+                                                                        
+<p><a title="Platform Overview" href="/products/platform/"> Platform Overview </a></p>
+<p><a title="Platform Overview" href="/products/platform/copilot/"> Vera Copilot</a></p>
+<p><a title="Integrations" href="/products/platform/integrations/">Integrations</a></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+<a href="/products/engage/" aria-label="Learn more about Icertis Engage; Contracting is broken for business teams">Engage </a></p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/products/engage/vera-engage/" title="Vera Engage">Vera Engage</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/engage/vera-composer-agent/" title="Vera Composer Agent">Vera Composer Agent</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/engage/vera-playbook-creation-agent/">Vera Playbook Creation Agent</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/engage/vera-risk-review-agent/">Vera Risk Review Agent</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/engage/vera-redline-agent/" title="Vera Redline Agent">Vera Redline Agent</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+<a title="Operate" href="/products/operate/" aria-label="=">Operate</a></p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/products/operate/contract-lifecycle-management/" title="Icertis Contract Management">Icertis Contract Management</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/operate/vera-obligations/" title="Vera Obligations">Vera Obligations</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/operate/vera-fulfillment-agent/" title="Vera Fulfillment Agent">Vera Fulfillment Agent</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+<a title="Analyze" href="/products/analyze/" aria-label="Learn more about Icertis Analyze - Gain contract insights and analytics">Analyze</a></p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/products/analyze/vera-analytics-standard/" title="Vera Analytics Standard">Vera Analytics Standard</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/analyze/vera-analytics-advanced/" title="Vera Analytics Advanced">Vera Analytics Advanced</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/analyze/ods-and-reporting/">ODS and Reporting</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/analyze/vera-insights-agent/" title="Vera Insights Agent">Vera Insights Agent</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+Solutions</a>
+                                                    <!-- Mega menu div -->
+                                                    <div class="mln__child__mega-menu">
+                                                        <button type="button" class="btn-close"
+                                                                aria-label="Close"></button>
+                                                        <div class="row">
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+Purpose-Built</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/pre-configured-solutions/government/" title="Federal Agencies">Federal Agencies</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/pre-configured-solutions/government-contractors/" title="Government Contractors">Government Contractors</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/pre-configured-solutions/healthcare-provider/" title="Healthcare Providers">Healthcare Providers</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/pre-configured-solutions/ariba/">SAP</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/" title="Explore all solutions">See All &#x2192;</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+By Industry</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/asset-management/" title="Asset Management">Asset Management</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/automotive/" title="Automotive">Automotive</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/banking/">Banking</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/energy/" title="Energy">Energy</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/healthcare-payers/">Healthcare Payers</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/manufacturing/" title="Manufacturing">Manufacturing</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/media-and-telecom/" title="Media and Telecom">Media and Telecom</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/medical-devices/">Medical Devices</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/pharmaceutical-and-life-sciences/">Pharmaceutical &amp; Life Sciences</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/public-sector/" title="Public Sector">Public Sector</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/retail-and-consumer/" title="Retail and Consumer">Retail and Consumer</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/industry-solutions/technology-consulting/" title="Technology">Technology</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+By Department</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/departmental-solutions/legal/" title="Legal">Legal</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/departmental-solutions/procurement/">Procurement</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/departmental-solutions/finance/" title="Finance">Finance</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/departmental-solutions/sales/">Sales</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/departmental-solutions/it/">IT</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    
+<p><a href="/research/analyst-reports/gartner-peer-insights-voc/intro/"><img src="/globalassets/graphics/block-graphics/company-nav/small-promo-gartner-voc-2026.png" border="0" alt="gartner" /></a></p>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+<span data-teams="true">Customers</span></a>
+                                                    <!-- Mega menu div -->
+                                                    <div class="mln__child__mega-menu">
+                                                        <button type="button" class="btn-close"
+                                                                aria-label="Close"></button>
+                                                        <div class="row">
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+Our Customers</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/customers/customer-stories/hewlett-packard-enterprise/">HP</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/customers/customer-stories/enbridge/">Enbridge</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/customers/customer-stories/shermco/">Shermco</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/customers/customer-stories/mercedes-benz/">Mercedes Benz</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/customers/customer-stories/" title="Customers Stories">See All &#x2192;</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+<a href="/customers/customer-stories/microsoft-cloud-operations/"><img src="/globalassets/1.-sections/homepage/navbar/microsoft.png" border="0" alt="Microsoft-logo" /></a></p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+<a href="/customers/customer-stories/accenture/"><img src="/globalassets/1.-sections/homepage/navbar/accenture.png" border="0" alt="accenture-logo" /></a></p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+<a href="/customers/customer-stories/accenture/"><img src="/globalassets/1.-sections/homepage/navbar/wilson_sonsini.png" border="0" alt="wilson_sonsini-logo" /></a></p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+Resources</a>
+                                                    <!-- Mega menu div -->
+                                                    <div class="mln__child__mega-menu">
+                                                        <button type="button" class="btn-close"
+                                                                aria-label="Close"></button>
+                                                        <div class="row">
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+Resources Library</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/research/analyst-reports/" title="Analyst &amp; Research Reports">Analyst &amp; Research Reports</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/research/ebooks/" title="White Papers &amp; eBooks">White Papers &amp; eBooks</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+Blog</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/research/blog/" title="The Fine Print">The Fine Print</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+Events</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/research/webinars/" title="Webinars">Webinars</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/company/events/" title="Events">Events</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    
+<p><a href="/research/analyst-reports/state-of-clm-and-ai-powered-contract-intelligence/intro/"><img src="/globalassets/graphics/block-graphics/company-nav/state-of-clm-and-ai-powered-contract-intelligence-v2.png" border="0" alt="state-clm" /></a></p>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+Why Icertis</a>
+                                                    <!-- Mega menu div -->
+                                                    <div class="mln__child__mega-menu">
+                                                        <button type="button" class="btn-close"
+                                                                aria-label="Close"></button>
+                                                        <div class="row">
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+Our Differentiators</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/context-driven-contract-intelligence/">Context-Driven</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/products/platform/" title="AI-Native Foundation">AI-Native Foundation</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/customers/customer-stories/" title="Enterprise Strength">Enterprise Strength</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/partner/sap/" title="Co-innovation with SAP">Co-innovation with SAP</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/solutions/" title="Industry Depth">Industry Depth</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+Our SI Partners</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/partner/accenture/" title="Accenture">Accenture</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/partner/pwc/">PwC</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/partner/deloitte/" title="Deloitte">Deloitte</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/partner/kpmg/" title="KPMG">KPMG</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/partner/find-partners/?partnerType=131#partners">See All &#x2192;</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+Our Tech Partners</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/partner/sap/">SAP</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/partner/microsoft/">Microsoft</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/partner/salesforce/" title="Salesforce">Salesforce</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/partner/whatfix/" title="Whatfix">Whatfix</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/partner/find-partners/?partnerType=52#partners" title="See All">See All &#x2192;</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3">
+                                                                    <div class="mega-menu__col-content">
+                                                                        <p class="h5">
+Our Company</p>
+                                                                        <ul class="mega-menu-sub-nav">
+                                                                                    <li>
+                                                                                        
+<a href="/company/" title="About Icertis">About Icertis</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/company/leadership/" title="Leadership Team">Leadership Team</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/company/news/" title="Newsroom">Newsroom</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/company/careers/">Careers</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/company/corporate-social-responsibility/" title="Corporate Social Responsibility">Corporate Social Responsibility</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/information/trust-center/" title="Trust Center">Trust Center</a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        
+<a href="/contact-us/">Contact Us</a>
+                                                                                    </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            <li>
+                                                <div class="nav-search__toggle--desktop d-block h-100">
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="nav-search--desktop">
+                                    </div>
+
+                                    <div class="nav-cta-wrap d-none d-xl-flex">
+                                                <a class="btn btn-primary" href="/demo/" title="Talk to an Expert "
+                                                   rel="noreferrer">
+                                                    <span class="d-none d-sm-block d-xl-none d-xxl-block">Talk to an Expert</span>
+                                                        <span class="d-sm-none d-xl-block d-xxl-none">Talk to an Expert </span>
+                                                </a>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+                        <!-- Put more stuff here -->
+
+                    </div>
+                </div>
+                <div class="nav-search--mobile">
+                    <div id="navSearchCollapse" class="search-collapse shallow-gradient collapse">
+                        <div class="search-collapse__content">
+                            <button id="searchClose" type="button" class="btn-close" data-bs-toggle="collapse"
+                                    data-bs-target="#navSearchCollapse"
+                                    aria-label="Close"></button>
+                            <div class="search-collapse__body">
+                                <div class="nav-search__form">
+                                    <p class="h5 mb-3">Search the site</p>
+                                    <div class="search-help__wrap">
+                                        <form class="form-inline mb-4" method="GET" action="/search/">
+                                            <input id="siteSearchInput" name="q"
+                                                   class="form-control form-control-lg search-modal__input" autocomplete="off"
+                                                   type="text" placeholder=""
+                                                   aria-label="Search the site">
+                                            <button class="btn btn-lg btn-primary" type="submit" id="searchBtn">
+                                                <span class="d-none d-xl-inline">Search</span>
+                                                    <img src="/static/images/icon-search.svg" class="d-xl-none" alt=""
+                                                         width="33" height="33">
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+            <a href="/demo/" class="btn btn-primary fixed-cta d-xl-none">
+                Request Demo
+            </a>
+
+        <div class="site-peak-mobile-placeholder">
+            <div class="site-peak">
+            </div>
+        </div>
+
+        <main class="careerpage main-wrap l-canvas slide-over-transition " id="main">
+
+
+
+
+
+<section class="vera-hero " aria-labelledby="vera-hero-title">
+    <div class="container-fluid px-3 px-lg-5">
+        <div class="vera-hero__surface mx-auto">
+                <div class="vera-hero__bg-shapes">
+                    <span class="vera-hero__shape vera-hero__shape--left"></span>
+                    <span class="vera-hero__shape vera-hero__shape--right"></span>
+                </div>
+            <div class="vera-hero__grid vera-hero__grid--no-media">
+                <div class="vera-hero__content vera-hero__content--no-media">
+                    <div class="vera-hero__breadcrumb">
+                        
+<script type="application/ld&#x2B;json">{
+  "@type": "BreadcrumbList",
+  "@context": "https://schema.org",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "item": "https://www.icertis.com/company/",
+      "name": "About Icertis",
+      "position": 1
+    }
+  ]
+}</script>
+
+
+                    </div>
+
+
+                        <h2 class="vera-hero__title" id="vera-hero-title">
+                            Who <span style="color: #874451;">we are.</span><br />Why <span style="color: #874451;">we exist.</span>
+                        </h2>
+
+                        <div class="vera-hero__copy">
+                            
+<p>Championing the human-to-human relationship at the heart of every contract.</p>
+                        </div>
+
+                        <div class="vera-hero__actions d-flex flex-wrap">
+
+                                <a class="btn btn-primary btn-primary--icon" href="/company/careers/">
+                                    Join our team
+                                </a>
+                        </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+            
+
+
+
+
+
+<section class="video-block-v2 base-block">
+    <img class="video-block-v2__decoration" src="/static/images/statsgif-circle.svg" alt="" loading="lazy" decoding="async" aria-hidden="true">
+    <div class="page-content">
+        <div class="container-fluid">
+            <figure class="video-block-v2__body">
+                <div class="video-block-v2__card video-block-v2__card--stats">
+                    <div class="video-block-v2__media">
+                            <video class="video-block-v2__embed" width="985" height="554" autoplay muted loop playsinline preload="metadata" poster="">
+                                <source src="/globalassets/about/about-us-bg.mp4" type="video/mp4" />
+                            </video>
+                    </div>
+
+                    <div class="bottom-heading-number-text-block" data-bottom-heading-number-text>
+                        <div class="bottom-heading-number-text-block__columns">
+                            
+
+<div class="heading-number-text-block">
+    <div class="heading-number-text-block__heading rich-text-area">
+        
+<p>Contracts in</p>
+    </div>
+    <div class="heading-number-text-block__items">
+        
+
+<div class="number-text-block">
+    <div class="number-text-block__number">
+            <span class="number-text-block__value" data-counter-to="90">90</span>
+        <span class="number-text-block__suffix">&#x2B;</span>
+    </div>
+    <div class="number-text-block__text rich-text-area">
+        
+<p>Countries</p>
+    </div>
+</div>
+
+<div class="number-text-block">
+    <div class="number-text-block__number">
+            <span class="number-text-block__value" data-counter-to="40">40</span>
+        <span class="number-text-block__suffix">&#x2B;</span>
+    </div>
+    <div class="number-text-block__text rich-text-area">
+        
+<p>Languages</p>
+    </div>
+</div>
+
+    </div>
+</div>
+
+<div class="heading-number-text-block">
+    <div class="heading-number-text-block__heading rich-text-area">
+        
+<p>Trusted by</p>
+    </div>
+    <div class="heading-number-text-block__items">
+        
+
+<div class="number-text-block">
+    <div class="number-text-block__number">
+            <span class="number-text-block__value" data-counter-to="30">30</span>
+        <span class="number-text-block__suffix">%&#x2B;</span>
+    </div>
+    <div class="number-text-block__text rich-text-area">
+        
+<p>of the fortune 100</p>
+    </div>
+</div>
+
+    </div>
+</div>
+
+<div class="heading-number-text-block">
+    <div class="heading-number-text-block__heading rich-text-area">
+        
+<p>Built by</p>
+    </div>
+    <div class="heading-number-text-block__items">
+        
+
+<div class="number-text-block">
+    <div class="number-text-block__number">
+            <span class="number-text-block__value" data-counter-to="2000">2000</span>
+        <span class="number-text-block__suffix">&#x2B;</span>
+    </div>
+    <div class="number-text-block__text rich-text-area">
+        
+<p>Employees</p>
+    </div>
+</div>
+
+<div class="number-text-block">
+    <div class="number-text-block__number">
+            <span class="number-text-block__value" data-counter-to="9">9</span>
+        <span class="number-text-block__suffix"></span>
+    </div>
+    <div class="number-text-block__text rich-text-area">
+        
+<p>Global Offices</p>
+    </div>
+</div>
+
+    </div>
+</div>
+
+                        </div>
+                        <div class="bottom-heading-number-text-block__heading rich-text-area">
+                            
+<p>Profitable and leading the projected $12B CLM Market</p>
+                        </div>
+                    </div>
+                </div>
+            </figure>
+        </div>
+    </div>
+</section>
+
+        <section class="raw-code-block">
+            <style>
+  /* Section 3 - Main Container */
+  .icertis-contracts-section {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 100px 30px;
+    background-color: #f7f8f8;
+  }
+
+  .icertis-contracts-section *,
+  .icertis-contracts-section *::before,
+  .icertis-contracts-section *::after {
+    box-sizing: border-box;
+  }
+
+  /* Heading */
+  .icertis-contracts-section .icertis-contracts-heading {
+    margin: 0 0 32px;
+    font-size: 40px;
+    line-height: 52px;
+    font-weight: 500;
+  }
+
+  .icertis-contracts-section .icertis-contracts-highlight {
+    color: #874451;
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+  }
+
+  /* Description */
+  .icertis-contracts-section .icertis-contracts-description {
+    margin: 0 0 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #000000;
+  }
+
+  /* Mission Description */
+  .icertis-contracts-section .icertis-contracts-mission {
+    margin: 0 0 64px;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+    color: #000000;
+  }
+
+  .icertis-contracts-section .icertis-contracts-mission strong {
+    font-weight: 600;
+  }
+
+  /* Three Images - Flex Layout */
+  .icertis-contracts-section .icertis-contracts-image-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .icertis-contracts-section .icertis-contracts-image-item {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .icertis-contracts-section .icertis-contracts-image-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    border: 0;
+  }
+
+  /* Tablet */
+  @media (max-width: 991px) {
+    .icertis-contracts-section {
+      padding: 70px 30px;
+    }
+
+    .icertis-contracts-section .icertis-contracts-heading {
+      font-size: 34px;
+      line-height: 44px;
+      margin-bottom: 24px;
+    }
+
+    .icertis-contracts-section .icertis-contracts-description,
+    .icertis-contracts-section .icertis-contracts-mission {
+      font-size: 16px;
+      line-height: 25px;
+    }
+
+    .icertis-contracts-section .icertis-contracts-mission {
+      margin-bottom: 48px;
+    }
+
+    .icertis-contracts-section .icertis-contracts-image-row {
+      gap: 16px;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    .icertis-contracts-section {
+      padding: 48px 30px;
+    }
+
+    .icertis-contracts-section .icertis-contracts-heading {
+      font-size: 28px;
+      line-height: 36px;
+      margin-bottom: 20px;
+    }
+
+    .icertis-contracts-section .icertis-contracts-description {
+      font-size: 16px;
+      line-height: 24px;
+      margin-bottom: 20px;
+    }
+
+    .icertis-contracts-section .icertis-contracts-mission {
+      font-size: 16px;
+      line-height: 24px;
+      margin-bottom: 36px;
+    }
+
+    .icertis-contracts-section .icertis-contracts-image-row {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .icertis-contracts-section .icertis-contracts-image-item {
+      flex: 0 0 auto;
+      width: 100%;
+    }
+  }
+
+  /* Small Mobile */
+  @media (max-width: 480px) {
+    .icertis-contracts-section {
+      padding: 40px 30px;
+    }
+
+    .icertis-contracts-section .icertis-contracts-heading {
+      font-size: 26px;
+      line-height: 34px;
+    }
+
+    .icertis-contracts-section .icertis-contracts-mission {
+      margin-bottom: 28px;
+    }
+
+    .icertis-contracts-section .icertis-contracts-image-row {
+      gap: 16px;
+    }
+  }
+</style>
+
+<div class="icertis-contracts-section">
+
+  <h2 class="icertis-contracts-heading">
+    Every business
+    <span class="icertis-contracts-highlight">
+      runs on contracts.
+    </span>
+  </h2>
+
+  <p class="icertis-contracts-description">
+    Icertis envisions a future where human-controlled
+    systems of agents negotiate favorable agreements,
+    address regulatory risk in real time, and trigger
+    downstream business actions &ndash; all based on
+    what&rsquo;s agreed to and codified in contracts.
+    The rules of business captured by contracts will
+    form the foundation for the autonomous enterprise.
+  </p>
+
+  <p class="icertis-contracts-mission">
+    <strong>
+      To help enterprises get there, we&rsquo;re
+      committed to our mission of empowering customers
+      to realize the full potential of every contract.
+    </strong>
+  </p>
+
+  <div class="icertis-contracts-image-row">
+
+    <div class="icertis-contracts-image-item">
+      <img
+        src="https://www.icertis.com/globalassets/about/about-1.png"
+        alt="Icertis About Image 1"
+        loading="lazy"
+      >
+    </div>
+
+    <div class="icertis-contracts-image-item">
+      <img
+        src="https://www.icertis.com/globalassets/about/about-2.png"
+        alt="Icertis About Image 2"
+        loading="lazy"
+      >
+    </div>
+
+    <div class="icertis-contracts-image-item">
+      <img
+        src="https://www.icertis.com/globalassets/about/about-3.png"
+        alt="Icertis About Image 3"
+        loading="lazy"
+      >
+    </div>
+
+  </div>
+
+</div>
+        </section>
+
+
+    <div class="base-block tabbed-content-carousel-block tabbed-content-carousel-block--dark-bg">
+        <div class="container-fluid tabbed-content-carousel-block__heading">
+            
+    <div class="base-block__header">
+            <h2>
+We are a <span style="color: #874451;">values-driven company</span></h2>
+        
+<p>At Icertis, our definition of success includes living by our FORTE values, which guide all our interactions with <br />employees, customers, partners, and stakeholders.</p>
+    </div>
+
+        </div>
+        <section class="accordion-block d-lg-none">
+            <div class="container-fluid">
+                <div class="accordion" id="accordionPanels">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panel-heading-32024">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panel-collapse32024" aria-expanded="false"
+                                        aria-controls="panel-collapse32024">
+                                    
+Fairness
+                                </button>
+                            </h2>
+                            <div id="panel-collapse32024" class="accordion-collapse collapse"
+                                 aria-labelledby="panel-heading-32024">
+                                <div
+                                    class="accordion-body ">
+                                                <div class="tabbed-content__image-wrap">
+                                                    <img class="tabbed-content-image " src="/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png" alt="" width="2421" height="1585" srcset="/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=36 36w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=54 54w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=109 109w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=70 70w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=140 140w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=180 180w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=360 360w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=200 200w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=400 400w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=275 275w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=550 550w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=300 300w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=600 600w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=304 304w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=608 608w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=303 303w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=606 606w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=318 318w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=637 637w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=330 330w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=660 660w" loading="lazy" />
+                                                </div>
+                                                <div class="tabbed-content__text-wrap">
+                                                    
+<p class="h2">Fairness</p>
+<p>As a company we strive to be equitable and fairminded&mdash; continually asking how we would like to be treated if we were in the other person&rsquo;s shoes. We don&rsquo;t play favorites or have double standards when working with our customers, partners and vendors, and we view every interaction through the lens of &ldquo;what is a mutually fair outcome.&rdquo;</p>
+                                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panel-heading-32025">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panel-collapse32025" aria-expanded="false"
+                                        aria-controls="panel-collapse32025">
+                                    
+Openness
+                                </button>
+                            </h2>
+                            <div id="panel-collapse32025" class="accordion-collapse collapse"
+                                 aria-labelledby="panel-heading-32025">
+                                <div
+                                    class="accordion-body tab-content__col-swap">
+                                                <div class="tabbed-content__text-wrap">
+                                                    
+<p class="h2">Openness</p>
+<p>The default setting at Icertis is to share information freely&mdash;and be open to feedback from anyone in the organization. And when someone asks an Icertian (especially a leader) a question, they won&rsquo;t get a BS answer.</p>
+                                                </div>
+                                                <div class="tabbed-content__image-wrap">
+                                                    <img class="tabbed-content-image " src="/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png" alt="" width="606" height="396" srcset="/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=36 36w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=54 54w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=109 109w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=70 70w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=140 140w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=180 180w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=360 360w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=200 200w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=400 400w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=275 275w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=550 550w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=300 300w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=600 600w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=303 303w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=606 606w" loading="lazy" />
+                                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panel-heading-33744">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panel-collapse33744" aria-expanded="false"
+                                        aria-controls="panel-collapse33744">
+                                    
+Respect
+                                </button>
+                            </h2>
+                            <div id="panel-collapse33744" class="accordion-collapse collapse"
+                                 aria-labelledby="panel-heading-33744">
+                                <div
+                                    class="accordion-body ">
+                                                <div class="tabbed-content__text-wrap">
+                                                    
+<h2>Respect</h2>
+<p>We strive to be an organization where everyone is treated with respect and every voice is heard. We assume positive intent in our interactions and regard everyone&rsquo;s feedback and contributions as valuable. We embrace and celebrate diversity, and know that only by doing so can we be the best at what we do.</p>
+                                                </div>
+                                                <div class="tabbed-content__image-wrap">
+                                                    <img class="tabbed-content-image " src="/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png" alt="" width="606" height="396" srcset="/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=36 36w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=54 54w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=109 109w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=70 70w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=140 140w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=180 180w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=360 360w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=200 200w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=400 400w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=275 275w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=550 550w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=300 300w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=600 600w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=303 303w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=606 606w" loading="lazy" />
+                                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panel-heading-32027">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panel-collapse32027" aria-expanded="false"
+                                        aria-controls="panel-collapse32027">
+                                    
+Teamwork
+                                </button>
+                            </h2>
+                            <div id="panel-collapse32027" class="accordion-collapse collapse"
+                                 aria-labelledby="panel-heading-32027">
+                                <div
+                                    class="accordion-body tab-content__col-swap">
+                                                <div class="tabbed-content__text-wrap">
+                                                    
+<h2>Teamwork</h2>
+<p>Every Icertian who is considered a top performer must also be a team player&mdash;we don&rsquo;t tolerate brilliant jerks. We know that success is the result of hard work from people across the organization, and we go out of our way to recognize the teams that make individuals successful.</p>
+                                                </div>
+                                                <div class="tabbed-content__image-wrap">
+                                                    <img class="tabbed-content-image " src="/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png" alt="" width="606" height="396" srcset="/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=36 36w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=54 54w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=109 109w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=70 70w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=140 140w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=180 180w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=360 360w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=200 200w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=400 400w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=275 275w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=550 550w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=300 300w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=600 600w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=303 303w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=606 606w" loading="lazy" />
+                                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panel-heading-32028">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panel-collapse32028" aria-expanded="false"
+                                        aria-controls="panel-collapse32028">
+                                    
+Execution
+                                </button>
+                            </h2>
+                            <div id="panel-collapse32028" class="accordion-collapse collapse"
+                                 aria-labelledby="panel-heading-32028">
+                                <div
+                                    class="accordion-body ">
+                                                <div class="tabbed-content__text-wrap">
+                                                    
+<h2>Execution</h2>
+<p>Execution is in our DNA. We hold ourselves accountable to deliver for our customers, partners, and fellow Icertians each and every day. To guide us we have a mantra: &ldquo;Focus, Follow up, Follow through&mdash;Fast!&rdquo; We set our sights on a goal, hold ourselves accountable for success, and see it through to the end, quickly.</p>
+                                                </div>
+                                                <div class="tabbed-content__image-wrap">
+                                                    <img class="tabbed-content-image " src="/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png" alt="" width="606" height="396" srcset="/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=36 36w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=54 54w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=109 109w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=70 70w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=140 140w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=180 180w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=360 360w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=200 200w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=400 400w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=275 275w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=550 550w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=300 300w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=600 600w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=303 303w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=606 606w" loading="lazy" />
+                                                </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </section>
+        <section class="tab-block d-none d-lg-block">
+            <div class="container-fluid">
+                <div class="tab-block__body">
+                    <div class="tab-block__nav-wrap">
+                        <ul class="tab-block__nav nav nav-underline" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="tabbed-content__nav-link active"
+                                                id="tab-32024" data-bs-toggle="tab" data-bs-target="#tab-32024-pane"
+                                                type="button" role="tab" aria-controls="tab-32024-pane"
+                                                aria-selected="true">
+                                            <span class="tabbed-content__tab-text">
+Fairness</span>
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="tabbed-content__nav-link "
+                                                id="tab-32025" data-bs-toggle="tab" data-bs-target="#tab-32025-pane"
+                                                type="button" role="tab" aria-controls="tab-32025-pane"
+                                                aria-selected="false">
+                                            <span class="tabbed-content__tab-text">
+Openness</span>
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="tabbed-content__nav-link "
+                                                id="tab-33744" data-bs-toggle="tab" data-bs-target="#tab-33744-pane"
+                                                type="button" role="tab" aria-controls="tab-33744-pane"
+                                                aria-selected="false">
+                                            <span class="tabbed-content__tab-text">
+Respect</span>
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="tabbed-content__nav-link "
+                                                id="tab-32027" data-bs-toggle="tab" data-bs-target="#tab-32027-pane"
+                                                type="button" role="tab" aria-controls="tab-32027-pane"
+                                                aria-selected="false">
+                                            <span class="tabbed-content__tab-text">
+Teamwork</span>
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="tabbed-content__nav-link "
+                                                id="tab-32028" data-bs-toggle="tab" data-bs-target="#tab-32028-pane"
+                                                type="button" role="tab" aria-controls="tab-32028-pane"
+                                                aria-selected="false">
+                                            <span class="tabbed-content__tab-text">
+Execution</span>
+                                        </button>
+                                    </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                                <div class="tab-pane fade show active"
+                                     id="tab-32024-pane" role="tabpanel" aria-labelledby="tab-32024"
+                                     tabindex="0">
+                                    <div
+                                        class="tabbed-content__info-wrap rich-text-area ">
+                                                    <div class="tabbed-content__image-wrap">
+                                                        <img class="tabbed-content-image " src="/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png" alt="" width="2421" height="1585" srcset="/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=36 36w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=54 54w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=109 109w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=70 70w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=140 140w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=180 180w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=360 360w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=200 200w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=400 400w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=275 275w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=550 550w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=300 300w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=600 600w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=304 304w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=608 608w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=303 303w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=606 606w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=318 318w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=637 637w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=330 330w,&#xA;/contentassets/717ad68a5e5e49ba964c896034851392/fairness.png?width=660 660w" loading="lazy" />
+                                                    </div>
+                                                    <div class="tabbed-content__text-wrap">
+                                                        
+<p class="h2">Fairness</p>
+<p>As a company we strive to be equitable and fairminded&mdash; continually asking how we would like to be treated if we were in the other person&rsquo;s shoes. We don&rsquo;t play favorites or have double standards when working with our customers, partners and vendors, and we view every interaction through the lens of &ldquo;what is a mutually fair outcome.&rdquo;</p>
+                                                    </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade "
+                                     id="tab-32025-pane" role="tabpanel" aria-labelledby="tab-32025"
+                                     tabindex="0">
+                                    <div
+                                        class="tabbed-content__info-wrap rich-text-area tab-content__col-swap">
+                                                    <div class="tabbed-content__text-wrap">
+                                                        
+<p class="h2">Openness</p>
+<p>The default setting at Icertis is to share information freely&mdash;and be open to feedback from anyone in the organization. And when someone asks an Icertian (especially a leader) a question, they won&rsquo;t get a BS answer.</p>
+                                                    </div>
+                                                    <div class="tabbed-content__image-wrap">
+                                                        <img class="tabbed-content-image " src="/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png" alt="" width="606" height="396" srcset="/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=36 36w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=54 54w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=109 109w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=70 70w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=140 140w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=180 180w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=360 360w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=200 200w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=400 400w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=275 275w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=550 550w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=300 300w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=600 600w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=303 303w,&#xA;/contentassets/133a14eb3103402b8203fd53cefc5138/vector.png?width=606 606w" loading="lazy" />
+                                                    </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade "
+                                     id="tab-33744-pane" role="tabpanel" aria-labelledby="tab-33744"
+                                     tabindex="0">
+                                    <div
+                                        class="tabbed-content__info-wrap rich-text-area ">
+                                                    <div class="tabbed-content__text-wrap">
+                                                        
+<h2>Respect</h2>
+<p>We strive to be an organization where everyone is treated with respect and every voice is heard. We assume positive intent in our interactions and regard everyone&rsquo;s feedback and contributions as valuable. We embrace and celebrate diversity, and know that only by doing so can we be the best at what we do.</p>
+                                                    </div>
+                                                    <div class="tabbed-content__image-wrap">
+                                                        <img class="tabbed-content-image " src="/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png" alt="" width="606" height="396" srcset="/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=36 36w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=54 54w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=109 109w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=70 70w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=140 140w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=180 180w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=360 360w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=200 200w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=400 400w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=275 275w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=550 550w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=300 300w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=600 600w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=303 303w,&#xA;/contentassets/ad8c093bd3c84543a8b9b935316ec2f0/vector-1.png?width=606 606w" loading="lazy" />
+                                                    </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade "
+                                     id="tab-32027-pane" role="tabpanel" aria-labelledby="tab-32027"
+                                     tabindex="0">
+                                    <div
+                                        class="tabbed-content__info-wrap rich-text-area tab-content__col-swap">
+                                                    <div class="tabbed-content__text-wrap">
+                                                        
+<h2>Teamwork</h2>
+<p>Every Icertian who is considered a top performer must also be a team player&mdash;we don&rsquo;t tolerate brilliant jerks. We know that success is the result of hard work from people across the organization, and we go out of our way to recognize the teams that make individuals successful.</p>
+                                                    </div>
+                                                    <div class="tabbed-content__image-wrap">
+                                                        <img class="tabbed-content-image " src="/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png" alt="" width="606" height="396" srcset="/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=36 36w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=54 54w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=109 109w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=70 70w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=140 140w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=180 180w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=360 360w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=200 200w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=400 400w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=275 275w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=550 550w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=300 300w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=600 600w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=303 303w,&#xA;/contentassets/8db832c92c15435b98d0759b4f3ceffd/vector-2.png?width=606 606w" loading="lazy" />
+                                                    </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade "
+                                     id="tab-32028-pane" role="tabpanel" aria-labelledby="tab-32028"
+                                     tabindex="0">
+                                    <div
+                                        class="tabbed-content__info-wrap rich-text-area ">
+                                                    <div class="tabbed-content__text-wrap">
+                                                        
+<h2>Execution</h2>
+<p>Execution is in our DNA. We hold ourselves accountable to deliver for our customers, partners, and fellow Icertians each and every day. To guide us we have a mantra: &ldquo;Focus, Follow up, Follow through&mdash;Fast!&rdquo; We set our sights on a goal, hold ourselves accountable for success, and see it through to the end, quickly.</p>
+                                                    </div>
+                                                    <div class="tabbed-content__image-wrap">
+                                                        <img class="tabbed-content-image " src="/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png" alt="" width="606" height="396" srcset="/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=36 36w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=54 54w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=109 109w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=70 70w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=140 140w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=180 180w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=360 360w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=200 200w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=400 400w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=275 275w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=550 550w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=300 300w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=600 600w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=303 303w,&#xA;/contentassets/e69bbe0963114986954fc557231e3d6c/vector-3.png?width=606 606w" loading="lazy" />
+                                                    </div>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <section class="history-timeline"
+             style="--history-item-count: 7; --history-scroll-height: 232vh;"
+             data-history-timeline>
+        <div class="history-timeline__sticky">
+            <div class="history-timeline__container">
+                    <header class="history-timeline__header rich-text-area">
+                        
+<h2>The history of <span style="color: #874451;">Contract Intelligence</span></h2>
+                    </header>
+
+                    <ol class="history-timeline__items" data-history-timeline-items>
+                            <li class="history-timeline__item is-revealed"
+                                data-history-timeline-item>
+                                    <button type="button" class="history-timeline__year"
+                                            data-history-timeline-trigger>2019</button>
+
+                                    <p class="history-timeline__content">Icertis founded</p>
+                            </li>
+                            <li class="history-timeline__item "
+                                data-history-timeline-item>
+                                    <button type="button" class="history-timeline__year"
+                                            data-history-timeline-trigger>2015</button>
+
+                                    <p class="history-timeline__content">CLM becomes a named category</p>
+                            </li>
+                            <li class="history-timeline__item "
+                                data-history-timeline-item>
+                                    <button type="button" class="history-timeline__year"
+                                            data-history-timeline-trigger>2020</button>
+
+                                    <p class="history-timeline__content">Icertis  creates Contract  Intelligence </p>
+                            </li>
+                            <li class="history-timeline__item "
+                                data-history-timeline-item>
+                                    <button type="button" class="history-timeline__year"
+                                            data-history-timeline-trigger>2022</button>
+
+                                    <p class="history-timeline__content">Icertis and SAP  form strategic partnership </p>
+                            </li>
+                            <li class="history-timeline__item "
+                                data-history-timeline-item>
+                                    <button type="button" class="history-timeline__year"
+                                            data-history-timeline-trigger>2023</button>
+
+                                    <p class="history-timeline__content">Icertis is an early adopter for Microsoft Azure OpenAI Service </p>
+                            </li>
+                            <li class="history-timeline__item "
+                                data-history-timeline-item>
+                                    <button type="button" class="history-timeline__year"
+                                            data-history-timeline-trigger>2024</button>
+
+                                    <p class="history-timeline__content">Icertis Copilot launched </p>
+                            </li>
+                            <li class="history-timeline__item "
+                                data-history-timeline-item>
+                                    <button type="button" class="history-timeline__year"
+                                            data-history-timeline-trigger>2025</button>
+
+                                    <p class="history-timeline__content">Vera launched </p>
+                            </li>
+                    </ol>
+            </div>
+        </div>
+    </section>
+
+        <section class="raw-code-block">
+            
+<style>
+  .about-awards-section {
+    width: 100%;
+    padding: 40px 30px;
+    background-color: #f7f9f7;
+    background-image: url('https://www.icertis.com/globalassets/about/awards-bg.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+  }
+
+  .about-awards-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .about-awards-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .about-awards-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Tablet */
+  @media (min-width: 768px) and (max-width: 991px) {
+    .about-awards-section {
+      padding: 40px;
+    }
+
+    .about-awards-container {
+      gap: 16px;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    .about-awards-section {
+      padding: 40px 16px;
+    }
+
+    .about-awards-container {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      max-width: 400px;
+    }
+  }
+</style>
+
+<section class="about-awards-section" aria-label="Awards and Recognition">
+  <div class="about-awards-container">
+
+    <div class="about-awards-card">
+      <img
+        src="https://www.icertis.com/globalassets/about/about-new-1.png"
+        alt="Award 1"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="about-awards-card">
+      <img
+        src="https://www.icertis.com/globalassets/about/about-new-2.png"
+        alt="Award 2"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="about-awards-card">
+      <img
+        src="https://www.icertis.com/globalassets/about/about-new-3.png"
+        alt="Award 3"
+        loading="lazy"
+      />
+    </div>
+
+  </div>
+</section>
+
+        </section>
+
+
+<section class="transform-contracts" aria-labelledby="transform-contracts-title">
+    <div class="container-fluid px-4 px-lg-5">
+        <div class="transform-contracts__inner d-flex align-items-center justify-content-between">
+            <div class="transform-contracts__copy">
+                    <h2 class="transform-contracts__title" id="transform-contracts-title">Ready to see AI-native contracting in action?
+                    </h2>
+            </div>
+                <div class="transform-contracts__actions d-flex flex-wrap">
+                            <a href="/contact-us/" class="btn btn-primary">Talk to an expert</a>
+                            <a href="/demo/" class="btn btn-secondary">Request a demo</a>
+                </div>
+        </div>
+    </div>
+</section>
+</section>
+
+        <section class="raw-code-block">
+            <style>
+  @media (min-width: 992px) {
+    .vera-hero .container-fluid.px-lg-5 {
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+    }
+  }
+
+  .vera-hero .vera-hero__surface {
+    max-width: 100% !important;
+  }
+
+.vera-hero__copy{
+max-width: 100%;
+}
+
+</style>
+        </section>
+
+        </main>
+
+        
+
+        
+
+<footer class="site-footer">
+    <div class="container-fluid">
+        <div class="site-footer__body">
+                <div class="site-footer__section-wrap">
+                        <nav class="site-footer__nav">
+                                <div class="site-footer__nav-section">
+                                        <a class="site-footer__heading h5" href="/products/platform/">
+Products</a>
+                                            <ul class="site-footer__link-list">
+                                                    <li>
+                                                        
+<a href="/products/engage/">Engage</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/products/operate/">Operate</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/products/analyze/">Analyze</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/products/platform/copilot/">Vera Copilot</a>
+                                                    </li>
+                                            </ul>
+                                    </div>
+                                <div class="site-footer__nav-section">
+                                        <a class="site-footer__heading h5" href="/solutions/">
+Solutions</a>
+                                            <ul class="site-footer__link-list">
+                                                    <li>
+                                                        
+<a href="/solutions/industry-solutions/asset-management/">Asset Management</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/solutions/industry-solutions/public-sector/" title="Public Sector">Public Sector</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/solutions/industry-solutions/retail-and-consumer/">Retail and Consumer Goods</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/solutions/industry-solutions/media-and-telecom/">Media and Telecom</a>
+                                                    </li>
+                                            </ul>
+                                    </div>
+                                <div class="site-footer__nav-section">
+                                        <a class="site-footer__heading h5" href="/research/">
+Resources</a>
+                                            <ul class="site-footer__link-list">
+                                                    <li>
+                                                        
+<a href="/research/analyst-reports/">Analyst Reports</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/customers/customer-stories/">Customer Stories</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/research/ebooks/">eBooks</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/research/blog/">Blog</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/learn/">Learn About CLM</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/contracting-basics/">Contracting Basics</a>
+                                                    </li>
+                                            </ul>
+                                    </div>
+                                <div class="site-footer__nav-section">
+                                        <a class="site-footer__heading h5" href="/company/">
+Company</a>
+                                            <ul class="site-footer__link-list">
+                                                    <li>
+                                                        
+<a href="/company/">Company</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/company/news/">News</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/company/careers/">Careers</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/company/events/">Events</a>
+                                                    </li>
+                                            </ul>
+                                    </div>
+                                <div class="site-footer__nav-section">
+                                        <a class="site-footer__heading h5" href="/contracting-basics/">
+Learn</a>
+                                            <ul class="site-footer__link-list">
+                                                    <li>
+                                                        
+<a href="/learn/what-is-contract-management/">What is Contract Management?</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/learn/what-is-contract-intelligence/">What is Contract Intelligence?</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/learn/what-is-contract-lifecycle-management/">What is Contract Lifecycle Management?</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/contracting-basics/contractual-obligations/">What is a Contractual Obligation?</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/learn/what-is-contract-performance/">What is Contract Performance?</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/contracting-basics/what-is-contract-compliance/">What is Contract Compliance?</a>
+                                                    </li>
+                                                    <li>
+                                                        
+<a href="/learn/how-generative-ai-is-changing-contract-management/">Generative AI in Contract Management</a>
+                                                    </li>
+                                            </ul>
+                                    </div>
+                            </nav>
+                    </div>
+                <div class="site-footer__disclosure-links">
+                    <div class="site-footer__logo">
+                        <a href="/">
+                            <img src="/static/images/icertis-logo-white-new.svg" alt="Icertis"
+                                 width="125" height="48">
+                        </a>
+                    </div>
+                    <ul class="site-footer__link-list">
+                        <li>
+                            © Copyright 2026 Icertis. All rights reserved.
+                        </li>
+                                <li>
+                                    
+<a href="/information/cookie-policy/" title="Cookie Policy">Cookie Policy</a>
+                                </li>
+                                <li>
+                                    
+<a href="/information/icertis-privacy-statement/" title="Privacy Statement">Privacy Statement</a>
+                                </li>
+                                <li>
+                                    
+<a href="/information/disclaimer/" title="Disclaimer">Disclaimer</a>
+                                </li>
+                                <li>
+                                    
+<a href="/information/foundation/">Foundation</a>
+                                </li>
+                                <li>
+                                    
+<a href="/information/trust-center/">Trust Center</a>
+                                </li>
+                    </ul>
+                        <div class="footer-awards--desktop d-none d-xl-block">
+                        </div>
+                </div>
+                <div class="footer-awards--mobile d-xl-none">
+                    <div class="site-footer__awards">
+                            <ul class="site-footer__social-links-list">
+                                        <li class="site-footer__social-links-item">
+                                            <a href="https://www.linkedin.com/company/icertis/">
+                                                <img src="/static/images/icon-linkedin-small.svg"
+                                                     alt="View our LinkedIn profile" />
+                                            </a>
+                                        </li>
+                                        <li class="site-footer__social-links-item">
+                                            <a href="https://www.youtube.com/channel/UCkxr-g3wzTgFFmRbumun6lQ">
+                                                <img src="/static/images/icon-youtube-small.svg"
+                                                     alt="View our YouTube profile" />
+                                            </a>
+                                        </li>
+                                        <li class="site-footer__social-links-item">
+                                            <a href="http://instagram.com/icertisinc/">
+                                                <img src="/static/images/icon-instagram-small.svg"
+                                                     alt="View our Instagram profile" />
+                                            </a>
+                                        </li>
+                                        <li class="site-footer__social-links-item">
+                                            <a href="https://twitter.com/icertis">
+                                                <img src="/static/images/icon-twitter-small.svg"
+                                                     alt="View our Twitter profile" />
+                                            </a>
+                                        </li>
+                            </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    </div>
+    <div class="modal modal--language fade" id="languageSpeedbump" tabindex="-1" aria-labelledby="languageSpeedbumpLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p class="h3" id="languageSpeedbumpLabel">You are now leaving the FR/DE Icertis website and going to .com.</p>
+      </div>
+      <div class="modal-footer">
+          <a class="btn btn-primary">Ok</a>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+    
+    <script defer="defer" src="/Util/Find/epi-util/find.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){if(typeof FindApi === 'function'){var api = new FindApi();api.setApplicationUrl('/');api.setServiceApiBaseUrl('/find_v2/');api.processEventFromCurrentUri();api.bindWindowEvents();api.bindAClickEvent();api.sendBufferedEvents();}})
+</script>
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+</body>
+
+</html>

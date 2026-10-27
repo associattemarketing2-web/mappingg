@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <!-- Meta and Title Tags Starts Here -->
+      <title>Top Builders & Developers in Navi Mumbai | Goodwill Developers</title>
+      <meta name="description" content="Goodwill Developers, a top builder & developer in Navi Mumbai and Lonavala, crafts modern landmarks with expert design, quality construction, and innovative spaces.">
+      <meta name="keywords" content="Top Real Estate Builder & Developer in Navi Mumbai, Goodwill Developers">
+      <meta name="author" content="Goodwill Developers">
+      <link rel="canonical" href="https://www.goodwilldevelopers.com/" />
+      <meta name="google-site-verification" content="eVG8pl694cTmCzPumPvqMyUBICAp0MvBh7oCjRi9eR4" />
+      <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;1,700&display=swap" as="style" crossorigin>
+<!--<link rel="preload" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" as="style" crossorigin>-->
+<link rel="preload" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+<noscript>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</noscript>
+
+      <meta name="robots" content="Index,Follow"/>
+      <!--  Meta and Title Tags End Here -->
+      <!-- Header Css Start Here -->
+      <link rel="shortcut icon" href="assets/img/favicon.ico" />
+<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"-->
+<!--    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">-->
+<link rel="preload" 
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" 
+      as="style" 
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" 
+      crossorigin="anonymous"
+      onload="this.onload=null;this.rel='stylesheet'">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--<link rel="stylesheet" href="assets/css/style.css?v=5">-->
+<link rel="preload" href="assets/css/style.css?v=5" as="style" onload="this.rel='stylesheet'">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/css/lightgallery.min.css">
+<link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+<link href="assets/css/typology.css?v=0.03" rel="stylesheet">
+<style>
+    footer .sec01 select {
+  background: #005c76 !important;
+  border: 0;
+  border-bottom: 1px solid #fff !important;
+  color: #fff !important;
+  width: 90%;
+}
+ 
+ 
+ .dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .submenu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  min-width: 180px;
+  z-index: 1000;
+  background: #fff;
+}
+
+.dropdown-submenu ul{
+    list-style-type: none;
+    padding: 0px;
+}
+
+/* Hover activates submenu */
+.dropdown-submenu:hover .submenu {
+  display: block;
+}
+
+/* JS toggle support */
+.dropdown-submenu.show .submenu {
+  display: block;
+}
+
+ 
+</style>
+ 
+      <!-- Header Css End Here -->
+      
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "WebSite",
+  "name": "goodwilldevelopers",
+  "url": "https://www.goodwilldevelopers.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.goodwilldevelopers.com/ongoing-projects.php{search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+    
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Goodwill Developers",
+  "alternateName": "goodwilldevelopers",
+  "url": "https://www.goodwilldevelopers.com/",
+  "logo": "https://www.goodwilldevelopers.com/assets/img/logo.png",
+  "sameAs": [
+    "https://www.facebook.com/goodwilldevelopers",
+    "https://www.instagram.com/goodwilldevelopers/",
+    "https://www.youtube.com/channel/UCe_GNGOK0P9E1PWzX9hBq2w",
+    "https://www.linkedin.com/company/goodwill-developers",
+    "https://twitter.com/Goodwill_Develo?t=eUxxhKnW676xXUuORaujLg&s=08"
+  ]
+}
+</script>
+
+<script>
+  // document.addEventListener("DOMContentLoaded", function() {
+  // // Redirect to youtube.com
+  //   window.location.href = "https://www.goodwilldevelopers.com";
+  // });
+</script>
+ 
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NX4N4D45');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H6ZVT203QN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-H6ZVT203QN');
+</script>
+<!-- Local Business Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  "name": "GoodwillDevelopers",
+  "image": "https://www.goodwilldevelopers.com/assets/img/logo.png",
+  "@id": "",
+  "url": "https://www.goodwilldevelopers.com",
+  "telephone": "27898551",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "8th Floor, Goodwill Excellency, Plot No. 2,",
+    "addressLocality": "Navi Mumbai",
+    "postalCode": "400705",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 19.0703728,
+    "longitude": 72.9980379
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "opens": "10:00",
+    "closes": "18:30"
+  },
+  "sameAs": [
+    "https://www.facebook.com/goodwilldevelopers",
+    "https://twitter.com/Goodwill_Develo?t=eUxxhKnW676xXUuORaujLg&s=08",
+    "https://www.instagram.com/goodwilldevelopers/",
+    "https://www.youtube.com/channel/UCe_GNGOK0P9E1PWzX9hBq2w",
+    "https://www.linkedin.com/company/goodwill-developers",
+    "https://www.goodwilldevelopers.com"
+  ] 
+}
+</script>
+
+
+<!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1623678771377342');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1623678771377342&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- open Graphs -->
+<!--     Facebook Meta Tags -->
+  <meta property="og:url" content="https://www.goodwilldevelopers.com">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Top Real Estate Builders and Developers In Navi Mumbai - Goodwill Developers">
+  <meta property="og:description" content="Goodwill Developers: Your Top Real Estate Company, Builders, and Developers in Navi Mumbai, Maharashtra. Discover premium residential and commercial properties in prime locations today.">
+  <meta property="og:image" content="https://goodwilldevelopers.com/assets/img/logo.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:domain" content="goodwilldevelopers.com">
+  <meta property="twitter:url" content="https://www.goodwilldevelopers.com">
+  <meta name="twitter:title" content="Top Real Estate Builders and Developers In Navi Mumbai - Goodwill Developers">
+  <meta name="twitter:description" content="Goodwill Developers: Your Top Real Estate Company, Builders, and Developers in Navi Mumbai, Maharashtra. Discover premium residential and commercial properties in prime locations today.">
+  <meta name="twitter:image" content="https://goodwilldevelopers.com/assets/img/logo.png">
+<!-- End Open graphs code -->
+
+
+
+ <script>
+document.addEventListener('DOMContentLoaded', function () {
+  const toggle = document.getElementById('ongoingProjectsLink');
+  const submenuParent = document.getElementById('ongoingSubmenu');
+
+  // Toggle submenu on click
+  toggle.addEventListener('click', function (e) {
+    e.preventDefault();
+    submenuParent.classList.toggle('show');
+  });
+
+  // Hide submenu when mouse leaves the submenu area
+  submenuParent.addEventListener('mouseleave', function () {
+    submenuParent.classList.remove('show');
+  });
+
+  // Optional: also close if you click outside
+  document.addEventListener('click', function (e) {
+    if (!submenuParent.contains(e.target)) {
+      submenuParent.classList.remove('show');
+    }
+  });
+});
+</script>
+
+ 
+   </head>
+   <body id="mainNav">
+    
+     <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NX4N4D45"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) --> 
+      <div id="smooth_scrl">
+      <!-- Navbar Starts Here -->
+      <header>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="index.php">
+                <img src="assets/img/logo.png" alt="Goodwill Developers Logo" draggable="false"
+                    class="img-fluid lazyload">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Mainnavbar"
+                aria-controls="Mainnavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="material-icons menu">menu</span>
+            </button>
+            <div class="collapse navbar-collapse" id="Mainnavbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link noactive" href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link noactive" href="about-us.php">About Us </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link noactive" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                            Projects <span class="material-symbols-outlined">expand_more</span>
+                        </a>
+                        <div class="dropdown-menu">
+                               <!--<a class="dropdown-item" href="ongoing-projects.php">Ongoing Projects</a>-->
+                               <div class="dropdown-submenu" id="ongoingSubmenu">
+                                  <a href="ongoing-projects.php" class="dropdown-item dropdown-toggle" id="ongoingProjectsLink">Ongoing Projects</a>
+                                  <ul class="submenu">
+                                    <li><a class="dropdown-item" href="https://www.goodwilldevelopers.com/wisteria.php">Goodwill Wisteria</a></li>
+                                    <li><a class="dropdown-item" href="https://www.goodwilldevelopers.com/bizhub.php">Goodwill Bizhub</a></li>
+                                    <!--<li><a class="dropdown-item" href="https://www.goodwilldevelopers.com/abode.php">Goodwill Abode</a></li>-->
+                                  </ul>
+                                </div>
+
+                               <a class="dropdown-item" href="completed-projects.php">Completed Projects</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link noactive" href="news-and-events.php">News & Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="https://www.goodwilldevelopers.com/blog/">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link noactive" href="contact-us.php">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+            <p class="call">
+                <a href="tel:02227898551">
+                    <img src="assets/img/callicon.png" class="img-fluid" alt="Call Now - Goodwill Developers"> 022 2789 8551
+                </a>
+            </p>
+        </div>
+    </nav>
+</header>      <!-- Navbar End Here -->
+      <section class="hmsec01 ptop">
+         <div id="hmslide" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+               <div class="carousel-item active">
+                  <img src="assets/img/hmslider/video.jpg" class="d-lg-block d-none w-100" alt="Goodwill Developers Completed Projects">
+                  <img src="assets/img/hmslider/videomobile.jpg" class="d-lg-none d-block w-100" alt="Goodwill Developers Completed Projects Mobile">
+                  <div class="obverlayu">
+                     <video autoplay="" class="d-lg-block d-none w-100" muted="" id="myVideo" autoplay="true" loop="true"  playsinline="" data-wf-ignore="true" data-object-fit="cover" data-autoplay="" muted="" loop="">
+                        <source src="assets/img/hmslider/logoSlider.mp4" type="video/mp4">
+                     </video>
+                     <video autoplay=""  class="d-lg-none d-block w-100" muted="" id="myVideo" autoplay="true" loop="true"  playsinline="" data-wf-ignore="true" data-object-fit="cover" data-autoplay="" muted="" loop="">
+                        <source src="assets/img/hmslider/logoSlidermob.mp4" type="video/mp4">
+                     </video>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <a href="wisteria.php">
+                     <img src="assets/img/westeria/slider/Wisteria-21-10-2026.webp" class="d-none d-lg-block w-100" alt="Residential Project Offering Spacious 3 & 4 BHK Apartments - Goodwill Wisteria Vashi">
+                  <img src="assets/img/westeria/slider/Wisteria-21-10-2026Mob.webp" class="d-lg-none d-block w-100" alt="Residential Project Offering Spacious 3 & 4 BHK - Goodwill Wisteria Vashi">
+                  </a>
+               </div>
+               <div class="carousel-item">
+                  <img src="assets/img/hmslider/01.webp" class="d-lg-block d-none w-100" alt="Goodwill Developers Completed Projects">
+                  <img src="assets/img/hmslider/mob01.webp" class="d-lg-none d-block w-100" alt="Goodwill Developers Completed Projects Mobile">
+               </div>
+               <div class="carousel-item">
+                  <a href="bizhub.php">
+                  <img src="assets/img/hmslider/bizhub-17-12-2025.webp" class="d-lg-block d-none w-100" alt="s BizHub Industrial, Commercial office Project - Goodwill Developer">
+                  <a href="bizhub.php">
+                  <img src="assets/img/hmslider/bizhub-mobile.webp" class="d-lg-none d-block w-100" alt="Goodwill Developers BizHub Boutique office Project Banner">
+                  </a>
+               </div>
+               <!--<div class="carousel-item">-->
+               <!--   <a href="abode.php">-->
+               <!--      <img src="assets/img/hmslider/03.webp" class="d-lg-block d-none w-100" alt="Abode Villa Project Tungrali, Lonavala - Goodwill Developers">-->
+               <!--      <img src="assets/img/hmslider/mob03.webp" class="d-lg-none d-block w-100" alt="Abode Villa Project Tungrali - Goodwill Developers ">-->
+               <!--   </a>-->
+               <!--</div>-->
+            </div>
+            <a class="carousel-control-prev" type="button" href="#hmslide" data-slide="prev">
+            <span class="material-symbols-outlined">chevron_left</span>
+            </a>
+            <a class="carousel-control-next" type="button" href="#hmslide" data-slide="next">
+            <span class="material-symbols-outlined">chevron_right</span>
+            </a>
+         </div>
+      </section>
+      <section class="hmsec02">
+         <div class="row mx-0 align-items-center">
+            <div class="col-lg-6 mt-lg-0 mt-3">
+               <div class="sec01">
+                  <!-- <div class="img">
+                     <img src="assets/img/26years.png" alt="26 Years Celebration - Goodwill Developers" class="img-fluid">
+                  </div> -->
+                  <h1 class="Montserrat reguler size36 clr1 text-uppercase mt-4 mb-md-4 mb-2">
+                     <!--Creating Spaces That Transcend The Ordinary-->
+                     Top Builders & Developers in Navi Mumbai Since 1997
+                  </h1>
+                  <p>
+                  Since our inception in 1997, Goodwill Developers has thrived as a prominent Real Estate Builder & Developer in Navi Mumbai and Lonavala. We have created spaces that cater to individuals from all walks of life. With a single vision to fulfill, the company strives hard to create fabulous spaces where every single square foot creates a sense of pride for its owners. With the passage of time, Goodwill Developers have created a niche for themselves in the ever-expanding real estate market in Navi Mumbai and Lonavala.<br>As a premier real estate company in Navi Mumbai, Goodwill Developers' commitment to excellence and customer satisfaction is unwavering. 
+                  </p>
+                  <a href="about-us.php">
+                  <button class="btn btnclr1 mt-md-5 mt-3">
+                  Explore More <span class="material-symbols-outlined">keyboard_arrow_right</span>
+                  </button>
+                  </a>
+               </div>
+            </div>
+            <div class="col-lg-6 p-0 ordchage">
+               <div class="img poistion-relative">
+                  <img src="assets/img/hmsec02.jpg" alt="BizHub lobby - Goodwill Developers" class="img-fluid">
+                  <p class="atisstim">Artist Impression</p>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section class="hmsec03">
+         <div id="ongoislider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+               <div class="carousel-item active">
+                  <a class="row mx-0 wisteria align-items-center" href="wisteria.php">
+                     <div class="col-lg-6 p-0">
+                        <div class="img position-relative">
+                           <img src="assets/img/wisteria-ongoing.jpg" alt=" Wisteria Ongoing - Goodwill Developers" class="img-fluid w-100 d-bock">
+                           <p class="atisstim left">Artist Impression</p>
+                        </div>
+                     </div>
+                     <div class="col-lg-6 mt-md-4 mt-3">
+                        <div class="secmid">
+                           <p class="clr2 reguler text-uppercase lettspa">
+                              <small>Ongoing Projects</small>
+                           </p>
+                           <div class="setrow">
+                              <div class="setcol01">
+                                 <div class="img mt-lg-4">
+                                    <img src="assets/img/Wisteria-logo.png" alt="Wisteria Logo - Goodwill Developers" class="img-fluid">
+                                 </div>
+                                 <p class="mt-lg-3 mt-3 mb-4">
+                                    <img src="assets/img/rera.png" alt=" MahaRERA Logo - Goodwill Developers" class="img-fluid">  MahaRERA Registration Number P51700052581
+                                 </p>
+                              </div>
+                              <div class="setcol01">
+                                 <p>
+                                 The breathtaking landmark offers a sublime paradise filled with indulgences and avenues to truly realize the life you aspire for.
+                                 </p>
+                                 <button class="btn btnclr2 mt-4">
+                                    Explore More <span class="material-symbols-outlined">keyboard_arrow_right</span>
+                                 </button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </a>
+               </div>
+               <div class="carousel-item">
+                  <a class="row mx-0 rizihub align-items-center" href="bizhub.php">
+                     <div class="col-lg-6 p-0">
+                        <div class="img position-relative">
+                           <img src="assets/img/bizhub-ongoing.jpg" alt="Bizhub Industrial units Comercial Space Boutique offices Ongoing - Goodwill Developers" class="img-fluid w-100 d-bock">
+                           <p class="atisstim left">Artist Impression</p>
+                        </div>
+                     </div>
+                     <div class="col-lg-6 mt-md-4 mt-3">
+                        <div class="secmid">
+                           <p class="clr2 reguler text-uppercase lettspa">
+                              <small>Ongoing Projects</small>
+                           </p>
+                           <div class="setrow">
+                              <div class="setcol01">
+                                 <div class="img mt-lg-4">
+                                    <img src="assets/img/bizblogo.png" alt="Bizhub Industrial units Logo - Goodwill Developers" class="img-fluid">
+                                 </div>
+                                 <p class="mt-lg-3 mt-3 mb-4">
+                                    <img src="assets/img/rera.png" alt=" MahaRERA Logo - Goodwill Developers" class="img-fluid">  MahaRERA Registration Number P51700031628
+                                 </p>
+                              </div>
+                              <div class="setcol01">
+                                 <p>
+                                    The landmark extends a horizon of success and plethora of scope to materialize your desires, dreams and ambition.
+                                 </p>
+                                 <button class="btn btnclr2 mt-4">
+                                 Explore More <span class="material-symbols-outlined">keyboard_arrow_right</span>
+                                 </button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </a>
+               </div>
+               <div class="carousel-item">
+                  <a class="row mx-0 abode align-items-center" href="abode.php">
+                     <div class="col-lg-6 p-0">
+                        <div class="img position-relative">
+                           <img src="assets/img/abode-ongoing.jpg" alt="Ongoing Abode Villa project at Tungrali, Lonavala - Goodwill Developers" class="img-fluid w-100 d-bock">
+                           <p class="atisstim left">Artist Impression</p>
+                        </div>
+                     </div>
+                     <div class="col-lg-6 mt-md-4 mt-3">
+                        <div class="secmid">
+                           <p class="clr2 reguler text-uppercase lettspa">
+                              <small>Ongoing Projects</small>
+                           </p>
+                           <div class="setrow">
+                              <div class="setcol01">
+                                 <div class="img mt-lg-4">
+                                    <img src="assets/img/abodelogo.png" alt="Goodwill Developers Abode villa Tungrali Lonovala Logo" class="img-fluid">
+                                 </div>
+                                 <p class="mt-lg-3 mt-3 mb-4">
+                                    <img src="assets/img/rera.png" alt="Goodwill Abode MahaRERA Logo" class="img-fluid">  MahaRERA Registration No. P52100018826
+                                 </p>
+                              </div>
+                              <div class="setcol01">
+                                 <p>
+                                    Located amidst the picturesque vistas of hilly Lonavala, Goodwill Abode is an address where tranquility becomes your neighbor and relaxation becomes a habit.
+                                 </p>
+                                 <button class="btn btnclr2 mt-4">
+                                 Explore More <span class="material-symbols-outlined">keyboard_arrow_right</span>
+                                 </button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </a>
+               </div>
+            </div>
+            <a class="carousel-control-prev" type="button" href="#ongoislider" data-slide="prev">
+            <span class="material-symbols-outlined">chevron_left</span>
+            </a>
+            <a class="carousel-control-next" type="button" href="#ongoislider" data-slide="next">
+            <span class="material-symbols-outlined">chevron_right</span>
+            </a>
+         </div>
+      </section>
+      <section class="hmsec04">
+         <div class="container">
+            <div class="col-lg-8 p-0 mx-auto">
+               <p class="text-md-center reguler clr3 lettspa text-uppercase mb-2">
+                  <small>Process</small>
+               </p>
+               <h3 class="Montserrat reguler size36 clr1 text-uppercase text-md-center">
+                  The Values<br>
+                  That Have Stood The Test Of Time
+               </h3>
+            </div>
+            <div class="row mt-md-5 mt-3">
+               <div class="col-lg-4 col-md-6 mb-md-5 mb-3">
+                  <div class="pr-md-5">
+                     <div class="img">
+                        <img src="assets/img/solution.png" alt="Solution - Goodwill Developers" class="img-fluid">
+                     </div>
+                     <h4 class="Montserrat reguler clr3 text-uppercase size20 my-2 my-md-3">
+                        Seamless Process
+                     </h4>
+                     <p>
+                        We’ve always placed supreme emphasis on ensuring that the customer’s buying journey is seamless and aligned all our team members to execute every effort with efficiency.
+                     </p>
+                  </div>
+               </div>
+               <div class="col-lg-4 col-md-6 mb-md-5 mb-3 midbrd">
+                  <div class="pr-md-5">
+                     <div class="img">
+                        <img src="assets/img/transperancy.png" alt="Transperancy - Goodwill Developers " class="img-fluid">
+                     </div>
+                     <h4 class="Montserrat reguler clr3 text-uppercase size20 my-2 my-md-3">
+                        Transparent Dealings
+                     </h4>
+                     <p>
+                        Our business model also follows transparency in our dealings so as to help the customers who are critical components in our passage to success.
+                     </p>
+                  </div>
+               </div>
+               <div class="col-lg-4 col-md-6 mb-md-5 mb-3">
+                  <div class="pr-md-5">
+                     <div class="img">
+                        <img src="assets/img/building.png" alt="Building - Goodwill Developers" class="img-fluid">
+                     </div>
+                     <h4 class="Montserrat reguler clr3 text-uppercase size20 my-2 my-md-3">
+                        Timely Delivery
+                     </h4>
+                     <p>
+                        Over the years, we’ve also established a reputation for timely delivery as it is the most crucial ingredient required to retain trust in customers. One of our greatest accomplishments lies in delivering Goodwill Unity as per time committed despite the hindrances caused by the Covid-19 pandemic. 
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section class="hmsec05">
+         <div class="container">
+           <div class="text-md-center mb-lg-5 mb-3">
+               <p class="reguler clr3 lettspa text-uppercase mb-2">
+                     <small>Testimonial</small>
+                  </p>
+                  <h3 class="Montserrat reguler size36 clr1 text-uppercase">
+                     We care<br>about our customer's
+                     experience too
+                  </h3>
+               </div>
+           <div class="mt-5 owlgallery owl-carousel owl-theme floorplan">
+               <div class="item" data-src="https://youtu.be/omjtM2py3yQ?si=OQRr8NjbzZwWPd_8">
+                  <div class="img">
+                     <img src="assets/img/testimonials/thumb01.jpg" alt="" class="img-fluid">
+                     <div class="overlay">
+                            <span class="material-symbols-outlined">play_circle</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="item" data-src="https://youtu.be/8ccqMwF4h0Y?si=jQzbz3hwUj-bVZ3-">
+                  <div class="img">
+                     <img src="assets/img/testimonials/thumb02.jpg" alt="" class="img-fluid">
+                     <div class="overlay">
+                            <span class="material-symbols-outlined">play_circle</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="item" data-src="https://youtu.be/_354JeYzN6E?si=b_bAuZ2brY9W9aSs">
+                  <div class="img">
+                     <img src="assets/img/testimonials/thumb03.jpg" alt="" class="img-fluid">
+                     <div class="overlay">
+                            <span class="material-symbols-outlined">play_circle</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Footer Start Here -->
+      <footer>
+   <div class="sec01" id="enquiryform">
+      <div class="container">
+         <p class="text-md-center reguler text-white lettspa text-uppercase">
+            <small>any inquiry</small>
+         </p>
+         <h3 class="Montserrat reguler size36 text-white text-uppercase text-md-center">
+            Feel Free To Connect With Us
+         </h3>
+         <div class="col-lg-10 mx-md-auto p-0">
+            <form id="footerForm">
+               <div class="row mt-lg-5 mt-3 justify-content-center">
+                  <div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
+                     <input type="text" class="px-2 py-lg-3 py-2 d-block" placeholder="Name" maxlength="50" onkeyup="this.value=this.value.replace(/[^a-zA-Z \n\r.]+/g, '');" name="name" id="name">
+                  </div>
+                  <div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
+                     <input type="tel" class="px-2 py-lg-3 py-2 d-block" placeholder="Phone" autocomplete="off" role="presentation" onkeyup="this.value=this.value.replace(/[^0-9]+/g,'');" onkeypress="if(this.value.length==10) return false;" name="mobile" id="mobile">
+                  </div>
+                  <div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
+                     <input type="email" class="px-2 py-lg-3 py-2 d-block" placeholder="Email" name="email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}" onkeyup="this.value=this.value.replace(/[^a-zA-Z@.[0-9] \n\r.]+/g, '');" id="email">
+                  </div>
+                  <div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
+                      <select class="px-2 py-lg-3 py-2 d-block" name="page" required="true">
+                          <option value="" selected="true" disabled="true">Select Project</option>
+                          <option value="wisteria"  >Goodwill Wisteria</option>
+                          <option value="bizhub" >Goodwill Bizhub </option>
+                          <!-- <option value="abode" >Goodwill Abode </option> -->
+                          <option value="general-enquiry">General Enquiry</option>
+                      </select>
+                     <!--<input type="email" class="px-2 py-lg-3 py-2 d-block" placeholder="Email" name="email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}" onkeyup="this.value=this.value.replace(/[^a-zA-Z@.[0-9] \n\r.]+/g, '');" id="email">-->
+                  </div>
+                  <div class="col-lg-12 mt-lg-5 mt-3 iaccept">
+                  <input type="checkbox" required name="checkbox" value="check" id="agree" />
+                  <span>I authorise Goodwill Developers & its representatives to contact me with updates and notifications via Email/SMS/What'sApp/Call. This will override DND/NDNC.</span>
+                  </div>
+                  <div class="col-lg-12 mt-lg-5 mt-3 text-center">
+                     <!--<input type="hidden" name="page" value="index"></input>-->
+                     <input type="hidden" name="source" value="enquiry"></input>
+                     <button type="submit" class="btn btnclr2 mx-md-auto" id="btn-contact">
+                     Submit <span class="material-symbols-outlined">keyboard_arrow_right</span>
+                     </button>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+   <div class="sec02">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-3">
+               <div class="pr-lg-5">
+                   <a  target="_blank" href='https://www.google.com/maps/place/Goodwill+Excellency/@19.0701968,72.9979887,18.53z/data=!4m6!3m5!1s0x3be7c171c6459775:0xfdf70dbc9425fafb!8m2!3d19.0703728!4d72.9980379!16s%2Fg%2F11qpp851hr?entry=ttu&g_ep=EgoyMDI1MDMxNi4wIKXMDSoASAFQAw%3D%3D'>
+                      <h6 class="medium Montserrat size20 mb-2 clr3">Corporate Office</h6>
+                      <p>
+                         8th Floor, "Goodwill Excellency", Plot No. 2,<br>Above Tanishq Showroom, Sector 17,<br>Vashi, Navi Mumbai-400705.
+                      </p>
+                       
+                   </a>
+               </div>
+                <div class="pr-lg-5 d-none">
+                    <p class="medium Montserrat mb-2 clr3">  Scan This QR Code And View The RERA Certificate</p>
+                    <div class="img w-50 mb-lg-0 mb-3">
+                         <img src="assets/img/rerabiz.jpg" alt="QR Code - Goodwill Bizhub  " class="img-fluid" draggable="false" loading="lazy">
+                    </div>
+                </div>
+                <div class="pr-lg-5 d-none">
+                    <p class="medium Montserrat mb-2 clr3">  Scan This QR Code And View The RERA Certificate</p>
+                    <div class="img w-50 mb-lg-0 mb-3">
+                         <img src="assets/img/reraabode.jpg" alt="Goodwill Abode Rera - Goodwill" class="img-fluid" draggable="false" loading="lazy">
+                    </div>
+                </div>
+                <div class="pr-lg-5 d-none">
+                    <p class="medium Montserrat mb-2 clr3">  Scan This QR Code And View The RERA Certificate</p>
+                    <div class="img w-50 mb-lg-0 mb-3">
+                         <img src="assets/img/rerawisteria.png" alt="Goodwill wisteria Rera - Goodwill" class="img-fluid" draggable="false" loading="lazy">
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-9">
+               <div class="row">
+                  <div class="col-lg-3 col-6">
+                     <h6 class="medium Montserrat size20 mb-2 clr3">Quick Links</h6>
+                     <ul>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="about-us.php">About Us</a></li>
+                        <li><a href="ongoing-projects.php">Projects</a></li>
+                        <li><a href="news-and-events.php">News & Events</a></li>
+                        <!-- <li><a href="#">Blog</a></li> -->
+                        <li><a href="contact-us.php">Contact Us</a></li>
+                       
+                     </ul>
+                  </div>
+                  <div class="col-lg-3 col-6">
+                     <h6 class="medium Montserrat size20 mb-2 clr3">Typology Page</h6>
+                     <ul>
+                        <li><a href="https://www.goodwilldevelopers.com/new-project-in-navi-mumbai.php">New Project in Navi Mumbai</a></li>
+                        <li><a href="https://www.goodwilldevelopers.com/flats-for-sale-in-navi-mumbai.php">Flats For Sale In Navi Mumbai</a></li>
+                        <li><a href="https://goodwilldevelopers.com/apartment-in-vashi.php">Apartment In Vashi</a></li>
+                      <li><a href="https://goodwilldevelopers.com/Property-in-Navi-Mumbai.php">Property in Navi Mumbai</a></li>
+                      <li><a href="https://goodwilldevelopers.com/flat-for-sale-in-vashi.php">flat for sale in vashi</a></li>
+                        <li><a href="https://goodwilldevelopers.com/Apartments-in-Navi-Mumbai.php">Apartments in Navi Mumbai</a></li>
+                        <li><a href="https://goodwilldevelopers.com/buy-flats-in-navi-mumbai.php">Buy flats in Navi Mumbai</a></li>
+                        <li><a href="https://goodwilldevelopers.com/property-in-turbhe.php">Property in Turbhe</a></li>
+                        <li><a href="https://goodwilldevelopers.com/property-in-vashi.php">Property in Vashi</a></li>
+                        <li><a href="https://goodwilldevelopers.com/3-bhk-flats-in-navi-mumbai.php">3 BHK Flats in Navi Mumbai</a></li>
+                        <li><a href="https://goodwilldevelopers.com/4-bhk-flats-in-navi-mumbai.php">4 BHK Flats in Navi Mumbai</a></li>
+                        <li><a href="https://goodwilldevelopers.com/5-bhk-flats-in-navi-mumbai.php">5 BHK Flats in Navi Mumbai</a></li>
+                        <li><a href="https://goodwilldevelopers.com/luxury-apartments-in-navi-mumbai.php">Luxury Apartment in Navi Mumbai</a></li>
+                        <li><a href="https://goodwilldevelopers.com/luxury-apartments-in-vashi.php">Luxury Apartment in Vashi</a></li>
+                        <li><a href="https://goodwilldevelopers.com/office-spaces-in-navi-mumbai.php">Office Spaces in Navi Mumbai</a></li>
+                        <li><a href="https://goodwilldevelopers.com/commercial-office-space-in-navi-mumbai.php">Commercial Office Spaces in Navi Mumbai</a></li>
+                     </ul>
+                  </div>
+                  <div class="col-lg-3 col-6">
+                     <h6 class="medium Montserrat size20 mb-2 clr3">Help Center</h6>
+                     <ul>
+                        <li><a href="faqs.php">FAQs</a></li>
+                        <!-- <li><a href="#">Terms & Conditions</a></li>-->
+                        <li><a href="privacy-policy.php">Privacy Policy</a></li>
+                        <li><a data-toggle="modal" href="#Disclaimer">Disclaimer</a></li>
+                        <li><a href="https://www.goodwilldevelopers.com/assets/pdf/SMC-goodwill-dwellingllp-june2024.pdf" target="_blank">SMC Report</a></li>
+                        
+                     </ul>
+                  </div>
+                  <div class="col-lg-3 mt-lg-0 mt-md-5 mt-3">
+                     <h6 class="medium Montserrat size20 mb-2 clr3">Follow Us</h6>
+                     <p>
+                        <a href="https://www.facebook.com/goodwilldevelopers" class="fa fa-facebook-square"  aria-hidden="true" target="_blank"></a>
+                        <a href="https://www.instagram.com/goodwilldevelopers/" class="fa fa-instagram"  aria-hidden="true" target="_blank"></a>
+                        <a href="https://www.linkedin.com/company/goodwill-developers" class="fa fa-linkedin"  aria-hidden="true" target="_blank"></a>
+                        <a href="https://twitter.com/Goodwill_Develo?t=eUxxhKnW676xXUuORaujLg&amp;s=08" class="fa fa-twitter"  aria-hidden="true" target="_blank"></a>
+                        <a href="https://www.youtube.com/channel/UCe_GNGOK0P9E1PWzX9hBq2w" class="fa fa-youtube"  aria-hidden="true" target="_blank"></a>
+                     </p>
+                     <div class="pr-lg-5 mt-5">
+                        <p class="medium Montserrat mb-2 clr3"> Scan the QR code to share your reviews</p>
+                        <div class="img w-50">
+                           <img src="https://goodwillbizhub.com/assets/img/review-qrcdoe.jpg" alt="Scan and share feedback - Goodwill Developers Bizhub " class="img-fluid" draggable="false" loading="lazy">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="sec03">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-6">
+               <p class="mb-0">
+                  @ Goodwill Developers 2026 All rights reserved
+               </p>
+            </div>
+            <div class="col-lg-6">
+               <p class="mb-0 text-lg-right">
+                  Designed & Developed by <a href="https://thoughtrains.com/thoughtinteract" class="clr1" target="_blank">Thoughtinteract</a>
+               </p>
+            </div>
+         </div>
+      </div>
+   </div>
+</footer>      <!-- Footer End Here -->
+      <!-- Comonfixcode Start Here -->
+      <a href="#" id="scroll" class="arrowdScroll" style="display:none;"><span class="material-symbols-outlined"> expand_less </span></a>
+
+ <!-- Disclaimer Modal Popup-->
+ <div class="modal fade" id="Disclaimer" tabindex="-1" role="dialog" aria-labelledby="Disclaimer-formTitle"
+     aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title size20 pl-2 pl-md-3" id="exampleModalLongTitle">DISCLAIMER</h5>
+                 <button type="button" class="close custom-close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+             <div class="modal-body d-flex flex-column">
+                <p>
+                    All specifications, drawings, amenities, facilities, parameters, etc., shown in this website are subject to change as per the approval from the respective authorities. The final discretion remains with the developers. All images are for representation purpose only.
+                </p>
+             </div>
+         </div>
+     </div>
+ </div>
+ <!-- EDisclaimer Modal Popup-->  
+
+ 
+ 
+ <!-- Download Brochure FORM MODAL-->
+ <div class="modal fade" id="DownloadBrochureform" tabindex="-1" role="dialog" aria-labelledby="enquiry-formTitle"
+     aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <p class="modal-title pl-2 pl-md-3 size24" id="exampleModalLongTitle">Download Brochure</p>
+                 <button type="button" class="close custom-close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+             <div class="modal-body d-flex flex-column">
+                 <div id=errmsg></div>
+                 <div id=msg></div>
+                 <form id="Brochureform">
+                     <div class="row">
+                         <div class="col-12 mb-3">
+                             <input type="text" class="px-2 py-2 d-block w-100" placeholder="Name" maxlength="50" name="name">
+                         </div>
+                         <div class="col-12 mb-3">
+                             <input type="email" class="px-2 py-2 d-block w-100" placeholder="Email" name="email">
+                         </div>
+                         <div class="col-12 mb-3">
+                             <input type="tel" class="px-2 py-2 d-block w-100" placeholder="Phone"  name="mobile">
+                         </div>
+                     </div>
+                     <div>
+                         <input type="hidden" name="source" value="brochure"></input>
+                         <input type="hidden" name="page" value="index"></input>
+                         <button type="submit" id="btn-modalPop" name="submit" value="enquiry" class="mt-2 btn btnclr1a" >Submit</button>
+                     </div>
+                 </form>
+             </div>
+         </div>
+     </div>
+ </div>
+ <!-- Download Brochure FORM MODAL-->  
+      <!-- Comonfixcode End Here -->
+      <!-- stikcyicon Start Here -->
+      <div class="enquiry-wrapper">
+    <div class="enquiry-box" onclick="window.open('tel:+91-02227898551')">
+        <div class="call-icon">
+            <img src="assets/img/icons/phone.svg" alt="Call Now - Goodwill Developers ">
+            <span class="mobvsisec">Call Now</span>
+        </div>
+        <div class="call-content">
+            <a href="tel:+91-02227898551">022 2789 8551</a>
+        </div>
+    </div>
+    <div class="enquiry-box">
+        <a href="#enquiryform" class="mail-icon smmothscr">
+            <img src="assets/img/icons/email.svg" alt="Enquiry Now - Goodwill Developers ">
+            <span class="mobvsisec">Enquiry Now</span>
+        </a>
+        <div class="mail-content">
+            <a href="#enquiryform" class="smmothscr">Enquiry</a>
+        </div>
+    </div>
+    <div class="enquiry-box" onclick="window.open('https://api.whatsapp.com/send?phone=918383838350&text=Hello,%20I%20am%20interested%20in%20the%20projects%20at%20Goodwill%20Developers.%20Kindly%20connect%20and%20let%20me%20know%20more%20about%20it')">
+        <div class="call-icon">
+            <img src="assets/img/icons/whatsapp.svg" alt="Whatsapp Now - Goodwill Developers">
+            <span class="mobvsisec">Whatsapp Now</span>
+        </div>
+        <div class="call-content">
+            <a href="#">8383838350</a>
+        </div>
+    </div>
+</div>
+      <!-- stikcyicon End Here -->
+      <!-- Footer Js Start Here -->
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.5.1/dist/simpleParallax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/js/lightgallery-all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.5.1/dist/simpleParallax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<script src="assets/js/smoothscrol.js"></script>
+<script src="assets/js/include.js?v=5"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.10/dist/sweetalert2.all.min.js"></script>
+<script src="https://aurumrealestate.in/public/assets/js/validation.js"></script>
+<script src="assets/js/validation.js"></script>
+   <script>
+    var _uf = _uf || {};
+    _uf.domain = "goodwilldevelopers.com";
+    _uf.utm_source_field = "utm_source"; // Default 'USOURCE'
+    _uf.utm_medium_field = "utm_medium"; // Default 'UMEDIUM'
+    _uf.utm_campaign_field = "utm_campaign"; // Default 'UCAMPAIGN'
+    _uf.utm_content_field = "utm_content"; // Default 'UCONTENT'
+    _uf.utm_term_field = "utm_term"; // Default 'UTERM'
+    _uf.initial_referrer_field = "initial_referrer"; // Default 'IREFERRER'
+    _uf.last_referrer_field = "last_referrer"; // Default 'LREFERRER'
+    _uf.initial_landing_page_field = "initial_landing_page"; // Default 'ILANDPAGE'
+    _uf.visits_field = "visits"; // Default 'VISITS' 
+   </script>
+   <script src="https://res.cloudinary.com/gaikarajay/raw/upload/v1654239405/js/push_utm_parameter_ge6ijm.js"></script>
+   <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "What’s the booking process and what documents are required for the same?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "We have a simple booking process that can be broken down into three steps:
+You have to pay 10% of the total cost
+You have to carry a photo ID, a residential proof and a cost sheet signed by the buyers
+The registration of Agreement for Sale will start once the booking process is done"
+    }
+  },{
+    "@type": "Question",
+    "name": "What are the documents that will be necessary to book a flat?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The following documents will be required:
+Signed application form
+Signed payment plan
+Signed unit plan and floor plan
+Self-attested PAN card/Form 60
+Aadhar Card
+Address Proof"
+    }
+  },{
+    "@type": "Question",
+    "name": "Can we combine two units into one unit?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, it can be done. The registration of the two units though will be done separately."
+    }
+  },{
+    "@type": "Question",
+    "name": "Can we resell or transfer the property?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The transfer/resale of property will be possible only after the OC has been received. In case you want to sell it before that, the booking shall be cancelled and transfer charges will be levied."
+    }
+  },{
+    "@type": "Question",
+    "name": "Are internal modifications allowed inside the apartments?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Internal modifications are not permitted in the apartments."
+    }
+  },{
+    "@type": "Question",
+    "name": "Is it possible to do the booking online?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, it’s possible to do the booking online. You can send the booking form along with the relevant documents through email and transfer the requisite amount in our designated RERA account."
+    }
+  },{
+    "@type": "Question",
+    "name": "How can one pay the property tax?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Property tax can be paid online on: portal.mcgm.gov.in."
+    }
+  },{
+    "@type": "Question",
+    "name": "What happens if the payment gets delayed?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Interest will be levied at the specified rate as per agreement."
+    }
+  }]
+}
+</script>      <!-- Footer Js End Here -->
+   <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"e1ed78a8d48942dcb3130b1ccddee8e5","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

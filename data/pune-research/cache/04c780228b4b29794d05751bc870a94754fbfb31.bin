@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tribeca Developers - Real Estate Developer in Delhi NCR, Gurugaon, Noida & Kolkata</title>
+<meta name="description" content="Tribeca Developers is india's leading real estate developer wide range of commercial and residential properties in Delhi NCR, Gurugaon, Noida & Kolkata">
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107787655-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107787655-1');
+</script>
+	   
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" integrity="sha512-4uGZHpbDliNxiAv/QzZNo/yb2FtAX+qiDb7ypBWiEdJQX8Pugp8M6il5SRkN8jQrDLWsh3rrPDSXRf3DwFYM6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css" integrity="sha512-GqP/pjlymwlPb6Vd7KmT5YbapvowpteRq9ffvufiXYZp0YpMTtR9tI6/v3U3hFi1N9MQmXum/yBfELxoY+S1Mw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="css/owl.carousel.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.min.css" integrity="sha512-GQz6nApkdT7cWN1Cnj/DOAkyfzNOoq+txIhSEK1G4HTCbSHVGpsrvirptbAP60Nu7qbw0+XlAAPGUmLU2L5l4g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="css/owl.theme.default.min.css"> -->
+    <link rel="stylesheet" href="css/jquery.smartmenus.bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" integrity="sha512-4e743y/yh7ffjixFn2DBKvAA0j02JNn0iQ/bIq6usesbp6TRPcZFW0XHnwfSnpTtsTmMGh0UmvbXY26aJfIb0Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="css/animate.css"> -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="shortcut icon" href="images/favicon.png">
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        
+<!-- Facebook Pixel Code
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1979928408928628');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1979928408928628&ev=PageView&noscript=1"
+/></noscript>
+ End Facebook Pixel Code -->
+
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1546811338732797');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1546811338732797&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+        
+        <style>
+.sn_footer {display: block;}
+/* Extra Small Devices, Phones */
+.sn_playvideo_icon {top: calc(50% - 25px);left: calc(50% - 25px);border-radius: 50px;height: 50px;width: 50px;}
+
+ 
+
+</style>
+</head>
+
+<body>
+ 
+
+<!-- ###################################################################### -->
+ <!-- ##############_____________NEW NAVBAR START____________############## -->
+ <header class="navmenu">
+  <div class="container">
+    <div class="navmenu__container">
+      <a class="navmenu__brand" href="http://www.tribecadevelopers.com/">
+        <img style="height:23px;" src="http://www.tribecadevelopers.com/images/TribecaLogo.svg" class="img-responsive" alt="Tribeca Developers">
+      </a>
+      <button class="navmenu__toggle" id="navToggle">&#9776;</button>
+      <div class="navmenu__menu" id="navMenu">
+        <ul class="navmenu__list">
+          <li class="navmenu__item navmenu__item--has-submenu">
+            <a href="#" class="navmenu__link">ABOUT <i class="fa fa-angle-down"></i></a>
+            <ul class="navmenu__submenu">
+              <li class="navmenu__submenu-item"><a href="http://www.tribecadevelopers.com/about.php" class="navmenu__submenu-link">COMPANY</a></li>
+              <li class="navmenu__submenu-item"><a href="http://www.tribecadevelopers.com/advisory.php" class="navmenu__submenu-link">ADVISORS</a></li>
+              <li class="navmenu__submenu-item"><a href="http://www.tribecadevelopers.com/leadership.php" class="navmenu__submenu-link">LEADERSHIP</a></li>
+            </ul>
+          </li>
+
+          <li class="navmenu__item navmenu__item--has-submenu">
+            <a href="#" class="navmenu__link">PROJECTS <i class="fa fa-angle-down"></i></a>
+            <ul class="navmenu__submenu">
+              <li class="navmenu__submenu-item navmenu__item--has-submenu">
+                <a href="#" class="navmenu__submenu-link mm-main">New Launches <i class="fa fa-angle-down"></i></a>
+                <ul class="navmenu__submenu">
+               
+                 <li class="navmenu__submenu-item"><a href="http://www.tribecadevelopers.com/residential-project-in-pune/theeverett/" target="_blank" class="navmenu__submenu-link"> The Everett, Pune</a></li>
+                  <li class="navmenu__submenu-item"><a href="http://www.tribecadevelopers.com/trumptowers-hyderabad/" target="_blank" class="navmenu__submenu-link">  Trump Towers, Hyderabad</a></li>
+                
+                  <!--<li class="navmenu__submenu-item"><a href="http://www.tribecadevelopers.com/colivingl-project-in-mumbai/triliveandheri" target="_blank" class="navmenu__submenu-link">Trilive, Andheri</a></li>
+                  -->
+                </ul>
+              </li>
+
+              <li class="navmenu__submenu-item navmenu__item--has-submenu">
+                <a href="#" class="navmenu__submenu-link mm-main">Residential <i class="fa fa-angle-down"></i></a>
+                <ul class="navmenu__submenu">
+                  <li class="navmenu__submenu-item"><a href="http://www.tribecadevelopers.com/trumpresidences-gurgaon" target="_blank" class="navmenu__submenu-link">Trump Residences, Gurgaon</a></li>
+                  <li class="navmenu__submenu-item"><a href="http://www.tribecadevelopers.com/trump-tower-delhincr.php" class="navmenu__submenu-link">Trump Towers, Delhi NCR</a></li>
+                   <li class="navmenu__submenu-item"><a href="http://www.tribecadevelopers.com/trump-tower-kolkata.php" class="navmenu__submenu-link">Trump Tower, Kolkata</a></li>
+                  <li class="navmenu__submenu-item"><a href="https://thearkvoyage.com/" class="navmenu__submenu-link" target="_blank">The Ark, Pune</a></li>
+                <!--  <li class="navmenu__submenu-item"><a href="http://www.tribecadevelopers.com/residential-project-in-pune/yooone-pune" target="_blank" class="navmenu__submenu-link">Yoo One, Pune</a></li>-->
+                  <li class="navmenu__submenu-item"><a href="http://www.tribecadevelopers.com//residential-project-in-mumbai/thedge-mumbai" target="_blank" class="navmenu__submenu-link">The Edge, Mumbai</a></li>
+                  
+                </ul>
+              </li>
+
+              <li class="navmenu__submenu-item navmenu__item--has-submenu">
+                <a href="#" class="navmenu__submenu-link mm-main">Commercial & Retail <i class="fa fa-angle-down"></i></a>
+                <ul class="navmenu__submenu">
+                  <li class="navmenu__submenu-item"><a href="http://www.tribecadevelopers.com/commercial-project-in-pune/trumpworldcenterpune/" target="_blank" class="navmenu__submenu-link">Trump World Center, Pune</a></li>
+                  <li class="navmenu__submenu-item"><a href="http://www.tribecadevelopers.com/commercial-project-in-pune/tribecahighstreet" target="_blank" class="navmenu__submenu-link">Tribeca Highstreet, Pune</a></li>
+                </ul>
+              </li>
+
+              <li class="navmenu__submenu-item navmenu__item--has-submenu">
+                <a href="#" class="navmenu__submenu-link mm-main">Managed Living <i class="fa fa-angle-down"></i></a>
+                <ul class="navmenu__submenu">
+                  <li class="navmenu__submenu-item"><a href="http://www.tribecadevelopers.com/colivingl-project-in-mumbai/triliveandheri" target="_blank" class="navmenu__submenu-link">Trilive, Andheri</a></li>
+                </ul>
+              </li>
+
+              <li class="navmenu__submenu-item navmenu__item--has-submenu">
+                <a href="#" class="navmenu__submenu-link mm-main">Upcoming Projects <i class="fa fa-angle-down"></i></a>
+                <ul class="navmenu__submenu">
+                  <li class="navmenu__submenu-item"><a href="https://www.tribecadevelopers.com/trumptowers-hyderabad/" target="_blank" class="navmenu__submenu-link">Trump Towers, Hyderabad</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+          <li class="navmenu__item navmenu__item--has-submenu">
+            <a href="#" class="navmenu__link">TRUMP <i class="fa fa-angle-down"></i></a>
+            <ul class="navmenu__submenu">
+              <li class="navmenu__submenu-item"><a href="http://www.tribecadevelopers.com/tribeca-trump.php" class="navmenu__submenu-link">TRIBECA+TRUMP</a></li>
+              <li class="navmenu__submenu-item"><a href="http://www.tribecadevelopers.com/trump-legacy.php" class="navmenu__submenu-link">THE TRUMP LEGACY</a></li>
+            </ul>
+          </li>
+
+          <li class="navmenu__item"><a href="http://www.tribecadevelopers.com/press.php" class="navmenu__link">MEDIA</a></li>
+           <li class="navmenu__item"><a href="http://www.tribecadevelopers.com/esg.php" class="navmenu__link">ESG</a></li>
+          <li class="navmenu__item"><a href="http://www.tribecadevelopers.com/careers.php" class="navmenu__link">CAREERS</a></li>
+          <li class="navmenu__item"><a href="http://www.tribecadevelopers.com/blog" class="navmenu__link">BLOG</a></li>
+          <li class="navmenu__item active"><a href="http://www.tribecadevelopers.com//contact.php" class="navmenu__link">CONTACT US</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+ <!-- ##############______________NEW NAVBAR END_____________############## -->
+ <!-- ##################################################################### -->
+
+
+
+
+<section class="sn_hSlider">
+  <div class="container">
+    <div id="sn_home_slider" class="owl-carousel owl-theme fadeOut" role="slider" style="z-index:100;">
+     <div class="item"> <img src="images/tribeca-website-banner-12-august-2026.jpg" class="fitImg" alt="tribeca website banner"> </div>
+          <div class="item"> <img src="images/tribeca-website banner-23-july26.jpeg" class="fitImg" alt="tribeca website banner"> </div>
+
+       <div class="item"> <img src="images/tribecadevelopers-crafted-with-passion.jpg" class="fitImg" alt="Crafted with passion"> </div>
+      <div class="item"> <img src="images/tribecadevelopers-the-largest-developer-of-trump.jpg" class="fitImg" alt="The Largest Developer of Trump"> </div>
+<!--      <div class="item"> <img src="images/tribecadevelopers-the-largest-developer-2024.jpg" class="fitImg" alt="The Largest Developer"> </div>
+-->      <div class="item"> <img src="images/tribecadevelopers-developer-of-the-world.jpg" class="fitImg" alt="Developer of the World"> </div>
+      <div class="item"> <img src="images/tribecadevelopers-the-developer-of-pune.jpg" class="fitImg" alt="The Developer of Pune"> </div>
+    </div>
+  </div>
+  
+  <!-- SLIDER FOR MOBILE DEVICES -->
+  
+  <div id="sn_home_slider1" class="owl-carousel owl-theme fadeOut" role="slider" style="z-index:200;">
+       <div class="item"> <a class="sn_imgcontentwrap" style="display:block; background:url(images/tribeca-website-banner-12-august-2026-mob.jpg);" href="javascript:void(0)"> </a> </div>
+       <div class="item"> <a class="sn_imgcontentwrap" style="display:block; background:url(images/tribeca-website-banner-23-july26-mob.jpeg);" href="javascript:void(0)"> </a> </div>
+
+     <div class="item"> <a class="sn_imgcontentwrap" style="display:block; background:url(images/tribecadevelopers-crafted-with-passion-mobile.jpg);" href="javascript:void(0)"> </a> </div>
+    <div class="item"> <a class="sn_imgcontentwrap" style="display:block; background:url(images/tribecadevelopers-the-largest-developer-of-trump-mobile.jpg);" href="javascript:void(0)"> </a> </div>
+<!--    <div class="item"> <a class="sn_imgcontentwrap" style="display:block; background:url(images/tribecadevelopers-the-largest-developer-2024-mobile.jpg);" href="javascript:void(0)"> </a> </div>
+-->    <div class="item"> <a class="sn_imgcontentwrap" style="display:block; background:url(images/tribecadevelopers-developer-of-the-world-mobile.jpg);" href="javascript:void(0)"> </a> </div>
+    <div class="item"> <a class="sn_imgcontentwrap" style="display:block; background:url(images/tribecadevelopers-the-developer-of-pune-mobile.jpg);" href="javascript:void(0)"> </a> </div>
+  </div>
+  <!-- #sn_home_slider1 -->
+  </div>
+</section>
+ 
+<section class="sn_page_content">
+  <div class=" sn_greybg sn_imgright slight_spacing">
+    <div class="container">
+    <div class="fist-vidoe">
+    
+      <div class="row">
+        <div class="col-md-5 revealanm">
+          <div class="sn_feat_text">
+            <h2>Featured Project</h2>
+            <p>Nestled in the vibrant heart of Parel, rises The Trophy Property of Mumbai, The Edge. Experience luxury like never before, surrounded by the infinite views of the Arabian Sea. Welcome to an epitome of unrivaled sophistication and timeless elegance.</p>
+            
+            </div>
+        </div>
+        <div class="col-md-7 revealanm">
+          <div class="featured-Vidoes vidoe-mob-sp">
+            <video class="my_Video" poster="images/featured-thedge-mumbai-poster-oct.jpg" id="my-video" controls>
+               <source src="videos/video-14oct-2025.mp4" type="video/mp4"> 
+              Your browser does not support the video tag. </video>
+          </div>
+           <div class="text-center"><a href="https://www.tribecadevelopers.com/residential-project-in-mumbai/thedge-mumbai/" class="btn btn-lg btn-black mt-3">Know More</a></div>
+        </div>
+      </div>
+      
+       </div>
+    </div>
+  </div>
+  
+ <!-- <div class="slight_spacing Boosts_Tribeca">
+    <div class="container"> 
+       <div class="row">
+        <div class="col-md-5 revealanm col-sm-push-7 ">
+          <div class="sn_feat_text">
+            <h2>Trump's Return Boosts Tribeca Developers</h2>
+            <p>Trump's Return Boosts Tribeca Developers.</p>
+            
+          </div>
+        </div>
+        <div class="col-md-7 revealanm col-sm-pull-5">
+           <a class="popup-video" data-fancybox="" href="https://www.youtube.com/watch?v=5EVCXTXkqzA"> 
+           <div class="play-now"><i class="fa fa-play" aria-hidden="true"></i> </div>
+           <figure><img src="images/return-boosts-tribeca-poster.jpg" class="img-responsive"> </figure>
+       </a>
+        </div>
+      </div>
+      
+      
+      
+    </div>
+  </div> -->
+  
+  
+  
+  
+  <div class="slight_spacing sn_imgright trump-trib">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 revealanm col-sm-push-7 ">
+          <div class="sn_feat_text">
+            <h2>Trump + Tribeca : Elevating Excellence</h2>
+            <p>The partnership of Tribeca and the globally renowned Trump Brand spans over a decade and has yielded the largest portfolio of Trump properties in India, marrying international standards with local finesse. Together, Tribeca & Trump are reshaping luxury real estate on a global scale.</p>
+            
+          </div>
+        </div>
+        <div class="col-md-7 revealanm col-sm-pull-5">
+          <div class="video-responsive vidoe-mob-sp">
+            <video class="my_Video" poster="images/trump-tribeca-video-poster.jpg" id="myVideo1" controls>
+              <source src="videos/trump-tribeca-video.mp4" type="video/mp4">
+              Your browser does not support the video tag. </video>
+          </div>
+           <div class="text-center"><a href="tribeca-trump.php" class="btn btn-lg btn-black mt-3">Know More</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="sn_featsection sn_greybg sn_imgright Rooftop_Terrace">
+    <div class="container"> 
+      <div class="row">
+        <div class="col-md-12 revealanm">
+          <div class="sn_feat_text">
+            <h2> Developing The World's Largest Rooftop Terrace </h2>
+            <p>At Tribeca, each project is meticulously crafted to ensure that it is the standout project in the city. The Ark serves as a testament to this, with its upcoming distinction as the world's largest rooftop terrace, poised not only to elevate the project but to also place Pune firmly on the global map.</p>
+            <div class="banner video-responsive vidoe-mob-sp mt-5">
+        <video  class="terrace-the-ark" width="100%" id="terracePageVideo" poster="images/terrace-the-ark-poster.jpg" autoplay loop muted="" playsinline="" src="videos/terrace-the-ark.mp4">
+          
+        </video>
+    </div>
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="sn_featsection  sn_main_news sn_imgright">
+    <div class="container">
+    
+      <div class="row">
+        <div class="col-md-6 revealanm">
+          <div class="sn_feat_text">
+            <h2>Recent News</h2>
+          </div>
+        </div>
+        <div class="col-md-6 revealanm">
+          <div class="sn_recnewswrap">
+            <ul class="sn_newslist">
+                <li class="sn_newsitem">
+    <a class="sn_newslink" href="https://www.constructiontechnology.in/news/Real_Estate/Maharashtra_Property_Registrations_Rise_124_in_AprilAugust" target="_blank">Maharashtra Property Registrations Rise 12.4% in April–August</a>
+    <p class="sn_puplisher">Construction Technology Today</p>
+    <time>28 Sep 2026</time>
+  </li>
+         
+  <li class="sn_newsitem">
+    <a class="sn_newslink" href="https://www.mgsarchitecture.in/building-materials-products/facades/facades-are-reshaping-luxury-living-in-india.html" target="_blank">Façades Are Reshaping Luxury Living in India</a>
+    <p class="sn_puplisher">MGS Architecture</p>
+    <time>24 Sep 2026</time>
+  </li>
+ 
+  <li class="sn_newsitem">
+    <a class="sn_newslink" href="https://nayamaharashtra.com/mumbai-news/mumbai-redevelopment-pipeline-may-unlock-59000-homes" target="_blank">Mumbai Redevelopment Pipeline Could Unlock 59,000 Homes Worth ₹1.5 Lakh Crore by 2031</a>
+    <p class="sn_puplisher">Naya Maharashtra</p>
+    <time>18 Sep 2026</time>
+  </li>
+  <li class="sn_newsitem">
+    <a class="sn_newslink" href="https://www.rprealtyplus.com/news-views/maharashtra-property-registrations-rise-124-in-april-august-2026-126859.html" target="_blank">Maharashtra Property Registrations Rise 12.4% in April-August 2026</a>
+    <p class="sn_puplisher">Realty Plus</p>
+    <time>18 Sep 2026</time>
+  </li>
+  <li class="sn_newsitem">
+    <a class="sn_newslink" href="https://therealtytoday.com/news/property-price/maharashtra-records-124-rise-in-property-registrations-in-april-august-2026-mumbai-and-pune-lead/" target="_blank">Maharashtra Records 12.4% Rise in Property Registrations in April-August 2026, Mumbai and Pune Lead</a>
+    <p class="sn_puplisher">The Realty Today</p>
+    <time>18 Sep 2026</time>
+  </li>
+                
+            </ul>
+            <a class="btn btn-lg btn-black mt-3" href="press.php">Read More</a> </div>
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+  
+</section>
+
+<style>
+.featured-Vidoes .my_Video { width:60%;}
+.featured-Vidoes{text-align: center;}
+.fist-vidoe{ width:850px; margin:0 auto} 
+@media (max-width: 768px) {
+.featured-Vidoes .my_Video { width:85%}	
+.fist-vidoe{ width:auto} 	
+}
+
+</style>
+
+
+
+<footer class="sn_footer">
+  <div class="container">
+    <ul class="sn_social list-inline">
+      <li><a href="https://www.linkedin.com/company/tribeca-developers/" target="_blank" class="footer-social"><img src="images/linkedin.svg"></a></li>
+      <li><a href="https://www.instagram.com/tribecadevelopers/" target="_blank" class="footer-social"><img src="images/instagram.svg"></a></li>
+      <li><a href="https://www.facebook.com/Tribeca-Developers-1956908617896201/" target="_blank" class="footer-social"><img src="images/facebook.svg"></a></li>
+     <!-- <li><a href="https://www.threads.net/@tribecadevelopers" target="_blank" class="footer-social"><img src="images/threads-logo.png"></a></li>-->
+      <li><a href="https://www.youtube.com/@tribecadevelopers" target="_blank" class="footer-social"><img src="images/youtube.svg"></a></li>
+      <!--<li><a href="https://twitter.com/lifeattribeca" target="_blank" class="footer-social"><img src="images/twitter.svg"></a></li>-->
+      <li><a href="privacypolicy.php" class="bt-PP"> Privacy Policy </a></li>
+    </ul>
+    <p class="small mb0">Exclusive Trump representative in India. Copyright 2026 Tribeca. All rights reserved.</p>
+  </div>
+</footer>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js" integrity="sha512-YHQNqPhxuCY2ddskIbDlZfwY6Vx3L3w9WRbyJCY81xpqLmrM6rL2+LocBgeVHwGY9SXYfQWJ+lcEWx1fKS2s8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+    <!-- <script type="text/javascript" src="js/jquery.min.js"></script> -->
+	<script type="text/javascript" src="js/scrollreveal.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<!-- <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
+	<script type="text/javascript" src="js/jquery.smartmenus.js"></script>
+	<script type="text/javascript" src="js/jquery.smartmenus.bootstrap.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js" integrity="sha512-lo4YgiwkxsVIJ5mex2b+VHUKlInSK2pFtkGFRzHsAL64/ZO5vaiCPmdGP3qZq1h9MzZzghrpDP336ScWugUMTg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<!-- <script type="text/javascript" src="js/owl.carousel.min.js"></script> -->
+	<script type="text/javascript" src="js/modernizr-custom.js"></script>
+	<script type="text/javascript" src="js/custom.js"></script>
+
+
+		<script>
+              window.sr = ScrollReveal();
+              // Add class to <html> if ScrollReveal is supported
+              // Note: this method is deprecated, and only works in version 3
+              if (sr.isSupported()) {
+                document.documentElement.classList.add('sr');
+              }
+              var revealanmvar = {
+                reset: false,
+                origin   : "bottom",
+                distance : '1px',
+                duration : 800,
+                delay    : 200,
+                scale    : 0
+              }
+              sr.reveal(".revealanm", revealanmvar);
+        </script> 
+<!-- ############################################################################################ -->
+<!-- ############################################################################################ -->
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+            if ($(window).width() > 767) {
+              $(function(){
+              $(".dropdown").hover(            
+                      function() {
+                          $('.dropdown-menu', this).stop( true, true ).fadeIn("fast");
+                          $(this).toggleClass('open');
+                          $('b', this).toggleClass("caret caret-up");                
+                      },
+                      function() {
+                          $('.dropdown-menu', this).stop( true, true ).fadeOut("fast");
+                          $(this).toggleClass('open');
+                          $('b', this).toggleClass("caret caret-up");                
+                      });
+              });
+           
+
+
+              }
+
+              if ($(window).resize() > 767) {
+              $(function(){
+              $(".dropdown").hover(            
+                      function() {
+                          $('.dropdown-menu', this).stop( true, true ).fadeIn("fast");
+                          $(this).toggleClass('open');
+                          $('b', this).toggleClass("caret caret-up");                
+                      },
+                      function() {
+                          $('.dropdown-menu', this).stop( true, true ).fadeOut("fast");
+                          $(this).toggleClass('open');
+                          $('b', this).toggleClass("caret caret-up");                
+                      });
+              });
+           
+
+
+              }
+          });
+        </script> 
+
+<!-- ############################################################################################ -->
+<!-- ############################################################################################ -->
+<!-- ACCORDION DROPDOWN HEADER MENU START-->
+<script>
+  $(function() {
+    var Accordion = function(el, multiple) {
+        this.el = el || {};
+        this.multiple = multiple || false;
+
+         
+        var links = this.el.find('.dropdown-menu__link');
+         
+        links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
+    }
+
+    Accordion.prototype.dropdown = function(e) {
+        var $el = e.data.el;
+            $this = $(this),
+            $next = $this.next();
+
+        $next.slideToggle();
+        $this.parent().toggleClass('isOpen');
+
+        if (!e.data.multiple) {
+            $el.find('.dropdown-menu__submenu').not($next).slideUp().parent().removeClass('isOpen');
+        };
+    }   
+
+    var accordion = new Accordion($('.dropdown-accordion'), false);
+});
+</script> 
+<!-- ACCORDION DROPDOWN HEADER MENU END-->
+
+<!-- ############################################################################################ -->
+<!-- ############################################################################################ -->
+<!-- NEW DROPDOWN MENU JS START  -->
+<script>
+    const navToggle = document.getElementById("navToggle");
+  const navMenu = document.getElementById("navMenu");
+
+  navToggle?.addEventListener("click", () => {
+    navMenu.classList.toggle("navmenu__menu--open");
+    navToggle.textContent = navMenu.classList.contains("navmenu__menu--open") ? "✖" : "☰";
+  });
+
+   
+  document.querySelectorAll(".navmenu__item--has-submenu > .navmenu__link").forEach(link => {
+    link.addEventListener("click", e => {
+      if (window.innerWidth < 992) {
+        e.preventDefault();
+        const parent = link.parentElement;
+        parent.classList.toggle("isOpen");
+      }
+    });
+  });
+
+   
+  document.querySelectorAll(".navmenu__item--has-submenu").forEach(item => {
+    item.addEventListener("mouseenter", () => {
+      if (window.innerWidth >= 992) {
+        item.classList.add("isOpen");
+      }
+    });
+    item.addEventListener("mouseleave", () => {
+      if (window.innerWidth >= 992) {
+        item.classList.remove("isOpen");
+      }
+    });
+  });
+</script>
+<!-- NEW DROPDOWN MENU JS END  -->
+
+<!-- ############################################################################################ -->
+<!-- ############################################################################################ -->
+
+<!-- Google Code for Remarketing Tag --> 
+<!--------------------------------------------------
+Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+---------------------------------------------------> 
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 831480368;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script> 
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;"> <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/831480368/?guid=ON&amp;script=0"/> </div>
+</noscript>
+
+<!-- Google Code for Remarketing Tag --> 
+<!--------------------------------------------------
+Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+---------------------------------------------------> 
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 831467602;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script> 
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;"> <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/831467602/?guid=ON&amp;script=0"/> </div>
+</noscript>
+
+<!-- Google Code for Remarketing Tag --> 
+<!--------------------------------------------------
+Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+---------------------------------------------------> 
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 831467434;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script> 
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;"> <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/831467434/?guid=ON&amp;script=0"/> </div>
+</noscript>
+ 
+ 
+<script>
+var video1 = document.getElementById("my-video");
+var video2 = document.getElementById("myVideo1");
+var isScrolling;
+
+window.addEventListener('scroll', function() {
+  // Clear the timeout to prevent rapid firing of scroll events
+  clearTimeout(isScrolling);
+
+  // Set a timeout to pause the videos after scrolling stops for a certain delay
+  isScrolling = setTimeout(function() {
+    video1.pause();
+    video2.pause();
+  }, 80); // Adjust the delay as needed
+});
+ 
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+<title>Home - Magarpattacity</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="https://magarpattacity.com/wp-content/themes/catch-box/style.css" />
+<link rel="stylesheet" type="text/css" media="all" href="https://magarpattacity.com/wp-content/themes/catch-box/responsivemobilemenu.css" />
+<link rel="pingback" href="https://magarpattacity.com/xmlrpc.php" />
+<link rel="icon" type="image/png" sizes="16x16" href="https://magarpattacity.com/wp-content/themes/catch-box/images/favicon-16x16.png">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"> -->
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v23.1 - https://yoast.com/wordpress/plugins/seo/ -->
+	<link rel="canonical" href="https://magarpattacity.com/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Home - Magarpattacity" />
+	<meta property="og:url" content="https://magarpattacity.com/" />
+	<meta property="og:site_name" content="Magarpattacity" />
+	<meta property="article:modified_time" content="2026-04-01T11:51:52+00:00" />
+	<meta property="og:image" content="https://www.magarpattacity.com/wp-content/uploads/2013/12/magarpatta2.png" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://magarpattacity.com/","url":"https://magarpattacity.com/","name":"Home - Magarpattacity","isPartOf":{"@id":"https://magarpattacity.com/#website"},"primaryImageOfPage":{"@id":"https://magarpattacity.com/#primaryimage"},"image":{"@id":"https://magarpattacity.com/#primaryimage"},"thumbnailUrl":"https://www.magarpattacity.com/wp-content/uploads/2013/12/magarpatta2.png","datePublished":"2013-12-04T11:27:52+00:00","dateModified":"2026-04-01T11:51:52+00:00","breadcrumb":{"@id":"https://magarpattacity.com/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://magarpattacity.com/"]}]},{"@type":"ImageObject","inLanguage":"en-US","@id":"https://magarpattacity.com/#primaryimage","url":"https://www.magarpattacity.com/wp-content/uploads/2013/12/magarpatta2.png","contentUrl":"https://www.magarpattacity.com/wp-content/uploads/2013/12/magarpatta2.png"},{"@type":"BreadcrumbList","@id":"https://magarpattacity.com/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home"}]},{"@type":"WebSite","@id":"https://magarpattacity.com/#website","url":"https://magarpattacity.com/","name":"Magarpattacity","description":"","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://magarpattacity.com/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel="alternate" type="application/rss+xml" title="Magarpattacity &raquo; Feed" href="https://magarpattacity.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Magarpattacity &raquo; Comments Feed" href="https://magarpattacity.com/comments/feed/" />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/magarpattacity.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.4.13"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83e\udef1\ud83c\udffb\u200d\ud83e\udef2\ud83c\udfff","\ud83e\udef1\ud83c\udffb\u200b\ud83e\udef2\ud83c\udfff")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://magarpattacity.com/wp-includes/css/dist/block-library/style.min.css?ver=6.4.13' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}body .is-layout-grid{display: grid;}body .is-layout-grid > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='contact-form-7-css' href='https://magarpattacity.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.9.8' type='text/css' media='all' />
+<link rel='stylesheet' id='megamenu-css' href='https://magarpattacity.com/wp-content/uploads/maxmegamenu/style.css?ver=a32e25' type='text/css' media='all' />
+<link rel='stylesheet' id='dashicons-css' href='https://magarpattacity.com/wp-includes/css/dashicons.min.css?ver=6.4.13' type='text/css' media='all' />
+<link rel='stylesheet' id='fancybox-css' href='https://magarpattacity.com/wp-content/plugins/easy-fancybox/fancybox/1.5.4/jquery.fancybox.min.css?ver=6.4.13' type='text/css' media='screen' />
+<link rel='stylesheet' id='lightboxStyle-css' href='https://magarpattacity.com/wp-content/plugins/lightbox-plus/css/blackbox/colorbox.css?ver=2.6' type='text/css' media='screen' />
+<script type="text/javascript" src="https://magarpattacity.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-content/plugins/simple-scroll-to-top/js/backttoTop.js?ver=6.4.13" id="newscript-js"></script>
+<link rel="https://api.w.org/" href="https://magarpattacity.com/wp-json/" /><link rel="alternate" type="application/json" href="https://magarpattacity.com/wp-json/wp/v2/pages/8" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://magarpattacity.com/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 6.4.13" />
+<link rel='shortlink' href='https://magarpattacity.com/' />
+<link rel="alternate" type="application/json+oembed" href="https://magarpattacity.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmagarpattacity.com%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://magarpattacity.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmagarpattacity.com%2F&#038;format=xml" />
+
+    <script type="text/javascript">
+        var ajaxurl = 'https://magarpattacity.com/wp-admin/admin-ajax.php';
+    </script>
+    <!-- Simple Scroll To Top 1.0 by Vijayakumar S -->
+
+<style type="text/css">.GotoTop{width:100px;border:1px solid #ccc;background:#f7f7f7;text-align:center;position:fixed;bottom:10px;right:10px;cursor:pointer;display:none;color:#333;font-family:verdana;font-size:11px;padding:5px}</style>
+
+<script type="text/javascript">
+function showHide() {
+
+if(document.getElementById('dispDiv').style.display == 'none'){
+document.getElementById('dispDiv').style.display = 'block';
+} else {
+
+document.getElementById('dispDiv').style.display = 'none';
+}	
+}
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--<script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type='text/javascript' src='https://www.magarpattacity.com/wp-content/themes/catch-box/js/jquery.custom-scrollbar.js'></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>-->
+<script type='text/javascript' src='/js/jquery.min.js'></script>
+
+<script type="text/javascript" >
+
+$(document).ready(function(){
+$("#myclosev").click(function(){
+$('#youtube-player').attr('src', "");
+$('in').hide();
+
+});
+});
+</script>
+
+
+<script type='text/javascript' src='https://magarpattacity.com/wp-content/themes/catch-box/js/responsivemobilemenu.js'></script>
+<script type='text/javascript' src='https://magarpattacity.com/wp-content/themes/catch-box/js/jquery-ui.js'></script>
+<script type="text/javascript">
+
+/*
+function tabJump(tabId,showId) {
+
+alert(tabId);   
+//alert($(ul li[id="+tabId+"]));
+//alert($('li').attr('aria-labelledby').val()); 
+
+$("#tabs ul li[id="+tabId+"]").addClass("ui-state-active11");  
+$("#menu_wrapper>ul>li.active").removeClass("ui-state-active");
+
+//$("#"+showId).addClass('');
+}; */
+/*
+$(document).ready(function () {
+$(".ui-tabs-nav>ul>li").on("click", "a", function (event) {
+debugger;
+$("#tabs>ul>li.active").removeClass("ui-state-active");
+$("#tabs>ul>li>a.active").removeClass("ui-state-active");
+$(this).addClass("active");
+});
+});
+*/
+
+
+$(function() {
+$( "#tabs" ).tabs({
+active: 0
+});
+});
+$(function() {
+$( "#tabs_1" ).tabs({
+active: 1
+});
+});
+$(function() {
+$( "#tabs_2" ).tabs({
+active: 2
+});
+});
+$(function() {
+$( "#tabs_3" ).tabs({
+active: 3
+});
+});
+$(function() {
+$( "#tabs_4" ).tabs({
+active: 4
+});
+});
+</script>
+<!--<script  type="text/javascript">
+jQuery(document).ready(function($) {
+
+$(".menu-item a").click(function(event){		
+event.preventDefault();
+$('html,body').animate({scrollTop:$(this.hash).offset().top}, 300); 
+});
+});
+</script>	-->
+<script type="text/javascript">
+document.createElement('div');
+document.createElement('aside'); document.createElement('figure'); document.createElement('footer'); document.createElement('header'); document.createElement('hgroup'); document.createElement('nav'); document.createElement('section'); document.createElement('figcaption'); document.createElement('article'); </script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139310632-1"></script>
+
+<script>
+
+window.dataLayer = window.dataLayer || [];
+
+function gtag(){dataLayer.push(arguments);}
+
+gtag('js', new Date());
+
+
+
+gtag('config', 'UA-139310632-1');
+
+</script>
+
+<style>
+    .modal-content iframe{
+        margin: 0 auto;
+        display: block;
+    }
+
+ .sample-flat{
+ 	background: #d2da51;
+    padding: 8px 80px 24px;
+}
+
+ .sample-topbox img{margin: 0 auto;width: 155px;}
+ .sample-topbox h4{
+ 	text-align: center;
+    color: #222;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin: 5px 0 10px;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .sample-flat .carousel-caption h3{color: #fff;font-size: 15px;font-family: 'Open Sans', sans-serif;}
+  .sample-flat .carousel-caption{
+    position: absolute;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 15px;
+    color: #fff !important;
+    text-align: left;
+    background: rgba(0,0,0,0.5);
+}
+
+.disclaimer-box{margin-top: 12px;}
+
+.disclaimer-box p{
+	font-weight: 500;
+    font-size: 11px;
+    text-align: left;
+    color: #222;
+    line-height: 18px;
+   font-family: 'Open Sans', sans-serif;
+}
+
+.knowmore-btn{ 
+	text-align: center;
+	text-align: center;
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+.knowmore-btn a{
+	background: #222;
+    padding: 5px 18px 5px;
+    color: #fff;
+    border-radius: 100px;
+    font-size: 14px !important;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+
+.sample-flat .glyphicon {
+    position: relative;
+    top: 45%;
+    display: inline-block;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.sample-flat .glyphicon i{
+	background: #222;
+    border-radius: 100px;
+    width: 25px;
+    height: 25px;
+    /* opacity: 1; */
+    line-height: 26px;
+    font-size: 12px;
+}
+
+.carousel-control .fach-right {
+    right: -80%;
+}
+
+.carousel-control .fach-left {
+    left: -80%;
+}
+
+.view-smplebtn{
+	padding: 6px 12px 6px;
+    background: #222;
+    width: 66%;
+    margin: 0 auto;
+    margin-top: 10px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+}
+
+.ul.boxwrapp>li a{text-decoration: none;}
+
+#cboxClose {
+    position: absolute;
+    bottom: 0;
+    top: -6px !important;
+    right: -8px;
+}
+
+#lbp-inline-href-2{padding: 0 !important;}
+/*#cboxContent{height: 584px !important;}*/
+#cboxContent{height:auto !important;}
+
+#colorbox{top:0 !important;/*left: 195px !important;*/}
+#cboxLoadedContent{height: auto !important;}
+
+@media only screen and (min-width:320px) and (max-width:767px) {
+    #cboxContent {height:auto !important;}
+    /*#cboxLoadedContent{height: 702px !important;}*/
+    #cboxLoadedContent{height:500px !important;}
+    #colorbox{left:38px !important;}
+}
+@media only screen and (min-width:768px) and (max-width:980px) {
+  #cboxContent {height: 504px !important;}
+  #colorbox{left:60px !important;}
+}
+@media only screen and (min-width:1024px) and (max-width:1100px) {
+  #colorbox{left:72px !important;}
+}
+
+.btn.btn-brand{
+    margin-top: 20px;
+    background: #339F63;
+    color: #fff;
+}
+
+.bootbox.modal {
+    z-index: 1070;
+}
+
+.bootbox.modal + .modal-backdrop {
+    z-index: 1060;
+}
+.modal-open .modal {
+    z-index: 1099999;
+}
+
+</style>
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+ 
+fbq('init', '269873186886701');
+fbq('track', 'PageView');
+</script>
+<noscript>
+<img height="1" width="1"
+src="https://www.facebook.com/tr?id=269873186886701&ev=PageView
+&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
+</head>
+
+<body class="home page-template page-template-page-fullwidth page-template-page-fullwidth-php page page-id-8 mega-menu-primary single-author fullwidth">
+
+
+
+
+
+ 
+<div class="headerwrapp">
+
+<div id="branding" role="banner">
+
+
+<div id="header-content" class="clearfix">
+
+<div class="logo-wrap clearfix"><div id="hgroup" class="site-details"> 
+   		<h1 id="site-title"><a href="https://magarpattacity.com/" title="Magarpattacity" rel="home">Magarpattacity</a></h1>
+       	<h2 id="site-description"></h2>
+   	</div><!-- #hgroup -->   
+
+</div><!-- .logo-wrap -->	<form method="get" id="searchform" action="https://magarpattacity.com/">
+        <label for="s" class="assistive-text">Search</label>
+        <input type="text" class="field" name="s" id="s" placeholder="Search" />
+        <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+	</form>
+
+</div><!-- #header-content -->
+
+<!-- <div class="ev-btn ev-spa">
+<a href="?page_id=722">Events</a>
+<a href="https://www.magarpattacity.com/mp_sustainability_report_17-18.html" target="_blank">Sustainability Report 17-18</a>
+</div> -->
+
+<div class="zinnia">
+<!-- <a href="?page_id=722">Events</a> -->
+<!-- <a href="https://magarpattacity.com/zinniarowhouses/" target="_blank">
+<img src='/images/zinnia-logo-mcp.png'>
+</a> -->
+<!-- <a href="http://careers.magarpattacity.com/">Careers</a> -->
+</div>
+<div class="socialicon">
+
+
+<a href="https://nandedcitypune.com/" target="_blank" class="ncp-p">
+<img src='https://magarpattacity.com/wp-content/themes/catch-box/images/nc-logo-new.png'>
+</a>
+<a href="https://www.instagram.com/magarpatta_city/" target="_blank" class="instagram"></a>
+<a href="https://twitter.com/CityCalled" target="_blank" class="twitter"></a>
+<a href="https://www.youtube.com/channel/UCD82WSrLH5FFU4tDJ6pJPQw?view_as=subscriber" target="_blank" class="youtube"></a>
+<a href="https://www.linkedin.com/company/magarpatta-city/" target="_blank" class="linkedin"></a>
+<a href="https://www.facebook.com/Magarpatta-Township-Development-Construction-Company-Limited-571170332928635/" target="_blank" class="facebook"></a>
+</div>
+
+<!--<div class="car-btn">
+<a href="http://careers.magarpattacity.com/" class="btn btn-sm animated-button thar-one"><span>Careers</span></a>
+</div>-->
+<div class="rmm">
+<ul class="main_menu">
+<div id="mega-menu-wrap-primary" class="mega-menu-wrap"><div class="mega-menu-toggle"><div class="mega-toggle-blocks-left"></div><div class="mega-toggle-blocks-center"></div><div class="mega-toggle-blocks-right"><div class='mega-toggle-block mega-menu-toggle-block mega-toggle-block-1' id='mega-toggle-block-1'><span aria-expanded="false" aria-haspopup="true" role="button" class='mega-toggle-label'><span class='mega-toggle-label-closed'>MENU</span><span class='mega-toggle-label-open'>MENU</span></span></div></div></div><ul id="mega-menu-primary" class="mega-menu max-mega-menu mega-menu-horizontal mega-no-js" data-event="hover" data-effect="fade" data-effect-speed="200" data-effect-mobile="disabled" data-effect-speed-mobile="0" data-mobile-force-width="false" data-second-click="go" data-document-click="collapse" data-vertical-behaviour="standard" data-breakpoint="600" data-unbind="true" data-mobile-state="collapse_all" data-mobile-direction="vertical"><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-menu-megamenu mega-menu-item-242" id="mega-menu-item-242"><a class="mega-menu-link" href="https://magarpattacity.com/" aria-current="page">Home</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-megamenu mega-menu-item-28" id="mega-menu-item-28"><a class="mega-menu-link" href="#About_Us">About Us</a></li><li class="mega-mainprojecs mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-29 mainprojecs" id="mega-menu-item-29"><a class="mega-menu-link" href="#" aria-expanded="false" aria-controls="mega-sub-menu-29">Projects<span class="mega-indicator" aria-hidden="true"></span></a>
+<ul class="mega-sub-menu" id='mega-sub-menu-29'>
+<li class="mega-lbp-inline-link-1 mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-collapse-children mega-menu-item-89 lbp-inline-link-1" id="mega-menu-item-89"><a class="mega-menu-link" href="#tabs-1" aria-expanded="false" aria-controls="mega-sub-menu-89">Magarpatta City<span class="mega-indicator" aria-hidden="true"></span></a>
+	<ul class="mega-sub-menu" id='mega-sub-menu-89'>
+<li class="mega-lbp-inline-link-1 mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-1109 lbp-inline-link-1" id="mega-menu-item-1109"><a target="_blank" class="mega-menu-link" href="https://magarpattacity.com/zinniarowhouses/">Zinnia Row Houses</a></li>	</ul>
+</li><li class="mega-lbp-inline-link-1 mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-90 lbp-inline-link-1" id="mega-menu-item-90"><a class="mega-menu-link" href="#tabs-2">Nanded City</a></li><li class="mega-lbp-inline-link-1 mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-91 lbp-inline-link-1" id="mega-menu-item-91"><a class="mega-menu-link" href="#tabs-3">Seasons Mall</a></li><li class="mega-lbp-inline-link-1 mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-92 lbp-inline-link-1" id="mega-menu-item-92"><a class="mega-menu-link" href="#tabs-4">Citizens Council</a></li><li class="mega-lbp-inline-link-1 mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-1356 lbp-inline-link-1" id="mega-menu-item-1356"><a class="mega-menu-link" href="#tabs-5">Riverview City</a></li><li class="mega-lbp-inline-link-1 mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-1600 lbp-inline-link-1" id="mega-menu-item-1600"><a class="mega-menu-link" href="#tabs-6">Nova Elegance</a></li></ul>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-1110" id="mega-menu-item-1110"><a class="mega-menu-link" href="https://magarpattacity.com/events/">Events</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-30" id="mega-menu-item-30"><a class="mega-menu-link" href="#contact_us">Contact Us</a></li></ul></div>           
+</ul></div>
+</div><!-- #branding --></div>
+
+<div class="slider"> 
+<div class="sliderdiv">
+<a href="#" id="hometop"></a>
+<div aria-live="polite" id="soliloquy-container-4_1" class="soliloquy-container soliloquy-transition-fade  soliloquy-theme-classic" style="max-width:13600px;max-height:525px;"><ul id="soliloquy-4_1" class="soliloquy-slider soliloquy-slides soliloquy-wrap soliloquy-clear"><li aria-hidden="true" class="soliloquy-item soliloquy-item-1 soliloquy-image-slide" draggable="false" style="list-style:none"><img id="soliloquy-image-2149" class="soliloquy-image soliloquy-image-1" src="https://magarpattacity.com/wp-content/uploads/2013/12/mcg-foundationday27.webp" alt="Foundation Day 27" /></li><li aria-hidden="true" class="soliloquy-item soliloquy-item-2 soliloquy-image-slide" draggable="false" style="list-style:none"><img id="soliloquy-image-1694" class="soliloquy-image soliloquy-image-2" src="https://magarpattacity.com/wp-content/uploads/2025/04/mcg-www-banner-img-1-scaled.webp" alt="mcg-www-banner-img" /></li></ul></div><noscript><style type="text/css">#soliloquy-container-4_1{opacity:1}</style></noscript></div>
+</div>
+    
+
+<div id="page" class="hfeed">
+<div id="main" class="clearfix">
+
+
+<div id="primary">
+
+
+<div id="content" role="main">
+
+
+
+<article id="post-8" class="post-8 page type-page status-publish hentry">
+	<header class="entry-header">
+ 		
+	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<ul class="boxwrapp">
+    <!-- List item 1 --></p>
+<li class="onea">
+<div class="panel">
+<div class="front card">
+                <a class="lbp-inline-link-1" href="#tabs-1"><br />
+                    <img decoding="async" alt="Magarpatta City" src="https://www.magarpattacity.com/wp-content/uploads/2013/12/magarpatta2.png" /><br />
+                </a>
+            </div>
+<div class="back card">
+                <a class="lbp-inline-link-1" id="t1" onclick="tabJump(this.id, 'tabs-1');" href="#tabs-1"><br />
+                    <img decoding="async" alt="Magarpatta City Hover" src="https://www.magarpattacity.com/wp-content/uploads/2013/12/magarpatta2-hover.png" /><br />
+                </a>
+            </div>
+</p></div>
+</li>
+<p>    <!-- List item 2 --></p>
+<li class="two">
+<div class="panel">
+<div class="front card">
+                <a class="lbp-inline-link-1" href="#tabs-2"><br />
+                    <img decoding="async" alt="Nanded" src="https://www.magarpattacity.com/wp-content/uploads/2013/12/nanded.png" /><br />
+                </a>
+            </div>
+<div class="back card">
+                <a class="lbp-inline-link-1" id="t2" onclick="tabJump(this.id, 'tabs-2');" href="#tabs-2"><br />
+                    <img decoding="async" alt="Nanded Hover" src="https://www.magarpattacity.com/wp-content/uploads/2013/12/nanded-hover.png" /><br />
+                </a>
+            </div>
+</p></div>
+</li>
+<p>    <!-- List item 3 --></p>
+<li class="three">
+<div class="panel">
+<div class="front card">
+                <a class="lbp-inline-link-1" href="#tabs-3"><br />
+                    <img decoding="async" alt="Seasons" src="https://www.magarpattacity.com/wp-content/uploads/2013/12/seasons.png" /><br />
+                </a>
+            </div>
+<div class="back card">
+                <a class="lbp-inline-link-1" id="t3" onclick="tabJump(this.id, 'tabs-3');" href="#tabs-3"><br />
+                    <img decoding="async" alt="Seasons Hover" src="https://www.magarpattacity.com/wp-content/uploads/2013/12/seasons-hover.png" /><br />
+                </a>
+            </div>
+</p></div>
+</li>
+<p>    <!-- List item 4 --></p>
+<li class="four">
+<div class="panel">
+<div class="front card">
+                <a class="lbp-inline-link-1" href="#tabs-4"><br />
+                    <img decoding="async" alt="Magarpatta Council" src="https://www.magarpattacity.com/wp-content/uploads/2013/12/magarpatta-council.png" /><br />
+                </a>
+            </div>
+<div class="back card">
+                <a class="lbp-inline-link-1" id="t4" onclick="tabJump(this.id, 'tabs-4');" href="#tabs-4"><br />
+                    <img decoding="async" alt="Magarpatta Council Hover" src="https://www.magarpattacity.com/wp-content/uploads/2013/12/magarpatta-council-hover.png" /><br />
+                </a>
+            </div>
+</p></div>
+</li>
+<p>    <!-- List item 5 --></p>
+<li class="five">
+<div class="panel">
+<div class="front card">
+                <a class="lbp-inline-link-1" href="#tabs-5"><br />
+                    <!-- <img decoding="async" alt="RVC Upload" src="https://magarpattacity.com/wp-content/uploads/2022/01/rvc-upload-white.png" /> --><br />
+                    <img decoding="async" alt="RVC Upload" src="https://magarpattacity.com/wp-content/uploads/2026/03/rvc-brand-logo-1.png" /><br />
+                </a>
+            </div>
+<div class="back card">
+                <a class="lbp-inline-link-1" id="t5" onclick="tabJump(this.id, 'tabs-5');" href="#tabs-5"><br />
+                    <!-- <img decoding="async" alt="RVC Upload Hover" src="https://magarpattacity.com/wp-content/uploads/2022/01/rvc-upload.jpg" /> --><br />
+                    <img decoding="async" alt="RVC Upload Hover" src="https://magarpattacity.com/wp-content/uploads/2026/03/rvc-brand-logo-2.png" /><br />
+                </a>
+            </div>
+</p></div>
+</li>
+<p>    <!-- List item 6 --></p>
+<li class="six">
+<div class="panel">
+<div class="front card">
+                <a class="lbp-inline-link-1"  href="#tabs-6"><br />
+                    <img decoding="async" alt="Nova Logo White" src="https://magarpattacity.com/wp-content/uploads/2026/04/nova-elegance-logo-white-small.png" /><br />
+                </a>
+            </div>
+<div class="back card">
+                <a class="lbp-inline-link-1" id="t6" onclick="tabJump(this.id, 'tabs-6');" href="#tabs-6"><br />
+                    <!-- <img decoding="async" alt="Nova Logo" src="https://magarpattacity.com/wp-content/uploads/2024/07/nova-logo-1.png" /> --><br />
+                    <img decoding="async" alt="Nova Logo" src="https://magarpattacity.com/wp-content/uploads/2025/11/nova-elegance-cr-logo.png" /><br />
+                </a>
+            </div>
+</p></div>
+</li>
+</ul>
+			</div><!-- .entry-content -->
+	<footer class="entry-meta">
+			</footer><!-- .entry-meta -->
+</article><!-- #post-8 -->
+
+<div class="our-legecyhead">
+    <h2>Our Legacy</h2>
+</div>
+
+
+<div class="yt-frame-mcg">
+    <a class="fancybox-youtube" href="https://www.youtube.com/embed/sJqtnIhChME?autoplay=1"><img src="https://magarpattacity.com/wp-content/uploads/2022/01/ergwea.jpg" width="100%"></a>
+</div>
+
+
+
+<div id="About_Us">
+<div class="innerwrapp ab-ban">
+<img alt="" src="https://magarpattacity.com/wp-content/themes/catch-box/images/mcp-brand.jpg">
+</div>
+
+
+
+<div class="innerwrapp">
+
+<div class="c-pop">
+
+<div class="col-md-6">
+<div class="c-list">
+<ul class="list-inline">
+<li>
+<a href="https://magarpattacity.com/pdf/english.html" target="_blank">
+<img src="https://magarpattacity.com/wp-content/themes/catch-box/images/english-cover.jpg">        
+</a>
+<div class="pop-btn">
+<a href="https://magarpattacity.com/pdf/english.html" target="_blank">English</a>
+</div>
+</li>
+
+<li><a href="https://magarpattacity.com/pdf/marthi.html" target="_blank">
+<img src="https://magarpattacity.com/wp-content/themes/catch-box/images/marthi-cover.jpg">
+</a>
+<div class="pop-btn">
+<a href="https://magarpattacity.com/pdf/marthi.html" target="_blank">Marathi</a>
+</div>
+</li>            
+</ul>
+</div>
+</div>
+
+<div class="col-md-5">
+<div class="c-tl">
+<h2>The Story of Magarpatta City</h2>
+<p>The journey of 'Idea called Magarpatta' blossomed towards a phenomenal achievement over the years. Watch this journey unfold through the Coffee Table Book.</p>
+</div>
+</div>
+
+</div>
+
+
+</div>
+<div class="innerwrapp ab-se">
+    <div class="col-md-6 col-xs-12 col-sm-12 no-pad">
+<div class="ab-vi-mi">
+<img class="alignleft size-full wp-image-184" alt="vision &amp; mission" src="https://www.magarpattacity.com/wp-content/uploads/2013/12/vision1.jpg" width="470" height="212">
+</div>
+</div>
+    <div class="col-md-6 col-xs-12 col-sm-12 no-pad">
+<div class="ab-vi-mi-con">
+<h2 id="vision_mission">Vision</h2>
+To be the Pioneers in enhancing lifestyles of our Customers &amp; Stakeholders by creating Integrated Sustainable Townships through an Inclusive Growth Model of partnering with the Landowners.
+<p><strong class="colorclass">Mission</strong></p>
+Our mission is to showcase a new outlook on life which lays emphasis on proper environmental control, good living standards, a modern educational system and state-of-the-art working conditions, all in a secure environment.
+</div>
+</div>
+
+</div>
+<div class="innerwrapp"></div>
+<div class="innerwrapp"></div></div>
+
+
+
+<div id="projects"></div>
+<div id="contact_us"><div class="innerwrapp innerwrapp-box-shadow">
+<div class="gray_box group">
+<div class="contact-box first-contact-box">
+<h1 class="contact-us">Contact Us</h1>
+</div>
+<div class="contact-box">
+<h2>Registered Office address:</h2>
+<p>Magarpatta Township Development &amp; Construction Company Limited<br />
+Registered office :- 5,<br />
+Magarpatta City,<br />
+Aditi Garden,<br />
+Hadapsar,<br />
+Pune – 411013, INDIA</p>
+</div>
+<div class="contact-box">
+<h2>Phone</h2>
+<p>Tel: 020-67681000<br />
+Fax: 020-67681098<br />
+Email ID: <a href="mailto:mpinfo@magarpattacity.com">mpinfo@magarpattacity.com</a></p>
+</div>
+</div>
+</div>
+</div>
+
+
+	<div id="comments">
+	
+	
+	
+	
+</div><!-- #comments -->
+
+
+</div><!-- #content -->
+
+
+</div><!-- #primary -->
+
+  
+
+<div class="g-map">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.3958896707372!2d73.92762631489254!3d18.511003687414554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf8f8f4a792c1beb2!2sMagarpatta%20City!5e0!3m2!1sen!2sin!4v1599482787175!5m2!1sen!2sin" width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+</div>
+
+</div><!-- #main -->
+</div><!-- #page -->
+<div class="footerwrapp">
+	<div class="footerwrappinn">
+		<footer id="colophon" role="contentinfo">
+			<div id="supplementary" class="one">
+				<div id="first" class="widget-area" role="complementary">
+					<aside id="text-2" class="widget widget_text">
+						<div class="textwidget">
+							<div class="footerlink right-disclaimer">
+								<a class="" href="https://magarpattacity.com/policies/" target="_blank">Policies</a>
+								<a class="" href="https://magarpattacity.com/reports/" target="_blank">Reports</a>
+								<div style="display: none;">
+									<div id="lbp-inline-href-8" style="padding:10px; background: #fff; margin:0 auto">
+										<div class="body_div" id="privacy_policy">
+										</div>
+									</div>
+								</div>
+								<a class="mobfoot-sp" style="cursor: default;opacity: 0;" target="_blank"
+									rel="noopener">Unclaimed Dividend</a>
+								<a class="mobfoot-sp" style="cursor: default;opacity: 0;" target="_blank"
+									rel="noopener">Sustainability Report 17-18</a>
+								<div style="display: none;">
+									<div id="lbp-inline-href-7" style="padding:10px; background: #fff; margin:0 auto">
+										<div class="body_div">
+											<div class="contactform">
+												<h4>Enquiry</h4><!--?php the_field('enquiry_form'); ?-->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</aside>
+					<!-- multitabs -->
+					<!-- MCG CITY -->
+					<aside id="text-4" class="widget widget_text" style="display:none">
+    <div class="textwidget">
+        <div id="lbp-inline-href-1" style="padding: 10px; background: #fff; margin: 0 auto;">
+            <div class="body_div">
+                <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+                    <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+                        <li id="t1" class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-selected="true">
+                            <a href="#tabs-1" class="tab1 ui-tabs-anchor" aria-controls="tabs-1" role="presentation" id="ui-id-1"></a>
+                        </li>
+                        <li id="t2" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-selected="false">
+                            <a href="#tabs-2" class="tab2 ui-tabs-anchor" aria-controls="tabs-2" role="presentation" id="ui-id-2"></a>
+                        </li>
+                        <li id="t3" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-selected="false">
+                            <a href="#tabs-3" class="tab3 ui-tabs-anchor" aria-controls="tabs-3" role="presentation" id="ui-id-3"></a>
+                        </li>
+                        <li id="t4" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-selected="false">
+                            <a href="#tabs-4" class="tab4 ui-tabs-anchor" aria-controls="tabs-4" role="presentation" id="ui-id-4"></a>
+                        </li>
+                        <li id="t5" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-selected="false">
+                            <a href="#tabs-5" class="tab5 ui-tabs-anchor" aria-controls="tabs-5" role="presentation" id="ui-id-5"></a>
+                        </li>
+                        <li id="t6" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-selected="false">
+                            <a href="#tabs-6" class="tab6 ui-tabs-anchor" aria-controls="tabs-6" role="presentation" id="ui-id-6"></a>
+                        </li>
+                    </ul>
+                    <div id="tabs-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false">
+                        <img src="https://www.magarpattacity.com/wp-content/uploads/2014/01/magarpatta.jpg" alt="Magarpatta City" width="470" height="467" class="alignleft size-full wp-image-186">
+                        <span>Magarpatta City</span><br><br>
+                        <p>Spread over 430 acres, Magarpatta City is an award-winning and internationally acclaimed model of integrated development and self-sustainability.</p>
+                        <p>A city within a city, Magarpatta City is home to a commercial zone, residential neighborhoods, two schools, a multi-specialty hospital, a shopping mall, multiple restaurants, a gymkhana, and a large 25-acre serene park called Aditi Garden. All this is complemented by a verdant environment and a pollution-free ambiance - a supreme setting for life and business.</p>
+                        <p>Through its sustainable development model, Magarpatta City has introduced eco-friendly development and has green spaces that make up 30 percent of the area. The implementation of comprehensive waste management and sustainable systems ensures further preservation of the environment.</p>
+                        <p>It has won accolades at the Sydney World Congress of Metropolis, 2008, and the Maharashtra Economic Development Council lists Magarpatta City among the 'Top 10 success stories of the State'.</p>
+                        <p>Today, the name Magarpatta City stands for quality in construction, innovation in design, and impeccable planning. It is the only fully functional and privately managed township in the country and is regarded as a remarkable reality; a reality born through immaculate vision and brilliant execution.</p>
+                    </div>
+                    <div id="tabs-2" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+                        <img src="https://www.magarpattacity.com/wp-content/uploads/2014/01/nanded.jpg" alt="Nanded City" width="470" height="467" class="alignleft size-full wp-image-188">
+                        <a href="https://www.nandedcitypune.com/" target="_blank" rel="noopener"><span>Nanded City</span></a><br><br>
+                        <p>An aspiration of 235 farmer families, Nanded City, Pune is inspired by the internationally acclaimed Magarpatta City Model. Spread over a sprawling 700 acres, Nanded City is home to 1/2/2.5/3 BHK apartments, two schools, and several recreational facilities.</p>
+                        <p>Nanded City, Pune stands as a haven of tranquillity in the current congested urban jungle scenario of Pune city. The impeccable township planning at Nanded City aims to create a sustainable environment that focuses on community living.</p>
+                        <p>The vast 5.5 km water-lined stretch that adjoins the site lends a picturesque feel to the place. The soothing sound of silence, the twitter of birds, the fresh flowing breeze, the rustle of leaves, and the bright starry nights. All of nature is at your service at Nanded City.</p>
+                        <p>Moreover, with vast areas reserved as green spaces, citizens of Nanded City enjoy pollution-free air, eco-friendly features, and self-sustainable systems; assuring a life that is truly in tune with nature.</p>
+						<a href="https://www.nandedcitypune.com/" target="_blank" class="btn btn-brand">Know More</a>
+                    </div>
+                    <div id="tabs-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+                        <img src="https://www.magarpattacity.com/wp-content/uploads/2013/12/seasons.jpg" alt="Seasons Mall" width="470" height="467" class="alignleft size-full wp-image-193">
+                        <span>Seasons Mall</span><br><br>
+                        <p>Seasons Mall is one of the largest shopping, dining, and entertainment destinations in Pune. It is a culmination of a few visionaries who took an ordinary idea of a shopping center and turned it into a world-class destination. Built on a 12-acre plot, the mall is located within Magarpatta City and represents a unique destination with stores, attractions, and services that combine to form the most comprehensive and integrated retail, hospitality, and entertainment complex. It is a place where people come to shop, play, dine, and have a memorable experience.</p>
+                        <p>It is home to over 100 brands, a 25,000 sq. ft. food court, a 15-screen megaplex (the largest in the country), and a 90,000 sq. ft. hypermarket. The retail mix is truly varied, with something for every consumer. By delivering affordable luxury, the mall has distinguished itself as something truly spectacular on the retail landscape.</p>
+                    </div>
+                    <div id="tabs-4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+                        <img src="https://www.magarpattacity.com/wp-content/uploads/2014/01/Fotor0122174155.png" alt="Magarpatta City Council" width="470" height="467" class="alignleft size-full wp-image-194">
+                        <span>Magarpatta City Council</span><br><br>
+                        <p>Magarpatta City Council has been formed with the primary role of involving citizens in social, cultural, and sports activities. The idea of a council provides the unique opportunity to evolve to a more functional level for the betterment of both, the residents as well as the management.</p>
+                        <p>The council is responsible for planning cultural functions, sports activities, health and medical camps for children, social awareness campaigns, and training activities for children and youth. It also plays an advisory role to the management for the maintenance of Magarpatta City.</p>
+                    </div>
+                    <div id="tabs-5" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+                        <img src="https://magarpattacity.com/wp-content/uploads/2022/01/for-websitepnggsp.png" alt="Riverview City" width="470" height="467" class="alignleft size-full wp-image-194">
+                        <a href="https://riverviewcity.com/" target="_blank"><span>Riverview City</span></a><br><br>
+                        <p class="sppb5p">A lifestyle in a mega township that is just made for you</p>
+                        <p>If you think while choosing a home, 'everything is here' is an impossible feature, then be assured that we are doing it for the third successive time. Welcome to the new 500 acres of brilliance called Riverview City, in Loni Kalbhor on the eastern side of Pune city. Living here is not only going to be a modern spectacularness but also the enhancement of 'ease to life'. A well-connected location that is in the vicinity of some of the important places in Pune city is blessed with the perfect sync of beautiful environment and modernity.</p>
+                        <p>Focusing on the factor of convenience of living, this township is planned to balance your work life, school and college life, personal life, and your hobbies altogether. So come, let's book your relaxed life today!</p>
+						<a href="https://riverviewcity.com/" target="_blank" class="btn btn-brand">Know More</a>
+                    </div>
+                    <div id="tabs-6" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+                        <img src="https://magarpattacity.com/wp-content/uploads/2024/07/nova-elegance.jpg" alt="Nova Elegance" width="470" height="467" class="alignleft size-full wp-image-194">
+                        <a href="https://novaproject.in/" target="_blank"><span>Nova Elegance</span></a><br><br>
+                        <p class="sppb5p">Welcome to Nova Elegance, where opulence meets sophistication.</p>
+                        <p><strong>From the makers of Magarpatta City</strong>, comes a premium residential project that redefines luxury living. Nestled in the heart of Mundhwa, Nova Elegance offers expansive 4.5 BHK homes and is designed for those who seek the pinnacle of comfort and style. Each residence boasts state-of-the-art amenities and panoramic views, creating an unparalleled living experience. The project seamlessly blends modern architecture with serene landscapes, ensuring a lifestyle of exclusivity, privacy, and tranquility. With top-notch security and world-class facilities, every detail is meticulously crafted to perfection, promising a life of grandeur and convenience. Embrace the epitome of luxury at Nova Elegance and announce your arrival in style.</p>
+                        <a href="https://novaproject.in/" target="_blank" class="btn btn-brand">Know More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
+
+					<!-- MCG CITY END -->
+
+					<!-- rvc-end -->
+					<!-- multitabs end-->
+					<!-- aside revier start-->
+					<!-- aside revier start-->
+				</div><!-- #supplementary -->
+				<div id="site-generator" class="clearfix">
+					<div class="copyright">
+						Copyright © 2026 <a href="https://magarpattacity.com/"
+							title="Magarpattacity">Magarpattacity</a>. All Rights Reserved. </div>
+					<div class="powered">
+						<span>Powered by <a href="http://www.thecircusworks.com/" target="_blank"> The Circus Works.
+							</a> </span>
+					</div>
+				</div> <!-- #site-generator -->
+		</footer><!-- #colophon -->
+	</div>
+</div>
+<div id="slideit">
+	<!-- Open/close buttons -->
+	<input id="open-item" name="forms" type="radio">
+	<input id="close-item" name="forms" type="radio" checked="checked">
+	<!-- Open label -->
+	<label for="open-item" class="open">The Story of Magarpatta City</label>
+	<section>
+		<!-- Close label -->
+		<label for="close-item" class="close">X</label>
+		<!-- Heading -->
+		<span class="title">The Story of Magarpatta City</span>
+		<!-- Info text and form elements -->
+		<div class="wrap">
+			<div class="lag-list">
+				<ul class="list-unstyled">
+					<li><!-- <a href="#" id="button_semantic1" > -->
+						<a href="https://magarpattacity.com/pdf/english.html" target="_blank">&bull; English</a>
+					</li>
+					<li><!-- <a href="#" id="button_bootstrap1"> -->
+						<a href="https://magarpattacity.com/pdf/marthi.html" target="_blank">&bull; Marathi</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+</div>
+<div class="enq-button">
+	<a href="#myModal" class="btn" data-toggle="modal"><i class="fa fa-pencil" aria-hidden="true"></i> Enquire Now</a>
+</div>
+<!-- Lightbox Plus ColorBox v2.6/1.3.32 - 2013.01.24 - Message: 1-->
+<script type="text/javascript">
+jQuery(document).ready(function($){
+  $("a[data-lightboxplus*=lightbox]").each(function(){
+    $(this).colorbox({rel:$(this).attr("data-lightboxplus"),transition:"fade",initialWidth:"30%",initialHeight:"30%",maxWidth:"1000px",maxHeight:"90%",opacity:0.6});
+  });
+  $(".lbp_secondary").each(function(){
+    $(this).colorbox({rel:$(this).attr("data-lightboxplus"),transition:"fade",speed:300,innerWidth:"50%",innerHeight:"50%",initialWidth:"30%",initialHeight:"40%",maxWidth:"1000px",maxHeight:"90%",opacity:0.3,iframe:true});
+  });
+  $(".lbp-inline-link-1").colorbox({transition:"elastic", speed:"300", width:"90%", height:"100%", innerWidth:false, innerHeight:false, maxWidth:"1000px", maxHeight:"100%", top:false, right:false, bottom:false, left:false, fixed:false, open:false, opacity:"0.6", inline:true, href:"#lbp-inline-href-1"});
+  $(".lbp-inline-link-2").colorbox({transition:"elastic", speed:"300", width:"90%", height:"100%", innerWidth:false, innerHeight:false, maxWidth:"1000px", maxHeight:"100%", top:false, right:false, bottom:false, left:false, fixed:false, open:false, opacity:"0.6", inline:true, href:"#lbp-inline-href-2"});
+  $(".lbp-inline-link-3").colorbox({transition:"elastic", speed:"300", width:"90%", height:"100%", innerWidth:false, innerHeight:false, maxWidth:"1000px", maxHeight:"100%", top:false, right:false, bottom:false, left:false, fixed:false, open:false, opacity:"0.6", inline:true, href:"#lbp-inline-href-3"});
+  $(".lbp-inline-link-4").colorbox({transition:"elastic", speed:"300", width:"90%", height:"100%", innerWidth:false, innerHeight:false, maxWidth:"1000px", maxHeight:"100%", top:false, right:false, bottom:false, left:false, fixed:false, open:false, opacity:"0.6", inline:true, href:"#lbp-inline-href-4"});
+  $(".lbp-inline-link-5").colorbox({transition:"elastic", speed:"300", width:"60%", height:"50%", innerWidth:false, innerHeight:false, maxWidth:"80%", maxHeight:"80%", top:false, right:false, bottom:false, left:false, fixed:false, open:false, opacity:"0.6", inline:true, href:"#lbp-inline-href-5"});
+  $(".lbp-inline-link-6").colorbox({transition:"elastic", speed:"300", width:"30%", height:"75%", innerWidth:false, innerHeight:false, maxWidth:"30%", maxHeight:"75%", top:false, right:false, bottom:false, left:false, fixed:false, open:false, opacity:"0.6", inline:true, href:"#lbp-inline-href-6"});
+  $(".lbp-inline-link-7").colorbox({transition:"elastic", speed:"300", width:"50%", height:"80%", innerWidth:false, innerHeight:false, maxWidth:"50%", maxHeight:"80%", top:false, right:false, bottom:false, left:false, fixed:false, open:false, opacity:"0.6", inline:true, href:"#lbp-inline-href-7"});
+  $(".lbp-inline-link-8").colorbox({transition:"elastic", speed:"300", width:"80%", height:"80%", innerWidth:false, innerHeight:false, maxWidth:"80%", maxHeight:"80%", top:false, right:false, bottom:false, left:false, fixed:false, open:false, opacity:"0.6", inline:true, href:"#lbp-inline-href-8"});
+  $(".lbp-inline-link-9").colorbox({transition:"elastic", speed:"300", width:"80%", height:"80%", innerWidth:false, innerHeight:false, maxWidth:"80%", maxHeight:"80%", top:false, right:false, bottom:false, left:false, fixed:false, open:false, opacity:"0.6", inline:true, href:"#lbp-inline-href-9"});
+  $(".lbp-inline-link-10").colorbox({transition:"elastic", speed:"300", width:"80%", height:"80%", innerWidth:false, innerHeight:false, maxWidth:"80%", maxHeight:"80%", top:false, right:false, bottom:false, left:false, fixed:false, open:false, opacity:"0.6", inline:true, href:"#lbp-inline-href-10"});
+});
+</script>
+<link rel='stylesheet' id='soliloquy-lite-style-css' href='https://magarpattacity.com/wp-content/plugins/soliloquy-lite/assets/css/soliloquy.css?ver=2.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='soliloquy-liteclassic-theme-css' href='https://magarpattacity.com/wp-content/plugins/soliloquy-lite/themes/classic/style.css?ver=2.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='style-name-css' href='https://magarpattacity.com/wp-content/plugins/homepage-pop-up/css/mlab_popup.css?ver=6.4.13' type='text/css' media='all' />
+<script type="text/javascript" src="https://magarpattacity.com/wp-includes/js/dist/vendor/wp-polyfill-inert.min.js?ver=3.1.2" id="wp-polyfill-inert-js"></script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-includes/js/dist/vendor/regenerator-runtime.min.js?ver=0.14.0" id="regenerator-runtime-js"></script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0" id="wp-polyfill-js"></script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-includes/js/dist/hooks.min.js?ver=c6aec9a8d4e5a5d543a1" id="wp-hooks-js"></script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-includes/js/dist/i18n.min.js?ver=7701b0c3857f914212ef" id="wp-i18n-js"></script>
+<script type="text/javascript" id="wp-i18n-js-after">
+/* <![CDATA[ */
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=5.9.8" id="swv-js"></script>
+<script type="text/javascript" id="contact-form-7-js-extra">
+/* <![CDATA[ */
+var wpcf7 = {"api":{"root":"https:\/\/magarpattacity.com\/wp-json\/","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-content/plugins/contact-form-7/includes/js/index.js?ver=5.9.8" id="contact-form-7-js"></script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-content/themes/catch-box/js/jquery.cycle.all.min.js?ver=2.9999.5" id="jquery-cycle-js"></script>
+<script type="text/javascript" id="catchbox_slider-js-extra">
+/* <![CDATA[ */
+var js_value = {"transition_effect":"fade","transition_delay":"4000","transition_duration":"1000"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-content/themes/catch-box/js/catchbox_slider.js?ver=1.0" id="catchbox_slider-js"></script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-content/themes/catch-box/js/catchbox-menu.min.js?ver=1.1.0" id="catchbox-menu-js"></script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-content/plugins/easy-fancybox/vendor/purify.min.js?ver=6.4.13" id="fancybox-purify-js"></script>
+<script type="text/javascript" id="jquery-fancybox-js-extra">
+/* <![CDATA[ */
+var efb_i18n = {"close":"Close","next":"Next","prev":"Previous","startSlideshow":"Start slideshow","toggleSize":"Toggle size"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-content/plugins/easy-fancybox/fancybox/1.5.4/jquery.fancybox.min.js?ver=6.4.13" id="jquery-fancybox-js"></script>
+<script type="text/javascript" id="jquery-fancybox-js-after">
+/* <![CDATA[ */
+var fb_timeout, fb_opts={'autoScale':true,'showCloseButton':true,'margin':20,'pixelRatio':'false','centerOnScroll':false,'enableEscapeButton':true,'overlayShow':true,'hideOnOverlayClick':true,'minVpHeight':320,'disableCoreLightbox':'true','enableBlockControls':'true','fancybox_openBlockControls':'true' };
+if(typeof easy_fancybox_handler==='undefined'){
+var easy_fancybox_handler=function(){
+jQuery([".nolightbox","a.wp-block-file__button","a.pin-it-button","a[href*='pinterest.com\/pin\/create']","a[href*='facebook.com\/share']","a[href*='twitter.com\/share']"].join(',')).addClass('nofancybox');
+jQuery('a.fancybox-close').on('click',function(e){e.preventDefault();jQuery.fancybox.close()});
+/* IMG */
+						var unlinkedImageBlocks=jQuery(".wp-block-image > img:not(.nofancybox,figure.nofancybox>img)");
+						unlinkedImageBlocks.wrap(function() {
+							var href = jQuery( this ).attr( "src" );
+							return "<a href='" + href + "'></a>";
+						});
+var fb_IMG_select=jQuery('a[href*=".jpg" i]:not(.nofancybox,li.nofancybox>a,figure.nofancybox>a),area[href*=".jpg" i]:not(.nofancybox),a[href*=".jpeg" i]:not(.nofancybox,li.nofancybox>a,figure.nofancybox>a),area[href*=".jpeg" i]:not(.nofancybox),a[href*=".png" i]:not(.nofancybox,li.nofancybox>a,figure.nofancybox>a),area[href*=".png" i]:not(.nofancybox),a[href*=".webp" i]:not(.nofancybox,li.nofancybox>a,figure.nofancybox>a),area[href*=".webp" i]:not(.nofancybox)');
+fb_IMG_select.addClass('fancybox image');
+var fb_IMG_sections=jQuery('.gallery,.wp-block-gallery,.tiled-gallery,.wp-block-jetpack-tiled-gallery,.ngg-galleryoverview,.ngg-imagebrowser,.nextgen_pro_blog_gallery,.nextgen_pro_film,.nextgen_pro_horizontal_filmstrip,.ngg-pro-masonry-wrapper,.ngg-pro-mosaic-container,.nextgen_pro_sidescroll,.nextgen_pro_slideshow,.nextgen_pro_thumbnail_grid,.tiled-gallery');
+fb_IMG_sections.each(function(){jQuery(this).find(fb_IMG_select).attr('rel','gallery-'+fb_IMG_sections.index(this));});
+jQuery('a.fancybox,area.fancybox,.fancybox>a').each(function(){jQuery(this).fancybox(jQuery.extend(true,{},fb_opts,{'transition':'elastic','transitionIn':'elastic','easingIn':'easeOutBack','transitionOut':'elastic','easingOut':'easeInBack','opacity':false,'hideOnContentClick':false,'titleShow':true,'titlePosition':'over','titleFromAlt':true,'showNavArrows':true,'enableKeyboardNav':true,'cyclic':false,'mouseWheel':'true'}))});
+/* YouTube */
+jQuery('a[href*="youtu.be/" i],area[href*="youtu.be/" i],a[href*="youtube.com/" i],area[href*="youtube.com/" i]' ).filter(function(){return this.href.match(/\/(?:youtu\.be|watch\?|embed\/)/);}).not('.nofancybox,li.nofancybox>a').addClass('fancybox-youtube');
+jQuery('a.fancybox-youtube,area.fancybox-youtube,.fancybox-youtube>a').each(function(){jQuery(this).fancybox(jQuery.extend(true,{},fb_opts,{'type':'iframe','width':882,'height':495,'padding':0,'keepRatio':1,'aspectRatio':1,'titleShow':false,'titlePosition':'float','titleFromAlt':true,'onStart':function(a,i,o){var splitOn=a[i].href.indexOf("?");var urlParms=(splitOn>-1)?a[i].href.substring(splitOn):"";o.allowfullscreen=(urlParms.indexOf("fs=0")>-1)?false:true;o.href=a[i].href.replace(/https?:\/\/(?:www\.)?youtu(?:\.be\/([^\?]+)\??|be\.com\/watch\?(.*(?=v=))v=([^&]+))(.*)/gi,"https://www.youtube.com/embed/$1$3?$2$4&autoplay=1");}}))});
+};};
+jQuery(easy_fancybox_handler);jQuery(document).on('post-load',easy_fancybox_handler);
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-content/plugins/easy-fancybox/vendor/jquery.easing.min.js?ver=1.4.1" id="jquery-easing-js"></script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-content/plugins/easy-fancybox/vendor/jquery.mousewheel.min.js?ver=3.1.13" id="jquery-mousewheel-js"></script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-includes/js/hoverIntent.min.js?ver=1.10.2" id="hoverIntent-js"></script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-content/plugins/megamenu/js/maxmegamenu.js?ver=3.10.5" id="megamenu-js"></script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-content/plugins/lightbox-plus/js/jquery.colorbox.1.3.32.js?ver=1.3.32" id="jquery-colorbox-js"></script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-content/plugins/soliloquy-lite/assets/js/min/soliloquy-min.js?ver=2.8.2" id="soliloquy-lite-script-js"></script>
+<script type="text/javascript" id="script-popup-js-extra">
+/* <![CDATA[ */
+var popup_object = {"ajax_url":"https:\/\/magarpattacity.com\/wp-content\/plugins\/homepage-pop-up\/ajax\/ajax.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://magarpattacity.com/wp-content/plugins/homepage-pop-up/js/mlab_popup.js?ver=6.4.13" id="script-popup-js"></script>
+			<script type="text/javascript">
+			if ( typeof soliloquy_slider === 'undefined' || false === soliloquy_slider ) {soliloquy_slider = {};}jQuery('#soliloquy-container-4_1').css('height', Math.round(jQuery('#soliloquy-container-4_1').width()/(13600/525)));jQuery(window).load(function(){var $ = jQuery;var soliloquy_container_4_1 = $('#soliloquy-container-4_1'),soliloquy_4_1 = $('#soliloquy-4_1');soliloquy_slider['4_1'] = soliloquy_4_1.soliloquy({slideSelector: '.soliloquy-item',speed: 600,pause: 5000,auto: 1,useCSS: 0,keyboard: true,adaptiveHeight: 1,adaptiveHeightSpeed: 400,infiniteLoop: 1,mode: 'fade',pager: 1,controls: 1,nextText: '',prevText: '',startText: '',stopText: '',onSliderLoad: function(currentIndex){soliloquy_container_4_1.find('.soliloquy-active-slide').removeClass('soliloquy-active-slide').attr('aria-hidden','true');soliloquy_container_4_1.css({'height':'auto','background-image':'none'});if ( soliloquy_container_4_1.find('.soliloquy-slider li').length > 1 ) {soliloquy_container_4_1.find('.soliloquy-controls').fadeTo(300, 1);}soliloquy_4_1.find('.soliloquy-item:not(.soliloquy-clone):eq(' + currentIndex + ')').addClass('soliloquy-active-slide').attr('aria-hidden','false');soliloquy_container_4_1.find('.soliloquy-clone').find('*').removeAttr('id');soliloquy_container_4_1.find('.soliloquy-controls-direction').attr('aria-label','carousel buttons').attr('aria-controls', 'soliloquy-container-4_1');soliloquy_container_4_1.find('.soliloquy-controls-direction a.soliloquy-prev').attr('aria-label','previous');soliloquy_container_4_1.find('.soliloquy-controls-direction a.soliloquy-next').attr('aria-label','next');},onSlideBefore: function(element, oldIndex, newIndex){soliloquy_container_4_1.find('.soliloquy-active-slide').removeClass('soliloquy-active-slide').attr('aria-hidden','true');$(element).addClass('soliloquy-active-slide').attr('aria-hidden','false');},onSlideAfter: function(element, oldIndex, newIndex){},});});			</script>
+			<script>
+	(function (i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date(); a = s.createElement(o),
+			m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+	ga('create', 'UA-23645707-37', 'magarpattacity.com');
+	ga('send', 'pageview');
+</script>
+<style>
+	#cboxContent {
+		position: fixed;
+	}
+
+	.video-container {
+		overflow: hidden;
+		position: relative;
+		width: 100%;
+	}
+
+	.video-container::after {
+		padding-top: 56.25%;
+		display: block;
+		content: '';
+	}
+
+	.video-container iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+<script>
+	$("#mega-menu-item-1109").colorbox({
+		title: function () {
+			window.open('https://magarpattacity.com/zinniarowhouses/');
+			location.reload();
+		}
+	});
+</script>
+<script type="text/javascript">
+	_linkedin_partner_id = "2502356";
+	window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+	window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+</script>
+<script type="text/javascript">
+	(function () {
+		var s = document.getElementsByTagName("script")[0];
+		var b = document.createElement("script");
+		b.type = "text/javascript"; b.async = true;
+		b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+		s.parentNode.insertBefore(b, s);
+	})();
+</script>
+<noscript>
+	<img height="1" width="1" style="display:none;" alt=""
+		src="https://px.ads.linkedin.com/collect/?pid=2502356&fmt=gif" />
+</noscript>
+<!-- enq-popup -->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog enq-dia">
+		<div class="modal-content enq-con">
+			<div class="modal-header enq-he">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+				<h4 class="modal-title enq-tl">Enquire Now!</h4>
+			</div>
+			<div class="modal-body enq-bdy">
+				<form action="#" name="Enquerinow" id="Enquerinow" method="post" class="wpcf7-form"
+					novalidate="novalidate">
+					<div class="form-group">
+						<label>Name</label>
+						<span id="fname-info" class="info"></span>
+						<input type="text" name="Name" value="" size="40" autocomplete="off" id="fname"
+							class="form-control enq-frm">
+					</div>
+					<div class="form-group">
+						<label>Email</label>
+						<span id="Email-info" class="info"></span>
+						<input type="text" name="Email" autocomplete="off" id="Email" value=""
+							class="form-control enq-frm">
+					</div>
+					<div class="form-group">
+						<label>Phone</label>
+						<span id="Phone-info" class="info"></span>
+						<input type="text" name="phone" id="Phone" autocomplete="off" value="" size="40" maxlength="10"
+							minlength="10" class="form-control enq-frm">
+					</div>
+					<div class="form-group">
+						<label>Message</label>
+						<span id="Message-info" class="info"></span>
+						<textarea class="form-control frm-txt" name="Message" autocomplete="off" id="Message" cols="40"
+							rows="10"></textarea>
+					</div>
+					<div class="form-group">
+						<input type="hidden" name="utm_source" value="">
+						<input type="hidden" name="utm_medium" value="">
+						<input type="hidden" name="utm_campaign" value="">
+						<input type="hidden" name="utm_term" value="">
+						<input type="hidden" name="utm_content" value="">
+						<input type="hidden" name="website" value="magarpatta">
+						<input type="submit" name="submit" class="sub_btn">
+					</div>
+					<div id="mail-status"></div>
+			</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal HTML -->
+<div id="myVideoModal" class="modal fade">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<!--<h4 class="modal-title">YouTube Video</h4>-->
+			</div>
+			<div class="modal-body">
+				<a href="http://magarpattacitygroup.com/" target="_blank">
+					<img src="https://magarpattacity.com/wp-content/uploads/2025/12/mcg-foundationday27_popup.webp" alt="Foundation Day 27"
+						class="img-responsive">
+					<!-- 						<img src="https://nandedcitypune.com/wp-content/uploads/2024/01/Website-pop-up-size-1000-x-700.jpg" class="img-responsive" > -->
+				</a>
+				<!--<iframe id="cartoonVideo" width="560" height="315" src="//www.youtube.com/embed/eg7IiLGGxHo?autoplay=1" frameborder="0" allowfullscreen></iframe>-->
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(window).on('load', function () {
+		$('#myVideoModal').modal('show');
+	});
+	//  $("#myVideoModal").on('hidden.bs.modal', function (e) {
+	//     // Invoke your server side code here.
+	// });
+	// $("#myVideoModal").modal("hide");
+	/* Get iframe src attribute value i.e. YouTube video url
+and store it in a variable */
+	var url = $("#cartoonVideo").attr('src');
+	/* Remove iframe src attribute on page load to
+	prevent autoplay in background */
+	$("#cartoonVideo").attr('src', '');
+	/* Assign the initially stored url back to the iframe src
+	attribute when modal is displayed */
+	$("#myVideoModal").on('shown.bs.modal', function () {
+		$("#cartoonVideo").attr('src', url);
+	});
+	/* Assign empty url value to the iframe src attribute when
+	modal hide, which stop the video playing */
+	$("#myVideoModal").on('hide.bs.modal', function () {
+		$("#cartoonVideo").attr('src', '');
+	});
+</script>
+<script>
+	$(document).ready(function (e) {
+		$("#Enquerinow").on('submit', (function (e) {
+			e.preventDefault();
+			var valid;
+			valid = validateContact();
+			if (valid) {
+				var form = $('#Enquerinow')[0];
+				$.ajax({
+					url: "https://magarpattacity.com/webenqiries/enquirydata.php",
+					type: "POST",
+					data: new FormData(form),
+					contentType: false,
+					cache: false,
+					processData: false,
+					success: function (data) {
+						if (data == '1') {
+							$("#mail-status").html('Emailid already exists');
+						}
+						else {
+							$("#mail-status").html('');
+							window.location.href = "https://magarpattacity.com/thank-you/";
+						}
+					},
+					error: function () { }
+				});
+			}
+		}));
+		function validateContact() {
+			var valid = true;
+			$(".demoInputBox").css('background-color', '');
+			$(".info").html('');
+			if (!$("#fname").val()) {
+				$("#fname-info").html("<i class='fa fa-exclamation-circle'></i> Required");
+				$("#fname").css('background-color', '#FFFFDF');
+				valid = false;
+			}
+			if (!$("#Phone").val()) {
+				$("#Phone-info").html("<i class='fa fa-exclamation-circle'></i> Required");
+				$("#Phone").css('background-color', '#FFFFDF');
+				valid = false;
+			}
+			if (!$("#Phone").val().match(/^\d{10}$/)) {
+				$("#Phone-info").html("<i class='fa fa-exclamation-circle'></i> Invalid");
+				$("#Phone").css('background-color', '#FFFFDF');
+				valid = false;
+			}
+			if (!$("#Email").val()) {
+				$("#EmailEmail-info").html("<i class='fa fa-exclamation-circle'></i> Required");
+				$("#Email").css('background-color', '#FFFFDF');
+				valid = false;
+			}
+			if (!$("#Email").val().match(/^\s*(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))\s*$/)) {
+				$("#Email-info").html("<i class='fa fa-exclamation-circle'></i> Invalid");
+				$("#Email").css('background-color', '#FFFFDF');
+				valid = false;
+			}
+			if (!$("textarea#Message").val()) {
+				$("#Message-info").html("<i class='fa fa-exclamation-circle'></i> Required");
+				$("#Message").css('background-color', '#FFFFDF');
+				valid = false;
+			}
+			if (!valid) {
+				$("#allrroer-info").html("<i class='fa fa-exclamation-circle'></i> One or more fields have an error. Please check and try again.");
+			}
+			return valid;
+		}
+	});
+
+
+	function tabJump(tabId, showId) {
+
+    // alert(tabId);
+    // alert($('ul li[id="' + tabId + '"]'));
+    // alert($('li').attr('aria-labelledby'));
+	$("#tabs ul li").removeClass("ui-state-active");
+    // Adding the active class to the selected tab
+    $("#tabs ul li[id='" + tabId + "']").addClass("ui-state-active");
+    // Removing the active class from previously active tabs
+    // $("#menu_wrapper>ul>li.active").removeClass("ui-state-active");
+	$(".ui-tabs-panel").hide();
+    // You might want to toggle visibility here if that's the intent
+    $("#" + showId).show(); // Or add an actual class if needed
+}
+
+$(document).ready(function () {
+    // Event handler for clicking on tabs
+    $("#tabs .ui-tabs-nav li a").on("click", function (event) {
+        event.preventDefault();
+        // Remove active class from all tabs and panels
+        $("#tabs ul li").removeClass("ui-state-active");
+        $("#tabs ul li a").removeClass("active");
+        $(".ui-tabs-panel").hide();
+
+        // Add active class to the clicked tab and show the corresponding panel
+        $(this).parent().addClass("ui-state-active");
+        $(this).addClass("active");
+        $($(this).attr("href")).show();
+    });
+
+    // Event handler for clicking on the mega menu items
+    $('#mega-menu-item-29 .mega-menu-link').on("click", function (event) {
+        event.preventDefault();
+        // Remove active class from all tabs and panels
+        $("#tabs ul li").removeClass("ui-state-active");
+        $("#tabs ul li a").removeClass("active");
+        $(".ui-tabs-panel").hide();
+
+        // Get the href attribute value and show the corresponding panel
+        var id = $(this).attr("href");
+        $("#tabs ul li a[href='" + id + "']").parent().addClass("ui-state-active");
+        $("#tabs ul li a[href='" + id + "']").addClass("active");
+
+        $(id).show();
+    });
+});
+
+
+
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5QMXZR6');</script>
+    <!-- End Google Tag Manager -->
+    <style>
+      /* Hide WhatsApp buttons from third-party widgets */
+      [class*="whatsapp"],[id*="whatsapp"],[class*="WhatsApp"],[id*="WhatsApp"],
+      [class*="wa_btn"],[class*="wa-btn"],[id*="wa_btn"],[id*="wa-btn"],
+      a[href*="wa.me"]:not([data-testid]) { display: none !important; }
+    </style>
+    <script>
+      (function() {
+        function hideWhatsApp() {
+          document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp.com"], [class*="whatsapp"], [id*="whatsapp"], [class*="WhatsApp"], [id*="WhatsApp"]').forEach(function(el) {
+            if (!el.getAttribute('data-testid')) {
+              el.style.setProperty('display', 'none', 'important');
+              el.style.setProperty('visibility', 'hidden', 'important');
+            }
+          });
+        }
+
+        var observer = new MutationObserver(function() {
+          hideWhatsApp();
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+          observer.observe(document.body, { childList: true, subtree: true });
+          hideWhatsApp();
+        });
+
+        setTimeout(hideWhatsApp, 1000);
+        setTimeout(hideWhatsApp, 3000);
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>Goel Ganga Group - Real Estate Developers in Pune, Mumbai, Nagpur & Bangalore</title>
+    <meta name="description" content="Goel Ganga Group is a leading real estate developer with 43+ years of experience. Explore premium residential and commercial properties in Pune, Mumbai, and Nagpur." />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fira+Code:wght@300..700&family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&family=Oxanium:wght@200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/assets/index-N7Z-FSoX.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-D3abC5Ny.css">
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5QMXZR6"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div id="root"></div>
+    <script>
+      (function() {
+        var path = window.location.pathname;
+        var isGreenfinity = path === '/greenfinity' || path.startsWith('/greenfinity/');
+        var isAdmin = path.startsWith('/admin');
+        var isChatbot = path === '/chatbot';
+
+        if (isGreenfinity) {
+          var s = document.createElement('script');
+          s.defer = true;
+          s.type = 'text/javascript';
+          s.setAttribute('data-bot', '24381295');
+          s.src = 'https://www.kenyt.ai/botapp/ChatbotUI/dist/js/bot-loader.js';
+          document.body.appendChild(s);
+        } else if (!isAdmin && !isChatbot) {
+          var s = document.createElement('script');
+          s.defer = true;
+          s.type = 'text/javascript';
+          s.setAttribute('data-bot', '23315042');
+          s.src = 'https://www.kenyt.ai/botapp/ChatbotUI/dist/js/bot-loader.js';
+          document.body.appendChild(s);
+        }
+      })();
+    </script>
+  </body>
+</html>

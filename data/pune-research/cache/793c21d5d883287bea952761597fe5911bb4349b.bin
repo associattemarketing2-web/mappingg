@@ -1,0 +1,1889 @@
+<!doctype html><!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en" > <![endif]--><!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en" >        <![endif]--><!--[if IE 8]>    <html class="no-js lt-ie9" lang="en" >               <![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="author" content="e-Zest Solutions Inc.">
+    <meta name="description" content="Discover our comprehensive PBM services designed to streamline healthcare operations and reduce costs. Our pharmacy benefit management solutions ensure optimized prescription drug benefits and efficient medication management within a vast pharmacy network. Learn more at e-Zest Healthcare.">
+    <meta name="generator" content="HubSpot">
+    <title>Customized PBM Services to Suit Your Healthcare Organization's Needs</title>
+    <link rel="shortcut icon" href="https://healthcare.e-zest.com/hubfs/Healthcare%20Microsite/New%20Color%20Branding/Logos/healthcare%20icon.png">
+    
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="/hs/hsstatic/jquery-libs/static-1.4/jquery/jquery-1.11.2.js"></script>
+<script>hsjQuery = window['jQuery'];</script>
+    <meta property="og:description" content="Discover our comprehensive PBM services designed to streamline healthcare operations and reduce costs. Our pharmacy benefit management solutions ensure optimized prescription drug benefits and efficient medication management within a vast pharmacy network. Learn more at e-Zest Healthcare.">
+    <meta property="og:title" content="Customized PBM Services to Suit Your Healthcare Organization's Needs">
+    <meta name="twitter:description" content="Discover our comprehensive PBM services designed to streamline healthcare operations and reduce costs. Our pharmacy benefit management solutions ensure optimized prescription drug benefits and efficient medication management within a vast pharmacy network. Learn more at e-Zest Healthcare.">
+    <meta name="twitter:title" content="Customized PBM Services to Suit Your Healthcare Organization's Needs">
+
+    
+
+    
+    <style>
+a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
+</style>
+
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/12697663285/1744535369919/module_HC_-_Sub_Service_Banner.min.css">
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/124220669490/1744536235083/module_AL_-_Segments_Banner_Slider.min.css">
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/12702222893/1744535371960/module_HC_-_Sidebar_Anchor.min.css">
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/124276815710/1744536236536/module_AL-Segments-Counter.min.css">
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/124113268147/1744536233605/module_AL-Segments-Explore.min.css">
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/124278451824/1744536237980/module_AL_-_Segments_-_Points_With_Icon.min.css">
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/88982366729/1744535934885/module_Segment_Top1_-_AL_-_2022.min.css">
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/89487590675/1744535937801/module_Segment_Top2_-_AL_-_2022.min.css">
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/124470728732/1744536239072/module_AL_-_Segments_-_Brand_Logo_copy.min.css">
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/97324145452/1744535981162/module_HSPC_-_Certificate_and_Awards_-_AL_NEW.min.css">
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/89514421681/1744535938887/module_HC_-_Related_-_AL.min.css">
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/12735617410/1744535375614/module_HC_-_Related_Inshight.min.css">
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/29024056704/1744535632452/module_HC_-_CTA_Contact_info.min.css">
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/112528325792/1741040249743/module_Al_-_HC-_Footer_Column.css">
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/12625310070/1744535358693/module_HC-_Contact_Us_Pop_Up_Form.min.css">
+    
+
+    
+<!--  Added by GoogleAnalytics integration -->
+<script data-cookieconsent="ignore">
+var _hsp = window._hsp = window._hsp || [];
+_hsp.push(['addPrivacyConsentListener', function(consent) { if (consent.allowed || (consent.categories && consent.categories.analytics)) {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create','UA-362796-1','auto');
+  ga('send','pageview');
+}}]);
+</script>
+
+<!-- /Added by GoogleAnalytics integration -->
+
+<!--  Added by GoogleAnalytics4 integration -->
+<script data-cookieconsent="ignore">
+var _hsp = window._hsp = window._hsp || [];
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+var useGoogleConsentModeV2 = true;
+var waitForUpdateMillis = 1000;
+
+
+if (!window._hsGoogleConsentRunOnce) {
+  window._hsGoogleConsentRunOnce = true;
+
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'wait_for_update': waitForUpdateMillis
+  });
+
+  if (useGoogleConsentModeV2) {
+    _hsp.push(['useGoogleConsentModeV2'])
+  } else {
+    _hsp.push(['addPrivacyConsentListener', function(consent){
+      var hasAnalyticsConsent = consent && (consent.allowed || (consent.categories && consent.categories.analytics));
+      var hasAdsConsent = consent && (consent.allowed || (consent.categories && consent.categories.advertisement));
+
+      gtag('consent', 'update', {
+        'ad_storage': hasAdsConsent ? 'granted' : 'denied',
+        'analytics_storage': hasAnalyticsConsent ? 'granted' : 'denied',
+        'ad_user_data': hasAdsConsent ? 'granted' : 'denied',
+        'ad_personalization': hasAdsConsent ? 'granted' : 'denied'
+      });
+    }]);
+  }
+}
+
+gtag('js', new Date());
+gtag('set', 'developer_id.dZTQ1Zm', true);
+gtag('config', 'G-T7L1EXYHF2');
+</script>
+<script data-cookieconsent="ignore" async src="https://www.googletagmanager.com/gtag/js?id=G-T7L1EXYHF2"></script>
+
+<!-- /Added by GoogleAnalytics4 integration -->
+
+    <link rel="canonical" href="https://healthcare.e-zest.com/pbm-services">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150660298-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-150660298-1');
+</script>
+
+<meta name="google-site-verification" content="dvsEePIyl51TXGgYRDHxxrqENaWRFL_eIx1gHToESCM">
+<meta property="og:url" content="https://healthcare.e-zest.com/pbm-services">
+<meta name="twitter:card" content="summary">
+<meta http-equiv="content-language" content="en">
+<link rel="stylesheet" href="//7052064.fs1.hubspotusercontent-na1.net/hubfs/7052064/hub_generated/template_assets/DEFAULT_ASSET/1791562879442/template_layout.min.css">
+
+
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/template_assets/1/13448996189/1744416877129/template_font-color.min.css">
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/template_assets/1/3670982342/1744416851510/template_Act-Theme-Custom.min.css">
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/template_assets/1/12624710742/1744416895954/template_healthCare.min.css">
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/template_assets/1/12694476006/1744416877616/template_hc-media.min.css">
+
+
+    <!-- Act Theme Main.js, please do not delete -->
+<script src="//cdn2.hubspot.net/hub/273774/file-1924801657-js/mp/themes/Act-Theme/js/act-async-load.js"></script>
+<!--/ Act Theme Main.js, please do not delete -->
+
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/SandeepNewHomepage/vendor/bootstrap/css/bootstrap.min.css">
+<!-- Required Core Stylesheet -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/css/glide.core.min.css" integrity="sha512-tYKqO78H3mRRCHa75fms1gBvGlANz0JxjN6fVrMBvWL+vOOy200npwJ69OBl9XEsTu3yVUvZNrdWFIIrIf8FLg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<!-- Optional Theme Stylesheet -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/css/glide.theme.min.css" integrity="sha512-8vDOoSF7kZUYkn7BiQulRCTvpRoenljlkQDZhM6+IqDJi5jHDH9QEYH9NfMBB8LlqiYc7O17YGxbGx7dOxKrpw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<style>
+.span12.bg-section.Proficiencies {
+    background-color: #fff !important;
+}
+  .span12.bg-section.hc-60-b.hc-60-t.Segments {
+    background-color: white !important;
+}
+  a:hover {
+ 
+    text-decoration: none;
+}
+  ul.navigation.hc-tab-menu li{
+    padding: 14px 15px 14px 15px;
+  }
+  
+  .career-sidebar-navigation-section .sidebar-navigation-section .key-challenges .inner-key-challenges {
+    max-width: 1080px !important;
+  }
+  
+  .act-accordion-body p {
+    font-size: inherit;
+}
+  
+  .hc-ui-v2 .modal-backdrop {
+    z-index: 99999;
+  }
+  .hc-ui-v2 .modal {
+    z-index: 999999;
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .hc-ui-v2 .inner-key-challenges {
+      padding: 30px !important;
+    }
+  }
+</style>
+<script src="https://healthcare.e-zest.com/hubfs/SandeepNewHomepage/vendor/jquery/jquery.min.js"></script>
+<script src="https://healthcare.e-zest.com/hubfs/SandeepNewHomepage/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+              new WOW().init();
+              </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/glide.min.js" integrity="sha512-2sI5N95oT62ughlApCe/8zL9bQAXKsPPtZZI2KE3dznuZ8HpE2gTMHYzyVN7OoSPJCM1k9ZkhcCo3FvOirIr2A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    
+
+</head>
+<body class="hc-ui-v2   hs-content-id-89786359983 hs-landing-page hs-page " style="">
+    <div class="header-container-wrapper">
+    <div class="header-container container-fluid">
+
+<div class="row-fluid-wrapper row-depth-1 row-number-1 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-global_group " style="" data-widget-type="global_group" data-x="0" data-w="12">
+<div class="" data-global-widget-path="generated_global_groups/111679642251.html"><div class="row-fluid-wrapper row-depth-1 row-number-1 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-cell header-wrapper with-navigation hc-new-header" style="" data-widget-type="cell" data-x="0" data-w="12">
+
+<div class="row-fluid-wrapper row-depth-1 row-number-2 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-cell header-inner-wrapper centered" style="" data-widget-type="cell" data-x="0" data-w="12">
+
+<div class="row-fluid-wrapper row-depth-1 row-number-3 ">
+<div class="row-fluid ">
+<div class="span2 widget-span widget-type-logo header-logo" style="" data-widget-type="logo" data-x="0" data-w="2">
+<div class="cell-wrapper layout-widget-wrapper">
+<span id="hs_cos_wrapper_module_661291141" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_logo" style="" data-hs-cos-general-type="widget" data-hs-cos-type="logo"><a href="https://healthcare.e-zest.com/" id="hs-link-module_661291141" style="border-width:0px;border:0px;"><img src="https://healthcare.e-zest.com/hubfs/images/Logos%20with%20Tagline/Healthcare/SVG/E-zest%20Healthcare%20Logo%20color.svg" class="hs-image-widget " height="65" style="height: auto;width:150px;border-width:0px;border:0px;" width="150" alt="E-zest Healthcare Logo color" title="E-zest Healthcare Logo color"></a></span></div><!--end layout-widget-wrapper -->
+</div><!--end widget-span -->
+<div class="span10 widget-span widget-type-menu menu-reset flyouts-fade flyouts-slide main-navigation menu-top-15" style="" data-widget-type="menu" data-x="2" data-w="10">
+<div class="cell-wrapper layout-widget-wrapper">
+<span id="hs_cos_wrapper_module_619771498" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_menu" style="" data-hs-cos-general-type="widget" data-hs-cos-type="menu"><div id="hs_menu_wrapper_module_619771498" class="hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal" role="navigation" data-sitemap-name="Main" data-menu-id="12632883707" aria-label="Navigation Menu">
+ <ul role="menu" class="active-branch">
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children active-branch" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Segments ▼</a>
+   <ul role="menu" class="hs-menu-children-wrapper active-branch">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://healthcare.e-zest.com/payers" role="menuitem" target="_blank" rel="noopener">Payers</a></li>
+    <li class="hs-menu-item hs-menu-depth-2 active active-branch" role="none"><a href="https://healthcare.e-zest.com/pbm-services" role="menuitem" target="_blank" rel="noopener">PBM</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://healthcare.e-zest.com/providers" role="menuitem" target="_blank" rel="noopener">Providers</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://healthcare.e-zest.com/healthcare-product-companies" role="menuitem" target="_blank" rel="noopener">Healthcare Product Companies</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://healthcare.e-zest.com/pharma" role="menuitem" target="_blank" rel="noopener">Pharma</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://healthcare.e-zest.com/transforming-the-life-sciences-industry-with-cutting-edge-solutions" role="menuitem">Life Sciences</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Products &amp; Services ▼</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://healthcare.e-zest.com/digital-data-engineering-services" role="menuitem" target="_blank" rel="noopener">Digital Data Engineering</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://healthcare.e-zest.com/digital-product-engineering-services" role="menuitem" target="_blank" rel="noopener">Digital Product Engineering</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://healthcare.e-zest.com/digital-transformation" role="menuitem" target="_blank" rel="noopener">Digital Transformation</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://healthcare.e-zest.com/digital-commerce" role="menuitem" target="_blank" rel="noopener">Digital Commerce</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://healthcare.e-zest.com/digital-front-door" role="menuitem" target="_blank" rel="noopener">Digital Front Door</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://healthcare.e-zest.com/i-am-ok" role="menuitem" target="_blank" rel="noopener"><i>IAMOK</i> Platform</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://healthcare.e-zest.com/e-zest-telehealth-services" role="menuitem" target="_blank" rel="noopener">Telehealth Services</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://healthcare.e-zest.com/comprehensive-mental-health-care-solutions-and-services" role="menuitem">Mental Health IT Services</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Insights ▼</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://healthcare.e-zest.com/success-stories" role="menuitem" target="_blank" rel="noopener">Success Stories</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://blog.e-zest.com/healthcare" role="menuitem" target="_blank" rel="noopener">Blogs</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="https://www.e-zest.com" role="menuitem" target="_blank" rel="noopener">Corporate</a></li>
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="https://healthcare.e-zest.com/contact-us" role="menuitem">
+    <div>
+     Contact Us
+    </div></a></li>
+ </ul>
+</div></span></div><!--end layout-widget-wrapper -->
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+</div>
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+    </div><!--end header -->
+</div><!--end header wrapper -->
+
+<div class="body-container-wrapper">
+    <div class="body-container container-fluid">
+
+<div class="row-fluid-wrapper row-depth-1 row-number-1 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_1567679628976764" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"></div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-2 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_168914458095551" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+<section id="hero" class="homepage-banner">
+  <div class="snack-bar-cont">
+    <div class="snack-bar hvr-wobble-vertical">
+      <a href="https://healthcare.e-zest.com/pharmacy-benefit-management" title="Know More">Book a 15-minute slot</a>
+    </div>
+  </div>
+  
+  <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+    <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+    <div class="carousel-inner">
+      
+      
+      <div class="carousel-item  active ">
+        <img class="d-block w-100" src="https://healthcare.e-zest.com/hubfs/Healthcare_Microsite/Website%20Banners/PBM%20services.jpg" alt="First slide">
+        <div class="container carousel-caption">
+          <h2>PBM Services</h2>
+          
+          
+          <h4>Empowering Optimal Medication Access and Cost Savings:<br> Comprehensive PBM Services for Health Plans, Hospitals, Employers, and More</h4>
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://meetings.hubspot.com/sathya-srinivasan1" class="btn btn-link" style="background-color: ; color: !important;">Book Your One-on-One Session</a>
+          
+        </div>
+      </div>
+      
+      <div class="carousel-item ">
+        <img class="d-block w-100" src="https://healthcare.e-zest.com/hubfs/Pharmacy%20Benefit%20Management.webp" alt="First slide">
+        <div class="container carousel-caption">
+          <h2>340B PBM Services</h2>
+          
+          
+          <h4>Streamlining Compliance and Unleashing Savings: <br> Empowering Your 340B Program for Success</h4>
+          
+          
+          
+          <a href="#toe" class="btn btn-link" style="background-color: #5eb822; color:#FFFFFF !important;">Discover 340B Success</a>
+          
+          
+          
+          
+          
+        </div>
+      </div>
+      
+      <div class="carousel-item ">
+        <img class="d-block w-100" src="https://healthcare.e-zest.com/hubfs/Healthcare_Microsite/Website%20Banners/AI%20Driven.jpg" alt="First slide">
+        <div class="container carousel-caption">
+          <h2>AI-Driven Value-Based Care</h2>
+          
+          
+          <h4>Transforming Healthcare DeliveryHarnessing the Power of AI to Drive Personalized Care, Predictive Analytics, and Workflow Optimization in Value-Based Healthcare</h4>
+          
+          
+          
+          
+          
+          <button class="btn btn-primary" style="background-color: #5eb822; color:#FFFFFF !important;" data-toggle="modal" data-target="#bannerModal">Talk to an Expert</button>
+          
+          
+          
+        </div>
+      </div>
+      
+
+    </div>
+    <a class="carousel-control-prev" data-target="#heroCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon icofont-simple-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+
+    <a class="carousel-control-next" data-target="#heroCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon icofont-simple-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</section><!-- End Hero -->
+
+<!-- Modal -->
+<div class="modal fade" id="bannerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered  modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Contact Us</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+        <script>
+          hbspt.forms.create({
+            region: "na1",
+            portalId: "744339",
+            formId: "45184856-f878-449a-aaf7-f66f406ff9e9"
+          });
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-3 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_15676862900091126" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+<div class="about-sidebar-navigation-section font-EZ font-HC">
+  <div class="section  sidebar-navigation-section-EZ sidebar-navigation-section-hc " style="background: transparent; background-color: #555148 !important;" id="myHeader">
+    <div class="sidebar-navigation"> 
+      <ul class="navigation hc-tab-menu">
+        
+        <li><a class="navigation__link" href="#challenge">Overview</a></li>
+        
+        <li><a class="navigation__link" href="#OurCapabilities">Our Capabilities</a></li>
+        
+        <li><a class="navigation__link" href="#TechPartners">Tech Partners</a></li>
+        
+        <li><a class="navigation__link" href="#stories">Success Stories</a></li>
+        
+        <li><a class="navigation__link" href="#blogs">Blogs</a></li>
+        
+      </ul>
+    </div>
+
+    <!---->
+
+    <div class="page-section-group">
+      <!--About Intro----------->   
+      
+
+
+
+  </div> 
+</div>
+
+<div class="career-sidebar-navigation-section">
+
+
+  <div class="section sidebar-navigation-section hc-subSection">
+   
+    
+
+    <!---->
+
+    <div class="page-section-group">
+
+      <!--Key Callenges----------->   
+      <div class="page-section key-challenges center-col-hc" id="challenge">
+        <div class="inner-key-challenges">
+          <div class="container px-4">  
+               <p>The pharmacy benefit management (PBM) sector is a crucial part of healthcare that is constantly faced with challenges like ever-changing regulations and rising healthcare costs. Additionally, there is a shortage of healthcare IT professionals in this sector, and providers must navigate the increasing use of technology while safeguarding patient privacy and addressing potential security risks. To deliver high-quality care, it is important for healthcare providers and professionals to stay informed about the latest advancements and obstacles in the field.</p>
+<!--             <div class="key-challenges-left-content">  
+             <h2>Key challenges</h2>
+          
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+      
+      <!--Solution----------->  
+   
+
+      
+
+
+
+
+      <!--Result----------->     
+     
+
+
+    </div>
+  </div>
+
+</div>
+</div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-4 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_1689158113295256" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+<div class="segments-counter" style="background-color: #FFFFFF" id="idName">
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-lg-2 col-md-6">
+        <div id="counter-box">
+          <div class="counter-cont"><span class="counter-cont-inner" style="border-color: #5eb822;"><span class="counter" data-number="1500">0</span><span>+</span></span></div>
+          <p>Teams</p>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div id="counter-box">
+          <div class="counter-cont"><span class="counter-cont-inner" style="border-color: #5eb822;"><span class="counter" data-number="250">0</span><span>+</span></span></div>
+          <p>Certified Healthcare Experts</p>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div id="counter-box">
+          <div class="counter-cont"><span class="counter-cont-inner" style="border-color: #5eb822;"><span class="counter" data-number="80">0</span><span>+</span></span></div>
+          <p>Projects</p>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div id="counter-box">
+          <div class="counter-cont"><span class="counter-cont-inner" style="border-color: #5eb822;"><span class="counter" data-number="20">0</span><span>+</span></span></div>
+          <p>Years of Experience</p>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div id="counter-box">
+          <div class="counter-cont"><span class="counter-cont-inner" style="border-color: #5eb822;"><span class="counter" data-number="5">0</span></span></div>
+          <p>Countries</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-5 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_168905832892778" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"></div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-6 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_168915917129550" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+<section id="OurCapabilities" class="seg-points" style="background-color: #FFFFFF;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Our Capabilities</h2>
+        <p class="lead-text"></p>
+      </div>
+    </div>
+    
+    <div class="row">
+      
+      <div class="col-md-4 ai-group">
+        <div class="clearfix">
+          <div class="ai-icon-cont">
+            <img class="icon" src="https://healthcare.e-zest.com/hubfs/Healthcare_Microsite/Icons/Migration.gif" alt="Icon">
+          </div>
+          <div class="desc-cont">
+            <h4>PBM Migration</h4>
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#PBMMigration">
+              Explore
+            </button>
+          </div>
+        </div>
+        
+        <!-- The Modal -->
+        <div class="modal fade explore-modal" id="PBMMigration">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">
+                  <button type="button" class="goback" data-dismiss="modal"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                  PBM Migration
+                </h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <p>Accelerate PBM Migrations with Smart Onboarding: Seamless Integration, AI-driven Efficiency, and 99% Accuracy!</p>
+<ul>
+<li>Fast Track PBM migrations by 30% - 40%&nbsp;</li>
+<li>Digitalize your Benefits as part of migration&nbsp;</li>
+<li>Capitalize on seamless integration between PBM and Client</li>
+<li>Reverse Engineer history claims and predict Plan Benefits&nbsp;</li>
+<li>A truly AI-driven approach that drives, repeatable steps, efficiency &amp; accuracy at 99%</li>
+</ul>
+<p>Explore Smart Onboarding: Download the PBM Migration Whitepaper for Expert Insights<!--HubSpot Call-to-Action Code -->
+<span class="hs-cta-wrapper" id="hs-cta-wrapper-1f97fe96-20e8-447e-93e4-e8215fe0e3be"><span class="hs-cta-node hs-cta-1f97fe96-20e8-447e-93e4-e8215fe0e3be" id="hs-cta-1f97fe96-20e8-447e-93e4-e8215fe0e3be">
+  <!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/744339/1f97fe96-20e8-447e-93e4-e8215fe0e3be" target="_blank" rel="noopener"><img class="hs-cta-img" id="hs-cta-img-1f97fe96-20e8-447e-93e4-e8215fe0e3be" style="border-width:0px;margin: 0 auto; display: block; margin-top: 20px; margin-bottom: 20px" src="https://no-cache.hubspot.com/cta/default/744339/1f97fe96-20e8-447e-93e4-e8215fe0e3be.png" alt="Download Whitepaper" align="middle"></a></span></span>
+<!-- end HubSpot Call-to-Action Code --></p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4 ai-group">
+        <div class="clearfix">
+          <div class="ai-icon-cont">
+            <img class="icon" src="https://healthcare.e-zest.com/hubfs/Healthcare_Microsite/Icons/Single%20source%20of%20truth.gif" alt="Icon">
+          </div>
+          <div class="desc-cont">
+            <h4>Single Source of Truth</h4>
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#SingleSourceofTruth">
+              Explore
+            </button>
+          </div>
+        </div>
+        
+        <!-- The Modal -->
+        <div class="modal fade explore-modal" id="SingleSourceofTruth">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">
+                  <button type="button" class="goback" data-dismiss="modal"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                  Single Source of Truth
+                </h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <p>Revolutionize Pharmacy Benefits with a Single Source of Truth</p>
+<ul>
+<li>Offers a Single Source of truth to streamline Pharmacy Benefits</li>
+<li>Manages your costs at a "cost per plan" level</li>
+<li>Highlights "duplicate benefits" and allows leaner benefit plan management</li>
+<li>Serves as a centralized source of client and PBM benefit users for effective Benefit Change management</li>
+<li>Tracks and reports all changes with date and time stamps and captures ‘before’ and ‘after’ images</li>
+<li>Acts as a user-friendly digital platform for effortless management of new wins, renewals, and changes through template design</li>
+<li>Delivers a promising Benefit Accuracy of 99%</li>
+</ul>
+<p>To learn how the <span>Single Source of Truth can efficiently streamline and optimize the benefits management process for your organization,&nbsp;</span></p>
+<p><!--HubSpot Call-to-Action Code -->
+<span class="hs-cta-wrapper" id="hs-cta-wrapper-90b4dc9e-fe1b-4331-820a-936adb84079d"><span class="hs-cta-node hs-cta-90b4dc9e-fe1b-4331-820a-936adb84079d" id="hs-cta-90b4dc9e-fe1b-4331-820a-936adb84079d">
+  <!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/744339/90b4dc9e-fe1b-4331-820a-936adb84079d" target="_blank" rel="noopener"><img class="hs-cta-img" id="hs-cta-img-90b4dc9e-fe1b-4331-820a-936adb84079d" style="border-width:0px;margin: 0 auto; display: block; margin-top: 20px; margin-bottom: 20px" src="https://no-cache.hubspot.com/cta/default/744339/90b4dc9e-fe1b-4331-820a-936adb84079d.png" alt="Download Whitepaper" align="middle"></a></span></span>
+<!-- end HubSpot Call-to-Action Code --></p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4 ai-group">
+        <div class="clearfix">
+          <div class="ai-icon-cont">
+            <img class="icon" src="https://healthcare.e-zest.com/hubfs/Healthcare_Microsite/Icons/PBM%20IT%20services.gif" alt="Icon">
+          </div>
+          <div class="desc-cont">
+            <h4>PBM IT Services</h4>
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#PBMITServices">
+              Explore
+            </button>
+          </div>
+        </div>
+        
+        <!-- The Modal -->
+        <div class="modal fade explore-modal" id="PBMITServices">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">
+                  <button type="button" class="goback" data-dismiss="modal"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                  PBM IT Services
+                </h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <ul>
+<li>Eligibility &amp; Enrollment</li>
+<li>CDH - Accumulator Integration &amp; Reconciliation</li>
+<li>Prior Authorization Modernization</li>
+<li>Formulary Clinical Management: Drug Trends &amp; Reports</li>
+<li>Digital Therapeutic Management</li>
+<li>Cloud Migration</li>
+<li>Legacy to API-driven Approach</li>
+<li>Product Management</li>
+<li>Data Visualization</li>
+<li>Data Warehouse Streamline</li>
+<li>Downstream Reporting</li>
+<li><span style="color: #0600ff;"><a href="https://www.e-zest.com/generative-ai" rel="noopener" style="color: #0600ff;">Generative AI</a></span></li>
+</ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4 ai-group">
+        <div class="clearfix">
+          <div class="ai-icon-cont">
+            <img class="icon" src="https://healthcare.e-zest.com/hubfs/Healthcare_Microsite/Icons/Rx.gif" alt="Icon">
+          </div>
+          <div class="desc-cont">
+            <h4>Specialty Rx</h4>
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#SpecialtyRx">
+              Explore
+            </button>
+          </div>
+        </div>
+        
+        <!-- The Modal -->
+        <div class="modal fade explore-modal" id="SpecialtyRx">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">
+                  <button type="button" class="goback" data-dismiss="modal"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                  Specialty Rx
+                </h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <p style="line-height: 2;"><strong>Manage your Specialty Rx and Streamline Drug Review</strong></p>
+<ul>
+<li style="line-height: 2;">Specialty pharmacies face several challenges that hinder patient access and affordability. Here are some of the major challenges that they face:</li>
+<li style="list-style-type: none;">
+<ul>
+<li>Limited accessibility</li>
+<li>High Costs</li>
+<li>Insurance complexities</li>
+<li>Medication shortages</li>
+<li>Lack of coordination</li>
+<li>Data security concerns</li>
+</ul>
+</li>
+<li style="line-height: 1.5;">e-Zest believes that by embracing patient education, patient interoperability, and biosimilars, specialty pharmacies can enhance patient care, improve outcomes, and create a more inclusive and efficient healthcare system, while overcoming the above-mentioned challenges.</li>
+<li style="line-height: 1.5;">Patient education programs play a crucial role in empowering patients to understand their conditions, treatment options, and medication administration techniques, thereby improving quality of care and minimizing adverse effects</li>
+<li style="line-height: 1.5;">Patient interoperability, achieved through interoperable systems and platforms, facilitates seamless exchange of patient information between healthcare providers, pharmacies, and insurance companies, streamlining processes and reducing administrative burdens</li>
+<li style="line-height: 1.5;">The emergence of biosimilars- an affordable alternative to costly biologics- offers increased accessibility and competition, driving down costs in the specialty pharmacy market</li>
+<li style="line-height: 1.5;">Our innovative enables easy access to healthcare and empowers specialty pharmacies to optimize operations, improve patient care, and enhance overall efficiency.</li>
+</ul>
+<p>Our expertise lies in:</p>
+<ul>
+<li>AI Powered Data Engineering</li>
+<li style="line-height: 1.5;">Streamlined Documentation and Process Mapping</li>
+<li style="line-height: 1.5;">AI Insights and Predictive Analytics</li>
+<li style="line-height: 1.5;">Process Review and Optimization</li>
+</ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4 ai-group">
+        <div class="clearfix">
+          <div class="ai-icon-cont">
+            <img class="icon" src="https://healthcare.e-zest.com/hubfs/Healthcare_Microsite/Icons/340B%20PBM%20Services.gif" alt="Icon">
+          </div>
+          <div class="desc-cont">
+            <h4>340B Services</h4>
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#BMigration">
+              Explore
+            </button>
+          </div>
+        </div>
+        
+        <!-- The Modal -->
+        <div class="modal fade explore-modal" id="BMigration">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">
+                  <button type="button" class="goback" data-dismiss="modal"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                  340B Services
+                </h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <p><strong>Manage 340B Programs &amp; Audit</strong></p>
+<ul>
+<li>Unlock the full potential of 340B Program within a PBM setting</li>
+<li>Implement a comprehensive solution that maximizes the benefits of your 340B program while effectively addressing IT-related obstacles</li>
+<li>We offer an exclusive workshop led by our 340B experts, as we delve into potential challenges, the necessity for customized IT solutions for 340B, and ultimately revolutionize your 340B operations</li>
+</ul>
+<p><strong>We focus on following 340B areas, and more if required.</strong></p>
+<ul>
+<li>Eligibility Verification &amp; Enrollment</li>
+<li>Contract Pharmacy Management</li>
+<li>Data Integration &amp; Reporting</li>
+<li>Split Billing &amp; Inventory Management</li>
+<li>Compliance and Audit</li>
+</ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4 ai-group">
+        <div class="clearfix">
+          <div class="ai-icon-cont">
+            <img class="icon" src="https://healthcare.e-zest.com/hubfs/Healthcare_Microsite/Icons/ai-file.gif" alt="Icon">
+          </div>
+          <div class="desc-cont">
+            <h4>AI-Driven Value-Based Care</h4>
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#AI-DrivenValue-BasedCare">
+              Explore
+            </button>
+          </div>
+        </div>
+        
+        <!-- The Modal -->
+        <div class="modal fade explore-modal" id="AI-DrivenValue-BasedCare">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">
+                  <button type="button" class="goback" data-dismiss="modal"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                  AI-Driven Value-Based Care
+                </h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <p>Value-based care is a transformative approach that prioritizes patient outcomes, cost-effectiveness, collaborative care and coordination, and quality in healthcare delivery. This model is particularly effective in managing chronic diseases and reducing hospital readmissions while emphasizing preventive care, population health management, and patient engagement. It has shown promising results in terms of improved patient outcomes and cost savings. By shifting the focus from volume to value, this approach is driving the transformation of healthcare delivery towards a patient-centered and quality-driven system.</p>
+<p>e-Zest's has years of experience in providing pointed solutions and services while continually emphasizing on VALUE. We believe that value is created through transformation, hence, our approach to value-based Care is through transformative technologies like AI.</p>
+e-Zest provides the following AI &amp; Generative AI services to optimize Value-Based Care:<br>
+<ul>
+<li>Data Analytics: AI can analyze large volumes of patient data, electronic health records, and other healthcare information to identify patterns, predict outcomes, and optimize treatment plans. This enables healthcare providers to make data-driven decisions and tailor care plans for individual patients, ultimately improving value-based care</li>
+<li>Predictive Analytics: AI algorithms can predict the risk of certain diseases or complications based on patient data, facilitating early intervention and preventive measures. This helps healthcare providers proactively manage population health and allocate resources efficiently</li>
+<li>Personalized Medicine: Generative AI can generate patient-specific treatment plans by considering individual characteristics, genetic information, and medical history. This supports precision medicine approaches, ensuring that patients receive the most appropriate and effective care for their unique needs</li>
+<li>Decision Support Systems: AI-powered decision support systems can assist healthcare providers in making evidence-based treatment decisions by providing real-time clinical guidelines, research findings, and patient-specific recommendations. This promotes the delivery of high-quality, value-based care</li>
+<li>Remote Monitoring and Telehealth: AI technologies enable remote patient monitoring, allowing healthcare providers to track patients' vital signs, symptoms, and adherence to treatment plans. This facilitates proactive interventions, reduces hospital readmissions, and improves patient outcomes, particularly in value-based care models</li>
+<li>Workflow Optimization: AI can automate routine administrative tasks, streamline workflows, and reduce administrative burden for healthcare professionals. This allows them to spend more time on patient care, enhancing the overall quality and efficiency of value-based care delivery</li>
+<li>Fraud Detection: AI algorithms can analyze healthcare claims and identify patterns of fraud, waste, and abuse. This helps in preventing fraudulent activities, optimizing resource allocation, and ensuring that healthcare funds are used appropriately, supporting the sustainability of value-based care models.</li>
+</ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4 ai-group">
+        <div class="clearfix">
+          <div class="ai-icon-cont">
+            <img class="icon" src="https://healthcare.e-zest.com/hubfs/Healthcare_Microsite/Icons/Contract%20Management.gif" alt="Icon">
+          </div>
+          <div class="desc-cont">
+            <h4>Account Management</h4>
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#AccountManagement">
+              Explore
+            </button>
+          </div>
+        </div>
+        
+        <!-- The Modal -->
+        <div class="modal fade explore-modal" id="AccountManagement">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">
+                  <button type="button" class="goback" data-dismiss="modal"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                  Account Management
+                </h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <p><strong>We provide cutting-edge digital solutions to help you excel in your role as a PBM Account Manager/Client Success Manager/Client Relationship Manager.</strong></p>
+<p>Are you struggling with CSAT scores, SLA management, PGs, audits, benefit management, accuracy, spreads, and rebates?</p>
+<ul>
+<li>Our digital platform offers a Single Source of Truth, allowing Client Benefit Users and User Groups to easily manage their benefits. Whether it's adding, changing, or deleting benefits, our portal streamlines the process and enables effective benefit renewal. It eliminates manual tasks and allows you to embrace a more efficient way of managing benefits</li>
+<li>To simplify your day-to-day operations, our platform also provides intuitive dashboards that offer real-time projections of spreads &amp; rebate. With this valuable information at your fingertips, you can confidently communicate with client teams, ensuring transparency and accurate reporting. The dashboards give you the insights you need to make data-driven decisions and provide exceptional service to your clients</li>
+<li>Our platform includes claims surveillance capabilities as well. It sends notifications about possible differences and anomalies, allowing you to track and address issues promptly. Effective communication and triage become easy using these centralized digital tools</li>
+</ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4 ai-group">
+        <div class="clearfix">
+          <div class="ai-icon-cont">
+            <img class="icon" src="https://healthcare.e-zest.com/hubfs/Healthcare_Microsite/Icons/Digital%20Contract%20Managemnet.gif" alt="Icon">
+          </div>
+          <div class="desc-cont">
+            <h4>Digital Contract Management</h4>
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#DigitalContractManagement">
+              Explore
+            </button>
+          </div>
+        </div>
+        
+        <!-- The Modal -->
+        <div class="modal fade explore-modal" id="DigitalContractManagement">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">
+                  <button type="button" class="goback" data-dismiss="modal"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                  Digital Contract Management
+                </h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <p><strong>Still using spreadsheets to manage your contracts, quotes, pricing models, renewals, and more?</strong></p>
+<p>The possibility of seamlessly transitioning all your Excel-based processes to a modern digital contract management portal can save significant amount of time and resources. This transformation can be achieved effortlessly and quickly using e-Zest's innovative accelerator. This tool empowers you to harness the full potential of a digital contract management portal in no time.</p>
+<p>With this cutting-edge technology, you can convert all your existing Excel spreadsheets into web-based solutions, ensuring a smooth transition and eliminating the need for manual data entry. It can quickly migrate your data, formulas, and functionalities from Excel to the web, all while preserving the integrity and accuracy of your information.</p>
+<p>With this modern solution, you'll gain access to an array of powerful features, including automated alerts to remind you of important contract milestones, insightful analytics to optimize your pricing models, and a wide range of customizable options to tailor contracts to specific needs. Furthermore, this portal can streamline the entire contract lifecycle, from creation to negotiation, execution, and renewal.</p>
+<p>Embrace the future of contract management and unlock a new level of efficiency and convenience.</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4 ai-group">
+        <div class="clearfix">
+          <div class="ai-icon-cont">
+            <img class="icon" src="https://healthcare.e-zest.com/hubfs/Healthcare_Microsite/Icons/Medicare%20start%20rating.gif" alt="Icon">
+          </div>
+          <div class="desc-cont">
+            <h4>Star Rating &amp; Performance Reports</h4>
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#StarRatingPerformanceReports">
+              Explore
+            </button>
+          </div>
+        </div>
+        
+        <!-- The Modal -->
+        <div class="modal fade explore-modal" id="StarRatingPerformanceReports">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">
+                  <button type="button" class="goback" data-dismiss="modal"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                  Star Rating &amp; Performance Reports
+                </h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <p>The Centers for Medicare and Medicaid Services (CMS) provides Appeals and Grievances (A&amp;G) rights to members and providers associated with a health plan in the Medicare system. This process has a substantial impact on the Medicare Stars Rating System, which measures the quality and performance of Medicare Advantage (MA) plans. All 28 measures, included in the MA plan Stars Rating system, have an associated weight that varies from 1 to 5 in value. The higher the weight, the more the impact of that measure on the MA plan Stars rating. The total weight of all 28 measures was 67. A&amp;G directly or indirectly impact 9 of these 28 measures. These 9 measures have an aggregated weight of 36, which means A&amp;G process has an over 50% (36 out of 67) impact on the overall Medicare Stars Rating.</p>
+<p>Optimizing the A&amp;G process, leveraging technology solutions, and focusing on member satisfaction and timely resolution of appeals and grievances are crucial for improving the Medicare Stars Rating of MA plans.</p>
+<p>To learn more about how to efficiently execute the A&amp;G process to maintain and improve Medicare Stars Ratings,</p>
+<p><!--HubSpot Call-to-Action Code -->
+<span class="hs-cta-wrapper" id="hs-cta-wrapper-9a9ad79a-39b5-4e25-a3f6-b108d21b4150"><span class="hs-cta-node hs-cta-9a9ad79a-39b5-4e25-a3f6-b108d21b4150" id="hs-cta-9a9ad79a-39b5-4e25-a3f6-b108d21b4150">
+  <!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/744339/9a9ad79a-39b5-4e25-a3f6-b108d21b4150" target="_blank" rel="noopener"><img class="hs-cta-img" id="hs-cta-img-9a9ad79a-39b5-4e25-a3f6-b108d21b4150" style="border-width:0px;margin: 0 auto; display: block; margin-top: 20px; margin-bottom: 20px" src="https://no-cache.hubspot.com/cta/default/744339/9a9ad79a-39b5-4e25-a3f6-b108d21b4150.png" alt="Download the Whitepaper Now" align="middle"></a></span></span>
+<!-- end HubSpot Call-to-Action Code --></p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4 ai-group">
+        <div class="clearfix">
+          <div class="ai-icon-cont">
+            <img class="icon" src="https://healthcare.e-zest.com/hubfs/prescription.gif" alt="Icon">
+          </div>
+          <div class="desc-cont">
+            <h4>Medicare Prescription Payment Plan</h4>
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#MedicarePrescriptionPaymentPlan">
+              Explore
+            </button>
+          </div>
+        </div>
+        
+        <!-- The Modal -->
+        <div class="modal fade explore-modal" id="MedicarePrescriptionPaymentPlan">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">
+                  <button type="button" class="goback" data-dismiss="modal"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                  Medicare Prescription Payment Plan
+                </h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <p>The Inflation Reduction Act (IRA) has introduced significant enhancements to Medicare Part D, aimed at improving accessibility, affordability, transparency, and quality of care for beneficiaries. <strong>e-Zest PBM Center of Excellence</strong> offers a comprehensive suite of services to help organizations navigate these changes seamlessly.</p>
+<p>Some of our key offerings include:</p>
+<ul>
+<li>Leveraging our Audit and Certification expertise to ensuring compliance with the Medicare Prescription Payment Plan (M3P)&nbsp;</li>
+<li>Helping beneficiaries spread out-of-pocket costs evenly throughout the year while opting for M3P</li>
+<li>Accurate claims adjudication to expand coverage options and reduce financial burdens through our Claims Testing services&nbsp;</li>
+<li>Providing real-time insights into medication costs with our Claims Monitoring expertise&nbsp;</li>
+<li>Facilitating integration of pricing information to empower cost-effective decision-making</li>
+<li>Supporting implementation of medication therapy management programs</li>
+<li>Aligning adherence initiatives with M3P requirements</li>
+<li>Streamlining administrative procedures within the M3P with our IT Development expertise&nbsp;</li>
+<li>Identifying and rectifying potential administrative inefficiencies with our Claims Monitoring Services</li>
+</ul>
+<p>e-Zest PBM Center of Excellence positions itself as a trusted partner to help organizations harness the full potential of Medicare Part D improvements, driving operational efficiency and delivering enhanced care to beneficiaries.</p>
+<p><!--HubSpot Call-to-Action Code -->
+<span class="hs-cta-wrapper" id="hs-cta-wrapper-b42a4ec8-054e-402f-a706-8e8ed79ade80"><span class="hs-cta-node hs-cta-b42a4ec8-054e-402f-a706-8e8ed79ade80" id="hs-cta-b42a4ec8-054e-402f-a706-8e8ed79ade80">
+  <!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/744339/b42a4ec8-054e-402f-a706-8e8ed79ade80" target="_blank" rel="noopener"><img class="hs-cta-img" id="hs-cta-img-b42a4ec8-054e-402f-a706-8e8ed79ade80" style="border-width:0px;margin: 0 auto; display: block; margin-top: 20px; margin-bottom: 20px" src="https://no-cache.hubspot.com/cta/default/744339/b42a4ec8-054e-402f-a706-8e8ed79ade80.png" alt="Learn More" align="middle"></a></span></span>
+<!-- end HubSpot Call-to-Action Code --></p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4 ai-group">
+        <div class="clearfix">
+          <div class="ai-icon-cont">
+            <img class="icon" src="https://healthcare.e-zest.com/hubfs/reduce-cost.gif" alt="Icon">
+          </div>
+          <div class="desc-cont">
+            <h4>Prescription Savings Program</h4>
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#PrescriptionSavingsProgram">
+              Explore
+            </button>
+          </div>
+        </div>
+        
+        <!-- The Modal -->
+        <div class="modal fade explore-modal" id="PrescriptionSavingsProgram">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">
+                  <button type="button" class="goback" data-dismiss="modal"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                  Prescription Savings Program
+                </h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <p>e-Zest – An Accion Labs Company, is leading the way in developing innovative Prescription Savings Programs, specifically tailored for Pharmacy Benefit Managers (PBMs), Health plans, and Employers. Our expert team brings deep subject matter expertise, ensuring we create top-tier applications designed to reduce prescription costs while maintaining member adherence.</p>
+<p>We specialize in building robust applications for various Prescription Savings Programs, including:</p>
+<ul>
+<li><strong>Patient Assistance Programs</strong></li>
+<li><strong>Copay Assistance Programs&nbsp;</strong></li>
+<li><strong>International Pharmacy Programs</strong></li>
+</ul>
+<p>Patient Assistance Programs bridge the financial gap between members’ needs and support, ensuring they have access to necessary medications. Through our Copay Assistance Programs, we help members maximize their savings on brand-name medications, making high-cost prescriptions more affordable. International Pharmacy Programs are aimed at providing access to high-quality medications at significantly lower prices, broadening the options available to members.</p>
+<p>Partnering with us means leveraging our extensive industry knowledge and technology expertise to develop and manage these critical Prescription Savings Programs. We can help transform prescription savings and enhance member adherence through innovative, effective, and affordable healthcare solutions.</p>
+<p>Our expertise ensures your organization delivers unparalleled savings and adherence solutions, ultimately benefiting both members and the overall healthcare system.</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+</div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-7 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_1666350935840215" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"></div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-8 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_1666752754015641" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"></div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-9 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_1673872271443106" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"></div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-10 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_167387208036134" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"></div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-11 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_1689067958408268" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"></div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-12 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_1689232610820221" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+<section class="seg-tech-partners" style="background-color:#f5f5f5" id="TechPartners">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            
+          
+        
+        
+        <h2>
+          Tech Partners
+        </h2>
+      <div class="glide" id="logo-tickers">
+        <div class="glide__track" data-glide-el="track">
+          <div class="glide__slides">
+            
+            <div class="p-2 glide__slide">
+              <div class="py-2 my-3">
+                <img src="https://healthcare.e-zest.com/hs-fs/hubfs/Service%20Logo-1.webp?width=150&amp;height=50&amp;name=Service%20Logo-1.webp" alt="Service Logo-1" width="150" height="50" class="" srcset="https://healthcare.e-zest.com/hs-fs/hubfs/Service%20Logo-1.webp?width=75&amp;height=25&amp;name=Service%20Logo-1.webp 75w, https://healthcare.e-zest.com/hs-fs/hubfs/Service%20Logo-1.webp?width=150&amp;height=50&amp;name=Service%20Logo-1.webp 150w, https://healthcare.e-zest.com/hs-fs/hubfs/Service%20Logo-1.webp?width=225&amp;height=75&amp;name=Service%20Logo-1.webp 225w, https://healthcare.e-zest.com/hs-fs/hubfs/Service%20Logo-1.webp?width=300&amp;height=100&amp;name=Service%20Logo-1.webp 300w, https://healthcare.e-zest.com/hs-fs/hubfs/Service%20Logo-1.webp?width=375&amp;height=125&amp;name=Service%20Logo-1.webp 375w, https://healthcare.e-zest.com/hs-fs/hubfs/Service%20Logo-1.webp?width=450&amp;height=150&amp;name=Service%20Logo-1.webp 450w" sizes="(max-width: 150px) 100vw, 150px"> 
+              </div>
+            </div>
+            
+            <div class="p-2 glide__slide">
+              <div class="py-2 my-3">
+                <img src="https://healthcare.e-zest.com/hs-fs/hubfs/Adobe_Commerce_Cloud_lockup_stacked_black_text12%20(3)-1.webp?width=150&amp;height=50&amp;name=Adobe_Commerce_Cloud_lockup_stacked_black_text12%20(3)-1.webp" alt="Adobe_Commerce_Cloud_lockup_stacked_black_text12 (3)-1" width="150" height="50" class="" srcset="https://healthcare.e-zest.com/hs-fs/hubfs/Adobe_Commerce_Cloud_lockup_stacked_black_text12%20(3)-1.webp?width=75&amp;height=25&amp;name=Adobe_Commerce_Cloud_lockup_stacked_black_text12%20(3)-1.webp 75w, https://healthcare.e-zest.com/hs-fs/hubfs/Adobe_Commerce_Cloud_lockup_stacked_black_text12%20(3)-1.webp?width=150&amp;height=50&amp;name=Adobe_Commerce_Cloud_lockup_stacked_black_text12%20(3)-1.webp 150w, https://healthcare.e-zest.com/hs-fs/hubfs/Adobe_Commerce_Cloud_lockup_stacked_black_text12%20(3)-1.webp?width=225&amp;height=75&amp;name=Adobe_Commerce_Cloud_lockup_stacked_black_text12%20(3)-1.webp 225w, https://healthcare.e-zest.com/hs-fs/hubfs/Adobe_Commerce_Cloud_lockup_stacked_black_text12%20(3)-1.webp?width=300&amp;height=100&amp;name=Adobe_Commerce_Cloud_lockup_stacked_black_text12%20(3)-1.webp 300w, https://healthcare.e-zest.com/hs-fs/hubfs/Adobe_Commerce_Cloud_lockup_stacked_black_text12%20(3)-1.webp?width=375&amp;height=125&amp;name=Adobe_Commerce_Cloud_lockup_stacked_black_text12%20(3)-1.webp 375w, https://healthcare.e-zest.com/hs-fs/hubfs/Adobe_Commerce_Cloud_lockup_stacked_black_text12%20(3)-1.webp?width=450&amp;height=150&amp;name=Adobe_Commerce_Cloud_lockup_stacked_black_text12%20(3)-1.webp 450w" sizes="(max-width: 150px) 100vw, 150px"> 
+              </div>
+            </div>
+            
+            <div class="p-2 glide__slide">
+              <div class="py-2 my-3">
+                <img src="https://healthcare.e-zest.com/hs-fs/hubfs/Salesforce-logo-removebg-preview-1.webp?width=150&amp;height=50&amp;name=Salesforce-logo-removebg-preview-1.webp" alt="Salesforce-logo-removebg-preview-1" width="150" height="50" class="" srcset="https://healthcare.e-zest.com/hs-fs/hubfs/Salesforce-logo-removebg-preview-1.webp?width=75&amp;height=25&amp;name=Salesforce-logo-removebg-preview-1.webp 75w, https://healthcare.e-zest.com/hs-fs/hubfs/Salesforce-logo-removebg-preview-1.webp?width=150&amp;height=50&amp;name=Salesforce-logo-removebg-preview-1.webp 150w, https://healthcare.e-zest.com/hs-fs/hubfs/Salesforce-logo-removebg-preview-1.webp?width=225&amp;height=75&amp;name=Salesforce-logo-removebg-preview-1.webp 225w, https://healthcare.e-zest.com/hs-fs/hubfs/Salesforce-logo-removebg-preview-1.webp?width=300&amp;height=100&amp;name=Salesforce-logo-removebg-preview-1.webp 300w, https://healthcare.e-zest.com/hs-fs/hubfs/Salesforce-logo-removebg-preview-1.webp?width=375&amp;height=125&amp;name=Salesforce-logo-removebg-preview-1.webp 375w, https://healthcare.e-zest.com/hs-fs/hubfs/Salesforce-logo-removebg-preview-1.webp?width=450&amp;height=150&amp;name=Salesforce-logo-removebg-preview-1.webp 450w" sizes="(max-width: 150px) 100vw, 150px"> 
+              </div>
+            </div>
+            
+            <div class="p-2 glide__slide">
+              <div class="py-2 my-3">
+                <img src="https://healthcare.e-zest.com/hs-fs/hubfs/e-Zest%20-%20Snowflake%20-2-2.webp?width=150&amp;height=50&amp;name=e-Zest%20-%20Snowflake%20-2-2.webp" alt="e-Zest - Snowflake -2-2" width="150" height="50" class="" srcset="https://healthcare.e-zest.com/hs-fs/hubfs/e-Zest%20-%20Snowflake%20-2-2.webp?width=75&amp;height=25&amp;name=e-Zest%20-%20Snowflake%20-2-2.webp 75w, https://healthcare.e-zest.com/hs-fs/hubfs/e-Zest%20-%20Snowflake%20-2-2.webp?width=150&amp;height=50&amp;name=e-Zest%20-%20Snowflake%20-2-2.webp 150w, https://healthcare.e-zest.com/hs-fs/hubfs/e-Zest%20-%20Snowflake%20-2-2.webp?width=225&amp;height=75&amp;name=e-Zest%20-%20Snowflake%20-2-2.webp 225w, https://healthcare.e-zest.com/hs-fs/hubfs/e-Zest%20-%20Snowflake%20-2-2.webp?width=300&amp;height=100&amp;name=e-Zest%20-%20Snowflake%20-2-2.webp 300w, https://healthcare.e-zest.com/hs-fs/hubfs/e-Zest%20-%20Snowflake%20-2-2.webp?width=375&amp;height=125&amp;name=e-Zest%20-%20Snowflake%20-2-2.webp 375w, https://healthcare.e-zest.com/hs-fs/hubfs/e-Zest%20-%20Snowflake%20-2-2.webp?width=450&amp;height=150&amp;name=e-Zest%20-%20Snowflake%20-2-2.webp 450w" sizes="(max-width: 150px) 100vw, 150px"> 
+              </div>
+            </div>
+            
+            <div class="p-2 glide__slide">
+              <div class="py-2 my-3">
+                <img src="https://healthcare.e-zest.com/hs-fs/hubfs/MicroSoft-2-2.webp?width=150&amp;height=50&amp;name=MicroSoft-2-2.webp" alt="MicroSoft-2-2" width="150" height="50" class="" srcset="https://healthcare.e-zest.com/hs-fs/hubfs/MicroSoft-2-2.webp?width=75&amp;height=25&amp;name=MicroSoft-2-2.webp 75w, https://healthcare.e-zest.com/hs-fs/hubfs/MicroSoft-2-2.webp?width=150&amp;height=50&amp;name=MicroSoft-2-2.webp 150w, https://healthcare.e-zest.com/hs-fs/hubfs/MicroSoft-2-2.webp?width=225&amp;height=75&amp;name=MicroSoft-2-2.webp 225w, https://healthcare.e-zest.com/hs-fs/hubfs/MicroSoft-2-2.webp?width=300&amp;height=100&amp;name=MicroSoft-2-2.webp 300w, https://healthcare.e-zest.com/hs-fs/hubfs/MicroSoft-2-2.webp?width=375&amp;height=125&amp;name=MicroSoft-2-2.webp 375w, https://healthcare.e-zest.com/hs-fs/hubfs/MicroSoft-2-2.webp?width=450&amp;height=150&amp;name=MicroSoft-2-2.webp 450w" sizes="(max-width: 150px) 100vw, 150px"> 
+              </div>
+            </div>
+            
+            <div class="p-2 glide__slide">
+              <div class="py-2 my-3">
+                <img src="https://healthcare.e-zest.com/hs-fs/hubfs/AmazonWebservices%20(1)-1.webp?width=150&amp;height=50&amp;name=AmazonWebservices%20(1)-1.webp" alt="AmazonWebservices (1)-1" width="150" height="50" class="" srcset="https://healthcare.e-zest.com/hs-fs/hubfs/AmazonWebservices%20(1)-1.webp?width=75&amp;height=25&amp;name=AmazonWebservices%20(1)-1.webp 75w, https://healthcare.e-zest.com/hs-fs/hubfs/AmazonWebservices%20(1)-1.webp?width=150&amp;height=50&amp;name=AmazonWebservices%20(1)-1.webp 150w, https://healthcare.e-zest.com/hs-fs/hubfs/AmazonWebservices%20(1)-1.webp?width=225&amp;height=75&amp;name=AmazonWebservices%20(1)-1.webp 225w, https://healthcare.e-zest.com/hs-fs/hubfs/AmazonWebservices%20(1)-1.webp?width=300&amp;height=100&amp;name=AmazonWebservices%20(1)-1.webp 300w, https://healthcare.e-zest.com/hs-fs/hubfs/AmazonWebservices%20(1)-1.webp?width=375&amp;height=125&amp;name=AmazonWebservices%20(1)-1.webp 375w, https://healthcare.e-zest.com/hs-fs/hubfs/AmazonWebservices%20(1)-1.webp?width=450&amp;height=150&amp;name=AmazonWebservices%20(1)-1.webp 450w" sizes="(max-width: 150px) 100vw, 150px"> 
+              </div>
+            </div>
+            
+          </div>   
+        </div>
+      </div>
+        
+            </div>
+        </div>
+      </div>
+</section>
+</div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-13 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_167387821359578" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+<section id="certificateAwards2" class="certificate-awards seg-certificate-awards" style="background-color: #f5f5f5;">  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="award-body-wrap-col" style="background-color: #ffffff;">
+          <div class="title-cont">
+          <h2>Awards &amp; Recognition</h2>
+        </div>
+        <div class="row">
+          
+            <div class="col-sm-6 col-md-4">
+              <div class="award-logo-wrap">
+                <a href="https://www.e-zest.com/" target="_blank" class="link-box">
+                  <img src="https://healthcare.e-zest.com/hubfs/Awards%20logo%20resizing-ZINNOV-3.webp" class="img-fluid">
+                </a>
+              </div>
+            </div>
+          
+            <div class="col-sm-6 col-md-4">
+              <div class="award-logo-wrap">
+                <a href="https://www.e-zest.com/" target="_blank" class="link-box">
+                  <img src="https://healthcare.e-zest.com/hubfs/ISG%20logo2.webp" class="img-fluid">
+                </a>
+              </div>
+            </div>
+          
+            <div class="col-sm-6 col-md-4">
+              <div class="award-logo-wrap">
+                <a href="https://www.e-zest.com/" target="_blank" class="link-box">
+                  <img src="https://healthcare.e-zest.com/hubfs/Peak%20logo-3.webp" class="img-fluid">
+                </a>
+              </div>
+            </div>
+          
+            <div class="col-sm-6 col-md-4">
+              <div class="award-logo-wrap">
+                <a href="https://www.e-zest.com/" target="_blank" class="link-box">
+                  <img src="https://healthcare.e-zest.com/hubfs/Quadrant%20logo-1.webp" class="img-fluid">
+                </a>
+              </div>
+            </div>
+          
+            <div class="col-sm-6 col-md-4">
+              <div class="award-logo-wrap">
+                <a href="https://www.e-zest.com/" target="_blank" class="link-box">
+                  <img src="https://healthcare.e-zest.com/hubfs/Awards%20logo%20resizing-CRN-3-1.webp" class="img-fluid">
+                </a>
+              </div>
+            </div>
+          
+            <div class="col-sm-6 col-md-4">
+              <div class="award-logo-wrap">
+                <a href="https://www.e-zest.com/" target="_blank" class="link-box">
+                  <img src="https://healthcare.e-zest.com/hubfs/Awards%20logo%20resizing-Deloitte-3-1.webp" class="img-fluid">
+                </a>
+              </div>
+            </div>
+          
+        </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="certificate-body-wrap-col" style="background-color: #ffffff;">
+          <div class="title-cont">
+          <h2>Industry Certificates</h2>
+        </div>
+        <div class="row">
+          
+            <div class="col-sm-6 col-md-4">
+              <div class="certificate-logo-wrap">
+                <a href="https://www.e-zest.com/" target="_blank" class="link-box">
+                  <img src="https://healthcare.e-zest.com/hubfs/logo05%20(1).webp" class="img-fluid">
+                </a>
+              </div>
+            </div>
+          
+            <div class="col-sm-6 col-md-4">
+              <div class="certificate-logo-wrap">
+                <a href="https://www.e-zest.com/" target="_blank" class="link-box">
+                  <img src="https://healthcare.e-zest.com/hubfs/logo03%20(1).webp" class="img-fluid">
+                </a>
+              </div>
+            </div>
+          
+            <div class="col-sm-6 col-md-4">
+              <div class="certificate-logo-wrap">
+                <a href="https://www.e-zest.com/" target="_blank" class="link-box">
+                  <img src="https://healthcare.e-zest.com/hubfs/logo02%20(1).webp" class="img-fluid">
+                </a>
+              </div>
+            </div>
+          
+            <div class="col-sm-6 col-md-4">
+              <div class="certificate-logo-wrap">
+                <a href="https://www.e-zest.com/" target="_blank" class="link-box">
+                  <img src="https://healthcare.e-zest.com/hubfs/logo04%20(1).webp" class="img-fluid">
+                </a>
+              </div>
+            </div>
+          
+            <div class="col-sm-6 col-md-4">
+              <div class="certificate-logo-wrap">
+                <a href="https://www.e-zest.com/" target="_blank" class="link-box">
+                  <img src="https://healthcare.e-zest.com/hubfs/logo06%20(1).webp" class="img-fluid">
+                </a>
+              </div>
+            </div>
+          
+            <div class="col-sm-6 col-md-4">
+              <div class="certificate-logo-wrap">
+                <a href="https://www.e-zest.com/" target="_blank" class="link-box">
+                  <img src="https://healthcare.e-zest.com/hubfs/TUV%20logo.webp" class="img-fluid">
+                </a>
+              </div>
+            </div>
+          
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</section>
+</div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-14 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_16667760124001028" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+<div class="span12 bg-section smedium-stack Success-stories pbm-related" id="stories" style="background-color: #ffffff !important;">
+<div class="container">
+
+<!-- HTML to show when checked -->
+<div class=" " id="stories">
+<div class="related-insights cs-1-2">
+  <h2>Success Stories</h2>
+  <div class="related-insights-inner">
+    
+   <div class="related-insights-post module Success-stories">
+      <a href="https://healthcare.e-zest.com/pbm-migration-for-a-global-fortune-50-us-based-claims-adjudication-manager">
+	
+		<img src="https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/PBM-Migration-for-a-Global-Fortune-50-US-based-Claims-Adjudication-Manager_2x_960x852.jpg?width=960&amp;height=852&amp;name=PBM-Migration-for-a-Global-Fortune-50-US-based-Claims-Adjudication-Manager_2x_960x852.jpg" class="stories" alt="PBM-Migration-for-a-Global-Fortune-50-US-based-Claims-Adjudication-Manager_2x_960x852" width="960" height="852" srcset="https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/PBM-Migration-for-a-Global-Fortune-50-US-based-Claims-Adjudication-Manager_2x_960x852.jpg?width=480&amp;height=426&amp;name=PBM-Migration-for-a-Global-Fortune-50-US-based-Claims-Adjudication-Manager_2x_960x852.jpg 480w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/PBM-Migration-for-a-Global-Fortune-50-US-based-Claims-Adjudication-Manager_2x_960x852.jpg?width=960&amp;height=852&amp;name=PBM-Migration-for-a-Global-Fortune-50-US-based-Claims-Adjudication-Manager_2x_960x852.jpg 960w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/PBM-Migration-for-a-Global-Fortune-50-US-based-Claims-Adjudication-Manager_2x_960x852.jpg?width=1440&amp;height=1278&amp;name=PBM-Migration-for-a-Global-Fortune-50-US-based-Claims-Adjudication-Manager_2x_960x852.jpg 1440w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/PBM-Migration-for-a-Global-Fortune-50-US-based-Claims-Adjudication-Manager_2x_960x852.jpg?width=1920&amp;height=1704&amp;name=PBM-Migration-for-a-Global-Fortune-50-US-based-Claims-Adjudication-Manager_2x_960x852.jpg 1920w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/PBM-Migration-for-a-Global-Fortune-50-US-based-Claims-Adjudication-Manager_2x_960x852.jpg?width=2400&amp;height=2130&amp;name=PBM-Migration-for-a-Global-Fortune-50-US-based-Claims-Adjudication-Manager_2x_960x852.jpg 2400w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/PBM-Migration-for-a-Global-Fortune-50-US-based-Claims-Adjudication-Manager_2x_960x852.jpg?width=2880&amp;height=2556&amp;name=PBM-Migration-for-a-Global-Fortune-50-US-based-Claims-Adjudication-Manager_2x_960x852.jpg 2880w" sizes="(max-width: 960px) 100vw, 960px">
+	
+	<div class="related-insights-post-content Success-stories-text ">
+<!--     <small>Work</small> -->
+    <h3>PBM Migration for a Global Fortune 50 US-based Claims Adjudication Manager</h3>
+<!--     <p></p> -->
+      </div>  
+        </a>
+      </div>
+
+   <div class="related-insights-post module Success-stories">
+      <a href="https://healthcare.e-zest.com/centralized-pharmacy-application-transformation-for-a-leading-healthcare-software-provider">
+	
+		<img src="https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/Centralized%20Pharmacy%20Application.png?width=480&amp;height=426&amp;name=Centralized%20Pharmacy%20Application.png" class="stories" alt="Centralized Pharmacy Application" width="480" height="426" srcset="https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/Centralized%20Pharmacy%20Application.png?width=240&amp;height=213&amp;name=Centralized%20Pharmacy%20Application.png 240w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/Centralized%20Pharmacy%20Application.png?width=480&amp;height=426&amp;name=Centralized%20Pharmacy%20Application.png 480w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/Centralized%20Pharmacy%20Application.png?width=720&amp;height=639&amp;name=Centralized%20Pharmacy%20Application.png 720w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/Centralized%20Pharmacy%20Application.png?width=960&amp;height=852&amp;name=Centralized%20Pharmacy%20Application.png 960w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/Centralized%20Pharmacy%20Application.png?width=1200&amp;height=1065&amp;name=Centralized%20Pharmacy%20Application.png 1200w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/Centralized%20Pharmacy%20Application.png?width=1440&amp;height=1278&amp;name=Centralized%20Pharmacy%20Application.png 1440w" sizes="(max-width: 480px) 100vw, 480px">
+	
+	<div class="related-insights-post-content Success-stories-text ">
+<!--     <small>Work</small> -->
+    <h3>Centralized Pharmacy Application Transformation for a Leading Healthcare Software Provide</h3>
+<!--     <p>Pocket PC Based Point of Care Application</p> -->
+      </div>  
+        </a>
+      </div>
+
+   <div class="related-insights-post module Success-stories">
+      <a href="https://healthcare.e-zest.com/case-study-real-time-eligibility-validation-tool-for-pharmacy-benefits">
+	
+		<img src="https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/Real-Time%20Eligibility%20Validation%20Tool%20for%20Pharmacy%20Benefits.png?width=480&amp;height=426&amp;name=Real-Time%20Eligibility%20Validation%20Tool%20for%20Pharmacy%20Benefits.png" class="stories" alt="Real-Time Eligibility Validation Tool for Pharmacy Benefits" width="480" height="426" srcset="https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/Real-Time%20Eligibility%20Validation%20Tool%20for%20Pharmacy%20Benefits.png?width=240&amp;height=213&amp;name=Real-Time%20Eligibility%20Validation%20Tool%20for%20Pharmacy%20Benefits.png 240w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/Real-Time%20Eligibility%20Validation%20Tool%20for%20Pharmacy%20Benefits.png?width=480&amp;height=426&amp;name=Real-Time%20Eligibility%20Validation%20Tool%20for%20Pharmacy%20Benefits.png 480w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/Real-Time%20Eligibility%20Validation%20Tool%20for%20Pharmacy%20Benefits.png?width=720&amp;height=639&amp;name=Real-Time%20Eligibility%20Validation%20Tool%20for%20Pharmacy%20Benefits.png 720w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/Real-Time%20Eligibility%20Validation%20Tool%20for%20Pharmacy%20Benefits.png?width=960&amp;height=852&amp;name=Real-Time%20Eligibility%20Validation%20Tool%20for%20Pharmacy%20Benefits.png 960w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/Real-Time%20Eligibility%20Validation%20Tool%20for%20Pharmacy%20Benefits.png?width=1200&amp;height=1065&amp;name=Real-Time%20Eligibility%20Validation%20Tool%20for%20Pharmacy%20Benefits.png 1200w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare_Microsite/Success_Stories/Listing%20Page%20banners/Real-Time%20Eligibility%20Validation%20Tool%20for%20Pharmacy%20Benefits.png?width=1440&amp;height=1278&amp;name=Real-Time%20Eligibility%20Validation%20Tool%20for%20Pharmacy%20Benefits.png 1440w" sizes="(max-width: 480px) 100vw, 480px">
+	
+	<div class="related-insights-post-content Success-stories-text ">
+<!--     <small>Work</small> -->
+    <h3>Real-Time Eligibility Validation Tool for Pharmacy Benefits</h3>
+<!--     <p></p> -->
+      </div>  
+        </a>
+      </div>
+
+    
+    
+  </div>
+    
+</div>
+    
+</div>
+  <div class="story-link-cont">
+    <a href="https://healthcare.e-zest.com/success-stories" class="cta_button rolling_tiles">All Success Stories &gt;</a>
+  </div>
+
+</div>
+  </div></div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-15 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_1568097506983396" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+<div class="span12  " id="blogs" style="background-color: #FFFFFF;">
+<div class="container ">
+
+<!-- HTML to show when checked -->
+<div class="" id="stories">
+<div class="related-insights cs-1-2">
+   <h2>Blogs</h2> 
+  <div class="related-insights-inner">
+    
+   <div class="related-insights-post module card-box">
+      <a href="https://blog.e-zest.com/healthcare/digital-transformation-opportunity-within-pbm-pharmacy-benefit-management">
+	
+		<img src="https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare%20Microsite/Blogs/technology-pbm.png?width=532&amp;height=250&amp;name=technology-pbm.png" alt="technology-pbm" width="532" height="250" srcset="https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare%20Microsite/Blogs/technology-pbm.png?width=266&amp;height=125&amp;name=technology-pbm.png 266w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare%20Microsite/Blogs/technology-pbm.png?width=532&amp;height=250&amp;name=technology-pbm.png 532w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare%20Microsite/Blogs/technology-pbm.png?width=798&amp;height=375&amp;name=technology-pbm.png 798w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare%20Microsite/Blogs/technology-pbm.png?width=1064&amp;height=500&amp;name=technology-pbm.png 1064w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare%20Microsite/Blogs/technology-pbm.png?width=1330&amp;height=625&amp;name=technology-pbm.png 1330w, https://healthcare.e-zest.com/hs-fs/hubfs/Healthcare%20Microsite/Blogs/technology-pbm.png?width=1596&amp;height=750&amp;name=technology-pbm.png 1596w" sizes="(max-width: 532px) 100vw, 532px">
+	
+	<div class="related-insights-post-content">
+<!--     <small>Blog</small> -->
+    <h3>Digital Transformation opportunity within PBM (Pharmacy Benefit Management)</h3>
+    <p>Pharmacy Benefit Managers (PBMs) are firms that manage prescription drug benefits on behalf of health insurance companies, large employers, and other payers.</p>
+      </div>  
+        </a>
+      </div>
+
+   <div class="related-insights-post module card-box">
+      <a href="https://blog.e-zest.com/healthcare/enhancing-patient-care-with-conversational-ai-in-healthcare">
+	
+		<img src="https://healthcare.e-zest.com/hs-fs/hubfs/Enhancing%20Patient%20Care%20with%20Conversational%20AI%20in%20Healthcare.png?width=532&amp;height=250&amp;name=Enhancing%20Patient%20Care%20with%20Conversational%20AI%20in%20Healthcare.png" alt="Enhancing Patient Care with Conversational AI in Healthcare" width="532" height="250" srcset="https://healthcare.e-zest.com/hs-fs/hubfs/Enhancing%20Patient%20Care%20with%20Conversational%20AI%20in%20Healthcare.png?width=266&amp;height=125&amp;name=Enhancing%20Patient%20Care%20with%20Conversational%20AI%20in%20Healthcare.png 266w, https://healthcare.e-zest.com/hs-fs/hubfs/Enhancing%20Patient%20Care%20with%20Conversational%20AI%20in%20Healthcare.png?width=532&amp;height=250&amp;name=Enhancing%20Patient%20Care%20with%20Conversational%20AI%20in%20Healthcare.png 532w, https://healthcare.e-zest.com/hs-fs/hubfs/Enhancing%20Patient%20Care%20with%20Conversational%20AI%20in%20Healthcare.png?width=798&amp;height=375&amp;name=Enhancing%20Patient%20Care%20with%20Conversational%20AI%20in%20Healthcare.png 798w, https://healthcare.e-zest.com/hs-fs/hubfs/Enhancing%20Patient%20Care%20with%20Conversational%20AI%20in%20Healthcare.png?width=1064&amp;height=500&amp;name=Enhancing%20Patient%20Care%20with%20Conversational%20AI%20in%20Healthcare.png 1064w, https://healthcare.e-zest.com/hs-fs/hubfs/Enhancing%20Patient%20Care%20with%20Conversational%20AI%20in%20Healthcare.png?width=1330&amp;height=625&amp;name=Enhancing%20Patient%20Care%20with%20Conversational%20AI%20in%20Healthcare.png 1330w, https://healthcare.e-zest.com/hs-fs/hubfs/Enhancing%20Patient%20Care%20with%20Conversational%20AI%20in%20Healthcare.png?width=1596&amp;height=750&amp;name=Enhancing%20Patient%20Care%20with%20Conversational%20AI%20in%20Healthcare.png 1596w" sizes="(max-width: 532px) 100vw, 532px">
+	
+	<div class="related-insights-post-content">
+<!--     <small>Blog</small> -->
+    <h3>Enhancing Patient Care with Conversational AI in Healthcare</h3>
+    <p>Healthcare is an ever-evolving field and technology plays a significant role in enhancing patient care. One such technology that is making waves in the healthcare industry is Conversational AI, also known as chatbots or virtual assistants.</p>
+      </div>  
+        </a>
+      </div>
+
+    
+    
+  </div>
+    
+</div>
+    
+</div>
+
+
+ <p class="hs-cta" style="text-align: center;cursor: pointer;"><span id="hs_cos_wrapper_module_1568097506983396_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta"><!--HubSpot Call-to-Action Code -->
+<span class="hs-cta-wrapper" id="hs-cta-wrapper-812598fe-dc72-4c2f-a450-048f3f8bc5f0"><span class="hs-cta-node hs-cta-812598fe-dc72-4c2f-a450-048f3f8bc5f0" id="hs-cta-812598fe-dc72-4c2f-a450-048f3f8bc5f0">
+  <!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/744339/812598fe-dc72-4c2f-a450-048f3f8bc5f0"><img class="hs-cta-img" id="hs-cta-img-812598fe-dc72-4c2f-a450-048f3f8bc5f0" style="border-width:0px;" src="https://no-cache.hubspot.com/cta/default/744339/812598fe-dc72-4c2f-a450-048f3f8bc5f0.png" alt="See All Latest Thinking >"></a></span></span>
+<!-- end HubSpot Call-to-Action Code --></span></p>
+</div>
+   
+  </div></div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-16 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_158858622625431" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<div id="toe" style="background-color: #f5f5f5;">
+  <div class="container info-detilas">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 col-xs-12 info-contact">
+        <h1>We'd Love to Hear from You!</h1>
+<p class="secondary-header">Fill out the form and someone from e-Zest will get back to you.</p>
+      </div>
+      <div class="col-lg-5 col-md-6 col-xs-12">
+        <div class="login well well-small">
+          <h1></h1>
+          <div class=" hs-error-msgs-EZ">
+            <span id="hs_cos_wrapper_module_158858622625431_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_form" style="" data-hs-cos-general-type="widget" data-hs-cos-type="form"><h3 id="hs_cos_wrapper_form_858342187_title" class="hs_cos_wrapper form-title" data-hs-cos-general-type="widget_field" data-hs-cos-type="text"></h3>
+
+<div id="hs_form_target_form_858342187"></div>
+
+
+
+
+
+
+
+
+
+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+    </div><!--end body -->
+</div><!--end body wrapper -->
+
+<div class="footer-container-wrapper">
+    <div class="footer-container container-fluid">
+
+<div class="row-fluid-wrapper row-depth-1 row-number-1 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-global_group " style="" data-widget-type="global_group" data-x="0" data-w="12">
+<div class="" data-global-widget-path="generated_global_groups/112522715164.html"><div class="row-fluid-wrapper row-depth-1 row-number-1 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_1682322940220147" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css">
+
+
+
+<div class="footer-group footer-ui-v2 footer-ui-v2b">
+  <div class="footer-group-inner">  
+
+    <div class="footer-group-inner-right">
+      
+      
+       <div class="footer-group-inner-right-content">
+      <!-- ------------- -->
+      <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+      <script>
+        hbspt.forms.create({
+          portalId: "744339",
+          formId: "22c3f1ae-be53-4109-b02c-7c16cbfd6f26",
+          css:" "
+        });
+        
+        
+      </script>
+      <!-- ------------ -->
+<!--       <ul class="footer-group-social-share">
+       <li><a href="https://www.linkedin.com/company/e-zest-solutions/"><img src="https://cdn2.hubspot.net/hubfs/744339/Healthcare%20Microsite/social%20media%20icons/linkedin-logo.png"></a></li>
+       <li><a href="https://twitter.com/ezest"><img src="https://cdn2.hubspot.net/hubfs/744339/Healthcare%20Microsite/social%20media%20icons/twitter-logo-on-black-background.png"></a></li>
+       <li><a href="https://www.facebook.com/eZest/"><img src="https://cdn2.hubspot.net/hubfs/744339/Healthcare%20Microsite/social%20media%20icons/facebook.png"></a></li>
+       <li><a href="https://www.instagram.com/ezestsolutions/"><img src="https://cdn2.hubspot.net/hubfs/744339/Healthcare%20Microsite/social%20media%20icons/instagram-social-network-logo-of-photo-camera.png"></a></li>
+       <li><a href="https://www.youtube.com/user/ezestcorporate/"><img src="https://cdn2.hubspot.net/hubfs/744339/Healthcare%20Microsite/Icons/youtube-play-button.png" style=" height: 23px; "></a></li>
+      </ul>   -->
+         
+         <ul class="nav foo-social-menu">
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.linkedin.com/company/e-zest-solutions/">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://twitter.com/ezest">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.facebook.com/eZest/">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.instagram.com/ezestsolutions/">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.youtube.com/user/ezestcorporate">
+                <i class="fa fa-youtube-play" aria-hidden="true"></i>
+              </a>
+            </li>
+            
+          </ul>
+         
+         <div class="footer-group-left-copyright">
+          <span class="footer-group-inner-left-copyright"><a href="https://www.e-zest.com/privacypolicy" target="_blank">Privacy Policy</a></span>
+          <span class="seprator">|</span>
+          <span class="footer-group-inner-left-copyright"><a href="https://www.e-zest.com/cookie-policy" target="_blank">Cookie Policy</a></span>
+          <span class="footer-group-inner-right-copyright copy-year">© 2025 e-Zest Solutions</span>
+        </div>
+         
+        <div class="footer-group-locations-sk">
+          <span>Dallas | Detroit | Hannover | Vienna | London | Pune</span>
+        </div>
+         
+      </div>
+      
+      
+    </div>
+
+    <div class="footer-group-inner-left" style="background-color: #4a4a4a !important;">
+      
+      
+  <div class="footer-group-inner-left-content">    
+
+     <div class="footer-group-inner-left-points">
+       
+       <ul class="footer-group-inner-left-points-inner">
+         <li><a href="/digital-data-engineering-services">Digital Data Engineering</a></li>
+         <li><a href="/digital-transformation">Digital Transformation</a></li>
+         <li><a href="/digital-product-engineering-services">Digital Product Engineering</a></li>
+         <li><a href="https://healthcare.e-zest.com/digital-commerce">Digital Commerce </a></li> 
+         <li><a href="/digital-front-door">Digital Front Door</a></li>
+         <li><a href="/iamok">IAMOK Platform</a></li>
+         <li><a href="/e-zest-telehealth-services">Telehealth Services</a></li>
+         <li><a href="https://blog.e-zest.com/healthcare">Insights</a></li>
+         <li><a href="/contact-us">Contact Us</a></li>
+       </ul>
+       
+       <ul class="footer-group-inner-right-points-inner">
+         <li><a href="/payers">Payers</a></li>
+         <li><a href="/pharmacy-benefit-management">Pharmacy Benefit Management</a></li>
+         <li><a href="/providers">Providers</a></li>
+         <li><a href="/pharma">Pharma</a></li>
+         <li><a href="/healthcare-product-companies">Healthcare Product Companies</a></li>
+         <li><a href="https://www.e-zest.com/about-us">About Us</a></li>
+         <li><a href="/success-stories">Success Stories</a></li>
+         <li><a href="https://www.e-zest.com/">Corporate</a></li>
+         <li><a href="https://www.accionlabs.com/">Accion Labs</a></li>
+       </ul>
+       
+      </div>
+      
+      </div>
+
+    </div>
+
+
+  </div>  
+<!--    <button class="popUp-toggle EZ-cta "><a href="#">Contact us</a></button>   -->
+  
+</div></div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-2 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_143338838" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div id="test-popup" class="white-popup mfp-hide EZ-us">
+  
+  <div class="popUp-body">
+      <div class="popUp-content">
+    <h2>
+    Contact us
+        </h2>
+<!--[if lte IE 8]>
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+<![endif]-->
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+<script>
+  hbspt.forms.create({
+	portalId: "744339",
+	formId: "7a4e36d0-5c2e-470d-8178-bd2cdf68ccac"
+});
+</script>
+</div>
+</div>
+</div>
+
+
+
+<a href="#test-popup" class="btn open-popup-link EZ-cta">Contact us</a></div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+<div class="row-fluid-wrapper row-depth-1 row-number-3 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-raw_html " style="" data-widget-type="raw_html" data-x="0" data-w="12">
+<div class="cell-wrapper layout-widget-wrapper">
+<span id="hs_cos_wrapper_module_928522502" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_raw_html" style="" data-hs-cos-general-type="widget" data-hs-cos-type="raw_html"><style>
+body .hs-menu-item.hs-menu-depth-1.hs-item-has-children a
+{
+pointer-events: none;    
+}
+body .hs-menu-children-wrapper .hs-menu-item.hs-menu-depth-2 a
+{
+pointer-events: auto !important;    
+}
+</style></span>
+</div><!--end layout-widget-wrapper -->
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+</div>
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+    </div><!--end footer -->
+</div><!--end footer wrapper -->
+
+    
+<script defer src="/hs/hsstatic/cms-free-branding-lib/static-1.2918/js/index.js"></script>
+<!-- HubSpot performance collection script -->
+<script defer src="/hs/hsstatic/content-cwv-embed/static-1.1293/embed.js"></script>
+<script src="/hs/hsstatic/keyboard-accessible-menu-flyouts/static-1.17/bundles/project.js"></script>
+<script>
+var hsVars = hsVars || {}; hsVars['language'] = 'en';
+</script>
+
+<script src="/hs/hsstatic/cos-i18n/static-1.53/bundles/project.js"></script>
+<script src="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/124220669490/1744536235083/module_AL_-_Segments_Banner_Slider.min.js"></script>
+<script src="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/12702222893/1744535371960/module_HC_-_Sidebar_Anchor.min.js"></script>
+<script src="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/124276815710/1744536236536/module_AL-Segments-Counter.min.js"></script>
+<script src="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/124113268147/1744536233605/module_AL-Segments-Explore.min.js"></script>
+<script src="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/124470728732/1744536239072/module_AL_-_Segments_-_Brand_Logo_copy.min.js"></script>
+<script src="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/29024056704/1744535632452/module_HC_-_CTA_Contact_info.min.js"></script>
+
+    <!--[if lte IE 8]>
+    <script charset="utf-8" src="https://js.hsforms.net/forms/v2-legacy.js"></script>
+    <![endif]-->
+
+<script data-hs-allowed="true" src="/_hcms/forms/v2.js"></script>
+
+    <script data-hs-allowed="true">
+        var options = {
+            portalId: '744339',
+            formId: '45184856-f878-449a-aaf7-f66f406ff9e9',
+            formInstanceId: '7285',
+            
+            pageId: '89786359983',
+            
+            region: 'na1',
+            
+            
+            
+            
+            pageName: "Customized PBM Services to Suit Your Healthcare Organization\'s Needs",
+            
+            
+            
+            inlineMessage: "<p>Thanks for submitting the form.<\/p>",
+            
+            
+            rawInlineMessage: "<p>Thanks for submitting the form.<\/p>",
+            
+            
+            hsFormKey: "d930fae74f096e82eca11a3dc181a532",
+            
+            
+            css: '',
+            target: '#hs_form_target_form_858342187',
+            
+            
+            
+            
+            
+            
+            
+            contentType: "landing-page",
+            
+            
+            
+            formsBaseUrl: '/_hcms/forms/',
+            
+            
+            
+            formData: {
+                cssClass: 'hs-form stacked hs-custom-form'
+            }
+        };
+
+        options.getExtraMetaDataBeforeSubmit = function() {
+            var metadata = {};
+            
+
+            if (hbspt.targetedContentMetadata) {
+                var count = hbspt.targetedContentMetadata.length;
+                var targetedContentData = [];
+                for (var i = 0; i < count; i++) {
+                    var tc = hbspt.targetedContentMetadata[i];
+                     if ( tc.length !== 3) {
+                        continue;
+                     }
+                     targetedContentData.push({
+                        definitionId: tc[0],
+                        criterionId: tc[1],
+                        smartTypeId: tc[2]
+                     });
+                }
+                metadata["targetedContentMetadata"] = JSON.stringify(targetedContentData);
+            }
+
+            return metadata;
+        };
+
+        hbspt.forms.create(options);
+    </script>
+
+<script src="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/112528325792/1741040249743/module_Al_-_HC-_Footer_Column.min.js"></script>
+<script src="https://healthcare.e-zest.com/hubfs/hub_generated/module_assets/1/12625310070/1744535358693/module_HC-_Contact_Us_Pop_Up_Form.min.js"></script>
+
+<!-- Start of HubSpot Analytics Code -->
+<script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "landing-page"]);
+_hsq.push(["setCanonicalUrl", "https:\/\/healthcare.e-zest.com\/pbm-services"]);
+_hsq.push(["setPageId", "89786359983"]);
+_hsq.push(["setContentMetadata", {
+    "contentPageId": 89786359983,
+    "legacyPageId": "89786359983",
+    "contentFolderId": null,
+    "contentGroupId": null,
+    "abTestId": null,
+    "languageVariantId": 89786359983,
+    "languageCode": "en",
+    
+    
+}]);
+</script>
+
+<script type="text/javascript" id="hs-script-loader" async defer src="/hs/scriptloader/744339.js"></script>
+<!-- End of HubSpot Analytics Code -->
+
+
+<script type="text/javascript">
+var hsVars = {
+    render_id: "5b0f4ae4-e1f7-484f-b914-52499c4487c1",
+    ticks: 1791823124028,
+    page_id: 89786359983,
+    
+    content_group_id: 0,
+    portal_id: 744339,
+    app_hs_base_url: "https://app.hubspot.com",
+    cp_hs_base_url: "https://cp.hubspot.com",
+    language: "en",
+    analytics_page_type: "landing-page",
+    scp_content_type: "",
+    
+    analytics_page_id: "89786359983",
+    category_id: 1,
+    folder_id: 0,
+    is_hubspot_user: false
+}
+</script>
+
+
+<script defer src="/hs/hsstatic/HubspotToolsMenu/static-1.640/js/index.js"></script>
+
+<span id="hs_cos_wrapper_module_145139695009786494" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><p style="text-align: center; font-size: 10px; padding: 0px 50px;">e-Zest is a leading digital innovation partner for enterprises and technology companies that utilizes emerging technologies for creating engaging customers experiences. Being a customer-focused and technology-driven company, it always helps clients in crafting holistic business value for their software development efforts. It offers software development and consulting services for cloud computing, enterprise mobility, big data and analytics, user experience and digital commerce.</p></span>
+<!-- start Custom.css Do Not Remove -->
+<link rel="stylesheet" href="https://healthcare.e-zest.com/hubfs/hub_generated/template_assets/1/5588950391/1744416854516/template_custom.css">
+<script type="text/javascript">
+ var leady_track_key="aNAKJDqM72I7jN1Z";
+ (function(){
+  var l=document.createElement("script");l.type="text/javascript";l.async=true;
+  l.src='https://t.leady.com/'+leady_track_key+"/L.js";
+  var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(l,s);
+ })();
+</script>
+<script type="text/javascript">
+(function(){
+vtid = 111304;var a = document.createElement('script'); a.async=true;
+a.src=('https:'==document.location.protocol ? 'https://' : 'http://') + 'code.visitor-track.com/VisitorTrack2.js';
+var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(a,s);
+})();
+</script>
+<script type="text/javascript">
+_linkedin_partner_id = "322361";
+window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+</script><script type="text/javascript">
+(function(){var s = document.getElementsByTagName("script")[0];
+var b = document.createElement("script");
+b.type = "text/javascript";b.async = true;
+b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+s.parentNode.insertBefore(b, s);})();
+</script>
+<noscript>
+<img height="1" width="1" style="display:none;" alt="" src="https://dc.ads.linkedin.com/collect/?pid=322361&amp;fmt=gif">
+</noscript>
+
+
+    
+    <!-- Generated by the HubSpot Template Builder - template version 1.03 -->
+
+</div></body></html>

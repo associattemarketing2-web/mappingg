@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <script src="js/pace.js"></script>
+  <link href="css/pace-theme-minimal.css" rel="stylesheet" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    
+    <meta name="facebook-domain-verification" content="9c0phl9w24kuvky7xdgk1ffn9thtuq" />
+    
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="ISoCFGKZHbhQ6t066ZThnNO4PpCjwR9OLvYi5k8T">
+
+    <title>Building Construction Company | Property Developers in Pune | Vascon</title>
+	<meta name="description" content="Vascon Engineers is a Building Construction Company in Pune, India. It has more than 30 years of Experience in Property Development and managing various Projects."/>
+	<meta name="keyword" content="Building Construction Company in Pune, Property Developers in Pune, Property Developers in India, Building Construction Company in India"/>
+	<link rel="canonical" href="https://www.vascon.com/corporate" />
+	<link rel="shortcut icon" href="https://www.vascon.com/images/favicon.ico" type="image/x-icon">
+
+    <!-- Styles -->
+    <link href="https://www.vascon.com/css/app.css" rel="stylesheet">
+    <link href="https://www.vascon.com/css/intlTelInput.css" rel="stylesheet">
+    <style type="text/css">
+      .intl-tel-input {
+          width: 100%;
+        }
+    </style>
+    <style type="text/css">
+.csr .hover-outline-text
+{
+  padding-top: 28%;
+}
+ /*
+}
+.owl-carousel .owl-prev {
+    float: left;
+    top: calc(50% - 18px);
+    position: absolute;
+    left: -50px;
+    
+}
+.owl-carousel .owl-next {
+    float: right;
+    top: calc(50% - 18px);
+    position: absolute;
+    right: -50px;
+}
+.owl-carousel .buttons
+{
+  background: transparent;
+  color: #474747;
+  font-size: 3em;
+}
+.owl-carousel .buttons:hover
+{
+  text-decoration: none;
+}
+.white
+{
+  color: #fff !important;
+} 
+
+ @media  only screen and (max-width: 500px) {
+  .affix {
+    top:50px;
+  }
+.banner-head-home1 h1 {
+    font-size: 1.2em;
+}
+}
+
+   .team-model
+{
+width: 72%;
+margin: 10% auto;
+background-image: url(/images/corporate-team-bg.jpg?3cc249a9c665878aec6a5531d649dab4);
+background-size: 100%;
+background-color:transparent;
+color:#fff;
+padding-bottom: 50px;
+}
+.affix {
+    top:100px;
+    width: 100%;
+   z-index: 2 !important;
+  }
+.affix ~ .container{
+    position: relative;
+  
+  }
+  .vision-mission .block .info {
+   border: 4px solid rgba(255, 255, 255, .4);
+  box-shadow: 0 0px 0px 10px #000;
+     background-color: black;
+    min-height: 200px;
+    padding: 0em 2em;
+    color: white;
+    opacity: 0.7;
+}
+.sml-txt
+{
+  text-transform:none;
+}
+.caps-txt
+{
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.vision-mission .block {
+    padding-left: 3em;
+    padding-right: 3em;
+    padding-top: 5em;
+    padding-bottom: 3em;
+}
+
+.btn-yellow
+{
+background: #b28c00;
+color:#fff;
+padding: 5px 15px;
+text-transform: uppercase;
+margin-top:20px;
+opacity: 1 !important;
+font-weight:bold;
+}
+.philosophy .block
+{
+  border: 7px solid rgba(255, 255, 255, .4);
+box-shadow: 0 0px 0px 12px #000;
+margin-top: 2em;
+margin-bottom: 2em;
+padding-left: 3em;
+padding-right: 3em;
+color: white;
+background-color: black;
+opacity: 0.7;
+}
+
+
+.team-model .block{
+   border: 4px solid rgba(255, 255, 255, .4);
+  box-shadow: 0 0px 0px 10px #000;
+     background-color: black;
+    min-height: 200px;
+    padding: 0em 2em;
+    color: white;
+    opacity: 0.7;
+    background-image:none;
+    text-align: left;
+    margin-top:25px;
+}
+.team-outline{
+  height: 95%;
+  border: 2px solid;
+  font-size: 14px;
+  padding-top: 35%;
+}
+.team-model h2
+{
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight:bold;
+}
+.team-model .close {
+    margin-top: -2px;
+    width: 25px;
+    height: 25px;
+    background: #b28c00;
+    border-radius: 50%;
+    line-height: 15px;
+    color: #fff;
+    opacity: 0.7;
+}
+.b-color
+{
+  background-color:transparent;
+  box-shadow: none;
+  border:0px;
+}
+.border-box
+{
+  border:1px solid #b28c00;
+}
+.careers-badges {
+    text-align: center;
+    background-image: url(/images/corporate/Quote-bg.jpg);
+    background-color:transparent;
+    background-size:cover; 
+    color: #ffffff;
+  
+}
+.careers-badges h3
+{
+    font-weight:bold;
+    line-height: 38px;
+}
+.slidersec h4
+{
+text-transform: uppercase;
+text-align: left;
+color: #000;
+}
+.hr-center
+{
+     width: 45%;
+    margin: 0 auto;
+        margin-top: 0px;
+    background: #000;
+    border-bottom: 1px solid #636b6f;
+    margin-top: 67px;
+}
+.yellow-text
+{
+  color:#b28c00;
+  line-height: 35px;
+  margin-top:-30px;
+}
+.corporate-sub-menu
+{
+background: #bd9141;
+color:#fff;
+text-transform: uppercase;
+width: 100%;
+padding: 8px 0px 15px 0;
+}
+.corporate-sub-menu ul
+{
+  margin:0px;
+}
+.corporate-sub-menu ul li
+{
+  list-style: none;
+  display: inline-block;
+}
+.corporate-sub-menu ul li a
+{
+  color:#fff;
+  padding: 0px 80px 0px 0px;
+  font-size:16px;
+}
+.corporate-sub-menu .navbar-default
+{
+  background-color:transparent;
+border-color:transparent;
+}
+@media (min-width: 768px) {
+.corporate-sub-menu ul li a
+{
+    padding: 0px 50px 0px 0px;
+  }
+}
+@media (min-width: 1200px) {
+.corporate-sub-menu ul li a
+{
+    padding: 0px 80px 0px 0px;
+  }
+}
+@media  only screen and (max-width: 500px) {
+.careers-badges h3
+{
+    font-weight:bold;
+    line-height: 38px;
+    font-size: 16px;
+}
+*/
+
+</style>
+<!-- Google Tag Manager -->
+
+<!--<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':-->
+
+<!--new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],-->
+
+<!--j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=-->
+
+<!--'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);-->
+
+<!--})(window,document,'script','dataLayer','GTM-WVN43VD');</script>-->
+
+<!-- End Google Tag Manager -->
+
+<!-- Google tag (gtag.js) -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EX4FT5TV9N"></script>
+
+<script>
+
+window.dataLayer = window.dataLayer || [];
+
+function gtag(){dataLayer.push(arguments);}
+
+gtag('js', new Date());
+
+gtag('config', 'G-EX4FT5TV9N');
+
+</script>
+
+
+
+
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WVN43VD"
+
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- End Google Tag Manager (noscript) -->
+
+
+
+
+</div>
+<div  id="loadedPage" >
+<!-- NAVIGATION -->
+      <div class="nav yamm navbar-inverse navbar-fixed-top transparent" role="navigation" >
+         <div class="container">
+            <div class="row">
+               <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  </button>
+                  <div>
+                     <a href="/"><img src="https://www.vascon.com/images/logo.png" alt="Vascon" title="Vascon" class="logo" ></a>
+                  </div>
+               </div>
+               <div class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav navbar-right" >
+
+                    
+                     <div class="pull-right nav-social" data-aos="fade-down" data-aos-delay="150">
+                     <!--    <div class="tradingview-widget-container" style="background-color:transparent !important;">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <div class="tradingview-widget-copyright"><a href="https://in.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Quotes</span></a> by TradingView</div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
+                        {
+                        "symbols": [
+                          {
+                            "description": "Vascon Engineers - NSE",
+                            "proName": "NSE:VASCONEQ"
+                          },
+                          {
+                            "description": "Vascon Engineers - BSE",
+                            "proName": "BSE:VASCONEQ"
+                          }
+                        ],
+                        "locale": "in"
+                      }
+                        </script>
+                    </div> -->
+                   
+
+                    <span id="gear"><i class="fa fa-phone" style="border:none !important;"></i><div id="phn-dropdown">
+                        <p>CORPORATE<br><a href="tel:+91 20 30562200" class="num-font">+91 20 30562200</a></p>
+                        <p>REAL ESTATE <br><a href="tel:+91 8879067273" class="num-font">+91 8879067273</a></p>
+                       <p> EPC <br><a href="tel:+91 20 30562100" class="num-font">+91 20 30562100</a> <a href="tel:+91 20 30562200" class="num-font">/ 200</a> <a href="tel:+91 20 30562300" class="num-font">/ 300</a></p>
+                      <p> CAREERS<br><a href="tel:+91 20 30562100" class="num-font">+91 20 30562100</a> <a href="tel:+91 20 30562200" class="num-font">/ 200</a> <a href="tel:+91 20 30562300" class="num-font">/ 300</a></p>
+                    </div></span>
+                  
+                        <a href="https://www.facebook.com/VasconEngineersIndia/" target="_blank"><i class="fa fa-facebook"></i></a>
+                        <a href="https://www.linkedin.com/company/vascon-engineers-ltd." target="_blank"><i class="fa fa-linkedin"></i></a>
+                        <a href="https://twitter.com/VasconEngineers" target="_blank"><i class="fa fa-twitter"></i></a>
+                        <a href="https://www.youtube.com/user/vasconengineersltd" target="_blank"><i class="fa fa-youtube"></i></a>			
+                        <a href="https://www.instagram.com/vasconengineersltd/" target="_blank"><i class="fa fa-instagram"></i></a>
+                          <!--<a href="https://plus.google.com/u/0/+VasconEngineersLtdIndia" target="_blank"><i class="fa fa-google-plus"></i></a>-->
+                     </div>
+                     <div class="clearfix"></div>
+                     <li data-aos="fade-right" data-aos-delay="50">
+                     	<a href="https://www.vascon.com">Home</a>
+                     </li>
+                     <li data-aos="fade-right" data-aos-delay="150">
+                     	<a href="https://www.vascon.com/corporate">Corporate</a>
+                     </li>
+                     <li class="dropdown yamm-cn">
+                     	<a class="dropdown-toggle" data-toggle="dropdown" href="#" data-aos="fade-right" data-aos-delay="200">EPC <span class="caret"></span></a>
+                        <div class="dropdown-menu dropdown-menu-left">
+                           
+                               <div class="yamm-content">
+                                    <div class="row">
+                                      <div class="col-md-2">
+                                        <div class="col-md-12">
+                                          <div class="row">
+                                            <div class="nav-epc"><a href="https://www.vascon.com/epc" style="text-decoration: none">About EPC</a></div>
+                                            <div class="nav-epc"><a href="https://www.vascon.com/epc#Clientele" style="text-decoration: none">Clientele</a></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-md-10" style="border-left:solid 1px #b28c00">
+                                        <div class="col-md-3 col-xs-6">
+                                          <div class="row">
+                                              <a href="https://www.vascon.com/epc/residential" ><img src="https://www.vascon.com/images/epc/Residential.jpg" class="img-responsive"></a>
+                                            </div>
+                                            <div class="row text-center ">
+                                            <a href="https://www.vascon.com/epc/residential">Residential</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 col-xs-6">
+                                          <div class="row text-center">
+                                              <a href="https://www.vascon.com/epc/commercial"><img src="https://www.vascon.com/images/epc/Commercial.jpg" class="img-responsive"></a>
+                                            </div>
+                                            <div class="row text-center ">
+                                            <a href="https://www.vascon.com/epc/commercial">Commercial</a>
+                                            </div>
+                                        </div>
+                                        
+
+                                        <div class="col-md-3 col-xs-6">
+                                          <div class="row text-center">
+                                              <a href="https://www.vascon.com/epc/industrial"><img src="https://www.vascon.com/images/epc/Industrial.jpg" class="img-responsive"></a>
+                                            </div>
+                                            <div class="row text-center ">
+                                            <a href="https://www.vascon.com/epc/industrial">Industrial</a>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-3 col-xs-6">
+                                          <div class="row">
+                                              <a href="https://www.vascon.com/epc/institutional"><img src="https://www.vascon.com/images/epc/Institutional.jpg" class="img-responsive"></a>
+                                            </div>
+                                            <div class="row text-center ">
+                                            <a href="https://www.vascon.com/epc/institutional">Institutional</a>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-md-3 col-xs-6">
+                                          <div class="row">
+                                              <a href="https://www.vascon.com/epc/hospitals"><img src="https://www.vascon.com/images/epc/Hospitals.jpg" class="img-responsive"></a>
+                                            </div>
+                                            <div class="row text-center ">
+                                            <a href="https://www.vascon.com/epc/hospitals">Hospitals</a>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-3 col-xs-6">
+                                          <div class="row">
+                                              <a href="https://www.vascon.com/epc/hospitality"><img src="https://www.vascon.com/images/epc/Hospitality.jpg" class="img-responsive"></a>
+                                            </div>
+                                            <div class="row text-center ">
+                                            <a href="https://www.vascon.com/epc/hospitality">Hospitality</a>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-3 col-xs-6">
+                                          <div class="row">
+                                              <a href="https://www.vascon.com/epc/airport"><img src="https://www.vascon.com/images/epc/Airport.jpg" class="img-responsive"></a>
+                                            </div>
+                                            <div class="row text-center ">
+                                            <a href="https://www.vascon.com/epc/airport">Airport</a>
+                                            </div>
+                                        </div>
+                                      </div>                                                                                                                                                             
+                                    </div>
+                               </div>
+                              </li>
+                           
+
+                 
+                           <li class="dropdown yamm-cn">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#" data-aos="fade-right" data-aos-delay="250">Real Estate<span class="caret"></span></a>
+                        <div class="dropdown-menu dropdown-menu-left real-state-margin">
+                           
+                               <div class="yamm-content">
+                                    <div class="row" style="border-bottom:1px solid #fff; padding-bottom: 15px;">
+                                      <div class="col-md-3 col-xs-12">
+                                        <div class="col-md-12 col-xs-12 img-cont">
+                                           <div class="col-md-12 col-xs-6">
+                                          <div class="row margin30 ">
+                                            <div class="row">
+                                              <a href="https://www.vascon.com/real-estate/residential" target="_blank"><img src="https://www.vascon.com/images/realestate/Residential.jpg" class="img-responsive" ></a>
+                                            </div>
+                                            <div class="row text-center ">
+                                            <a href="https://www.vascon.com/real-estate/residential" target="_blank">Residential</a>
+                                            </div>
+
+
+                                            
+                                          </div>
+                                        </div>
+                                        </div>
+                                      </div>
+
+                                       <div class="col-md-2">
+                                        <ul class="nav-pro " id="firstMenu">
+                                          
+                                          <li><a href="https://www.vascon.com/real-estate/residential/ongoing" target="_blank" id="allOngoingResidentialProj" class="project-active-resi active" id="allOngoingResidentialProj" onmouseover="showProjects('ongoingProjectsSecResi','allOngoingResidentialProj')">Ongoing</a></li>
+                                          <li><a href="https://www.vascon.com/real-estate/residential/completed" target="_blank" class="project-active-resi"  id="allOngoingCompletedProj"  onmouseover="showProjects('completedProjectsSecResi','allOngoingCompletedProj')" >Completed</a></li>
+                                          <li><a   href="https://www.vascon.com/real-estate/residential" target="_blank" class="project-active-resi" id="allResiPro" onmouseover="showProjects('allResidentialProject','allResiPro')">All</a></li>
+                                        </ul>
+
+                                       </div>
+
+                                        <div class="col-md-7">
+                                        <div class="col-md-12" id="ongoingProjectsSecResi">
+                                          <ul class="nav-micro" >
+                                            <div class="col-md-6">
+                                                <li><a href="http://vascontulips.com/" target="_blank">Tulips Gold</a></li>
+                                                 <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 30px;"></li>
+                                                 <li><a href="https://www.vascon.com/windermere/" target="_blank">Windermere</a></li>
+                                                 <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 52px;"></li>
+                                                 <li><a href="https://www.vascon.com/residential/spring.php" target="_blank">Springs</a></li>
+                                            </div>
+                                              <div class="col-md-6">
+                                                   <li><a href="https://www.vascon.com/residential/goodlife" target="_blank">Goodlife</a></li>
+                                                    <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 30px;"></li>
+                                                 <li><a href="https://www.vascon.com/residential/citron-phase-2" target="_blank">Citron Phase 2</a></li>
+                                              </div>
+                                              
+                                          </ul>
+                                        </div>
+                                        <div class="col-md-12">
+                                          <ul class="nav-micro"  id="completedProjectsSecResi" style="display:none;">
+                                           
+                                              <div class="col-md-6">
+                                                <li><a href="https://www.vascon.com/residential/ela-the-earth" target="_blank">Ela The Earth</a></li>
+                                                 <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 30px;"></li>
+                                                <li><a href="https://www.vascon.com/residential/willows" target="_blank">Willows Phase 1 & 2</a></li>
+                                                 <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 54px;"></li>
+                                                <li><a href="https://www.vascon.com/residential/citron" target="_blank">Citron Phase 1</a></li>
+                                                <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 76px;"></li>
+                                                <li><a href="https://www.vascon.com/residential/10-luxe" target="_blank">10 Luxe</a></li>
+                                                  <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 98px;"></li>
+                                                 <li><a href="https://www.vascon.com/residential/zircon" target="_blank">Zircon</a></li>
+                                                  <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 120px;"></li>
+                                                 <li><a href="https://www.vascon.com/residential/tulips" target="_blank">Tulips</a></li>
+                                                 <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 143px;"></li>
+                                                 <li><a href="https://www.vascon.com/residential/xotech-homes-phase-2" target="_blank">Xotech Homes Phase 2</a></li>
+                                                 <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 163px;"></li>
+                                                    <li><a href="https://www.vascon.com/residential/forest-edge" target="_blank">Forest Edge Phase-II</a></li>
+                                                   
+                                               </div>
+                                               <div class="col-md-6">
+                                                  <li><a href="https://www.vascon.com/residential/vista-1" target="_blank">Vista Phase 1</a></li>
+                                                   <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 30px;"></li>
+                                                  <li><a href="https://www.vascon.com/residential/xotech-homes" target="_blank">Xotech Homes</a></li>
+                                                    <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 54px;"></li>
+                                                   <li><a href="https://www.vascon.com/residential/ivy-glen" target="_blank">Ivy Glen</a></li>
+                                                    <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 78px;"></li>
+                                                   <li><a href="https://www.vascon.com/residential/golden-nest" target="_blank">Golden Nest</a></li>
+                                                     <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 98px;"></li>
+                                                    <li><a href="https://www.vascon.com/residential/forest-county-phase-1-and-2" target="_blank">Forest Country Phase 1&2</a></li>
+                                                    <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 120px;"></li>
+                                                    <li><a href="https://www.vascon.com/residential/forest-county" target="_blank">Forest Country</a></li>
+                                                    <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 143px;"></li>
+                                                    <li><a href="https://www.vascon.com/residential/forest-edge" target="_blank">Forest Edge Phase-I</a></li>
+                                                     <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 163px;"></li>
+                                                    <li><a href="https://www.vascon.com/residential/vista" target="_blank">Vista Phase 2</a></li>
+                                              
+                                              </div>
+                                              
+                                          </ul>
+                                        </div>
+
+
+                                        <div class="col-md-12">
+                                          <ul class="nav-micro"  id="allResidentialProject" style="display:none;">
+                                            <div class="col-md-6">
+                                                <li><a href="http://vascontulips.com/" target="_blank">Tulips Gold</a></li>
+                                                <!--<li><a href="https://www.vascon.com/residential/springs" target="_blank">Springs</a></li>-->
+                                                
+                                            </div>                                              
+                                                                                                                                       
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/residential/goodlife" target="_blank">GoodLife</a></li>
+                                              </div>
+                                                                                                                                                                                      
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/residential/ela-the-earth" target="_blank">Ela The Earth</a></li>
+                                              </div>
+                                                                                                                                                                                      
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/residential/forest-county" target="_blank">Forest County</a></li>
+                                              </div>
+                                                                                                                                                                                      
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/residential/vista-1" target="_blank">Vista Phase 1</a></li>
+                                              </div>
+                                                                                                                                                                                      
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/residential/vista" target="_blank">Vista Phase 2</a></li>
+                                              </div>
+                                                                                                                                                                                      
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/residential/willows" target="_blank">Willows Phase 1 &amp; 2</a></li>
+                                              </div>
+                                                                                                                                                                                      
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/windermere/" target="_blank">Windermere</a></li>
+                                              </div>
+                                                                                                                                                                                      
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/residential/xotech-homes" target="_blank">Xotech Homes</a></li>
+                                              </div>
+                                                                                                                                                                                      
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/residential/citron" target="_blank">Citron Phase 1</a></li>
+                                              </div>
+                                                                                                                                                                                      
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/residential/ivy-glen" target="_blank">Ivy Glen</a></li>
+                                              </div>
+                                                                                                                                                                                      
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/residential/10-luxe" target="_blank">10 Luxe</a></li>
+                                              </div>
+                                                                                                                                                                                      
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/residential/forest-edge" target="_blank">Forest Edge – Phase I</a></li>
+                                              </div>
+                                                                                                                                                                                      
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/residential/golden-nest" target="_blank">Golden Nest</a></li>
+                                              </div>
+                                                                                                                                                                                      
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/residential/zircon" target="_blank">Zircon</a></li>
+                                              </div>
+                                                                                                                                                                                      
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/residential/forest-county-phase-1-and-2" target="_blank">Forest County Phase 1 &amp; 2</a></li>
+                                              </div>
+                                                                                                                                                                                      
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/residential/xotech-homes-phase-2" target="_blank">Xotech Homes Phase 2</a></li>
+                                              </div>
+                                                                                                                                                                                      
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/residential/citron-phase-2" target="_blank">Citron Phase 2</a></li>
+                                              </div>
+                                                                                                                                                                                      
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/residential/tulips" target="_blank">Tulips</a></li>
+                                              </div>
+                                                                                                                                                                                      
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/residential/forest-edge" target="_blank">Forest Edge – Phase II</a></li>
+                                              </div>
+                                                                                                                                                                                      
+                                              <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/residential/springs" target="_blank">Vascon Springs</a></li>
+                                              </div>
+                                                                                                                                     </ul>
+                                        </div>
+                                       </div>
+                                                                                                                                                           
+                                    </div>
+
+                                    <div class="row" style="padding-top: 20px;">
+                                      <div class="col-md-3 col-xs-12">
+                                        <div class="col-md-12 col-xs-12 img-cont">
+                                           <div class="col-md-12 col-xs-6">
+                                          <div class="row ">
+                                            <div class="row">
+                                              <a href="https://www.vascon.com/real-estate/commercial" target="_blank"><img src="https://www.vascon.com/images/realestate/commercial.jpg" class="img-responsive"></a>
+                                            </div>
+                                            <div class="row text-center ">
+                                            <a href="https://www.vascon.com/real-estate/commercial" target="_blank">COMMERCIAL</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        </div>
+                                      </div>
+
+                                       <div class="col-md-2">
+                                        <ul class="nav-pro project-type" id="secondMenu">
+                                          <li><a href="https://www.vascon.com/real-estate/commercial/ongoing" target="_blank" class="active project-active-resi" id="ongoingCommProj" onmouseover="showCommercialProjects('ongoingProjectsSecComm','ongoingCommProj')"> Ongoing </a></li>
+
+                                          <li><a href="https://www.vascon.com/real-estate/commercial/completed" target="_blank" id="CompletedCommProj" onmouseover="showCommercialProjects('completedProDivComm','CompletedCommProj')" class="project-active-resi">Completed</a></li>
+
+                                           <li><a href="https://www.vascon.com/real-estate/commercial" id="allCommercialProj" onmouseover="showCommercialProjects('allCommercialProject','allCommercialProj')"  target="_blank" class="project-active-resi">All</a></li>
+                                        </ul>
+                                       </div>
+
+                                       <div class="col-md-7">
+                                        <div class="col-md-12" id="ongoingProjectsSecComm">
+                                          <ul class="nav-micro" >
+                                                                                                                                                                                                                                  <div class="col-md-6">
+                                                 <li><a href="https://www.towerofascend.com/" target="_blank">Tower of Ascend</a></li>
+                                                 <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 34px;"></li>
+                                                 <li><a href="https://www.vascon.com/commercial/eco-tower" target="_blank">Eco Tower</a></li>
+                                                 
+                                              </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                   </ul>
+
+                                        </div>
+                                        <div class="col-md-12" >
+                                          <ul class="nav-micro" id="completedProDivComm" style="display:none;">
+                                              <div class="col-md-6">
+                                                <li><a href="https://www.vascon.com/commercial/platinum-square" target="_blank">Platinum Square Phase 2</a></li>
+                                                <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 30px;"></li>
+                                                <li><a href="https://www.vascon.com/commercial/platinum-square-1" target="_blank">Platinum Square Phase 1</a></li>
+                                                <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 54px;"></li>
+                                                <li><a href="https://www.vascon.com/commercial/mariplex" target="_blank">Mariplex</a></li>
+                                             </div>
+                                             <div class="col-md-6">
+                                                 
+                                                 <li><a href="https://www.vascon.com/commercial/almonte" target="_blank">Almonte</a></li>
+                                                 <li style="font-family: FontAwesome;content: url(/images/nav-bullet.png);display: inline-block;vertical-align: middle;padding-right: 10px;position: absolute;left: 0px;top: 30px;"></li>
+                                                <li><a href="https://www.vascon.com/commercial/eco-tower" target="_blank">Eco Tower</a></li>
+                                                 
+                                              </div>
+                                           
+                                          </ul>
+                                        </div>
+
+                                        <div class="col-md-12" >
+                                          <ul class="nav-micro"  id="allCommercialProject" style="display:none;">
+                                                                                                                                        <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/commercial/platinum-square-1" target="_blank">Platinum Square Phase 1</a></li>
+                                              </div>
+                                                                                                                                                                                       <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/commercial/platinum-square" target="_blank">Platinum Square Phase 2</a></li>
+                                              </div>
+                                                                                                                                                                                       <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/commercial/mariplex" target="_blank">Mariplex</a></li>
+                                              </div>
+                                                                                                                                                                                       <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/commercial/almonte" target="_blank">Almonte</a></li>
+                                              </div>
+                                                                                                                                                                                       <div class="col-md-6">
+                                                 <li><a href="https://www.vascon.com/commercial/eco-tower" target="_blank">Eco Tower</a></li>
+                                              </div>
+                                                                                                                                     </ul>
+                                        </div>
+
+
+                                       </div>
+                                                                                                                                                           
+                                    </div>
+                               </div>
+                              </li>
+
+                     <li data-aos="fade-right" data-aos-delay="300">
+                     	<a href="https://www.vascon.com/investors">Investors</a></li>
+                     <li data-aos="fade-right" data-aos-delay="350">
+                     	<a href="https://www.vascon.com/in-the-news-media">Media</a>
+                     </li>
+                     <li data-aos="fade-right" data-aos-delay="400">
+                     	<a href="https://www.vascon.com/contact">Contact</a>
+                     </li>
+                  </ul>
+               </div> 
+               <!--/.nav-collapse -->
+            </div>
+         </div>
+      </div>
+<!-- END NAVIGATION -->	
+
+<style type="text/css">
+  #gear {
+   margin: 0px;
+width: 25px;
+height: 25px;
+border: 1px solid;
+position: relative;
+display: block;
+float: left;
+margin-right: 5px;
+border-radius: 50%;
+cursor: pointer;
+text-align: center;
+line-height: 26px;
+}
+
+#phn-dropdown {
+    position: absolute;
+    top: 32px;
+    right: -114px;
+    width:250px;
+    height: auto;
+    display: none;
+    background: #fff;
+    padding-left: 10px;
+    line-height: 20px;
+    padding-top: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+/*    border: 1px solid #3c3b3b;*/
+
+
+}
+#phn-dropdown:after, #phn-dropdown:before {
+  bottom: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+#phn-dropdown:after {
+ border-color: rgba(34, 34, 34, 0);
+  border-bottom-color: #fff;
+  border-width: 7px;
+  margin-left: -7px;
+}
+#phn-dropdown:before {
+ border-color: rgba(60, 59, 59, 0);
+  border-bottom-color: #fff;
+  border-width: 8px;
+  margin-left: -8px;
+}
+#phn-dropdown a, #phn-dropdown p
+{
+
+  text-align: left !important;
+  z-index: 3 !important;
+/*  display: block !important;*/
+  font-size: 12px;
+}
+#phn-dropdown p
+{
+    color: #bb8f32 !important;
+text-transform: uppercase;
+font-weight: bold;
+border-bottom: 1px solid #3c3b3b;
+}
+#phn-dropdown p:last-child
+{
+  border-bottom: none;
+}
+#phn-dropdown a
+{
+  color: #222 !important;
+  font-weight: normal;
+}
+.nav-social
+{
+  z-index: 1;
+}
+</style>
+
+
+
+
+
+<header class="banner-head-home1" style="background-image: url(https://www.vascon.com/images/corporate/banner.jpg); height:100vh">
+  <div class="centered-home">
+    <h1 data-aos="zoom-in-up">We don't just build the future <br><b class="sml-txt">we perfect it</b></h1>
+  </div>
+    <div class="bounce">
+    <a href="javascript:avoid()" id="button-scroll"><img src="https://www.vascon.com/images/moveimg.png"></a>
+  </div>
+  
+</header>
+<div class="corporate-sub-menu" data-spy="affix" data-offset-top="600"  >
+<nav class="navbar-blue" role="navigation" id="nav">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-12">
+          <div class="navbar-header navbar-default">
+                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".about-menu" onclick="$('.top-menu').collapse('hide');">
+              <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+
+         <div class="collapse navbar-collapse corporate-sub-menu about-menu" id="navbar-collapse-2">
+          <ul class="sub-nav">
+            <li><a href="#about-us">About Us</a></li>
+            <li><a href="#vision-mission">Vision & Mission</a></li>
+            <li><a href="#team">Team </a></li>
+            <li><a href="#philosophy">Philosophy </a></li>
+            <li><a href="#ims">IMS policy </a></li>
+           <li><a href="#csr"> CSR </a></li>
+
+
+          </ul>
+
+
+        </div>
+      </div>
+</div>
+  </div>
+</nav>
+
+</div>
+
+
+
+
+
+<div>
+  <div class="container section centered" id="about-us">
+    <h1 id="section1">About Us</h1>
+    <p>Vascon Engineers has more than <span class="num-font">37 +</span> of experience, conceiving, developing, constructing and managing varied projects. It is active in multiple sectors including residential, industrial, IT parks, malls and multiplexes, hospitality and community welfare centre, schools and hospitals. </p>
+
+    <p>Right from its inception in <span class="num-font">1986</span>, Vascon has remained committed to applying the art of value-based aesthetics
+into the science of construction through efficient engineering. The Vascon team is mainly made up of engineers
+who are backed up by highly qualified specialists from various fields of management. Right from planning and
+procurement to testing and execution, every Vascon professional follows well-documented systems and
+procedures. </p>
+
+    <p>Today, Vascon's achievements range from sprawling factories to premium homes, from glittering malls to
+towering software parks and classy elegant schools. One simple principle guides Vascon's approach to every
+project: "Understand the customer's needs and expectations; fulfill the needs and exceed the expectations." This
+is how Vascon has been able to strike the right balance between efficient engineering and thoughtful
+development in project after project, across the country.</p>
+<hr class="hr-center">
+<div class="section">
+    <h4 class="yellow-text"><i><strong>“We don’t just construct; we engineer success.<br>We don’t just build the future; we perfect it." </strong></i></h4>
+</div>
+  </div>
+</div>
+<a name="vision-mission" id="vision-mission"></a> 
+
+<div class="vision-mission">
+  <div class="container section">
+    <div class="col-md-6 block"  data-aos="fade-right">
+       <div class="info">
+      <h1>Vision</h1>
+      <p>Be the engineers of choice for quality construction and path-breaking development projects all over India.</p>
+    </div>
+    </div>
+    <div class="col-md-6 block"  data-aos="fade-left">
+      <div class="info">
+      <h1>Mission</h1>
+      <p>Consistently exceed customer expectations, using engineering skills, development experience and a perseverance positive attitude in every project, regardless of size, type and location.</p>
+    </div>
+    </div>
+  </div>
+</div>
+<a name="team" id="team"></a> 
+
+<div class="team" id="team">
+  <div class="container section centered">
+    <h1>Our Team</h1>
+    
+    <div class="block">
+        <div class="owl-carousel owl-theme" id="team-carousel">
+         
+<div>
+  <div class="hover-outline-container border-box">
+    <img src="https://www.vascon.com/images/corporate/rvasudevan.jpg" alt="R Vasudevan Moorthy" class="hover-outline-image img-responsive">
+    <div class="hover-outline-overlay">
+      <div class="hover-outline-text team-outline"><b class="caps-txt">R Vasudevan</b><br>Chairman Emeritus <p><input type="submit" href="#" value="VIEW" class="btn btn-yellow" data-toggle="modal" data-target="#team-Modal"></p></div>
+    </div>
+  </div>
+</div>
+
+<!--<div>-->
+<!--  <div class="hover-outline-container border-box">-->
+<!--    <img src="https://www.vascon.com/images/corporate/mukeshmalhotra.jpg" alt="Mukesh Malhotra" class="hover-outline-image img-responsive">-->
+<!--    <div class="hover-outline-overlay">-->
+<!--      <div class="hover-outline-text team-outline"><b class="caps-txt">Mukesh Malhotra</b><br>Chairman - Independent & Non Executive Director-->
+<!--        <p><input type="submit" href="#" value="VIEW" class="btn btn-yellow" data-toggle="modal" data-target="#team-Modal3"></p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div>
+  <div class="hover-outline-container border-box">
+    <img src="https://www.vascon.com/images/corporate/shddarthvasudevan.jpg" alt="Siddharth Vasudevan Moorthy" class="hover-outline-image img-responsive">
+    <div class="hover-outline-overlay">
+      <div class="hover-outline-text team-outline"><b class="caps-txt">Siddharth Vasudevan Moorthy</b><br>Chairman and Managing Director<p><input type="submit" href="#" value="VIEW" class="btn btn-yellow" data-toggle="modal" data-target="#team-Modal5"></p></div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="hover-outline-container border-box">
+    <img src="https://www.vascon.com/images/team/team-behind-1.jpg" alt="Dr.Santosh Sundararajan" class="hover-outline-image img-responsive">
+    <div class="hover-outline-overlay">
+      <div class="hover-outline-text team-outline"><b class="caps-txt">Dr.Santosh Sundararajan</b><br>Whole Time Director & Group Chief Executive Officer<p><input type="submit" href="#" value="VIEW" class="btn btn-yellow" data-toggle="modal" data-target="#team-Modal10"></p></div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--<div>
+  <div class="hover-outline-container border-box">
+    <img src="https://www.vascon.com/images/corporate/vmohan.jpg" alt="V. Mohan" class="hover-outline-image img-responsive">
+    <div class="hover-outline-overlay">
+      <div class="hover-outline-text team-outline"><b class="caps-txt">V. Mohan</b><br>Independent & Non Executive Director<p><input type="submit" href="#" value="VIEW" class="btn btn-yellow" data-toggle="modal" data-target="#team-Modal1" ></p></div>
+    </div>
+  </div>
+</div>-->
+
+<!--<div>-->
+<!--  <div class="hover-outline-container border-box">-->
+<!--    <img src="https://www.vascon.com/images/corporate/kgkrishnamurthy.jpg" alt="K. G. Krishnamurthy" class="hover-outline-image img-responsive">-->
+<!--    <div class="hover-outline-overlay">-->
+<!--      <div class="hover-outline-text team-outline"><b class="caps-txt">K. G. Krishnamurthy</b><br>Independent & Non Executive Director<p><input type="submit" href="#" value="VIEW" class="btn btn-yellow" data-toggle="modal" data-target="#team-Modal2"></p></div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+
+<div>
+  <div class="hover-outline-container border-box">
+    <img src="https://www.vascon.com/images/corporate/soumyavasudevan.jpg" alt="Sowmya Vasudevan" class="hover-outline-image img-responsive">
+    <div class="hover-outline-overlay">
+      <div class="hover-outline-text team-outline"><b class="caps-txt">Sowmya Aditya Iyer</b><br>Non Executive & Non Independent Director<p><input type="submit" href="#" value="VIEW" class="btn btn-yellow" data-toggle="modal" data-target="#team-Modal4"></p></div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="hover-outline-container border-box">
+    <img src="https://www.vascon.com/images/corporate/Divya Maneklal Shah.jpg" alt="Divya Maneklal Shah" class="hover-outline-image img-responsive">
+    <div class="hover-outline-overlay">
+      <div class="hover-outline-text team-outline"><b class="caps-txt">Divya Maneklal Shah</b><br>Independent Director<p><input type="submit" href="#" value="VIEW" class="btn btn-yellow" data-toggle="modal" data-target="#team-Modal6"></p></div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="hover-outline-container border-box ">
+    <img src="https://www.vascon.com/images/corporate/view-img.png" alt="Sowmya Vasudevan" class="hover-outline-image img-responsive">
+    <div class="hover-outline-overlay" style="opacity: 0.7">
+      <div class="hover-outline-text team-outline"><b class="caps-txt">Meet the rest of the Team<p><a href="https://www.vascon.com/team" class="btn btn-yellow">VIEW ALL</a></p></b></div>
+    </div>
+
+   </div>
+</div>
+
+
+
+        </div>
+    </div>
+    <div class="container">
+  <!-- Trigger the modal with a button -->
+ <!-- Modal -->
+  <div class="modal fade" id="team-Modal" role="dialog">
+    <div class="modal-dialog modal-lg team-model">
+      <div class="modal-content b-color">
+        <div class="modal-header"  style="border-bottom:0px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+        <div class="modal-body">
+          <div class="col-md-3">
+            <img src="https://www.vascon.com/images/corporate/rvasudevan.jpg" alt="R Vasudevan Moorthy" class="border-box img-responsive">
+          </div>
+          <div class="col-md-9">
+            <div class="block">
+               <h2>R Vasudevan Moorthy </h2>
+<b>Chairman Emeritus </b>
+ <br/> <br/>
+<p>Mr. R. Vasudevan holds a bachelor’s degree in Civil Engineering from the University of Pune. He has also completed an ‘Owner President’ Management Program from the Harward Business School. He has been a Promoter Director on the Board of the Company since January <span class="num-font">1, 1986.</span> He is responsible for the overall management of our Company. He has over <span class="num-font">33</span> years of experience in the Construction Company. </p>
+            </div>
+          </div>
+          </div>
+        <div class="modal-footer"  style="border-top:0px;">
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <div class="container">
+  <!-- Trigger the modal with a button -->
+ <!-- Modal -->
+  <div class="modal fade" id="team-Modal1" role="dialog">
+    <div class="modal-dialog modal-lg team-model">
+      <div class="modal-content b-color">
+        <div class="modal-header"  style="border-bottom:0px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        
+        </div>
+       <div class="modal-body">
+          <div class="col-md-3">
+            <img src="https://www.vascon.com/images/corporate/vmohan.jpg" alt="V. Mohan" class="border-box img-responsive">
+          </div>
+          <div class="col-md-9">
+            <div class="block">
+               <h2>V. Mohan</h2>
+<b>Independent & Non Executive Director</b>
+ <br/> <br/>
+<p>Mr. V. Mohan is a fellow member of the Institute of Chartered Accountants of India. He is a practising chartered accountant with more than 31 years of experience in the areas of audit and assurance services, company law, tax planning, tax representations and foreign exchange regulations with V Sankar Aiyar and Company, Chartered Accountants, where he is a partner. He has been a director since March <span class="num-font">6, 2007.</span>
+</p>
+          </div>
+        </div>
+        </div>
+      <div class="modal-footer"  style="border-top:0px;">
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Trigger the modal with a button -->
+ <!-- Modal -->
+  <div class="modal fade" id="team-Modal2" role="dialog">
+    <div class="modal-dialog modal-lg team-model">
+      <div class="modal-content b-color">
+        <div class="modal-header" style="border-bottom:0px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+         <div class="modal-body">
+          <div class="col-md-3">
+              <img src="https://www.vascon.com/images/corporate/kgkrishnamurthy.jpg"  alt="K. G. Krishnamurthy" class="border-box img-responsive">
+          </div>
+          <div class="col-md-9">
+            <div class="block">
+               <h2>K. G. Krishnamurthy </h2>
+              <b>Independent & Non Executive Director</b>
+<br/> <br/>
+<p>Mr. K. G. Krishnamurthy holds a bachelor’s degree in architecture from the Indian Institute of Technology, Kharagpur. He has <span class="num-font">31</span> years of experience in the areas of real estate, construction finance, property valuation and property search services. He is currently the Managing Director and Chief Executive Officer of HDFC Property Ventures Limited. He has also been appointed on the board of various companies. He has been appointed as a Director on the Board of our Company since June <span class="num-font">21, 2006.</span></p>
+            </div>
+          </div>
+          </div>
+         <div class="modal-footer"  style="border-top:0px;">
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+<!-- Trigger the modal with a button -->
+ <!-- Modal -->
+  <div class="modal fade" id="team-Modal3" role="dialog">
+    <div class="modal-dialog modal-lg team-model">
+      <div class="modal-content b-color">
+        <div class="modal-header"  style="border-bottom:0px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+         <div class="modal-body">
+          <div class="col-md-3">
+            <img src="https://www.vascon.com/images/corporate/mukeshmalhotra.jpg" alt="Mukesh Malhotra" class="border-box img-responsive">
+          </div>
+          <div class="col-md-9">
+            <div class="block">
+               <h2>Mr. Mukesh Malhotra</h2>
+<b>Independent & Non Executive Director</b>
+ <br/> <br/>
+<p>Mr. Mukesh Malhotra completed his schooling at The Bishop's School, Pune & then went on to complete his Bachelor of Engineering at the College of Engineering, Pune. He was appointed Managing Director of Weikfield Products Co. (I) Pvt. Ltd. in <span class="num-font">1994</span> and continues to hold that position. With his focus on International Trade, Mukesh has travelled to over <span class="num-font">60</span> countries and <span class="num-font">150</span> cities, thus giving him a broad appreciation and understanding of International business practices and economic scenarios. The 
+Company's products have received International Quality Awards from Europe and America. He is actively involved in the activities of MCCIA with a track record of over <span class="num-font">25</span> years, having served as President, <span class="num-font">2008- 2010. </span>
+
+</p>
+ </div>
+ </div>
+  </div>
+          <div class="modal-footer"  style="border-top:0px;">
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+<!-- Trigger the modal with a button -->
+ <!-- Modal -->
+  <div class="modal fade" id="team-Modal4" role="dialog">
+    <div class="modal-dialog modal-lg team-model">
+      <div class="modal-content b-color">
+        <div class="modal-header"  style="border-bottom:0px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+         <div class="modal-body">
+          <div class="col-md-3">
+            <img src="https://www.vascon.com/images/corporate/soumyavasudevan.jpg" alt="Sowmya Vasudevan" class="border-box img-responsive">
+          </div>
+          <div class="col-md-9">
+            <div class="block">
+               <h2>Sowmya Vasudevan</h2>
+<b>Non Executive & Non Independent Director</b>
+ <br/> <br/>
+<p>Ms. Sowmya Vasudevan Moorthy holds bachelor’s degree in business administration from Symbiosis International University, Pune and an advanced diploma in Interior Design from Raffles College of Higher Education, Singapore. She has over <span class="num-font">4</span> years of experience in the interior design industry. She has been appointed as an Director on the Board of our Company since March <span class="num-font">31, 2015.</span>
+</p>
+ </div>
+ </div>
+  </div>
+          <div class="modal-footer"  style="border-top:0px;">
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+<!-- Trigger the modal with a button -->
+ <!-- Modal -->
+  <div class="modal fade" id="team-Modal5" role="dialog">
+    <div class="modal-dialog modal-lg team-model">
+      <div class="modal-content b-color">
+        <div class="modal-header"  style="border-bottom:0px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+         <div class="modal-body">
+          <div class="col-md-3">
+            <img src="https://www.vascon.com/images/corporate/shddarthvasudevan.jpg" alt="Siddharth Vasudevan Moorthy" class="border-box img-responsive">
+          </div>
+          <div class="col-md-9">
+            <div class="block">
+               <h2>Siddharth Vasudevan Moorthy</h2>
+<b>Chairman and Managing Director</b>
+ <br/> <br/>
+<p>Mr. Siddharth Vasudevan is Managing Director of Vascon Engineers Ltd from <span class="num-font">1st</span> April <span class="num-font" >2018</span>. He is a strong source of inspiration as an emerging entrepreneur for new age business leaders of the company and the real estate and construction fraternity.<br>
+
+
+</p>
+ </div>
+ </div>
+  </div>
+          <div class="modal-footer"  style="border-top:0px;">
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+<!-- Trigger the modal with a button -->
+ <!-- Modal -->
+  <div class="modal fade" id="team-Modal6" role="dialog">
+    <div class="modal-dialog modal-lg team-model">
+      <div class="modal-content b-color">
+        <div class="modal-header"  style="border-bottom:0px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+         <div class="modal-body">
+          <div class="col-md-3">
+            <img src="https://www.vascon.com/images/corporate/Divya Maneklal Shah.jpg" alt="Siddharth Vasudevan Moorthy" class="border-box img-responsive">
+          </div>
+          <div class="col-md-9">
+            <div class="block">
+               <h2>Divya Maneklal Shah</h2>
+<b>Independent Director</b>
+ <br/> <br/>
+<p>An Advocate & Solicitor, Mr. Divya Maneklal Shah (73) has over 49 years of rich experience in legal field. Mr. Shah is known to be upright, straight forward, honest and a person with impeccable integrity enjoys immense faith & trust amongst clients and legal circle alike. <br>
+Mr. Shah has graduated in Arts from the Wilson College and while educating himself in law at the Govt. Law College, he joined the Law firm of M/s. Ambubhai Diwanji, as it then was and signed articles with Mr. Y. M. Desai a senior partner of the firm. Mr. Shah graduated in Law in the year
+1977 and commenced his practice in the same firm. Mr. Shah passed the Solicitor’s exam conducted by the Bombay Incorporated Law society in the year 1980. Mr. Shah was admitted as a partner of M/s. Ambubhai Diwanji in the year 1984.  In the year 1991, the name of the firm was changed to M/s. 
+Desai and Diwanji and Mr. Shah continued to be a partner till March 2004 when he started his own law firm in the name of M/s. Divya Shah Associates. In July 2005 Mr. Shah was appointed as a Notary Public by The Government of India.
+</p>
+ </div>
+ </div>
+  </div>
+          <div class="modal-footer"  style="border-top:0px;">
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+<!-- Trigger the modal with a button -->
+ <!-- Modal -->
+  <div class="modal fade" id="team-Modal10" role="dialog">
+    <div class="modal-dialog modal-lg team-model">
+      <div class="modal-content b-color">
+        <div class="modal-header"  style="border-bottom:0px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+         <div class="modal-body">
+          <div class="col-md-3">
+            <img src="https://www.vascon.com/images/team/team-behind-1.jpg" alt="Dr.Santosh Sundararajan" class="border-box img-responsive">
+          </div>
+          <div class="col-md-9">
+            <div class="block">
+               <h2>Dr.Santosh Sundararajan</h2>
+<b>Whole Time Director & Group Chief Executive Officer</b>
+ <br/> <br/>
+<p>Dr. Santosh Sundararajan is appointed as an Additional Director (Whole Time Director and Chief
+Executive Officer-Group). He is a Civil Engineer with a Ph. D in Structural Engineering from the National
+University of Singapore. He also holds a Masters degree in Financial Management from London
+University. He is a practising structural engineer with more than 22 years experience in the field of Civil
+Structural and allied building works, having worked both in Singapore and India. He has been with
+Vascon group since 2008 and has been serving as the group CEO since 2013.<br>
+
+
+</p>
+ </div>
+ </div>
+  </div>
+          <div class="modal-footer"  style="border-top:0px;">
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  </div>
+</div>
+<a name="philosophy" id="philosophy"></a> 
+
+<div class="philosophy" >
+  <div class="container section centered block">
+    <h1>PHILOSOPHY</h1>
+    <p>The Board of Directors of the Company fully appreciates the importance of adopting high standards of corporate governance in all operations and processes throughout the group. The Company is totally committed to corporate governance with the objective of generating long-term economic value for all the stakeholders.</p>
+
+    <p>The key elements in corporate governance are transparency, disclosure, supervision, internal control, risk management, internal and external communications, high standards of safety, accounting fidelity, product & service quality. The Company ensures that the board and the management of the Company are fully appraised with the affairs of the Company, in order to enable them in conducting the affairs of the Company efficiently and to meet the Company’s obligations to the stakeholders.</p>
+  </div>
+</div>
+
+
+<div class="container section centered" id="ims">
+  <h1>Ims Policy</h1>
+</div>
+<div class="container">
+    <p>Vascon Engineers Limited is a construction company guided by Mother Nature and makes optimum use of the basic elements of nature.</p>
+
+    <p>Vascon believes man and nature should co-exist.<br>
+    We, at Vascon Engineers Limited, are committed to manage our project activities, products and services, for delivering excellence in quality, whilst ensuring the occupational health, safety and well-being of our employees and minimising our impact on the environment.</p>
+
+    <p><b>To achieve this, we shall strive to : </b><br>
+    Understand customer requirement and meet their expectations.<br>
+    Do the right things right, first time, every time.<br>
+    Conserve, preserve and improve the environment.<br>
+    Ensure occupational health & safety aspects of personnel, material and equipments at our workplace.<br>
+    Maintain safe and condusive environment at our workplace to achieve zero accident goal.<br>
+    Comply with all applicable legislations, regulations and
+    requirements of international standards.</p>
+</div>
+
+
+<div class="careers-badges">
+  <div class="container section">
+    <h3><i>“Vascon believes in the simple & powerful rule...<br>
+    Always give customers more than they expect.”</i></h3>    
+  </div>
+</div>
+<div class="csr" id="csr">
+  <div class="container section centered">
+    <div class="row">
+      <div class="col-md-12">
+<h1>CSR</h1>
+<div class="slidersec clearfix">
+     <div class="owl-carousel owl-theme" id="csr-carousel">
+            <div class="item" >
+              <div class="hover-outline-container"><img src="images/corporate/csr-1.jpg" alt="Windermere" class="hover-outline-image img-responsive"> <div class="hover-outline-overlay"><a href="https://www.vascon.com/csr"><div class="hover-outline-text">Read More</div> </a></div></div>
+             <!-- <h4>Lorem Ipsum Dolor Amet<br>2011-2012</h4>-->
+            </div>
+            <div class="item" >
+              <div class="hover-outline-container"><img src="images/corporate/csr-2.jpg" alt="Windermere" class="hover-outline-image img-responsive"> <div class="hover-outline-overlay"><a href="https://www.vascon.com/csr"><div class="hover-outline-text">Read More</div> </a></div></div>
+                <!--<h4>Lorem Ipsum Dolor Amet<br>2011-2012</h4>-->
+            </div>
+            <div class="item" >
+              <div class="hover-outline-container"><img src="images/corporate/csr-3.jpg" alt="Windermere" class="hover-outline-image img-responsive"> <div class="hover-outline-overlay"><a href="https://www.vascon.com/csr"><div class="hover-outline-text">Read More</div> </a></div></div>
+               <!-- <h4>Lorem Ipsum Dolor Amet<br>2011-2012</h4>-->
+            </div>
+            <div class="item" >
+              <div class="hover-outline-container"><img src="images/corporate/csr-4.jpg" alt="Windermere" class="hover-outline-image img-responsive"> <div class="hover-outline-overlay"><a href="https://www.vascon.com/csr"><div class="hover-outline-text">Read More</div> </a></div> </div></div>
+                <!--<h4>Lorem Ipsum Dolor Amet<br>2011-2012</h4>-->
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+</div>
+
+
+
+
+<footer>
+<div class="container">
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+       <div class="footer-column">
+          <h1>Corporate</h1>
+          <ul>
+          <li><a href="https://www.vascon.com/corporate">About us</a></li>
+          <li><a href="https://www.vascon.com/corporate#vision-mission">Vision & Mission</a></li>
+          <li><a href="https://www.vascon.com/team">Team</a></li>
+          <li><a href="https://www.vascon.com/corporate#philosophy">Philosophy</a></li>
+          <li><a href="https://www.vascon.com/channel-partners">Channel Partners</a></li>
+          <li><a href="https://www.vascon.com/privacy">Privacy &amp; Policy</a></li>
+          <li><a href="https://www.vascon.com/in-the-news-media">Media Coverage</a></li>
+          <li><a href="https://www.vascon.com/awards">Awards & Accreditations</a></li>
+           <li><a href="https://www.vascon.com/corporate#csr">CSR</a></li>
+          </ul>
+       </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+       <div class="footer-column">
+          <h1>Investors</h1>
+          <ul>
+          <li><a href="https://www.vascon.com/investors">Company Overview</a></li>
+          <li><a href="https://www.vascon.com/investors/corporate-updates">Corporate Updates</a></li>
+          <li><a href="https://www.vascon.com/pdf/Vascon23 - Technical fact sheet.pdf" target="_blank">Technical fact sheet</a></li>
+          <li><a href="https://www.vascon.com/investors/faqs">FAQs </a></li>
+          <li><a href="https://www.vascon.com/investors/corporate-governance">Corporate Governance</a></li>
+          <li><a href="https://www.vascon.com/investors/shares-information">Shares Information</a></li>
+          <li><a href="https://www.vascon.com/investors/results-of-agm">Result of AGM</a></li>
+          <li><a href="https://www.vascon.com/investors/reports">Reports</a></li>
+      </ul>
+       </div>
+    </div>
+
+
+       <div class="col-md-2 col-sm-6 col-xs-12">
+       <div class="footer-column">
+          <h1>Quick Links</h1>
+          <ul>
+         
+        
+          <li><a href="http://vascon.com/calculator">EMI Calculator</a></li>
+          <li><a href="https://vascon.com/blog">Blog</a></li>
+          
+          
+          <li><a href="https://www.vascon.com/careers">Careers</a></li>
+           <li><a href="https://www.vascon.com/testimonials">Testimonials</a></li>
+           <li><a href="http://payments.vascon.com/">Book Online</a></li>
+           <li><a href="https://www.vascon.com/loyalty-and-rewards">Rewards & Loyalty</a></li>
+            <li><a href="https://www.vascon.com/channel-partners/register">Register as Channel Partner</a></li>
+          
+          </ul>
+       </div>
+    </div>
+ 
+
+    <div class="col-md-4 col-sm-6 col-xs-12 ">
+       <div class="footer-column">
+          <h1>Ongoing Projects</h1>
+          <ul>
+            <li><b style="color: #b2b4b7; text-transform: uppercase;">Residential</b></li>
+            <li><a href="https://www.vascon.com/residential/citron-phase-2" target="_blank">Citron, Wagholi, Pune</a></li>
+            <li><a href="http://www.vascon.com/windermere/" target="_blank">Windermere, Koregaon Park, Pune</a></li>
+            <li><a href="https://www.vascon.com/residential/forest-edge" target="_blank">Forest Edge, Kharadi, Pune</a></li>
+            <li><a href="https://www.vascon.com/residential/goodlife" target="_blank">GoodLife, Talegaon, Pune</a></li>
+            <li><a href="https://www.vascon.com/residential/xotech-homes-phase-2" target="_blank">Xotech, Hinjewadi, Pune</a></li>
+            <li><a href="https://www.vascon.com/residential/vista" target="_blank">Vista, IndiraNagar, Nashik</a></li>
+            <li><a href="https://www.vascon.com/residential/forest-county" target="_blank">Forest County, Kharadi, Pune</a></li>
+            <li><b style="color:#b2b4b7; text-transform: uppercase; margin-top: 10px; display: block;">Commercial </b></li>
+            <li><a href="https://www.vascon.com/commercial/platinum-square" target="_blank">Platinum Square, Viman Nagar, Pune</a></li>
+          </ul>
+        
+       </div>
+    </div>
+
+ 
+
+   <div class="col-md-12 col-sm-12 col-xs-12 centered b-box">
+    <p class="footer-address">   Vascon Engineers Ltd. - Vascon Weikfield Chambers, Behind Hotel Novotel, Opposite Hyatt Hotel, Pune-Nagar Road, Pune 411014</p>
+    All rights reserved &copy; 2019 - Vascon Engineers
+  </div>
+ </div>
+
+
+
+ <div>
+  
+<div id='recaptcha' class="g-recaptcha" data-sitekey="6LddN3AUAAAAAM7X7vuV_evOpS5IbvjlIFW95zz1" data-callback="onSubmit" data-size="invisible"></div>   
+ </div>
+</footer>
+
+
+
+
+
+        <style type="text/css">
+         
+
+
+        </style>
+   
+ 
+<!--<script src="https://www.kenyt.ai/botapp/ChatbotUI/dist/js/bot-loader.js" type="text/javascript" data-bot="Vascon_Engineers"></script>-->
+
+
+</div>
+<!-- Scripts -->
+<script src="https://www.vascon.com/js/app.js"></script>
+<script src="https://www.vascon.com/js/intlTelInput.min.js"></script>
+<script src="https://www.vascon.com/js/user_data_collector.js"></script>
+<!--<script src="https://www.google.com/recaptcha/api.js" async defer></script>-->
+
+<script>
+  function onSubmit(token) {
+    
+  }
+
+  function validate(event) {
+   // event.preventDefault();
+   var ftEmail =document.getElementById('ftemail');
+   var ftFname =document.getElementById('ftname');
+   var ftMobile = document.getElementById('ftmobile');
+    if (ftEmail!='' && ftFname!=''  && ftMobile!='') {
+     grecaptcha.execute();
+    } 
+  }
+
+  function onload() {
+    var element = document.getElementById('ftsubmit');
+    element.onclick = validate();
+  }
+</script>
+     
+<script>/*onload();*/</script>     
+<script>
+    AOS.init();
+</script>
+<script>
+  $("#ftmobile").intlTelInput({
+      utilsScript:"https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.4/js/utils.js",
+      preferredCountries : ["in"],
+    });
+    
+    $("#ftmobile").blur(function() {
+    var getCode = $("#ftmobile").intlTelInput('getSelectedCountryData').dialCode;
+    $("#countryCode").val(getCode);
+    });
+
+  /*Error message only for mobile number and for microsite page start here*/
+  var telInput = $("#ftmobile"),
+  errorMsg = $("#error-msg"),
+  validMsg = $("#valid-msg");
+
+  // initialise plugin
+  telInput.intlTelInput({
+    utilsScript: "../../build/js/utils.js"
+  });
+
+  var reset = function() {
+    telInput.removeClass("error");
+    errorMsg.addClass("hide");
+    
+  };
+
+  // on blur: validate
+  telInput.blur(function() {
+    reset();
+    if ($.trim(telInput.val())) {
+      if (telInput.intlTelInput("isValidNumber")) {
+           $("#ftmobile").removeClass("error");
+      } else {
+        $("#ftmobile").val('');
+        $("#ftmobile").addClass("error");
+      }
+    }
+  });
+
+  telInput.on("keyup change", reset);
+   /*Error message only for mobile number and for microsite page ends here*/
+</script>
+
+<script>
+  $("#phone").intlTelInput({
+      utilsScript:"https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.4/js/utils.js",
+      preferredCountries : ["in"],
+    });
+    
+    $("#phone").blur(function() {
+    var getCode = $("#phone").intlTelInput('getSelectedCountryData').dialCode;
+    $("#countryCode").val(getCode);
+    });
+
+/*Error message only for mobile number and for microsite page start here*/
+  var phone = $("#phone"),
+  errorMsg = $("#error-msg"),
+  validMsg = $("#valid-msg");
+
+  // initialise plugin
+  phone.intlTelInput({
+    utilsScript: "../../build/js/utils.js"
+  });
+
+  var reset = function() {
+    phone.removeClass("error");
+    errorMsg.addClass("hide");
+    
+  };
+
+  // on blur: validate
+  phone.blur(function() {
+    reset();
+    if ($.trim(phone.val())) {
+      if (phone.intlTelInput("isValidNumber")) {
+           $("#phone").removeClass("error");
+      } else {
+        $("#phone").val('');
+        $("#phone").addClass("error");
+      }
+    }
+  });
+
+  phone.on("keyup change", reset);
+   /*Error message only for mobile number and for microsite page ends here*/
+</script>
+
+<script>
+/*Feedback js*/
+
+   $("#feedback-tab").on('click',function() {
+      $("#feedback-form").toggle("slide");
+   });
+
+  
+   $(document).keyup(function(e) {
+       if(e.which == 27){
+           $("#showFloorPlanModal").removeClass("in");
+           $("#feedback-form").hide("slide");
+          
+          
+           if($("body").hasClass("show-menu")){
+              $('body').removeClass('show-menu');
+           }
+
+       }
+   });
+   
+        </script>
+<script type="text/javascript">
+$('#team-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    responsiveClass:true,
+    navText: ["<a class='buttons white fa fa-angle-left'> </a>","<a class='buttons white fa fa-angle-right'> </a>"],
+    animateIn : true,
+    responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:3,
+            nav:false
+        },
+        1000:{
+            items:4,
+            nav:true,
+            loop:false
+        }
+    }
+})
+
+$('#csr-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    responsiveClass:true,
+    navText: ["<a class='buttons fa fa-angle-left'> </a>","<a class='buttons fa fa-angle-right'> </a>"],
+    animateIn : true,
+    responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:3,
+            nav:false
+        },
+        1000:{
+            items:3,
+            nav:true,
+            loop:false
+        }
+    }
+})
+</script>
+<script>
+$(function(){
+    $('.navbar-blue .navbar-collapse').on('show.bs.collapse', function(e) {
+        $('.navbar-blue .navbar-collapse').not(this).collapse('hide');
+    });
+});
+</script>
+<script type="text/javascript">
+  $("#button-scroll").click(function() {
+   $('html,body').animate({
+       scrollTop: $("#about-us").offset().top-170},
+       'slow');
+});
+
+</script>
+<script type="text/javascript">
+$("#nav ul li a").click(function(e) {
+  e.preventDefault();
+  
+  var position = $($(this).attr("href")).offset().top-170;
+
+  $("body, html").animate({
+    scrollTop: position
+  } /* speed */ );
+});
+
+</script>
+<script type="text/javascript">
+$(window).scroll(function() {
+  if ($(document).scrollTop() > 350) {
+    $('.nav').removeClass('transparent');
+  } else {
+    $('.nav').addClass('transparent');
+  }
+});
+
+
+function showProjects(divId,currentLinkId) {
+  $("#firstMenu ."+'project-active-resi').removeClass("active");
+  $("#"+currentLinkId).addClass("active");
+
+  if(divId=='ongoingProjectsSecResi'){
+
+    $("#completedProjectsSecResi").hide();
+       $("#ongoingProjectsSecResi").show();
+       $("#allResidentialProject").hide();
+       
+  }else if(divId=='completedProjectsSecResi'){
+      $("#completedProjectsSecResi").show();
+       $("#ongoingProjectsSecResi").hide();
+       $("#allResidentialProject").hide();
+
+  }else{
+     $("#allResidentialProject").show();
+       $("#ongoingProjectsSecResi").hide();
+       $("#completedProjectsSecResi").hide();
+  }
+}
+
+
+function showCommercialProjects(divId,currentLinkId) {
+  $("#secondMenu ."+'project-active-resi').removeClass("active");
+  $("#"+currentLinkId).addClass("active");
+
+  if(divId=='ongoingProjectsSecComm'){
+   
+    $("#completedProDivComm").hide();
+       $("#ongoingProjectsSecComm").show();
+       $("#allCommercialProject").hide();
+       
+  }else if(divId=='completedProDivComm'){
+      $("#completedProDivComm").show();
+       $("#ongoingProjectsSecComm").hide();
+        $("#allCommercialProject").hide();
+
+  }else{
+     $("#allCommercialProject").show();
+     $("#completedProDivComm").hide();
+       $("#ongoingProjectsSecComm").hide();
+  }
+}
+</script>
+
+<script type="text/javascript">
+  $(function(){
+    $('#gear').click(function(){
+       $('#phn-dropdown').slideToggle(); 
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Megapolis</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/slick.css" />
+        <link rel="stylesheet" type="text/css" href="css/slick-theme.css" />
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
+        <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    </head>
+
+    <body>
+        <button type="button" class="enquiry_row" data-bs-toggle="modal" data-bs-target="#myModal">
+            <img src="images/enquiry_icon.png">
+            <p>ENQUIRE NOW</p>
+        </button>
+        <a href="https://api.whatsapp.com/send/?phone=+918806444490&text=Hey!+I’m+interested+in+Megapolis.+Kindly+share+me+the+details." class="whatapp_icon" target="_blank"><img src="images/whatsapp.png"></a>
+        <header class="header">
+            <div class="container-fluid">
+                <div class="header_wrap">
+                    <div class="logo">
+                       <div class="logo">
+                            <a href="index.html"><img class="logo_white" src="images/logo_white.png" alt="logo"></a>
+                            <a href="index.html"><img class="original_logo" src="images/orignal_logo.png" alt="logo"></a>
+                       </div>
+                    </div>
+                    <button type="button" class="toggle_btn"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                    <div class="menu">
+                        <ul class="menu_list">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="about-us.html">About us</a>
+                            </li>
+                            <li class="nav-item">
+                                <span class="dropdown">
+                                    <a class="nav-link dropdown-toggle" href="javascript:void(0);"  id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> projects </a>
+                                    <ul class="dropdown-menu upper_drp" aria-labelledby="dropdownMenuLink">
+
+                                        <li class="dropdown dropend">
+                                            <a class="dropdown-item dropdown-toggle" href="#" id="multilevelDropdownMenu1" data-bs-toggle="dropdown"  aria-expanded="false">ONGOING</a>
+                                            <ul class="dropdown-menu nested_drp" aria-labelledby="multilevelDropdownMenu1">
+											<li><a class="dropdown-item" href="shimmer_detail.html">Megapolis
+												Shimmer</a></li>
+											<li><a class="dropdown-item" href="mystic_detail.html">Megapolis
+                                                Mystic</a></li>
+											<li><a class="dropdown-item" href="spotlight_detail.html">Megapolis
+													Spotlight </a></li>
+											<li><a class="dropdown-item" href="saffron_detail.html">Megapolis Saffron
+												</a></li>
+										</ul>
+                                        </li>
+                                        <li><a class="dropdown-item" href="project.html">UPCOMING</a></li>
+                                        <li><a class="dropdown-item" href="project.html">COMPLETED</a></li>
+                                    </ul>
+                                </span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="offer.html">offers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="life-megapolis.html">life@megapolis</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://www.megapolis.co.in/megapolis/index.htm" target="blank">virtual zone</a>
+                            </li>
+                            <!--  <li class="nav-item">
+                                      <a class="nav-link" href="#">testimonials</a>
+                                    </li> -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact-us.html">contact us</a>
+                            </li>
+                        </ul>
+
+                        <ul class="booknow">
+                            <li><i class="fa fa-phone" aria-hidden="true"></i><a href="tel:09595330033" class="header_num"> +91 9595330033 </a></li>
+                            <li><a href="https://payu.in/web/567C4A042CB309D36615EE0D42D75557" class="default_btn">book now</a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="banner">
+            <img src="images/about_banner.jpg" />
+            <div class="bannertext">
+                <h1>ABOUT US</h1>
+                <p>home > ABOUT US</p>
+            </div>
+        </section>
+
+        <section class="padd_top_60 about_sec">
+            <div class="">
+                <div class="cstm_tabbing">
+                    <ul class="nav nav-pills" role="tablist">
+                        
+                        <li class="nav-item">
+                            <a class=""  href="#menu2">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class=""  href="#menu1">Mission & Vision</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class=""  href="#menu3">Legacy & Milestones</a>
+                        </li>
+                       
+                        <li class="nav-item">
+                            <a class=""  href="#menu5">Awards</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        
+                     
+
+                         <div id="menu2" >
+                            <br />
+                            <div class="white_back">
+                                <div class="cstm_container">
+                                    <div class="pro_park">
+                                        <div class="pro_dis">
+                                            <h2>About Megapolis Township</h2>
+                                          <!--   <h5>Ready Possession & Under Construction 1, 2, 2.5, 3 BHK Flats in Hinjawadi Pune</h5> -->
+                                            <p>Established in 2008, Megapolis is an integrated township designed for working professionals of the 21st century. Striving to become one of India's finest contemporary townships, it is located in the IT Hub of Pune - Hinjawadi.</p>
+                                            <p>Megapolis was established with the aim to eliminate long commutes by providing a convenient location for software professionals working at the IT Park. By offering Smart & Premium Homes, Megapolis has transformed housing in Hinjawadi, earning recognition from the Real Estate industry and the love of homebuyers.</p>
+                                            <p>With numerous milestones achieved, Megapolis continues to surpass expectations, with plans for further development and a goal to win more accolades and break more records. </p>
+                                        </div>
+                                        <div class="pro_img">
+                                            <img src="images/about1.png" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="access">
+                                <h2>Access</h2>
+                                <p>As Megapolis is located in Hinjawadi Phase III, therefore it is well connected to Mumbai Pune Expressway ,Pirangut & Talegaon MIDC. This makes Megapolis an ideal choice for IT professionals who wish to avoid everyday traffic as well as enjoy the life of a serene & calm neighbourhood.</p>
+                            </div>
+
+                            <div class="white_back abt">
+                                <div class="cstm_container">
+                                    <div class="pro_park">
+                                        <div class="pro_img">
+                                            <img src="images/interior.png" />
+                                        </div>
+                                        <div class="pro_dis">
+                                            <h2>Highlights and Projects</h2>
+                                            <h5>We have delivered 94 towers, comprising more than 7000 units. More than 25000 people call it their home.</h5>
+                                            <p>
+                                               Megapolis has the following Ongoing and Completed Projects. We have a variety of configurations available in different projects - 1, 2, 2.5 and 3 BHK.
+                                            </p>
+                                            
+                                            <ul class="detail_list">
+                                                <li><b>Premium Homes</b></li>
+                                                <li>Mystic (Ongoing)</li>
+                                                <li>Sangria (Sold Out)</li>
+                                            </ul>
+                                          
+                                            <ul class="detail_list">
+                                                <li><b>Smart Homes</b></li>
+                                                <li>Serenity (Ongoing) </li>
+                                                <li>Saffron (Ongoing)</li>
+                                                <li>Springs (Sold Out)</li>
+                                                <li>Symphony (Sold Out)</li>
+                                                <li>Splendour (Sold Out)</li>
+                                                <li>Sunway (Sold Out)</li>
+                                                <li>Sparklet (Sold Out)</li>
+                                                <!-- <li>Megapolis Saffron   – Smart Homes VI(Ongoing Project)</li>
+                                                <li>Megapolis Springs   – Smart Homes V (Ongoing Project)</li>
+                                                <li>Symphony    – Smart Homes IV (Sold Out)</li>
+                                                <li>Splendour   – Smart Homes III (Sold Out)</li>
+                                                <li>Sunway  – Smart Homes II (Sold Out)</li>
+                                                <li>Sparklet    – Smart Homes I (Sold Out)</li> -->
+                                            </ul>
+                                           
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                           <!--  <div class="grey_background abt">
+                                <div class="cstm_container">
+                                    <div class="pro_park">
+                                        <div class="pro_dis">
+                                            <h2>CRM – After Sales Support</h2>
+                                            <h5>We believe that a relationship begins after home buyers shift into their new apartment. Keeping that in mind, we have a full-fledged CRM Department that takes care of the following:</h5>
+                                            <ul class="dot_list">
+                                                <li> Possession related assistance</li>
+                                                <li>Resale of apartments</li>
+                                                <li>Rental of the properties</li>
+                                                <li>Maintenance</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="pro_img">
+                                            <img src="images/crm.png" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <div class="call_details">
+                                <p>So what are you waiting for? Pay a visit to the serene site of Megapolis to know more about our offers.<br> Or, you can contact us on +919595330033</p>
+                            </div>
+                        </div>
+
+                        <div id="menu1" class="container">
+                            <br />
+                            <div class="white_back">
+                                <div class="cstm_container">
+                                    <div class="pro_park">
+                                        <div class="pro_dis">
+                                            <h2>MISSION AND VISION</h2>
+                                            <!-- <h5>Ready Possession & Under Construction 1, 2, 2.5, 3 BHK Flats in Hinjawadi Pune</h5> -->
+                                            <p><b>Mission - </b>We at Kumar Realty believe in good quality and holistic customer satisfaction. The mission is to set an unmatched standard of curating excellence in designs and offering top-notch living. </p>
+                                            <p>Whether it's a residential or business space, our ultimate goal is to stay in sync with the innovations in the AEC industry and retain our competitive edge in the market. </p>
+
+                                            <p><b>Vision - </b>Our vision is to engineer your dreams into spaces that speak to your heart. Being detail-oriented and attentive to quality, our designs result in the best performance and an unparalleled user experience.</p>
+                                            
+                                        </div>
+                                        <div class="pro_img">
+                                            <img src="images/mission_vision.jpg" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="menu3" class="cstm_container">
+                            <br />
+                            <h2 class="mb-3">Legacy</h2>
+                            <h5 class="mg_bottom_60">With a rich legacy spanning several decades, Kumar Realty has established itself as a leading name in the real estate industry.</h5>
+                            <div class="ameties_icon legacy_icons">
+                                <div class="ameties_icon_row">
+                                    <div class="amt_icn_img">
+                                        <img src="images/construction.png">
+                                    </div>
+                                    <div class="amt_icn_head">
+                                        <p>36 million sq ft of construction.</p>
+                                    </div>
+                                </div>
+
+                                <div class="ameties_icon_row">
+                                    <div class="amt_icn_img">
+                                        <img src="images/orange_school.png">
+                                    </div>
+                                    <div class="amt_icn_head">
+                                        <p>140 plus projects completed.</p>
+                                    </div>
+                                </div>
+
+                                <div class="ameties_icon_row">
+                                    <div class="amt_icn_img">
+                                        <img src="images/rating.png">
+                                    </div>
+                                    <div class="amt_icn_head">
+                                        <p>42,000 + happy customers.</p>
+                                    </div>
+                                </div>
+
+                                <div class="ameties_icon_row">
+                                    <div class="amt_icn_img">
+                                        <img src="images/building.png">
+                                    </div>
+                                    <div class="amt_icn_head">
+                                        <p>3 million sq ft under construction.</p>
+                                    </div>
+                                </div>
+
+                                <div class="ameties_icon_row">
+                                    <div class="amt_icn_img">
+                                        <img src="images/legacy.png" />
+                                    </div>
+                                    <div class="amt_icn_head">
+                                        <p>58+ years of legacy</p>
+                                    </div>
+                                </div>
+
+                                <div class="ameties_icon_row">
+                                    <div class="amt_icn_img">
+                                        <img src="images/implementation.png" />
+                                    </div>
+                                    <div class="amt_icn_head">
+                                        <p>15+ ongoing projects</p>
+                                    </div>
+                                </div>
+
+                               
+
+                            </div>
+
+                            <!-- <h2 class="mg_bottom_60">Milestones</h2>
+
+                            <div class="card_rows">
+                                <div class="card_col">
+                                    <span class="num">10</span>
+                                    <p>Awards</p>
+                                </div>
+                                <div class="card_col">
+                                    <span class="num">94</span>
+                                    <p>Towers</p>
+                                </div>
+                                <div class="card_col">
+                                    <span class="num">7000</span>
+                                    <p>Units</p>
+                                </div>
+                                <div class="card_col">
+                                    <span class="num">25000</span>
+                                    <p>Residents</p>
+                                </div>
+                            </div> -->
+
+                            
+                        </div>
+
+                        <div class="lifemegasec milestones_sec">
+                                <h2>Milestones</h2>
+                              <!--   <p>Megapolis has a plethora of in-town facilities that make it a complete township project. </p> -->
+                                <div class="cstm_container">
+                                    <div class="megabranch">
+                                        <div class="academysec">
+                                            <div class="academysectxt">
+                                               <span class="num">10</span>
+                                            </div>
+                                            <h6>Awards</h6>
+                                           <!--  <a href="life-megapolis.html">Read More</a> -->
+                                        </div>
+                                        <div class="academysec">
+                                            <div class="academysectxt">
+                                               <span class="num">94</span>
+                                            </div>
+                                            <h6>Towers</h6>
+                                          <!--   <a href="life-megapolis.html">Read More</a> -->
+                                        </div>
+                                        <div class="academysec">
+                                            <div class="academysectxt">
+                                              <span class="num">7000</span>
+                                            </div>
+                                            <h6>Units</h6>
+                                          <!--   <a href="life-megapolis.html">Read More</a> -->
+                                        </div>
+                                        <div class="academysec">
+                                            <div class="academysectxt">
+                                               <span class="num">25000</span>
+                                            </div>
+                                            <h6>Residents</h6>
+                                           <!--  <a href="life-megapolis.html">Read More</a> -->
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                       
+                        <div id="menu5" class="cstm_container">
+                            <br />
+                            <h2 class="mg_bottom_60">Awards</h2>
+                            <div class="awards_row">
+                                <div class="awards_col">
+                                    <img src="images/awards1.jpg">
+                                    <h5>IGBC Award 2017</h5>
+                                    <p>Platinum Rating for Megapolis -Sangria under Green Residential Societies Category.</p>
+                                </div>
+                                <div class="awards_col">
+                                    <img src="images/awards2.jpg">
+                                    <h5>NDTV Property Award 2016</h5>
+                                    <p>Township Project of the Year (100-200acres)</p>
+                                </div>
+                                <div class="awards_col">
+                                    <img src="images/awards3.jpg">
+                                    <h5>Best Integrated Township in Pune by Realty Plus – Dec 2014</h5>
+                                    <p>Awarded for Superior Infrastructure, Cutting-edge Security and Project Management and a Walk-to-work Option</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+     <footer>
+    <div class="upper_footer">
+        <div class="cstm_container">
+             <div class="social_row">
+                 <div class="logos_row">
+                    <a href="index.html"><img src="images/orignal_logo.png"></a>
+                    <a href="index.html"><img src="images/kumar_logo.png"></a>
+                 </div>
+                 <div class="social_icons">
+                    <p>Follow Us</p>
+                    <ul class="social_icons_list">
+                        <li><a target="blank" href="https://www.facebook.com/MegapolisTownshipPune"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a target="blank" href="https://twitter.com/MegapolisPune"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <li><a target="blank" href="https://www.instagram.com/megapolispune"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a target="blank" href="https://www.linkedin.com/company/megapolis-pune/?originalSubdomain=in"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                        <li><a target="blank" href="https://www.youtube.com/channel/UCt8-U82ossGIZAHCVU5Iv0w"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>    
+                    </ul>
+                 </div>
+             </div>
+        </div>
+    </div>
+    <div class="lower_footer">
+        <div class="cstm_container">
+            <div class="footer_menu_row">
+                <div class="footer_menu_col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about-us.html#menu2">About Megapolis</a></li>
+                        <li><a href="about-us.html#menu5">Awards</a></li>
+                        <li><a href="csr.html">CSR</a></li>
+                        <li><a href="policies.html">Policies</a></li>
+                        <li><a href="project.html">Projects</a></li>
+                        <li><a href="crm.html">CRM</a></li>
+                        <li><a href="site_photos.html">Site Photos</a></li>
+                        <li><a href="contact-us.html">Contact Us </a></li>
+                    </ul>
+                </div>
+                <div class="footer_menu_col">
+                    <h4>Facilities</h4>
+                    <ul>
+                        <li><a href="life-megapolis.html#day_care">Maple leaf Pre-school Day Care</a></li>
+                        <li><a href="life-megapolis.html#pawar_school">Pawar Public School</a></li>
+                        <!-- <li><a href="life-megapolis.html#mbta">Mahesh Bhupati Tennis Academy</a></li> -->
+                        <li><a href="life-megapolis.html#bharti_bazar">Bharti Bazaar</a></li>
+                        <li><a href="life-megapolis.html#polyclinic">Polyclinic & Pharmacy</a></li>
+                        <li><a href="life-megapolis.html#datta_mandir">Datta Mandir</a></li>
+                        
+                        
+                    </ul>
+                </div>
+                <div class="footer_menu_col">
+                    <h4>Site Address</h4>
+                    <ul>
+                        <li>R-1/1 to R-1/4, Phase-III, Rajiv </li>
+                        <li>Gandhi Infotech Park Hinjawadi, </li>
+                        <li>Pune 411057, INDIA.</li>
+                        <li>Sales Enq.: <a href="tel:02042600888">02042600888</a></li>
+                        <li>Phone: <a href="tel:09595330033">+91 9595330033,</a></li>
+                        <li>Email: <a href="mailto:info@megapolis.co.in">info@megapolis.co.in</a></li>
+                    </ul>
+                </div>
+                <div class="footer_menu_col">
+                    <h4>Corporate Office</h4>
+                    <ul>
+                        <li><b>Kumar Capital</b></li>
+                        <li>2413 East Street, Pune, India </li>
+                        <li>(20)30583635/660/661/ 662/663</li>
+                        <li><a href="mailto:sales@kumarcorp.co.in">sales@kumarcorp.co.in</a></li>
+                        <li><a href="https://www.kumarcorp.co.in">www.kumarcorp.co.in</a></li>
+                        <li>Sales Enquiry: <a href="tel:09595110011">+91 9595 110011</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="register_row">
+                <img src="images/rera_logo.png">
+                <p>All projects have been registered via MahaRERA registration and available on the website <a href="https://maharera.maharashtra.gov.in/">  maharera.maharashtra.gov.in </a> under registered projects.</p>
+            </div>
+            
+        </div>
+    </div>
+    <div class="cstm_container">
+         <div class="copywrite_row">
+             <p>© 2023 | All Rights Reserved Pegasus Properties Private Limited</p>
+             <a href="privacy_policies.html">Privacy Policy</a>
+         </div>
+    </div>
+</footer>
+
+        <div class="modal enquiry_frm" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Enquiry Form</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form action="contact.php" method="post" id="my-form">
+            <input type="text" name="name"  placeholder="Name" class="form-control" required>
+             <input type="number"  name="phone" placeholder="Phone" class="form-control" required>
+              <input type="text"  name="email" placeholder="Email" class="form-control" required>
+              <select name="subject" class="form-select">
+                    <option>Select </option>
+                    <option>Megapolis Dreamcatcher</option>
+                    <option>Megapolis Saffron</option>
+                    <option>Megapolis Sparkle</option>
+                    
+                </select>
+             <div class="text-center">
+                 <button type="submit" class="default_btn"  id="submit-form">Submit</button>
+             </div>
+        </form>
+         
+      </div>
+
+    </div>
+  </div>
+</div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/jquery-migrate-1.2.1.min.js"></script>
+        <script src="js/slick.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript">
+            var selector = '.nav-pills li a';
+
+            $(selector).on('click', function(){
+                $(selector).removeClass('active');
+                $(this).addClass('active');
+            });
+        </script>
+    </body>
+</html>

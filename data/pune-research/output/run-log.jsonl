@@ -1,0 +1,126 @@
+{"at":"2026-10-27T11:38:01.850Z","event":"run_start","sources":80,"refresh":false,"search":"none"}
+{"at":"2026-10-27T11:38:01.852Z","event":"source_start","id":"kpit"}
+{"at":"2026-10-27T11:38:01.977Z","event":"source_done","id":"kpit","outcome":"ok: 25 people on page(s), 14 in target roles; contact phone; Pune confirmed"}
+{"at":"2026-10-27T11:38:01.978Z","event":"source_start","id":"zensar"}
+{"at":"2026-10-27T11:38:02.097Z","event":"source_done","id":"zensar","outcome":"ok: 18 people on page(s), 11 in target roles; contact email; Pune NOT confirmed"}
+{"at":"2026-10-27T11:38:02.098Z","event":"source_start","id":"force-motors"}
+{"at":"2026-10-27T11:38:02.212Z","event":"source_done","id":"force-motors","outcome":"ok: 15 people on page(s), 7 in target roles; contact phone+email; Pune confirmed"}
+{"at":"2026-10-27T11:38:02.213Z","event":"source_start","id":"koel"}
+{"at":"2026-10-27T11:38:02.273Z","event":"source_done","id":"koel","outcome":"ok: 4 people on page(s), 2 in target roles; contact phone; Pune confirmed"}
+{"at":"2026-10-27T11:38:02.274Z","event":"source_start","id":"praj"}
+{"at":"2026-10-27T11:38:02.365Z","event":"source_done","id":"praj","outcome":"ok: 10 people on page(s), 1 in target roles; contact phone+email; Pune confirmed"}
+{"at":"2026-10-27T11:38:02.366Z","event":"source_start","id":"bharat-forge"}
+{"at":"2026-10-27T11:38:02.473Z","event":"source_done","id":"bharat-forge","outcome":"ok: 32 people on page(s), 0 in target roles; contact phone+email; Pune confirmed"}
+{"at":"2026-10-27T11:38:02.474Z","event":"source_start","id":"bajaj-auto"}
+{"at":"2026-10-27T11:38:03.253Z","event":"source_done","id":"bajaj-auto","outcome":"ok: 2 people on page(s), 0 in target roles; contact phone+email; Pune confirmed"}
+{"at":"2026-10-27T11:38:03.254Z","event":"source_start","id":"thermax"}
+{"at":"2026-10-27T11:38:06.332Z","event":"fetch_failed","url":"https://www.thermaxglobal.com/about-us/leadership/","note":"HTTP 403"}
+{"at":"2026-10-27T11:38:09.346Z","event":"fetch_failed","url":"https://www.thermaxglobal.com/contact-us/","note":"HTTP 403"}
+{"at":"2026-10-27T11:38:09.348Z","event":"source_done","id":"thermax","outcome":"no page could be fetched"}
+{"at":"2026-10-27T11:38:09.349Z","event":"source_start","id":"kirloskar-brothers"}
+{"at":"2026-10-27T11:38:54.459Z","event":"fetch_failed","url":"https://www.kirloskarpumps.com/","note":"HTTP 503"}
+{"at":"2026-10-27T11:38:54.462Z","event":"source_done","id":"kirloskar-brothers","outcome":"no page could be fetched"}
+{"at":"2026-10-27T11:38:54.464Z","event":"source_start","id":"forbes-marshall"}
+{"at":"2026-10-27T11:38:57.514Z","event":"fetch_failed","url":"https://www.forbesmarshall.com/","note":"network error (UNABLE_TO_VERIFY_LEAF_SIGNATURE)"}
+{"at":"2026-10-27T11:38:57.517Z","event":"source_done","id":"forbes-marshall","outcome":"no page could be fetched"}
+{"at":"2026-10-27T11:38:57.519Z","event":"source_start","id":"persistent"}
+{"at":"2026-10-27T11:38:57.737Z","event":"source_done","id":"persistent","outcome":"ok: 0 people on page(s), 0 in target roles; contact email; Pune NOT confirmed"}
+{"at":"2026-10-27T11:38:57.738Z","event":"source_start","id":"png-jewellers"}
+{"at":"2026-10-27T11:38:57.922Z","event":"source_done","id":"png-jewellers","outcome":"ok: 3 people on page(s), 2 in target roles; contact phone+email; Pune confirmed"}
+{"at":"2026-10-27T11:38:57.923Z","event":"source_start","id":"ranka-jewellers"}
+{"at":"2026-10-27T11:38:57.982Z","event":"source_done","id":"ranka-jewellers","outcome":"ok: 0 people on page(s), 0 in target roles; contact phone+email; Pune confirmed"}
+{"at":"2026-10-27T11:38:57.983Z","event":"source_start","id":"chandukaka-saraf"}
+{"at":"2026-10-27T11:40:06.269Z","event":"fetch_failed","url":"https://www.chandukakasaraf.com/","note":"network error (ECONNREFUSED)"}
+{"at":"2026-10-27T11:40:06.273Z","event":"source_done","id":"chandukaka-saraf","outcome":"no page could be fetched"}
+{"at":"2026-10-27T11:40:06.275Z","event":"source_start","id":"lagu-bandhu"}
+{"at":"2026-10-27T11:41:30.921Z","event":"fetch_failed","url":"https://www.lagubandhu.com/","note":"network error (UND_ERR_CONNECT_TIMEOUT)"}
+{"at":"2026-10-27T11:41:30.923Z","event":"source_done","id":"lagu-bandhu","outcome":"no page could be fetched"}
+{"at":"2026-10-27T11:41:30.925Z","event":"source_start","id":"suzlon"}
+{"at":"2026-10-27T11:41:31.056Z","event":"source_done","id":"suzlon","outcome":"ok: 4 people on page(s), 0 in target roles; contact phone; Pune confirmed"}
+{"at":"2026-10-27T11:41:31.057Z","event":"source_start","id":"kirloskar-pneumatic"}
+{"at":"2026-10-27T11:41:31.158Z","event":"source_done","id":"kirloskar-pneumatic","outcome":"ok: 32 people on page(s), 12 in target roles; contact phone; Pune confirmed"}
+{"at":"2026-10-27T11:41:31.158Z","event":"source_start","id":"kirloskar-ferrous"}
+{"at":"2026-10-27T11:41:31.263Z","event":"source_done","id":"kirloskar-ferrous","outcome":"ok: 18 people on page(s), 2 in target roles; contact phone; Pune confirmed"}
+{"at":"2026-10-27T11:41:31.264Z","event":"source_start","id":"kirloskar-industries"}
+{"at":"2026-10-27T11:41:31.300Z","event":"source_done","id":"kirloskar-industries","outcome":"ok: 12 people on page(s), 0 in target roles; contact phone; Pune confirmed"}
+{"at":"2026-10-27T11:41:31.301Z","event":"source_start","id":"venkys"}
+{"at":"2026-10-27T11:41:31.398Z","event":"source_done","id":"venkys","outcome":"ok: 2 people on page(s), 0 in target roles; contact email; Pune confirmed"}
+{"at":"2026-10-27T11:41:31.400Z","event":"source_start","id":"finolex-industries"}
+{"at":"2026-10-27T11:41:31.507Z","event":"source_done","id":"finolex-industries","outcome":"ok: 10 people on page(s), 0 in target roles; contact phone; Pune confirmed"}
+{"at":"2026-10-27T11:41:31.508Z","event":"source_start","id":"finolex-cables"}
+{"at":"2026-10-27T11:41:31.660Z","event":"robots_blocked","url":"https://www.finolex.com/View/Page/About-Us"}
+{"at":"2026-10-27T11:41:31.662Z","event":"robots_blocked","url":"https://www.finolex.com/View/Page/Directors"}
+{"at":"2026-10-27T11:41:31.675Z","event":"robots_blocked","url":"https://www.finolex.com/View/Page/Contact-Us"}
+{"at":"2026-10-27T11:41:31.694Z","event":"source_done","id":"finolex-cables","outcome":"ok: 0 people on page(s), 0 in target roles; contact phone+email; Pune confirmed"}
+{"at":"2026-10-27T11:41:31.695Z","event":"source_start","id":"cosmos-bank"}
+{"at":"2026-10-27T11:41:32.068Z","event":"source_done","id":"cosmos-bank","outcome":"ok: 14 people on page(s), 0 in target roles; contact phone+email; Pune confirmed"}
+{"at":"2026-10-27T11:41:32.070Z","event":"source_start","id":"druva"}
+{"at":"2026-10-27T11:41:32.186Z","event":"source_done","id":"druva","outcome":"ok: 39 people on page(s), 12 in target roles; contact none found; Pune NOT confirmed"}
+{"at":"2026-10-27T11:41:32.187Z","event":"source_start","id":"icertis"}
+{"at":"2026-10-27T11:41:32.261Z","event":"source_done","id":"icertis","outcome":"ok: 5 people on page(s), 2 in target roles; contact none found; Pune confirmed"}
+{"at":"2026-10-27T11:41:32.262Z","event":"source_skipped","id":"gagan","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.262Z","event":"source_skipped","id":"gera","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.263Z","event":"source_skipped","id":"godrej-properties","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.263Z","event":"source_skipped","id":"kalpataru","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.264Z","event":"source_skipped","id":"kohinoor","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.264Z","event":"source_skipped","id":"kolte-patil","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.265Z","event":"source_skipped","id":"lodha","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.265Z","event":"source_skipped","id":"majestique","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.265Z","event":"source_skipped","id":"mantra","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.266Z","event":"source_skipped","id":"marvel","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.266Z","event":"source_skipped","id":"nyati","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.267Z","event":"source_skipped","id":"panchshil","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.267Z","event":"source_skipped","id":"pride","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.268Z","event":"source_skipped","id":"pristine","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.268Z","event":"source_skipped","id":"ravetkar","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.269Z","event":"source_skipped","id":"rohan","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.269Z","event":"source_skipped","id":"shapoorji-re","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.269Z","event":"source_skipped","id":"sukhwani","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.270Z","event":"source_skipped","id":"tribeca","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.270Z","event":"source_skipped","id":"vtp","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.271Z","event":"source_skipped","id":"vascon","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.271Z","event":"source_skipped","id":"vilas-javdekar","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:32.271Z","event":"source_start","id":"bajaj-general"}
+{"at":"2026-10-27T11:41:32.562Z","event":"source_done","id":"bajaj-general","outcome":"ok: 7 people on page(s), 0 in target roles; contact phone; Pune confirmed"}
+{"at":"2026-10-27T11:41:32.562Z","event":"source_start","id":"bajaj-life"}
+{"at":"2026-10-27T11:41:32.841Z","event":"source_done","id":"bajaj-life","outcome":"ok: 29 people on page(s), 8 in target roles; contact phone; Pune confirmed"}
+{"at":"2026-10-27T11:41:32.842Z","event":"source_start","id":"calsoft"}
+{"at":"2026-10-27T11:41:32.876Z","event":"source_done","id":"calsoft","outcome":"ok: 8 people on page(s), 6 in target roles; contact none found; Pune confirmed"}
+{"at":"2026-10-27T11:41:32.876Z","event":"source_start","id":"e-zest"}
+{"at":"2026-10-27T11:41:32.932Z","event":"source_done","id":"e-zest","outcome":"ok: 16 people on page(s), 10 in target roles; contact email; Pune confirmed"}
+{"at":"2026-10-27T11:41:32.932Z","event":"source_start","id":"janata-bank"}
+{"at":"2026-10-27T11:41:33.090Z","event":"source_done","id":"janata-bank","outcome":"ok: 0 people on page(s), 0 in target roles; contact none found; Pune NOT confirmed"}
+{"at":"2026-10-27T11:41:33.100Z","event":"source_start","id":"harbinger"}
+{"at":"2026-10-27T11:41:33.120Z","event":"source_done","id":"harbinger","outcome":"ok: 0 people on page(s), 0 in target roles; contact none found; Pune NOT confirmed"}
+{"at":"2026-10-27T11:41:33.121Z","event":"source_start","id":"quick-heal"}
+{"at":"2026-10-27T11:41:33.190Z","event":"source_done","id":"quick-heal","outcome":"ok: 19 people on page(s), 10 in target roles; contact none found; Pune NOT confirmed"}
+{"at":"2026-10-27T11:41:33.191Z","event":"source_start","id":"synechron"}
+{"at":"2026-10-27T11:41:33.250Z","event":"source_done","id":"synechron","outcome":"ok: 7 people on page(s), 4 in target roles; contact none found; Pune NOT confirmed"}
+{"at":"2026-10-27T11:41:33.251Z","event":"source_skipped","id":"bu-bhandari","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:33.251Z","event":"source_skipped","id":"ceratec","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:33.252Z","event":"source_skipped","id":"goel-ganga","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:33.252Z","event":"source_skipped","id":"krisala","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:33.253Z","event":"source_skipped","id":"kundan","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:33.253Z","event":"source_skipped","id":"magarpatta","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:33.254Z","event":"source_skipped","id":"mahindra-lifespaces","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:33.254Z","event":"source_skipped","id":"megapolis","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:33.254Z","event":"source_skipped","id":"mittal","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:33.255Z","event":"source_skipped","id":"naiknavare","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:33.255Z","event":"source_skipped","id":"puravankara","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:33.256Z","event":"source_skipped","id":"rachana","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:33.257Z","event":"source_skipped","id":"saarrthi","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:33.259Z","event":"source_skipped","id":"sobha","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:33.261Z","event":"source_skipped","id":"supreme","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:33.261Z","event":"source_skipped","id":"venkatesh","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:33.262Z","event":"source_skipped","id":"yashada","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:33.262Z","event":"source_skipped","id":"goodwill","access":"excluded_by_owner"}
+{"at":"2026-10-27T11:41:33.263Z","event":"source_start","id":"ibja-team"}
+{"at":"2026-10-27T11:41:33.284Z","event":"source_done","id":"ibja-team","outcome":"checked: 111 people listed, none with a documented Pune location (not exported)"}
+{"at":"2026-10-27T11:41:33.285Z","event":"source_skipped","id":"jainbiz","access":"requires_login"}
+{"at":"2026-10-27T11:41:33.286Z","event":"source_skipped","id":"linkedin","access":"prohibited_automation"}
+{"at":"2026-10-27T11:41:33.286Z","event":"source_skipped","id":"google-maps","access":"prohibited_automation"}
+{"at":"2026-10-27T11:41:33.287Z","event":"source_skipped","id":"justdial-indiamart","access":"manual_only"}
+{"at":"2026-10-27T11:41:33.287Z","event":"source_skipped","id":"web-search","access":"requires_api_key"}
+{"at":"2026-10-27T11:41:33.288Z","event":"source_start","id":"ibja-members"}
+{"at":"2026-10-27T11:41:33.566Z","event":"source_done","id":"ibja-members","outcome":"ok: 14 Pune members listed; 1 matched to an official firm website"}
+{"at":"2026-10-27T11:41:33.639Z","event":"run_done","collected":138,"unique":0,"exported":0,"review":0,"out":"data\\pune-research\\output"}

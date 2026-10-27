@@ -1,0 +1,1351 @@
+<!DOCTYPE html><html
+lang=en-US itemscope itemtype=https://schema.org/WebPage><head><meta
+http-equiv="X-UA-Compatible" content="IE=edge"><meta
+charset="UTF-8"><meta
+name="viewport" content="width=device-width, initial-scale=1.0"><link
+rel=preconnect href=https://fonts.gstatic.com crossorigin><link
+rel=preconnect href=https://www.googletagmanager.com><link
+rel=dns-prefetch href=https://snap.licdn.com><link
+rel=dns-prefetch href=https://www.google-analytics.com><link
+rel=dns-prefetch href=https://script.hotjar.com><link
+rel=preload as=style
+href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Red+Hat+Display:wght@400;500;600;700&display=swap"
+onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link
+rel=stylesheet href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Red+Hat+Display:wght@400;500;600;700&display=swap">
+</noscript><link
+rel=preload href=https://www.harbingergroup.com/wp-content/themes/harbinger/fonts/Satoshi-Variable.ttf?x59326 as=font type=font/ttf crossorigin><link
+rel=icon href=https://www.harbingergroup.com/wp-content/themes/harbinger/images/favicon.png?x59326 type=image/png sizes=16x16><link
+rel=preload as=image
+imagesrcset="https://www.harbingergroup.com/wp-content/uploads/2026/06/1_HG-HomePage_1st-Mobile-Banner-1.webp 768w, https://www.harbingergroup.com/wp-content/webp-express/webp-images/uploads/2026/04/1_HG-HomePage_1st-Banner-1.jpeg.webp 1280w"
+imagesizes=100vw
+fetchpriority=high><meta
+name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'> <script id=llmclicks-config>window.llmClicksConfig={projectId:'a2dd98453fadb3f4',apiUrl:'https://gvocxbulppnhusebpaav.supabase.co/functions/v1/track-llm-visit',debug:false};</script> <link
+rel=preconnect href=https://fonts.googleapis.com><link
+rel=preconnect href=https://fonts.gstatic.com crossorigin><link
+rel=preconnect href=https://www.googletagmanager.com><link
+rel=dns-prefetch href=//www.google-analytics.com><title>Advisory-Led Product Engineering &amp; Learning Solutions</title><meta
+name="description" content="Harbinger Group is a leading performance enablement company in the USA, combining advisory, AI, engineering and learning to transform workforce performance."><link
+rel=canonical href=https://www.harbingergroup.com/ ><meta
+property="og:locale" content="en_US"><meta
+property="og:type" content="website"><meta
+property="og:title" content="AI-Powered Product Engineering &amp; eLearning Solutions | USA"><meta
+property="og:description" content="Harbinger is a Leading AI-powered product engineering and eLearning solutions provider in the USA. Deliver scalable solutions and smarter experiences with Harbinger."><meta
+property="og:url" content="https://www.harbingergroup.com/"><meta
+property="og:site_name" content="Harbinger Group"><meta
+property="article:publisher" content="https://www.facebook.com/harbingersys"><meta
+property="article:modified_time" content="2026-10-23T12:39:08+00:00"><meta
+property="og:image" content="https://www.harbingergroup.com/wp-content/uploads/2022/12/Home-Image-1.jpg"><meta
+property="og:image:width" content="600"><meta
+property="og:image:height" content="400"><meta
+property="og:image:type" content="image/jpeg"><meta
+name="twitter:card" content="summary_large_image"><meta
+name="twitter:title" content="AI-Powered Product Engineering &amp; eLearning Solutions | USA"><meta
+name="twitter:description" content="Harbinger is a Leading AI-powered product engineering and eLearning solutions provider in the USA. Deliver scalable solutions and smarter experiences with Harbinger."><meta
+name="twitter:image" content="https://www.harbingergroup.com/wp-content/uploads/2022/12/Home-Image-1.jpg"><meta
+name="twitter:site" content="@Harbinger_Grp"> <script type=application/ld+json class=yoast-schema-graph>{"@context":"https:\/\/schema.org","@graph":[{"@type":["WebPage","SearchResultsPage"],"@id":"https:\/\/www.harbingergroup.com\/","url":"https:\/\/www.harbingergroup.com\/","name":"Advisory-Led Product Engineering & Learning Solutions","isPartOf":{"@id":"https:\/\/www.harbingergroup.com\/#website"},"about":{"@id":"https:\/\/www.harbingergroup.com\/#organization"},"datePublished":"2026-09-17T05:12:12+00:00","dateModified":"2026-10-23T12:39:08+00:00","description":"Harbinger Group is a leading performance enablement company in the USA, combining advisory, AI, engineering and learning to transform workforce performance.","breadcrumb":{"@id":"https:\/\/www.harbingergroup.com\/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https:\/\/www.harbingergroup.com\/"]}]},{"@type":"BreadcrumbList","@id":"https:\/\/www.harbingergroup.com\/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home"}]},{"@type":"WebSite","@id":"https:\/\/www.harbingergroup.com\/#website","url":"https:\/\/www.harbingergroup.com\/","name":"Harbingergroup.com","description":"Transforming the Way People Work and Learn","publisher":{"@id":"https:\/\/www.harbingergroup.com\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/www.harbingergroup.com\/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en-US"},{"@type":"Organization","@id":"https:\/\/www.harbingergroup.com\/#organization","name":"Harbinger Group","url":"https:\/\/www.harbingergroup.com\/","logo":{"@type":"ImageObject","inLanguage":"en-US","@id":"https:\/\/www.harbingergroup.com\/#\/schema\/logo\/image\/","url":"https:\/\/www.harbingergroup.com\/wp-content\/uploads\/2022\/12\/harbinger-logo.png","contentUrl":"https:\/\/www.harbingergroup.com\/wp-content\/uploads\/2022\/12\/harbinger-logo.png","width":199,"height":65,"caption":"Harbinger Group"},"image":{"@id":"https:\/\/www.harbingergroup.com\/#\/schema\/logo\/image\/"},"sameAs":["https:\/\/www.facebook.com\/harbingersys","https:\/\/x.com\/Harbinger_Grp","https:\/\/www.linkedin.com\/company\/harbinger-group\/","https:\/\/www.youtube.com\/@harbinger_group"]}]}</script> <meta
+name="google-site-verification" content="rD2Cw258Yqez7H_EnkK_iC6znkGkR-QCjbomYZb5ltg"><link
+rel=dns-prefetch href=//cdnjs.cloudflare.com><link
+rel=dns-prefetch href=//api.fontshare.com><style id=wp-img-auto-sizes-contain-inline-css>img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}</style><style id=wp-block-library-inline-css>/*<![CDATA[*/:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-break:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px
+23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style^=border-color],[style*=";border-color"],[style*="; border-color"]){border-style:solid}html :where([style^=border-top-color],[style*=";border-top-color"],[style*="; border-top-color"]){border-top-style:solid}html :where([style^=border-right-color],[style*=";border-right-color"],[style*="; border-right-color"]){border-right-style:solid}html :where([style^=border-bottom-color],[style*=";border-bottom-color"],[style*="; border-bottom-color"]){border-bottom-style:solid}html :where([style^=border-left-color],[style*=";border-left-color"],[style*="; border-left-color"]){border-left-style:solid}html :where([style^=border-width],[style*=";border-width"],[style*="; border-width"]){border-style:solid}html :where([style^=border-top-width],[style*=";border-top-width"],[style*="; border-top-width"]){border-top-style:solid}html :where([style^=border-right-width],[style*=";border-right-width"],[style*="; border-right-width"]){border-right-style:solid}html :where([style^=border-bottom-width],[style*=";border-bottom-width"],[style*="; border-bottom-width"]){border-bottom-style:solid}html :where([style^=border-left-width],[style*=";border-left-width"],[style*="; border-left-width"]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0
+0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html:where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}/*]]>*/</style><style id=global-styles-inline-css>/*<![CDATA[*/:root{--wp--preset--aspect-ratio--square:1;--wp--preset--aspect-ratio--4-3:4/3;--wp--preset--aspect-ratio--3-4:3/4;--wp--preset--aspect-ratio--3-2:3/2;--wp--preset--aspect-ratio--2-3:2/3;--wp--preset--aspect-ratio--16-9:16/9;--wp--preset--aspect-ratio--9-16:9/16;--wp--preset--color--black:#000;--wp--preset--color--cyan-bluish-gray:#abb8c3;--wp--preset--color--white:#fff;--wp--preset--color--pale-pink:#f78da7;--wp--preset--color--vivid-red:#cf2e2e;--wp--preset--color--luminous-vivid-orange:#ff6900;--wp--preset--color--luminous-vivid-amber:#fcb900;--wp--preset--color--light-green-cyan:#7bdcb5;--wp--preset--color--vivid-green-cyan:#00d084;--wp--preset--color--pale-cyan-blue:#8ed1fc;--wp--preset--color--vivid-cyan-blue:#0693e3;--wp--preset--color--vivid-purple:#9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple:linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan:linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange:linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red:linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray:linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum:linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple:linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux:linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk:linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean:linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass:linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight:linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small:13px;--wp--preset--font-size--medium:20px;--wp--preset--font-size--large:36px;--wp--preset--font-size--x-large:42px;--wp--preset--spacing--20:0.44rem;--wp--preset--spacing--30:0.67rem;--wp--preset--spacing--40:1rem;--wp--preset--spacing--50:1.5rem;--wp--preset--spacing--60:2.25rem;--wp--preset--spacing--70:3.38rem;--wp--preset--spacing--80:5.06rem;--wp--preset--shadow--natural:6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep:12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp:6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined:6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp:6px 6px 0px rgb(0, 0, 0)}.wp-block-button{--wp--preset--dimension--25:25%;--wp--preset--dimension--50:50%;--wp--preset--dimension--75:75%;--wp--preset--dimension--100:100%}:where(body){margin:0}:where(.is-layout-flex){gap:0.5em}:where(.is-layout-grid){gap:0.5em}body .is-layout-flex{display:flex}.is-layout-flex{flex-wrap:wrap;align-items:center}.is-layout-flex>:is(*,div){margin:0}body .is-layout-grid{display:grid}.is-layout-grid>:is(*,div){margin:0}body{padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px}:root :where(.wp-element-button,.wp-block-button__link){background-color:#32373c;border-width:0;color:#fff;font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;line-height:inherit;padding-top:calc(0.667em + 2px);padding-right:calc(1.333em + 2px);padding-bottom:calc(0.667em + 2px);padding-left:calc(1.333em + 2px);text-decoration:none;text-transform:inherit}.has-black-color{color:var(--wp--preset--color--black) !important}.has-cyan-bluish-gray-color{color:var(--wp--preset--color--cyan-bluish-gray) !important}.has-white-color{color:var(--wp--preset--color--white) !important}.has-pale-pink-color{color:var(--wp--preset--color--pale-pink) !important}.has-vivid-red-color{color:var(--wp--preset--color--vivid-red) !important}.has-luminous-vivid-orange-color{color:var(--wp--preset--color--luminous-vivid-orange) !important}.has-luminous-vivid-amber-color{color:var(--wp--preset--color--luminous-vivid-amber) !important}.has-light-green-cyan-color{color:var(--wp--preset--color--light-green-cyan) !important}.has-vivid-green-cyan-color{color:var(--wp--preset--color--vivid-green-cyan) !important}.has-pale-cyan-blue-color{color:var(--wp--preset--color--pale-cyan-blue) !important}.has-vivid-cyan-blue-color{color:var(--wp--preset--color--vivid-cyan-blue) !important}.has-vivid-purple-color{color:var(--wp--preset--color--vivid-purple) !important}.has-black-background-color{background-color:var(--wp--preset--color--black) !important}.has-cyan-bluish-gray-background-color{background-color:var(--wp--preset--color--cyan-bluish-gray) !important}.has-white-background-color{background-color:var(--wp--preset--color--white) !important}.has-pale-pink-background-color{background-color:var(--wp--preset--color--pale-pink) !important}.has-vivid-red-background-color{background-color:var(--wp--preset--color--vivid-red) !important}.has-luminous-vivid-orange-background-color{background-color:var(--wp--preset--color--luminous-vivid-orange) !important}.has-luminous-vivid-amber-background-color{background-color:var(--wp--preset--color--luminous-vivid-amber) !important}.has-light-green-cyan-background-color{background-color:var(--wp--preset--color--light-green-cyan) !important}.has-vivid-green-cyan-background-color{background-color:var(--wp--preset--color--vivid-green-cyan) !important}.has-pale-cyan-blue-background-color{background-color:var(--wp--preset--color--pale-cyan-blue) !important}.has-vivid-cyan-blue-background-color{background-color:var(--wp--preset--color--vivid-cyan-blue) !important}.has-vivid-purple-background-color{background-color:var(--wp--preset--color--vivid-purple) !important}.has-black-border-color{border-color:var(--wp--preset--color--black) !important}.has-cyan-bluish-gray-border-color{border-color:var(--wp--preset--color--cyan-bluish-gray) !important}.has-white-border-color{border-color:var(--wp--preset--color--white) !important}.has-pale-pink-border-color{border-color:var(--wp--preset--color--pale-pink) !important}.has-vivid-red-border-color{border-color:var(--wp--preset--color--vivid-red) !important}.has-luminous-vivid-orange-border-color{border-color:var(--wp--preset--color--luminous-vivid-orange) !important}.has-luminous-vivid-amber-border-color{border-color:var(--wp--preset--color--luminous-vivid-amber) !important}.has-light-green-cyan-border-color{border-color:var(--wp--preset--color--light-green-cyan) !important}.has-vivid-green-cyan-border-color{border-color:var(--wp--preset--color--vivid-green-cyan) !important}.has-pale-cyan-blue-border-color{border-color:var(--wp--preset--color--pale-cyan-blue) !important}.has-vivid-cyan-blue-border-color{border-color:var(--wp--preset--color--vivid-cyan-blue) !important}.has-vivid-purple-border-color{border-color:var(--wp--preset--color--vivid-purple) !important}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background:var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background:var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background:var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background:var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background:var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important}.has-cool-to-warm-spectrum-gradient-background{background:var(--wp--preset--gradient--cool-to-warm-spectrum) !important}.has-blush-light-purple-gradient-background{background:var(--wp--preset--gradient--blush-light-purple) !important}.has-blush-bordeaux-gradient-background{background:var(--wp--preset--gradient--blush-bordeaux) !important}.has-luminous-dusk-gradient-background{background:var(--wp--preset--gradient--luminous-dusk) !important}.has-pale-ocean-gradient-background{background:var(--wp--preset--gradient--pale-ocean) !important}.has-electric-grass-gradient-background{background:var(--wp--preset--gradient--electric-grass) !important}.has-midnight-gradient-background{background:var(--wp--preset--gradient--midnight) !important}.has-small-font-size{font-size:var(--wp--preset--font-size--small) !important}.has-medium-font-size{font-size:var(--wp--preset--font-size--medium) !important}.has-large-font-size{font-size:var(--wp--preset--font-size--large) !important}.has-x-large-font-size{font-size:var(--wp--preset--font-size--x-large) !important}/*]]>*/</style><link
+rel=preload as=style onload='this.rel="stylesheet"' id=contact-form-7-css href='https://www.harbingergroup.com/wp-content/plugins/contact-form-7/includes/css/styles.css?x59326'>
+<noscript><link
+rel=stylesheet href=https://www.harbingergroup.com/wp-content/cache/minify/6c546.css?x59326 media=all></noscript><link
+rel=preload as=style onload='this.rel="stylesheet"' id=style-child-css-css href='https://www.harbingergroup.com/wp-content/themes/harbinger-child/style.css?x59326'>
+<noscript>
+</noscript><link
+rel=preload as=style onload='this.rel="stylesheet"' id=satoshi-font-css href='https://api.fontshare.com/v2/css?f%5B%5D=satoshi@1&#038;display=swap&#038;ver=0772ea3e819ad17a29761e6d46ebf927'>
+<noscript><link
+rel=stylesheet id=satoshi-font-css href='https://api.fontshare.com/v2/css?f%5B%5D=satoshi@1&#038;display=swap&#038;ver=0772ea3e819ad17a29761e6d46ebf927'>
+</noscript><link
+rel=preload as=style onload='this.rel="stylesheet"' id=bootstrap-min-css-css href='https://www.harbingergroup.com/wp-content/themes/harbinger/css/bootstrap.min.css?x59326'>
+<noscript><link
+rel=stylesheet href=https://www.harbingergroup.com/wp-content/cache/minify/c96d4.css?x59326 media=all></noscript><link
+rel=preload as=style onload='this.rel="stylesheet"' id=font-awesome-css href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css?ver=0772ea3e819ad17a29761e6d46ebf927'>
+<noscript><link
+rel=stylesheet id=font-awesome-css href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css?ver=0772ea3e819ad17a29761e6d46ebf927'>
+</noscript><link
+rel=stylesheet id=style-css-css href='https://www.harbingergroup.com/wp-content/themes/harbinger/css/style.css?x59326' media=all><link
+rel=preload as=style onload='this.rel="stylesheet"' id=style-smartslider-min-css-css href='https://www.harbingergroup.com/wp-content/themes/harbinger/css/smartslider.min.css?x59326'>
+<noscript><link
+rel=stylesheet href=https://www.harbingergroup.com/wp-content/cache/minify/add0e.css?x59326 media=all></noscript><link
+rel=preload as=style onload='this.rel="stylesheet"' id=slick-carousel-css-css href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css?ver=0772ea3e819ad17a29761e6d46ebf927'>
+<noscript><link
+rel=stylesheet id=slick-carousel-css-css href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css?ver=0772ea3e819ad17a29761e6d46ebf927'>
+</noscript><link
+rel=preload as=style onload='this.rel="stylesheet"' id=home-style-css-css href='https://www.harbingergroup.com/wp-content/themes/harbinger/css/home-style-2.css?x59326'>
+<noscript><link
+rel=stylesheet href=https://www.harbingergroup.com/wp-content/cache/minify/e0d81.css?x59326 media=all></noscript><script src=https://www.harbingergroup.com/wp-content/cache/minify/d52ed.js?x59326></script>  <script type=application/ld+json>{<title>Advisory-Led Product Engineering&Learning Solutions</title><meta name="description"
+content="Turn business challenges into results with Harbinger’s advisory-led product engineering, AI innovation, and custom learning solutions."><link rel=canonical
+href=https://www.harbingergroup.com/ ><meta name="robots"
+content="index, follow"><meta property="og:type"
+content="website"><meta property="og:title"
+content="Advisory-Led Product Engineering & Learning Solutions"><meta property="og:description"
+content="Turn business challenges into results with Harbinger’s advisory-led product engineering, AI innovation, and custom learning solutions."><meta property="og:url"
+content="https://www.harbingergroup.com/"><meta property="og:site_name"
+content="Harbinger Group"><meta property="og:image"
+content="https://www.harbingergroup.com/wp-content/uploads/2022/12/harbinger-logo.png?"><meta name="twitter:card"
+content="summary_large_image"><meta name="twitter:title"
+content="Advisory-Led Product Engineering & Learning Solutions"><meta name="twitter:description"
+content="Turn business challenges into results with Harbinger’s advisory-led product engineering, AI innovation, and custom learning solutions."><meta name="twitter:image"
+content="https://www.harbingergroup.com/wp-content/uploads/2022/12/harbinger-logo.png?">}</script><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.harbingergroup.com/#organization","name":"Harbinger Group","url":"https://www.harbingergroup.com/","description":"Turn business challenges into results with Harbinger’s advisory-led product engineering, AI innovation, and custom learning solutions.","logo":{"@type":"ImageObject","@id":"https://www.harbingergroup.com/#logo","url":"https://www.harbingergroup.com/wp-content/uploads/2022/12/harbinger-logo.png?","contentUrl":"https://www.harbingergroup.com/wp-content/uploads/2022/12/harbinger-logo.png?","caption":"Harbinger Group"},"foundingDate":"1990","location":[{"@type":"Place","name":"Harbinger Group U.S. Corporate Headquarters","address":{"@type":"PostalAddress","streetAddress":"16770 NE 79th Street, Suite 106","addressLocality":"Redmond","addressRegion":"WA","postalCode":"98052","addressCountry":"US"},"telephone":"+1 425 861 8400"},{"@type":"Place","name":"Harbinger Group Corporate Headquarters","address":{"@type":"PostalAddress","streetAddress":"139, Siddhant, Survey No. 97/6, Off Paud Road, Kothrud","addressLocality":"Pune","addressRegion":"Maharashtra","postalCode":"411038","addressCountry":"IN"},"telephone":"+91 20 6626 0100"},{"@type":"Place","name":"Harbinger Group Center of Excellence II","address":{"@type":"PostalAddress","streetAddress":"202, Global Port, Mumbai-Bangalore Highway, Baner Road","addressLocality":"Pune","addressRegion":"Maharashtra","postalCode":"411045","addressCountry":"IN"},"telephone":"+91 20 6673 2500"},{"@type":"Place","name":"Harbinger Group Center of Excellence III","address":{"@type":"PostalAddress","streetAddress":"6th Floor, IT-8, The Qubix Business Park SEZ, Rajiv Gandhi Infotech Park, Phase 1, Hinjewadi","addressLocality":"Pune","addressRegion":"Maharashtra","postalCode":"411057","addressCountry":"IN"},"telephone":"+91 20 6696 7800"},{"@type":"Place","name":"Harbinger Group Dublin","address":{"@type":"PostalAddress","streetAddress":"11501 Dublin Blvd., Suite 200","addressLocality":"Dublin","addressRegion":"CA","postalCode":"94568","addressCountry":"US"},"telephone":"+1 425 861 8400"}],"contactPoint":{"@type":"ContactPoint","telephone":"+1 425 861 8400","email":"info@harbingergroup.com","contactType":"customer service","areaServed":"US","availableLanguage":"English"},"areaServed":{"@type":"Country","name":"United States"},"sameAs":["https://www.linkedin.com/company/harbinger-group/","https://twitter.com/Harbinger_Grp","https://www.facebook.com/harbingersys","https://www.instagram.com/harbinger_grp/","https://www.youtube.com/@harbinger_group"]},{"@type":"WebSite","@id":"https://www.harbingergroup.com/#website","url":"https://www.harbingergroup.com/","name":"Harbinger Group","publisher":{"@id":"https://www.harbingergroup.com/#organization"},"inLanguage":"en-US"},{"@type":"WebPage","@id":"https://www.harbingergroup.com/#webpage","url":"https://www.harbingergroup.com/","name":"Advisory-Led Product Engineering & Learning Solutions","description":"Turn business challenges into results with Harbinger’s advisory-led product engineering, AI innovation, and custom learning solutions.","isPartOf":{"@id":"https://www.harbingergroup.com/#website"},"about":{"@id":"https://www.harbingergroup.com/#organization"},"inLanguage":"en-US"}]}</script><link
+rel=icon href=https://www.harbingergroup.com/wp-content/uploads/2022/12/favicon.webp?x59326 sizes=32x32><link
+rel=icon href=https://www.harbingergroup.com/wp-content/uploads/2022/12/favicon.webp?x59326 sizes=192x192><link
+rel=apple-touch-icon href=https://www.harbingergroup.com/wp-content/uploads/2022/12/favicon.webp?x59326><meta
+name="msapplication-TileImage" content="https://www.harbingergroup.com/wp-content/uploads/2022/12/favicon.webp"><style id=wp-custom-css>.page-id-1968 .banner_section_img
+img{width:70%}.page-id-16388
+.desktop_banner{object-position:top;height:465px}.page-id-16388 .banner-text
+h1{font-size:41px}.page-id-16388 #post-16388
+form{background:#F6F4F1;border-radius:10px;box-shadow:5px 5px 20px;width:60%;margin:1rem auto;padding:3rem 4rem}.page-id-16388 .wpcf7-form-control.wpcf7-submit.has-spinner{background:transparent linear-gradient(90deg, #e63946 0, #e63946 100%) 0 0 no-repeat padding-box !important;color:white;font-weight:bold;width:auto;padding:0.5rem 8rem}.page-id-16388 input, .page-id-16388
+select{width:100%;padding:0
+10px;min-height:40px;margin:0;font-family:inherit;font-size:inherit;line-height:inherit;box-shadow:inset 1px 2px 6px #00000030 !important;border:1px
+solid #b9c0cb !important;border-radius:6px !important;margin-top:0.5rem}.page-id-16388 #post-16388 form  .text-red{color:#f00}.page-id-16388 #post-16388 form
+label{color:black;font-size:17px;margin-bottom:2px;font-weight:700;width:100%}.page-id-16388 #post-16388 form
+h2{color:#464953;font-weight:600;font-size:25px;text-align:center}.page-id-16388 #post-16388 form  p.form-para{text-align:center;font-size:16px;color:#4F5158}body.page-template-default.page-id-16388
+article{margin-top:-5rem;z-index:2;position:relative}.page-id-16388 #post-16388
+.header{display:none}.upcoming_thank_you.custom_banner_sec .banner-text h1, .upcoming_thank_you.custom_banner_sec .banner-text h1 .elearning-t2, .upcoming_thank_you.custom_banner_sec .banner-text h1 .elearning-t1{color:white !important}.postid-16270 .blog-table-data
+td{padding:1rem .5rem !important;font-size:14px}.page-template-template-privacy-policy
+li{font-size:19px;color:#404F68;font-weight:400}.single-case-studies .single_multiple_template .body_sec h3:after{content:"";width:5rem;height:2px;background:red;display:block;margin-top:0.5rem}.single-case-studies .single_multiple_template .body_sec
+h3{color:#1d3557;font-size:22px;padding:1rem 0;font-weight:bolder}.post-type-archive-case-studies #all_resources .uncategory.case-studies{display:none}.postid-16121 .temp_form.template3.form_section
+h2{padding-bottom:1rem}.postid-16121 .temp_form.template3.form_section
+h3{color:white;font-size:25px;text-align:center}.postid-16121 .temp_form.template3.form_section
+p{color:white}.postid-16121
+.video_content.body_sec{display:grid}.postid-16121 .video_content.body_sec .video-order1{order:2}.postid-16121 .video_content.body_sec
+.youtube_video{order:1;padding-bottom:1rem}.postid-16121 .bottom-border-line{display:none}.full-wide-slider.slick-initialized.slick-slider.slick-dotted .slick-track .item.image.slick-slide:nth-child(2) .slide-image.slide-media
+img{padding-top:0rem}.post-type-archive-case-studies #all_resources .hrtech-stack.advanced-testing.uncategorized.artificial-intelligence.hrtech.case-studies{display:none}.postid-15678.single-news
+.news_details{display:none}.clearButton{margin-top:2.9rem}.post-type-archive-webinars .adobe-title, .post-type-archive-webinars .adobe-title3{display:contents}.upcoming_thank_you.custom_banner_sec .banner-text
+h1{text-align:left}.upcoming_thank_you.custom_banner_sec .banner-text
+h1{font-family:'Questrial',sans-serif;color:#1A3455;font-size:34px;line-height:1.2em;font-weight:200}.adobe-title{color:#FD4B58;font-weight:600;font-size:45px;display:block;text-shadow:none}.adobe-title3{display:block}.banner_section .banner_heading
+h1{font-family:'Questrial',sans-serif;color:#1A3455;font-size:41px;line-height:1.2em;font-weight:200}.single_blogs .blog_content ul
+li{font-size:16px;padding-bottom: .5rem}.single-webinars.postid-5162
+.single_content.body_sec.past_webinar_content{position:relative}.single-webinars.postid-5162 .single_content.body_sec.past_webinar_content .webinar-info{position:absolute;bottom:-41px}.blog-left-line{border-left:2px solid #495A79;padding-left:1rem}.single-news
+h2{text-transform:inherit}@media screen and (min-width: 320px) and (max-width: 767px){.page-id-16388 .banner-text
+h1{width:100% !important;font-size:24px}.page-id-16388 #post-16388
+form{width:100%;padding:3rem 1rem}.page-id-16388 .wpcf7-form-control.wpcf7-submit.has-spinner{padding:0.5rem 3rem;margin:1rem}.industries_sub_pages .transformation
+img{width:41px !important}.industries_sub_pages .offering .vector
+img{width:67px}}.row.filter_resources.justify-content-center{align-items:baseline}.industries_sub_pages .our_partner .our_partner_wrapper .our_partner_details
+p{height:auto !important}.upcoming_thank_you.custom_banner_sec .banner-text h1 .elearning-t1{text-transform:uppercase;font-weight:bold !important;color:#002860;font-size:2.2rem}.page-id-1968 .banner_section_img
+img{width:70%}.upcoming_thank_you.custom_banner_sec .banner-text h1 .elearning-t2{display:block;font-weight:400;font-size:2.2rem;color:#002860}.single-blogs
+code{background:#f4f4f4;color:#c7254e;font-size:0.95em;padding:2px
+6px;border-radius:4px}ol li::marker{font-weight:bold}.page-id-14433
+ul{font-size:19px;color:#404F68;font-weight:400}.page-id-14433 .privacy_policy.spacing .col-10.col-md-6{width:80%}.page-id-14433 .privacy_policy.spacing .col-2.col-md-6.text-end{width:20%}.page-id-14433
+table{width:80%;margin:1rem auto}.page-id-14433 table
+td{font-size:19px;color:#404F68;font-weight:400;padding:1rem}.section-csr3.csr.spacing.last-section-csr.span-line-csr{background:#ECF0F4}</style> <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5BKDC9W');</script>  <script>window.addEventListener('load',function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=AW-788328136';document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','AW-788328136');});</script>  <script>window.addEventListener('load',function(){window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];window._linkedin_data_partner_ids.push("5611633");var s=document.createElement('script');s.async=true;s.src='https://snap.licdn.com/li.lms-analytics/insight.min.js';document.head.appendChild(s);});</script> 
+ <script>function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");o.onload=function(){window.trackingFunctions.onLoad({appId:"667411bf3aafd6120995c9d7"})},document.head.appendChild(o)}initApollo();</script> </head><body
+class="home wp-singular page-template page-template-template-home-2 page-template-template-home-2-php page page-id-16886 wp-embed-responsive wp-theme-harbinger wp-child-theme-harbinger-child inner_pages" data-pid=16886 data-url=https://www.harbingergroup.com/ >
+<a
+href=#content class="skip-link screen-reader-text">Skip to the content</a>
+<noscript><iframe
+src="https://www.googletagmanager.com/ns.html?id=GTM-5BKDC9W" height=0 width=0 style=display:none;visibility:hidden></iframe></noscript><div
+id=loader></div><div
+id=wrapper class=hfeed><header
+id=header role=banner><nav
+class="navbar navbar-light navbar-expand-md justify-content-center top_navigation"><div
+class=container>
+<a
+class="navbar-brand d-flex me-auto" href=https://www.harbingergroup.com/ rel=home class="navbar-brand d-flex me-auto">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2022/12/harbinger-logo.png?x59326 class="img-fluid logo" alt="Harbinger Group Logo" loading=eager fetchpriority=high>
+</a><div
+class="navbar-collapse justify-content-end" id=menubar-qu><div
+class=hide_navigation><div
+class=menu-main-menu-container><ul
+id=primary-menu class="nav navbar-nav ms-auto w-100 justify-content-end"><li
+id=menu-item-17011 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-17011"><a
+href=https://www.harbingergroup.com/our-focus/ itemprop=url>Our Focus</a><ul
+class=sub-menu>
+<li
+id=menu-item-17012 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17012"><a
+href=https://www.harbingergroup.com/performance-enablement/ itemprop=url>Performance Enablement</a></li>
+<li
+id=menu-item-17013 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-17013"><a
+href=# itemprop=url>Advisory</a><ul
+class=sub-menu>
+<li
+id=menu-item-17014 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17014"><a
+href=https://www.harbingergroup.com/advisory-services/workforce-technology-advisory/ itemprop=url>Workforce Technology Advisory</a></li>
+<li
+id=menu-item-17015 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17015"><a
+href=https://www.harbingergroup.com/advisory-services/digital-learning-advisory/ itemprop=url>Digital Learning Advisory</a></li></ul>
+</li>
+<li
+id=menu-item-17016 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-17016"><a
+href=# itemprop=url>Digital Engineering</a><ul
+class=sub-menu>
+<li
+id=menu-item-17017 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17017"><a
+href=https://www.harbingergroup.com/services/digital-product-development/ itemprop=url>Digital Product Development</a></li>
+<li
+id=menu-item-17018 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17018"><a
+href=https://www.harbingergroup.com/services/elearning-content-development/ itemprop=url>eLearning Content Development</a></li></ul>
+</li>
+<li
+id=menu-item-13334 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13334"><a
+href=https://www.harbingergroup.com/agentic-ai-studio/ itemprop=url>Agentic AI Studio</a></li></ul>
+</li>
+<li
+id=menu-item-134 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-134"><a
+href=https://www.harbingergroup.com/industries/ itemprop=url>Industries</a><ul
+class=sub-menu>
+<li
+id=menu-item-17019 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17019"><a
+href=https://www.harbingergroup.com/industries/enterprises/ itemprop=url>Enterprises</a></li>
+<li
+id=menu-item-17021 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17021"><a
+href=https://www.harbingergroup.com/industries/saas/ itemprop=url>SaaS</a></li>
+<li
+id=menu-item-13657 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13657"><a
+href=https://www.harbingergroup.com/industries/digital-publishing/ itemprop=url>Digital Publishing</a></li></ul>
+</li>
+<li
+id=menu-item-358 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-358"><a
+href=# itemprop=url>About Us</a><ul
+class=sub-menu>
+<li
+id=menu-item-120 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-120"><a
+href=https://www.harbingergroup.com/about-harbinger/ itemprop=url>About Harbinger</a></li>
+<li
+id=menu-item-298 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-298"><a
+href=https://www.harbingergroup.com/leadership/ itemprop=url>Leadership</a></li>
+<li
+id=menu-item-13973 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13973"><a
+href=https://www.harbingergroup.com/industry-pros/ itemprop=url>Industry Pros</a></li>
+<li
+id=menu-item-124 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-124"><a
+href=https://www.harbingergroup.com/vision-purpose-values/ itemprop=url>Vision and Values</a></li>
+<li
+id=menu-item-13683 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13683"><a
+href=https://www.harbingergroup.com/strategic-partnerships/ itemprop=url>Our Partners</a></li>
+<li
+id=menu-item-1926 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1926"><a
+href=# itemprop=url>Careers</a><ul
+class=sub-menu>
+<li
+id=menu-item-128 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-128"><a
+href=https://www.harbingergroup.com/life-at-harbinger/ itemprop=url>Life at Harbinger</a></li>
+<li
+id=menu-item-130 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-130"><a
+href=https://www.harbingergroup.com/why-harbinger/ itemprop=url>Why Harbinger</a></li>
+<li
+id=menu-item-2221 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2221"><a
+href=https://www.harbingergroup.com/current-openings/ itemprop=url>Current Openings</a></li>
+<li
+id=menu-item-1927 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1927"><a
+target=_blank href=https://harbingergroup.com/Harbinger-Reflections/Harbinger-Reflections-September2026/Harbinger-Reflections-Newsletter-July-September-2026.html itemprop=url>Newsletter</a></li></ul>
+</li>
+<li
+id=menu-item-13065 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13065"><a
+href=https://www.harbingergroup.com/csr-initiatives/ itemprop=url>CSR Initiatives</a></li>
+<li
+id=menu-item-121 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-121"><a
+href=https://www.harbingergroup.com/awards/ itemprop=url>Awards</a></li>
+<li
+id=menu-item-15741 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-15741"><a
+href=https://www.harbingergroup.com/our-heritage/swati-ketkar/ itemprop=url>Our Heritage</a></li></ul>
+</li>
+<li
+id=menu-item-3532 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3532"><a
+href=https://www.harbingergroup.com/resources/ itemprop=url>Resources</a><ul
+class=sub-menu>
+<li
+id=menu-item-3531 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3531"><a
+href=https://www.harbingergroup.com/blogs/ itemprop=url>Blogs</a></li>
+<li
+id=menu-item-4001 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4001"><a
+href=https://www.harbingergroup.com/case-studies/ itemprop=url>Case Studies</a></li>
+<li
+id=menu-item-14303 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14303"><a
+href=https://www.harbingergroup.com/transformation-stories/ itemprop=url>Transformation Stories</a></li>
+<li
+id=menu-item-12660 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12660"><a
+href=https://www.harbingergroup.com/explore-our-exclusive-events-webinars/ itemprop=url>Events/Webinars</a></li>
+<li
+id=menu-item-4386 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4386"><a
+href=https://www.harbingergroup.com/e-books/ itemprop=url>E-books</a></li>
+<li
+id=menu-item-4390 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4390"><a
+href=https://www.harbingergroup.com/whitepapers/ itemprop=url>Whitepapers</a></li>
+<li
+id=menu-item-5125 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5125"><a
+href=https://www.harbingergroup.com/news/ itemprop=url>News</a></li>
+<li
+id=menu-item-5213 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5213"><a
+href=https://www.harbingergroup.com/videos/ itemprop=url>Videos</a></li>
+<li
+id=menu-item-5217 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5217"><a
+href=https://www.harbingergroup.com/infographics/ itemprop=url>Infographics</a></li>
+<li
+id=menu-item-5220 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5220"><a
+href=https://www.harbingergroup.com/featured-works/ itemprop=url>Featured Work</a></li></ul>
+</li>
+<li
+id=menu-item-131 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-131"><a
+href=https://www.harbingergroup.com/contact-us/ itemprop=url>Contact Us</a><ul
+class=sub-menu>
+<li
+id=menu-item-1901 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1901"><a
+href=https://www.harbingergroup.com/contact-us/#location itemprop=url>Locations</a></li></ul>
+</li></ul></div><div
+class=search>
+<a
+href=# class=search_icon aria-label=Search>
+<i
+class="fa fa-search" aria-hidden=true></i>
+</a><div
+style=display:none; class=spicewpsearchform><form
+role=search method=get class=search-form action=https://www.harbingergroup.com/ >
+<label>
+<span
+class=screen-reader-text>Search for:</span>
+<input
+type=search class=search-field placeholder="Search &hellip;" value name=s>
+</label>
+<input
+type=submit class=search-submit value=Search></form></div></div></div></div><div
+class=hamburger-lines>
+<span
+class="line line1"></span>
+<span
+class="line line2"></span>
+<span
+class="line line3"></span></div></div></nav></header><div
+id=container><main
+id=content role=main><div
+class=home-page><section
+class=full-wide-slider><div
+class="item image" aria-hidden=true><figure><div
+class="slide-image slide-media mobile_view show">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/06/1_HG-HomePage_1st-Mobile-Banner-1.webp?x59326 class=image-entity
+alt=Slider-images fetchpriority=high loading=eager decoding=async></div><div
+class="slide-image slide-media desktop_view show">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/04/1_HG-HomePage_1st-Banner-1.jpeg?x59326 class=image-entity
+alt=Slider-images fetchpriority=high loading=eager decoding=async></div><div
+class=caption><div
+class=container><div
+class=icon-reveal></div><div
+class=move-up><h1 class="mu-text">Transforming <br>
+The Way People <br>
+Work and Learn</h1>
+<span
+class=blue_border></span>
+<span
+class=slider-button><a
+class="button seconed-home-slide" target=_blank style="margin-top: 2rem;" href=https://www.harbingergroup.com/our-focus/ >Explore</a></span></div></div></div></figure></div><div
+class="item image" aria-hidden=true><figure><div
+class="slide-image slide-media mobile_view show">
+<img
+data-src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Agentic-AI-Studio_Home-Page-Mobile-Banner.jpg?x59326 class="image-entity lazy"
+alt=Slider-images></div><div
+class="slide-image slide-media desktop_view show">
+<img
+data-src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Agentic-AI-Studio_Home-Page-Banner.jpg?x59326 class="image-entity lazy"
+alt=Slider-images></div><div
+class=caption><div
+class=container><div
+class=icon-reveal>
+<span
+class=ir-elem><span
+class=agentic-ai-studio-heading>Agentic AI Studio</span></span></div><div
+class=move-up><h2 class="mu-text"><h2 class="home-banner-2" style=" margin-bottom: 0; width:55%;" class="agentic-title"><p
+class=banner-2-sub style="font-size: 38px; color: #1D3557; font-weight: 500; padding-top:11px;width:fit-content;">Reimagining Performance Enablement<br></p><p
+class=p3  style="margin-bottom:-34px;font-size: 43px; color : #1D3557; font-weight: 900;"><span
+style="font-size: 38px; color: #1D3557; font-weight: 500; padding-top:30px;width:fit-content;" class=with-class>with</span><span
+class=agentic-ai-para> Agentic AI</span> </p></h2></h2>
+<span
+class=blue_border></span>
+<span
+class=slider-button><a
+class="button seconed-home-slide"  target=_blank style="margin-top: 4rem;" href=https://www.harbingergroup.com/agentic-ai-studio/ >Consult with Our AI Expert</a></span></div></div></div></figure></div><div
+class="item image" aria-hidden=true><figure><div
+class="slide-image slide-media mobile_view show">
+<img
+data-src=https://www.harbingergroup.com/wp-content/uploads/2026/04/2_HG-HomePage_3rd-Mobile-Banner-1.jpeg?x59326 class="image-entity lazy"
+alt=Slider-images></div><div
+class="slide-image slide-media desktop_view show">
+<img
+data-src=https://www.harbingergroup.com/wp-content/uploads/2026/04/2_HG-HomePage_3rd-Banner-1.jpeg?x59326 class="image-entity lazy"
+alt=Slider-images></div><div
+class=caption><div
+class=container><div
+class=icon-reveal>
+<span
+class=ir-elem><p
+class="banner-2 heading-first-heading" style="font-size: 60px; font-weight: 800; line-height: 1.2; color: #1D3557; padding-top: 1rem;margin-bottom:0.5rem;">Harbinger <span
+class=banner-red-text style="color:#E63946;font-size: 60px; font-weight: 800; line-height: 1.2; margin-right: -11px;padding-left:8px;">i</span> Content</p><span
+class=blue_border style="color:#E63946 !important; background-color: #E63946 !important; width: 11%; height: 5px; display: block; border-radius: 10px;font-size: 30px; font-weight: 500;"></span></span></div><div
+class=move-up><h2 class="mu-text"><p
+class=banner-2-sub style="font-size: 38px; color: #1D3557; font-weight: 700; padding-top:30px;">Intelligent Content Processing</p><p
+class=p2 style="font-size: 38px; color: #1D3557; font-weight: 500;">Powered by</p><p
+class=p3  style="     margin-bottom: -3.5rem;font-size: 43px; color: #E63946; font-weight: 800;">Generative AI Technologies</p><br></h2>
+<span
+class=blue_border></span>
+<span
+class=slider-button><a
+class=button style="    margin-top: 2rem;" target=_blank href=https://www.harbingergroup.com/advanced-generative-ai-solutions-to-ensure-business-success/ data-faitracker-click-bind=true>Explore Generative AI Solutions</a></span></div></div></div></figure></div></section><section
+class=innovation-section><div
+class=innovation-section-wrapper><div
+class=container-fluid><div
+class="row flex-coloum-reverse"><div
+class=innovation-left-block><div
+class=innovation-img>
+<img
+data-src=https://www.harbingergroup.com/wp-content/uploads/2026/04/3_Domain-Intelligent_Section-Image-1.jpg?x59326
+class="img-fluid d-none d-md-block w-100 lazy" alt=Innovation><div
+class="innovation-lines-patch fade-in-left me" d-delay=0.3 d-duration=1>
+<img
+data-src=https://www.harbingergroup.com/wp-content/themes/harbinger/images/homepage/innovation-line-patch.png?x59326
+class="img-fluid d-none d-md-block fil-elem w-100 lazy" alt=innovation-line-patch></div></div></div><div
+class="innovation-dotted-patch me" d-delay=5 d-duration=1>
+<img
+data-src=https://www.harbingergroup.com/wp-content/themes/harbinger/images/homepage/dotted-patch.svg?x59326
+class="img-fluid icon-reveal lazy" alt=dotted-patch></div><div
+class="innovation-right-block col-12 col-md-4 mx-auto align-self-center"><div
+class=home-section-content><div
+class="section-title reveal-left"><h3 class="rl-text">Domain-Intelligent, <br>
+Context-Aware Services</h3></div><div
+class="home-section-text move-up" d-delay=0.3 d-duration=1><p
+class=mu-text>Organizations no longer need just execution capacity; they need partners who understand the nuances of their business, workforce dynamics, and learning ecosystems. Harbinger's services are built on this foundation, combining talent transformation, workforce enablement, and digital learning with rich domain insight and real-world context. <br>
+<br>
+We design solutions that are not only technically sound but also aligned to how people work, learn, and perform within specific organizational environments. By embedding AI into this context, we move beyond generic automation to deliver intelligent, adaptive, and outcome-driven experiences. This ensures that every intervention, whether in skills development, performance enablement, or learning delivery, translates into measurable business impact.<br>
+<br>
+<a
+style=margin-top:0rem; class=button href=https://www.harbingergroup.com/case-studies/ target=_blank>Explore Case Studies</a></p></div><div
+class="innovation-patch me icon-reveal" d-delay=0.6 d-duration=1>
+<img
+data-src=https://www.harbingergroup.com/wp-content/themes/harbinger/images/homepage/red-black-patch.png?x59326
+class="img-fluid ir-elem lazy" alt=red-black-patch width=101 height=73></div></div></div></div></div></div></section><section
+class=productDNA-section><div
+class=productDNA-section-wrapper><div
+class=container-fluid><div
+class=row><div
+class="col-12 col-md-6 col-lg-4 mx-auto align-self-center"><div
+class=home-section-content><div
+class="section-title reveal-right"><h3 class="rr-text">Consulting Meets<br>
+Engineering</h3></div><div
+class="home-section-text move-up" d-delay=0.3 d-duration=1><p
+class=mu-text>Harbinger drives business-led transformation by anchoring strategic advisory in deep workforce and learning domain expertise. Our engineering excellence delivers enterprise-grade platforms powered by AI and automation to ensure operational scale. <br>
+<br>
+With decades of experience across learning technology, publishing, and workforce enablement, we bridge the gap between consultative insight and technical execution. Every solution is architected for measurable impact, ensuring the platforms deliver the high-performance outcomes and tangible ROI required to redefine how your organization works and learns. <br>
+<br>
+<a
+class=button href=https://www.harbingergroup.com/services/digital-product-development/ data-faitracker-click-bind=true target=_blank>Explore Product Development Offerings</a></p></div></div></div><div
+class="col-12 col-md-6 col-lg-7 p-0"><div
+class=productDNA-img><div
+class="productDNA-patch icon-reveal" d-delay=0.6 d-duration=1>
+<img
+data-src=https://www.harbingergroup.com/wp-content/themes/harbinger/images/homepage/square-patch.png?x59326
+class="img-fluid ir-elem lazy" alt=square-patch></div>
+<img
+data-src=https://www.harbingergroup.com/wp-content/uploads/2026/04/4_Consulting-Meets_Section-Image-1-1.jpg?x59326
+class="img-main img-fluid d-none d-md-block lazy" alt="Product DNA Meets Learning DNA"></div></div></div></div></div></section><section
+class="home-offerings-section home-offerings-section2-1"><div
+class=offerings-container><div
+class=offerings-intro><h3>Our Focus</h3>
+<span
+class=offerings-line></span><p><p
+style=margin-bottom:1rem><b>Advisory, Engineering, Learning, and AI Solutions Built Around Workforce Performance</b></p><p>We help organizations identify what is holding performance back and engineer the right combination of technology, learning, and AI to create measurable business impact.</p></p></div><div
+class=offerings-grid><div
+class=offering-card-outer1><h4 class="offering-h4">Advisory Services</h4><div
+class=inner-offering-card-div><div
+class="offering-card offering-card1">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Our-Focus-Section_Texture-IMG.jpg?x59326 class=offering-bg-video alt><div
+class=offering-video-overlay></div><div
+class=offering-icon><img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Group-3.webp?x59326
+alt="Performance Enablement"></div><div
+class=offering-content><a
+href=https://www.harbingergroup.com/performance-enablement/ ><h3>
+Performance Enablement</h3>
+</a></div></div><div
+class="offering-card offering-card2">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Our-Focus-Section_Texture-IMG.jpg?x59326 class=offering-bg-video alt><div
+class=offering-video-overlay></div><div
+class=offering-icon><img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Group-6.webp?x59326
+alt="Workforce Technology Advisory"></div><div
+class=offering-content><a
+href=https://www.harbingergroup.com/advisory-services/workforce-technology-advisory/ ><h3>
+Workforce Technology Advisory</h3>
+</a></div></div><div
+class="offering-card offering-card3">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Our-Focus-Section_Texture-IMG.jpg?x59326 class=offering-bg-video alt><div
+class=offering-video-overlay></div><div
+class=offering-icon><img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Group-8.webp?x59326
+alt="Digital Learning Advisory"></div><div
+class=offering-content><a
+href=https://www.harbingergroup.com/advisory-services/digital-learning-advisory/ ><h3>
+Digital Learning Advisory</h3>
+</a></div></div><div
+class="offering-card offering-card4">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Our-Focus-Section_Texture-IMG.jpg?x59326 class=offering-bg-video alt><div
+class=offering-video-overlay></div><div
+class=offering-icon><img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Group-12.webp?x59326
+alt="Digital Product Development"></div><div
+class=offering-content><a
+href=https://www.harbingergroup.com/services/digital-product-development/ ><h3>
+Digital Product Development</h3>
+</a></div></div><div
+class="offering-card offering-card5">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Our-Focus-Section_Texture-IMG.jpg?x59326 class=offering-bg-video alt><div
+class=offering-video-overlay></div><div
+class=offering-icon><img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Group-15.webp?x59326
+alt="eLearning Content Development"></div><div
+class=offering-content><a
+href=https://www.harbingergroup.com/services/elearning-content-development/ ><h3>
+eLearning Content Development</h3>
+</a></div></div><div
+class="offering-card offering-card6">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Our-Focus-Section_Texture-IMG.jpg?x59326 class=offering-bg-video alt><div
+class=offering-video-overlay></div><div
+class=offering-icon><img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Group-17.webp?x59326
+alt="AI Studio Products &amp; Solutions"></div><div
+class=offering-content><a
+href=https://www.harbingergroup.com/agentic-ai-studio/ ><h3>
+AI Studio Products &amp; Solutions</h3>
+</a></div></div></div></div><div
+class=offering-card-outer2><h4 class="offering-h4">Digital Engineering Services</h4><div
+class=inner-offering-card-div><div
+class="offering-card offering-card1">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Our-Focus-Section_Texture-IMG.jpg?x59326 class=offering-bg-video alt><div
+class=offering-video-overlay></div><div
+class=offering-icon><img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Group-3.webp?x59326
+alt="Performance Enablement"></div><div
+class=offering-content><a
+href=https://www.harbingergroup.com/performance-enablement/ ><h3>
+Performance Enablement</h3>
+</a></div></div><div
+class="offering-card offering-card2">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Our-Focus-Section_Texture-IMG.jpg?x59326 class=offering-bg-video alt><div
+class=offering-video-overlay></div><div
+class=offering-icon><img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Group-6.webp?x59326
+alt="Workforce Technology Advisory"></div><div
+class=offering-content><a
+href=https://www.harbingergroup.com/advisory-services/workforce-technology-advisory/ ><h3>
+Workforce Technology Advisory</h3>
+</a></div></div><div
+class="offering-card offering-card3">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Our-Focus-Section_Texture-IMG.jpg?x59326 class=offering-bg-video alt><div
+class=offering-video-overlay></div><div
+class=offering-icon><img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Group-8.webp?x59326
+alt="Digital Learning Advisory"></div><div
+class=offering-content><a
+href=https://www.harbingergroup.com/advisory-services/digital-learning-advisory/ ><h3>
+Digital Learning Advisory</h3>
+</a></div></div><div
+class="offering-card offering-card4">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Our-Focus-Section_Texture-IMG.jpg?x59326 class=offering-bg-video alt><div
+class=offering-video-overlay></div><div
+class=offering-icon><img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Group-12.webp?x59326
+alt="Digital Product Development"></div><div
+class=offering-content><a
+href=https://www.harbingergroup.com/services/digital-product-development/ ><h3>
+Digital Product Development</h3>
+</a></div></div><div
+class="offering-card offering-card5">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Our-Focus-Section_Texture-IMG.jpg?x59326 class=offering-bg-video alt><div
+class=offering-video-overlay></div><div
+class=offering-icon><img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Group-15.webp?x59326
+alt="eLearning Content Development"></div><div
+class=offering-content><a
+href=https://www.harbingergroup.com/services/elearning-content-development/ ><h3>
+eLearning Content Development</h3>
+</a></div></div><div
+class="offering-card offering-card6">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Our-Focus-Section_Texture-IMG.jpg?x59326 class=offering-bg-video alt><div
+class=offering-video-overlay></div><div
+class=offering-icon><img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Group-17.webp?x59326
+alt="AI Studio Products &amp; Solutions"></div><div
+class=offering-content><a
+href=https://www.harbingergroup.com/agentic-ai-studio/ ><h3>
+AI Studio Products &amp; Solutions</h3>
+</a></div></div></div></div></div></div></section><section
+class=industries-section><div
+class=industries-container><div
+class="col-12 text-center"><h3 class="blue aos-init aos-animate" data-aos="fade-up" data-aos-duration="500" data-aos-delay="100">
+Industries we serve</h3>
+<span
+class="red_border aos-init aos-animate" data-aos=fade-up data-aos-duration=500
+data-aos-delay=100 style="margin:1rem auto"></span><p>
+Deep Expertise Across Software, Enterprise, Learning, and Content Businesses</p></div></div></section><section
+class=services-section><div
+class="container services-container"><div
+class=row><div
+class=services-grid><article
+class=service-card><div
+class=service-image>
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/10/1_Enterprise-organizations.jpg?x59326
+alt="Enterprise organizations"></div><div
+class="service-bottom service-arrow"><h3 class="">
+Enterprise organizations</h3><button
+type=button class="service-arrow service-btn"
+aria-label="Show Enterprise organizations details">
+↑
+</button></div><div
+class=service-content><button
+type=button class=service-close aria-label=Close>
+↓
+</button><h3>
+Enterprise organizations</h3><div
+class=service-description><p> Workforce performance, learning transformation, platform integration, and AI enablement for enterprise organizations and global business functions.</p></div>
+<a
+href=https://www.harbingergroup.com/industries/enterprises/
+target=_blank class=service-read-more>
+Explore More <span>→</span>
+</a></div></article><article
+class=service-card><div
+class=service-image>
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/10/2_SaaS-companies.jpg?x59326
+alt="SaaS companies"></div><div
+class="service-bottom service-arrow"><h3 class="">
+SaaS companies</h3><button
+type=button class="service-arrow service-btn"
+aria-label="Show SaaS companies details">
+↑
+</button></div><div
+class=service-content><button
+type=button class=service-close aria-label=Close>
+↓
+</button><h3>
+SaaS companies</h3><div
+class=service-description><p> Product engineering, AI integration, customer education, and platform modernization for HRTech, learning tech, and enterprise SaaS companies.</p></div>
+<a
+href=https://www.harbingergroup.com/industries/saas/
+target=_blank class=service-read-more>
+Explore More <span>→</span>
+</a></div></article><article
+class=service-card><div
+class=service-image>
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/10/3_Digital-publishing.jpg?x59326
+alt="Digital publishing"></div><div
+class="service-bottom service-arrow"><h3 class="">
+Digital publishing</h3><button
+type=button class="service-arrow service-btn"
+aria-label="Show Digital publishing details">
+↑
+</button></div><div
+class=service-content><button
+type=button class=service-close aria-label=Close>
+↓
+</button><h3>
+Digital publishing</h3><div
+class=service-description><p> Content modernization, AI-ready publishing infrastructure, learning content production, and intelligent publishing operations for publishers and associations.</p></div>
+<a
+href=https://www.harbingergroup.com/industries/digital-publishing/
+target=_blank class=service-read-more>
+Explore More <span>→</span>
+</a></div></article></div></div></div></section><section
+class="case-study-section case-study-section2-1"><div
+class=case-study-layout><div
+class=case-study-intro><img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/AdobeStock_1903814805-new.webp?x59326 class=case-study-background-video alt><div
+class=case-study-intro-overlay></div><div
+class=case-study-intro-content><h3>See Transformation in Action</h3><span
+class="red_border aos-init aos-animate" data-aos-duration=500 data-aos-delay=100 style="margin:1rem 0"  ></span><p> Explore how we’ve helped organizations improve workforce performance, modernize learning and digital products, and put AI into practice, turning complex challenges into measurable business outcomes.</p></div></div><div
+class=case-study-right><div
+class=case-study-slides><div
+class="case-study-group active"
+><article
+class=case-study-card
+style="--case-bg: #8f3541;"
+><div
+class=case-study-card-content><div
+class=case-study-category>
+KNOWLEDGE AT THE POINT OF NEED</div><h3>
+Resolved 92.5% of Frontline Employee Queries Instantly</h3><div
+class=case-study-description><p>
+An AI voice assistant answered a frontline workforce in natural language, resolving most employee queries instantly without expert escalation.</p></div>
+<a
+href=https://www.harbingergroup.com/case-studies/ai-powered-voice-enabled-chatbot-for-employee-performance-support-transformation/
+target=_blank
+class=case-study-link
+>Read the case study
+<span>→</span></a></div></article><article
+class=case-study-card
+style="--case-bg: #163b68;"
+><div
+class=case-study-card-content><div
+class=case-study-category>
+NEW-HIRE RAMP TIME</div><h3>
+Reduced Employee Support Escalations by 15%</h3><div
+class=case-study-description><p>
+AI-based onboarding automated skills-gap analysis and personalized learning plans for a multinational investment bank, collapsing resolution time and cutting expert escalations by 15%.</p></div>
+<a
+href=https://www.harbingergroup.com/case-studies/ai-powered-automated-onboarding-and-learning-for-employee-support-transformation/
+target=_blank
+class=case-study-link
+>Read the case study
+<span>→</span></a></div></article></div><div
+class="case-study-group "
+><article
+class=case-study-card
+style="--case-bg: #8f3541;"
+><div
+class=case-study-card-content><div
+class=case-study-category>
+AI-DRIVEN PROCESS AUTOMATION</div><h3>
+Cut Coaching-Plan Creation Effort by 30%</h3><div
+class=case-study-description><p>
+Agentic AI automated coaching-plan creation for a global skilling platform, freeing planners to focus on strategy, not admin.</p></div>
+<a
+href=https://www.harbingergroup.com/case-studies/agentic-ai-for-automated-custom-leadership-coaching-and-analysis/
+target=_blank
+class=case-study-link
+>Read the case study
+<span>→</span></a></div></article><article
+class=case-study-card
+style="--case-bg: #163b68;"
+><div
+class=case-study-card-content><div
+class=case-study-category>
+OPERATIONAL EFFICIENCY</div><h3>
+Accelerated Content Discovery by 50%</h3><div
+class=case-study-description><p>
+RAG-powered retrieval helped coaching teams find the right content in half the time, saving more than 20 hours every month.</p></div>
+<a
+href=https://www.harbingergroup.com/case-studies/agentic-ai-for-automated-custom-leadership-coaching-and-analysis/
+target=_blank
+class=case-study-link
+>Read the case study
+<span>→</span></a></div></article></div><div
+class="case-study-group "
+><article
+class=case-study-card
+style="--case-bg: #8f3541;"
+><div
+class=case-study-card-content><div
+class=case-study-category>
+SKILLS INTELLIGENCE &amp; DIAGNOSTICS</div><h3>
+Achieved 95%+ Accuracy in Skill-Gap Analysis</h3><div
+class=case-study-description><p>
+A transformer-based AI engine turned subjective performance data into quantifiable insight for a global leadership-skilling company, while cutting model-training time by over 90%.</p></div>
+<a
+href=https://www.harbingergroup.com/case-studies/ai-models-and-transformers-for-automated-skill-gap-analysis/
+target=_blank
+class=case-study-link
+>Read the case study
+<span>→</span></a></div></article><article
+class=case-study-card
+style="--case-bg: #163b68;"
+><div
+class=case-study-card-content><div
+class=case-study-category>
+EMPLOYEE ENGAGEMENT</div><h3>
+Increased Employee Engagement by 30%</h3><div
+class=case-study-description><p>
+A feature-rich chatbot automated communication and feedback inside a continuous performance management platform, lifting engagement by 30% on average across its customer base.</p></div>
+<a
+href=https://www.harbingergroup.com/case-studies/chatbot-that-significantly-improved-employee-engagement-for-a-continuous-performance-management-platform/
+target=_blank
+class=case-study-link
+>Read the case study
+<span>→</span></a></div></article></div><div
+class="case-study-group "
+><article
+class=case-study-card
+style="--case-bg: #8f3541;"
+><div
+class=case-study-card-content><div
+class=case-study-category>
+QUALITY ENGINEERING</div><h3>
+Reduced Test-Script Effort by ~49%</h3><div
+class=case-study-description><p>
+Agentic AI turned Jira user stories into context-aware test cases, executable scripts, and Jira defects for a global background-screening enterprise, with QA experts validating every output.</p></div>
+<a
+href=https://www.harbingergroup.com/case-studies/human-in-the-loop-testing-improving-qa-performance-with-agentic-ai-and-freeing-qa-teams-to-focus-on-higher-value-work/
+target=_blank
+class=case-study-link
+>Read the case study
+<span>→</span></a></div></article><article
+class=case-study-card
+style="--case-bg: #163b68;"
+><div
+class=case-study-card-content><div
+class=case-study-category>
+LEADERSHIP ASSESSMENT</div><h3>
+Cut AI Model-Training Time from 7–10 Hours to 30–40 Minutes</h3><div
+class=case-study-description><p>
+AI mapped behavioral assessment responses to a global leadership provider's competency framework, identifying capability gaps across leadership levels while closely matching trained assessor scores.</p></div>
+<a
+href=https://www.harbingergroup.com/case-studies/leadership-assessment-connecting-performance-insights-to-targeted-capability-development/
+target=_blank
+class=case-study-link
+>Read the case study
+<span>→</span></a></div></article></div></div><div
+class=case-study-controls><button
+type=button class=case-prev aria-label=Previous > < </button><div
+class=case-counter><span
+class=case-current>01</span><span>/</span><span
+class=case-total>
+04 </span></div><button
+type=button   class=case-next  aria-label=Next> > </button></div></div></div></section><section
+class=statistics-section><div
+class=statistics-section-wrapper><div
+class=stats-bg><div
+class=stats-grid-container><div
+class=container><div
+class=row><div
+class="col-12 text-center"><h3 class="aos-init aos-animate" data-aos="fade-up" data-aos-duration="500"
+data-aos-delay="100">Three Decades of Depth, Delivered at Scale</h3>
+<span
+class="red_border aos-init aos-animate" data-aos=fade-up data-aos-duration=500
+data-aos-delay=100 style="margin: 1rem auto;"></span></div><div
+class=col-12><div
+class=stats-grid-wrapper><div
+class=stats-box><h3 class="stat-number"><span
+class=counter data-target=35+>0</span><span
+class=counter-suffix style="display: inline;">+</span><p
+class=stat-text>Years of Engineering<br> Excellence</p></div><div
+class=stats-box><h3 class="stat-number"><span
+class=counter data-target="40 <span>%</span>+">0</span><span
+class=counter-suffix style="display: inline;">+</span><p
+class=stat-text>Women in Workforce<br> and Leadership</p></div><div
+class=stats-box><h3 class="stat-number"><span
+class=counter data-target=150+>0</span><span
+class=counter-suffix style="display: inline;">+</span><p
+class=stat-text> HR and Learning<br> Domain Experts</p></div><div
+class=stats-box><h3 class="stat-number"><span
+class=counter data-target=400+>0</span><span
+class=counter-suffix style="display: inline;">+</span><p
+class=stat-text>Customers</p></div><div
+class=stats-box><h3 class="stat-number"><span
+class=counter data-target=100+>0</span><span
+class=counter-suffix style="display: inline;">+</span><p
+class=stat-text> AI Agents</p></div><div
+class=stats-box><h3 class="stat-number"><span
+class=counter data-target=600+>0</span><span
+class=counter-suffix style="display: inline;">+</span><p
+class=stat-text>Employees</p></div></div></div></div></div></div></div><div
+class="dotted-patch icon-reveal" d-delay=0.6 d-duration=1>
+<img
+data-src=https://www.harbingergroup.com/wp-content/themes/harbinger/images/homepage/dotted-patch.svg?x59326
+class="img-fluid ir-elem lazy" alt=dotted-patch></div><div
+class="texture-patch reveal">
+<img
+data-src=https://www.harbingergroup.com/wp-content/themes/harbinger/images/homepage/texture-patch.png?x59326
+class="img-fluid reveal-image lazy" alt=texture-patch></div></div></section><section
+class=seasoned-section><div
+class=container-fluid><div
+class=row><div
+class="col-12 p-0"><div
+class=seasoned-wrapper><div
+class=seasoned-box><div
+class="seasoned-patch icon-reveal" d-delay=0.6 d-duration=1>
+<img
+data-src=https://www.harbingergroup.com/wp-content/themes/harbinger/images/homepage/red-blue-patch.svg?x59326
+class="img-fluid ir-elem lazy" alt=red-blue-patch></div><div
+class=home-section-content><div
+class="section-title reveal-right"><h3 class="rr-text">Seasoned Leadership<br>
+in A Growing Niche</h3></div><div
+class="home-section-content-text move-up" d-delay=0.3 d-duration=1><p
+class="text-white mu-text">As organizations rethink how talent learns, performs, and evolves, the need for trusted advisors with deep domain and digital expertise has never been greater. <br>
+<br>
+Harbinger combines over 3 decades of domain consulting, industry network, and AI-powered engineering to help organizations build talent transformation strategies. Through our thought leadership, panel of industry experts, and strong partner ecosystem in HR and Learning, we translate emerging trends into practical strategies and scalable platforms.</p></div></div><div
+class="seasoned-dotted icon-reveal" d-delay=0.9 d-duration=1>
+<img
+data-src=https://www.harbingergroup.com/wp-content/themes/harbinger/images/homepage/dotted-patch.svg?x59326
+class="img-fluid ir-elem lazy" alt=dotted-patch></div></div><video
+src=https://www.harbingergroup.com/wp-content/uploads/2026/04/6_LOW_Adobestock-551925814.mp4 playsinline=true
+webkit-playsinline=true preload=metadata muted=muted loop autoplay
+class="d-none d-md-block"></video></div></div></div></div></section><section
+class=shrm-section-8 style="background: #fff;  padding: 2rem;"><div
+class=row style=height:100%;><div
+class="col-12 col-md-12 col-lg-12" style><h3 style="text-align:center;">Strategic Partnerships</h3>
+<span
+class="red_border aos-init aos-animate" data-aos=fade-up data-aos-duration=500
+data-aos-delay=100 style="margin:1rem auto"></span></div></div></section><section
+class=shrm-section-9 style="padding: 2rem 0rem;"><div
+class=row style=height:100%;><div
+class=col-12 style="display: flex; justify-content: center;"><div
+class=partner-marquee><div
+class=partner-marquee-track><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/industries/hr/our-partner/
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Workato-1.webp?x59326
+alt=Workato></a></div><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/industries/elearning/our-partner/
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Adobe-s.webp?x59326
+alt="Adobe logo"></a></div><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/strategic-partnerships/%20
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/HiBob.png?x59326
+alt=HiBob></a></div><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/strategic-partnerships/%20
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/MadCap_Partner-page-logo.webp?x59326
+alt=MadCap_Partner-page-logo></a></div><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/strategic-partnerships/%20
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Intellum-logo.webp?x59326
+alt=Intellum-logo></a></div><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/strategic-partnerships/disseqt-ai/
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Disseqt-AI.webp?x59326
+alt=Disseqt-AI></a></div><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/strategic-partnerships/%20
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/dominKnow.png?x59326
+alt=dominKnow></a></div><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/strategic-partnerships/%20
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Talvi-AI.png?x59326
+alt="Talvi Ai"></a></div><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/strategic-partnerships/%20
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Skillsoft-logo.webp?x59326
+alt=skillsoft></a></div><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/strategic-partnerships/%20
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/ServiceNow-1.webp?x59326
+alt=ServiceNow></a></div><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/industries/hr/our-partner/
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Workato-1.webp?x59326
+alt=Workato></a></div><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/industries/elearning/our-partner/
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Adobe-s.webp?x59326
+alt="Adobe logo"></a></div><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/strategic-partnerships/%20
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/HiBob.png?x59326
+alt=HiBob></a></div><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/strategic-partnerships/%20
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/MadCap_Partner-page-logo.webp?x59326
+alt=MadCap_Partner-page-logo></a></div><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/strategic-partnerships/%20
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Intellum-logo.webp?x59326
+alt=Intellum-logo></a></div><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/strategic-partnerships/disseqt-ai/
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Disseqt-AI.webp?x59326
+alt=Disseqt-AI></a></div><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/strategic-partnerships/%20
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/dominKnow.png?x59326
+alt=dominKnow></a></div><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/strategic-partnerships/%20
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Talvi-AI.png?x59326
+alt="Talvi Ai"></a></div><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/strategic-partnerships/%20
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/Skillsoft-logo.webp?x59326
+alt=skillsoft></a></div><div
+class=partner-logo-item>
+<a
+href=https://www.harbingergroup.com/strategic-partnerships/%20
+target=_blank
+rel="noopener noreferrer">
+<img
+src=https://www.harbingergroup.com/wp-content/uploads/2026/09/ServiceNow-1.webp?x59326
+alt=ServiceNow></a></div></div></div></div></div><div
+class="col-12 text-center" style="padding-top: 2rem;">
+<a
+href=https://www.harbingergroup.com/strategic-partnerships/ target=_blank class=button>
+Explore Our Partnerships
+</a></div></section><section
+class=shine-rise-section><div
+class=shine-rise-section-wrapper><div
+class=container-fluid><div
+class=row><div
+class="col-12 col-md-5 col-lg-4 mx-auto align-self-center"><div
+class="home-section-content shine-rise-content"><div
+class="section-title reveal-right"><h3 class="rr-text">A Chance to Shine and Rise</h3></div><div
+class="home-section-text move-up" d-delay=0.3 d-duration=1><p
+class=mu-text>In Harbinger’s supportive environment, everyone feels included. A strong learning culture helps employees thrive together and stay on top of cutting-edge technology. Fearless learning is the norm here because everyone knows the company has their back. <br>
+<br>
+<a
+class=button href=https://www.harbingergroup.com/current-openings/ data-faitracker-click-bind=true target=_blank>View Current Openings</a></p></div></div></div><div
+class="col-12 col-md-7 col-lg-7 p-0"><div
+class=shine-rise-img><div
+class="shine-rise-top-patch icon-reveal">
+<img
+data-src=https://www.harbingergroup.com/wp-content/themes/harbinger/images/homepage/red-black-patch.png?x59326
+class="img-fluid ir-elem lazy" alt=red-black-patch></div><div
+class="shine-rise-bottom-patch icon-reveal" d-delay=1 d-duration=1>
+<img
+data-src=https://www.harbingergroup.com/wp-content/themes/harbinger/images/homepage/red-black-patch.png?x59326
+class="img-fluid ir-elem lazy" alt=red-black-patch></div><div
+class="shine-rise-img-wrapper reveal">
+<img
+data-src=https://www.harbingergroup.com/wp-content/uploads/2026/04/1_Chance-to-Shine-Section_915-X-846-px-1.webp?x59326
+class="img-fluid reveal-image d-none d-md-block lazy"
+alt="shine and rise desktop image"></div><div
+class="shine-rise-dotted icon-reveal" d-delay=1.3 d-duration=1>
+<img
+data-src=https://www.harbingergroup.com/wp-content/themes/harbinger/images/homepage/blue-patch.png?x59326
+class="img-fluid ir-elem lazy" alt=blue-patch></div></div></div></div><div
+class="shine-rise-curve d-none d-md-block reveal" d-delay=1 d-duration=1>
+<img
+data-src=https://www.harbingergroup.com/wp-content/uploads/2023/07/shine-rise-curve_2-e1690800416446.webp?x59326
+class="img-fluid w-100 reveal-image lazy" alt=shine-rise-curve></div></div></div></section><section
+class="interested_in_creating_bussiness spacing"><div
+class=container><div
+class=row><div
+class="col-12 col-md-6 col-lg-5"><h3>Let's Build What's Next</h3>
+<span
+class="red_border aos-init aos-animate" data-aos=fade-up data-aos-duration=500
+data-aos-delay=100></span><p
+class="aos-init aos-animate" data-aos=fade-up data-aos-duration=500 data-aos-delay=100>Tell
+us where performance, learning, or technology needs to move faster. We bring the advisory
+expertise, engineering, and AI capabilities to make it happen.</p></div><div
+class="col-12 col-md-6 offset-lg-1 col-lg-6 button_wrapper"><div
+class="book_a_consultation text-center"><div
+class="talk_to_experts button" value=Home>Talk to Our Experts</div></div></div></div></div></section><div
+class=popup-wrapper><div
+class=cutome_popup>
+<span
+class=close>x</span><div
+class="wpcf7 no-js" id=wpcf7-f1935-o1 lang=en-US dir=ltr data-wpcf7-id=1935><div
+class=screen-reader-response><p
+role=status aria-live=polite aria-atomic=true></p><ul></ul></div><form
+action=/#wpcf7-f1935-o1 method=post class="wpcf7-form init" aria-label="Contact form" novalidate=novalidate data-status=init><fieldset
+class=hidden-fields-container><input
+type=hidden name=_wpcf7 value=1935><input
+type=hidden name=_wpcf7_version value=6.2.3><input
+type=hidden name=_wpcf7_locale value=en_US><input
+type=hidden name=_wpcf7_unit_tag value=wpcf7-f1935-o1><input
+type=hidden name=_wpcf7_container_post value=0><input
+type=hidden name=_wpcf7_posted_data_hash value><input
+type=hidden name=_wpcf7_recaptcha_response value></fieldset><h4>Talk to our Expert</h4><p><label
+for=your-name> Your name</label><br>
+<span
+class=wpcf7-form-control-wrap data-name=your-name><input
+size=40 maxlength=400 class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required=true aria-invalid=false placeholder="Your name*" value type=text name=your-name></span></p><p><label
+for=pemail> Your email</label><br>
+<span
+class=wpcf7-form-control-wrap data-name=pemail><input
+size=40 maxlength=400 class="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email" aria-required=true aria-invalid=false placeholder="Your Business Email" value type=email name=pemail></span><br>
+<input
+class="wpcf7-form-control wpcf7-hidden" id=button-value-input value="Your Hidden Value" type=hidden name=form-name><br>
+<label
+class=check for=agree></label><br>
+<span
+class=wpcf7-form-control-wrap data-name=agree><span
+class="wpcf7-form-control wpcf7-checkbox wpcf7-validates-as-required" id=agree><span
+class="wpcf7-list-item first last"><input
+type=checkbox name=agree[] value="I agree"><span
+class=wpcf7-list-item-label>I agree</span></span></span></span><span
+class=policy_link> to the <a
+href=https://www.harbingergroup.com/privacy-policy/ target=_blank>Privacy Policy</a> and <a
+href=https://www.harbingergroup.com/cookie-policy/ target=_blank>Cookie Policy</a>.</span><br>
+<input
+class="wpcf7-form-control wpcf7-hidden" value type=hidden name=postid><br>
+<input
+class="wpcf7-form-control wpcf7-hidden" value type=hidden name=source_url><br>
+<input
+class="wpcf7-form-control wpcf7-submit has-spinner" type=submit value=Submit></p><div
+class=wpcf7-response-output aria-hidden=true></div></form></div></div></div></main></div><footer
+id=footer role=contentinfo><section
+class=footer_menu><div
+class=container><div
+class=row><div
+class=col-12><div
+class=menu-footer-menu-container><ul
+id=footer-menu class="Footer_main_menu "><li
+id=menu-item-17022 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-17022"><a
+href=https://www.harbingergroup.com/our-focus/ itemprop=url>Our Focus</a><ul
+class=sub-menu>
+<li
+id=menu-item-17023 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17023"><a
+href=https://www.harbingergroup.com/performance-enablement/ itemprop=url>Performance Enablement</a></li>
+<li
+id=menu-item-17024 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17024"><a
+href=https://www.harbingergroup.com/advisory-services/workforce-technology-advisory/ itemprop=url>Workforce Technology Advisory</a></li>
+<li
+id=menu-item-17025 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17025"><a
+href=https://www.harbingergroup.com/advisory-services/digital-learning-advisory/ itemprop=url>Digital Learning Advisory</a></li>
+<li
+id=menu-item-17026 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17026"><a
+href=https://www.harbingergroup.com/services/digital-product-development/ itemprop=url>Digital Product Development</a></li>
+<li
+id=menu-item-17027 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17027"><a
+href=https://www.harbingergroup.com/services/elearning-content-development/ itemprop=url>eLearning Content Development</a></li>
+<li
+id=menu-item-17028 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17028"><a
+href=https://www.harbingergroup.com/agentic-ai-studio/ itemprop=url>Agentic AI Studio</a></li></ul>
+</li>
+<li
+id=menu-item-3096 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-3096"><a
+href=https://www.harbingergroup.com/industries/ itemprop=url>Industries</a><ul
+class=sub-menu>
+<li
+id=menu-item-17029 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17029"><a
+href=https://www.harbingergroup.com/industries/enterprises/ itemprop=url>Enterprises</a></li>
+<li
+id=menu-item-17030 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17030"><a
+href=https://www.harbingergroup.com/industries/saas/ itemprop=url>SaaS</a></li>
+<li
+id=menu-item-13658 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13658"><a
+href=https://www.harbingergroup.com/industries/digital-publishing/ itemprop=url>Digital Publishing</a></li></ul>
+</li>
+<li
+id=menu-item-3102 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3102"><a
+href=# itemprop=url>About Us</a><ul
+class=sub-menu>
+<li
+id=menu-item-3105 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3105"><a
+href=https://www.harbingergroup.com/about-harbinger/ itemprop=url>About Harbinger</a></li>
+<li
+id=menu-item-3107 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3107"><a
+href=https://www.harbingergroup.com/leadership/ itemprop=url>Leadership</a></li>
+<li
+id=menu-item-13972 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13972"><a
+href=https://www.harbingergroup.com/industry-pros/ itemprop=url>Industry Pros</a></li>
+<li
+id=menu-item-3106 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3106"><a
+href=https://www.harbingergroup.com/vision-purpose-values/ itemprop=url>Vision, Purpose, and Values</a></li>
+<li
+id=menu-item-13684 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13684"><a
+href=https://www.harbingergroup.com/strategic-partnerships/ itemprop=url>Our Partners</a></li>
+<li
+id=menu-item-13066 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13066"><a
+href=https://www.harbingergroup.com/csr-initiatives/ itemprop=url>CSR Initiatives</a></li>
+<li
+id=menu-item-3104 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3104"><a
+href=https://www.harbingergroup.com/awards/ itemprop=url>Awards</a></li></ul>
+</li>
+<li
+id=menu-item-3108 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3108"><a
+href=# itemprop=url>Careers</a><ul
+class=sub-menu>
+<li
+id=menu-item-3112 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3112"><a
+href=https://www.harbingergroup.com/life-at-harbinger/ itemprop=url>Life at Harbinger</a></li>
+<li
+id=menu-item-3111 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3111"><a
+href=https://www.harbingergroup.com/why-harbinger/ itemprop=url>Why Harbinger</a></li>
+<li
+id=menu-item-3109 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3109"><a
+href=https://www.harbingergroup.com/current-openings/ itemprop=url>Current Openings</a></li>
+<li
+id=menu-item-3113 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3113"><a
+target=_blank href=https://harbingergroup.com/Harbinger-Reflections/Harbinger-Reflections-September2026/Harbinger-Reflections-Newsletter-July-September-2026.html itemprop=url>Newsletter</a></li></ul>
+</li>
+<li
+id=menu-item-3529 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3529"><a
+href=https://www.harbingergroup.com/resources/ itemprop=url>Resources</a><ul
+class=sub-menu>
+<li
+id=menu-item-3530 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3530"><a
+href=https://www.harbingergroup.com/blogs/ itemprop=url>Blogs</a></li>
+<li
+id=menu-item-4003 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4003"><a
+href=https://www.harbingergroup.com/case-studies/ itemprop=url>Case Studies</a></li>
+<li
+id=menu-item-14375 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14375"><a
+href=https://www.harbingergroup.com/transformation-stories/ itemprop=url>Transformation Stories</a></li>
+<li
+id=menu-item-12908 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12908"><a
+href=https://www.harbingergroup.com/explore-our-exclusive-events-webinars/ itemprop=url>Events/Webinars</a></li>
+<li
+id=menu-item-4391 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4391"><a
+href=https://www.harbingergroup.com/e-books/ itemprop=url>E-books</a></li>
+<li
+id=menu-item-4392 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4392"><a
+href=https://www.harbingergroup.com/whitepapers/ itemprop=url>Whitepapers</a></li>
+<li
+id=menu-item-5124 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5124"><a
+href=https://www.harbingergroup.com/news/ itemprop=url>News</a></li>
+<li
+id=menu-item-5214 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5214"><a
+href=https://www.harbingergroup.com/videos/ itemprop=url>Videos</a></li>
+<li
+id=menu-item-5218 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5218"><a
+href=https://www.harbingergroup.com/infographics/ itemprop=url>Infographics</a></li>
+<li
+id=menu-item-5221 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5221"><a
+href=https://www.harbingergroup.com/featured-works/ itemprop=url>Featured Work</a></li></ul>
+</li>
+<li
+id=menu-item-3114 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-3114"><a
+href=https://www.harbingergroup.com/contact-us/ itemprop=url>Contact Us</a><ul
+class=sub-menu>
+<li
+id=menu-item-3115 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3115"><a
+href=https://www.harbingergroup.com/contact-us/#location itemprop=url>Locations</a></li>
+<li
+id=menu-item-12535 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12535"><a
+href=https://www.harbingergroup.com/sitemap/ itemprop=url>Sitemap</a></li></ul>
+</li></ul></div><div
+class=social-links><ul
+class="list-inline me-auto">
+<li
+class=list-inline-item>
+<a
+href=https://www.linkedin.com/company/harbinger-group/ target=_blank aria-label="Social Link">
+<i
+class="fa-brands fa-linkedin"></i>		</a>
+</li>
+<li
+class=list-inline-item>
+<a
+href=https://twitter.com/Harbinger_Grp target=_blank aria-label="Social Link">
+<i
+class="fa-brands fa-square-x-twitter"></i>		</a>
+</li>
+<li
+class=list-inline-item>
+<a
+href=https://www.facebook.com/harbingersys target=_blank aria-label="Social Link">
+<i
+class="fa-brands fa-square-facebook"></i>		</a>
+</li>
+<li
+class=list-inline-item>
+<a
+href=https://www.instagram.com/harbinger_grp/ target=_blank aria-label="Social Link">
+<i
+class="fa-brands fa-instagram"></i>		</a>
+</li>
+<li
+class=list-inline-item>
+<a
+href=https://www.youtube.com/@harbinger_group target=_blank aria-label="Social Link">
+<i
+class="fa-brands fa-youtube"></i>		</a>
+</li></ul></div></div><div
+class=col-12>
+<a
+href=https://www.harbingergroup.com/ target=_blank class=footer-a>	<img
+src=https://www.harbingergroup.com/wp-content/uploads/2022/12/Harbinger-Footer-logo.png?x59326 alt="Harbinger Group Footer Logo" class=fotter-new-logo></a></div></div></div></section><div
+class=copyright><div
+class=container><div
+class=row><div
+class="col-12 col-md-8"><div
+class=sub_footer><div
+class=menu-sub-footer-menu-container><ul
+id=menu-sub-footer-menu class="sub-footer-menu "><li
+id=menu-item-1889 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-1889"><a
+rel=privacy-policy href=https://www.harbingergroup.com/privacy-policy/ itemprop=url>Privacy Policy</a></li>
+<li
+id=menu-item-1890 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1890"><a
+href=https://www.harbingergroup.com/gdpr-compliance/ itemprop=url>GDPR Compliance</a></li>
+<li
+id=menu-item-1891 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1891"><a
+href=https://www.harbingergroup.com/cookie-policy/ itemprop=url>Cookie Policy</a></li></ul></div></div></div><div
+class="col-12 col-md-4"><div
+class=copyright-text-wrapper><p
+class=copyright-text>
+&copy; 1990 - 2026 Harbinger Group. All Rights Reserved.</p></div></div></div></div></div></footer><div
+class=bottom-to-top>
+<i
+class="fa fa-chevron-up"></i></div></div> <script type=speculationrules>{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/harbinger-child/*","/wp-content/themes/harbinger/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}</script> <script>jQuery(document).ready(function($){var deviceAgent=navigator.userAgent.toLowerCase();if(deviceAgent.match(/(iphone|ipod|ipad)/)){$("html").addClass("ios");$("html").addClass("mobile");}
+if(deviceAgent.match(/(Android)/)){$("html").addClass("android");$("html").addClass("mobile");}
+if(navigator.userAgent.search("MSIE")>=0){$("html").addClass("ie");}
+else if(navigator.userAgent.search("Chrome")>=0){$("html").addClass("chrome");}
+else if(navigator.userAgent.search("Firefox")>=0){$("html").addClass("firefox");}
+else if(navigator.userAgent.search("Safari")>=0&&navigator.userAgent.search("Chrome")<0){$("html").addClass("safari");}
+else if(navigator.userAgent.search("Opera")>=0){$("html").addClass("opera");}});</script> <script>document.addEventListener('wpcf7mailsent',function(event){var post_id=jQuery('body').data('pid');if(979==event.detail.contactFormId){location='https://www.harbingergroup.com/thank-you-case-study/?v='+post_id;}else if(980==event.detail.contactFormId){location='https://www.harbingergroup.com/thank-you-whitepaper/?v='+post_id;}else if(983==event.detail.contactFormId){location='https://www.harbingergroup.com/thank-you-e-book/?v='+post_id;}
+else if(984==event.detail.contactFormId){location='https://www.harbingergroup.com/thank-you-webinar/?v='+post_id;}
+else if(3922==event.detail.contactFormId){location='https://www.harbingergroup.com/thank-you-infographic/?v='+post_id;}
+else if(12728==event.detail.contactFormId){location='https://www.harbingergroup.com/7-standout-hr-tech-success-stories-crafted-by-harbinger-thank-you/?v='+post_id;}
+else if(12748==event.detail.contactFormId){location='https://www.harbingergroup.com/7-most-inspiring-elearning-success-stories-shaped-by-harbinger-thank-you/?v='+post_id;}},false);</script> <script src=https://www.harbingergroup.com/wp-content/cache/minify/501dc.js?x59326></script> <script id=wp-i18n-js-after>wp.i18n.setLocaleData({'text direction\u0004ltr':['ltr']});</script> <script src=https://www.harbingergroup.com/wp-content/cache/minify/1f540.js?x59326></script> <script id=contact-form-7-js-before>var wpcf7={"api":{"root":"https:\/\/www.harbingergroup.com\/wp-json\/","namespace":"contact-form-7\/v1"},"cached":1};</script> <script src=https://www.harbingergroup.com/wp-content/cache/minify/b68ea.js?x59326></script> <script id=google-recaptcha-js src="https://www.google.com/recaptcha/api.js?render=6LdNepcjAAAAAJQ971-4vcVv4aT-dFOG9NbPjftB&#038;ver=3.0"></script> <script src=https://www.harbingergroup.com/wp-content/cache/minify/e6deb.js?x59326></script> <script id=wpcf7-recaptcha-js-before>var wpcf7_recaptcha={"sitekey":"6LdNepcjAAAAAJQ971-4vcVv4aT-dFOG9NbPjftB","actions":{"homepage":"homepage","contactform":"contactform"}};</script> <script src=https://www.harbingergroup.com/wp-content/cache/minify/2a6b9.js?x59326></script> <script defer=defer id=lazyload-js-js src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js?ver=0772ea3e819ad17a29761e6d46ebf927"></script> <script src=https://www.harbingergroup.com/wp-content/cache/minify/07271.js?x59326></script> <script async id=slick-carousel-js-js src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js?ver=1.6"></script> <script id=home-slider-js-js src="https://www.harbingergroup.com/wp-content/themes/harbinger/js/home-slider-js.js?x59326"></script> <script id=custom_js-js-extra>var Magicaldata={"adminAjaxURL":"https://www.harbingergroup.com/wp-admin/admin-ajax.php","siteURL":"https://www.harbingergroup.com"};</script> <script src=https://www.harbingergroup.com/wp-content/cache/minify/eb5df.js?x59326 defer></script> <script src=https://www.harbingergroup.com/wp-content/cache/minify/06cc7.js?x59326 async></script> </body></html>
