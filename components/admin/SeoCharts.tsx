@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState, type ReactNode } from 'react';
+import { cssZoom } from './zoom';
 
 // Lightweight HTML/CSS charts for the SEO & Health tab (no chart library, so
 // nothing extra to download). Conventions:
@@ -33,7 +34,8 @@ export function ChartCard({ title, subtitle, table, children, className = '' }: 
   const show = (e: React.PointerEvent, t: string, lines: string[]) => {
     const r = ref.current?.getBoundingClientRect();
     if (!r) return;
-    setTip({ x: e.clientX - r.left, y: e.clientY - r.top, title: t, lines });
+    const z = cssZoom(ref.current);
+    setTip({ x: (e.clientX - r.left) / z, y: (e.clientY - r.top) / z, title: t, lines });
   };
   return (
     <section className={`adm-panel viz-card ${className}`}>

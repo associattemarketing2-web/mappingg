@@ -1,0 +1,51 @@
+{
+  "batch_id": "live-2026-10-27-r7-pilot",
+  "checked_on": "2026-10-27",
+  "rules": "Fill empty fields only. A value is used only when the RERA registration matches and either the RERA-registered record states it, or two independent sources agree. Prices are never applied from portals (they differ between sources and change often) - see REVIEW-round7-pilot.csv.",
+  "changes": [
+    {
+      "pin_id": "2a5671d4-efad-413f-86e7-897db51155c6",
+      "number": 19,
+      "title": "Eastern Front",
+      "source_url": "https://housiey.com/projects/vishal-eastern-front",
+      "source_type": "Property portals (2 agreeing: housiey.com, propertypistol.com) - RERA no. matches",
+      "confidence": "medium",
+      "note": "MahaRERA P52100055529 on both sources. 2/3/4 BHK, carpet 813 (2 BHK) to 1433 (4 BHK) sq ft, RERA possession June 2028, 1 acre, 3 towers 3B+G+P+13 agree. Prices disagree (99.18 L-1.74 Cr vs 1.05-1.82 Cr all-inclusive) - not applied.",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "2 BHK / 3 BHK / 4 BHK", "expect": "" },
+        { "op": "set", "field": "sqft", "value": "813 – 1,433 sq ft (carpet)", "expect": "" },
+        { "op": "set", "field": "possession_timeline", "value": "Jun 2028", "expect": "" },
+        { "op": "set", "field": "description", "value": "Eastern Front by Vishal Group is a residential project near Mundhwa Chowk in Mundhwa, Pune, registered with MahaRERA (P52100055529). It has 3 towers (3 basements + ground + podium + 13 floors) on about 1 acre and offers 2, 3 and 4 BHK apartments with carpet areas from 813 to 1,433 sq ft. RERA possession is June 2028. Amenities include a swimming pool, gym, multipurpose hall, yoga deck, kids' play area and creche.", "expect": "" },
+        { "op": "set", "field": "key_usp", "value": "Towers placed so that no apartments face each other", "expect": "" }
+      ]
+    },
+    {
+      "pin_id": "65059808-98e6-4ca0-a284-1ae4874e05ab",
+      "number": 54,
+      "title": "Horizon Highgroves",
+      "source_url": "https://www.propertypistol.com/projects/horizon-highgroves-mundhwa-pid-15753",
+      "source_type": "Property portals (2 agreeing: propertypistol.com, commonfloor.com) - RERA no. matches",
+      "confidence": "medium",
+      "note": "MahaRERA P52100030909. 3 and 4 BHK, carpet 1,054-1,702 sq ft agree on two sources (one portal also lists a 2 BHK of 827 sq ft - not used). Possession Aug 2025 is already past: not applied until the revised date is read from MahaRERA. Price on one source only - not applied.",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "3 BHK / 4 BHK", "expect": "" },
+        { "op": "set", "field": "sqft", "value": "1,054 – 1,702 sq ft (carpet)", "expect": "" },
+        { "op": "set", "field": "description", "value": "Horizon Highgroves by Horizon Developers is a residential project in Jadhav Nagar, Mundhwa, Pune, registered with MahaRERA (P52100030909). It offers 3 and 4 BHK apartments with carpet areas from 1,054 to 1,702 sq ft.", "expect": "" }
+      ]
+    },
+    {
+      "pin_id": "bc300c8a-62c5-47c8-b284-5d4711ec3916",
+      "number": 82,
+      "title": "Eon Water Front",
+      "source_url": "https://www.aurumproptech.in/pulse/rera/maharashtra/pune/eon-water-front-P52100004202",
+      "source_type": "MahaRERA registration data (via Aurum PropTech RERA mirror)",
+      "confidence": "high",
+      "note": "Registered promoter Panchshil Realty and Developers Pvt Ltd, S.no. 70, Pune 411014, residential/group housing, land 16,814.72 sq m, 70 apartments (phases E and F), carpet 222.81-224.95 sq m (2,398-2,422 sq ft), proposed completion 30 Dec 2026. Portals quote 4,000-5,375 sq ft - that is NOT the RERA carpet area and is not used. BHK count is not on the registration (portals say 4/4.5 BHK) - left for review.",
+      "ops": [
+        { "op": "set", "field": "sqft", "value": "2,398 – 2,422 sq ft (RERA carpet)", "expect": "" },
+        { "op": "set", "field": "possession_timeline", "value": "Dec 2026", "expect": "" },
+        { "op": "set", "field": "description", "value": "Eon Water Front by Panchshil Realty is a residential project in Kharadi, Pune (411014), registered with MahaRERA (P52100004202). The registered phases have 70 apartments, including penthouses, with RERA carpet areas of 2,398 to 2,422 sq ft on about 4.16 acres (16,814.72 sq m). The proposed completion date on MahaRERA is 30 December 2026.", "expect": "" }
+      ]
+    }
+  ]
+}

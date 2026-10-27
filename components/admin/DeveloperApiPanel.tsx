@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, type PointerEvent as RPointerEvent } from 'react';
+import { cssZoom } from './zoom';
 import { StatTile } from './SeoCharts';
 
 // Super-admin → Developer API. Create applications for partners, choose their
@@ -464,7 +465,8 @@ export default function DeveloperApiPanel({ flash }: { flash: Flash }) {
                               <div className="ap-more">
                                 <button type="button" className="ap-btn sm icon" onClick={(e) => {
                                   const r = e.currentTarget.getBoundingClientRect();
-                                  setMenuPos({ right: Math.max(8, window.innerWidth - r.right), top: r.bottom + 6 });
+                                  const z = cssZoom(e.currentTarget);
+                                  setMenuPos({ right: Math.max(8, (window.innerWidth - r.right) / z), top: r.bottom / z + 6 });
                                   setMenu(menu === a.id ? null : a.id);
                                 }} aria-haspopup="menu" aria-expanded={menu === a.id} aria-label={`More actions for ${a.name}`}><i className="fas fa-ellipsis-vertical" /></button>
                                 {menu === a.id && (

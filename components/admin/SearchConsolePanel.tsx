@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { cssZoom } from './zoom';
 import { Donut } from './SeoCharts';
 import GeoMap from './GeoMap';
 import GscTrend, { METRIC, type GscMetric } from './GscTrend';
@@ -176,8 +177,10 @@ export function GscReport({ d }: { d: GscReportData }) {
   const hp = d.homepage;
   const indexed = hp?.verdict === 'PASS';
   const showTip = (e: React.PointerEvent, title: string, lines: string[]) => {
-    const r = (e.currentTarget.closest('.gsc-card') as HTMLElement | null)?.getBoundingClientRect();
-    if (r) setTip({ x: e.clientX - r.left, y: e.clientY - r.top, title, lines });
+    const card = e.currentTarget.closest('.gsc-card') as HTMLElement | null;
+    const r = card?.getBoundingClientRect();
+    const z = cssZoom(card);
+    if (r) setTip({ x: (e.clientX - r.left) / z, y: (e.clientY - r.top) / z, title, lines });
   };
 
   return (

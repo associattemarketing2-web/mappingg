@@ -3666,3 +3666,19 @@ button.ck:hover { transform: translateY(-2px); }
   .blv-menu { left: 0; right: auto; top: auto; bottom: calc(100% + 6px); }
 }
 @media (max-width: 900px) { .blv-table { min-width: 0; } }
+
+/* ================= Density: the admin is drawn at 90% on laptops and desktops =================
+   (phones and tablets stay at 100% so text and buttons stay easy to tap). Under CSS zoom, vh units
+   shrink with everything else, so full-height areas divide by --z to still reach the bottom of the screen.
+   JS that positions things from the pointer or getBoundingClientRect() uses cssZoom() (components/admin/zoom.ts). */
+.adm2 { --z: 1; }
+@media (min-width: 1101px) {
+  .adm2 { --z: .9; zoom: var(--z); min-height: calc(100vh / var(--z)); }
+  .adm-frame { height: calc(100vh / var(--z) - 110px); height: calc(100dvh / var(--z) - 110px); }
+  .pg-wa .wa-shell { height: calc(100vh / var(--z) - 220px); height: calc(100dvh / var(--z) - 220px); }
+  .crm3-panel.docked { max-height: calc(100vh / var(--z) - 146px); max-height: calc(100dvh / var(--z) - 146px); }
+  .ov-map.is-full .ov-map-canvas { height: calc(100vh / var(--z) - 90px); }
+  .ov-map.is-full .ov-live { height: calc(100vh / var(--z) - 80px); }
+  .dvl-modal { max-height: calc(100vh / var(--z) - 32px); }
+  .crm3-modal { max-height: calc(100dvh / var(--z) - 32px); }
+}

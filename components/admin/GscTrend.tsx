@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { cssZoom } from './zoom';
 
 // Search Console–style performance chart: one line per selected metric, each on
 // its own scale (clicks and impressions differ by 100×), with a hover crosshair
@@ -71,7 +72,7 @@ export default function GscTrend({ data, metrics }: { data: GscDay[]; metrics: G
   const onMove = (e: React.PointerEvent) => {
     const r = box.current?.getBoundingClientRect();
     if (!r || n === 0) return;
-    const i = Math.round(((e.clientX - r.left - padL) / (w - padL - padR)) * (n - 1));
+    const i = Math.round((((e.clientX - r.left) / cssZoom(box.current) - padL) / (w - padL - padR)) * (n - 1));
     setHover(Math.max(0, Math.min(n - 1, i)));
   };
   const h = hover != null ? data[hover] : null;

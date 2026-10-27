@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { usePersistedState } from './usePersistedState';
+import { cssZoom } from './zoom';
 import SettingsForm from './SettingsForm';
 import ProfileForm from './ProfileForm';
 import DevProjectsPanel, { type DevProject } from './DevProjectsPanel';
@@ -4090,8 +4091,10 @@ export default function AdminApp({ user }: { user: AdminUser }) {
               aria-expanded={single ? undefined : navOpen === g.key}
               onClick={(e) => {
                 if (single) { setTab(g.tabs[0]); setNavOpen(null); return; }
-                const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
-                setNavPos({ left: Math.max(8, Math.min(r.left, window.innerWidth - 268)), top: r.bottom + 6 });
+                const el = e.currentTarget as HTMLElement;
+                const r = el.getBoundingClientRect();
+                const z = cssZoom(el);
+                setNavPos({ left: Math.max(8, Math.min(r.left / z, window.innerWidth / z - 268)), top: r.bottom / z + 6 });
                 setNavOpen((o) => (o === g.key ? null : g.key));
               }}
               onPointerEnter={() => g.tabs.forEach(warmUp)}
