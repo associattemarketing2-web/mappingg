@@ -2405,6 +2405,484 @@ function paymentPlansArticle() {
   };
 }
 
+const KRERA = 'K-RERA no.';
+const BLR_TAGLINE = 'Bengaluru’s live real-estate map';
+const BLR_NOTE = `<blockquote>Configurations and possession dates are as registered with Karnataka RERA and listed on Mappingg in October 2026, and may change. Most of these projects have not published prices yet, so ask the developer for a price sheet, and always confirm the details on the Karnataka RERA website before you book.</blockquote>`;
+
+function bengaluruEastArticle(h) {
+  return {
+    slug: 'new-projects-in-whitefield-bengaluru-east',
+    title: 'New Projects in Whitefield & East Bengaluru (2026): 150+ Projects by Possession Date & Developer',
+    seo_title: 'New Projects in Whitefield & East Bengaluru 2026',
+    seo_description:
+      '150+ K-RERA registered projects in Bengaluru East (Whitefield, Varthur, KR Puram): Sobha, Prestige, Brigade and Sumadhura launches, homes due by 2027, plots and commercial space.',
+    excerpt:
+      'Bengaluru East is the busiest housing market on our map, with more than 150 K-RERA registered projects. Here they are by developer, possession date, home size and plotted layouts, with K-RERA numbers.',
+    tags: ['Bengaluru East', 'Whitefield', 'Bengaluru', 'New Projects', 'K-RERA'],
+    cover: {
+      theme: 'midnight',
+      kicker: 'Locality guide',
+      lines: ['New Projects in', 'Whitefield &', 'East Bengaluru'],
+      stats: [['151', 'projects tracked'], ['₹97 L', 'homes from'], ['K-RERA', 'numbers listed']],
+      tagline: BLR_TAGLINE,
+    },
+    content: `
+<p>East Bengaluru, around Whitefield, Varthur, Mahadevapura and KR Puram, grew up around the city’s big IT parks, and it is still where the most new homes are being built. On the <a href="/cities/bengaluru">Mappingg map of Bengaluru</a> we track <strong>151 projects</strong> in ${h.loc('Bengaluru East')}, the taluk that Karnataka RERA uses for this side of the city. This guide sorts them by developer, possession date and home size so you can shortlist faster.</p>
+
+<h2>Why buy in East Bengaluru?</h2>
+<ul>
+  <li><strong>Close to work:</strong> Whitefield, ITPL and the Outer Ring Road tech parks are among the biggest office clusters in India.</li>
+  <li><strong>Metro:</strong> the Purple Line now runs to Whitefield (Kadugodi), which makes the commute into the city easier.</li>
+  <li><strong>Choice:</strong> large townships by national developers sit next to smaller, single-tower projects, so there is something at most budgets.</li>
+  <li><strong>Rental demand</strong> from tech employees, if you are buying to invest.</li>
+</ul>
+
+<h2>Projects with published prices</h2>
+<p>Only a few projects here have published a starting price on our map. ${h.link(304)} by Brigade Group starts at ₹97 Lacs and also offers 1 BHK homes. ${h.link(299)} by Arvind SmartSpaces and ${h.link(337)} by Sumadhura start at about ₹2.2 Cr for 3 and 4 BHK homes, and ${h.link(312)} by Sobha at ₹3.6 Cr.</p>
+${h.table([304, 299, 337, 312], 'East Bengaluru projects with published prices', KRERA)}
+
+<h2>Projects due by 2027</h2>
+<p>Most launches here are due between 2028 and 2031. If you want to move in sooner, these projects have the earliest completion dates registered with K-RERA:</p>
+${h.table([852, 560, 945, 947, 960, 866, 918, 917, 966, 951, 828], 'East Bengaluru projects due by mid-2027', KRERA)}
+<p>A project near completion costs more but carries less risk. Our guide to <a href="/blog/ready-to-move-vs-under-construction-flats-pune">ready-to-move vs under-construction flats</a> explains the trade-off; it is written for Pune, but the logic is the same.</p>
+
+<h2>Projects by the big developers</h2>
+<h3>Sobha</h3>
+<p>Sobha has more phases here than any other developer on our map: five phases of Sobha Neopolis, ${h.link(963)} (due December 2028), ${h.link(964)}, ${h.link(961)}, ${h.link(962)} and ${h.link(965)}; two phases of Sobha Infinia, ${h.link(898)} and ${h.link(899)}; ${h.link(900)}; and ${h.link(560)}, which offers 4 BHK homes due in December 2026.</p>
+<h3>Prestige Group</h3>
+<p>${h.link(889)} offers studios and 3 and 4 BHK homes due in December 2028, with ${h.link(316)} in the same development. ${h.link(879)} offers 3 and 4 BHK homes, and ${h.link(951)} 2, 3 and 4 BHK homes due in June 2027.</p>
+<h3>Sumadhura Group</h3>
+<p>Sumadhura’s projects include ${h.link(318)}, ${h.link(320)}, ${h.link(319)}, ${h.link(483)} (which also has villas), ${h.link(334)}, ${h.link(878)} and ${h.link(828)}, due in June 2027.</p>
+<h3>Brigade, Century, Adarsh and Concorde</h3>
+<p>Brigade has ${h.link(304)}, ${h.link(662)} and ${h.link(668)}, a studio project. Century Real Estate has ${h.link(907)} and ${h.link(807)}; Adarsh has ${h.link(966)}, ${h.link(857)}, ${h.link(808)}, ${h.link(538)} and ${h.link(817)}; and Concorde has ${h.link(738)} and ${h.link(799)}.</p>
+
+<h2>Studios and 1 BHK homes</h2>
+<p>For a first home or a rental investment, look at ${h.link(668)} (studios), ${h.link(559)} (1 and 3 BHK, due August 2027), ${h.link(817)}, ${h.link(818)} and ${h.link(780)}, which offer 1 BHK homes alongside bigger ones.</p>
+
+<h2>Large homes: 4 BHK, 5 BHK and villas</h2>
+<p>For a bigger home, ${h.link(909)} offers 4 and 5+ BHK homes due in October 2027. ${h.link(471)} offers 5+ BHK homes, ${h.link(437)} 3, 4 and 5+ BHK homes, ${h.link(946)} 3 and 5+ BHK homes, and ${h.link(799)} 3, 4 and 5+ BHK homes.</p>
+
+<h2>Plotted layouts and commercial space</h2>
+<p>If you’d rather build your own home, these plotted layouts are registered with K-RERA: ${h.link(637)} (due July 2027), ${h.link(771)}, ${h.link(800)}, ${h.link(768)} and ${h.link(941)}. Check that a plot is approved for residential use and has a clear title before you pay a token amount. For offices and shops, ${h.link(295)} by Godrej Properties and ${h.link(411)} are under construction.</p>
+
+<h2>Checklist before you book in East Bengaluru</h2>
+<ol>
+  <li><strong>Check the K-RERA registration</strong> on rera.karnataka.gov.in. Large projects register each phase or tower separately, so make sure your tower is covered. Our <a href="/blog/new-projects-in-bengaluru">Bengaluru city guide</a> explains how.</li>
+  <li><strong>Ask about the khata</strong> (A-khata or B-khata), which affects loans, approvals and resale.</li>
+  <li><strong>Ask about water.</strong> Some projects in the east rely on borewells or tankers; ask how the project will get water and what it costs.</li>
+  <li><strong>Drive the commute at peak hours.</strong> Traffic around Whitefield, Varthur and the Outer Ring Road can be slow; check each project on the <a href="/map">live map</a>.</li>
+  <li><strong>Compare carpet area</strong>, not the BHK label. See <a href="/blog/carpet-area-vs-built-up-vs-super-built-up-area">carpet vs built-up vs super built-up area</a>.</li>
+</ol>
+
+<h2>FAQs: New projects in East Bengaluru</h2>
+<h3>How many new projects are there in East Bengaluru?</h3>
+<p>We track 151 K-RERA registered projects in the Bengaluru East taluk, more than any other part of the city on our map.</p>
+<h3>Which East Bengaluru projects can I move into soonest?</h3>
+<p>${h.link(852)} (October 2026), ${h.link(560)} and several others are due by the end of 2026; see the table of projects due by 2027 above.</p>
+<h3>What is the cheapest new project in East Bengaluru?</h3>
+<p>Of the projects with a published price, ${h.link(304)} starts lowest, at ₹97 Lacs. Most others have not published prices yet.</p>
+<h3>What about the rest of Bengaluru?</h3>
+<p>See our guides to <a href="/blog/new-projects-in-sarjapur-anekal-bengaluru">Sarjapur and Anekal</a>, <a href="/blog/new-projects-in-south-bengaluru">South Bengaluru</a> and <a href="/blog/new-projects-in-north-bengaluru-yelahanka">North Bengaluru and Yelahanka</a>.</p>
+
+${BLR_NOTE}
+`,
+  };
+}
+
+function anekalArticle(h) {
+  return {
+    slug: 'new-projects-in-sarjapur-anekal-bengaluru',
+    title: 'New Projects in Sarjapur & Anekal, Bengaluru (2026): Townships, Plots & Homes Due Soon',
+    seo_title: 'New Projects in Sarjapur & Anekal Bengaluru 2026',
+    seo_description:
+      '119 K-RERA registered projects in Anekal taluk (Sarjapur, Attibele, Chandapura): Prestige City, Sobha Townpark, Lodha, Godrej and Nambiar townships, 16 plotted layouts and homes due by 2027.',
+    excerpt:
+      'South-east Bengaluru around Sarjapur and Attibele is where the big townships are coming up. Here are the 119 projects on our map in Anekal taluk, by township, possession date, home size and plotted layouts.',
+    tags: ['Sarjapur', 'Anekal', 'Bengaluru', 'New Projects', 'Plots'],
+    cover: {
+      theme: 'emerald',
+      kicker: 'Locality guide',
+      lines: ['New Projects in', 'Sarjapur &', 'Anekal, Bengaluru'],
+      stats: [['119', 'projects tracked'], ['16', 'plotted layouts'], ['₹2.45 Cr', 'Lodha Elanza from']],
+      tagline: BLR_TAGLINE,
+    },
+    content: `
+<p>The south-east edge of Bengaluru, from Sarjapur to Attibele and Chandapura, falls in <strong>Anekal taluk</strong>. Land here is more plentiful than in the city, so this is where many of the large townships and plotted layouts are being built. On the <a href="/cities/bengaluru">Mappingg map of Bengaluru</a> we track <strong>119 projects</strong> in ${h.loc('Anekal')}. This guide groups them by township, possession date, home size and plots.</p>
+
+<h2>Why look at Sarjapur and Anekal?</h2>
+<ul>
+  <li><strong>Townships:</strong> several projects are planned as townships, with homes, schools, shops and open space inside one gated area.</li>
+  <li><strong>Close to the tech corridors</strong> on Sarjapur Road, the Outer Ring Road and Electronic City.</li>
+  <li><strong>Plots:</strong> Anekal has more K-RERA registered plotted layouts than any other part of the city on our map.</li>
+  <li><strong>The trade-off:</strong> many areas are still developing, so roads, water and public transport can lag behind the homes. Check them for each project.</li>
+</ul>
+
+<h2>The big townships</h2>
+<h3>The Prestige City</h3>
+<p>Prestige Group’s township has three phases on our map: ${h.link(308)} (2 and 3 BHK, due March 2030), ${h.link(307)} (3 and 4 BHK, June 2030) and ${h.link(294)} (November 2030).</p>
+<h3>Sobha Townpark</h3>
+<p>Sobha has four phases: ${h.link(837)} (1, 2 and 3 BHK, December 2030), ${h.link(836)} (June 2031), ${h.link(838)} and ${h.link(835)}, the last due in June 2033.</p>
+<h3>Mana Skanda The Right Life</h3>
+<p>This township has five registered projects: ${h.link(654)} and ${h.link(655)} (June 2030), ${h.link(461)}, ${h.link(462)} and ${h.link(420)}, which also has 1 BHK homes.</p>
+<h3>Lodha, Godrej, Nambiar and Adarsh</h3>
+<p>Lodha has ${h.link(781)}, ${h.link(344)} and ${h.link(315)}, which starts at ₹2.45 Cr for 3 BHK homes. ${h.link(298)} by Godrej Properties offers 2 and 3 BHK homes. Nambiar has two phases of District 25, ${h.link(644)} and ${h.link(336)}, and ${h.link(874)} with 4 BHK homes. Adarsh Welkin Park has ${h.link(968)} (December 2027), ${h.link(969)} and ${h.link(657)}.</p>
+${h.table([308, 307, 837, 654, 781, 315, 298, 644, 968], 'Selected township projects in Anekal', KRERA)}
+
+<h2>Projects due by 2027</h2>
+<p>Most launches here are due between 2029 and 2031. These have the earliest completion dates registered with K-RERA:</p>
+${h.table([511, 558, 801, 846, 934, 948, 959, 829, 635, 493, 513], 'Anekal projects due by mid-2027', KRERA)}
+
+<h2>Large homes: 4 BHK, 5 BHK and villas</h2>
+<p>For a bigger home, ${h.link(829)} and ${h.link(830)} offer 4 BHK homes due in December 2026. ${h.link(937)} offers 4 BHK villas, ${h.link(634)} and ${h.link(811)} 4 BHK homes due in 2028, and ${h.link(955)} and ${h.link(770)} 5+ BHK homes. ${h.link(425)} and ${h.link(802)} offer 4 and 5+ BHK homes.</p>
+
+<h2>Studios and 1 BHK homes</h2>
+<p>Smaller homes are rarer in Anekal. Look at ${h.link(454)}, which has studios, and ${h.link(645)}, ${h.link(823)}, ${h.link(547)} and ${h.link(775)}, which have 1 BHK homes alongside bigger ones.</p>
+
+<h2>Plotted layouts</h2>
+<p>We track 16 plotted layouts here, more than anywhere else in Bengaluru. Those due first are ${h.link(796)} and ${h.link(939)} (December 2026), ${h.link(784)} (January 2027), ${h.link(772)} (September 2027), ${h.link(495)}, ${h.link(790)}, ${h.link(834)} and ${h.link(850)}. Others include ${h.link(347)}, ${h.link(763)}, ${h.link(512)}, ${h.link(664)}, ${h.link(416)}, ${h.link(457)}, ${h.link(409)} and ${h.link(673)}.</p>
+${h.table([796, 939, 784, 772, 495, 790], 'Plotted layouts due first in Anekal', KRERA)}
+<p>Before you buy a plot, check the layout approval (by BMRDA or the local planning authority), that the land has been converted for residential use, the khata, and a clear title going back at least 30 years. A lawyer can check these for a small fee.</p>
+
+<h2>Checklist before you book in Anekal</h2>
+<ol>
+  <li><strong>Check the K-RERA registration</strong> of your exact phase or tower. Townships register each phase separately.</li>
+  <li><strong>Check the roads and water.</strong> Ask how the project will get water, and drive the route to work at peak hours. Open each project on the <a href="/map">live map</a> to see the roads around it.</li>
+  <li><strong>Ask which amenities are in your phase,</strong> and when the township’s clubhouse, school or shops are due.</li>
+  <li><strong>Ask about the khata</strong> and whether the project is under a panchayat or a city authority.</li>
+  <li><strong>Visit the site.</strong> Our <a href="/blog/site-visit-checklist-before-buying-flat-pune">site visit checklist</a> lists what to look at.</li>
+</ol>
+
+<h2>FAQs: New projects in Sarjapur and Anekal</h2>
+<h3>Is Sarjapur in Anekal taluk?</h3>
+<p>Sarjapur is in Anekal taluk of Bengaluru Urban district, which is how Karnataka RERA, and our map, group projects in this area.</p>
+<h3>Which townships are coming up in Anekal?</h3>
+<p>On our map: The Prestige City, Sobha Townpark, Mana Skanda The Right Life, Nambiar District 25, Lodha Haven and Adarsh Welkin Park, among others.</p>
+<h3>Are there plots for sale in Sarjapur and Anekal?</h3>
+<p>Yes. We track 16 K-RERA registered plotted layouts here, the earliest due in December 2026.</p>
+<h3>What about the rest of Bengaluru?</h3>
+<p>See our guides to <a href="/blog/new-projects-in-whitefield-bengaluru-east">Whitefield and East Bengaluru</a>, <a href="/blog/new-projects-in-south-bengaluru">South Bengaluru</a> and <a href="/blog/new-projects-in-north-bengaluru-yelahanka">North Bengaluru and Yelahanka</a>.</p>
+
+${BLR_NOTE}
+`,
+  };
+}
+
+function southBengaluruArticle(h) {
+  return {
+    slug: 'new-projects-in-south-bengaluru',
+    title: 'New Projects in South Bengaluru (2026): Lodha, Prestige, Sobha & 120+ More by Possession Date',
+    seo_title: 'New Projects in South Bengaluru 2026: K-RERA List',
+    seo_description:
+      '124 K-RERA registered projects in South Bengaluru: homes from ₹1.22 Cr, Lodha Azur, Prestige Southern Star, Sobha, Mahindra and Assetz launches, studios, plots and homes due by 2027.',
+    excerpt:
+      'South Bengaluru has 124 K-RERA registered projects on our map, from studios to 5 BHK homes and plotted layouts. Here they are by price, possession date, developer and home size.',
+    tags: ['South Bengaluru', 'Bengaluru', 'New Projects', 'K-RERA', 'Kanakapura Road'],
+    cover: {
+      theme: 'dusk',
+      kicker: 'Locality guide',
+      lines: ['New Projects in', 'South Bengaluru', '2026 Buyer’s Guide'],
+      stats: [['124', 'projects tracked'], ['₹1.22 Cr', 'homes from'], ['13', 'plotted layouts']],
+      tagline: BLR_TAGLINE,
+    },
+    content: `
+<p>South Bengaluru, from the older neighbourhoods around Banashankari and JP Nagar out to the newer suburbs along Kanakapura Road, Bannerghatta Road and Mysore Road, falls in the <strong>Bengaluru South</strong> taluk. It is one of the city’s most established residential areas, and still one of the busiest for new launches. On the <a href="/cities/bengaluru">Mappingg map of Bengaluru</a> we track <strong>124 projects</strong> in ${h.loc('Bengaluru South')}.</p>
+
+<h2>Why buy in South Bengaluru?</h2>
+<ul>
+  <li><strong>Established neighbourhoods</strong> with schools, hospitals and markets already in place.</li>
+  <li><strong>Metro:</strong> the Green Line runs down Kanakapura Road, and the Purple Line west along Mysore Road.</li>
+  <li><strong>Greener edges:</strong> projects further out sit close to the Turahalli forest, the Bannerghatta National Park side and the lakes in the south.</li>
+  <li><strong>Every size of home,</strong> from studios to 5 BHK homes and plots.</li>
+</ul>
+
+<h2>Projects with published prices</h2>
+<p>${h.link(305)} by Arvind SmartSpaces starts at ₹1.22 Cr for 2 to 4 BHK homes, and ${h.link(335)} by Godrej Properties at ₹1.49 Cr. Puravankara’s ${h.link(317)} starts at ₹2.55 Cr and ${h.link(341)} at ₹3.10 Cr for 3 BHK homes, and ${h.link(322)} by Sobha at ₹3.4 Cr.</p>
+${h.table([305, 335, 317, 341, 322], 'South Bengaluru projects with published prices', KRERA)}
+
+<h2>Projects due by 2027</h2>
+${h.table([954, 505, 490, 849, 922, 549, 910, 913, 957, 938], 'South Bengaluru projects due by mid-2027', KRERA)}
+<p>${h.link(954)} is due in December 2026, and ${h.link(957)}, which has studios and 1, 2 and 3 BHK homes, in April 2027.</p>
+
+<h2>Projects by the big developers</h2>
+<ul>
+  <li><strong>Lodha:</strong> three Azur projects, ${h.link(921)} (October 2029), ${h.link(920)} and ${h.link(773)}, with 2 to 5+ BHK homes.</li>
+  <li><strong>Prestige Group:</strong> ${h.link(797)}, with 1 to 4 BHK homes due in September 2029.</li>
+  <li><strong>Sobha:</strong> ${h.link(564)} (3 and 4 BHK, December 2028) and ${h.link(322)}.</li>
+  <li><strong>Mahindra Lifespaces:</strong> ${h.link(683)}, with 3, 4 and 5+ BHK homes.</li>
+  <li><strong>Assetz:</strong> ${h.link(957)}, ${h.link(901)}, ${h.link(944)}, ${h.link(764)}, ${h.link(674)} and ${h.link(374)}.</li>
+  <li><strong>Brigade, Provident, Shriram and Sattva:</strong> ${h.link(296)}, ${h.link(311)}, ${h.link(291)}, ${h.link(935)}, ${h.link(778)}, ${h.link(861)}, ${h.link(343)} and ${h.link(345)}.</li>
+  <li><strong>Others:</strong> ${h.link(882)}, ${h.link(300)}, ${h.link(690)} and ${h.link(895)}.</li>
+</ul>
+
+<h2>Studios and 1 BHK homes</h2>
+<p>${h.link(831)} offers studios, and ${h.link(422)} and ${h.link(465)} 1 BHK homes. ${h.link(524)}, ${h.link(565)}, ${h.link(863)} and ${h.link(913)} offer 1 BHK homes alongside bigger ones.</p>
+
+<h2>Large homes: 4 BHK and above</h2>
+<p>${h.link(849)} offers 4 and 5+ BHK homes due in December 2026. ${h.link(482)} and ${h.link(473)} offer 4 BHK homes due in 2028, and ${h.link(430)} and ${h.link(485)} 4 BHK homes due later. For a mix of 3 and 4 BHK homes, see ${h.link(552)}, ${h.link(675)} and ${h.link(911)}.</p>
+
+<h2>Plotted layouts</h2>
+<p>We track 13 plotted layouts in South Bengaluru. ${h.link(660)} is due in December 2026, ${h.link(794)} in March 2027, ${h.link(792)} in May 2027 and ${h.link(887)} in October 2027. Others include ${h.link(550)}, ${h.link(440)}, ${h.link(441)}, ${h.link(442)}, ${h.link(822)}, ${h.link(652)}, ${h.link(496)}, ${h.link(497)} and ${h.link(363)}.</p>
+<p>For a plot, check the layout approval, the land conversion to residential use, the khata, and a title going back at least 30 years before you pay.</p>
+
+<h2>Checklist before you book in South Bengaluru</h2>
+<ol>
+  <li><strong>Check the K-RERA registration</strong> of your exact phase or tower on rera.karnataka.gov.in.</li>
+  <li><strong>Ask about the khata</strong> (A-khata or B-khata) and who the civic authority is; the outer suburbs may be under a panchayat.</li>
+  <li><strong>Check the distance to the metro</strong> and the main roads on the <a href="/map">live map</a>.</li>
+  <li><strong>Read the agreement for sale</strong> before you sign. Our <a href="/blog/agreement-for-sale-clauses-to-check-maharera">agreement for sale guide</a> is written for Maharashtra, but most clauses are the same under the RERA Act.</li>
+  <li><strong>Budget for the extra costs:</strong> stamp duty, registration and GST on under-construction homes.</li>
+</ol>
+
+<h2>FAQs: New projects in South Bengaluru</h2>
+<h3>What is the cheapest new project in South Bengaluru?</h3>
+<p>Of the projects with a published price, ${h.link(305)} starts lowest, at ₹1.22 Cr. Most others have not published prices yet.</p>
+<h3>Which South Bengaluru projects are due first?</h3>
+<p>${h.link(954)}, ${h.link(505)}, ${h.link(490)} and ${h.link(849)} are due in December 2026.</p>
+<h3>Are there plots in South Bengaluru?</h3>
+<p>Yes, 13 K-RERA registered plotted layouts on our map, the first due in December 2026.</p>
+<h3>What about the rest of Bengaluru?</h3>
+<p>See our guides to <a href="/blog/new-projects-in-whitefield-bengaluru-east">Whitefield and East Bengaluru</a>, <a href="/blog/new-projects-in-sarjapur-anekal-bengaluru">Sarjapur and Anekal</a> and <a href="/blog/new-projects-in-north-bengaluru-yelahanka">North Bengaluru and Yelahanka</a>.</p>
+
+${BLR_NOTE}
+`,
+  };
+}
+
+function northBengaluruArticle(h) {
+  return {
+    slug: 'new-projects-in-north-bengaluru-yelahanka',
+    title: 'New Projects in North Bengaluru & Yelahanka (2026): Embassy, Godrej, Prestige & 90+ More',
+    seo_title: 'New Projects in North Bengaluru & Yelahanka 2026',
+    seo_description:
+      '93 K-RERA registered projects in North Bengaluru and Yelahanka, towards the airport: Brigade Lumina from ₹1.45 Cr, Embassy, Godrej, Prestige, L&T and Assetz launches, plots and homes due by 2027.',
+    excerpt:
+      'North Bengaluru, on the airport side of the city, has 93 K-RERA registered projects on our map across Bengaluru North and Yelahanka. Here they are by price, possession date, developer and plots.',
+    tags: ['North Bengaluru', 'Yelahanka', 'Bengaluru', 'New Projects', 'K-RERA'],
+    cover: {
+      theme: 'sky',
+      kicker: 'Locality guide',
+      lines: ['New Projects in', 'North Bengaluru', '& Yelahanka'],
+      stats: [['93', 'projects tracked'], ['₹1.45 Cr', 'homes from'], ['Airport', 'side of the city']],
+      tagline: BLR_TAGLINE,
+    },
+    content: `
+<p>North Bengaluru, from Hebbal and Thanisandra out to Yelahanka and the road to Kempegowda International Airport, has become one of the city’s fastest-growing housing markets. On the <a href="/cities/bengaluru">Mappingg map of Bengaluru</a> we track <strong>93 projects</strong> here: 56 in ${h.loc('Bengaluru North')} and 37 in ${h.loc('Yelahanka')}, the two taluks Karnataka RERA uses for this side of the city.</p>
+
+<h2>Why buy in North Bengaluru?</h2>
+<ul>
+  <li><strong>The airport:</strong> the international airport and the business parks around it bring jobs to the north.</li>
+  <li><strong>Roads and metro:</strong> the airport road and the planned metro lines towards the airport and Hebbal are improving access.</li>
+  <li><strong>Space:</strong> more land than in the city, so larger projects, townships and plots.</li>
+  <li><strong>Big developers</strong>, including Embassy, Godrej, Prestige, Brigade, L&amp;T and Puravankara, are all building here.</li>
+</ul>
+
+<h2>Projects with published prices</h2>
+<p>${h.link(306)} by Brigade Group starts at ₹1.45 Cr for 2 and 3 BHK homes. ${h.link(338)} by Godrej Properties, a mixed development with 3, 3.5 and 4.5 BHK homes, starts at ₹2.90 Cr. Most other projects have not published prices yet.</p>
+${h.table([306, 338], 'North Bengaluru projects with published prices', KRERA)}
+
+<h2>Projects due by 2027</h2>
+${h.table([933, 545, 685, 871, 896, 554, 848, 556, 967, 902], 'North Bengaluru projects due by 2027', KRERA)}
+<p>${h.link(933)} is due in November 2026, and ${h.link(545)} and ${h.link(685)} in December 2026.</p>
+
+<h2>Projects by the big developers</h2>
+<ul>
+  <li><strong>Embassy:</strong> ${h.link(428)}, with 1, 2 and 3 BHK homes, and ${h.link(626)}, with 4 and 5+ BHK homes.</li>
+  <li><strong>Godrej Properties:</strong> ${h.link(677)} (3 and 4 BHK, May 2030), ${h.link(346)} and ${h.link(338)}.</li>
+  <li><strong>Prestige, Brigade and L&amp;T:</strong> ${h.link(702)}, ${h.link(812)} and ${h.link(809)}, each with homes from 1 BHK upwards.</li>
+  <li><strong>Puravankara:</strong> two phases of Northern Lights, ${h.link(463)} (December 2029) and ${h.link(464)}.</li>
+  <li><strong>Bhartiya City:</strong> five Nikoo Homes projects, ${h.link(949)}, ${h.link(301)}, ${h.link(302)}, ${h.link(292)} and ${h.link(293)}.</li>
+  <li><strong>Century Real Estate:</strong> ${h.link(556)} (August 2027), ${h.link(883)}, ${h.link(458)} and ${h.link(447)}.</li>
+  <li><strong>Assetz:</strong> ${h.link(906)}, ${h.link(928)}, ${h.link(548)}, ${h.link(905)}, ${h.link(791)} and ${h.link(439)}.</li>
+  <li><strong>Vajram, Sattva, TVS Emerald and others:</strong> ${h.link(927)}, ${h.link(348)}, ${h.link(816)}, ${h.link(886)}, ${h.link(309)}, ${h.link(514)}, ${h.link(456)}, ${h.link(774)}, ${h.link(297)}, ${h.link(894)} and ${h.link(769)}.</li>
+</ul>
+
+<h2>Large homes: 4 BHK and above</h2>
+<p>${h.link(844)} and ${h.link(845)} offer 5+ BHK homes due in May 2028. ${h.link(827)}, ${h.link(862)} and ${h.link(833)} offer 4 BHK homes, and ${h.link(626)}, ${h.link(447)} and ${h.link(466)} offer 4 BHK and larger homes due between 2030 and 2032.</p>
+
+<h2>Plotted layouts</h2>
+<p>We track nine plotted layouts in the north. ${h.link(915)} is due in October 2026, and ${h.link(474)}, ${h.link(501)}, ${h.link(653)} and ${h.link(766)} in December 2026. Century Real Estate has three phases of Century OneWorld Seraya: ${h.link(658)}, ${h.link(509)} and ${h.link(333)}. ${h.link(765)} is due in October 2030.</p>
+<p>For a plot, check the layout approval, the land conversion to residential use, the khata, and a title going back at least 30 years before you pay.</p>
+
+<h2>Checklist before you book in North Bengaluru</h2>
+<ol>
+  <li><strong>Check the K-RERA registration</strong> of your exact phase or tower on rera.karnataka.gov.in.</li>
+  <li><strong>Check the flight path.</strong> Some areas close to the airport and the Yelahanka air base have height limits and aircraft noise; visit at different times of day.</li>
+  <li><strong>Ask about water and the khata,</strong> especially for projects further out, which may be under a panchayat.</li>
+  <li><strong>Check the commute</strong> on the <a href="/map">live map</a>, including the traffic at Hebbal.</li>
+  <li><strong>Check the occupancy certificate</strong> before you take possession. See our <a href="/blog/occupancy-certificate-oc-completion-certificate-pune">OC and CC guide</a>.</li>
+</ol>
+
+<h2>FAQs: New projects in North Bengaluru</h2>
+<h3>What is the cheapest new project in North Bengaluru?</h3>
+<p>Of the projects with a published price, ${h.link(306)} starts lowest, at ₹1.45 Cr.</p>
+<h3>Which North Bengaluru projects are due first?</h3>
+<p>${h.link(933)} (November 2026), ${h.link(545)} and ${h.link(685)} (December 2026).</p>
+<h3>Is Yelahanka part of North Bengaluru?</h3>
+<p>Yes. Karnataka RERA lists it as a separate taluk, so our map shows Yelahanka and Bengaluru North separately, but both are covered in this guide.</p>
+<h3>What about the rest of Bengaluru?</h3>
+<p>See our guides to <a href="/blog/new-projects-in-whitefield-bengaluru-east">Whitefield and East Bengaluru</a>, <a href="/blog/new-projects-in-sarjapur-anekal-bengaluru">Sarjapur and Anekal</a> and <a href="/blog/new-projects-in-south-bengaluru">South Bengaluru</a>.</p>
+
+${BLR_NOTE}
+`,
+  };
+}
+
+function homeLoanTaxArticle() {
+  return {
+    slug: 'home-loan-tax-benefits-80c-24b',
+    title: 'Home Loan Tax Benefits in India: Principal, Interest, Joint Loans & the New Tax Regime',
+    seo_title: 'Home Loan Tax Benefits: Section 80C, 24(b) & New Regime',
+    seo_description:
+      'How much tax you can save on a home loan: up to ₹1.5 lakh on principal and ₹2 lakh on interest under the old regime, joint loans, under-construction homes, let-out flats and the new regime.',
+    excerpt:
+      'A home loan can cut your income tax, but how much depends on the tax regime you pick, whether the home is ready and whether you live in it. Here is how the deductions work, with examples.',
+    tags: ['Home Loan', 'Income Tax', 'Section 80C', 'Section 24(b)', 'Home Buying Guide'],
+    cover: {
+      theme: 'morning',
+      kicker: 'Buyer’s guide',
+      lines: ['Home Loan', 'Tax Benefits', 'Explained'],
+      stats: [['₹1.5 L', 'on principal'], ['₹2 L', 'on interest'], ['Old regime', 'for full benefit']],
+    },
+    content: `
+<p>If you are taking a <strong>home loan</strong>, part of what you repay each year can lower your income tax. The two main deductions are on the <strong>principal</strong> you repay and the <strong>interest</strong> you pay. How much you can claim depends on which tax regime you choose, whether the home is complete, and whether you live in it or rent it out. This guide explains each case.</p>
+<p>The deductions below are best known by their section numbers in the Income-tax Act, 1961: <strong>Section 80C</strong> for principal and <strong>Section 24(b)</strong> for interest. The Income-tax Act, 2025, which applies from April 2026, renumbers the sections, but banks, employers and most guides still use these names.</p>
+
+<h2>The deductions at a glance</h2>
+<div class="table-scroll"><table>
+<caption>Home loan tax deductions for an individual (per year)</caption>
+<thead><tr><th>What you pay</th><th>Old regime</th><th>New regime</th></tr></thead>
+<tbody>
+<tr><td>Principal repaid</td><td>Up to ₹1.5 lakh (Section 80C, shared with PF, PPF, insurance etc.)</td><td>Not allowed</td></tr>
+<tr><td>Interest: home you live in</td><td>Up to ₹2 lakh (Section 24(b))</td><td>Not allowed</td></tr>
+<tr><td>Interest: home you rent out</td><td>Full interest against rent; loss set off against other income up to ₹2 lakh</td><td>Against the rent only; no set-off of a loss</td></tr>
+<tr><td>Stamp duty and registration</td><td>Within the ₹1.5 lakh 80C limit, in the year you pay</td><td>Not allowed</td></tr>
+</tbody></table></div>
+
+<h2>1. Principal: up to ₹1.5 lakh</h2>
+<p>The principal part of your EMI counts towards the <strong>₹1.5 lakh</strong> Section 80C limit. The limit is shared with your provident fund, PPF, life insurance, ELSS and children’s tuition fees, so if your PF already uses most of it, the home loan adds little.</p>
+<ul>
+  <li><strong>Stamp duty and registration</strong> also count, but only in the year you pay them. See <a href="/blog/stamp-duty-registration-charges-pune">stamp duty and registration charges in Pune</a>.</li>
+  <li><strong>You must hold the home for five years.</strong> If you sell it within five years of the end of the financial year in which you got possession, the principal deductions you claimed are added back to your income.</li>
+  <li><strong>Only after completion.</strong> The principal deduction starts once construction is complete.</li>
+</ul>
+
+<h2>2. Interest on a home you live in: up to ₹2 lakh</h2>
+<p>Under the old regime, you can deduct up to <strong>₹2 lakh</strong> a year of interest on a loan for a home you live in. You can treat up to two homes as self-occupied, but the ₹2 lakh limit is for both together.</p>
+<p>Two conditions apply. The loan must be for buying or building the home, and construction must be completed within <strong>five years</strong> from the end of the financial year in which you took the loan. If it takes longer, the limit drops to ₹30,000 a year, which is a real risk with a <a href="/blog/possession-delay-rera-buyer-rights-maharera-complaint">delayed project</a>.</p>
+
+<h2>3. Interest paid during construction</h2>
+<p>For an under-construction flat, you cannot claim interest until the home is complete. The interest you paid before completion (the pre-EMI or EMI interest) is added up and claimed in <strong>five equal parts</strong>, starting in the year construction is completed. Each year’s part counts within the same ₹2 lakh limit. Our guide to <a href="/blog/payment-plans-construction-linked-subvention-flats-pune">payment plans</a> explains pre-EMI.</p>
+
+<h2>4. Interest on a home you rent out</h2>
+<p>If you rent the home out, the rent is taxed, and you can deduct the full interest from it, plus a standard 30% deduction on the rent after municipal taxes. If the interest is more than the rent, the result is a loss:</p>
+<ul>
+  <li><strong>Old regime:</strong> you can set up to ₹2 lakh of the loss against your salary or other income, and carry the rest forward for up to eight years, to be set against future rent.</li>
+  <li><strong>New regime:</strong> you can still deduct the interest from the rent, but a loss cannot be set against your salary.</li>
+</ul>
+
+<h2>Joint home loans</h2>
+<p>If you buy with your spouse or a family member and you are both <strong>co-owners and co-borrowers</strong>, each of you can claim the deductions separately: up to ₹1.5 lakh on principal and ₹2 lakh on interest each, in the share in which you own the home and repay the loan. For a couple both paying tax under the old regime, that can double the benefit. Being only a co-borrower, without a share in the home, is not enough.</p>
+
+<h2>Old or new regime?</h2>
+<p>The new regime has lower tax rates but no deductions for the home you live in. The old regime keeps the deductions but has higher rates. A large interest and principal claim can make the old regime cheaper, especially in the first years of a loan, when most of the EMI is interest. Work out your tax both ways each year. Salaried people can usually switch between regimes each year when filing; those with business income have fewer chances to switch.</p>
+
+<h2>Example</h2>
+<p>Say you take a ₹60 lakh loan for 20 years at 8.5% for a completed flat that you live in. Your EMI is about ₹52,000. In the first year you pay roughly ₹5 lakh of interest and ₹1.2 lakh of principal. Under the old regime you can claim ₹2 lakh of interest and the ₹1.2 lakh principal (if your 80C limit isn’t already used up), a total of ₹3.2 lakh. At a 30% tax rate, that saves close to ₹1 lakh in tax. Use our guide to <a href="/blog/home-loan-emi-eligibility-pune">home loan EMI and eligibility</a> to work out your own numbers.</p>
+
+<h2>FAQs</h2>
+<h3>Can I claim home loan interest in the new tax regime?</h3>
+<p>Not for a home you live in. For a home you rent out, you can deduct the interest from the rent, but not set a loss against your salary.</p>
+<h3>Can I claim tax benefits on an under-construction flat?</h3>
+<p>Not until construction is complete. Then the interest paid during construction is claimed in five equal parts.</p>
+<h3>Can both husband and wife claim on one home loan?</h3>
+<p>Yes, if both are co-owners and co-borrowers and both pay the EMIs. Each can claim within their own limits.</p>
+<h3>Is there an extra deduction for first-time buyers?</h3>
+<p>The extra deductions for first-time buyers (Sections 80EE and 80EEA) applied only to loans sanctioned before April 2017 and March 2022 respectively. They are not available on new loans.</p>
+
+<blockquote>This guide is general information based on the rules as we understand them in October 2026, not tax advice. Tax rules change with each Budget. Check your own case with a chartered accountant before you file.</blockquote>
+`,
+  };
+}
+
+function resaleArticle() {
+  return {
+    slug: 'buying-resale-flat-checklist-pune',
+    title: 'Buying a Resale Flat in Pune: 12 Checks Before You Pay the Token',
+    seo_title: 'Buying a Resale Flat in Pune: Documents & Checklist',
+    seo_description:
+      'What to check before you buy a resale flat in Pune: title chain, society share certificate and NOC, OC, dues, loan closure, TDS, stamp duty and the society transfer.',
+    excerpt:
+      'A resale flat is ready to move into and you can see exactly what you get, but the paperwork is different from a new project. Here are the documents and checks before you pay a token, and the steps to transfer it into your name.',
+    tags: ['Resale Flat', 'Pune', 'Home Buying Guide', 'Housing Society', 'Documents'],
+    cover: {
+      theme: 'sunrise',
+      kicker: 'Buyer’s guide',
+      lines: ['Buying a', 'Resale Flat', 'in Pune'],
+      stats: [['12', 'checks'], ['1% TDS', 'from ₹50 Lacs'], ['No GST', 'on resale']],
+    },
+    content: `
+<p>A <strong>resale flat</strong> has real advantages. You can see the flat, the building and the neighbours before you buy, you can move in straight away, and there is no GST. But there is no RERA registration to check and no developer to hold to a promise, so the checks you do yourself matter more. This guide lists the documents and checks before you pay a token, and the steps to transfer the flat into your name.</p>
+
+<h2>Resale vs new: what is different</h2>
+<ul>
+  <li><strong>No GST</strong> on a completed flat, unlike an under-construction one. See <a href="/blog/ready-to-move-vs-under-construction-flats-pune">ready-to-move vs under-construction flats</a>.</li>
+  <li><strong>Stamp duty and registration are the same</strong> as for a new flat, on the agreement value or the ready reckoner rate, whichever is higher. See <a href="/blog/stamp-duty-registration-charges-pune">stamp duty and registration charges in Pune</a>.</li>
+  <li><strong>RERA usually doesn’t apply</strong> to a sale between two owners, so your protection is in the documents and the agreement.</li>
+  <li><strong>The housing society</strong> has to accept you as a member, so it becomes part of the deal.</li>
+</ul>
+
+<h2>Documents to ask the seller for</h2>
+<ol>
+  <li><strong>The chain of agreements.</strong> Every agreement from the builder’s original sale to the seller, registered, with the stamp duty paid. A gap in the chain is a red flag.</li>
+  <li><strong>Index II</strong> for the seller’s purchase, which shows the registration at the sub-registrar’s office.</li>
+  <li><strong>The share certificate</strong> issued by the housing society in the seller’s name, which shows they are a member.</li>
+  <li><strong>A no-objection certificate (NOC) from the society</strong> for the sale, and a statement that there are no dues.</li>
+  <li><strong>The occupancy certificate (OC)</strong> for the building. Without it, the building may not be legal to live in, and banks may not lend. See our <a href="/blog/occupancy-certificate-oc-completion-certificate-pune">OC and CC guide</a>.</li>
+  <li><strong>Paid bills:</strong> the latest property tax, electricity and maintenance receipts, so you don’t inherit dues.</li>
+  <li><strong>Loan papers, if the flat is mortgaged:</strong> a letter from the seller’s bank stating the amount outstanding, and, after it is paid off, a loan closure letter and the original documents returned by the bank.</li>
+</ol>
+<p>Our list of <a href="/blog/documents-to-check-before-buying-flat-pune">documents to check before buying a flat</a> covers the building-level documents in more detail.</p>
+
+<h2>Checks to do yourself</h2>
+<ol start="8">
+  <li><strong>A title search.</strong> Get a lawyer to search the sub-registrar’s records for at least 30 years and give a title report. It shows any other sale, mortgage or claim on the flat.</li>
+  <li><strong>Check who owns it.</strong> If the flat is jointly owned or inherited, every owner, or every legal heir, has to sign. For an inherited flat, ask for the death certificate and the will, probate or heirship documents.</li>
+  <li><strong>Check the area.</strong> Measure the carpet area and compare it with the agreement. Older agreements often show built-up or super built-up area; see <a href="/blog/carpet-area-vs-built-up-vs-super-built-up-area">carpet vs built-up vs super built-up area</a>.</li>
+  <li><strong>Check the building.</strong> Look for cracks, leaks and damp, the condition of the lifts, the water supply and the parking. Ask whether a structural audit has been done if the building is older. Our <a href="/blog/site-visit-checklist-before-buying-flat-pune">site visit checklist</a> lists what to look at.</li>
+  <li><strong>Check for changes.</strong> An enclosed balcony, a merged terrace or a moved wall may not be in the approved plan, and the society or the municipal corporation can ask for it to be undone.</li>
+</ol>
+
+<h2>The money: token, TDS and loans</h2>
+<ul>
+  <li><strong>Keep the token small</strong> and pay it against a written receipt that states the price, the flat and the date for the agreement, and what happens to the token if the deal falls through.</li>
+  <li><strong>TDS.</strong> If the price is ₹50 lakh or more and the seller is resident in India, you must deduct 1% TDS from the payment and deposit it with the government (Form 26QB). If the seller is a non-resident, the TDS rate is much higher; ask a chartered accountant.</li>
+  <li><strong>Home loans.</strong> Banks value the flat themselves and may lend less than the price on an older building, or for a shorter term. Get your loan approved before you sign. See <a href="/blog/home-loan-emi-eligibility-pune">home loan EMI and eligibility</a>.</li>
+  <li><strong>Pay by bank transfer only</strong>, to the seller’s account, and to their bank if there is a loan outstanding.</li>
+</ul>
+
+<h2>Transferring the flat</h2>
+<ol>
+  <li><strong>Sign and register</strong> the agreement for sale at the sub-registrar’s office, with stamp duty paid. Both sides and two witnesses attend.</li>
+  <li><strong>Apply to the society</strong> for membership and the transfer of the share certificate. The society can charge a transfer premium, but it is capped by state rules, so ask for it in writing.</li>
+  <li><strong>Transfer the property tax and the electricity connection</strong> to your name.</li>
+  <li><strong>Keep the originals</strong> of every document, including the full chain of earlier agreements, safely.</li>
+</ol>
+
+<h2>FAQs</h2>
+<h3>Is GST payable on a resale flat?</h3>
+<p>No. GST applies only to under-construction flats bought from a developer.</p>
+<h3>Is stamp duty lower on a resale flat?</h3>
+<p>No, it is worked out the same way as for a new flat in Maharashtra.</p>
+<h3>Can I buy a resale flat in a building without an OC?</h3>
+<p>It is risky. Banks may not lend, and the building may face action. Ask a lawyer before you go ahead.</p>
+<h3>Who pays the society transfer charges?</h3>
+<p>It depends on what the buyer and seller agree. Write it into the agreement.</p>
+
+<blockquote>This guide is general information, not legal or tax advice. Rules change over time. Have the documents checked by a property lawyer before you pay, and confirm TDS and tax questions with a chartered accountant.</blockquote>
+`,
+  };
+}
+
 // ---- photos ---------------------------------------------------------------------
 
 const PHOTO_DIR = path.resolve('migration/blog-photos');
@@ -2471,6 +2949,8 @@ async function main() {
     commercialArticle(h), upcomingArticle(h), bengaluruArticle(h), mumbaiArticle(h),
     centralPuneArticle(h), documentsArticle(h), carpetAreaArticle(), possessionDelayArticle(),
     siteVisitArticle(), occupancyCertificateArticle(), agreementForSaleArticle(), paymentPlansArticle(),
+    bengaluruEastArticle(h), anekalArticle(h), southBengaluruArticle(h), northBengaluruArticle(h),
+    homeLoanTaxArticle(), resaleArticle(),
   ];
 
   // --only=slug-a,slug-b seeds just those posts and leaves the rest (and the old

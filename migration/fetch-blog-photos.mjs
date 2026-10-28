@@ -40,6 +40,12 @@ const PHOTOS = {
   'occupancy-certificate-oc-completion-certificate-pune': 'Magarpatta Residential Apartments (2).JPG',
   'agreement-for-sale-clauses-to-check-maharera': 'Pashan, Pune Skyline.jpg',
   'payment-plans-construction-linked-subvention-flats-pune': 'South Pune Skyline.jpg',
+  'new-projects-in-whitefield-bengaluru-east': 'NCC apartments at Mahadevapura Bangalore.JPG',
+  'new-projects-in-sarjapur-anekal-bengaluru': 'KaikondrahalliLake.jpg',
+  'new-projects-in-south-bengaluru': 'Brigade Omega Apartments, BSK 6th Stage, Bangalore (2024).jpg',
+  'new-projects-in-north-bengaluru-yelahanka': 'Yelahanka New Town.jpg',
+  'home-loan-tax-benefits-80c-24b': 'Baner Hill from Pashan, Pune, India..jpg',
+  'buying-resale-flat-checklist-pune': 'Ganesh Apartment, Kasba Peth, Pune.jpg',
 };
 
 const OUT = path.resolve('migration/blog-photos');
