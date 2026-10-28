@@ -5,6 +5,7 @@ import { requestFullEdit } from './fullEdit';
 import { usePersistedState } from './usePersistedState';
 import { PageHead, StatCard } from './PageHead';
 import { cityFrom, CITY_SHORT } from '@/lib/seo/city';
+import { companyKey, displayName } from '@/lib/developer-name';
 
 // Super admin → Developers: the developer directory, ONE logo per developer
 // (lib/developers.ts). In the Map Editor, typing a developer's name suggests it
@@ -89,7 +90,32 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
   });
   // Duplicate groups the admin said are different companies (remembered on this device).
   const [notDupes, setNotDupes] = useState<string[]>(() => { try { return JSON.parse(localStorage.getItem(NOT_DUPES_KEY) || '[]'); } catch { return []; } });
-  const dupes = useMemo(() => likelyDuplicates(rows || []).filter((g) => !notDupes.includes(groupKey(g))), [rows, notDupes]);
+  // Certain duplicates (same company, written differently) can all be merged in one go;
+  // the looser look-alikes below them still need a person to decide.
+  const exact = useMemo(() => exactDuplicates(rows || []), [rows]);
+  const dupes = useMemo(() => {
+    const inExact = new Set(exact.flat().map((d) => d.id));
+    return likelyDuplicates((rows || []).filter((r) => !inExact.has(r.id))).filter((g) => !notDupes.includes(groupKey(g)));
+  }, [rows, notDupes, exact]);
+  const [dedupeBusy, setDedupeBusy] = useState(false);
+  async function mergeAllExact() {
+    const removed = exact.reduce((n, g) => n + g.length - 1, 0);
+    if (!window.confirm(`Merge ${exact.length} groups of duplicate developers?
+
+• ${removed} duplicate entries are removed; their projects move to the developer that stays.
+• Each developer keeps its nicest name (e.g. “Godrej Properties”, not “GODREJ PROPERTIES LIMITED”); the other spellings are remembered so they don't come back.
+• Projects with their own logo keep it.
+
+Old project data stays in Backups.`)) return;
+    setDedupeBusy(true);
+    try {
+      const r = await call('POST', '?action=dedupe');
+      flash(`Merged ${r?.groups ?? exact.length} duplicate groups — ${r?.removed ?? removed} entries removed, ${r?.moved ?? 0} projects moved`);
+      await load();
+    } catch (e) { flash(e instanceof Error ? e.message : 'Could not merge', true); }
+    setDedupeBusy(false);
+  }
+  const dupeCount = exact.length + dupes.length;
   const [merging, setMerging] = useState<Dev[] | null>(null);
   const ignoreDupe = (g: Dev[]) => {
     const next = [...notDupes, groupKey(g)];
@@ -152,11 +178,26 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
         <StatCard icon="fa-building" tone="green" value={counts.all.toLocaleString('en-IN')} label="Total Developers" on={filter === 'all'} onClick={() => setFilter('all')} />
         <StatCard icon="fa-map-location-dot" tone="blue" value={totalProjects.toLocaleString('en-IN')} label="Mapped on Map" title="Projects on the map that belong to these developers" />
         <StatCard icon="fa-image" tone="amber" value={counts.nologo.toLocaleString('en-IN')} label="Need a Logo" on={filter === 'nologo'} onClick={() => setFilter(filter === 'nologo' ? 'all' : 'nologo')} disabled={!counts.nologo} />
-        <StatCard icon="fa-clone" tone="rose" value={dupes.length.toLocaleString('en-IN')} label="Duplicates Found" onClick={() => dupesRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })} disabled={!dupes.length} />
+        <StatCard icon="fa-clone" tone="rose" value={dupeCount.toLocaleString('en-IN')} label="Duplicates Found" onClick={() => dupesRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })} disabled={!dupeCount} />
       </div>
 
+      {exact.length > 0 && (
+        <section className="dvl-dupes dvl-exact" ref={dupesRef}>
+          <header>
+            <i className="fas fa-clone" />
+            <div>
+              <b>{exact.length} developers are listed more than once</b>
+              <span className="muted">Same company written differently, e.g. {exact[0].map((d) => `“${d.name}”`).join(' and ')}. Merge them so each developer appears once with all its projects.</span>
+            </div>
+            <button type="button" className="adm-btn primary sm" onClick={mergeAllExact} disabled={dedupeBusy}>
+              {dedupeBusy ? <><i className="fas fa-spinner fa-spin" /> Merging…</> : <><i className="fas fa-code-merge" /> Merge all {exact.length}</>}
+            </button>
+          </header>
+        </section>
+      )}
+
       {dupes.length > 0 && (
-        <section className="dvl-dupes" ref={dupesRef}>
+        <section className="dvl-dupes" ref={exact.length ? undefined : dupesRef}>
           <header>
             <i className="fas fa-clone" />
             <div>
@@ -317,6 +358,13 @@ export default function DevelopersPanel({ flash }: { flash: Flash }) {
 const COMMON = new Set(['the', 'shree', 'shri', 'sri', 'sai', 'new', 'pune', 'mumbai', 'group', 'developers', 'developer', 'properties', 'property', 'realty', 'builders', 'builder', 'buildcon', 'constructions', 'construction', 'infra', 'homes', 'estates', 'and', 'pvt', 'ltd', 'llp']);
 const nameKey = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 const firstWord = (s: string) => nameKey(s).split(' ').find((w) => w.length >= 3 && !COMMON.has(w)) || '';
+/** Groups that are certainly one company written differently (see lib/developer-name.ts). */
+function exactDuplicates(rows: Dev[]): Dev[][] {
+  const groups = new Map<string, Dev[]>();
+  for (const r of rows) { const k = companyKey(r.name); if (k) groups.set(k, [...(groups.get(k) || []), r]); }
+  return [...groups.values()].filter((g) => g.length > 1).sort((a, b) => sum(b) - sum(a) || displayName(a.map((d) => d.name)).localeCompare(displayName(b.map((d) => d.name))));
+}
+const sum = (g: Dev[]) => g.reduce((n, d) => n + d.projects, 0);
 /** Developers whose names look like the same company (same main word, e.g. “Lodha” and “Lodha Group”). */
 function likelyDuplicates(rows: Dev[]): Dev[][] {
   const groups = new Map<string, Dev[]>();

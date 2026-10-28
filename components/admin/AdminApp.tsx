@@ -3938,6 +3938,31 @@ export default function AdminApp({ user }: { user: AdminUser }) {
       nav?.removeEventListener('scroll', close);
     };
   }, [navOpen]);
+  // When the section row is wider than the screen it scrolls sideways: fade the edge
+  // only while more tabs are hidden, and let a mouse wheel scroll it too.
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+    const edge = () => nav.classList.toggle('at-end', nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 2);
+    const wheel = (e: WheelEvent) => {
+      if (nav.scrollWidth <= nav.clientWidth || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      nav.scrollLeft += e.deltaY;
+      e.preventDefault();
+    };
+    edge();
+    nav.addEventListener('scroll', edge, { passive: true });
+    nav.addEventListener('wheel', wheel, { passive: false });
+    window.addEventListener('resize', edge);
+    return () => { nav.removeEventListener('scroll', edge); nav.removeEventListener('wheel', wheel); window.removeEventListener('resize', edge); };
+  }, []);
+  // Keep the current section's tab in view on narrow screens.
+  useEffect(() => {
+    const nav = navRef.current;
+    const el = nav?.querySelector<HTMLElement>('.adm2-tab.active');
+    if (!nav || !el || nav.scrollWidth <= nav.clientWidth) return;
+    const left = el.offsetLeft, right = left + el.offsetWidth; // the sticky nav is the offsetParent
+    if (left < nav.scrollLeft || right > nav.scrollLeft + nav.clientWidth - 28) nav.scrollTo({ left: Math.max(0, left - 16), behavior: 'smooth' });
+  }, [tab]);
   /** Items waiting on the admin in one section (accounts to verify, projects to approve). */
   const badgeOf = (k: string) => (k === 'accounts' ? pendingCount : k === 'projects' ? projPending : 0);
   const [avatar, setAvatar] = useState(user.avatar || '');
@@ -3959,6 +3984,31 @@ export default function AdminApp({ user }: { user: AdminUser }) {
   // layout). Older devices may still have the pre-move '/s-admin' value stored —
   // that path now redirects to /dashboard/s-admin, so it keeps working.
   const LOCK_PANEL = '/dashboard/s-admin';
+  // Screen size of the admin on laptops/desktops (CSS zoom, see admin.css "Density").
+  // Remembered per device. Capped so the zoomed page never gets narrower than the
+  // ~1100 px desktop layout, which would squash the columns.
+  const ZOOM_STEPS = [0.8, 0.9, 1, 1.1, 1.2, 1.3] as const;
+  const [uiZoom, setUiZoom] = useState(1);
+  const [zoomMax, setZoomMax] = useState(1.3);
+  useEffect(() => {
+    const fit = () => setZoomMax(Math.max(1, window.innerWidth / 1180));
+    fit();
+    try {
+      const v = Number(localStorage.getItem('mg_admin_zoom'));
+      if ((ZOOM_STEPS as readonly number[]).includes(v)) setUiZoom(v);
+    } catch { /* storage unavailable */ }
+    window.addEventListener('resize', fit);
+    return () => window.removeEventListener('resize', fit);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const zoomNow = Math.min(uiZoom, ZOOM_STEPS.filter((z) => z <= zoomMax).pop() ?? 1);
+  const zoomBy = (dir: -1 | 0 | 1) => {
+    const allowed = ZOOM_STEPS.filter((z) => z <= zoomMax);
+    const i = allowed.indexOf(zoomNow as (typeof ZOOM_STEPS)[number]);
+    const next = dir === 0 ? 1 : allowed[Math.max(0, Math.min(allowed.length - 1, i + dir))];
+    setUiZoom(next);
+    try { localStorage.setItem('mg_admin_zoom', String(next)); } catch { /* storage unavailable */ }
+  };
+
   const [locked, setLocked] = useState(false);
   useEffect(() => {
     try {
@@ -3988,7 +4038,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
   }
 
   return (
-    <div className="adm2">
+    <div className="adm2" style={{ ['--z' as string]: zoomNow }}>
       <header className="adm2-top">
         {/* Same logo as the main site header — the only logo on this screen. */}
         <a className="adm2-brand" href="/" target="_blank" rel="noopener" aria-label="Mappingg.com home">
@@ -4038,6 +4088,11 @@ export default function AdminApp({ user }: { user: AdminUser }) {
             </label>
           )}
           <span className="adm2-pill adm2-date"><i className="far fa-calendar" /> {today}</span>
+          <div className="adm2-pill adm2-zoom" role="group" aria-label="Screen size">
+            <button type="button" onClick={() => zoomBy(-1)} disabled={zoomNow <= ZOOM_STEPS[0]} aria-label="Zoom out" title="Smaller"><i className="fas fa-minus" /></button>
+            <button type="button" className="pct" onClick={() => zoomBy(0)} title="Reset to 100%">{Math.round(zoomNow * 100)}%</button>
+            <button type="button" onClick={() => zoomBy(1)} disabled={zoomNow >= Math.min(zoomMax, ZOOM_STEPS[ZOOM_STEPS.length - 1])} aria-label="Zoom in" title="Bigger"><i className="fas fa-plus" /></button>
+          </div>
           {(visible.includes('projects') || visible.includes('accounts')) && (
             <NotificationBell
               flash={(m) => flash(m)}

@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { hasPermission } from '@/lib/staff';
-import { DeveloperError, applyLogoToPins, createDeveloper, deleteDeveloper, developerProjects, listDevelopers, mergeDeveloper, setPinsLogo, updateDeveloper } from '@/lib/developers';
+import { DeveloperError, applyLogoToPins, createDeveloper, deleteDeveloper, developerProjects, listDevelopers, mergeAllDuplicates, mergeDeveloper, setPinsLogo, updateDeveloper } from '@/lib/developers';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
+// "Merge all duplicates" moves a few hundred projects in one request.
+export const maxDuration = 300;
 
 // Super admin → Developers: the developer directory (one logo per developer).
 //   GET                      list with project counts
@@ -13,6 +15,7 @@ export const dynamic = 'force-dynamic';
 //                            all of them, or only {pins: [ids]} when given
 //   POST ?id=…&action=setlogo {pins, logo}  a different logo on just those projects
 //   POST ?id=…&action=merge {into}  merge this (duplicate) developer into another
+//   POST ?action=dedupe       merge every group that is the same company written differently
 //   PATCH ?id=… {name?, logo?}  rename / change or remove logo
 //   DELETE ?id=…             remove from the list (map projects are not touched)
 // Anyone who may edit the map may manage it.
@@ -38,6 +41,9 @@ export async function POST(req: NextRequest) {
   if (!(await hasPermission('map'))) return denied();
   const id = req.nextUrl.searchParams.get('id');
   try {
+    if (req.nextUrl.searchParams.get('action') === 'dedupe') {
+      return NextResponse.json({ data: await mergeAllDuplicates() }, { headers });
+    }
     if (id && req.nextUrl.searchParams.get('action') === 'merge') {
       const b = await body(req);
       return NextResponse.json({ data: await mergeDeveloper(id, String(b.into || '')) }, { headers });

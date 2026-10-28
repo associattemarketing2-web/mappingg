@@ -4,6 +4,7 @@ import { getDb, usingMongo } from './mongodb';
 import { runDbOp } from './db-engine';
 import { MEDIA_DIGEST_PREFIX, mediaUrl } from './pin-media';
 import { slugForProject } from './seo/entities';
+import { companyKey, displayName } from './developer-name';
 
 // The developer directory: one record per real-estate developer (builder brand)
 // with ONE logo. The map editor's "Developer" box suggests names from here, and
@@ -65,6 +66,7 @@ const pinsColl = async () => (await getDb()).collection<{ _id: string; id: strin
 // MEDIA_DIGEST_PREFIX + md5 instead of the base64 (megabytes across all pins).
 const md5 = (s: string) => createHash('md5').update(s).digest('hex');
 const fingerprint = (img: unknown) => (typeof img !== 'string' || !img ? '' : img.startsWith(MEDIA_DIGEST_PREFIX) ? img.slice(MEDIA_DIGEST_PREFIX.length) : img.startsWith('data:') ? md5(img) : img);
+type PinSummary = Awaited<ReturnType<typeof pinSummaries>>[number];
 /** Every pin's id, developer and image fingerprint — no image data. */
 const pinSummaries = async () => (await (await pinsColl()).find({}, { projection: PIN_FACTS, mediaDigest: { fields: ['image'] } } as never).toArray() as unknown as PinFacts[])
   .map((p) => ({ id: p.id, developer: p.developer, logo: fingerprint(p.image), image: imageOf(p, 120), ...factsOf(p) }));
@@ -75,12 +77,16 @@ export function syncFromPins(): Promise<void> {
   seeding ??= (async () => {
     await ensureTable();
     const c = await coll();
-    const have = new Set((await c.find({}, { projection: { name: 1 } }).toArray()).map((d) => normDev(d.name)));
+    // A name already in the list, as one of its other names (kept when duplicates are
+    // merged), or as the same company written another way is not added again.
+    const known = await c.find({}, { projection: { name: 1, aliases: 1 } }).toArray();
+    const have = new Set(known.flatMap((d) => [d.name, ...(d.aliases || [])].map(normDev)));
+    const sameCo = new Set(known.flatMap((d) => [d.name, ...(d.aliases || [])].map(companyKey)).filter(Boolean));
     // Per developer: the spelling used most, and the logo (by fingerprint) used most, with a pin that has it.
     const groups = new Map<string, { names: Map<string, number>; logos: Map<string, { n: number; pin: string }> }>();
     for (const p of await pinSummaries()) {
       const key = normDev(p.developer);
-      if (!key || have.has(key)) continue;
+      if (!key || have.has(key) || sameCo.has(companyKey(p.developer))) continue;
       const g = groups.get(key) || { names: new Map(), logos: new Map() };
       const name = String(p.developer).trim();
       g.names.set(name, (g.names.get(name) || 0) + 1);
@@ -298,28 +304,72 @@ export async function updateDeveloper(id: string, input: { name?: unknown; logo?
  * the other developer has none, and the duplicate is removed from the list.
  * Every project change goes through the normal pin update (history / Backups).
  */
-export async function mergeDeveloper(fromId: string, intoId: string): Promise<{ moved: number }> {
+export async function mergeDeveloper(fromId: string, intoId: string, allPins?: PinSummary[], renameTo?: string): Promise<{ moved: number }> {
   await ensureTable();
   if (!intoId || fromId === intoId) throw new DeveloperError('Choose a different developer to merge into');
   const c = await coll();
   const [from, into] = await Promise.all([c.findOne({ id: fromId }), c.findOne({ id: intoId })]);
   if (!from || !into) throw new DeveloperError('Developer not found', 404);
   const fromKey = normDev(from.name), fromLogo = fingerprint(from.logo);
-  const pins = (await pinSummaries()).filter((p) => normDev(p.developer) === fromKey);
+  const pins = (allPins || await pinSummaries()).filter((p) => normDev(p.developer) === fromKey);
   const ids = pins.map((p) => p.id);
   // Projects that showed the duplicate's logo (or none) switch to the kept developer's logo.
   const logo = into.logo || from.logo || null;
   const swap = logo ? pins.filter((p) => !p.logo || (fromLogo && p.logo === fromLogo)).map((p) => p.id) : [];
   const keep = ids.filter((x) => !swap.includes(x));
-  for (const [list, values] of [[swap, { developer: into.name, image: logo }], [keep, { developer: into.name }]] as const) {
+  const to = renameTo || into.name;
+  for (const [list, values] of [[swap, { developer: to, image: logo }], [keep, { developer: to }]] as const) {
     if (!list.length) continue;
     const r = await runDbOp({ table: 'pins', action: 'update', filters: [{ op: 'in', col: 'id', vals: [...list] }], values }, true);
     if (r.error) throw new DeveloperError(r.error.message, r.status || 500);
   }
-  if (!into.logo && from.logo) await c.updateOne({ id: intoId }, { $set: { logo: from.logo, updated_at: new Date().toISOString() } });
+  // The duplicate's names become other names of the kept developer: RERA imports that
+  // still use them get this logo and don't add the duplicate back (syncFromPins).
+  const aliases = [...new Set([...(into.aliases || []), from.name, ...(from.aliases || [])])].filter((a) => a && normDev(a) !== normDev(into.name));
+  await c.updateOne({ id: intoId }, { $set: { aliases, ...(!into.logo && from.logo ? { logo: from.logo } : {}), updated_at: new Date().toISOString() } });
   await c.deleteOne({ id: fromId });
   logoIdx = null;
   return { moved: ids.length };
+}
+
+/**
+ * Merges every group of developers that are the same company written differently
+ * (companyKey(): "GODREJ PROPERTIES LIMITED" = "Godrej Properties"). In each group
+ * the one with the most projects (then a logo) is kept, the others merge into it
+ * (mergeDeveloper: projects move, names kept as aliases), and it gets the nicest
+ * of the spellings as its name. Look-alikes that are not certain are left alone.
+ */
+export async function mergeAllDuplicates(): Promise<{ groups: number; removed: number; moved: number }> {
+  await syncFromPins();
+  const c = await coll();
+  // Projects are read once for the whole run (groups never share projects).
+  const [devs, pins] = await Promise.all([c.find({}, { projection: { id: 1, name: 1, logo: 1, aliases: 1 }, mediaDigest: { fields: ['logo'] } } as never).toArray(), pinSummaries()]);
+  const count = new Map<string, number>();
+  for (const p of pins) { const k = normDev(p.developer); if (k) count.set(k, (count.get(k) || 0) + 1); }
+  const groups = new Map<string, typeof devs>();
+  for (const d of devs) { const k = companyKey(d.name); if (k) groups.set(k, [...(groups.get(k) || []), d]); }
+  let done = 0, removed = 0, moved = 0;
+  for (const g of groups.values()) {
+    if (g.length < 2) continue;
+    const n = (d: { name: string }) => count.get(normDev(d.name)) || 0;
+    const keep = [...g].sort((a, b) => n(b) - n(a) || Number(!!b.logo) - Number(!!a.logo) || a.name.localeCompare(b.name))[0];
+    const name = displayName(g.map((d) => d.name));
+    // Merged projects get the final name straight away; the kept developer's own ones are renamed below.
+    for (const d of g) if (d.id !== keep.id) { moved += (await mergeDeveloper(d.id, keep.id, pins, name)).moved; removed++; }
+    if (name !== keep.name) {
+      const own = pins.filter((p) => normDev(p.developer) === normDev(keep.name) && p.developer !== name).map((p) => p.id);
+      if (own.length) {
+        const r = await runDbOp({ table: 'pins', action: 'update', filters: [{ op: 'in', col: 'id', vals: own }], values: { developer: name } }, true);
+        if (r.error) throw new DeveloperError(r.error.message, r.status || 500);
+      }
+      const cur = await c.findOne({ id: keep.id }, { projection: { aliases: 1 } });
+      const aliases = [...new Set([...(cur?.aliases || []), keep.name])].filter((x) => normDev(x) !== normDev(name));
+      await c.updateOne({ id: keep.id }, { $set: { name, aliases, updated_at: new Date().toISOString() } });
+    }
+    done++;
+  }
+  logoIdx = null;
+  return { groups: done, removed, moved };
 }
 
 export async function deleteDeveloper(id: string): Promise<void> {
