@@ -1,0 +1,40 @@
+Pune Jewellery Decision-Makers: research summary (2026-10-27)
+==================================================================
+
+RESULT: target of 500 NOT reached. 34 records passed the verification rules.
+
+Verified unique contacts (people):                 34
+With publicly disclosed direct professional mobile: 0
+With business/office numbers only:                  25  (business mobile/WhatsApp: 11)
+With no verified contact number:                    9
+Unique jewellery businesses:                        9
+Verified Pune jewellery businesses:                 8
+Confidence High / Medium / Low:                     5 / 18 / 11
+Excluded (outside Pune):                            9
+Rejected (insufficient evidence):                   17
+Invalid/truncated numbers discarded:                2
+
+WHY THE SHORTFALL
+- Owners' personal mobiles are almost never published for professional contact; none was found.
+- Most Pune jewellers are proprietorships/partnerships with no leadership page; names appear only in
+  news or registry data, and many official sites were down (404, refused, DNS, rate-limited).
+- Justdial/Zaubacorp block automated access (403) and were not bypassed. The MCA portal needs a CAPTCHA.
+- No Pune jewellers' association publishes its member list online.
+
+SOURCES USED
+Stock-exchange filings (NSE), trade press (Indian Jeweller, GJEPC Solitaire, GJC Connect, Retail4Growth),
+news (Indian Retailer, ThePrint/ANI, Punekar News, NewKerala, MediaInfoline, Franchise India),
+company-registry aggregators (Registrationwala, Qorpiq / MCA data), IndiaMART listings, official sites.
+Full list with access limitations: Research_Log sheet.
+
+LEGITIMATE SOURCES TO EXTEND THIS
+1. MCA master data on data.gov.in (ROC-Pune + jewellery NIC codes 3211/4648/4773): gives hundreds of
+   Pune jewellery companies/LLPs; directors then looked up one by one on mca.gov.in (manual CAPTCHA).
+2. Pune Saraf Association / Hadapsar Sarafa Association: ask for a member directory directly.
+3. GJEPC member search and IIJS / UGJIS Pune exhibitor lists (often issued to visitors on request).
+4. BIS hallmark-registered jeweller list (bis.gov.in), filtered to Pune; names the business, not people.
+5. IndiaMART / TradeIndia supplier pages viewed manually (not scraped): give owner names and business lines.
+
+FILES
+C:\Users\Pushkar\Documents\GitHub\mappingg\output\Pune_Jewellery_Decision_Makers_500.xlsx
+C:\Users\Pushkar\Documents\GitHub\mappingg\output\Pune_Jewellery_Research_Summary.txt

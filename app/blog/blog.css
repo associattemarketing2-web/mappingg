@@ -34,7 +34,8 @@
 .blog-hero h1 { font-size: clamp(30px, 5vw, 48px); letter-spacing: -.03em; margin: 14px 0 10px; }
 .blog-hero p { color: var(--muted); font-size: 17px; max-width: 560px; margin: 0 auto; }
 
-.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; padding: 30px 0 80px; }
+.blog-count { margin: 24px 0 0; color: var(--muted); font-size: 14px; font-weight: 600; }
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; padding: 14px 0 80px; }
 @media (max-width: 900px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 620px) { .blog-grid { grid-template-columns: 1fr; } }
 .post-card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; }

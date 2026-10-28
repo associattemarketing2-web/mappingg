@@ -5,7 +5,7 @@ import { listPublished } from '@/lib/blog';
 import SiteHeader from '@/components/SiteHeader';
 
 import { SITE_URL } from '@/lib/seo/config';
-import { blogPageCount, blogPageHref as pageHref, blogPageSlice, parseBlogPage, type PageParam } from '@/lib/blog-pagination';
+import { BLOG_PER_PAGE, blogPageCount, blogPageHref as pageHref, blogPageSlice, parseBlogPage, type PageParam } from '@/lib/blog-pagination';
 
 export const revalidate = 3600;
 
@@ -34,6 +34,8 @@ export default async function BlogIndex({ searchParams }: { searchParams?: { pag
   const page = parseBlogPage(searchParams?.page);
   const posts = blogPageSlice(all, page);
   if (!posts) notFound();
+  const first = (page - 1) * BLOG_PER_PAGE + 1;
+  const last = first + posts.length - 1;
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -56,6 +58,7 @@ export default async function BlogIndex({ searchParams }: { searchParams?: { pag
 
       <header className="blog-hero">
         <div className="wrap">
+          {all.length > 0 && <span className="eyebrow">{all.length} {all.length === 1 ? 'article' : 'articles'}</span>}
           <h1>Mappingg Blog</h1>
           <p>Locality guides, budget guides and buying tips for Pune, the Mumbai Metropolitan Region and Bengaluru — from the team behind the live project map.</p>
         </div>
@@ -67,6 +70,8 @@ export default async function BlogIndex({ searchParams }: { searchParams?: { pag
             <p>No articles yet — check back soon.</p>
           </div>
         ) : (
+          <>
+          <p className="blog-count">Showing {first}–{last} of {all.length} articles</p>
           <div className="blog-grid">
             {posts.map((p) => (
               <a className="post-card" href={`/blog/${p.slug}`} key={p.id}>
@@ -87,6 +92,7 @@ export default async function BlogIndex({ searchParams }: { searchParams?: { pag
               </a>
             ))}
           </div>
+          </>
         )}
 
         {pages > 1 && (
