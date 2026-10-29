@@ -27,6 +27,10 @@ export default function EntityListing(props: {
   relatedTitle?: string;
   related?: RelatedPill[];
   faqs?: { q: string; a: string }[];
+  /** Shown between the intro and the project list (e.g. the /projects filters). */
+  filters?: React.ReactNode;
+  /** Shown instead of the default text when the list is empty. */
+  empty?: React.ReactNode;
   /** For long lists: `pins` is this page's slice; intro and FAQs show on page 1 only. */
   pagination?: { page: number; pages: number; total: number; from: number; base: string };
 }) {
@@ -69,6 +73,8 @@ export default function EntityListing(props: {
         </section>
       )}
 
+      {props.filters}
+
       <section className="seo-section">
         <h2>{props.projectsHeading || `Projects (${pins.length})`}</h2>
         {pg && pg.pages > 1 && (
@@ -83,7 +89,7 @@ export default function EntityListing(props: {
             ))}
           </div>
         ) : (
-          <p className="seo-prose">No projects listed here yet. Explore the <Link href="/map">live map</Link>.</p>
+          props.empty || <p className="seo-prose">No projects listed here yet. Explore the <Link href="/map">live map</Link>.</p>
         )}
         {pg && <Pager base={pg.base} page={pg.page} pages={pg.pages} label="Project list pages" />}
       </section>

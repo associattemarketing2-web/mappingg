@@ -17,6 +17,7 @@ import {
   type Pin,
 } from '@/lib/seo/entities';
 import { slugify } from '@/lib/seo/slug';
+import { toCard } from '@/lib/home/cards';
 import { projectSchema, faqSchema, videoSchema, youtubeId, jsonLd } from '@/lib/seo/schema';
 import { projectFaqs, projectSummary, reraNumber, reraRegistry } from '@/lib/seo/project-meta';
 
@@ -113,6 +114,16 @@ export default async function ProjectDetail({ params }: { params: { slug: string
     .map((l) => ({ label: l, path: `/locations/${slugify(l)}` }));
 
   const specs = specRows(pin);
+  // Key facts for the top of the page — same rules as the home cards: only
+  // values that parse cleanly, area labelled "carpet" only when the source says so.
+  const card = toCard(pin);
+  const keyFacts = [
+    card.price && { k: 'Price', v: card.price },
+    card.bhk && { k: 'Configuration', v: card.bhk },
+    card.area && { k: 'Area', v: card.area },
+    card.possession && { k: 'Possession', v: card.possession },
+  ].filter(Boolean) as { k: string; v: string }[];
+  const enquireHref = `/contact?project=${encodeURIComponent(name)}&pin=${pin.number}`;
 
   return (
     <SeoShell crumbs={crumbs}>
@@ -122,6 +133,15 @@ export default async function ProjectDetail({ params }: { params: { slug: string
         <div className="eyebrow">{[loc, city].filter(Boolean).join(' · ') || 'Project'}</div>
         <h1>{name}</h1>
         {pin.key_usp && <p className="lede">{pin.key_usp}</p>}
+        {keyFacts.length > 0 && (
+          <dl className="seo-keyfacts">
+            {keyFacts.map((f) => <div key={f.k}><dt>{f.k}</dt><dd>{f.v}</dd></div>)}
+          </dl>
+        )}
+        <div className="seo-cta">
+          <Link className="primary" href={enquireHref}>Enquire now</Link>
+          {pin.developer && <Link className="ghost" href={`/developers/${slugify(pin.developer)}`}>More by {pin.developer}</Link>}
+        </div>
         {pin.updated_at && (
           <p style={{ fontSize: '0.82rem', color: '#646e7a', marginTop: 10 }}>
             Last updated: {fmtDate(pin.updated_at)}
@@ -154,7 +174,7 @@ export default async function ProjectDetail({ params }: { params: { slug: string
             </div>
           )}
           <div className="seo-cta">
-            <Link className="primary" href={`/contact?project=${encodeURIComponent(name)}`}>Enquire about this project</Link>
+            <Link className="primary" href={enquireHref}>Enquire about this project</Link>
             <Link className="ghost" href="/map">See on live map</Link>
           </div>
         </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PhoneInput from './PhoneInput';
 import { PHONE_ERROR, isValidNumber, splitPhone } from '@/lib/phone';
 import { WHATSAPP_URL } from '@/lib/contact';
@@ -32,6 +32,8 @@ const PLACEHOLDER: Record<string, string> = {
 const EMPTY = {
   name: '', email: '', phone: '', subject: TOPICS[0].value, message: '', company: '',
   city: '', locality: '', budget: '', bhk: '', timeline: '', consent_call: false, consent_whatsapp: false,
+  // Set from /contact?project=<name>&pin=<number> ("Enquire" on a project page or card).
+  project: '', project_number: '',
 };
 
 export default function ContactForm() {
@@ -43,17 +45,25 @@ export default function ContactForm() {
   const buying = f.subject === 'Project enquiry';
   const hasNeeds = buying && !!(f.city || f.locality || f.budget || f.bhk || f.timeline);
 
+  // Which project the visitor came from, so the lead is linked to it.
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const project = (q.get('project') || '').trim().slice(0, 200);
+    const pin = /^d{1,7}$/.test(q.get('pin') || '') ? (q.get('pin') as string) : '';
+    if (project) setF((p) => ({ ...p, subject: 'Project enquiry', project, project_number: pin }));
+  }, []);
+
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setError('');
     if (!f.name.trim()) return setError('Please add your name.');
-    if (!f.message.trim() && !hasNeeds) return setError(buying ? 'Tell us what you’re looking for, or add a message.' : 'Please add a message.');
+    if (!f.message.trim() && !hasNeeds && !f.project) return setError(buying ? 'Tell us what you’re looking for, or add a message.' : 'Please add a message.');
     if (!f.email.trim() && !f.phone.trim()) return setError('Add a phone number or email so we can reply.');
     if (splitPhone(f.phone).number && !isValidNumber(splitPhone(f.phone).number)) return setError(PHONE_ERROR);
     setSending(true);
     try {
       // Buyer details are only sent for the "Buying a home" topic.
-      const body = buying ? f : { ...f, city: '', locality: '', budget: '', bhk: '', timeline: '' };
+      const body = buying ? f : { ...f, city: '', locality: '', budget: '', bhk: '', timeline: '', project: '', project_number: '' };
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -94,6 +104,15 @@ export default function ContactForm() {
       </div>
 
       {error ? <div className="ipg-form-err" role="alert">{error}</div> : null}
+
+      {buying && f.project ? (
+        <p className="cf-project">
+          <i className="fas fa-building" aria-hidden="true" /> <span>Enquiry about <b>{f.project}</b></span>
+          <button type="button" onClick={() => setF((p) => ({ ...p, project: '', project_number: '' }))} aria-label={`Remove ${f.project} from this enquiry`}>
+            <i className="fas fa-xmark" aria-hidden="true" />
+          </button>
+        </p>
+      ) : null}
 
       <fieldset className="cf-block">
         <legend>What can we help with?</legend>

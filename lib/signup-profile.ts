@@ -2,13 +2,16 @@ import { z } from 'zod';
 
 // Sign-up fields per account type — shared by the password sign-up and the
 // "complete your Google sign-up" form so both ask for and check the same things.
-// Every field is required except a developer's website.
+// Buyers only need name, mobile and email (the base fields): their preferences
+// are optional and just help match projects. Developers and agents must give
+// their company and MahaRERA number, which the super admin verifies.
 const req = (max = 120) => z.string().trim().min(1).max(max);
+const opt = (max = 120) => z.string().trim().max(max).optional().default('');
 
 export const PROFILE_SCHEMAS = {
   buyer: z.object({
-    area: req(), configuration: req(), budget: req(), timeline: req(), purpose: req(),
-  }),
+    area: opt(), configuration: opt(), budget: opt(), timeline: opt(), purpose: opt(),
+  }).default({}),
   developer: z.object({
     company: req(160), designation: req(), activeProjects: req(),
     // Website is the one optional field (many developers don't have one).

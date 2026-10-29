@@ -190,7 +190,7 @@ export default function MapAuthGate() {
             Sign in
           </a>
           <a
-            href="/?signin=1"
+            href="/?signup=1"
             style={{
               background: '#eef4f1', color: '#0f5c47', textDecoration: 'none',
               padding: '12px 16px', borderRadius: 11, fontWeight: 700, fontSize: 15,

@@ -5,6 +5,11 @@
 // NOTE: the top navigation is now the shared <SiteHeader/> React component
 // (rendered by the home page), so the landing markup below starts at the hero.
 import { COUNTRY_CODES } from '@/lib/country-codes';
+import { BHK_OPTIONS, BUDGET_OPTIONS } from '@/lib/home/finder';
+
+// Hero search filters (same values as the /projects filters).
+const BHK_SELECT = BHK_OPTIONS.map((o) => `<option value="${o.slug}">${o.label}</option>`).join('');
+const BUDGET_SELECT = BUDGET_OPTIONS.map((o) => `<option value="${o.slug}">${o.label}</option>`).join('');
 
 // Country-code options for phone fields (India +91 selected). Only +91 is in
 // the live DOM; the full ~220-option list sits in an inert <template> (no style
@@ -27,17 +32,20 @@ export const LANDING_BODY = `
   </div>
   <div class="container">
     <div class="hero-center">
-      <span class="eyebrow"><span class="dot"></span>Live real estate map · India &amp; Dubai</span>
-      <h1>Every property project, <span class="accent">mapped</span> and verified.</h1>
-      <p class="hero-desc">Mappingg puts projects, RERA, possession, infrastructure and nearby details on one map — so you can shortlist properties in minutes.</p>
-      <form class="ask" id="heroAskForm" role="search">
-        <span class="ask-badge"><span class="m">M</span>Agent M</span>
-        <label for="heroAskInput" class="sr-only">Search projects</label>
-        <input id="heroAskInput" type="text" placeholder="Search by area, project or budget…" autocomplete="off">
-        <button type="submit" class="btn btn-primary">Explore the map <i class="fas fa-arrow-right"></i></button>
+      <span class="eyebrow"><span class="dot"></span>New residential projects · Pune, Mumbai &amp; more</span>
+      <h1>Find your next home on a <span class="accent">verified</span> project map.</h1>
+      <p class="hero-desc">Search new residential projects by locality, BHK and budget. Compare RERA, possession and price where the developer has shared them — then enquire in one tap.</p>
+      <form class="ask" id="heroAskForm" role="search" action="/projects" method="get" aria-label="Search projects">
+        <label for="heroAskInput" class="sr-only">Locality, project or developer</label>
+        <input id="heroAskInput" name="q" type="search" placeholder="Locality, project or developer" autocomplete="off" enterkeyhint="search" maxlength="80">
+        <label for="heroBhk" class="sr-only">BHK</label>
+        <select id="heroBhk" name="bhk" class="ask-sel"><option value="">Any BHK</option>${BHK_SELECT}</select>
+        <label for="heroBudget" class="sr-only">Budget</label>
+        <select id="heroBudget" name="budget" class="ask-sel"><option value="">Any budget</option>${BUDGET_SELECT}</select>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-magnifying-glass" aria-hidden="true"></i> Search</button>
       </form>
       <div class="hero-actions">
-        <a href="#" class="btn btn-earth open-signup" data-role="buyer"><i class="fas fa-house-chimney"></i> Start exploring now</a>
+        <a href="#near-you" class="btn btn-earth"><i class="fas fa-location-crosshairs"></i> Projects near me</a>
         <a href="#live-map" class="btn btn-outline"><i class="fas fa-map-location-dot"></i> See the live map</a>
       </div>
       <p class="dev-note">Developer or channel partner? <a href="#" class="open-signup" data-role="developer">List your project</a> · <a href="#" class="open-signup" data-role="agent">Join as partner</a></p>
@@ -489,7 +497,7 @@ export const LANDING_BODY = `
       </form>
 
       <form class="auth-form is-active" id="signupForm" novalidate>
-        <p class="req-note"><span aria-hidden="true">*</span> All fields are required</p>
+        <p class="req-note" id="su-req-note">Only your name, WhatsApp number and email are needed.</p>
         <div class="field-row">
           <div class="field"><label for="su-name">Full name</label><input type="text" id="su-name" name="name" placeholder="Your name" autocomplete="name" required></div>
           <div class="field"><label for="su-phone">WhatsApp number</label><div class="phone-in is-empty"><span class="phone-cc"><img alt="" width="22" height="16"><span class="phone-iso"></span><span class="phone-cc-code">+91</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><select id="su-phone-code" aria-label="Country code">${PHONE_CODE_DEFAULT}</select></span><input type="tel" id="su-phone" name="mobile" placeholder="10-digit number" autocomplete="tel-national" inputmode="numeric" maxlength="10" pattern="\\d{10}" title="Enter a 10-digit mobile number" required><span class="phone-count" aria-hidden="true"></span></div></div>
@@ -497,17 +505,17 @@ export const LANDING_BODY = `
         <div class="field"><label for="su-email">Email</label><input type="email" id="su-email" name="email" placeholder="you@example.com" autocomplete="email" required></div>
         <fieldset class="role-fields" data-for="buyer">
           <div class="opt-details">
-            <div class="opt-summary"><b>Tell us what you're looking for</b><small>Helps us match you to the right projects</small></div>
+            <div class="opt-summary"><b>Tell us what you're looking for <small style="display:inline">(optional)</small></b><small>Helps us match you to the right projects — you can skip this</small></div>
             <div class="opt-body">
           <div class="field-row">
-            <div class="field"><label for="b-area">Preferred area</label><input id="b-area" name="area" placeholder="e.g. Mundhwa, Kharadi" required></div>
-            <div class="field"><label for="b-config">Configuration</label><select id="b-config" name="configuration" required><option value="" disabled selected>Select…</option><option>1 BHK</option><option>2 BHK</option><option>3 BHK</option><option>4+ BHK</option><option>Plot / Villa</option></select></div>
+            <div class="field"><label for="b-area">Preferred area</label><div class="loc-in"><input id="b-area" name="area" placeholder="e.g. Mundhwa, Kharadi" autocomplete="off" maxlength="120" aria-describedby="b-area-note"><button type="button" class="loc-btn" id="b-area-loc" hidden aria-label="Fill in my area from my current location"><i class="fas fa-location-crosshairs" aria-hidden="true"></i></button></div><small class="loc-note" id="b-area-note" aria-live="polite"></small></div>
+            <div class="field"><label for="b-config">Configuration</label><select id="b-config" name="configuration"><option value="" selected>Any</option><option>1 BHK</option><option>2 BHK</option><option>3 BHK</option><option>4+ BHK</option><option>Plot / Villa</option></select></div>
           </div>
           <div class="field-row">
-            <div class="field"><label for="b-budget">Budget</label><select id="b-budget" name="budget" required><option value="" disabled selected>Select…</option><option>Under 1 Cr</option><option>75L - 1.5 Cr</option><option>1.5Cr - 2.5 Cr</option><option>3Cr +</option></select></div>
-            <div class="field"><label for="b-time">Planning to buy</label><select id="b-time" name="timeline" required><option value="" disabled selected>Select…</option><option>Within 3 months</option><option>3–6 months</option><option>6–12 months</option><option>Just exploring</option></select></div>
+            <div class="field"><label for="b-budget">Budget</label><select id="b-budget" name="budget"><option value="" selected>Any</option><option>Under 1 Cr</option><option>75L - 1.5 Cr</option><option>1.5Cr - 2.5 Cr</option><option>3Cr +</option></select></div>
+            <div class="field"><label for="b-time">Planning to buy</label><select id="b-time" name="timeline"><option value="" selected>Not sure yet</option><option>Within 3 months</option><option>3–6 months</option><option>6–12 months</option><option>Just exploring</option></select></div>
           </div>
-          <div class="field"><label>Buying for</label><div class="pills"><label><input type="radio" name="purpose" value="Self use" required><span>Self use</span></label><label><input type="radio" name="purpose" value="Investment"><span>Investment</span></label><label><input type="radio" name="purpose" value="Both"><span>Both</span></label></div></div>
+          <div class="field"><label>Buying for</label><div class="pills"><label><input type="radio" name="purpose" value="Self use"><span>Self use</span></label><label><input type="radio" name="purpose" value="Investment"><span>Investment</span></label><label><input type="radio" name="purpose" value="Both"><span>Both</span></label></div></div>
             </div>
           </div>
         </fieldset>
@@ -531,7 +539,7 @@ export const LANDING_BODY = `
             <div class="field"><label for="a-areas">Areas you work in</label><input id="a-areas" name="areas" placeholder="Mundhwa, Kharadi" required></div>
           </div>
         </fieldset>
-        <div class="field"><label for="su-pass">Password</label><div class="pass-wrap"><input type="password" id="su-pass" placeholder="At least 8 characters" autocomplete="new-password" minlength="8" required><button type="button" class="pass-toggle" aria-label="Show password"><i class="fas fa-eye"></i></button></div></div>
+        <div class="field"><label for="su-pass">Password <small>(optional)</small></label><div class="pass-wrap"><input type="password" id="su-pass" placeholder="At least 8 characters — or skip" autocomplete="new-password" minlength="8" aria-describedby="su-pass-hint"><button type="button" class="pass-toggle" aria-label="Show password"><i class="fas fa-eye"></i></button></div><small class="loc-note" id="su-pass-hint">No password? Sign in any time with a WhatsApp code.</small></div>
         <p class="verify-note" id="verifyNote" hidden><i class="fas fa-shield-halved"></i><span>We verify your RERA number on the MahaRERA website before your account gets full access, usually within one working day.</span></p>
         <div class="opts"><label><input type="checkbox" id="su-terms" required> I agree to the <a href="/terms" target="_blank" rel="noopener">Terms</a> & <a href="/privacy" target="_blank" rel="noopener">Privacy</a> and to be contacted on WhatsApp.</label></div>
         <div class="field otp-block" id="su-otp-block" hidden>

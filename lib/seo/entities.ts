@@ -14,7 +14,7 @@ import { applyFieldVisibility, displayProjectName } from './project-meta';
  * (same switches as the live map), and ALL-CAPS project/developer names are shown
  * in title case. Display only — slugify() ignores case, so URLs don't change.
  */
-const withDisplayName = <T extends Pin>(raw: T): T => {
+export const withDisplayName = <T extends Pin>(raw: T): T => {
   const p = applyFieldVisibility(raw);
   return {
     ...p,

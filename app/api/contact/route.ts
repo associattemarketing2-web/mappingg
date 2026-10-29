@@ -6,6 +6,7 @@ import { esc, layout, notifyAdmin, queueMail } from '@/lib/mailer';
 import { pageOf, pushToCrm, visitorIp } from '@/lib/crm';
 import { parseContactSubmission } from '@/lib/contact-submission';
 import { optInSummary } from '@/lib/consent';
+import { getPinsByNumber } from '@/lib/seo/entities';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -28,6 +29,16 @@ export async function POST(req: NextRequest) {
   if (result.kind === 'invalid') return NextResponse.json({ error: { message: result.message } }, { status: 400 });
 
   const d = result.lead;
+  // A project enquiry names the real public project, never free text a caller made up.
+  if (d.project_number) {
+    const pin = (await getPinsByNumber(d.project_number).catch(() => []))[0];
+    if (pin?.title) {
+      if (d.project !== pin.title) d.message = d.message.replace(`Project: ${d.project}`, `Project: ${pin.title}`);
+      d.project = pin.title;
+    } else {
+      delete d.project_number;
+    }
+  }
   const now = d.consent.captured_at;
   const id = randomUUID();
   const channels = optInSummary(d.consent);
@@ -43,12 +54,12 @@ export async function POST(req: NextRequest) {
   }
   pushToCrm({
     name: d.name, mobile: d.phone, email: d.email, source: 'Contact form', page: pageOf(req),
-    extra: [['Subject', d.subject], ['Opted in to', channels]], message: d.message, ip: visitorIp(req),
+    extra: [['Subject', d.subject], ...(d.project ? [['Project', d.project] as [string, string]] : []), ['Opted in to', channels]], message: d.message, ip: visitorIp(req),
   });
   notifyAdmin(`Contact form:${d.subject} — ${d.name}`, {
     title: 'New message from the contact form',
     body: [esc(d.message).replace(/\n/g, '<br>')],
-    rows: [['Name', d.name], ['Email', d.email], ['Phone', d.phone], ['Subject', d.subject], ['Opted in to', channels]],
+    rows: [['Name', d.name], ['Email', d.email], ['Phone', d.phone], ['Subject', d.subject], ...(d.project ? [['Project', d.project] as [string, string]] : []), ['Opted in to', channels]],
   }, d.email || undefined);
   if (d.email) {
     queueMail({

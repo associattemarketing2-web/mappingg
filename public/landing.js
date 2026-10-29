@@ -159,10 +159,11 @@
   }));
 
   /* ---------- Hero search ---------- */
-  if (byId('heroAskForm')) byId('heroAskForm').addEventListener('submit', e => {
-    e.preventDefault();
-    if (!getUser()) { openModal('signup', null, 'Sign in to search projects on the live map.'); return; }
-    openLiveMap();
+  // Hero search is a plain GET form to /projects (public, no sign-in needed).
+  // Empty filters are left out so the results URL stays short.
+  if (byId('heroAskForm')) byId('heroAskForm').addEventListener('submit', () => {
+    byId('heroAskForm').querySelectorAll('input[name], select[name]').forEach(el => { if (!String(el.value).trim()) el.disabled = true; });
+    setTimeout(() => byId('heroAskForm') && byId('heroAskForm').querySelectorAll('[name]').forEach(el => { el.disabled = false; }), 0);
   });
 
   /* ---------- "See every project, differently" (illustrative area map) ---------- */
@@ -409,7 +410,45 @@
     byId('signupBtn').textContent = r.cta;
     byId('signinBtn').textContent = `Sign in as ${ROLE_LABEL[role]}`;
     byId('verifyNote').hidden = role === 'buyer';
+    // Only buyers can skip everything but name, number, email and password.
+    if (byId('su-req-note')) byId('su-req-note').textContent = role === 'buyer'
+      ? 'Only your name, WhatsApp number and email are needed — everything else is optional.'
+      : 'All fields are needed so we can verify your RERA details.';
   }
+  /* ---------- Sign-up "Preferred area" from the visitor's location (optional) ----------
+     Asks for location only when the visitor taps the button; fills in silently only
+     when they already allowed location for this site. The coordinates go to
+     /api/nearby once (rounded, not stored), which names the area from the nearest
+     mapped projects. The field stays editable and is never required. */
+  const areaIn = byId('b-area'), areaBtn = byId('b-area-loc'), areaNote = byId('b-area-note');
+  let areaAuto = false, areaBusy = false;
+  if (areaBtn && window.isSecureContext && 'geolocation' in navigator) areaBtn.hidden = false;
+  if (areaIn) areaIn.addEventListener('input', () => { if (areaAuto) { areaAuto = false; if (areaNote) areaNote.textContent = ''; } });
+  function areaFromLocation(ask) {
+    if (!areaIn || areaBusy || (!ask && areaIn.value.trim()) || !window.isSecureContext || !('geolocation' in navigator)) return;
+    const go = () => {
+      areaBusy = true; if (areaNote) areaNote.textContent = 'Finding your area…'; if (areaBtn) areaBtn.disabled = true;
+      const done = (msg) => { areaBusy = false; if (areaBtn) areaBtn.disabled = false; if (areaNote) areaNote.textContent = msg || ''; };
+      navigator.geolocation.getCurrentPosition(pos => {
+        fetch('/api/nearby?limit=1&lat=' + pos.coords.latitude.toFixed(3) + '&lng=' + pos.coords.longitude.toFixed(3), { credentials: 'omit' })
+          .then(r => r.ok ? r.json() : Promise.reject())
+          .then(b => {
+            const a = b && b.area, place = a ? [a.locality, a.city].filter(Boolean).join(', ') : '';
+            if (!place) return done(ask ? 'We couldn’t name your area — please type it in.' : '');
+            if (!ask && areaIn.value.trim()) return done();
+            areaIn.value = place; areaAuto = true;
+            done('Filled in from your location — you can change it.');
+          })
+          .catch(() => done(ask ? 'We couldn’t look up your area — please type it in.' : ''));
+      }, err => done(ask ? (err.code === 1 ? 'Location is turned off for this site — please type your area.' : 'We couldn’t get your location — please type your area.') : ''),
+      { enableHighAccuracy: false, timeout: 10000, maximumAge: 600000 });
+    };
+    if (ask) return go();
+    // Without a tap: only when permission was already granted (no browser prompt).
+    try { navigator.permissions.query({ name: 'geolocation' }).then(p => { if (p.state === 'granted') go(); }).catch(() => {}); } catch (e) {}
+  }
+  if (areaBtn) areaBtn.addEventListener('click', () => areaFromLocation(true));
+
   function openModal(which, role, reason) {
     mode = which;
     const pickRole = role || (which === 'signup' ? 'buyer' : null);
@@ -423,6 +462,7 @@
     byId('modalTitle').textContent = isIn ? 'Sign in' : (currentRole() === 'buyer' ? 'Explore every project' : 'Create your account');
     byId('modalSub').textContent = reason || (isIn ? 'Choose your account type, then sign in.' : 'Takes less than a minute.');
     renderSide();
+    if (!isIn) areaFromLocation(false);
     modal.classList.add('is-open'); document.body.style.overflow = 'hidden';
     // Hides the cookie banner while the modal is open so it can't cover the submit button.
     document.body.classList.add('mpg-auth-open');
@@ -738,14 +778,21 @@
     if (!s) promptSignIn();
   }).catch(() => {});
 
-  // Every page load (and refresh): a guest gets the sign-in form shortly after the page
-  // opens. Other pages show the same prompt with a sign-in form (components/SignInPrompt.tsx).
+  // A guest is invited to sign in only once engaged — 45 s on this page, or from their
+  // 2nd page view this session — and at most once per browser session. Same rule and
+  // sessionStorage keys as the other pages' prompt (components/SignInPrompt.tsx), so a
+  // first-time visitor can read the page and search before any popup.
   function promptSignIn() {
     try { if (window.self !== window.top) return; } catch (e) { return; }
+    const ss = k => { try { return sessionStorage.getItem(k); } catch (e) { return null; } };
+    if (ss('mg-signin-prompted')) return;
+    const views = +ss('mg-pv') || 1;
     setTimeout(function () {
-      if (!modal || modal.classList.contains('is-open') || getUser()) return;
+      // Skip if the visitor already left the home page (this markup is gone) or got in.
+      if (!modal || !document.contains(modal) || modal.classList.contains('is-open') || getUser() || ss('mg-signin-prompted')) return;
+      try { sessionStorage.setItem('mg-signin-prompted', '1'); } catch (e) {}
       openModal('signin', null, 'Sign in, or create a free account, to explore every project on the live map.');
-    }, 1000);
+    }, views >= 2 ? 1000 : 45000);
   }
 
   // The shared <SiteHeader/> lives outside this markup; it asks us to open the

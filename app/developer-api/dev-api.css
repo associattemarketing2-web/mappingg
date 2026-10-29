@@ -1,5 +1,5 @@
 /* Developer API docs (/developer-api) — additions to the info-page styles (app/info.css). */
-.ipg-doc pre.dapi-code { margin: 6px 0 16px; padding: 16px 18px; border-radius: 14px; background: #14211c; color: #e6efe9; font: 13px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow-x: auto; white-space: pre; tab-size: 2; }
+.ipg-doc pre.dapi-code { margin: 6px 0 16px; padding: 16px 18px; border-radius: 14px; background: #14211c; color: #e6efe9; font: 13px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; white-space: pre-wrap; overflow-wrap: anywhere; tab-size: 2; }
 .ipg-doc pre.dapi-code .c { color: #8fb5a3; }
 .ipg-doc :not(pre) > code { font-size: .88em; padding: 1px 6px; border-radius: 6px; background: var(--land); color: var(--ink); overflow-wrap: anywhere; }
 .ipg-doc .dapi-table td:last-child { white-space: normal; }

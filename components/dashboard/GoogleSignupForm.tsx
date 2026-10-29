@@ -1,13 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PhoneInput from '@/components/PhoneInput';
 import { isValidNumber, splitPhone } from '@/lib/phone';
 
 // The full sign-up form for a first-time Google sign-in (see
 // app/dashboard/complete-signup). Same account types, fields and options as the
-// sign-up form on the home page (components/landing/body.ts); every field is
-// required except a developer's website. The account is created on submit.
+// sign-up form on the home page (components/landing/body.ts). A buyer's
+// preferences are optional; developers and agents fill in every field except the website. The account is created on submit.
 type Role = 'buyer' | 'developer' | 'agent';
 type Field = { key: string; label: string; placeholder?: string; options?: string[]; pills?: string[]; optional?: boolean; wide?: boolean };
 
@@ -19,13 +19,13 @@ const ROLES: { key: Role; label: string; icon: string }[] = [
 
 const FIELDS: Record<Role, { title: string; hint?: string; fields: Field[] }> = {
   buyer: {
-    title: "Tell us what you're looking for", hint: 'Helps us match you to the right projects',
+    title: "Tell us what you're looking for", hint: 'Optional — helps us match you to the right projects',
     fields: [
-      { key: 'area', label: 'Preferred area', placeholder: 'e.g. Mundhwa, Kharadi' },
-      { key: 'configuration', label: 'Configuration', options: ['1 BHK', '2 BHK', '3 BHK', '4+ BHK', 'Plot / Villa'] },
-      { key: 'budget', label: 'Budget', options: ['Under 1 Cr', '75L - 1.5 Cr', '1.5Cr - 2.5 Cr', '3Cr +'] },
-      { key: 'timeline', label: 'Planning to buy', options: ['Within 3 months', '3–6 months', '6–12 months', 'Just exploring'] },
-      { key: 'purpose', label: 'Buying for', pills: ['Self use', 'Investment', 'Both'], wide: true },
+      { key: 'area', label: 'Preferred area', placeholder: 'e.g. Mundhwa, Kharadi', optional: true },
+      { key: 'configuration', label: 'Configuration', options: ['1 BHK', '2 BHK', '3 BHK', '4+ BHK', 'Plot / Villa'], optional: true },
+      { key: 'budget', label: 'Budget', options: ['Under 1 Cr', '75L - 1.5 Cr', '1.5Cr - 2.5 Cr', '3Cr +'], optional: true },
+      { key: 'timeline', label: 'Planning to buy', options: ['Within 3 months', '3–6 months', '6–12 months', 'Just exploring'], optional: true },
+      { key: 'purpose', label: 'Buying for', pills: ['Self use', 'Investment', 'Both'], wide: true, optional: true },
     ],
   },
   developer: {
@@ -56,6 +56,28 @@ export default function GoogleSignupForm({ name: googleName, email, initialRole 
   const [terms, setTerms] = useState(false);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState('');
+
+  // Optional: fill "Preferred area" from the visitor's location when they tap the button.
+  // Coordinates go to /api/nearby once (rounded, not stored); the field stays editable.
+  const [areaNote, setAreaNote] = useState('');
+  const [locating, setLocating] = useState(false);
+  const [canLocate, setCanLocate] = useState(false);
+  useEffect(() => { setCanLocate(window.isSecureContext && 'geolocation' in navigator); }, []);
+  function areaFromLocation() {
+    setLocating(true); setAreaNote('Finding your area…');
+    const done = (msg: string) => { setLocating(false); setAreaNote(msg); };
+    navigator.geolocation.getCurrentPosition(async (pos) => {
+      try {
+        const r = await fetch(`/api/nearby?limit=1&lat=${pos.coords.latitude.toFixed(3)}&lng=${pos.coords.longitude.toFixed(3)}`, { credentials: 'omit' });
+        const b = r.ok ? await r.json() : null;
+        const place = b?.area ? [b.area.locality, b.area.city].filter(Boolean).join(', ') : '';
+        if (!place) return done('We couldn’t name your area — please type it in.');
+        setProfile((p) => ({ ...p, buyer: { ...p.buyer, area: place } }));
+        done('Filled in from your location — you can change it.');
+      } catch { done('We couldn’t look up your area — please type it in.'); }
+    }, (err) => done(err.code === err.PERMISSION_DENIED ? 'Location is turned off for this site — please type your area.' : 'We couldn’t get your location — please type your area.'),
+    { enableHighAccuracy: false, timeout: 10_000, maximumAge: 600_000 });
+  }
 
   const group = FIELDS[role];
   const values = profile[role];
@@ -102,7 +124,7 @@ export default function GoogleSignupForm({ name: googleName, email, initialRole 
           </h2>
           <p className="bp-muted" style={{ margin: '0 0 18px', fontSize: 14, lineHeight: 1.5 }}>
             Hi{googleName ? ` ${googleName.split(' ')[0]}` : ''}, you signed in with Google. Fill in your details to create your account.
-            <br /><small>* All fields are required</small>
+            <br /><small>Fields marked (optional) can be left blank.</small>
           </p>
 
           <div className="bp-field wide" style={{ marginBottom: 16 }}>
@@ -133,7 +155,7 @@ export default function GoogleSignupForm({ name: googleName, email, initialRole 
           <div className="bp-grid">
             {group.fields.map((f) => (
               f.pills ? (
-                <div key={f.key} className={`bp-field${f.wide ? ' wide' : ''}`}><span>{f.label}</span>
+                <div key={f.key} className={`bp-field${f.wide ? ' wide' : ''}`}><span>{f.label}{f.optional && <small> (optional)</small>}</span>
                   <div className="gs-roles" role="radiogroup" aria-label={f.label}>
                     {f.pills.map((o) => (
                       <button key={o} type="button" role="radio" aria-checked={values[f.key] === o} className={`gs-role${values[f.key] === o ? ' on' : ''}`} onClick={() => set(f.key, o)}>{o}</button>
@@ -144,13 +166,19 @@ export default function GoogleSignupForm({ name: googleName, email, initialRole 
                 <label key={f.key} className={`bp-field${f.wide ? ' wide' : ''}`}>
                   <span>{f.label}{f.optional && <small> (optional)</small>}</span>
                   {f.options ? (
-                    <select value={values[f.key] || ''} onChange={(e) => set(f.key, e.target.value)} required>
-                      <option value="" disabled>Select…</option>
+                    <select value={values[f.key] || ''} onChange={(e) => set(f.key, e.target.value)} required={!f.optional}>
+                      <option value="" disabled={!f.optional}>{f.optional ? 'Any' : 'Select…'}</option>
                       {f.options.map((o) => <option key={o}>{o}</option>)}
                     </select>
                   ) : (
-                    <input value={values[f.key] || ''} onChange={(e) => set(f.key, e.target.value)} placeholder={f.placeholder} required={!f.optional} type={f.key === 'website' ? 'url' : 'text'} />
+                    <input value={values[f.key] || ''} onChange={(e) => { set(f.key, e.target.value); if (f.key === 'area') setAreaNote(''); }} placeholder={f.placeholder} required={!f.optional} type={f.key === 'website' ? 'url' : 'text'} />
                   )}
+                  {role === 'buyer' && f.key === 'area' && canLocate && (
+                    <button type="button" onClick={areaFromLocation} disabled={locating} style={{ alignSelf: 'flex-start', minHeight: 36, padding: '6px 2px', border: 0, background: 'none', color: 'var(--bp-forest)', font: 'inherit', fontWeight: 600, cursor: 'pointer' }}>
+                      <i className="fas fa-location-crosshairs" aria-hidden="true" /> Use my location
+                    </button>
+                  )}
+                  {role === 'buyer' && f.key === 'area' && areaNote && <small aria-live="polite">{areaNote}</small>}
                 </label>
               )
             ))}

@@ -46,3 +46,16 @@ test('opt-ins must be real booleans', () => {
   const r = parseContactSubmission({ ...valid, consent_call: true }, NOW);
   assert.equal(r.kind === 'ok' && r.lead.consent.call, true);
 });
+
+test('a project enquiry carries the project, even with no message', () => {
+  const r = parseContactSubmission({ name: 'Asha', phone: '9876543210', subject: 'Project enquiry', project: 'Mantra Melange', project_number: '21' }, NOW);
+  assert.equal(r.kind, 'ok');
+  if (r.kind !== 'ok') return;
+  assert.equal(r.lead.project, 'Mantra Melange');
+  assert.equal(r.lead.project_number, 21);
+  assert.match(r.lead.message, /^Project: Mantra Melange \(#21\)/);
+  // A junk pin number is dropped, not fatal.
+  const j = parseContactSubmission({ name: 'Asha', phone: '9876543210', project: 'X', project_number: 'abc' }, NOW);
+  assert.equal(j.kind, 'ok');
+  if (j.kind === 'ok') assert.equal(j.lead.project_number, undefined);
+});

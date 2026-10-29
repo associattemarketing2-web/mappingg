@@ -18,6 +18,10 @@ const schema = z.object({
   budget: opt(40),
   bhk: opt(40),
   timeline: opt(40),
+  // The project the enquiry is about ("Enquire" on a project page / home card).
+  // The route checks the number against the public pins and uses the real title.
+  project: opt(200),
+  project_number: z.coerce.number().int().positive().max(1_000_000).optional().catch(undefined),
   // Separate, unticked opt-ins. Replying to this enquiry itself needs neither.
   consent_call: z.boolean().optional().default(false),
   consent_whatsapp: z.boolean().optional().default(false),
@@ -27,6 +31,7 @@ const schema = z.object({
 export interface ContactLead {
   name: string; email: string; phone: string; subject: string; message: string;
   city?: string; locality?: string; budget?: string; bhk?: string; timeline?: string;
+  project?: string; project_number?: number;
   consent: ConsentRecord;
 }
 
@@ -53,7 +58,8 @@ export function parseContactSubmission(raw: unknown, now: Date = new Date()): Co
     (d.locality || d.city) && `Preferred area: ${[d.locality, d.city].filter(Boolean).join(', ')}`,
     d.timeline && `Planning to buy: ${d.timeline}`,
   ].filter(Boolean).join(' · ');
-  if (!d.message && !needs) return { kind: 'invalid', message: 'Please add a message or tell us what you’re looking for.' };
+  const about = d.project ? `Project: ${d.project}${d.project_number ? ` (#${d.project_number})` : ''}` : '';
+  if (!d.message && !needs && !about) return { kind: 'invalid', message: 'Please add a message or tell us what you’re looking for.' };
 
   const phone = normalizePhone(d.phone);
   if (phone === null) return { kind: 'invalid', message: PHONE_ERROR };
@@ -64,8 +70,9 @@ export function parseContactSubmission(raw: unknown, now: Date = new Date()): Co
     kind: 'ok',
     lead: {
       name: d.name, email: d.email, phone, subject: d.subject || 'General enquiry',
-      message: [needs, d.message].filter(Boolean).join('\n\n'),
+      message: [about, needs, d.message].filter(Boolean).join('\n\n'),
       ...(needs ? { city: d.city, locality: d.locality, budget: d.budget, bhk: d.bhk, timeline: d.timeline } : {}),
+      ...(d.project ? { project: d.project, ...(d.project_number ? { project_number: d.project_number } : {}) } : {}),
       // Sending the form is the request to be replied to; call/WhatsApp are separate opt-ins.
       consent: buildConsent('contact', { enquiry: true, call: d.consent_call, whatsapp: d.consent_whatsapp }, now),
     },

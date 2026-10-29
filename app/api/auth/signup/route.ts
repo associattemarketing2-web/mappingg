@@ -22,12 +22,14 @@ const base = z.object({
   name: z.string().trim().min(1).max(120),
   email: z.string().trim().toLowerCase().email(),
   mobile: z.string().trim().max(24),
-  password: z.string().min(8).max(200),
+  // Optional: without one the account signs in with a WhatsApp code (/api/auth/otp-login)
+  // or sets a password later via "Forgot password". If given, at least 8 characters.
+  password: z.string().max(200).optional().default('').refine((p) => p === '' || p.length >= 8),
   // The 6-digit WhatsApp code from /api/auth/otp (purpose 'signup') and its ticket.
   otp: z.string().trim().max(12),
   ticket: z.string().max(1000),
 });
-// Each role's own fields (lib/signup-profile.ts) — all required except a developer's website.
+// Each role's own fields (lib/signup-profile.ts) — optional for buyers; developers and agents need their company + RERA details.
 const schema = withRoleProfiles(base);
 
 export async function POST(req: NextRequest) {
@@ -60,7 +62,7 @@ export async function POST(req: NextRequest) {
     await users.insertOne({
       _id: id, id, email, name, mobile, role, profile,
       mobile_verified: true,
-      password_hash: await bcrypt.hash(password, 12),
+      ...(password ? { password_hash: await bcrypt.hash(password, 12) } : {}),
       // Buyers get full access at once; developers and agents wait until the
       // super admin checks their details (MahaRERA number etc.).
       verified: role === 'buyer',

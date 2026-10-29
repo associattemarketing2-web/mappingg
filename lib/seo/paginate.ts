@@ -27,8 +27,8 @@ export function paginate<T>(items: T[], param: PageParam, perPage = LISTING_PER_
   return { page, pages, total: items.length, from: start + 1, items: items.slice(start, start + perPage) };
 }
 
-/** /projects for page 1, /projects?page=N otherwise. */
-export const pageHref = (base: string, n: number) => (n <= 1 ? base : `${base}?page=${n}`);
+/** /projects for page 1, /projects?page=N otherwise (…&page=N when the base already has a query). */
+export const pageHref = (base: string, n: number) => (n <= 1 ? base : `${base}${base.includes('?') ? '&' : '?'}page=${n}`);
 
 /**
  * Page numbers to show: first, last, and up to two either side of the current

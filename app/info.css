@@ -164,7 +164,8 @@
 /* ---------- Legal documents ---------- */
 .ipg-legal { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 56px; align-items: start; }
 @media (max-width: 960px) { .ipg-legal { grid-template-columns: 1fr; gap: 28px; } }
-.ipg-toc { position: sticky; top: 104px; padding: 20px; border-radius: 20px; background: var(--land); border: 1px solid var(--line); max-height: calc(100vh - 128px); overflow: auto; }
+.ipg-toc { position: sticky; top: 104px; padding: 20px; border-radius: 20px; background: var(--land); border: 1px solid var(--line); max-height: calc(100vh - 128px); overflow: auto; scrollbar-width: none; }
+.ipg-toc::-webkit-scrollbar { display: none; }
 .ipg-toc h2, .ipg-toc h4 { font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 10px; }
 .ipg-toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; counter-reset: toc; }
 .ipg-toc a { counter-increment: toc; display: flex; gap: 10px; padding: 7px 10px; border-radius: 10px; font-size: 13.5px; color: var(--text); line-height: 1.4; transition: background .2s, color .2s; }
@@ -596,3 +597,10 @@
   .ct-quick { grid-template-columns: 1fr; }
   .cf-topic { padding: 9px 12px; font-size: 13px; }
 }
+
+/* Contact form: the project an enquiry is about (from /contact?project=…&pin=…). */
+.cf-project { display: flex; align-items: center; gap: 10px; margin: 0 0 16px; padding: 10px 8px 10px 14px; border-radius: 14px; background: var(--park-50, #eaf4e5); border: 1px solid var(--park-200, #d6ebce); color: var(--ink); font-size: 14px; }
+.cf-project > i { color: var(--forest, #0f5c47); }
+.cf-project span { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.cf-project button { flex-shrink: 0; width: 36px; height: 36px; display: grid; place-items: center; border: 0; border-radius: 10px; background: transparent; color: var(--muted); cursor: pointer; }
+.cf-project button:hover, .cf-project button:focus-visible { background: #fff; color: var(--ink); }
