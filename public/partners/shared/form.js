@@ -204,6 +204,31 @@ export function createForm(root, opts) {
         draw();
         return wrap(f, box, true);
       }
+      case 'rows': {
+        // A small table: one row per item, one input per column (f.columns).
+        const cols = f.columns || [];
+        const box = h(`<div class="kv rows"><div class="kv-rows"></div>${opts.readOnly ? '' : '<button type="button" class="btn ghost sm">+ Add a row</button>'}</div>`);
+        const rows = $('.kv-rows', box);
+        if (!Array.isArray(state.values[f.key])) state.values[f.key] = [];
+        const draw = () => {
+          rows.innerHTML = '';
+          state.values[f.key].forEach((r, i) => {
+            const row = h(`<div class="kv-row rows-row" style="grid-template-columns:repeat(${cols.length}, minmax(0, 1fr)) auto">
+              ${cols.map(c => `<input class="input" aria-label="${esc(c.label)}" placeholder="${esc(c.placeholder || c.label)}" value="${esc(r[c.key])}" ${dis}>`).join('')}
+              ${opts.readOnly ? '' : '<button type="button" class="icon-btn" aria-label="Remove row">×</button>'}</div>`);
+            $$('input', row).forEach((inp, k) => inp.addEventListener('input', () => { r[cols[k].key] = inp.value; changed(); }));
+            $('button', row)?.addEventListener('click', () => { state.values[f.key].splice(i, 1); draw(); changed(); });
+            rows.appendChild(row);
+          });
+          if (!state.values[f.key].length && opts.readOnly) rows.innerHTML = '<span class="muted">—</span>';
+        };
+        $(':scope > button', box)?.addEventListener('click', () => {
+          state.values[f.key].push(Object.fromEntries(cols.map(c => [c.key, ''])));
+          draw(); changed();
+        });
+        draw();
+        return wrap(f, box, true);
+      }
       default:
         return wrap(f, h('<span class="muted">Unsupported field</span>'));
     }
@@ -365,6 +390,9 @@ export function createForm(root, opts) {
         v = t === '' ? null : (isNaN(Number(t)) ? t : Number(t));
       } else if (['multiselect', 'tags', 'files'].includes(f.type)) v = Array.isArray(v) ? v : [];
       else if (f.type === 'kv') v = (Array.isArray(v) ? v : []).filter(r => (r.label || '').trim() || (r.value || '').trim());
+      else if (f.type === 'rows') v = (Array.isArray(v) ? v : [])
+        .map(r => Object.fromEntries((f.columns || []).map(c => [c.key, String(r[c.key] ?? '').trim()])))
+        .filter(r => Object.values(r).some(Boolean));
       else if (f.type === 'checkbox') v = !!v;
       else if (typeof v === 'string') v = v.trim() === '' ? null : v.trim();
       else if (v === undefined) v = null;

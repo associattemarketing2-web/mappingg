@@ -24,7 +24,8 @@ export async function createManualSubmission(builderId) {
 // Copy private files to the public bucket so the map can show them
 async function copyMedia(cur) {
   const map = { ...(cur.published_media || {}) };
-  const all = [cur.cover_image_path, ...(cur.gallery_paths || []), cur.brochure_path, cur.rera_qr_path].filter(Boolean);
+  const all = [cur.cover_image_path, ...(cur.gallery_paths || []), cur.brochure_path, cur.rera_qr_path,
+    ...(cur.floor_plan_paths || []), cur.payment_plan_path].filter(Boolean);
   for (const p of all) {
     if (map[p]) continue;
     const { data: blob, error: e1 } = await ctx.client.storage.from('submission-media').download(p);
@@ -39,7 +40,9 @@ async function copyMedia(cur) {
     cover_image_url: cur.cover_image_path ? map[cur.cover_image_path] : null,
     gallery_urls: (cur.gallery_paths || []).map(p => map[p]).filter(Boolean),
     brochure_url: cur.brochure_path ? map[cur.brochure_path] : null,
-    rera_qr_url: cur.rera_qr_path ? map[cur.rera_qr_path] : null
+    rera_qr_url: cur.rera_qr_path ? map[cur.rera_qr_path] : null,
+    floor_plan_urls: (cur.floor_plan_paths || []).map(p => map[p]).filter(Boolean),
+    payment_plan_url: cur.payment_plan_path ? map[cur.payment_plan_path] : null
   };
 }
 

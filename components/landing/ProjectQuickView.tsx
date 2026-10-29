@@ -172,12 +172,13 @@ export default function ProjectQuickView() {
                 <div className="qv-price"><small>Starting price</small><b>{p.price}</b></div>
               )}
 
-              {(p.configs.length > 0 || p.area) && (
-                <table className="qv-table">
+              {(p.units.length > 0 || p.configs.length > 0 || p.area) && (
+                <table className="qv-table qv-units">
+                  <thead><tr><th scope="col">Configuration</th><th scope="col">{p.units.length || /carpet/.test(p.area) ? 'Carpet area' : 'Area'}</th><th scope="col">Price</th></tr></thead>
                   <tbody>
-                    {p.configs.length > 0 && <tr><th scope="row">Configuration</th><td>{p.configs.join(', ')}</td></tr>}
-                    {p.area && <tr><th scope="row">{/carpet/.test(p.area) ? 'Carpet area' : 'Area'}</th><td>{p.area.replace(/ carpet$/, '')}</td></tr>}
-                    {p.price && <tr><th scope="row">Price</th><td>{p.price}</td></tr>}
+                    {p.units.length > 0
+                      ? p.units.map((u) => <tr key={u.config}><td>{u.config}</td><td>{u.area || '—'}</td><td className="pr">{u.price || <span className="req">On request</span>}</td></tr>)
+                      : <tr><td>{p.configs.join(', ') || '—'}</td><td>{p.area.replace(/ carpet$/, '') || '—'}</td><td className="pr">{p.price || <span className="req">On request</span>}</td></tr>}
                   </tbody>
                 </table>
               )}
@@ -204,11 +205,24 @@ export default function ProjectQuickView() {
 
               <section>
                 <h3 className="qv-h3">Explore more</h3>
+                {/* A file we don't have yet is asked for on WhatsApp ("on request"), never faked. */}
                 <div className="qv-more">
-                  <a href={p.href}><i className="fas fa-file-lines" aria-hidden="true" /> Full details <i className="fas fa-chevron-right" aria-hidden="true" /></a>
-                  {p.brochure && <a href={p.brochure} target="_blank" rel="noopener"><i className="fas fa-image" aria-hidden="true" /> Brochure <i className="fas fa-chevron-right" aria-hidden="true" /></a>}
-                  {p.video && <a href={p.video} target="_blank" rel="noopener"><i className="fas fa-play" aria-hidden="true" /> Video <i className="fas fa-chevron-right" aria-hidden="true" /></a>}
+                  {([
+                    ['pay', 'fa-file-invoice', 'Payment plan', p.paymentPlan, 'payment plan'],
+                    ['fp', 'fa-table-cells-large', 'Floor plans', p.floorPlans[0] || '', 'floor plans'],
+                    ['bro', 'fa-image', 'Brochure', p.brochure, 'brochure'],
+                    ['tour', 'fa-street-view', '360° tour', p.tour360, '360° tour'],
+                  ] as const).map(([cls, icon, label, url, what]) => (
+                    <a key={cls} className={cls} target="_blank" rel="noopener"
+                      href={url || `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hi, please share the ${what} of ${p.title} (Mappingg).`)}`}>
+                      <i className={`fas ${icon}`} aria-hidden="true" /> <span>{label}{!url && <small> on request</small>}</span> <i className="fas fa-chevron-right" aria-hidden="true" />
+                    </a>
+                  ))}
                 </div>
+                {p.floorPlans.length > 1 && (
+                  <p className="qv-fplist">{p.floorPlans.map((u, i) => <a key={u} href={u} target="_blank" rel="noopener">Floor plan {i + 1}</a>)}</p>
+                )}
+                <a className="qv-full" href={p.href}>See the full project page <i className="fas fa-chevron-right" aria-hidden="true" /></a>
               </section>
 
               {form && <VisitForm p={p} />}

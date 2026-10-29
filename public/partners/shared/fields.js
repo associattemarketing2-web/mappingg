@@ -78,6 +78,15 @@ export const FIELDS = [
     excel: 'Carpet Area Min', aliases: ['sq ft range', 'sqft', 'carpet area', 'area min', 'size'] },
   { key: 'carpet_area_max', label: 'Carpet area — largest', type: 'number', audience: 'builder', group: 'price',
     excel: 'Carpet Area Max', aliases: ['area max'] },
+  // One row per unit type — shown as the Configuration / Carpet area / Price table
+  // in the project's details panel (map, home page popup).
+  { key: 'unit_mix', label: 'Unit types, carpet area & price', type: 'rows', audience: 'builder', group: 'price', score: true,
+    columns: [
+      { key: 'config', label: 'Unit type', placeholder: 'e.g. 3 BHK, Duplex (Garden)' },
+      { key: 'area', label: 'Carpet area', placeholder: 'e.g. 1,250 – 1,270 sq ft' },
+      { key: 'price', label: 'Price', placeholder: 'e.g. ₹ 2.25 Cr onwards, or On request' },
+    ],
+    help: 'Optional. One row per unit type. Leave the price empty or write "On request" if it is not public.' },
 
   // ----- Builder: Timeline & registration -----
   { key: 'launch_date', label: 'Launch date', type: 'month', audience: 'builder', group: 'timeline', score: true,
@@ -100,6 +109,12 @@ export const FIELDS = [
     help: 'Best shown landscape, at least 1200 px wide. JPG, PNG or WebP.' },
   { key: 'gallery_paths', label: 'Gallery images (up to 10)', type: 'files', accept: 'image/*', max: 10, audience: 'builder', group: 'media', score: true },
   { key: 'brochure_path', label: 'Brochure (PDF)', type: 'file', accept: 'application/pdf', audience: 'builder', group: 'media', score: true },
+  { key: 'floor_plan_paths', label: 'Floor plans (up to 10)', type: 'files', accept: 'image/*,application/pdf', max: 10, audience: 'builder', group: 'media', score: true,
+    help: 'Images or PDFs of the unit plans.' },
+  { key: 'payment_plan_path', label: 'Payment plan', type: 'file', accept: 'image/*,application/pdf', audience: 'builder', group: 'media',
+    help: 'Optional. A PDF or image of the payment schedule.' },
+  { key: 'tour_360_url', label: '360° virtual tour link', type: 'url', audience: 'builder', group: 'media',
+    excel: '360 Tour Link', aliases: ['360 tour', 'virtual tour', '360'] },
   { key: 'rera_qr_path', label: 'RERA QR code', type: 'file', accept: 'image/*', audience: 'builder', group: 'media', score: true },
   { key: 'media_folder_link', label: 'Media folder link', type: 'url', audience: 'builder', group: 'media',
     help: 'Optional. A Google Drive or Dropbox folder with more images, floor plans or brochures.',

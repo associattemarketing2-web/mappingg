@@ -313,6 +313,7 @@ const BUILDER_KEYS = [
   'launch_date', 'possession_date_rera', 'possession_date_target', 'rera_numbers',
   'key_usps', 'youtube_url', 'cover_image_path', 'gallery_paths', 'brochure_path',
   'rera_qr_path', 'media_folder_link', 'additional_details', 'builder_remarks',
+  'unit_mix', 'floor_plan_paths', 'payment_plan_path', 'tour_360_url',
   'lat', 'lng', 'declaration_accepted',
 ];
 
@@ -421,6 +422,11 @@ const RPCS: Record<string, RpcFn> = {
       youtube_url: sub.youtube_url, media_folder_link: sub.media_folder_link,
       cover_image_url: media.cover_image_url || null, gallery_urls: media.gallery_urls || [],
       brochure_url: media.brochure_url || null, rera_qr_url: media.rera_qr_url || null,
+      // Details panel extras: unit-type table, floor plans, payment plan, 360° tour.
+      unit_mix: Array.isArray(sub.unit_mix) ? sub.unit_mix : [],
+      floor_plan_urls: Array.isArray(media.floor_plan_urls) ? media.floor_plan_urls : [],
+      payment_plan_url: media.payment_plan_url || null,
+      tour_360_url: sub.tour_360_url || null,
       additional_details: sub.additional_details || [],
       published_at: (existingProject as any)?.published_at || nowTs, updated_at: nowTs,
     };

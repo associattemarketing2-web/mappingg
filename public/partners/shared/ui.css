@@ -207,3 +207,9 @@ table.tbl { width: 100%; border-collapse: collapse; }
 .phone-in { --ph-line: var(--line-2); --ph-accent: var(--brand); --ph-ring: color-mix(in srgb, var(--brand) 25%, transparent); --ph-radius: var(--radius-sm); --ph-border: 1px; --ph-bad: var(--bad); --ph-ink: var(--ink); }
 .phone-cc { font-size: 13px; }
 .phone-in input.input[type=tel] { height: 38px; }
+
+/* "rows" fields (e.g. unit types · carpet area · price): one input per column, stacked on phones. */
+.rows-row + .rows-row { margin-top: 2px; }
+@media (max-width: 640px) {
+  .rows-row { grid-template-columns: 1fr !important; padding: 10px; border: 1px solid var(--line, #e6e2d8); border-radius: 10px; }
+}

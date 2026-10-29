@@ -12,7 +12,6 @@ import { trustedLogos } from '@/lib/developers';
 import { trustedDevelopersHtml } from '@/components/landing/trusted-developers';
 import HomeFinder from '@/components/landing/HomeFinder';
 import { getProjectCards } from '@/lib/home/cards';
-import { listPublished } from '@/lib/blog';
 
 import { SITE, SITE_URL } from '@/lib/seo/config';
 
@@ -45,8 +44,8 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [globe, featured, logos, cards, posts] = await Promise.all([
-    getGlobeData(), getFeaturedProject(), trustedLogos().catch(() => []), getProjectCards(), listPublished(),
+  const [globe, featured, logos, cards] = await Promise.all([
+    getGlobeData(), getFeaturedProject(), trustedLogos().catch(() => []), getProjectCards(),
   ]);
   // Swap the sample card for a real project with a video (keeps the sample if none).
   const landingHtml = (featured
@@ -78,8 +77,8 @@ export default async function HomePage() {
       {/* Full landing markup is server-rendered (great for SEO); all behaviour is
           wired up client-side by LandingClient + /landing.js. */}
       <div className="mpg" dangerouslySetInnerHTML={{ __html: heroHtml }} />
-      {/* Search → projects near you → localities → featured → browse → guides → enquire. */}
-      <HomeFinder cards={cards} posts={posts} />
+      {/* Projects near you (+ the "Enquire now" popup). */}
+      <HomeFinder cards={cards} />
       {restHtml && <div className="mpg" dangerouslySetInnerHTML={{ __html: restHtml }} />}
       <LandingClient />
     </>
