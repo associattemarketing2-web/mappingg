@@ -1925,6 +1925,7 @@ function LeadsPanel({ flash, isOwner, focusId, onFocusDone }: { flash: (m: strin
           {sel.phone && <a href={`tel:${sel.phone.replace(/\s/g, '')}`}><i className="fas fa-phone" /> {sel.phone}</a>}
           {sel.email && <a href={`mailto:${sel.email}`} title={sel.email}><i className="fas fa-envelope" /> <span>{sel.email}</span></a>}
         </div>
+        {isOwner && <button type="button" className="crm3-x crm3-del" onClick={() => remove(sel)} title="Delete lead (restorable from Backups → Recycle bin)" aria-label={`Delete lead from ${sel.name || sel.email || 'this person'}`}><i className="fas fa-trash" /></button>}
         <button type="button" className="crm3-x" onClick={() => setSel(null)} aria-label="Close"><i className="fas fa-xmark" /></button>
       </div>
 
@@ -2468,7 +2469,7 @@ function LeadsPanel({ flash, isOwner, focusId, onFocusDone }: { flash: (m: strin
                               ? <a className="wa" href={`https://wa.me/${digits(l.phone)}`} target="_blank" rel="noopener" title="WhatsApp" aria-label={`WhatsApp ${l.name}`}><i className="fab fa-whatsapp" /></a>
                               : l.email ? <a href={`mailto:${l.email}`} title={`Email ${l.email}`} aria-label={`Email ${l.name}`}><i className="fas fa-envelope" /></a>
                                 : <span className="off"><i className="fab fa-whatsapp" /></span>}
-                            <button type="button" onClick={() => open(l)} title="Open lead — notes, follow-up, status, transfer" aria-label={`Open ${l.name}`}><i className="fas fa-ellipsis-vertical" /></button>
+                            <button type="button" className="view" onClick={() => open(l)} title="View lead details — notes, follow-up, status, transfer" aria-label={`View details of ${l.name || l.email || 'this lead'}`}><i className="fas fa-eye" /></button>
                           </div>
                         </td>
                       </tr>

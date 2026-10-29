@@ -2859,6 +2859,9 @@ button.ck:hover { transform: translateY(-2px); }
 .crm3-acts a:hover, .crm3-acts button:hover { border-color: var(--forest); color: var(--forest); }
 .crm3-acts .wa i { color: #1ea952; font-size: 15px; }
 .crm3-acts span.off { color: #c4c8c5; cursor: default; }
+.crm3-acts button.view { color: var(--forest); }
+.crm3-x.crm3-del { color: #b42318; background: #fdf0ef; }
+.crm3-x.crm3-del:hover { color: #fff; background: #b42318; }
 
 /* Lead panel (beside the table on wide screens, slides over otherwise) */
 .crm3-panel { display: flex; flex-direction: column; min-width: 0; background: #fff; }
