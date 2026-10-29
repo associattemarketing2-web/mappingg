@@ -3777,3 +3777,39 @@ button.ck:hover { transform: translateY(-2px); }
   .pg-wa .lead-src { flex-wrap: nowrap; gap: 6px; }
   .pg-wa .lead-src button { flex: 1 1 0; min-width: 0; justify-content: center; padding-left: 8px; padding-right: 8px; white-space: nowrap; }
 }
+
+/* ================= No visible scrollbars on phones and tablets =================
+   Wide tables, the section tabs, chip rows, chat lists and charts scroll inside their
+   own boxes. On touch screens they still scroll with a swipe; only the scrollbar
+   itself is hidden, so no grey bars appear across the dashboard. Desktop keeps them. */
+@media (max-width: 1100px) {
+  .adm2, .adm2 * { scrollbar-width: none; -ms-overflow-style: none; }
+  .adm2::-webkit-scrollbar, .adm2 *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+}
+
+/* ================= Phones: nothing wider than the screen =================
+   A bar along the bottom of the dashboard means something was wider than the phone.
+   1) Accounts list: the six fixed columns (≈420 px) become a two-line card.
+   2) Long emails, links and ids wrap instead of stretching tables and cards.
+   3) Pictures, charts, maps and frames never exceed the screen.
+   4) Last guard: the dashboard is held to the screen width. Sticky header and tabs keep
+      working (clip is not a scroll box), and wide tables still swipe inside their own box. */
+@media (max-width: 760px) {
+  .acs-head { display: none; }
+  .acs-row { display: flex; flex-wrap: wrap; align-items: center; column-gap: 10px; row-gap: 6px; }
+  .acs-row .acs-who { flex: 1 1 calc(100% - 80px); }
+  .acs-row .acs-go { order: 1; }
+  .acs-row .acs-type { order: 2; margin-left: 50px; }
+  .acs-row .acs-status { order: 3; }
+  .acs-row .acs-when { order: 4; margin-left: auto; }
+}
+@media (max-width: 900px) {
+  .adm2 .adm-table th, .adm2 .adm-table td { overflow-wrap: anywhere; word-break: break-word; }
+  .adm2 :is(p, h1, h2, h3, h4, dd, dt, li, td, th, label, small, b, a) { overflow-wrap: anywhere; }
+  .adm2 :is(img, svg, canvas, video, iframe) { max-width: 100%; }
+  .adm2 pre { max-width: 100%; overflow-x: auto; white-space: pre-wrap; }
+  .adm-content, .adm-content > * { min-width: 0; max-width: 100%; }
+}
+@media (max-width: 1100px) {
+  .adm2 { max-width: 100%; overflow-x: clip; }
+}
