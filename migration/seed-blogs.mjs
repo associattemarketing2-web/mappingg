@@ -24,6 +24,7 @@ import path from 'node:path';
 import pg from 'pg';
 import { projectSlug, slugify } from '../lib/seo/slug.ts';
 import { localitiesOf } from '../lib/locality.ts';
+import { parsePriceLakh, parseAreaSqft, bhkSizes } from '../lib/home/finder.ts';
 import { makeCover } from './blog-covers.mjs';
 
 const OLD_SLUGS = ['welcome-to-the-mappingg-blog'];
@@ -117,7 +118,7 @@ function makeHelpers(pins) {
     return `<a href="/locations/${slugify(name)}">${esc(text || name)}</a>`;
   };
 
-  return { get, link, loc, table, gallery, href };
+  return { get, link, loc, table, gallery, href, all: [...pins.values()] };
 }
 
 // ---- articles -----------------------------------------------------------------
@@ -2883,6 +2884,231 @@ function resaleArticle() {
   };
 }
 
+// ---- price & BHK guides (computed from the live pins) ----------------------------
+
+// Residential pins with a clean price and BHK mix inside a city's map area.
+// Prices are each project's listed *starting* price (usually its smallest home),
+// parsed by lib/home/finder.ts, which ignores anything without a clear unit.
+const AREA_BOX = {
+  pune: { lat: [18.3, 18.85], lng: [73.55, 74.25] },
+  mumbai: { lat: [18.85, 19.5], lng: [72.75, 73.45] },
+};
+// Known data problems kept out of the averages: #257 lists "₹103.96 – 111.2 Cr"
+// (lakhs typed as crores); #75 and #975 duplicate #21 and #180.
+const PRICE_SKIP = new Set([257, 75, 975]);
+
+function pricedHomes(h, area) {
+  const box = AREA_BOX[area];
+  return h.all
+    .filter((p) => !PRICE_SKIP.has(Number(p.number)))
+    .filter((p) => !/commercial|office|retail|shop|plot|land/i.test(p.type || ''))
+    .filter((p) => Number(p.lat) >= box.lat[0] && Number(p.lat) <= box.lat[1] && Number(p.lng) >= box.lng[0] && Number(p.lng) <= box.lng[1])
+    .map((p) => ({ p, price: parsePriceLakh(p.price), bhk: bhkSizes(p.configuration), area: parseAreaSqft(p.sqft) }))
+    .filter((x) => x.price && x.bhk.length);
+}
+
+const lakh = (v) => (v >= 100 ? `₹${+(v / 100).toFixed(2)} Cr` : `₹${Math.round(v)} L`);
+const median = (xs) => { const s = [...xs].sort((a, b) => a - b); return s.length ? s[Math.floor(s.length / 2)] : 0; };
+const bhkName = (k) => (k >= 4 ? '4+ BHK' : `${k} BHK`);
+/** The bucket of a project's smallest home: 1, 2, 3 or 4 (= 4 and above). */
+const smallest = (bhk) => Math.min(4, Math.floor(Math.min(...bhk)));
+
+/** "By BHK" table: how many projects start at each size, and their starting prices. */
+function bhkTable(homes, caption) {
+  const rows = [1, 2, 3, 4].map((k) => {
+    const g = homes.filter((x) => smallest(x.bhk) === k);
+    const offer = homes.filter((x) => x.bhk.some((b) => (k === 4 ? b >= 4 : Math.floor(b) === k))).length;
+    if (!g.length && !offer) return '';
+    return `<tr><td>${bhkName(k)}</td><td>${offer}</td><td>${g.length}</td><td>${g.length ? lakh(Math.min(...g.map((x) => x.price.min))) : '—'}</td><td>${g.length ? lakh(median(g.map((x) => x.price.min))) : '—'}</td></tr>`;
+  }).join('');
+  return `<div class="table-scroll"><table><caption>${esc(caption)}</caption>` +
+    `<thead><tr><th>Home size</th><th>Projects offering it</th><th>Projects whose smallest home is this size*</th><th>Their lowest starting price</th><th>Their median starting price</th></tr></thead>` +
+    `<tbody>${rows}</tbody></table></div>` +
+    `<p><small>* A project’s listed starting price is usually the price of its smallest home, so prices are grouped by each project’s smallest size. Homes of the same size inside projects that also sell smaller units can cost less than the figures shown here. Prices are the developers’ listed starting prices on our map; final prices depend on floor, view and the exact unit.</small></p>`;
+}
+
+/** Locality comparison: projects, starting-price range, BHK on offer, approx. ₹ per sq ft. */
+function localityTable(h, homes, caption, minProjects = 2) {
+  const by = new Map();
+  for (const x of homes) {
+    const name = localitiesOf(x.p.location)[0];
+    if (!name || /^(pune|pune city|haveli|mulshi|mumbai|mumbai city)$/i.test(name)) continue;
+    if (!by.has(name)) by.set(name, []);
+    by.get(name).push(x);
+  }
+  const rows = [...by.entries()]
+    .filter(([, xs]) => xs.length >= minProjects)
+    .map(([name, xs]) => {
+      const lo = Math.min(...xs.map((x) => x.price.min)), hi = Math.max(...xs.map((x) => x.price.min));
+      const sizes = [...new Set(xs.flatMap((x) => x.bhk.map((b) => Math.min(4, Math.floor(b)))))].sort((a, b) => a - b);
+      // Starting price ÷ smallest listed area, only where both are published.
+      // Ignore mismatched price/area pairs (bad source data): keep ₹3,000–60,000 per sq ft.
+      const rates = xs.filter((x) => x.area && x.area.min > 0).map((x) => (x.price.min * 100000) / x.area.min).filter((r) => r >= 3000 && r <= 60000);
+      const rate = rates.length ? `≈ ₹${(Math.round(median(rates) / 100) * 100).toLocaleString('en-IN')}` : '—';
+      return { name, n: xs.length, lo, hi, sizes, rate };
+    })
+    .sort((a, b) => a.lo - b.lo);
+  const body = rows.map((r) => `<tr><td>${h.loc(r.name)}</td><td>${r.n}</td><td>${lakh(r.lo)}${r.hi > r.lo ? ` – ${lakh(r.hi)}` : ''}</td>` +
+    `<td>${r.sizes.map((s) => (s >= 4 ? '4+' : s)).join(', ')} BHK</td><td>${r.rate}</td></tr>`).join('');
+  return `<div class="table-scroll"><table><caption>${esc(caption)}</caption>` +
+    `<thead><tr><th>Locality</th><th>Projects</th><th>Starting prices</th><th>Sizes on offer</th><th>Approx. ₹ / sq ft**</th></tr></thead>` +
+    `<tbody>${body}</tbody></table></div>` +
+    `<p><small>** Rough guide: each project’s starting price divided by its smallest listed carpet area, then the median for the locality. Shown only where projects publish both. Always confirm the per-sq-ft rate on carpet area with the developer.</small></p>`;
+}
+
+function punePricesArticle(h) {
+  const homes = pricedHomes(h, 'pune');
+  const affordable = [244, 240, 221, 211, 233, 199, 241, 111];
+  const mid = [204, 203, 202, 238, 165, 198, 13, 135, 201, 270];
+  const upper = [21, 200, 47, 166, 246, 247, 4, 18, 113, 117];
+  const premium = [87, 93, 159, 37, 136, 194];
+  const two = homes.filter((x) => smallest(x.bhk) === 2).map((x) => x.price.min);
+  const three = homes.filter((x) => smallest(x.bhk) === 3).map((x) => x.price.min);
+
+  return {
+    slug: 'flat-prices-in-pune-by-locality-and-bhk',
+    title: 'Flat Prices in Pune (2026): 1, 2, 3 & 4 BHK Rates by Locality',
+    seo_title: 'Flat Prices in Pune 2026: 2 & 3 BHK Rates by Area',
+    seo_description:
+      `Flat prices in Pune 2026: starting prices of ${homes.length}+ new projects by locality & BHK — Kharadi, Mundhwa, Hinjewadi, Wakad, Baner & more, with ₹/sq ft.`,
+    excerpt:
+      'How much does a 2 BHK or 3 BHK flat cost in Pune? We compared the listed starting prices of every priced new project on our map, locality by locality, so you can see where your budget fits before you visit.',
+    tags: ['Pune', 'Flat Prices', 'Property Rates', '2 BHK', '3 BHK', 'Price per sq ft'],
+    cover: {
+      theme: 'golden',
+      kicker: 'Price guide',
+      lines: ['Flat Prices', 'in Pune 2026', 'by Locality & BHK'],
+      stats: [[`${homes.length}+`, 'priced projects'], [lakh(Math.min(...homes.map((x) => x.price.min))), 'lowest entry'], ['1–4+ BHK', 'by locality']],
+    },
+    content: `
+<p><strong>How much does a flat cost in Pune?</strong> It depends far more on the locality than most buyers expect: around ₹1 crore can buy a 3 BHK in parts of Lohegaon or Undri, but only a 2 BHK in Baner or Kharadi. To make this easy to compare, we took the listed starting price of every new residential project on the <a href="/map">Mappingg live map</a> in Pune that publishes one (${homes.length} projects today) and grouped them by home size and by locality.</p>
+
+<p>Use this page to answer three questions quickly: <em>what is a realistic price for the BHK I want, which localities fit my budget, and which projects should I visit first?</em> Every project below links to its own page with configuration, possession date and RERA number.</p>
+
+<h2>Flat prices in Pune by BHK</h2>
+<p>Most new projects in Pune start with 2 or 3 BHK homes. Projects that also offer a 1 BHK are rare, and are mostly in Pimpri-Chinchwad and the eastern edge of the city. Here is what the starting prices look like, grouped by each project’s smallest home:</p>
+${bhkTable(homes, 'New flats in Pune: starting prices by home size')}
+<p>For a deeper look at a single size, see our guides to <a href="/blog/2-bhk-flats-in-pune">2 BHK flats in Pune</a> and <a href="/blog/3-bhk-flats-in-pune">3 BHK flats in Pune</a>. If your ceiling is ₹1 crore, start with <a href="/blog/flats-under-1-crore-in-pune">flats under ₹1 Cr in Pune</a>.</p>
+
+<h2>Flat prices in Pune by locality</h2>
+<p>The table below lists every locality with at least two priced new projects, from the lowest starting price up. The last column is a rough ₹-per-sq-ft guide, worked out only where projects publish both a price and a carpet area.</p>
+${localityTable(h, homes, 'Starting prices of new projects by Pune locality')}
+
+<h2>Most affordable localities: homes starting under ₹85 Lacs</h2>
+<p>The lowest prices on our map are on the city’s growing edges: <strong>Chikhali and Charholi</strong> in Pimpri-Chinchwad, <strong>Lohegaon</strong> near the airport, <strong>Undri and Hadapsar</strong> in the south-east, and <strong>Sus</strong> and <strong>Loni Kalbhor</strong>. Expect longer commutes to the main IT parks, but larger homes for the money and plenty of new social infrastructure coming up.</p>
+${h.table(affordable, 'Affordable new projects in Pune')}
+
+<h2>Mid-range: ₹80 Lacs – ₹1.25 Cr in the IT corridors</h2>
+<p>This is the busiest band in Pune. In the west, <strong>Hinjewadi, Tathawade, Ravet, Wakad and Mahalunge</strong> serve the Rajiv Gandhi Infotech Park. In the east, the first homes in <strong>Mundhwa and Kharadi</strong> start at around ₹1 Cr. Most of these are 2 and 3 BHK homes in large gated communities.</p>
+${h.table(mid, 'Mid-range new projects in Pune')}
+
+<h2>Upper-mid: ₹1.25 Cr – ₹2.25 Cr for 3 BHK family homes</h2>
+<p>Bigger 3 and 4 BHK homes in established neighbourhoods such as Kharadi, Balewadi, Wakad, Pimple Saudagar, Mundhwa and Magarpatta mostly start here. This band has the widest choice of large developers.</p>
+${h.gallery([4, 21, 200, 117, 166, 18])}
+${h.table(upper, 'Upper-mid new projects in Pune')}
+
+<h2>Premium: ₹2.25 Cr and above</h2>
+<p>Above ₹2.25 Cr you are looking at larger 3.5 and 4.5 BHK homes in Kharadi, Hadapsar’s Magarpatta side, Kothrud, Viman Nagar, Kalyani Nagar and Koregaon Park. See our full <a href="/blog/luxury-flats-villas-in-pune">luxury flats and villas in Pune</a> guide for more.</p>
+${h.table(premium, 'Premium new projects in Pune')}
+
+<h2>How to compare flat prices fairly</h2>
+<ol>
+  <li><strong>Compare on carpet area.</strong> RERA requires developers to sell by carpet area. Divide the all-in price by the carpet area to compare projects. Our <a href="/blog/carpet-area-vs-built-up-vs-super-built-up-area">carpet vs built-up area guide</a> explains why.</li>
+  <li><strong>Add the costs on top of the price.</strong> Stamp duty, registration, GST on under-construction homes, parking, maintenance deposits and legal fees can add a meaningful amount. See <a href="/blog/stamp-duty-registration-charges-pune">stamp duty &amp; registration charges in Pune</a>.</li>
+  <li><strong>Check the possession date on MahaRERA.</strong> A cheaper project that is three years away may cost you more in rent and pre-EMI than a ready one. <a href="/blog/ready-to-move-vs-under-construction-flats-pune">Ready-to-move vs under-construction</a> compares the two.</li>
+  <li><strong>Confirm the price on the day.</strong> Listed prices are starting prices for the smallest unit. Ask for the cost sheet of the exact flat you like.</li>
+</ol>
+
+<h2>FAQs: flat prices in Pune</h2>
+<h3>What is the price of a 2 BHK flat in Pune?</h3>
+<p>Among new projects on our map whose smallest home is a 2 BHK, starting prices run from about ${lakh(Math.min(...two))} to well above ₹2 Cr, with a median starting price around ${lakh(median(two))}. Pimpri-Chinchwad, Lohegaon and Undri are at the lower end; Baner, Kharadi and Mundhwa at the higher end.</p>
+<h3>What is the price of a 3 BHK flat in Pune?</h3>
+<p>Projects whose smallest home is a 3 BHK have a median starting price of about ${lakh(median(three))}, and the cheapest start near ${lakh(Math.min(...three))}. 3 BHK homes inside 2 &amp; 3 BHK projects often cost less. Value pockets include Hinjewadi and Wakad in the west and Hadapsar in the east; Koregaon Park, Kalyani Nagar and Viman Nagar are the most expensive.</p>
+<h3>Which is the cheapest area to buy a flat in Pune?</h3>
+<p>On our map, the lowest starting prices are in Chikhali, Charholi, Lohegaon, Undri and Hadapsar. Check the commute to your workplace before you decide, because the savings can be offset by travel time.</p>
+<h3>Where can I see all these projects on a map?</h3>
+<p>Open the <a href="/map">Mappingg live map</a> to see every project with its price, BHK options and possession date, or browse <a href="/cities/pune">all projects in Pune</a>.</p>
+
+<blockquote>Prices are the developers’ listed starting prices as shown on Mappingg when this guide was updated. They change often and are not an offer. Confirm the current price, carpet area and payment plan with the developer before you book.</blockquote>
+`,
+  };
+}
+
+function mumbaiBhkBudgetArticle(h) {
+  const homes = pricedHomes(h, 'mumbai');
+  const under50 = [151, 153, 150, 154, 120, 223, 192, 224];
+  const to1cr = [152, 124, 155, 122, 222, 225, 180];
+  const to2cr = [174, 183, 177, 131, 132];
+  const above = [147, 173, 156, 137, 149, 195];
+  const one = homes.filter((x) => x.bhk.some((b) => Math.floor(b) === 1));
+  const under1cr = homes.filter((x) => x.price.min < 100).length;
+
+  return {
+    slug: 'flats-in-mumbai-thane-navi-mumbai-by-bhk-and-budget',
+    title: 'Flats in Mumbai, Thane & Navi Mumbai by BHK and Budget (2026): 1, 2 & 3 BHK Prices',
+    seo_title: '1, 2 & 3 BHK Flats in Mumbai & Thane 2026: Prices',
+    seo_description:
+      `New 1, 2 & 3 BHK flats in Mumbai, Thane, Kalyan-Dombivli & Navi Mumbai by budget — ${under1cr} projects under ₹1 Cr, 1 BHK from ${lakh(Math.min(...one.map((x) => x.price.min)))}, with RERA numbers.`,
+    excerpt:
+      'Where can you buy a 1, 2 or 3 BHK in the Mumbai region for your budget? Every priced new project on our map across Mumbai, Thane, Kalyan-Dombivli and Navi Mumbai — sorted by price band, with BHK options, possession dates and MahaRERA numbers.',
+    tags: ['Mumbai', 'Thane', 'Navi Mumbai', 'Kalyan Dombivli', '1 BHK', '2 BHK', 'Flats Under 1 Crore'],
+    cover: {
+      theme: 'metro',
+      kicker: 'Budget guide · MMR',
+      lines: ['Flats in Mumbai,', 'Thane & Navi Mumbai', 'by BHK & Budget'],
+      stats: [[`${homes.length}`, 'priced projects'], [`${under1cr}`, 'under ₹1 Cr'], ['1–4 BHK', 'configurations']],
+      tagline: 'Mumbai’s live real-estate map',
+    },
+    content: `
+<p>Looking for <strong>flats in Mumbai</strong> but not sure how far your budget will go? In the Mumbai Metropolitan Region (MMR), the answer depends mostly on which side of the city you choose. New homes in Khar and Bandra start in the crores, while 1 and 2 BHK homes in Kalyan, Dombivli and parts of Navi Mumbai start under ₹50 Lacs. This guide groups every priced new residential project on the <a href="/map">Mappingg live map</a> in the region (${homes.length} today) by <strong>BHK and budget</strong>, so you can see your options side by side.</p>
+
+<h2>1, 2 &amp; 3 BHK prices in the Mumbai region</h2>
+${bhkTable(homes, 'New flats in Mumbai & MMR: starting prices by home size')}
+<p>1 BHK homes are still widely available in the region, unlike in Pune, especially along the Kalyan-Dombivli corridor and in Thane’s Manpada area. 3 BHK and larger homes mostly start above ₹1.5 Cr, except in a few large townships.</p>
+
+<h2>Prices by locality</h2>
+${localityTable(h, homes, 'Starting prices of new projects by locality (Mumbai region)')}
+
+<h2>Flats under ₹50 Lacs: 1 &amp; 2 BHK in Thane, Kalyan &amp; Dombivli</h2>
+<p>The most affordable new homes on our map are in ${h.loc('Manpada')} (Thane), ${h.loc('Dombivli')}, ${h.loc('Kalyan')} and ${h.loc('Kharghar')}. Most are 1 and 2 BHK homes in large townships with their own schools, shops and open spaces, often close to a suburban railway station. Our <a href="/blog/new-projects-in-kalyan-dombivli-palava-thane">Kalyan, Dombivli, Palava &amp; Thane guide</a> covers these areas in more detail.</p>
+${h.gallery([151, 153, 154, 120, 192, 224], 'Mumbai region')}
+${h.table(under50, 'New 1 & 2 BHK flats under ₹50 Lacs in the Mumbai region')}
+
+<h2>Flats from ₹50 Lacs to ₹1 Crore</h2>
+<p>This band adds bigger 2 BHK and some 3 BHK homes from established developers such as Rustomjee, Lodha and Nivasa in Kalyan-Dombivli, plus ${h.loc('Panvel')}, which is close to the new Navi Mumbai International Airport.</p>
+${h.table(to1cr, 'New flats from ₹50 Lacs to ₹1 Cr in the Mumbai region')}
+
+<h2>2 &amp; 3 BHK flats from ₹1 Crore to ₹2 Crore</h2>
+<p>Navi Mumbai’s planned nodes (${h.loc('Airoli')}, ${h.loc('Juinagar')} and ${h.loc('Kharghar')}) and Panvel offer 2, 3 and 4 BHK homes in this range. They come with wide roads, CIDCO planning and good rail links. See our <a href="/blog/new-projects-in-navi-mumbai">new projects in Navi Mumbai</a> guide for the full list.</p>
+${h.table(to2cr, 'New 2 & 3 BHK flats from ₹1–2 Cr in the Mumbai region')}
+
+<h2>Premium flats above ₹2 Crore</h2>
+<p>Above ₹2 Cr the choice spans large 3 and 4 BHK homes at ${h.loc('Palava')} and ${h.loc('Thane')}, sea-facing homes in ${h.loc('Vashi')}, and luxury residences in ${h.loc('Khar')} and ${h.loc('Bandra')}. For Mumbai city projects, read <a href="/blog/new-projects-in-mumbai-andheri-borivali-south-mumbai">new projects in Andheri, Borivali &amp; South Mumbai</a>.</p>
+${h.table(above, 'Premium new projects above ₹2 Cr in the Mumbai region')}
+
+<h2>Tips for buying a flat in the Mumbai region</h2>
+<ol>
+  <li><strong>Compare carpet area, not the brochure size.</strong> Homes in the Mumbai region are often compact, so a small difference in carpet area changes the real price per sq ft a lot. See <a href="/blog/carpet-area-vs-built-up-vs-super-built-up-area">carpet vs built-up area</a>.</li>
+  <li><strong>Check the commute on a map.</strong> Distance to the nearest suburban railway or Metro station matters more than kilometres. Open each project on the <a href="/map">live map</a>.</li>
+  <li><strong>Verify the MahaRERA registration.</strong> Every project in Maharashtra must be registered before it is sold. <a href="/blog/how-to-check-maharera-registration-number">Here’s how to check a MahaRERA number</a>.</li>
+  <li><strong>Budget for the extra costs.</strong> Stamp duty, registration, GST on under-construction homes, and society and maintenance charges come on top of the listed price.</li>
+</ol>
+
+<h2>FAQs: flats in Mumbai by BHK and budget</h2>
+<h3>Can I buy a flat under ₹50 Lacs in the Mumbai region?</h3>
+<p>Yes. On our map, new 1 and 2 BHK homes start under ₹50 Lacs in Thane (Manpada), Dombivli, Kalyan and Kharghar, for example ${h.link(151)}, ${h.link(153)} and ${h.link(154)}.</p>
+<h3>What is the starting price of a 2 BHK in Navi Mumbai?</h3>
+<p>Among projects on our map, 2 BHK homes in Navi Mumbai start from under ₹75 Lacs in Kharghar and Panvel (for example ${h.link(224)} and ${h.link(225)}), and go up to ₹1.5–2 Cr in Airoli and Juinagar.</p>
+<h3>Where are the 1 BHK flats in Mumbai?</h3>
+<p>${one.length} priced projects on our map in the region include a 1 BHK, mostly in Kalyan, Dombivli, Thane and Navi Mumbai. Browse <a href="/cities/mumbai">all projects in Mumbai &amp; MMR</a> to filter further.</p>
+<h3>Are these prices final?</h3>
+<p>No. They are the developers’ listed starting prices, usually for the smallest unit. Ask for a cost sheet for the exact flat, floor and parking before you book.</p>
+
+<blockquote>Prices are the developers’ listed starting prices as shown on Mappingg when this guide was updated. They change often and are not an offer. Confirm the current price, carpet area and payment plan with the developer before you book.</blockquote>
+`,
+  };
+}
+
 // ---- photos ---------------------------------------------------------------------
 
 const PHOTO_DIR = path.resolve('migration/blog-photos');
@@ -2897,6 +3123,7 @@ const PHOTO_POSITION = {
   'new-projects-in-bengaluru': 'bottom',
   'agreement-for-sale-clauses-to-check-maharera': 'right',
   'payment-plans-construction-linked-subvention-flats-pune': 'bottom',
+  'flats-in-mumbai-thane-navi-mumbai-by-bhk-and-budget': 'bottom',
 };
 
 /** CC licences require attribution and a note that the photo was changed. */
@@ -2941,22 +3168,59 @@ async function upsert(post) {
 async function main() {
   const pins = await loadPins();
   const h = makeHelpers(pins);
-  let articles = [
-    mundhwaArticle(h), puneAreasArticle(h), kharadiArticle(h), reraArticle(h),
-    westPuneArticle(h), pcmcArticle(h), eastPuneArticle(h), readyVsUcArticle(h),
-    underOneCroreArticle(h), stampDutyArticle(h), threeBhkArticle(h), homeLoanArticle(h),
-    twoBhkArticle(h), luxuryArticle(h), naviMumbaiArticle(h), kalyanDombivliArticle(h),
-    commercialArticle(h), upcomingArticle(h), bengaluruArticle(h), mumbaiArticle(h),
-    centralPuneArticle(h), documentsArticle(h), carpetAreaArticle(), possessionDelayArticle(),
-    siteVisitArticle(), occupancyCertificateArticle(), agreementForSaleArticle(), paymentPlansArticle(),
-    bengaluruEastArticle(h), anekalArticle(h), southBengaluruArticle(h), northBengaluruArticle(h),
-    homeLoanTaxArticle(), resaleArticle(),
-  ];
-
   // --only=slug-a,slug-b seeds just those posts and leaves the rest (and the old
-  // placeholder) alone.
+  // placeholder) alone. Articles are built from live data and stop with an error
+  // when a project or locality they cite is no longer public; with --only, such an
+  // error in an article that is NOT being seeded is reported and skipped.
   const onlyArg = process.argv.find((a) => a.startsWith('--only='));
   const only = onlyArg ? onlyArg.slice(7).split(',').map((s) => s.trim()).filter(Boolean) : null;
+  const builders = [
+    () => mundhwaArticle(h),
+    () => puneAreasArticle(h),
+    () => kharadiArticle(h),
+    () => reraArticle(h),
+    () => westPuneArticle(h),
+    () => pcmcArticle(h),
+    () => eastPuneArticle(h),
+    () => readyVsUcArticle(h),
+    () => underOneCroreArticle(h),
+    () => stampDutyArticle(h),
+    () => threeBhkArticle(h),
+    () => homeLoanArticle(h),
+    () => twoBhkArticle(h),
+    () => luxuryArticle(h),
+    () => naviMumbaiArticle(h),
+    () => kalyanDombivliArticle(h),
+    () => commercialArticle(h),
+    () => upcomingArticle(h),
+    () => bengaluruArticle(h),
+    () => mumbaiArticle(h),
+    () => centralPuneArticle(h),
+    () => documentsArticle(h),
+    () => carpetAreaArticle(),
+    () => possessionDelayArticle(),
+    () => siteVisitArticle(),
+    () => occupancyCertificateArticle(),
+    () => agreementForSaleArticle(),
+    () => paymentPlansArticle(),
+    () => bengaluruEastArticle(h),
+    () => anekalArticle(h),
+    () => southBengaluruArticle(h),
+    () => northBengaluruArticle(h),
+    () => homeLoanTaxArticle(),
+    () => resaleArticle(),
+    () => punePricesArticle(h),
+    () => mumbaiBhkBudgetArticle(h),
+  ];
+  let articles = [];
+  for (const build of builders) {
+    try { articles.push(build()); }
+    catch (e) {
+      if (!only) throw e;
+      console.warn(`Skipped (not in --only, needs fixing before a full run): ${e.message}`);
+    }
+  }
+
   if (only) {
     const unknown = only.filter((s) => !articles.some((a) => a.slug === s));
     if (unknown.length) throw new Error(`unknown slug(s): ${unknown.join(', ')}`);

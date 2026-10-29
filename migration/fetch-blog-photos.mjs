@@ -46,6 +46,8 @@ const PHOTOS = {
   'new-projects-in-north-bengaluru-yelahanka': 'Yelahanka New Town.jpg',
   'home-loan-tax-benefits-80c-24b': 'Baner Hill from Pashan, Pune, India..jpg',
   'buying-resale-flat-checklist-pune': 'Ganesh Apartment, Kasba Peth, Pune.jpg',
+  'flat-prices-in-pune-by-locality-and-bhk': 'Eastern Pune Skyline.jpg',
+  'flats-in-mumbai-thane-navi-mumbai-by-bhk-and-budget': 'Hiranandani Gardens, Powai skyline.JPG',
 };
 
 const OUT = path.resolve('migration/blog-photos');
