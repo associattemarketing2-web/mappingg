@@ -22,9 +22,8 @@ const base = z.object({
   name: z.string().trim().min(1).max(120),
   email: z.string().trim().toLowerCase().email(),
   mobile: z.string().trim().max(24),
-  // Optional: without one the account signs in with a WhatsApp code (/api/auth/otp-login)
-  // or sets a password later via "Forgot password". If given, at least 8 characters.
-  password: z.string().max(200).optional().default('').refine((p) => p === '' || p.length >= 8),
+  // At least 8 characters. Forgotten? "Forgot password" resets it with a WhatsApp code.
+  password: z.string().min(8).max(200),
   // The 6-digit WhatsApp code from /api/auth/otp (purpose 'signup') and its ticket.
   otp: z.string().trim().max(12),
   ticket: z.string().max(1000),

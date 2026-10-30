@@ -59,3 +59,29 @@ export async function PUT(req: NextRequest) {
   ).catch(() => {});
   return NextResponse.json({ data: { ok: true } });
 }
+
+// Just what they're looking for — the live map asks a buyer for this after a
+// few project clicks or a site-visit booking (it's no longer part of sign-up).
+const prefsSchema = z.object({
+  profile: z.object({ area: pref(), configuration: pref(), budget: pref(), timeline: pref(), purpose: pref() }),
+});
+
+export async function PATCH(req: NextRequest) {
+  const user = await buyer();
+  if (!user) return NextResponse.json({ error: { message: 'Not authorized' } }, { status: 401 });
+  const parsed = prefsSchema.safeParse(await req.json().catch(() => null));
+  if (!parsed.success) return NextResponse.json({ error: { message: 'Could not save your preferences.' } }, { status: 400 });
+
+  const db = await getDb();
+  const now = new Date().toISOString();
+  const cur = await db.collection('users').findOne({ id: user.id }, { projection: { profile: 1, provider: 1 } });
+  // Blank answers don't wipe out ones saved earlier.
+  const given = Object.fromEntries(Object.entries(parsed.data.profile).filter(([, v]) => v));
+  const merged = { ...((cur?.profile as Record<string, string>) || {}), ...given };
+  await db.collection('users').updateOne({ id: user.id }, { $set: { profile: merged, updated_at: now } });
+  await db.collection('contact_leads').updateOne(
+    { account_id: user.id },
+    { $set: { message: buyerNeeds(merged, cur?.provider === 'google' ? 'google' : 'password'), updated_at: now } },
+  ).catch(() => {});
+  return NextResponse.json({ data: { ok: true } });
+}
