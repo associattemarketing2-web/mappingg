@@ -48,6 +48,8 @@ const PHOTOS = {
   'buying-resale-flat-checklist-pune': 'Ganesh Apartment, Kasba Peth, Pune.jpg',
   'flat-prices-in-pune-by-locality-and-bhk': 'Eastern Pune Skyline.jpg',
   'flats-in-mumbai-thane-navi-mumbai-by-bhk-and-budget': 'Hiranandani Gardens, Powai skyline.JPG',
+  'nri-guide-buying-property-in-india-pune': 'Pune Airport Front View 2025.jpg',
+  'maintenance-charges-sinking-fund-society-handover-pune': 'Asawari Apartments,Nanded City.jpg',
 };
 
 const OUT = path.resolve('migration/blog-photos');

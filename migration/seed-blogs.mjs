@@ -3109,6 +3109,207 @@ ${h.table(above, 'Premium new projects above ₹2 Cr in the Mumbai region')}
   };
 }
 
+function nriArticle() {
+  return {
+    slug: 'nri-guide-buying-property-in-india-pune',
+    title: 'Buying Property in India as an NRI: Rules, Payments, Home Loans, Power of Attorney & Tax',
+    seo_title: 'NRI Guide to Buying Property in India (Pune, 2026)',
+    seo_description:
+      'What NRIs and OCI cardholders can buy in India, how to pay from NRE/NRO accounts, NRI home loans, power of attorney for registration, rental income tax, TDS when you sell and repatriation.',
+    excerpt:
+      'NRIs and OCI cardholders can buy flats and offices in India without RBI permission, but the payment, paperwork and tax rules differ from a resident’s. Here is how it works, from booking to selling and sending the money back.',
+    tags: ['NRI', 'Home Buying Guide', 'Pune', 'Home Loan', 'Income Tax'],
+    cover: {
+      theme: 'forest',
+      kicker: 'Buyer’s guide',
+      lines: ['Buying Property', 'in India', 'as an NRI'],
+      stats: [['No RBI', 'permission'], ['NRE / NRO', 'payments'], ['2 homes', 'repatriable']],
+    },
+    content: `
+<p>Many Indians living abroad buy a flat back home, to live in later, for their parents, or to rent out. <strong>Non-resident Indians (NRIs)</strong> and <strong>Overseas Citizens of India (OCI cardholders)</strong> can buy most property in India without any special permission, but the money has to come in a particular way, registration needs either a visit or a power of attorney, and tax works differently when you rent or sell. This guide covers each step.</p>
+
+<h2>What NRIs and OCIs can and cannot buy</h2>
+<div class="table-scroll"><table>
+<caption>Property NRIs and OCI cardholders can buy in India</caption>
+<thead><tr><th>Type of property</th><th>Can you buy it?</th></tr></thead>
+<tbody>
+<tr><td>Flats, villas, residential plots</td><td>Yes, any number, no RBI permission needed</td></tr>
+<tr><td>Offices, shops and other commercial property</td><td>Yes, no RBI permission needed</td></tr>
+<tr><td>Agricultural land, plantations, farmhouses</td><td>No (only by inheritance)</td></tr>
+<tr><td>Any property by inheritance or gift from a relative</td><td>Yes (agricultural land by inheritance only)</td></tr>
+</tbody></table></div>
+<p>These rules come from the Foreign Exchange Management Act (FEMA) and its rules on non-debt instruments. Foreign citizens who are not OCI cardholders are under stricter rules and generally need RBI approval, so this guide is for NRIs and OCIs.</p>
+
+<h2>How to pay</h2>
+<p>The payment for the property must come through normal banking channels. You can pay from:</p>
+<ul>
+  <li><strong>Money sent from abroad</strong> into India through a bank (an inward remittance).</li>
+  <li><strong>Your NRE or FCNR(B) account</strong>, which holds money earned abroad.</li>
+  <li><strong>Your NRO account</strong>, which holds money earned in India, such as rent or dividends.</li>
+</ul>
+<p>You cannot pay in foreign currency notes or traveller’s cheques, or from a bank account outside India directly to the developer. Keep the bank advice for every remittance (the foreign inward remittance certificate or a bank statement showing it). It is your proof of where the money came from, and you will need it if you sell and want to send the money back abroad.</p>
+<p>Stamp duty and registration charges are the same as for a resident; see <a href="/blog/stamp-duty-registration-charges-pune">stamp duty and registration charges in Pune</a>. If you buy from a resident seller or a developer and the price is ₹50 lakh or more, you deduct 1% TDS just like a resident buyer.</p>
+
+<h2>Home loans for NRIs</h2>
+<p>Most Indian banks and housing finance companies lend to NRIs. The loan is in rupees and is repaid from your NRE or NRO account or by remittances from abroad, not in cash.</p>
+<ul>
+  <li><strong>How much:</strong> the same limits as for residents, up to 75–90% of the property value depending on the loan size. Stamp duty and registration are paid from your own money.</li>
+  <li><strong>What banks ask for:</strong> your passport and visa or OCI card, overseas work contract or business proof, recent salary slips and bank statements, sometimes an overseas credit report, and your PAN.</li>
+  <li><strong>A co-applicant in India</strong> (often a parent or spouse) or a power of attorney holder makes the paperwork easier, because the bank needs someone to sign and deal with it locally.</li>
+  <li><strong>Term:</strong> often shorter than for residents, depending on your age and the type of work you do abroad.</li>
+</ul>
+<p>Our guide to <a href="/blog/home-loan-emi-eligibility-pune">home loan EMI and eligibility</a> shows how banks work out how much you can borrow.</p>
+
+<h2>Buying without flying in: power of attorney</h2>
+<p>The agreement for sale has to be registered at the sub-registrar’s office, with photographs and fingerprints of the parties. If you cannot come to India for that, you can give a trusted person, usually a family member, a <strong>power of attorney (PoA)</strong> to sign and register for you.</p>
+<ol>
+  <li><strong>Make it specific.</strong> A special power of attorney that names the flat, the project and what the holder can do (sign, pay, register, take possession) is safer than a general one, and banks and sub-registrars accept it more easily.</li>
+  <li><strong>Sign it in front of the right official.</strong> Sign before an Indian embassy or consulate officer, or before a local notary and then have it apostilled if the country is part of the Hague Apostille Convention.</li>
+  <li><strong>Get it stamped in India.</strong> A PoA signed abroad has to be stamped (adjudicated) in India within three months of reaching India. In Pune, that is done at the office of the Collector of Stamps.</li>
+  <li><strong>Cancel it when the work is done,</strong> in writing, so it can’t be misused later.</li>
+</ol>
+
+<h2>Checks you still have to do</h2>
+<p>From abroad it is harder to visit the site and meet the developer, so the checks matter more:</p>
+<ul>
+  <li><strong>Check the RERA registration</strong> and the project’s progress reports. RERA protects NRIs exactly as it protects residents, and you can file a complaint online. See <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA registration number</a>.</li>
+  <li><strong>Get a video site visit</strong>, or ask someone you trust to visit. Our <a href="/blog/site-visit-checklist-before-buying-flat-pune">site visit checklist</a> lists what they should look at.</li>
+  <li><strong>Read the agreement</strong> before you or your PoA holder sign it. See <a href="/blog/agreement-for-sale-clauses-to-check-maharera">clauses to check in the agreement for sale</a>.</li>
+  <li><strong>Pay only to the project’s bank account</strong> named in the agreement, never to an individual.</li>
+</ul>
+
+<h2>Tax while you own the flat</h2>
+<ul>
+  <li><strong>Rent is taxed in India.</strong> A tenant who pays rent to an NRI must deduct TDS (about 31% including cess) before paying you, unless you get a lower deduction certificate from the Income Tax Department. You can claim the TDS back when you file your Indian return.</li>
+  <li><strong>Home loan deductions</strong> are available to NRIs under the old tax regime, on the same terms as residents. See <a href="/blog/home-loan-tax-benefits-80c-24b">home loan tax benefits</a>.</li>
+  <li><strong>Tax where you live.</strong> Your country of residence may also tax the rent. A double taxation avoidance agreement (DTAA) usually lets you claim credit for the Indian tax.</li>
+</ul>
+
+<h2>Tax when you sell</h2>
+<p>If you sell after holding the property for more than <strong>24 months</strong>, the gain is long-term and is taxed at 12.5% plus surcharge and cess. If you sell earlier, the gain is short-term and is taxed at your slab rate.</p>
+<p>When the seller is an NRI, the buyer must deduct TDS on the <strong>capital gain at the rates above</strong>, not the 1% that applies to a resident seller. The buyer needs a TAN for this. Because buyers often deduct on the whole price to be safe, sellers usually apply to the Income Tax Department for a <strong>lower deduction certificate</strong> before the sale, so that TDS is taken only on the actual gain.</p>
+
+<h2>Sending the money back abroad</h2>
+<ul>
+  <li><strong>Up to what you paid in foreign exchange:</strong> the sale money of up to <strong>two residential properties</strong> can be sent back, up to the amount you originally paid from abroad or from your NRE/FCNR account (including loan EMIs paid that way).</li>
+  <li><strong>Anything more</strong> goes to your NRO account. From the NRO account you can send up to <strong>USD 1 million a financial year</strong> abroad, after tax, with Forms 15CA and 15CB filed through your bank and a chartered accountant.</li>
+</ul>
+<p>This is why the remittance records from when you bought matter: they decide how much you can send back easily.</p>
+
+<h2>FAQs</h2>
+<h3>Do NRIs need RBI permission to buy a flat in India?</h3>
+<p>No. NRIs and OCI cardholders can buy residential and commercial property without RBI permission. Only agricultural land, plantations and farmhouses are off limits, except by inheritance.</p>
+<h3>Can an NRI buy a flat jointly with a resident?</h3>
+<p>Yes. The money for the purchase still has to come through the routes above.</p>
+<h3>Can I pay the developer from my bank account abroad?</h3>
+<p>No. Send the money to India first, or pay from your NRE, FCNR or NRO account.</p>
+<h3>Do I need a PAN?</h3>
+<p>Yes, in practice. It is needed for registration above certain values, for a home loan, for TDS and for filing a tax return on rent or a sale.</p>
+
+<blockquote>This guide is general information based on the rules as we understand them in October 2026, not legal or tax advice. FEMA and tax rules change, and your country of residence has its own rules. Check your case with a chartered accountant and a property lawyer before you buy or sell.</blockquote>
+`,
+  };
+}
+
+function maintenanceArticle() {
+  return {
+    slug: 'maintenance-charges-sinking-fund-society-handover-pune',
+    title: 'Maintenance Charges After Possession in Pune: Advance Maintenance, Sinking Fund, GST & Society Handover',
+    seo_title: 'Flat Maintenance Charges in Pune: What You Pay & Why',
+    seo_description:
+      'What you pay at and after possession of a flat in Pune: advance maintenance, society charges, sinking and repair funds, GST on maintenance, property tax, and how the developer hands over to the society.',
+    excerpt:
+      'Getting the keys is not the last payment. Here is what you pay at possession, how monthly maintenance is worked out, when GST applies, and how the developer has to hand the building and the money over to your housing society.',
+    tags: ['Maintenance Charges', 'Housing Society', 'Pune', 'Home Buying Guide', 'Possession'],
+    cover: {
+      theme: 'mint',
+      kicker: 'Buyer’s guide',
+      lines: ['Maintenance', 'Charges After', 'Possession'],
+      stats: [['12–24 mo', 'advance'], ['₹7,500', 'GST threshold'], ['5 yrs', 'defect liability']],
+    },
+    content: `
+<p>When you take possession of a new flat, the developer’s demand letter usually has a second page: <strong>advance maintenance</strong>, society charges, deposits and more. After that comes a monthly maintenance bill for as long as you own the flat. This guide explains what each charge is for, how monthly maintenance is worked out, when GST applies, and how the developer hands the building over to the housing society.</p>
+
+<h2>What you pay at possession</h2>
+<div class="table-scroll"><table>
+<caption>Typical charges collected at possession of a new flat</caption>
+<thead><tr><th>Charge</th><th>What it is for</th></tr></thead>
+<tbody>
+<tr><td>Advance maintenance</td><td>Usually 12 to 24 months of maintenance, used to run the building until the society takes over</td></tr>
+<tr><td>Society formation and legal charges</td><td>Registering the housing society and its documents</td></tr>
+<tr><td>Share money and entrance fee</td><td>Your membership of the society; small amounts</td></tr>
+<tr><td>Corpus or sinking fund deposit</td><td>A one-time amount kept for major repairs in future years</td></tr>
+<tr><td>Electricity and water connection deposits</td><td>Meters and connections, often paid through the developer</td></tr>
+<tr><td>Club membership</td><td>The clubhouse, if it was not included in the price</td></tr>
+</tbody></table></div>
+<p>All of these should be in the agreement for sale or the cost sheet you got at booking. If a charge appears at possession that isn’t in either, ask for the clause that allows it. Our guide to <a href="/blog/stamp-duty-registration-charges-pune">stamp duty and hidden costs</a> covers the costs at booking and registration.</p>
+
+<h2>When maintenance starts</h2>
+<p>Until possession is offered, the developer pays for running the building. Once the developer has the <a href="/blog/occupancy-certificate-oc-completion-certificate-pune">occupancy certificate</a> and offers you possession, the agreement usually says you pay maintenance from that date, often after a short notice period, <strong>whether or not you move in</strong>. Delaying possession to avoid maintenance doesn’t work.</p>
+
+<h2>How monthly maintenance is worked out</h2>
+<p>New projects in Pune usually charge maintenance at a rate <strong>per square foot</strong> of area each month, so a bigger flat pays more. Under the Maharashtra model bye-laws that most housing societies adopt, some costs (such as staff and common services) are shared equally per flat, while others (such as the sinking fund) are shared by area. Ask which area the rate is on: carpet area or a larger figure. See <a href="/blog/carpet-area-vs-built-up-vs-super-built-up-area">carpet vs built-up vs super built-up area</a>.</p>
+<p><strong>Example:</strong> at ₹4 per sq ft a month on an 800 sq ft flat, maintenance is ₹3,200 a month, and 24 months in advance is ₹76,800 (plus GST if it applies). Projects with large clubhouses, pools and many lifts cost more to run, so look at the expected maintenance as well as the price when you compare projects.</p>
+<p>Monthly maintenance typically pays for security, housekeeping, lifts, generators and pumps (running and annual contracts), common-area electricity, the water supply, the sewage treatment plant, garden upkeep, insurance and the society’s office costs.</p>
+
+<h2>Sinking fund and repair fund</h2>
+<p>The Maharashtra model bye-laws require a society to put money aside every year for the building’s future:</p>
+<ul>
+  <li><strong>Sinking fund:</strong> at least 0.25% of the construction cost of each flat every year, kept for major repairs or rebuilding.</li>
+  <li><strong>Repairs and maintenance fund:</strong> about 0.75% of the construction cost of each flat a year, for regular repairs.</li>
+</ul>
+<p>These are part of your maintenance bill. A healthy sinking fund means that a big repair, such as waterproofing the terrace or replacing lifts, doesn’t need a large one-off demand from every member.</p>
+
+<h2>GST on maintenance</h2>
+<p>GST at <strong>18%</strong> applies to maintenance only when both of these are true:</p>
+<ol>
+  <li>The society’s total collections are more than <strong>₹20 lakh a year</strong>, and</li>
+  <li>Your contribution is more than <strong>₹7,500 a month</strong>.</li>
+</ol>
+<p>If your bill is more than ₹7,500, GST is charged on the whole amount, not just the part above ₹7,500. Most flats in Pune pay less than that, so most owners don’t pay GST on monthly maintenance. Advance maintenance collected by the <strong>developer</strong> before handover is different: developers usually charge GST on it, so check the demand letter.</p>
+
+<h2>Property tax</h2>
+<p>Property tax is separate from maintenance. The Pune Municipal Corporation (PMC) or Pimpri-Chinchwad Municipal Corporation (PCMC) assesses each flat after the occupancy certificate and sends the bill to the owner. PMC gives a concession on property tax for a home the owner lives in; apply for it with the form PMC asks for, as it isn’t always applied automatically. Some societies collect property tax with the maintenance bill and pay it on members’ behalf.</p>
+
+<h2>If you rent the flat out</h2>
+<p>Societies in Maharashtra can charge <strong>non-occupancy charges</strong> on flats that are rented out, but these are capped at 10% of the service charges (not counting municipal taxes). A society can’t charge you more than that just because you don’t live there. If you sell, the society can charge a transfer premium, which state rules cap at ₹25,000.</p>
+
+<h2>Society formation and handover</h2>
+<p>Under MahaRERA rules, the developer has to apply to register the housing society within <strong>three months</strong> of the date when 51% of the flats have been booked. After the building is complete, the developer must transfer the building and the land (the conveyance) to the society within the time set in the agreement and the rules. If the developer doesn’t, the society can apply to the District Deputy Registrar of co-operative societies for <strong>deemed conveyance</strong>.</p>
+<p>At handover, the society should get from the developer:</p>
+<ul>
+  <li><strong>The money:</strong> the unspent advance maintenance, the corpus or sinking fund deposits and any other deposits collected from members, with audited accounts.</li>
+  <li><strong>The documents:</strong> approved and as-built plans, the commencement and occupancy certificates, fire and lift approvals, and the conveyance papers.</li>
+  <li><strong>Warranties and contracts:</strong> for lifts, generators, pumps, the sewage treatment plant and fire systems, so the society knows when they expire.</li>
+</ul>
+
+<h2>Defects after possession</h2>
+<p>Under RERA, if you find a structural defect or a defect in workmanship, quality or services within <strong>five years</strong> of possession, the developer has to fix it within 30 days of being told, at no cost. Report defects in writing and keep a copy. If the developer doesn’t act, you can complain to MahaRERA. See our guide to <a href="/blog/possession-delay-rera-buyer-rights-maharera-complaint">RERA rights and MahaRERA complaints</a>.</p>
+
+<h2>Before you book: questions to ask</h2>
+<ul>
+  <li>What will monthly maintenance be, per sq ft and on which area?</li>
+  <li>How many months of advance maintenance will you collect, and is GST extra?</li>
+  <li>Is there a corpus or sinking fund deposit, and how much?</li>
+  <li>Is club membership included in the price?</li>
+  <li>When will the society be formed, and when will the conveyance be done?</li>
+</ul>
+
+<h2>FAQs</h2>
+<h3>Do I have to pay maintenance if my flat is empty?</h3>
+<p>Yes. Maintenance is due from the date possession is offered, whether or not you live there.</p>
+<h3>Is GST charged on society maintenance?</h3>
+<p>Only if the society collects more than ₹20 lakh a year and your bill is more than ₹7,500 a month. Then it is 18% on the whole bill.</p>
+<h3>What happens to the advance maintenance I paid the developer?</h3>
+<p>The developer uses it to run the building until handover, and must pass the unspent balance, with accounts, to the society.</p>
+<h3>Who decides the maintenance amount after handover?</h3>
+<p>The society’s managing committee and general body, under its bye-laws.</p>
+
+<blockquote>This guide is general information based on the rules as we understand them in October 2026, not legal advice. Your agreement for sale and your society’s bye-laws set the details. Check them, and ask a property lawyer about any dispute.</blockquote>
+`,
+  };
+}
+
 // ---- photos ---------------------------------------------------------------------
 
 const PHOTO_DIR = path.resolve('migration/blog-photos');
@@ -3211,6 +3412,8 @@ async function main() {
     () => resaleArticle(),
     () => punePricesArticle(h),
     () => mumbaiBhkBudgetArticle(h),
+    () => nriArticle(),
+    () => maintenanceArticle(),
   ];
   let articles = [];
   for (const build of builders) {
