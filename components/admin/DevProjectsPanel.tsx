@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { BulkBar, PickOne, useSelection } from './bulk';
 import { usePersistedState } from './usePersistedState';
 import { requestFullEdit } from './fullEdit';
+import ShareLinkButton from './ShareLinkButton';
 
 // Super admin → "Developer projects": every project a developer added from their
 // dashboard, who added it, and its approval state. New and edited projects stay
@@ -418,6 +419,7 @@ export default function DevProjectsPanel({ flash, isOwner, onPendingChange, focu
                     {p.state === 'approved' && (
                       <a className="adm-btn ghost sm" href={`/map?pin=${encodeURIComponent(p.id)}`} target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /> View on map</a>
                     )}
+                    {p.state === 'approved' && <ShareLinkButton pinId={p.id} />}
                     {!isOwner && p.state === 'pending' && <span className="crm-meta"><i className="fas fa-lock" /> Only the super admin can approve.</span>}
                   </div>
                 </div>

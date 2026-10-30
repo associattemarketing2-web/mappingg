@@ -410,6 +410,8 @@
     signupLabel();
     byId('signinBtn').textContent = `Sign in as ${ROLE_LABEL[role]}`;
     byId('verifyNote').hidden = role === 'buyer';
+    // "Create account with WhatsApp OTP" (just a number + code) is for buyers only.
+    if (byId('su-quick')) byId('su-quick').hidden = role !== 'buyer';
     // Only buyers can skip everything but name, number, email and password.
     if (byId('su-req-note')) byId('su-req-note').textContent = role === 'buyer'
       ? 'Your name, WhatsApp number, email and a password — we’ll send a 6-digit code on WhatsApp to verify your number.'
@@ -534,10 +536,10 @@
     return digits.length === 10 ? (((byId(codeId) && byId(codeId).value) || '+91') + ' ' + digits) : '';
   };
   const suOtp = { ticket: '', key: '' };
-  // Sign-up button: step 1 sends a WhatsApp code (WhatsApp icon), step 2 verifies it.
+  // Sign-up button: step 1 sends a WhatsApp code, step 2 ("Verify & create account") checks it.
   function signupLabel(text) {
     const b = byId('signupBtn'); if (!b) return;
-    b.innerHTML = text ? text : '<i class="fab fa-whatsapp" aria-hidden="true"></i> Create account with WhatsApp OTP';
+    b.textContent = text || ROLES[currentRole()].cta;
   }
   function resetSignupCode() {
     suOtp.ticket = ''; suOtp.key = '';
@@ -620,9 +622,18 @@
     byId('modalTitle').textContent = title; byId('modalSub').textContent = sub;
   }
   /* ---------- Sign in with a WhatsApp code ---------- */
-  const wa = { ticket: '', mobile: '', busy: false };
-  function openWaLogin() {
-    showSideForm(waLoginForm, 'Sign in with WhatsApp', 'We’ll send a 6-digit code to your WhatsApp.');
+  // Two modes: 'login' (Sign in with WhatsApp OTP) and 'quick' (Create account
+  // with WhatsApp OTP: signs in, or creates a buyer account with just the number —
+  // the rest is asked later on the live map; see /api/auth/otp-quick).
+  const wa = { ticket: '', mobile: '', busy: false, mode: 'login' };
+  function openWaLogin(mode) {
+    wa.mode = mode === 'quick' ? 'quick' : 'login';
+    const quick = wa.mode === 'quick';
+    showSideForm(waLoginForm, quick ? 'Create account with WhatsApp' : 'Sign in with WhatsApp', 'We’ll send a 6-digit code to your WhatsApp.');
+    byId('wa-intro').textContent = quick
+      ? 'Enter your WhatsApp number — we’ll send a 6-digit code. That’s all you need to get started.'
+      : 'Enter the WhatsApp number on your account — we’ll send you a 6-digit code to sign in.';
+    byId('wa-back-label').textContent = quick ? 'Back to sign-up' : 'Sign in with password';
     wa.ticket = ''; byId('wa-otp-block').hidden = true; byId('wa-otp').value = ''; byId('waLoginBtn').textContent = 'Send code on WhatsApp';
     byId('wa-phone').focus();
   }
@@ -630,19 +641,20 @@
     const mobile = phoneOf('wa-phone', 'wa-phone-code');
     if (!mobile) { toast('Please enter a valid 10-digit mobile number', 'fa-triangle-exclamation'); byId('wa-phone').focus(); return; }
     const btn = byId('waLoginBtn'); wa.busy = true; btn.disabled = true; btn.textContent = 'Sending code…';
-    requestCode({ mobile, purpose: 'login' }).then(d => {
+    requestCode({ mobile, purpose: wa.mode }).then(d => {
       wa.ticket = d.ticket; wa.mobile = mobile;
       byId('wa-otp-block').hidden = false;
       byId('wa-otp-hint').textContent = 'Code sent on WhatsApp to ' + d.to + '.';
       byId('wa-otp').focus();
       toast('Code sent on WhatsApp to ' + d.to, 'fa-check');
-      btn.textContent = 'Verify & sign in';
+      btn.textContent = wa.mode === 'quick' ? 'Verify & continue' : 'Verify & sign in';
     }).catch(err => { toast(err.message, 'fa-triangle-exclamation'); btn.textContent = 'Send code on WhatsApp'; })
       .then(() => { wa.busy = false; btn.disabled = false; });
   }
   if (waLoginForm) {
-    byId('waLoginLink').addEventListener('click', e => { e.preventDefault(); openWaLogin(); });
-    byId('wa-back').addEventListener('click', e => { e.preventDefault(); openModal('signin'); });
+    byId('waLoginLink').addEventListener('click', e => { e.preventDefault(); openWaLogin('login'); });
+    if (byId('quickWaBtn')) byId('quickWaBtn').addEventListener('click', e => { e.preventDefault(); openWaLogin('quick'); });
+    byId('wa-back').addEventListener('click', e => { e.preventDefault(); openModal(wa.mode === 'quick' ? 'signup' : 'signin'); });
     byId('wa-resend').addEventListener('click', e => { e.preventDefault(); if (!wa.busy) sendLoginCode(); });
     ['wa-phone', 'wa-phone-code'].forEach(id => byId(id).addEventListener(id === 'wa-phone' ? 'input' : 'change', () => {
       if (wa.ticket) { wa.ticket = ''; byId('wa-otp-block').hidden = true; byId('waLoginBtn').textContent = 'Send code on WhatsApp'; }
@@ -653,18 +665,18 @@
       const otp = (byId('wa-otp').value || '').replace(/\D/g, '');
       if (otp.length !== 6) { toast('Enter the 6-digit code we sent on WhatsApp', 'fa-triangle-exclamation'); byId('wa-otp').focus(); return; }
       const btn = byId('waLoginBtn'); wa.busy = true; btn.disabled = true; btn.textContent = 'Signing in…';
-      fetch('/api/auth/otp-login', {
+      fetch(wa.mode === 'quick' ? '/api/auth/otp-quick' : '/api/auth/otp-login', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin',
         body: JSON.stringify({ mobile: wa.mobile, otp, ticket: wa.ticket }),
       }).then(r => r.json().then(b => ({ ok: r.ok, b }))).then(({ ok, b }) => {
         if (ok && b.user) {
           wa.ticket = '';
           waLoginForm.classList.remove('is-active');
-          success({ name: b.user.name || 'there', email: b.user.email, role: b.user.role, verified: b.user.verified }, false);
+          success({ name: b.user.name || 'there', email: b.user.email, role: b.user.role, verified: b.user.verified }, !!b.created);
           setTimeout(() => { window.location.href = b.redirect || '/dashboard'; }, 900);
         } else toast((b.error && b.error.message) || 'Could not sign you in', 'fa-triangle-exclamation');
       }).catch(() => toast('Network error — please try again', 'fa-triangle-exclamation'))
-        .then(() => { wa.busy = false; btn.disabled = false; if (wa.ticket) btn.textContent = 'Verify & sign in'; });
+        .then(() => { wa.busy = false; btn.disabled = false; if (wa.ticket) btn.textContent = wa.mode === 'quick' ? 'Verify & continue' : 'Verify & sign in'; });
     });
   }
   /* ---------- Forgot password: WhatsApp code → new password ---------- */

@@ -637,10 +637,13 @@
   .mpg .btn-wa { width: 100%; padding: 12px; border-radius: 999px; border: 1px solid #25d366; background: #fff; color: #128c7e; font: 600 14px var(--f); display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
   .mpg .btn-wa i { font-size: 18px; color: #25d366; }
   .mpg .btn-wa:hover { background: #f0fdf4; }
-  /* Sign-up: "Create account with WhatsApp OTP" (components/landing/body.ts) */
+  /* Sign-up: "Create account with WhatsApp OTP" — number + code only (components/landing/body.ts) */
   .mpg .btn-primary.btn-wa-cta { background: #1f9d55; box-shadow: 0 12px 24px -12px rgba(31,157,85,.6); gap: 8px; }
   .mpg .btn-primary.btn-wa-cta:hover { background: #178a47; }
   .mpg .btn-wa-cta i { font-size: 18px; }
+  .mpg .su-quick { display: flex; flex-direction: column; gap: 8px; }
+  .mpg .su-quick[hidden] { display: none; }
+  .mpg .su-quick > small { text-align: center; font-size: 12.5px; color: var(--muted); }
   .mpg .auth-form .btn-primary, .mpg .success .btn { width: 100%; padding: 15px; font-size: 15px; }
   .mpg .success { display: none; flex-direction: column; align-items: center; gap: 12px; padding: 24px 0 6px; text-align: center; }
   .mpg .success.is-active { display: flex; animation: fadeUp .3s ease; }

@@ -16,7 +16,7 @@ import { logMessage, messages, waDigits, type OtpPurpose } from './wa-store';
 /** When the "byres_account_created" welcome template started being sent. */
 const WELCOME_SINCE = '2026-10-23T05:00:00.000Z';
 
-const PURPOSE_LABEL: Record<OtpPurpose, string> = { signup: 'sign-up', login: 'WhatsApp sign-in', reset: 'password reset' };
+const PURPOSE_LABEL: Record<OtpPurpose, string> = { signup: 'sign-up', login: 'WhatsApp sign-in', reset: 'password reset', quick: 'WhatsApp sign-up' };
 
 type User = { id?: string; _id?: string; mobile?: string; name?: string; role?: string; created_at?: string; mobile_verified?: unknown };
 

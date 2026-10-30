@@ -78,7 +78,7 @@ const LEAD_LABEL: Record<string, string> = {
   negotiation: 'Negotiation', won: 'Booked', lost: 'Lost', spam: 'Spam',
 };
 const PURPOSE_LABEL: Record<string, string> = {
-  signup: 'Sign-up', login: 'WhatsApp sign-in', reset: 'Password reset', buyer_welcome: 'Buyer welcome', ai_reply: 'AI replies',
+  signup: 'Sign-up', login: 'WhatsApp sign-in', reset: 'Password reset', quick: 'WhatsApp sign-up', buyer_welcome: 'Buyer welcome', ai_reply: 'AI replies',
 };
 
 function Ticks({ m }: { m: Msg }) {

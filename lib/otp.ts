@@ -13,7 +13,7 @@ import { createHmac, randomInt, timingSafeEqual } from 'node:crypto';
 // current password hash (so it stops working once the password changes).
 // Guessing is capped by rate limits on the verify endpoints.
 
-export type OtpPurpose = 'signup' | 'reset' | 'login';
+export type OtpPurpose = 'signup' | 'reset' | 'login' | 'quick';
 const TTL_MS = 10 * 60_000;
 
 function secret(): string {

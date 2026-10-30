@@ -6,6 +6,7 @@ import { usePersistedState } from './usePersistedState';
 import { PageHead, StatCard } from './PageHead';
 import { cityFrom, CITY_SHORT } from '@/lib/seo/city';
 import { companyKey, displayName } from '@/lib/developer-name';
+import ShareLinkButton from './ShareLinkButton';
 
 // Super admin → Developers: the developer directory, ONE logo per developer
 // (lib/developers.ts). In the Map Editor, typing a developer's name suggests it
@@ -425,6 +426,7 @@ function ProjectDetail({ p, dev, busy, onBack, onUseDevLogo, onUpload }: { p: De
         {dev.logo && !p.hasLogo && <button type="button" className="adm-btn ghost sm" disabled={busy} onClick={onUseDevLogo}><i className="fas fa-wand-magic-sparkles" /> Use developer logo</button>}
         <button type="button" className="adm-btn ghost sm" disabled={busy} onClick={onUpload}><i className="fas fa-upload" /> Upload a different logo</button>
         <a className="adm-btn ghost sm" href={`/map?pin=${encodeURIComponent(p.id)}`} target="_blank" rel="noopener"><i className="fas fa-map-location-dot" /> View on map</a>
+        <ShareLinkButton pinId={p.id} />
         {d?.page && <a className="adm-btn ghost sm" href={d.page} target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /> Project page</a>}
       </div>
       <p className="muted dvl-foot"><b>Edit all details</b> opens this project in the full Projects Intake form (every field: price, configuration, RERA, media, amenities, sales contact…). Publishing it there updates this same pin.</p>

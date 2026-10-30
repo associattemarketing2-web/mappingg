@@ -15,7 +15,7 @@ export type WaDirection = 'in' | 'out';
 export type WaAuthor = 'customer' | 'ai' | 'staff' | 'system';
 export type WaKind = 'text' | 'template' | 'otp' | 'media' | 'other';
 export type WaStatus = 'received' | 'accepted' | 'sent' | 'delivered' | 'read' | 'failed';
-export type OtpPurpose = 'signup' | 'login' | 'reset';
+export type OtpPurpose = 'signup' | 'login' | 'reset' | 'quick';
 
 export interface WaMessage {
   _id?: string;
