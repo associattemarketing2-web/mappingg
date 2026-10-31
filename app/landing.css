@@ -1334,31 +1334,26 @@
 }
 
 /* ---------- Hero: street-map background (public/img/hero-map.svg) ----------
-   The map fills the hero; a soft wash of the page colour sits behind the
-   headline, search and buttons so the text stays crisp, while the streets,
-   buildings and river stay clear around the edges. Built by
-   scripts/build-hero-map.mjs. */
+   The map fills the whole hero with no wash over it. Text stays readable with
+   a tight glow in the page colour around the letters (text-shadow), and the
+   map is drawn a touch softer. Built by scripts/build-hero-map.mjs. */
 .mpg .hero { background: #f3efe6; }
-.mpg .hero::after { mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%); -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%); }
-.mpg .hero::before {
-  background:
-    radial-gradient(ellipse 34% 40% at 50% 46%, rgba(251,250,246,.97) 0%, rgba(251,250,246,.9) 52%, rgba(251,250,246,0) 100%),
-    radial-gradient(ellipse 52% 62% at 50% 50%, rgba(251,250,246,.75) 0%, rgba(251,250,246,0) 100%),
-    linear-gradient(180deg, rgba(251,250,246,.55) 0%, rgba(251,250,246,0) 16%, rgba(251,250,246,0) 80%, #fbfaf6 100%);
-}
-@media (max-width: 1100px) {
-  .mpg .hero::before {
-    background:
-      radial-gradient(ellipse 60% 44% at 50% 48%, rgba(251,250,246,.96) 0%, rgba(251,250,246,.86) 55%, rgba(251,250,246,0) 100%),
-      linear-gradient(180deg, rgba(251,250,246,.5) 0%, rgba(251,250,246,0) 14%, rgba(251,250,246,0) 82%, #fbfaf6 100%);
-  }
-}
+.mpg .hero::after { opacity: .82; mask-image: linear-gradient(180deg, #000 0%, #000 78%, transparent 100%); -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 78%, transparent 100%); }
+/* only a fade into the next section at the very bottom */
+.mpg .hero::before { background: linear-gradient(180deg, rgba(251,250,246,0) 0%, rgba(251,250,246,0) 86%, #fbfaf6 100%); }
+.mpg .hero h1 { text-shadow: 0 0 2px #fbfaf6, 0 0 10px #fbfaf6, 0 0 22px rgba(251,250,246,.95), 0 0 40px rgba(251,250,246,.8); }
+.mpg .hero-desc, .mpg .hero .dev-note, .mpg .hero-trust span { color: var(--ink); font-weight: 500; text-shadow: 0 0 1px #fbfaf6, 0 0 4px #fbfaf6, 0 0 10px #fbfaf6, 0 0 18px #fbfaf6, 0 0 28px rgba(251,250,246,.9); }
+.mpg .hero .dev-note a { text-shadow: inherit; }
+.mpg .hero .eyebrow { box-shadow: 0 6px 18px -10px rgba(29,43,38,.35); }
+
 @media (max-width: 720px) {
-  /* narrow screens: the text spans the width, so the map shows as a frame around it */
-  .mpg .hero::after { background-size: auto 100%; background-position: 38% center; }
-  .mpg .hero::before {
-    background:
-      linear-gradient(90deg, rgba(251,250,246,.35) 0%, rgba(251,250,246,.86) 9%, rgba(251,250,246,.9) 50%, rgba(251,250,246,.86) 91%, rgba(251,250,246,.35) 100%),
-      linear-gradient(180deg, rgba(251,250,246,0) 0%, rgba(251,250,246,0) 85%, #fbfaf6 100%);
-  }
+  .mpg .hero::after { background-size: auto 100%; background-position: 38% center; opacity: .75; }
+  /* one-line chip */
+  .mpg .hero .eyebrow { font-size: 10px; letter-spacing: .06em; padding: 7px 12px; white-space: nowrap; max-width: 100%; }
+  .mpg .hero .dev-note { max-width: 300px; }
+  /* pins low in the hero would sit on the buttons and links */
+  .mpg .mp.lo { display: none; }
+}
+@media (max-width: 380px) {
+  .mpg .hero .eyebrow { font-size: 9px; letter-spacing: .04em; padding: 6px 10px; }
 }

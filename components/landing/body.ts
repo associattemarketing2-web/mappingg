@@ -24,13 +24,13 @@ export const LANDING_BODY = `
 <header class="hero" id="home">
   <div class="hero-map" aria-hidden="true">
     <!-- Project pins on the map background: drop in, then pulse. Edge pins show on every screen;
-         .t pins from tablets up, .w pins and the .pop cards only where there is room beside the text. -->
+         .lo pins not on phones, .t pins from tablets up, .w pins and the .pop cards only where there is room beside the text. -->
     <span class="mp s-available" style="--x:4%;--y:30%;--d:.15s"><b></b></span>
-    <span class="mp s-construction" style="--x:6%;--y:64%;--d:.55s"><b></b></span>
-    <span class="mp s-sold" style="--x:3%;--y:86%;--d:.95s"><b></b></span>
+    <span class="mp lo s-construction" style="--x:6%;--y:64%;--d:.55s"><b></b></span>
+    <span class="mp lo s-sold" style="--x:3%;--y:86%;--d:.95s"><b></b></span>
     <span class="mp s-construction" style="--x:96%;--y:24%;--d:.35s"><b></b></span>
-    <span class="mp s-available" style="--x:95%;--y:63%;--d:.75s"><b></b></span>
-    <span class="mp s-upcoming" style="--x:97%;--y:84%;--d:1.15s"><b></b></span>
+    <span class="mp lo s-available" style="--x:95%;--y:63%;--d:.75s"><b></b></span>
+    <span class="mp lo s-upcoming" style="--x:97%;--y:84%;--d:1.15s"><b></b></span>
     <span class="mp t s-available" style="--x:12%;--y:96%;--d:1.3s"><b></b></span>
     <span class="mp t s-sold" style="--x:89%;--y:95%;--d:1.45s"><b></b></span>
     <span class="mp t s-available" style="--x:9%;--y:45%;--d:.5s"><b></b></span>
