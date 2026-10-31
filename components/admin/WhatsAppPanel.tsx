@@ -79,7 +79,7 @@ const LEAD_LABEL: Record<string, string> = {
   negotiation: 'Negotiation', won: 'Booked', lost: 'Lost', spam: 'Spam',
 };
 const PURPOSE_LABEL: Record<string, string> = {
-  signup: 'Sign-up', login: 'WhatsApp sign-in', reset: 'Password reset', buyer_welcome: 'Buyer welcome', ai_reply: 'AI replies', bulk: 'Bulk send',
+  signup: 'Sign-up', login: 'WhatsApp sign-in', reset: 'Password reset', quick: 'WhatsApp sign-up', buyer_welcome: 'Buyer welcome', ai_reply: 'AI replies', bulk: 'Bulk send',
 };
 
 function Ticks({ m }: { m: Msg }) {
@@ -413,7 +413,7 @@ function LogView({ kind, config }: { kind: 'otp' | 'auto'; config?: Overview['co
   if (!d) return <div className="adm-panel"><p className="muted"><i className="fas fa-spinner fa-spin" /> Loading…</p></div>;
   const failed = d.by_status.failed || 0;
   const delivered = (d.by_status.delivered || 0) + (d.by_status.read || 0);
-  const purposes = kind === 'otp' ? ['signup', 'login', 'reset'] : Object.keys(d.by_purpose);
+  const purposes = kind === 'otp' ? ['signup', 'login', 'quick', 'reset'] : Object.keys(d.by_purpose);
   return (
     <>
       <div className="viz-tiles">

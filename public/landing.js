@@ -407,47 +407,16 @@
     byId('benefitsTitle').textContent = `${isIn ? 'Your' : 'What you get as a'} ${ROLE_LABEL[role]}${isIn ? ' access' : ''}`;
     byId('benefitsList').innerHTML = r.items.map((t, i) => `<li style="animation-delay:${i * 40}ms"><i class="fas fa-check"></i>${t}</li>`).join('');
     signupForm.querySelectorAll('.role-fields').forEach(fs => { const on = fs.dataset.for === role; fs.hidden = !on; fs.disabled = !on; });
-    byId('signupBtn').textContent = r.cta;
+    signupLabel();
     byId('signinBtn').textContent = `Sign in as ${ROLE_LABEL[role]}`;
     byId('verifyNote').hidden = role === 'buyer';
+    // "Create account with WhatsApp OTP" (just a number + code) is for buyers only.
+    if (byId('su-quick')) byId('su-quick').hidden = role !== 'buyer';
     // Only buyers can skip everything but name, number, email and password.
     if (byId('su-req-note')) byId('su-req-note').textContent = role === 'buyer'
-      ? 'Only your name, WhatsApp number and email are needed — everything else is optional.'
+      ? 'Your name, WhatsApp number, email and a password — we’ll send a 6-digit code on WhatsApp to verify your number.'
       : 'All fields are needed so we can verify your RERA details.';
   }
-  /* ---------- Sign-up "Preferred area" from the visitor's location (optional) ----------
-     Asks for location only when the visitor taps the button; fills in silently only
-     when they already allowed location for this site. The coordinates go to
-     /api/nearby once (rounded, not stored), which names the area from the nearest
-     mapped projects. The field stays editable and is never required. */
-  const areaIn = byId('b-area'), areaBtn = byId('b-area-loc'), areaNote = byId('b-area-note');
-  let areaAuto = false, areaBusy = false;
-  if (areaBtn && window.isSecureContext && 'geolocation' in navigator) areaBtn.hidden = false;
-  if (areaIn) areaIn.addEventListener('input', () => { if (areaAuto) { areaAuto = false; if (areaNote) areaNote.textContent = ''; } });
-  function areaFromLocation(ask) {
-    if (!areaIn || areaBusy || (!ask && areaIn.value.trim()) || !window.isSecureContext || !('geolocation' in navigator)) return;
-    const go = () => {
-      areaBusy = true; if (areaNote) areaNote.textContent = 'Finding your area…'; if (areaBtn) areaBtn.disabled = true;
-      const done = (msg) => { areaBusy = false; if (areaBtn) areaBtn.disabled = false; if (areaNote) areaNote.textContent = msg || ''; };
-      navigator.geolocation.getCurrentPosition(pos => {
-        fetch('/api/nearby?limit=1&lat=' + pos.coords.latitude.toFixed(3) + '&lng=' + pos.coords.longitude.toFixed(3), { credentials: 'omit' })
-          .then(r => r.ok ? r.json() : Promise.reject())
-          .then(b => {
-            const a = b && b.area, place = a ? [a.locality, a.city].filter(Boolean).join(', ') : '';
-            if (!place) return done(ask ? 'We couldn’t name your area — please type it in.' : '');
-            if (!ask && areaIn.value.trim()) return done();
-            areaIn.value = place; areaAuto = true;
-            done('Filled in from your location — you can change it.');
-          })
-          .catch(() => done(ask ? 'We couldn’t look up your area — please type it in.' : ''));
-      }, err => done(ask ? (err.code === 1 ? 'Location is turned off for this site — please type your area.' : 'We couldn’t get your location — please type your area.') : ''),
-      { enableHighAccuracy: false, timeout: 10000, maximumAge: 600000 });
-    };
-    if (ask) return go();
-    // Without a tap: only when permission was already granted (no browser prompt).
-    try { navigator.permissions.query({ name: 'geolocation' }).then(p => { if (p.state === 'granted') go(); }).catch(() => {}); } catch (e) {}
-  }
-  if (areaBtn) areaBtn.addEventListener('click', () => areaFromLocation(true));
 
   function openModal(which, role, reason) {
     mode = which;
@@ -462,7 +431,6 @@
     byId('modalTitle').textContent = isIn ? 'Sign in' : (currentRole() === 'buyer' ? 'Explore every project' : 'Create your account');
     byId('modalSub').textContent = reason || (isIn ? 'Choose your account type, then sign in.' : 'Takes less than a minute.');
     renderSide();
-    if (!isIn) areaFromLocation(false);
     modal.classList.add('is-open'); document.body.style.overflow = 'hidden';
     // Hides the cookie banner while the modal is open so it can't cover the submit button.
     document.body.classList.add('mpg-auth-open');
@@ -568,6 +536,11 @@
     return digits.length === 10 ? (((byId(codeId) && byId(codeId).value) || '+91') + ' ' + digits) : '';
   };
   const suOtp = { ticket: '', key: '' };
+  // Sign-up button: step 1 sends a WhatsApp code, step 2 ("Verify & create account") checks it.
+  function signupLabel(text) {
+    const b = byId('signupBtn'); if (!b) return;
+    b.textContent = text || ROLES[currentRole()].cta;
+  }
   function resetSignupCode() {
     suOtp.ticket = ''; suOtp.key = '';
     if (byId('su-otp-block')) byId('su-otp-block').hidden = true;
@@ -595,11 +568,11 @@
       if (btn) btn.textContent = 'Verify & create account';
     }).catch(err => {
       toast(err.message, 'fa-triangle-exclamation');
-      if (btn) btn.textContent = ROLES[currentRole()].cta;
+      signupLabel();
     }).then(() => { signingUp = false; if (btn) btn.disabled = false; });
   }
   ['su-email', 'su-phone', 'su-phone-code'].forEach(id => {
-    if (byId(id)) byId(id).addEventListener(id === 'su-phone-code' ? 'change' : 'input', () => { if (suOtp.ticket) { resetSignupCode(); byId('signupBtn').textContent = ROLES[currentRole()].cta; } });
+    if (byId(id)) byId(id).addEventListener(id === 'su-phone-code' ? 'change' : 'input', () => { if (suOtp.ticket) { resetSignupCode(); signupLabel(); } });
   });
   if (byId('su-otp-resend')) byId('su-otp-resend').addEventListener('click', e => {
     e.preventDefault(); if (signingUp) return;
@@ -610,23 +583,24 @@
     e.preventDefault(); if (signingUp || !signupForm.reportValidity()) return;
     const role = currentRole(), fd = Object.fromEntries(new FormData(signupForm));
     // Only the active role's fieldset is enabled, so fd holds just that role's extras.
-    const { name, email, mobile: _digits, ...profile } = fd;
+    const { name, email, mobile: _digits, password: _pass, ...profile } = fd;
     // WhatsApp: country code (default +91) + exactly 10 digits → "+91 9876543210".
     const mobile = phoneOf('su-phone', 'su-phone-code');
     if (!mobile) { toast('Please enter a valid 10-digit mobile number', 'fa-triangle-exclamation'); byId('su-phone') && byId('su-phone').focus(); return; }
     const mail = (email || '').trim().toLowerCase();
+    if ((byId('su-pass').value || '').length < 8) { toast('Choose a password of at least 8 characters', 'fa-triangle-exclamation'); byId('su-pass').focus(); return; }
     // Step 1: WhatsApp a 6-digit code. Step 2 (same button): create the account with it.
     if (!suOtp.ticket || suOtp.key !== mail + '|' + mobile) { sendSignupCode(mail, mobile, (name || '').trim()); return; }
     const otp = (byId('su-otp').value || '').replace(/\D/g, '');
     if (otp.length !== 6) { toast('Enter the 6-digit code we sent on WhatsApp', 'fa-triangle-exclamation'); byId('su-otp').focus(); return; }
-    const btn = byId('signupBtn'); const label = btn ? btn.textContent : '';
+    const btn = byId('signupBtn'); const label = btn ? btn.innerHTML : '';
     if (btn) { btn.disabled = true; btn.textContent = 'Creating account…'; }
     signingUp = true;
     fetch('/api/auth/signup', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin',
       body: JSON.stringify({ role, name: (name || '').trim(), email: mail, mobile, password: byId('su-pass').value, profile, otp, ticket: suOtp.ticket }),
     }).then(r => r.json().then(b => ({ ok: r.ok, b }))).then(({ ok, b }) => {
-      signingUp = false; if (btn) { btn.disabled = false; btn.textContent = label; }
+      signingUp = false; if (btn) { btn.disabled = false; btn.innerHTML = label; }
       if (ok && b.user) {
         resetSignupCode();
         success({ name: b.user.name, email: b.user.email, role: b.user.role, verified: b.user.verified }, true);
@@ -635,7 +609,7 @@
         toast((b.error && b.error.message) || 'Could not create your account', 'fa-triangle-exclamation');
       }
     }).catch(() => {
-      signingUp = false; if (btn) { btn.disabled = false; btn.textContent = label; }
+      signingUp = false; if (btn) { btn.disabled = false; btn.innerHTML = label; }
       toast('Network error — please try again', 'fa-triangle-exclamation');
     });
   });
@@ -648,9 +622,18 @@
     byId('modalTitle').textContent = title; byId('modalSub').textContent = sub;
   }
   /* ---------- Sign in with a WhatsApp code ---------- */
-  const wa = { ticket: '', mobile: '', busy: false };
-  function openWaLogin() {
-    showSideForm(waLoginForm, 'Sign in with WhatsApp', 'We’ll send a 6-digit code to your WhatsApp.');
+  // Two modes: 'login' (Sign in with WhatsApp OTP) and 'quick' (Create account
+  // with WhatsApp OTP: signs in, or creates a buyer account with just the number —
+  // the rest is asked later on the live map; see /api/auth/otp-quick).
+  const wa = { ticket: '', mobile: '', busy: false, mode: 'login' };
+  function openWaLogin(mode) {
+    wa.mode = mode === 'quick' ? 'quick' : 'login';
+    const quick = wa.mode === 'quick';
+    showSideForm(waLoginForm, quick ? 'Create account with WhatsApp' : 'Sign in with WhatsApp', 'We’ll send a 6-digit code to your WhatsApp.');
+    byId('wa-intro').textContent = quick
+      ? 'Enter your WhatsApp number — we’ll send a 6-digit code. That’s all you need to get started.'
+      : 'Enter the WhatsApp number on your account — we’ll send you a 6-digit code to sign in.';
+    byId('wa-back-label').textContent = quick ? 'Back to sign-up' : 'Sign in with password';
     wa.ticket = ''; byId('wa-otp-block').hidden = true; byId('wa-otp').value = ''; byId('waLoginBtn').textContent = 'Send code on WhatsApp';
     byId('wa-phone').focus();
   }
@@ -658,19 +641,20 @@
     const mobile = phoneOf('wa-phone', 'wa-phone-code');
     if (!mobile) { toast('Please enter a valid 10-digit mobile number', 'fa-triangle-exclamation'); byId('wa-phone').focus(); return; }
     const btn = byId('waLoginBtn'); wa.busy = true; btn.disabled = true; btn.textContent = 'Sending code…';
-    requestCode({ mobile, purpose: 'login' }).then(d => {
+    requestCode({ mobile, purpose: wa.mode }).then(d => {
       wa.ticket = d.ticket; wa.mobile = mobile;
       byId('wa-otp-block').hidden = false;
       byId('wa-otp-hint').textContent = 'Code sent on WhatsApp to ' + d.to + '.';
       byId('wa-otp').focus();
       toast('Code sent on WhatsApp to ' + d.to, 'fa-check');
-      btn.textContent = 'Verify & sign in';
+      btn.textContent = wa.mode === 'quick' ? 'Verify & continue' : 'Verify & sign in';
     }).catch(err => { toast(err.message, 'fa-triangle-exclamation'); btn.textContent = 'Send code on WhatsApp'; })
       .then(() => { wa.busy = false; btn.disabled = false; });
   }
   if (waLoginForm) {
-    byId('waLoginLink').addEventListener('click', e => { e.preventDefault(); openWaLogin(); });
-    byId('wa-back').addEventListener('click', e => { e.preventDefault(); openModal('signin'); });
+    byId('waLoginLink').addEventListener('click', e => { e.preventDefault(); openWaLogin('login'); });
+    if (byId('quickWaBtn')) byId('quickWaBtn').addEventListener('click', e => { e.preventDefault(); openWaLogin('quick'); });
+    byId('wa-back').addEventListener('click', e => { e.preventDefault(); openModal(wa.mode === 'quick' ? 'signup' : 'signin'); });
     byId('wa-resend').addEventListener('click', e => { e.preventDefault(); if (!wa.busy) sendLoginCode(); });
     ['wa-phone', 'wa-phone-code'].forEach(id => byId(id).addEventListener(id === 'wa-phone' ? 'input' : 'change', () => {
       if (wa.ticket) { wa.ticket = ''; byId('wa-otp-block').hidden = true; byId('waLoginBtn').textContent = 'Send code on WhatsApp'; }
@@ -681,18 +665,18 @@
       const otp = (byId('wa-otp').value || '').replace(/\D/g, '');
       if (otp.length !== 6) { toast('Enter the 6-digit code we sent on WhatsApp', 'fa-triangle-exclamation'); byId('wa-otp').focus(); return; }
       const btn = byId('waLoginBtn'); wa.busy = true; btn.disabled = true; btn.textContent = 'Signing in…';
-      fetch('/api/auth/otp-login', {
+      fetch(wa.mode === 'quick' ? '/api/auth/otp-quick' : '/api/auth/otp-login', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin',
         body: JSON.stringify({ mobile: wa.mobile, otp, ticket: wa.ticket }),
       }).then(r => r.json().then(b => ({ ok: r.ok, b }))).then(({ ok, b }) => {
         if (ok && b.user) {
           wa.ticket = '';
           waLoginForm.classList.remove('is-active');
-          success({ name: b.user.name || 'there', email: b.user.email, role: b.user.role, verified: b.user.verified }, false);
+          success({ name: b.user.name || 'there', email: b.user.email, role: b.user.role, verified: b.user.verified }, !!b.created);
           setTimeout(() => { window.location.href = b.redirect || '/dashboard'; }, 900);
         } else toast((b.error && b.error.message) || 'Could not sign you in', 'fa-triangle-exclamation');
       }).catch(() => toast('Network error — please try again', 'fa-triangle-exclamation'))
-        .then(() => { wa.busy = false; btn.disabled = false; if (wa.ticket) btn.textContent = 'Verify & sign in'; });
+        .then(() => { wa.busy = false; btn.disabled = false; if (wa.ticket) btn.textContent = wa.mode === 'quick' ? 'Verify & continue' : 'Verify & sign in'; });
     });
   }
   /* ---------- Forgot password: WhatsApp code → new password ---------- */
@@ -700,21 +684,17 @@
   function openForgot() {
     showSideForm(forgotForm, 'Reset your password', 'We’ll send a 6-digit code to your WhatsApp.');
     fp.ticket = ''; byId('fp-step2').hidden = true; byId('forgotBtn').textContent = 'Send code on WhatsApp';
-    byId('fp-email').value = byId('si-email').value || ''; byId('fp-otp').value = ''; byId('fp-pass').value = '';
-    byId('fp-email').focus();
+    byId('fp-otp').value = ''; byId('fp-pass').value = '';
+    byId('fp-phone').focus();
   }
-  // The field takes the account email or its 10-digit mobile number.
+  // The account's WhatsApp number: country code + 10 digits.
   function resetIdentity() {
-    const v = (byId('fp-email').value || '').trim();
-    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return { email: v.toLowerCase() };
-    const d = v.replace(/\D/g, '');
-    if (d.length === 10) return { mobile: '+91 ' + d };
-    if (v.startsWith('+') && d.length > 10) return { mobile: v };
-    return null;
+    const mobile = phoneOf('fp-phone', 'fp-phone-code');
+    return mobile ? { mobile } : null;
   }
   function sendResetCode() {
     const id = resetIdentity();
-    if (!id) { toast('Enter your email or 10-digit mobile number', 'fa-triangle-exclamation'); byId('fp-email').focus(); return; }
+    if (!id) { toast('Enter your 10-digit WhatsApp number', 'fa-triangle-exclamation'); byId('fp-phone').focus(); return; }
     const btn = byId('forgotBtn'); fp.busy = true; btn.disabled = true; btn.textContent = 'Sending code…';
     requestCode(Object.assign({ purpose: 'reset' }, id)).then(d => {
       fp.ticket = d.ticket; fp.id = id;
@@ -730,7 +710,7 @@
     byId('forgotLink').addEventListener('click', e => { e.preventDefault(); openForgot(); });
     byId('fp-back').addEventListener('click', e => { e.preventDefault(); openModal('signin'); });
     byId('fp-resend').addEventListener('click', e => { e.preventDefault(); if (!fp.busy) sendResetCode(); });
-    byId('fp-email').addEventListener('input', () => { if (fp.ticket) { fp.ticket = ''; byId('fp-step2').hidden = true; byId('forgotBtn').textContent = 'Send code on WhatsApp'; } });
+    ['fp-phone', 'fp-phone-code'].forEach(id => byId(id).addEventListener(id === 'fp-phone-code' ? 'change' : 'input', () => { if (fp.ticket) { fp.ticket = ''; byId('fp-step2').hidden = true; byId('forgotBtn').textContent = 'Send code on WhatsApp'; } }));
     on(forgotForm, 'submit', e => {
       e.preventDefault(); if (fp.busy) return;
       if (!fp.ticket) { sendResetCode(); return; }

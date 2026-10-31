@@ -116,7 +116,7 @@ const templateUrl = () => process.env.WHATSAPP_API_URL as string;
 const textUrl = () => process.env.WHATSAPP_TEXT_API_URL || 'https://app.getgabs.com/whatsappbusiness/send-message';
 const lang = () => ({ code: process.env.WHATSAPP_TEMPLATE_LANG || 'en_US' });
 
-const PURPOSE_LABEL: Record<OtpPurpose, string> = { signup: 'sign-up', login: 'WhatsApp sign-in', reset: 'password reset' };
+const PURPOSE_LABEL: Record<OtpPurpose, string> = { signup: 'sign-up', login: 'WhatsApp sign-in', reset: 'password reset', quick: 'WhatsApp sign-up' };
 
 /** Sends the 6-digit code on WhatsApp. Resolves false (never throws) on any failure. */
 export async function whatsappOtp(mobile: string, code: string, name?: string, purpose: OtpPurpose = 'signup'): Promise<boolean> {

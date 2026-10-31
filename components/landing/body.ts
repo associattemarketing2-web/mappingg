@@ -497,28 +497,17 @@ export const LANDING_BODY = `
       </form>
 
       <form class="auth-form is-active" id="signupForm" novalidate>
-        <p class="req-note" id="su-req-note">Only your name, WhatsApp number and email are needed.</p>
+        <div class="su-quick" id="su-quick">
+          <button type="button" class="btn btn-primary btn-wa-cta" id="quickWaBtn"><i class="fab fa-whatsapp" aria-hidden="true"></i> Create account with WhatsApp OTP</button>
+          <small>Just your WhatsApp number and a 6-digit code — nothing else to fill in.</small>
+          <div class="divider">or sign up with email</div>
+        </div>
+        <p class="req-note" id="su-req-note">Your name, WhatsApp number, email and a password — we’ll send a 6-digit code on WhatsApp to verify your number.</p>
         <div class="field-row">
           <div class="field"><label for="su-name">Full name</label><input type="text" id="su-name" name="name" placeholder="Your name" autocomplete="name" required></div>
           <div class="field"><label for="su-phone">WhatsApp number</label><div class="phone-in is-empty"><span class="phone-cc"><img alt="" width="22" height="16"><span class="phone-iso"></span><span class="phone-cc-code">+91</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><select id="su-phone-code" aria-label="Country code">${PHONE_CODE_DEFAULT}</select></span><input type="tel" id="su-phone" name="mobile" placeholder="10-digit number" autocomplete="tel-national" inputmode="numeric" maxlength="10" pattern="\\d{10}" title="Enter a 10-digit mobile number" required><span class="phone-count" aria-hidden="true"></span></div></div>
         </div>
         <div class="field"><label for="su-email">Email</label><input type="email" id="su-email" name="email" placeholder="you@example.com" autocomplete="email" required></div>
-        <fieldset class="role-fields" data-for="buyer">
-          <div class="opt-details">
-            <div class="opt-summary"><b>Tell us what you're looking for <small style="display:inline">(optional)</small></b><small>Helps us match you to the right projects — you can skip this</small></div>
-            <div class="opt-body">
-          <div class="field-row">
-            <div class="field"><label for="b-area">Preferred area</label><div class="loc-in"><input id="b-area" name="area" placeholder="e.g. Mundhwa, Kharadi" autocomplete="off" maxlength="120" aria-describedby="b-area-note"><button type="button" class="loc-btn" id="b-area-loc" hidden aria-label="Fill in my area from my current location"><i class="fas fa-location-crosshairs" aria-hidden="true"></i></button></div><small class="loc-note" id="b-area-note" aria-live="polite"></small></div>
-            <div class="field"><label for="b-config">Configuration</label><select id="b-config" name="configuration"><option value="" selected>Any</option><option>1 BHK</option><option>2 BHK</option><option>3 BHK</option><option>4+ BHK</option><option>Plot / Villa</option></select></div>
-          </div>
-          <div class="field-row">
-            <div class="field"><label for="b-budget">Budget</label><select id="b-budget" name="budget"><option value="" selected>Any</option><option>Under 1 Cr</option><option>75L - 1.5 Cr</option><option>1.5Cr - 2.5 Cr</option><option>3Cr +</option></select></div>
-            <div class="field"><label for="b-time">Planning to buy</label><select id="b-time" name="timeline"><option value="" selected>Not sure yet</option><option>Within 3 months</option><option>3–6 months</option><option>6–12 months</option><option>Just exploring</option></select></div>
-          </div>
-          <div class="field"><label>Buying for</label><div class="pills"><label><input type="radio" name="purpose" value="Self use"><span>Self use</span></label><label><input type="radio" name="purpose" value="Investment"><span>Investment</span></label><label><input type="radio" name="purpose" value="Both"><span>Both</span></label></div></div>
-            </div>
-          </div>
-        </fieldset>
         <fieldset class="role-fields" data-for="developer" hidden disabled>
           <legend>Company details</legend>
           <div class="field"><label for="d-company">Company / developer name</label><input id="d-company" name="company" placeholder="e.g. ABC Developers Pvt Ltd" required></div>
@@ -539,7 +528,7 @@ export const LANDING_BODY = `
             <div class="field"><label for="a-areas">Areas you work in</label><input id="a-areas" name="areas" placeholder="Mundhwa, Kharadi" required></div>
           </div>
         </fieldset>
-        <div class="field"><label for="su-pass">Password <small>(optional)</small></label><div class="pass-wrap"><input type="password" id="su-pass" placeholder="At least 8 characters — or skip" autocomplete="new-password" minlength="8" aria-describedby="su-pass-hint"><button type="button" class="pass-toggle" aria-label="Show password"><i class="fas fa-eye"></i></button></div><small class="loc-note" id="su-pass-hint">No password? Sign in any time with a WhatsApp code.</small></div>
+        <div class="field"><label for="su-pass">Password</label><div class="pass-wrap"><input type="password" id="su-pass" name="password" placeholder="At least 8 characters" autocomplete="new-password" minlength="8" required aria-describedby="su-pass-hint"><button type="button" class="pass-toggle" aria-label="Show password"><i class="fas fa-eye"></i></button></div><small class="loc-note" id="su-pass-hint">Forgot it later? Reset it with a code on your WhatsApp.</small></div>
         <p class="verify-note" id="verifyNote" hidden><i class="fas fa-shield-halved"></i><span>We verify your RERA number on the MahaRERA website before your account gets full access, usually within one working day.</span></p>
         <div class="opts"><label><input type="checkbox" id="su-terms" required> I agree to the <a href="/terms" target="_blank" rel="noopener">Terms</a> & <a href="/privacy" target="_blank" rel="noopener">Privacy</a> and to be contacted on WhatsApp.</label></div>
         <div class="field otp-block" id="su-otp-block" hidden>
@@ -553,7 +542,7 @@ export const LANDING_BODY = `
       </form>
 
       <form class="auth-form" id="waLoginForm" novalidate>
-        <p class="otp-intro">Enter the WhatsApp number on your account — we’ll send you a 6-digit code to sign in.</p>
+        <p class="otp-intro" id="wa-intro">Enter the WhatsApp number on your account — we’ll send you a 6-digit code to sign in.</p>
         <div class="field"><label for="wa-phone">WhatsApp number</label><div class="phone-in is-empty"><span class="phone-cc"><img alt="" width="22" height="16"><span class="phone-iso"></span><span class="phone-cc-code">+91</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><select id="wa-phone-code" aria-label="Country code">${PHONE_CODE_DEFAULT}</select></span><input type="tel" id="wa-phone" placeholder="10-digit number" autocomplete="tel-national" inputmode="numeric" maxlength="10" pattern="\\d{10}" title="Enter a 10-digit mobile number" required><span class="phone-count" aria-hidden="true"></span></div></div>
         <div class="field otp-block" id="wa-otp-block" hidden>
           <label for="wa-otp">Verification code</label>
@@ -561,12 +550,12 @@ export const LANDING_BODY = `
           <div class="otp-meta"><small id="wa-otp-hint"></small><a href="#" id="wa-resend">Resend code</a></div>
         </div>
         <button type="submit" class="btn btn-primary" id="waLoginBtn">Send code on WhatsApp</button>
-        <div class="opts"><a href="#" id="wa-back"><i class="fas fa-arrow-left"></i> Sign in with password</a></div>
+        <div class="opts"><a href="#" id="wa-back"><i class="fas fa-arrow-left"></i> <span id="wa-back-label">Sign in with password</span></a></div>
       </form>
 
       <form class="auth-form" id="forgotForm" novalidate>
-        <p class="otp-intro">Enter the email or WhatsApp number you registered with — we’ll send a 6-digit code to your WhatsApp to set a new password.</p>
-        <div class="field"><label for="fp-email">Email or mobile number</label><input type="text" id="fp-email" placeholder="you@example.com or 98XXXXXXXX" autocomplete="username" required></div>
+        <p class="otp-intro">Enter the WhatsApp number on your account — we’ll send a 6-digit code to it so you can set a new password.</p>
+        <div class="field"><label for="fp-phone">WhatsApp number</label><div class="phone-in is-empty"><span class="phone-cc"><img alt="" width="22" height="16"><span class="phone-iso"></span><span class="phone-cc-code">+91</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><select id="fp-phone-code" aria-label="Country code">${PHONE_CODE_DEFAULT}</select></span><input type="tel" id="fp-phone" placeholder="10-digit number" autocomplete="tel-national" inputmode="numeric" maxlength="10" pattern="\\d{10}" title="Enter a 10-digit mobile number" required><span class="phone-count" aria-hidden="true"></span></div></div>
         <div id="fp-step2" hidden>
           <div class="field otp-block"><label for="fp-otp">Verification code</label><input id="fp-otp" inputmode="numeric" maxlength="6" placeholder="6-digit code" autocomplete="one-time-code"><div class="otp-meta"><small id="fp-otp-hint"></small><a href="#" id="fp-resend">Resend code</a></div></div>
           <div class="field"><label for="fp-pass">New password</label><div class="pass-wrap"><input type="password" id="fp-pass" placeholder="At least 8 characters" autocomplete="new-password" minlength="8"><button type="button" class="pass-toggle" aria-label="Show password"><i class="fas fa-eye"></i></button></div></div>

@@ -6,8 +6,8 @@ import { isValidNumber, splitPhone } from '@/lib/phone';
 
 // The full sign-up form for a first-time Google sign-in (see
 // app/dashboard/complete-signup). Same account types, fields and options as the
-// sign-up form on the home page (components/landing/body.ts). A buyer's
-// preferences are optional; developers and agents fill in every field except the website. The account is created on submit.
+// sign-up form on the home page (components/landing/body.ts). Buyers give only
+// name, number and email; developers and agents fill in every field except the website. The account is created on submit.
 type Role = 'buyer' | 'developer' | 'agent';
 type Field = { key: string; label: string; placeholder?: string; options?: string[]; pills?: string[]; optional?: boolean; wide?: boolean };
 
@@ -18,16 +18,9 @@ const ROLES: { key: Role; label: string; icon: string }[] = [
 ];
 
 const FIELDS: Record<Role, { title: string; hint?: string; fields: Field[] }> = {
-  buyer: {
-    title: "Tell us what you're looking for", hint: 'Optional — helps us match you to the right projects',
-    fields: [
-      { key: 'area', label: 'Preferred area', placeholder: 'e.g. Mundhwa, Kharadi', optional: true },
-      { key: 'configuration', label: 'Configuration', options: ['1 BHK', '2 BHK', '3 BHK', '4+ BHK', 'Plot / Villa'], optional: true },
-      { key: 'budget', label: 'Budget', options: ['Under 1 Cr', '75L - 1.5 Cr', '1.5Cr - 2.5 Cr', '3Cr +'], optional: true },
-      { key: 'timeline', label: 'Planning to buy', options: ['Within 3 months', '3–6 months', '6–12 months', 'Just exploring'], optional: true },
-      { key: 'purpose', label: 'Buying for', pills: ['Self use', 'Investment', 'Both'], wide: true, optional: true },
-    ],
-  },
+  // Buyers aren't asked what they're looking for at sign-up; the live map asks
+  // after a few project clicks or a site-visit booking (see PATCH /api/my/profile).
+  buyer: { title: '', fields: [] },
   developer: {
     title: 'Company details',
     fields: [
@@ -150,7 +143,7 @@ export default function GoogleSignupForm({ name: googleName, email, initialRole 
             </label>
           </div>
 
-          <h3 style={{ fontSize: 15, margin: '20px 0 4px' }}>{group.title}</h3>
+          {group.fields.length > 0 && <h3 style={{ fontSize: 15, margin: '20px 0 4px' }}>{group.title}</h3>}
           {group.hint && <p className="bp-muted" style={{ margin: '0 0 12px', fontSize: 13 }}>{group.hint}</p>}
           <div className="bp-grid">
             {group.fields.map((f) => (

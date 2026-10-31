@@ -17,6 +17,7 @@ import DevelopersPanel from './DevelopersPanel';
 import BuyerLeadsPanel from './BuyerLeadsPanel';
 import DeveloperApiPanel from './DeveloperApiPanel';
 import WhatsAppPanel from './WhatsAppPanel';
+import ShareLinkButton from './ShareLinkButton';
 import { PageHead, StatCard } from './PageHead';
 import OverviewMap, { loadProjectIndex, matchProjects, type ProjectHit } from './OverviewMap';
 import { FULL_EDIT_EVENT, requestFullEdit, submissionForPin } from './fullEdit';
@@ -163,6 +164,7 @@ function DayProjects({ date, onClose }: { date: string; onClose: () => void }) {
                         <i className="fas fa-pen-to-square" /> Edit all details
                       </button>
                       <a className="adm-btn ghost sm" href={`/map?pin=${encodeURIComponent(p.id)}`} target="_blank" rel="noopener"><i className="fas fa-map-location-dot" /> View on map</a>
+                      {!p.hidden && <ShareLinkButton pinId={p.id} />}
                       {p.page && <a className="adm-btn ghost sm" href={p.page} target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /> Project page</a>}
                     </div>
                   </li>
@@ -2019,6 +2021,7 @@ function LeadsPanel({ flash, isOwner, focusId, onFocusDone }: { flash: (m: strin
                   {sel.project && (
                     <div className="adm-actions" style={{ marginTop: 8 }}>
                       <a className="adm-btn ghost sm" href={`/map?pin=${encodeURIComponent(sel.project.id)}`} target="_blank" rel="noopener"><i className="fas fa-map-location-dot" /> View on map</a>
+                      <ShareLinkButton pinId={sel.project.id} />
                     </div>
                   )}
                 </div>

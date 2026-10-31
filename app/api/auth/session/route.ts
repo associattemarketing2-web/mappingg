@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createSessionToken, getCurrentUser, homePathFor, setSessionCookie } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
 import { homeForAccount, needsMobile, verificationOf } from '@/lib/verification';
+import { isPlaceholderEmail } from '@/lib/phone-email';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -27,5 +28,7 @@ export async function GET() {
     home = homeForAccount(doc, home);
   } catch { /* the session itself is still valid */ }
 
-  return NextResponse.json({ session: { user: { ...user, name, verified, mobile, needsMobile: missingMobile }, home } });
+  // Accounts made with just a WhatsApp code have a stand-in email (lib/phone-email.ts): never shown.
+  const email = isPlaceholderEmail(user.email) ? '' : user.email;
+  return NextResponse.json({ session: { user: { ...user, email, name: name || (email ? '' : mobile), verified, mobile, needsMobile: missingMobile }, home } });
 }

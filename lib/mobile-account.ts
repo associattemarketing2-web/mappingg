@@ -26,3 +26,12 @@ export async function findAccountByMobile(value: unknown): Promise<Found> {
   if (accounts.length > 1) return { ok: false, status: 409, message: 'More than one account uses this number — please use your email instead.' };
   return { ok: true, user: accounts[0], mobile };
 }
+
+/**
+ * What a "quick" WhatsApp code (/api/auth/otp purpose 'quick') is bound to:
+ * the existing account's last sign-in, so a code works once — or 'new' when no
+ * account has the number yet, so it can't be replayed once one is created.
+ */
+export function quickOtpBind(user: Record<string, unknown> | null): string {
+  return user ? `${String(user.id || user._id)}|${String(user.last_login_at || '')}` : 'new';
+}

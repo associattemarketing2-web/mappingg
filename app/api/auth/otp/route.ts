@@ -5,7 +5,7 @@ import { issueOtp } from '@/lib/otp';
 import { clientIp, rateLimit } from '@/lib/rate-limit';
 import { PHONE_ERROR, normalizePhone } from '@/lib/phone';
 import { maskPhone, whatsappConfigured, whatsappOtp } from '@/lib/whatsapp';
-import { findAccountByMobile } from '@/lib/mobile-account';
+import { findAccountByMobile, quickOtpBind } from '@/lib/mobile-account';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -15,12 +15,15 @@ export const dynamic = 'force-dynamic';
 //   purpose 'signup' → before creating an account (email must be new); the
 //                      code goes to the WhatsApp number on the form.
 //   purpose 'login'  → sign in with a mobile number.
+//   purpose 'quick'  → "Create account with WhatsApp OTP": just a mobile number.
+//                      Signs in if an account has it, else creates a buyer
+//                      account (verified by /api/auth/otp-quick).
 //   purpose 'reset'  → "Forgot password?": by email or by mobile; the code
 //                      goes to the WhatsApp number on the account.
 const schema = z.object({
   email: z.string().trim().toLowerCase().email().optional(),
   mobile: z.string().trim().max(24).optional(),
-  purpose: z.enum(['signup', 'reset', 'login']),
+  purpose: z.enum(['signup', 'reset', 'login', 'quick']),
   name: z.string().trim().max(120).optional(),
 });
 
@@ -49,6 +52,17 @@ export async function POST(req: NextRequest) {
     // Bound to the number, so the account is created with the number that got the code.
     const { code, ticket } = issueOtp(email, 'signup', mobile);
     if (!(await whatsappOtp(mobile, code, parsed.data.name, 'signup'))) return fail(SEND_FAILED, 502);
+    return sent(ticket, maskPhone(mobile));
+  }
+
+  // ---- Quick sign-up / sign-in with just a WhatsApp number ----
+  if (purpose === 'quick') {
+    const found = await findAccountByMobile(parsed.data.mobile);
+    if (!found.ok && found.status !== 404) return fail(found.message, found.status);
+    const mobile = found.ok ? found.mobile : normalizePhone(parsed.data.mobile, { required: true });
+    if (!mobile) return fail(PHONE_ERROR, 400);
+    const { code, ticket } = issueOtp(mobile, 'quick', quickOtpBind(found.ok ? found.user : null));
+    if (!(await whatsappOtp(mobile, code, found.ok && found.user.name ? String(found.user.name) : undefined, 'quick'))) return fail(SEND_FAILED, 502);
     return sent(ticket, maskPhone(mobile));
   }
 

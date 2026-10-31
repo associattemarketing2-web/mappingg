@@ -8,7 +8,7 @@ import { getDb } from './mongodb';
 type Profile = Record<string, string | undefined>;
 export interface SignupAccount {
   id: string; name?: string; email: string; mobile?: string; profile?: Profile;
-  provider?: 'password' | 'google'; created_at?: string;
+  provider?: 'password' | 'google' | 'whatsapp'; created_at?: string;
 }
 
 /** "Looking for: 3 BHK · Budget 75L - 1.5 Cr · Area: Kharadi · …" from the buyer sign-up fields. */
@@ -20,7 +20,8 @@ export function buyerNeeds(profile: Profile = {}, provider?: string): string {
     profile.timeline && `Planning to buy: ${profile.timeline}`,
     profile.purpose && `Buying for: ${profile.purpose}`,
   ].filter(Boolean) as string[];
-  const how = provider === 'google' ? 'Signed up with Google' : 'Created a buyer account on Mappingg';
+  const how = provider === 'google' ? 'Signed up with Google'
+    : provider === 'whatsapp' ? 'Created a buyer account with a WhatsApp code' : 'Created a buyer account on Mappingg';
   return parts.length ? `${how}. ${parts.join(' · ')}` : `${how} — no preferences given yet.`;
 }
 
@@ -33,7 +34,7 @@ export function buyerLeadDoc(a: SignupAccount) {
   const now = a.created_at || new Date().toISOString();
   return {
     id: `buyer-${a.id}`,
-    name: a.name || a.email.split('@')[0],
+    name: a.name || a.email.split('@')[0] || a.mobile || '',
     email: a.email,
     phone: a.mobile || '',
     subject: 'New buyer account',

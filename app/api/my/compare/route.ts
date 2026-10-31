@@ -3,6 +3,8 @@ import { z } from 'zod';
 import { getCurrentUser } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
 import { logActivity } from '@/lib/activity';
+import { withMediaUrls } from '@/lib/pin-media';
+import { slugForProject } from '@/lib/seo/entities';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -32,13 +34,18 @@ const DETAIL_FIELDS: { key: string; visibility: string }[] = [
 async function details(ids: string[]) {
   if (!ids.length) return [];
   const db = await getDb();
-  const projection: Record<string, 1> = { id: 1, number: 1, title: 1, field_visibility: 1 };
+  const projection: Record<string, 1> = { id: 1, number: 1, title: 1, field_visibility: 1, image: 1, image_meta: 1 };
   DETAIL_FIELDS.forEach((f) => { projection[f.key] = 1; });
-  const rows = await db.collection('pins').find({ id: { $in: ids }, hidden: { $ne: true } }, { projection }).toArray() as Record<string, any>[];
+  const raw = await db.collection('pins').find({ id: { $in: ids }, hidden: { $ne: true } }, { projection }).toArray();
+  const rows = withMediaUrls('pins', raw as unknown as Record<string, any>[], { width: 480 });
   const byId = new Map(rows.map((r) => [String(r.id), r]));
   return ids.map((id) => byId.get(id)).filter(Boolean).map((r) => {
     const vis = (r!.field_visibility || {}) as Record<string, unknown>;
-    const out: Record<string, unknown> = { id: String(r!.id), number: r!.number ?? null, title: String(r!.title || '') };
+    const image = typeof r!.image === 'string' && /^(https?:|\/api\/)/.test(r!.image) ? r!.image : '';
+    const out: Record<string, unknown> = {
+      id: String(r!.id), number: r!.number ?? null, title: String(r!.title || ''),
+      slug: slugForProject(r as unknown as Parameters<typeof slugForProject>[0]), image,
+    };
     DETAIL_FIELDS.forEach((f) => { out[f.key] = vis[f.visibility] === false ? '' : String(r![f.key] || ''); });
     return out;
   });
