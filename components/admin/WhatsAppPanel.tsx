@@ -3,11 +3,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StatTile } from './SeoCharts';
 
-// s-admin → WhatsApp. Three views:
+// s-admin → WhatsApp. Four views:
 //   Chats        WhatsApp-style inbox: every conversation, AI auto-reply switch
 //                per chat, manual replies, AI-drafted replies, edit / delete.
 //   OTP          every verification code sent (codes themselves are never stored).
 //   Automations  buyer welcome template, AI replies, and how each is doing.
+//   Bulk send    upload a file of numbers, pick an approved template, shoot it to all.
 // Data: /api/admin/whatsapp. Polls while the tab is visible.
 
 type Author = 'customer' | 'ai' | 'staff' | 'system';
@@ -78,7 +79,7 @@ const LEAD_LABEL: Record<string, string> = {
   negotiation: 'Negotiation', won: 'Booked', lost: 'Lost', spam: 'Spam',
 };
 const PURPOSE_LABEL: Record<string, string> = {
-  signup: 'Sign-up', login: 'WhatsApp sign-in', reset: 'Password reset', buyer_welcome: 'Buyer welcome', ai_reply: 'AI replies',
+  signup: 'Sign-up', login: 'WhatsApp sign-in', reset: 'Password reset', buyer_welcome: 'Buyer welcome', ai_reply: 'AI replies', bulk: 'Bulk send',
 };
 
 function Ticks({ m }: { m: Msg }) {
@@ -472,10 +473,254 @@ function LogView({ kind, config }: { kind: 'otp' | 'auto'; config?: Overview['co
   );
 }
 
+/* --------------------------------- Bulk send --------------------------------- */
+
+interface Recipient { phone: string; phone_display: string; name: string }
+interface Extracted { file_name: string; recipients: Recipient[]; duplicates: number; invalid: string[]; format: string }
+interface Campaign { id: string; template: string; text: string; by: string; started: string; total: number; failed: number; delivered: number; read: number }
+type SendState = { ok: boolean; error?: string };
+
+const BULK_API = `${API}/bulk`;
+const BATCH = 25;
+
+/** Shoots the buyer welcome template (the one sent when a buyer signs up), or a typed message, to every uploaded number. */
+function BulkView({ flash, configured }: { flash: Flash; configured: boolean }) {
+  const [template, setTemplate] = useState('');
+  const [mode, setMode] = useState<'template' | 'text'>('template');
+  const [message, setMessage] = useState('');
+  const [list, setList] = useState<Recipient[]>([]);
+  const [info, setInfo] = useState<{ files: string[]; duplicates: number; invalid: string[] }>({ files: [], duplicates: 0, invalid: [] });
+  const [paste, setPaste] = useState('');
+  const [reading, setReading] = useState(false);
+  const [drag, setDrag] = useState(false);
+  const [q, setQ] = useState('');
+  const [state, setState] = useState<Record<string, SendState>>({});
+  const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
+  const [campaigns, setCampaigns] = useState<Campaign[] | null>(null);
+  const stop = useRef(false);
+  const fileInput = useRef<HTMLInputElement>(null);
+  const listRef = useRef(list);
+  listRef.current = list;
+
+  const loadCampaigns = useCallback(() => {
+    api<{ template: string; campaigns: Campaign[] }>(BULK_API).then((d) => { setTemplate(d.template); setCampaigns(d.campaigns); }, () => setCampaigns([]));
+  }, []);
+  usePoll(loadCampaigns, 30_000, []);
+
+  const sending = progress !== null && progress.done < progress.total;
+
+  /** Adds numbers read from a file or pasted text, skipping ones already in the list. */
+  async function read(form: FormData, label: string) {
+    setReading(true);
+    try {
+      const r = await fetch(BULK_API, { method: 'POST', credentials: 'same-origin', body: form });
+      const b = await r.json().catch(() => ({}));
+      if (!r.ok || b.error) throw new Error(b?.error?.message || `Request failed (${r.status})`);
+      const d = b.data as Extracted;
+      // listRef, not a state updater: several files can be read at once, and the counts are needed right here.
+      const have = new Set(listRef.current.map((x) => x.phone));
+      const fresh = d.recipients.filter((x) => { if (have.has(x.phone)) return false; have.add(x.phone); return true; });
+      const added = fresh.length;
+      const dup = d.duplicates + d.recipients.length - added;
+      listRef.current = [...listRef.current, ...fresh];
+      setList(listRef.current);
+      setInfo((i) => ({ files: [...i.files, label || d.file_name || d.format], duplicates: i.duplicates + dup, invalid: [...i.invalid, ...d.invalid].slice(0, 300) }));
+      flash(`${d.format}: ${d.recipients.length} number${d.recipients.length === 1 ? '' : 's'} found${added < d.recipients.length ? ` (${d.recipients.length - added} already in the list)` : ''}`);
+    } catch (e) { flash((e as Error).message, true); } finally { setReading(false); }
+  }
+  function onFiles(files: FileList | null) {
+    for (const f of Array.from(files || [])) { const fd = new FormData(); fd.append('file', f); void read(fd, f.name); }
+    if (fileInput.current) fileInput.current.value = '';
+  }
+  function addPasted() {
+    if (!paste.trim()) return;
+    const fd = new FormData(); fd.append('text', paste);
+    void read(fd, 'Pasted list').then(() => setPaste(''));
+  }
+  function clearAll() {
+    if (sending) return;
+    setList([]); setInfo({ files: [], duplicates: 0, invalid: [] }); setState({}); setProgress(null);
+  }
+
+  async function shoot(only?: Recipient[]) {
+    const targets = only || list;
+    if (!targets.length) { flash('Upload a file with numbers first', true); return; }
+    const text = message.trim();
+    if (mode === 'text' && !text) { flash('Type the message first', true); return; }
+    const what = mode === 'text' ? `this message:\n\n"${text.slice(0, 300)}${text.length > 300 ? '…' : ''}"\n\n` : `template "${template || 'buyer welcome'}" `;
+    if (!window.confirm(`Send WhatsApp ${what}to ${targets.length.toLocaleString('en-IN')} number${targets.length === 1 ? '' : 's'} now?\n\nThis cannot be undone.`)) return;
+    const campaign = `bulk-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
+    stop.current = false;
+    setState((s) => { const n = { ...s }; targets.forEach((t) => delete n[t.phone]); return n; });
+    setProgress({ done: 0, total: targets.length });
+    let ok = 0, failed = 0;
+    for (let i = 0; i < targets.length && !stop.current; i += BATCH) {
+      const batch = targets.slice(i, i + BATCH);
+      try {
+        const r = await api<{ results: { phone: string; ok: boolean; error?: string }[] }>(BULK_API, {
+          action: 'send', campaign, mode, ...(mode === 'text' ? { text } : {}),
+          recipients: batch.map(({ phone, name }) => ({ phone, name })),
+        });
+        setState((s) => { const n = { ...s }; r.results.forEach((x) => { n[x.phone] = { ok: x.ok, error: x.error }; }); return n; });
+        r.results.forEach((x) => (x.ok ? ok++ : failed++));
+        // Every number in the batch failed for the same reason (e.g. "Account Deactivated") — the rest would too.
+        const reasons = new Set(r.results.map((x) => (x.ok ? '' : x.error)));
+        if (r.results.length && !r.results.some((x) => x.ok) && reasons.size === 1) {
+          flash(`Stopped — ${[...reasons][0]}`, true);
+          stop.current = true;
+        }
+      } catch (e) {
+        // The whole batch was refused (e.g. WhatsApp not set up) — mark it and stop; the rest would fail the same way.
+        const error = (e as Error).message;
+        setState((s) => { const n = { ...s }; batch.forEach((x) => { n[x.phone] = { ok: false, error }; }); return n; });
+        failed += batch.length;
+        flash(error, true);
+        stop.current = true;
+      }
+      setProgress({ done: Math.min(targets.length, i + batch.length), total: targets.length });
+    }
+    setProgress((p) => (p ? { ...p, total: p.done } : p));
+    flash(`${stop.current && ok + failed < targets.length ? 'Stopped. ' : ''}${ok} sent${failed ? `, ${failed} failed` : ''}`, failed > 0 && !ok);
+    loadCampaigns();
+  }
+
+  const shown = useMemo(() => {
+    const term = q.trim().toLowerCase();
+    const digits = term.replace(/\D/g, '');
+    return list.filter((r) => !term || r.name.toLowerCase().includes(term) || (digits.length >= 3 && r.phone.includes(digits)));
+  }, [list, q]);
+  const position = useMemo(() => new Map(list.map((r, i) => [r.phone, i + 1])), [list]);
+  const sentCount = Object.values(state).filter((s) => s.ok).length;
+  const failedList = list.filter((r) => state[r.phone] && !state[r.phone].ok);
+
+  return (
+    <>
+      {!configured && <div className="wa-setup"><i className="fas fa-plug-circle-exclamation" /> <div><b>Sending is not set up</b><span>Add WHATSAPP_API_URL and WHATSAPP_API_KEY on the server before shooting.</span></div></div>}
+
+      <div className="adm-panel">
+        <div className="adm-panel-head"><h3><i className="fas fa-message" /> What to send</h3></div>
+        <div className="wa-filters wa-bulk-mode" role="tablist" aria-label="What to send">
+          <button type="button" role="tab" aria-selected={mode === 'template'} className={mode === 'template' ? 'on' : ''} onClick={() => setMode('template')} disabled={sending}>
+            <i className="fas fa-user-check" /> Template
+          </button>
+          <button type="button" role="tab" aria-selected={mode === 'text'} className={mode === 'text' ? 'on' : ''} onClick={() => setMode('text')} disabled={sending}>
+            <i className="fas fa-keyboard" /> Type a message
+          </button>
+        </div>
+        {mode === 'template' ? (
+          <p className="wa-bulk-desc"><b>Template: <code>{template || 'buyers_account_created'}</code></b> — the same congratulations message a buyer gets on sign-up.</p>
+        ) : (
+          <div className="adm-field wa-bulk-msg">
+            <label>Message <small>— type <code>{'{name}'}</code> to put each person&apos;s name</small></label>
+            <textarea value={message} onChange={(e) => setMessage(e.target.value)} maxLength={4000} placeholder={'Hi {name}, new projects are live on Mappingg…'} disabled={sending} />
+            <small className="muted">{message.length} / 4000</small>
+            <p className="wa-note warn"><i className="fas fa-clock" /> WhatsApp only delivers a typed message to people who messaged you in the last 24 hours. For everyone else, use the Template.</p>
+          </div>
+        )}
+      </div>
+
+        <div className="adm-panel">
+          <div className="adm-panel-head"><h3><i className="fas fa-upload" /> Numbers</h3>{list.length > 0 && <button type="button" className="adm-btn ghost sm" onClick={clearAll} disabled={sending}><i className="fas fa-trash" /> Clear</button>}</div>
+          <label
+            className={`wa-drop${drag ? ' on' : ''}`}
+            onDragOver={(e) => { e.preventDefault(); setDrag(true); }} onDragLeave={() => setDrag(false)}
+            onDrop={(e) => { e.preventDefault(); setDrag(false); onFiles(e.dataTransfer.files); }}
+          >
+            <input ref={fileInput} type="file" multiple accept=".csv,.txt,.xlsx,.xls,.pdf,.docx,.vcf,text/*" onChange={(e) => onFiles(e.target.files)} disabled={sending} hidden />
+            {reading ? <i className="fas fa-spinner fa-spin" /> : <i className="fas fa-cloud-arrow-up" />}
+            <b>{reading ? 'Reading file…' : 'Drop a file here or click to upload'}</b>
+            <span>CSV, Excel (.xlsx), PDF, Word (.docx), contacts (.vcf) or text. A &quot;name&quot; column is picked up too.</span>
+          </label>
+          <div className="adm-field wa-bulk-paste">
+            <label>Or paste numbers <small>(one per line, or comma separated)</small></label>
+            <textarea value={paste} onChange={(e) => setPaste(e.target.value)} placeholder={'9876543210\n+91 98765 43211, Rahul'} disabled={sending} />
+            <button type="button" className="adm-btn ghost sm" onClick={addPasted} disabled={!paste.trim() || reading || sending}><i className="fas fa-plus" /> Add to list</button>
+          </div>
+          {info.files.length > 0 && (
+            <p className="muted wa-bulk-info">
+              From: {info.files.join(', ')} · {info.duplicates} duplicate{info.duplicates === 1 ? '' : 's'} removed
+              {info.invalid.length > 0 && <> · <span title={info.invalid.join('\n')}>{info.invalid.length} invalid skipped</span></>}
+            </p>
+          )}
+        </div>
+
+      <div className="adm-panel">
+        <div className="wa-bulk-bar">
+          <div>
+            <b>{list.length.toLocaleString('en-IN')} number{list.length === 1 ? '' : 's'}</b>
+            {Object.keys(state).length > 0 && <span className="muted"> · {sentCount} sent{failedList.length ? ` · ${failedList.length} failed` : ''}</span>}
+          </div>
+          {progress && (
+            <div className="wa-bulk-progress" role="progressbar" aria-valuemin={0} aria-valuemax={progress.total} aria-valuenow={progress.done}>
+              <span style={{ width: `${progress.total ? (progress.done / progress.total) * 100 : 0}%` }} />
+              <small>{progress.done} / {progress.total}</small>
+            </div>
+          )}
+          <div className="wa-bulk-actions">
+            {sending
+              ? <button type="button" className="adm-btn danger" onClick={() => { stop.current = true; }}><i className="fas fa-stop" /> Stop</button>
+              : <>
+                {failedList.length > 0 && <button type="button" className="adm-btn ghost" onClick={() => shoot(failedList)}><i className="fas fa-rotate-right" /> Retry {failedList.length} failed</button>}
+                <button type="button" className="adm-btn primary wa-shoot" onClick={() => shoot()} disabled={!list.length || !configured || (mode === 'text' && !message.trim())}>
+                  <i className="fas fa-paper-plane" /> Shoot to {list.length.toLocaleString('en-IN')}
+                </button>
+              </>}
+          </div>
+        </div>
+        {list.length > 0 && (
+          <>
+            <div className="wa-log-tools"><label className="acs-search"><i className="fas fa-magnifying-glass" /><input type="search" placeholder="Search name or number" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search numbers" /></label></div>
+            <div className="wa-table-wrap wa-bulk-table">
+              <table className="wa-table">
+                <thead><tr><th>#</th><th>Number</th><th>Name</th><th>Status</th><th /></tr></thead>
+                <tbody>
+                  {shown.slice(0, 1000).map((r) => {
+                    const s = state[r.phone];
+                    return (
+                      <tr key={r.phone}>
+                        <td className="muted">{position.get(r.phone)}</td>
+                        <td className="mono">{r.phone_display}</td>
+                        <td>{r.name || <span className="muted">—</span>}</td>
+                        <td>{!s ? <span className="adm-badge muted">Ready</span> : s.ok ? <span className="adm-badge ok">Sent</span> : <span className="adm-badge wa-bad" title={s.error}>Failed</span>}{s?.error && <small className="wa-bulk-err">{s.error}</small>}</td>
+                        <td><button type="button" className="adm-btn ghost sm" onClick={() => setList((l) => l.filter((x) => x.phone !== r.phone))} disabled={sending} aria-label="Remove number"><i className="fas fa-xmark" /></button></td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+              {shown.length > 1000 && <p className="muted">Showing the first 1,000 — all {shown.length.toLocaleString('en-IN')} will be sent.</p>}
+            </div>
+          </>
+        )}
+      </div>
+
+      <div className="adm-panel">
+        <div className="adm-panel-head"><h3>Past bulk sends</h3><span className="muted">Delivered / read update as WhatsApp reports them.</span></div>
+        <div className="wa-table-wrap">
+          <table className="wa-table">
+            <thead><tr><th>When</th><th>Sent</th><th>By</th><th>Numbers</th><th>Delivered</th><th>Read</th><th>Failed</th></tr></thead>
+            <tbody>
+              {!campaigns ? <tr><td colSpan={7} className="muted"><i className="fas fa-spinner fa-spin" /> Loading…</td></tr>
+                : !campaigns.length ? <tr><td colSpan={7} className="muted">No bulk sends yet.</td></tr>
+                  : campaigns.map((c) => (
+                    <tr key={c.id}>
+                      <td>{fullTime(c.started)}</td><td className="wa-cell-text">{c.text ? <><i className="fas fa-keyboard muted" /> {c.text}</> : <code>{c.template}</code>}</td><td>{c.by ? c.by.split('@')[0] : '—'}</td>
+                      <td>{c.total.toLocaleString('en-IN')}</td><td>{c.delivered.toLocaleString('en-IN')}</td><td>{c.read.toLocaleString('en-IN')}</td>
+                      <td>{c.failed ? <span className="adm-badge wa-bad">{c.failed.toLocaleString('en-IN')}</span> : 0}</td>
+                    </tr>
+                  ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
+  );
+}
+
 /* --------------------------------- Shell --------------------------------- */
 
 export default function WhatsAppPanel({ flash, onOpenLead }: { flash: Flash; onOpenLead?: (id: string) => void }) {
-  const [view, setView] = useState<'chats' | 'otp' | 'auto'>('chats');
+  const [view, setView] = useState<'chats' | 'otp' | 'auto' | 'bulk'>('chats');
   const [data, setData] = useState<Overview | null>(null);
   const [err, setErr] = useState('');
   const load = useCallback(() => { api<Overview>(API).then((d) => { setData(d); setErr(''); }, (e) => setErr((e as Error).message)); }, []);
@@ -511,11 +756,15 @@ export default function WhatsAppPanel({ flash, onOpenLead }: { flash: Flash; onO
         <button role="tab" aria-selected={view === 'auto'} className={view === 'auto' ? 'on' : ''} onClick={() => setView('auto')}>
           <i className="fas fa-bolt" /> Automations
         </button>
+        <button role="tab" aria-selected={view === 'bulk'} className={view === 'bulk' ? 'on' : ''} onClick={() => setView('bulk')}>
+          <i className="fas fa-paper-plane" /> Bulk send
+        </button>
       </div>
 
       {view === 'chats' && <ChatsView data={data} reload={load} flash={flash} onOpenLead={onOpenLead} />}
       {view === 'otp' && <LogView kind="otp" />}
       {view === 'auto' && <LogView kind="auto" config={data?.config} />}
+      {view === 'bulk' && <BulkView flash={flash} configured={data?.config.whatsapp ?? true} />}
     </div>
   );
 }

@@ -28,7 +28,9 @@ export interface WaMessage {
   kind: WaKind;
   body: string;
   template?: string;
-  purpose?: OtpPurpose | 'buyer_welcome';
+  purpose?: OtpPurpose | 'buyer_welcome' | 'bulk';
+  /** Bulk send batch id (s-admin → WhatsApp → Bulk send). */
+  campaign?: string;
   status: WaStatus;
   error?: string;
   /** WhatsApp's own message id (wamid…), used for delivery updates and de-duplication. */

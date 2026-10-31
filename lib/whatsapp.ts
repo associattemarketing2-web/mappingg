@@ -55,7 +55,7 @@ async function checkDelivery(messageId: string): Promise<void> {
 }
 
 /** What to record in the WhatsApp panel for a send. */
-interface LogAs { author: WaAuthor; kind: WaKind; body: string; by?: string; template?: string; purpose?: WaMessage['purpose'] }
+interface LogAs { author: WaAuthor; kind: WaKind; body: string; by?: string; template?: string; purpose?: WaMessage['purpose']; campaign?: string }
 
 export interface SendResult { ok: boolean; message: WaMessage | null; error?: string }
 
@@ -135,11 +135,16 @@ export async function whatsappOtp(mobile: string, code: string, name?: string, p
   return r.ok;
 }
 
-/** "Congratulations — your account is fully created" message to a new buyer (no variables). */
-export async function whatsappBuyerWelcome(mobile: string, name?: string): Promise<boolean> {
+/** The buyer welcome template's name (also what Bulk send shoots). */
+export function buyerWelcomeTemplate(): string {
   // "byres_account_created" was the old welcome template — never send it, even if the server env still names it.
   const fromEnv = process.env.WHATSAPP_BUYER_WELCOME_TEMPLATE;
-  const template = fromEnv && fromEnv !== 'byres_account_created' ? fromEnv : 'buyers_account_created';
+  return fromEnv && fromEnv !== 'byres_account_created' ? fromEnv : 'buyers_account_created';
+}
+
+/** "Congratulations — your account is fully created" message to a new buyer (no variables). */
+export async function whatsappBuyerWelcome(mobile: string, name?: string): Promise<boolean> {
+  const template = buyerWelcomeTemplate();
   const r = await post(templateUrl(), mobile, name, { type: 'template', template: { name: template, language: lang() } },
     { author: 'system', kind: 'template', template, purpose: 'buyer_welcome', body: 'Buyer account created — congratulations message' });
   return r.ok;
@@ -149,4 +154,17 @@ export async function whatsappBuyerWelcome(mobile: string, name?: string): Promi
 export function whatsappText(mobile: string, text: string, author: 'ai' | 'staff', by?: string): Promise<SendResult> {
   const body = text.trim().slice(0, 4096);
   return post(textUrl(), mobile, undefined, { type: 'text', text: { preview_url: true, body } }, { author, by, kind: 'text', body });
+}
+
+/** Bulk send: the buyer welcome template (no variables) to one number, logged under its batch. Resolves (never throws). */
+export function whatsappBulkWelcome(mobile: string, name: string | undefined, campaign: string, by?: string): Promise<SendResult> {
+  const template = buyerWelcomeTemplate();
+  return post(templateUrl(), mobile, name, { type: 'template', template: { name: template, language: lang() } },
+    { author: 'system', kind: 'template', template, purpose: 'bulk', campaign, by, body: `Bulk send: ${template}` });
+}
+
+/** Bulk send: a typed message to one number. Free text, so WhatsApp only delivers it within 24 hours of the customer's last message. */
+export function whatsappBulkText(mobile: string, name: string | undefined, text: string, campaign: string, by?: string): Promise<SendResult> {
+  const body = text.trim().slice(0, 4096);
+  return post(textUrl(), mobile, name, { type: 'text', text: { preview_url: true, body } }, { author: 'staff', by, kind: 'text', purpose: 'bulk', campaign, body });
 }
