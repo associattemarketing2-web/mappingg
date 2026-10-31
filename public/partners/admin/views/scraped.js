@@ -1,11 +1,11 @@
 // Scraped data: projects collected from official RERA registries (MahaRERA,
-// Haryana RERA - Gurugram, RERA Karnataka). Browse by city, edit, delete, and
+// Haryana RERA - Gurugram, RERA Karnataka, UP RERA, TN RERA). Browse by city, edit, delete, and
 // add the ones with a verified location to Projects (review queue / map).
 import { h, esc, $, $$, formatDate, toast, confirmDialog, friendlyError } from '../../shared/lib.js';
 import { ctx, refreshCounts } from '../context.js';
 import { createBulk } from '../bulk.js';
 
-const CITY_LABEL = { Mumbai: 'Mumbai', Thane: 'Thane', Kalyan_Dombivli: 'Kalyan-Dombivli', Pune: 'Pune', Gurugram: 'Gurugram', Noida: 'Noida / Greater Noida', Bengaluru: 'Bengaluru' };
+const CITY_LABEL = { Mumbai: 'Mumbai', Thane: 'Thane', Kalyan_Dombivli: 'Kalyan-Dombivli', Pune: 'Pune', Gurugram: 'Gurugram', Noida: 'Noida / Greater Noida', Bengaluru: 'Bengaluru', Hyderabad: 'Hyderabad', Chennai: 'Chennai' };
 const PIN = {
   verified: { label: 'Location verified', tone: 'ok', help: 'Coordinates inside the area, pincode matches, not a shared area pin.' },
   manual: { label: 'Set by hand', tone: 'info', help: 'Location placed by the team.' },
@@ -119,7 +119,7 @@ export async function renderScraped(page, params) {
       const n = live.filter(r => r.ready_gaps?.length).length;
       return n ? `<span title="${esc(Object.entries(gaps).sort((a, b) => b[1] - a[1]).map(([g, c]) => `${g}: ${c}`).join('\n'))}" style="text-decoration:underline dotted">${n.toLocaleString()} other enriched records are left out</span> (still in the Enriched tab). ` : ''; })()}
     The registry has no photos: add real photos before publishing. Check the developer logo and the location pin of each record.
-    Facts are from the official registry project page (RERA Karnataka / HARERA / UP RERA). <b>MahaRERA (Pune / Mumbai)</b> project pages need a CAPTCHA, so those rows use the developer's own project page instead (it must show the same RERA number, the BHK types and a possession date; location pin verified; developer logo matched) — their units, land area and project cost show “Pending (MahaRERA)”. Prices are not published by RERA; “Project cost” is the cost declared to RERA. “Add to Projects” copies these facts into the project (configurations, units, towers, land area, amenities, and the rest under Additional details) — check them in the Review queue, then publish.</p>`));
+    Facts are from the official registry project page (RERA Karnataka / HARERA / UP RERA / TN RERA). <b>MahaRERA (Pune / Mumbai)</b> project pages need a CAPTCHA, so those rows use the developer's own project page instead (it must show the same RERA number, the BHK types and a possession date; location pin verified; developer logo matched) — their units, land area and project cost show “Pending (MahaRERA)”. Prices are not published by RERA; “Project cost” is the cost declared to RERA. “Add to Projects” copies these facts into the project (configurations, units, towers, land area, amenities, and the rest under Additional details) — check them in the Review queue, then publish.</p>`));
   page.appendChild(toolbar);
 
   const actions = tab === 'deleted' ? [{ act: 'restore', label: 'Restore' }]

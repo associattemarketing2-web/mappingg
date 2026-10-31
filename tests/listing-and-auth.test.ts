@@ -40,6 +40,7 @@ test('RERA numbers are matched to the registry that issued them', () => {
   assert.equal(reraRegistry('GGM/930/662/2025/33').name, 'Haryana RERA');
   assert.equal(reraRegistry('UPRERAPRJ575706').name, 'UP RERA');
   assert.equal(reraRegistry('P02400003456').name, 'Telangana RERA');
+  assert.deepEqual(reraRegistry('TNRERA/29/BLG/0225/2026'), { name: 'TN RERA', url: 'https://rera.tn.gov.in/' });
   assert.deepEqual(reraRegistry('XYZ-123456'), { name: 'RERA', url: '' }, 'unknown format: no guessed link');
   const faq = projectFaqs({ title: 'Splendid Evora', rera_number: 'PRM/KA/RERA/1251/308/PR/250926/008969' }, 'Anekal', 'Bengaluru').find((f) => /RERA/.test(f.q))!;
   assert.match(faq.a, /RERA Karnataka registration number/);
