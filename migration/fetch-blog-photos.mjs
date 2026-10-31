@@ -50,6 +50,8 @@ const PHOTOS = {
   'flats-in-mumbai-thane-navi-mumbai-by-bhk-and-budget': 'Hiranandani Gardens, Powai skyline.JPG',
   'nri-guide-buying-property-in-india-pune': 'Pune Airport Front View 2025.jpg',
   'maintenance-charges-sinking-fund-society-handover-pune': 'Asawari Apartments,Nanded City.jpg',
+  'gst-on-flats-under-construction-ready-to-move': 'Blueridge building under construction - panoramio.jpg',
+  'capital-gains-tax-on-sale-of-flat-india': 'Pride world city.jpg',
 };
 
 const OUT = path.resolve('migration/blog-photos');

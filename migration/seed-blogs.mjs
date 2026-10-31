@@ -3310,6 +3310,191 @@ function maintenanceArticle() {
   };
 }
 
+function gstOnFlatsArticle() {
+  return {
+    slug: 'gst-on-flats-under-construction-ready-to-move',
+    title: 'GST on Flats in 2026: Under-Construction vs Ready-to-Move, the 1% Affordable Rate & What Else Is Taxed',
+    seo_title: 'GST on Flats: 5%, 1% or Nil? Under-Construction vs Ready',
+    seo_description:
+      'How much GST you pay on a new flat: 5% on under-construction homes, 1% on affordable housing, no GST on ready-to-move flats with an OC or on resale. With Pune examples and what parking, clubhouse and maintenance attract.',
+    excerpt:
+      'GST can add lakhs to the price of a new flat, or nothing at all. Here is when it is 5%, when it is 1%, when there is no GST, and how it applies to parking, the clubhouse and maintenance.',
+    tags: ['GST', 'Home Buying Guide', 'Under Construction', 'Pune', 'Taxes'],
+    cover: {
+      theme: 'sky',
+      kicker: 'Buyer’s guide',
+      lines: ['GST on Flats', 'Under-Construction', 'vs Ready'],
+      stats: [['5%', 'under construction'], ['1%', 'affordable'], ['Nil', 'ready with OC']],
+    },
+    content: `
+<p>The price on a new project’s brochure often doesn’t include <strong>GST</strong>. Depending on the flat, it can add 5% to the price, just 1%, or nothing at all. This guide explains which rate applies to you, what “affordable housing” means for GST, and how GST works on parking, the clubhouse and maintenance.</p>
+
+<h2>The GST rates on homes</h2>
+<div class="table-scroll"><table>
+<caption>GST on buying a home (rates in force since 1 April 2019)</caption>
+<thead><tr><th>What you buy</th><th>GST</th></tr></thead>
+<tbody>
+<tr><td>Under-construction flat (not affordable housing)</td><td><strong>5%</strong>, without input tax credit</td></tr>
+<tr><td>Under-construction flat that counts as affordable housing</td><td><strong>1%</strong>, without input tax credit</td></tr>
+<tr><td>Ready-to-move flat, whole price paid after the completion / occupancy certificate</td><td><strong>No GST</strong></td></tr>
+<tr><td>Resale flat bought from its owner</td><td><strong>No GST</strong></td></tr>
+<tr><td>Under-construction office or shop</td><td>12%, with input tax credit</td></tr>
+</tbody></table></div>
+<p>The 5% and 1% are effective rates: the law treats a third of the price as the value of the land, which isn’t taxed, and charges GST on the rest. You simply pay 5% (or 1%) of the agreement value.</p>
+<p>“Without input tax credit” means the developer can’t claim back the GST it paid on cement, steel and contractors. That cost is part of the developer’s price, so you won’t see it as a separate line.</p>
+
+<h2>What counts as affordable housing for GST</h2>
+<p>A flat gets the 1% rate only if <strong>both</strong> of these are true:</p>
+<ol>
+  <li><strong>Carpet area</strong> of up to <strong>60 sq m (about 645 sq ft)</strong> in the metro cities, or up to <strong>90 sq m (about 968 sq ft)</strong> anywhere else; and</li>
+  <li>The price (the gross amount charged) is <strong>₹45 lakh or less</strong>.</li>
+</ol>
+<p>For this rule, the metro cities are Bengaluru, Chennai, Delhi NCR (Delhi, Noida, Greater Noida, Ghaziabad, Gurugram and Faridabad), Hyderabad, Kolkata and Mumbai including the whole Mumbai Metropolitan Region, so Thane, Navi Mumbai, Kalyan and Dombivli use the 60 sq m limit. <strong>Pune is not on the list</strong>, so in Pune and Pimpri-Chinchwad a flat of up to 90 sq m carpet area qualifies, as long as the price is within ₹45 lakh.</p>
+<p>The limit is on <a href="/blog/carpet-area-vs-built-up-vs-super-built-up-area">carpet area</a>, the figure on the RERA registration and in the agreement, not the larger “super built-up” area in some brochures.</p>
+
+<h2>Examples</h2>
+<div class="table-scroll"><table>
+<caption>GST on three under-construction flats in Pune</caption>
+<thead><tr><th>Flat</th><th>Carpet area</th><th>Agreement value</th><th>Rate</th><th>GST</th></tr></thead>
+<tbody>
+<tr><td>1 BHK, Ravet</td><td>420 sq ft</td><td>₹38 lakh</td><td>1%</td><td>₹38,000</td></tr>
+<tr><td>2 BHK, Wakad</td><td>720 sq ft</td><td>₹78 lakh</td><td>5% (price over ₹45 lakh)</td><td>₹3,90,000</td></tr>
+<tr><td>3 BHK, Kharadi</td><td>1,100 sq ft</td><td>₹1.45 crore</td><td>5%</td><td>₹7,25,000</td></tr>
+</tbody></table></div>
+<p>The same 1 BHK bought after the occupancy certificate, with the whole price paid then, would have no GST. That is one reason ready-to-move flats can cost less in total than the headline prices suggest. See <a href="/blog/ready-to-move-vs-under-construction-flats-pune">ready-to-move vs under-construction flats</a>.</p>
+
+<h2>When there is no GST</h2>
+<ul>
+  <li><strong>Completed flats.</strong> GST doesn’t apply where the entire price is received after the competent authority issues the completion certificate or the <a href="/blog/occupancy-certificate-oc-completion-certificate-pune">occupancy certificate</a>. Ask the developer for a copy of the certificate before you rely on this.</li>
+  <li><strong>Resale flats.</strong> Buying from an individual owner is a sale of property, not a supply by a business, so there is no GST. See our <a href="/blog/buying-resale-flat-checklist-pune">resale flat checklist</a>.</li>
+  <li><strong>Land and plots on their own.</strong> Sale of land isn’t taxed under GST (development services that come with a plot can be).</li>
+</ul>
+<p>If you booked during construction and the OC arrives before your last payments, how GST applies to the later instalments is something to confirm with the developer in writing, and to check in the agreement.</p>
+
+<h2>GST on parking, clubhouse and other charges</h2>
+<ul>
+  <li><strong>Car parking, floor-rise and preferential location charges</strong> that are part of the price of the flat in the same agreement take the same rate as the flat (5% or 1%).</li>
+  <li><strong>Club membership, maintenance and other services</strong> charged separately are generally taxed at <strong>18%</strong>.</li>
+  <li><strong>Advance maintenance</strong> collected by the developer at possession usually has 18% GST added. Monthly maintenance paid to your housing society has GST only above ₹7,500 a month (and ₹20 lakh a year for the society). See <a href="/blog/maintenance-charges-sinking-fund-society-handover-pune">maintenance charges after possession</a>.</li>
+  <li><strong>Stamp duty and registration</strong> are state charges, not GST, and are worked out separately. See <a href="/blog/stamp-duty-registration-charges-pune">stamp duty and registration charges in Pune</a>.</li>
+</ul>
+
+<h2>How GST is collected</h2>
+<p>On an under-construction flat, the developer adds GST to each instalment as it falls due: with a <a href="/blog/payment-plans-construction-linked-subvention-flats-pune">construction-linked plan</a>, at each slab or stage. Each demand letter should show the instalment and the GST on it separately, along with the developer’s GSTIN. Keep every receipt; together they show how much GST you paid in total.</p>
+<p>GST on a home you buy to live in can’t be claimed back, and it isn’t part of the home-loan tax deductions. It does count as part of what you paid for the flat when you later work out capital gains on selling it.</p>
+
+<h2>Questions to ask before you book</h2>
+<ul>
+  <li>Is the quoted price “all inclusive”, or is GST extra?</li>
+  <li>Which rate applies, 5% or 1%, and on what carpet area and price?</li>
+  <li>Are parking and floor-rise charges in the same agreement as the flat?</li>
+  <li>Which charges at possession (club, maintenance, legal) will have 18% GST?</li>
+  <li>When is the occupancy certificate expected?</li>
+</ul>
+
+<h2>FAQs</h2>
+<h3>Is GST charged on a ready-to-move flat?</h3>
+<p>Not if the whole price is paid after the completion or occupancy certificate has been issued.</p>
+<h3>Is there GST on a resale flat?</h3>
+<p>No. You pay stamp duty and registration, but not GST.</p>
+<h3>Is a ₹50 lakh, 600 sq ft flat in Pune “affordable” for GST?</h3>
+<p>No. The carpet area is within 90 sq m, but the price is above ₹45 lakh, so the rate is 5%.</p>
+<h3>Can the developer charge 12% or 18% on my flat?</h3>
+<p>Not on the flat itself; residential flats are at 5% or 1%. 18% applies to separate services such as maintenance or club membership.</p>
+
+<blockquote>This guide is general information based on the GST rates and rules as we understand them in October 2026, not tax advice. Rates can change through GST Council decisions. Check your cost sheet and agreement, and ask a chartered accountant about your own case.</blockquote>
+`,
+  };
+}
+
+function capitalGainsArticle() {
+  return {
+    slug: 'capital-gains-tax-on-sale-of-flat-india',
+    title: 'Capital Gains Tax on Selling a Flat in India (2026): 12.5% LTCG, Indexation, Section 54 & 54EC',
+    seo_title: 'Capital Gains Tax on Selling a Flat: Rates & Exemptions',
+    seo_description:
+      'How capital gains on selling a flat are taxed: short-term vs long-term, the 12.5% rate and the indexation choice for older homes, what you can deduct, and saving tax with Section 54, 54EC and the capital gains account scheme.',
+    excerpt:
+      'Selling a flat at a profit means capital gains tax, but how much depends on how long you owned it and what you do with the money. Here are the rates, what you can deduct, and the exemptions for buying another home.',
+    tags: ['Capital Gains', 'Income Tax', 'Selling Property', 'Home Buying Guide', 'Taxes'],
+    cover: {
+      theme: 'slate',
+      kicker: 'Tax guide',
+      lines: ['Capital Gains', 'Tax on Selling', 'a Flat'],
+      stats: [['24 mo', 'long-term'], ['12.5%', 'LTCG'], ['₹10 Cr', 'Sec 54 cap']],
+    },
+    content: `
+<p>When you sell a flat for more than it cost you, the profit is a <strong>capital gain</strong> and is taxed. How much tax depends on how long you owned the flat, what you can add to its cost, and whether you put the money into another home or specified bonds. This guide covers the rules for resident individuals selling a home in India.</p>
+
+<h2>Short-term or long-term?</h2>
+<div class="table-scroll"><table>
+<caption>How the gain on a flat is taxed</caption>
+<thead><tr><th>You owned the flat for</th><th>Type of gain</th><th>Tax</th></tr></thead>
+<tbody>
+<tr><td>24 months or less</td><td>Short-term capital gain (STCG)</td><td>Added to your income and taxed at your slab rate</td></tr>
+<tr><td>More than 24 months</td><td>Long-term capital gain (LTCG)</td><td><strong>12.5%</strong> without indexation (see below for older homes)</td></tr>
+</tbody></table></div>
+<p>Health and education cess of 4% is added to the tax, and surcharge too on higher incomes. The holding period usually runs from the date you acquired the flat, normally the registration of your purchase. For a flat bought under construction, the date of allotment can matter, so ask your chartered accountant which date applies to you.</p>
+
+<h2>The 12.5% rate and the indexation choice</h2>
+<p>For sales on or after <strong>23 July 2024</strong>, long-term gains on property are taxed at <strong>12.5% without indexation</strong>. Before that, the rate was 20% with indexation, which raises the cost of the flat in line with inflation.</p>
+<p>For a resident individual or HUF selling a home <strong>acquired before 23 July 2024</strong>, the tax is the lower of:</p>
+<ul>
+  <li>12.5% of the gain without indexation, or</li>
+  <li>20% of the gain worked out with indexation.</li>
+</ul>
+<p>Indexation usually wins for homes owned for many years with only a modest rise in price; the flat 12.5% usually wins when the price has risen a lot. Work out both, or ask your CA to.</p>
+
+<h2>Working out the gain</h2>
+<p><strong>Capital gain = sale price − expenses on the sale − cost of the flat − cost of improvements</strong></p>
+<ul>
+  <li><strong>Cost of the flat:</strong> what you paid the seller or developer, plus <a href="/blog/stamp-duty-registration-charges-pune">stamp duty and registration</a>, GST on an under-construction purchase, and brokerage you paid when buying.</li>
+  <li><strong>Improvements:</strong> lasting additions such as a new room or structural work, with bills. Routine repairs and painting don’t count.</li>
+  <li><strong>Sale expenses:</strong> brokerage and legal fees you pay to sell.</li>
+  <li><strong>Homes bought before 1 April 2001:</strong> you can use the fair market value on 1 April 2001 as the cost instead.</li>
+</ul>
+<p><strong>Example:</strong> you bought a flat in 2016 for ₹50 lakh and paid ₹3.5 lakh in stamp duty and registration. In 2026 you sell it for ₹90 lakh and pay ₹90,000 in brokerage. The gain is ₹90 lakh − ₹0.9 lakh − ₹53.5 lakh = <strong>₹35.6 lakh</strong>. At 12.5% plus 4% cess, the tax is about <strong>₹4.63 lakh</strong>. Because the flat was bought before July 2024, check whether 20% with indexation comes out lower.</p>
+
+<h2>If the sale price is below the stamp duty value</h2>
+<p>If you sell for less than the government’s stamp duty value (the ready reckoner value in Maharashtra) and the difference is more than <strong>10%</strong>, the tax law treats the stamp duty value as your sale price. Selling far below the ready reckoner rate on paper doesn’t lower the tax, and the buyer can be taxed on the difference too.</p>
+
+<h2>Saving tax: buy another home (Section 54)</h2>
+<p>If you reinvest a long-term gain in <strong>one residential house in India</strong>, the gain is exempt up to the amount invested:</p>
+<ul>
+  <li><strong>Buy</strong> the new home within 1 year before or 2 years after the sale, or <strong>build</strong> it within 3 years.</li>
+  <li>The exemption is capped at <strong>₹10 crore</strong> of gain.</li>
+  <li>Once in your lifetime, if the gain is up to ₹2 crore, you can split it across <strong>two</strong> homes.</li>
+  <li>If you sell the new home within <strong>3 years</strong>, the exemption is taken back.</li>
+</ul>
+<p>Not ready to buy before your return is due? Deposit the unused gain in the <strong>Capital Gains Account Scheme</strong> at a bank before the income tax return due date, and use it for the new home within the time limits. Money left unused at the end is taxed then.</p>
+
+<h2>Saving tax: specified bonds (Section 54EC)</h2>
+<p>You can also invest up to <strong>₹50 lakh</strong> of the long-term gain in specified bonds (such as those of NHAI, REC, PFC and IRFC) within <strong>6 months</strong> of the sale. They are locked in for <strong>5 years</strong> and the interest is taxable. You can use Section 54 and 54EC together on the same sale.</p>
+
+<h2>TDS when you sell</h2>
+<p>If the price is <strong>₹50 lakh or more</strong>, the buyer must deduct <strong>1% TDS</strong>, pay it to the government and file Form 26QB, and give you Form 16B. The TDS shows in your Form 26AS and counts towards your tax. Give the buyer your PAN, or the TDS rate goes up. Sellers who are NRIs are taxed differently, with TDS on the gain at much higher rates. See our <a href="/blog/nri-guide-buying-property-in-india-pune">NRI property guide</a>.</p>
+
+<h2>Selling within 5 years? Check your home-loan deductions</h2>
+<p>If you claimed the Section 80C deduction for home-loan principal repayment, stamp duty or registration, and you sell the flat within <strong>5 years</strong> from the end of the year you got possession, the deductions you claimed are added back to your income in the year of sale. See <a href="/blog/home-loan-tax-benefits-80c-24b">home loan tax benefits</a>.</p>
+
+<h2>Reporting the sale</h2>
+<p>Report the sale and the gain in your income tax return, in the capital gains schedule (ITR-2 or ITR-3 rather than ITR-1), even if the gain is fully exempt. Keep your purchase and sale deeds, receipts for stamp duty, GST and brokerage, bills for improvements, and proof of any reinvestment.</p>
+
+<h2>FAQs</h2>
+<h3>How long must I own a flat for the gain to be long-term?</h3>
+<p>More than 24 months.</p>
+<h3>Can I still use indexation?</h3>
+<p>Yes, if you are a resident individual or HUF and the flat was acquired before 23 July 2024: you pay the lower of 12.5% without indexation and 20% with it.</p>
+<h3>Do I pay capital gains tax if I buy another flat with the money?</h3>
+<p>Not on the part you reinvest under Section 54, within the time limits and the ₹10 crore cap.</p>
+<h3>Is there tax if I sell at a loss?</h3>
+<p>No tax. You can carry the loss forward for up to 8 years, as long as you file your return on time. A long-term loss can only be set off against long-term gains; a short-term loss can be set off against either.</p>
+
+<blockquote>This guide is general information about income tax as we understand it in October 2026, not tax advice. From April 2026 the Income-tax Act, 2025 replaced the 1961 Act and many section numbers changed; we use the familiar old numbers here. Rates and limits change in Budgets, so ask a chartered accountant before you sell.</blockquote>
+`,
+  };
+}
+
 // ---- photos ---------------------------------------------------------------------
 
 const PHOTO_DIR = path.resolve('migration/blog-photos');
@@ -3325,6 +3510,7 @@ const PHOTO_POSITION = {
   'agreement-for-sale-clauses-to-check-maharera': 'right',
   'payment-plans-construction-linked-subvention-flats-pune': 'bottom',
   'flats-in-mumbai-thane-navi-mumbai-by-bhk-and-budget': 'bottom',
+  'gst-on-flats-under-construction-ready-to-move': 'top',
 };
 
 /** CC licences require attribution and a note that the photo was changed. */
@@ -3414,6 +3600,8 @@ async function main() {
     () => mumbaiBhkBudgetArticle(h),
     () => nriArticle(),
     () => maintenanceArticle(),
+    () => gstOnFlatsArticle(),
+    () => capitalGainsArticle(),
   ];
   let articles = [];
   for (const build of builders) {

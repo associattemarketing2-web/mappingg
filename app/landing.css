@@ -133,13 +133,9 @@
   .mpg .hero::after { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .85;
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='720' viewBox='0 0 1200 720'%3E %3Crect width='1200' height='720' fill='%23f6f4ee'/%3E %3Cg fill='%23ece8de'%3E%3Crect x='40' y='40' width='210' height='120' rx='10'/%3E%3Crect x='290' y='30' width='150' height='150' rx='10'/%3E%3Crect x='700' y='40' width='180' height='110' rx='10'/%3E%3Crect x='920' y='50' width='230' height='100' rx='10'/%3E%3Crect x='60' y='470' width='200' height='190' rx='10'/%3E%3Crect x='560' y='480' width='160' height='170' rx='10'/%3E%3Crect x='760' y='500' width='190' height='150' rx='10'/%3E%3Crect x='980' y='470' width='180' height='200' rx='10'/%3E%3Crect x='300' y='520' width='210' height='150' rx='10'/%3E%3C/g%3E %3Cg fill='%23d6ebce' stroke='%23c3e0b8' stroke-width='3'%3E%3Cpath d='M470 40h190v130H470z'/%3E%3Cpath d='M40 250c60-30 150-20 190 30s-20 110-110 110S20 300 40 250z'/%3E%3Cpath d='M990 250h160v150H990z'/%3E%3C/g%3E %3Cpath d='M-40 430C120 380 260 470 430 410S720 300 860 350S1100 440 1240 390' fill='none' stroke='%2393c2e8' stroke-width='46' stroke-linecap='round'/%3E %3Cpath d='M-40 430C120 380 260 470 430 410S720 300 860 350S1100 440 1240 390' fill='none' stroke='%23a9d0ef' stroke-width='38' stroke-linecap='round'/%3E %3Cellipse cx='640' cy='250' rx='60' ry='34' fill='%23a9d0ef' stroke='%2393c2e8' stroke-width='4'/%3E %3Cg fill='none' stroke-linecap='round'%3E %3Cpath d='M0 200H1200M0 455H1200M270 0V720M540 0V720M740 0V720M960 0V720M0 20L620 720' stroke='%23e2ded3' stroke-width='14'/%3E %3Cpath d='M0 200H1200M0 455H1200M270 0V720M540 0V720M740 0V720M960 0V720M0 20L620 720' stroke='%23ffffff' stroke-width='9'/%3E %3Cpath d='M-20 110C300 150 620 70 1220 140' stroke='%23eab95e' stroke-width='18'/%3E %3Cpath d='M-20 110C300 150 620 70 1220 140' stroke='%23f6d58f' stroke-width='12'/%3E %3C/g%3E%3C/svg%3E") center top / 1200px 720px;
     mask-image: linear-gradient(180deg, #000 0%, #000 52%, transparent 90%); -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 52%, transparent 90%); }
-  .mpg .hero-pins { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
-  .mpg .hpin, .mpg .pinlabel { position: absolute; display: inline-flex; align-items: center; gap: 6px; padding: 6px 11px 6px 8px; border-radius: 999px; background: #fff; border: 2px solid var(--s); font: 700 12px/1 var(--f); color: var(--ink); white-space: nowrap; box-shadow: 0 10px 22px -10px rgba(29,43,38,.45); }
-  .mpg .hpin { animation: floaty 5s ease-in-out infinite; }
-  .mpg .hpin::after, .mpg .pinlabel::after { content: ''; position: absolute; left: 50%; bottom: -7px; width: 10px; height: 10px; background: #fff; border-right: 2px solid var(--s); border-bottom: 2px solid var(--s); transform: translateX(-50%) rotate(45deg); }
-  .mpg .hpin .pdot, .mpg .pinlabel .pdot { width: 8px; height: 8px; border-radius: 50%; background: var(--s); }
-  .mpg .hpin.up { border-style: dashed; color: var(--muted); }
-  .mpg .hpin:nth-child(2) { animation-delay: -1.2s; } .mpg .hpin:nth-child(3) { animation-delay: -2.4s; } .mpg .hpin:nth-child(4) { animation-delay: -.6s; } .mpg .hpin:nth-child(5) { animation-delay: -1.8s; } .mpg .hpin:nth-child(6) { animation-delay: -3s; }
+  .mpg .pinlabel { position: absolute; display: inline-flex; align-items: center; gap: 6px; padding: 6px 11px 6px 8px; border-radius: 999px; background: #fff; border: 2px solid var(--s); font: 700 12px/1 var(--f); color: var(--ink); white-space: nowrap; box-shadow: 0 10px 22px -10px rgba(29,43,38,.45); }
+  .mpg .pinlabel::after { content: ''; position: absolute; left: 50%; bottom: -7px; width: 10px; height: 10px; background: #fff; border-right: 2px solid var(--s); border-bottom: 2px solid var(--s); transform: translateX(-50%) rotate(45deg); }
+  .mpg .pinlabel .pdot { width: 8px; height: 8px; border-radius: 50%; background: var(--s); }
   .mpg .s-available { --s: var(--s-available); } .mpg .s-sold { --s: var(--s-sold); } .mpg .s-construction { --s: var(--s-construction); } .mpg .s-upcoming { --s: var(--s-upcoming); } .mpg .s-water { --s: var(--water); }
   .mpg .hero-center { position: relative; z-index: 3; max-width: 860px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 20px; }
   .mpg .hero h1 { font-size: clamp(38px, 6.4vw, 72px); font-weight: 800; letter-spacing: -0.035em; }
@@ -658,7 +654,6 @@
   @media (max-width: 1100px) {
     .mpg .nav-menu, .mpg .nav-right > .btn { display: none; }
     .mpg .menu-btn { display: flex; }
-    .mpg .hero-pins { display: none; }
     .mpg .showcase { grid-template-columns: 1fr 1fr; }
     .mpg .globe-panel { grid-column: 1 / -1; order: -1; min-height: 400px; }
     .mpg .scatter { grid-template-columns: repeat(3, 1fr); }
@@ -926,8 +921,6 @@
   /* =========================================================
      ALIGNMENT FIXES
      ========================================================= */
-  /* hero: pins only where there is room beside the headline */
-  @media (max-width: 1320px) { .mpg .hero-pins { display: none; } }
   .mpg .hero::after { background-size: max(1200px, 100%) auto !important; }
   .mpg .hero-center { gap: 22px; }
   .mpg .hero-actions, .mpg .hero-trust { margin-top: 2px; }
@@ -1303,4 +1296,40 @@
 @media (max-width: 560px) {
   .mpg .auth-side .benefits { display: none; }
   .mpg .side-video video { max-height: 190px; }
+}
+
+/* ---------- Hero: live-map pins on the map background ----------
+   Teardrop pins in the map's status colours drop in one after another, then a
+   ring pulses under each (staggered by --d), and two .pop pins show a project card in
+   turn — so the hero reads as "projects on a map" before any text is read. */
+.mpg .hero-map { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.mpg .mp { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; --d: 0s; }
+.mpg .mp b { position: absolute; left: -11px; top: -30px; width: 22px; height: 22px; border-radius: 50% 50% 50% 0; background: var(--s); border: 2.5px solid #fff; box-shadow: 0 6px 12px -4px rgba(29,43,38,.5); transform: rotate(-45deg); animation: mpDrop .7s cubic-bezier(.3,1.5,.5,1) var(--d) both; }
+.mpg .mp b::after { content: ''; position: absolute; inset: 0; margin: auto; width: 7px; height: 7px; border-radius: 50%; background: #fff; animation: mpBlink 2.8s ease-in-out calc(var(--d) + 1s) infinite; }
+.mpg .mp::before { content: ''; position: absolute; left: -12px; top: -6px; width: 24px; height: 12px; border-radius: 50%; background: var(--s); opacity: 0; animation: mpPing 2.8s ease-out calc(var(--d) + .7s) infinite; }
+.mpg .mp em { position: absolute; left: 0; bottom: 40px; transform: translateX(-50%); display: grid; gap: 3px; min-width: 150px; padding: 10px 14px; border-radius: 14px; background: #fff; border: 1px solid var(--line); box-shadow: 0 18px 34px -16px rgba(29,43,38,.45); font: 800 15px/1.2 var(--f); font-style: normal; color: var(--ink); text-align: left; white-space: nowrap; opacity: 0; animation: mpCard 10s ease-in-out var(--cd, 2s) infinite; }
+.mpg .mp em::after { content: ''; position: absolute; left: 50%; bottom: -6px; width: 11px; height: 11px; background: #fff; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transform: translateX(-50%) rotate(45deg); }
+.mpg .mp em span { display: inline-flex; align-items: center; gap: 6px; font: 700 11px/1 var(--f); letter-spacing: .02em; text-transform: uppercase; color: var(--s); }
+.mpg .mp em span::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--s); }
+.mpg .mp em small { font: 500 12px/1.2 var(--f); color: var(--muted); }
+
+@keyframes mpDrop { 0% { opacity: 0; transform: translateY(-46px) rotate(-45deg); } 60% { opacity: 1; transform: translateY(3px) rotate(-45deg); } 100% { opacity: 1; transform: translateY(0) rotate(-45deg); } }
+@keyframes mpPing { 0% { opacity: .5; transform: scale(.35); } 80%, 100% { opacity: 0; transform: scale(2.6); } }
+@keyframes mpBlink { 0%, 70%, 100% { transform: scale(1); opacity: 1; } 80% { transform: scale(.35); opacity: .35; } }
+@keyframes mpCard { 0% { opacity: 0; transform: translate(-50%, 8px) scale(.94); } 6%, 42% { opacity: 1; transform: translate(-50%, 0) scale(1); } 48%, 100% { opacity: 0; transform: translate(-50%, 8px) scale(.94); } }
+
+/* Who sees what: edge pins everywhere; inner pins and cards only beside the headline. */
+.mpg .mp.w { display: none; }
+@media (min-width: 1200px) { .mpg .mp.w { display: block; } }
+@media (max-width: 720px) {
+  .mpg .mp.t { display: none; }
+  .mpg .mp b { left: -8px; top: -22px; width: 16px; height: 16px; border-width: 2px; }
+  .mpg .mp b::after { width: 5px; height: 5px; }
+  .mpg .mp::before { left: -9px; top: -5px; width: 18px; height: 9px; }
+  .mpg .hero-map { opacity: .8; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mpg .mp b, .mpg .mp b::after, .mpg .mp::before { animation: none; }
+  .mpg .mp em { animation: none; opacity: 1; transform: translateX(-50%); }
+  .mpg .mp.pop ~ .mp.pop em { display: none; }
 }

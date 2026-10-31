@@ -22,13 +22,29 @@ const PHONE_CODE_DEFAULT = '<option value="+91" selected>🇮🇳 +91</option>';
 
 export const LANDING_BODY = `
 <header class="hero" id="home">
-  <div class="hero-pins" aria-hidden="true">
-    <span class="hpin s-available" style="left:4%;top:190px"><span class="pdot"></span>Available</span>
-    <span class="hpin s-construction" style="left:9%;top:300px"><span class="pdot"></span>₹1.35 Cr</span>
-    <span class="hpin s-upcoming up" style="left:3%;top:410px"><span class="pdot"></span>Upcoming</span>
-    <span class="hpin s-sold" style="right:4%;top:175px"><span class="pdot"></span>Sold out</span>
-    <span class="hpin s-available" style="right:9%;top:285px"><span class="pdot"></span>₹62 L</span>
-    <span class="hpin s-construction" style="right:3%;top:395px"><span class="pdot"></span>Under construction</span>
+  <div class="hero-map" aria-hidden="true">
+    <!-- Project pins on the map background: drop in, then pulse. Edge pins show on every screen;
+         .t pins from tablets up, .w pins and the .pop cards only where there is room beside the text. -->
+    <span class="mp s-available" style="--x:4%;--y:30%;--d:.15s"><b></b></span>
+    <span class="mp s-construction" style="--x:6%;--y:64%;--d:.55s"><b></b></span>
+    <span class="mp s-sold" style="--x:3%;--y:86%;--d:.95s"><b></b></span>
+    <span class="mp s-construction" style="--x:96%;--y:24%;--d:.35s"><b></b></span>
+    <span class="mp s-available" style="--x:95%;--y:63%;--d:.75s"><b></b></span>
+    <span class="mp s-upcoming" style="--x:97%;--y:84%;--d:1.15s"><b></b></span>
+    <span class="mp t s-available" style="--x:12%;--y:96%;--d:1.3s"><b></b></span>
+    <span class="mp t s-sold" style="--x:89%;--y:95%;--d:1.45s"><b></b></span>
+    <span class="mp t s-available" style="--x:9%;--y:45%;--d:.5s"><b></b></span>
+    <span class="mp t s-sold" style="--x:91%;--y:38%;--d:.7s"><b></b></span>
+    <span class="mp w s-available" style="--x:13%;--y:20%;--d:.25s"><b></b></span>
+    <span class="mp w s-available pop" style="--x:17%;--y:50%;--d:.45s;--cd:2s"><b></b><em><span>Available</span>2 BHK · ₹78 L<small>RERA registered</small></em></span>
+    <span class="mp w s-upcoming" style="--x:13%;--y:74%;--d:.85s"><b></b></span>
+    <span class="mp w s-construction" style="--x:19%;--y:89%;--d:1.05s"><b></b></span>
+    <span class="mp w s-sold" style="--x:86%;--y:17%;--d:.4s"><b></b></span>
+    <span class="mp w s-construction pop" style="--x:86%;--y:46%;--d:.65s;--cd:7s"><b></b><em><span>Under construction</span>3 BHK · ₹1.35 Cr<small>Possession Dec 2027</small></em></span>
+    <span class="mp w s-available" style="--x:83%;--y:72%;--d:.9s"><b></b></span>
+    <span class="mp w s-available" style="--x:80%;--y:89%;--d:1.2s"><b></b></span>
+    <span class="mp w s-construction" style="--x:24%;--y:21%;--d:.6s"><b></b></span>
+    <span class="mp w s-available" style="--x:77%;--y:22%;--d:.8s"><b></b></span>
   </div>
   <div class="container">
     <div class="hero-center">
