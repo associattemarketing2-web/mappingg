@@ -73,7 +73,6 @@ const NAV: { key: string; label: string; icon: string; tabs: string[] }[] = [
   { key: 'comms', label: 'Communication', icon: 'fa-comment-dots', tabs: ['whatsapp'] },
   { key: 'integrations', label: 'Integrations & API', icon: 'fa-plug', tabs: ['devapi'] },
   { key: 'team', label: 'Team & Administration', icon: 'fa-users-gear', tabs: ['employees'] },
-  { key: 'settings', label: 'Settings', icon: 'fa-gear', tabs: ['settings', 'backups', 'profile'] },
 ];
 
 function useToast() {
@@ -343,7 +342,7 @@ function DashboardPanel({ s, city, userName, onGo, can }: { s: any; city: string
             <h2>{greeting}{userName ? <>,<br /><span className="ov-hero-name">{userName.split(/\s+/)[0]}</span></> : ''}</h2>
             <p>Here&apos;s what&apos;s happening on Mappingg today.</p>
           </div>
-          <div className="ov-hero-img" aria-hidden="true" title="Pune — photo: Andy Hay, CC BY 2.0" />
+          <div className="ov-hero-img" aria-hidden="true" title="Kharadi, Pune — photo: Akshit 77, CC BY-SA 4.0" />
         </section>
         <div className="ov-kpis">
           <KpiCard icon="fa-building" tone="green" value={s.pins ?? 0} label="Projects on Map" growth={ov.growth?.pins} onClick={() => onGo('map')} />
