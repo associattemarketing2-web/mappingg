@@ -26,6 +26,7 @@ NODE_PATH=<folder with exceljs> node Developer_Projects/New500_2026-10-31/script
 | Batch | Source | Read | Passed | Inserted | Notes |
 |---|---|---|---|---|---|
 | 1 | TN RERA, Chennai region, registered 2026 | 110 | 52 | 50 (`new500-tn-batch1`) | Backup: `migration/backup/pg-snapshot-2026-10-31T12-43-42-251Z-before-new500-tn-batch1/`. 0 existing rows changed. |
+| MH 1 | Developers' own websites, Mumbai + Pune (`mh-devsite.mjs --apply --all`) | 224 | 0 live-ready, 100 genuine | 100 (`new500-mh-batch1`), Pune 81 / Mumbai 19 | Owner asked (31 Oct) to keep all genuine rows in Scraped data for a manual check before going live. 100 duplicates left out. Backup: `pg-snapshot-2026-10-31T13-07-25-604Z-before-new500-mh-batch1/`. 0 existing rows changed. Review sheet: `reports/mappingg_mumbai_pune_review.xlsx`. |
 
 ## Known limits
 

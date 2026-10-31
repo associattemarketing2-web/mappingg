@@ -19,7 +19,7 @@ const require = createRequire(import.meta.url);
 const ExcelJS = require('exceljs');
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'reports'); mkdirSync(OUT, { recursive: true });
-const batches = readdirSync(path.join(ROOT, 'batches')).filter((f) => f.endsWith('.json')).sort()
+const batches = readdirSync(path.join(ROOT, 'batches')).filter((f) => f.endsWith('.json') && f !== 'mh-devsite.json').sort()
   .map((f) => ({ file: f, city: /^tn-/.test(f) ? 'Chennai' : f.split('-')[0], ...JSON.parse(readFileSync(path.join(ROOT, 'batches', f), 'utf8')) }));
 const sources = JSON.parse(readFileSync(path.join(ROOT, 'sources.json'), 'utf8'));
 
@@ -64,3 +64,13 @@ await book('mappingg_duplicate_projects.xlsx', [{ title: 'Duplicates', columns: 
 await book('mappingg_missing_fields_report.xlsx', [{ title: 'Missing fields', columns: [['Batch', 'batch', 7], ['City', 'city', 11], ['RERA number', 'certificate', 26], ['Project name', 'project_name', 34], ['Not shown by the registry (left blank)', 'fields', 90]],
   rows: missing.map((m) => ({ ...m, fields: m.missing.join('; ') })) }]);
 await book('mappingg_source_registry.xlsx', [{ title: 'Sources', columns: [['Source', 'name', 30], ['URL', 'url', 40], ['Kind', 'kind', 16], ['Status', 'status', 14], ['What it gave / why not used', 'note', 100], ['Checked on', 'checked', 12]], rows: sources }]);
+
+// Mumbai / Pune from developers' own websites (mh-devsite.mjs): every project put in Scraped data for a manual check.
+const mh = JSON.parse(readFileSync(path.join(ROOT, 'batches', 'mh-devsite.json'), 'utf8'));
+const MH_COLS = [['City', 'city', 9], ['Project name', 'project_name', 34], ['Developer', 'developer', 30], ['RERA number', 'rera', 17], ['Locality', 'locality', 16], ['Pincode', 'pincode', 9],
+  ['Latitude', 'lat', 11], ['Longitude', 'lng', 11], ['Location check', 'pin_check', 14], ['Location note', 'pin_reason', 60], ['BHK (developer page)', 'bhk', 20],
+  ['Possession (developer page)', 'possession', 14], ['Possession sentence', 'possession_text', 50], ['To check by hand', 'gaps', 60], ['Developer project page', 'page', 50]];
+const mhRows = [...mh.live_ready, ...mh.pending];
+await book('mappingg_mumbai_pune_review.xlsx', [{ title: 'All (in Scraped data)', columns: MH_COLS, rows: mhRows },
+  { title: 'Pune', columns: MH_COLS, rows: mhRows.filter((r) => r.city === 'Pune') }, { title: 'Mumbai', columns: MH_COLS, rows: mhRows.filter((r) => r.city === 'Mumbai') },
+  { title: 'Duplicates (not added)', columns: [['City', 'city', 9], ['Project name', 'project_name', 34], ['RERA number', 'rera', 17], ['Matched on', 'match', 24], ['Already in Mappingg as', 'existing', 70], ['Developer page', 'page', 50]], rows: mh.duplicates }]);
