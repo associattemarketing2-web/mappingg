@@ -23,8 +23,18 @@ const PHONE_CODE_DEFAULT = '<option value="+91" selected>🇮🇳 +91</option>';
 export const LANDING_BODY = `
 <header class="hero" id="home">
   <div class="hero-map" aria-hidden="true">
-    <!-- Project pins on the map background: drop in, then pulse. Edge pins show on every screen;
-         .lo pins not on phones, .t pins from tablets up, .w pins and the .pop cards only where there is room beside the text. -->
+    <!-- Project pins on the map background: drop in, then pulse. Phones get their own .m pins, placed
+         (in px from the top) in the gaps beside the left-aligned text; the rest are for wider screens:
+         .t pins from tablets up, .w pins and the .pop cards only where there is room beside the text. -->
+    <span class="mp m s-available" style="--x:8%;--y:100px;--d:.15s"><b></b></span>
+    <span class="mp m s-sold" style="--x:58%;--y:102px;--d:.3s"><b></b></span>
+    <span class="mp m s-construction" style="--x:93%;--y:148px;--d:.45s"><b></b></span>
+    <span class="mp m s-available" style="--x:82%;--y:205px;--d:.6s"><b></b></span>
+    <span class="mp m s-upcoming" style="--x:66%;--y:290px;--d:.75s"><b></b></span>
+    <span class="mp m s-available" style="--x:91%;--y:282px;--d:.9s"><b></b></span>
+    <span class="mp m s-sold" style="--x:92%;--y:430px;--d:1.05s"><b></b></span>
+    <span class="mp m s-available" style="--x:86%;--y:842px;--d:1.35s"><b></b></span>
+    <span class="mp m s-construction" style="--x:62%;--y:870px;--d:1.5s"><b></b></span>
     <span class="mp s-available" style="--x:4%;--y:30%;--d:.15s"><b></b></span>
     <span class="mp lo s-construction" style="--x:6%;--y:64%;--d:.55s"><b></b></span>
     <span class="mp lo s-sold" style="--x:3%;--y:86%;--d:.95s"><b></b></span>
