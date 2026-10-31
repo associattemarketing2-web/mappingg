@@ -30,7 +30,8 @@ const schema = z.object({
 const fail = (message: string, status: number) => NextResponse.json({ error: { message } }, { status });
 const sent = (ticket: string, to: string) =>
   NextResponse.json({ data: { sent: true, ticket, channel: 'whatsapp', to } }, { headers: { 'Cache-Control': 'private, no-store' } });
-const SEND_FAILED = 'Could not send the WhatsApp code. Please check the number and try again in a minute.';
+// Also shown when the WhatsApp provider itself is down — Google sign-in needs no WhatsApp code.
+const SEND_FAILED = 'Could not send the WhatsApp code right now. Please check the number and try again in a few minutes, or continue with Google.';
 
 export async function POST(req: NextRequest) {
   const parsed = schema.safeParse(await req.json().catch(() => null));

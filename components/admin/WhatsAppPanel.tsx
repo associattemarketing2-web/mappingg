@@ -142,6 +142,8 @@ function ChatsView({ data, reload, flash, onOpenLead }: { data: Overview | null;
 
   const chat = thread?.chat || data?.chats.find((c) => c.phone === open) || null;
   const canText = within24h(chat?.last_in_at || null);
+  // No ANTHROPIC_API_KEY: the AI never replies, so every chat is answered by hand and the AI controls are hidden.
+  const ai = Boolean(data?.config.ai);
 
   async function toggleAuto() {
     if (!chat) return;
@@ -204,7 +206,7 @@ function ChatsView({ data, reload, flash, onOpenLead }: { data: Overview | null;
             <input type="search" placeholder="Search name, number or message" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search chats" />
           </label>
           <div className="wa-filters" role="tablist" aria-label="Filter chats">
-            {([['all', 'All'], ['conv', 'Conversations'], ['unread', 'Unread'], ['ai', 'AI on'], ['manual', 'Manual'], ['leads', 'Leads']] as const).map(([k, l]) => (
+            {([['all', 'All'], ['conv', 'Conversations'], ['unread', 'Unread'], ['ai', 'AI on'], ['manual', 'Manual'], ['leads', 'Leads']] as const).filter(([k]) => ai || (k !== 'ai' && k !== 'manual')).map(([k, l]) => (
               <button key={k} type="button" role="tab" aria-selected={filter === k} className={filter === k ? 'on' : ''} onClick={() => setFilter(k)}>{l}</button>
             ))}
           </div>
@@ -230,7 +232,8 @@ function ChatsView({ data, reload, flash, onOpenLead }: { data: Overview | null;
                         {c.unread > 0 && <span className="wa-unread">{c.unread}</span>}
                       </span>
                       <span className="wa-item-tags">
-                        {c.has_chat ? <span className={`wa-tag ${c.auto_reply ? 'ai' : 'manual'}`}>{c.auto_reply ? 'AI on' : 'Manual'}</span> : <span className="wa-tag manual">OTP / automation only</span>}
+                        {!c.has_chat ? <span className="wa-tag manual">OTP / automation only</span>
+                          : ai && <span className={`wa-tag ${c.auto_reply ? 'ai' : 'manual'}`}>{c.auto_reply ? 'AI on' : 'Manual'}</span>}
                         {c.lead && <span className="wa-tag lead">{LEAD_LABEL[c.lead.status] || 'Lead'}</span>}
                       </span>
                     </span>
@@ -245,7 +248,7 @@ function ChatsView({ data, reload, flash, onOpenLead }: { data: Overview | null;
           <div className="wa-placeholder">
             <i className="fab fa-whatsapp" />
             <h3>Mappingg WhatsApp</h3>
-            <p>Pick a chat to read the full conversation and reply. With <b>AI on</b>, the assistant answers project and real-estate questions by itself and saves the customer as a lead.</p>
+            <p>Pick a chat to read the full conversation and reply.{ai && <> With <b>AI on</b>, the assistant answers project and real-estate questions by itself and saves the customer as a lead.</>}</p>
           </div>
         ) : (<>
           <header className="wa-chat-head">
@@ -266,13 +269,13 @@ function ChatsView({ data, reload, flash, onOpenLead }: { data: Overview | null;
                 </button>
               )}
               <a className="adm-btn ghost sm" href={`https://wa.me/${chat.phone}`} target="_blank" rel="noreferrer" title="Open in WhatsApp"><i className="fab fa-whatsapp" /></a>
-              <button
+              {ai && <button
                 type="button" role="switch" aria-checked={chat.auto_reply} disabled={busy === 'toggle'}
                 className={`wa-switch${chat.auto_reply ? ' on' : ''}`} onClick={toggleAuto}
                 title={chat.auto_reply ? 'The AI replies automatically. Click to switch off and reply by hand.' : 'Only the team replies. Click to let the AI reply automatically.'}
               >
                 <span className="knob" /> <span className="lbl"><i className="fas fa-robot" /> Auto reply {chat.auto_reply ? 'ON' : 'OFF'}</span>
-              </button>
+              </button>}
             </div>
           </header>
 
@@ -321,7 +324,7 @@ function ChatsView({ data, reload, flash, onOpenLead }: { data: Overview | null;
             {!canText && (
               <p className="wa-note warn"><i className="fas fa-clock" /> More than 24 hours since this customer last wrote. WhatsApp only delivers free-text replies within 24 hours — the reply may not reach them until they message again.</p>
             )}
-            {chat.auto_reply && canText && !editing && (
+            {ai && chat.auto_reply && canText && !editing && (
               <p className="wa-note"><i className="fas fa-robot" /> AI is answering this chat automatically. Anything you send goes out as well — switch Auto reply off to take over.</p>
             )}
             {editing && (
@@ -331,9 +334,11 @@ function ChatsView({ data, reload, flash, onOpenLead }: { data: Overview | null;
               </p>
             )}
             <div className="wa-compose-row">
-              <button type="button" className="wa-ai-btn" onClick={draft} disabled={!!busy || !data?.config.ai} title={data?.config.ai ? 'Let the AI write a reply for you to check and send' : 'Set ANTHROPIC_API_KEY to enable AI'}>
-                {busy === 'draft' ? <i className="fas fa-spinner fa-spin" /> : <i className="fas fa-wand-magic-sparkles" />}<span> AI draft</span>
-              </button>
+              {ai && (
+                <button type="button" className="wa-ai-btn" onClick={draft} disabled={!!busy} title="Let the AI write a reply for you to check and send">
+                  {busy === 'draft' ? <i className="fas fa-spinner fa-spin" /> : <i className="fas fa-wand-magic-sparkles" />}<span> AI draft</span>
+                </button>
+              )}
               <textarea
                 ref={box} rows={1} value={text} placeholder={editing ? 'Edit message' : 'Type a reply'} aria-label="Reply"
                 onChange={(e) => setText(e.target.value)}
@@ -459,7 +464,9 @@ function LogView({ kind, config }: { kind: 'otp' | 'auto'; config?: Overview['co
             </div>
             <div className="wa-auto">
               <i className="fas fa-robot" /><div><b>AI auto-reply</b><span>Answers incoming messages from your project data, asks for name &amp; requirement, saves the lead in Leads → Contact form. Switch it off per chat.</span></div>
-              <span className={`adm-badge ${config.ai && config.webhook ? 'ok' : 'wa-bad'}`}>{config.ai && config.webhook ? 'Active' : !config.webhook ? 'Webhook not set up' : 'AI key missing'}</span>
+              <span className={`adm-badge ${config.ai && config.webhook ? 'ok' : !config.ai ? 'muted' : 'wa-bad'}`} title={!config.ai ? 'Optional. Chats are answered by hand; add ANTHROPIC_API_KEY later to switch the AI on.' : undefined}>
+                {config.ai && config.webhook ? 'Active' : !config.ai ? 'Off (optional)' : 'Webhook not set up'}
+              </span>
             </div>
           </div>
         </div>
@@ -729,7 +736,6 @@ export default function WhatsAppPanel({ flash, onOpenLead }: { flash: Flash; onO
   const missing = data ? [
     !data.config.whatsapp && 'WHATSAPP_API_URL / WHATSAPP_API_KEY (sending)',
     !data.config.webhook && 'WHATSAPP_WEBHOOK_SECRET + the webhook URL in GABS (incoming messages)',
-    !data.config.ai && 'ANTHROPIC_API_KEY (AI replies)',
   ].filter(Boolean) : [];
 
   return (
