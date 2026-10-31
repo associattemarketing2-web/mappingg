@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // Login gate for the live map. The map page stays fully server-rendered and
 // crawlable (great for SEO), but a guest gets a sign-in prompt over a blurred
@@ -16,7 +16,7 @@ import { useEffect, useState } from 'react';
 //  - A signed-in user's browser remembers access in localStorage, so on repeat
 //    visits the map opens INSTANTLY (no loader at all); the async check still
 //    runs and self-corrects a stale hint.
-type Gate = 'checking' | 'guest' | 'pending' | 'open' | 'share-limit';
+type Gate = 'checking' | 'guest' | 'pending' | 'open' | 'share-limit' | 'trial-limit';
 
 /** The map embedded on the home page (/map?embed=home inside our own page),
  *  where guests get a few free projects — the home page runs that trial. */
@@ -29,6 +29,16 @@ function isHomeTrialEmbed(): boolean {
     return false;
   }
 }
+
+/** /map?trial=home — opened from the home page map's full-screen button. Guests
+ *  get the same free projects as the home page's embedded map (shared counter
+ *  under TRIAL_KEY, see public/landing.js), then the sign-in prompt. */
+function isHomeTrialLink(): boolean {
+  try { return new URLSearchParams(window.location.search).get('trial') === 'home'; } catch { return false; }
+}
+const TRIAL_KEY = 'mappingg_free_taps';
+const TRIAL_FREE = 3;
+const readTrialTaps = () => { try { return Number(localStorage.getItem(TRIAL_KEY)) || 0; } catch { return 0; } };
 
 const HINT_KEY = 'mpg_map_open';
 
@@ -48,6 +58,28 @@ async function sharedProject(): Promise<{ pinId: string; free: number } | null> 
 
 export default function MapAuthGate() {
   const [gate, setGate] = useState<Gate>('checking');
+  // Free projects left for a guest on /map?trial=home (null = not a trial).
+  const [trialLeft, setTrialLeft] = useState<number | null>(null);
+  const lastTap = useRef(0);
+
+  // Trial: each project card a guest opens (the map script fires
+  // 'mappingg:pin-click') uses one free project; opening one more asks them to sign in.
+  useEffect(() => {
+    if (trialLeft === null) return;
+    const onPin = () => {
+      const now = Date.now(); if (now - lastTap.current < 400) return; lastTap.current = now;
+      const taps = readTrialTaps();
+      if (taps >= TRIAL_FREE) {
+        try { localStorage.setItem(TRIAL_KEY, String(TRIAL_FREE + 1)); } catch {}
+        setTrialLeft(0); setGate('trial-limit');
+        return;
+      }
+      try { localStorage.setItem(TRIAL_KEY, String(taps + 1)); } catch {}
+      setTrialLeft(TRIAL_FREE - taps - 1);
+    };
+    window.addEventListener('mappingg:pin-click', onPin);
+    return () => window.removeEventListener('mappingg:pin-click', onPin);
+  }, [trialLeft === null]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     let cancelled = false;
@@ -69,6 +101,14 @@ export default function MapAuthGate() {
           // Guests on the home page's embedded map may explore and enquire on a
           // few projects; the home page locks it after the free ones.
           if (isHomeTrialEmbed()) { setGate('open'); return; }
+          // Full-screen map from the home page: the same free projects, then sign-in.
+          if (isHomeTrialLink()) {
+            const taps = readTrialTaps();
+            if (taps > TRIAL_FREE) { setGate('trial-limit'); return; }
+            setTrialLeft(Math.max(0, TRIAL_FREE - taps));
+            setGate('open');
+            return;
+          }
           // A share link from the super admin opens its one project for a few views.
           sharedProject().then((share) => {
             if (cancelled) return;
@@ -102,7 +142,26 @@ export default function MapAuthGate() {
     return () => { cancelled = true; window.removeEventListener('mappingg:share-limit', onShareLimit); };
   }, []);
 
-  if (gate === 'open') return null;
+  if (gate === 'open') {
+    if (trialLeft === null) return null;
+    // Free-projects hint for a guest on the trial map.
+    return (
+      <div
+        role="status"
+        style={{
+          position: 'fixed', left: '50%', bottom: 18, transform: 'translateX(-50%)', zIndex: 99999,
+          maxWidth: 'calc(100% - 24px)', padding: '10px 16px', borderRadius: 999,
+          background: 'rgba(35,41,31,.9)', color: '#fff', fontSize: 13.5, fontWeight: 500,
+          fontFamily: 'system-ui, sans-serif', boxShadow: '0 8px 24px rgba(0,0,0,.2)',
+          pointerEvents: 'none', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+        }}
+      >
+        {trialLeft > 0
+          ? <>Tap any pin to explore — <b style={{ color: '#f6d58f' }}>{trialLeft}</b> free project{trialLeft === 1 ? '' : 's'} left</>
+          : <>That was your last free project — <a href="/?signin=1" style={{ color: '#f6d58f', pointerEvents: 'auto' }}>sign in</a> to see them all</>}
+      </div>
+    );
+  }
 
   // Neutral loading veil while the session check is in flight — blurred like the
   // gate, but with no sign-in prompt, so logged-in users never see sign-in flash.
@@ -177,8 +236,9 @@ export default function MapAuthGate() {
     );
   }
 
-  // Guest, or a share link's free views are used up.
+  // Guest, or a share link's / the home trial's free views are used up.
   const shareLimit = gate === 'share-limit';
+  const trialLimit = gate === 'trial-limit';
   return (
     <div
       role="dialog"
@@ -200,31 +260,33 @@ export default function MapAuthGate() {
       >
         <div style={{ fontSize: 34, marginBottom: 6 }} aria-hidden="true">🗺️</div>
         <h2 id="mgate-title" style={{ margin: '0 0 8px', fontSize: 20, color: '#0f2e24' }}>
-          {shareLimit ? 'Create a free account to keep exploring' : 'Sign in to explore the live map'}
+          {shareLimit || trialLimit ? 'Create a free account to keep exploring' : 'Sign in to explore the live map'}
         </h2>
         <p style={{ margin: '0 0 20px', fontSize: 14, lineHeight: 1.5, color: '#4a5a54' }}>
-          {shareLimit
+          {trialLimit
+            ? 'You’ve used your 3 free projects. Create a free buyer account to open every pin, price and possession date — it takes under a minute.'
+            : shareLimit
             ? 'You’ve used your free views of this project. Create an account with just your WhatsApp number to see it again — and every other project on the map.'
             : 'See every live project with status, RERA numbers, pricing and nearby infrastructure. It takes under a minute.'}
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           <a
-            href={shareLimit ? '/?signup=1' : '/?signin=1'}
+            href={shareLimit || trialLimit ? '/?signup=1' : '/?signin=1'}
             style={{
               background: '#0f5c47', color: '#fff', textDecoration: 'none',
               padding: '12px 16px', borderRadius: 11, fontWeight: 700, fontSize: 15,
             }}
           >
-            {shareLimit ? 'Create a free account' : 'Sign in'}
+            {shareLimit || trialLimit ? 'Create a free account' : 'Sign in'}
           </a>
           <a
-            href={shareLimit ? '/?signin=1' : '/?signup=1'}
+            href={shareLimit || trialLimit ? '/?signin=1' : '/?signup=1'}
             style={{
               background: '#eef4f1', color: '#0f5c47', textDecoration: 'none',
               padding: '12px 16px', borderRadius: 11, fontWeight: 700, fontSize: 15,
             }}
           >
-            {shareLimit ? 'I already have an account — sign in' : 'Create an account'}
+            {shareLimit || trialLimit ? 'I already have an account — sign in' : 'Create an account'}
           </a>
           <a href="/" style={{ color: '#6b7a74', textDecoration: 'none', fontSize: 13, marginTop: 4 }}>
             ← Back to home

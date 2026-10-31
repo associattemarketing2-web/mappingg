@@ -69,7 +69,7 @@ export const LANDING_BODY = `
   <div class="browser-bar">
     <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
     <div class="url"><i class="fas fa-lock"></i><span>mappingg.com</span><em class="url-state" id="tapState">3 free projects left</em></div>
-    <span class="bar-space" aria-hidden="true"></span>
+    <button type="button" class="map-full" id="mapFull" aria-label="Open the live map full screen" title="Open full screen map"><i class="fas fa-expand"></i></button>
   </div>
   <div class="browser-body">
     <div class="map-fallback" aria-hidden="true"></div>

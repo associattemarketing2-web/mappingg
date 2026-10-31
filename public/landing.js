@@ -108,6 +108,11 @@
     INTERACT.forEach(t => on(window, t, onEngage, { passive: true, once: true }));
     new IntersectionObserver((es, obs) => es.forEach(e => { if (e.isIntersecting) { obs.disconnect(); near = true; maybeStart(); } }), { rootMargin: '300px' }).observe(liveBrowser);
   }
+  // Full-screen button: opens the real /map page. Guests get the same 3 free
+  // projects there (?trial=home, counted under TAP_KEY by MapAuthGate), then sign-in.
+  const TRIAL_MAP_URL = LIVE_MAP_URL + '?trial=home';
+  const openMapFull = () => { window.location.href = getUser() ? LIVE_MAP_URL : TRIAL_MAP_URL; };
+  if (byId('mapFull')) byId('mapFull').addEventListener('click', openMapFull);
   let taps = 0; try { taps = +localStorage.getItem(TAP_KEY) || 0; } catch (e) {}
   let lastTap = 0;
   function renderMapAccess() {

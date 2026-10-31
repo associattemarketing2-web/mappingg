@@ -1007,6 +1007,10 @@
   .mpg .map-hint b { color: #f6d58f; }
   .mpg .browser.locked .url-state { background: var(--earth-50); color: var(--earth); }
   .mpg .map-lock { animation: fadeUp .3s ease both; }
+  /* full-screen button: opens /map (sits where the bar spacer was, keeps the URL centred) */
+  .mpg .map-full { width: 45px; height: 36px; flex-shrink: 0; display: grid; place-items: center; border-radius: 10px; border: 1px solid var(--line); background: #fff; color: var(--ink); font-size: 14px; cursor: pointer; transition: var(--ease); }
+  .mpg .map-full:hover { background: var(--land); }
+  .mpg .map-full:focus-visible { outline: 2px solid var(--forest); outline-offset: 2px; }
   .mpg .lock-roles button span { min-width: 0; }
   @media (max-width: 720px) {
     .mpg .hero { padding-bottom: 24px; }
