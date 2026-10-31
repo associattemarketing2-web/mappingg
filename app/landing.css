@@ -130,8 +130,8 @@
     background: radial-gradient(ellipse 58% 46% at 50% 20%, #fff 32%, rgba(255,255,255,0) 72%),
                 radial-gradient(ellipse 45% 40% at 90% 40%, rgba(169,208,239,.35), transparent 70%),
                 radial-gradient(ellipse 45% 40% at 8% 55%, rgba(214,235,206,.45), transparent 70%); }
-  .mpg .hero::after { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .85;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='720' viewBox='0 0 1200 720'%3E %3Crect width='1200' height='720' fill='%23f6f4ee'/%3E %3Cg fill='%23ece8de'%3E%3Crect x='40' y='40' width='210' height='120' rx='10'/%3E%3Crect x='290' y='30' width='150' height='150' rx='10'/%3E%3Crect x='700' y='40' width='180' height='110' rx='10'/%3E%3Crect x='920' y='50' width='230' height='100' rx='10'/%3E%3Crect x='60' y='470' width='200' height='190' rx='10'/%3E%3Crect x='560' y='480' width='160' height='170' rx='10'/%3E%3Crect x='760' y='500' width='190' height='150' rx='10'/%3E%3Crect x='980' y='470' width='180' height='200' rx='10'/%3E%3Crect x='300' y='520' width='210' height='150' rx='10'/%3E%3C/g%3E %3Cg fill='%23d6ebce' stroke='%23c3e0b8' stroke-width='3'%3E%3Cpath d='M470 40h190v130H470z'/%3E%3Cpath d='M40 250c60-30 150-20 190 30s-20 110-110 110S20 300 40 250z'/%3E%3Cpath d='M990 250h160v150H990z'/%3E%3C/g%3E %3Cpath d='M-40 430C120 380 260 470 430 410S720 300 860 350S1100 440 1240 390' fill='none' stroke='%2393c2e8' stroke-width='46' stroke-linecap='round'/%3E %3Cpath d='M-40 430C120 380 260 470 430 410S720 300 860 350S1100 440 1240 390' fill='none' stroke='%23a9d0ef' stroke-width='38' stroke-linecap='round'/%3E %3Cellipse cx='640' cy='250' rx='60' ry='34' fill='%23a9d0ef' stroke='%2393c2e8' stroke-width='4'/%3E %3Cg fill='none' stroke-linecap='round'%3E %3Cpath d='M0 200H1200M0 455H1200M270 0V720M540 0V720M740 0V720M960 0V720M0 20L620 720' stroke='%23e2ded3' stroke-width='14'/%3E %3Cpath d='M0 200H1200M0 455H1200M270 0V720M540 0V720M740 0V720M960 0V720M0 20L620 720' stroke='%23ffffff' stroke-width='9'/%3E %3Cpath d='M-20 110C300 150 620 70 1220 140' stroke='%23eab95e' stroke-width='18'/%3E %3Cpath d='M-20 110C300 150 620 70 1220 140' stroke='%23f6d58f' stroke-width='12'/%3E %3C/g%3E%3C/svg%3E") center top / 1200px 720px;
+  .mpg .hero::after { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 1;
+    background: url("/img/hero-map.svg") center / cover no-repeat;
     mask-image: linear-gradient(180deg, #000 0%, #000 52%, transparent 90%); -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 52%, transparent 90%); }
   .mpg .pinlabel { position: absolute; display: inline-flex; align-items: center; gap: 6px; padding: 6px 11px 6px 8px; border-radius: 999px; background: #fff; border: 2px solid var(--s); font: 700 12px/1 var(--f); color: var(--ink); white-space: nowrap; box-shadow: 0 10px 22px -10px rgba(29,43,38,.45); }
   .mpg .pinlabel::after { content: ''; position: absolute; left: 50%; bottom: -7px; width: 10px; height: 10px; background: #fff; border-right: 2px solid var(--s); border-bottom: 2px solid var(--s); transform: translateX(-50%) rotate(45deg); }
@@ -921,7 +921,6 @@
   /* =========================================================
      ALIGNMENT FIXES
      ========================================================= */
-  .mpg .hero::after { background-size: max(1200px, 100%) auto !important; }
   .mpg .hero-center { gap: 22px; }
   .mpg .hero-actions, .mpg .hero-trust { margin-top: 2px; }
 
@@ -1332,4 +1331,34 @@
   .mpg .mp b, .mpg .mp b::after, .mpg .mp::before { animation: none; }
   .mpg .mp em { animation: none; opacity: 1; transform: translateX(-50%); }
   .mpg .mp.pop ~ .mp.pop em { display: none; }
+}
+
+/* ---------- Hero: street-map background (public/img/hero-map.svg) ----------
+   The map fills the hero; a soft wash of the page colour sits behind the
+   headline, search and buttons so the text stays crisp, while the streets,
+   buildings and river stay clear around the edges. Built by
+   scripts/build-hero-map.mjs. */
+.mpg .hero { background: #f3efe6; }
+.mpg .hero::after { mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%); -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%); }
+.mpg .hero::before {
+  background:
+    radial-gradient(ellipse 34% 40% at 50% 46%, rgba(251,250,246,.97) 0%, rgba(251,250,246,.9) 52%, rgba(251,250,246,0) 100%),
+    radial-gradient(ellipse 52% 62% at 50% 50%, rgba(251,250,246,.75) 0%, rgba(251,250,246,0) 100%),
+    linear-gradient(180deg, rgba(251,250,246,.55) 0%, rgba(251,250,246,0) 16%, rgba(251,250,246,0) 80%, #fbfaf6 100%);
+}
+@media (max-width: 1100px) {
+  .mpg .hero::before {
+    background:
+      radial-gradient(ellipse 60% 44% at 50% 48%, rgba(251,250,246,.96) 0%, rgba(251,250,246,.86) 55%, rgba(251,250,246,0) 100%),
+      linear-gradient(180deg, rgba(251,250,246,.5) 0%, rgba(251,250,246,0) 14%, rgba(251,250,246,0) 82%, #fbfaf6 100%);
+  }
+}
+@media (max-width: 720px) {
+  /* narrow screens: the text spans the width, so the map shows as a frame around it */
+  .mpg .hero::after { background-size: auto 100%; background-position: 38% center; }
+  .mpg .hero::before {
+    background:
+      linear-gradient(90deg, rgba(251,250,246,.35) 0%, rgba(251,250,246,.86) 9%, rgba(251,250,246,.9) 50%, rgba(251,250,246,.86) 91%, rgba(251,250,246,.35) 100%),
+      linear-gradient(180deg, rgba(251,250,246,0) 0%, rgba(251,250,246,0) 85%, #fbfaf6 100%);
+  }
 }
