@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound, permanentRedirect } from 'next/navigation';
 import {
   getPinBySlug,
+  duplicateRedirectSlug,
   primaryLocality,
   cityOf,
   slugForProject,
@@ -16,7 +17,12 @@ import { projectDescription, projectTitle } from '@/lib/seo/project-meta';
 // streaming, so they produce a real 404 / 308 status.
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const pin = await getPinBySlug(params.slug);
-  if (!pin) notFound();
+  if (!pin) {
+    // A duplicate listing that was hidden in favour of another: send its old URL there.
+    const kept = await duplicateRedirectSlug(params.slug);
+    if (kept) permanentRedirect(`/projects/${kept}`);
+    notFound();
+  }
   // Only the number identifies a project, so /projects/<anything>-<n> resolves.
   // Send every variant (old title, typo, renamed project) to the one canonical URL.
   const canonicalSlug = slugForProject(pin);

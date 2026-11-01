@@ -1,0 +1,2362 @@
+{
+ "generated": "2026-10-31T12:43:43.052Z",
+ "counts": {
+  "batch": 1,
+  "read_from_registry": 110,
+  "extracted": 110,
+  "rera_matched": 110,
+  "duplicate_rejected": 0,
+  "identity_rejected": 17,
+  "status_rejected": 1,
+  "location_rejected": 40,
+  "location_verified": 52,
+  "passed_all_checks": 52,
+  "in_this_batch": 50,
+  "near_an_existing_point_40m": 0
+ },
+ "accepted": [
+  {
+   "certificate": "TNRERA/29/BLG/0059/2026",
+   "project_name": "Alcazar",
+   "developer": "M/s. ARC Developers",
+   "district": "Chennai",
+   "locality": "Nungambakkam",
+   "pincode": "600034",
+   "lat": 13.052177213436641,
+   "lng": 80.24584200116944,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Nungambakkam\" is 1.2 km from the point on OpenStreetMap.",
+   "units": 23,
+   "land_sqm": 1449.5,
+   "cost": 632111500,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-02-20",
+   "completion": "2028-08-01",
+   "building_type": "High Rise Building (HRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/3a397860-5e3c-11f0-944b-335a88dba460",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/9fcab290-6209-11f0-9a5b-cdc419dea1e8",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/3a362190-5e3c-11f0-87d7-afd9a9a18153",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0225/2026",
+   "project_name": "RAMANIYAM SABARI",
+   "developer": "RAMANIYAM REAL ESTATES PRIVATE LTD",
+   "district": "Chennai",
+   "locality": "Thiyagaraya Nagar",
+   "pincode": "600017",
+   "lat": 13.03846,
+   "lng": 80.24308,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Thiyagaraya Nagar\" is 1.0 km from the point on OpenStreetMap.",
+   "units": 25,
+   "land_sqm": 1235.6,
+   "cost": 405655154,
+   "stage": "Under Construction",
+   "registration_date": "2026-06-30",
+   "completion": "2030-12-31",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/c105b5c0-6320-11f1-9a88-51132dc7fcc8",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/d39735e0-6323-11f1-a964-7bc7eadf5b9f",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/c1026b80-6320-11f1-acdf-b1bb6e3a57ad",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0001/2026",
+   "project_name": "Thiruvottiyur Scheme",
+   "developer": "TNUHDB",
+   "district": "Chennai",
+   "locality": "Thiruvottiyur",
+   "pincode": "600019",
+   "lat": 13.163286,
+   "lng": 80.301217,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Thiruvottiyur\" is 0.7 km from the point on OpenStreetMap.",
+   "units": 366,
+   "land_sqm": 10480,
+   "cost": 600499000,
+   "stage": "Under Construction",
+   "registration_date": "2026-01-02",
+   "completion": "2030-12-21",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/bae5b4e0-e2d3-11f0-bd45-23fa9c4fed5b",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/0af6b560-e2db-11f0-a6cd-a96dc02c0a0b",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/bae43e00-e2d3-11f0-9cab-a7ac0dd72276",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0082/2026",
+   "project_name": "TEMPLE RIDGE",
+   "developer": "M/s. PUSHKAR PROPERTIES PRIVATE LIMITED",
+   "district": "Chennai",
+   "locality": "Ayanavaram",
+   "pincode": "600023",
+   "lat": 13.099948,
+   "lng": 80.228903,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Ayanavaram\" is 0.9 km from the point on OpenStreetMap.",
+   "units": 30,
+   "land_sqm": 1851.17,
+   "cost": 370000000,
+   "stage": "Under Construction",
+   "registration_date": "2026-03-10",
+   "completion": "2028-12-27",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/3b2e8540-e31d-11f0-8d50-31d3e2e15799",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/42dcd350-e321-11f0-9d01-fdbcfbf65918",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/3b2ce150-e31d-11f0-9499-8d6861b3794b",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0214/2026",
+   "project_name": "LOTUS PARK",
+   "developer": "M/s.EESHANI BILDERS, Mr.K.K.PRAKASH RAO, Mrs. SAMUNDEESWARI, Mr.V.SRIDAR, Mr.V.SAIKRISHNA, Mr.TULACI RAJA RUDRAMOORTHYU & Mrs.B.PARIMALAM",
+   "district": "Chengalpattu",
+   "locality": "Pallavaram",
+   "pincode": "600043",
+   "lat": 12.965754,
+   "lng": 80.153044,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chengalpattu district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Pallavaram\" is 0.5 km from the point on OpenStreetMap.",
+   "units": 40,
+   "land_sqm": 1332.22,
+   "cost": 265000000,
+   "stage": "Under Construction",
+   "registration_date": "2026-06-19",
+   "completion": "2034-01-04",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/a362edf0-3ca0-11f1-b546-2db003e8a2ac",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/d2162380-3cb1-11f1-987b-919c6cbf7259",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/a360c600-3ca0-11f1-b24c-8d3b98890bd2",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0249/2026",
+   "project_name": "HARMONY",
+   "developer": "SAARKAY DEVELOPERS PRIVATE LIMITED",
+   "district": "Chennai",
+   "locality": "Nandambakkam",
+   "pincode": "600032",
+   "lat": 13.024545,
+   "lng": 80.201133,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Nandambakkam\" is 1.4 km from the point on OpenStreetMap.",
+   "units": 14,
+   "land_sqm": 585.28,
+   "cost": 60872500,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-07-24",
+   "completion": "2031-05-06",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/7e546dc0-694c-11f1-9e58-998a4333d814",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/a42b0ea0-6952-11f1-9194-a74e513a9a8f",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/7e526c40-694c-11f1-9156-a353278e79bb",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0263/2026",
+   "project_name": "Rams Sakura",
+   "developer": "Rams Builders",
+   "district": "Chennai",
+   "locality": "Thiruvanmiyur",
+   "pincode": "600041",
+   "lat": 12.9773179,
+   "lng": 80.2593727,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Thiruvanmiyur\" is 1.1 km from the point on OpenStreetMap.",
+   "units": 10,
+   "land_sqm": 527.67,
+   "cost": 177000000,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-07-31",
+   "completion": "2029-06-30",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/38a40fb0-6af2-11f1-a05e-f7affa295313",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/64410600-6b09-11f1-a15a-e9cad1762ca6",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/38a16460-6af2-11f1-8862-9911be50df4c",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0269/2026",
+   "project_name": "TULIVE PAVILION",
+   "developer": "GKS PROPERTIES PVT LTD",
+   "district": "Chengalpattu",
+   "locality": "Kovilanchery",
+   "pincode": "600126",
+   "lat": 12.882676387431747,
+   "lng": 80.1701223405598,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chengalpattu district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Kovilanchery\" is 0.2 km from the point on OpenStreetMap.",
+   "units": 388,
+   "land_sqm": 18350,
+   "cost": 1878470000,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-08-07",
+   "completion": "2033-03-05",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": "https://tulivegkshetty.com",
+   "rera_url": "https://rera.tn.gov.in/project-details/837d3cb0-6b09-11f1-b4e0-4315fe541741",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/99edbcd0-6b0c-11f1-a5df-cba0f66b11be",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/83797210-6b09-11f1-acc3-83f707322429",
+   "score": 100,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0019/2026",
+   "project_name": "REPUBLIC OF NATURE PHASE - II",
+   "developer": "GT Bharathi Urban Developers Pvt LTD",
+   "district": "Chennai",
+   "locality": "Vadanemmeli",
+   "pincode": "603104",
+   "lat": 12.749783,
+   "lng": 80.237324,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Vadanemmeli\" is 0.4 km from the point on OpenStreetMap.",
+   "units": 129,
+   "land_sqm": 30921.93,
+   "cost": 617831812,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-01-14",
+   "completion": "2030-12-31",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/d0e0a350-cf4c-11f0-9642-fff7769fc936",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/821d9ee0-cf50-11f0-83da-41e5f3ce108d",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/d0df2160-cf4c-11f0-b08b-0784833581ea",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0250/2026",
+   "project_name": "MARUTHAM AVANA BLOCK - B",
+   "developer": "R.K.ESTATES (GPA)",
+   "district": "Chennai",
+   "locality": "Athipattu",
+   "pincode": "600058",
+   "lat": 13.094881,
+   "lng": 80.150567,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Athipattu\" is 0.4 km from the point on OpenStreetMap.",
+   "units": 14,
+   "land_sqm": 951.11,
+   "cost": 142000000,
+   "stage": "Under Construction",
+   "registration_date": "2026-07-27",
+   "completion": "2028-09-30",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/9e4810c0-6bd3-11f1-8485-fb87f132c889",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/3fa737d0-7216-11f1-a72c-59ea0caa6472",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/9e45ae30-6bd3-11f1-9250-61620d9326a7",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0247/2026",
+   "project_name": "\"SRI KRISHNA CHARANAM\"",
+   "developer": "ASHWIN APARTMENTS (OPC) PRIVATE LIMITED",
+   "district": "Chennai",
+   "locality": "T. Nagar",
+   "pincode": "600017",
+   "lat": 13.042843,
+   "lng": 80.240126,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"T. Nagar\" is 0.9 km from the point on OpenStreetMap.",
+   "units": 14,
+   "land_sqm": 907,
+   "cost": 357727137,
+   "stage": "Under Construction",
+   "registration_date": "2026-07-24",
+   "completion": "2029-06-09",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/b931f4d0-6670-11f1-8ce4-e3753de84bfc",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/3b38cc00-6676-11f1-9ad1-ffa282dff035",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/b9302670-6670-11f1-82fb-7fb6dd302a5e",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0206/2026",
+   "project_name": "PKS SAI BLISS",
+   "developer": "PKS HOUSING AND DEVELOPERS PVT. LTD.",
+   "district": "Chennai",
+   "locality": "Velachery",
+   "pincode": "600042",
+   "lat": 12.969004,
+   "lng": 80.219186,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Velachery\" is 0.2 km from the point on OpenStreetMap.",
+   "units": 19,
+   "land_sqm": 772.95,
+   "cost": 108210800,
+   "stage": "Under Construction",
+   "registration_date": "2026-06-19",
+   "completion": "2027-06-30",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/a89248a0-8567-11f0-adaf-2fe9448b776c",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/88d92660-8580-11f0-a631-efec0be41af6",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/a89091c0-8567-11f0-b124-8ba774a7fa6b",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0333/2026",
+   "project_name": "AVANTARA",
+   "developer": "M/s. Avantara Projects LLP",
+   "district": "Chennai",
+   "locality": "Madhavaram",
+   "pincode": "600060",
+   "lat": 13.161063,
+   "lng": 80.23152,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Madhavaram\" is 0.5 km from the point on OpenStreetMap.",
+   "units": 159,
+   "land_sqm": 5563,
+   "cost": 1099431610,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-09-17",
+   "completion": "2031-07-13",
+   "building_type": "High Rise Building (HRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/c3d0f810-a02b-11f1-ae14-3f2d485d17cc",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/79156700-a04e-11f1-a63a-93c93fc560e8",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/c3cf4760-a02b-11f1-8e04-87da26af163d",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0017/2026",
+   "project_name": "HANSA DIAMOND",
+   "developer": "HANSA ESTATES PRIVATE LIMITED",
+   "district": "Chennai",
+   "locality": "Thiruvottiyur",
+   "pincode": "600019",
+   "lat": 13.164805,
+   "lng": 80.296458,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Thiruvottiyur\" is 1.0 km from the point on OpenStreetMap.",
+   "units": 64,
+   "land_sqm": 1651,
+   "cost": 135500000,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-01-13",
+   "completion": "2027-04-30",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": "https://www.hansaestates.com/",
+   "rera_url": "https://rera.tn.gov.in/project-details/7f615880-93a9-11f0-85e9-8f78111067ea",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/04f90e20-97a8-11f0-a95d-437359c2dfd3",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/7f5efb40-93a9-11f0-a3b2-9f8b60fac90d",
+   "score": 100,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0031/2026",
+   "project_name": "HARMONY NAVRANG",
+   "developer": "HRPL Homes and Infrastructures Pvt Ltd. Rep by its Director Thiru.S.S.Prasad Babu",
+   "district": "Chennai",
+   "locality": "Kodambakkam",
+   "pincode": "600024",
+   "lat": 13.04608,
+   "lng": 80.22911,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Kodambakkam\" is 0.6 km from the point on OpenStreetMap.",
+   "units": 15,
+   "land_sqm": 611,
+   "cost": 88697000,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-01-30",
+   "completion": "2028-06-30",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": "http://www.harmonyhomes.in",
+   "rera_url": "https://rera.tn.gov.in/project-details/a0570040-a8d4-11f0-bddf-67313c331fd3",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/48d90cc0-a8de-11f0-8504-8376df9f2ba1",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/a0541330-a8d4-11f0-8baa-93d1b88a195f",
+   "score": 100,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0103/2026",
+   "project_name": "RISHAB APARTMENTS",
+   "developer": "VJR BUILDERS REPRESENTED BY ITS PROPRIETOR Mr R VIJAY KANNAN G.MALLINATHAN S.RAMESH R.ASHOK KUMAR K.SUKUMARAN R.VIJAY KANNAN",
+   "district": "Chennai",
+   "locality": "Pallikaranai",
+   "pincode": "600100",
+   "lat": 12.919401,
+   "lng": 80.226537,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Pallikaranai\" is 2.4 km from the point on OpenStreetMap.",
+   "units": 10,
+   "land_sqm": 530.72,
+   "cost": 81819100,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-03-24",
+   "completion": "2027-12-31",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/61a7ba90-9395-11f0-92c1-cfed025614c6",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/9b6dcf20-939c-11f0-ab27-99b238fdb35f",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/61a3b4c0-9395-11f0-83f4-4be26459a2c6",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0092/2026",
+   "project_name": "GEETHAM APARTMENTS",
+   "developer": "SRI PADMAVATHI PROMOTERS PRIVATE LIMITED , R.CHANDINI AND R.ABIRAMI",
+   "district": "Chennai",
+   "locality": "Okkiyam Thoraipakkam",
+   "pincode": "600097",
+   "lat": 12.9335774,
+   "lng": 80.2387732,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Okkiyam Thoraipakkam\" is 1.7 km from the point on OpenStreetMap.",
+   "units": 20,
+   "land_sqm": 613.15,
+   "cost": 71780000,
+   "stage": "Under Construction",
+   "registration_date": "2026-03-13",
+   "completion": "2027-12-31",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/d0c9bf70-bae4-11f0-a089-b18501303808",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/708c69b0-c14d-11f0-a78b-73c8efaf6ed3",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/d0c840e0-bae4-11f0-aeb7-7da2458b4249",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0251/2026",
+   "project_name": "VENCER ALTARA",
+   "developer": "VENCER HOMES & K.Revathi, Selvam A, Kavitha S & Hemalatha S",
+   "district": "Chennai",
+   "locality": "Madhuravoyal",
+   "pincode": "600116",
+   "lat": 13.03969,
+   "lng": 80.16515,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Madhuravoyal\" is 1.4 km from the point on OpenStreetMap.",
+   "units": 19,
+   "land_sqm": 1098,
+   "cost": 210646000,
+   "stage": "Under Construction",
+   "registration_date": "2026-07-27",
+   "completion": "2028-12-31",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": "https://www.vencerprojects.com/",
+   "rera_url": "https://rera.tn.gov.in/project-details/935d7b70-49fc-11f1-90da-7d19a059eef4",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/2b5522f0-4ac3-11f1-8b5e-1dbca55b9628",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/935b2400-49fc-11f1-88ff-7f04af180712",
+   "score": 100,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0255/2026",
+   "project_name": "MARUTHAM AVANA BLOCK - A",
+   "developer": "R.K.ESTATES (GPA)",
+   "district": "Chennai",
+   "locality": "Athipattu",
+   "pincode": "600058",
+   "lat": 13.094918,
+   "lng": 80.150643,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Athipattu\" is 0.4 km from the point on OpenStreetMap.",
+   "units": 15,
+   "land_sqm": 1333.25,
+   "cost": 166000000,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-07-31",
+   "completion": "2028-09-30",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/d02cc960-7614-11f1-bea3-9dc6f8ea4945",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/203e30d0-77a5-11f1-b6f0-15e582dcff63",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/d02ac5f0-7614-11f1-889c-f1a134cdd451",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0002/2026",
+   "project_name": "K.L.HOMES",
+   "developer": "K.L.BUILDERS",
+   "district": "Chennai",
+   "locality": "Vadapalani",
+   "pincode": "600026",
+   "lat": 13.04864,
+   "lng": 80.211372,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Vadapalani\" is 0.1 km from the point on OpenStreetMap.",
+   "units": 16,
+   "land_sqm": 524.75,
+   "cost": 3011000000,
+   "stage": "Under Construction",
+   "registration_date": "2026-01-02",
+   "completion": "2027-06-30",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/14f64000-c5c6-11f0-b53f-f75883d392d2",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/31471a70-cd11-11f0-afb5-5fc760615532",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/14f46ca0-c5c6-11f0-8b4c-f178d09b2188",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0018/2026",
+   "project_name": "ISHA UNI5",
+   "developer": "Isha Homes (India) Private Limited",
+   "district": "Chengalpattu",
+   "locality": "Kolapakkam",
+   "pincode": "600127",
+   "lat": 12.876028,
+   "lng": 80.111361,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chengalpattu district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Kolapakkam\" is 0.8 km from the point on OpenStreetMap.",
+   "units": 173,
+   "land_sqm": 7972.31,
+   "cost": 485800000,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-01-14",
+   "completion": "2030-11-22",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": "https://ishahomes.com",
+   "rera_url": "https://rera.tn.gov.in/project-details/35caa880-c13c-11f0-9d06-0928348c5722",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/f22b7920-c37f-11f0-b421-7b419d6bc113",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/35c768c0-c13c-11f0-82f2-013412d3e88a",
+   "score": 100,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0027/2026",
+   "project_name": "TULIVE ROSENDALE",
+   "developer": "GKS PROPERTIES PVT LTD",
+   "district": "Chennai",
+   "locality": "Thiruvanmiyur",
+   "pincode": "600090",
+   "lat": 12.993427511937178,
+   "lng": 80.26425770210388,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Thiruvanmiyur\" is 0.8 km from the point on OpenStreetMap.",
+   "units": 10,
+   "land_sqm": 893.71,
+   "cost": 463870382,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-01-27",
+   "completion": "2029-12-31",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/d53effd0-cc26-11f0-bde9-5d318d382742",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/9a11f4e0-cc2f-11f0-90b6-b1f9bec76998",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/d53c73a0-cc26-11f0-a8c7-4f8db8e970a1",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0005/2026",
+   "project_name": "CASAGRAND GLENMERE",
+   "developer": "CASA GRANDE AXIOM PRIVATE LIMITED",
+   "district": "Chengalpattu",
+   "locality": "Thaiyur B",
+   "pincode": "603103",
+   "lat": 12.75716,
+   "lng": 80.183286,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chengalpattu district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Thaiyur B\" is 2.2 km from the point on OpenStreetMap.",
+   "units": 110,
+   "land_sqm": 25474.98,
+   "cost": 700000000,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-01-02",
+   "completion": "2028-02-28",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/6d1a7700-d019-11f0-adc4-3b7c680752d8",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/1b474e70-d0ea-11f0-aa4b-4b7146a9d45e",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/6d188520-d019-11f0-b077-910c16e874d5",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0006/2026",
+   "project_name": "VOORA AGASTYA HEIGHTS",
+   "developer": "M/S.VOORA PROPERTY DEVELOPERS PVT LTD.,(Promoter) and GPOA For SRI AGASTYAR TRUST",
+   "district": "Chennai",
+   "locality": "Tondiarpet",
+   "pincode": "600081",
+   "lat": 13.124603519582289,
+   "lng": 80.28898543163312,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Tondiarpet\" is 0.4 km from the point on OpenStreetMap.",
+   "units": 52,
+   "land_sqm": 2279.73,
+   "cost": 447884000,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-01-02",
+   "completion": "2029-12-31",
+   "building_type": "High Rise Building (HRB)",
+   "website": "https://voora.co.in/",
+   "rera_url": "https://rera.tn.gov.in/project-details/449685c0-d033-11f0-b4f3-91ea972e90fa",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/1b1d6490-d03b-11f0-b0bf-8ff08f09b411",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/4493f990-d033-11f0-baa9-7f376de55050",
+   "score": 100,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0080/2026",
+   "project_name": "ECR EXOTICA",
+   "developer": "AD REALTY",
+   "district": "Chengalpattu",
+   "locality": "Mugaiyur",
+   "pincode": "603305",
+   "lat": 12.416635,
+   "lng": 80.115838,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chengalpattu district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Mugaiyur\" is 3.6 km from the point on OpenStreetMap.",
+   "units": 35,
+   "land_sqm": 1114.83,
+   "cost": 122241609,
+   "stage": "Under Construction",
+   "registration_date": "2026-03-10",
+   "completion": "2027-12-31",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/159637d0-d03e-11f0-ac5b-6f8e23ee13b0",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/b74a4680-d041-11f0-b850-d556b50d2ec3",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/1594abe0-d03e-11f0-b132-9fead86a709a",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0174/2026",
+   "project_name": "Sivarams Homes Preetha Foundation's Bethel",
+   "developer": "Sivarams Homes Preetha Foundation",
+   "district": "Chennai",
+   "locality": "Velachery",
+   "pincode": "600042",
+   "lat": 12.97877168744343,
+   "lng": 80.2095033783,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Velachery\" is 1.2 km from the point on OpenStreetMap.",
+   "units": 15,
+   "land_sqm": 528.11,
+   "cost": 83568240,
+   "stage": "Under Construction",
+   "registration_date": "2026-05-21",
+   "completion": "2030-08-01",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": "http://www.sivarambuilders.com",
+   "rera_url": "https://rera.tn.gov.in/project-details/f20e04f0-d0cd-11f0-aeb6-5f77a628cf38",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/1a40d7b0-d117-11f0-ae9a-57f3d7eb0422",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/f20c6a30-d0cd-11f0-812a-1dfc9e45eff2",
+   "score": 100,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0239/2026",
+   "project_name": "RADIANCE EDGEWOOD",
+   "developer": "RADIANCE REALTY DEVELOPERS INDIA LTD",
+   "district": "Chengalpattu",
+   "locality": "Siruseri",
+   "pincode": "600130",
+   "lat": 12.842051,
+   "lng": 80.202289,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chengalpattu district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Siruseri\" is 0.6 km from the point on OpenStreetMap.",
+   "units": 83,
+   "land_sqm": 20250,
+   "cost": 1107353000,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-07-22",
+   "completion": "2031-06-21",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/2c98d820-747a-11f1-86e7-337bcbf518df",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/cd5ca200-755b-11f1-9326-a94de6dd47b6",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/2c95ccc0-747a-11f1-9579-d34f1775a6e8",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0032/2026",
+   "project_name": "VEDHAGAM",
+   "developer": "CEEBROS PROPERTY DEVELOPMENT PRIVATE LIMITED REP BY ITS MANAGING DIRECTOR MR C SUBBA REDDY (PROMOTER) AND MR MADHUSUDHAN RHENIUS (LAND OWNER)",
+   "district": "Chennai",
+   "locality": "Nungambakkam",
+   "pincode": "600034",
+   "lat": 13.059493,
+   "lng": 80.245773,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Nungambakkam\" is 0.6 km from the point on OpenStreetMap.",
+   "units": 9,
+   "land_sqm": 631.55,
+   "cost": 91488000,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-01-30",
+   "completion": "2030-12-31",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": "http://www.ceebros.com",
+   "rera_url": "https://rera.tn.gov.in/project-details/a69fcf40-e7a0-11f0-8f49-3fe4fa35bbfd",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/f8d11a50-e7a9-11f0-b25f-d99525fd8bf0",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/a69d9dc0-e7a0-11f0-a4b9-c5415576c29c",
+   "score": 100,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0048/2026",
+   "project_name": "BEAVER’S VENNA GARDEN",
+   "developer": "M/s. Beaver Construction Company Represented by it's partner J. Ram Kumar , R. Ramya, K.Jayaraman",
+   "district": "Chennai",
+   "locality": "West Mambalam",
+   "pincode": "600033",
+   "lat": 13.04097,
+   "lng": 80.222101,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"West Mambalam\" is 0.2 km from the point on OpenStreetMap.",
+   "units": 15,
+   "land_sqm": 597,
+   "cost": 135000000,
+   "stage": "Under Construction",
+   "registration_date": "2026-02-17",
+   "completion": "2026-12-31",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/0b0ef2a0-0f15-11f0-af5a-1127fb3e6137",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/1909d650-0f1b-11f0-958a-ad6ef312e10b",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/0b0d43f0-0f15-11f0-b43b-27072e3d634e",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0126/2026",
+   "project_name": "SRISHTI ANANDHAM",
+   "developer": "SRI ANANDHAM CONSTRUCTIONS",
+   "district": "Chengalpattu",
+   "locality": "Chrompet",
+   "pincode": "600044",
+   "lat": 12.958102,
+   "lng": 80.131198,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chengalpattu district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Chrompet\" is 1.2 km from the point on OpenStreetMap.",
+   "units": 15,
+   "land_sqm": 663.6,
+   "cost": 92905000,
+   "stage": "Under Construction",
+   "registration_date": "2026-04-10",
+   "completion": "2026-12-31",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/1e516de0-e4b5-11f0-8ffb-adb0e0e57182",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/62da4760-e4bd-11f0-ba1f-8b6403c536e0",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/1e4c7600-e4b5-11f0-a6b4-2d691fca1056",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0056/2026",
+   "project_name": "SWATHI'S TARA",
+   "developer": "SWATHI BUILDERS REP BY ITS PARTNER MR K S PRABHAKAR ,THARAYIL SCARIA JOSE , SHEEBA JOSEPH AND ELIZABETH JOSEPH",
+   "district": "Chennai",
+   "locality": "Perungudi",
+   "pincode": "600096",
+   "lat": 12.963333,
+   "lng": 80.241962,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Perungudi\" is 0.9 km from the point on OpenStreetMap.",
+   "units": 15,
+   "land_sqm": 845.41,
+   "cost": 27150000,
+   "stage": "Under Construction",
+   "registration_date": "2026-02-20",
+   "completion": "2030-08-31",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": "http://www.swathigroup.com",
+   "rera_url": "https://rera.tn.gov.in/project-details/3ec02d80-ea0b-11f0-ada7-c176eacd1fe8",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/51843ea0-ea12-11f0-af79-79aa9704bef9",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/3ebe6db0-ea0b-11f0-8163-4958139a3857",
+   "score": 100,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0074/2026",
+   "project_name": "BLUEMOON PARADISE",
+   "developer": "BLUEMOON PROPERTIES",
+   "district": "Chennai",
+   "locality": "Alapakkam",
+   "pincode": "600116",
+   "lat": 13.048738,
+   "lng": 80.168028,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Alapakkam\" is 0.3 km from the point on OpenStreetMap.",
+   "units": 10,
+   "land_sqm": 570,
+   "cost": 100537250,
+   "stage": "Under Construction",
+   "registration_date": "2026-03-04",
+   "completion": "2027-12-31",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/48758c00-ec99-11f0-808d-039760f2add5",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/6a084d90-eca1-11f0-a1a1-0b6c8f604b4f",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/48740ae0-ec99-11f0-9851-b7cdd46fcfca",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0033/2026",
+   "project_name": "S&S CENTRIS",
+   "developer": "M/s. S & S Foundations Pvt Ltd",
+   "district": "Chennai",
+   "locality": "Palavakkam",
+   "pincode": "600041",
+   "lat": 12.962014,
+   "lng": 80.246228,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Palavakkam\" is 1.1 km from the point on OpenStreetMap.",
+   "units": 59,
+   "land_sqm": 4706,
+   "cost": 885000000,
+   "stage": "Under Construction",
+   "registration_date": "2026-02-03",
+   "completion": "2028-03-31",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/bdac3450-ec85-11f0-b8c4-a15c705e6e85",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/7d32b7c0-ec90-11f0-b2c8-1dec73ec656c",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/bdaaac60-ec85-11f0-b18a-6f6f7b114d11",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0051/2026",
+   "project_name": "RAMANIYAM REGAL",
+   "developer": "RAMANIYAM REAL ESTATES PRIVATE LIMITED",
+   "district": "Chennai",
+   "locality": "Mylapore",
+   "pincode": "600014",
+   "lat": 13.05027,
+   "lng": 80.26382,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Mylapore\" is 2.2 km from the point on OpenStreetMap.",
+   "units": 18,
+   "land_sqm": 1183.85,
+   "cost": 324181656,
+   "stage": "Under Construction",
+   "registration_date": "2026-02-17",
+   "completion": "2033-11-23",
+   "building_type": "High Rise Building (HRB)",
+   "website": "http://www.ramaniyam.com",
+   "rera_url": "https://rera.tn.gov.in/project-details/834c4910-defb-11f0-b6ff-2daacc47689d",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/257f7840-e2f7-11f0-a828-5be3ee9d604b",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/83465440-defb-11f0-93da-3bdd953c7595",
+   "score": 100,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0256/2026",
+   "project_name": "MEERA’S LANDMARK",
+   "developer": "MEERA HOMES Rep By its Proprietor K.SIVA KUMAR",
+   "district": "Chengalpattu",
+   "locality": "Sithalapakkam",
+   "pincode": "600126",
+   "lat": 12.879367,
+   "lng": 80.192402,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chengalpattu district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Sithalapakkam\" is 1.6 km from the point on OpenStreetMap.",
+   "units": 69,
+   "land_sqm": 2830,
+   "cost": 350000000,
+   "stage": "Under Construction",
+   "registration_date": "2026-07-31",
+   "completion": "2030-12-31",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/98420340-7b8b-11f1-944e-c71d7e3424fe",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/62028c80-7c22-11f1-8dd7-07775f7ae253",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/983d3880-7b8b-11f1-8cb8-5b688ca9817b",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0294/2026",
+   "project_name": "ASHIANA VATSALYA PHASE III",
+   "developer": "ASHIANA HOUSING LIMITED",
+   "district": "Chengalpattu",
+   "locality": "Paranur",
+   "pincode": "603002",
+   "lat": 12.722512,
+   "lng": 79.990301,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chengalpattu district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Paranur\" is 0.6 km from the point on OpenStreetMap.",
+   "units": 168,
+   "land_sqm": 72416.26,
+   "cost": 1004100000,
+   "stage": "Under Construction",
+   "registration_date": "2026-08-27",
+   "completion": "2029-12-31",
+   "building_type": "High Rise Building (HRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/013c5510-7c1c-11f1-8529-6f40af7be078",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/44ec5460-7c21-11f1-94c2-cf242c4206db",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/013a3940-7c1c-11f1-a4f1-73ec14684760",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0135/2026",
+   "project_name": "SHREYAS BY SANNAREDDY HOMES",
+   "developer": "SANNAREDDY HOMES",
+   "district": "Chennai",
+   "locality": "Besant Nagar",
+   "pincode": "600090",
+   "lat": 12.994473,
+   "lng": 80.26695,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Besant Nagar\" is 0.6 km from the point on OpenStreetMap.",
+   "units": 14,
+   "land_sqm": 771.46,
+   "cost": 165913959,
+   "stage": "Under Construction",
+   "registration_date": "2026-04-16",
+   "completion": "2033-10-14",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/45e53510-f83c-11f0-84aa-7b34774198ae",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/de737590-fd0c-11f0-854f-83f5956c8703",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/45e39ee0-f83c-11f0-b2aa-172cf6cb319e",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0112/2026",
+   "project_name": "LUXE BY DAC",
+   "developer": "DAC DEVELOPERS PVT LTD (GPA), G. BALACHANDAR (LAND OWNER), G, SIVAKUMAR (LAND OWNER)",
+   "district": "Chengalpattu",
+   "locality": "Perungalathur",
+   "pincode": "600128",
+   "lat": 12.919266,
+   "lng": 80.085933,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chengalpattu district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Perungalathur\" is 0.6 km from the point on OpenStreetMap.",
+   "units": 58,
+   "land_sqm": 2424.49,
+   "cost": 274435100,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-03-28",
+   "completion": "2030-01-31",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/db7c6110-fcff-11f0-b2d8-159af07c6e60",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/ee9f8230-fd04-11f0-83dd-65b922de2ba1",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/db79d8c0-fcff-11f0-8519-35fb086ad18c",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0047/2026",
+   "project_name": "AMARA ALAAYA",
+   "developer": "M/S SUNHERA REALTY PRIVATE LIMITED",
+   "district": "Chennai",
+   "locality": "Koyambedu",
+   "pincode": "600107",
+   "lat": 13.073327,
+   "lng": 80.190584,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Koyambedu\" is 0.5 km from the point on OpenStreetMap.",
+   "units": 136,
+   "land_sqm": 5673,
+   "cost": 2510000000,
+   "stage": "Under Construction",
+   "registration_date": "2026-02-17",
+   "completion": "2029-07-31",
+   "building_type": "High Rise Building (HRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/f0bd2b50-fde2-11f0-b3c7-9b6ae24141aa",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/50624a60-fdeb-11f0-90c9-35a693419f2d",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/f0bb93e0-fde2-11f0-8f35-856b2606bde8",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0085/2026",
+   "project_name": "CASAGRAND GLENMERE",
+   "developer": "CASA GRANDE AXIOM PRIVATE LIMITED",
+   "district": "Chengalpattu",
+   "locality": "Thaiyur B",
+   "pincode": "603103",
+   "lat": 12.75716,
+   "lng": 80.183286,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chengalpattu district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Thaiyur B\" is 2.2 km from the point on OpenStreetMap.",
+   "units": 110,
+   "land_sqm": 25474.98,
+   "cost": 1100000000,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-03-10",
+   "completion": "2028-02-28",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/617639d0-fe7e-11f0-8a42-c3c4b161c546",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/b7cc1c80-01b1-11f1-8ee3-27355dd1e820",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/61741da0-fe7e-11f0-8d90-d98a8a187d4c",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0313/2026",
+   "project_name": "PUSHKAR's KALPAVRIKSHA",
+   "developer": "M/s. Pushkar Properties Pvt. Ltd",
+   "district": "Chennai",
+   "locality": "Anna Nagar West",
+   "pincode": "600040",
+   "lat": 13.092673,
+   "lng": 80.207577,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Anna Nagar West\" is 1.7 km from the point on OpenStreetMap.",
+   "units": 10,
+   "land_sqm": 509.5,
+   "cost": 143000000,
+   "stage": "Under Construction",
+   "registration_date": "2026-09-03",
+   "completion": "2029-03-30",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/a59eaef0-965a-11f1-839d-3b578295a97f",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/2a9858e0-96dc-11f1-9c7b-138c5b862896",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/a59c8dd0-965a-11f1-8bd9-0392d17de7de",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0111/2026",
+   "project_name": "SUBIKSHA RADHA",
+   "developer": "M/S. SUBIKSHA HOUSING PRIVATE LIMITED.",
+   "district": "Chennai",
+   "locality": "Kodambakkam",
+   "pincode": "600094",
+   "lat": 13.05422,
+   "lng": 80.22976,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Kodambakkam\" is 0.3 km from the point on OpenStreetMap.",
+   "units": 15,
+   "land_sqm": 510.08,
+   "cost": 70300000,
+   "stage": "Under Construction",
+   "registration_date": "2026-03-28",
+   "completion": "2030-12-30",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/71a5b790-00e8-11f1-a43f-0948e25b40bc",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/5e08a890-0194-11f1-a41d-4fc8f2c1f5da",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/71a3e760-00e8-11f1-8e86-9908797393fb",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0304/2026",
+   "project_name": "CUBES SAFFRON",
+   "developer": "M/S. CUBES INFRASTRUCTURE",
+   "district": "Chennai",
+   "locality": "Madipakkam",
+   "pincode": "600091",
+   "lat": 12.966917,
+   "lng": 80.2065448,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Madipakkam\" is 0.9 km from the point on OpenStreetMap.",
+   "units": 15,
+   "land_sqm": 550,
+   "cost": 99581250,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-09-03",
+   "completion": "2031-06-30",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/0c01afb0-7f8f-11f1-a9a7-bb846d10407c",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/a4720a50-7f96-11f1-8379-d31820815985",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/0bffae00-7f8f-11f1-865c-23fe26094594",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0108/2026",
+   "project_name": "WESTIN ENCLAVE",
+   "developer": "M/s. ARUN HOMES",
+   "district": "Chennai",
+   "locality": "Nolambur",
+   "pincode": "600095",
+   "lat": 13.074034,
+   "lng": 80.167674,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Nolambur\" is 0.1 km from the point on OpenStreetMap.",
+   "units": 15,
+   "land_sqm": 585.29,
+   "cost": 254816800,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-03-28",
+   "completion": "2030-11-17",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/214322b0-01af-11f1-b9b0-1b5651502836",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/3e5cacf0-01b9-11f1-827c-e5768590ad4a",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/21419a80-01af-11f1-b5e5-1b6015a97b57",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/2/BLG/0068/2026",
+   "project_name": "VIVENZA",
+   "developer": "ARC DEVELOPERS",
+   "district": "Tiruvallur",
+   "locality": "Nadukuthagai",
+   "pincode": "602024",
+   "lat": 13.134655,
+   "lng": 80.047043,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Tiruvallur district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Nadukuthagai\" is 0.7 km from the point on OpenStreetMap.",
+   "units": 30,
+   "land_sqm": 800,
+   "cost": 95775700,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-03-03",
+   "completion": "2028-03-01",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/9c2c0c00-f90c-11f0-b17a-05d44e050de3",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/7f63e9d0-f917-11f0-95b3-d3bf2410ee0c",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/9c2a7b90-f90c-11f0-b694-190c662e927a",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0094/2026",
+   "project_name": "ISHA RIVER FRONT",
+   "developer": "ISHA HOMES INDIA PRAIVATE LIMITED",
+   "district": "Chennai",
+   "locality": "Nandambakkam",
+   "pincode": "600016",
+   "lat": 13.013467649243191,
+   "lng": 80.1830555200305,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Nandambakkam\" is 0.9 km from the point on OpenStreetMap.",
+   "units": 64,
+   "land_sqm": 3935.76,
+   "cost": 592800000,
+   "stage": "Under Construction",
+   "registration_date": "2026-03-13",
+   "completion": "2031-01-31",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": "https://ishahomes.com/",
+   "rera_url": "https://rera.tn.gov.in/project-details/0f3e7670-fdd1-11f0-8c8d-91d3d2f80fef",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/7f541dc0-fe75-11f0-a457-8b5256e2b3ea",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/0f3cee70-fdd1-11f0-bd27-61aada133ce6",
+   "score": 100,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0084/2026",
+   "project_name": "RAJUS MARUTHI",
+   "developer": "RAJUS FLAT PROMOTERS PRIVATE LIMITED",
+   "district": "Chennai",
+   "locality": "Korattur",
+   "pincode": "600080",
+   "lat": 13.111294,
+   "lng": 80.182708,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Korattur\" is 0.2 km from the point on OpenStreetMap.",
+   "units": 60,
+   "land_sqm": 1929.86,
+   "cost": 266800000,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-03-10",
+   "completion": "2028-07-30",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": "https://rajusflats.com",
+   "rera_url": "https://rera.tn.gov.in/project-details/eb32d060-069d-11f1-b6a5-4bdebe081a09",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/89917070-0723-11f1-931a-7767d2f61c37",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/eb3124c0-069d-11f1-b7c1-65c33bbe217a",
+   "score": 100,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0260/2026",
+   "project_name": "RUBY ONE CREST",
+   "developer": "RUBY BUILDERS & PROMOTERS",
+   "district": "Chengalpattu",
+   "locality": "Tambaram",
+   "pincode": "600073",
+   "lat": 12.912553077676707,
+   "lng": 80.16896897645456,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chengalpattu district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Tambaram\" is 1.3 km from the point on OpenStreetMap.",
+   "units": 330,
+   "land_sqm": 14650,
+   "cost": 2202500000,
+   "stage": "Not Yet Started",
+   "registration_date": "2026-07-31",
+   "completion": "2032-07-19",
+   "building_type": "High Rise Building (HRB)",
+   "website": "https://www.rubybuilders.in/",
+   "rera_url": "https://rera.tn.gov.in/project-details/5aa64530-7cf0-11f1-96d8-dd3551abcba9",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/fd42c8f0-7cf9-11f1-8428-015359f63733",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/5aa40040-7cf0-11f1-a300-2b9a1965c42b",
+   "score": 100,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0105/2026",
+   "project_name": "ARUNA DELIGHT",
+   "developer": "A.MURUGAN Proprietor of M/s. ARI BUILDERS",
+   "district": "Chennai",
+   "locality": "Ayanavaram",
+   "pincode": "600023",
+   "lat": 13.095258,
+   "lng": 80.233084,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Ayanavaram\" is 0.3 km from the point on OpenStreetMap.",
+   "units": 16,
+   "land_sqm": 899.66,
+   "cost": 180866302,
+   "stage": "Under Construction",
+   "registration_date": "2026-03-26",
+   "completion": "2027-08-31",
+   "building_type": "Non-High Rise Building (NHRB)",
+   "website": null,
+   "rera_url": "https://rera.tn.gov.in/project-details/68c219b0-115a-11f1-89bc-275c94f0e3ab",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/3a2b30b0-115f-11f1-9055-2b1814ae18b4",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/68c092f0-115a-11f1-9823-11ba356480ad",
+   "score": 93,
+   "near_existing": []
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0081/2026",
+   "project_name": "RAMANIYAM SAI ARANYA",
+   "developer": "RAMANIYAM REALTORS LLP",
+   "district": "Chennai",
+   "locality": "Nerkundram",
+   "pincode": "600107",
+   "lat": 13.070678,
+   "lng": 80.18681,
+   "pin_reason": "Official TN RERA GPS coordinates (declared by the promoter on Form A, same on the registry map); in Chennai district (OpenStreetMap reverse lookup); OpenStreetMap has no boundary for the pincode, so a pincode-level check was not possible; not shared with another promoter's project. The address's locality \"Nerkundram\" is 0.1 km from the point on OpenStreetMap.",
+   "units": 488,
+   "land_sqm": 12708.88,
+   "cost": 3108371500,
+   "stage": "Under Construction",
+   "registration_date": "2026-03-10",
+   "completion": "2033-08-24",
+   "building_type": "High Rise Building (HRB)",
+   "website": "http://www.ramaniyam.com",
+   "rera_url": "https://rera.tn.gov.in/project-details/2b87d3c0-c207-11f0-a1e9-4bedd98ad84f",
+   "form_url": "https://rera.tn.gov.in/public-view2/building/pfirm/6deac540-c20b-11f0-83d7-05a84465214e",
+   "promoter_url": "https://rera.tn.gov.in/public-view1/building/pfirm/2b862410-c207-11f0-bd55-35dc63e45502",
+   "score": 100,
+   "near_existing": []
+  }
+ ],
+ "rejected": [
+  {
+   "certificate": "TNRERA/29/BLG/0231/2026",
+   "project_name": "SWATHI'S SHALOM",
+   "developer": "SWATHI BUILDERS REP BY ITS PARTNER MR K S PRABHAKAR",
+   "stage": "location",
+   "reasons": [
+    "locality \"Nungamabakkam\" (from the registry address) not found on OpenStreetMap, so the point could not be cross-checked"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/d48f04f0-601f-11f1-a6a7-ed16cbfa35db",
+   "lat": "13.063231",
+   "lng": "80.241402"
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0376/2026",
+   "project_name": "Shriram Green Meadows",
+   "developer": "SHRIPROP STRUCTURES PRIVATE LIMITED",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point (800457.7, 124859.3) is written in degree-minute-second digits, not decimal degrees; not converted."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/1aeba260-616c-11f1-9794-c5cab80ae592",
+   "lat": "800457.7",
+   "lng": "124859.3"
+  },
+  {
+   "certificate": "TNRERA/1/BLG/0205/2026",
+   "project_name": "VIAAN",
+   "developer": "VIBRANT OFFICES AND HOMES LLP",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point (130042.3, 800935.3) is written in degree-minute-second digits, not decimal degrees; not converted."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/c6f5eec0-6174-11f1-ab58-2d785f1bb8f3",
+   "lat": "130042.3",
+   "lng": "800935.3"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0015/2026",
+   "project_name": "AYYAN ACHYUT",
+   "developer": "M/s SRI AYYAN HOMES",
+   "stage": "identity",
+   "reasons": [
+    "name differs: map \"AYYAN DEVESH\" vs form \"AYYAN ACHYUT\""
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/a2881a30-d81d-11f0-91ae-19bb97fe5328",
+   "lat": "12.93196",
+   "lng": "80.190964"
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0364/2026",
+   "project_name": "\"OLD MADRAS\"",
+   "developer": "M/s. SUGAL EARTHEN SPACES LLP PHASE - 2",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point (124515.7, 801044.9) is written in degree-minute-second digits, not decimal degrees; not converted."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/fd47bad0-b357-11f1-b2aa-0509c2799a95",
+   "lat": "124515.7",
+   "lng": "801044.9"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0229/2026",
+   "project_name": "AVALON",
+   "developer": "Appaswamy Real Estate Limited",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point (13.70603, 80.223265) is outside Tamil Nadu."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/6aa40fe0-66da-11f1-82b2-c3317d3a1110",
+   "lat": "13.70603",
+   "lng": "80.223265"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0217/2026",
+   "project_name": "ADITYARAM PALCE CITY ROYAL",
+   "developer": "ADITYARAM HOUSING PRIVATE LIMITED",
+   "stage": "identity",
+   "reasons": [
+    "name differs: map \"ADITYARAM PALACE CITY ROYAL\" vs form \"ADITYARAM PALCE CITY ROYAL\""
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/029f2de0-c20c-11f0-9dd2-5717d7e39bd1",
+   "lat": "12.53291",
+   "lng": "80.14342"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0104/2026",
+   "project_name": "Construction of 304 HIG MSB at Arumbakkam",
+   "developer": "TAMIL NADU HOUSING BOARD",
+   "stage": "location",
+   "reasons": [
+    "declared point is 5.7 km from \"Egmore\" named in the registry address (limit 3 km)"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/c29bdb00-81a2-11ef-b274-1d0022f9e713",
+   "lat": "13.077374",
+   "lng": "80.205264"
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0271/2026",
+   "project_name": "Enchante Apartments Phase 2",
+   "developer": "KADAVANTHARA BUILDERS PRIVATE LIMITED",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point (125008.8, 801235.0) is written in degree-minute-second digits, not decimal degrees; not converted."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/0b4a1e80-6620-11f1-8d2b-174fc990fcaa",
+   "lat": "125008.8",
+   "lng": "801235.0"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0222/2026",
+   "project_name": null,
+   "developer": "HEXEL REALTORS PRIVATE LIMITED, AND MRS.VATSALA PARTHASARATHY, MR.SUSRUTA SESH SARATHY AND DR TK PARTHSARATHY",
+   "stage": "identity",
+   "reasons": [
+    "no project name on the registry form",
+    "usage is \"Commercial\", not residential",
+    "no dwelling units declared"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/339233c0-9ac9-11f0-bc87-ab3bceaf8983",
+   "lat": "13.08662",
+   "lng": "80.21965"
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0236/2026",
+   "project_name": "ZIVA MOHANAM",
+   "developer": "ARUN EXCELLO HOMES PRIVATE LIMITED",
+   "stage": "location",
+   "reasons": [
+    "declared point is 27.2 km from \"Perumaleri\" named in the registry address (limit 5 km)"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/faaba160-6bc6-11f1-a8ea-6f191d984d12",
+   "lat": "12.37084",
+   "lng": "80.09305"
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0238/2026",
+   "project_name": "ZIVA BHAIRAVI BLOCK 1",
+   "developer": "ARUN EXCELLO HOMES PRIVATE LIMITED",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point is in an unknown place on OpenStreetMap, not Chengalpattu district."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/504e5700-6bca-11f1-805f-0391ed3745a0",
+   "lat": "12.36590",
+   "lng": "80.09252"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0178/2026",
+   "project_name": "Arihant Ventura",
+   "developer": "ESCAPADE SERVICES LLP",
+   "stage": "identity",
+   "reasons": [
+    "usage is \"Commercial\", not residential",
+    "no dwelling units declared"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/dfb86020-6eeb-11f0-9a35-0795dcebffee",
+   "lat": "13.025206",
+   "lng": "80.208293"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0190/2026",
+   "project_name": "JMB ALAYA",
+   "developer": "M/s. JMB Construction and Infrastructure LLP",
+   "stage": "identity",
+   "reasons": [
+    "name differs: map \"JMB ALAYA changed to JMB RRM ALAYA\" vs form \"JMB ALAYA\""
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/fa0413d0-470e-11f1-b801-c97b10a38cb2",
+   "lat": "10.98597",
+   "lng": "50.986478"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0270/2026",
+   "project_name": "JASMINE",
+   "developer": "CHAITANYA FOUNDATIONS PVT LTD",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point is too coarse (fewer than 4 decimals)."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/9cc82f30-5b2d-11f1-8f0b-49901b39131d",
+   "lat": "13.07",
+   "lng": "80.241"
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0192/2026",
+   "project_name": "BLISS TOWER (TOWER A1-A2)",
+   "developer": "PACIFICA BUILDERS PRIVATE LIMITED",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point (124825.9, 801257.4) is written in degree-minute-second digits, not decimal degrees; not converted."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/f31c91b0-8fc5-11f0-a810-ef74c7bdc7e6",
+   "lat": "124825.9",
+   "lng": "801257.4"
+  },
+  {
+   "certificate": "TNRERA/1/BLG/0221/2026",
+   "project_name": "MILLENNIUM BY DAC",
+   "developer": "M/s. DAC PROMOTERS(GPOA), 1.Mr. Zoeb Moize Bharmal 2.Mrs.Tasneem Mufaddal Haji 3.Ms.Farida Moize Bharmal 4.Mrs.Rehana Moize Bharmal (Land Owners)",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point is in Chennai Metropolitan Area, Tamil Nadu on OpenStreetMap, not Kancheepuram district."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/db097f20-6b11-11f1-a591-7f1b2c203013",
+   "lat": "13.014812",
+   "lng": "80.140969"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0029/2026",
+   "project_name": "THE GRID",
+   "developer": "M/s. NETWORK INFRA BUILDCON PRIVATE LIMITED",
+   "stage": "identity",
+   "reasons": [
+    "usage is \"Commercial\", not residential",
+    "no dwelling units declared"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/44517740-e723-11f0-9e8e-29e76e11d337",
+   "lat": "13.122478",
+   "lng": "80.148836"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0232/2026",
+   "project_name": "STERLING SREE RAMACHANDRA",
+   "developer": "STERLING ESTATES AND PROPERTIES LIMITED",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point (1305741, 80243873) is written in degree-minute-second digits, not decimal degrees; not converted."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/3c8f2550-d856-11f0-9cd0-bbb07e1d011c",
+   "lat": "1305741",
+   "lng": "80243873"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0009/2026",
+   "project_name": "ELITE",
+   "developer": "M/s. Sri Suprabhatham Builder rep by its Proprietor Mr.R.RAVICHANDRAN and Mr.C.S.KARTHIK",
+   "stage": "identity",
+   "reasons": [
+    "usage is \"Mixed Development\", not residential"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/6405bd30-99f5-11f0-98fd-91fd843b59b8",
+   "lat": "12.964419",
+   "lng": "80.211566"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0012/2026",
+   "project_name": "RAGHU",
+   "developer": "Ms INDIA BUILDERS CHENNAI LIMITED 1.PREMILA HARIMOHAN 2.VIDYA SHANKAR 3.BHANUMATHI KANNAN 4.(i) C.V.MURALI (ii) RAGHU VENKAT NARAYAN 5.C.S.VEERARAGHAVAN 6.B.KANAKARAJU",
+   "stage": "location",
+   "reasons": [
+    "declared point is 3.5 km from \"Besant Nagar\" named in the registry address (limit 3 km)"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/718dbd20-a51d-11f0-ba15-1958cc44d574",
+   "lat": "13.027352",
+   "lng": "80.253214"
+  },
+  {
+   "certificate": "TNRERA/2/BLG/0312/2026",
+   "project_name": "PS SIGNATURE",
+   "developer": "M/s CELEBRITY DWELLINGS PRIVATE LIMITED",
+   "stage": "location",
+   "reasons": [
+    "locality \"Ayanambakkam\" (from the registry address) not found on OpenStreetMap, so the point could not be cross-checked"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/61644a90-7248-11f1-927f-6bee895b1c13",
+   "lat": "13.082893",
+   "lng": "80.150012"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0228/2026",
+   "project_name": "ANKUR AZALEA",
+   "developer": "ANKUR REALTY DEVELOPERS LLP",
+   "stage": "location",
+   "reasons": [
+    "declared point is 8.0 km from \"Nolambur\" named in the registry address (limit 3 km)"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/7d396e70-5a7a-11f1-968f-a586bf7be11b",
+   "lat": "13.04221",
+   "lng": "80.10208"
+  },
+  {
+   "certificate": "TNRERA/1/BLG/0153/2026",
+   "project_name": "ATH MERLION Phase II",
+   "developer": "M/s. Asset Tree Homes",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point is in Chennai Metropolitan Area, Kundrathur, Tamil Nadu on OpenStreetMap, not Kancheepuram district."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/11226080-b8cb-11f0-842e-e5b1c8a775f7",
+   "lat": "12.996224",
+   "lng": "80.115966"
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0187/2026",
+   "project_name": "SHRIRAM GREEN MEADOWS",
+   "developer": "SHRIPROP STRUCTURES PVT LTD",
+   "stage": "location",
+   "reasons": [
+    "locality \"Perumattunallur\" (from the registry address) not found on OpenStreetMap, so the point could not be cross-checked"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/2dcc41d0-b32c-11f0-a06a-f99a73096e5c",
+   "lat": "12.814055",
+   "lng": "80.081573"
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0237/2026",
+   "project_name": "RHYTHM BY DAC (VILLAS)",
+   "developer": "M/S.DAC DEVELOPERS PRIVATE LIMITED (Developer), Vasantha, Deenadayalan, Babu, Revathi, Parthiban, Velu (Land Owners)",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point (12.893177, 12.893177) is outside Tamil Nadu."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/348d99a0-7466-11f1-8a05-072eec30a38f",
+   "lat": "12.893177",
+   "lng": "12.893177"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0233/2026",
+   "project_name": "YARA AVANTE",
+   "developer": "YARA PROJECT HOLDINGS LLP",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point (130018.2, 801509.9) is written in degree-minute-second digits, not decimal degrees; not converted."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/12d716e0-6b2e-11f1-8661-afd8ab8f593a",
+   "lat": "130018.2",
+   "lng": "801509.9"
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0020/2026",
+   "project_name": "PALM BEACH – PHASE II”",
+   "developer": "M/s. VNCT GLOBAL LLP",
+   "stage": "location",
+   "reasons": [
+    "declared point is 11.5 km from \"Sulerikadu\" named in the registry address (limit 5 km)"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/73c76760-b9a4-11f0-9ea1-a1f69ddd8ef8",
+   "lat": "12.642865",
+   "lng": "80.139038"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0071/2026",
+   "project_name": "SKCL Summit",
+   "developer": "M/s Sri Kausalya Constructions Limited, Represented by Managing Director Mr. Y Meera Reddy and Murugappa Chettiar Trust Represented by its Managing Trustee Mr. M M Murugappan",
+   "stage": "identity",
+   "reasons": [
+    "usage is \"Commercial\", not residential",
+    "no dwelling units declared"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/c3fcb730-c244-11f0-a197-3b7cd804344b",
+   "lat": "13.021653",
+   "lng": "80.242127"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0024/2026",
+   "project_name": "ANDIMANIYAM THOTTAM",
+   "developer": "TNUHDB",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point (3.027173, 80.265264) is outside Tamil Nadu."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/a32be930-d0f4-11f0-b723-c5d751757084",
+   "lat": "3.027173",
+   "lng": "80.265264"
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0245/2026",
+   "project_name": "ARA VINESH ENCLAVE",
+   "developer": "ARA CONSTRUCTION",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point is in Chennai Metropolitan Area, Tamil Nadu on OpenStreetMap, not Chengalpattu district."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/bf435600-58f0-11f1-bc0a-270d57db955b",
+   "lat": "13.013827",
+   "lng": "80.148746"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0041/2026",
+   "project_name": "CAMBRIDGE BY DAC",
+   "developer": "DAC DEVELOPERS PRIVATE LIMITED",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point (125141.4, 801350.2) is written in degree-minute-second digits, not decimal degrees; not converted."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/8f9fed70-e797-11f0-a099-219f64d3fee0",
+   "lat": "125141.4",
+   "lng": "801350.2"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0046/2026",
+   "project_name": "RAMANIYAM NIVASAM",
+   "developer": "Ramaniyam Real Estates (P) Limited",
+   "stage": "status",
+   "reasons": [
+    "no completion date"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/f9b54160-bf99-11f0-9888-cdc118406c46",
+   "lat": "12.96966",
+   "lng": "80.22396"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0004/2026",
+   "project_name": "ASTA",
+   "developer": "Nexa Infra Projects",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point (130503.6, 801029.8) is written in degree-minute-second digits, not decimal degrees; not converted."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/e54a1660-d725-11f0-8269-e3c4108db789",
+   "lat": "130503.6",
+   "lng": "801029.8"
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0045/2026",
+   "project_name": "ROHAAN CREST",
+   "developer": "ROHAAN CONSTRUCTIONS PVT LTD",
+   "stage": "identity",
+   "reasons": [
+    "usage is \"Commercial\", not residential",
+    "no dwelling units declared"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/232f5e70-d731-11f0-88cc-ef57681c66fa",
+   "lat": "12.904733",
+   "lng": "80.185084"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0086/2026",
+   "project_name": "L&T REALTY AVINYA ENCLAVE",
+   "developer": "L&T REALTY PROPERTIES LIMITED",
+   "stage": "identity",
+   "reasons": [
+    "usage is \"Mixed Development\", not residential"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/88ce7dc0-e4bc-11f0-9d0b-4596e67b907d",
+   "lat": "13.0241644",
+   "lng": "80.1795411"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0052/2026",
+   "project_name": "BRIGADE STELLARIS",
+   "developer": "M/s. Brigade Enterprises Limited",
+   "stage": "identity",
+   "reasons": [
+    "usage is \"Mixed Development\", not residential"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/52adf070-f08d-11f0-aa71-afee1dbe965b",
+   "lat": "12.991868",
+   "lng": "80.217729"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0113/2026",
+   "project_name": "TEJAS",
+   "developer": "Vishranthi Homes Private Limted",
+   "stage": "location",
+   "reasons": [
+    "locality \"Poes Gardens\" (from the registry address) not found on OpenStreetMap, so the point could not be cross-checked"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/8e6bee70-e60b-11f0-9f0d-bb5c86d45f37",
+   "lat": "13.043501",
+   "lng": "80.253219"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0025/2026",
+   "project_name": "East Cemetry Road scheme",
+   "developer": "TNUHDB",
+   "stage": "location",
+   "reasons": [
+    "locality \"Tondiorpet\" (from the registry address) not found on OpenStreetMap, so the point could not be cross-checked"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/ac0c6a10-e290-11f0-8f0f-996530281dbd",
+   "lat": "13.1096457",
+   "lng": "80.283182"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0090/2026",
+   "project_name": "JAI SHANKESHWAR APARTMENT",
+   "developer": "M S SCALING VENTURES REP BY V CHETAN BAGRECHA",
+   "stage": "location",
+   "reasons": [
+    "locality not named both by the registry address and OpenStreetMap"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/ba385490-f6c0-11f0-9e56-b566f906f544",
+   "lat": "13.084216",
+   "lng": "80.251463"
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0130/2026",
+   "project_name": "TULIVE FLORA",
+   "developer": "REVISTA HOLDINGS PVT LTD",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point (12906291, 80068139) is written in degree-minute-second digits, not decimal degrees; not converted."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/d5835ce0-f8e7-11f0-8fbe-5358fc513a92",
+   "lat": "12906291",
+   "lng": "80068139"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0075/2026",
+   "project_name": "AANIRUDH VASANTHAM",
+   "developer": "M/s. AAnirudh Flat Promoters (P).Ltd",
+   "stage": "location",
+   "reasons": [
+    "declared point is 44.9 km from \"Nanganallur\" named in the registry address (limit 3 km)"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/371b30e0-fdc1-11f0-84b9-63e74ab117c2",
+   "lat": "12.5824798",
+   "lng": "80.1149812"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0261/2026",
+   "project_name": "Olympia VBC Crown",
+   "developer": "Mr V S Rajesh & Mr V S Balaji - GPOA to Alwarpet Properties Pvt Ltd",
+   "stage": "identity",
+   "reasons": [
+    "usage is \"Commercial\", not residential",
+    "no dwelling units declared"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/3eeb1c60-5d86-11f1-a98d-bfa085665a38",
+   "lat": "13.045424602187293",
+   "lng": "80.24041181324488"
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0065/2026",
+   "project_name": "THE MADRAS PAVILION PH I",
+   "developer": "M/s. VNCT GLOBAL LLP",
+   "stage": "location",
+   "reasons": [
+    "locality \"Ed In Thiruporur\" (from the registry address) not found on OpenStreetMap, so the point could not be cross-checked"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/3a049760-d129-11f0-b7c8-c92a7b5ca23c",
+   "lat": "12.836137",
+   "lng": "79.706653"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0043/2026",
+   "project_name": "AANIRUDH VENGADAM",
+   "developer": "AAnirudh Flat Promoters (P) Ltd",
+   "stage": "location",
+   "reasons": [
+    "declared point is 6.1 km from \"Nanganallur\" named in the registry address (limit 3 km)"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/e00a5360-e493-11f0-9f9b-c99e6164fca1",
+   "lat": "13.0145",
+   "lng": "80.2287"
+  },
+  {
+   "certificate": "TNRERA/1/BLG/0287/2026",
+   "project_name": "SHRIRAM 122 WEST Phase-2",
+   "developer": "M/s. Shrivision Elevation Private Limited",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point (800649.7, 130138.8) is written in degree-minute-second digits, not decimal degrees; not converted."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/c5b1a790-7f6d-11f1-8199-c78765126a9c",
+   "lat": "800649.7",
+   "lng": "130138.8"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0049/2026",
+   "project_name": "AMARA ADHYATMA",
+   "developer": "M/s.CHITALE INFRA LLP",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point (130142, 801431) is written in degree-minute-second digits, not decimal degrees; not converted."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/441182d0-fea1-11f0-b7ca-8f00d0bf7ab6",
+   "lat": "130142",
+   "lng": "801431"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0087/2026",
+   "project_name": "ARIHANT VAAYU",
+   "developer": "M/s.Arihanth Foundations & Housing Limited",
+   "stage": "identity",
+   "reasons": [
+    "usage is \"Commercial\", not residential",
+    "no dwelling units declared"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/42066720-0299-11f1-885a-e3fb4b042690",
+   "lat": "12.96235666666668",
+   "lng": "80.24878833333334"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0079/2026",
+   "project_name": "LIVERPOOL",
+   "developer": "Raunaq Foundations",
+   "stage": "identity",
+   "reasons": [
+    "usage is \"Mixed Development\", not residential"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/f4c01710-fffa-11f0-9b84-3d2966b7439b",
+   "lat": "13.160936",
+   "lng": "80.231709"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0077/2026",
+   "project_name": "MAYURAM",
+   "developer": "MAHALAKSHMI ASSOCIATES PRIVATE LIMITED",
+   "stage": "location",
+   "reasons": [
+    "locality \"Madhanandapuram\" (from the registry address) not found on OpenStreetMap, so the point could not be cross-checked"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/a3d79ae0-00ea-11f1-a01b-3f3af2851470",
+   "lat": "13.041098",
+   "lng": "80.26738"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0099/2026",
+   "project_name": "PEARL EVITA",
+   "developer": "PEARLCONSTRUCTION CHENNAI PRIVATE LIMITED",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point is in Chengalpattu, Tambaram, Tambaram, Tamil Nadu on OpenStreetMap, not Chennai district."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/c6aa4bb0-0663-11f1-853b-b31d48887bec",
+   "lat": "12.909127",
+   "lng": "80.185704"
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0168/2026",
+   "project_name": "RISHI - PHASE I",
+   "developer": "GOLDEN PLANET SENIOR HERITAGE HOMES PRIVATE LIMITED",
+   "stage": "identity",
+   "reasons": [
+    "usage is \"Mixed Development\", not residential"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/f9d68ce0-07f9-11f1-8570-a3dd8e43309e",
+   "lat": "12.6041130",
+   "lng": "80.1242730"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0062/2026",
+   "project_name": "ASTA AVM NOVA",
+   "developer": "SAPTHRISHI BUILDCON PRIVATE LIMITED",
+   "stage": "location",
+   "reasons": [
+    "declared point is 24.2 km from \"Vadapalani\" named in the registry address (limit 3 km)"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/5499bf30-08e7-11f1-b2f1-bd22e2b196a1",
+   "lat": "13.25032",
+   "lng": "80.121726"
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0341/2026",
+   "project_name": "\"OLD MADRAS\"",
+   "developer": "SUGAL EARTHEN SPACES LLP",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point (124515.7, 801044.9) is written in degree-minute-second digits, not decimal degrees; not converted."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/50ed8900-810c-11f1-9394-a577f961cc26",
+   "lat": "124515.7",
+   "lng": "801044.9"
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0066/2026",
+   "project_name": "LOTUS",
+   "developer": "M/s. GUINDY TECH PARK LLP",
+   "stage": "identity",
+   "reasons": [
+    "usage is \"Commercial\", not residential",
+    "no dwelling units declared"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/d1aed020-0d95-11f1-b093-1b2f02bcac38",
+   "lat": "13.09",
+   "lng": "80.07"
+  },
+  {
+   "certificate": "TNRERA/1/BLG/0367/2026",
+   "project_name": "HARINARAYANA INFINIPARK",
+   "developer": "HARINARAYANAN FOUNDATIONS, Proprietor G. Harinarayanan",
+   "stage": "location",
+   "reasons": [
+    "locality \"Nedungundram\" (from the registry address) not found on OpenStreetMap, so the point could not be cross-checked"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/b06234b0-c12c-11f1-bc28-9732d15727a3",
+   "lat": "12.876493",
+   "lng": "80.108108"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0182/2026",
+   "project_name": "Appavoo Nagar & Subbupillaithottam Phase-I",
+   "developer": "TNUHDB",
+   "stage": "location",
+   "reasons": [
+    "TN RERA point (40.76, 73.984) is outside Tamil Nadu."
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/2ba5b9a0-148f-11f1-ba20-a758034477d0",
+   "lat": "40.7600000",
+   "lng": "73.9840000"
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0098/2026",
+   "project_name": "PARK CENTER",
+   "developer": "Sir John Demonte Trust Represented By Archbishop Dr. George Antonysamy",
+   "stage": "identity",
+   "reasons": [
+    "usage is \"Commercial\", not residential",
+    "no dwelling units declared"
+   ],
+   "rera_url": "https://rera.tn.gov.in/project-details/4c5c1de0-0aff-11f1-93bd-3b2998ef16fc",
+   "lat": "13.030605196823045",
+   "lng": "80.25230222791363"
+  }
+ ],
+ "duplicates": [],
+ "missing": [
+  {
+   "certificate": "TNRERA/29/BLG/0059/2026",
+   "project_name": "Alcazar",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0225/2026",
+   "project_name": "RAMANIYAM SABARI",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0001/2026",
+   "project_name": "Thiruvottiyur Scheme",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0082/2026",
+   "project_name": "TEMPLE RIDGE",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0214/2026",
+   "project_name": "LOTUS PARK",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0249/2026",
+   "project_name": "HARMONY",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0263/2026",
+   "project_name": "Rams Sakura",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0269/2026",
+   "project_name": "TULIVE PAVILION",
+   "missing": [
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0019/2026",
+   "project_name": "REPUBLIC OF NATURE PHASE - II",
+   "missing": [
+    "promoter_website",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0250/2026",
+   "project_name": "MARUTHAM AVANA BLOCK - B",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0247/2026",
+   "project_name": "\"SRI KRISHNA CHARANAM\"",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0206/2026",
+   "project_name": "PKS SAI BLISS",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0333/2026",
+   "project_name": "AVANTARA",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0017/2026",
+   "project_name": "HANSA DIAMOND",
+   "missing": [
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0031/2026",
+   "project_name": "HARMONY NAVRANG",
+   "missing": [
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0103/2026",
+   "project_name": "RISHAB APARTMENTS",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0092/2026",
+   "project_name": "GEETHAM APARTMENTS",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0251/2026",
+   "project_name": "VENCER ALTARA",
+   "missing": [
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0255/2026",
+   "project_name": "MARUTHAM AVANA BLOCK - A",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0002/2026",
+   "project_name": "K.L.HOMES",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0018/2026",
+   "project_name": "ISHA UNI5",
+   "missing": [
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0027/2026",
+   "project_name": "TULIVE ROSENDALE",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0005/2026",
+   "project_name": "CASAGRAND GLENMERE",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0006/2026",
+   "project_name": "VOORA AGASTYA HEIGHTS",
+   "missing": [
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0080/2026",
+   "project_name": "ECR EXOTICA",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0174/2026",
+   "project_name": "Sivarams Homes Preetha Foundation's Bethel",
+   "missing": [
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0239/2026",
+   "project_name": "RADIANCE EDGEWOOD",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0032/2026",
+   "project_name": "VEDHAGAM",
+   "missing": [
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0048/2026",
+   "project_name": "BEAVER’S VENNA GARDEN",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0126/2026",
+   "project_name": "SRISHTI ANANDHAM",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0056/2026",
+   "project_name": "SWATHI'S TARA",
+   "missing": [
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0074/2026",
+   "project_name": "BLUEMOON PARADISE",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0033/2026",
+   "project_name": "S&S CENTRIS",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0051/2026",
+   "project_name": "RAMANIYAM REGAL",
+   "missing": [
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0256/2026",
+   "project_name": "MEERA’S LANDMARK",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0294/2026",
+   "project_name": "ASHIANA VATSALYA PHASE III",
+   "missing": [
+    "promoter_website",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0135/2026",
+   "project_name": "SHREYAS BY SANNAREDDY HOMES",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0112/2026",
+   "project_name": "LUXE BY DAC",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0047/2026",
+   "project_name": "AMARA ALAAYA",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0085/2026",
+   "project_name": "CASAGRAND GLENMERE",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0313/2026",
+   "project_name": "PUSHKAR's KALPAVRIKSHA",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0111/2026",
+   "project_name": "SUBIKSHA RADHA",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0304/2026",
+   "project_name": "CUBES SAFFRON",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0108/2026",
+   "project_name": "WESTIN ENCLAVE",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/2/BLG/0068/2026",
+   "project_name": "VIVENZA",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0094/2026",
+   "project_name": "ISHA RIVER FRONT",
+   "missing": [
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0084/2026",
+   "project_name": "RAJUS MARUTHI",
+   "missing": [
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/35/BLG/0260/2026",
+   "project_name": "RUBY ONE CREST",
+   "missing": [
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0105/2026",
+   "project_name": "ARUNA DELIGHT",
+   "missing": [
+    "promoter_website",
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  },
+  {
+   "certificate": "TNRERA/29/BLG/0081/2026",
+   "project_name": "RAMANIYAM SAI ARANYA",
+   "missing": [
+    "total_blocks",
+    "configurations (BHK types are only in the registry PDF carpet-area statement, not read)"
+   ]
+  }
+ ]
+}

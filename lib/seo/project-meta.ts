@@ -85,6 +85,7 @@ export function reraRegistry(rera?: string): { name: string; url: string } {
   if (/^(GGM\/|RC\/REP\/HARERA|HRERA)/i.test(n)) return { name: 'Haryana RERA', url: 'https://haryanarera.gov.in/' };
   if (/^UPRERA/i.test(n)) return { name: 'UP RERA', url: 'https://www.up-rera.in/' };
   if (/^P0\d{10}$/i.test(n)) return { name: 'Telangana RERA', url: 'https://rerait.telangana.gov.in/' };
+  if (/^TNRERA\//i.test(n)) return { name: 'TN RERA', url: 'https://rera.tn.gov.in/' };
   return { name: 'RERA', url: '' };
 }
 

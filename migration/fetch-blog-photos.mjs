@@ -52,6 +52,8 @@ const PHOTOS = {
   'maintenance-charges-sinking-fund-society-handover-pune': 'Asawari Apartments,Nanded City.jpg',
   'gst-on-flats-under-construction-ready-to-move': 'Blueridge building under construction - panoramio.jpg',
   'capital-gains-tax-on-sale-of-flat-india': 'Pride world city.jpg',
+  'new-projects-in-noida-greater-noida-yamuna-expressway': 'Noida sector 78.jpg',
+  'new-projects-in-gurugram': 'Gurgaon skyline.jpg',
 };
 
 const OUT = path.resolve('migration/blog-photos');
