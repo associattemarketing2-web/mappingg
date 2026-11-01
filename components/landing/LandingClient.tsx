@@ -58,7 +58,8 @@ export default function LandingClient() {
     // Visitors who asked their device for less motion or less data skip the
     // ~600 KB 3D globe entirely; they still get its project-count overlay.
     const nav = navigator as Navigator & { connection?: { saveData?: boolean } };
-    const skipGlobe = window.matchMedia('(prefers-reduced-motion: reduce)').matches || !!nav.connection?.saveData;
+    // (The current home design has no globe at all — then three.js is never loaded.)
+    const skipGlobe = !document.getElementById('globe-canvas') || window.matchMedia('(prefers-reduced-motion: reduce)').matches || !!nav.connection?.saveData;
     // three.js parses for ~0.5 s on a mid-range phone, so it waits for the first
     // interaction (pointer/scroll/key/touch) — or 12 s after load for a visitor
     // who just watches — keeping it well clear of the loading window.

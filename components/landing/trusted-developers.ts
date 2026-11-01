@@ -41,10 +41,9 @@ export function trustedDevelopersHtml(devs: Dev[]): string {
 
   return `<section class="trusted-sec" aria-label="Trusted by developers">
   <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow"><span class="dot"></span>Developers on Mappingg</span>
+    <div class="hm-head hm-center">
       <h2>Trusted by <span class="accent">leading developers</span></h2>
-      <p>Projects from these developers are live on the Mappingg map.</p>
+      <p class="hm-sub">Projects from top real estate brands are live on the Mappingg map.</p>
     </div>
   </div>
   <div class="trusted-rows">
