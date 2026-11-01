@@ -984,17 +984,25 @@
     if (!s) promptSignIn();
   }).catch(() => {});
 
-  // Every guest landing on the home page gets the Sign in / Sign up popup shortly
-  // after it loads (each visit; closing it lets them browse). Not inside an iframe
-  // (the home page's embedded map), and not if a deep-link already opened it.
+  // Guests on the home page (phone and desktop) get the Sign in / Sign up popup 1 s
+  // after it opens, then 10 s after each time they close it, until they sign in. The
+  // page itself works normally (links, search, map), so they can look around between
+  // prompts. Not inside an iframe (the home page's embedded map).
   function promptSignIn() {
     try { if (window.self !== window.top) return; } catch (e) { return; }
-    setTimeout(function () {
-      // Skip if the visitor already left the home page (this markup is gone) or got in.
-      if (!modal || !document.contains(modal) || modal.classList.contains('is-open') || getUser()) return;
+    const ask = () => {
       try { sessionStorage.setItem('mg-signin-prompted', '1'); } catch (e) {}
       openModal('signin', null, 'Sign in, or create a free account, to explore every project on the live map.');
-    }, 1500);
+    };
+    // First 1 s after the page opens, then 10 s after each time it's closed, until they
+    // sign in. Skips if the visitor left the home page (this markup is gone) or got in.
+    let lastSeen = Date.now() - 9000;
+    const tick = setInterval(function () {
+      if (!modal || !document.contains(modal) || getUser()) return;
+      if (modal.classList.contains('is-open')) { lastSeen = Date.now(); return; }
+      if (Date.now() - lastSeen >= 10000) { lastSeen = Date.now(); ask(); }
+    }, 500);
+    __cleanups.push(() => clearInterval(tick));
   }
 
   // The shared <SiteHeader/> lives outside this markup; it asks us to open the
