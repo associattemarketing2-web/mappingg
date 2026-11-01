@@ -12,21 +12,31 @@ import { EMAIL, WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/lib/contact';
 // "Sign in" opens the full auth modal: in-place on the home page (via a window
 // event), or by routing home with ?signin=1 (also reachable directly at /signin).
 const LINKS = [
-  { href: '/', label: 'Home', match: (p: string) => p === '/' },
-  { href: '/map', label: 'Live map', match: (p: string) => p === '/map' || p.startsWith('/map/') },
+  { href: '/map', label: 'Live Map', match: (p: string) => p === '/map' || p.startsWith('/map/') },
   { href: '/how-it-works', label: 'How it works', match: (p: string) => p === '/how-it-works' },
-  { href: '/features', label: 'Features', match: (p: string) => p === '/features' },
+  { href: '/developers', label: 'Developers', match: (p: string) => p.startsWith('/developers') },
   { href: '/blog', label: 'Blog', match: (p: string) => p.startsWith('/blog') },
-  { href: '/contact', label: 'Contact', match: (p: string) => p === '/contact' },
+  { href: '/about', label: 'About', match: (p: string) => p === '/about' },
 ];
+// "Explore Projects" dropdown (desktop) — also listed first in the mobile menu.
+const EXPLORE = [
+  { href: '/projects', label: 'All projects' },
+  { href: '/cities', label: 'Cities' },
+  { href: '/locations', label: 'Localities' },
+  { href: '/status/ready-to-move', label: 'Ready to move' },
+  { href: '/status/under-construction', label: 'Under construction' },
+  { href: '/status/upcoming', label: 'Upcoming' },
+  { href: '/property', label: 'Property types' },
+];
+const exploreActive = (p: string) => ['/projects', '/cities', '/locations', '/status', '/property'].some((h) => p === h || p.startsWith(`${h}/`));
 // Secondary links shown only in the mobile menu, where the footer is a long scroll away.
 const MORE_LINKS = [
   { href: '/projects', label: 'All projects' },
   { href: '/cities', label: 'Cities' },
   { href: '/locations', label: 'Localities' },
-  { href: '/developers', label: 'Developers' },
   { href: '/property', label: 'Property types' },
-  { href: '/about', label: 'About' },
+  { href: '/features', label: 'Features' },
+  { href: '/contact', label: 'Contact' },
   { href: '/faq', label: 'FAQ' },
   { href: '/careers', label: 'Careers' },
   { href: '/advertise', label: 'Advertise' },
@@ -104,6 +114,12 @@ export default function SiteHeader() {
     else router.push('/?signin=1');
   }
 
+  function signUp() {
+    setOpen(false);
+    if (pathname === '/') window.dispatchEvent(new CustomEvent('mpg:open-signup', { detail: { role: 'buyer' } }));
+    else router.push('/?signup=1');
+  }
+
   return (
     <header className={`shd${scrolled ? ' scrolled' : ''}`}>
       <div className="shd-wrap">
@@ -114,6 +130,14 @@ export default function SiteHeader() {
           </Link>
 
           <nav className="shd-menu">
+            <div className="shd-drop">
+              <Link href="/projects" className={exploreActive(pathname) ? 'active' : ''} aria-haspopup="true">
+                Explore Projects <svg className="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </Link>
+              <div className="shd-drop-menu">
+                {EXPLORE.map((l) => <Link key={l.href} href={l.href} prefetch={false}>{l.label}</Link>)}
+              </div>
+            </div>
             {LINKS.map((l) => (
               <Link key={l.href} href={l.href} className={l.match(pathname) ? 'active' : ''}>
                 {l.label}
@@ -132,8 +156,11 @@ export default function SiteHeader() {
               </>
             ) : (
               <>
-                <button className="shd-btn link" onClick={signIn}>Sign in</button>
-                <Link href="/map" className="shd-btn primary">Open live map <svg className="ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
+                <Link href="/projects" className="shd-search" aria-label="Search projects" title="Search projects">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" strokeWidth="2.4"/><path d="m20 20-3.5-3.5" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"/></svg>
+                </Link>
+                <button className="shd-btn outline" onClick={signIn}>Login</button>
+                <button className="shd-btn primary" onClick={signUp}>Sign Up</button>
               </>
             )}
             <button
@@ -147,6 +174,7 @@ export default function SiteHeader() {
           </div>
 
           <div className={`shd-mobile${open ? ' open' : ''}`}>
+            <Link href="/projects" prefetch={false} className={exploreActive(pathname) ? 'active' : ''} onClick={() => setOpen(false)}>Explore Projects</Link>
             {LINKS.map((l) => (
               <Link key={l.href} href={l.href} prefetch={false} className={l.match(pathname) ? 'active' : ''} onClick={() => setOpen(false)}>
                 {l.label}
@@ -177,8 +205,8 @@ export default function SiteHeader() {
                 </>
               ) : (
                 <>
-                  <button className="shd-btn link" onClick={signIn}>Sign in</button>
-                  <Link href="/map" className="shd-btn primary" onClick={() => setOpen(false)}>Open live map</Link>
+                  <button className="shd-btn outline" onClick={signIn}>Login</button>
+                  <button className="shd-btn primary" onClick={signUp}>Sign Up</button>
                 </>
               )}
             </div>

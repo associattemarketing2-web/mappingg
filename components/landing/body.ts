@@ -4,6 +4,12 @@
 // LandingClient.tsx. "Open live map" links point at the in-app /map route.
 // NOTE: the top navigation is now the shared <SiteHeader/> React component
 // (rendered by the home page), so the landing markup below starts at the hero.
+// Markers filled in by app/page.tsx: <!--HERO_CHIPS--> (popular localities),
+// <!--MAP_PREVIEW--> (real map + locality counts shown until the live map loads),
+// <!--BUYER_JOURNEY--> ("Built for every home buyer": features, photo panel, live counts),
+// <!--STATS_STRIP--> (counts + quick links under the hero) / <!--STATS_BAND--> (live counts), <!--DEV_LOGOS-->, and
+// <!--SPLIT--> where the React "Projects near you" goes.
+// Styles: app/home.css (sections) + app/landing.css (modal, live-map trial).
 import { COUNTRY_CODES } from '@/lib/country-codes';
 import { BHK_OPTIONS, BUDGET_OPTIONS } from '@/lib/home/finder';
 
@@ -21,468 +27,227 @@ const PHONE_CODE_OPTIONS = COUNTRY_CODES
 const PHONE_CODE_DEFAULT = '<option value="+91" selected>🇮🇳 +91</option>';
 
 export const LANDING_BODY = `
-<header class="hero" id="home">
-  <div class="hero-map" aria-hidden="true">
-    <!-- Project pins on the map background: drop in, then pulse. Phones get their own .m pins, placed
-         (in px from the top) in the gaps beside the left-aligned text; the rest are for wider screens:
-         .t pins from tablets up, .w pins and the .pop cards only where there is room beside the text. -->
-    <span class="mp m s-available" style="--x:8%;--y:100px;--d:.15s"><b></b></span>
-    <span class="mp m s-sold" style="--x:58%;--y:102px;--d:.3s"><b></b></span>
-    <span class="mp m s-construction" style="--x:93%;--y:148px;--d:.45s"><b></b></span>
-    <span class="mp m s-available" style="--x:82%;--y:205px;--d:.6s"><b></b></span>
-    <span class="mp m s-upcoming" style="--x:66%;--y:290px;--d:.75s"><b></b></span>
-    <span class="mp m s-available" style="--x:91%;--y:282px;--d:.9s"><b></b></span>
-    <span class="mp m s-sold" style="--x:92%;--y:430px;--d:1.05s"><b></b></span>
-    <span class="mp m s-available" style="--x:86%;--y:842px;--d:1.35s"><b></b></span>
-    <span class="mp m s-construction" style="--x:62%;--y:870px;--d:1.5s"><b></b></span>
-    <span class="mp s-available" style="--x:4%;--y:30%;--d:.15s"><b></b></span>
-    <span class="mp lo s-construction" style="--x:6%;--y:64%;--d:.55s"><b></b></span>
-    <span class="mp lo s-sold" style="--x:3%;--y:86%;--d:.95s"><b></b></span>
-    <span class="mp s-construction" style="--x:96%;--y:24%;--d:.35s"><b></b></span>
-    <span class="mp lo s-available" style="--x:95%;--y:63%;--d:.75s"><b></b></span>
-    <span class="mp lo s-upcoming" style="--x:97%;--y:84%;--d:1.15s"><b></b></span>
-    <span class="mp t s-available" style="--x:12%;--y:96%;--d:1.3s"><b></b></span>
-    <span class="mp t s-sold" style="--x:89%;--y:95%;--d:1.45s"><b></b></span>
-    <span class="mp t s-available" style="--x:9%;--y:45%;--d:.5s"><b></b></span>
-    <span class="mp t s-sold" style="--x:91%;--y:38%;--d:.7s"><b></b></span>
-    <span class="mp w s-available" style="--x:13%;--y:20%;--d:.25s"><b></b></span>
-    <span class="mp w s-available pop" style="--x:17%;--y:50%;--d:.45s;--cd:2s"><b></b><em><span>Available</span>2 BHK · ₹78 L<small>RERA registered</small></em></span>
-    <span class="mp w s-upcoming" style="--x:13%;--y:74%;--d:.85s"><b></b></span>
-    <span class="mp w s-construction" style="--x:19%;--y:89%;--d:1.05s"><b></b></span>
-    <span class="mp w s-sold" style="--x:86%;--y:17%;--d:.4s"><b></b></span>
-    <span class="mp w s-construction pop" style="--x:86%;--y:46%;--d:.65s;--cd:7s"><b></b><em><span>Under construction</span>3 BHK · ₹1.35 Cr<small>Possession Dec 2027</small></em></span>
-    <span class="mp w s-available" style="--x:83%;--y:72%;--d:.9s"><b></b></span>
-    <span class="mp w s-available" style="--x:80%;--y:89%;--d:1.2s"><b></b></span>
-    <span class="mp w s-construction" style="--x:24%;--y:21%;--d:.6s"><b></b></span>
-    <span class="mp w s-available" style="--x:77%;--y:22%;--d:.8s"><b></b></span>
-  </div>
-  <div class="container">
-    <div class="hero-center">
-      <span class="eyebrow"><span class="dot"></span>New residential projects · Pune, Mumbai &amp; more</span>
-      <h1>Find your next home on a <span class="accent">verified</span> project map.</h1>
-      <p class="hero-desc">Search new residential projects by locality, BHK and budget. Compare RERA, possession and price where the developer has shared them — then enquire in one tap.</p>
-      <form class="ask" id="heroAskForm" role="search" action="/projects" method="get" aria-label="Search projects">
-        <label for="heroAskInput" class="sr-only">Locality, project or developer</label>
-        <input id="heroAskInput" name="q" type="search" placeholder="Locality, project or developer" autocomplete="off" enterkeyhint="search" maxlength="80">
-        <label for="heroBhk" class="sr-only">BHK</label>
-        <select id="heroBhk" name="bhk" class="ask-sel"><option value="">Any BHK</option>${BHK_SELECT}</select>
-        <label for="heroBudget" class="sr-only">Budget</label>
-        <select id="heroBudget" name="budget" class="ask-sel"><option value="">Any budget</option>${BUDGET_SELECT}</select>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-magnifying-glass" aria-hidden="true"></i> Search</button>
-      </form>
-      <div class="hero-actions">
-        <a href="#near-you" class="btn btn-earth"><i class="fas fa-location-crosshairs"></i> Projects near me</a>
-        <a href="#live-map" class="btn btn-outline"><i class="fas fa-map-location-dot"></i> See the live map</a>
-      </div>
-      <p class="dev-note">Developer or channel partner? <a href="#" class="open-signup" data-role="developer">List your project</a> · <a href="#" class="open-signup" data-role="agent">Join as partner</a></p>
-      <div class="hero-trust">
-        <span><i class="fas fa-shield-halved"></i>RERA numbers from official state registries</span>
-        <span><i class="fas fa-leaf"></i>Green-certified filter</span>
+<header class="hm-hero" id="home">
+  <div class="hm-hero-bg" aria-hidden="true"></div>
+  <div class="hm-wrap hm-hero-grid">
+    <div class="hm-hero-copy">
+      <span class="hm-kicker"><span class="dot"></span>India's real estate project map</span>
+      <h1>Find your next home <span>by location.</span></h1>
+      <p class="hm-lead">Explore verified residential projects with real locations, prices, RERA details, nearby infrastructure and amenities — all in one interactive map.</p>
+
+      <div class="hm-search">
+        <div class="hm-tabs" aria-label="What are you looking for">
+          <a href="/projects" class="hm-tab active" aria-current="page"><i class="fas fa-house"></i>Buy</a>
+          <a href="/property/plotted-development" class="hm-tab"><i class="fas fa-border-all"></i>Plots</a>
+          <a href="/property/commercial" class="hm-tab"><i class="fas fa-building"></i>Commercial</a>
+        </div>
+        <form class="hm-form" id="heroAskForm" role="search" action="/projects" method="get" aria-label="Search projects">
+          <label class="hm-field hm-field-q"><i class="fas fa-location-dot" aria-hidden="true"></i><span class="sr-only">Locality, project or developer</span>
+            <input id="heroAskInput" name="q" type="search" placeholder="Locality" autocomplete="off" enterkeyhint="search" maxlength="80"></label>
+          <label class="hm-field"><span class="sr-only">BHK</span><select id="heroBhk" name="bhk"><option value="">Any BHK</option>${BHK_SELECT}</select></label>
+          <label class="hm-field"><span class="sr-only">Budget</span><select id="heroBudget" name="budget"><option value="">Any budget</option>${BUDGET_SELECT}</select></label>
+          <button type="submit" class="hm-btn hm-btn-solid"><i class="fas fa-magnifying-glass" aria-hidden="true"></i> Search Projects</button>
+        </form>
+        <!--HERO_CHIPS-->
       </div>
     </div>
   </div>
+
+  <div class="hm-hero-map" id="live-map">
+      <div class="browser trial hm-map" id="liveBrowser" aria-label="Mappingg live map — try it">
+        <div class="browser-body">
+          <div class="map-fallback" aria-hidden="true"></div>
+          <!--MAP_PREVIEW-->
+          <iframe id="liveFrame" title="Mappingg live map" data-src="/map?embed=home" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="geolocation"></iframe>
+          <button type="button" class="hm-full" id="mapFull" aria-label="Open the live map full screen" title="Open full screen map"><i class="fas fa-expand"></i><span>Full screen</span></button>
+          <div class="map-hint" id="mapHint"><i class="fas fa-hand-pointer"></i><span>Tap any pin to explore — <b id="tapLeft">3</b> free projects left</span></div>
+          <div class="map-lock" id="mapLock" hidden>
+            <div class="lock-card" role="dialog" aria-labelledby="lockTitle">
+              <div class="lock-ic"><i class="fas fa-lock"></i></div>
+              <h3 id="lockTitle">Sign in to keep exploring</h3>
+              <p>You've used your 3 complimentary searches. Create a buyer account to open every pin, price and possession date.</p>
+              <ul class="lock-perks">
+                <li><i class="fas fa-check"></i>Full details for every project</li>
+                <li><i class="fas fa-check"></i>RERA numbers from official registries</li>
+                <li><i class="fas fa-check"></i>Nearby schools, metro & new roads</li>
+              </ul>
+              <button type="button" class="btn btn-primary btn-lg lock-buyer" data-role="buyer"><i class="fas fa-house-chimney"></i> Continue as a buyer</button>
+              <button type="button" class="lock-signin" id="lockSignin">Already have an account? <b>Sign in</b></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </header>
+<!--STATS_STRIP-->
 
+<!--SPLIT-->
 
-<section class="live-sec" id="live-map">
-  <div class="container">
-<div class="sec-head reveal">
-  <span class="eyebrow"><span class="dot"></span>Live project map</span>
-  <h2>Explore the <span class="accent">live project map</span></h2>
-  <p>Every pin is a real project. Open any 3 projects free — tap a pin, then Enquire to get its full details. Sign in to see them all.</p>
-</div>
-<div class="browser reveal trial" id="liveBrowser" aria-label="Mappingg live map — try it">
-  <div class="browser-bar">
-    <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
-    <div class="url"><i class="fas fa-lock"></i><span>mappingg.com</span><em class="url-state" id="tapState">3 free projects left</em></div>
-    <button type="button" class="map-full" id="mapFull" aria-label="Open the live map full screen" title="Open full screen map"><i class="fas fa-expand"></i></button>
-  </div>
-  <div class="browser-body">
-    <div class="map-fallback" aria-hidden="true"></div>
-    
-    <iframe id="liveFrame" title="Mappingg live map" data-src="/map?embed=home" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="geolocation"></iframe>
-    <div class="map-hint" id="mapHint"><i class="fas fa-hand-pointer"></i><span>Tap any pin to explore — <b id="tapLeft">3</b> free projects left</span></div>
-    <div class="map-lock" id="mapLock" hidden>
-      <div class="lock-card" role="dialog" aria-labelledby="lockTitle">
-        <div class="lock-ic"><i class="fas fa-lock"></i></div>
-        <h3 id="lockTitle">Sign in to keep exploring</h3>
-        <p>You've used your 3 complimentary searches. Create a buyer account to open every pin, price and possession date.</p>
-        <ul class="lock-perks">
-          <li><i class="fas fa-check"></i>Full details for every project</li>
-          <li><i class="fas fa-check"></i>RERA numbers from official registries</li>
-          <li><i class="fas fa-check"></i>Nearby schools, metro & new roads</li>
-        </ul>
-        <button type="button" class="btn btn-primary btn-lg lock-buyer" data-role="buyer"><i class="fas fa-house-chimney"></i> Continue as a buyer</button>
-        <button type="button" class="lock-signin" id="lockSignin">Already have an account? <b>Sign in</b></button>
-        <p class="lock-others">Developer? <button type="button" data-role="developer">List your project</button> · Partner? <button type="button" data-role="agent">Join here</button></p>
+<section class="hm-sec hm-around" id="features">
+  <div class="hm-wrap hm-around-grid">
+    <div class="hm-around-copy">
+      <h2>See what's around <span>every project.</span></h2>
+      <p class="hm-sub">Understand the real context — schools, hospitals, IT parks, metro, malls and more with actual distances.</p>
+      <ul class="hm-poi-list" id="hmPoiList">
+        <li><button type="button" data-poi="school"><span class="ic c-school"><i class="fas fa-school"></i></span><span><b>Schools</b><small>Nearby schools around each project.</small></span></button></li>
+        <li><button type="button" data-poi="hospital"><span class="ic c-hospital"><i class="fas fa-hospital"></i></span><span><b>Hospitals</b><small>Multi-speciality and nearest hospitals.</small></span></button></li>
+        <li><button type="button" data-poi="metro"><span class="ic c-metro"><i class="fas fa-train-subway"></i></span><span><b>Metro &amp; transport</b><small>Metro stations, bus stops and highways.</small></span></button></li>
+        <li><button type="button" data-poi="it"><span class="ic c-it"><i class="fas fa-building"></i></span><span><b>IT parks &amp; offices</b><small>Major employment hubs with drive time.</small></span></button></li>
+        <li><button type="button" data-poi="mall"><span class="ic c-mall"><i class="fas fa-bag-shopping"></i></span><span><b>Malls &amp; shopping</b><small>Malls, restaurants and entertainment.</small></span></button></li>
+      </ul>
+      <a href="/map" class="hm-btn hm-btn-line trial-link">Explore location insights <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="hm-aerial" id="hmAerial" data-poi="all" data-view="satellite">
+      <div class="hm-aerial-tabs" role="tablist" aria-label="Map style">
+        <button type="button" role="tab" data-view="map" aria-selected="false">Map</button>
+        <button type="button" role="tab" data-view="satellite" aria-selected="true" class="on">Satellite</button>
+      </div>
+      <div class="hm-aerial-stage">
+        <svg class="hm-aerial-map" viewBox="0 0 600 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="600" height="380" fill="#f3efe6"/>
+          <g fill="#e9e3d6"><rect x="18" y="18" width="150" height="96" rx="10"/><rect x="198" y="26" width="76" height="80" rx="10"/><rect x="440" y="18" width="142" height="104" rx="10"/><rect x="24" y="250" width="150" height="110" rx="10"/><rect x="410" y="262" width="172" height="100" rx="10"/><rect x="214" y="268" width="140" height="70" rx="10"/></g>
+          <rect x="300" y="24" width="112" height="84" rx="16" fill="#d6ebce"/>
+          <path d="M-20 214 C 110 168 230 252 360 204 S 540 170 620 192" stroke="#a9d0ef" stroke-width="30" fill="none" stroke-linecap="round"/>
+          <g stroke-linecap="round" fill="none">
+            <path d="M0 140H600M188 0V380M428 0V380" stroke="#e2dacb" stroke-width="14"/>
+            <path d="M0 140H600M188 0V380M428 0V380" stroke="#fff" stroke-width="9"/>
+            <path d="M0 352 C 210 328 380 372 600 338" stroke="#e8b45a" stroke-width="14"/>
+            <path d="M0 352 C 210 328 380 372 600 338" stroke="#f7d89a" stroke-width="9"/>
+          </g>
+        </svg>
+        <div class="hm-aerial-photo" aria-hidden="true"></div>
+        <div class="hm-aerial-center"><span class="hm-pulse"></span><b>Your project</b><small>Distances from here</small></div>
+        <div class="hm-chip c-it" data-poi="it" style="left:22%;top:16%"><span class="ic"><i class="fas fa-building"></i></span><span><b>IT park</b><small>12 min</small></span></div>
+        <div class="hm-chip c-mall" data-poi="mall" style="left:20%;top:44%"><span class="ic"><i class="fas fa-bag-shopping"></i></span><span><b>Mall</b><small>8 min</small></span></div>
+        <div class="hm-chip c-hospital" data-poi="hospital" style="left:18%;top:74%"><span class="ic"><i class="fas fa-hospital"></i></span><span><b>Hospital</b><small>6 min</small></span></div>
+        <div class="hm-chip c-school" data-poi="school" style="left:80%;top:20%"><span class="ic"><i class="fas fa-school"></i></span><span><b>School</b><small>1.2 km</small></span></div>
+        <div class="hm-chip c-metro" data-poi="metro" style="left:80%;top:70%"><span class="ic"><i class="fas fa-train-subway"></i></span><span><b>Metro station</b><small>5 min</small></span></div>
+        <p class="hm-aerial-note">Illustration — open any project on the live map for its real distances.</p>
+      </div>
+      <div class="hm-thumbs" id="hmThumbs">
+        <button type="button" data-poi="all" class="on"><i class="fas fa-map"></i>Overview</button>
+        <button type="button" data-poi="school"><i class="fas fa-school"></i>Schools</button>
+        <button type="button" data-poi="hospital"><i class="fas fa-hospital"></i>Hospitals</button>
+        <button type="button" data-poi="it"><i class="fas fa-building"></i>IT Parks</button>
+        <button type="button" data-poi="metro"><i class="fas fa-train-subway"></i>Metro</button>
+        <button type="button" data-poi="mall"><i class="fas fa-bag-shopping"></i>Malls</button>
       </div>
     </div>
-  </div>
-</div>
-<div class="map-features reveal">
-  <span class="s-available"><i class="dot"></i>Available</span>
-  <span class="s-sold"><i class="dot"></i>Sold</span>
-  <span class="s-construction"><i class="dot"></i>Under construction</span>
-  <span class="s-upcoming"><i class="dot"></i>Upcoming</span>
-  <span><i class="fas fa-road"></i>Infrastructure</span>
-  <span><i class="fas fa-satellite"></i>Satellite view</span>
-  <span><i class="fas fa-location-crosshairs"></i>Near me</span>
-</div>
   </div>
 </section>
 
 <!--DEV_LOGOS-->
 
-<section class="showcase-sec">
-  <div class="container">
-    <div class="showcase">
-      <div class="stack">
-        <div class="card reveal d1">
-          <div class="card-label">Project card <span class="pill park"><i class="fas fa-circle-check"></i> RERA registered</span></div>
-          <div class="rera-row"><div class="qr" aria-hidden="true"></div><div><div class="rera-title">Sample Residences</div><div class="rera-no">P5210000XXXX · Mundhwa</div></div></div>
-          <div class="timeline"><div><span>Original possession</span><strong>Dec 2026</strong></div><div><span>Revised possession</span><strong class="late">Jun 2027</strong></div></div>
+<section class="hm-sec hm-how" id="how">
+  <div class="hm-wrap">
+    <div class="hm-head hm-center">
+      <span class="hm-eyebrow">How it works</span>
+      <h2>Find the right project in <span class="accent">3 simple steps</span></h2>
+      <p class="hm-sub">See the facts on the map first, then enquire only about the projects you like.</p>
+    </div>
+    <ol class="hm-flow">
+      <li class="hm-fstep">
+        <div class="hm-fvis hm-fvis-1" aria-hidden="true">
+          <div class="v-search"><i class="fas fa-location-dot"></i><span>Kharadi</span><b>2 BHK</b><b>₹1–2 Cr</b></div>
+          <span class="v-pin p1"><i class="fas fa-location-dot"></i></span>
+          <span class="v-pin p2"><i class="fas fa-location-dot"></i></span>
+          <span class="v-pin p3"><i class="fas fa-location-dot"></i></span>
+          <span class="v-road r1"></span><span class="v-road r2"></span><span class="v-river"></span>
         </div>
-        <div class="card reveal d2">
-          <div class="card-label">Avg. price · Pune East <span class="pill road">Sample</span></div>
-          <div class="big-num">₹9,850<small>/sq ft</small></div>
-          <div class="bars"><span style="height:38%"></span><span style="height:50%"></span><span style="height:44%"></span><span style="height:62%"></span><span style="height:58%"></span><span style="height:78%"></span><span style="height:100%"></span></div>
+        <div class="hm-ftext">
+          <span class="hm-fnum">1</span>
+          <h3>Search &amp; explore</h3>
+          <p>Pick a locality, BHK and budget — every matching project shows up as a pin on the map.</p>
         </div>
-      </div>
-      <div class="globe-panel reveal">
-        <canvas id="globe-canvas" aria-label="Interactive globe"></canvas>
-        <div class="globe-top"><span class="glass"><span class="live-dot"></span>Live project map</span><span class="glass"><i class="fas fa-hand-pointer"></i>Drag</span></div>
-        <div class="globe-bottom"><span class="glass">🇮🇳 India · 🇦🇪 Dubai</span></div>
-      </div>
-      <div class="stack">
-        <div class="card agent-card reveal d2">
-          <div class="card-label">Agent M <span class="pill road">Coming soon</span></div>
-          <div class="bubble user">Show ready projects near Magarpatta</div>
-          <div class="bubble bot">Found <b>ready-to-move</b> projects within 3 km. Opening the map…</div>
-          <div class="waveform" aria-hidden="true"><span style="animation-delay:-.1s"></span><span style="animation-delay:-.5s"></span><span style="animation-delay:-.3s"></span><span style="animation-delay:-.8s"></span><span style="animation-delay:-.2s"></span><span style="animation-delay:-.6s"></span><span style="animation-delay:-.4s"></span><span style="animation-delay:-.9s"></span><span style="animation-delay:-.15s"></span><span style="animation-delay:-.7s"></span></div>
+      </li>
+      <li class="hm-fstep">
+        <div class="hm-fvis hm-fvis-2" aria-hidden="true">
+          <div class="v-card">
+            <div class="v-row"><span><i class="fas fa-shield-halved"></i>RERA</span><b class="ok">Registered <i class="fas fa-circle-check"></i></b></div>
+            <div class="v-row"><span><i class="fas fa-indian-rupee-sign"></i>Price</span><b>₹1.25 Cr onwards</b></div>
+            <div class="v-row"><span><i class="fas fa-calendar-check"></i>Possession</span><b>Dec 2029</b></div>
+            <div class="v-row"><span><i class="fas fa-school"></i>Nearby</span><b>School · 1.2 km</b></div>
+          </div>
         </div>
-        <div class="card reveal d3">
-          <div class="card-label">Project status</div>
-          <div class="leaf-row"><div class="leaf"><i class="fas fa-layer-group"></i></div><div><div class="big-num" style="font-size:22px">4 status layers</div><div style="font-size:13px;color:var(--muted)">Available · Sold · Under construction · Upcoming</div></div></div>
+        <div class="hm-ftext">
+          <span class="hm-fnum">2</span>
+          <h3>Check the real facts</h3>
+          <p>RERA number from the official registry, price, possession date and what's nearby — on one card.</p>
         </div>
-      </div>
+      </li>
+      <li class="hm-fstep">
+        <div class="hm-fvis hm-fvis-3" aria-hidden="true">
+          <div class="v-compare">
+            <div><small>Project A</small><b>₹1.25 Cr</b><em>Dec 2029</em></div>
+            <div class="vs">vs</div>
+            <div><small>Project B</small><b>₹1.10 Cr</b><em>Ready</em></div>
+          </div>
+          <span class="v-wa"><i class="fab fa-whatsapp"></i>Enquire on WhatsApp</span>
+        </div>
+        <div class="hm-ftext">
+          <span class="hm-fnum">3</span>
+          <h3>Compare &amp; enquire</h3>
+          <p>Shortlist, compare side by side and enquire directly with the developer in one tap.</p>
+        </div>
+      </li>
+    </ol>
+    <div class="hm-flow-cta">
+      <a href="/map" class="hm-btn hm-btn-solid trial-link"><i class="fas fa-map-location-dot"></i> Try the live map free</a>
+      <span>3 projects free · no sign-up needed</span>
     </div>
   </div>
 </section>
 
-<div class="strip" aria-hidden="true">
-  <div class="strip-track">
-    <div class="strip-item"><i class="fas fa-location-dot"></i>Live project pins</div>
-    <div class="strip-item"><i class="fas fa-shield-halved"></i>Official RERA data</div>
-    <div class="strip-item"><i class="fas fa-road"></i>Infrastructure updates</div>
-    <div class="strip-item"><i class="fas fa-satellite"></i>Satellite view</div>
-    <div class="strip-item"><i class="fas fa-location-crosshairs"></i>Near me</div>
-    <div class="strip-item"><i class="fab fa-whatsapp"></i>WhatsApp enquiries</div>
-    <div class="strip-item"><i class="fas fa-location-dot"></i>Live project pins</div>
-    <div class="strip-item"><i class="fas fa-shield-halved"></i>Official RERA data</div>
-    <div class="strip-item"><i class="fas fa-road"></i>Infrastructure updates</div>
-    <div class="strip-item"><i class="fas fa-satellite"></i>Satellite view</div>
-    <div class="strip-item"><i class="fas fa-location-crosshairs"></i>Near me</div>
-    <div class="strip-item"><i class="fab fa-whatsapp"></i>WhatsApp enquiries</div>
+<!--BUYER_JOURNEY-->
+
+<section class="hm-band" aria-label="Mappingg in numbers">
+  <div class="hm-wrap"><!--STATS_BAND--></div>
+</section>
+
+<section class="hm-cta">
+  <div class="hm-wrap hm-cta-row">
+    <div>
+      <h2>Ready to find your next home?</h2>
+      <p>Create a free buyer account in under a minute — just your WhatsApp number.</p>
+      <ul class="hm-cta-perks">
+        <li><i class="fas fa-check"></i>Open every project on the map</li>
+        <li><i class="fas fa-check"></i>Prices, BHK &amp; possession dates</li>
+        <li><i class="fas fa-check"></i>Compare projects &amp; enquire directly</li>
+      </ul>
+    </div>
+    <div class="hm-cta-btns">
+      <a href="#" class="hm-btn hm-btn-white open-signup" data-role="buyer">Sign Up for Free <i class="fas fa-arrow-right"></i></a>
+      <a href="/map" class="hm-btn hm-btn-ghost trial-link">Explore Live Map</a>
+    </div>
   </div>
+</section>
+
+<div class="hm-sticky guest-only" id="hmSticky" aria-label="Get started">
+  <a href="/map" class="hm-btn hm-btn-line trial-link"><i class="fas fa-map-location-dot"></i> Live Map</a>
+  <a href="#" class="hm-btn hm-btn-solid open-signup" data-role="buyer">Sign Up Free</a>
 </div>
 
-
-
-
-
-
-
-
-<section class="bg-land" id="features">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow road"><span class="dot"></span>Try it</span>
-      <h2>See every project, <span class="accent">differently</span></h2>
-      <p>Every pin is a project — plotted projects open into a plot-by-plot layout, and the infrastructure view shows what's being built around them.</p>
-    </div>
-    <div class="lv reveal" id="lv" data-view="pins">
-      <div class="lv-side" role="tablist" aria-label="Map views">
-        <p class="lv-side-title">Choose a view</p>
-        <button class="lv-tab active" role="tab" aria-selected="true" data-view="pins"><span class="ic"><i class="fas fa-location-dot"></i></span><span><b>Project pins</b><small>Every project by status</small></span></button>
-       
-        <button class="lv-tab" role="tab" aria-selected="false" data-view="map"><span class="ic"><i class="fas fa-map"></i></span><span><b>Map view</b><small>Clean, simple base map</small></span></button>
-        <button class="lv-tab" role="tab" aria-selected="false" data-view="satellite"><span class="ic"><i class="fas fa-satellite"></i></span><span><b>Satellite view</b><small>Real ground context</small></span></button>
-        <button class="lv-tab" role="tab" aria-selected="false" data-view="labels"><span class="ic"><i class="fas fa-tags"></i></span><span><b>Area labels</b><small>Localities & main roads</small></span></button>
-        <button class="lv-tab" role="tab" aria-selected="false" data-view="nearby"><span class="ic"><i class="fas fa-school"></i></span><span><b>Nearby places</b><small>Schools, hospitals, metro</small></span></button>
-        <button class="lv-tab" role="tab" aria-selected="false" data-view="infra"><span class="ic"><i class="fas fa-road"></i></span><span><b>Infrastructure</b><small>Metro, roads & bridges</small></span></button>
-        <button class="lv-tab" role="tab" aria-selected="false" data-view="info"><span class="ic"><i class="fas fa-circle-info"></i></span><span><b>Project info</b><small>Status, RERA & possession</small></span></button>
-         <button class="lv-tab" role="tab" aria-selected="false" data-view="plots"><span class="ic"><i class="fas fa-border-all"></i></span><span><b>Plot layouts</b><small>Plot-by-plot availability</small></span></button>
-        <p class="lv-note"><i class="fas fa-circle-info"></i><span>Sample projects, for illustration.</span></p>
-      </div>
-      <div class="lv-main">
-        <div class="lv-stage" id="lvStage">
-          <svg id="lvSvg" class="area" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" role="group" aria-label="Illustrative area map with project pins"></svg>
-          <svg id="lvPlan" class="plan" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" role="group" aria-label="Sample plotted project layout"></svg>
-          <div class="lv-over lv-proj area-only"><span class="dot"></span>Pune East <small id="lvCounts"></small></div>
-          <div class="lv-over lv-proj plan-only"><button type="button" class="lv-back" id="lvBack" aria-label="Back to area map"><i class="fas fa-arrow-left"></i></button><span id="planName">Sample Project</span> <small id="planCount"></small></div>
-          <div class="lv-over lv-compass" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3.5 10H8.5z" fill="#a9532d"/><path d="M12 22l-3.5-10h7z" fill="#cfccc2"/></svg></div>
-          <button type="button" class="lv-ibtn infra-only" data-i="0" style="left:56%;top:23%"><i class="fas fa-train-subway" style="background:#c9861f"></i>Metro extension</button>
-          <button type="button" class="lv-ibtn infra-only" data-i="1" style="left:90%;top:52%"><i class="fas fa-road" style="background:#3f7fb3"></i>Ring road</button>
-          <button type="button" class="lv-ibtn infra-only" data-i="2" style="left:45%;top:86%"><i class="fas fa-bridge" style="background:#c9861f"></i>Flyover</button>
-          <button type="button" class="lv-ibtn infra-only" data-i="3" style="left:67%;top:37%"><i class="fas fa-bridge-water" style="background:#2f7a3c"></i>River bridge</button>
-          <button type="button" class="lv-ibtn infra-only" data-i="4" style="left:25%;top:66%"><i class="fas fa-road-circle-check" style="background:#3f7fb3"></i>Road widening</button>
-          <div class="lv-over lv-scale area-only" aria-hidden="true">0 — 1 km<span></span></div>
-          <div class="lv-over lv-scale plan-only" aria-hidden="true">0 — 20 m<span></span></div>
-          <div class="lv-chip" style="left:41%;top:19%"><i style="background:#2d6fa3" class="fas fa-train-subway"></i>Metro station</div>
-          <div class="lv-chip" style="left:87%;top:30%"><i style="background:#0f5c47" class="fas fa-building"></i>IT park</div>
-          <div class="lv-chip" style="left:21%;top:62%"><i style="background:#a9532d" class="fas fa-hospital"></i>Hospital</div>
-          <div class="lv-chip" style="left:62%;top:57%"><i style="background:#2f7a3c" class="fas fa-school"></i>School</div>
-          <div class="lv-chip" style="left:50%;top:84%"><i style="background:#c9861f" class="fas fa-bag-shopping"></i>Mall</div>
-        </div>
-        <div class="lv-legends">
-          <div class="lv-over lv-legend area-only" id="lvLegend">
-            <button type="button" data-st="available"><i style="background:#2f7a3c"></i>Available <b></b></button>
-            <button type="button" data-st="construction"><i style="background:#c9861f"></i>Under construction <b></b></button>
-            <button type="button" data-st="sold"><i style="background:#a9532d"></i>Sold <b></b></button>
-            <button type="button" data-st="upcoming"><i style="background:#fff;border:2px dashed #7d837f"></i>Upcoming <b></b></button>
-            <span class="ptype"><i></i>Plotted project</span>
-          </div>
-          <div class="lv-over lv-legend infra-only">
-            <span class="il"><i style="background:#2f7a3c"></i>Completed</span>
-            <span class="il"><i style="background:#c9861f"></i>Ongoing</span>
-            <span class="il"><i style="background:#fff;border:2px dashed #3f7fb3"></i>Planned</span>
-          </div>
-          <div class="lv-over lv-legend plan-only" id="lvPlotLegend">
-            <button type="button" data-st="available"><i style="background:#cfe7c4;border:2px solid #2f7a3c;border-radius:3px"></i>Available <b></b></button>
-            <button type="button" data-st="booked"><i style="background:#f8e2b0;border:2px solid #c9861f;border-radius:3px"></i>Booked <b></b></button>
-            <button type="button" data-st="sold"><i style="background:#f0c7b5;border:2px solid #a9532d;border-radius:3px"></i>Sold <b></b></button>
-          </div>
-        </div>
-        <div class="lv-card" id="lvCard" aria-live="polite"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section>
-  <div class="container">
-    <div class="frow reveal">
-      <div class="fcopy">
-        <span class="eyebrow"><span class="dot"></span>Clarity</span>
-        <h2>Make every property <span class="accent">easy to understand</span></h2>
-        <p>Every project card answers the questions buyers ask first — no calls, no digging.</p>
-        <ul class="flist">
-          <li><i class="fas fa-signal"></i><div><b>Project status</b><span>Available, sold, under construction or upcoming.</span></div></li>
-          <li><i class="fas fa-shield-halved"></i><div><b>RERA registration number</b><span>From the official state registry (MahaRERA, RERA Karnataka, Haryana RERA or UP RERA), with a link to verify it yourself.</span></div></li>
-          <li><i class="fas fa-calendar-check"></i><div><b>Possession dates</b><span>Original and revised dates, side by side.</span></div></li>
-        </ul>
-      </div>
-      <div class="fvisual">
-        <div class="blob tr"></div>
-        <div class="pv-stage">
-<!--PV_CARD-->
-          <div class="pv-card" aria-label="Sample project card, as shown on the map">
-            <span class="pv-close" aria-hidden="true">×</span>
-            <div class="pv-top">
-              <div class="pv-logo"><svg viewBox="0 0 120 90" aria-hidden="true"><rect x="40" y="10" width="40" height="40" rx="6" fill="#1b2430"/><path d="M50 42V26l10-7 10 7v16h-7v-9h-6v9z" fill="#b8925a"/><text x="60" y="66" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#1b2430" letter-spacing="1.5">SAMPLE</text><text x="60" y="80" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="#4a5568" letter-spacing="2.2">RESIDENCES</text></svg></div>
-              <div class="pv-head">
-                <p class="pv-title">Sample Residences</p>
-                <div class="pv-meta">Sample Developers</div>
-                <div class="pv-meta">Mundhwa, Pune</div>
-                <div class="pv-pills"><span class="pv-status">Under Construction</span><span class="pv-type">Residential</span></div>
-              </div>
-            </div>
-            <div class="pv-body">
-              <div class="pv-details">
-                <div class="pv-meta pv-rera">P5210000XXXX</div>
-                <div class="pv-meta">2, 3 BHK · 850–1,250 sq.ft</div>
-                <div class="pv-meta">₹1.05 Cr onwards</div>
-                <div class="pv-meta">Possession: Dec 2027</div>
-                <div class="pv-meta">5 min from Magarpatta IT Park</div>
-              </div>
-              <div class="pv-label">Project video</div>
-              <div class="pv-media" style="background-image:url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=700&auto=format&fit=crop&q=70')"><span class="pv-play"><i class="fas fa-play"></i></span></div>
-            </div>
-            <div class="pv-actions" aria-hidden="true">
-              <span class="pv-enq"><svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="29" fill="#2f3b93"/><text x="30" y="29" text-anchor="middle" font-family="Arial Narrow,Arial,Helvetica,sans-serif" font-weight="800" font-size="11" fill="#fff" textLength="44" lengthAdjust="spacingAndGlyphs">ENQUIRE</text><text x="30" y="42" text-anchor="middle" font-family="Arial Narrow,Arial,Helvetica,sans-serif" font-weight="800" font-size="12.5" fill="#fff" textLength="26" lengthAdjust="spacingAndGlyphs">NOW</text><g transform="translate(39 3) rotate(12)"><rect width="17" height="12" rx="1.5" fill="#e9b85c" stroke="#fff" stroke-width="1.2"/><path d="M1 1.2 L8.5 7 L16 1.2" fill="none" stroke="#8a5a14" stroke-width="1.1" stroke-linejoin="round"/></g></svg></span>
-              <span class="pv-wa"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.02 3C9.4 3 4 8.38 4 15c0 2.29.64 4.44 1.75 6.28L4 29l7.94-1.7A11.94 11.94 0 0 0 16.02 27C22.65 27 28 21.63 28 15S22.65 3 16.02 3zm0 21.7c-1.95 0-3.77-.55-5.32-1.5l-.38-.23-4.71 1.01 1-4.6-.25-.4A9.63 9.63 0 0 1 6.3 15c0-5.36 4.36-9.7 9.72-9.7 5.36 0 9.72 4.34 9.72 9.7 0 5.36-4.36 9.7-9.72 9.7zm5.34-7.27c-.29-.15-1.73-.86-2-.95-.27-.1-.46-.15-.66.15-.2.29-.76.95-.93 1.15-.17.19-.34.22-.63.07-.29-.15-1.2-.44-2.29-1.41-.85-.75-1.42-1.68-1.59-1.97-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.66-1.6-.9-2.19-.24-.57-.48-.5-.66-.5-.17-.01-.36-.01-.56-.01-.19 0-.51.07-.78.36-.27.29-1.02 1-1.02 2.43 0 1.43 1.05 2.82 1.19 3.01.15.19 2.06 3.15 5 4.42.7.3 1.24.48 1.67.62.7.22 1.34.19 1.84.12.56-.08 1.73-.71 1.98-1.39.24-.68.24-1.27.17-1.39-.07-.12-.26-.19-.55-.34z"/></svg></span>
-              <span class="pv-share">🔗</span>
-            </div>
-          </div>
-<!--/PV_CARD-->
-          <div class="pv-tags" aria-hidden="true">
-            <span class="pv-tag t1"><i class="fas fa-signal"></i>Live status</span>
-            <span class="pv-tag t2"><i class="fas fa-calendar-check"></i>Possession date</span>
-            <span class="pv-tag t3"><i class="fas fa-circle-play"></i>Project video</span>
-          </div>
+<footer class="hm-footer">
+  <div class="hm-wrap">
+    <div class="hm-foot-grid">
+      <div class="hm-foot-brand">
+        <a href="#home" class="hm-brand"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Mappingg<em>.com</em></span></a>
+        <p>India's real estate project map. A product by Associatte.</p>
+        <div class="hm-socials">
+          <a href="https://www.linkedin.com/company/mappingg-com/" target="_blank" rel="noopener" aria-label="LinkedIn" class="li"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.facebook.com/share/1CH5PwZUsM/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook" class="fb"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/mappingg.associatte/" target="_blank" rel="noopener" aria-label="Instagram" class="ig"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@mappingg-official" target="_blank" rel="noopener" aria-label="YouTube" class="yt"><i class="fab fa-youtube"></i></a>
+          <a href="https://wa.me/918228828200" target="_blank" rel="noopener" aria-label="WhatsApp" class="wa"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
+      <div><h3>Product</h3><ul><li><a href="/map" class="trial-link">Live Map</a></li><li><a href="/how-it-works">How it works</a></li><li><a href="/features">Features</a></li><li><a href="/faq">FAQ</a></li></ul></div>
+      <div><h3>Company</h3><ul><li><a href="/about">About Us</a></li><li><a href="/blog">Blog</a></li><li><a href="/advertise">Advertise</a></li><li><a href="/contact">Contact</a></li></ul></div>
+      <div><h3>Legal</h3><ul><li><a href="/privacy">Privacy Policy</a></li><li><a href="/terms">Terms &amp; Conditions</a></li><li><a href="/disclaimer">Disclaimer</a></li><li><a href="/cookies">Cookies</a></li><li><a href="/map-data">Map data</a></li></ul></div>
+      <div><h3>Contact</h3><ul class="hm-contact"><li><a href="mailto:mappingg.associatte@gmail.com"><i class="fas fa-envelope"></i>mappingg.associatte@gmail.com</a></li><li><a href="https://wa.me/918228828200" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>+91 82288 28200</a></li><li><span><i class="fas fa-location-dot"></i>Pune, Maharashtra, India</span></li></ul></div>
     </div>
-
-    <div class="frow flip reveal">
-      <div class="fcopy">
-        <span class="eyebrow water"><span class="dot"></span>Context</span>
-        <h2>Put the information that matters <span class="accent">directly on the map</span></h2>
-        <p>Location sells. Show buyers what's around a project and how far it really is.</p>
-        <ul class="flist">
-          <li><i class="fas fa-school"></i><div><b>Schools, hospitals & metro</b><span>Nearby places marked around each project.</span></div></li>
-          <li><i class="fas fa-route"></i><div><b>Real distances</b><span>Drive times to IT parks, airport and stations.</span></div></li>
-          <li><i class="fas fa-road"></i><div><b>Upcoming infrastructure</b><span>Metro lines, ring roads, flyovers and bridges — built, ongoing or planned.</span></div></li>
-          <li><i class="fas fa-location-crosshairs"></i><div><b>Near me</b><span>Buyers see projects closest to where they stand.</span></div></li>
-        </ul>
-      </div>
-      <div class="fvisual">
-        <div class="blob bl"></div>
-        <div class="mock nb">
-          <div class="nb-map">
-            <svg class="nb-svg" viewBox="0 0 600 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-              <rect width="600" height="380" fill="#f3efe6"/>
-              <g fill="#e9e3d6"><rect x="18" y="18" width="150" height="96" rx="10"/><rect x="198" y="26" width="76" height="80" rx="10"/><rect x="440" y="18" width="142" height="104" rx="10"/><rect x="24" y="250" width="150" height="110" rx="10"/><rect x="410" y="262" width="172" height="100" rx="10"/><rect x="214" y="268" width="140" height="70" rx="10"/></g>
-              <rect x="300" y="24" width="112" height="84" rx="16" fill="#d6ebce"/>
-              <path d="M-20 214 C 110 168 230 252 360 204 S 540 170 620 192" stroke="#a9d0ef" stroke-width="30" fill="none" stroke-linecap="round"/>
-              <g stroke-linecap="round" fill="none">
-                <path d="M0 140H600M188 0V380M428 0V380" stroke="#e2dacb" stroke-width="14"/>
-                <path d="M0 140H600M188 0V380M428 0V380" stroke="#fff" stroke-width="9"/>
-                <path d="M0 352 C 210 328 380 372 600 338" stroke="#e8b45a" stroke-width="14"/>
-                <path d="M0 352 C 210 328 380 372 600 338" stroke="#f7d89a" stroke-width="9"/>
-              </g>
-              <g fill="none" stroke="#2f7a3c" stroke-dasharray="3 6" stroke-width="1.5" opacity=".55"><circle cx="300" cy="190" r="88"/><circle cx="300" cy="190" r="170"/></g>
-              <g stroke-width="2" stroke-dasharray="6 6" fill="none" stroke-linecap="round">
-                <path d="M300 190 L 120 82" stroke="#3f7fb3"/><path d="M300 190 L 486 76" stroke="#a9532d"/>
-                <path d="M300 190 L 476 300" stroke="#c9861f"/><path d="M300 190 L 114 292" stroke="#2f7a3c"/>
-              </g>
-            </svg>
-            <span class="nb-ring nb-r1">2 km</span><span class="nb-ring nb-r2">5 km</span>
-            <div class="nb-pin" style="left:50%;top:50%"><span class="nb-pulse"></span><i class="fas fa-location-dot"></i><span class="nb-pin-tx">Your project</span></div>
-            <div class="nb-poi c-school" style="left:20%;top:21.6%"><span class="nb-ic"><i class="fas fa-school"></i></span><span class="nb-tx"><b>School</b><small>1.2 km</small></span></div>
-            <div class="nb-poi c-hospital nb-l" style="left:81%;top:20%"><span class="nb-ic"><i class="fas fa-hospital"></i></span><span class="nb-tx"><b>Hospital</b><small>2.0 km</small></span></div>
-            <div class="nb-poi c-metro nb-l" style="left:79.3%;top:79%"><span class="nb-ic"><i class="fas fa-train-subway"></i></span><span class="nb-tx"><b>Metro</b><small>3.4 km</small></span></div>
-            <div class="nb-poi c-it" style="left:19%;top:76.8%"><span class="nb-ic"><i class="fas fa-building"></i></span><span class="nb-tx"><b>IT park</b><small>4.1 km</small></span></div>
-          </div>
-          <div class="nb-stats">
-            <div class="c-school"><i class="fas fa-school"></i><div><b>1.2 km</b><span>Nearest school</span></div></div>
-            <div class="c-hospital"><i class="fas fa-hospital"></i><div><b>2.0 km</b><span>Hospital</span></div></div>
-            <div class="c-metro"><i class="fas fa-train-subway"></i><div><b>3.4 km</b><span>Metro station</span></div></div>
-            <div class="c-it"><i class="fas fa-car-side"></i><div><b>12 min</b><span>Drive to IT park</span></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<section id="how">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow"><span class="dot"></span>How it works</span>
-      <h2>From project data to an <span class="accent">intelligent map</span></h2>
-      <p>Three simple steps to put your project in front of the right people.</p>
-    </div>
-    <div class="steps">
-      <div class="step-card reveal d1"><span class="step-num">01</span><div class="step-ic"><i class="fas fa-plug"></i></div><h3>Connect your data</h3><p>Share your RERA number, location, plans and prices. We verify the RERA number on the MahaRERA website.</p><div class="step-tags"><span>RERA</span><span>Location</span><span>Plans</span></div></div>
-      <div class="step-card reveal d2"><span class="step-num">02</span><div class="step-ic"><i class="fas fa-map-location-dot"></i></div><h3>Map your project</h3><p>Your project goes live as a pin with status, photos, possession dates and nearby places.</p><div class="step-tags"><span>Pin</span><span>Status</span><span>Layers</span></div></div>
-      <div class="step-card reveal d3"><span class="step-num">03</span><div class="step-ic"><i class="fas fa-share-nodes"></i></div><h3>Visualise & share</h3><p>Share one link on WhatsApp, ads and hoardings — and receive enquiries straight from the map.</p><div class="step-tags"><span>Link</span><span>QR code</span><span>Enquiries</span></div></div>
-    </div>
-  </div>
-</section>
-
-
-<section class="bg-land">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow water"><span class="dot"></span>Always up to date</span>
-      <h2>Keep project information <span class="accent">connected</span></h2>
-      <p>Update once — every map, link and QR code shows the latest details.</p>
-    </div>
-    <div class="connected">
-      <div class="conn reveal d1"><i class="fas fa-database"></i><h3>One source of truth</h3><p>Prices, status and dates live in one place instead of ten documents.</p></div>
-      <div class="conn reveal d1"><i class="fas fa-arrows-rotate"></i><h3>Updates everywhere</h3><p>Change a price or mark a plot sold — it reflects instantly on every link.</p></div>
-      <div class="conn reveal d2"><i class="fab fa-whatsapp"></i><h3>Enquiries on WhatsApp</h3><p>Leads from the map reach your team with the project they viewed.</p></div>
-      <div class="conn reveal d3"><i class="fas fa-chart-simple"></i><h3>See what works</h3><p>Know which projects and areas buyers are looking at most.</p></div>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-<section class="bg-land">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow water"><span class="dot"></span>Your journey</span>
-      <h2>The Mappingg <span class="accent">project journey</span></h2>
-      <p>From sign-up to site visits — here's how a project goes live.</p>
-    </div>
-    <div class="journey reveal">
-      <div class="jstep"><i class="fas fa-user-plus"></i><small>STEP 1</small><b>Sign up</b><span>Create a developer account.</span></div>
-      <div class="jstep"><i class="fas fa-shield-halved"></i><small>STEP 2</small><b>We verify</b><span>We check the RERA no. on MahaRERA.</span></div>
-      <div class="jstep"><i class="fas fa-location-dot"></i><small>STEP 3</small><b>Go live</b><span>Your pin appears on the map.</span></div>
-      <div class="jstep"><i class="fas fa-share-nodes"></i><small>STEP 4</small><b>Share</b><span>Link, QR code and WhatsApp.</span></div>
-      <div class="jstep"><i class="fas fa-comments"></i><small>STEP 5</small><b>Get enquiries</b><span>Serious buyers reach your team.</span></div>
-    </div>
-  </div>
-</section>
-
-
-<section id="faq">
-  <div class="container faq-grid">
-    <div class="sec-head reveal">
-      <span class="eyebrow"><span class="dot"></span>FAQ</span>
-      <h2>Questions, <span class="accent">answered</span></h2>
-      <p>Can't find what you're looking for? Message us on WhatsApp.</p>
-      <a href="/map" class="btn btn-primary live-link">Open the live map <i class="fas fa-arrow-right"></i></a>
-    </div>
-    <div class="faq-list reveal d1">
-      <details class="faq-item" open><summary>What is Mappingg?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Mappingg is a live map of real estate projects. Each project is a pin with its status, RERA registration number, possession dates and what's nearby, so you can understand it in seconds.</p></details>
-      <details class="faq-item"><summary>What is in it for buyers and investors?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Buyers and investors can explore the map, view project details, compare locations, understand nearby infrastructure and discover upcoming developments — all in one place.</p></details>
-      <details class="faq-item"><summary>What infrastructure do you show?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Metro lines, ring roads, flyovers, bridges and road widening around each area — marked as completed, ongoing or planned — so you can see how a location is set to change.</p></details>
-      <details class="faq-item"><summary>Which areas are covered?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Projects in India — Pune, Mumbai &amp; MMR, Bengaluru, Delhi NCR and Hyderabad — and Dubai, UAE, with more cities coming soon.</p></details>
-      <details class="faq-item"><summary>How do you verify projects?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Each RERA number comes from, or is checked against, the official registry of the project's state: the <a href="https://maharera.maharashtra.gov.in/" target="_blank" rel="noopener">MahaRERA website</a> for Maharashtra, and the matching state registry elsewhere, such as RERA Karnataka, Haryana RERA or UP RERA. Each project card shows the number with a link to the registry that issued it, so you can verify it yourself in one tap.</p></details>
-      <details class="faq-item"><summary>How can I list my project?<span class="faq-plus"><i class="fas fa-plus"></i></span></summary><p>Create a developer account and share your RERA number, location and project details. Once we verify your RERA number on the MahaRERA website, your project goes live on the map.</p></details>
-      
-    </div>
-  </div>
-</section>
-
-
-<section>
-  <div class="container">
-    <div class="final-box reveal">
-      <div class="inner">
-        <span class="eyebrow"><span class="dot"></span>Get started</span>
-        <h2>Find your next home <span class="accent">on the map.</span></h2>
-        <p>Every project, its RERA record and what's around it — for buyers and investors.</p>
-        <div class="final-btns">
-          <a href="#" class="btn btn-primary btn-lg open-signup" data-role="buyer">Start exploring <i class="fas fa-arrow-right"></i></a>
-          <a href="/map" class="btn btn-outline btn-lg live-link"><i class="fas fa-map-location-dot"></i> Explore the live map</a>
-        </div>
-        <p class="dev-note">Developer? <a href="#" class="open-signup" data-role="developer">List your project</a> · Channel partner? <a href="#" class="open-signup" data-role="agent">Join here</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<footer class="footer">
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="#home" class="brand"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Mappingg<em>.com</em></span></a>
-        <p>Every property project, mapped and verified. A product by Associatte.</p>
-        <div class="socials">
-          <a href="https://www.instagram.com/mappingg.associatte/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.linkedin.com/company/mappingg-com/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://www.youtube.com/@mappingg-official" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-          <a href="https://www.facebook.com/share/1CH5PwZUsM/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://wa.me/918228828200" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-          <a href="mailto:mappingg.associatte@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-        </div>
-      </div>
-      <div><h3>Explore</h3><ul><li><a href="/map" class="live-link">Live map</a></li><li><a href="/features">Features</a></li><li><a href="/how-it-works">How it works</a></li><li><a href="/faq">FAQ</a></li></ul></div>
-      <div><h3>For business</h3><ul><li><a href="#" class="open-signup" data-role="developer">Developers</a></li><li><a href="#" class="open-signup" data-role="agent">Channel partners</a></li><li><a href="/advertise">Advertise</a></li><li><a href="/contact">Contact</a></li></ul></div>
-      <div><h3>Company</h3><ul><li><a href="/about">About</a></li><li><a href="/blog">Blog</a></li><li><a href="/careers">Careers</a></li><li><a href="/privacy">Privacy policy</a></li></ul></div>
-    </div>
-    <div class="footer-bottom"><div>© 2026 Mappingg.com. All rights reserved.</div><div class="legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/cookies">Cookies</a><a href="/disclaimer">Disclaimer</a><a href="/map-data">Map data</a></div></div>
-    <p class="disclaimer">RERA numbers come from the official state RERA registries (for Maharashtra, the <a href="https://maharera.maharashtra.gov.in/" target="_blank" rel="noopener">MahaRERA website</a>). Other project information comes from developers and is shown for reference only. Please confirm all details with the developer and the state RERA authority before making a decision.</p>
+    <p class="hm-disclaimer">RERA numbers come from the official state RERA registries (for Maharashtra, the <a href="https://maharera.maharashtra.gov.in/" target="_blank" rel="noopener">MahaRERA website</a>). Other project information comes from developers and is shown for reference only. Please confirm all details with the developer and the state RERA authority before making a decision.</p>
+    <div class="hm-foot-bottom"><span>© 2026 Mappingg.com. All rights reserved.</span></div>
   </div>
 </footer>
 

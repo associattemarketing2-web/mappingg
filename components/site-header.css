@@ -4,18 +4,16 @@
   --forest: #0f5c47; --forest-deep: #0a4535; --accent: #2f7a3c; --accent-50: #eaf4e5;
   --ink: #1d2b26; --text: #46524d; --muted: #5f6964; /* WCAG AA: 5.2:1 on --paper (was #76807b, 3.7:1) */ --line: #e7e3d9; --gold: #7f6527;
   --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  position: fixed; inset: 14px 0 auto; z-index: 1000; font-family: var(--font);
-  transition: inset .3s cubic-bezier(.4,0,.2,1);
+  position: fixed; inset: 0 0 auto; z-index: 1000; font-family: var(--font);
+  background: rgba(255,255,255,.96); border-bottom: 1px solid #e9ece7;
+  backdrop-filter: blur(14px) saturate(160%); -webkit-backdrop-filter: blur(14px) saturate(160%);
+  transition: box-shadow .3s;
 }
-.shd.scrolled { inset: 8px 0 auto; }
+.shd.scrolled { box-shadow: 0 10px 30px -20px rgba(16,36,29,.35); }
 .shd *, .shd *::before, .shd *::after { box-sizing: border-box; }
 .shd a { color: inherit; text-decoration: none; }
-.shd-wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-.shd-bar { height: 66px; display: flex; align-items: center; justify-content: space-between; gap: 14px;
-  padding: 0 10px 0 18px; border-radius: 999px; background: rgba(251,250,246,.92);
-  backdrop-filter: blur(16px) saturate(160%); -webkit-backdrop-filter: blur(16px) saturate(160%);
-  border: 1px solid rgba(231,227,217,.9); box-shadow: 0 1px 2px rgba(29,43,38,.06); transition: box-shadow .3s; }
-.shd.scrolled .shd-bar { box-shadow: 0 18px 40px -24px rgba(29,43,38,.3); }
+.shd-wrap { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+.shd-bar { position: relative; height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
 
 .shd-brand { display: inline-flex; align-items: center; gap: 10px; }
 .shd-brand .mark { width: 30px; height: 44px; flex-shrink: 0; display: inline-block; background: url('/img/mappingg-icon-mark-sm.webp') center/contain no-repeat; }
@@ -23,20 +21,36 @@
 .shd-brand b em { font-style: normal; color: var(--gold); }
 
 .shd-menu { display: flex; gap: 2px; list-style: none; margin: 0; padding: 0; }
-.shd-menu a { font-size: 14px; font-weight: 500; color: var(--text); padding: 9px 14px; border-radius: 999px; transition: .2s; }
-.shd-menu a:hover, .shd-menu a.active { color: var(--forest); background: var(--accent-50); }
-.shd-menu a.active { font-weight: 600; }
+.shd-menu { align-items: center; }
+.shd-menu a { position: relative; display: inline-flex; align-items: center; gap: 5px; font-size: 14px; font-weight: 600; color: var(--ink); padding: 10px 13px; border-radius: 10px; transition: .2s; }
+.shd-menu a:hover { color: var(--forest); }
+.shd-menu > a.active, .shd-drop > a.active { color: var(--forest); }
+.shd-menu > a.active::after, .shd-drop > a.active::after { content: ''; position: absolute; left: 13px; right: 13px; bottom: 2px; height: 2px; border-radius: 2px; background: var(--forest); }
+.shd-menu .chev { width: 13px; height: 13px; transition: transform .2s; }
+/* "Explore Projects" dropdown: opens on hover and on keyboard focus. */
+.shd-drop { position: relative; }
+.shd-drop-menu { position: absolute; left: 0; top: calc(100% + 6px); min-width: 210px; padding: 8px; display: flex; flex-direction: column; gap: 2px; background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 30px 60px -30px rgba(16,36,29,.45); opacity: 0; visibility: hidden; transform: translateY(-6px); transition: .2s, visibility 0s .2s; }
+.shd-drop-menu::before { content: ''; position: absolute; left: 0; right: 0; top: -10px; height: 10px; }
+.shd-drop:hover .shd-drop-menu, .shd-drop:focus-within .shd-drop-menu { opacity: 1; visibility: visible; transform: none; transition: .2s, visibility 0s; }
+.shd-drop:hover .chev, .shd-drop:focus-within .chev { transform: rotate(180deg); }
+.shd-drop-menu a { font-weight: 500; color: var(--text); padding: 9px 12px; }
+.shd-drop-menu a:hover { background: var(--accent-50); color: var(--forest); }
 
-.shd-right { display: flex; align-items: center; gap: 6px; }
-.shd-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 999px; border: 1px solid transparent; font: 600 13px var(--font); cursor: pointer; transition: .2s; white-space: nowrap; }
+.shd-right { display: flex; align-items: center; gap: 8px; }
+.shd-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 10px; border: 1.5px solid transparent; font: 700 13.5px var(--font); cursor: pointer; transition: .2s; white-space: nowrap; }
+.shd-btn.outline { background: #fff; color: var(--forest); border-color: var(--forest); }
+.shd-btn.outline:hover { background: var(--accent-50); }
+.shd-search { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; color: var(--ink); transition: .2s; }
+.shd-search:hover { background: var(--accent-50); color: var(--forest); }
+.shd-search svg { width: 19px; height: 19px; }
 .shd-btn .ext { width: 12px; height: 12px; }
 .shd-btn.primary { background: var(--forest); color: #fff; box-shadow: 0 12px 24px -12px rgba(15,92,71,.6); }
 .shd-btn.primary:hover { background: var(--forest-deep); transform: translateY(-1px); }
 .shd-btn.link { background: none; color: var(--text); }
 .shd-btn.link:hover { color: var(--forest); }
 
-.shd-burger { display: none; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: #fff; color: var(--forest); font-size: 16px; cursor: pointer; align-items: center; justify-content: center; }
-.shd-mobile { position: absolute; left: 20px; right: 20px; top: 74px; padding: 10px; background: #fff; border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 40px 80px -40px rgba(29,43,38,.45); display: flex; flex-direction: column; gap: 2px; opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-8px); transition: .25s, visibility 0s .25s; }
+.shd-burger { display: none; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line); background: #fff; color: var(--forest); font-size: 16px; cursor: pointer; align-items: center; justify-content: center; }
+.shd-mobile { position: absolute; left: 0; right: 0; top: 78px; padding: 10px; background: #fff; border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 40px 80px -40px rgba(29,43,38,.45); display: flex; flex-direction: column; gap: 2px; opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-8px); transition: .25s, visibility 0s .25s; }
 .shd-mobile.open { opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition: .25s, visibility 0s; }
 .shd-mobile a, .shd-mobile button { display: flex; align-items: center; gap: 12px; padding: 13px 14px; border-radius: 14px; font: 600 15px var(--font); color: var(--ink); border: none; background: none; text-align: left; cursor: pointer; }
 .shd-mobile a:hover, .shd-mobile button:hover { background: var(--accent-50); color: var(--forest); }
@@ -48,19 +62,24 @@
 .shd-mobile .shd-more a { padding: 8px 12px; border-radius: 999px; font-size: 13px; font-weight: 500; color: var(--text); background: #f6f4ee; }
 .shd-mobile .shd-more a.active { background: var(--accent-50); color: var(--forest); font-weight: 600; }
 
+@media (max-width: 1100px) {
+  .shd-menu a { padding: 10px 9px; }
+  .shd-menu > a.active::after, .shd-drop > a.active::after { left: 9px; right: 9px; }
+}
 @media (max-width: 1000px) {
   .shd-menu, .shd-right .shd-btn.link { display: none; }
   .shd-burger { display: inline-flex; }
 }
 @media (max-width: 720px) {
-  .shd { inset: 10px 0 auto; }
-  .shd-bar { height: 60px; padding: 0 8px 0 14px; }
+  .shd-wrap { padding: 0 14px; }
+  .shd-bar { height: 64px; }
+  .shd-mobile { top: 70px; }
   .shd-brand b { font-size: 19px; }
+  .shd-right > .shd-search, .shd-right > .shd-btn.outline { display: none; }
 }
 
-/* Phones: the burger menu already offers "Open live map", so drop the pill
-   and keep the brand + burger on one line without overflowing. */
-@media (max-width: 520px) {
+/* Small phones: brand + burger only (the menu has Login / Sign Up). */
+@media (max-width: 400px) {
   .shd-right > .shd-btn.primary { display: none; }
 }
 

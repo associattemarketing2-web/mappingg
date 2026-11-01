@@ -48,6 +48,9 @@ export default function CookieConsent() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
+    // Inside an embed (the home page's live map) the page around it already shows
+    // this banner and sets the same cookie, so don't show a second one.
+    try { if (window.self !== window.top) return; } catch { return; }
     if (!readChoice()) setOpen(true);
     const reopen = () => setOpen(true);
     window.addEventListener('mpg:cookie-settings', reopen);

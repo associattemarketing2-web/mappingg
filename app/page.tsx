@@ -1,17 +1,16 @@
 import type { Metadata } from 'next';
 import './landing.css';
 import './home-finder.css';
+import './home.css';
 import { LANDING_BODY } from '@/components/landing/body';
 import LandingClient from '@/components/landing/LandingClient';
 import SiteHeader from '@/components/SiteHeader';
 import IconFont from '@/components/IconFont';
-import { getGlobeData } from '@/lib/globe-data';
-import { getFeaturedProject } from '@/lib/featured-project';
-import { featuredCardHtml } from '@/components/landing/featured-card';
 import { trustedLogos } from '@/lib/developers';
 import { trustedDevelopersHtml } from '@/components/landing/trusted-developers';
 import HomeFinder from '@/components/landing/HomeFinder';
 import { getProjectCards } from '@/lib/home/cards';
+import { homeStats, statsStripHtml, statsBandHtml, heroChipsHtml, mapPreviewHtml, heroProjectHtml, buyersSectionHtml } from '@/components/landing/home-sections';
 
 import { SITE, SITE_URL } from '@/lib/seo/config';
 
@@ -44,32 +43,24 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [globe, featured, logos, cards] = await Promise.all([
-    getGlobeData(), getFeaturedProject(), trustedLogos().catch(() => []), getProjectCards(),
-  ]);
-  // Swap the sample card for a real project with a video (keeps the sample if none).
-  const landingHtml = (featured
-    ? LANDING_BODY.replace(/<!--PV_CARD-->[\s\S]*?<!--\/PV_CARD-->/, () => featuredCardHtml(featured))
-    : LANDING_BODY
-  // "Trusted by developers" logo row (nothing is shown until a few developers have logos).
-  ).replace('<!--DEV_LOGOS-->', () => trustedDevelopersHtml(logos));
-  // The buyer finder (React) sits after the hero and the "Explore the live project map" section.
-  const liveAt = landingHtml.indexOf('<section class="live-sec"');
-  const split = liveAt > 0 ? landingHtml.indexOf('</section>', liveAt) + '</section>'.length : -1;
-  const [heroHtml, restHtml] = split > 0 ? [landingHtml.slice(0, split), landingHtml.slice(split)] : [landingHtml, ''];
+  const [logos, cards] = await Promise.all([trustedLogos().catch(() => []), getProjectCards()]);
+  const stats = homeStats(cards);
+  const landingHtml = LANDING_BODY
+    .replace('<!--HERO_CHIPS-->', () => heroChipsHtml(cards))
+    .replace('<!--MAP_PREVIEW-->', () => mapPreviewHtml(cards, heroProjectHtml(cards)))
+    .replace('<!--STATS_STRIP-->', () => statsStripHtml(stats, cards))
+    .replace('<!--STATS_BAND-->', () => statsBandHtml(stats))
+    .replace('<!--BUYER_JOURNEY-->', () => buyersSectionHtml(cards, stats))
+    // "Trusted by developers" logo row (nothing is shown until a few developers have logos).
+    .replace('<!--DEV_LOGOS-->', () => trustedDevelopersHtml(logos));
+  // "Projects near you" (React) sits between the hero (search + live map + stats) and the rest.
+  const [heroHtml, restHtml = ''] = landingHtml.split('<!--SPLIT-->');
 
   return (
     <>
       {/* Icon font, loaded without blocking the first paint (shared with every page). */}
       <IconFont />
       {/* Organization + WebSite JSON-LD come from the root layout (one source, no conflicting @ids). */}
-
-      {/* Real per-country project counts for the hero globe (read by landing.js). */}
-      <script
-        id="mpg-globe-data"
-        type="application/json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(globe) }}
-      />
 
       {/* One shared header across the whole site. */}
       <SiteHeader />

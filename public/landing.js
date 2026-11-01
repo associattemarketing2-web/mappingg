@@ -107,6 +107,100 @@
     const onEngage = () => { engaged = true; INTERACT.forEach(t => window.removeEventListener(t, onEngage)); maybeStart(); };
     INTERACT.forEach(t => on(window, t, onEngage, { passive: true, once: true }));
     new IntersectionObserver((es, obs) => es.forEach(e => { if (e.isIntersecting) { obs.disconnect(); near = true; maybeStart(); } }), { rootMargin: '300px' }).observe(liveBrowser);
+    // Until it loads, the hero shows a real map preview (localities + project
+    // counts). "Explore the live map" on it starts the live map at once; once
+    // the live map has loaded the preview is hidden.
+    liveFrame.addEventListener('load', () => { if (liveFrame.src) liveBrowser.classList.add('is-live'); });
+    if (byId('mapStart')) byId('mapStart').addEventListener('click', () => { liveBrowser.classList.add('is-starting'); startFrame(); });
+    // Preview controls: Map / Satellite swap the tiles (satellite ones load only when asked for);
+    // the sample project card can be closed.
+    liveBrowser.querySelectorAll('.hm-ov-layers [data-layer]').forEach(b => b.addEventListener('click', () => {
+      const sat = b.dataset.layer === 'sat';
+      liveBrowser.querySelectorAll('.hm-preview-tiles img').forEach(img => {
+        if (!img.dataset.osm) img.dataset.osm = img.src;
+        img.src = sat ? img.dataset.sat : img.dataset.osm;
+      });
+      liveBrowser.querySelectorAll('.hm-ov-layers [data-layer]').forEach(x => { const on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on); });
+    }));
+    if (byId('hmPcardX')) byId('hmPcardX').addEventListener('click', () => byId('hmPcard').classList.add('hide'));
+
+    // Hero map preview: it shows Mundhwa's project pins to everyone (server-
+    // rendered). "Near me" asks for the visitor's location and swaps in the
+    // projects around them; nothing is stored. With no projects near them, the
+    // Mundhwa pins stay.
+    (function () {
+      const box = liveBrowser.querySelector('.hm-preview');
+      const layer = box && box.querySelector('.hm-preview-tiles');
+      if (!layer) return;
+      const note = byId('hmPreviewNote'), T = 256;
+      const world = (lat, lng, z) => {
+        const n = T * Math.pow(2, z), s = Math.sin(lat * Math.PI / 180);
+        return { x: (lng + 180) / 360 * n, y: (0.5 - Math.log((1 + s) / (1 - s)) / (4 * Math.PI)) * n };
+      };
+      const esc = v => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+      function render(data, precise) {
+        const ps = (data && data.projects || []).filter(p => p.lat != null && p.lng != null);
+        const c = data && data.at;
+        if (!ps.length || !c) return false;
+        // The closest zoom that still fits most of the nearby projects in view.
+        let z = 14;
+        for (; z > 10; z--) {
+          const o = world(c.lat, c.lng, z);
+          const fit = ps.filter(p => { const q = world(p.lat, p.lng, z); return Math.abs(q.x - o.x) < 250 && Math.abs(q.y - o.y) < 180; }).length;
+          if (fit >= Math.min(ps.length, 8)) break;
+        }
+        const o = world(c.lat, c.lng, z), tx = Math.floor(o.x / T), ty = Math.floor(o.y / T);
+        const x0 = tx - (o.x / T - tx < 0.5 ? 2 : 1), y0 = ty - (o.y / T - ty < 0.5 ? 2 : 1);
+        const ox = o.x - x0 * T, oy = o.y - y0 * T;
+        const sat = !!box.querySelector('[data-layer="sat"].on');
+        let html = '';
+        for (let j = 0; j < 4; j++) for (let i = 0; i < 4; i++) {
+          const osm = `https://tile.openstreetmap.org/${z}/${x0 + i}/${y0 + j}.png`;
+          const st = `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/${z}/${y0 + j}/${x0 + i}`;
+          html += `<img src="${sat ? st : osm}" data-osm="${osm}" data-sat="${st}" alt="" width="256" height="256" style="left:${i * T}px;top:${j * T}px" decoding="async">`;
+        }
+        ps.forEach((p, k) => {
+          const q = world(p.lat, p.lng, z), dx = q.x - o.x, dy = q.y - o.y;
+          if (Math.abs(dx) > 480 || Math.abs(dy) > 480) return;
+          html += `<a class="hm-ppin" href="${esc(p.href)}" data-quickview="${+p.number}" title="${esc(p.title)}" style="left:${Math.round(ox + dx)}px;top:${Math.round(oy + dy)}px;--d:${(k * 0.04).toFixed(2)}s">`
+            + `<span>${p.image ? `<img src="${esc(p.image)}" alt="" loading="lazy" decoding="async">` : '<i class="fas fa-building"></i>'}</span><em>${esc(p.title)}</em></a>`;
+        });
+        if (precise) html += `<span class="hm-me" style="left:${Math.round(ox)}px;top:${Math.round(oy)}px" title="You are here"></span>`;
+        layer.innerHTML = html;
+        layer.style.left = `calc(50% - ${Math.round(ox)}px)`;
+        layer.style.top = `calc(50% - ${Math.round(oy)}px)`;
+        const a = data.area, place = (a && (a.locality || a.city)) || c.city || 'you';
+        if (note) note.textContent = `${ps.length} project${ps.length === 1 ? '' : 's'} near ${place} · 3 projects free, no sign-up`;
+        box.classList.add('is-local');
+        return true;
+      }
+      const load = (q, precise) => fetch(`/api/nearby?${q}&limit=24`, { credentials: 'omit' })
+        .then(r => (r.ok ? r.json() : null)).then(d => render(d, precise)).catch(() => false);
+      const position = () => new Promise((res, rej) => navigator.geolocation.getCurrentPosition(
+        p => res(p.coords), rej, { enableHighAccuracy: false, timeout: 10000, maximumAge: 600000 }));
+      const usePrecise = () => position().then(cd => load(`lat=${cd.latitude.toFixed(3)}&lng=${cd.longitude.toFixed(3)}`, true));
+
+      const nearBtn = box.querySelector('[data-near]');
+      if (nearBtn) nearBtn.addEventListener('click', () => {
+        if (!('geolocation' in navigator)) { toast('Your browser can’t share its location', 'fa-circle-info'); return; }
+        nearBtn.classList.add('busy');
+        usePrecise()
+          .then(ok => {
+            if (ok) { nearBtn.classList.add('on'); nearBtn.setAttribute('aria-pressed', 'true'); }
+            else toast('No projects mapped within 25 km of you yet', 'fa-circle-info');
+          })
+          .catch(() => toast('Location access is off — allow it in your browser to see projects near you', 'fa-circle-info'))
+          .then(() => nearBtn.classList.remove('busy'));
+      });
+    })();
+  }
+
+  // Phones: a "Live Map / Sign Up Free" bar for guests once the hero is scrolled past.
+  const sticky = byId('hmSticky'), heroEl = byId('home');
+  if (sticky && heroEl && 'IntersectionObserver' in window) {
+    const so = new IntersectionObserver(es => es.forEach(e => sticky.classList.toggle('show', !e.isIntersecting)), { rootMargin: '-120px 0px 0px 0px' });
+    so.observe(heroEl);
+    __cleanups.push(() => so.disconnect());
   }
   // Full-screen button: opens the real /map page. Guests get the same 3 free
   // projects there (?trial=home, counted under TAP_KEY by MapAuthGate), then sign-in.
@@ -162,6 +256,62 @@
     if (getUser()) return;
     e.preventDefault(); openModal('signup', null, 'Sign in to open the live map.');
   }));
+  // "Explore Live Map" / "Start Exploring": guests get the full-screen trial map
+  // (3 free projects, then sign-in); signed-in visitors the normal live map.
+  document.querySelectorAll('.trial-link').forEach(a => a.addEventListener('click', e => {
+    if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault(); openMapFull();
+  }));
+
+  /* ---------- Counts under the hero: count up once scrolled into view ---------- */
+  (function () {
+    const els = document.querySelectorAll('.hm-count[data-count]');
+    if (!els.length || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const run = el => {
+      const end = +el.dataset.count || 0, suffix = el.dataset.suffix || '', t0 = performance.now(), dur = 1200;
+      const step = now => {
+        const k = Math.min(1, (now - t0) / dur), v = Math.round(end * (1 - Math.pow(1 - k, 3)));
+        el.textContent = v.toLocaleString('en-IN') + (k === 1 ? suffix : '');
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { io.unobserve(e.target); run(e.target); } }), { threshold: .6 });
+    els.forEach(el => io.observe(el));
+    __cleanups.push(() => io.disconnect());
+  })();
+
+  /* ---------- "Built for every home buyer": "See how it works" video ---------- */
+  (function () {
+    const dlg = byId('hmVideo'), btn = byId('hmVideoBtn');
+    if (!dlg || !btn || typeof dlg.showModal !== 'function') { if (btn) btn.hidden = true; return; }
+    const vid = dlg.querySelector('video');
+    btn.addEventListener('click', () => { dlg.showModal(); try { const p = vid.play(); if (p && p.catch) p.catch(() => {}); } catch (e) {} });
+    const close = () => dlg.close();
+    byId('hmVideoX').addEventListener('click', close);
+    dlg.addEventListener('click', e => { if (e.target === dlg) close(); }); // click outside the video
+    dlg.addEventListener('close', () => vid.pause());
+  })();
+
+  /* ---------- "See what's around every project" (illustration) ---------- */
+  // The list on the left, the thumbnails under the picture and the chips on it
+  // all pick a category: its chip is highlighted and the others fade. The
+  // Map / Satellite tabs switch the background.
+  (function () {
+    const box = byId('hmAerial');
+    if (!box) return;
+    const pick = poi => {
+      box.dataset.poi = poi;
+      box.querySelectorAll('.hm-thumbs button').forEach(b => b.classList.toggle('on', b.dataset.poi === poi));
+      document.querySelectorAll('#hmPoiList button').forEach(b => b.classList.toggle('on', b.dataset.poi === poi));
+    };
+    document.querySelectorAll('#hmPoiList button, #hmThumbs button').forEach(b => b.addEventListener('click', () => pick(b.dataset.poi)));
+    box.querySelectorAll('.hm-chip').forEach(c => c.addEventListener('click', () => pick(box.dataset.poi === c.dataset.poi ? 'all' : c.dataset.poi)));
+    box.querySelectorAll('.hm-aerial-tabs button').forEach(b => b.addEventListener('click', () => {
+      box.dataset.view = b.dataset.view;
+      box.querySelectorAll('.hm-aerial-tabs button').forEach(x => { const on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-selected', on); });
+    }));
+  })();
 
   /* ---------- Hero search ---------- */
   // Hero search is a plain GET form to /projects (public, no sign-in needed).

@@ -3,12 +3,15 @@ import { clientIp, rateLimit } from '@/lib/rate-limit';
 import { getProjectCards } from '@/lib/home/cards';
 import { coarseCoords } from '@/lib/home/finder';
 import { nearbyFrom, nearbyLocality } from '@/lib/home/nearby';
+import { locate } from '@/lib/site-analytics';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 // GET /api/nearby?lat=&lng=   — projects closest to the visitor's location
 // GET /api/nearby?locality=   — projects in and around a chosen locality
+// GET /api/nearby?auto=1      — projects around the visitor's city, from their IP
+//                               (the city's centre point, not their position)
 //
 // Used by the home page's "Projects near you" carousel and to pre-fill the
 // sign-up form's "Preferred area". Coordinates are rounded to ~100 m, used for
@@ -32,7 +35,16 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(res, { headers });
   }
 
+  // Approximate: the city the visitor's IP belongs to (home page hero map, before
+  // they share their location). The IP is looked up in memory and not stored.
+  if (sp.get('auto') === '1') {
+    const g = await locate(clientIp(req));
+    const c = coarseCoords(g.lat, g.lng);
+    if (!c) return NextResponse.json({ area: null, projects: [], at: null }, { headers });
+    return NextResponse.json({ ...nearbyFrom(cards, c.lat, c.lng, limit), at: { ...c, city: g.city || '' }, via: 'ip' }, { headers });
+  }
+
   const at = coarseCoords(sp.get('lat'), sp.get('lng'));
   if (!at) return NextResponse.json({ error: { message: 'Send lat & lng, or a locality' } }, { status: 400 });
-  return NextResponse.json(nearbyFrom(cards, at.lat, at.lng, limit), { headers });
+  return NextResponse.json({ ...nearbyFrom(cards, at.lat, at.lng, limit), at }, { headers });
 }
