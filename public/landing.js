@@ -984,21 +984,17 @@
     if (!s) promptSignIn();
   }).catch(() => {});
 
-  // A guest is invited to sign in only once engaged — 45 s on this page, or from their
-  // 2nd page view this session — and at most once per browser session. Same rule and
-  // sessionStorage keys as the other pages' prompt (components/SignInPrompt.tsx), so a
-  // first-time visitor can read the page and search before any popup.
+  // Every guest landing on the home page gets the Sign in / Sign up popup shortly
+  // after it loads (each visit; closing it lets them browse). Not inside an iframe
+  // (the home page's embedded map), and not if a deep-link already opened it.
   function promptSignIn() {
     try { if (window.self !== window.top) return; } catch (e) { return; }
-    const ss = k => { try { return sessionStorage.getItem(k); } catch (e) { return null; } };
-    if (ss('mg-signin-prompted')) return;
-    const views = +ss('mg-pv') || 1;
     setTimeout(function () {
       // Skip if the visitor already left the home page (this markup is gone) or got in.
-      if (!modal || !document.contains(modal) || modal.classList.contains('is-open') || getUser() || ss('mg-signin-prompted')) return;
+      if (!modal || !document.contains(modal) || modal.classList.contains('is-open') || getUser()) return;
       try { sessionStorage.setItem('mg-signin-prompted', '1'); } catch (e) {}
       openModal('signin', null, 'Sign in, or create a free account, to explore every project on the live map.');
-    }, views >= 2 ? 1000 : 45000);
+    }, 1500);
   }
 
   // The shared <SiteHeader/> lives outside this markup; it asks us to open the
