@@ -314,10 +314,26 @@
   })();
 
   /* ---------- Hero search ---------- */
+  // Phones have room for a fuller hint in the full-width search field.
+  if (byId('heroAskInput') && window.matchMedia('(max-width: 720px)').matches) byId('heroAskInput').placeholder = 'Search location, project, developer or landmark…';
+  // Phones show sign-in / sign-up fields without labels above them (app/mobile-home.css),
+  // so the hint inside each field names it.
+  if (window.matchMedia('(max-width: 720px)').matches) {
+    [['si-email', 'Email ID'], ['si-pass', 'Password'], ['su-name', 'Full Name'], ['su-email', 'Email ID'], ['su-phone', 'Mobile Number'],
+     ['su-pass', 'Create Password (8+ characters)'], ['wa-phone', 'Mobile Number'], ['fp-phone', 'Mobile Number']]
+      .forEach(([id, text]) => { if (byId(id)) byId(id).placeholder = text; });
+  }
   // Hero search is a plain GET form to /projects (public, no sign-in needed).
-  // Empty filters are left out so the results URL stays short.
-  if (byId('heroAskForm')) byId('heroAskForm').addEventListener('submit', () => {
-    byId('heroAskForm').querySelectorAll('input[name], select[name]').forEach(el => { if (!String(el.value).trim()) el.disabled = true; });
+  // Empty filters are left out so the results URL stays short, and so are
+  // hidden ones (the City picker shows on phones only).
+  if (byId('heroAskForm')) byId('heroAskForm').addEventListener('submit', (e) => {
+    // Phones label the button "Explore on Map": with nothing searched or filtered
+    // it opens the live map; with a search or filters it lists the matches.
+    const val = id => (byId(id) && String(byId(id).value).trim()) || '';
+    if (byId('heroCity') && byId('heroCity').offsetParent && !val('heroAskInput') && !val('heroBhk') && !val('heroBudget')) {
+      e.preventDefault(); openMapFull(); return;
+    }
+    byId('heroAskForm').querySelectorAll('input[name], select[name]').forEach(el => { if (!String(el.value).trim() || !el.offsetParent) el.disabled = true; });
     setTimeout(() => byId('heroAskForm') && byId('heroAskForm').querySelectorAll('[name]').forEach(el => { el.disabled = false; }), 0);
   });
 
@@ -583,8 +599,13 @@
     if (forgotForm) forgotForm.classList.remove('is-active');
     if (byId('waLoginForm')) byId('waLoginForm').classList.remove('is-active');
     successView.classList.remove('is-active'); byId('roleBlock').hidden = false; byId('authTabs').hidden = false;
-    byId('modalTitle').textContent = isIn ? 'Sign in' : (currentRole() === 'buyer' ? 'Explore every project' : 'Create your account');
-    byId('modalSub').textContent = reason || (isIn ? 'Choose your account type, then sign in.' : 'Takes less than a minute.');
+    // Phones use the mobile mockup's wording (app/mobile-home.css styles that screen).
+    const phone = window.matchMedia('(max-width: 720px)').matches;
+    byId('modalTitle').textContent = phone ? (isIn ? 'Welcome Back' : 'Create Your Account')
+      : isIn ? 'Sign in' : (currentRole() === 'buyer' ? 'Explore every project' : 'Create your account');
+    byId('modalSub').textContent = reason || (phone
+      ? (isIn ? 'Sign in to continue your property search and saved preferences.' : 'Get a personalized experience, save projects, compare & more.')
+      : (isIn ? 'Choose your account type, then sign in.' : 'Takes less than a minute.'));
     renderSide();
     modal.classList.add('is-open'); document.body.style.overflow = 'hidden';
     // Hides the cookie banner while the modal is open so it can't cover the submit button.
@@ -604,7 +625,9 @@
   __cleanups.push(() => document.body.classList.remove('mpg-auth-open'));
   document.querySelectorAll('#roleTiles input').forEach(r => r.addEventListener('change', renderSide));
   tabs.forEach(t => t.addEventListener('click', () => openModal(t.dataset.tab)));
-  document.querySelectorAll('.pass-toggle').forEach(b => b.addEventListener('click', () => {
+  // Wired once per button: a second run of this script over the same markup (React
+  // Strict Mode re-mounts in development) would otherwise flip it twice per tap.
+  document.querySelectorAll('.pass-toggle:not([data-wired])').forEach(b => (b.dataset.wired = '1', b).addEventListener('click', () => {
     const inp = b.previousElementSibling, show = inp.type === 'password';
     inp.type = show ? 'text' : 'password'; b.innerHTML = show ? '<i class="fas fa-eye-slash"></i>' : '<i class="fas fa-eye"></i>';
   }));

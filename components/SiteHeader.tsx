@@ -121,12 +121,12 @@ export default function SiteHeader() {
   }
 
   return (
-    <header className={`shd${scrolled ? ' scrolled' : ''}`}>
+    <header className={`shd${scrolled ? ' scrolled' : ''}${pathname === '/' ? ' shd-home' : ''}`}>
       <div className="shd-wrap">
         <div className="shd-bar">
           <Link href="/" className="shd-brand" aria-label="Mappingg.com home" onClick={() => setOpen(false)}>
             <span className="mark" aria-hidden="true" />
-            <b>Mappingg<em>.com</em></b>
+            <span className="shd-name"><b>Mappingg<em>.com</em></b><small className="shd-tag">India&apos;s Real Estate Project Map</small></span>
           </Link>
 
           <nav className="shd-menu">

@@ -8,7 +8,8 @@
 // <!--MAP_PREVIEW--> (real map + locality counts shown until the live map loads),
 // <!--BUYER_JOURNEY--> ("Built for every home buyer": features, photo panel, live counts),
 // <!--STATS_STRIP--> (counts + quick links under the hero) / <!--STATS_BAND--> (live counts), <!--DEV_LOGOS-->, and
-// <!--SPLIT--> where the React "Projects near you" goes.
+// <!--SPLIT--> where the React "Projects near you" goes. The <!--M_…--> markers are
+// phone-only sections (components/landing/mobile-sections.ts, hidden above 720 px).
 // Styles: app/home.css (sections) + app/landing.css (modal, live-map trial).
 import { COUNTRY_CODES } from '@/lib/country-codes';
 import { BHK_OPTIONS, BUDGET_OPTIONS } from '@/lib/home/finder';
@@ -34,6 +35,7 @@ export const LANDING_BODY = `
       <span class="hm-kicker"><span class="dot"></span>India's real estate project map</span>
       <h1>Find your next home <span>by location.</span></h1>
       <p class="hm-lead">Explore verified residential projects with real locations, prices, RERA details, nearby infrastructure and amenities — all in one interactive map.</p>
+      <!--M_TRUST-->
 
       <div class="hm-search">
         <div class="hm-tabs" aria-label="What are you looking for">
@@ -46,10 +48,12 @@ export const LANDING_BODY = `
             <input id="heroAskInput" name="q" type="search" placeholder="Locality" autocomplete="off" enterkeyhint="search" maxlength="80"></label>
           <label class="hm-field"><span class="sr-only">BHK</span><select id="heroBhk" name="bhk"><option value="">Any BHK</option>${BHK_SELECT}</select></label>
           <label class="hm-field"><span class="sr-only">Budget</span><select id="heroBudget" name="budget"><option value="">Any budget</option>${BUDGET_SELECT}</select></label>
-          <button type="submit" class="hm-btn hm-btn-solid"><i class="fas fa-magnifying-glass" aria-hidden="true"></i> Search Projects</button>
+          <label class="hm-field hm-field-city"><span class="sr-only">City</span><select id="heroCity" name="city"><option value="">Any city</option><option value="pune" selected>Pune</option><option value="mumbai">Mumbai</option></select></label>
+          <button type="submit" class="hm-btn hm-btn-solid"><i class="fas fa-magnifying-glass hm-d" aria-hidden="true"></i><i class="far fa-map hm-m" aria-hidden="true"></i> <span class="hm-d">Search Projects</span><span class="hm-m">Explore on Map</span><i class="fas fa-arrow-right hm-m" aria-hidden="true"></i></button>
         </form>
         <!--HERO_CHIPS-->
       </div>
+      <!--M_CATS-->
     </div>
   </div>
 
@@ -82,6 +86,8 @@ export const LANDING_BODY = `
 <!--STATS_STRIP-->
 
 <!--SPLIT-->
+
+<!--M_DISCOVER-->
 
 <section class="hm-sec hm-around" id="features">
   <div class="hm-wrap hm-around-grid">
@@ -199,6 +205,8 @@ export const LANDING_BODY = `
 </section>
 
 <!--BUYER_JOURNEY-->
+
+<!--M_INSIGHTS-->
 
 <section class="hm-band" aria-label="Mappingg in numbers">
   <div class="hm-wrap"><!--STATS_BAND--></div>

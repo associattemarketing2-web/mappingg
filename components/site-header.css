@@ -89,3 +89,32 @@
 .shd-mobile .shd-contact-tx a { padding: 4px 0; min-height: 24px; display: flex; align-items: center; font-size: 13px; font-weight: 600; color: var(--forest); background: none; overflow-wrap: anywhere; }
 .shd-mobile .shd-contact .mg-socials a { width: 36px; height: 36px; padding: 0; display: grid; place-items: center; border-radius: 50%; background: #fff; border: 1px solid #e5ddcc; color: #0f5c47; font-size: 0; }
 .shd-mobile .shd-contact .mg-socials a:hover { background: #0f5c47; border-color: #0f5c47; color: #fff; }
+
+/* Brand tagline: shown only on the home page's phone layout (like its mockup). */
+.shd-name { display: inline-flex; flex-direction: column; line-height: 1.1; }
+.shd-tag { display: none; font-size: 10.5px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+@media (max-width: 720px) {
+  .shd-home .shd-tag { display: block; margin-top: 2px; }
+  /* See-through over the hero photo until scrolled, with the search icon and a plain burger (Sign Up stays). */
+  .shd-home:not(.scrolled) { background: transparent; border-bottom-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .shd-home .shd-right > .shd-search { display: inline-flex; width: 40px; height: 40px; align-items: center; justify-content: center; color: var(--ink); }
+  .shd-home .shd-right > .shd-search svg { width: 22px; height: 22px; }
+  .shd-home .shd-burger { border-color: transparent; background: transparent; font-size: 22px; color: var(--ink); }
+}
+
+/* Home page on phones: Sign Up stays in the bar at every width (a compact pill, the
+   same buyer sign-up as the menu's). On narrow phones the search icon gives up its
+   place, since the hero's search box sits just below. */
+@media (max-width: 720px) {
+  .shd-home .shd-right { gap: 6px; }
+  .shd-home .shd-right > .shd-btn.primary { display: inline-flex; padding: 8px 14px; border-radius: 999px; font-size: 13px; box-shadow: 0 8px 18px -10px rgba(15, 92, 71, .7); }
+}
+@media (max-width: 400px) {
+  .shd-home .shd-right > .shd-search { display: none; }
+  .shd-home .shd-tag { font-size: 9.5px; }
+}
+@media (max-width: 340px) {
+  .shd-home .shd-right > .shd-btn.primary { padding: 7px 11px; font-size: 12px; }
+  .shd-home .shd-brand b { font-size: 17px; }
+  .shd-home .shd-tag { font-size: 8.5px; white-space: nowrap; }
+}
