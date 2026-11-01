@@ -159,6 +159,39 @@ export const getPinsByNumber = cache(async (n: number): Promise<Pin[]> => {
  * projects share the number, the one whose canonical slug is the URL wins, so
  * each keeps its own page; any other prefix resolves to the first, as before.
  */
+/**
+ * Duplicate listings hidden by the admin clean-ups carry `duplicate_of` (the id of
+ * the listing that was kept). Their old URLs — linked from blog posts and indexed
+ * by Google — should land on the kept project instead of a 404. Returns the kept
+ * project's canonical slug, following a short chain (A → B → C), or null.
+ */
+const readDuplicateTarget = cachedRead('seo-duplicate-target', ['pins'], 600, async (n: number): Promise<string | null> => {
+  const byNumber = await runDbOp({ table: 'pins', action: 'select', filters: [{ op: 'eq', col: 'number', val: n }] }, true);
+  if (byNumber.error || !Array.isArray(byNumber.data)) throw new Error(`pin ${n} read failed: ${byNumber.error?.message || 'no data'}`);
+  let next = (byNumber.data as (Pin & { hidden?: boolean; duplicate_of?: string })[]).find((p) => p.hidden && p.duplicate_of)?.duplicate_of;
+  for (let hop = 0; next && hop < 4; hop++) {
+    const res = await runDbOp({ table: 'pins', action: 'select', filters: [{ op: 'eq', col: 'id', val: next }] }, true);
+    if (res.error || !Array.isArray(res.data)) throw new Error(`pin read failed: ${res.error?.message || 'no data'}`);
+    const kept = res.data[0] as (Pin & { hidden?: boolean; rejected?: boolean; pending_review?: boolean; duplicate_of?: string }) | undefined;
+    if (!kept) return null;
+    if (!kept.hidden && !kept.rejected && !kept.pending_review) {
+      return isPropertyProject(kept) ? slugForProject(withDisplayName(kept)) : null;
+    }
+    next = kept.duplicate_of;
+  }
+  return null;
+});
+
+export async function duplicateRedirectSlug(slug: string): Promise<string | null> {
+  const n = projectNumberFromSlug(slug);
+  if (n == null) return null;
+  try {
+    return await readDuplicateTarget(n);
+  } catch (e) {
+    return dbFailure(e, null);
+  }
+}
+
 export async function getPinBySlug(slug: string): Promise<Pin | null> {
   const n = projectNumberFromSlug(slug);
   if (n == null) return null;

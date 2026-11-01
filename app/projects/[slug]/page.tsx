@@ -1,10 +1,11 @@
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import SeoShell from '@/components/seo/SeoShell';
 import ProjectCard from '@/components/seo/ProjectCard';
 import {
   getPublicPins,
   getPinBySlug,
+  duplicateRedirectSlug,
   primaryLocality,
   cityOf,
   statusLabel,
@@ -48,7 +49,13 @@ const specRows = (pin: Pin): { k: string; v: string }[] =>
 
 export default async function ProjectDetail({ params }: { params: { slug: string } }) {
   const pin = await getPinBySlug(params.slug);
-  if (!pin) notFound(); // normally already thrown by generateMetadata
+  if (!pin) {
+    // Normally already handled by generateMetadata; repeated here because the page
+    // can finish first on an uncached request.
+    const kept = await duplicateRedirectSlug(params.slug);
+    if (kept) permanentRedirect(`/projects/${kept}`);
+    notFound();
+  }
 
   const loc = primaryLocality(pin);
   const cityKey = cityOf(pin);

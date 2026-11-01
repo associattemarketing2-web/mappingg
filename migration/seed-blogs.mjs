@@ -72,8 +72,10 @@ function makeHelpers(pins) {
   const href = (p) => `/projects/${projectSlug(p.title, localitiesOf(p.location)[0] || '', Number(p.number))}`;
   const locality = (p) => localitiesOf(p.location)[0] || 'Pune';
   const price = (p) => (p.price || '').trim() || 'Price on request';
-  // MahaRERA (P52100054261, PR1264042501296) or Karnataka RERA (PRM/KA/RERA/…).
-  const cleanRera = (r) => (r && /^(P[A-Z0-9]{8,}|PRM\/KA\/RERA\/\d)/.test(r.trim()) ? r.trim() : '');
+  // MahaRERA (P52100054261, PR1264042501296), Karnataka RERA (PRM/KA/RERA/…),
+  // UP RERA (UPRERAPRJ123456 or UPRERAPRJ123456/03/2025) or HARERA Gurugram (GGM/…).
+  const cleanRera = (r) =>
+    (r && /^(P[A-Z0-9]{8,}|PRM\/KA\/RERA\/\d|UPRERAPRJ\d+(\/\d{2}\/\d{4})?$|GGM\/\d+\/\d+\/\d{4}\/\d+$)/.test(r.trim()) ? r.trim() : '');
 
   /** <a> to a project page. */
   const link = (n, text) => {
@@ -3497,6 +3499,166 @@ function capitalGainsArticle() {
 
 // ---- photos ---------------------------------------------------------------------
 
+function noidaArticle(h) {
+  const UP = 'UP RERA no.';
+  return {
+    slug: 'new-projects-in-noida-greater-noida-yamuna-expressway',
+    title: 'New Projects in Noida (2026): Noida, Greater Noida West, Greater Noida & Yamuna Expressway',
+    seo_title: 'New Projects in Noida & Greater Noida 2026: UP RERA List',
+    seo_description:
+      '50+ new residential projects in Noida, Greater Noida West, Greater Noida and the Yamuna Expressway (YEIDA) by Godrej, Sobha, Eldeco, Gaurs and more — with possession dates and UP RERA numbers.',
+    excerpt:
+      'Every Noida-region project on our map, area by area: the projects due first, large 4 and 5 BHK homes, Godrej, Sobha, Eldeco and Gaurs launches, and the Yamuna Expressway sectors — with UP RERA numbers.',
+    tags: ['Noida', 'Greater Noida', 'Yamuna Expressway', 'New Projects', 'UP RERA'],
+    cover: {
+      theme: 'sky',
+      kicker: 'City guide',
+      lines: ['New Projects in', 'Noida & Greater Noida', '2026 Buyer’s Guide'],
+      stats: [['50+', 'projects tracked'], ['Dec 2026', 'earliest possession'], ['UP RERA', 'numbers listed']],
+      tagline: 'Delhi NCR’s live real-estate map',
+    },
+    content: `
+<p>Looking for <strong>new projects in Noida</strong>? The Noida region now has some of the most active housing launches in Delhi NCR, from large towers in Greater Noida West to new townships along the Yamuna Expressway. On the <a href="/cities/delhi">Mappingg map of Delhi NCR</a> we track more than 50 projects in Noida, Greater Noida and the Yamuna Expressway area, and every one of them in this guide shows its Uttar Pradesh RERA (UP RERA) registration number. This guide sorts them by area, possession date and home size so you can shortlist faster.</p>
+
+<h2>How the Noida region is divided</h2>
+<p>Three development authorities plan the region, and the authority matters: it decides the sector names, the approvals and who gives the final completion certificate.</p>
+<ul>
+  <li><strong>Noida</strong> (Noida Authority): numbered sectors such as Sector 75, 105, 128 and 150, including the sectors along the Noida–Greater Noida Expressway.</li>
+  <li><strong>Greater Noida and Greater Noida West</strong> (Greater Noida Authority): Greek-letter sectors such as Pi, Mu, Sigma, Zeta and Omicron, plus Greater Noida West (also called Noida Extension) and the Tech Zones.</li>
+  <li><strong>Yamuna Expressway</strong> (YEIDA): sectors such as 22A, 22D and 25 along the expressway towards Jewar, where the Noida International Airport is being built.</li>
+</ul>
+
+<h2>Projects due first: possession by 2027</h2>
+<p>Most new launches in the Noida region are due between 2028 and 2031. These projects on our map have the earliest possession dates declared to UP RERA:</p>
+${h.table([623, 516, 872, 617, 1024, 570, 611], 'Noida-region projects due by 2027', UP)}
+<p>${h.link(611)} is a Central Government Employees Welfare Housing Organisation (CGEWHO) scheme, which is normally open only to eligible central government employees. Check eligibility before you plan around it.</p>
+
+<h2>Large homes: 4 BHK, 5 BHK and penthouses</h2>
+<p>If you want a bigger home, ${h.link(617)} on the Noida Expressway (Sector 128) offers 4 and 5+ BHK homes, ${h.link(515)} in Sector 105 has 4 BHK, 5+ BHK and penthouses, and ${h.link(529)} in Sector 151 also offers penthouses. In Greater Noida, ${h.link(578)} by Gaurs has 4 and 5+ BHK homes, while ${h.link(590)} in Sector 94 and ${h.link(583)} in Dadri focus on 4 BHK homes.</p>
+${h.table([617, 515, 529, 578, 590, 583], 'Noida-region projects with 4 BHK homes and larger', UP)}
+
+<h2>Projects by the big developers</h2>
+<p>Godrej Properties has five projects on our map here: ${h.link(581)} in Sector 146, ${h.link(615)} in Greater Noida Sector 12, ${h.link(580)} in Sigma III, ${h.link(616)} in Jhatta and the commercial ${h.link(579)} in Sector 44. Sobha has ${h.link(530)} in Sector 36 and ${h.link(531)} in Greater Noida. Eldeco has ${h.link(573)} in Omicron 1A, ${h.link(574)} and ${h.link(613)} on the Yamuna Expressway, and ${h.link(623)}. Gaurs has ${h.link(578)}, ${h.link(614)} and ${h.link(577)}. Also on the map are ${h.link(621)} by Larsen &amp; Toubro, ${h.link(575)} by Experion and ${h.link(1024)} by Prateek.</p>
+${h.table([581, 615, 580, 616, 530, 531, 573, 621, 575], 'Noida-region projects by large developers', UP)}
+
+<h2>Area by area</h2>
+<h3>Noida and the Noida–Greater Noida Expressway</h3>
+<p>Along the expressway, look at ${h.link(617)} (Sector 128), ${h.link(581)} (Sector 146), ${h.link(566)} (Sector 150) and ${h.link(529)} (Sector 151). Elsewhere in Noida, the map shows ${h.link(515)} in Sector 105, ${h.link(590)} in Sector 94, ${h.link(788)} in Sector 75, ${h.link(575)} in Sector 45 and ${h.link(530)} in Sector 36.</p>
+<h3>Greater Noida West (Noida Extension)</h3>
+<p>${h.link(571)} and ${h.link(615)} are in Sector 12, ${h.link(1023)} in Sector 16C, ${h.link(532)} in Sector 1 and ${h.link(872)} in Tech Zone IV (due December 2026). ${h.link(589)} and ${h.link(619)} are also nearby.</p>
+<h3>Greater Noida</h3>
+<p>The Greek-letter sectors have ${h.link(858)} in Sector Pi, ${h.link(785)} in Sector Mu, ${h.link(580)} in Sigma III, ${h.link(520)} in Zeta I, ${h.link(521)} in Eta 2, ${h.link(573)} in Omicron 1A and ${h.link(612)} in Chi 5. Also here are ${h.link(567)} in Sector 2, ${h.link(578)} in Sector 20, ${h.link(865)} in Techzone 7, ${h.link(586)}, ${h.link(610)}, ${h.link(531)} and ${h.link(611)}. Around Momnathal, ${h.link(623)} and ${h.link(1024)} are among the earliest projects due on our map.</p>
+<h3>Yamuna Expressway (YEIDA)</h3>
+<p>Sector 22D has the most launches: ${h.link(574)}, ${h.link(613)}, ${h.link(614)}, ${h.link(577)}, ${h.link(568)} and ${h.link(522)}. In Sector 22A, ${h.link(585)} and ${h.link(542)} also offer 1 BHK and studio homes. ${h.link(618)} is in Sector 25 (Jaypee Greens Sports City), and ${h.link(519)} is in the YEIDA area too. Most of these are due between 2028 and 2031.</p>
+<h3>Dadri and Wave City</h3>
+<p>Towards Dadri, the map shows ${h.link(570)} (due September 2027), ${h.link(516)} (December 2026), ${h.link(583)}, ${h.link(569)}, ${h.link(572)} and ${h.link(582)}. ${h.link(540)} is in Wave City, off NH-24.</p>
+
+<h2>How to check a UP RERA number</h2>
+<ol>
+  <li>Find the registration number on the developer’s brochure, website or ads. In Uttar Pradesh it starts with <code>UPRERAPRJ</code>, and newer numbers end with the month and year of registration, for example <code>UPRERAPRJ123456/03/2025</code>.</li>
+  <li>Search for it on the official UP RERA website, <strong>up-rera.in</strong>, under registered projects.</li>
+  <li>Check that the promoter’s name, project name, plot and phase match what you are being sold. In Noida, the promoter registered with RERA is often a separate company from the brand on the hoarding, and large projects register each phase separately.</li>
+  <li>Note the completion date the developer declared. That is the date you can hold them to, not the one in the sales pitch.</li>
+</ol>
+<p>The steps are much the same in every state. Our guide on <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a> explains in more detail what to look for in a RERA registration.</p>
+
+<h2>Checklist before you book in Noida</h2>
+<ol>
+  <li><strong>Check the developer’s track record.</strong> Some older Noida and Greater Noida projects were delayed for years. Look at the developer’s past projects on UP RERA and visit one that is already handed over.</li>
+  <li><strong>Ask about land dues to the authority.</strong> Registration of flats can be held up if the builder owes money to the Noida, Greater Noida or YEIDA authority. Ask whether the land dues are paid and get your lawyer to check.</li>
+  <li><strong>Confirm the occupancy certificate timeline.</strong> In UP the authority issues the completion or occupancy certificate. Ask when the developer plans to apply for it. Our guide to the <a href="/blog/occupancy-certificate-oc-completion-certificate-pune">occupancy certificate</a> explains why it matters.</li>
+  <li><strong>Compare carpet area</strong> and work out the price per sq ft on carpet area, not on super area. Our guide to <a href="/blog/carpet-area-vs-built-up-vs-super-built-up-area">carpet vs built-up vs super built-up area</a> shows how.</li>
+  <li><strong>Check the commute.</strong> Open each project on the <a href="/map">live map</a> to see the expressways, metro lines and roads around it.</li>
+</ol>
+
+<h2>FAQs: New projects in Noida</h2>
+<h3>Which Noida projects can I move into soonest?</h3>
+<p>${h.link(623)}, ${h.link(516)}, ${h.link(872)} and ${h.link(617)} have declared possession in December 2026, the earliest among the projects in this guide.</p>
+<h3>Where are most new projects in the Noida region?</h3>
+<p>On our map, Greater Noida (including the Greek-letter sectors) and Sector 22D on the Yamuna Expressway have the most new launches.</p>
+<h3>Why don’t these projects show prices?</h3>
+<p>Most of these projects were added from their UP RERA registrations, which do not list selling prices. Ask the developer for a price sheet and compare it on carpet area.</p>
+<h3>Where can I see all Noida projects on a map?</h3>
+<p>Open the <a href="/cities/delhi">Delhi NCR page</a> for the full list, or the <a href="/map">interactive map</a>. Also looking at Gurugram? Read our guide to <a href="/blog/new-projects-in-gurugram">new projects in Gurugram</a>.</p>
+
+<blockquote>Configurations and possession dates are as listed on Mappingg in November 2026 and may change. Always confirm with the developer and on the UP RERA website before you book.</blockquote>
+`,
+  };
+}
+
+function gurugramArticle(h) {
+  const HR = 'HARERA no.';
+  return {
+    slug: 'new-projects-in-gurugram',
+    title: 'New Projects in Gurugram (2026): Golf Course Extension, Dwarka Expressway & New Gurugram',
+    seo_title: 'New Projects in Gurugram 2026: Prices & HARERA List',
+    seo_description:
+      'New residential projects and plotted colonies in Gurugram — Golf Course Extension Road, Dwarka Expressway and New Gurugram — by Godrej, Adani, Sobha and DLF, with prices from ₹2.03 Cr and HARERA numbers.',
+    excerpt:
+      'Every Gurugram project on our map: luxury apartments by Godrej, Adani and Sobha from ₹2.03 Cr, plotted colonies and independent floors, and the projects due first — with HARERA Gurugram numbers.',
+    tags: ['Gurugram', 'Gurgaon', 'New Projects', 'Dwarka Expressway', 'HARERA'],
+    cover: {
+      theme: 'slate',
+      kicker: 'City guide',
+      lines: ['New Projects in', 'Gurugram', '2026 Buyer’s Guide'],
+      stats: [['17', 'projects tracked'], ['₹2.03 Cr', 'homes from'], ['HARERA', 'numbers listed']],
+      tagline: 'Delhi NCR’s live real-estate map',
+    },
+    content: `
+<p>Looking for <strong>new projects in Gurugram</strong>? Gurugram (Gurgaon) has two very different kinds of new launch: high-rise luxury apartments by national developers, and plotted colonies where you buy land and build or buy an independent floor. On the <a href="/cities/delhi">Mappingg map of Delhi NCR</a> we track 17 Gurugram projects, each with its HARERA Gurugram registration number. This guide sorts them by budget, type and area.</p>
+
+<h2>Where the new projects are</h2>
+<ul>
+  <li><strong>Golf Course Extension Road</strong> (Sectors 63, 63A and 68): premium apartments and independent floors.</li>
+  <li><strong>Dwarka Expressway</strong> (Sectors 37D, 99A, 102, 104 and 106): the corridor towards Delhi’s Dwarka and the airport.</li>
+  <li><strong>New Gurugram</strong> (Sectors 76 to 95): mostly plotted colonies and mid-rise projects off NH-48.</li>
+  <li><strong>Other sectors:</strong> Sector 53 on Golf Course Road, Sector 80 and Sector 114.</li>
+</ul>
+
+<h2>Apartments with listed prices</h2>
+<p>Five projects on our map have a starting price listed. ${h.link(393)} by Sobha in Sector 106 starts at ₹2.03 Cr for serviced residences. ${h.link(391)} by Adani Realty in Sectors 102 and 102A starts at ₹4.25 Cr for 3 and 4 BHK homes. On Golf Course Extension Road, ${h.link(394)} by Sobha starts at ₹5.86 Cr and ${h.link(390)} by Adani at ₹6.09 Cr for 4 BHK independent floors. ${h.link(388)} by Godrej Properties in Sector 53 starts at ₹9.84 Cr.</p>
+${h.table([393, 391, 394, 390, 388], 'Gurugram projects with listed starting prices', HR)}
+<p>Also on the map, without a listed price yet: ${h.link(392)} by Godrej Properties in Sector 63A (3, 4 and 5 BHK, due March 2031) and ${h.link(389)} by Eldeco in Sector 80 (3 BHK). Ask the developers for a price sheet.</p>
+
+<h2>Plotted colonies and independent floors</h2>
+<p>Most of the Gurugram projects on our map are plotted developments. Some of them are due soon:</p>
+${h.table([591, 595, 562, 594, 546, 555, 543, 592, 593, 776], 'Plotted projects in Gurugram', HR)}
+<p>${h.link(776)} is DLF’s plotted project in Sector 84. GLS Infraprojects has two: ${h.link(546)} in Sector 95 and ${h.link(555)} in Sector 92. ${h.link(593)} in Sector 104 sells independent floors on its plots.</p>
+<p>Before you buy a plot, ask which licence the colony was approved under, whether the plot is for residential use, how many floors you may build and when the developer expects the completion certificate. Your lawyer should check the title and the licence with the Department of Town &amp; Country Planning, Haryana.</p>
+
+<h2>Projects due first</h2>
+<p>${h.link(591)} in Sector 37D and ${h.link(595)} in Sector 78 have declared completion in January 2027, ${h.link(562)} in Sector 76 in June 2027 and ${h.link(594)} in Sector 99A in December 2027. Among the apartment projects, ${h.link(390)} is due in September 2030, and the luxury towers are due between 2031 and 2033.</p>
+
+<h2>How to check a HARERA Gurugram number</h2>
+<ol>
+  <li>Find the registration number on the developer’s brochure or ads. Projects registered with HARERA Gurugram look like <code>GGM/1042/774/2026/14</code>. The second-last part is the year of registration.</li>
+  <li>Search for it on the official Haryana RERA website, <strong>haryanarera.gov.in</strong>, under the Gurugram registered projects.</li>
+  <li>Check that the promoter, project name, sector and phase match what you are being sold. The promoter on the registration can be a different company from the brand you see in the ads.</li>
+  <li>Note the completion date the developer declared. That is the date you can hold them to.</li>
+</ol>
+<p>Our guide on <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a> explains in more detail what to look for in any RERA registration.</p>
+
+<h2>Checklist before you book in Gurugram</h2>
+<ol>
+  <li><strong>Compare carpet area.</strong> Gurugram ads often quote super area. Work out the price per sq ft on carpet area. Our guide to <a href="/blog/carpet-area-vs-built-up-vs-super-built-up-area">carpet vs built-up vs super built-up area</a> explains the difference.</li>
+  <li><strong>Ask about water, power backup and sewage.</strong> Some newer sectors still depend on tankers or private supply. Ask how the project will be served.</li>
+  <li><strong>Check the road access.</strong> Open each project on the <a href="/map">live map</a> to see whether the sector roads to it are built.</li>
+  <li><strong>Budget for the extra costs:</strong> stamp duty, registration and GST on under-construction homes. Our guide to <a href="/blog/gst-on-flats-under-construction-ready-to-move">GST on flats</a> explains when GST applies.</li>
+</ol>
+
+<h2>FAQs: New projects in Gurugram</h2>
+<h3>What is the cheapest new apartment project in Gurugram on Mappingg?</h3>
+<p>Among the projects with a listed price, ${h.link(393)} starts at ₹2.03 Cr and ${h.link(391)} at ₹4.25 Cr.</p>
+<h3>Which Gurugram projects are due first?</h3>
+<p>${h.link(591)} and ${h.link(595)} have declared completion in January 2027, the earliest among the projects in this guide.</p>
+<h3>Where can I see all Gurugram projects on a map?</h3>
+<p>Open the <a href="/cities/delhi">Delhi NCR page</a> for the full list, or the <a href="/map">interactive map</a>. Also looking at Noida? Read our guide to <a href="/blog/new-projects-in-noida-greater-noida-yamuna-expressway">new projects in Noida and Greater Noida</a>.</p>
+
+<blockquote>Prices, configurations and possession dates are as listed on Mappingg in November 2026 and may change. Always confirm with the developer and on the Haryana RERA website before you book.</blockquote>
+`,
+  };
+}
+
 const PHOTO_DIR = path.resolve('migration/blog-photos');
 const CREDITS = JSON.parse(await readFile(path.join(PHOTO_DIR, 'credits.json'), 'utf8'));
 
@@ -3602,6 +3764,8 @@ async function main() {
     () => maintenanceArticle(),
     () => gstOnFlatsArticle(),
     () => capitalGainsArticle(),
+    () => noidaArticle(h),
+    () => gurugramArticle(h),
   ];
   let articles = [];
   for (const build of builders) {
