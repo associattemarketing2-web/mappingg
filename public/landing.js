@@ -315,7 +315,7 @@
 
   /* ---------- Hero search ---------- */
   // Phones have room for a fuller hint in the full-width search field.
-  if (byId('heroAskInput') && window.matchMedia('(max-width: 720px)').matches) byId('heroAskInput').placeholder = 'Search location, project, developer or landmark…';
+  if (byId('heroAskInput') && window.matchMedia('(max-width: 720px)').matches) byId('heroAskInput').placeholder = 'Search by location, project, developer…';
   // Phones show sign-in / sign-up fields without labels above them (app/mobile-home.css),
   // so the hint inside each field names it.
   if (window.matchMedia('(max-width: 720px)').matches) {
@@ -327,15 +327,63 @@
   // Empty filters are left out so the results URL stays short, and so are
   // hidden ones (the City picker shows on phones only).
   if (byId('heroAskForm')) byId('heroAskForm').addEventListener('submit', (e) => {
-    // Phones label the button "Explore on Map": with nothing searched or filtered
-    // it opens the live map; with a search or filters it lists the matches.
-    const val = id => (byId(id) && String(byId(id).value).trim()) || '';
-    if (byId('heroCity') && byId('heroCity').offsetParent && !val('heroAskInput') && !val('heroBhk') && !val('heroBudget')) {
+    // Phones (the City picker shows only there): both "Explore on Map" and
+    // "Search Projects" open the map, never the /projects list page.
+    if (byId('heroCity') && byId('heroCity').offsetParent) {
       e.preventDefault(); openMapFull(); return;
     }
     byId('heroAskForm').querySelectorAll('input[name], select[name]').forEach(el => { if (!String(el.value).trim() || !el.offsetParent) el.disabled = true; });
     setTimeout(() => byId('heroAskForm') && byId('heroAskForm').querySelectorAll('[name]').forEach(el => { el.disabled = false; }), 0);
   });
+
+  /* ---------- Phones: search mode tabs, voice search, shortcut cards ---------- */
+  // "Explore on Map" / "Search Projects" (app/mobile-home.css): the main button's label
+  // follows; both open the map (see the hero search submit above).
+  document.querySelectorAll('.mh-modes button').forEach(b => b.addEventListener('click', () => {
+    const form = byId('heroAskForm'), list = b.dataset.mode === 'list';
+    if (!form) return;
+    form.dataset.mode = b.dataset.mode;
+    document.querySelectorAll('.mh-modes button').forEach(x => { const on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on); });
+    if (byId('heroBtnLabel')) byId('heroBtnLabel').textContent = list ? 'Search Projects on Map' : 'Explore Projects on Map';
+    if (list && byId('heroAskInput')) byId('heroAskInput').focus();
+  }));
+  // Mic in the search field, only where the browser can listen (Chrome, Safari).
+  (function () {
+    const mic = byId('heroMic'), input = byId('heroAskInput');
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!mic || !input || !SR) return;
+    mic.hidden = false;
+    let rec = null;
+    mic.addEventListener('click', e => {
+      e.preventDefault();
+      if (rec) { rec.stop(); return; }
+      rec = new SR();
+      rec.lang = 'en-IN'; rec.interimResults = false; rec.maxAlternatives = 1;
+      rec.onresult = ev => { input.value = ev.results[0][0].transcript.replace(/[.?!]+$/, ''); input.focus(); };
+      rec.onend = () => { rec = null; mic.classList.remove('on'); };
+      mic.classList.add('on');
+      try { rec.start(); } catch (err) { rec = null; mic.classList.remove('on'); }
+    });
+  })();
+  // Shortcut cards: the arrow scrolls one page on (back to the start at the end); the dots follow.
+  (function () {
+    const row = byId('mhCats'), next = byId('mhCatsNext'), dots = byId('mhCatsDots');
+    if (!row || !next || !dots) return;
+    const pages = () => Math.max(1, Math.ceil((row.scrollWidth - 4) / row.clientWidth));
+    const sync = () => {
+      const n = pages(), at = Math.round(row.scrollLeft / Math.max(1, row.scrollWidth - row.clientWidth) * (n - 1)) || 0;
+      if (dots.children.length !== n) dots.innerHTML = '<span></span>'.repeat(n);
+      [...dots.children].forEach((d, i) => d.classList.toggle('on', i === at));
+    };
+    next.addEventListener('click', () => {
+      const end = row.scrollLeft + row.clientWidth >= row.scrollWidth - 4;
+      row.scrollTo({ left: end ? 0 : row.scrollLeft + row.clientWidth - 40, behavior: 'smooth' });
+    });
+    row.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    __cleanups.push(() => window.removeEventListener('resize', sync));
+    sync();
+  })();
 
   /* ---------- "See every project, differently" (illustrative area map) ---------- */
   (function () {

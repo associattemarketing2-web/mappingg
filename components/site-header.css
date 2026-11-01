@@ -93,28 +93,35 @@
 /* Brand tagline: shown only on the home page's phone layout (like its mockup). */
 .shd-name { display: inline-flex; flex-direction: column; line-height: 1.1; }
 .shd-tag { display: none; font-size: 10.5px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
-@media (max-width: 720px) {
-  .shd-home .shd-tag { display: block; margin-top: 2px; }
-  /* See-through over the hero photo until scrolled, with the search icon and a plain burger (Sign Up stays). */
-  .shd-home:not(.scrolled) { background: transparent; border-bottom-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
-  .shd-home .shd-right > .shd-search { display: inline-flex; width: 40px; height: 40px; align-items: center; justify-content: center; color: var(--ink); }
-  .shd-home .shd-right > .shd-search svg { width: 22px; height: 22px; }
-  .shd-home .shd-burger { border-color: transparent; background: transparent; font-size: 22px; color: var(--ink); }
-}
+.shd-burger svg { width: 20px; height: 20px; }
+/* Home-only icons (search for signed-in visitors, alerts): phones only. */
+.shd-bell, .shd-search-home { display: none; }
 
-/* Home page on phones: Sign Up stays in the bar at every width (a compact pill, the
-   same buyer sign-up as the menu's). On narrow phones the search icon gives up its
-   place, since the hero's search box sits just below. */
+/* Home page on phones: a white bar with rounded lower corners over the hero photo —
+   brand + tagline, then search, alerts and the menu (Login / Sign Up are in the menu). */
 @media (max-width: 720px) {
-  .shd-home .shd-right { gap: 6px; }
-  .shd-home .shd-right > .shd-btn.primary { display: inline-flex; padding: 8px 14px; border-radius: 999px; font-size: 13px; box-shadow: 0 8px 18px -10px rgba(15, 92, 71, .7); }
+  .shd-home, .shd-home:not(.scrolled) { background: #fff; border-bottom: 0; border-radius: 0 0 22px 22px; box-shadow: 0 10px 28px -18px rgba(16, 36, 29, .45); backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .shd-home .shd-bar { height: 68px; }
+  .shd-home .shd-mobile { top: 74px; }
+  .shd-home .shd-brand { gap: 9px; }
+  .shd-home .shd-brand .mark { width: 32px; height: 46px; }
+  .shd-home .shd-brand b { font-size: 21px; }
+  .shd-home .shd-tag { display: block; margin-top: 3px; font-size: 11px; color: #26342e; }
+  .shd-home .shd-right { gap: 2px; }
+  .shd-home .shd-right > .shd-btn { display: none; }
+  .shd-home .shd-right > .shd-search, .shd-home .shd-bell { position: relative; display: inline-flex; width: 40px; height: 40px; padding: 0; align-items: center; justify-content: center; border: 0; border-radius: 50%; background: none; color: var(--ink); cursor: pointer; }
+  .shd-home .shd-right > .shd-search svg, .shd-home .shd-bell svg { width: 23px; height: 23px; }
+  .shd-home .shd-bell .dot { position: absolute; top: 8px; right: 9px; width: 8px; height: 8px; border-radius: 50%; background: #e5372f; box-shadow: 0 0 0 2px #fff; }
+  .shd-home .shd-burger { width: 40px; height: 40px; border-color: transparent; background: transparent; color: var(--ink); font-size: 20px; }
+  .shd-home .shd-burger svg { width: 26px; height: 26px; }
 }
-@media (max-width: 400px) {
-  .shd-home .shd-right > .shd-search { display: none; }
+@media (max-width: 370px) {
+  .shd-home .shd-wrap { padding: 0 10px; }
+  .shd-home .shd-right > .shd-search, .shd-home .shd-bell, .shd-home .shd-burger { width: 34px; }
+  .shd-home .shd-brand b { font-size: 18px; }
+  .shd-home .shd-brand .mark { width: 26px; height: 38px; }
   .shd-home .shd-tag { font-size: 9.5px; }
 }
-@media (max-width: 340px) {
-  .shd-home .shd-right > .shd-btn.primary { padding: 7px 11px; font-size: 12px; }
-  .shd-home .shd-brand b { font-size: 17px; }
-  .shd-home .shd-tag { font-size: 8.5px; white-space: nowrap; }
+@media (max-width: 330px) {
+  .shd-home .shd-right > .shd-search { display: none; }
 }

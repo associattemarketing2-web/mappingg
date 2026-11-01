@@ -58,8 +58,8 @@ export default async function HomePage() {
     // "Trusted by developers" logo row (nothing is shown until a few developers have logos).
     .replace('<!--DEV_LOGOS-->', () => trustedDevelopersHtml(logos))
     // Phone-only sections around the existing ones (hidden above 720 px).
-    .replace('<!--M_TRUST-->', () => mobileTrustHtml())
-    .replace('<!--M_CATS-->', () => mobileCatsHtml())
+    .replace('<!--M_TRUST-->', () => mobileTrustHtml(cards))
+    .replace('<!--M_CATS-->', () => mobileCatsHtml(cards))
     .replace('<!--M_DISCOVER-->', () => mobileDiscoverHtml())
     .replace('<!--M_INSIGHTS-->', () => mobileInsightsHtml(posts, stats));
   // "Projects near you" (React) sits between the hero (search + live map + stats) and the rest.
