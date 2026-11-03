@@ -133,7 +133,7 @@ export default function SiteHeader() {
               </>
             ) : (
               <>
-                <Link href="/projects" className="shd-search" aria-label="Search projects" title="Search projects">
+                <Link href="/map" className="shd-search" aria-label="Search projects" title="Search projects">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" strokeWidth="2.4"/><path d="m20 20-3.5-3.5" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"/></svg>
                 </Link>
                 <button className="shd-btn outline" onClick={signIn}>Login</button>
@@ -145,7 +145,7 @@ export default function SiteHeader() {
                 {/* Phone home bar (site-header.css): search + alerts icons, like its mockup.
                     Alerts live in the account, so guests are asked to sign in. */}
                 {signedIn && (
-                  <Link href="/projects" className="shd-search shd-search-home" aria-label="Search projects" title="Search projects">
+                  <Link href="/map" className="shd-search shd-search-home" aria-label="Search projects" title="Search projects">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" strokeWidth="2.4"/><path d="m20 20-3.5-3.5" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"/></svg>
                   </Link>
                 )}

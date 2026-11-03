@@ -42,7 +42,7 @@ export const LANDING_BODY = `
           <button type="button" class="on" data-mode="map" aria-pressed="true"><i class="far fa-map" aria-hidden="true"></i>Explore on Map</button>
           <button type="button" data-mode="list" aria-pressed="false"><i class="fas fa-list-ul" aria-hidden="true"></i>Search Projects</button>
         </div>
-        <form class="hm-form" id="heroAskForm" role="search" action="/projects" method="get" aria-label="Search projects">
+        <form class="hm-form" id="heroAskForm" role="search" action="/map" method="get" aria-label="Search projects">
           <label class="hm-field hm-field-q"><i class="fas fa-location-dot" aria-hidden="true"></i><span class="sr-only">Locality, project or developer</span>
             <input id="heroAskInput" name="q" type="search" placeholder="Locality" autocomplete="off" enterkeyhint="search" maxlength="80"><button type="button" class="hm-mic" id="heroMic" aria-label="Search by voice" hidden><i class="fas fa-microphone" aria-hidden="true"></i></button></label>
           <label class="hm-field"><span class="sr-only">BHK</span><select id="heroBhk" name="bhk"><option value="">Any BHK</option>${BHK_SELECT}</select></label>

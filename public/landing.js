@@ -340,17 +340,9 @@
      ['su-pass', 'Create Password (8+ characters)'], ['wa-phone', 'Mobile Number'], ['fp-phone', 'Mobile Number']]
       .forEach(([id, text]) => { if (byId(id)) byId(id).placeholder = text; });
   }
-  // Hero search is a plain GET form to /projects (public, no sign-in needed).
-  // Empty filters are left out so the results URL stays short, and so are
-  // hidden ones (the City picker shows on phones only).
+  // Hero search opens the live map (never the /projects list page).
   if (byId('heroAskForm')) byId('heroAskForm').addEventListener('submit', (e) => {
-    // Phones (the City picker shows only there): both "Explore on Map" and
-    // "Search Projects" open the map, never the /projects list page.
-    if (byId('heroCity') && byId('heroCity').offsetParent) {
-      e.preventDefault(); openMapFull(); return;
-    }
-    byId('heroAskForm').querySelectorAll('input[name], select[name]').forEach(el => { if (!String(el.value).trim() || !el.offsetParent) el.disabled = true; });
-    setTimeout(() => byId('heroAskForm') && byId('heroAskForm').querySelectorAll('[name]').forEach(el => { el.disabled = false; }), 0);
+    e.preventDefault(); openMapFull();
   });
 
   /* ---------- Phones: search mode tabs, voice search, shortcut cards ---------- */
