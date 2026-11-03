@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './landing.css';
 import './home-finder.css';
 import './home.css';
+import './mobile-home.css';
 import { LANDING_BODY } from '@/components/landing/body';
 import LandingClient from '@/components/landing/LandingClient';
 import SiteHeader from '@/components/SiteHeader';
@@ -13,6 +14,8 @@ import { getProjectCards } from '@/lib/home/cards';
 import { homeStats, statsStripHtml, statsBandHtml, heroChipsHtml, mapPreviewHtml, heroProjectHtml, buyersSectionHtml } from '@/components/landing/home-sections';
 
 import { SITE, SITE_URL } from '@/lib/seo/config';
+import { mobileTrustHtml, mobileCatsHtml, mobileDiscoverHtml, mobileInsightsHtml, type MobilePost } from '@/components/landing/mobile-sections';
+import { listPublished, readingTime } from '@/lib/blog';
 
 // ISR: served static & fast, but re-renders periodically so admin-set SEO values
 // (Search Console verification, GTM) from the shared layout show up without a redeploy.
@@ -45,6 +48,7 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const [logos, cards] = await Promise.all([trustedLogos().catch(() => []), getProjectCards()]);
   const stats = homeStats(cards);
+  const posts = await mobilePosts();
   const landingHtml = LANDING_BODY
     .replace('<!--HERO_CHIPS-->', () => heroChipsHtml(cards))
     .replace('<!--MAP_PREVIEW-->', () => mapPreviewHtml(cards, heroProjectHtml(cards)))
@@ -52,7 +56,12 @@ export default async function HomePage() {
     .replace('<!--STATS_BAND-->', () => statsBandHtml(stats))
     .replace('<!--BUYER_JOURNEY-->', () => buyersSectionHtml(cards, stats))
     // "Trusted by developers" logo row (nothing is shown until a few developers have logos).
-    .replace('<!--DEV_LOGOS-->', () => trustedDevelopersHtml(logos));
+    .replace('<!--DEV_LOGOS-->', () => trustedDevelopersHtml(logos))
+    // Phone-only sections around the existing ones (hidden above 720 px).
+    .replace('<!--M_TRUST-->', () => mobileTrustHtml(cards))
+    .replace('<!--M_CATS-->', () => mobileCatsHtml(cards))
+    .replace('<!--M_DISCOVER-->', () => mobileDiscoverHtml())
+    .replace('<!--M_INSIGHTS-->', () => mobileInsightsHtml(posts, stats));
   // "Projects near you" (React) sits between the hero (search + live map + stats) and the rest.
   const [heroHtml, restHtml = ''] = landingHtml.split('<!--SPLIT-->');
 
@@ -74,4 +83,18 @@ export default async function HomePage() {
       <LandingClient />
     </>
   );
+}
+
+/** Blog posts for the phone-only "Key insights" section. The read is cached
+ *  (lib/data-cache.ts); a failure just leaves the section out. */
+async function mobilePosts(): Promise<MobilePost[]> {
+  const published = await listPublished().catch(() => []);
+  return published.slice(0, 6).map((p) => ({
+    href: `/blog/${p.slug}`,
+    title: p.title,
+    tag: (p.tags || [])[0] || '',
+    minutes: readingTime(p.content),
+    // Only linkable images (an inline data: URL would bloat the page).
+    image: p.cover_image && /^(\/|https:\/\/)/.test(p.cover_image) ? p.cover_image : '',
+  }));
 }

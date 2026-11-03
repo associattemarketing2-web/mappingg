@@ -121,12 +121,12 @@ export default function SiteHeader() {
   }
 
   return (
-    <header className={`shd${scrolled ? ' scrolled' : ''}`}>
+    <header className={`shd${scrolled ? ' scrolled' : ''}${pathname === '/' ? ' shd-home' : ''}`}>
       <div className="shd-wrap">
         <div className="shd-bar">
           <Link href="/" className="shd-brand" aria-label="Mappingg.com home" onClick={() => setOpen(false)}>
             <span className="mark" aria-hidden="true" />
-            <b>Mappingg<em>.com</em></b>
+            <span className="shd-name"><b>Mappingg<em>.com</em></b><small className="shd-tag">India&apos;s Real Estate Project Map</small></span>
           </Link>
 
           <nav className="shd-menu">
@@ -163,13 +163,28 @@ export default function SiteHeader() {
                 <button className="shd-btn primary" onClick={signUp}>Sign Up</button>
               </>
             )}
+            {pathname === '/' && (
+              <>
+                {/* Phone home bar (site-header.css): search + alerts icons, like its mockup.
+                    Alerts live in the account, so guests are asked to sign in. */}
+                {signedIn && (
+                  <Link href="/projects" className="shd-search shd-search-home" aria-label="Search projects" title="Search projects">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" strokeWidth="2.4"/><path d="m20 20-3.5-3.5" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"/></svg>
+                  </Link>
+                )}
+                <button className="shd-bell" aria-label="Notifications" title="Notifications" onClick={() => (signedIn ? router.push(home) : signIn())}>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16.5V11a6 6 0 1 1 12 0v5.5l1.6 2H4.4z" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinejoin="round"/><path d="M10 21a2.2 2.2 0 0 0 4 0" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round"/></svg>
+                  <span className="dot" aria-hidden="true" />
+                </button>
+              </>
+            )}
             <button
               className="shd-burger"
               aria-label="Menu"
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
             >
-              <span aria-hidden="true">{open ? '✕' : '☰'}</span>
+              {open ? <span aria-hidden="true">✕</span> : <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16M4 12h16M4 17.5h16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"/></svg>}
             </button>
           </div>
 

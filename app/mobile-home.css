@@ -1,0 +1,449 @@
+/* Home page — phone look (≤ 720 px), after the mobile mockup.
+   Two parts:
+   1. The page's existing sections, restyled only: same markup, ids and
+      behaviour (hero search, live trial map, stats, "Projects near you", what's
+      around, how it works, sign-up, sticky bar, footer).
+   2. The phone-only sections from components/landing/mobile-sections.ts
+      (.mh-only; hidden above 720 px).
+   Everything is scoped under .mpg / .hf, which only the home page renders. */
+
+.mh-only { display: none !important; }
+.mpg .hm-field-city, .mpg .hm-form .hm-m, .mpg .hm-mic { display: none; }
+/* Headline / intro: desktop and phone wordings (the phone one shows at 720 px and under). */
+.mpg .hm-hero h1 .hm-h1-d { display: inline; color: inherit; }
+.mpg .hm-hero .hm-h1-m { display: none; }
+
+@media (max-width: 720px) {
+  .mpg, .hf {
+    --m-forest: #0f5c47; --m-deep: #0a4535; --m-green: #2f7a3c; --m-mint: #eaf4ee;
+    --m-orange: #e07a1f; --m-peach: #fdf1e4; --m-red: #d1382f;
+    --m-ink: #13221c; --m-text: #46524d; --m-muted: #6a746f; --m-line: #e6e9e4;
+    --m-shadow: 0 10px 28px -16px rgba(16, 40, 30, .28);
+  }
+  .mpg .mh-only { display: block !important; }
+
+  /* =====================================================
+     1. Existing sections, restyled
+     ===================================================== */
+
+  /* ---------- Hero (after the "Mappingg.com Interactive Real Estate Map" mockup) ----------
+     White copy over the golden-hour waterfront photo (public/img/mobile-hero.jpg):
+     kicker, headline with a gold "Interactive Map", intro, a floating project card
+     over the towers, the four promises over the trees; the photo then fades to white
+     under the search card. The photo is drawn by .mh-hero-photo::before, anchored to
+     that band's foot and reaching up behind the copy and the header. */
+  .mpg .hm-hero { background: #fff; }
+  .mpg .hm-hero-bg { display: none; }
+  .mpg .hm-wrap.hm-hero-grid { padding-top: 92px; padding-bottom: 16px; }
+  .mpg .hm-kicker { gap: 8px; padding: 7px 14px 7px 11px; border: 1px solid rgba(255, 255, 255, .38); background: rgba(15, 92, 71, .55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); box-shadow: none; font-size: 11px; font-weight: 800; letter-spacing: .06em; color: #fff; }
+  .mpg .hm-kicker .dot { display: none; }
+  .mpg .hm-kicker::before { content: '\f3c5'; font: 900 12px 'Font Awesome 6 Free'; color: #fff; }
+  .mpg .hm-hero h1 .hm-h1-d, .mpg .hm-hero .hm-lead .hm-h1-d { display: none; }
+  .mpg .hm-hero h1 .hm-h1-m, .mpg .hm-hero .hm-lead .hm-h1-m { display: inline; color: inherit; }
+  .mpg .hm-hero h1 { margin-top: 16px; max-width: 340px; font-size: 31px; font-weight: 800; line-height: 1.12; letter-spacing: -.03em; color: #fff; text-shadow: 0 2px 14px rgba(10, 16, 40, .35); }
+  .mpg .hm-hero h1 em { position: relative; display: inline-block; font-style: italic; color: #f7c948; padding-right: 2px; }
+  /* Gold swoosh under "Interactive Map" */
+  .mpg .hm-hero h1 em::after {
+    content: ''; position: absolute; left: -6%; right: -4%; bottom: -7px; height: 9px; pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 10 C 60 3, 140 1, 198 4' fill='none' stroke='%23f7c948' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  }
+  .mpg .hm-hero .hm-lead { margin-top: 16px; max-width: 186px; font-size: 13.5px; line-height: 1.5; color: rgba(255, 255, 255, .94); text-shadow: 0 1px 10px rgba(10, 16, 40, .4); }
+
+  /* Floating project card over the towers, with a glowing pin under it */
+  .mpg .mh-hero-foot { position: relative; padding-top: 112px; }
+  .mpg .mh-launch { position: absolute; right: -6px; top: -56px; z-index: 2; display: flex; align-items: center; gap: 7px; width: 166px; padding: 7px 7px 7px 7px; border-radius: 14px; background: #fff; box-shadow: 0 16px 30px -14px rgba(10, 16, 40, .6); color: var(--m-ink); text-decoration: none; }
+  .mpg .mh-launch::after { content: ''; position: absolute; left: 50%; bottom: -7px; width: 14px; height: 14px; margin-left: -7px; background: #fff; transform: rotate(45deg); border-radius: 2px; }
+  .mpg .mh-launch img { width: 40px; height: 40px; flex: none; border-radius: 9px; object-fit: cover; }
+  .mpg .mh-launch .tx { display: flex; flex-direction: column; min-width: 0; flex: 1; line-height: 1.25; }
+  .mpg .mh-launch em { align-self: flex-start; padding: 1px 7px; border-radius: 999px; background: #ffe1e1; color: #c62f28; font-size: 9.5px; font-weight: 600; font-style: normal; white-space: nowrap; }
+  .mpg .mh-launch small { margin-top: 3px; font-size: 10.5px; font-weight: 500; color: #26342e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mpg .mh-launch b { font-size: 12px; font-weight: 600; color: var(--m-ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mpg .mh-launch > i { flex: none; font-size: 11px; color: var(--m-ink); }
+  .mpg .mh-launch-pin { position: absolute; right: 70px; top: 30px; width: 34px; height: 12px; border-radius: 50%; border: 2px solid rgba(247, 201, 72, .9); box-shadow: 0 0 12px 2px rgba(247, 201, 72, .7), inset 0 0 6px rgba(247, 201, 72, .8); }
+  .mpg .mh-launch-pin::before { content: ''; position: absolute; left: 50%; top: 50%; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; background: #ffd75e; box-shadow: 0 0 10px 3px rgba(255, 215, 94, .9); }
+  .mpg .mh-launch-pin::after { content: ''; position: absolute; left: 50%; bottom: 50%; width: 2px; height: 38px; margin-left: -1px; background: linear-gradient(rgba(255, 215, 94, 0), #ffd75e); }
+
+  /* The four promises: white icon + two-line label, thin dividers */
+  .mpg .mh-trust { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, auto); justify-content: space-between; list-style: none; margin: 0; padding: 0; }
+  .mpg .mh-trust li { display: flex; align-items: center; gap: 7px; padding: 0 8px; }
+  .mpg .mh-trust li:first-child { padding-left: 0; }
+  .mpg .mh-trust li:last-child { padding-right: 0; }
+  .mpg .mh-trust li + li { border-left: 1px solid rgba(255, 255, 255, .4); }
+  .mpg .mh-trust i { font-size: 19px; color: #fff; filter: drop-shadow(0 1px 4px rgba(0, 0, 0, .35)); }
+  .mpg .mh-trust span { width: min-content; font-size: 11px; line-height: 1.25; font-weight: 600; color: #fff; text-shadow: 0 1px 6px rgba(0, 0, 0, .55); }
+
+  /* Photo band: the photo (600 px tall, towers to the right) sits on this band's foot and
+     reaches up behind the copy; a dusk tint keeps the white text readable, and its
+     foot fades into the white page under the search card. */
+  .mpg div.mh-only.mh-hero-photo { display: block !important; }
+  .mpg .mh-hero-photo { position: relative; margin: 0 -16px; height: 64px; }
+  .mpg .mh-hero-photo::before {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1400px; z-index: -1; pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0) calc(100% - 92px), rgba(255, 255, 255, .85) calc(100% - 34px), #fff 100%),
+      linear-gradient(180deg, rgba(22, 28, 66, .62) 0%, rgba(40, 34, 70, .38) 30%, rgba(40, 30, 50, .12) 52%, rgba(12, 30, 20, .2) 68%, rgba(12, 30, 20, .5) 82%, rgba(12, 30, 20, 0) 92%) center bottom / 100% 600px no-repeat,
+      url('/img/mobile-hero.jpg') 78% bottom / auto 600px no-repeat,
+      linear-gradient(180deg, #4a5690 0, #8d9bd6 calc(100% - 600px));
+  }
+
+  /* ---------- Search card: mode tabs, search, City / BHK / Budget, then the button ---------- */
+  .mpg .hm-search { position: relative; z-index: 2; margin: -40px -4px 0; padding: 12px; border-radius: 24px; background: #fff; border: 1px solid #eef0ec; box-shadow: 0 22px 44px -22px rgba(16, 40, 30, .45); }
+  /* The mockup's card has no Buy / Plots / Commercial tabs or locality chips (property
+     types and localities stay in the header menu, and on desktop). */
+  .mpg .hm-tabs, .mpg .hm-search .hm-chips { display: none; }
+  .mpg div.mh-only.mh-modes { display: grid !important; }
+  .mpg .mh-modes { grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 12px; padding: 4px; border-radius: 999px; background: #eef1f5; }
+  .mpg .mh-modes button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 46px; padding: 0 8px; border: 0; border-radius: 999px; background: transparent; font: inherit; font-size: 14.5px; font-weight: 600; color: #1d2b25; cursor: pointer; white-space: nowrap; }
+  .mpg .mh-modes button i { font-size: 17px; }
+  .mpg .mh-modes button.on { background: linear-gradient(180deg, #11684a, #0a4f37); color: #fff; box-shadow: 0 10px 20px -12px rgba(10, 69, 53, .9); }
+  .mpg .mh-modes button:focus-visible { outline: 2px solid var(--m-forest); outline-offset: 2px; }
+  /* Button: map-pin icon, label (follows the mode tab, landing.js) and an arrow. */
+  .mpg .hm-form .hm-btn { gap: 12px; }
+  .mpg .hm-form .hm-btn .hm-d { display: none; }
+  .mpg .hm-form .hm-btn .hm-m { display: inline-block; }
+  .mpg .hm-form .hm-btn .fa-map-location-dot.hm-m { font-size: 20px; }
+  .mpg .hm-form { margin-top: 0; padding: 0; border: 0; box-shadow: none; background: transparent; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 8px; }
+  .mpg .hm-field { height: 48px; gap: 6px; padding: 0 6px 0 12px; border: 1px solid var(--m-line); border-radius: 999px; background: #fff; box-shadow: 0 4px 12px -8px rgba(16, 40, 30, .3); }
+  .mpg .hm-field:nth-child(3) { border-right: 1px solid var(--m-line); }
+  .mpg .hm-field-q { order: -2; grid-column: 1 / -1; height: 52px; padding: 0 6px 0 16px; }
+  .mpg .hm-field-q > i { font-size: 0; }
+  .mpg .hm-field-q > i::before { font-size: 19px; content: '\f002'; color: var(--m-ink); }
+  .mpg .hm-field-q input { padding-left: 4px; }
+  .mpg .hm-mic:not([hidden]) { display: grid; place-items: center; flex: none; width: 40px; height: 40px; border: 0; border-radius: 50%; background: none; color: var(--m-ink); font-size: 18px; cursor: pointer; }
+  .mpg .hm-mic.on { background: #ffe1e1; color: #c62f28; }
+  .mpg .hm-field-city { display: flex; order: -1; }
+  .mpg .hm-field:has(select)::before { flex: none; font: 900 16px 'Font Awesome 6 Free'; color: var(--m-forest); }
+  .mpg .hm-field:has(#heroCity)::before { content: '\f3c5'; }
+  .mpg .hm-field:has(#heroBhk)::before { content: '\f1ad'; }
+  .mpg .hm-field:has(#heroBudget)::before { content: '\e1bc'; }
+  .mpg .hm-field input { font-weight: 500; font-size: 14px; text-overflow: ellipsis; }
+  .mpg .hm-field input::placeholder { color: #5f6b9a; }
+  .mpg .hm-field select { font-weight: 600; font-size: 13px; color: var(--m-ink); padding-right: 13px; background-position: right 0 center; text-overflow: ellipsis; }
+  .mpg .hm-form .hm-btn { grid-column: 1 / -1; min-height: 56px; margin-top: 2px; border-radius: 999px; background: linear-gradient(90deg, #0b5a3e 0%, #1e6b35 55%, #5a8a2a 100%); font-size: 16.5px; font-weight: 600; box-shadow: 0 14px 26px -14px rgba(10, 69, 53, .9); }
+
+  /* ---------- Shortcut cards: a swipeable row, an arrow and page dots ---------- */
+  .mpg .mh-cats { position: relative; margin: 20px -16px 0; }
+  .mpg .mh-cats-row { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100vw - 68px - 24px) / 4); gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 16px; padding: 4px 52px 8px 16px; scrollbar-width: none; }
+  .mpg .mh-cats-row::-webkit-scrollbar { display: none; }
+  .mpg .mh-cats-row a { scroll-snap-align: start; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 104px; padding: 12px 4px; border: 1px solid #efebe6; border-radius: 16px; background: #faf8f6; box-shadow: 0 6px 14px -12px rgba(16, 40, 30, .4); text-align: center; text-decoration: none; color: var(--m-ink); }
+  .mpg .mh-cats-row a.on { background: #eaf6e6; border: 1.5px solid #9fd39a; }
+  .mpg .mh-cats-row i { font-size: 27px; }
+  .mpg .mh-cats-row i.gold { color: #e3a21a; }
+  .mpg .mh-cats-row i.orange { color: #f0642a; }
+  .mpg .mh-cats-row i.green { color: #1f7a3c; }
+  .mpg .mh-cats-row span { font-size: 12px; font-weight: 600; line-height: 1.25; }
+  .mpg .mh-cats-next { position: absolute; right: 10px; top: 42px; width: 34px; height: 34px; display: grid; place-items: center; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 6px 16px -6px rgba(16, 40, 30, .45); color: var(--m-ink); font-size: 13px; cursor: pointer; }
+  .mpg .mh-cats-dots { display: flex; justify-content: center; gap: 6px; padding-top: 8px; }
+  .mpg .mh-cats-dots span { width: 6px; height: 6px; border-radius: 999px; background: #d6dbd7; transition: width .2s, background .2s; }
+  .mpg .mh-cats-dots span.on { width: 22px; background: #1f7a3c; }
+
+  /* ---------- "Explore Properties Around You": copy on the left, a little map on the right ---------- */
+  .mpg section.mh-around { padding: 0; }
+  .mpg .mh-around { position: relative; margin: 22px -4px 6px; min-height: 172px; border-radius: 22px; overflow: hidden; background: #fff; border: 1px solid #edf0ec; box-shadow: var(--m-shadow); }
+  .mpg .mh-around-map { position: absolute; top: 0; right: 0; bottom: 0; width: 58%; }
+  .mpg .mh-around-map svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .mpg .mh-around-map::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, .7) 22%, rgba(255, 255, 255, 0) 50%); }
+  .mpg .mh-hpin { position: absolute; z-index: 2; width: 26px; height: 26px; margin: -13px 0 0 -13px; display: grid; place-items: center; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: #0f6b47; box-shadow: 0 4px 8px -3px rgba(0, 0, 0, .4); }
+  .mpg .mh-hpin i { transform: rotate(45deg); font-size: 10px; color: #fff; }
+  .mpg .mh-ppin { position: absolute; z-index: 3; left: 52%; top: 46%; width: 64px; height: 64px; margin: -40px 0 0 -32px; padding: 4px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: linear-gradient(135deg, #f7d26b, #c9921f); box-shadow: 0 10px 18px -6px rgba(120, 80, 10, .6); display: grid; place-items: center; overflow: hidden; }
+  .mpg .mh-ppin img, .mpg .mh-ppin i { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; transform: rotate(45deg); }
+  .mpg .mh-ppin i { display: grid; place-items: center; background: #fff; color: #c9921f; font-size: 22px; }
+  .mpg .mh-around-tx { position: relative; z-index: 4; max-width: 58%; padding: 20px 0 20px 18px; }
+  .mpg .mh-around h2 { margin: 0; font-size: 21px; line-height: 1.12; font-weight: 800; letter-spacing: -.025em; color: var(--m-ink); }
+  .mpg .mh-around p { margin: 8px 0 0; font-size: 12.5px; line-height: 1.45; color: var(--m-text); }
+  .mpg .mh-around-btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 14px; padding: 9px 18px; border: 1.5px solid var(--m-forest); border-radius: 999px; background: #fff; font-size: 14px; font-weight: 700; color: var(--m-forest); text-decoration: none; }
+
+  /* ---------- Live map: a rounded card ---------- */
+  .mpg .hm-hero-map { margin: 4px 12px 8px; height: 440px; border-radius: 22px; box-shadow: var(--m-shadow); }
+  .mpg .hm-ov-layers { padding: 5px; border-radius: 14px; box-shadow: var(--m-shadow); }
+  .mpg .hm-ov-layers button.on { background: var(--m-deep); color: #fff; }
+  .mpg .hm-preview-cta .hm-btn { border-radius: 999px; background: var(--m-deep); }
+
+  /* ---------- Stats strip ---------- */
+  .mpg .hm-strip-panel { border-radius: 22px; box-shadow: var(--m-shadow); }
+
+  /* ---------- Section headings (existing sections) ---------- */
+  .mpg .hm-sec { padding: 44px 0; }
+  .mpg .hm-head { margin-bottom: 20px; }
+  .mpg .hm-head h2, .mpg .hm-around-copy h2 { font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
+  .mpg .hm-sub { font-size: 13.5px; }
+  .mpg .hm-btn { border-radius: 999px; }
+
+  /* ---------- "Projects near you" ---------- */
+  .hf .hf-wrap { padding: 32px 16px 20px; gap: 36px; }
+  .hf h2 { font-size: 20px; font-weight: 700; }
+
+  /* ---------- Closing sign-up: the dark green card ---------- */
+  .mpg .hm-band { display: none; } /* the same live counts are in the "Better futures" card */
+  .mpg .hm-cta { margin: 26px 12px 8px; padding: 30px 20px 24px; border-radius: 24px; text-align: center; background: radial-gradient(120% 80% at 50% 0%, #17604c 0%, #0a4535 60%, #083a2d 100%); }
+  .mpg .hm-cta .hm-wrap { padding: 0; }
+  .mpg .hm-cta-row { flex-direction: column; gap: 20px; }
+  .mpg .hm-cta h2 { font-size: 22px; }
+  .mpg .hm-cta p { font-size: 14px; }
+  .mpg .hm-cta-perks { justify-content: center; gap: 8px 16px; }
+  .mpg .hm-cta-perks li { font-size: 12.5px; }
+  .mpg .hm-cta-btns { flex-direction: column; gap: 10px; }
+  .mpg .hm-cta-btns .hm-btn { flex: none; width: 100%; min-height: 50px; }
+
+  /* ---------- Sticky "Live Map / Sign Up" bar ---------- */
+  .mpg .hm-sticky.show { border-radius: 999px; }
+  .mpg .hm-sticky .hm-btn { border-radius: 999px; }
+
+  /* =====================================================
+     2. Phone-only sections
+     ===================================================== */
+  .mpg .mh { overflow: hidden; color: var(--m-ink); }
+  .mpg .mh a { color: inherit; text-decoration: none; }
+  .mpg .mh h2, .mpg .mh h3, .mpg .mh p { margin: 0; }
+  .mpg .mh ul { list-style: none; margin: 0; padding: 0; }
+  .mpg .mh .mh-go { width: 30px; height: 30px; flex: none; display: grid; place-items: center; border-radius: 50%; border: 1.5px solid currentColor; font-size: 12px; }
+  /* Blog-guide photos carry their title on the left: only the photo on the right is shown. */
+  .mpg .mh .mh-photo { display: block; background-size: 250% auto; background-position: 100% 55%; background-repeat: no-repeat; background-color: #dfe7e1; }
+
+  .mpg .mh .mh-sec { padding: 26px 0 0; }
+  .mpg .mh .mh-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 0 16px; margin-bottom: 12px; }
+  .mpg .mh .mh-head h2, .mpg .mh .mh-why h2 { font-size: 19px; font-weight: 700; letter-spacing: -.02em; color: var(--m-ink); }
+  .mpg .mh .mh-head a { flex: none; font-size: 13px; font-weight: 600; color: var(--m-forest); white-space: nowrap; }
+  .mpg .mh .mh-head a i { font-size: 11px; margin-left: 2px; }
+  .mpg .mh .mh-sub { margin-top: 6px; font-size: 13.5px; line-height: 1.5; color: var(--m-text); }
+
+  /* Why Mappingg */
+  .mpg .mh .mh-why { padding: 30px 16px 0; }
+  .mpg .mh .mh-why ul { display: grid; grid-template-columns: 1fr 1fr; margin-top: 16px; }
+  .mpg .mh .mh-why li { display: grid; grid-template-columns: 40px 1fr; column-gap: 10px; align-items: center; padding: 12px 6px; }
+  .mpg .mh .mh-why li:nth-child(odd) { border-right: 1px solid var(--m-line); }
+  .mpg .mh .mh-why li:nth-child(-n+2) { border-bottom: 1px solid var(--m-line); }
+  .mpg .mh .mh-why li:nth-child(even) { padding-left: 14px; }
+  .mpg .mh .mh-why .ic { grid-row: span 2; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; background: var(--m-mint); color: var(--m-forest); font-size: 18px; }
+  .mpg .mh .mh-why b { font-size: 13px; font-weight: 700; }
+  .mpg .mh .mh-why small { font-size: 11px; line-height: 1.35; color: var(--m-muted); }
+  .mpg .mh .mh-promo {
+    position: relative; display: block; margin-top: 18px; padding: 20px 64px 20px 18px; min-height: 132px; border-radius: 18px; overflow: hidden; color: #fff;
+    background: linear-gradient(90deg, rgba(10, 69, 53, .97) 0%, rgba(10, 69, 53, .88) 55%, rgba(10, 69, 53, .35) 100%),
+      url('https://images.unsplash.com/photo-1567684014761-b65e2e59b9eb?w=800&auto=format&fit=crop&q=70') 80% 50% / cover no-repeat #0a4535;
+  }
+  .mpg .mh .mh-promo b { display: block; max-width: 220px; font-size: 18px; line-height: 1.25; font-weight: 700; }
+  .mpg .mh .mh-promo small { display: block; margin-top: 8px; max-width: 210px; font-size: 12.5px; line-height: 1.45; color: rgba(255, 255, 255, .88); }
+  .mpg .mh .mh-promo .mh-go { position: absolute; right: 14px; bottom: 14px; background: #fff; color: var(--m-deep); border-color: #fff; }
+
+  /* Insights (blog) */
+  .mpg .mh .mh-chips { display: flex; gap: 8px; overflow-x: auto; padding: 0 16px 12px; scrollbar-width: none; }
+  .mpg .mh .mh-chips::-webkit-scrollbar { display: none; }
+  .mpg .mh .mh-chips input { position: absolute; opacity: 0; pointer-events: none; }
+  .mpg .mh .mh-chips label { flex: none; padding: 8px 13px; border-radius: 999px; border: 1px solid var(--m-line); background: #fff; font-size: 12px; font-weight: 600; color: var(--m-ink); white-space: nowrap; cursor: pointer; }
+  .mpg .mh .mh-chips input:checked + label { background: var(--m-deep); border-color: var(--m-deep); color: #fff; }
+  .mpg .mh .mh-chips input:focus-visible + label { outline: 2px solid var(--m-forest); outline-offset: 2px; }
+  .mpg .mh .mh-ins-list { display: grid; gap: 10px; padding: 0 16px; }
+  .mpg .mh .mh-ins-list a { display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 8px; border-radius: 14px; background: #fff; border: 1px solid #edf0ec; box-shadow: 0 6px 18px -16px rgba(16, 40, 30, .5); }
+  .mpg .mh .mh-ins-list .mh-photo, .mpg .mh .mh-ins-ph { width: 92px; height: 78px; flex: none; border-radius: 10px; }
+  .mpg .mh .mh-ins-ph { display: grid; place-items: center; background: var(--m-mint); color: var(--m-forest); font-size: 22px; }
+  .mpg .mh .mh-ins-list .tx { min-width: 0; flex: 1; }
+  .mpg .mh .mh-ins-list em { display: inline-block; padding: 2px 7px; border-radius: 5px; background: var(--m-mint); color: var(--m-forest); font-size: 10.5px; font-weight: 600; font-style: normal; }
+  .mpg .mh .mh-ins-list b { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-top: 4px; font-size: 13.5px; line-height: 1.3; font-weight: 600; }
+  .mpg .mh .mh-ins-list small { display: block; margin-top: 4px; font-size: 11px; color: var(--m-muted); }
+  .mpg .mh .mh-chev { flex: none; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--m-line); font-size: 11px; color: var(--m-ink); }
+  /* "All" shows three; a chip shows every article with that tag. */
+  .mpg .mh-ins:has(#mh-ins-0:checked) .mh-ins-list li:nth-child(n+4),
+  .mpg .mh-ins:not(:has(.mh-chips)) .mh-ins-list li:nth-child(n+4) { display: none; }
+  .mpg .mh-ins:has(#mh-ins-1:checked) .mh-ins-list li:not([data-t="1"]),
+  .mpg .mh-ins:has(#mh-ins-2:checked) .mh-ins-list li:not([data-t="2"]),
+  .mpg .mh-ins:has(#mh-ins-3:checked) .mh-ins-list li:not([data-t="3"]) { display: none; }
+
+  /* Better futures + live counts */
+  .mpg .mh .mh-future { margin: 0 12px; border-radius: 22px; overflow: hidden; background: #fff; border: 1px solid #edf0ec; box-shadow: var(--m-shadow); }
+  .mpg .mh .mh-future-hero {
+    padding: 26px 18px 70px; min-height: 200px; color: #fff;
+    background: linear-gradient(180deg, rgba(10, 52, 40, .78) 0%, rgba(10, 52, 40, .35) 60%, rgba(10, 52, 40, .15) 100%),
+      url('https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&auto=format&fit=crop&q=70') 60% 30% / cover no-repeat #0a4535;
+  }
+  .mpg .mh .mh-future-hero b { display: block; max-width: 230px; font-size: 22px; line-height: 1.15; font-weight: 800; letter-spacing: -.02em; }
+  .mpg .mh .mh-future-hero small { display: block; margin-top: 10px; max-width: 220px; font-size: 12.5px; line-height: 1.45; color: rgba(255, 255, 255, .92); }
+  .mpg .mh .mh-future-stats { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: -44px 10px 12px; padding: 12px 4px; border-radius: 16px; background: #fff; box-shadow: var(--m-shadow); }
+  .mpg .mh .mh-future-stats li { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 3px; padding: 0 2px; }
+  .mpg .mh .mh-future-stats li + li { border-left: 1px solid var(--m-line); }
+  .mpg .mh .mh-future-stats i { font-size: 18px; color: var(--m-forest); }
+  .mpg .mh .mh-future-stats b { margin-top: 3px; font-size: 15px; font-weight: 800; }
+  .mpg .mh .mh-future-stats small { font-size: 10px; line-height: 1.25; color: var(--m-muted); }
+}
+
+/* Small phones */
+@media (max-width: 374px) {
+  .mpg .hm-hero h1 { font-size: 27px; }
+  .mpg .hm-hero .hm-lead { font-size: 12.5px; max-width: 190px; }
+  .mpg .mh-launch { width: 150px; }
+  .mpg .mh-launch img { width: 38px; height: 38px; }
+  .mpg .mh-trust li { padding: 0 5px; gap: 5px; }
+  .mpg .mh-trust i { font-size: 16px; }
+  .mpg .mh-trust span { font-size: 10px; }
+  .mpg .mh-modes button { gap: 6px; font-size: 13px; }
+  .mpg .hm-form { grid-template-columns: 1fr 1fr; }
+  .mpg .hm-field-city { grid-column: 1 / -1; }
+  .mpg .hm-form .hm-btn { font-size: 15px; }
+  .mpg .mh-cats-row { grid-auto-columns: calc((100vw - 68px - 16px) / 3); }
+  .mpg .mh-around h2 { font-size: 18px; }
+  .mpg .mh .mh-future-stats b { font-size: 13px; }
+  .mpg .mh .mh-future-stats small { font-size: 9px; }
+}
+
+@media (max-width: 720px) {
+  .hf .hf-btn { border-radius: 999px; }
+  .hf .hf-btn-solid { background: var(--m-deep); border-color: var(--m-deep); }
+}
+
+/* ---------- Polish: one heading style, a compact stats row, finder controls ---------- */
+@media (max-width: 720px) {
+  /* Every section heading left-aligned and the same size as the mockup's ("Top Locations…"). */
+  .mpg .hm-head.hm-center { text-align: left; align-items: flex-start; margin-left: 0; margin-right: 0; }
+  .mpg .hm-head.hm-center .hm-sub { margin-left: 0; margin-right: 0; }
+  .mpg .hm-head h2, .mpg .hm-around-copy h2, .mpg .mh .mh-head h2, .mpg .mh .mh-why h2, .hf h2 { font-size: 20px; font-weight: 700; line-height: 1.25; letter-spacing: -.02em; }
+  .mpg .hm-head h2 br, .mpg .hm-around-copy h2 br { display: none; }
+  .mpg .hm-around-copy h2 span, .mpg .hm-head h2 .accent { display: inline; }
+  .mpg .hm-eyebrow { margin-bottom: 8px; padding: 4px 10px; font-size: 10.5px; }
+  .mpg .hm-sub { margin-top: 6px; line-height: 1.5; color: var(--m-text); }
+  .mpg .hm-flow-cta { text-align: center; }
+
+  /* Live counts under the map: one compact row of four. */
+  .mpg .hm-strip-panel { padding: 12px; gap: 12px; }
+  .mpg .hm-strip-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 0; }
+  .mpg .hm-strip-stats > div, .mpg .hm-strip-stats > div:nth-child(3) { flex-direction: column; align-items: center; gap: 5px; padding: 4px 2px; text-align: center; border-left: 1px solid var(--m-line); }
+  .mpg .hm-strip-stats > div:first-child { border-left: 0; padding-left: 2px; }
+  .mpg .hm-strip-stats .ic { width: 34px; height: 34px; border-radius: 10px; font-size: 14px; }
+  .mpg .hm-strip-stats b { font-size: 16px; }
+  .mpg .hm-strip-stats small { font-size: 10px; line-height: 1.25; white-space: normal; }
+
+  /* "Projects near you": the locality picker as a pill with an icon, like the hero's fields. */
+  .hf .hf-select { position: relative; }
+  .hf .hf-select::before { content: '\f3c5'; position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font: 900 14px 'Font Awesome 6 Free'; color: var(--m-forest); pointer-events: none; }
+  .hf .hf-select select { min-height: 48px; padding-left: 40px; border-color: var(--m-line); background-color: #fff; font-weight: 600; box-shadow: 0 2px 8px -6px rgba(16, 40, 30, .25); }
+  .hf .hf-btn { min-height: 48px; }
+}
+
+/* =====================================================
+   Sign in / Sign up (#authModal), phones: the "Login and Signup Screens" mockup.
+   A full-screen page: brand, title and intro over the golden-hour skyline, then a
+   white card with the Sign In / Sign Up switch, icon fields, the main button,
+   "Or continue with" WhatsApp OTP and Google. Same markup, ids and behaviour as
+   desktop (landing.js) — the account-type chips, developer / agent fields, OTP
+   steps and the "How to use Mappingg" video (under the card) all stay.
+   ===================================================== */
+@media (max-width: 720px) {
+  .mpg .mpg-modal-overlay { padding: 0; align-items: stretch; background: #fff; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .mpg .modal-card { height: 100dvh; max-height: 100dvh; max-width: none; border-radius: 0; box-shadow: none; background: #fff; grid-template-columns: minmax(0, 1fr); align-content: start; }
+  .mpg .modal-close { top: 16px; right: 14px; width: 38px; height: 38px; background: rgba(255, 255, 255, .92); color: #26342e; box-shadow: 0 4px 14px -8px rgba(16, 40, 30, .45); font-size: 15px; }
+
+  /* ---------- Top: brand, title, intro over the skyline ---------- */
+  .mpg .auth-main { order: -1; min-width: 0; padding: 0 28px 24px; overflow: visible; }
+  .mpg .auth-main::before {
+    /* the white card behind the switch and the form */
+    content: ''; display: block; position: absolute; top: 300px; left: 12px; right: 12px; bottom: 0; height: auto; z-index: 1;
+    border-radius: 28px 28px 0 0; background: #fff; box-shadow: 0 -10px 30px -18px rgba(16, 40, 30, .35);
+  }
+  .mpg .auth-main > *:not(.modal-head) { position: relative; z-index: 2; }
+  .mpg .modal-head {
+    position: relative; z-index: 0; height: 330px; margin: 0 -28px; padding: 112px 92px 0 20px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, .96) 0%, rgba(255, 255, 255, .7) 34%, rgba(255, 255, 255, 0) 62%),
+      linear-gradient(90deg, rgba(255, 255, 255, .85) 0%, rgba(255, 255, 255, .5) 45%, rgba(255, 255, 255, 0) 70%),
+      url('/img/mobile-hero.jpg') 60% 78% / cover no-repeat #f3e7d8;
+  }
+  .mpg .modal-head h2 { font-size: 28px; line-height: 1.12; font-weight: 800; letter-spacing: -.025em; color: #13221c; }
+  .mpg .modal-head p { margin-top: 8px; max-width: 290px; font-size: 14px; line-height: 1.45; color: #26342e; }
+
+  /* Brand (the side panel's logo, lifted to the top-left) + tagline */
+  .mpg .auth-side .brand { position: absolute; top: 22px; left: 20px; z-index: 3; display: grid; grid-template-columns: auto auto; column-gap: 9px; align-items: center; }
+  .mpg .auth-side .brand .brand-mark { grid-row: span 2; width: 30px; height: 42px; }
+  .mpg .auth-side .brand .brand-name { font-size: 22px; line-height: 1; }
+  .mpg .auth-side .brand::after { content: "India's Real Estate Project Map"; font-size: 11.5px; font-weight: 500; color: #3a4842; }
+
+  /* ---------- Card ---------- */
+  .mpg .tabs { margin: -6px -2px 14px; padding: 4px; border: 0; border-radius: 999px; background: #eef2f6; }
+  .mpg .tab { min-height: 46px; font-size: 0; color: #1d2b25; }
+  .mpg .tab[data-tab="signin"]::after { content: 'Sign In'; font-size: 15.5px; font-weight: 600; }
+  .mpg .tab[data-tab="signup"]::after { content: 'Sign Up'; font-size: 15.5px; font-weight: 600; }
+  .mpg .tab.active { background: #0a4535; color: #fff; box-shadow: 0 8px 18px -10px rgba(10, 69, 53, .8); }
+
+  /* Account type: compact chips */
+  .mpg #roleBlock { gap: 8px; }
+  .mpg #roleBlock > label { font-size: 12px; font-weight: 600; color: #56635d; }
+  .mpg .roles { display: flex; flex-wrap: wrap; gap: 6px; }
+  .mpg .role span { flex-direction: row; gap: 6px; height: auto; padding: 7px 11px; border: 1.5px solid #e3e8e4; border-radius: 999px; background: #fff; font-size: 12px; font-weight: 600; color: #3d4a44; }
+  .mpg .role span i { font-size: 12px; }
+  .mpg .role input:checked + span { border-color: #0f5c47; background: #ecf6ef; color: #0f5c47; box-shadow: none; }
+
+  /* Fields: icon inside, no label above (labels stay for screen readers) */
+  .mpg .auth-form { gap: 12px; margin-top: 14px; }
+  .mpg .auth-form .field > label[for="si-email"], .mpg .auth-form .field > label[for="si-pass"],
+  .mpg .auth-form .field > label[for="su-name"], .mpg .auth-form .field > label[for="su-email"],
+  .mpg .auth-form .field > label[for="su-pass"], .mpg .auth-form .field > label[for="su-phone"],
+  .mpg .auth-form .field > label[for="wa-phone"], .mpg .auth-form .field > label[for="fp-phone"] {
+    position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
+  .mpg .field { position: relative; gap: 6px; }
+  .mpg .field label { font-size: 12.5px; color: #26342e; }
+  .mpg .field input, .mpg .field select { min-height: 52px; padding: 13px 15px; border: 1.5px solid #e3e8e4; border-radius: 14px; background: #fff; font-size: 16px; }
+  .mpg .field input::placeholder { color: #6b7570; }
+  .mpg .field input:focus, .mpg .field select:focus { border-color: #0f5c47; box-shadow: 0 0 0 4px rgba(15, 92, 71, .12); }
+  .mpg .field:has(> #si-email) input, .mpg .field:has(> #su-email) input, .mpg .field:has(> #su-name) input, .mpg .pass-wrap input { padding-left: 46px; }
+  .mpg .field:has(> #si-email)::after, .mpg .field:has(> #su-email)::after, .mpg .field:has(> #su-name)::after, .mpg .pass-wrap::before {
+    position: absolute; left: 16px; top: 26px; transform: translateY(-50%); z-index: 1; pointer-events: none; font: 400 17px 'Font Awesome 6 Free'; color: #26342e;
+  }
+  .mpg .field:has(> #si-email)::after, .mpg .field:has(> #su-email)::after { content: '\f0e0'; }
+  .mpg .field:has(> #su-name)::after { content: '\f007'; }
+  .mpg .pass-wrap::before { content: '\f023'; font-weight: 900; font-size: 16px; top: 50%; }
+  .mpg .field .phone-in { --ph-bg: #fff; --ph-cc-bg: #fff; --ph-border: 1.5px; --ph-line: #e3e8e4; --ph-radius: 14px; --ph-ring: rgba(15, 92, 71, .12); }
+  .mpg .field .phone-in input { font-size: 16px; }
+  .mpg .pass-toggle { width: 42px; height: 42px; color: #26342e; }
+  .mpg .loc-note { font-size: 12px; color: #6b7570; }
+  .mpg .role-fields { padding: 14px; border-radius: 16px; background: #f4f7f5; }
+  .mpg .otp-intro { font-size: 13px; line-height: 1.5; color: #56635d; }
+  .mpg .opts { font-size: 13.5px; }
+  .mpg .opts label { color: #26342e; }
+  .mpg .opts input { width: 19px; height: 19px; }
+  .mpg .opts a { text-decoration: underline; text-underline-offset: 2px; }
+
+  /* Sign up, in the mockup's order: name, email, mobile, password, terms, button, then the
+     alternatives (WhatsApp OTP, Google). The long helper line is dropped on phones. */
+  .mpg #signupForm .field-row { display: contents; }
+  .mpg #su-req-note { display: none; }
+  .mpg #signupForm .field:has(#su-name) { order: 1; }
+  .mpg #signupForm .field:has(#su-email) { order: 2; }
+  .mpg #signupForm .field:has(#su-phone) { order: 3; }
+  .mpg #signupForm .role-fields[data-for="developer"] { order: 4; }
+  .mpg #signupForm .role-fields[data-for="agent"] { order: 5; }
+  .mpg #signupForm .field:has(#su-pass) { order: 6; }
+  .mpg #signupForm #verifyNote { order: 7; }
+  .mpg #signupForm > .opts { order: 8; }
+  .mpg #signupForm #su-otp-block { order: 9; }
+  .mpg #signupForm #signupBtn { order: 10; }
+  .mpg #signupForm > .divider { order: 11; }
+  .mpg #signupForm #su-quick { order: 12; }
+  .mpg #signupForm > .btn-google { order: 13; }
+  .mpg #su-quick > small, .mpg #su-quick > .divider { display: none; }
+
+  /* Buttons */
+  .mpg .auth-form .btn-primary, .mpg .success .btn { min-height: 54px; padding: 14px; border-radius: 999px; font-size: 16px; white-space: normal; line-height: 1.25; }
+  .mpg .auth-form .btn-primary:not(.btn-wa-cta), .mpg .success .btn-primary { background: #0a4535; box-shadow: 0 12px 24px -12px rgba(10, 69, 53, .7); }
+  .mpg #signinBtn::after, .mpg #signupBtn::after { content: '\f061'; margin-left: 10px; font: 900 15px 'Font Awesome 6 Free'; }
+  /* WhatsApp OTP: the mockup's light-green outline button (sign-in's link and sign-up's quick option) */
+  .mpg .btn-wa, .mpg .btn-primary.btn-wa-cta { min-height: 52px; padding: 12px; border: 1.5px solid #bfe6c8; border-radius: 999px; background: #eef9f0; box-shadow: none; color: #13221c; font: 600 15px var(--f); white-space: normal; line-height: 1.25; }
+  .mpg .btn-wa i, .mpg .btn-wa-cta i { font-size: 22px; color: #25a244; }
+  .mpg .btn-google { min-height: 52px; border: 1.5px solid #e3e8e4; font-size: 15px; white-space: normal; }
+  /* "Or continue with" divider */
+  .mpg .auth-form > .divider { justify-content: center; margin: 2px 0; font-size: 0; background: linear-gradient(#e3e8e4, #e3e8e4) center / 100% 1px no-repeat; }
+  .mpg .auth-form > .divider::before { content: 'Or continue with'; flex: none; height: auto; padding: 0 12px; background: #fff; font-size: 13.5px; color: #3d4a44; }
+  .mpg .auth-form > .divider::after { display: none; }
+
+  /* ---------- Under the card: the side panel (video, benefits, trust) ---------- */
+  /* position: static so the logo (.brand, above) anchors to the top of the screen. */
+  .mpg .auth-side { position: static; order: 1; min-width: 0; margin: 0 12px; padding: 4px 16px calc(28px + env(safe-area-inset-bottom)); gap: 14px; border: 0; background: #fff; overflow: visible; }
+  .mpg .auth-side h3 { font-size: 16px; line-height: 1.3; }
+  .mpg .side-video { border-radius: 16px; }
+  .mpg .benefits li { font-size: 13.5px; }
+  .mpg .trust { display: flex; margin-top: 2px; padding-top: 14px; }
+}
+@media (max-width: 374px) {
+  .mpg .auth-main { padding: 0 24px 22px; }
+  .mpg .modal-head { margin: 0 -24px; padding-right: 70px; }
+  .mpg .modal-head h2 { font-size: 24px; }
+  .mpg .auth-side .brand .brand-name { font-size: 19px; }
+}

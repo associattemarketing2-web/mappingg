@@ -314,12 +314,76 @@
   })();
 
   /* ---------- Hero search ---------- */
+  // Phones have room for a fuller hint in the full-width search field.
+  if (byId('heroAskInput') && window.matchMedia('(max-width: 720px)').matches) byId('heroAskInput').placeholder = 'Search by location, project, developer…';
+  // Phones show sign-in / sign-up fields without labels above them (app/mobile-home.css),
+  // so the hint inside each field names it.
+  if (window.matchMedia('(max-width: 720px)').matches) {
+    [['si-email', 'Email ID'], ['si-pass', 'Password'], ['su-name', 'Full Name'], ['su-email', 'Email ID'], ['su-phone', 'Mobile Number'],
+     ['su-pass', 'Create Password (8+ characters)'], ['wa-phone', 'Mobile Number'], ['fp-phone', 'Mobile Number']]
+      .forEach(([id, text]) => { if (byId(id)) byId(id).placeholder = text; });
+  }
   // Hero search is a plain GET form to /projects (public, no sign-in needed).
-  // Empty filters are left out so the results URL stays short.
-  if (byId('heroAskForm')) byId('heroAskForm').addEventListener('submit', () => {
-    byId('heroAskForm').querySelectorAll('input[name], select[name]').forEach(el => { if (!String(el.value).trim()) el.disabled = true; });
+  // Empty filters are left out so the results URL stays short, and so are
+  // hidden ones (the City picker shows on phones only).
+  if (byId('heroAskForm')) byId('heroAskForm').addEventListener('submit', (e) => {
+    // Phones (the City picker shows only there): both "Explore on Map" and
+    // "Search Projects" open the map, never the /projects list page.
+    if (byId('heroCity') && byId('heroCity').offsetParent) {
+      e.preventDefault(); openMapFull(); return;
+    }
+    byId('heroAskForm').querySelectorAll('input[name], select[name]').forEach(el => { if (!String(el.value).trim() || !el.offsetParent) el.disabled = true; });
     setTimeout(() => byId('heroAskForm') && byId('heroAskForm').querySelectorAll('[name]').forEach(el => { el.disabled = false; }), 0);
   });
+
+  /* ---------- Phones: search mode tabs, voice search, shortcut cards ---------- */
+  // "Explore on Map" / "Search Projects" (app/mobile-home.css): the main button's label
+  // follows; both open the map (see the hero search submit above).
+  document.querySelectorAll('.mh-modes button').forEach(b => b.addEventListener('click', () => {
+    const form = byId('heroAskForm'), list = b.dataset.mode === 'list';
+    if (!form) return;
+    form.dataset.mode = b.dataset.mode;
+    document.querySelectorAll('.mh-modes button').forEach(x => { const on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on); });
+    if (byId('heroBtnLabel')) byId('heroBtnLabel').textContent = list ? 'Search Projects on Map' : 'Explore Projects on Map';
+    if (list && byId('heroAskInput')) byId('heroAskInput').focus();
+  }));
+  // Mic in the search field, only where the browser can listen (Chrome, Safari).
+  (function () {
+    const mic = byId('heroMic'), input = byId('heroAskInput');
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!mic || !input || !SR) return;
+    mic.hidden = false;
+    let rec = null;
+    mic.addEventListener('click', e => {
+      e.preventDefault();
+      if (rec) { rec.stop(); return; }
+      rec = new SR();
+      rec.lang = 'en-IN'; rec.interimResults = false; rec.maxAlternatives = 1;
+      rec.onresult = ev => { input.value = ev.results[0][0].transcript.replace(/[.?!]+$/, ''); input.focus(); };
+      rec.onend = () => { rec = null; mic.classList.remove('on'); };
+      mic.classList.add('on');
+      try { rec.start(); } catch (err) { rec = null; mic.classList.remove('on'); }
+    });
+  })();
+  // Shortcut cards: the arrow scrolls one page on (back to the start at the end); the dots follow.
+  (function () {
+    const row = byId('mhCats'), next = byId('mhCatsNext'), dots = byId('mhCatsDots');
+    if (!row || !next || !dots) return;
+    const pages = () => Math.max(1, Math.ceil((row.scrollWidth - 4) / row.clientWidth));
+    const sync = () => {
+      const n = pages(), at = Math.round(row.scrollLeft / Math.max(1, row.scrollWidth - row.clientWidth) * (n - 1)) || 0;
+      if (dots.children.length !== n) dots.innerHTML = '<span></span>'.repeat(n);
+      [...dots.children].forEach((d, i) => d.classList.toggle('on', i === at));
+    };
+    next.addEventListener('click', () => {
+      const end = row.scrollLeft + row.clientWidth >= row.scrollWidth - 4;
+      row.scrollTo({ left: end ? 0 : row.scrollLeft + row.clientWidth - 40, behavior: 'smooth' });
+    });
+    row.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    __cleanups.push(() => window.removeEventListener('resize', sync));
+    sync();
+  })();
 
   /* ---------- "See every project, differently" (illustrative area map) ---------- */
   (function () {
@@ -583,8 +647,13 @@
     if (forgotForm) forgotForm.classList.remove('is-active');
     if (byId('waLoginForm')) byId('waLoginForm').classList.remove('is-active');
     successView.classList.remove('is-active'); byId('roleBlock').hidden = false; byId('authTabs').hidden = false;
-    byId('modalTitle').textContent = isIn ? 'Sign in' : (currentRole() === 'buyer' ? 'Explore every project' : 'Create your account');
-    byId('modalSub').textContent = reason || (isIn ? 'Choose your account type, then sign in.' : 'Takes less than a minute.');
+    // Phones use the mobile mockup's wording (app/mobile-home.css styles that screen).
+    const phone = window.matchMedia('(max-width: 720px)').matches;
+    byId('modalTitle').textContent = phone ? (isIn ? 'Welcome Back' : 'Create Your Account')
+      : isIn ? 'Sign in' : (currentRole() === 'buyer' ? 'Explore every project' : 'Create your account');
+    byId('modalSub').textContent = reason || (phone
+      ? (isIn ? 'Sign in to continue your property search and saved preferences.' : 'Get a personalized experience, save projects, compare & more.')
+      : (isIn ? 'Choose your account type, then sign in.' : 'Takes less than a minute.'));
     renderSide();
     modal.classList.add('is-open'); document.body.style.overflow = 'hidden';
     // Hides the cookie banner while the modal is open so it can't cover the submit button.
@@ -604,7 +673,9 @@
   __cleanups.push(() => document.body.classList.remove('mpg-auth-open'));
   document.querySelectorAll('#roleTiles input').forEach(r => r.addEventListener('change', renderSide));
   tabs.forEach(t => t.addEventListener('click', () => openModal(t.dataset.tab)));
-  document.querySelectorAll('.pass-toggle').forEach(b => b.addEventListener('click', () => {
+  // Wired once per button: a second run of this script over the same markup (React
+  // Strict Mode re-mounts in development) would otherwise flip it twice per tap.
+  document.querySelectorAll('.pass-toggle:not([data-wired])').forEach(b => (b.dataset.wired = '1', b).addEventListener('click', () => {
     const inp = b.previousElementSibling, show = inp.type === 'password';
     inp.type = show ? 'text' : 'password'; b.innerHTML = show ? '<i class="fas fa-eye-slash"></i>' : '<i class="fas fa-eye"></i>';
   }));
@@ -913,21 +984,25 @@
     if (!s) promptSignIn();
   }).catch(() => {});
 
-  // A guest is invited to sign in only once engaged — 45 s on this page, or from their
-  // 2nd page view this session — and at most once per browser session. Same rule and
-  // sessionStorage keys as the other pages' prompt (components/SignInPrompt.tsx), so a
-  // first-time visitor can read the page and search before any popup.
+  // Guests on the home page (phone and desktop) get the Sign in / Sign up popup 1 s
+  // after it opens, then 10 s after each time they close it, until they sign in. The
+  // page itself works normally (links, search, map), so they can look around between
+  // prompts. Not inside an iframe (the home page's embedded map).
   function promptSignIn() {
     try { if (window.self !== window.top) return; } catch (e) { return; }
-    const ss = k => { try { return sessionStorage.getItem(k); } catch (e) { return null; } };
-    if (ss('mg-signin-prompted')) return;
-    const views = +ss('mg-pv') || 1;
-    setTimeout(function () {
-      // Skip if the visitor already left the home page (this markup is gone) or got in.
-      if (!modal || !document.contains(modal) || modal.classList.contains('is-open') || getUser() || ss('mg-signin-prompted')) return;
+    const ask = () => {
       try { sessionStorage.setItem('mg-signin-prompted', '1'); } catch (e) {}
       openModal('signin', null, 'Sign in, or create a free account, to explore every project on the live map.');
-    }, views >= 2 ? 1000 : 45000);
+    };
+    // First 1 s after the page opens, then 10 s after each time it's closed, until they
+    // sign in. Skips if the visitor left the home page (this markup is gone) or got in.
+    let lastSeen = Date.now() - 9000;
+    const tick = setInterval(function () {
+      if (!modal || !document.contains(modal) || getUser()) return;
+      if (modal.classList.contains('is-open')) { lastSeen = Date.now(); return; }
+      if (Date.now() - lastSeen >= 10000) { lastSeen = Date.now(); ask(); }
+    }, 500);
+    __cleanups.push(() => clearInterval(tick));
   }
 
   // The shared <SiteHeader/> lives outside this markup; it asks us to open the

@@ -5,21 +5,19 @@ import { usePathname } from 'next/navigation';
 import './signin-prompt.css';
 
 // Sign-in popup for guests on public pages, with the "How to use Mappingg" video.
-// It never opens on arrival: only once the visitor is engaged (45 s on a page, or
-// from their 2nd page view), and at most once per browser session (shared with
-// the home page's modal via sessionStorage — see public/landing.js). The form signs in
+// Same rule as the home page's modal (public/landing.js): it opens when a page opens
+// (1 s), then 10 s after each time it's closed until they sign in; the page itself
+// works normally in between. The form signs in
 // for real (POST /api/auth/login, the same call as the home page's modal); WhatsApp
-// OTP, "Forgot password" and "Create account" open the full modal on the home page,
-// which shows itself on load there (public/landing.js). Signed-in users never see it.
-// Client-only: search engines don't run it, so pages stay fully crawlable.
+// OTP, "Forgot password" and "Create account" open the full modal on the home page.
+// Signed-in users never see it. Client-only: search engines don't run it, so pages
+// stay fully crawlable.
 
-const DELAY_MS = 1000;
-/** Time on a first page before the prompt may open. */
-const ENGAGED_MS = 45_000;
-const PV_KEY = 'mg-pv';
+/** The popup opens this long after a page opens, then every REOPEN_MS while it's closed. */
+const FIRST_MS = 1000;
+const REOPEN_MS = 10_000;
 const PROMPTED_KEY = 'mg-signin-prompted';
 const ss = {
-  get: (k: string) => { try { return sessionStorage.getItem(k); } catch { return null; } },
   set: (k: string, v: string) => { try { sessionStorage.setItem(k, v); } catch { /* private mode */ } },
 };
 const SRC = '/video/how-mappingg-works-v1.mp4';
@@ -30,15 +28,10 @@ const POSTER = '/video/how-mappingg-works-v1.jpg';
 const SKIP = [/^\/$/, /^\/map(\/|$)/, /^\/dashboard(\/|$)/, /^\/s-admin(\/|$)/, /^\/signin(\/|$)/, /^\/intake(\/|$)/,
   /^\/(privacy|terms|cookies|disclaimer|map-data)(\/|$)/];
 
-// Reset by a refresh (a fresh page load), not by moving between pages.
-let closedThisLoad = false;
-// The page last counted as a view, so React's dev double-run of effects (StrictMode)
-// doesn't count one visit twice and open the prompt early.
-let countedPath: string | null = null;
-
 export default function SignInPrompt() {
   const pathname = usePathname() || '/';
   const [open, setOpen] = useState(false);
+  const [guest, setGuest] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPass, setShowPass] = useState(false);
@@ -46,30 +39,31 @@ export default function SignInPrompt() {
   const [error, setError] = useState('');
   const video = useRef<HTMLVideoElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
+  const skip = SKIP.some((r) => r.test(pathname));
 
+  // Signed out? (asked once per page; a sign-in reloads the page)
   useEffect(() => {
-    // Page views this session (the home page's modal reads the same counter).
-    let views = Number(ss.get(PV_KEY)) || 0;
-    if (countedPath !== pathname) { countedPath = pathname; views += 1; ss.set(PV_KEY, String(views)); }
-    if (closedThisLoad || ss.get(PROMPTED_KEY) || SKIP.some((r) => r.test(pathname))) return;
+    if (skip) return;
     try { if (window.self !== window.top) return; } catch { return; } // never inside an embed
     let cancelled = false;
-    let timer: ReturnType<typeof setTimeout> | undefined;
     fetch('/api/auth/session', { credentials: 'same-origin' })
       .then((r) => r.json())
-      .then((b) => {
-        if (cancelled || (b && b.session && b.session.user)) return;
-        timer = setTimeout(() => {
-          if (closedThisLoad || ss.get(PROMPTED_KEY)) return;
-          ss.set(PROMPTED_KEY, '1');
-          setOpen(true);
-        }, views >= 2 ? DELAY_MS : ENGAGED_MS);
-      })
+      .then((b) => { if (!cancelled) setGuest(!(b && b.session && b.session.user)); })
       .catch(() => { /* offline or blocked: just don't prompt */ });
-    return () => { cancelled = true; if (timer) clearTimeout(timer); };
-  }, [pathname]);
+    return () => { cancelled = true; };
+  }, [pathname, skip]);
 
-  const close = () => { closedThisLoad = true; setOpen(false); };
+  // Opens 1 s after a page opens, then 10 s after each time it's closed (until sign-in,
+  // which reloads the page).
+  const shownOn = useRef<string | null>(null);
+  useEffect(() => {
+    if (!guest || skip || open) return;
+    const t = setTimeout(() => { shownOn.current = pathname; ss.set(PROMPTED_KEY, '1'); setOpen(true); },
+      shownOn.current === pathname ? REOPEN_MS : FIRST_MS);
+    return () => clearTimeout(t);
+  }, [guest, skip, open, pathname]);
+
+  const close = () => setOpen(false);
 
   useEffect(() => {
     if (!open) return;
