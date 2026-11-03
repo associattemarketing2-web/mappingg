@@ -604,3 +604,22 @@
 .cf-project span { flex: 1; min-width: 0; overflow-wrap: anywhere; }
 .cf-project button { flex-shrink: 0; width: 36px; height: 36px; display: grid; place-items: center; border: 0; border-radius: 10px; background: transparent; color: var(--muted); cursor: pointer; }
 .cf-project button:hover, .cf-project button:focus-visible { background: #fff; color: var(--ink); }
+
+/* Delete account page (/delete-account). */
+.da-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 460px); gap: 48px; align-items: start; }
+.da-info h2 { font-size: 26px; color: var(--ink); margin-bottom: 18px; }
+.da-info h3 { display: flex; align-items: center; gap: 10px; font-size: 16px; color: var(--ink); margin: 22px 0 8px; }
+.da-info h3 i { color: var(--earth); width: 18px; text-align: center; }
+.da-info ul { margin: 0 0 0 28px; padding: 0; color: var(--text); line-height: 1.6; }
+.da-info li + li { margin-top: 4px; }
+.da-more { margin: 26px 0 12px; color: var(--text); }
+.da-form { position: sticky; top: 96px; }
+.cf-head-ic.da-danger { background: var(--earth); }
+.cf-card label.da-check { margin-bottom: 18px; }
+.da-signin { margin: 0 0 16px; padding: 10px 14px; border-radius: 12px; background: var(--park-50); color: var(--ink); font-size: 14px; }
+.da-signin a { font-weight: 600; color: var(--forest); }
+.ipg .da-submit { background: var(--earth); border-color: var(--earth); }
+@media (max-width: 960px) {
+  .da-layout { grid-template-columns: 1fr; gap: 32px; }
+  .da-form { position: static; }
+}

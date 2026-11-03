@@ -11,7 +11,7 @@ import SocialLinks from '@/components/SocialLinks';
 // the legal-document layout with a sticky table of contents, and a few
 // decorative map illustrations drawn in the landing page's map palette.
 
-export const LEGAL_UPDATED = '4 October 2026';
+export const LEGAL_UPDATED = '2 November 2026';
 export { EMAIL };
 
 type Tone = 'park' | 'water' | 'earth' | 'road';
@@ -28,6 +28,7 @@ const LEGAL_LINKS = [
   { href: '/cookies', label: 'Cookie policy' },
   { href: '/disclaimer', label: 'Disclaimer' },
   { href: '/map-data', label: 'Map data & OpenStreetMap' },
+  { href: '/delete-account', label: 'Delete your account' },
 ];
 const EXPLORE_LINKS = [
   { href: '/map', label: 'Live map' },

@@ -171,11 +171,20 @@ const sections: LegalSection[] = [
     id: 'your-choices',
     title: 'Retention and your choices',
     body: (
-      <p>
-        We keep personal information for as long as it is needed for the purposes in this Policy, or as long as the law
-        requires. You can ask us to access, correct or delete your personal information, or to stop contacting you, by
-        writing to us at the address below. You can unsubscribe from our emails at any time using the link in each email.
-      </p>
+      <>
+        <p>
+          We keep personal information for as long as it is needed for the purposes in this Policy, or as long as the law
+          requires. You can ask us to access, correct or delete your personal information, or to stop contacting you, by
+          writing to us at the address below. You can unsubscribe from our emails at any time using the link in each email.
+        </p>
+        <p>
+          You can delete your account at any time on our <Link href="/delete-account">Delete your account</Link> page or
+          in the Mappingg app (Account → Delete my account). Your account and its details are deleted permanently. Records
+          of the projects you enquired about are kept for statistics, with your name, email, phone number and messages
+          removed. Projects a developer added stay on the map as public project information. Requests sent without a
+          password are completed within 30 days.
+        </p>
+      </>
     ),
   },
   {
