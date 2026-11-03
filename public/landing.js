@@ -124,6 +124,23 @@
     }));
     if (byId('hmPcardX')) byId('hmPcardX').addEventListener('click', () => byId('hmPcard').classList.add('hide'));
 
+    // Pins on the hero skyline photo: each one shows its project card in turn
+    // (after they've dropped in); hovering a pin pauses the loop.
+    const sky = byId('hmSky');
+    if (sky) {
+      const pins = [...sky.querySelectorAll('.hm-sky-pin')];
+      let i = -1, paused = false;
+      const next = () => {
+        if (paused || document.hidden) return;
+        pins.forEach(p => p.classList.remove('on'));
+        i = (i + 1) % pins.length;
+        pins[i].classList.add('on');
+      };
+      sky.addEventListener('mouseover', e => { if (e.target.closest('.hm-sky-pin')) { paused = true; pins.forEach(p => p.classList.remove('on')); } });
+      sky.addEventListener('mouseout', e => { if (e.target.closest('.hm-sky-pin')) paused = false; });
+      setTimeout(() => { next(); setInterval(next, 3500); }, 1600);
+    }
+
     // Hero map preview: it shows Mundhwa's project pins to everyone (server-
     // rendered). "Near me" asks for the visitor's location and swaps in the
     // projects around them; nothing is stored. With no projects near them, the

@@ -229,6 +229,29 @@ export function heroProjectHtml(cards: ProjectCardData[]): string {
       </div>`;
 }
 
+/** Building tops in the hero skyline photo (x, y in px of the 1100 × 677 image), picked
+ *  in the strip that stays clear of the headline and the map on desktop. 'r' opens the
+ *  card to the right, where opening it upwards would cover the intro text. */
+const SKYLINE_SPOTS: [number, number, ('r' | '')?][] = [[742, 214], [900, 208], [830, 402, 'r']];
+
+/** Map pins standing on a few buildings of the hero's background photo. Each opens a
+ *  small card for a real project (landing.js cycles them); desktop only (home.css). */
+export function heroSkylinePinsHtml(cards: ProjectCardData[]): string {
+  // Skip the project already shown on the hero map's card.
+  const { list } = featuredPool(cards);
+  const hero = list.find((x) => x.price && x.bhk);
+  const picks = list.filter((c) => c !== hero && c.price).slice(0, SKYLINE_SPOTS.length);
+  if (picks.length < 2) return '';
+  const pins = picks.map((c, k) => {
+    const [x, y, side] = SKYLINE_SPOTS[k];
+    const where = [c.locality, c.city].filter(Boolean).join(', ');
+    return `<a class="hm-sky-pin${side === 'r' ? ' side-r' : ''}" href="${esc(c.href)}" data-quickview="${c.number}" style="left:${((x / 1100) * 100).toFixed(2)}%;top:${((y / 677) * 100).toFixed(2)}%;--d:${(0.4 + k * 0.25).toFixed(2)}s" aria-label="${esc(c.title)}, ${esc(where)}">`
+      + `<span class="hm-sky-mark"><img src="${esc(c.image)}" alt="" width="26" height="26" loading="lazy" decoding="async"></span>`
+      + `<span class="hm-sky-card" aria-hidden="true"><b>${esc(c.title)}</b><small>${esc(where)}</small><strong>${esc(c.price)}</strong></span></a>`;
+  }).join('');
+  return `<div class="hm-hero-sky" id="hmSky"><div class="hm-hero-sky-in">${pins}</div></div>`;
+}
+
 // ---------- "Built for every home buyer" (bento grid) ----------
 // Six tiles, each one a real way in: a small real map of the busiest
 // localities, RERA count, compare, budget / BHK shortcuts (they open the

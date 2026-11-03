@@ -30,6 +30,7 @@ const PHONE_CODE_DEFAULT = '<option value="+91" selected>🇮🇳 +91</option>';
 export const LANDING_BODY = `
 <header class="hm-hero" id="home">
   <div class="hm-hero-bg" aria-hidden="true"></div>
+  <!--HERO_SKY_PINS-->
   <div class="hm-wrap hm-hero-grid">
     <div class="hm-hero-copy">
       <span class="hm-kicker"><span class="dot"></span>India's real estate project map</span>
