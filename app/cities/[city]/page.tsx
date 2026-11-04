@@ -12,6 +12,7 @@ import {
 } from '@/lib/seo/entities';
 import { guidesFor } from '@/lib/seo/blog-links';
 import { listPublished } from '@/lib/blog';
+import { facetLinksFor } from '@/lib/seo/facet-pages';
 
 export const revalidate = 3600;
 // City hubs come from the live project data, so new ones appear between deploys.
@@ -39,7 +40,7 @@ export default async function CityPage({ params, searchParams }: Props) {
   const pg = paginate(g.pins, searchParams?.page);
   if (!pg) notFound();
 
-  const [allLocs, statuses, cities, posts] = await Promise.all([getLocalityGroups(), getStatusGroups(), getCityGroups(), listPublished()]);
+  const [allLocs, statuses, cities, posts, facets] = await Promise.all([getLocalityGroups(), getStatusGroups(), getCityGroups(), listPublished(), facetLinksFor('city', g.slug)]);
   const guides = guidesFor(g.slug, posts).map((p) => ({ label: `Guide: ${p.title}`, path: `/blog/${p.slug}` }));
   const otherCities = cities.filter((c) => c.slug !== g.slug).map((c) => ({ label: `Projects in ${c.label}`, path: `/cities/${c.slug}`, count: c.count }));
   const allHere = allLocs.filter((l) => l.pins[0] && cityOf(l.pins[0]) === g.slug);
@@ -76,8 +77,8 @@ export default async function CityPage({ params, searchParams }: Props) {
       pins={pg.items}
       pagination={{ ...pg, base: `/cities/${g.slug}` }}
       projectsHeading={`All projects in ${g.label} (${g.count})`}
-      relatedTitle={`Localities in ${g.label}`}
-      related={[...guides, ...statusHere, ...localitiesHere, ...otherCities]}
+      relatedTitle={`By BHK, budget & locality in ${g.label}`}
+      related={[...facets, ...guides, ...statusHere, ...localitiesHere, ...otherCities]}
       faqs={[
         {
           q: `How many real estate projects are there in ${g.label} on Mappingg?`,

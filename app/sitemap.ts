@@ -12,6 +12,7 @@ import {
   type Pin,
 } from '@/lib/seo/entities';
 import { developerIndexing, localityIndexing, projectIndexing } from '@/lib/seo/indexing';
+import { getAllFacetPages } from '@/lib/seo/facet-pages';
 
 // Regenerate at most once an hour so newly published blog posts and new
 // projects/localities appear without a redeploy (search engines re-fetch
@@ -44,12 +45,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/terms`, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${SITE_URL}/cookies`, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${SITE_URL}/disclaimer`, changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${SITE_URL}/data-sources`, changeFrequency: 'monthly', priority: 0.4 },
     { url: `${SITE_URL}/map-data`, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${SITE_URL}/developer-api`, changeFrequency: 'monthly', priority: 0.4 },
   ];
 
   // Derived entity routes (never throws — each getter is cached & fail-safe).
-  const [pins, locs, devs, cities, statuses, types, posts] = await Promise.all([
+  const [pins, locs, devs, cities, statuses, types, posts, facets] = await Promise.all([
     getPublicPins(),
     getLocalityGroups(),
     getDeveloperGroups(),
@@ -57,6 +59,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     getStatusGroups(),
     getTypeGroups(),
     listPublished({ strict: true }),
+    getAllFacetPages(),
   ]);
 
   // lastModified comes only from real change dates: a value that is always "now"
@@ -89,6 +92,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const cityRoutes = group('/cities', cities, 0.7);
   const statusRoutes = group('/status', statuses, 0.6);
   const typeRoutes = group('/property', types, 0.6);
+  // BHK / budget pages (/cities/pune/2-bhk-flats …): only those with enough projects exist.
+  const facetRoutes: MetadataRoute.Sitemap = facets.map((f) => ({
+    url: `${SITE_URL}${f.path}`,
+    lastModified: latest(f.pins),
+    changeFrequency: 'weekly',
+    priority: f.scope === 'city' ? 0.75 : 0.65,
+  }));
 
   const postRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
     url: `${SITE_URL}/blog/${p.slug}`,
@@ -105,6 +115,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...cityRoutes,
     ...statusRoutes,
     ...typeRoutes,
+    ...facetRoutes,
     ...postRoutes,
   ];
 }

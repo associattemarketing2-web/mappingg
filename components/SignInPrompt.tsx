@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { usePathname } from 'next/navigation';
 import './signin-prompt.css';
+import { track } from '@/lib/analytics';
 
 // Sign-in popup for guests on public pages, with the "How to use Mappingg" video.
 // Same rule as the home page's modal (public/landing.js): it opens when a page opens
@@ -94,6 +95,7 @@ export default function SignInPrompt() {
       });
       const b = await r.json().catch(() => ({}));
       if (r.ok && b.user) {
+        track('login', { method: 'email' });
         // Staff → super admin, buyers → the live map, developers and partners → their dashboard.
         window.location.href = b.redirect || '/dashboard';
         return;

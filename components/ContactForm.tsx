@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import PhoneInput from './PhoneInput';
 import { PHONE_ERROR, isValidNumber, splitPhone } from '@/lib/phone';
 import { WHATSAPP_URL } from '@/lib/contact';
+import { track } from '@/lib/analytics';
 
 // Public lead-capture form. Submissions post to /api/contact and appear in the
 // s-admin CRM (Leads tab). Home buyers also tell us city, locality, budget, BHK
@@ -71,6 +72,7 @@ export default function ContactForm() {
       });
       const out = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(out?.error?.message || 'Something went wrong.');
+      track('generate_lead', { form: 'contact', topic: buying ? 'buying' : 'other', project_number: buying ? f.project_number : undefined });
       setDone(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong.');

@@ -14,6 +14,7 @@ import { LOCALITY_GUIDES } from '@/lib/seo/locality-guides';
 import { formatBhk, formatLakhs, summarizeLocality } from '@/lib/seo/locality-summary';
 import { guidesFor } from '@/lib/seo/blog-links';
 import { listPublished } from '@/lib/blog';
+import { facetLinksFor } from '@/lib/seo/facet-pages';
 
 export const revalidate = 3600;
 // Localities come from the live project data, so new ones appear between deploys.
@@ -34,11 +35,12 @@ export default async function LocationPage({ params }: { params: { slug: string 
   const city = CITY_LABELS[cityKey];
 
   // Other localities in the same city + developers active here, for internal links.
-  const [allLocs, devGroups, statuses, posts] = await Promise.all([
+  const [allLocs, devGroups, statuses, posts, facets] = await Promise.all([
     getLocalityGroups(),
     getDeveloperGroups(),
     getStatusGroups(),
     listPublished(), // lenient: a blog read failure just drops the guide links
+    facetLinksFor('locality', g.slug),
   ]);
   const guides = guidesFor(g.slug, posts).map((p) => ({ label: `Guide: ${p.title}`, path: `/blog/${p.slug}` }));
   const nearbyLocs = allLocs
@@ -108,7 +110,7 @@ export default async function LocationPage({ params }: { params: { slug: string 
       pins={g.pins}
       projectsHeading={`Projects in ${g.label} (${g.count})`}
       relatedTitle="Guides, nearby localities & developers"
-      related={[...guides, ...statusHere, ...nearbyLocs, ...devsHere]}
+      related={[...facets, ...guides, ...statusHere, ...nearbyLocs, ...devsHere]}
       faqs={[
         ...(priceFaq ? [priceFaq] : []),
         {

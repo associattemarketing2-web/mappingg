@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
 import type { QuickView } from '@/lib/home/quickview';
 import { WHATSAPP_NUMBER, WHATSAPP_DISPLAY } from '@/lib/contact';
 import { isValidNumber, splitPhone, PHONE_ERROR } from '@/lib/phone';
+import { track } from '@/lib/analytics';
 
 // "Enquire now" popup for project cards on the home page. Any link with
 // data-quickview="<pin number>" opens it (event delegation, so server-rendered
@@ -265,6 +266,7 @@ function VisitForm({ p }: { p: QuickView }) {
       });
       const b = await r.json().catch(() => ({}));
       if (!r.ok) throw new Error(b?.error?.message || 'Something went wrong. Please try again.');
+      track('generate_lead', { form: 'quick_view', project_number: p.number });
       setState('done');
     } catch (e2) {
       setErr(e2 instanceof Error ? e2.message : 'Something went wrong. Please try again.');

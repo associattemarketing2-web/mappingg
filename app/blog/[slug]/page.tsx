@@ -5,6 +5,9 @@ import SiteHeader from '@/components/SiteHeader';
 
 import { SITE, SITE_URL } from '@/lib/seo/config';
 import { breadcrumbSchema } from '@/lib/seo/schema';
+import { resolveInternalLinks } from '@/lib/seo/resolve-links';
+import { facetHeading, getAllFacetPages } from '@/lib/seo/facet-pages';
+import { isFacetGuide } from '@/lib/seo/facets';
 
 export const revalidate = 3600;
 
@@ -24,6 +27,11 @@ export default async function BlogArticle({ params }: { params: { slug: string }
   if (!post) notFound();
 
   const url = `${SITE_URL}/blog/${post.slug}`;
+  const body = await resolveInternalLinks(post.content || '');
+  // A guide like /blog/2-bhk-flats-in-pune points readers to the live list it explains.
+  const liveList = (await getAllFacetPages().catch(() => [])).find(
+    (f) => f.scope === 'city' && isFacetGuide(f.facet.slug, f.place.slug, post.slug),
+  );
   const published = post.published_at || post.created_at;
   const updated = wasUpdated(published, post.updated_at) ? post.updated_at : null;
   // Structured data wants an absolute image URL; covers may be site-relative (/img/blog/...).
@@ -87,7 +95,14 @@ export default async function BlogArticle({ params }: { params: { slug: string }
             // eslint-disable-next-line @next/next/no-img-element
             <img className="a-cover" src={post.cover_image} alt={post.title} width={1200} height={630} fetchPriority="high" />
           )}
-          <div className="article-body" dangerouslySetInnerHTML={{ __html: post.content || '' }} />
+          {liveList && (
+            <p className="a-live-list">
+              Live list: <a href={liveList.path}>{facetHeading(liveList.facet)} in {liveList.placeShort}</a> — {liveList.pins.length}{' '}
+              projects, updated as listings change. This guide explains prices and what to check; the live list shows every
+              current project.
+            </p>
+          )}
+          <div className="article-body" dangerouslySetInnerHTML={{ __html: body }} />
 
           <div className="article-cta">
             <h3>See these projects on the live map</h3>

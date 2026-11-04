@@ -4,6 +4,7 @@ import { useState } from 'react';
 import PhoneInput from './PhoneInput';
 import { PHONE_ERROR, isValidNumber, splitPhone } from '@/lib/phone';
 import { WHATSAPP_URL } from '@/lib/contact';
+import { track } from '@/lib/analytics';
 import { CONSENT_FORMS } from '@/lib/consent';
 import { REQ_BHK, REQ_BUDGETS, REQ_CITIES, REQ_PURPOSES, REQ_TIMELINES } from '@/lib/buyer-requirement';
 
@@ -42,6 +43,7 @@ export default function BuyerRequirementForm() {
       const res = await fetch('/api/buyer-requirement', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(f) });
       const out = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(out?.error?.message || 'Something went wrong.');
+      track('generate_lead', { form: 'buyer_requirement', city: f.city, bhk: f.bhk, budget: f.budget });
       setDone(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong.');

@@ -1,0 +1,101 @@
+﻿severity,code,url,detail,fix,status
+medium,indexable-not-in-sitemap,/delete-account,discovered via source,Add to sitemap or noindex if low value,open
+medium,indexable-not-in-sitemap,/developer-api/reference,discovered via source,Add to sitemap or noindex if low value,open
+medium,thin-content,/cities/delhi/3-bhk-flats?page=2,105 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developer-api/reference,0 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/aparna-constructions,117 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/bren-corporation-private-limited,146 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/brigade-enterprises-ltd,138 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/ds-max-properties,118 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/kolte-patil-developers,129 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/krisala-hiranandani-township,144 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/kumar-corp,137 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/magarpatta-group,142 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/marvel-realtors,148 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/mythri-builders,140 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/naiknavare-developers,136 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/platinum-corp,135 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/pranav-constructions,95 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/prestige-estates-projects-ltd,147 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/prestige-group,119 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/sattva-group,111 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/locations/mawal,146 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/mundhwa-map-3d,11 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/projects?page=20,120 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/projects/amar-quantum-tech-park-45,138 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/projects/lodha-giardino-97,112 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/property/3-bed-suites-retail,119 words of visible text,"Add useful, page-specific content or noindex",open
+low,description-long,/locations/revenue-estate-of-village-dho-rka,171 chars,Trim to ~155–160 chars,open
+low,description-long,/locations/revenue-estate-of-village-waz-irpur,173 chars,Trim to ~155–160 chars,open
+low,description-long,/locations/yamuna-expressway-industrial-development-area,183 chars,Trim to ~155–160 chars,open
+low,description-long,/projects,176 chars,Trim to ~155–160 chars,open
+low,heading-skip,/,1 skipped heading level(s),Use h2 → h3 in order,open
+low,heading-skip,/buyer-requirement,1 skipped heading level(s),Use h2 → h3 in order,open
+low,heading-skip,/developer-api/reference,1 skipped heading level(s),Use h2 → h3 in order,open
+low,img-no-dimensions,/,116 image(s) without width/height,Set width/height to avoid layout shift,open
+low,title-all-caps,/projects/life-republic-sector-r3131st-avenue-echoesphase-1-mulshi-729,LIFE REPUBLIC SECTOR R31/31st AVENUE – ECHOES/PHASE – 1 — Mappingg,Show imported ALL-CAPS names in title case,open
+low,title-long,/developers?page=2,"81 chars: Real Estate Developers in Bengaluru, Pune, Mumbai & more — Page 2 of 6 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers?page=3,"81 chars: Real Estate Developers in Bengaluru, Pune, Mumbai & more — Page 3 of 6 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers?page=4,"81 chars: Real Estate Developers in Bengaluru, Pune, Mumbai & more — Page 4 of 6 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers?page=5,"81 chars: Real Estate Developers in Bengaluru, Pune, Mumbai & more — Page 5 of 6 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers?page=6,"81 chars: Real Estate Developers in Bengaluru, Pune, Mumbai & more — Page 6 of 6 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/aura-infrabiz-llp-lotus-srs-buildtech-private-limited,73 chars: Aura Infrabiz LLP Lotus SRS Buildtech Private Limited Projects — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/happiness-harmony-property-developers-private-limited,73 chars: Happiness Harmony Property Developers Private Limited Projects — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/homekraft-infra-private-limited-fest-homes-developers-pvt-ltd,83 chars: Homekraft Infra Private Limited Fest Homes Developers Pvt. Ltd. Projects — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/ms-cardinal-energy-and-infrastructure-private-limited,75 chars: M/s Cardinal Energy and Infrastructure Private Limited. Projects — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/northwind-estates-private-limited-assotech-infrastructure-private-limited,93 chars: Northwind Estates Private Limited Assotech Infrastructure Private Limited Projects — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/parmesh-construction-company-limited-yashoda-super-speciality-hospitals-pvt-ltd,101 chars: Parmesh Construction Company Limited Yashoda Super Speciality Hospitals Pvt. Ltd. Projects — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/sobha-limited-atlaspur-construction-and-developers-private-limited,86 chars: Sobha Limited Atlaspur Construction and Developers Private Limited Projects — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/developers/vdb-infra-and-realty-pvt-ltd-inspira-builders-llp,71 chars: VDB Infra and Realty Pvt Ltd & Inspira Builders LLP Projects — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/locations/revenue-estate-of-village-dho-rka,"79 chars: Real Estate Projects in Revenue Estate of Village Dho Rka, Delhi NCR — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/locations/revenue-estate-of-village-waz-irpur,"81 chars: Real Estate Projects in Revenue Estate of Village Waz Irpur, Delhi NCR — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/locations/yamuna-expressway-industrial-development-area,"91 chars: Real Estate Projects in Yamuna Expressway Industrial Development Area, Delhi NCR — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=10,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 10 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=11,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 11 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=12,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 12 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=13,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 13 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=14,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 14 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=15,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 15 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=16,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 16 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=17,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 17 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=18,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 18 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=19,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 19 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=2,"80 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 2 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=20,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 20 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=3,"80 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 3 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=4,"80 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 4 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=5,"80 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 5 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=6,"80 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 6 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=7,"80 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 7 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=8,"80 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 8 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=9,"80 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 9 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/property/residential?page=2,"79 chars: Residential Projects in Pune, Mumbai, Delhi NCR & more — Page 2 of 6 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/property/residential?page=3,"79 chars: Residential Projects in Pune, Mumbai, Delhi NCR & more — Page 3 of 6 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/property/residential?page=4,"79 chars: Residential Projects in Pune, Mumbai, Delhi NCR & more — Page 4 of 6 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/property/residential?page=5,"79 chars: Residential Projects in Pune, Mumbai, Delhi NCR & more — Page 5 of 6 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/property/residential?page=6,"79 chars: Residential Projects in Pune, Mumbai, Delhi NCR & more — Page 6 of 6 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/property/residentialgroup-housing?page=2,72 chars: Residential/Group Housing Projects in Bengaluru — Page 2 of 9 — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/property/residentialgroup-housing?page=3,72 chars: Residential/Group Housing Projects in Bengaluru — Page 3 of 9 — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/property/residentialgroup-housing?page=4,72 chars: Residential/Group Housing Projects in Bengaluru — Page 4 of 9 — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/property/residentialgroup-housing?page=5,72 chars: Residential/Group Housing Projects in Bengaluru — Page 5 of 9 — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/property/residentialgroup-housing?page=6,72 chars: Residential/Group Housing Projects in Bengaluru — Page 6 of 9 — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/property/residentialgroup-housing?page=7,72 chars: Residential/Group Housing Projects in Bengaluru — Page 7 of 9 — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/property/residentialgroup-housing?page=8,72 chars: Residential/Group Housing Projects in Bengaluru — Page 8 of 9 — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/property/residentialgroup-housing?page=9,72 chars: Residential/Group Housing Projects in Bengaluru — Page 9 of 9 — Mappingg,Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/status/under-construction?page=10,"80 chars: Under Construction Projects in Bengaluru, Pune & more — Page 10 of 18 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/status/under-construction?page=11,"80 chars: Under Construction Projects in Bengaluru, Pune & more — Page 11 of 18 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/status/under-construction?page=12,"80 chars: Under Construction Projects in Bengaluru, Pune & more — Page 12 of 18 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/status/under-construction?page=13,"80 chars: Under Construction Projects in Bengaluru, Pune & more — Page 13 of 18 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/status/under-construction?page=14,"80 chars: Under Construction Projects in Bengaluru, Pune & more — Page 14 of 18 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/status/under-construction?page=15,"80 chars: Under Construction Projects in Bengaluru, Pune & more — Page 15 of 18 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/status/under-construction?page=16,"80 chars: Under Construction Projects in Bengaluru, Pune & more — Page 16 of 18 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/status/under-construction?page=17,"80 chars: Under Construction Projects in Bengaluru, Pune & more — Page 17 of 18 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/status/under-construction?page=18,"80 chars: Under Construction Projects in Bengaluru, Pune & more — Page 18 of 18 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/status/under-construction?page=2,"79 chars: Under Construction Projects in Bengaluru, Pune & more — Page 2 of 18 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/status/under-construction?page=3,"79 chars: Under Construction Projects in Bengaluru, Pune & more — Page 3 of 18 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/status/under-construction?page=4,"79 chars: Under Construction Projects in Bengaluru, Pune & more — Page 4 of 18 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/status/under-construction?page=5,"79 chars: Under Construction Projects in Bengaluru, Pune & more — Page 5 of 18 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/status/under-construction?page=6,"79 chars: Under Construction Projects in Bengaluru, Pune & more — Page 6 of 18 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/status/under-construction?page=7,"79 chars: Under Construction Projects in Bengaluru, Pune & more — Page 7 of 18 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/status/under-construction?page=8,"79 chars: Under Construction Projects in Bengaluru, Pune & more — Page 8 of 18 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/status/under-construction?page=9,"79 chars: Under Construction Projects in Bengaluru, Pune & more — Page 9 of 18 — Mappingg",Keep under ~60–65 chars so it is not truncated,open

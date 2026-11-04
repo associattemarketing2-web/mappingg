@@ -28,7 +28,9 @@
     "seo:metadata": "node scripts/seo-audit/crawl.mjs --focus=metadata",
     "seo:sitemap": "node scripts/seo-audit/crawl.mjs --focus=sitemap",
     "seo:links": "node scripts/seo-audit/crawl.mjs --focus=links",
-    "seo:schema": "node scripts/seo-audit/crawl.mjs --focus=schema"
+    "seo:schema": "node scripts/seo-audit/crawl.mjs --focus=schema",
+    "seo:gsc": "node --env-file=.env scripts/seo-audit/gsc-export.mjs",
+    "seo:keywords": "node --experimental-transform-types --no-warnings --import ./tests/register.mjs scripts/seo-audit/keyword-sheet.mts"
   },
   "engines": {
     "node": "24.x"

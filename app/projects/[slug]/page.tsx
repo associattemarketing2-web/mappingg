@@ -21,6 +21,8 @@ import { slugify } from '@/lib/seo/slug';
 import { toCard } from '@/lib/home/cards';
 import { projectSchema, faqSchema, videoSchema, youtubeId, jsonLd } from '@/lib/seo/schema';
 import { projectFaqs, projectSummary, reraNumber, reraRegistry } from '@/lib/seo/project-meta';
+import { facetHeading, getAllFacetPages } from '@/lib/seo/facet-pages';
+import TrackOnView from '@/components/TrackOnView';
 
 const fmtDate = (d?: string) =>
   d ? new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
@@ -116,6 +118,12 @@ export default async function ProjectDetail({ params }: { params: { slug: string
     ...(hasCityHub(cityKey) ? [{ label: `Real estate in ${city}`, path: `/cities/${cityKey}` }] : []),
   ];
   // Other localities this project touches (projects often span 2 areas).
+  // BHK / budget pages this project appears on (locality ones first), e.g. '3 BHK Flats in Mundhwa'.
+  const facetLinks = (await getAllFacetPages())
+    .filter((f) => f.pins.some((p) => p.id === pin.id))
+    .sort((a, b) => (a.scope === b.scope ? 0 : a.scope === 'locality' ? -1 : 1))
+    .slice(0, 6)
+    .map((f) => ({ label: `${facetHeading(f.facet)} in ${f.placeShort}`, path: f.path }));
   const otherLocs = placesOf(pin.location)
     .filter((l) => l !== loc)
     .map((l) => ({ label: l, path: `/locations/${slugify(l)}` }));
@@ -134,6 +142,7 @@ export default async function ProjectDetail({ params }: { params: { slug: string
 
   return (
     <SeoShell crumbs={crumbs}>
+      <TrackOnView event="view_item" params={{ item_id: pin.number, item_name: name, locality: loc, city: cityKey }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(...schemas) }} />
 
       <header className="seo-hero">
@@ -151,7 +160,7 @@ export default async function ProjectDetail({ params }: { params: { slug: string
         </div>
         {pin.updated_at && (
           <p style={{ fontSize: '0.82rem', color: '#646e7a', marginTop: 10 }}>
-            Last updated: {fmtDate(pin.updated_at)}
+            Last updated: {fmtDate(pin.updated_at)} · <Link href="/data-sources">How we source and check project data</Link>
           </p>
         )}
       </header>
@@ -227,7 +236,7 @@ export default async function ProjectDetail({ params }: { params: { slug: string
       <section className="seo-section">
         <h2>Explore related</h2>
         <div className="seo-pills">
-          {[...quickLinks, ...otherLocs].map((l) => (
+          {[...facetLinks, ...quickLinks, ...otherLocs].map((l) => (
             <Link key={l.path} href={l.path}>{l.label}</Link>
           ))}
         </div>

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import SeoShell from '@/components/seo/SeoShell';
 import { getCityGroups } from '@/lib/seo/entities';
 import { itemListSchema, jsonLd } from '@/lib/seo/schema';
+import FacetIndex from '@/components/seo/FacetIndex';
 
 export const revalidate = 3600;
 
@@ -42,6 +43,7 @@ export default async function CitiesIndex() {
           ))}
         </div>
       </section>
+      <FacetIndex />
     </SeoShell>
   );
 }

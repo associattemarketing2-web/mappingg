@@ -114,3 +114,6 @@
 .blog-foot-main { display: flex; flex-direction: column; gap: 4px; }
 .blog-foot-contact a { color: var(--forest); font-weight: 600; }
 .article .back a:hover { color: var(--forest); }
+/* "Live list" link from a BHK/budget guide to its always-current project page. */
+.a-live-list { margin: 0 0 24px; padding: 14px 18px; border: 1px solid var(--line); border-left: 4px solid var(--water); border-radius: 0 12px 12px 0; background: var(--card); font-size: 15.5px; line-height: 1.55; }
+.a-live-list a { color: var(--water); font-weight: 700; }

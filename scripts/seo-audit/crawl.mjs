@@ -162,6 +162,8 @@ function pageType(p) {
   const map = { projects: 'project', locations: 'locality', developers: 'developer', cities: 'city', status: 'status', property: 'property-type', blog: 'blog-post' };
   if (seg.length === 1) return { projects: 'project-listing', locations: 'locality-listing', developers: 'developer-listing', cities: 'city-listing', property: 'property-type-listing', blog: 'blog-listing', map: 'map' }[seg[0]] || 'static';
   if (seg[0] === 'developer-api') return 'api-docs';
+  // BHK / budget landing pages: /cities/pune/2-bhk-flats, /locations/mundhwa/3-bhk-flats.
+  if (seg.length === 3 && (seg[0] === 'cities' || seg[0] === 'locations')) return 'bhk-budget';
   return map[seg[0]] || 'other';
 }
 

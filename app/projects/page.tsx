@@ -7,6 +7,7 @@ import { buildMetadata } from '@/lib/seo/metadata';
 import { pagedMetadata, projectsMeta } from '@/lib/seo/listing-meta';
 import { getPublicPins, getLocalityGroups, getStatusGroups, getCityGroups, citiesPhrase, cityOf, type Pin } from '@/lib/seo/entities';
 import { BHK_OPTIONS, BUDGET_OPTIONS, SIZE_OPTIONS, hasBhk, inBudget, inSize, matchesQuery } from '@/lib/home/finder';
+import TrackOnView from '@/components/TrackOnView';
 
 export const revalidate = 3600;
 
@@ -113,6 +114,8 @@ export default async function ProjectsIndex({ searchParams }: Props) {
     ...locs.slice(0, 10).map((l) => ({ label: l.label, path: `/locations/${l.slug}`, count: l.count })),
   ];
   return (
+    <>
+    {f.active && <TrackOnView event="search" params={{ search_term: f.labels.join(' · '), results: pins.length }} />}
     <EntityListing
       crumbs={[{ name: 'Home', path: '/' }, { name: 'Projects', path: '/projects' }]}
       eyebrow={f.active ? 'Search results' : 'All projects'}
@@ -147,5 +150,6 @@ export default async function ProjectsIndex({ searchParams }: Props) {
         },
       ]}
     />
+    </>
   );
 }

@@ -27,6 +27,7 @@ const LEGAL_LINKS = [
   { href: '/terms', label: 'Terms of use' },
   { href: '/cookies', label: 'Cookie policy' },
   { href: '/disclaimer', label: 'Disclaimer' },
+  { href: '/data-sources', label: 'Data sources & RERA checks' },
   { href: '/map-data', label: 'Map data & OpenStreetMap' },
   { href: '/delete-account', label: 'Delete your account' },
 ];
