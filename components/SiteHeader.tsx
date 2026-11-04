@@ -14,7 +14,6 @@ import { EMAIL, WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/lib/contact';
 const LINKS = [
   { href: '/map', label: 'Live Map', match: (p: string) => p === '/map' || p.startsWith('/map/') },
   { href: '/how-it-works', label: 'How it works', match: (p: string) => p === '/how-it-works' },
-  { href: '/developers', label: 'Developers', match: (p: string) => p.startsWith('/developers') },
   { href: '/blog', label: 'Blog', match: (p: string) => p.startsWith('/blog') },
   { href: '/about', label: 'About', match: (p: string) => p === '/about' },
 ];

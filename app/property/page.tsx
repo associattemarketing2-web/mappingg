@@ -2,7 +2,6 @@ import Link from 'next/link';
 import SeoShell from '@/components/seo/SeoShell';
 import { getStatusGroups, getTypeGroups, getPublicPins } from '@/lib/seo/entities';
 import { itemListSchema, jsonLd } from '@/lib/seo/schema';
-import FacetIndex from '@/components/seo/FacetIndex';
 
 export const revalidate = 3600;
 
@@ -20,7 +19,7 @@ export default async function PropertyIndex() {
       <header className="seo-hero">
         <div className="eyebrow">Property types</div>
         <h1>Explore by Property Type</h1>
-        <p className="lede">Browse projects by the kind of property, by construction status, or by BHK and budget.</p>
+        <p className="lede">Browse projects by the kind of property, or by construction status.</p>
       </header>
       <section className="seo-section">
         <div className="seo-prose">
@@ -61,7 +60,6 @@ export default async function PropertyIndex() {
           </div>
         </section>
       )}
-      <FacetIndex />
     </SeoShell>
   );
 }

@@ -3,7 +3,7 @@ import { paginate, type PageParam } from '@/lib/seo/paginate';
 import { notFound } from 'next/navigation';
 import { pagedMetadata, statusMeta } from '@/lib/seo/listing-meta';
 import EntityListing from '@/components/seo/EntityListing';
-import { getStatusGroups, getLocalityGroups, findGroup, STATUS_ROUTES, citiesPhrase } from '@/lib/seo/entities';
+import { getStatusGroups, findGroup, STATUS_ROUTES, citiesPhrase } from '@/lib/seo/entities';
 
 export const revalidate = 3600;
 // Closed set (3 indexed statuses) → prerender + hard-404 on unknown slugs.
@@ -27,11 +27,9 @@ export default async function StatusPage({ params, searchParams }: Props) {
   const pg = paginate(g.pins, searchParams?.page);
   if (!pg) notFound();
 
-  const locs = await getLocalityGroups();
   const where = citiesPhrase(g.pins);
   const related = [
     ...STATUS_ROUTES.filter((s) => s.slug !== g.slug).map((s) => ({ label: s.label, path: `/status/${s.slug}` })),
-    ...locs.slice(0, 8).map((l) => ({ label: l.label, path: `/locations/${l.slug}`, count: l.count })),
   ];
 
   return (

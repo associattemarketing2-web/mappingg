@@ -100,7 +100,7 @@ const sections: LegalSection[] = [
           the completion date declared on the RERA registry is the one the developer is bound by.
         </p>
         <p>
-          The BHK and budget pages (for example <Link href="/cities/pune/2-bhk-flats">2 BHK flats in Pune</Link>) only
+          The BHK and budget filters on the <Link href="/projects">projects page</Link> only
           include a project when its own configuration or published price matches. Sold-out projects are left out, and a
           page is only created once at least six projects qualify.
         </p>

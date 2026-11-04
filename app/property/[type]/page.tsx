@@ -3,7 +3,7 @@ import { paginate, type PageParam } from '@/lib/seo/paginate';
 import { notFound } from 'next/navigation';
 import { pagedMetadata, typeMeta } from '@/lib/seo/listing-meta';
 import EntityListing from '@/components/seo/EntityListing';
-import { getTypeGroups, getLocalityGroups, findGroup, citiesPhrase } from '@/lib/seo/entities';
+import { getTypeGroups, findGroup, citiesPhrase } from '@/lib/seo/entities';
 
 export const revalidate = 3600;
 // Property types come from the live project data, so new ones appear between deploys.
@@ -31,10 +31,9 @@ export default async function PropertyTypePage({ params, searchParams }: Props) 
   const pg = paginate(g.pins, searchParams?.page);
   if (!pg) notFound();
 
-  const [types, locs] = await Promise.all([getTypeGroups(), getLocalityGroups()]);
+  const types = await getTypeGroups();
   const related = [
     ...types.filter((t) => t.slug !== g.slug).map((t) => ({ label: t.label, path: `/property/${t.slug}`, count: t.count })),
-    ...locs.slice(0, 8).map((l) => ({ label: l.label, path: `/locations/${l.slug}`, count: l.count })),
   ];
 
   return (

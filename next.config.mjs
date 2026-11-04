@@ -29,6 +29,11 @@ const nextConfig = {
       // page its redirect was prerendered without a Location header; a config
       // redirect is a real 307 that never renders anything.
       { source: '/signin', destination: '/?signin=1', permanent: false },
+      // The developer, city and locality directory pages were removed: old links
+      // and indexed URLs go to the projects list (city pages keep their filter).
+      { source: '/cities/:city(pune|mumbai)/:rest*', destination: '/projects?city=:city', permanent: true },
+      { source: '/:dir(developers|cities|locations)', destination: '/projects', permanent: true },
+      { source: '/:dir(developers|cities|locations)/:rest*', destination: '/projects', permanent: true },
     ];
   },
   async headers() {

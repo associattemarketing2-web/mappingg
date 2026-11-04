@@ -61,7 +61,6 @@ export function mobileCatsHtml(cards: ProjectCardData[]): string {
     { href: '/map', cls: 'trial-link on', icon: 'fa-map-location-dot', tone: 'gold', label: 'Live Map View' },
     { href: '/status/upcoming', icon: 'fa-rocket', tone: 'orange', label: 'New Launches' },
     { href: '/projects', icon: 'fa-fire', tone: 'orange', label: 'Trending Projects' },
-    { href: '/developers', icon: 'fa-city', tone: 'green', label: 'Top Developers' },
     { href: '/status/ready-to-move', icon: 'fa-house-chimney', tone: 'green', label: 'Ready to Move' },
     { href: '/status/under-construction', icon: 'fa-person-digging', tone: 'orange', label: 'Under Construction' },
     { href: '/projects?budget=2-5-crore', icon: 'fa-gem', tone: 'gold', label: 'Luxury Homes' },

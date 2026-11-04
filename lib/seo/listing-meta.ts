@@ -9,7 +9,7 @@ import { TITLE_BUDGET, clip } from './project-meta';
 export function projectsMeta(pins: Pin[]): BuildMeta {
   return {
     title: `Real Estate Projects in ${citiesPhrase(pins, 3)}`,
-    description: `Browse ${pins.length} real estate projects in ${citiesPhrase(pins, 5)} by city, locality, developer and status, with prices, RERA numbers and possession dates.`,
+    description: `Browse ${pins.length} real estate projects in ${citiesPhrase(pins, 5)} by city, status and property type, with prices, RERA numbers and possession dates.`,
     path: '/projects',
   };
 }
@@ -31,14 +31,6 @@ export function typeMeta(g: Group): BuildMeta {
     title: title.length <= TITLE_BUDGET ? title : `${g.label} Projects in ${citiesPhrase(g.pins, 2)}`,
     description: `Explore ${g.count} ${g.label.toLowerCase()} project${g.count === 1 ? '' : 's'} in ${where} — locations, developers, pricing and status on Mappingg.`,
     path: `/property/${g.slug}`,
-  };
-}
-
-export function cityMeta(g: Group): BuildMeta {
-  return {
-    title: `Real Estate Projects in ${g.label}`,
-    description: `Explore ${g.count} real estate project${g.count === 1 ? '' : 's'} across ${g.label} — by locality, developer and status, with an interactive map on Mappingg.`,
-    path: `/cities/${g.slug}`,
   };
 }
 

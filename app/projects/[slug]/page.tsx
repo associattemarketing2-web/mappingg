@@ -12,16 +12,13 @@ import {
   statusRouteSlug,
   typeLabel,
   slugForProject,
-  placesOf,
   CITY_LABELS,
-  hasCityHub,
   type Pin,
 } from '@/lib/seo/entities';
 import { slugify } from '@/lib/seo/slug';
 import { toCard } from '@/lib/home/cards';
 import { projectSchema, faqSchema, videoSchema, youtubeId, jsonLd } from '@/lib/seo/schema';
 import { projectFaqs, projectSummary, reraNumber, reraRegistry } from '@/lib/seo/project-meta';
-import { facetHeading, getAllFacetPages } from '@/lib/seo/facet-pages';
 import TrackOnView from '@/components/TrackOnView';
 
 const fmtDate = (d?: string) =>
@@ -83,8 +80,6 @@ export default async function ProjectDetail({ params }: { params: { slug: string
 
   const crumbs = [
     { name: 'Home', path: '/' },
-    ...(hasCityHub(cityKey) ? [{ name: city, path: `/cities/${cityKey}` }] : []),
-    ...(loc ? [{ name: loc, path: `/locations/${slugify(loc)}` }] : []),
     { name, path: `/projects/${slugForProject(pin)}` },
   ];
 
@@ -111,22 +106,9 @@ export default async function ProjectDetail({ params }: { params: { slug: string
   // Contextual internal links out to every related entity hub (not keyword spam).
   const statusSlug = statusRouteSlug(pin.status);
   const quickLinks: { label: string; path: string }[] = [
-    ...(pin.developer ? [{ label: `More by ${pin.developer}`, path: `/developers/${slugify(pin.developer)}` }] : []),
     ...(statusSlug ? [{ label: `${statusLabel(pin.status)} projects`, path: `/status/${statusSlug}` }] : []),
     ...(pin.type ? [{ label: `${typeLabel(pin.type)} projects`, path: `/property/${slugify(pin.type)}` }] : []),
-    ...(loc ? [{ label: `All projects in ${loc}`, path: `/locations/${slugify(loc)}` }] : []),
-    ...(hasCityHub(cityKey) ? [{ label: `Real estate in ${city}`, path: `/cities/${cityKey}` }] : []),
   ];
-  // Other localities this project touches (projects often span 2 areas).
-  // BHK / budget pages this project appears on (locality ones first), e.g. '3 BHK Flats in Mundhwa'.
-  const facetLinks = (await getAllFacetPages())
-    .filter((f) => f.pins.some((p) => p.id === pin.id))
-    .sort((a, b) => (a.scope === b.scope ? 0 : a.scope === 'locality' ? -1 : 1))
-    .slice(0, 6)
-    .map((f) => ({ label: `${facetHeading(f.facet)} in ${f.placeShort}`, path: f.path }));
-  const otherLocs = placesOf(pin.location)
-    .filter((l) => l !== loc)
-    .map((l) => ({ label: l, path: `/locations/${slugify(l)}` }));
 
   const specs = specRows(pin);
   // Key facts for the top of the page — same rules as the home cards: only
@@ -156,7 +138,6 @@ export default async function ProjectDetail({ params }: { params: { slug: string
         )}
         <div className="seo-cta">
           <Link className="primary" href={enquireHref}>Enquire now</Link>
-          {pin.developer && <Link className="ghost" href={`/developers/${slugify(pin.developer)}`}>More by {pin.developer}</Link>}
         </div>
         {pin.updated_at && (
           <p style={{ fontSize: '0.82rem', color: '#646e7a', marginTop: 10 }}>
@@ -236,7 +217,7 @@ export default async function ProjectDetail({ params }: { params: { slug: string
       <section className="seo-section">
         <h2>Explore related</h2>
         <div className="seo-pills">
-          {[...facetLinks, ...quickLinks, ...otherLocs].map((l) => (
+          {quickLinks.map((l) => (
             <Link key={l.path} href={l.path}>{l.label}</Link>
           ))}
         </div>

@@ -109,9 +109,8 @@ export default async function ProjectsIndex({ searchParams }: Props) {
   if (!pg) notFound();
   const where = citiesPhrase(all, 4);
   const related = [
-    ...cities.map((c) => ({ label: `Projects in ${c.label}`, path: `/cities/${c.slug}`, count: c.count })),
+    ...cities.map((c) => ({ label: `Projects in ${c.label}`, path: `/projects?city=${c.slug}`, count: c.count })),
     ...statuses.map((s) => ({ label: s.label, path: `/status/${s.slug}`, count: s.count })),
-    ...locs.slice(0, 10).map((l) => ({ label: l.label, path: `/locations/${l.slug}`, count: l.count })),
   ];
   return (
     <>

@@ -282,7 +282,7 @@ function miniMapHtml(cards: ProjectCardData[], city = 'Pune', max = 6): string {
     if (placed.some((q) => Math.abs(q.dx - dx) < 120 && Math.abs(q.dy - dy) < 40)) return '';
     placed.push({ dx, dy });
     const label = g.label === g.label.toUpperCase() ? g.label.toLowerCase().replace(/\b\w/g, (ch) => ch.toUpperCase()) : g.label;
-    return `<a class="hm-mpin" href="/locations/${esc(g.slug)}" style="left:${Math.round(ox + dx)}px;top:${Math.round(oy + dy)}px"><span>${g.count}</span>${esc(label)}</a>`;
+    return `<a class="hm-mpin" href="/projects?q=${esc(encodeURIComponent(label))}" style="left:${Math.round(ox + dx)}px;top:${Math.round(oy + dy)}px"><span>${g.count}</span>${esc(label)}</a>`;
   }).join('');
   return `<div class="hm-mini"><div class="hm-mini-tiles" style="left:calc(50% - ${Math.round(ox)}px);top:calc(50% - ${Math.round(oy)}px)">${tiles.join('')}${pins}</div><span class="hm-osm">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a></span></div>`;
 }

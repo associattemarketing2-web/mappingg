@@ -3,16 +3,12 @@ import { listPublished } from '@/lib/blog';
 import { SITE_URL } from '@/lib/seo/config';
 import {
   getPublicPins,
-  getLocalityGroups,
-  getDeveloperGroups,
-  getCityGroups,
   getStatusGroups,
   getTypeGroups,
   slugForProject,
   type Pin,
 } from '@/lib/seo/entities';
-import { developerIndexing, localityIndexing, projectIndexing } from '@/lib/seo/indexing';
-import { getAllFacetPages } from '@/lib/seo/facet-pages';
+import { projectIndexing } from '@/lib/seo/indexing';
 
 // Regenerate at most once an hour so newly published blog posts and new
 // projects/localities appear without a redeploy (search engines re-fetch
@@ -20,16 +16,13 @@ import { getAllFacetPages } from '@/lib/seo/facet-pages';
 export const revalidate = 3600;
 
 // Public, crawlable pages + every published blog post + all derived SEO
-// entities (projects, localities, developers, cities, status, property types).
+// entities (projects, status, property types).
 // The admin editor and APIs are intentionally excluded (see robots.ts).
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/`, changeFrequency: 'daily', priority: 1 },
     { url: `${SITE_URL}/map`, changeFrequency: 'daily', priority: 0.9 },
     { url: `${SITE_URL}/projects`, changeFrequency: 'daily', priority: 0.9 },
-    { url: `${SITE_URL}/locations`, changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${SITE_URL}/developers`, changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${SITE_URL}/cities`, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${SITE_URL}/property`, changeFrequency: 'weekly', priority: 0.6 },
     { url: `${SITE_URL}/blog`, changeFrequency: 'daily', priority: 0.8 },
     { url: `${SITE_URL}/how-it-works`, changeFrequency: 'monthly', priority: 0.7 },
@@ -51,15 +44,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   // Derived entity routes (never throws — each getter is cached & fail-safe).
-  const [pins, locs, devs, cities, statuses, types, posts, facets] = await Promise.all([
+  const [pins, statuses, types, posts] = await Promise.all([
     getPublicPins(),
-    getLocalityGroups(),
-    getDeveloperGroups(),
-    getCityGroups(),
     getStatusGroups(),
     getTypeGroups(),
     listPublished({ strict: true }),
-    getAllFacetPages(),
   ]);
 
   // lastModified comes only from real change dates: a value that is always "now"
@@ -68,15 +57,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const t = Math.max(0, ...rows.map((r) => Date.parse(r.updated_at || '')).filter(Number.isFinite));
     return t ? new Date(t) : undefined;
   };
-  const DATA_PAGES = ['/', '/map', '/projects', '/locations', '/developers', '/cities', '/property'];
+  const DATA_PAGES = ['/', '/map', '/projects', '/property'];
   for (const r of staticRoutes) {
     const path = r.url.slice(SITE_URL.length);
     if (DATA_PAGES.includes(path)) r.lastModified = latest(pins);
     else if (path === '/blog') r.lastModified = latest(posts);
   }
 
-  // Only indexable pages are listed: noindex pages (thin localities/developers,
-  // empty placeholder projects — lib/seo/indexing.ts) stay reachable but out of here.
+  // Only indexable pages are listed: noindex pages (empty placeholder projects — lib/seo/indexing.ts) stay reachable but out of here.
   const projectRoutes: MetadataRoute.Sitemap = pins.filter((p) => projectIndexing(p).index).map((p) => ({
     url: `${SITE_URL}/projects/${slugForProject(p)}`,
     lastModified: latest([p]),
@@ -87,19 +75,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const group = (base: string, groups: { slug: string; pins: Pin[] }[], priority: number): MetadataRoute.Sitemap =>
     groups.map((g) => ({ url: `${SITE_URL}${base}/${g.slug}`, lastModified: latest(g.pins), changeFrequency: 'weekly', priority }));
 
-  const locRoutes = group('/locations', locs.filter((g) => localityIndexing(g.slug, g.count).index), 0.75);
-  const devRoutes = group('/developers', devs.filter((g) => developerIndexing(g.count).index), 0.6);
-  const cityRoutes = group('/cities', cities, 0.7);
   const statusRoutes = group('/status', statuses, 0.6);
   const typeRoutes = group('/property', types, 0.6);
-  // BHK / budget pages (/cities/pune/2-bhk-flats …): only those with enough projects exist.
-  const facetRoutes: MetadataRoute.Sitemap = facets.map((f) => ({
-    url: `${SITE_URL}${f.path}`,
-    lastModified: latest(f.pins),
-    changeFrequency: 'weekly',
-    priority: f.scope === 'city' ? 0.75 : 0.65,
-  }));
-
   const postRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
     url: `${SITE_URL}/blog/${p.slug}`,
     lastModified: latest([p]),
@@ -110,12 +87,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...staticRoutes,
     ...projectRoutes,
-    ...locRoutes,
-    ...devRoutes,
-    ...cityRoutes,
     ...statusRoutes,
     ...typeRoutes,
-    ...facetRoutes,
     ...postRoutes,
   ];
 }
