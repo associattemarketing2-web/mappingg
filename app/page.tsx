@@ -11,7 +11,7 @@ import { trustedLogos } from '@/lib/developers';
 import { trustedDevelopersHtml } from '@/components/landing/trusted-developers';
 import HomeFinder from '@/components/landing/HomeFinder';
 import { getProjectCards } from '@/lib/home/cards';
-import { homeStats, statsStripHtml, statsBandHtml, heroChipsHtml, mapPreviewHtml, heroProjectHtml, heroSkylinePinsHtml, buyersSectionHtml } from '@/components/landing/home-sections';
+import { homeStats, statsStripHtml, statsBandHtml, mapPreviewHtml, heroProjectHtml, heroSkylinePinsHtml, buyersSectionHtml } from '@/components/landing/home-sections';
 
 import { SITE, SITE_URL } from '@/lib/seo/config';
 import { mobileTrustHtml, mobileCatsHtml, mobileDiscoverHtml, mobileInsightsHtml, type MobilePost } from '@/components/landing/mobile-sections';
@@ -50,7 +50,6 @@ export default async function HomePage() {
   const stats = homeStats(cards);
   const posts = await mobilePosts();
   const landingHtml = LANDING_BODY
-    .replace('<!--HERO_CHIPS-->', () => heroChipsHtml(cards))
     .replace('<!--MAP_PREVIEW-->', () => mapPreviewHtml(cards, heroProjectHtml(cards)))
     .replace('<!--HERO_SKY_PINS-->', () => heroSkylinePinsHtml(cards))
     .replace('<!--STATS_STRIP-->', () => statsStripHtml(stats, cards))

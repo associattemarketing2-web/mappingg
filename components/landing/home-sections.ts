@@ -1,5 +1,5 @@
 import { completeness, type ProjectCardData } from '@/lib/home/cards';
-import { isAdminArea, localityOptions } from '@/lib/home/nearby';
+import { isAdminArea } from '@/lib/home/nearby';
 import { slugify } from '@/lib/seo/slug';
 import { BHK_OPTIONS, BUDGET_OPTIONS } from '@/lib/home/finder';
 
@@ -99,16 +99,6 @@ export function statsStripHtml(s: HomeStats, cards: ProjectCardData[]): string {
 export function statsBandHtml(s: HomeStats): string {
   const items = list(s, true);
   return items.length ? `<div class="hm-bandrow">${items.map(item).join('')}</div>` : '';
-}
-
-/** Popular localities (most projects first) as chips linking to their pages. */
-export function heroChipsHtml(cards: ProjectCardData[], max = 6): string {
-  // Pune & Mumbai only, matching the hero's "Pune & Mumbai" line.
-  const locs = localityOptions(cards, ['Pune', 'Mumbai'], 3, { localitiesOnly: true }).slice(0, max);
-  if (!locs.length) return '';
-  return `<div class="hm-chips" aria-label="Popular localities">${locs
-    .map((l) => `<a href="/locations/${esc(l.slug)}">${esc(l.label)}</a>`)
-    .join('')}</div>`;
 }
 
 // ---------- Hero map preview ----------

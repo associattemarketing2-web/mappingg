@@ -46,7 +46,7 @@
 .mpg .hm-btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.85); border-radius: 999px; min-height: 54px; padding: 0 30px; font-size: 15.5px; }
 .mpg .hm-btn-ghost:hover { background: rgba(255,255,255,.12); }
 .mpg .hm-btn-sm { min-height: 40px; padding: 0 16px; font-size: 13px; border-radius: 10px; }
-.mpg :is(.hm-btn, .hm-chips a, .hm-poi-list button, .hm-thumbs button, .hm-full):focus-visible { outline: 3px solid var(--hm-orange); outline-offset: 2px; }
+.mpg :is(.hm-btn, .hm-poi-list button, .hm-thumbs button, .hm-full):focus-visible { outline: 3px solid var(--hm-orange); outline-offset: 2px; }
 
 /* =========================================================
    HERO: copy + search on the left, the live map full-bleed on the right
@@ -92,11 +92,6 @@
 .mpg .hm-lead { margin-top: 16px; max-width: 500px; font-size: 16px; line-height: 1.6; color: var(--hm-text); }
 
 .mpg .hm-search { margin-top: 24px; }
-.mpg .hm-tabs { display: inline-flex; gap: 4px; padding: 5px; border-radius: 14px; background: #fff; border: 1px solid var(--hm-line); box-shadow: var(--hm-shadow-sm); }
-.mpg .hm-tab { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 18px; border-radius: 10px; font-size: 14px; font-weight: 700; color: var(--hm-text); text-decoration: none; transition: background .2s, color .2s; }
-.mpg .hm-tab i { font-size: 13px; }
-.mpg .hm-tab:hover { color: var(--hm-green); background: var(--hm-green-50); }
-.mpg .hm-tab.active { background: var(--hm-green); color: #fff; }
 .mpg .hm-form { margin-top: 12px; display: grid; grid-template-columns: minmax(0, 1fr) 100px 118px auto; align-items: center; padding: 6px; border-radius: 16px; background: #fff; border: 1px solid var(--hm-line); box-shadow: 0 22px 44px -28px rgba(16,36,29,.45); }
 .mpg .hm-field { position: relative; display: flex; align-items: center; gap: 8px; min-width: 0; height: 48px; padding: 0 10px; border-right: 1px solid var(--hm-line); }
 .mpg .hm-field:nth-child(3) { border-right: 0; }
@@ -107,9 +102,6 @@
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2367736e' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right center / 14px no-repeat; }
 .mpg .hm-field:focus-within { border-radius: 10px; box-shadow: inset 0 0 0 2px #cfe5da; }
 .mpg .hm-form .hm-btn { min-height: 48px; padding: 0 16px; border-radius: 12px; }
-.mpg .hm-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 14px; }
-.mpg .hm-chips a { padding: 6px 13px; border-radius: 999px; background: #fff; border: 1px solid var(--hm-line); font-size: 12.5px; font-weight: 600; color: var(--hm-text); text-decoration: none; transition: border-color .2s, color .2s; }
-.mpg .hm-chips a:hover { border-color: var(--hm-green); color: var(--hm-green); }
 
 /* Live map: fills the right side of the hero, from under the header to the stats bar. */
 .mpg .hm-hero-map { position: absolute; z-index: 1; top: 72px; right: 0; bottom: 0; left: 45%; scroll-margin-top: 90px;
@@ -168,8 +160,6 @@
 @media (max-width: 720px) {
   .mpg .hm-wrap.hm-hero-grid { padding-top: 92px; }
   .mpg .hm-hero h1 { font-size: 40px; }
-  .mpg .hm-tabs { display: flex; }
-  .mpg .hm-tab { flex: 1; justify-content: center; padding: 0 8px; font-size: 13px; }
   .mpg .hm-hero-map { margin: 0 16px 20px; height: 480px; border-radius: 18px; }
   .mpg .hm-ov-filters { top: 12px; left: 12px; right: 12px; }
   .mpg .hm-ov-filters a { padding: 7px 12px; font-size: 12px; }

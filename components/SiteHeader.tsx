@@ -18,23 +18,8 @@ const LINKS = [
   { href: '/blog', label: 'Blog', match: (p: string) => p.startsWith('/blog') },
   { href: '/about', label: 'About', match: (p: string) => p === '/about' },
 ];
-// "Explore Projects" dropdown (desktop) — also listed first in the mobile menu.
-const EXPLORE = [
-  { href: '/projects', label: 'All projects' },
-  { href: '/cities', label: 'Cities' },
-  { href: '/locations', label: 'Localities' },
-  { href: '/status/ready-to-move', label: 'Ready to move' },
-  { href: '/status/under-construction', label: 'Under construction' },
-  { href: '/status/upcoming', label: 'Upcoming' },
-  { href: '/property', label: 'Property types' },
-];
-const exploreActive = (p: string) => ['/projects', '/cities', '/locations', '/status', '/property'].some((h) => p === h || p.startsWith(`${h}/`));
 // Secondary links shown only in the mobile menu, where the footer is a long scroll away.
 const MORE_LINKS = [
-  { href: '/projects', label: 'All projects' },
-  { href: '/cities', label: 'Cities' },
-  { href: '/locations', label: 'Localities' },
-  { href: '/property', label: 'Property types' },
   { href: '/features', label: 'Features' },
   { href: '/contact', label: 'Contact' },
   { href: '/faq', label: 'FAQ' },
@@ -130,14 +115,6 @@ export default function SiteHeader() {
           </Link>
 
           <nav className="shd-menu">
-            <div className="shd-drop">
-              <Link href="/projects" className={exploreActive(pathname) ? 'active' : ''} aria-haspopup="true">
-                Explore Projects <svg className="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              </Link>
-              <div className="shd-drop-menu">
-                {EXPLORE.map((l) => <Link key={l.href} href={l.href} prefetch={false}>{l.label}</Link>)}
-              </div>
-            </div>
             {LINKS.map((l) => (
               <Link key={l.href} href={l.href} className={l.match(pathname) ? 'active' : ''}>
                 {l.label}
@@ -156,7 +133,7 @@ export default function SiteHeader() {
               </>
             ) : (
               <>
-                <Link href="/projects" className="shd-search" aria-label="Search projects" title="Search projects">
+                <Link href="/map" className="shd-search" aria-label="Search projects" title="Search projects">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" strokeWidth="2.4"/><path d="m20 20-3.5-3.5" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"/></svg>
                 </Link>
                 <button className="shd-btn outline" onClick={signIn}>Login</button>
@@ -168,7 +145,7 @@ export default function SiteHeader() {
                 {/* Phone home bar (site-header.css): search + alerts icons, like its mockup.
                     Alerts live in the account, so guests are asked to sign in. */}
                 {signedIn && (
-                  <Link href="/projects" className="shd-search shd-search-home" aria-label="Search projects" title="Search projects">
+                  <Link href="/map" className="shd-search shd-search-home" aria-label="Search projects" title="Search projects">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" strokeWidth="2.4"/><path d="m20 20-3.5-3.5" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"/></svg>
                   </Link>
                 )}
@@ -189,7 +166,6 @@ export default function SiteHeader() {
           </div>
 
           <div className={`shd-mobile${open ? ' open' : ''}`}>
-            <Link href="/projects" prefetch={false} className={exploreActive(pathname) ? 'active' : ''} onClick={() => setOpen(false)}>Explore Projects</Link>
             {LINKS.map((l) => (
               <Link key={l.href} href={l.href} prefetch={false} className={l.match(pathname) ? 'active' : ''} onClick={() => setOpen(false)}>
                 {l.label}

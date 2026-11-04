@@ -4,8 +4,7 @@
 // LandingClient.tsx. "Open live map" links point at the in-app /map route.
 // NOTE: the top navigation is now the shared <SiteHeader/> React component
 // (rendered by the home page), so the landing markup below starts at the hero.
-// Markers filled in by app/page.tsx: <!--HERO_CHIPS--> (popular localities),
-// <!--MAP_PREVIEW--> (real map + locality counts shown until the live map loads),
+// Markers filled in by app/page.tsx: <!--MAP_PREVIEW--> (real map + locality counts shown until the live map loads),
 // <!--BUYER_JOURNEY--> ("Built for every home buyer": features, photo panel, live counts),
 // <!--STATS_STRIP--> (counts + quick links under the hero) / <!--STATS_BAND--> (live counts), <!--DEV_LOGOS-->, and
 // <!--SPLIT--> where the React "Projects near you" goes. The <!--M_…--> markers are
@@ -39,16 +38,11 @@ export const LANDING_BODY = `
       <!--M_TRUST-->
 
       <div class="hm-search">
-        <div class="hm-tabs" aria-label="What are you looking for">
-          <a href="/projects" class="hm-tab active" aria-current="page"><i class="fas fa-house"></i>Buy</a>
-          <a href="/property/plotted-development" class="hm-tab"><i class="fas fa-border-all"></i>Plots</a>
-          <a href="/property/commercial" class="hm-tab"><i class="fas fa-building"></i>Commercial</a>
-        </div>
         <div class="mh-only mh-modes" role="group" aria-label="How to search">
           <button type="button" class="on" data-mode="map" aria-pressed="true"><i class="far fa-map" aria-hidden="true"></i>Explore on Map</button>
           <button type="button" data-mode="list" aria-pressed="false"><i class="fas fa-list-ul" aria-hidden="true"></i>Search Projects</button>
         </div>
-        <form class="hm-form" id="heroAskForm" role="search" action="/projects" method="get" aria-label="Search projects">
+        <form class="hm-form" id="heroAskForm" role="search" action="/map" method="get" aria-label="Search projects">
           <label class="hm-field hm-field-q"><i class="fas fa-location-dot" aria-hidden="true"></i><span class="sr-only">Locality, project or developer</span>
             <input id="heroAskInput" name="q" type="search" placeholder="Locality" autocomplete="off" enterkeyhint="search" maxlength="80"><button type="button" class="hm-mic" id="heroMic" aria-label="Search by voice" hidden><i class="fas fa-microphone" aria-hidden="true"></i></button></label>
           <label class="hm-field"><span class="sr-only">BHK</span><select id="heroBhk" name="bhk"><option value="">Any BHK</option>${BHK_SELECT}</select></label>
@@ -56,7 +50,6 @@ export const LANDING_BODY = `
           <label class="hm-field hm-field-city"><span class="sr-only">City</span><select id="heroCity" name="city"><option value="">Any city</option><option value="pune" selected>Pune</option><option value="mumbai">Mumbai</option></select></label>
           <button type="submit" class="hm-btn hm-btn-solid"><i class="fas fa-magnifying-glass hm-d" aria-hidden="true"></i><i class="fas fa-map-location-dot hm-m" aria-hidden="true"></i> <span class="hm-d">Search Projects</span><span class="hm-m" id="heroBtnLabel">Explore Projects on Map</span><i class="fas fa-arrow-right hm-m" aria-hidden="true"></i></button>
         </form>
-        <!--HERO_CHIPS-->
       </div>
       <!--M_CATS-->
     </div>
