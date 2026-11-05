@@ -26,9 +26,26 @@ const pg = require('pg');
 const APPLY = process.argv.includes('--apply');
 const [FACTS, IMG_DIR] = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 if (!FACTS || !IMG_DIR) throw new Error('pass <facts.jsonl> <img-dir>');
-const TODAY = '2026-11-05';
+const TODAY = new Date().toISOString().slice(0, 10);
+// --range=1-918 widens the run beyond the original #400–#500; pass "-" as <facts.jsonl> for a RERA-only run.
+const RANGE = (process.argv.find((a) => a.startsWith('--range='))?.slice(8) || '400-500').split('-').map(Number);
+const TAG = `pins-${RANGE[0]}-${RANGE[1]}`;
 
-const facts = new Map(readFileSync(FACTS, 'utf8').trim().split('\n').map((l) => JSON.parse(l)).map((f) => [f.n, f]));
+// Descriptions this script generated from RERA data in earlier runs (from its own change logs). Only these may later
+// be replaced by a developer's official description; any other existing text is never touched.
+const OUR_TEXT = new Set();
+{
+  const LOGDIR = path.resolve('seo-doc/enrichment/live-project-enrichment');
+  for (const name of (existsSync(LOGDIR) ? (await import('node:fs')).readdirSync(LOGDIR) : []).filter((n) => /^PINS-.*\.csv$/.test(n))) {
+    for (const line of readFileSync(path.join(LOGDIR, name), 'utf8').split('\n')) {
+      const m = line.match(/^"[^"]*","(?:[^"]|"")*","(?:project|pin)","(?:short_description|description)","((?:[^"]|"")*)","RERA data on record"/);
+      if (m) OUR_TEXT.add(m[1].replace(/""/g, '"').trim());
+    }
+  }
+}
+console.error(`known generated descriptions: ${OUR_TEXT.size}`);
+const facts = new Map(FACTS === '-' ? [] : readFileSync(FACTS, 'utf8').trim().split('\n').filter(Boolean).map((l) => JSON.parse(l)).map((f) => [f.id || f.n, f]));
+// Pins can be renumbered while work is in progress: facts carry the pin id (and title) and are matched on those.
 
 const AMENITIES = new Set(['Clubhouse', 'Swimming Pool', 'Gym', 'Kids Play Area', 'Jogging Track', 'Landscaped Garden', 'Indoor Games', 'Multipurpose Hall', 'Co-working Space', 'Sports Court', 'Yoga Deck', 'Senior Citizen Area', 'Pet Park', 'Amphitheatre', 'Party Lawn', 'Library', 'Mini Theatre', 'Spa / Sauna', 'Retail / Shops', '24x7 Security', 'CCTV', 'Power Backup', 'EV Charging', 'Rainwater Harvesting', 'Solar Power', 'Sewage Treatment Plant', 'Visitor Parking', 'Covered Parking', 'Lifts', 'Fire Safety']);
 for (const f of facts.values()) {
@@ -83,16 +100,25 @@ function reraDescription(p, pin) {
     return `${name} is a MahaRERA-registered residential project (${rera}) by ${dev} in ${area}${pinc ? ` (PIN ${pinc})` : ''}.`;
   }
   const village = String(p.address || '').match(/([A-Za-z][A-Za-z .]+?)\s+Village/i)?.[1]?.split(/\s+of\s+/i).pop().trim().replace(/^(of|at|situated at)\s+/i, '');
-  const where = [village && tidy(village), p.locality, 'Bengaluru'].filter(Boolean).join(', ');
+  const city = tidy(p.city || 'Bengaluru');
+  const where = [...new Set([village && tidy(village), tidy(p.locality), city].filter(Boolean).map((s) => s.trim()))]
+    .filter((s, i, a) => !a.some((o, j) => j !== i && o.toLowerCase() === s.toLowerCase() && j < i)).join(', ');
+  const src = detail(p, 'Source (official registry)') + ' ' + rera;
+  const registry = /karnataka|PRM\/KA/i.test(src) ? 'Karnataka RERA' : /maharera|maharashtra|\bP[RMC]?\d{8,}/i.test(src) ? 'MahaRERA' : /up-?rera|uprera/i.test(src) ? 'UP RERA'
+    : /haryana|hrera|RC\/REP/i.test(src) ? 'HARERA' : /telangana|P0\d{4}/i.test(src) ? 'Telangana RERA' : /tnrera|tamil|TN\/\d/i.test(src) ? 'TN RERA' : 'RERA';
   const sub = detail(p, 'Project sub-type (RERA)').toLowerCase();
   const kind = /plot/.test(sub) || /plot/i.test((p.configurations || []).join(' ')) && !reraMix(p).length ? 'plotted development'
-    : /villa/.test(sub) ? 'villa project' : /row/.test(sub) ? 'row-house project' : /apartment/.test(sub) || reraMix(p).length ? 'residential apartment project' : 'residential project';
+    : /villa/.test(sub) ? 'villa project' : /row/.test(sub) ? 'row-house project' : /apartment/.test(sub) || reraMix(p).length ? 'residential apartment project'
+    : /commercial|office|retail|shop|it park|tech park|mall/i.test(`${p.project_type} ${p.project_name}`) ? (/mixed/i.test(p.project_type) ? 'mixed-use project' : 'commercial project')
+    : /land|plot/i.test(p.project_type || '') ? 'land / plotted project' : /mixed/i.test(p.project_type || '') ? 'mixed-use project' : 'residential project';
   const acres = detail(p, 'Land area (RERA)').match(/\(([\d.]+) acres?\)/)?.[1];
   const mix = reraMix(p).filter(residential);
   const units = mix.reduce((a, r) => a + r.units, 0);
   const done = detail(p, 'Proposed completion (RERA)');
-  const parts = [`${name} is a ${kind} by ${dev} at ${where}, registered with Karnataka RERA (${rera}).`];
-  if (mix.length) {
+  const parts = [`${name} is a ${kind}${dev ? ` by ${dev}` : ''} at ${where}${rera ? `, registered with ${registry} (${rera})` : ''}.`];
+  const plots = detail(p, 'Plot sizes (RERA)');
+  if (plots) parts.push(`RERA lists ${plots.replace(/ each \(plot area\)$/, ' each')}${acres ? ` on ${acres} acres` : ''}.`);
+  else if (mix.length) {
     const byCfg = mix.map((r) => `${r.config} (${r.units}, about ${fmt(r.sqft)} sq ft carpet)`).slice(0, 4).join(', ');
     parts.push(`RERA lists ${fmt(units)} homes${acres ? ` on ${acres} acre${acres === '1' ? '' : 's'}` : ''}: ${byCfg}${mix.length > 4 ? ' and more' : ''}.`);
   } else if (acres) parts.push(`The registered land area is ${acres} acres.`);
@@ -102,12 +128,24 @@ function reraDescription(p, pin) {
 
 const { rows } = await q(`SELECT p.doc - 'image' - 'brochure_image' AS pin, pr.doc AS proj, s.doc AS sub
   FROM pins p JOIN projects pr ON pr.id = p.doc->>'intake_project_id' LEFT JOIN project_submissions s ON s.id = pr.doc->>'submission_id'
-  WHERE (p.doc->>'number')::int BETWEEN 400 AND 500 AND coalesce(pr.doc->>'is_live','') = 'true' ORDER BY (p.doc->>'number')::int`);
+  WHERE (p.doc->>'number')::int BETWEEN $1 AND $2 AND coalesce(pr.doc->>'is_live','') = 'true'
+    AND coalesce(p.doc->>'pending_review','false') <> 'true' ORDER BY (p.doc->>'number')::int`, RANGE);
+
+// RERA amenity wording → the app's amenity list.
+const RERA_AM = [[/club ?house/i, 'Clubhouse'], [/swimming|kids pool/i, 'Swimming Pool'], [/\bgym/i, 'Gym'], [/children|kids play/i, 'Kids Play Area'],
+  [/jogging/i, 'Jogging Track'], [/\bparks?\b|landscap|garden/i, 'Landscaped Garden'], [/indoor sports|indoor games|billiards|tt room|cards room|squash/i, 'Indoor Games'],
+  [/community hall|party hall|multipurpose/i, 'Multipurpose Hall'], [/outdoor sports|basketball|badminton|tennis|court/i, 'Sports Court'],
+  [/yoga|meditation/i, 'Yoga Deck'], [/senior citizen/i, 'Senior Citizen Area'], [/amphitheat/i, 'Amphitheatre'], [/cctv/i, 'CCTV'],
+  [/power backup|dg yard/i, 'Power Backup'], [/rain ?water/i, 'Rainwater Harvesting'], [/solar/i, 'Solar Power'], [/sewage|\bstp\b/i, 'Sewage Treatment Plant'],
+  [/\blifts?\b/i, 'Lifts'], [/fire fighting|fire safety/i, 'Fire Safety'], [/security room/i, '24x7 Security']];
+const reraAmenities = (p) => [...new Set(detail(p, 'Amenities (RERA)').split(',').map((s) => s.trim()).flatMap((s) => RERA_AM.filter(([re]) => re.test(s)).map(([, a]) => a)))];
 
 const plans = []; const log = [];
 for (const { pin, proj, sub } of rows) {
   if (pin.hidden === true || pin.rejected === true) { console.log(`skip #${pin.number}: hidden`); continue; }
-  const f = facts.get(Number(pin.number)) || {};
+  let f = facts.get(pin.id) || facts.get(Number(pin.number)) || {};
+  if (f.n != null && !f.id) { console.log(`skip facts for #${pin.number}: fact has no pin id (numbers may have changed)`); f = {}; }
+  if (f.title && f.title !== pin.title) { console.log(`skip facts for #${pin.number}: title mismatch (${f.title} vs ${pin.title})`); f = {}; }
   const whole = f.whole !== false;
   const projSet = {}; const pinSet = {};
   const want = (field, value) => {
@@ -130,16 +168,24 @@ for (const { pin, proj, sub } of rows) {
   // --- description / USP
   const desc = f.d || reraDescription(proj, pin);
   const usp = f.u ? f.u.replace(/\s*·\s*/g, ' | ') : '';
-  want('short_description', desc);
+  // Our own generated RERA sentence (written by this script earlier) gives way to the developer's official text.
+  const ours = (v) => v === reraDescription(proj, pin) || OUR_TEXT.has(String(v || '').trim());
+  if (f.d && ours(proj.short_description) && (!sub || empty(sub.short_description) || ours(sub.short_description))) projSet.short_description = desc;
+  else want('short_description', desc);
   want('key_usps', usp);
-  if (empty(pin.description)) pinSet.description = desc;
+  if (empty(pin.description) || (f.d && ours(pin.description))) pinSet.description = desc;
   if (usp && empty(pin.key_usp)) pinSet.key_usp = usp;
   if (cfg.length && empty(pin.configuration)) pinSet.configuration = cfg.join(' / ');
   // --- official page facts
-  if (f.am?.length) {
+  const amWant = [...new Set([...(f.am || []), ...reraAmenities(proj)])];
+  if (amWant.length) {
     const have = [...new Set([...(proj.amenities || []), ...((sub && sub.amenities) || [])])];
-    const add = f.am.filter((a) => !have.includes(a));
+    const add = amWant.filter((a) => !have.includes(a));
     if (add.length) projSet.amenities = [...(proj.amenities || []), ...add];
+  }
+  if (!f.poss && empty(pin.possession_timeline)) {
+    const ym = String(proj.possession_date_target || proj.possession_date_rera || detail(proj, 'Proposed completion (RERA)')).slice(0, 7);
+    if (/^\d{4}-\d{2}$/.test(ym)) pinSet.possession_timeline = monthLabel(ym);
   }
   if (whole) { want('land_area_acres', f.acres); want('towers', f.towers); want('floors', f.floors); want('total_units', f.units); }
   if (f.poss) { want('possession_date_target', f.poss); if (empty(pin.possession_timeline)) pinSet.possession_timeline = monthLabel(f.poss); }
@@ -176,7 +222,7 @@ console.log(`\n${plans.length} projects, ${log.length} changes`, JSON.stringify(
 if (process.argv.includes('--show')) for (const p of plans) console.log(`\n#${p.pin.number}`, JSON.stringify({ ...p.projSet, additional_details: undefined }, null, 1), JSON.stringify(p.pinSet, null, 1));
 if (!APPLY) { console.log('Dry run. Pass --apply to write.'); await pool.end(); process.exit(0); }
 
-const dir = path.resolve(`migration/backup/pg-snapshot-${new Date().toISOString().replace(/[:.]/g, '-')}-before-pins-400-500`);
+const dir = path.resolve(`migration/backup/pg-snapshot-${new Date().toISOString().replace(/[:.]/g, '-')}-before-${TAG}`);
 mkdirSync(dir, { recursive: true });
 writeFileSync(path.join(dir, 'before.json'), JSON.stringify({ projects: plans.map((p) => p.proj), submissions: plans.map((p) => p.sub).filter(Boolean), pins: plans.map((p) => p.pin) }, null, 1));
 console.log(`backup → ${path.relative(process.cwd(), dir)}/before.json`);
@@ -209,7 +255,7 @@ for (const p of plans) {
   if (Object.keys(p.pinSet).length) await q(`UPDATE pins SET doc = doc || $2::jsonb WHERE id = $1`, [p.pin.id, JSON.stringify({ ...p.pinSet, updated_at: nowTs })]);
 }
 
-const LOG = path.resolve('seo-doc/enrichment/live-project-enrichment/PINS-400-500-2026-11-05.csv');
+const LOG = path.resolve(`seo-doc/enrichment/live-project-enrichment/${TAG.toUpperCase()}-${TODAY}-${Date.now()}.csv`);
 mkdirSync(path.dirname(LOG), { recursive: true });
 const cell = (x) => `"${(typeof x === 'string' ? x : JSON.stringify(x)).replace(/"/g, '""')}"`;
 writeFileSync(LOG, ['pin_number,project,target,field,new_value,source,checked_on', ...log.map((c) => [...c, TODAY].map(cell).join(','))].join('\n') + '\n');
