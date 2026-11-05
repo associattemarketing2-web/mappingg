@@ -1,5 +1,7 @@
 import { cache } from 'react';
 import { runDbOp } from '@/lib/db-engine';
+import { query } from '@/lib/pg';
+import { usingMongo } from '@/lib/mongodb';
 import { cachedRead } from '@/lib/data-cache';
 import { withMediaUrls } from '@/lib/pin-media';
 import { localitiesOf } from '@/lib/locality';
@@ -165,10 +167,45 @@ export const getPinsByNumber = cache(async (n: number): Promise<Pin[]> => {
  * by Google — should land on the kept project instead of a 404. Returns the kept
  * project's canonical slug, following a short chain (A → B → C), or null.
  */
-const readDuplicateTarget = cachedRead('seo-duplicate-target', ['pins'], 600, async (n: number): Promise<string | null> => {
+
+/**
+ * Pins that once carried number `n`, from the change history: duplicates that were
+ * later deleted or merged (→ the pin they were a duplicate of) and pins moved to
+ * another number in the super admin (→ the same pin, now under its new number).
+ * Their old URLs must keep landing on that project — also after `n` is given to a
+ * new project. Each entry: the old canonical slug and the pin id it leads to, newest first.
+ */
+const readFormerPins = cachedRead('seo-former-pins', ['pins'], 600, async (n: number): Promise<{ slug: string; to: string }[]> => {
+  if (usingMongo()) return [];
+  const { rows } = await query<{ op: string; pin_id: string; row: Pin & { duplicate_of?: string } }>(
+    `SELECT doc->>'operation' AS op, doc->>'pin_id' AS pin_id, (doc->'row_data') - 'image' - 'brochure_image' AS row
+     FROM pins_history
+     WHERE doc->'row_data'->>'number' = $1
+       AND (doc->>'operation' = 'update' OR doc->'row_data'->>'duplicate_of' IS NOT NULL)
+     ORDER BY doc->>'changed_at' DESC LIMIT 50`,
+    [String(n)],
+  );
+  const seen = new Set<string>();
+  const out: { slug: string; to: string }[] = [];
+  for (const { op, pin_id, row } of rows) {
+    const slug = slugForProject(withDisplayName(row));
+    if (seen.has(slug)) continue;
+    seen.add(slug);
+    out.push({ slug, to: op === 'delete' ? String(row.duplicate_of) : pin_id });
+  }
+  return out;
+});
+
+const readDuplicateTarget = cachedRead('seo-duplicate-target', ['pins'], 600, async (n: number, slug = ''): Promise<string | null> => {
   const byNumber = await runDbOp({ table: 'pins', action: 'select', filters: [{ op: 'eq', col: 'number', val: n }] }, true);
   if (byNumber.error || !Array.isArray(byNumber.data)) throw new Error(`pin ${n} read failed: ${byNumber.error?.message || 'no data'}`);
   let next = (byNumber.data as (Pin & { hidden?: boolean; duplicate_of?: string })[]).find((p) => p.hidden && p.duplicate_of)?.duplicate_of;
+  if (!next) {
+    // A pin that left this number (deleted duplicate, merged, or renumbered): the one
+    // whose old URL this is, else the latest.
+    const gone = await readFormerPins(n);
+    next = (gone.find((d) => d.slug === slug) || gone[0])?.to;
+  }
   for (let hop = 0; next && hop < 4; hop++) {
     const res = await runDbOp({ table: 'pins', action: 'select', filters: [{ op: 'eq', col: 'id', val: next }] }, true);
     if (res.error || !Array.isArray(res.data)) throw new Error(`pin read failed: ${res.error?.message || 'no data'}`);
@@ -186,7 +223,7 @@ export async function duplicateRedirectSlug(slug: string): Promise<string | null
   const n = projectNumberFromSlug(slug);
   if (n == null) return null;
   try {
-    return await readDuplicateTarget(n);
+    return await readDuplicateTarget(n, slug);
   } catch (e) {
     return dbFailure(e, null);
   }
@@ -196,8 +233,18 @@ export async function getPinBySlug(slug: string): Promise<Pin | null> {
   const n = projectNumberFromSlug(slug);
   if (n == null) return null;
   const pins = await getPinsByNumber(n);
-  if (pins.length <= 1) return pins[0] || null;
-  return pins.find((p) => slugForProject(p) === slug) || pins[0];
+  const exact = pins.find((p) => slugForProject(p) === slug);
+  if (exact) return exact;
+  // The number now belongs to another project, but this is the exact old URL of a pin
+  // that left it (deleted duplicate, merged, renumbered): null → the caller redirects it.
+  if (pins.length) {
+    try {
+      if ((await readFormerPins(n)).some((d) => d.slug === slug && !pins.some((p) => p.id === d.to))) return null;
+    } catch (e) {
+      dbFailure(e, null);
+    }
+  }
+  return pins[0] || null;
 }
 
 // ---- derivations ----------------------------------------------------------

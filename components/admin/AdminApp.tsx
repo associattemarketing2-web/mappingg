@@ -17,6 +17,7 @@ import DevelopersPanel from './DevelopersPanel';
 import BuyerLeadsPanel from './BuyerLeadsPanel';
 import DeveloperApiPanel from './DeveloperApiPanel';
 import WhatsAppPanel from './WhatsAppPanel';
+import PinsDataPanel from './PinsDataPanel';
 import ShareLinkButton from './ShareLinkButton';
 import { PageHead, StatCard } from './PageHead';
 import OverviewMap, { loadProjectIndex, matchProjects, type ProjectHit } from './OverviewMap';
@@ -45,6 +46,7 @@ const GRANTABLE = [
 const TAB_META: Record<string, { label: string; icon: string; desc: string }> = {
   dashboard: { label: 'Overview', icon: 'fa-house', desc: 'Today at a glance' },
   map: { label: 'Map Editor', icon: 'fa-map-location-dot', desc: 'Manage pins & locations' },
+  pinsdata: { label: 'Pins Data', icon: 'fa-table-list', desc: 'All pins in number order, missing data & numbers' },
   developers: { label: 'Developers', icon: 'fa-building', desc: 'Builder directory & logos' },
   intake: { label: 'Projects Intake', icon: 'fa-file-arrow-up', desc: 'Add new projects, bulk CSV & review' },
   projects: { label: 'Developer projects', icon: 'fa-map-pin', desc: 'Approve & publish to the map' },
@@ -66,7 +68,7 @@ const TAB_META: Record<string, { label: string; icon: string; desc: string }> = 
 // permissions and "Edit all details" work as before.
 const NAV: { key: string; label: string; icon: string; tabs: string[] }[] = [
   { key: 'overview', label: 'Overview', icon: 'fa-house', tabs: ['dashboard'] },
-  { key: 'mapproj', label: 'Map & Projects', icon: 'fa-map', tabs: ['map', 'intake', 'projects'] },
+  { key: 'mapproj', label: 'Map & Projects', icon: 'fa-map', tabs: ['map', 'pinsdata', 'intake', 'projects'] },
   { key: 'leads', label: 'CRM & Leads', icon: 'fa-user-group', tabs: ['leads', 'buyerleads', 'accounts'] },
   { key: 'developers', label: 'Developers', icon: 'fa-building', tabs: ['developers'] },
   { key: 'content', label: 'Content & SEO', icon: 'fa-file-lines', tabs: ['blogs', 'seo'] },
@@ -2394,7 +2396,6 @@ function LeadsPanel({ flash, isOwner, focusId, onFocusDone }: { flash: (m: strin
                         <td className="num">{firstRow + i + 1}</td>
                         <td className="c-lead">
                           <div className="crm3-lead">
-                            <span className={`crm3-av ${avTone(l.name || l.email || '')}`}>{initials(l)}</span>
                             <span className="t">
                               <b>{l.name || '—'}</b>
                               {isSignup && l.buyer && !l.buyer.account_exists && <small><i className="fas fa-user-xmark" /> Account deleted</small>}
@@ -3044,7 +3045,6 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
                       <input type="checkbox" checked={picked.has(a.id)} onChange={() => togglePick(a.id)} aria-label={`Select ${a.name || a.email}`} />
                     </label>
                     <button type="button" className={`acs-row${sel?.id === a.id ? ' on' : ''}`} onClick={() => open(a)}>
-                      <span className={`acs-av r-${a.role}`}>{initials(a)}</span>
                       <span className="acs-who"><b>{a.name || a.email}</b><small>{a.email}</small></span>
                       <span className={`acs-type r-${a.role}`}>{typeLabel(a.role)}</span>
                       <span className="acs-status">{statusPill(a)}</span>
@@ -3774,10 +3774,10 @@ export default function AdminApp({ user }: { user: AdminUser }) {
   const { flash, node: toastNode } = useToast();
 
   const visible = isOwner
-    ? ['dashboard', 'map', 'developers', 'projects', 'intake', 'leads', 'buyerleads', 'whatsapp', 'accounts', 'blogs', 'employees', 'backups', 'devapi', 'seo', 'settings', 'profile']
+    ? ['dashboard', 'map', 'pinsdata', 'developers', 'projects', 'intake', 'leads', 'buyerleads', 'whatsapp', 'accounts', 'blogs', 'employees', 'backups', 'devapi', 'seo', 'settings', 'profile']
     // Employees get no site-wide Dashboard overview — they open straight on their
     // leads (only the ones transferred to them), plus any other tab the super admin granted.
-    : [...GRANTABLE.map((g) => g.key).filter((k) => user.permissions.includes(k)).sort((a, b) => Number(b === 'leads') - Number(a === 'leads')).flatMap((k) => (k === 'intake' ? ['projects', 'intake'] : k === 'map' ? ['map', 'developers'] : [k])), 'profile'];
+    : [...GRANTABLE.map((g) => g.key).filter((k) => user.permissions.includes(k)).sort((a, b) => Number(b === 'leads') - Number(a === 'leads')).flatMap((k) => (k === 'intake' ? ['projects', 'intake'] : k === 'map' ? ['map', 'pinsdata', 'developers'] : [k])), 'profile'];
 
   const navGroups = NAV.map((g) => ({ ...g, tabs: g.tabs.filter((k) => visible.includes(k)) })).filter((g) => g.tabs.length);
   const [tab, setTab] = useState(visible[0] || 'dashboard');
@@ -4197,6 +4197,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
           )}
           {warm.includes('map') && <div hidden={tab !== 'map'}><MapPanel /></div>}
           {warm.includes('intake') && <div hidden={tab !== 'intake'}><IntakePanel hash={intakeHash} /></div>}
+          {tab === 'pinsdata' && <PinsDataPanel flash={flash} />}
           {tab === 'developers' && <DevelopersPanel flash={flash} />}
           {tab === 'leads' && <LeadsPanel flash={flash} isOwner={isOwner} focusId={leadFocus} onFocusDone={() => setLeadFocus(null)} />}
           {tab === 'whatsapp' && (

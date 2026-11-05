@@ -294,7 +294,6 @@ export default function BuyerLeadsPanel({ flash, onOpenLeads }: { flash: Flash; 
                         <td className="num">{first + i + 1}</td>
                         <td className="c-buyer">
                           <button type="button" className="blv-buyer" onClick={() => setView(r)}>
-                            <span className={`blv-av t${toneIdx(r.name || r.email)}`}>{initialsOf(r.name || r.email || '?')}</span>
                             <span><b>{r.name || '—'}</b>{r.phone && <small>{r.phone}</small>}{r.email && <small className="em">{r.email}</small>}</span>
                           </button>
                         </td>
