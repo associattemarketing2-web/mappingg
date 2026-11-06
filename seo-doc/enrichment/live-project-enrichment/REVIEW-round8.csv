@@ -1,0 +1,10 @@
+pin_number,project,field,candidate_value,why_not_applied,sources,checked_on
+36,Osian - One & Only,possession_timeline,Jun 2027 (RERA) / Jun 2026 (target),Sources give different dates,"https://housiey.com/projects/osian-one-and-only ; https://www.propertypistol.com/projects/osian-one-and-only-phase-1-mundhwa-pid-7224",2026-11-06
+32,Power Heights & Residency,configuration,2 BHK / 3 BHK  OR  2 / 3 / 4.5 BHK,Two portals disagree,"https://www.squareyards.com/pune-residential-property/sapra-power-heights-and-residences/211855/project ; https://housiey.com/projects/sapra-power-residences",2026-11-06
+32,Power Heights & Residency,sqft,700 – 1060  OR  870 – 2286,Two portals disagree,same as above,2026-11-06
+32,Power Heights & Residency,price,₹1.17 – 1.77 Cr  OR  ₹1.60 – 2.00 Cr,Two portals disagree,same as above,2026-11-06
+724,VJ IndiLife,price,₹23.95 L – 55 L  OR  ₹26 L – 50 L,Two portals disagree,"https://housiey.com/projects/vj-indilife ; https://www.360realtors.com/vilas-javdekar-vj-indilife-pashan-pune-uid-5568",2026-11-06
+724,VJ IndiLife,configuration,1 RK,Only one source names it,https://housiey.com/projects/vj-indilife,2026-11-06
+27,Mantra Mirari,configuration / sqft,3 / 4 / 4.5 BHK 1372 – 1916 sq ft  OR  1 – 4.5 BHK 785 – 1718 sq ft,Sources disagree; pin covers 3 RERA phases,https://housiey.com/projects/mantra-mirari,2026-11-06
+59,Goel Ganga Capital,configuration / sqft / possession / price,"Office spaces, 2,336 – 2,618 sq ft, Dec 2029, ₹5.26 – 5.89 Cr",Only one source (commercial project - office units only),https://www.squareyards.com/pune-residential-property/goel-ganga-capitol-one/339331/project,2026-11-06
+41,AP81 by Amar & Pristine,all,"Commercial (offices/shops), ready",Commercial project; values from one listing site only,https://gharpe.com/pune/ap81,2026-11-06

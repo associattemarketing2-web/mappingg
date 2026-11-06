@@ -63,7 +63,7 @@ export function mobileCatsHtml(cards: ProjectCardData[]): string {
     { href: '/projects', icon: 'fa-fire', tone: 'orange', label: 'Trending Projects' },
     { href: '/status/ready-to-move', icon: 'fa-house-chimney', tone: 'green', label: 'Ready to Move' },
     { href: '/status/under-construction', icon: 'fa-person-digging', tone: 'orange', label: 'Under Construction' },
-    { href: '/projects?budget=2-5-crore', icon: 'fa-gem', tone: 'gold', label: 'Luxury Homes' },
+    { href: '/map', cls: 'trial-link', icon: 'fa-gem', tone: 'gold', label: 'Luxury Homes' },
   ];
   // A few house pins around the project's photo pin on the illustrated map.
   const pins = [[44, 22], [84, 16], [40, 78], [86, 64]];

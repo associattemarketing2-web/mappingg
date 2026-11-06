@@ -163,7 +163,7 @@ export function mapPreviewHtml(cards: ProjectCardData[], card = '', locality = '
         <a href="/status/under-construction">Under Construction</a>
         <a href="/status/ready-to-move">Ready to Move</a>
         <a href="/status/upcoming">Upcoming</a>
-        <a href="/projects?budget=2-5-crore">Premium</a>
+        <a class="trial-link" href="/map">Premium</a>
         <a href="/projects" class="hm-ov-more"><i class="fas fa-sliders"></i>Filters <i class="fas fa-arrow-right"></i></a>
       </nav>
       <div class="hm-ov-layers" role="group" aria-label="Map style">
@@ -245,7 +245,7 @@ export function heroSkylinePinsHtml(cards: ProjectCardData[]): string {
 // ---------- "Built for every home buyer" (bento grid) ----------
 // Six tiles, each one a real way in: a small real map of the busiest
 // localities, RERA count, compare, budget / BHK shortcuts (they open the
-// filtered project list), what's nearby, and a free account + the 40-second
+// live map), what's nearby, and a free account + the 40-second
 // walkthrough video (landing.js opens it in #hmVideo).
 
 /** Photo on the "What's nearby" tile — swap for your own (e.g. '/img/home/buyers.jpg'). */
@@ -282,14 +282,14 @@ function miniMapHtml(cards: ProjectCardData[], city = 'Pune', max = 6): string {
     if (placed.some((q) => Math.abs(q.dx - dx) < 120 && Math.abs(q.dy - dy) < 40)) return '';
     placed.push({ dx, dy });
     const label = g.label === g.label.toUpperCase() ? g.label.toLowerCase().replace(/\b\w/g, (ch) => ch.toUpperCase()) : g.label;
-    return `<a class="hm-mpin" href="/projects?q=${esc(encodeURIComponent(label))}" style="left:${Math.round(ox + dx)}px;top:${Math.round(oy + dy)}px"><span>${g.count}</span>${esc(label)}</a>`;
+    return `<a class="hm-mpin trial-link" href="/map" style="left:${Math.round(ox + dx)}px;top:${Math.round(oy + dy)}px"><span>${g.count}</span>${esc(label)}</a>`;
   }).join('');
   return `<div class="hm-mini"><div class="hm-mini-tiles" style="left:calc(50% - ${Math.round(ox)}px);top:calc(50% - ${Math.round(oy)}px)">${tiles.join('')}${pins}</div><span class="hm-osm">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a></span></div>`;
 }
 
 export function buyersSectionHtml(cards: ProjectCardData[], s: HomeStats): string {
-  const budgets = BUDGET_OPTIONS.map((b) => `<a href="/projects?budget=${b.slug}">${esc(b.label)}</a>`).join('');
-  const bhks = BHK_OPTIONS.map((b) => `<a href="/projects?bhk=${b.slug}">${esc(b.label)}</a>`).join('');
+  const budgets = BUDGET_OPTIONS.map((b) => `<a class="trial-link" href="/map">${esc(b.label)}</a>`).join('');
+  const bhks = BHK_OPTIONS.map((b) => `<a class="trial-link" href="/map">${esc(b.label)}</a>`).join('');
   const go = (label: string) => `<span class="hm-tgo">${label} <i class="fas fa-arrow-right"></i></span>`;
 
   return `<section class="hm-sec hm-buyers">
@@ -328,7 +328,7 @@ export function buyersSectionHtml(cards: ProjectCardData[], s: HomeStats): strin
       <div class="hm-tile hm-t-budget">
         <span class="ic"><i class="fas fa-indian-rupee-sign"></i></span>
         <h3>Smart budget filters</h3>
-        <p>Jump straight to projects in your budget or BHK.</p>
+        <p>Filter projects by budget and BHK on the live map.</p>
         <div class="hm-chiprow" aria-label="Budget">${budgets}</div>
         <div class="hm-chiprow" aria-label="BHK">${bhks}</div>
       </div>

@@ -1,0 +1,4172 @@
+{
+ "batch_id": "live-2026-11-06-r10-prices",
+ "checked_on": "2026-11-06",
+ "rules": "Price only, empty fields only. One source per project (developer site or property portal, RERA/name matched where possible), lowest listed price as \"₹ X Onwards\". Where no public price was found: \"Price on Request\". Values marked low confidence come from a search-result summary, not an opened page.",
+ "changes": [
+  {
+   "pin_id": "d573988c-22b4-4138-a7f6-f11af2d29266",
+   "number": 591,
+   "title": "SIGNATURE GLOBAL CITY 37D EXTN.",
+   "source_url": "https://www.housing.com/in/buy/projects/page/291847-signature-global-city-37d-ii-2-by-signature-global-builders-pvt-ltd-in-sector-37d",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: Signature Global City 37D plots ₹1.14 - 1.49 Cr (sister phase; low confidence)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.14 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f5d218cf-5776-4b48-8048-71726577217c",
+   "number": 595,
+   "title": "MAPSKO ASPR HILLS",
+   "source_url": "https://www.squareyards.com/gurgaon-residential-property/mapsko-aspr-hills/217099/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: plots ₹1.87 - 3.22 Cr, RERA GGM/678/410/2023/22",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.87 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "450e1c88-6106-4dc3-8ba5-086d120fb0f8",
+   "number": 704,
+   "title": "DOSTI WEST COUNTY - PHASE 5 - DOSTI OLIVE - WING A",
+   "source_url": "https://www.Housing.com/in/buy/projects/page/312874-dosti-olive-dosti-west-county-by-dosti-realty-in-thane-west",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹94.1 L - 1.63 Cr, RERA P51700077484",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 94.1 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "e314b2d9-c6d3-4e8a-b705-38694ca614de",
+   "number": 592,
+   "title": "REACH THE BAZARIA",
+   "source_url": "https://www.squareyards.com/gurgaon-residential-property/reach-the-bazaria/338833/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: SCO plots ₹6.37 - 6.44 Cr (commercial)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 6.37 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "b1da53f9-3042-4f21-8ad7-bb29f66e564c",
+   "number": 594,
+   "title": "TATVA ESTATES",
+   "source_url": "https://www.squareyards.com/gurgaon-residential-property/adani-tatva-estates/218330/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: plots from ₹2.13 Cr, RERA GGM/699/431/2023/43",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.13 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4d74e4ef-2870-4fb6-88e2-605e49aa44c7",
+   "number": 26,
+   "title": "Mantra Business Center",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (sold out)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "1aca197c-57c0-49c2-bd79-2c9c843f322e",
+   "number": 713,
+   "title": "Palladio LaViento",
+   "source_url": "https://housiey.com/projects/vj-palladio-laviento",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc, RERA PR1260002501182",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.16 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4d63f5c1-2a6b-40a7-89a1-61113e7e1dab",
+   "number": 717,
+   "title": "Portia Grande",
+   "source_url": "https://housiey.com/projects/vj-portia-grande",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc (marked sold out); propertypistol says 4.5 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 3.70 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "52562f97-80ec-4c4c-98a2-ef5d50cc746d",
+   "number": 49,
+   "title": "Anandtara New Launch",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (not launched)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4fd0e544-2ba5-42b4-a080-b8b114b40403",
+   "number": 141,
+   "title": "Platinum Classic",
+   "source_url": "https://housiey.com/projects/platinum-classic",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 1 BHK ₹1.36 - 1.85 Cr all-inc",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.36 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4b92831e-0d90-4510-b847-f8c69891f8ed",
+   "number": 41,
+   "title": "AP81 by Amar & Pristine",
+   "source_url": "https://gharpe.com/pune/ap81",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "gharpe, commercial offices/shops, RERA match",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 3.3 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "68d3472c-1317-4929-9128-57cab20e5e80",
+   "number": 55,
+   "title": "Mellizia Towers",
+   "source_url": "https://www.squareyards.com/pune-residential-property/moonlight-melliza-towers/239059/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: Melliza Towers ₹1.21 Cr - 4.90 Cr + charges, RERA P52100052564",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.21 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "43b7959b-2a60-43d5-b3e4-d2b8d7846013",
+   "number": 59,
+   "title": "Goel Ganga Capital",
+   "source_url": "https://www.squareyards.com/pune-residential-property/goel-ganga-capitol-one/339331/project",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "squareyards, office units, RERA match",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 5.26 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "69ee1f85-c6cd-4329-892a-a1ac1137ea02",
+   "number": 112,
+   "title": "Falcon Towers",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (sold out)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "7c4f0ff0-6d3d-4344-b3ab-2c821fa607ff",
+   "number": 127,
+   "title": "24 High Business Park",
+   "source_url": "https://www.homebazaar.com/dream-apex-24-high-nerul-2874",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "commercial, no price found",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "45747e97-fc39-4247-9ed1-394ace7681b2",
+   "number": 140,
+   "title": "Platinum Crest",
+   "source_url": "https://www.housiey.com/projects/platinum-crest",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.82 - 2.68 Cr all-inc, RERA P51800079919",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.82 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "6158bbb3-a2d6-41c5-83f3-9d5e908a0449",
+   "number": 175,
+   "title": "Delta New Palm Beach",
+   "source_url": "https://housiey.com/projects/delta-new-palm-beach",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.02 - 2.78 Cr, RERA P51700055856 (low confidence)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.02 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "65059808-98e6-4ca0-a284-1ae4874e05ab",
+   "number": 54,
+   "title": "Horizon Highgroves",
+   "source_url": "https://www.propertypistol.com/projects/horizon-highgroves-mundhwa-pid-15753",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "propertypistol, RERA match (round 7 research)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.17 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "5dc509c4-d009-4ac1-9b3e-d47eb306c794",
+   "number": 79,
+   "title": "World Trade Center",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (Commercial project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "7cfd2267-83d7-43bb-9958-94e838cf45c7",
+   "number": 126,
+   "title": "Sai World One",
+   "source_url": "https://www.squareyards.com/paradise-sai-world-one-nerul-navi-mumbai-npd-345509",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK 864 sq ft ₹2.56 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.56 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "53dd632f-7107-4426-ab0d-7da50391f198",
+   "number": 724,
+   "title": "VJ IndiLife",
+   "source_url": "https://housiey.com/projects/vj-indilife",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc, RERA match",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 23.95 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "0c358201-646a-4fb3-8398-814d2aa0f5cc",
+   "number": 736,
+   "title": "Avalon - Tower B",
+   "source_url": "https://cityair.in/avalon_tower_b_project_in_mumbai__ppc.html",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 5 BHK from ₹14.18 Cr, RERA P51800079669",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 14.18 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "b4675890-2d05-4726-8d7a-91c872cd9eea",
+   "number": 64,
+   "title": "Gandharv New Commercial 2",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (not launched)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "b64cc272-36e4-44ef-8a53-95918755da14",
+   "number": 32,
+   "title": "Power Heights & Residency",
+   "source_url": "https://housiey.com/projects/sapra-power-residences",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc, RERA P52100047455; squareyards 1.17 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.60 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "9aee6a8d-1dde-4bed-a77f-9d5d10a7b048",
+   "number": 40,
+   "title": "Merlin New Project",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (not launched)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "81f284ed-1458-4721-9457-8cd5c0a554e4",
+   "number": 58,
+   "title": "A Advani Ovella",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (Commercial project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "a6574206-ff78-451c-9244-105ffe5e5960",
+   "number": 69,
+   "title": "Clover Commercial",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (Commercial project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "a1aef172-e274-4de5-8bcc-bbb929da19fe",
+   "number": 72,
+   "title": "A Advani New Commercial",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (not launched)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "c87611dd-1a5a-404e-b04f-635fae9bb9f7",
+   "number": 90,
+   "title": "Panchshil Vantage",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (Commercial project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "d1339095-a50c-439b-8fde-adf58395e6e9",
+   "number": 33,
+   "title": "Panchashil Golden Bell 2",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (Commercial project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "b6afa2a8-ff0c-486f-a842-63c8a18f72d8",
+   "number": 39,
+   "title": "Platinum Capital",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (Commercial project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "d4439197-cefa-4240-bc04-c3d6872b2a62",
+   "number": 48,
+   "title": "Kohinoor Business Towers",
+   "source_url": "https://www.squareyards.com/pune-residential-property/kohinoor-business-tower/220946/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: offices from ₹2.50 Cr (commercial, low confidence)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.50 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "7e63a797-d0a7-4b34-840d-40f7b516bf33",
+   "number": 51,
+   "title": "Vedant 84",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (sold out)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "8df25cf7-05fa-4493-8c33-88609526cef8",
+   "number": 85,
+   "title": "SOHO by Panchshil",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (sold out)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "7f4858c4-9eea-48d8-a239-2f1070888e84",
+   "number": 101,
+   "title": "Prisitine Kyra",
+   "source_url": "https://housiey.com/projects/pristine-kyra",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey range 4.77-6.85 Cr all-inc",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 4.77 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "bbf2ed2a-dbcc-47ae-9f4b-bc504d499f92",
+   "number": 139,
+   "title": "Platinum Vibe",
+   "source_url": "https://www.squareyards.com/platinum-vibe-andheri-west-mumbai-npd-344313",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 1 BHK 430 sq ft ₹1.71 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.71 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "9472ab57-bedc-4e0a-8dd3-5b53cf479fe2",
+   "number": 143,
+   "title": "Platinum Avenue",
+   "source_url": "https://www.squareyards.com/mumbai-residential-property/platinum-avenue/172694/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK 700 sq ft ₹4.20 Cr, RERA P51800048464",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 4.20 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "93ce0c1b-1db5-4bf4-ab22-a326a1a1db05",
+   "number": 144,
+   "title": "AMARA",
+   "source_url": "https://housiey.com/projects/avani-bansall-amara",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc, RERA match",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 78.60 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "c919c8ab-724d-4ac3-854e-c29100fbd6d3",
+   "number": 179,
+   "title": "Sai Platinum",
+   "source_url": "https://housiey.com/projects/sai-platinum",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹87.36 L - 1.87 Cr all-inc, RERA P52000055718",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 87.36 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "30c13970-2825-4d78-a24d-a2a909f01f46",
+   "number": 694,
+   "title": "Birla Anayu",
+   "source_url": "https://www.squareyards.com/mumbai-residential-property/birla-anayu/311961/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 4 BHK 4,000 sq ft ₹60 Cr (sources vary 60-80 Cr)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 60 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "c23887a8-37ae-4d4f-825b-e135c97f6e37",
+   "number": 727,
+   "title": "VJ Grand Central",
+   "source_url": "https://housiey.com/projects/vj-grand-central",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc 1RK, RERA P52100026304",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 22.95 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "31c96d3d-cf66-4296-a6fb-d3187988de40",
+   "number": 726,
+   "title": "Yashwin Orizzonte - Phase I",
+   "source_url": "https://housiey.com/projects/vj-yashwin-orizzonte",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc, RERA P52100026213",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 67.43 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "04cceb70-385f-4bd5-8192-6856a7bf8e0d",
+   "number": 730,
+   "title": "CITY VISTA",
+   "source_url": "https://www.360realtors.com/kolte-patil-city-vista-kharadi-pune-uid-4353",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: offices ₹90 L - 3.8 Cr, RERA P52100007612 (commercial)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 90 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "97415e99-68e8-4d57-839c-330c7e691925",
+   "number": 731,
+   "title": "VIVERE",
+   "source_url": "https://www.jllhomes.co.in/apartments-new/mumbai/kolte-patil-vivere",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹2.6 - 3.98 Cr, RERA PR1180002502702",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.6 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "2ed696bb-e28a-43b6-b166-ae3db8955790",
+   "number": 737,
+   "title": "Lodha Bellevue",
+   "source_url": "https://housiey.com/projects/lodha-bellevue",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: from ₹4.68 Cr, RERA P51900046567",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 4.68 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f43a974e-db7f-4edf-86d4-348683608692",
+   "number": 732,
+   "title": "ALORA",
+   "source_url": "https://housing.com/in/buy/projects/page/293664-kolte-patil-alora-by-koltepatil-developers-in-santacruz-east",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹2.76 - 3.61 Cr, RERA P51800049048",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.76 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "8ae79461-d411-4a13-a787-cbbb5d2ed9ee",
+   "number": 734,
+   "title": "Life Republic Sector R17A/17A Avenue-Sound of Soul/Phase-I",
+   "source_url": "https://cdn.proptiger.com/pune/hinjewadi/kolte-patil-developers-life-republic-sector-r17a-17a-avenue-sound-of-soul-phase-i-3233148",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 4 BHK row house ₹2.5-2.6 Cr, RERA P52100048241",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.5 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4366020a-f4d5-49bc-930a-e2894459ef3f",
+   "number": 735,
+   "title": "Life Republic Sector R7- 7th Avenue- i Towers",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no listing found for RERA P52100022154",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "65cf4f11-6d1c-46f3-948c-0b874689a05d",
+   "number": 728,
+   "title": "KANAKIA RAINFOREST",
+   "source_url": "https://www.squareyards.com/mumbai-residential-property/kanakia-rainforest/103117/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: from ₹1.33 Cr (ready to move)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.33 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "68c0d2c9-d4bd-45d8-b86d-b41629e9b33d",
+   "number": 593,
+   "title": "M2K OLIVE GREEN FLOORS",
+   "source_url": "https://www.squareyards.com/gurgaon-residential-property/m2k-olive-greens/224158/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: floors ₹1.86 - 2.78 Cr + charges",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.86 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "bc300c8a-62c5-47c8-b284-5d4711ec3916",
+   "number": 82,
+   "title": "Eon Water Front",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "sold out",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "aa39e2f4-370f-4e43-a36a-841bdc575479",
+   "number": 88,
+   "title": "Omicron Commercial",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (Commercial project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "927f7e67-f9e7-4060-835c-a9c2bbcbaf30",
+   "number": 128,
+   "title": "Shreeji Devine",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no listing found for Shreeji Devine Nerul",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "bdf1a76b-7394-4979-9cfc-12a88bc1644f",
+   "number": 133,
+   "title": "Sai World Pyramid",
+   "source_url": "https://homebazaar.com/sai-world-pyramid-nerul-7684",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: offices from ₹95 L (commercial)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 95 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "b9de0d3c-791a-46b6-84ff-d8519c853e83",
+   "number": 169,
+   "title": "Kamdhenu Pinnacle",
+   "source_url": "https://housiey.com/projects/kamdhenu-pinnacle",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.69 - 2.24 Cr, RERA P51700077771 (sources vary)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.69 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "aeb5d0e9-ef12-4750-bf30-fdac0cde2454",
+   "number": 157,
+   "title": "Kundan Gulmohar Park",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (not launched)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "7260ecf9-2720-49f7-8457-b498f8f9e9c3",
+   "number": 280,
+   "title": "Rohan Viti",
+   "source_url": "https://housiey.com/projects/rohan-viti",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc, RERA match",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 97.05 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "701e8ab6-e462-4ed6-9864-99d82cd1b9cd",
+   "number": 600,
+   "title": "YashONE Wakad Central",
+   "source_url": "https://www.propertypistol.com/projects/vilas-yashone-wakad-central-wakad-pid-7440",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK 700 sq ft ₹69.95 L, RERA P52100020910 (low confidence)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 69.95 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "3ac3a3f4-9cc3-46c4-8ba4-4bdab91b1f69",
+   "number": 604,
+   "title": "VJ Town Centre",
+   "source_url": "https://housiey.com/projects/vj-town-centre",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc 1RK, RERA P52100028755",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 24.95 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "077e8251-4e1a-4058-9026-544b14a91f6a",
+   "number": 8,
+   "title": "Port 133",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (Commercial project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "b70ed829-726c-44f7-afc1-2df0af2d75b8",
+   "number": 597,
+   "title": "Prudentia - Phase 1",
+   "source_url": "https://www1.housing.com/in/buy/projects/page/50906-vilas-prudentia-phase-1-by-vilas-javdekar-eco-shelters-pvt-ltd-in-wakad",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "100% sold, portal shows price on request",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "01c637d8-7c15-47a8-ae7a-87594d8b9451",
+   "number": 57,
+   "title": "Unique Properties",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (Mixed-Use project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "01e5e059-eb8e-4b16-9721-074b26de217b",
+   "number": 176,
+   "title": "Sector Zero Delta Tricity",
+   "source_url": "https://www.mumbaipropertyexchange.com/project/codename-sector-zero-airoli-by-16277/33187",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: Codename Sector Zero 1 BHK ₹84 L",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 84 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "57eb1b62-0eda-4541-a442-053d04660544",
+   "number": 599,
+   "title": "YashONE Phase - I",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "completed 2020, no current listing price",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "9b289fca-74fa-4f90-8aef-5934d403f97f",
+   "number": 602,
+   "title": "Yashwin SuperNova",
+   "source_url": "https://housiey.com/projects/vj-yashwin-supernova",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc, RERA P52100028652",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 66.49 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "37adfac6-96f4-453e-b24a-cb365f542b55",
+   "number": 601,
+   "title": "Yashwin Encore",
+   "source_url": "https://www.squareyards.com/pune-residential-property/vilas-javdekar-yashwin-encore/10862/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK from ₹64.25 L, RERA P52100017756 (low confidence)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 64.25 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "59cdc1a5-9b23-4b34-95d6-a3bf4f0d871e",
+   "number": 711,
+   "title": "DOSTI WEST COUNTY - DOSTI TULIP",
+   "source_url": "https://housing.com/in/buy/projects/page/271315-dosti-tulip-dosti-west-county-by-dosti-realty-in-thane-west",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.00 - 1.60 Cr, RERA P51700032666",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.00 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f66d0b56-3d0e-49fa-bbf9-8a52bbe03249",
+   "number": 729,
+   "title": "LIFE REPUBLIC SECTOR R31/31st AVENUE – ECHOES/PHASE – 1",
+   "source_url": "https://www.housiey.com/projects/kolte-patil-echoes",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK 735 sq ft ₹75 L, RERA PM1261012502409",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 75 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "933b2e96-a096-4d6c-a2af-c1d2da00dfef",
+   "number": 606,
+   "title": "Golfland V and VI",
+   "source_url": "https://www1.housing.com/in/buy/projects/page/306531-image-golfland-v-and-vi-by-image-realty-llp-in-pirangut",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 3 BHK from ₹2.12 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.12 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "53072268-a576-44a2-b69a-e7e8a24d7ace",
+   "number": 712,
+   "title": "DOSTI PRIMUS-PHASE 1",
+   "source_url": "https://www.squareyards.com/thane-residential-property/dosti-primus/340879/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK 942 sq ft ₹1.82 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.82 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "6e92db92-704b-4afe-ac36-425a7616986d",
+   "number": 742,
+   "title": "Mahindra Vista Phase 1",
+   "source_url": "https://housing.com/in/buy/projects/page/315365-mahindra-vista-phase-1-by-mahindra-lifespaces-in-kandivali-east",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.45 - 5.26 Cr, RERA P51800054671",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.45 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "463d7f1f-a270-4df1-9844-e3cdbcf28575",
+   "number": 385,
+   "title": "Aparna Moonstone",
+   "source_url": "https://squareyards.com/hyderabad-residential-property/aparna-moonstone/334926/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹2.16 - 3.01 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.16 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "b4603b9a-c8b4-449a-aba6-22723ae6832b",
+   "number": 872,
+   "title": "NXONE - HIVE",
+   "source_url": "https://www.squareyards.com/dah-nx-one-hive-tech-zone-4-greater-noida-greater-noida-npd-345656",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 3 BHK ₹2.30 - 2.57 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.30 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "33ceed36-f385-47ba-a3ce-3737cba817f9",
+   "number": 748,
+   "title": "My Home Nishada",
+   "source_url": "https://housiey.com/projects/my-home-nishada",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: base price from ₹4.28 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 4.28 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4e184a2c-f23e-4aed-b630-5b54980e86fb",
+   "number": 706,
+   "title": "DOSTI WEST COUNTY - PHASE 4- DOSTI PINE",
+   "source_url": "https://dostirealty.com/project/dosti-pine",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.29 - 2.07 Cr all-inc, RERA P51700025834",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.29 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "3a34cc0d-9a34-4aa7-8259-fe2bf7ba83e7",
+   "number": 63,
+   "title": "Gandharv New Commercial",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (not launched)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "96b54eef-606d-4f1a-9ef0-3921a2820582",
+   "number": 746,
+   "title": "My Home Vyoma",
+   "source_url": "https://www.squareyards.com/my-home-vyoma-nanakramguda-hyderabad-npd-344203",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 3 BHK 3,195 sq ft ~₹3.26 Cr (indicative)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 3.26 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "270efbf4-f6f1-4eaf-81b0-cdb165ff19e7",
+   "number": 745,
+   "title": "Mahindra IvyLush Tower C and Tower D",
+   "source_url": "https://www.homebazaar.com/mahindra-ivylush-wagholi-7464",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "homebazaar page: entry units from ₹99 L (whole IvyLush project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 99 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f2a4406b-686c-4073-a741-9ccff12b1c23",
+   "number": 382,
+   "title": "Aparna Prive",
+   "source_url": "https://www.squareyards.com/aparna-prive-villas-kompally-hyderabad-npd-345052",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "portal lists price on request",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "7a68ef2e-a364-4f0d-942e-a56b70d519f3",
+   "number": 747,
+   "title": "My Home Apas",
+   "source_url": "https://squareyards.com/hyderabad-residential-property/my-home-apas/230371/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹2.82 - 3.93 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.82 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "1e194f95-af67-4311-84ae-898576c5ca34",
+   "number": 749,
+   "title": "My Home Raka",
+   "source_url": "https://squareyards.com/hyderabad-residential-property/my-home-raka/150721/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.69 - 2.53 Cr, RERA P02400003777",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.69 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "0e293e71-14a3-4f43-a3d4-1eeeb3b3970e",
+   "number": 14,
+   "title": "Majestique Landmark",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (not launched)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "09c8cf7a-6b26-4725-bbab-de2fc46ec04a",
+   "number": 43,
+   "title": "Casa Elanza",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "only listing gives implausible 1.30 Cr for 5,757 sq ft",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "2f813591-6a0e-4654-8530-e862829b9ae3",
+   "number": 56,
+   "title": "Codename Autobiography by Jhamtani",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (not launched)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "7208d498-cb4b-4c01-8798-3bc3abbfd0b5",
+   "number": 751,
+   "title": "Purva Panorama Tower C",
+   "source_url": "https://housiey.com/projects/purva-panorama",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: Tower C 2 BHK 729 sq ft ₹1.78 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.78 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "3f4cc82e-092c-4da1-8915-5e753ff821f3",
+   "number": 65,
+   "title": "Ram India New Commerial",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (not launched)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "bbd23f58-ca31-4d8d-8e43-cdb7e6948eb4",
+   "number": 744,
+   "title": "Mahindra Happinest Kalyan - 2 Project B",
+   "source_url": "https://housing.com/in/buy/projects/page/271916-mahindra-happinest-kalyan-2-project-a-by-mahindra-lifespaces-in-bhiwandi",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: Happinest Kalyan 2 from ₹35.45 L all-inc (figure is for Project A; low confidence)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 35.45 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "0f8eebe9-832a-454a-aee9-5c7d3cf487de",
+   "number": 86,
+   "title": "Kundan Project",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (not launched)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "2bc538a3-796b-4442-9a84-e13208fc0975",
+   "number": 102,
+   "title": "Rohan Mithila Business Center",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (Commercial project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "287581e6-2710-44cd-b146-a33ec261dcf7",
+   "number": 107,
+   "title": "Tribeca High Street",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (Commercial project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "1ea022f1-e8c9-42de-9114-7285ef29b43f",
+   "number": 67,
+   "title": "Panchshil WestView",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (Commercial project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "42a646df-8cef-480d-8f31-e5ab7c09c5de",
+   "number": 100,
+   "title": "VJ Yashwin Enchante",
+   "source_url": "https://housiey.com/projects/vj-yashwin-enchante",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: from ₹80.95 L (sources ₹75 L-82 L)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 80.95 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "33f70676-07b1-4f8b-b601-1c2d7b994986",
+   "number": 106,
+   "title": "Tribeca - The Ark",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (Residential project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "3b85c8b2-2500-42be-b885-92bc6d665f1a",
+   "number": 178,
+   "title": "Sai Prerna",
+   "source_url": "https://www.housiey.com/projects/sai-prerna",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 1 BHK from ₹74 L",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 74 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "2a5671d4-efad-413f-86e7-897db51155c6",
+   "number": 19,
+   "title": "Eastern Front",
+   "source_url": "https://housiey.com/projects/vishal-eastern-front",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc, RERA match (round 7 research)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 99.18 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "1337feb4-cc84-452a-8025-e07f9ff74760",
+   "number": 53,
+   "title": "Mantra Highstreet & Offices",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (not launched)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "34ef5d58-0566-45a8-8e74-e9b83fe4317d",
+   "number": 83,
+   "title": "Panchshil Towers",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (sold out)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "1be22054-a83d-45de-a813-04e36f27ec2f",
+   "number": 99,
+   "title": "Kohinoor Kalideo",
+   "source_url": "https://jllhomes.co.in/apartments-new/pune/kohinoor-kaleido",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: Kohinoor Kaleido ₹85.88 L - 1.2 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 85.88 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "141f6ea6-4e22-469e-b6ea-5bce68d7aed2",
+   "number": 171,
+   "title": "Arihant Advika",
+   "source_url": "https://housiey.com/projects/arihant-advika",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK 656 sq ft ₹2.15 Cr (sources vary 2.02-2.40)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.15 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "e1886d63-1905-4886-8481-2540658a67ee",
+   "number": 343,
+   "title": "Kalpataru Verbina",
+   "source_url": "https://housiey.com/projects/kalpataru-verbina",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 3.5 BHK from ₹5.6 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 5.6 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f1f3c210-8bc0-478f-a9b2-17d0a1c3e11c",
+   "number": 71,
+   "title": "108 SUITES",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (not launched)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "e7eab23c-4885-444b-bb6a-4f9e551998b6",
+   "number": 77,
+   "title": "Pawar Riseonic",
+   "source_url": "https://backend.nobroker.in/pawar-riseonic-magarpatta_pune-prjt-8a9fb8848b64abb6018b6558b496410e",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK from ₹95 L (low confidence)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 95 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ec639df8-ec8f-4921-bd5d-40c19f75f635",
+   "number": 142,
+   "title": "Platinum Grandeur",
+   "source_url": "https://housing.com/in/buy/projects/page/303679-platinum-grandeur-by-platinum-corp-developers-llp-in-andheri-west",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK ₹3.36 - 3.41 Cr, RERA P51800052098",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 3.36 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "e48fe91b-b427-468f-b3c0-ed24bd0367d2",
+   "number": 42,
+   "title": "Adani Greens",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (sold out)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f2a06fca-2550-4f01-aef7-c3a1bef74cc9",
+   "number": 44,
+   "title": "Omicron Commerz",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (sold out)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "86974560-75fb-44e0-ac84-add9085347e3",
+   "number": 609,
+   "title": "ONE DOSTI",
+   "source_url": "https://www.squareyards.com/one-dosti-kolshet-industrial-area-thane-npd-343998",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: offices 550 sq ft ₹1.10 Cr (commercial)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.10 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ec7562b5-6f3c-457b-b779-b0dcae6fe2c0",
+   "number": 78,
+   "title": "Eon IT Park",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (Commercial project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f2581527-eacf-4f51-81f6-16f093a71b43",
+   "number": 91,
+   "title": "EON Phase 2",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (Commercial project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f8222c46-d6e7-428b-8336-a6e7773a9a1e",
+   "number": 161,
+   "title": "Kundan New Kaveri",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no listing found",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "96e3b5dd-7a3a-425d-aea2-9480dd407272",
+   "number": 611,
+   "title": "GROUP HOUSING CGEWHO PHASE II",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "government employees welfare scheme; no public sale price",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "3d96b045-2523-43a2-a4c0-140b9d428084",
+   "number": 612,
+   "title": "CASA GRANDE2-TOWERA1",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "new 2026 tower; only older-phase prices found",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ad9db62a-a696-4958-bb03-d896d823039a",
+   "number": 613,
+   "title": "ELDECO ECHOES OF EDEN",
+   "source_url": "https://www.squareyards.com/greater-noida-residential-property/eldeco-echoes-of-eden/343452/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 3 BHK from ₹1.39 Cr + charges",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.39 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "d029fe2a-dab9-4e4f-bf5d-3b8ad894b709",
+   "number": 616,
+   "title": "GODREJ TROPICAL ISLE",
+   "source_url": "https://www.360realtors.com/godrej-tropical-isle-sector-146-noida-uid-6530",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 3 BHK from ₹2.66 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.66 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "1642bd04-5643-4fd9-a25e-11974d6e85ec",
+   "number": 276,
+   "title": "Lodha Sewri Project",
+   "source_url": "https://housiey.com/projects/lodha-sewri",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: Lodha Sewri 3 BHK from ₹4.60 Cr (low confidence: RERA not matched)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 4.60 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "9ee27dc4-36ca-4a69-9cc9-b25d2840fc55",
+   "number": 362,
+   "title": "Serenova Versova",
+   "source_url": "https://www.squareyards.com/mumbai-residential-property/kolte-patil-serenova/340809/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹2.61 - 4.98 Cr + charges, RERA PR1180002500850",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.61 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "87293e5e-4f8a-41be-a840-67cef7d15086",
+   "number": 279,
+   "title": "The Address by GS Sion Tower E",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no unit price published",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "898c07e6-8bbe-45d2-a88d-b3827a02fa1b",
+   "number": 277,
+   "title": "Lodha Worli Residential Project",
+   "source_url": "https://www.jllhomes.co.in/apartments-new/mumbai/lodha-worli-residential-project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 4-5 BHK from ₹31.35 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 31.35 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "31bd0377-9fb9-48b1-b1a4-7b0b2f53fb1e",
+   "number": 278,
+   "title": "RAHEJA SOBO RESIDENCES",
+   "source_url": "https://www.squareyards.com/mumbai-residential-property/k-raheja-sobo-residences/343108/project",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "portals list price on request",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "5901aa7b-8647-4620-bb87-cd63d138137d",
+   "number": 392,
+   "title": "GODREJ VERANO",
+   "source_url": "https://www.homebazaar.com/godrej-verano-sector-63a-8645",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: from ₹5.91 Cr (coming soon)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 5.91 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4506dfd7-ddfe-4e4d-ac4e-bfb76905f11e",
+   "number": 614,
+   "title": "GAUR CHRYSALIS (PHASE 1)",
+   "source_url": "https://www.squareyards.com/greater-noida-residential-property/gaur-chrysalis/341562/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 3 BHK from ₹1.38 - 1.52 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.38 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f1333623-3120-4809-89c7-4c309e7cc053",
+   "number": 615,
+   "title": "GODREJ MAJESTY GH-01/B,C,D,E.J AND K SEC 12 -G NOIDA",
+   "source_url": "https://www.homebazaar.com/godrej-majesty-sector-12-greater-noida-7975",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: from ₹2.39 Cr, RERA UPRERAPRJ250823/04/2025",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.39 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "a642f6bc-abaa-4e30-8bf5-656298df3ec7",
+   "number": 617,
+   "title": "BHUTANI 18",
+   "source_url": "https://www.squareyards.com/noida-residential-property/bhutani-18/342578/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 5 BHK ₹7.4 - 7.6 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 7.4 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "74540313-4e77-4113-bac0-049e50209638",
+   "number": 753,
+   "title": "Provincia",
+   "source_url": "https://housiey.com/projects/rajapushpa-provincia",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.71 - 3.32 Cr all-inc",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.71 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f58804a9-c8d1-41d2-a816-506f673ee370",
+   "number": 389,
+   "title": "ELDECO TERRA & SOL",
+   "source_url": "https://www.squareyards.com/eldeco-terra-and-sol-sector-80-gurgaon-npd-344020",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 3 BHK ₹2.9 - 3.21 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.9 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "a470921f-79cf-4ee4-9824-ce915de18dd3",
+   "number": 618,
+   "title": "THE SEPHYRA",
+   "source_url": "https://www.squareyards.com/greater-noida-residential-property/imperia-the-sephyra/341094/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.15 - 2.57 Cr + charges",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.15 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "1ce9febd-d462-4198-86b8-ba6fcc064744",
+   "number": 619,
+   "title": "IRISH PLATINUM",
+   "source_url": "https://www.squareyards.com/greater-noida-residential-property/irish-platinum/245846/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 3 BHK from ₹1.6 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.6 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "e331d7ed-6dc6-4f97-9e23-6bc23d8b293a",
+   "number": 621,
+   "title": "GREEN RESERVE TOWER 3 AND 4",
+   "source_url": "https://housing.com/in/buy/projects/page/349576-l-and-t-green-reserve-tower-3-and-4-by-lt-realty-in-sector-128",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: Tower 3 & 4 ₹6.5 - 8.11 Cr, RERA UPRERAPRJ794300/09/2025",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 6.5 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "b1ec29ae-d409-4606-a0c8-28c62e0f0779",
+   "number": 623,
+   "title": "ELDECO LIVE BY THE GREENS PHASE-II",
+   "source_url": "https://housing.com/in/buy/projects/page/306001-the-greens-phase-ii-by-eldeco-in-sector-150",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK ₹1.13 - 1.14 Cr, RERA UPRERAPRJ121123",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.13 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f67618a1-fdd1-4642-b07b-d3769a68c746",
+   "number": 707,
+   "title": "Dosti West County - Dosti Nest - Phase 1",
+   "source_url": "https://dostirealty.com/project/dosti-nest",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 1 BHK Smart from ₹42.64 L (developer offer)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 42.64 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "0112f077-6596-4149-a592-fa2211c64f3a",
+   "number": 289,
+   "title": "Rustomjee Vista Bay",
+   "source_url": "https://www.housiey.com/projects/rustomjee-vista-bay",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK 805 sq ft ₹3.60 Cr all-inc",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 3.60 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "fe213570-2497-44f6-804b-9951637f395c",
+   "number": 752,
+   "title": "Skyra",
+   "source_url": "https://housiey.com/projects/rajapushpa-skyra",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹3.90 - 7.00 Cr all-inc",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 3.90 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "18a22242-0cc1-4d1f-a660-549c3d1f7361",
+   "number": 761,
+   "title": "My Home 99",
+   "source_url": "https://myhomeconstructions.com/my-home-99",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹13.95 - 15.6 Cr base",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 13.95 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "a025690d-d027-4142-b0a2-716522a48084",
+   "number": 756,
+   "title": "RUSTOMJEE LA VIE WING A",
+   "source_url": "https://www.jllhomes.co.in/apartments-new/mumbai/rustomjee-la-vie-wing-a",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK 642 sq ft ₹1.40 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.40 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "1d2099ef-b79f-405c-acee-35c52862aa74",
+   "number": 754,
+   "title": "Infina",
+   "source_url": "https://www.housiey.com/projects/rajapushpa-infina",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 3 BHK from ₹2.83 Cr (all-inc range ₹3.26 - 6.13 Cr)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.83 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4312c931-c6d0-4e54-b78e-806448f060c4",
+   "number": 755,
+   "title": "Casa Luxura",
+   "source_url": "https://www.squareyards.com/hyderabad-residential-property/rajapushpa-casa-luxura/236900/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹7.45 - 10.13 Cr base",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 7.45 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "5aec8938-7b27-46c6-8430-0a79ea3077b9",
+   "number": 281,
+   "title": "Lotus Sky Plaza",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "commercial, no price published",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "2ff4bf17-b5d1-41a1-8392-7d03987a76e8",
+   "number": 282,
+   "title": "Vascon Onyx Residences",
+   "source_url": "https://www.squareyards.com/vascon-onyx-residences-santacruz-west-mumbai-npd-345779",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: from ₹3.10 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 3.10 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "b6935842-6a8e-4f52-be04-1d7d7561ccd3",
+   "number": 108,
+   "title": "Reserve by K Raheja",
+   "source_url": "https://housiey.com/projects/raheja-reserve",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.07 Cr - 2.20 Cr all-inc",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.07 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "a88e8f30-6c9a-4f8f-a3e6-f906c5468ce9",
+   "number": 283,
+   "title": "Lotus Trident",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "commercial, no price published",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "826d44ec-3894-418f-b43d-5cfcde84245c",
+   "number": 284,
+   "title": "THREE ICC-C WING",
+   "source_url": "https://www.squareyards.com/bombay-realty-three-icc-wadala-mumbai-npd-344137",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: Three ICC ₹5.99 - 14.09 Cr (whole project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 5.99 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "8f8d0d2d-c8b9-48ce-a2d8-b885f6c20d41",
+   "number": 387,
+   "title": "ARKADE SAPPHIRE",
+   "source_url": "https://www.squareyards.com/arkade-sapphire-santacruz-west-mumbai-npd-344284",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 3 BHK 1067 sq ft ₹6.75 Cr (another source ₹4.18 Cr; low confidence)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 6.75 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "74ee0e8d-f22e-485a-972c-a1d2bc5b2c96",
+   "number": 776,
+   "title": "CENTRAL 84",
+   "source_url": "https://www.squareyards.com/gurgaon-residential-property/dlf-central-84/339877/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: commercial SCO plots from ₹3.76 Cr (low confidence)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 3.76 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "12fd1caa-f221-4fcc-926b-e01d0fb11144",
+   "number": 785,
+   "title": "LEAFSONG RETREAT",
+   "source_url": "https://www.homebazaar.com/hero-leafsong-retreat-sector-mu-greater-noida-8760",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 3 BHK ₹1.89 - 2.30 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.89 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ee5c8512-b0ac-4c7a-9d6b-1ab38bb6c8cc",
+   "number": 858,
+   "title": "NORTHWIND SANCTUARY PLOT NO. 7, SECTOR-PI, GR. NOIDA",
+   "source_url": "https://www.squareyards.com/greater-noida-residential-property/northwind-sanctuary/338963/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹2.43 - 4.78 Cr + charges",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.43 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "c165e41a-3074-4792-9f5c-808196ded42e",
+   "number": 865,
+   "title": "ASTRATHUM",
+   "source_url": "https://www.squareyards.com/greater-noida-residential-property/bhutani-astrathum/340750/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: Astrathum ₹32.45 L - 2.07 Cr (mixed-use; low confidence)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 32.45 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "77ad2d35-b8b9-40f2-9863-2a1c1daafc20",
+   "number": 695,
+   "title": "Birla Niyaara Phase-1",
+   "source_url": "https://housing.com/in/buy/projects/page/267984-birla-niyaara-phase-1-by-birla-estates-pvt-ltd-in-worli",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK from ₹8.45 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 8.45 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "7cada724-5283-418c-a3ec-12c4272ceca2",
+   "number": 691,
+   "title": "Codename LIT Tower C",
+   "source_url": "https://housiey.com/projects/adani-codename-lit",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: Codename LIT ₹2.05 - 3.89 Cr + charges (whole project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.05 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "a817276a-997a-4330-ba5d-c57bc5d2b745",
+   "number": 693,
+   "title": "Birla Mrida",
+   "source_url": "https://www.squareyards.com/birla-mrida-padghe-palghar-npd-343842",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 1200 sq ft plot ₹56.39 L",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 56.39 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "26f39a2f-cdd1-493e-8d76-36803996b025",
+   "number": 697,
+   "title": "Birla Vanya - Phase 1",
+   "source_url": "https://housiey.com/projects/birla-vanya",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹55.99 L - 1.90 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 55.99 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "5d4902f8-6e36-4b5c-b98d-3d85f43d6acb",
+   "number": 703,
+   "title": "DOSTI PLANET NORTH - SECTOR 3",
+   "source_url": "https://cdn.proptiger.com/mumbai/shil-phata/dosti-realty-mumbai-planet-north-sector-3-3227307",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹64.73 L - 1.23 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 64.73 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "35b8c051-09e9-463d-821c-31997c13fd69",
+   "number": 719,
+   "title": "Palladio Phase 2",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "completed 2022, only resale listings",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "e6f37cf8-1f93-41ec-8231-97a4ac84d05f",
+   "number": 698,
+   "title": "Birla Evam Phase 1",
+   "source_url": "https://www.jllhomes.co.in/apartments-new/pune/birla-evam",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK 707 sq ft ₹77 L, RERA PR1261012500295",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 77 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "def43c50-3db0-4a95-b7ad-5f84c6075d00",
+   "number": 720,
+   "title": "Yashwin A",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found ( project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4981ed60-9092-4865-b4f9-0264c0781515",
+   "number": 332,
+   "title": "Rohan Ekam Phase 3",
+   "source_url": "https://www.housiey.com/projects/rohan-ekam",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: Rohan Ekam ₹1.30-3.35 Cr all-inc (whole project, phase 3 not separate)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.30 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "3fa9ef0b-239f-44aa-8f05-b0c95eed2532",
+   "number": 273,
+   "title": "Raheja Exotica Positano",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no listing for Raheja Exotica Positano found",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "92b0fc8c-8fdd-4396-851d-562df823c362",
+   "number": 274,
+   "title": "Godrej Bandra Bay Phase 3",
+   "source_url": "https://housiey.com/projects/godrej-bandra-bay",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 4 BHK from ₹45.20 Cr all-inc (whole project)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 45.20 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "263393a7-1171-418a-a899-47a4b18bfb5f",
+   "number": 76,
+   "title": "Nyati Evolve",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (sold out)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "e5350e45-6c7b-4c71-a39a-049e87d9480b",
+   "number": 129,
+   "title": "Raheja Lunaris",
+   "source_url": "https://housiey.com/projects/raheja-lunaris",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK from ₹1.12 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.12 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "168021ec-8b00-4e3e-a25f-262315f6b069",
+   "number": 130,
+   "title": "Jade City Raheja",
+   "source_url": "https://housiey.com/projects/k-raheja-jade-city",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.91 - 3.31 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.91 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "32014e5a-b9ce-44fe-85a3-dab9f7f9b5da",
+   "number": 172,
+   "title": "Godrej Eternal Palm",
+   "source_url": "https://housiey.com/projects/godrej-eternal-palms",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: from ₹2.99 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.99 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "e55dfcc6-8db8-4ea8-b701-d717e0da3d40",
+   "number": 7,
+   "title": "Lodha Mundhwa",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no public price found (not launched)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "9c39560e-d9b7-46b9-835a-ff277fd02332",
+   "number": 323,
+   "title": "VYANA PHASE-I-T8 AT THE RESERVE",
+   "source_url": "https://housiey.com/projects/kolte-patil-the-reserve",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: Vyana at The Reserve 2 BHK from ₹87-91.68 L",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 87 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "b95a4adb-cab7-4688-bcc6-8edc16850a15",
+   "number": 324,
+   "title": "Kharadi New Project -Tower 6",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "Lodha Kharadi listings found are for RERA P52100051552, not this pin (PR1260002602176)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "fb0d1a1b-e816-4c81-a902-be58d4abe216",
+   "number": 325,
+   "title": "VYOMORA PHASE 2",
+   "source_url": "https://www.housiey.com/projects/shapoorji-joyville-vyomora",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: Joyville Vyomora ₹84.99 L - 1.89 Cr all-inc (phase 1 launch price)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 84.99 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "2dddd387-1d3b-4793-925e-236b8364a4d9",
+   "number": 326,
+   "title": "VYANA PHASE-I-T1 AT THE RESERVE",
+   "source_url": "https://housiey.com/projects/kolte-patil-the-reserve",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: Vyana at The Reserve 2 BHK from ₹87-91.68 L",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 87 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "a9ea9f84-b91c-48c6-8250-9e528c9d44d0",
+   "number": 328,
+   "title": "Belmondo Townhouse 4",
+   "source_url": "https://www.ghar.tv/lodha-belmondo-townhouses-gahunje-pune-okiw948763644",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "portals list townhouses as price on request",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "8f0c45b5-5693-433e-a6d8-fdda1d405319",
+   "number": 330,
+   "title": "SHRIDHAR BHALCHANDRA",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no listing found",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "6ec7b04d-68dc-42b6-a906-56212fa81571",
+   "number": 331,
+   "title": "KUTUMB PRIME LIFE",
+   "source_url": "https://www.squareyards.com/pune-residential-property/naiknavare-kutumb/208896/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: Kutumb 2 BHK 815 sq ft ₹58.35 L",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 58.35 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "3e28b27f-f7dc-456b-a309-3da8126e0e7b",
+   "number": 543,
+   "title": "REACH BUZZ 114",
+   "source_url": "https://www.squareyards.com/gurgaon-residential-property/reach-buzz-114/308771/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: SCO plots from ₹5 Cr (commercial)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 5 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "82522ac4-8481-4a97-92c5-e3d682ad953b",
+   "number": 555,
+   "title": "AVENUE CITY",
+   "source_url": "https://housing.com/in/buy/projects/page/301302-gls-avenue-city-by-gls-infratech-in-sector-92",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: plots ₹1.3 - 1.79 Cr (launch); resale higher",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.3 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "c36dc613-cb4f-4665-bb39-d93028769e07",
+   "number": 381,
+   "title": "Ashok Villas Imperial",
+   "source_url": "https://www.squareyards.com/peninsula-ashok-villas-gahunje-pune-npd-345613",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: Ashok Villas (Imperial + Grande) 3 BHK villa ₹2.99 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.99 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "e9ce3fad-63ad-4460-8d65-a1caba6a8b7c",
+   "number": 383,
+   "title": "ARKADE ASCEND",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no listing found for Arkade Ascend",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "7e803a37-ad2e-4972-a9bc-6094b0a6ac3e",
+   "number": 384,
+   "title": "Ashok Villas Grande",
+   "source_url": "https://www.squareyards.com/peninsula-ashok-villas-gahunje-pune-npd-345613",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: Ashok Villas (Imperial + Grande) 3 BHK villa ₹2.99 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.99 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "df370a49-9598-472c-9c27-a6e89a637f6e",
+   "number": 396,
+   "title": "MK HARMONY",
+   "source_url": "https://www.nobroker.in/matrix-mk-harmony-kurla_mumbai-prjt-8aa9b86b9fd25844019fd3337d1560a5",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no price published",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "5cb66f79-9056-40e9-bb21-83b83d310081",
+   "number": 397,
+   "title": "io Tower by PCPL",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no listing found (commercial)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "311ffc64-780e-4e1b-928a-0ff4a50b7e9b",
+   "number": 398,
+   "title": "AMRUT AWAS CO-OP. HOUSING SOCIETY",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no listing found",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "b8093cc1-776b-4283-8345-bdf56281cc87",
+   "number": 399,
+   "title": "Mayfair Aarambh",
+   "source_url": "https://www.homebazaar.com/mayfair-aarambh-dadar-8791",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: from ₹2.49 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.49 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ed3ee280-2eba-46f4-b5ba-4e63e93a002e",
+   "number": 520,
+   "title": "SKA DESTINY ONE",
+   "source_url": "https://www.propertypistol.com/projects/ska-destiny-one-sector-zeta-pid-17072",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.44 - 2.71 Cr (low confidence)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.44 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f2941e5e-4509-4bed-9c81-4c91a79975ef",
+   "number": 521,
+   "title": "SKA ESTATE",
+   "source_url": "https://www.squareyards.com/greater-noida-residential-property/ska-estate/325654/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 3 BHK from ₹1.49 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.49 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "6424dca8-eba4-4388-a834-520eeeaf182d",
+   "number": 540,
+   "title": "JADE COUNTY PHASE-1",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no listing found",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "d9230085-6b62-4c1a-a3a6-4e2c18787770",
+   "number": 542,
+   "title": "ACE VERDE",
+   "source_url": "https://www.squareyards.com/greater-noida-residential-property/ace-verde/339278/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.98 - 2.68 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.98 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f6db2e8e-a21d-4724-b0e8-8b778b5ebf08",
+   "number": 566,
+   "title": "ACE ARTE",
+   "source_url": "https://www.squareyards.com/ace-arte-sector-150-noida-npd-344936",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: from ₹3.47 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 3.47 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "44607f72-fe79-4887-a3be-498a282b8b97",
+   "number": 567,
+   "title": "EROS SAMPOORNAM 3",
+   "source_url": "https://www.squareyards.com/greater-noida-residential-property/eros-sampoornam-iii/20711/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹69.72 L - 1.8 Cr, RERA UPRERAPRJ512436/07/2024",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 69.72 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "8d8aa585-01c1-409f-b859-7b097390ce21",
+   "number": 568,
+   "title": "ACE TERRA",
+   "source_url": "https://squareyards.com/greater-noida-residential-property/ace-terra/246906/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.76 - 3.02 Cr basic",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.76 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "73e04af4-2380-45b2-b20f-88fc829b3495",
+   "number": 401,
+   "title": "Param Adarsh by Shraddha",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no listing found",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "db807f8f-e21c-4254-a5b2-b5d11b717965",
+   "number": 402,
+   "title": "Munisuvrat Chhaya",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no listing found",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "0a7e6e5b-b85c-4ed5-814b-f49afbb12a75",
+   "number": 403,
+   "title": "io Residences by PCPL",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no listing found for io Residences",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "20e47db4-ac8f-4910-8b70-4f2671df6603",
+   "number": 404,
+   "title": "PCPL STELLAR CREST",
+   "source_url": "https://www.squareyards.com/pranav-stellar-crest-santacruz-west-mumbai-npd-344470",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK 682 sq ft ₹3.41 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 3.41 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "53f2877c-ff45-4142-8090-7ab6111a0673",
+   "number": 405,
+   "title": "EMPIRE HEIGHTS",
+   "source_url": "https://www.squareyards.com/empire-heights-dahisar-east-mumbai-npd-346330",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "portal lists price on request",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "6bfebd8f-9169-4ad4-88d3-02194fe3ebf9",
+   "number": 406,
+   "title": "Hum Laxmi",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no listing found",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "c3c8f168-df5f-4e2f-9a76-b72eea38aad2",
+   "number": 407,
+   "title": "HUM SAPPHIRE",
+   "source_url": "https://housiey.com/projects/hum-sapphire",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK 567 sq ft ₹1.65 Cr all-inc",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.65 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "90800315-108e-4fb9-a206-39b72fd54a86",
+   "number": 569,
+   "title": "AIGIN ROYAL PHASE 4",
+   "source_url": "https://housing.com/in/buy/projects/page/302301-aigin-royal-phase-4-by-aigin-group-in-noida-extension",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: from ₹1.66 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.66 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "01d25586-a67e-48ad-9685-74f4827990cd",
+   "number": 570,
+   "title": "ARIHANT ONE",
+   "source_url": "https://gharpe.com/greater-noida/arihant-one",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.18 - 2.81 Cr (sources vary)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.18 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "a945c3e1-8890-42c8-98be-fe798547daa4",
+   "number": 571,
+   "title": "MAHAGUN MY LAAGOON PHASE 1",
+   "source_url": "https://www.squareyards.com/greater-noida-residential-property/mahagun-my-laagoon/308317/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.88 - 2.98 Cr + charges",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.88 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "861550d9-e968-47b4-b47b-660df56c8c1b",
+   "number": 572,
+   "title": "THE BROOK- PHASE 1",
+   "source_url": "https://www.realestateindia.com/projects/the-brook-rivulet-in-sector-12-greater-noida-pjid-42215/",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: The Brook & Rivulet from ₹59.74 L",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 59.74 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "5c7ba978-df9b-4d49-94f1-225a6b2a24f9",
+   "number": 573,
+   "title": "ELDECO 7 PEAKS RESIDENCES",
+   "source_url": "https://www.squareyards.com/greater-noida-residential-property/eldeco-7-peaks-residences/342844/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: from ₹2.20 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.20 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "54b28307-c7a5-44f0-90fc-c60c085e566f",
+   "number": 574,
+   "title": "ELDECO WHISPERS OF WONDER",
+   "source_url": "https://houssed.com/greater.noida/eldeco-group/eldeco-whispers-of-wonder-149380",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "no price found",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ee27344c-c9e1-4f07-b267-265f5bdd9e0e",
+   "number": 575,
+   "title": "EXPERION ELEMENTS PHASE-1",
+   "source_url": "https://www1.housing.com/in/buy/projects/page/319581-experion-elements-phase-1-by-experion-developers-in-sector-45",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: Phase 1 ₹4.96 - 6.0 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 4.96 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "0c38bb6c-57b1-4629-a04d-a7dab25c5004",
+   "number": 577,
+   "title": "GAUR ALARIS (PHASE 1)",
+   "source_url": "https://www.squareyards.com/gaur-alaris-sector-22d-yamuna-expressway-greater-noida-npd-344824",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.32 - 1.81 Cr (sold out per news)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.32 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "6702a58c-6997-4a7a-acee-2a5e1d91df64",
+   "number": 582,
+   "title": "THE RIVULET PHASE-1",
+   "source_url": "https://www.squareyards.com/greater-noida-residential-property/fusion-the-rivulet/224848/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.38 - 2.06 Cr + charges, RERA UPRERAPRJ145736",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.38 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "46c26269-0392-41a0-9022-6409f7d98f2d",
+   "number": 583,
+   "title": "GULSHAN AVANTE",
+   "source_url": "https://squareyards.com/greater-noida-residential-property/gulshan-avante/226242/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: from ₹3.68 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 3.68 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f0ac67c5-bd7b-4faa-acef-df1105a2f5c6",
+   "number": 584,
+   "title": "PIOUS ORCHARDS",
+   "source_url": "https://housing.com/in/buy/projects/page/265973-ats-homekraft-pious-orchards-by-ats-homekraft-in-sector-150",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ATS Pious Orchards ₹3.13 - 4.23 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 3.13 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "edeeacb2-00c2-4f00-8a96-a4c41317556d",
+   "number": 585,
+   "title": "NIMBUS THE PALM VILLAGE",
+   "source_url": "https://housing.com/in/buy/projects/page/319921-nimbus-the-palm-village-by-iitl-in-jewar",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: studios from ~₹55 L, 3 BHK ₹1.6 - 1.99 Cr (low confidence)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 55 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "b83c3002-4f04-47d4-8f69-a85e8d0706b1",
+   "number": 586,
+   "title": "RGS PLEIADDES PHASE-3",
+   "source_url": "https://housing.com/in/buy/projects/page/350020-rgs-pleiades-phase-3-by-rg-group-in-noida-extension",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 3 BHK 1276 sq ft ₹1.1 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.1 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "cca54d65-a753-4a0e-8ac2-46f869e6f3b3",
+   "number": 714,
+   "title": "VJ IndiWorks Kharadi Central",
+   "source_url": "https://www.360realtors.com/vilas-javdekar-vj-indiworks-kharadi-pune-uid-7708",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: offices from ₹57.95 L (commercial)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 57.95 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "9512a1cc-8595-4538-974f-fdca1e3f6fdb",
+   "number": 699,
+   "title": "DOSTI EASTERN BAY - PHASE 1",
+   "source_url": "https://www.squareyards.com/mumbai-residential-property/dosti-eastern-bay-phase-1/102180/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹93.39 L - 3.86 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 93.39 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "598e55d0-0a9e-4dc6-9b12-1e9b8bdd134b",
+   "number": 562,
+   "title": "WHITELAND BLISSVILLE",
+   "source_url": "https://gharpe.com/gurgaon/whiteland-blissville",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 3 BHK floors ₹2.02 - 2.63 Cr (resale)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.02 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "7e589deb-352b-4c87-b015-4bb85f792208",
+   "number": 530,
+   "title": "SOBHA AURUM",
+   "source_url": "https://www.sobha.com/blog/sobha-aurum-floor-plans-pricing-booking/",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "developer blog: 1 BHK from ₹1.12 Cr (Rs 11.2 million), RERA UPRERAPRJ361748/06/2025",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.12 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ea63c789-e9e5-4650-9f12-ceec06c1ebf2",
+   "number": 531,
+   "title": "SOBHA RIVANA",
+   "source_url": "https://www.sobha.com/blog/sobha-rivana-luxury-residences-sector-1-greater-noida-west/",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: from ₹2.02 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.02 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "9e069c0c-8050-486a-8be1-427fba800083",
+   "number": 715,
+   "title": "YashONE Eternitee Phase 1",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "sources disagree widely (₹39.8 L to ₹75 L starting)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4c96fa51-100c-4bcc-a8bc-049f3d180671",
+   "number": 723,
+   "title": "Yashwin SukhNiwas",
+   "source_url": "https://housiey.com/projects/vj-yashwin-sukhniwas",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc, RERA P52100025982",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 42 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "8b265945-c832-45ff-a38e-751630ce5e12",
+   "number": 721,
+   "title": "YashONE Hinjawadi - Phase 1",
+   "source_url": "https://www1.housing.com/in/buy/projects/page/130795-vilas-yashone-hinjawadi-phase-1-by-vilas-javdekar-eco-shelters-pvt-ltd-in-hinjawadi",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹45 L - 61.35 L, RERA P52100019468 (low confidence)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 45 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "fb407273-0120-4843-b922-4dac24149207",
+   "number": 739,
+   "title": "Olivia Tower -B",
+   "source_url": "https://www.squareyards.com/thane-residential-property/lodha-palava-olivia-b/100140/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK from ₹1.01 Cr + charges, RERA P51700052243",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.01 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "73a5d3ca-c780-45bb-9eb8-f1e07cdda24f",
+   "number": 546,
+   "title": "GLS COURTYARD",
+   "source_url": "https://www.squareyards.com/gurgaon-residential-property/gls-courtyard/159245/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: SCO plots ₹2.17 - 4.34 Cr + charges (commercial)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.17 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "587b96c3-adcd-4564-a5b5-30864cc12b61",
+   "number": 515,
+   "title": "ESTATE 105",
+   "source_url": "https://maxestates.in/residential-projects/noida/estate-105",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 4 BHK from ₹10.14 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 10.14 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "64fb358f-9790-4b63-ba59-480e1c36b156",
+   "number": 516,
+   "title": "NIRALA ESTATE PHASE-III",
+   "source_url": "https://www.proptiger.com/greater-noida/techzone-4/nirala-india-group-estate-phase-iii-3081037",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.08 - 2.31 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.08 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ff117058-cf0d-4639-8b9a-66e96ad118e0",
+   "number": 519,
+   "title": "THE ELYSIUM",
+   "source_url": "https://www.squareyards.com/greater-noida-residential-property/omnis-the-elysium/245850/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 1 BHK ₹1.08 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.08 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "8a1aed69-b49b-4516-b5c2-33323fc13b5d",
+   "number": 522,
+   "title": "PURVANCHAL SUNBLISS PLOT NO. GH-1A/1 SECTOR 22D YEIDA",
+   "source_url": "https://www.squareyards.com/greater-noida-residential-property/purvanchal-sunbliss/333174/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: from ₹87 L + charges",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 87 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "39055a3e-0cca-4237-bfcf-72d822e07448",
+   "number": 529,
+   "title": "CLOVE COUNTY",
+   "source_url": "https://www.squareyards.com/noida-residential-property/clove-county/342047/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 4 BHK from ₹8.15 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 8.15 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "0c244f6e-ef30-4f76-83da-c023771ccd2f",
+   "number": 532,
+   "title": "STELLAR ONE PHASE III",
+   "source_url": "https://www.housing.com/in/buy/projects/page/329604-stellar-one-phase-iii-by-stellar-group-in-noida-extension",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 3 BHK from ₹1.78 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.78 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "aa404d8a-af4b-43e3-8447-f9579a32bb59",
+   "number": 578,
+   "title": "THE ISLANDS",
+   "source_url": "https://www.360realtors.com/gaurs-gaur-the-islands-greater-noida-uid-6044",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: from ₹2.45 Cr (sources vary up to ₹4.05 Cr)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 2.45 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "6d352ea2-fcac-4821-832a-b720c2a6a8a4",
+   "number": 580,
+   "title": "GODREJ ARDEN",
+   "source_url": "https://www.squareyards.com/greater-noida-residential-property/godrej-arden/340231/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.63 - 3.10 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.63 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "a7322b17-2670-41f7-8bd7-6d8df2027d53",
+   "number": 243,
+   "title": "Pristinia",
+   "source_url": "https://www.squareyards.com/hyderabad-residential-property/rajapushpa-pristinia/222628/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹1.19 - 3.97 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.19 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "206a6a5a-ea1c-436e-a236-c8e9e0ccb618",
+   "number": 288,
+   "title": "Rohan Abhilasha 2",
+   "source_url": "https://www1.housing.com/in/buy/projects/page/236750-rohan-abhilasha-wing-a-by-rohan-builders-and-developers-private-limited-in-wagholi",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK from ₹51.27 L (low confidence)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 51.27 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "421da803-d7a9-40ac-bf24-f7e6aa108c29",
+   "number": 290,
+   "title": "Rohan Kritika",
+   "source_url": "https://www.squareyards.com/pune-residential-property/rohan-kritika/2485/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹72.70 L - 2.19 Cr + charges, RERA P52100000486",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 72.70 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ec422397-eaaf-498c-bf37-1a83429fa291",
+   "number": 353,
+   "title": "L&T Realty Island Cove",
+   "source_url": "https://housiey.com/projects/l-and-t-island-cove",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK from ₹3.18 Cr",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 3.18 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "cf0b23b1-3b59-452d-8073-5c024c1cdb04",
+   "number": 718,
+   "title": "Palladio Kharadi Central",
+   "source_url": "https://housiey.com/projects/vj-palladio-kharadi-central",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc, RERA P52100050357",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.12 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "63c4e145-7df8-4bf0-9b32-a516847ef602",
+   "number": 725,
+   "title": "YashONE Infinitee - Phase I",
+   "source_url": "https://www.housiey.com/projects/vj-yashone-infinitee",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc, RERA P52100028229",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 39.45 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "78019660-f146-4809-9fc2-58fb5b6ef138",
+   "number": 750,
+   "title": "Purva Aspire",
+   "source_url": "https://360realtors.com/puravankara-purva-aspire-bavdhan-pune-uid-5067",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "360realtors listing ₹95 L, RERA P52100017650",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 95 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "bd374ad2-def5-456c-9cdb-e18fa65cb1cf",
+   "number": 740,
+   "title": "Mahindra Rainforest Phase 1",
+   "source_url": "https://housiey.com/projects/mahindra-rainforest",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK 662 sq ft ₹1.84 Cr all-inc",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.84 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "c913fa93-1f51-42c7-a062-ae6a9d03a554",
+   "number": 760,
+   "title": "My Home Grava",
+   "source_url": "https://www.housiey.com/projects/my-home-grava",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹5.24 - 6.82 Cr all-inc, RERA P02400007342",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 5.24 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "9e58b8cc-9f89-465c-a8be-33575157a9f5",
+   "number": 692,
+   "title": "Birla Punya Phase 1",
+   "source_url": "https://housiey.com/projects/birla-punya",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: from ₹99 L (1 BHK), RERA P52100079533",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 99 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "930a0cef-36cf-4a92-8821-b033e3cb4329",
+   "number": 287,
+   "title": "Rohan Ananta",
+   "source_url": "",
+   "source_type": "No public price found",
+   "confidence": "n/a",
+   "note": "ready to move, only resale listings with mixed prices",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "Price on Request",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f0d3a768-aff6-42f6-b8e5-9707e15e1c8b",
+   "number": 286,
+   "title": "Rohan Saroha",
+   "source_url": "https://housiey.com/projects/rohan-saroha-phase-1",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc, RERA P52100076652",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 84 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "efeff586-5efe-4f99-b3b5-e95fe0651ff5",
+   "number": 285,
+   "title": "Rohan Harita",
+   "source_url": "https://housiey.com/projects/rohan-harita",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc, RERA P52100052972",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 88.24 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4e8584ca-17d2-4776-9935-a01012295f45",
+   "number": 261,
+   "title": "Rohan Nidita",
+   "source_url": "https://housiey.com/projects/rohan-nidita",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc, RERA P52100050746",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.15 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "172fd481-ee44-411c-b60f-74389364f258",
+   "number": 333,
+   "title": "Springshire Wagholi",
+   "source_url": "https://housiey.com/projects/kolte-patil-springshire",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc, RERA P52100076743",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 84.05 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "1ea07ce9-41a0-418e-84d4-4b3c8da5114b",
+   "number": 336,
+   "title": "Kalpataru Blossoms",
+   "source_url": "https://housiey.com/projects/kalpataru-blossoms",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc, RERA P52100077659",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.22 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "04a4a22e-30df-45ee-8d8a-72ffe97a6a68",
+   "number": 293,
+   "title": "Rohan Leher II",
+   "source_url": "https://www.homebazaar.com/rohan-leher-ii-baner-334",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: from ₹81 L, RERA P52100000610",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 81 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "1ea8521f-db59-4093-82e7-d108578dbb17",
+   "number": 302,
+   "title": "Rohan Ishan",
+   "source_url": "https://www.squareyards.com/pune-residential-property/rohan-ishan/2455/project",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹82 L - 1.40 Cr + charges, RERA P52100000816",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 82 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ece12063-6b2b-4192-a50c-d4ca9f617643",
+   "number": 311,
+   "title": "Purva Silversands",
+   "source_url": "https://housiey.com/projects/purva-silversand",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: ₹83 L - 1.34 Cr all-inc, RERA P52100005377",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 83 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f71a71e0-8bba-4e08-acf2-be060665a362",
+   "number": 316,
+   "title": "Majestique Marbella",
+   "source_url": "https://housiey.com/projects/majestique-marbella",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc 2 BHK; housiey lists other Marbella RERA nos, not P52100032450 (same project, other phase)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 1.23 Cr Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "0939f088-7910-47f1-9c1d-49f2fddac9b8",
+   "number": 320,
+   "title": "41 Presidency Towers",
+   "source_url": "https://housiey.com/projects/krisala-41-presidency-towers",
+   "source_type": "Property portal page (opened)",
+   "confidence": "medium",
+   "note": "housiey all-inc, RERA P52100050059",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 37.48 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "c6fcddd3-db10-4e7d-9d47-47968e638d60",
+   "number": 327,
+   "title": "41 West World",
+   "source_url": "https://housing.com/in/buy/projects/page/318644-west-world-by-krisala-developers-in-balewadi",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 1 RK 180 sq ft ₹19.78 L, RERA P52100055409",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 19.78 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "2cdbbcb1-de8d-42e4-bc35-9f96ef86a207",
+   "number": 329,
+   "title": "41 Luxovert",
+   "source_url": "https://housing.com/in/buy/projects/page/319335-krisala-41-luxovert-by-krisala-developers-in-tathawade",
+   "source_type": "Google search result summary",
+   "confidence": "low",
+   "note": "search: 2 BHK 687 sq ft ₹71 L, RERA P52100055641",
+   "ops": [
+    {
+     "op": "set",
+     "field": "price",
+     "value": "₹ 71 Lacs Onwards",
+     "expect": ""
+    }
+   ]
+  }
+ ]
+}

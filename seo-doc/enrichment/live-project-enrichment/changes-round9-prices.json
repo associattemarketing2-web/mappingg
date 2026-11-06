@@ -1,0 +1,43 @@
+{
+  "batch_id": "live-2026-11-06-r9-prices",
+  "checked_on": "2026-11-06",
+  "rules": "Price only, empty fields only. RERA number must match. Two independent portals must give a starting price within 5% of each other; the lower one is used as '₹ X Cr Onwards' (the format already used on the map). Anything else goes to REVIEW-round9-prices.csv.",
+  "changes": [
+    {
+      "pin_id": "a3e8c998-8a30-4484-8dc2-e68c941fc753",
+      "number": 89,
+      "title": "Pristine O2",
+      "source_url": "https://www.homebazaar.com/pristine-o2-world-kharadi-7463",
+      "source_type": "Property portals (homebazaar.com, housiey.com) - RERA no. P52100054937 matches",
+      "confidence": "medium",
+      "note": "homebazaar: Rs 1.11 Cr onwards. housiey: Rs 1.13 Cr - 2.49 Cr all-inclusive (2 BHK, 811 sq ft carpet). 1.8% apart.",
+      "ops": [
+        { "op": "set", "field": "price", "value": "₹ 1.11 Cr Onwards", "expect": "" }
+      ]
+    },
+    {
+      "pin_id": "a97fef5c-015b-4675-8687-65db826c001e",
+      "number": 80,
+      "title": "Goel Ganga Platinum Towers",
+      "source_url": "https://www.homebazaar.com/ganga-platinum-kharadi-5480",
+      "source_type": "Property portals (homebazaar.com, housiey.com) - RERA nos. P52100031418 / P52100054598 match",
+      "confidence": "medium",
+      "note": "homebazaar: Rs 2.74 Cr onwards. housiey: Rs 2.77 Cr - 6.98 Cr all-inclusive (3.5 BHK, 1,459 sq ft carpet). 1.1% apart.",
+      "ops": [
+        { "op": "set", "field": "price", "value": "₹ 2.74 Cr Onwards", "expect": "" }
+      ]
+    },
+    {
+      "pin_id": "276072f1-b1f7-4403-91c6-aa1609b9f5dd",
+      "number": 733,
+      "title": "24K Manor - Tower A",
+      "source_url": "https://www.propertypistol.com/projects/24k-manor-pimple-nilakh-pid-14128",
+      "source_type": "Property portals (propertypistol.com, homebazaar.com) - RERA no. P52100052151 matches",
+      "confidence": "medium",
+      "note": "propertypistol: INR 2.75 Cr onwards. homebazaar: Rs 3 Cr onwards, and also states Rs 2.75 Cr onwards. Prices are for the whole 24K Manor project (Towers A-C), not Tower A only.",
+      "ops": [
+        { "op": "set", "field": "price", "value": "₹ 2.75 Cr Onwards", "expect": "" }
+      ]
+    }
+  ]
+}

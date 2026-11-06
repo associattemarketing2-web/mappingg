@@ -1,0 +1,46 @@
+{
+  "batch_id": "live-2026-11-06-r8",
+  "checked_on": "2026-11-06",
+  "rules": "Fill empty fields only (price, configuration, sqft, possession_timeline). A value is used only when the RERA number matches and two independent sources agree (or a RERA filing states it). Price is used only when two sources give the same starting price; otherwise it goes to REVIEW-round8.csv.",
+  "changes": [
+    {
+      "pin_id": "579f4c93-589f-49b4-9c48-917b639a42a3",
+      "number": 36,
+      "title": "Osian - One & Only",
+      "source_url": "https://housiey.com/projects/osian-one-and-only",
+      "source_type": "Property portals (housiey.com, 360realtors.com, propertypistol.com) - RERA no. P52100030568 matches",
+      "confidence": "medium",
+      "note": "2/3/4 BHK on all three sources. Carpet 834-1,682 sq ft on housiey and 360realtors (propertypistol says 663-1,682 - minority). Starting price Rs 1.25 Cr on propertypistol and 360realtors (housiey: 1.38-2.50 Cr all-inclusive). Possession not applied: RERA Jun 2027 vs target Jun 2026 differ between sources.",
+      "ops": [
+        { "op": "set", "field": "configuration", "value": "2 BHK / 3 BHK / 4 BHK", "expect": "" },
+        { "op": "set", "field": "sqft", "value": "834 – 1,682 sq ft (carpet)", "expect": "" },
+        { "op": "set", "field": "price", "value": "₹ 1.25 Cr Onwards", "expect": "" }
+      ]
+    },
+    {
+      "pin_id": "b64cc272-36e4-44ef-8a53-95918755da14",
+      "number": 32,
+      "title": "Power Heights & Residency",
+      "source_url": "https://cityair.in/power-heights-and-power-residences-mundhava-pune-rera-project.html",
+      "source_type": "MahaRERA filing summary (cityair.in) + squareyards.com - RERA no. P52100047455 matches",
+      "confidence": "medium",
+      "note": "RERA proposed completion 31 Dec 2028 (cityair, from the filing) and Dec 2028 (squareyards). Configuration, carpet and price not applied: squareyards says 2/3 BHK 700-1,060 sq ft, Rs 1.17-1.77 Cr; housiey says 2/3/4.5 BHK 870-2,286 sq ft, Rs 1.60-2.00 Cr.",
+      "ops": [
+        { "op": "set", "field": "possession_timeline", "value": "Dec 2028", "expect": "" }
+      ]
+    },
+    {
+      "pin_id": "53dd632f-7107-4426-ab0d-7da50391f198",
+      "number": 724,
+      "title": "VJ IndiLife",
+      "source_url": "https://housiey.com/projects/vj-indilife",
+      "source_type": "Property portals (housiey.com, 360realtors.com) - RERA no. P52100028030 matches",
+      "confidence": "medium",
+      "note": "Carpet 184-397 sq ft on both. Both list it as ready to move (housiey: RERA possession 01 Sep 2024, construction 100%). Prices differ (23.95-55 L vs 26-50 L) - not applied. 1 RK stated by housiey only - not applied.",
+      "ops": [
+        { "op": "set", "field": "sqft", "value": "184 – 397 sq ft (carpet)", "expect": "" },
+        { "op": "set", "field": "possession_timeline", "value": "Ready to Move", "expect": "" }
+      ]
+    }
+  ]
+}

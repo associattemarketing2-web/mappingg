@@ -1,0 +1,3575 @@
+{
+ "batch_id": "live-2026-11-06-r11-registry",
+ "checked_on": "2026-11-06",
+ "rules": "Empty fields only. Values stated by the official RERA registry row whose RERA number matches the pin (one match only).",
+ "changes": [
+  {
+   "pin_id": "8fbeefba-998d-4572-9962-2ff711a9f7d0",
+   "number": 292,
+   "title": "Nikoo Homes 9, Alpine, Bhartiya Garden Hill Ph-1",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/309/PR/100926/008930",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/309/PR/100926/008930",
+   "confidence": "high",
+   "note": "configurations: 2 BHK, 1 BHK, 2 BHK + Study, 3 BHK + Study, Studio, Loft, Sky Villa, 3 BHK, 1 BHK + Study; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "Studio / 1 BHK / 2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "335 – 1,747 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "450e1c88-6106-4dc3-8ba5-086d120fb0f8",
+   "number": 704,
+   "title": "DOSTI WEST COUNTY - PHASE 5 - DOSTI OLIVE - WING A",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/47475",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P51700077484",
+   "confidence": "high",
+   "note": "RERA completion 2028-09-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Sep 2028",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "1aca197c-57c0-49c2-bd79-2c9c843f322e",
+   "number": 713,
+   "title": "Palladio LaViento",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/59127",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1260002501182",
+   "confidence": "high",
+   "note": "RERA completion 2029-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2029",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4d63f5c1-2a6b-40a7-89a1-61113e7e1dab",
+   "number": 717,
+   "title": "Portia Grande",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/39926",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100050636",
+   "confidence": "high",
+   "note": "RERA completion 2027-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2027",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "53dd632f-7107-4426-ab0d-7da50391f198",
+   "number": 724,
+   "title": "VJ IndiLife",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/29091",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100028030",
+   "confidence": "high",
+   "note": "RERA completion 2024-09-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Sep 2024",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "0c358201-646a-4fb3-8398-814d2aa0f5cc",
+   "number": 736,
+   "title": "Avalon - Tower B",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/54700",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P51800079669",
+   "confidence": "high",
+   "note": "RERA completion 2028-09-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Sep 2028",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "30c13970-2825-4d78-a24d-a2a909f01f46",
+   "number": 694,
+   "title": "Birla Anayu",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/47452",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P51900077140",
+   "confidence": "high",
+   "note": "RERA completion 2029-03-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Mar 2029",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "c23887a8-37ae-4d4f-825b-e135c97f6e37",
+   "number": 727,
+   "title": "VJ Grand Central",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/28484",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100026304",
+   "confidence": "high",
+   "note": "RERA completion 2024-12-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2024",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "31c96d3d-cf66-4296-a6fb-d3187988de40",
+   "number": 726,
+   "title": "Yashwin Orizzonte - Phase I",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/28461",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100026213",
+   "confidence": "high",
+   "note": "RERA completion 2024-06-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Jun 2024",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "04cceb70-385f-4bd5-8192-6856a7bf8e0d",
+   "number": 730,
+   "title": "CITY VISTA",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/4733",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100007612",
+   "confidence": "high",
+   "note": "RERA completion 2019-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2019",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "97415e99-68e8-4d57-839c-330c7e691925",
+   "number": 731,
+   "title": "VIVERE",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/63184",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1180002502702",
+   "confidence": "high",
+   "note": "RERA completion 2030-08-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Aug 2030",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "2ed696bb-e28a-43b6-b166-ae3db8955790",
+   "number": 737,
+   "title": "Lodha Bellevue",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/39109",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P51900046567",
+   "confidence": "high",
+   "note": "RERA completion 2028-09-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Sep 2028",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f43a974e-db7f-4edf-86d4-348683608692",
+   "number": 732,
+   "title": "ALORA",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/42602",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P51800049048",
+   "confidence": "high",
+   "note": "RERA completion 2027-05-14",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "May 2027",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "8ae79461-d411-4a13-a787-cbbb5d2ed9ee",
+   "number": 734,
+   "title": "Life Republic Sector R17A/17A Avenue-Sound of Soul/Phase-I",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/38478",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100048241",
+   "confidence": "high",
+   "note": "RERA completion 2025-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2025",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4366020a-f4d5-49bc-930a-e2894459ef3f",
+   "number": 735,
+   "title": "Life Republic Sector R7- 7th Avenue- i Towers",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/25018",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100022154",
+   "confidence": "high",
+   "note": "RERA completion 2024-12-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2024",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "65cf4f11-6d1c-46f3-948c-0b874689a05d",
+   "number": 728,
+   "title": "KANAKIA RAINFOREST",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/4044",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P51800000224",
+   "confidence": "high",
+   "note": "RERA completion 2021-03-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Mar 2021",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "276072f1-b1f7-4403-91c6-aa1609b9f5dd",
+   "number": 733,
+   "title": "24K Manor - Tower A",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/41293",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100052151",
+   "confidence": "high",
+   "note": "RERA completion 2028-06-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Jun 2028",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "701e8ab6-e462-4ed6-9864-99d82cd1b9cd",
+   "number": 600,
+   "title": "YashONE Wakad Central",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/24292",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100020910",
+   "confidence": "high",
+   "note": "RERA completion 2024-12-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2024",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "3ac3a3f4-9cc3-46c4-8ba4-4bdab91b1f69",
+   "number": 604,
+   "title": "VJ Town Centre",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/29269",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100028755",
+   "confidence": "high",
+   "note": "RERA completion 2024-09-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Sep 2024",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "b70ed829-726c-44f7-afc1-2df0af2d75b8",
+   "number": 597,
+   "title": "Prudentia - Phase 1",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/3056",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100000114",
+   "confidence": "high",
+   "note": "RERA completion 2019-06-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Jun 2019",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "57eb1b62-0eda-4541-a442-053d04660544",
+   "number": 599,
+   "title": "YashONE Phase - I",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/12153",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100014585",
+   "confidence": "high",
+   "note": "RERA completion 2020-12-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2020",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "9b289fca-74fa-4f90-8aef-5934d403f97f",
+   "number": 602,
+   "title": "Yashwin SuperNova",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/29267",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100028652",
+   "confidence": "high",
+   "note": "RERA completion 2026-03-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Mar 2026",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "37adfac6-96f4-453e-b24a-cb365f542b55",
+   "number": 601,
+   "title": "Yashwin Encore",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/21062",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100017756",
+   "confidence": "high",
+   "note": "RERA completion 2024-12-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2024",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "59cdc1a5-9b23-4b34-95d6-a3bf4f0d871e",
+   "number": 711,
+   "title": "DOSTI WEST COUNTY - DOSTI TULIP",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/35747",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P51700032666",
+   "confidence": "high",
+   "note": "RERA completion 2026-10-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Oct 2026",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f66d0b56-3d0e-49fa-bbf9-8a52bbe03249",
+   "number": 729,
+   "title": "LIFE REPUBLIC SECTOR R31/31st AVENUE – ECHOES/PHASE – 1",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/62589",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PM1261012502409",
+   "confidence": "high",
+   "note": "RERA completion 2030-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2030",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "933b2e96-a096-4d6c-a2af-c1d2da00dfef",
+   "number": 606,
+   "title": "Golfland V and VI",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/41576",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100052531",
+   "confidence": "high",
+   "note": "RERA completion 2029-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2029",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "53072268-a576-44a2-b69a-e7e8a24d7ace",
+   "number": 712,
+   "title": "DOSTI PRIMUS-PHASE 1",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/57166",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PM1331012500812",
+   "confidence": "high",
+   "note": "RERA completion 2029-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2029",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "6e92db92-704b-4afe-ac36-425a7616986d",
+   "number": 742,
+   "title": "Mahindra Vista Phase 1",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/46496",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P51800054671",
+   "confidence": "high",
+   "note": "RERA completion 2029-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2029",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "b4603b9a-c8b4-449a-aba6-22723ae6832b",
+   "number": 872,
+   "title": "NXONE - HIVE",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=brhnxqThP4g=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=MnRse/kRJfRf06IO0REaEQ==&PaURJEMAN4=ZL9MNERkNdZi4Ab2oItiU7vfyAJ4Qafj&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ199977/02/2025",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "931 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4e184a2c-f23e-4aed-b630-5b54980e86fb",
+   "number": 706,
+   "title": "DOSTI WEST COUNTY - PHASE 4- DOSTI PINE",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/32363",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P51700025834",
+   "confidence": "high",
+   "note": "RERA completion 2027-12-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2027",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "7208d498-cb4b-4c01-8798-3bc3abbfd0b5",
+   "number": 751,
+   "title": "Purva Panorama Tower C",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/54924",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P51700079811",
+   "confidence": "high",
+   "note": "RERA completion 2031-03-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Mar 2031",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "bbd23f58-ca31-4d8d-8e43-cdb7e6948eb4",
+   "number": 744,
+   "title": "Mahindra Happinest Kalyan - 2 Project B",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/47441",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P51700076963",
+   "confidence": "high",
+   "note": "RERA completion 2028-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2028",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "86974560-75fb-44e0-ac84-add9085347e3",
+   "number": 609,
+   "title": "ONE DOSTI",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/63316",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PC1330002600012",
+   "confidence": "high",
+   "note": "RERA completion 2031-03-18",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Mar 2031",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "96e3b5dd-7a3a-425d-aea2-9480dd407272",
+   "number": 611,
+   "title": "GROUP HOUSING CGEWHO PHASE II",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=yjUUbpD+IZ0=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=mlHT9f0YYbnGFBBRgrrs6CIovcN0DEA+bcdR+5GkH2A=&PaURJEMAN4=ZL9MNERkNdaBYNm+7UMqy9enbdf/xqfg&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ674438/02/2024",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,364 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ad9db62a-a696-4958-bb03-d896d823039a",
+   "number": 613,
+   "title": "ELDECO ECHOES OF EDEN",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=Qg3HG9xqOuA=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=srrBtD8MpCIJ/jz0av5MeJhrpxIwNHcg&PaURJEMAN4=ZL9MNERkNdaoPxNpyDcoKxG8/y5gjrXD&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ125342/02/2026",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "700 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "d029fe2a-dab9-4e4f-bf5d-3b8ad894b709",
+   "number": 616,
+   "title": "GODREJ TROPICAL ISLE",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=u6Trg3svB/M=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=LTP9r7RLyshj/PUZSvBjq1N4rK5rBS1b&PaURJEMAN4=ZL9MNERkNdZvcUmB/P2uFQ==&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ303390",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "831 – 978 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "d10dcb25-6b6a-402a-9c0a-70f3e2b8530f",
+   "number": 388,
+   "title": "GODREJ SAMARIS",
+   "source_url": "https://haryanarera.gov.in/view_project/searchprojectDetail/4069",
+   "source_type": "Official RERA registry (HARERA Gurugram) - RERA no. GGM/1059/791/2026/31",
+   "confidence": "high",
+   "note": "RERA completion 2033-08-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Aug 2033",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "1642bd04-5643-4fd9-a25e-11974d6e85ec",
+   "number": 276,
+   "title": "Lodha Sewri Project",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/63590",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1170002502863",
+   "confidence": "high",
+   "note": "RERA completion 2032-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2032",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "87293e5e-4f8a-41be-a840-67cef7d15086",
+   "number": 279,
+   "title": "The Address by GS Sion Tower E",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/63535",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1170002503008",
+   "confidence": "high",
+   "note": "RERA completion 2031-07-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Jul 2031",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "898c07e6-8bbe-45d2-a88d-b3827a02fa1b",
+   "number": 277,
+   "title": "Lodha Worli Residential Project",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/62106",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1170002502174",
+   "confidence": "high",
+   "note": "RERA completion 2033-06-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Jun 2033",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "31bd0377-9fb9-48b1-b1a4-7b0b2f53fb1e",
+   "number": 278,
+   "title": "RAHEJA SOBO RESIDENCES",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/60766",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1170002502274",
+   "confidence": "high",
+   "note": "RERA completion 2033-07-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Jul 2033",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "5c7aeb8b-269a-4818-9dd1-fe13d0e6b658",
+   "number": 340,
+   "title": "SATTVA AANGANE",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/180926/008944",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/180926/008944",
+   "confidence": "high",
+   "note": "configurations: TYP 02 - 3BHK+3T+3BC, TYP 06d - 4BHK+4T+3BC, TYP 02b - 4BHK+4T+3BC, TYP 03c - 3BHK+3T+3BC, TYP 03 - 4BHK+4T+3BC-DUPLEX, 5BHK+5T+6BC-DUPLEX, TYP 01 - 4BHK+4T+6BC-DUPLEX, TYP 02a - 4BHK+4T+3BC, TYP 05c - 4BHK+4T+3BC, TYP 02c - 3BHK+3T+3BC, TYP 06c - 4BHK+4T+3BC, TYP 04a - 4BHK+4T+3BC, TYP 03b - 4BHK+4T+3BC, TYP 02b - 3BHK+3T+3BC, TYP 04 - 4BHK+4T+5BC-DUPLEX, TYP 02 - 4BHK+4T+6BC-DUPLEX, TYP 03b - 3BHK+3T+3BC, TYP 05b - 4BHK+4T+2BC, TYP 02a - 3BHK+3T+3BC, TYP 04a - 4BHK+4T+5BC-DUPLEX, TYP 04b - 4BHK+4T+3BC, TYP 02 - 4BHK+4T+3BC, TYP 06a - 4BHK+4T+3BC, TYP 05a - 4BHK+4T+3BC, TYP 03d - 3BHK+3T+3BC, TYP 04 - 3BHK+3T+2BC, TYP 01 - 3BHK+3T+3BC, TYP 03a - 3BHK+3T+3BC, TYP 03a - 4BHK+4T+3BC, 3BHK+2T+3BC, TYP 04a - 3BHK+3T+2BC, TYP 01a - 3BHK+3T+3BC, TYP 01a - 4BHK+4T+3BC, TYP 03 - 3BHK+3T+3BC, TYP 06b - 4BHK+4T+3BC, TYP 01 - 4BHK+4T+3BC, TYP 02a - 4BHK+4T+6BC-DUPLEX; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "3 BHK / 5+ BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,066 – 3,089 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "dd23064f-6f91-470e-8211-aba490121f5f",
+   "number": 342,
+   "title": "APARNA WONDERWOODS",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/310/PR/080626/008706",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/310/PR/080626/008706",
+   "confidence": "high",
+   "note": "configurations: 2BHK+STUDY, 3BHK+2TOILET+P.ROOM, 1BHK-Studio, 3BHK+STUDY+P.ROOM, 3BHK, 1BHK, 2BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "1 BHK / 2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "312 – 1,521 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "a43b088d-5504-47f6-87ec-ddda6de494e2",
+   "number": 346,
+   "title": "GODREJ WOODS",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/472/PR/121125/008248",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/472/PR/121125/008248",
+   "confidence": "high",
+   "note": "configurations: 2BHK+2T TYPE 2(B), 2BHK+2T TYPE 3, 3BHK+3T TYPE 3, 3BHK+3T TYPE 4, 2BHK+2T TYPE 1B, 3BHK+3T TYPE 1, 3BHK+3T TYPE 2, 3BHK+3T TYPE 5, 2BHK+2T TYPE 2(A), 2BHK+2T TYPE 1A, 2BHK+2T TYPE 4; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "719 – 1,206 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ac93c76f-7a01-45d0-a47f-9b4496294379",
+   "number": 341,
+   "title": "Purva Heritage",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/310/PR/090726/008801",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/310/PR/090726/008801",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "795 – 1,182 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f1de25da-ce3d-44a9-87df-30cac7326be2",
+   "number": 349,
+   "title": "SIPANI CITY PHASE-1",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/308/PR/171025/008179",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/308/PR/171025/008179",
+   "confidence": "high",
+   "note": "configurations: 2 BHK, 1 BHK, 3 BHK, 1 ,2,3 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "1 BHK / 2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "859 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f5fc8e86-7fec-4b61-85b8-43b947be8f4f",
+   "number": 344,
+   "title": "Haven Phase 2",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/308/PR/260326/008551",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/308/PR/260326/008551",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "958 – 3,100 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4506dfd7-ddfe-4e4d-ac4e-bfb76905f11e",
+   "number": 614,
+   "title": "GAUR CHRYSALIS (PHASE 1)",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=tu9BOTM+k0Q=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=sXeiw9OmOTdj60IwKhGm8p55ZbBxMxAXB3HBwDEUnvM=&PaURJEMAN4=ZL9MNERkNdbgL6vHkcx5i07MLmYeVgpw&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ622344/11/2025",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "999 – 1,341 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f1333623-3120-4809-89c7-4c309e7cc053",
+   "number": 615,
+   "title": "GODREJ MAJESTY GH-01/B,C,D,E.J AND K SEC 12 -G NOIDA",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=1KgVN+x63SY=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=DOWYqGJ5GOjFmq/W+qirDN1nQxyq+A1Y4ZnlXDvqioTvsebtvCUldd/UYRmyNYij5sCZjCAYzJA=&PaURJEMAN4=ZL9MNERkNdYEAoaNysUJFkOR1GIwKlWy&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ250823/04/2025",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,456 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "a642f6bc-abaa-4e30-8bf5-656298df3ec7",
+   "number": 617,
+   "title": "BHUTANI 18",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=wnH0MUwCFy0=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=O6lrvo4cnj0glWn4RRFyaA==&PaURJEMAN4=ZL9MNERkNdYikkuM/zW1K6A3peoON6qe&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ335396/01/2026",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "6,487 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f58804a9-c8d1-41d2-a816-506f673ee370",
+   "number": 389,
+   "title": "ELDECO TERRA & SOL",
+   "source_url": "https://haryanarera.gov.in/view_project/searchprojectDetail/3936",
+   "source_type": "Official RERA registry (HARERA Gurugram) - RERA no. GGM/1048/780/2026/20",
+   "confidence": "high",
+   "note": "RERA completion 2031-01-15",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Jan 2031",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "a470921f-79cf-4ee4-9824-ce915de18dd3",
+   "number": 618,
+   "title": "THE SEPHYRA",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=QWXPAjT3D9w=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=V7SrW6OMJKC2IayOXqdpOQ==&PaURJEMAN4=ZL9MNERkNdawURzgoJc623B0uqjQSi8A&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ761382/10/2025",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,469 – 2,805 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f67618a1-fdd1-4642-b07b-d3769a68c746",
+   "number": 707,
+   "title": "Dosti West County - Dosti Nest - Phase 1",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/36302",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P51700033640",
+   "confidence": "high",
+   "note": "RERA completion 2027-06-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Jun 2027",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "15ed478f-7003-44b2-8df7-1f8c23046b0d",
+   "number": 348,
+   "title": "Vajram Chrysanthemum",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/472/PR/031125/008217",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/472/PR/031125/008217",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,486 – 1,626 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "0112f077-6596-4149-a592-fa2211c64f3a",
+   "number": 289,
+   "title": "Rustomjee Vista Bay",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/60495",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1170002501979",
+   "confidence": "high",
+   "note": "RERA completion 2031-01-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Jan 2031",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "a025690d-d027-4142-b0a2-716522a48084",
+   "number": 756,
+   "title": "RUSTOMJEE LA VIE WING A",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/44242",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P51700050803",
+   "confidence": "high",
+   "note": "RERA completion 2028-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2028",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "5aec8938-7b27-46c6-8430-0a79ea3077b9",
+   "number": 281,
+   "title": "Lotus Sky Plaza",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/67119",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PC1180002602099",
+   "confidence": "high",
+   "note": "RERA completion 2032-03-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Mar 2032",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "589a6fa5-88b0-40ed-a886-c9164aceb3ae",
+   "number": 315,
+   "title": "Elanza",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/308/PR/191225/008353",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/308/PR/191225/008353",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "646 – 2,971 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "2ff4bf17-b5d1-41a1-8392-7d03987a76e8",
+   "number": 282,
+   "title": "Vascon Onyx Residences",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/66027",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PM1180002601508",
+   "confidence": "high",
+   "note": "RERA completion 2030-06-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Jun 2030",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ded48a8a-49de-4c86-86a7-ddf851502854",
+   "number": 317,
+   "title": "Purva Silversky",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/310/PR/151225/008338",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/310/PR/151225/008338",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,125 – 2,998 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "bf0f8823-d766-4add-90a3-abc234122e65",
+   "number": 295,
+   "title": "Boulevard at Godrej Woodscapes",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/190826/008878",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/190826/008878",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "897 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "a88e8f30-6c9a-4f8f-a3e6-f906c5468ce9",
+   "number": 283,
+   "title": "Lotus Trident",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/65625",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PC1180002600998",
+   "confidence": "high",
+   "note": "RERA completion 2031-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2031",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "826d44ec-3894-418f-b43d-5cfcde84245c",
+   "number": 284,
+   "title": "THREE ICC-C WING",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/63915",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1172022600317",
+   "confidence": "high",
+   "note": "RERA completion 2032-11-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Nov 2032",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "9e0441c8-73b9-4308-87f5-bbc47bfce088",
+   "number": 294,
+   "title": "Garden Breeze @ The Prestige City",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/308/PR/080926/008919",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/308/PR/080926/008919",
+   "confidence": "high",
+   "note": "configurations: 4BHK, 2BHK, 3BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK / 4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "707 – 1,736 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "70d49ef1-523d-40b4-bd89-6904e7f85a3a",
+   "number": 296,
+   "title": "Azalea at Brigade Meadows",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/310/PR/180826/008875",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/310/PR/180826/008875",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "517 – 823 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "0214c8b2-38b9-40f7-b358-6329c93daca6",
+   "number": 297,
+   "title": "Fiorana@Beaumont Estate(Phase-1)",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/472/PR/200726/008829",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/472/PR/200726/008829",
+   "confidence": "high",
+   "note": "configurations: PENTHOUSE 1B, 4 BHK A, 4 BHK B2 (GROUND), 2 BHK, 4 BHK A (1ST FLOOR), 3 BHK + STUDY, 3 BHK R2, 4 BHK B2, 4 BHK A2, 4 BHK A2 (24TH FLR), 4 BHK B (GROUND), 3 BHK (1ST FLOOR), 3 BHK + STUDY (1ST FLOOR), 3 BHK R, 4 BHK B, 4 BHK B (24TH FLR), 3 BHK (24TH FLR), 4 BHK A (24TH FLR), 3 BHK + STUDY (GARDEN), 3 BHK + STUDY (24TH FLR), 4 BHK B2 (24TH FLR), 3 BHK, 4 BHK A (GARDEN), 4 BHK A2 (1ST FLOOR), PENTHOUSE 2, PENTHOUSE 1A; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK / 4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,081 – 4,349 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "94a1ec46-e9a7-4cbb-8505-dbe87c6578c0",
+   "number": 313,
+   "title": "FOLIUM BY SUMADHURA PHASE-IV",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/050126/008382",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/050126/008382",
+   "confidence": "high",
+   "note": "configurations: 3 BHK Classic, 3 BHK Smart, 4 BHK, 1 BHK, 3 BHK Grand; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "1 BHK / 3 BHK / 4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "172 – 1,312 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "8bf4b17e-c58c-4eb8-9686-9e5e9ba36fac",
+   "number": 350,
+   "title": "SIGNATURE CNR MARVEL",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/308/PR/091026/009008",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/308/PR/091026/009008",
+   "confidence": "high",
+   "note": "configurations: 3 BHK Flats, 4 BHK Flats, 2 BHK Flats; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK / 4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "827 – 1,197 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ae22ef03-9036-4f1a-9aaa-c90d547a5092",
+   "number": 351,
+   "title": "SIGNATURE REGAL",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/308/PR/040926/008911",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/308/PR/040926/008911",
+   "confidence": "high",
+   "note": "configurations: 2 BHK Flats, 3 BHK Flats; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "897 – 1,200 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "c09e1ff8-9075-4a5f-80cd-6821e0531d89",
+   "number": 352,
+   "title": "ABHEE CITY URBAN GLENN PHASE II",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/308/PR/300926/008986",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/308/PR/300926/008986",
+   "confidence": "high",
+   "note": "configurations: 3 BHK, 2 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "785 – 1,042 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4b08e78e-be17-4d1e-969a-eb7bf611b385",
+   "number": 354,
+   "title": "M5 ECHELON",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/308/PR/110926/008937",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/308/PR/110926/008937",
+   "confidence": "high",
+   "note": "configurations: 5 BHK, 3 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "3 BHK / 5+ BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,071 – 4,370 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "e74a1c23-dfb6-4d19-b831-4d686b14041e",
+   "number": 376,
+   "title": "MEMCO SKYLINE - JUTAKU",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/310/PR/240426/008602",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/310/PR/240426/008602",
+   "confidence": "high",
+   "note": "configurations: 1 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "1 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "280 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "7a63d84c-bef2-4d05-87d2-bec1e1ab6eb0",
+   "number": 377,
+   "title": "HMT SRI GAYATHRI SERENITY",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/070426/008573",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/070426/008573",
+   "confidence": "high",
+   "note": "configurations: 2 BHK, 3 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "490 – 662 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "8f8d0d2d-c8b9-48ce-a2d8-b885f6c20d41",
+   "number": 387,
+   "title": "ARKADE SAPPHIRE",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/64430",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PM1180002600639",
+   "confidence": "high",
+   "note": "RERA completion 2029-09-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Sep 2029",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "12fd1caa-f221-4fcc-926b-e01d0fb11144",
+   "number": 785,
+   "title": "LEAFSONG RETREAT",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=hP2T5ZbGp+o=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=epvV0P7w/Y9epWEvyI0vGTKZEJUzL+Q1&PaURJEMAN4=ZL9MNERkNdbGYJN2dUFnwLAPkJ5Yu6Q0&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ414014/10/2026",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "751 – 1,090 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ee5c8512-b0ac-4c7a-9d6b-1ab38bb6c8cc",
+   "number": 858,
+   "title": "NORTHWIND SANCTUARY PLOT NO. 7, SECTOR-PI, GR. NOIDA",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=McgbPPDILCI=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=1t6WrUEW2t3yAFYJzgahbGKtpbVKwRAxBmAJYbFOc6tzT3OOqZZNdhNLJSZH2H5SoodVywsXUY4=&PaURJEMAN4=ZL9MNERkNdbO185pImHv9S/e4GhN4rwe&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ798312/05/2025",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "245 – 773 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "77ad2d35-b8b9-40f2-9863-2a1c1daafc20",
+   "number": 695,
+   "title": "Birla Niyaara Phase-1",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/35087",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P51900031916",
+   "confidence": "high",
+   "note": "RERA completion 2028-03-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Mar 2028",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "7cada724-5283-418c-a3ec-12c4272ceca2",
+   "number": 691,
+   "title": "Codename LIT Tower C",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/55040",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P51700079927",
+   "confidence": "high",
+   "note": "RERA completion 2029-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2029",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "a817276a-997a-4330-ba5d-c57bc5d2b745",
+   "number": 693,
+   "title": "Birla Mrida",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/63702",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PP1240002502953",
+   "confidence": "high",
+   "note": "RERA completion 2029-03-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Mar 2029",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "26f39a2f-cdd1-493e-8d76-36803996b025",
+   "number": 697,
+   "title": "Birla Vanya - Phase 1",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/20103",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P51700019178",
+   "confidence": "high",
+   "note": "RERA completion 2025-06-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Jun 2025",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "5d4902f8-6e36-4b5c-b98d-3d85f43d6acb",
+   "number": 703,
+   "title": "DOSTI PLANET NORTH - SECTOR 3",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/36976",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P51700034985",
+   "confidence": "high",
+   "note": "RERA completion 2028-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2028",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "35b8c051-09e9-463d-821c-31997c13fd69",
+   "number": 719,
+   "title": "Palladio Phase 2",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/20836",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100017306",
+   "confidence": "high",
+   "note": "RERA completion 2022-12-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2022",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "e6f37cf8-1f93-41ec-8231-97a4ac84d05f",
+   "number": 698,
+   "title": "Birla Evam Phase 1",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/56804",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1261012500295",
+   "confidence": "high",
+   "note": "RERA completion 2031-06-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Jun 2031",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "def43c50-3db0-4a95-b7ad-5f84c6075d00",
+   "number": 720,
+   "title": "Yashwin A",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/11255",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100013149",
+   "confidence": "high",
+   "note": "RERA completion 2020-09-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Sep 2020",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "22e38509-3487-47ed-80ad-b1b649f9a453",
+   "number": 318,
+   "title": "SUMADHURA EDITION PHASE-I",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/111225/008328",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/111225/008328",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "785 – 1,352 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4981ed60-9092-4865-b4f9-0264c0781515",
+   "number": 332,
+   "title": "Rohan Ekam Phase 3",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/65872",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1262022601327",
+   "confidence": "high",
+   "note": "configurations: 2 BHK, 3 BHK, 4 BHK; RERA completion 2030-09-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK / 4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Sep 2030",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "7069f8cc-d0e0-4b89-814d-83c82a80b35d",
+   "number": 301,
+   "title": "Nikoo Homes 8, Bhartiya Garden Enclave, Phase-1",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/309/PR/070526/008628",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/309/PR/070526/008628",
+   "confidence": "high",
+   "note": "configurations: 1.5 BHK, 3.5 BHK, 2.5 BHK, 3 BHK, 2 BHK, Studio, 4 BHK, 4 Bed - Row Houses, Loft, 1 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "Studio / 1 BHK / 1.5 BHK / 2 BHK / 2.5 BHK / 3 BHK / 3.5 BHK / 4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "346 – 2,532 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "3fa9ef0b-239f-44aa-8f05-b0c95eed2532",
+   "number": 273,
+   "title": "Raheja Exotica Positano",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/66491",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1180002602209",
+   "confidence": "high",
+   "note": "RERA completion 2033-07-20",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Jul 2033",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "d5e903fc-25cc-45ca-b722-9f8784aa3bf5",
+   "number": 335,
+   "title": "Godrej Vanantara",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/310/PR/130526/008653",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/310/PR/130526/008653",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "863 – 1,997 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "92b0fc8c-8fdd-4396-851d-562df823c362",
+   "number": 274,
+   "title": "Godrej Bandra Bay Phase 3",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/65541",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1181012601786",
+   "confidence": "high",
+   "note": "RERA completion 2035-10-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Oct 2035",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "28c54030-1084-4a80-b89e-81738b885282",
+   "number": 303,
+   "title": "DS MAX SKY SUKHINO",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/310/PR/050526/008622",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/310/PR/050526/008622",
+   "confidence": "high",
+   "note": "configurations: 2 BHK - C, 3 BHK - C, 3 BHK, 2 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "732 – 1,021 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4e88f8b4-08ac-41cc-9392-03ed8cd0cae9",
+   "number": 412,
+   "title": "ADITYA RAAGA",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/310/PR/051225/008319",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/310/PR/051225/008319",
+   "confidence": "high",
+   "note": "configurations: 2 BHK, 3 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "862 – 1,037 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "20b5cbdf-56c9-4c3e-ae4b-81aee3e8fc72",
+   "number": 413,
+   "title": "MANA VERDANT TERRACES",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/041225/008303",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/041225/008303",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,446 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4482025e-6b90-4fc9-b4c4-105b7a4e02d2",
+   "number": 309,
+   "title": "SATTVA CITY",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/472/PR/270226/008494",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/472/PR/270226/008494",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "606 – 4,469 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "2c12ebc9-7da6-4d98-9563-66ac44276b7b",
+   "number": 300,
+   "title": "CASAGRAND MOONDANCE",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/310/PR/200526/008667",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/310/PR/200526/008667",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "653 – 1,168 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f43539fb-4d31-4d78-9cff-5c40d87b7cd2",
+   "number": 310,
+   "title": "DS MAX SPOORTHI NEST",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/308/PR/230126/008427",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/308/PR/230126/008427",
+   "confidence": "high",
+   "note": "configurations: 3 BHK, 2 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "704 – 893 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "cb88a42f-947a-4647-b2a1-bd13ae443abd",
+   "number": 314,
+   "title": "DS MAX SKY SAMPADHA",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/308/PR/291225/008366",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/308/PR/291225/008366",
+   "confidence": "high",
+   "note": "configurations: 2 BHK, 3 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "775 – 952 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "bd00f62a-c2a2-49b0-bdee-afeac66a8dd8",
+   "number": 305,
+   "title": "Arvind Skycrest",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/310/PR/230326/008543",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/310/PR/230326/008543",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "765 – 2,486 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "c0e4fb51-6e67-4672-9813-ec84bdae905b",
+   "number": 321,
+   "title": "DS MAX SKY STANZA",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/308/PR/281125/008287",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/308/PR/281125/008287",
+   "confidence": "high",
+   "note": "configurations: 3 BHK, 2 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "711 – 919 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "9c39560e-d9b7-46b9-835a-ff277fd02332",
+   "number": 323,
+   "title": "VYANA PHASE-I-T8 AT THE RESERVE",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/66730",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1261012601671",
+   "confidence": "high",
+   "note": "RERA completion 2033-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2033",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "b95a4adb-cab7-4688-bcc6-8edc16850a15",
+   "number": 324,
+   "title": "Kharadi New Project -Tower 6",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/67557",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1260002602176",
+   "confidence": "high",
+   "note": "RERA completion 2031-03-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Mar 2031",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "1021dd85-9389-4520-976a-d7f092a9b5ef",
+   "number": 338,
+   "title": "GODREJ AVELINE",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/309/PR/020326/008501",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/309/PR/020326/008501",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "632 – 1,533 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "fb0d1a1b-e816-4c81-a902-be58d4abe216",
+   "number": 325,
+   "title": "VYOMORA PHASE 2",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/67532",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PM1261012602233",
+   "confidence": "high",
+   "note": "RERA completion 2031-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2031",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "7447057b-4531-418b-bcdd-c343e142c60b",
+   "number": 299,
+   "title": "ARVIND SYLVA",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/090726/008800",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/090726/008800",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,004 – 1,384 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "5b913e51-f046-4018-ac1f-397dddeedf59",
+   "number": 298,
+   "title": "Godrej Regent Park",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/308/PR/150726/008810",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/308/PR/150726/008810",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "760 – 1,119 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "2dddd387-1d3b-4793-925e-236b8364a4d9",
+   "number": 326,
+   "title": "VYANA PHASE-I-T1 AT THE RESERVE",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/66724",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PM1261012601645",
+   "confidence": "high",
+   "note": "RERA completion 2033-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2033",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "a9ea9f84-b91c-48c6-8250-9e528c9d44d0",
+   "number": 328,
+   "title": "Belmondo Townhouse 4",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/66480",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1261012601501",
+   "confidence": "high",
+   "note": "RERA completion 2030-08-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Aug 2030",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "8f0c45b5-5693-433e-a6d8-fdda1d405319",
+   "number": 330,
+   "title": "SHRIDHAR BHALCHANDRA",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/67073",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1260002602230",
+   "confidence": "high",
+   "note": "RERA completion 2029-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2029",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "6ec7b04d-68dc-42b6-a906-56212fa81571",
+   "number": 331,
+   "title": "KUTUMB PRIME LIFE",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/65903",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PM1260002601509",
+   "confidence": "high",
+   "note": "RERA completion 2029-10-19",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Oct 2029",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "c735a494-5a8a-489d-910c-cbac64beb5f1",
+   "number": 339,
+   "title": "CityVille Valmark Phase 2B",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/310/PR/271125/008281",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/310/PR/271125/008281",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "757 – 2,235 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "cf91c420-6d7c-4e12-bbf5-39cb7a22d3ce",
+   "number": 355,
+   "title": "WAVES AND WHIMSY",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/070926/008912",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/070926/008912",
+   "confidence": "high",
+   "note": "configurations: 3BHK, 2BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "724 – 907 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "562d01fa-186a-4c21-86a9-9dca97882002",
+   "number": 356,
+   "title": "AAROHANA ALTERRA",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/310/PR/020926/008905",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/310/PR/020926/008905",
+   "confidence": "high",
+   "note": "configurations: 3 BHK, 4 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "3 BHK / 4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,133 – 1,936 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4a4505d8-819d-4565-803f-7ad585706db0",
+   "number": 357,
+   "title": "SRI SAI SAMRUDHI",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/280826/008895",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/280826/008895",
+   "confidence": "high",
+   "note": "configurations: 2 BHK, 4 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "761 – 1,448 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "0070c41f-a0f3-413b-9031-15ff84a2dbab",
+   "number": 358,
+   "title": "ADITI NORTH STAR",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/472/PR/200826/008882",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/472/PR/200826/008882",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "861 – 1,038 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "13eb3a21-8570-4484-9f3b-6464c0e1eba0",
+   "number": 359,
+   "title": "VAINAVI SERENIA",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/310/PR/030826/008857",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/310/PR/030826/008857",
+   "confidence": "high",
+   "note": "configurations: 4 BHK Villa; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "2,314 – 2,895 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "6fdeb6e6-b5bf-4954-833f-4114afa25c4f",
+   "number": 360,
+   "title": "MAITHRI SPRINGWOODS",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/230726/008837",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/230726/008837",
+   "confidence": "high",
+   "note": "configurations: 3 BHK, 2 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "776 – 1,158 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "11d820b2-36a5-4096-a851-64391c994139",
+   "number": 361,
+   "title": "Bhavya Triora",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/240726/008838",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/240726/008838",
+   "confidence": "high",
+   "note": "configurations: 3 BHK-2T, 2 BHK, 3 BHK-3T; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "700 – 988 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "5132fdab-dd4c-489a-a361-34e40c28c27a",
+   "number": 363,
+   "title": "KNS AADRIKA PHASE III",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/310/PR/220626/008739",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/310/PR/220626/008739",
+   "confidence": "high",
+   "note": "configurations: Residential plots",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "Plot",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "81aa25da-5a76-4a80-a126-7396791c9f35",
+   "number": 364,
+   "title": "Samanvitha Siena Terra",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/310/PR/200626/008730",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/310/PR/200626/008730",
+   "confidence": "high",
+   "note": "configurations: 3BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,163 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ea8a74fa-6ec6-465f-8e35-f52974e2629f",
+   "number": 365,
+   "title": "Yafa Zinnia",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/309/PR/100626/008714",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/309/PR/100626/008714",
+   "confidence": "high",
+   "note": "configurations: 3 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,166 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "7eca8d0d-e32b-4863-8f88-92c84fa3d970",
+   "number": 366,
+   "title": "NATURE'S NEST",
+   "source_url": "https://rera.karnataka.gov.in/CRcertificate?CER_NO=PRM/KA/RERA/1251/446/PR/090626/008711",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/090626/008711",
+   "confidence": "high",
+   "note": "configurations: 2BHK, 4BHK, 3BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK / 4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "820 – 1,498 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "a4e41975-0adf-4e13-a8de-4fbe7545f5d4",
+   "number": 367,
+   "title": "LEMON TREE",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/290526/008691",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/290526/008691",
+   "confidence": "high",
+   "note": "configurations: 2 BHK, COMMERCIAL, 3 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "885 – 5,763 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "827750c9-1ba0-4017-8668-f1fa0c3a406e",
+   "number": 368,
+   "title": "Sumukha Nature's Symphony",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/080526/008640",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/080526/008640",
+   "confidence": "high",
+   "note": "configurations: 3 BHK, 4 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "3 BHK / 4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "2,428 – 2,849 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "846a558e-043d-45b0-af72-bf993e8f8be8",
+   "number": 369,
+   "title": "Sumukha Earthen Crest",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/160326/008527",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/160326/008527",
+   "confidence": "high",
+   "note": "configurations: 2 BHK, 3 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "756 – 1,076 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "0d4ec6ca-b41e-4f6f-ad0c-c4a60cbe9dfe",
+   "number": 370,
+   "title": "LEAFY SERENE",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/308/PR/210526/008669",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/308/PR/210526/008669",
+   "confidence": "high",
+   "note": "configurations: 3 BHK Flats, 2 BHK Flats; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "700 – 917 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "7e81df95-aff8-4961-8643-a570011fd1c1",
+   "number": 371,
+   "title": "LEAFY AVENUE",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/308/PR/210526/008671",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/308/PR/210526/008671",
+   "confidence": "high",
+   "note": "configurations: 2 BHK Flats, 3 BHK Flats; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "725 – 916 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "5eabced6-cffb-4ab3-adbd-4982644763f3",
+   "number": 372,
+   "title": "MAITREE VAJRA",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/110526/008641",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/110526/008641",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,249 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "6fb3c7a5-610c-4f9d-b55e-8ffb978cf514",
+   "number": 373,
+   "title": "VRUSHABADRI WINTER PARK",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/308/PR/070526/008631",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/308/PR/070526/008631",
+   "confidence": "high",
+   "note": "configurations: 3 BHK, 2 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "771 – 994 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "27cf6540-5532-4e29-a27c-7d42f61b00ea",
+   "number": 375,
+   "title": "NIKHAR CELIO",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/280426/008605",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/280426/008605",
+   "confidence": "high",
+   "note": "configurations: 4BHK, 3 BHK, 2 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK / 4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "797 – 1,781 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "bf9a4733-5d80-4f99-b8e9-987ec69cb0d3",
+   "number": 337,
+   "title": "SUMADHURA SOLEA",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/100326/008517",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/100326/008517",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "985 – 1,352 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "9573e3db-ecd4-4317-8a17-d66b25485230",
+   "number": 400,
+   "title": "MAYFAIR ARANYA",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/66386",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1180002601441",
+   "confidence": "high",
+   "note": "configurations: 2 BHK, 3 BHK; RERA completion 2032-07-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Jul 2032",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "6755dbb7-65a2-4c6f-b410-37c406cb9ab2",
+   "number": 308,
+   "title": "Fernvale @ The Prestige City",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/308/PR/110326/008519",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/308/PR/110326/008519",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "720 – 1,075 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "2a7e6b62-940c-44f8-bdb9-4aaba49dcf1c",
+   "number": 345,
+   "title": "SATTVA AARANYA",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/310/PR/241225/008358",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/310/PR/241225/008358",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "977 – 1,864 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "cd8797db-ab09-4e74-b2e6-fc7b2b3f611f",
+   "number": 378,
+   "title": "AMIGO ALFRESCO",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/309/PR/170326/008531",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/309/PR/170326/008531",
+   "confidence": "high",
+   "note": "configurations: 2 BHK, 3 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "975 – 1,348 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "5276d1c1-8286-46ac-af95-b0405d4d70bf",
+   "number": 379,
+   "title": "AURA",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/110326/008520",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/110326/008520",
+   "confidence": "high",
+   "note": "configurations: 3 BHK; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,089 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "a10b1b52-18e8-4049-9657-3e83ee7e19db",
+   "number": 380,
+   "title": "SEVEN SARJAPUR",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/308/PR/260226/008489",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/308/PR/260226/008489",
+   "confidence": "high",
+   "note": "configurations: 3 BHK +3T, 4 BHK +3T, 3 BHK + 2T, 1 BHK, 2 BHK + 2T; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "1 BHK / 2 BHK / 3 BHK / 4 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "575 – 1,249 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "c36dc613-cb4f-4665-bb39-d93028769e07",
+   "number": 381,
+   "title": "Ashok Villas Imperial",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/64854",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1260002600608",
+   "confidence": "high",
+   "note": "configurations: 3 BHK; RERA completion 2029-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2029",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "e9ce3fad-63ad-4460-8d65-a1caba6a8b7c",
+   "number": 383,
+   "title": "ARKADE ASCEND",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/64988",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PM1180002601025",
+   "confidence": "high",
+   "note": "RERA completion 2031-06-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Jun 2031",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "7e803a37-ad2e-4972-a9bc-6094b0a6ac3e",
+   "number": 384,
+   "title": "Ashok Villas Grande",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/64857",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1260002600614",
+   "confidence": "high",
+   "note": "configurations: 3 BHK; RERA completion 2029-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2029",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "df370a49-9598-472c-9c27-a6e89a637f6e",
+   "number": 396,
+   "title": "MK HARMONY",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/66048",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PM1180002601425",
+   "confidence": "high",
+   "note": "RERA completion 2030-04-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Apr 2030",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "5cb66f79-9056-40e9-bb21-83b83d310081",
+   "number": 397,
+   "title": "io Tower by PCPL",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/66376",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PC1181012601793",
+   "confidence": "high",
+   "note": "RERA completion 2031-02-12",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Feb 2031",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "311ffc64-780e-4e1b-928a-0ff4a50b7e9b",
+   "number": 398,
+   "title": "AMRUT AWAS CO-OP. HOUSING SOCIETY",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/65652",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PM1180002601340",
+   "confidence": "high",
+   "note": "RERA completion 2029-10-20",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Oct 2029",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "b8093cc1-776b-4283-8345-bdf56281cc87",
+   "number": 399,
+   "title": "Mayfair Aarambh",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/67399",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1170002602154",
+   "confidence": "high",
+   "note": "RERA completion 2032-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2032",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ed3ee280-2eba-46f4-b5ba-4e63e93a002e",
+   "number": 520,
+   "title": "SKA DESTINY ONE",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=AL6Sy1wVXpo=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=t7IDDnw0B+wb+Gw8xFjH0kynX9Bbn+lT&PaURJEMAN4=ZL9MNERkNdbZKWL6dCqzLDbAzn/E/Wpn&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ783951/04/2024",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,781 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f2941e5e-4509-4bed-9c81-4c91a79975ef",
+   "number": 521,
+   "title": "SKA ESTATE",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=l2Asd5VLjDI=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=KI97trrlooF15e6d3v3zYA==&PaURJEMAN4=ZL9MNERkNdbYsR0l32NqKNQwxN10/nSv&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ768147/03/2025",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,212 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "6424dca8-eba4-4388-a834-520eeeaf182d",
+   "number": 540,
+   "title": "JADE COUNTY PHASE-1",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=CiskKEvpYvo=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=wtOJkCtJSiAn7mHPUk+gnHDmJprF182I&PaURJEMAN4=ZL9MNERkNdZTgHU4ZnX7czBGExXxSdup&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ267958/06/2025",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,297 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "d9230085-6b62-4c1a-a3a6-4e2c18787770",
+   "number": 542,
+   "title": "ACE VERDE",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=wjRq8o5Xq4A=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=wB/xiX83v2xIa6AsIE2gww==&PaURJEMAN4=ZL9MNERkNdaU3wJr9SGemtA/1lSv2JRE&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ913692/03/2025",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "258 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "8d8aa585-01c1-409f-b859-7b097390ce21",
+   "number": 568,
+   "title": "ACE TERRA",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=ha1rI+Yf8dQ=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=RD4WvtmSELODLVTyl8GfiA==&PaURJEMAN4=ZL9MNERkNdYVibfTHi0iwAANqXFIUX8E&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ683816/04/2024",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,695 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "73e04af4-2380-45b2-b20f-88fc829b3495",
+   "number": 401,
+   "title": "Param Adarsh by Shraddha",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/67025",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1180002602160",
+   "confidence": "high",
+   "note": "RERA completion 2030-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2030",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "db807f8f-e21c-4254-a5b2-b5d11b717965",
+   "number": 402,
+   "title": "Munisuvrat Chhaya",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/67030",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PM1180002602034",
+   "confidence": "high",
+   "note": "RERA completion 2029-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2029",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "0a7e6e5b-b85c-4ed5-814b-f49afbb12a75",
+   "number": 403,
+   "title": "io Residences by PCPL",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/66190",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1181012601732",
+   "confidence": "high",
+   "note": "RERA completion 2031-02-12",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Feb 2031",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "20e47db4-ac8f-4910-8b70-4f2671df6603",
+   "number": 404,
+   "title": "PCPL STELLAR CREST",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/64071",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PM1180002600436",
+   "confidence": "high",
+   "note": "RERA completion 2029-10-10",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Oct 2029",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "53f2877c-ff45-4142-8090-7ab6111a0673",
+   "number": 405,
+   "title": "EMPIRE HEIGHTS",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/66297",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PM1180002601867",
+   "confidence": "high",
+   "note": "RERA completion 2031-10-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Oct 2031",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "6bfebd8f-9169-4ad4-88d3-02194fe3ebf9",
+   "number": 406,
+   "title": "Hum Laxmi",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/65657",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PR1180002601424",
+   "confidence": "high",
+   "note": "RERA completion 2030-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2030",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "c3c8f168-df5f-4e2f-9a76-b72eea38aad2",
+   "number": 407,
+   "title": "HUM SAPPHIRE",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/64901",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PM1180002601373",
+   "confidence": "high",
+   "note": "RERA completion 2030-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2030",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "deb9c99d-7991-4107-b679-c185f04b1c72",
+   "number": 408,
+   "title": "MYHNA VISTARA",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/040226/008447",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/040226/008447",
+   "confidence": "high",
+   "note": "configurations: 2 BHK, 4 BHK, 3 BHK, Office; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK / 4 BHK / Office",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "727 – 14,944 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "c4b3002c-b1ba-4e4f-98d2-001ad7d7ecb6",
+   "number": 409,
+   "title": "RHYTHM OF EARTH",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/308/PR/280126/008428",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/308/PR/280126/008428",
+   "confidence": "high",
+   "note": "configurations: Residential plots",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "Plot",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "acf40db1-c8ce-4096-97b7-09c479322d57",
+   "number": 410,
+   "title": "Trifecta Veranza",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/308/PR/210126/008418",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/308/PR/210126/008418",
+   "confidence": "high",
+   "note": "configurations: 2BHK-2TOILET, 3BHK-2TOILET(SMALL), 3BHK-3TOILET, 3BHK-2TOILET; carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "configuration",
+     "value": "2 BHK / 3 BHK",
+     "expect": ""
+    },
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "738 – 1,083 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "90800315-108e-4fb9-a206-39b72fd54a86",
+   "number": 569,
+   "title": "AIGIN ROYAL PHASE 4",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=VBTaTYurOjQ=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=jMhyOf8F0p2UPJTYWSphx4WS4lFf9W2C&PaURJEMAN4=ZL9MNERkNdZBjgxLNt88dQ==&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ309036",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "983 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "861550d9-e968-47b4-b47b-660df56c8c1b",
+   "number": 572,
+   "title": "THE BROOK- PHASE 1",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=D/y2ekPIOnU=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=jI0reG2xdPehUO9ODrJEA6jIpIWC8HFa&PaURJEMAN4=ZL9MNERkNdav310U96wM6g==&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ228846",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "482 – 1,064 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "9e4aa5fc-cf3c-44cc-9e36-758d7c0aa671",
+   "number": 411,
+   "title": "LOCAL SQUARE WHITEFIELD",
+   "source_url": "https://rera.karnataka.gov.in/certificate?CER_NO=PRM/KA/RERA/1251/446/PR/051225/008315",
+   "source_type": "Official RERA registry (RERA Karnataka) - RERA no. PRM/KA/RERA/1251/446/PR/051225/008315",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "184 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "5c7ba978-df9b-4d49-94f1-225a6b2a24f9",
+   "number": 573,
+   "title": "ELDECO 7 PEAKS RESIDENCES",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=OHvMxkJAIwY=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=W+hCn1EMZQmbkWMKRlbwQKx2WXalWhIttFcA83a+EbU=&PaURJEMAN4=ZL9MNERkNdajP3Ruobzi1D9HHlE8ga1+&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ106523/01/2026",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,553 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "54b28307-c7a5-44f0-90fc-c60c085e566f",
+   "number": 574,
+   "title": "ELDECO WHISPERS OF WONDER",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=7mrsssb1zkE=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=BSCcoUb8W5V74Fc6PymFz8A8TanW8SlfZriE3R+pVMU=&PaURJEMAN4=ZL9MNERkNdb5/MplXfCOYfs7VIlO+WGL&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ752382/09/2025",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "700 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ee27344c-c9e1-4f07-b267-265f5bdd9e0e",
+   "number": 575,
+   "title": "EXPERION ELEMENTS PHASE-1",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=FmKSFOd3PTM=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=uLzBayKiKuqIKANfjxy8MC9bOGFWiTOH7CebN9Xgmzo=&PaURJEMAN4=ZL9MNERkNdaOMXWgn0GorVK+d9muqStV&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ120027/04/2024",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,666 – 1,975 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "6702a58c-6997-4a7a-acee-2a5e1d91df64",
+   "number": 582,
+   "title": "THE RIVULET PHASE-1",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=a+Ak0jH3BL8=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=24saV34sT5eP0zk+1zpNKcIOMO44smFg&PaURJEMAN4=ZL9MNERkNdauMDyNbATx4g==&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ145736",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "527 – 1,064 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "f0ac67c5-bd7b-4faa-acef-df1105a2f5c6",
+   "number": 584,
+   "title": "PIOUS ORCHARDS",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=siDsgwiH0is=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=PQrUl0fUbAyV1laTSltVRw==&PaURJEMAN4=ZL9MNERkNdaOgRrOGrMn1Q==&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ183246",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,430 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "edeeacb2-00c2-4f00-8a96-a4c41317556d",
+   "number": 585,
+   "title": "NIMBUS THE PALM VILLAGE",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=QZB92s5RVNE=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=ilsyWjPknKS2Sybk7u6tQlqs2MJ7vHEL&PaURJEMAN4=ZL9MNERkNdaJiAwjXP6s2CoHRm8MSPu3&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ558356/04/2024",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "306 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "b83c3002-4f04-47d4-8f69-a85e8d0706b1",
+   "number": 586,
+   "title": "RGS PLEIADDES PHASE-3",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=QYDWQzTSW4s=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=jKOxDEsjq0gxQn7vFWFmHdfGEI9W+w+7&PaURJEMAN4=ZL9MNERkNdYemrDgJ1ZMU4RSzK3g99St&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ415309/09/2025",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "871 – 1,373 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "cca54d65-a753-4a0e-8ac2-46f869e6f3b3",
+   "number": 714,
+   "title": "VJ IndiWorks Kharadi Central",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/58405",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PC1260002500692",
+   "confidence": "high",
+   "note": "RERA completion 2029-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2029",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "9512a1cc-8595-4538-974f-fdca1e3f6fdb",
+   "number": 699,
+   "title": "DOSTI EASTERN BAY - PHASE 1",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/32230",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P51900025142",
+   "confidence": "high",
+   "note": "RERA completion 2028-03-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Mar 2028",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "7e589deb-352b-4c87-b015-4bb85f792208",
+   "number": 530,
+   "title": "SOBHA AURUM",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=39Igy6MiUb8=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=afh2cmFC46qwUU+NsbNTSw==&PaURJEMAN4=ZL9MNERkNdZBK0QKVzybHSsT+FHnNkIR&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ361748/06/2025",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "434 – 1,400 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "9e069c0c-8050-486a-8be1-427fba800083",
+   "number": 715,
+   "title": "YashONE Eternitee Phase 1",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/35624",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100046122",
+   "confidence": "high",
+   "note": "RERA completion 2026-04-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Apr 2026",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "1ae1ff96-cfbc-4fe9-91b9-df35631abc7f",
+   "number": 581,
+   "title": "GODREJ JARDINIA",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=vaogVPPQy/g=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=NrWKty+sV/t4kNoE2/i7TQ==&PaURJEMAN4=ZL9MNERkNdZyLXfxQcaDQuAzAZO1sseU&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ288309/04/2024",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "831 – 978 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "4c96fa51-100c-4bcc-a8bc-049f3d180671",
+   "number": 723,
+   "title": "Yashwin SukhNiwas",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/28371",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100025982",
+   "confidence": "high",
+   "note": "RERA completion 2024-12-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2024",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "8b265945-c832-45ff-a38e-751630ce5e12",
+   "number": 721,
+   "title": "YashONE Hinjawadi - Phase 1",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/21629",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100019468",
+   "confidence": "high",
+   "note": "RERA completion 2023-12-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2023",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "fb407273-0120-4843-b922-4dac24149207",
+   "number": 739,
+   "title": "Olivia Tower -B",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/45099",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P51700052243",
+   "confidence": "high",
+   "note": "RERA completion 2027-03-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Mar 2027",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "587b96c3-adcd-4564-a5b5-30864cc12b61",
+   "number": 515,
+   "title": "ESTATE 105",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=emrxACAJ2FU=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=wJo3n5rCl36tGPU7I30/LA==&PaURJEMAN4=ZL9MNERkNdbvLn7KEvFAJDBvb0wq5zZs&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ529777/03/2026",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "5,401 – 6,599 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "64fb358f-9790-4b63-ba59-480e1c36b156",
+   "number": 516,
+   "title": "NIRALA ESTATE PHASE-III",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=Zgqlqu2Vvug=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=oRPCb+2GqnFLtfJpRJ05apikjtux7yPb&PaURJEMAN4=ZL9MNERkNdZlRpcfUtGXmg==&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ265789",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "593 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "ff117058-cf0d-4639-8b9a-66e96ad118e0",
+   "number": 519,
+   "title": "THE ELYSIUM",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=QxN3ey95stY=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=rE4naz3hsQMEKG+a4I3ZJg==&PaURJEMAN4=ZL9MNERkNdZLiTAAP3T72M7/Z2YiIg+7&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ969677/03/2024",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "343 – 3,352 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "8a1aed69-b49b-4516-b5c2-33323fc13b5d",
+   "number": 522,
+   "title": "PURVANCHAL SUNBLISS PLOT NO. GH-1A/1 SECTOR 22D YEIDA",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=xR+wyQ0QrY4=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=Oq4WtnhfFzTXEiqh0qQW8/Vn1+0WJAKd8UDJQSWO763Eud1LcQC2p0iIZorH6SkBpOKqurRu4VQ=&PaURJEMAN4=ZL9MNERkNdZt8EFRNGdqs9nU3sH6FbM7&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ746863/04/2025",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "366 – 2,250 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "39055a3e-0cca-4237-bfcf-72d822e07448",
+   "number": 529,
+   "title": "CLOVE COUNTY",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=C4BAF/PT+Ls=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=ejOIFvGmsis6emaJtD/l5g==&PaURJEMAN4=ZL9MNERkNdZvkLCfu85Q0j1Uin2HFdhy&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ696539/11/2025",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,472 – 2,552 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "0c244f6e-ef30-4f76-83da-c023771ccd2f",
+   "number": 532,
+   "title": "STELLAR ONE PHASE III",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=RSPy4BklE68=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=IGe1LkIdjJB8d5yrnOXkyEETdQKo5wUU&PaURJEMAN4=ZL9MNERkNdaApfHzvBENo6pe5nYJ21NV&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ564504/08/2024",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "755 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "aa404d8a-af4b-43e3-8447-f9579a32bb59",
+   "number": 578,
+   "title": "THE ISLANDS",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=hxN90ObGoG8=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=M46kbEgdlckjXRdnmj6p5Q==&PaURJEMAN4=ZL9MNERkNdbRMRj7p9A84g==&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ734569",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "3,197 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "1aacb97a-98fe-4662-82c8-6a8ddd6af57d",
+   "number": 589,
+   "title": "ACE HANEI",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=WM9CIk51v3M=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=W/rdDkzp7AbacS3cq0jCTg==&PaURJEMAN4=ZL9MNERkNdbv6f3WPUKKGebrv/UfXkkt&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ677887/10/2024",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "988 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "e03fd5a9-4a57-41b9-93fd-6e9f3228ca24",
+   "number": 9,
+   "title": "DASNAC WESTMINSTER",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=J0RB4S92AeY=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=GdfKr2rjIRBs3e0SYGITrNbvcRcRfUWh&PaURJEMAN4=ZL9MNERkNdb5RBkivjdizdchVSAdHLSd&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ239402/06/2024",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "344 – 1,894 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "013eba63-334c-4c48-9810-ca73721737b0",
+   "number": 610,
+   "title": "ASHTECH PRESIDENTIAL TOWERS",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=V0qlpXyXEqQ=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=VQbD6TjGD7+KAJGhdO4et7V2kqPZ+SHF/WsPXJX7Ipk=&PaURJEMAN4=ZL9MNERkNdaLa3MOi8ieXJvraCyBXVM1&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ746615/10/2025",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,066 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "be2a7f90-7227-4aa7-9351-1270be605680",
+   "number": 788,
+   "title": "INDOSAM ICONIC",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=yz+yAdSdN9k=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=hL1Q6M5cpXeYcG2BXf26nA==&PaURJEMAN4=ZL9MNERkNdYlbUeBON/FV2lfBWp9tfhd&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ303620/05/2026",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,562 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "cf0b23b1-3b59-452d-8073-5c024c1cdb04",
+   "number": 718,
+   "title": "Palladio Kharadi Central",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/39869",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100050357",
+   "confidence": "high",
+   "note": "RERA completion 2027-06-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Jun 2027",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "63c4e145-7df8-4bf0-9b32-a516847ef602",
+   "number": 725,
+   "title": "YashONE Infinitee - Phase I",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/29113",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100028229",
+   "confidence": "high",
+   "note": "RERA completion 2025-06-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Jun 2025",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "78019660-f146-4809-9fc2-58fb5b6ef138",
+   "number": 750,
+   "title": "Purva Aspire",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/20986",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100017650",
+   "confidence": "high",
+   "note": "RERA completion 2026-09-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Sep 2026",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "bd374ad2-def5-456c-9cdb-e18fa65cb1cf",
+   "number": 740,
+   "title": "Mahindra Rainforest Phase 1",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/63554",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. PM1181012502957",
+   "confidence": "high",
+   "note": "RERA completion 2031-12-31",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Dec 2031",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "9e58b8cc-9f89-465c-a8be-33575157a9f5",
+   "number": 692,
+   "title": "Birla Punya Phase 1",
+   "source_url": "https://maharerait.maharashtra.gov.in/public/project/view/54564",
+   "source_type": "Official RERA registry (MahaRERA) - RERA no. P52100079533",
+   "confidence": "high",
+   "note": "RERA completion 2031-09-30",
+   "ops": [
+    {
+     "op": "set",
+     "field": "possession_timeline",
+     "value": "Sep 2031",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "001e281f-c67e-46cb-bd14-f82c70f75b8e",
+   "number": 75,
+   "title": "PRATEEK CANARY",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=08sLDXZPs2k=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=kkMH+II/kt1Orwh6lujsbw==&PaURJEMAN4=ZL9MNERkNdZhOpuphzglfw==&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ591510",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "2,011 – 2,063 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  },
+  {
+   "pin_id": "980cdfda-a8f1-4c92-9930-20e02b94ab2a",
+   "number": 275,
+   "title": "PALM OLYMPIA PH 3",
+   "source_url": "https://www.up-rera.in/Projectsummary?UI0aPA1ISD=mlYvUJfjhGU=&hfFlag=9emr4VdBw22M7BGjKtJWMPDI4s5cHQZP&NPJ6RAme=kzAtB1w3mbDsjAS8KRoTr4OpXEv8oYjH&PaURJEMAN4=ZL9MNERkNdYDvTpLvO2mOrqBIsLVMSbz&IRSAHEB=D6PY3lyims8=",
+   "source_type": "Official RERA registry (UP RERA) - RERA no. UPRERAPRJ409115/09/2024",
+   "confidence": "high",
+   "note": "carpet from registry unit mix (averages per unit type)",
+   "ops": [
+    {
+     "op": "set",
+     "field": "sqft",
+     "value": "1,362 sq ft (carpet)",
+     "expect": ""
+    }
+   ]
+  }
+ ]
+}
