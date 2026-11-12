@@ -626,6 +626,19 @@
   const modal = byId('authModal'), tabs = document.querySelectorAll('.tab');
   const signinForm = byId('signinForm'), signupForm = byId('signupForm'), successView = byId('successView');
   const forgotForm = byId('forgotForm');
+  // WhatsApp codes on/off (OTP_ENABLED on the server → data-otp on the modal).
+  // Off: no code is sent; accounts are created and signed in with mobile number
+  // (or email) + password, and the WhatsApp OTP buttons are hidden.
+  const OTP_ON = !modal || modal.dataset.otp !== 'off';
+  if (!OTP_ON) {
+    if (byId('waLoginLink')) byId('waLoginLink').hidden = true;
+    const si = byId('si-email');
+    if (si) {
+      si.type = 'text'; si.placeholder = 'Mobile number or email'; si.setAttribute('inputmode', 'email');
+      const lbl = document.querySelector('label[for="si-email"]'); if (lbl) lbl.textContent = 'Mobile number or email';
+    }
+    if (byId('su-pass-hint')) byId('su-pass-hint').textContent = 'You’ll sign in with your mobile number (or email) and this password.';
+  }
   let mode = 'signup';
   const currentRole = () => (document.querySelector('#roleTiles input:checked') || {}).value || 'buyer';
   function renderSide() {
@@ -639,10 +652,16 @@
     byId('signinBtn').textContent = `Sign in as ${ROLE_LABEL[role]}`;
     byId('verifyNote').hidden = role === 'buyer';
     // "Create account with WhatsApp OTP" (just a number + code) is for buyers only.
-    if (byId('su-quick')) byId('su-quick').hidden = role !== 'buyer';
+    if (byId('su-quick')) byId('su-quick').hidden = role !== 'buyer' || !OTP_ON;
+    // Without WhatsApp codes buyers can leave the email out (mobile + password is enough).
+    const mailOptional = !OTP_ON && role === 'buyer';
+    if (byId('su-email')) byId('su-email').required = !mailOptional;
+    const mailLbl = document.querySelector('label[for="su-email"]');
+    if (mailLbl) mailLbl.innerHTML = mailOptional ? 'Email <small>(optional)</small>' : 'Email';
     // Only buyers can skip everything but name, number, email and password.
     if (byId('su-req-note')) byId('su-req-note').textContent = role === 'buyer'
-      ? 'Your name, WhatsApp number, email and a password — we’ll send a 6-digit code on WhatsApp to verify your number.'
+      ? (OTP_ON ? 'Your name, WhatsApp number, email and a password — we’ll send a 6-digit code on WhatsApp to verify your number.'
+        : 'Just your name, mobile number and a password. Email is optional.')
       : 'All fields are needed so we can verify your RERA details.';
   }
 
@@ -825,9 +844,10 @@
     const mail = (email || '').trim().toLowerCase();
     if ((byId('su-pass').value || '').length < 8) { toast('Choose a password of at least 8 characters', 'fa-triangle-exclamation'); byId('su-pass').focus(); return; }
     // Step 1: WhatsApp a 6-digit code. Step 2 (same button): create the account with it.
-    if (!suOtp.ticket || suOtp.key !== mail + '|' + mobile) { sendSignupCode(mail, mobile, (name || '').trim()); return; }
-    const otp = (byId('su-otp').value || '').replace(/\D/g, '');
-    if (otp.length !== 6) { toast('Enter the 6-digit code we sent on WhatsApp', 'fa-triangle-exclamation'); byId('su-otp').focus(); return; }
+    // With codes paused the account is created straight away.
+    if (OTP_ON && (!suOtp.ticket || suOtp.key !== mail + '|' + mobile)) { sendSignupCode(mail, mobile, (name || '').trim()); return; }
+    const otp = OTP_ON ? (byId('su-otp').value || '').replace(/\D/g, '') : '';
+    if (OTP_ON && otp.length !== 6) { toast('Enter the 6-digit code we sent on WhatsApp', 'fa-triangle-exclamation'); byId('su-otp').focus(); return; }
     const btn = byId('signupBtn'); const label = btn ? btn.innerHTML : '';
     if (btn) { btn.disabled = true; btn.textContent = 'Creating account…'; }
     signingUp = true;
@@ -838,7 +858,7 @@
       signingUp = false; if (btn) { btn.disabled = false; btn.innerHTML = label; }
       if (ok && b.user) {
         resetSignupCode();
-        success({ name: b.user.name, email: b.user.email, role: b.user.role, verified: b.user.verified }, true);
+        success({ name: b.user.name || 'there', email: b.user.email, role: b.user.role, verified: b.user.verified }, true);
         setTimeout(() => { window.location.href = b.redirect || '/dashboard'; }, 900);
       } else {
         toast((b.error && b.error.message) || 'Could not create your account', 'fa-triangle-exclamation');
@@ -942,7 +962,12 @@
       .then(() => { fp.busy = false; btn.disabled = false; });
   }
   if (forgotForm) {
-    byId('forgotLink').addEventListener('click', e => { e.preventDefault(); openForgot(); });
+    byId('forgotLink').addEventListener('click', e => {
+      e.preventDefault();
+      // Resetting needs a WhatsApp code: while those are paused, people contact the team.
+      if (!OTP_ON) { toast('Password reset by WhatsApp code is paused right now — please contact us and we’ll help you sign in.', 'fa-circle-info'); return; }
+      openForgot();
+    });
     byId('fp-back').addEventListener('click', e => { e.preventDefault(); openModal('signin'); });
     byId('fp-resend').addEventListener('click', e => { e.preventDefault(); if (!fp.busy) sendResetCode(); });
     ['fp-phone', 'fp-phone-code'].forEach(id => byId(id).addEventListener(id === 'fp-phone-code' ? 'change' : 'input', () => { if (fp.ticket) { fp.ticket = ''; byId('fp-step2').hidden = true; byId('forgotBtn').textContent = 'Send code on WhatsApp'; } }));

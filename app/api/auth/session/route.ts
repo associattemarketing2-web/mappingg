@@ -3,13 +3,15 @@ import { createSessionToken, getCurrentUser, homePathFor, setSessionCookie } fro
 import { getDb } from '@/lib/mongodb';
 import { homeForAccount, needsMobile, verificationOf } from '@/lib/verification';
 import { isPlaceholderEmail } from '@/lib/phone-email';
+import { otpEnabled } from '@/lib/otp';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
   const user = await getCurrentUser();
-  if (!user) return NextResponse.json({ session: null });
+  // `otp`: whether WhatsApp codes are on (sign-in popups hide the OTP button when off).
+  if (!user) return NextResponse.json({ session: null, otp: otpEnabled() });
 
   // Rolling session: every time we confirm a valid session, re-issue the cookie
   // with a fresh expiry. This endpoint is polled by the app, so an active user

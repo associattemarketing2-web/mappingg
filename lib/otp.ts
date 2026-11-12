@@ -14,6 +14,16 @@ import { createHmac, randomInt, timingSafeEqual } from 'node:crypto';
 // Guessing is capped by rate limits on the verify endpoints.
 
 export type OtpPurpose = 'signup' | 'reset' | 'login' | 'quick';
+
+/**
+ * Master switch for WhatsApp codes. Off unless OTP_ENABLED=true: while the
+ * WhatsApp provider is down, accounts are created and signed in with mobile
+ * number (or email) + password only — no code is sent or checked. Set
+ * OTP_ENABLED=true (and redeploy) once the service is back and every OTP flow
+ * works exactly as before.
+ */
+export const otpEnabled = (): boolean => process.env.OTP_ENABLED === 'true';
+export const OTP_PAUSED = 'WhatsApp codes are paused right now — please use your mobile number (or email) and password.';
 const TTL_MS = 10 * 60_000;
 
 function secret(): string {

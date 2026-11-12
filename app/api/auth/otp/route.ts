@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getDb } from '@/lib/mongodb';
-import { issueOtp } from '@/lib/otp';
+import { OTP_PAUSED, issueOtp, otpEnabled } from '@/lib/otp';
 import { clientIp, rateLimit } from '@/lib/rate-limit';
 import { PHONE_ERROR, normalizePhone } from '@/lib/phone';
 import { maskPhone, whatsappConfigured, whatsappOtp } from '@/lib/whatsapp';
@@ -40,6 +40,7 @@ export async function POST(req: NextRequest) {
   const ip = clientIp(req);
   const limited = rateLimit(`otp-ip:${ip}`, 20, 60 * 60_000) || rateLimit(`otp:${ip}:${email || parsed.data.mobile || ''}`, 5, 15 * 60_000);
   if (limited) return limited;
+  if (!otpEnabled()) return fail(OTP_PAUSED, 503);
   if (!whatsappConfigured()) return fail('WhatsApp codes are not set up on the server yet. Please contact us.', 503);
 
   // ---- Sign-up: verify the WhatsApp number on the form ----

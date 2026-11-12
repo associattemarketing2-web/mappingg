@@ -16,6 +16,7 @@ import { homeStats, statsStripHtml, statsBandHtml, mapPreviewHtml, heroProjectHt
 import { SITE, SITE_URL } from '@/lib/seo/config';
 import { mobileTrustHtml, mobileCatsHtml, mobileDiscoverHtml, mobileInsightsHtml, type MobilePost } from '@/components/landing/mobile-sections';
 import { listPublished, readingTime } from '@/lib/blog';
+import { otpEnabled } from '@/lib/otp';
 
 // ISR: served static & fast, but re-renders periodically so admin-set SEO values
 // (Search Console verification, GTM) from the shared layout show up without a redeploy.
@@ -61,7 +62,10 @@ export default async function HomePage() {
     .replace('<!--M_TRUST-->', () => mobileTrustHtml(cards))
     .replace('<!--M_CATS-->', () => mobileCatsHtml(cards))
     .replace('<!--M_DISCOVER-->', () => mobileDiscoverHtml())
-    .replace('<!--M_INSIGHTS-->', () => mobileInsightsHtml(posts, stats));
+    .replace('<!--M_INSIGHTS-->', () => mobileInsightsHtml(posts, stats))
+    // WhatsApp codes on/off (OTP_ENABLED): landing.js hides the OTP options and
+    // switches to mobile/email + password when off.
+    .replace('id="authModal"', () => `id="authModal" data-otp="${otpEnabled() ? 'on' : 'off'}"`);
   // "Projects near you" (React) sits between the hero (search + live map + stats) and the rest.
   const [heroHtml, restHtml = ''] = landingHtml.split('<!--SPLIT-->');
 
