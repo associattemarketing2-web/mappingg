@@ -629,18 +629,24 @@
   // WhatsApp codes on/off (OTP_ENABLED on the server → data-otp on the modal).
   // Off: no code is sent; accounts are created and signed in with mobile number
   // (or email) + password, and the WhatsApp OTP buttons are hidden.
-  const OTP_ON = !modal || modal.dataset.otp !== 'off';
-  if (!OTP_ON) {
+  // The page HTML says which (data-otp); an older cached page without it is
+  // corrected by the /api/auth/session answer below (b.otp).
+  let OTP_ON = !modal || modal.dataset.otp !== 'off';
+  function applyOtpOff() {
+    OTP_ON = false;
     if (byId('waLoginLink')) byId('waLoginLink').hidden = true;
+    if (byId('su-quick')) byId('su-quick').hidden = true;
     const si = byId('si-email');
     if (si) {
       si.type = 'text'; si.placeholder = 'Mobile number or email'; si.setAttribute('inputmode', 'email');
       const lbl = document.querySelector('label[for="si-email"]'); if (lbl) lbl.textContent = 'Mobile number or email';
     }
     if (byId('su-pass-hint')) byId('su-pass-hint').textContent = 'You’ll sign in with your mobile number (or email) and this password.';
+    if (byId('roleTiles')) renderSide();
   }
   let mode = 'signup';
   const currentRole = () => (document.querySelector('#roleTiles input:checked') || {}).value || 'buyer';
+  if (!OTP_ON) applyOtpOff();
   function renderSide() {
     const role = currentRole(), r = ROLES[role], isIn = mode === 'signin';
     byId('sideTitle').textContent = isIn ? 'Welcome back to Mappingg' : r.side[0];
@@ -1014,6 +1020,7 @@
   // the map unlocked without a flash on load. Drop it if the session has expired.
   fetch('/api/auth/session', { credentials: 'same-origin' }).then(r => r.json()).then(b => {
     const s = b && b.session && b.session.user;
+    if (b && b.otp === false && OTP_ON) applyOtpOff();
     setUser(s ? { name: s.name || s.email, email: s.email, role: s.role, verified: s.verified } : null);
     if (!s) promptSignIn();
   }).catch(() => {});

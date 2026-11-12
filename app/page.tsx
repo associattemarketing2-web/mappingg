@@ -3,7 +3,7 @@ import './landing.css';
 import './home-finder.css';
 import './home.css';
 import './mobile-home.css';
-import { LANDING_BODY } from '@/components/landing/body';
+import { LANDING_BODY, withoutOtp } from '@/components/landing/body';
 import LandingClient from '@/components/landing/LandingClient';
 import SiteHeader from '@/components/SiteHeader';
 import IconFont from '@/components/IconFont';
@@ -62,12 +62,11 @@ export default async function HomePage() {
     .replace('<!--M_TRUST-->', () => mobileTrustHtml(cards))
     .replace('<!--M_CATS-->', () => mobileCatsHtml(cards))
     .replace('<!--M_DISCOVER-->', () => mobileDiscoverHtml())
-    .replace('<!--M_INSIGHTS-->', () => mobileInsightsHtml(posts, stats))
-    // WhatsApp codes on/off (OTP_ENABLED): landing.js hides the OTP options and
-    // switches to mobile/email + password when off.
-    .replace('id="authModal"', () => `id="authModal" data-otp="${otpEnabled() ? 'on' : 'off'}"`);
+    .replace('<!--M_INSIGHTS-->', () => mobileInsightsHtml(posts, stats));
+  // WhatsApp codes paused (OTP_ENABLED off): mobile/email + password sign-in, no OTP buttons.
+  const authHtml = otpEnabled() ? landingHtml.replace('id="authModal"', 'id="authModal" data-otp="on"') : withoutOtp(landingHtml);
   // "Projects near you" (React) sits between the hero (search + live map + stats) and the rest.
-  const [heroHtml, restHtml = ''] = landingHtml.split('<!--SPLIT-->');
+  const [heroHtml, restHtml = ''] = authHtml.split('<!--SPLIT-->');
 
   return (
     <>
