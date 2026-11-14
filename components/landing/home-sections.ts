@@ -241,13 +241,10 @@ const NEAR_MAP_SVG = `<svg viewBox="0 0 300 240" preserveAspectRatio="xMidYMid s
 </svg>`;
 
 export function buyersSectionHtml(cards: ProjectCardData[]): string {
-  // The project on the phone in the "Save" tile: the top featured project with a price.
-  const p = featuredPool(cards).list.find((c) => c.price) || featuredPool(cards).list[0];
-
   return `<section class="hm-sec hm-buyers">
   <div class="hm-wrap">
     <div class="hm-head hm-center">
-      <span class="hm-eyebrow">For home buyers</span>
+      <span class="hm-eyebrow"><i class="fas fa-house" aria-hidden="true"></i>For home buyers</span>
       <h2>Built for every <span class="accent">home buyer</span></h2>
       <p class="hm-sub">Everything you need to find the right home — in one place, and free for buyers.</p>
     </div>
@@ -268,19 +265,13 @@ export function buyersSectionHtml(cards: ProjectCardData[]): string {
       </div>
 
       <div class="hm-tile hm-t-save">
-        <div class="hm-phone" aria-hidden="true">
-          <span class="hm-phone-bar"><img src="/img/mappingg-icon-mark-sm.png" alt="" width="14" height="14">Mappingg.com</span>
-          <span class="hm-phone-card">
-            <span class="hm-phone-img">${p?.image ? `<img src="${esc(p.image)}" alt="" loading="lazy" decoding="async">` : '<i class="fas fa-building"></i>'}<i class="fas fa-heart hm-phone-heart"></i></span>
-            ${p ? `<b>${esc(p.title)}</b><small>${esc([p.locality, p.city].filter(Boolean).join(', '))}</small>${p.price ? `<strong>${esc(p.price.split(' – ')[0].replace(/ onwards$/, ''))} onwards</strong>` : ''}` : ''}
-          </span>
-        </div>
+        <span class="hm-save-art" aria-hidden="true"></span>
         <div class="hm-save-tx">
           <h3>Save, Compare &amp; Track Projects <span>— Free</span></h3>
-          <p>Create a free buyer account with just your WhatsApp number and make a smarter decision.</p>
+          <p>Create a free buyer account with just your WhatsApp number and make a smarter, faster decision.</p>
           <ul class="hm-save-feats">
             <li><i class="far fa-bookmark" aria-hidden="true"></i>Shortlist Projects</li>
-            <li><i class="far fa-clone" aria-hidden="true"></i>Compare Options</li>
+            <li><i class="fas fa-scale-balanced" aria-hidden="true"></i>Compare Options</li>
             <li><i class="far fa-folder-open" aria-hidden="true"></i>Open Every Project</li>
             <li><i class="fab fa-whatsapp" aria-hidden="true"></i>Enquire Directly</li>
           </ul>

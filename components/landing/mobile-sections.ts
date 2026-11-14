@@ -105,9 +105,9 @@ export function mobileDiscoverHtml(): string {
   return `<section class="hm-what" aria-labelledby="hmWhatTitle">
   <div class="hm-wrap">
     <div class="hm-what-card">
-      <h2 id="hmWhatTitle">What is Mappingg.com?</h2>
+      <h2 id="hmWhatTitle">What is <span>Mappingg.com?</span></h2>
       <p>A real estate discovery platform that helps you find, verify and compare residential projects on an interactive map with real prices, RERA details and location insights.</p>
-      <img src="/img/what-is-mappingg.webp" alt="Phone showing residential projects pinned on the Mappingg map" width="480" height="270" decoding="async" loading="lazy">
+      <img src="/img/what-is-mappingg-v2.webp" alt="Phone showing residential projects pinned on the Mappingg map" width="480" height="270" decoding="async" loading="lazy">
       <a href="/about" class="hm-what-btn">Learn More ${arrow}</a>
     </div>
   </div>

@@ -130,7 +130,7 @@
 /* Once the map shows projects around the visitor, the Pune sample card would cover them. */
 .mpg .hm-preview.is-local .hm-pcard { display: none; }
 /* Desktop: the Mundhwa pins sit right of the sample project card instead of under it. */
-.mpg .hm-preview { --pin-shift: 150px; }
+.mpg .hm-preview { --pin-shift: 0px; }
 .mpg .hm-preview.is-local { --pin-shift: 0px; }
 @media (max-width: 720px) { .mpg .hm-preview { --pin-shift: 0px; } }
 .mpg .hm-pcard-x { position: absolute; right: 8px; top: 8px; width: 26px; height: 26px; border-radius: 50%; border: 0; background: var(--hm-soft); color: var(--hm-text); font-size: 12px; cursor: pointer; }
@@ -216,12 +216,13 @@
 /* What is Mappingg.com? (markup: components/landing/mobile-sections.ts): a blush card,
    text on the left and the map-on-a-phone picture on the right; stacked on phones. */
 .mpg .hm-what { padding: 48px 0 8px; background: #fff; }
-.mpg .hm-what-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); grid-template-areas: "h img" "p img" "btn img"; align-content: center; column-gap: 40px; padding: 44px 40px 44px 56px; border-radius: 28px; background: linear-gradient(135deg, #fef9f5 0%, #fcefea 60%, #fdf6f2 100%); box-shadow: 0 24px 50px -36px rgba(90,16,51,.35); }
-.mpg .hm-what h2 { grid-area: h; align-self: end; margin: 0; font-size: clamp(30px, 3.4vw, 48px); line-height: 1.1; font-weight: 800; letter-spacing: -.025em; color: #5a1033; }
-.mpg .hm-what p { grid-area: p; max-width: 520px; margin: 18px 0 0; font-size: 18px; line-height: 1.5; color: #24201f; }
-.mpg .hm-what img { grid-area: img; align-self: center; display: block; width: 100%; height: auto; -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent), linear-gradient(180deg, transparent, #000 8%, #000 90%, transparent); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent), linear-gradient(180deg, transparent, #000 8%, #000 90%, transparent); mask-composite: intersect; }
-.mpg .hm-what-btn { grid-area: btn; justify-self: start; align-self: start; display: inline-flex; align-items: center; gap: 10px; margin-top: 28px; padding: 13px 30px; border: 1.5px solid #5a1033; border-radius: 999px; background: #fff; font-size: 16px; font-weight: 700; color: #5a1033; text-decoration: none; transition: background .2s, color .2s; }
-.mpg .hm-what-btn:hover { background: #5a1033; color: #fff; }
+.mpg .hm-what-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); grid-template-areas: "h img" "p img" "btn img"; align-content: center; column-gap: 40px; padding: 44px 40px 44px 56px; border-radius: 28px; background: linear-gradient(135deg, #f5faf6 0%, #eaf4ee 60%, #f3f8f4 100%); box-shadow: 0 24px 50px -36px rgba(16,36,29,.35); }
+.mpg .hm-what h2 { grid-area: h; align-self: end; margin: 0; font-size: clamp(30px, 3.4vw, 48px); line-height: 1.1; font-weight: 800; letter-spacing: -.025em; color: var(--hm-ink); }
+.mpg .hm-what h2 span { color: var(--hm-green); }
+.mpg .hm-what p { grid-area: p; max-width: 520px; margin: 18px 0 0; font-size: 18px; line-height: 1.5; color: var(--hm-text); }
+.mpg .hm-what img { grid-area: img; align-self: center; justify-self: center; display: block; width: 100%; max-width: 480px; height: auto; -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent), linear-gradient(180deg, transparent, #000 8%, #000 90%, transparent); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent), linear-gradient(180deg, transparent, #000 8%, #000 90%, transparent); mask-composite: intersect; }
+.mpg .hm-what-btn { grid-area: btn; justify-self: start; align-self: start; display: inline-flex; align-items: center; gap: 10px; margin-top: 28px; padding: 13px 30px; border: 1.5px solid var(--hm-green); border-radius: 999px; background: #fff; font-size: 16px; font-weight: 700; color: var(--hm-green); text-decoration: none; transition: background .2s, color .2s; }
+.mpg .hm-what-btn:hover { background: var(--hm-green); color: #fff; }
 .mpg .hm-what-btn i { font-size: 13px; }
 @media (max-width: 720px) {
   .mpg .hm-what { padding: 28px 0 0; }
@@ -726,4 +727,263 @@
   .mpg .hm-chip b { font-size: 8.5px; }
   .mpg .hm-chip small { font-size: 7.5px; }
   .mpg .hm-chip[data-poi="metro"] { left: auto !important; right: 1%; }
+}
+
+/* =========================================================
+   DESKTOP HERO (above 1080 px): kicker with a gold rule, two-tone headline,
+   trust row, the waterfront photo fading in at the bottom left, and one search
+   bar across the foot of the hero (City / BHK / Budget + live project counts).
+   The live map on the right is unchanged; its bottom controls sit above the bar.
+   ========================================================= */
+.mpg .hm-hero-trust { display: none; }
+@media (min-width: 1081px) {
+  .mpg .hm-hero { background: #fbf8f2; }
+  /* --ws: the content column's left edge; --ml: where the map card starts (at least
+     ~640 px of text + photo before it). The riverside towers photo (public/img/hero-towers.webp,
+     drawn by .hm-hero-bg) sits between the text and the map, fading in from the left. */
+  .mpg .hm-hero { --ws: max(24px, calc((100vw - 1280px) / 2 + 24px)); --ml: max(44vw, calc(var(--ws) + 640px)); }
+  .mpg .hm-hero-bg { top: 0; bottom: 0; left: calc(var(--ws) + 380px); width: calc(var(--ml) - var(--ws) - 340px); height: auto; opacity: 1; filter: none;
+    background: url('/img/hero-towers.webp') center 70% / cover no-repeat;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,.6) 32%, #000 58%, #000 86%, transparent 100%), linear-gradient(180deg, transparent 0, #000 90px, #000 calc(100% - 60px), transparent 100%);
+    -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,.6) 32%, #000 58%, #000 86%, transparent 100%), linear-gradient(180deg, transparent 0, #000 90px, #000 calc(100% - 60px), transparent 100%); mask-composite: intersect; }
+  .mpg .hm-hero-sky { display: none; }
+  .mpg .hm-wrap.hm-hero-grid { min-height: 640px; display: flex; align-items: center; padding-top: 104px; padding-bottom: 48px; }
+  .mpg .hm-hero-copy { width: min(500px, calc(var(--ml) - var(--ws) - 130px)); max-width: none; }
+  .mpg .hm-hero-copy .hm-lead { max-width: 440px; }
+
+  .mpg .hm-kicker { display: inline-flex; gap: 14px; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; color: #12382d; font-size: 13px; font-weight: 700; letter-spacing: .2em; }
+  .mpg .hm-kicker .dot { display: none; }
+  .mpg .hm-kicker::after { content: ""; width: 56px; height: 2px; background: #c9a227; }
+  .mpg .hm-hero h1 { margin-top: 18px; font-size: clamp(40px, 3.5vw, 64px); line-height: 1.02; letter-spacing: -.035em; color: #0e3b2e; }
+  .mpg .hm-hero h1 .hm-h1-d > span { position: relative; display: inline-block; padding-right: .08em; font-style: italic; color: #0f5c47;
+    background: linear-gradient(90deg, #0f5c47 0%, #3f7a2a 45%, #c9a227 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .mpg .hm-hero h1 .hm-h1-d > span::after { content: ""; position: absolute; left: 18%; right: 2%; bottom: -.16em; height: .16em;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g'%3E%3Cstop offset='0' stop-color='%23c9a227'/%3E%3Cstop offset='1' stop-color='%230f5c47'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M2 10 C 70 2 140 1 198 6' stroke='url(%23g)' stroke-width='3.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; }
+  .mpg .hm-lead { margin-top: 22px; max-width: 520px; font-size: 16px; line-height: 1.55; color: #3b4744; }
+
+  .mpg .hm-hero-trust { list-style: none; display: flex; align-items: center; margin: 26px 0 0; padding: 0; }
+  .mpg .hm-hero-trust li { display: flex; align-items: center; gap: 10px; padding: 0 14px; }
+  .mpg .hm-hero-trust li:first-child { padding-left: 4px; }
+  .mpg .hm-hero-trust li + li { border-left: 1.5px solid #d6d9d2; }
+  .mpg .hm-hero-trust i { font-size: 24px; color: #d9a42b; }
+  .mpg .hm-hero-trust span { width: min-content; font-size: 14px; line-height: 1.25; font-weight: 600; color: #1f2b27; }
+
+  /* The search bar: across the foot of the hero, over the map's lower edge. */
+  .mpg .hm-search { position: relative; z-index: 3; display: flex; align-items: center; width: max-content; margin: 30px 0 0; padding: 8px;
+    border-radius: 22px; background: #fff; box-shadow: 0 22px 50px -24px rgba(16, 36, 29, .45); pointer-events: auto; }
+  .mpg .hm-form { flex: none; margin: 0; padding: 0; border: 0; box-shadow: none; background: none; display: flex; align-items: center; gap: 0; }
+  .mpg .hm-form .hm-field-q { display: none; }
+  .mpg .hm-form .hm-field-city { display: flex; }
+  .mpg .hm-form .hm-field { order: 0; width: 150px; height: 52px; padding: 0 16px; border-right: 1px solid #e6e9e4; }
+  .mpg .hm-form .hm-field-city { order: -1; width: 128px; }
+  .mpg .hm-form .hm-field:has(#heroBudget) { width: 166px; }
+  .mpg .hm-form .hm-field:nth-child(3) { border-right: 1px solid #e6e9e4; }
+  .mpg .hm-form .hm-field:has(select)::before { flex: none; font: 900 17px 'Font Awesome 6 Free'; color: #0f5c47; }
+  .mpg .hm-form .hm-field:has(#heroCity)::before { content: '\f3c5'; }
+  .mpg .hm-form .hm-field:has(#heroBhk)::before { content: '\f1ad'; }
+  .mpg .hm-form .hm-field:has(#heroBudget)::before { content: '\e1bc'; }
+  .mpg .hm-form .hm-field select { font-size: 15.5px; font-weight: 500; }
+  .mpg .hm-form .hm-btn { order: 2; margin-left: 8px; min-height: 52px; padding: 0 24px; border-radius: 999px; gap: 10px; font-size: 16px; }
+  .mpg .hm-form .hm-btn .hm-d { display: inline; }
+
+
+  /* The map card: the full height of the hero beside the text, rounded on the left
+     with a white rim. */
+  .mpg .hm-hero-map { top: 88px; bottom: 32px; left: var(--ml); overflow: hidden; border-radius: 64px 0 0 64px;
+    -webkit-mask-image: none; mask-image: none;
+    box-shadow: 0 0 0 6px #fff, 0 24px 50px -24px rgba(16, 36, 29, .45); }
+}
+/* Narrower desktops: fewer words in the bar. */
+@media (min-width: 1081px) and (max-width: 1360px) {
+  .mpg .hm-form .hm-field { width: 140px; padding: 0 12px; }
+  .mpg .hm-form .hm-field-city { width: 124px; }
+  .mpg .hm-form .hm-field:has(#heroBudget) { width: 156px; }
+  .mpg .hm-form .hm-btn { padding: 0 20px; }
+}
+/* Small laptops: the quick links drop their icons and the fields shrink to fit one row. */
+@media (min-width: 1081px) and (max-width: 1240px) {
+  .mpg .hm-search { gap: 10px; padding: 8px 10px 8px 8px; }
+  .mpg .hm-form .hm-field { width: 124px; padding: 0 10px; }
+  .mpg .hm-form .hm-field-city { width: 104px; }
+  .mpg .hm-form .hm-field:has(#heroBudget) { width: 150px; }
+  .mpg .hm-form .hm-field select { font-size: 14px; }
+  .mpg .hm-form .hm-btn { margin-left: 10px; padding: 0 16px; font-size: 14.5px; }
+  .mpg .hm-kicker { gap: 10px; font-size: 11.5px; letter-spacing: .12em; white-space: nowrap; }
+  .mpg .hm-kicker::after { width: 36px; }
+}
+
+/* =========================================================
+   DESKTOP HERO, final layout: text top left, the riverside photo behind the middle,
+   the map as a rounded card top right, and one big search card (tabs + fields)
+   centred across the bottom over a soft green wave.
+   ========================================================= */
+.mpg .hm-tabs { display: none; }
+@media (min-width: 1081px) {
+  .mpg .hm-hero { overflow: hidden; }
+  .mpg .hm-hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 170px; z-index: 0; pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 170' preserveAspectRatio='none'%3E%3Cpath d='M0 70 C 240 20 420 120 720 80 S 1200 30 1440 70 V170 H0Z' fill='%23dcebd6'/%3E%3Cpath d='M0 110 C 300 70 520 150 860 110 S 1260 80 1440 110 V170 H0Z' fill='%23c9e0c1'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; }
+  .mpg .hm-wrap.hm-hero-grid { min-height: 720px; display: block; padding-top: 96px; padding-bottom: 190px; }
+  .mpg .hm-hero-map { z-index: 1; top: 84px; bottom: 150px; right: 24px; left: var(--ml); border-radius: 28px; box-shadow: 0 0 0 6px #fff, 0 24px 50px -24px rgba(16, 36, 29, .45); }
+  .mpg .hm-hero-bg { bottom: 120px; }
+
+  /* Kicker in a white pill with a gold rule on each side */
+  .mpg .hm-kicker { position: relative; gap: 0; margin-left: 26px; padding: 7px 16px; border-radius: 999px; background: #fff; box-shadow: 0 6px 16px -10px rgba(16, 36, 29, .35); font-size: 12px; letter-spacing: .14em; }
+  .mpg .hm-kicker::before, .mpg .hm-kicker::after { content: ""; position: absolute; top: 50%; width: 22px; height: 2px; background: #c9a227; }
+  .mpg .hm-kicker::before { right: 100%; margin-right: 4px; } .mpg .hm-kicker::after { left: 100%; margin-left: 4px; width: 34px; }
+
+  /* Trust items: gold icon on a cream tile */
+  .mpg .hm-hero-trust li { gap: 10px; padding: 0 16px 0 0; }
+  .mpg .hm-hero-trust li + li { border-left: 0; }
+  .mpg .hm-hero-trust i { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 12px; background: #fdf3df; box-shadow: 0 4px 10px -6px rgba(150, 110, 20, .5); font-size: 20px; }
+
+  /* The search card */
+  .mpg .hm-search { position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 3; display: block; width: min(1080px, calc(100% - 48px)); margin: 0; padding: 0 22px 22px; border-radius: 28px; background: #fff; box-shadow: 0 26px 60px -28px rgba(16, 36, 29, .5); }
+  .mpg .hm-tabs { display: inline-flex; gap: 4px; margin: -26px 0 14px; padding: 6px; border-radius: 20px 20px 16px 16px; background: #fff; box-shadow: 0 -10px 24px -18px rgba(16, 36, 29, .35); }
+  .mpg .hm-tabs > * { display: inline-flex; align-items: center; gap: 9px; padding: 11px 26px; border-radius: 14px; font-size: 15.5px; font-weight: 600; color: #1f2b27; text-decoration: none; }
+  .mpg .hm-tabs i { font-size: 16px; }
+  .mpg .hm-tabs .on { background: #0f6b47; color: #fff; }
+  .mpg .hm-tabs a:hover { background: #eef4ef; }
+  .mpg .hm-tabs a:focus-visible { outline: 3px solid var(--hm-orange); outline-offset: 2px; }
+  .mpg .hm-form { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) minmax(0, 1.2fr) auto; gap: 16px; width: 100%; }
+  .mpg .hm-form .hm-field, .mpg .hm-form .hm-field-city, .mpg .hm-form .hm-field:has(#heroBudget) { width: auto; height: 54px; padding: 0 18px; border: 1px solid #e8ebe6; border-radius: 14px; background: #fff; box-shadow: 0 6px 14px -12px rgba(16, 36, 29, .4); }
+  .mpg .hm-form .hm-field:nth-child(3) { border-right: 1px solid #e8ebe6; }
+  .mpg .hm-form .hm-field select { font-size: 16px; font-weight: 600; }
+  .mpg .hm-form .hm-btn { margin-left: 0; min-height: 54px; padding: 0 40px; border-radius: 14px; font-size: 17px; }
+}
+@media (min-width: 1081px) and (max-width: 1240px) {
+  .mpg .hm-tabs > * { padding: 10px 18px; font-size: 14px; }
+  .mpg .hm-form { gap: 10px; }
+  .mpg .hm-form .hm-btn { padding: 0 24px; font-size: 15px; }
+}
+
+/* =========================================================
+   "BUILT FOR EVERY HOME BUYER": centred header (pill with a house, green
+   "home buyer" with a gold swoosh), the nearby-places card, and the green
+   save card with the towers photo on its right behind a gold arc.
+   ========================================================= */
+.mpg .hm-buyers { background: linear-gradient(180deg, #fbfaf5 0%, #f4f8f1 100%); }
+.mpg .hm-buyers .hm-head { text-align: center; }
+.mpg .hm-buyers .hm-head .hm-sub { margin-left: auto; margin-right: auto; font-size: 18px; color: #3f4b46; }
+.mpg .hm-buyers .hm-eyebrow { display: inline-flex; align-items: center; gap: 9px; padding: 8px 20px; border-radius: 999px; background: #e3f0e3; color: #0b4f3c; font-size: 14px; letter-spacing: .03em; }
+.mpg .hm-buyers .hm-eyebrow i { font-size: 15px; }
+.mpg .hm-buyers .hm-head h2 { font-size: clamp(30px, 3.6vw, 52px); }
+.mpg .hm-buyers .hm-head h2 .accent { position: relative; display: inline-block; color: #0b6b48; }
+.mpg .hm-buyers .hm-head h2 .accent::after { content: ""; position: absolute; left: 12%; right: 30%; bottom: -.14em; height: .16em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 9 C 60 2 140 1 198 6' stroke='%23f4c313' stroke-width='3.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; }
+.mpg .hm-bento { gap: 26px; }
+.mpg .hm-t-near { border: 1px solid #edf0ec; border-radius: 28px; box-shadow: 0 20px 44px -30px rgba(16, 36, 29, .4); }
+.mpg .hm-t-save { position: relative; display: block; overflow: hidden; padding: 34px 40px 32px; border-radius: 28px; background: linear-gradient(115deg, #0a4a37 0%, #0d5a42 50%, #137049 100%); box-shadow: 0 0 0 5px #fff, 0 24px 50px -28px rgba(16, 36, 29, .6); }
+.mpg .hm-save-art { position: absolute; top: 0; right: 0; bottom: 0; width: 40%; pointer-events: none; background: url('/img/buyers-towers.webp') right center / cover no-repeat;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40%); mask-image: linear-gradient(90deg, transparent 0, #000 40%); }
+.mpg .hm-save-tx { position: relative; max-width: 64%; gap: 12px; }
+.mpg .hm-t-save h3 { font-size: clamp(24px, 2.1vw, 34px); line-height: 1.15; }
+.mpg .hm-t-save h3 span { color: #f4c313; }
+.mpg .hm-t-save p { font-size: 16px; color: rgba(255,255,255,.92); }
+.mpg .hm-save-feats { margin-top: 10px; }
+.mpg .hm-save-feats li { gap: 8px; font-size: 14px; font-weight: 600; }
+.mpg .hm-save-feats i { width: 50px; height: 50px; display: grid; place-items: center; border-radius: 14px; background: rgba(255,255,255,.12); font-size: 21px; }
+.mpg .hm-save-btns { margin-top: 18px; gap: 18px 26px; }
+.mpg .hm-t-save .hm-btn-white { min-height: 58px; padding: 0 30px; font-size: 17px; color: #0b4f3c; }
+.mpg .hm-t-save .hm-wa { width: 34px; height: 34px; font-size: 19px; }
+.mpg .hm-bvideo .play { width: 52px; height: 52px; }
+.mpg .hm-bvideo b { font-size: 17px; }
+@media (max-width: 1080px) {
+  .mpg .hm-save-tx { max-width: 70%; }
+}
+@media (max-width: 640px) {
+  .mpg .hm-buyers .hm-head .hm-sub { font-size: 15px; }
+  .mpg .hm-t-save { padding: 22px 18px; }
+  .mpg .hm-save-art { width: 100%; opacity: .22; -webkit-mask-image: none; mask-image: none; }
+  .mpg .hm-save-tx { max-width: none; }
+  .mpg .hm-save-feats i { width: 40px; height: 40px; font-size: 17px; }
+  .mpg .hm-t-save .hm-btn-white { min-height: 48px; font-size: 15px; }
+}
+/* "Built for every home buyer": a more compact section. */
+.mpg .hm-sec.hm-buyers { padding: 56px 0; }
+.mpg .hm-buyers .hm-head { margin-bottom: 26px; }
+.mpg .hm-buyers .hm-head h2 { font-size: clamp(28px, 3vw, 44px); }
+.mpg .hm-buyers .hm-eyebrow { margin-bottom: 8px; padding: 6px 16px; font-size: 13px; }
+.mpg .hm-buyers .hm-near-map { min-height: 240px; }
+.mpg .hm-buyers .hm-near-list { gap: 6px; }
+.mpg .hm-buyers .hm-near-list a { min-height: 40px; }
+.mpg .hm-buyers .hm-near-btn { min-height: 44px; }
+.mpg .hm-buyers .hm-t-save { padding: 26px 32px 24px; }
+.mpg .hm-buyers .hm-save-tx { gap: 10px; }
+.mpg .hm-buyers .hm-save-feats { margin-top: 4px; }
+.mpg .hm-buyers .hm-save-feats i { width: 42px; height: 42px; font-size: 18px; }
+.mpg .hm-buyers .hm-save-btns { margin-top: 10px; gap: 12px 22px; }
+.mpg .hm-buyers .hm-t-save .hm-btn-white { min-height: 50px; padding: 0 24px; font-size: 16px; }
+.mpg .hm-buyers .hm-bvideo .play { width: 44px; height: 44px; }
+@media (max-width: 720px) {
+  .mpg .hm-sec.hm-buyers { padding: 36px 0; }
+  .mpg .hm-buyers .hm-head { margin-bottom: 18px; }
+  .mpg .hm-buyers .hm-near-map { min-height: 200px; }
+}
+/* "Built for every home buyer": shorter still. */
+.mpg .hm-sec.hm-buyers { padding: 40px 0; }
+.mpg .hm-buyers .hm-head { margin-bottom: 20px; }
+.mpg .hm-buyers .hm-head h2 { font-size: clamp(26px, 2.6vw, 38px); }
+.mpg .hm-buyers .hm-head .hm-sub { margin-top: 4px; font-size: 16px; }
+.mpg .hm-buyers .hm-eyebrow { margin-bottom: 6px; padding: 5px 14px; font-size: 12px; }
+.mpg .hm-buyers .hm-t-near { gap: 12px; padding: 10px; }
+.mpg .hm-buyers .hm-near-map { min-height: 200px; }
+.mpg .hm-buyers .hm-near-side { gap: 8px; }
+.mpg .hm-buyers .hm-near-list { gap: 5px; }
+.mpg .hm-buyers .hm-near-list a { min-height: 36px; padding: 4px 10px 4px 6px; font-size: 13.5px; }
+.mpg .hm-buyers .hm-near-list .ic { width: 28px; height: 28px; font-size: 13px; }
+.mpg .hm-buyers .hm-near-btn { min-height: 40px; font-size: 14px; }
+.mpg .hm-buyers .hm-t-save { padding: 20px 28px; }
+.mpg .hm-buyers .hm-t-save h3 { font-size: clamp(22px, 1.8vw, 28px); }
+.mpg .hm-buyers .hm-t-save p { font-size: 14.5px; }
+.mpg .hm-buyers .hm-save-tx { gap: 8px; }
+.mpg .hm-buyers .hm-save-feats li { gap: 5px; font-size: 12.5px; }
+.mpg .hm-buyers .hm-save-feats i { width: 36px; height: 36px; border-radius: 11px; font-size: 16px; }
+.mpg .hm-buyers .hm-save-btns { margin-top: 6px; }
+.mpg .hm-buyers .hm-t-save .hm-btn-white { min-height: 44px; font-size: 15px; }
+.mpg .hm-buyers .hm-bvideo .play { width: 40px; height: 40px; }
+.mpg .hm-buyers .hm-bvideo b { font-size: 15px; }
+@media (min-width: 1081px) { .mpg .hm-buyers .hm-save-btns { flex-wrap: nowrap; } }
+@media (max-width: 720px) {
+  .mpg .hm-sec.hm-buyers { padding: 28px 0; }
+  .mpg .hm-buyers .hm-near-map { min-height: 180px; }
+}
+.mpg .hm-buyers .hm-bvideo b { white-space: nowrap; }
+
+/* Tablets (721–1080 px): the same hero design as desktop, stacked — text, then the
+   search card with tabs, then the live map as a rounded card below. */
+@media (min-width: 721px) and (max-width: 1080px) {
+  .mpg .hm-hero { background: #fbf8f2; }
+  .mpg .hm-hero-bg { display: none; }
+  .mpg .hm-kicker { position: relative; gap: 0; margin-left: 26px; padding: 7px 16px; border: 0; border-radius: 999px; background: #fff; box-shadow: 0 6px 16px -10px rgba(16, 36, 29, .35); color: #12382d; font-size: 12px; font-weight: 700; letter-spacing: .14em; }
+  .mpg .hm-kicker .dot { display: none; }
+  .mpg .hm-kicker::before, .mpg .hm-kicker::after { content: ""; position: absolute; top: 50%; width: 22px; height: 2px; background: #c9a227; }
+  .mpg .hm-kicker::before { right: 100%; margin-right: 4px; } .mpg .hm-kicker::after { left: 100%; margin-left: 4px; }
+  .mpg .hm-hero h1 { color: #0e3b2e; }
+  .mpg .hm-hero h1 .hm-h1-d > span { display: inline-block; padding-right: .08em; font-style: italic;
+    background: linear-gradient(90deg, #0f5c47 0%, #3f7a2a 45%, #c9a227 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .mpg .hm-hero-trust { list-style: none; display: flex; flex-wrap: wrap; gap: 10px 18px; margin: 18px 0 0; padding: 0; }
+  .mpg .hm-hero-trust li { display: flex; align-items: center; gap: 10px; }
+  .mpg .hm-hero-trust i { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px; background: #fdf3df; color: #d9a42b; font-size: 19px; }
+  .mpg .hm-hero-trust span { width: min-content; font-size: 14px; line-height: 1.25; font-weight: 600; color: #1f2b27; }
+
+  .mpg .hm-search { margin-top: 24px; padding: 12px 16px 16px; border-radius: 24px; background: #fff; box-shadow: 0 22px 50px -26px rgba(16, 36, 29, .5); }
+  .mpg .hm-tabs { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
+  .mpg .hm-tabs > * { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 12px; font-size: 14px; font-weight: 600; color: #1f2b27; text-decoration: none; }
+  .mpg .hm-tabs .on { background: #0f6b47; color: #fff; }
+  .mpg .hm-tabs a:hover { background: #eef4ef; }
+  .mpg .hm-form { margin: 0; padding: 0; border: 0; box-shadow: none; background: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) auto; gap: 10px; }
+  .mpg .hm-form .hm-field-q { display: none; }
+  .mpg .hm-form .hm-field-city { display: flex; order: -1; }
+  .mpg .hm-form .hm-field { height: 50px; padding: 0 14px; border: 1px solid #e8ebe6; border-radius: 14px; background: #fff; }
+  .mpg .hm-form .hm-field:nth-child(3) { border-right: 1px solid #e8ebe6; }
+  .mpg .hm-form .hm-field:has(select)::before { flex: none; font: 900 16px 'Font Awesome 6 Free'; color: #0f5c47; }
+  .mpg .hm-form .hm-field:has(#heroCity)::before { content: '\f3c5'; }
+  .mpg .hm-form .hm-field:has(#heroBhk)::before { content: '\f1ad'; }
+  .mpg .hm-form .hm-field:has(#heroBudget)::before { content: '\e1bc'; }
+  .mpg .hm-form .hm-btn { order: 2; min-height: 50px; padding: 0 22px; border-radius: 14px; }
+  .mpg .hm-hero-map { border-radius: 24px; box-shadow: 0 0 0 6px #fff, 0 24px 50px -24px rgba(16, 36, 29, .45); }
+}
+@media (min-width: 721px) and (max-width: 860px) {
+  .mpg .hm-form { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .mpg .hm-form .hm-btn { grid-column: 1 / -1; }
 }

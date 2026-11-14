@@ -87,28 +87,28 @@
   }
 
   /* ---------- Search card: mode tabs, search, City / BHK / Budget, then the button ---------- */
-  .mpg .hm-search { position: relative; z-index: 2; margin: -40px -4px 0; padding: 12px; border-radius: 24px; background: #fff; border: 1px solid #eef0ec; box-shadow: 0 22px 44px -22px rgba(16, 40, 30, .45); }
+  .mpg .hm-search { position: relative; z-index: 2; margin: -40px -4px 0; padding: 10px; border-radius: 24px; background: #fff; border: 1px solid #eef0ec; box-shadow: 0 22px 44px -22px rgba(16, 40, 30, .45); }
   /* The mockup's card has no Buy / Plots / Commercial tabs or locality chips (property
      types and localities stay in the header menu, and on desktop). */
   .mpg div.mh-only.mh-modes { display: grid !important; }
-  .mpg .mh-modes { grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 12px; padding: 4px; border-radius: 999px; background: #eef1f5; }
-  .mpg .mh-modes button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 46px; padding: 0 8px; border: 0; border-radius: 999px; background: transparent; font: inherit; font-size: 14.5px; font-weight: 600; color: #1d2b25; cursor: pointer; white-space: nowrap; }
-  .mpg .mh-modes button i { font-size: 17px; }
+  .mpg .mh-modes { grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 8px; padding: 3px; border-radius: 999px; background: #eef1f5; }
+  .mpg .mh-modes button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 38px; padding: 0 8px; border: 0; border-radius: 999px; background: transparent; font: inherit; font-size: 14.5px; font-weight: 600; color: #1d2b25; cursor: pointer; white-space: nowrap; }
+  .mpg .mh-modes button i { font-size: 15px; }
   .mpg .mh-modes button.on { background: linear-gradient(180deg, #11684a, #0a4f37); color: #fff; box-shadow: 0 10px 20px -12px rgba(10, 69, 53, .9); }
   .mpg .mh-modes button:focus-visible { outline: 2px solid var(--m-forest); outline-offset: 2px; }
   /* Button: map-pin icon, label (follows the mode tab, landing.js) and an arrow. */
   .mpg .hm-form .hm-btn { gap: 12px; }
   .mpg .hm-form .hm-btn .hm-d { display: none; }
   .mpg .hm-form .hm-btn .hm-m { display: inline-block; }
-  .mpg .hm-form .hm-btn .fa-map-location-dot.hm-m { font-size: 20px; }
-  .mpg .hm-form { margin-top: 0; padding: 0; border: 0; box-shadow: none; background: transparent; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 8px; }
-  .mpg .hm-field { height: 48px; gap: 6px; padding: 0 6px 0 12px; border: 1px solid var(--m-line); border-radius: 999px; background: #fff; box-shadow: 0 4px 12px -8px rgba(16, 40, 30, .3); }
+  .mpg .hm-form .hm-btn .fa-map-location-dot.hm-m { font-size: 17px; }
+  .mpg .hm-form { margin-top: 0; padding: 0; border: 0; box-shadow: none; background: transparent; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 6px; }
+  .mpg .hm-field { height: 40px; gap: 6px; padding: 0 6px 0 12px; border: 1px solid var(--m-line); border-radius: 999px; background: #fff; box-shadow: 0 4px 12px -8px rgba(16, 40, 30, .3); }
   .mpg .hm-field:nth-child(3) { border-right: 1px solid var(--m-line); }
-  .mpg .hm-field-q { order: -2; grid-column: 1 / -1; height: 52px; padding: 0 6px 0 16px; }
+  .mpg .hm-field-q { order: -2; grid-column: 1 / -1; height: 44px; padding: 0 6px 0 16px; }
   .mpg .hm-field-q > i { font-size: 0; }
-  .mpg .hm-field-q > i::before { font-size: 19px; content: '\f002'; color: var(--m-ink); }
+  .mpg .hm-field-q > i::before { font-size: 17px; content: '\f002'; color: var(--m-ink); }
   .mpg .hm-field-q input { padding-left: 4px; }
-  .mpg .hm-mic:not([hidden]) { display: grid; place-items: center; flex: none; width: 40px; height: 40px; border: 0; border-radius: 50%; background: none; color: var(--m-ink); font-size: 18px; cursor: pointer; }
+  .mpg .hm-mic:not([hidden]) { display: grid; place-items: center; flex: none; width: 34px; height: 34px; border: 0; border-radius: 50%; background: none; color: var(--m-ink); font-size: 16px; cursor: pointer; }
   .mpg .hm-mic.on { background: #ffe1e1; color: #c62f28; }
   .mpg .hm-field-city { display: flex; order: -1; }
   .mpg .hm-field:has(select)::before { flex: none; font: 900 16px 'Font Awesome 6 Free'; color: var(--m-forest); }
@@ -118,7 +118,7 @@
   .mpg .hm-field input { font-weight: 500; font-size: 14px; text-overflow: ellipsis; }
   .mpg .hm-field input::placeholder { color: #5f6b9a; }
   .mpg .hm-field select { font-weight: 600; font-size: 13px; color: var(--m-ink); padding-right: 13px; background-position: right 0 center; text-overflow: ellipsis; }
-  .mpg .hm-form .hm-btn { grid-column: 1 / -1; min-height: 56px; margin-top: 2px; border-radius: 999px; background: linear-gradient(90deg, #0b5a3e 0%, #1e6b35 55%, #5a8a2a 100%); font-size: 16.5px; font-weight: 600; box-shadow: 0 14px 26px -14px rgba(10, 69, 53, .9); }
+  .mpg .hm-form .hm-btn { grid-column: 1 / -1; min-height: 46px; margin-top: 0; border-radius: 999px; background: linear-gradient(90deg, #0b5a3e 0%, #1e6b35 55%, #5a8a2a 100%); font-size: 16.5px; font-weight: 600; box-shadow: 0 14px 26px -14px rgba(10, 69, 53, .9); }
 
   /* ---------- Shortcut cards: a swipeable row, an arrow and page dots ---------- */
   .mpg .mh-cats { position: relative; margin: 20px -16px 0; }
@@ -153,7 +153,7 @@
   .mpg .mh-around-btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 14px; padding: 9px 18px; border: 1.5px solid var(--m-forest); border-radius: 999px; background: #fff; font-size: 14px; font-weight: 700; color: var(--m-forest); text-decoration: none; }
 
   /* ---------- Live map: a rounded card ---------- */
-  .mpg .hm-hero-map { margin: 4px 12px 8px; height: 440px; border-radius: 22px; box-shadow: var(--m-shadow); }
+  .mpg .hm-hero-map { margin: 4px 12px 8px; height: 320px; border-radius: 22px; box-shadow: var(--m-shadow); }
   .mpg .hm-ov-layers { padding: 5px; border-radius: 14px; box-shadow: var(--m-shadow); }
   .mpg .hm-ov-layers button.on { background: var(--m-deep); color: #fff; }
   .mpg .hm-preview-cta .hm-btn { border-radius: 999px; background: var(--m-deep); }

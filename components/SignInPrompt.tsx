@@ -6,8 +6,8 @@ import './signin-prompt.css';
 import { track } from '@/lib/analytics';
 
 // Sign-in popup for guests on public pages, with the "How to use Mappingg" video.
-// Same rule as the home page's modal (public/landing.js): it opens when a page opens
-// (1 s), then 10 s after each time it's closed until they sign in; the page itself
+// Same rule as the home page's modal (public/landing.js): it opens 30 s after a page
+// opens, then 60 s after each time it's closed until they sign in; the page itself
 // works normally in between. The form signs in
 // for real (POST /api/auth/login, the same call as the home page's modal); WhatsApp
 // OTP, "Forgot password" and "Create account" open the full modal on the home page.
@@ -15,8 +15,8 @@ import { track } from '@/lib/analytics';
 // stay fully crawlable.
 
 /** The popup opens this long after a page opens, then every REOPEN_MS while it's closed. */
-const FIRST_MS = 1000;
-const REOPEN_MS = 10_000;
+const FIRST_MS = 30_000;
+const REOPEN_MS = 60_000;
 const PROMPTED_KEY = 'mg-signin-prompted';
 const ss = {
   set: (k: string, v: string) => { try { sessionStorage.setItem(k, v); } catch { /* private mode */ } },
@@ -56,7 +56,7 @@ export default function SignInPrompt() {
     return () => { cancelled = true; };
   }, [pathname, skip]);
 
-  // Opens 1 s after a page opens, then 10 s after each time it's closed (until sign-in,
+  // Opens FIRST_MS after a page opens, then REOPEN_MS after each time it's closed (until sign-in,
   // which reloads the page).
   const shownOn = useRef<string | null>(null);
   useEffect(() => {

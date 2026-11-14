@@ -1025,23 +1025,25 @@
     if (!s) promptSignIn();
   }).catch(() => {});
 
-  // Guests on the home page (phone and desktop) get the Sign in / Sign up popup 1 s
-  // after it opens, then 10 s after each time they close it, until they sign in. The
+  // Guests on the home page (phone and desktop) get the Sign in / Sign up popup 30 s
+  // after it opens, then 60 s after each time they close it, until they sign in. The
   // page itself works normally (links, search, map), so they can look around between
   // prompts. Not inside an iframe (the home page's embedded map).
+  const PROMPT_FIRST_MS = 30000, PROMPT_AGAIN_MS = 60000;
   function promptSignIn() {
     try { if (window.self !== window.top) return; } catch (e) { return; }
     const ask = () => {
       try { sessionStorage.setItem('mg-signin-prompted', '1'); } catch (e) {}
       openModal('signin', null, 'Sign in, or create a free account, to explore every project on the live map.');
     };
-    // First 1 s after the page opens, then 10 s after each time it's closed, until they
-    // sign in. Skips if the visitor left the home page (this markup is gone) or got in.
-    let lastSeen = Date.now() - 9000;
+    // First PROMPT_FIRST_MS after the page opens, then PROMPT_AGAIN_MS after each time it's
+    // closed, until they sign in. Skips if the visitor left the home page (this markup is
+    // gone) or got in.
+    let lastSeen = Date.now(), wait = PROMPT_FIRST_MS;
     const tick = setInterval(function () {
       if (!modal || !document.contains(modal) || getUser()) return;
-      if (modal.classList.contains('is-open')) { lastSeen = Date.now(); return; }
-      if (Date.now() - lastSeen >= 10000) { lastSeen = Date.now(); ask(); }
+      if (modal.classList.contains('is-open')) { lastSeen = Date.now(); wait = PROMPT_AGAIN_MS; return; }
+      if (Date.now() - lastSeen >= wait) { lastSeen = Date.now(); wait = PROMPT_AGAIN_MS; ask(); }
     }, 500);
     __cleanups.push(() => clearInterval(tick));
   }

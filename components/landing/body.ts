@@ -33,8 +33,14 @@ export const LANDING_BODY = `
   <div class="hm-wrap hm-hero-grid">
     <div class="hm-hero-copy">
       <span class="hm-kicker"><span class="dot"></span>India's real estate project map</span>
-      <h1><span class="hm-h1-d">Find your next home <span>by location.</span></span> <span class="hm-h1-m">Discover, Compare &amp; Find Your Next Home on an <em>Interactive Map</em></span></h1>
-      <p class="hm-lead"><span class="hm-h1-d">Explore verified residential projects with real locations, prices, RERA details, nearby infrastructure and amenities — all in one interactive map.</span><span class="hm-h1-m">Explore verified projects, real prices, RERA details, nearby infrastructure and more — all in one place.</span></p>
+      <h1><span class="hm-h1-d">Find Your Next Home <span>by Location</span></span> <span class="hm-h1-m">Discover, Compare &amp; Find Your Next Home on an <em>Interactive Map</em></span></h1>
+      <p class="hm-lead"><span class="hm-h1-d">Explore verified projects with real locations, prices, RERA details, nearby infrastructure and amenities — all on an interactive map.</span><span class="hm-h1-m">Explore verified projects, real prices, RERA details, nearby infrastructure and more — all in one place.</span></p>
+      <ul class="hm-hero-trust" aria-label="Why Mappingg">
+        <li><i class="fas fa-shield-halved" aria-hidden="true"></i><span>Verified Projects</span></li>
+        <li><i class="fas fa-layer-group" aria-hidden="true"></i><span>RERA Details</span></li>
+        <li><i class="fas fa-indian-rupee-sign" aria-hidden="true"></i><span>Real Prices</span></li>
+        <li><i class="fas fa-location-dot" aria-hidden="true"></i><span>Nearby Infra</span></li>
+      </ul>
       <!--M_TRUST-->
 
       <div class="hm-search">
@@ -42,6 +48,12 @@ export const LANDING_BODY = `
           <button type="button" class="on" data-mode="map" aria-pressed="true"><i class="far fa-map" aria-hidden="true"></i>Explore on Map</button>
           <button type="button" data-mode="list" aria-pressed="false"><i class="fas fa-list-ul" aria-hidden="true"></i>Search Projects</button>
         </div>
+        <nav class="hm-tabs" aria-label="Browse projects">
+          <span class="on" aria-current="page"><i class="fas fa-house" aria-hidden="true"></i>Buy</span>
+          <a href="/property/commercial"><i class="fas fa-building" aria-hidden="true"></i>Commercial</a>
+          <a href="/status/upcoming"><i class="fas fa-rocket" aria-hidden="true"></i>New Launches</a>
+          <a href="/map" class="trial-link"><i class="far fa-map" aria-hidden="true"></i>Projects on Map</a>
+        </nav>
         <form class="hm-form" id="heroAskForm" role="search" action="/map" method="get" aria-label="Search projects">
           <label class="hm-field hm-field-q"><i class="fas fa-location-dot" aria-hidden="true"></i><span class="sr-only">Locality, project or developer</span>
             <input id="heroAskInput" name="q" type="search" placeholder="Locality" autocomplete="off" enterkeyhint="search" maxlength="80"><button type="button" class="hm-mic" id="heroMic" aria-label="Search by voice" hidden><i class="fas fa-microphone" aria-hidden="true"></i></button></label>
