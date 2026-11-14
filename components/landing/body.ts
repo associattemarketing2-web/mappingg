@@ -374,3 +374,23 @@ export const LANDING_BODY = `
 <div class="mpg-toast" id="toast" role="status" aria-live="polite"></div>
 <template id="mpg-cc-options">${PHONE_CODE_OPTIONS}</template>
 `;
+
+/** The sign-in / sign-up modal while WhatsApp codes are paused (OTP_ENABLED off,
+ *  lib/otp.ts): sign in with mobile number or email, no WhatsApp OTP buttons, email
+ *  optional for buyers. Done in the server HTML so the page is right before any
+ *  script runs (public/landing.js applies the same rules after that). */
+export function withoutOtp(html: string): string {
+  const swaps: [string, string][] = [
+    ['id="authModal"', 'id="authModal" data-otp="off"'],
+    ['<label for="si-email">Email</label><input type="email" id="si-email" placeholder="you@example.com"',
+      '<label for="si-email">Mobile number or email</label><input type="text" id="si-email" placeholder="Mobile number or email" inputmode="email"'],
+    ['id="waLoginLink"', 'id="waLoginLink" hidden'],
+    ['<div class="su-quick" id="su-quick">', '<div class="su-quick" id="su-quick" hidden>'],
+    ['>Your name, WhatsApp number, email and a password — we’ll send a 6-digit code on WhatsApp to verify your number.<',
+      '>Just your name, mobile number and a password. Email is optional.<'],
+    ['<label for="su-email">Email</label><input type="email" id="su-email" name="email" placeholder="you@example.com" autocomplete="email" required>',
+      '<label for="su-email">Email <small>(optional)</small></label><input type="email" id="su-email" name="email" placeholder="you@example.com" autocomplete="email">'],
+    ['>Forgot it later? Reset it with a code on your WhatsApp.<', '>You’ll sign in with your mobile number (or email) and this password.<'],
+  ];
+  return swaps.reduce((h, [from, to]) => h.replace(from, () => to), html);
+}

@@ -6,7 +6,7 @@
  * waiting after NAV_TIMEOUT_MS and serves the cached page instead of leaving a
  * blank screen (the "PWA pages sometimes don't load" symptom). The network copy
  * still updates the cache in the background when it eventually arrives. */
-const CACHE = 'mappingg-v4'; // v4: purges any private pages cached by older versions
+const CACHE = 'mappingg-v5'; // v5: drops pages cached before the OTP-paused sign-in (v4: private pages)
 const NAV_TIMEOUT_MS = 3500;
 const APP_SHELL = ['/', '/map', '/mundhwa-map-3d', '/db-shim.js', '/landing.js', '/manifest.webmanifest'];
 

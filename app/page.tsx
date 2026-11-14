@@ -3,7 +3,7 @@ import './landing.css';
 import './home-finder.css';
 import './home.css';
 import './mobile-home.css';
-import { LANDING_BODY } from '@/components/landing/body';
+import { LANDING_BODY, withoutOtp } from '@/components/landing/body';
 import LandingClient from '@/components/landing/LandingClient';
 import SiteHeader from '@/components/SiteHeader';
 import IconFont from '@/components/IconFont';
@@ -16,6 +16,7 @@ import { homeStats, statsStripHtml, statsBandHtml, mapPreviewHtml, heroProjectHt
 import { SITE, SITE_URL } from '@/lib/seo/config';
 import { mobileTrustHtml, mobileCatsHtml, mobileDiscoverHtml, mobileInsightsHtml, type MobilePost } from '@/components/landing/mobile-sections';
 import { listPublished, readingTime } from '@/lib/blog';
+import { otpEnabled } from '@/lib/otp';
 
 // ISR: served static & fast, but re-renders periodically so admin-set SEO values
 // (Search Console verification, GTM) from the shared layout show up without a redeploy.
@@ -62,8 +63,10 @@ export default async function HomePage() {
     .replace('<!--M_CATS-->', () => mobileCatsHtml(cards))
     .replace('<!--M_DISCOVER-->', () => mobileDiscoverHtml())
     .replace('<!--M_INSIGHTS-->', () => mobileInsightsHtml(posts, stats));
+  // WhatsApp codes paused (OTP_ENABLED off): mobile/email + password sign-in, no OTP buttons.
+  const authHtml = otpEnabled() ? landingHtml.replace('id="authModal"', 'id="authModal" data-otp="on"') : withoutOtp(landingHtml);
   // "Projects near you" (React) sits between the hero (search + live map + stats) and the rest.
-  const [heroHtml, restHtml = ''] = landingHtml.split('<!--SPLIT-->');
+  const [heroHtml, restHtml = ''] = authHtml.split('<!--SPLIT-->');
 
   return (
     <>
