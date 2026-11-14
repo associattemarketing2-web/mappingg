@@ -1,4 +1,4 @@
-import { featuredPool, type HomeStats } from './home-sections';
+import { featuredPool } from './home-sections';
 import type { ProjectCardData } from '@/lib/home/cards';
 
 // Phone-only sections of the home page (≤ 720 px; hidden above that by
@@ -12,13 +12,16 @@ export interface MobilePost { href: string; title: string; tag: string; minutes:
 const esc = (v: string) =>
   v.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
-/** "970" → "970+", small counts exact (same rounding as the desktop counts). */
-const fmt = (n: number) => (n >= 50 ? `${(Math.floor(n / 10) * 10).toLocaleString('en-IN')}+` : n.toLocaleString('en-IN'));
-
 const arrow = '<i class="fas fa-arrow-right" aria-hidden="true"></i>';
 
-const head = (title: string, href?: string) =>
-  `<div class="mh-head"><h2>${esc(title)}</h2>${href ? `<a href="${href}">View All ${arrow}</a>` : ''}</div>`;
+/** Icon for a blog tag chip: places get a pin, the rest by topic. */
+function tagIcon(tag: string): string {
+  const t = tag.toLowerCase();
+  if (/\bnri\b/.test(t)) return 'fa-globe';
+  if (/invest|return|rent|price|trend/.test(t)) return 'fa-chart-line';
+  if (/\b(pune|mumbai|navi mumbai|thane|bengaluru|bangalore|hyderabad|delhi|gurugram|gurgaon|noida|chennai|kolkata|ahmedabad|kalyan|dombivli|dubai)\b/.test(t)) return 'fa-location-dot';
+  return 'fa-layer-group';
+}
 
 /** The project shown in the phone hero's floating card and the "Explore Properties
  *  Around You" pin: a new launch with a price if there is one, else the best
@@ -97,57 +100,44 @@ export function mobileCatsHtml(cards: ProjectCardData[]): string {
       </section>`;
 }
 
-/** After "Projects near you": why Mappingg, and a link to how it works. */
+/** After "Projects near you": what Mappingg is (every screen size; styled in app/home.css). */
 export function mobileDiscoverHtml(): string {
-  return `<div class="mh-only mh">
-  <section class="mh-sec mh-why">
-    <h2>Why Choose Mappingg.com?</h2>
-    <p class="mh-sub">Everything you need for a smarter home buying journey — in one place.</p>
-    <ul>
-      <li><span class="ic"><i class="fas fa-shield-halved" aria-hidden="true"></i></span><b>Verified Projects</b><small>With RERA details</small></li>
-      <li><span class="ic"><i class="fas fa-indian-rupee-sign" aria-hidden="true"></i></span><b>Real Prices</b><small>Where developers publish them</small></li>
-      <li><span class="ic"><i class="fas fa-map-location-dot" aria-hidden="true"></i></span><b>Interactive Map</b><small>Exact project locations</small></li>
-      <li><span class="ic"><i class="fas fa-right-left" aria-hidden="true"></i></span><b>Compare Easily</b><small>Prices, BHK &amp; possession</small></li>
-    </ul>
-    <a href="/how-it-works" class="mh-promo">
-      <b>Make a Smarter Home Buying Decision</b>
-      <small>With real data, real locations and real insights.</small>
-      <i class="fas fa-arrow-right mh-go" aria-hidden="true"></i>
-    </a>
-  </section>
-</div>`;
+  return `<section class="hm-what" aria-labelledby="hmWhatTitle">
+  <div class="hm-wrap">
+    <div class="hm-what-card">
+      <h2 id="hmWhatTitle">What is Mappingg.com?</h2>
+      <p>A real estate discovery platform that helps you find, verify and compare residential projects on an interactive map with real prices, RERA details and location insights.</p>
+      <img src="/img/what-is-mappingg.webp" alt="Phone showing residential projects pinned on the Mappingg map" width="480" height="270" decoding="async" loading="lazy">
+      <a href="/about" class="hm-what-btn">Learn More ${arrow}</a>
+    </div>
+  </div>
+</section>`;
 }
 
-/** Before the closing call to action: blog articles and the "better futures" card with live counts. */
-export function mobileInsightsHtml(posts: MobilePost[], s: HomeStats): string {
+/** Before the closing call to action: blog articles. */
+export function mobileInsightsHtml(posts: MobilePost[]): string {
+  if (!posts.length) return '';
   // Filter chips: the most common first tags (CSS-only filter, app/mobile-home.css).
   const tagCount = new Map<string, number>();
   for (const p of posts) if (p.tag) tagCount.set(p.tag, (tagCount.get(p.tag) || 0) + 1);
-  const tags = [...tagCount.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3).map(([t]) => t);
-  const stats = [
-    { icon: 'fa-house-circle-check', v: s.projects, label: 'Verified Projects' },
-    { icon: 'fa-building', v: s.developers, label: 'Top Developers' },
-    { icon: 'fa-location-dot', v: s.localities, label: 'Key Locations' },
-    { icon: 'fa-shield-halved', v: s.rera, label: 'RERA Registered' },
-  ].filter((x) => x.v > 0);
+  const tags = [...tagCount.entries()].sort((a, b) => b[1] - a[1]).slice(0, 4).map(([t]) => t);
 
   return `<div class="mh-only mh">
-  ${posts.length ? `<section class="mh-sec mh-ins">
-    ${head('Key Insights for Home Buyers', '/blog')}
+  <section class="mh-sec mh-ins" aria-labelledby="mhInsTitle">
+    <img class="mh-ins-sky" src="/img/insights-skyline.webp" alt="" width="520" height="150" loading="lazy" decoding="async">
+    <span class="mh-ins-kicker"><i class="fas fa-book-open" aria-hidden="true"></i>Real Estate Insights</span>
+    <div class="mh-ins-head">
+      <h2 id="mhInsTitle">Key Insights for <span>Home Buyers</span></h2>
+      <a href="/blog" class="mh-ins-all">View All Insights ${arrow}</a>
+    </div>
     ${tags.length > 1 ? `<div class="mh-chips" role="radiogroup" aria-label="Filter articles">
-      <input type="radio" name="mh-ins" id="mh-ins-0" checked><label for="mh-ins-0">All</label>
-      ${tags.map((t, i) => `<input type="radio" name="mh-ins" id="mh-ins-${i + 1}"><label for="mh-ins-${i + 1}">${esc(t)}</label>`).join('')}
+      <input type="radio" name="mh-ins" id="mh-ins-0" checked><label for="mh-ins-0"><i class="fas fa-grip" aria-hidden="true"></i>All</label>
+      ${tags.map((t, i) => `<input type="radio" name="mh-ins" id="mh-ins-${i + 1}"><label for="mh-ins-${i + 1}"><i class="fas ${tagIcon(t)}" aria-hidden="true"></i>${esc(t)}</label>`).join('')}
     </div>` : ''}
     <ul class="mh-ins-list">${posts.map((p) => `<li data-t="${tags.indexOf(p.tag) + 1}"><a href="${esc(p.href)}">
       ${p.image ? `<span class="mh-photo" style="background-image:url('${esc(p.image)}')" aria-hidden="true"></span>` : '<span class="mh-ins-ph"><i class="fas fa-newspaper" aria-hidden="true"></i></span>'}
       <span class="tx">${p.tag ? `<em>${esc(p.tag)}</em>` : ''}<b>${esc(p.title)}</b><small><i class="far fa-clock" aria-hidden="true"></i> ${p.minutes} min read</small></span>
-      <i class="fas fa-chevron-right mh-chev" aria-hidden="true"></i></a></li>`).join('')}</ul>
-  </section>` : ''}
-  <section class="mh-sec">
-    <div class="mh-future">
-      <div class="mh-future-hero"><b>Not just homes. Better futures.</b><small>Find the right home, in the right location, with the right information.</small></div>
-      ${stats.length ? `<ul class="mh-future-stats">${stats.map((x) => `<li><i class="fas ${x.icon}" aria-hidden="true"></i><b>${fmt(x.v)}</b><small>${x.label}</small></li>`).join('')}</ul>` : ''}
-    </div>
+      <span class="mh-chev" aria-hidden="true">${arrow}</span></a></li>`).join('')}</ul>
   </section>
 </div>`;
 }
