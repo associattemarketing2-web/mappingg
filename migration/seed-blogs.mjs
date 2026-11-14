@@ -3659,6 +3659,226 @@ ${h.table([591, 595, 562, 594, 546, 555, 543, 592, 593, 776], 'Plotted projects 
   };
 }
 
+// ---- locality vs locality (computed from the live pins) --------------------------
+
+// Some developers list sizes as "2 / 3 BED"; count those as BHK here.
+const homeSizes = (p) => bhkSizes(String(p.configuration || '').replace(/\bbeds?\b/gi, 'BHK'));
+
+/** Live numbers for one locality: its homes (residential, or mixed-use with BHK sizes), prices, sizes, possession years. */
+function localityStats(h, name) {
+  const inLoc = h.all.filter((p) => localitiesOf(p.location)[0] === name && !PRICE_SKIP.has(Number(p.number)));
+  const homes = inLoc
+    .filter((p) => p.status !== 'sold')
+    .filter((p) => /residential/i.test(p.type || '') || (/mixed/i.test(p.type || '') && homeSizes(p).length));
+  const priced = homes
+    .map((p) => ({ p, price: parsePriceLakh(p.price), bhk: homeSizes(p), area: parseAreaSqft(p.sqft) }))
+    .filter((x) => x.price && x.bhk.length);
+  const offering = (k) => homes.filter((p) => homeSizes(p).some((b) => (k === 4 ? b >= 4 : Math.floor(b) === k))).length;
+  const startsAt = (k) => priced.filter((x) => smallest(x.bhk) === k).map((x) => x.price.min);
+  const rates = priced.filter((x) => x.area && x.area.min > 0).map((x) => (x.price.min * 100000) / x.area.min).filter((r) => r >= 3000 && r <= 60000);
+  const years = homes.map((p) => String(p.possession_timeline || '').match(/20\d\d/g)).filter(Boolean).map((m) => Math.max(...m.map(Number)));
+  const devs = new Set(homes.map((p) => String(p.developer || '').trim().toLowerCase()).filter(Boolean));
+  const offices = inLoc.filter((p) => /commercial/i.test(p.type || '')).length;
+  const prices = priced.map((x) => x.price.min);
+  return {
+    name, homes, priced, offices, devs: devs.size, offering, startsAt,
+    lo: prices.length ? Math.min(...prices) : 0,
+    med: median(prices),
+    rate: rates.length ? Math.round(median(rates) / 100) * 100 : 0,
+    ready: homes.filter((p) => p.status === 'available').length,
+    upcoming: homes.filter((p) => p.status === 'upcoming').length,
+    yearLo: years.length ? Math.min(...years) : 0,
+    yearHi: years.length ? Math.max(...years) : 0,
+  };
+}
+
+/** Side-by-side table of two localities' live numbers. */
+function versusTable(a, b, caption) {
+  const from = (s, k) => { const xs = s.startsAt(k); return xs.length ? `${lakh(Math.min(...xs))} <small>(${xs.length})</small>` : '—'; };
+  const rows = [
+    ['Home projects on the map (not sold out)', (s) => s.homes.length],
+    ['…that publish a starting price and BHK mix', (s) => `${s.priced.length} of ${s.homes.length}`],
+    ['Projects offering 2 BHK', (s) => s.offering(2)],
+    ['Projects offering 3 BHK', (s) => s.offering(3)],
+    ['Projects offering 4 BHK or larger', (s) => s.offering(4)],
+    ['Lowest starting price', (s) => (s.lo ? lakh(s.lo) : '—')],
+    ['Median starting price', (s) => (s.med ? lakh(s.med) : '—')],
+    ['Lowest price, projects starting at 2 BHK*', (s) => from(s, 2)],
+    ['Lowest price, projects starting at 3 BHK*', (s) => from(s, 3)],
+    ['Approx. ₹ / sq ft (median)**', (s) => (s.rate ? `≈ ₹${s.rate.toLocaleString('en-IN')}` : '—')],
+    ['Ready to move / upcoming', (s) => `${s.ready} / ${s.upcoming}`],
+    ['Declared possession years', (s) => (s.yearLo ? (s.yearHi > s.yearLo ? `${s.yearLo} – ${s.yearHi}` : `${s.yearLo}`) : '—')],
+    ['Developers building homes', (s) => s.devs],
+    ['Office / commercial projects on the map', (s) => s.offices],
+  ].filter(([label]) => !label.startsWith('Office') || a.offices + b.offices > 0);
+  return `<div class="table-scroll"><table><caption>${esc(caption)}</caption>` +
+    `<thead><tr><th></th><th>${esc(a.name)}</th><th>${esc(b.name)}</th></tr></thead><tbody>` +
+    rows.map(([label, f]) => `<tr><td>${label}</td><td>${f(a)}</td><td>${f(b)}</td></tr>`).join('') +
+    `</tbody></table></div>` +
+    `<p><small>* Grouped by each project’s smallest home, since a listed starting price is usually the price of the smallest unit; the number of such projects is in brackets. ** Each project’s starting price divided by its smallest listed area, then the median, only where both are published. Figures are computed from the projects on Mappingg when this guide was updated.</small></p>`;
+}
+
+const cheaper = (a, b, f) => (f(a) && f(b) ? (f(a) < f(b) ? a.name : f(b) < f(a) ? b.name : '') : '');
+
+function kharadiVsMundhwaArticle(h) {
+  const k = localityStats(h, 'Kharadi');
+  const m = localityStats(h, 'Mundhwa');
+  const lowerMedian = cheaper(k, m, (s) => s.med);
+  const lowerRate = cheaper(k, m, (s) => s.rate);
+
+  return {
+    slug: 'kharadi-vs-mundhwa-pune',
+    title: 'Kharadi vs Mundhwa (2026): Which East Pune Locality Should You Buy In?',
+    seo_title: 'Kharadi vs Mundhwa: Prices, BHK & Projects Compared',
+    seo_description:
+      `Kharadi vs Mundhwa compared from live data: ${k.homes.length} vs ${m.homes.length} home projects, starting prices, 2 & 3 BHK options, ₹/sq ft, possession years and who each locality suits best.`,
+    excerpt:
+      'Kharadi and Mundhwa sit next to each other in East Pune, but they are different markets. We compared every home project on our map in both, on price, BHK mix, possession and developers, to help you decide where to look first.',
+    tags: ['Kharadi', 'Mundhwa', 'Pune', 'Locality Comparison', 'East Pune'],
+    cover: {
+      theme: 'midnight',
+      kicker: 'Locality comparison',
+      lines: ['Kharadi', 'vs Mundhwa', 'Which to Buy In?'],
+      stats: [[`${k.homes.length} vs ${m.homes.length}`, 'home projects'], [`${lakh(k.med)} / ${lakh(m.med)}`, 'median start'], ['East Pune', 'side by side']],
+    },
+    content: `
+<p><strong>Kharadi or Mundhwa?</strong> It is one of the most common questions from buyers looking in East Pune. The two localities are next to each other, share the same IT and business corridor, and many buyers shortlist projects in both. But they are different markets: Kharadi is built around its large office parks, while Mundhwa has grown into one of Pune’s busiest new-launch areas, with many premium 3 and 4 BHK projects.</p>
+<p>Rather than give an opinion, we compared every home project we track in both localities on the <a href="/map">Mappingg live map</a>: ${k.homes.length} in ${h.loc('Kharadi')} and ${m.homes.length} in ${h.loc('Mundhwa')}. The numbers below are worked out from those projects’ listed details.</p>
+
+<h2>Kharadi vs Mundhwa at a glance</h2>
+${versusTable(k, m, 'Kharadi vs Mundhwa: new home projects on Mappingg')}
+<p>${lowerMedian ? `On median starting price, <strong>${lowerMedian}</strong> is the cheaper of the two today` : 'Median starting prices are close in the two localities'}${lowerRate ? `, and on the rough price per sq ft, <strong>${lowerRate}</strong> comes out lower` : ''}. ${m.homes.length > k.homes.length ? 'Mundhwa has far more choice simply because it has more projects, especially in the 3 BHK and above range.' : 'Kharadi has as many or more home projects to choose from.'} Both are job hubs: Kharadi has EON IT Park and the World Trade Center, and Mundhwa has ${m.offices} office and commercial projects on our map against Kharadi’s ${k.offices}.</p>
+
+<h2>Budget 2 BHK homes: around ₹1 Cr – ₹1.3 Cr</h2>
+<p>Both localities have a handful of projects whose smallest home is a 2 BHK. These are the most affordable ways into either market. In Kharadi:</p>
+${h.table([265, 272, 135, 21, 208], 'Kharadi: projects with 2 BHK homes')}
+<p>And in Mundhwa:</p>
+${h.table([19, 13, 25, 207], 'Mundhwa: projects with 2 BHK homes')}
+<p>Also see <a href="/cities/pune/2-bhk-flats">all 2 BHK flats in Pune</a> and our guide to <a href="/blog/2-bhk-flats-in-pune">2 BHK flats in Pune</a>.</p>
+
+<h2>3 BHK family homes: ₹1.5 Cr – ₹2.3 Cr</h2>
+<p>This is where Mundhwa’s numbers stand out: most of its new projects are 3 and 4 BHK, from developers such as Godrej Properties, Kumar, Goel Ganga, Jhamtani and Kanchan. Kharadi’s 3 BHK-led projects are fewer but include larger campuses by Majestique, Duville, SSPL and Lodha.</p>
+${h.gallery([92, 87, 184, 4, 18, 29])}
+${h.table([184, 92, 226, 87], 'Kharadi: 3 BHK-led projects')}
+${h.table([18, 29, 4, 12, 11, 17, 50, 35, 20], 'Mundhwa: 3 BHK-led projects')}
+
+<h2>Premium and luxury homes</h2>
+<p>At the top end, Kharadi has large-format residences such as ${h.link(81)} and ${h.link(98)}, and villas at ${h.link(84)}. Mundhwa has more luxury choice, from ${h.link(37)} and ${h.link(15)} to villa communities such as ${h.link(22)} and ${h.link(31)}. See our <a href="/blog/luxury-flats-villas-in-pune">luxury flats and villas in Pune</a> guide for more.</p>
+${h.table([81, 98, 37, 15, 6, 2, 22], 'Premium projects in Kharadi and Mundhwa')}
+
+<h2>Want to move in now?</h2>
+<p>Most projects in both localities are under construction. On our map, ${m.ready ? `Mundhwa has ${m.ready} ready-to-move project${m.ready > 1 ? 's' : ''}, including ${h.link(54)} and ${h.link(36)}` : 'Mundhwa has no ready-to-move projects listed right now'}${k.ready ? `, and Kharadi has ${k.ready}` : ''}. If you need a home within a year, also look at resale flats; our <a href="/blog/buying-resale-flat-checklist-pune">resale flat checklist</a> covers what to check. <a href="/blog/ready-to-move-vs-under-construction-flats-pune">Ready-to-move vs under-construction</a> compares the costs.</p>
+
+<h2>Which one suits you?</h2>
+<div class="table-scroll"><table>
+<caption>Kharadi or Mundhwa: a quick guide</caption>
+<thead><tr><th>If you…</th><th>Look first in</th></tr></thead>
+<tbody>
+<tr><td>Work at EON IT Park, the World Trade Center or another Kharadi office</td><td>Kharadi</td></tr>
+<tr><td>Want the widest choice of new 3 and 4 BHK projects</td><td>Mundhwa</td></tr>
+<tr><td>Want a 2 BHK close to ₹1 Cr</td><td>Both: compare the 2 BHK tables above</td></tr>
+<tr><td>Commute to Koregaon Park, Kalyani Nagar, Magarpatta or Hadapsar</td><td>Mundhwa</td></tr>
+<tr><td>Commute to Viman Nagar, the airport or Nagar Road</td><td>Kharadi</td></tr>
+<tr><td>Are buying to rent out to IT tenants</td><td>Kharadi, for its office base; check rents for the exact building</td></tr>
+</tbody></table></div>
+<p>These are starting points, not rules: traffic on the roads linking the two can make a short distance a long drive at peak hours. Drive the route at the time you would commute before you decide.</p>
+
+<h2>Checks that apply in both</h2>
+<ol>
+  <li><strong>Verify the MahaRERA registration</strong> and the declared completion date. See <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>.</li>
+  <li><strong>Compare on carpet area</strong>, not the brochure’s headline size. Our <a href="/blog/carpet-area-vs-built-up-vs-super-built-up-area">carpet vs built-up area guide</a> explains why.</li>
+  <li><strong>Add the extra costs:</strong> <a href="/blog/stamp-duty-registration-charges-pune">stamp duty and registration</a>, <a href="/blog/gst-on-flats-under-construction-ready-to-move">GST</a>, parking and maintenance deposits.</li>
+  <li><strong>Visit at peak hours</strong> and use our <a href="/blog/site-visit-checklist-before-buying-flat-pune">site visit checklist</a>.</li>
+</ol>
+
+<h2>FAQs: Kharadi vs Mundhwa</h2>
+<h3>Is Kharadi or Mundhwa cheaper?</h3>
+<p>Among projects on our map, the median starting price is ${lakh(k.med)} in Kharadi and ${lakh(m.med)} in Mundhwa, and the lowest starting prices are ${lakh(k.lo)} and ${lakh(m.lo)}. The final price depends on the exact flat, so compare cost sheets for the same size.</p>
+<h3>Which has more new projects?</h3>
+<p>Mundhwa: ${m.homes.length} home projects on our map against ${k.homes.length} in Kharadi.</p>
+<h3>Can I see both on one map?</h3>
+<p>Yes. Open the <a href="/map">live map</a> and zoom into East Pune, or browse the ${h.loc('Kharadi', 'Kharadi')} and ${h.loc('Mundhwa', 'Mundhwa')} pages. For more detail on each, read our guides to <a href="/blog/new-projects-in-kharadi-pune">new projects in Kharadi</a> and <a href="/blog/new-projects-in-mundhwa-pune">new projects in Mundhwa</a>, or compare all localities in <a href="/blog/flat-prices-in-pune-by-locality-and-bhk">flat prices in Pune by locality</a>.</p>
+
+<blockquote>All figures are computed from the projects listed on Mappingg when this guide was updated (November 2026): developers’ listed starting prices, configurations and declared possession dates. They change often and are not an offer. Confirm the price, carpet area and dates with the developer and on MahaRERA before you book.</blockquote>
+`,
+  };
+}
+
+function hinjewadiVsWakadArticle(h) {
+  const hj = localityStats(h, 'Hinjewadi');
+  const w = localityStats(h, 'Wakad');
+  const lowerMedian = cheaper(hj, w, (s) => s.med);
+  const lowerRate = cheaper(hj, w, (s) => s.rate);
+
+  return {
+    slug: 'hinjewadi-vs-wakad-pune',
+    title: 'Hinjewadi vs Wakad (2026): Flat Prices, BHK Options & Which to Choose',
+    seo_title: 'Hinjewadi vs Wakad: Flat Prices & Projects Compared',
+    seo_description:
+      `Hinjewadi vs Wakad compared from live data: ${hj.homes.length} vs ${w.homes.length} home projects, starting prices from ${lakh(hj.lo)} and ${lakh(w.lo)}, 2 & 3 BHK options, ₹/sq ft and possession years.`,
+    excerpt:
+      'Hinjewadi has the IT park, Wakad has the established neighbourhood next door. We compared every home project on our map in both, on price, home sizes, possession and developers, to help you choose.',
+    tags: ['Hinjewadi', 'Wakad', 'Pune', 'Locality Comparison', 'West Pune'],
+    cover: {
+      theme: 'forest',
+      kicker: 'Locality comparison',
+      lines: ['Hinjewadi', 'vs Wakad', 'Which to Buy In?'],
+      stats: [[`${hj.homes.length} vs ${w.homes.length}`, 'home projects'], [`${lakh(hj.lo)} / ${lakh(w.lo)}`, 'lowest start'], ['West Pune', 'side by side']],
+    },
+    content: `
+<p><strong>Hinjewadi or Wakad?</strong> If you work in the Rajiv Gandhi Infotech Park, these are usually the first two names on your list. Hinjewadi is home to the IT park itself and to large new townships around it. Wakad, just to the east across the Mumbai–Bengaluru highway, is a more settled residential area with schools, hospitals and shopping already in place, and is part of the Pimpri-Chinchwad Municipal Corporation.</p>
+<p>To compare them fairly, we took every home project we track in both on the <a href="/map">Mappingg live map</a>: ${hj.homes.length} in ${h.loc('Hinjewadi')} and ${w.homes.length} in ${h.loc('Wakad')}. All the figures below are worked out from those projects’ listed details.</p>
+
+<h2>Hinjewadi vs Wakad at a glance</h2>
+${versusTable(hj, w, 'Hinjewadi vs Wakad: new home projects on Mappingg')}
+<p>${lowerMedian ? `On median starting price, <strong>${lowerMedian}</strong> is the cheaper of the two today` : 'Median starting prices are close in the two localities'}${lowerRate ? `, and on the rough price per sq ft, <strong>${lowerRate}</strong> comes out lower` : ''}. Hinjewadi has more new projects, many of them inside large townships; Wakad has fewer, smaller launches because the area is largely built up.</p>
+
+<h2>New projects in Hinjewadi</h2>
+<p>Hinjewadi’s new homes are mostly 2 and 3 BHK, many of them in townships by Krisala-Hiranandani, Lodha and Kohinoor. Several start below ₹1 Cr, which is rare this close to a major IT hub.</p>
+${h.gallery([204, 203, 182, 166, 205, 206])}
+${h.table([204, 206, 203, 269, 268, 182, 263, 166, 205, 261], 'New home projects in Hinjewadi')}
+
+<h2>New projects in Wakad</h2>
+<p>Wakad has fewer launches, but they are in an area where daily needs are already met. Prices start a little higher for the same size, and include larger 3 BHK homes.</p>
+${h.table([270, 271, 246, 117, 280, 320], 'New home projects in Wakad')}
+<p>Also see <a href="/cities/pune/2-bhk-flats">all 2 BHK flats in Pune</a>, <a href="/cities/pune/3-bhk-flats">3 BHK flats in Pune</a> and the nearby <a href="/blog/new-projects-in-hinjewadi-baner-balewadi-pune">Hinjewadi, Baner and Balewadi guide</a>.</p>
+
+<h2>Which one suits you?</h2>
+<div class="table-scroll"><table>
+<caption>Hinjewadi or Wakad: a quick guide</caption>
+<thead><tr><th>If you…</th><th>Look first in</th></tr></thead>
+<tbody>
+<tr><td>Work inside the IT park (Phase 1, 2 or 3) and want the shortest commute</td><td>Hinjewadi, near your phase</td></tr>
+<tr><td>Want the lowest entry price for a new 2 BHK</td><td>${cheaper(hj, w, (s) => (s.startsAt(2).length ? Math.min(...s.startsAt(2)) : 0)) || 'Either: compare the tables above'}</td></tr>
+<tr><td>Want schools, hospitals and shopping already running</td><td>Wakad</td></tr>
+<tr><td>Commute towards Baner, Aundh, Pimpri-Chinchwad or the Mumbai highway</td><td>Wakad</td></tr>
+<tr><td>Are happy to wait for a township to fill in around you</td><td>Hinjewadi</td></tr>
+</tbody></table></div>
+<p>The roads into the IT park are among the most congested in Pune at peak hours, so a project a few kilometres away can take far longer than the map suggests. Drive the route at your commute time before you decide. Pune Metro Line 3 (Hinjewadi–Shivajinagar) is being built by PMRDA; check its current status on the PMRDA website rather than relying on a brochure’s promise.</p>
+
+<h2>Checks that apply in both</h2>
+<ol>
+  <li><strong>Verify the MahaRERA registration</strong> and declared completion date. Some township phases have their own registration numbers, so check the one for your tower. See <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>.</li>
+  <li><strong>Ask about water supply.</strong> Newer areas sometimes rely partly on tankers; ask how the project is served today and after possession.</li>
+  <li><strong>Compare on carpet area</strong> and add <a href="/blog/stamp-duty-registration-charges-pune">stamp duty</a>, <a href="/blog/gst-on-flats-under-construction-ready-to-move">GST</a> and parking to the price.</li>
+  <li><strong>Check the payment plan.</strong> Our <a href="/blog/payment-plans-construction-linked-subvention-flats-pune">payment plans guide</a> explains construction-linked and subvention schemes.</li>
+</ol>
+
+<h2>FAQs: Hinjewadi vs Wakad</h2>
+<h3>Is Hinjewadi or Wakad cheaper?</h3>
+<p>Among projects on our map, the lowest starting price is ${lakh(hj.lo)} in Hinjewadi and ${lakh(w.lo)} in Wakad, and the median starting prices are ${lakh(hj.med)} and ${lakh(w.med)}. Compare cost sheets for the same size before you decide.</p>
+<h3>Which has more new projects?</h3>
+<p>Hinjewadi: ${hj.homes.length} home projects on our map against ${w.homes.length} in Wakad.</p>
+<h3>Is Wakad in PCMC?</h3>
+<p>Yes, Wakad is within the Pimpri-Chinchwad Municipal Corporation. Hinjewadi’s IT park is a MIDC area, and much of the housing around it falls under the Pune Metropolitan Region Development Authority (PMRDA). Ask the developer which authority approved the plans and collects property tax for your project.</p>
+<h3>Where can I see them on a map?</h3>
+<p>Open the <a href="/map">live map</a> and zoom into West Pune, or browse the ${h.loc('Hinjewadi', 'Hinjewadi')} and ${h.loc('Wakad', 'Wakad')} pages. To compare more localities, see <a href="/blog/flat-prices-in-pune-by-locality-and-bhk">flat prices in Pune by locality</a>.</p>
+
+<blockquote>All figures are computed from the projects listed on Mappingg when this guide was updated (November 2026): developers’ listed starting prices, configurations and declared possession dates. They change often and are not an offer. Confirm the price, carpet area and dates with the developer and on MahaRERA before you book.</blockquote>
+`,
+  };
+}
+
 const PHOTO_DIR = path.resolve('migration/blog-photos');
 const CREDITS = JSON.parse(await readFile(path.join(PHOTO_DIR, 'credits.json'), 'utf8'));
 
@@ -3673,6 +3893,7 @@ const PHOTO_POSITION = {
   'payment-plans-construction-linked-subvention-flats-pune': 'bottom',
   'flats-in-mumbai-thane-navi-mumbai-by-bhk-and-budget': 'bottom',
   'gst-on-flats-under-construction-ready-to-move': 'top',
+  'hinjewadi-vs-wakad-pune': 'bottom',
 };
 
 /** CC licences require attribution and a note that the photo was changed. */
@@ -3766,6 +3987,8 @@ async function main() {
     () => capitalGainsArticle(),
     () => noidaArticle(h),
     () => gurugramArticle(h),
+    () => kharadiVsMundhwaArticle(h),
+    () => hinjewadiVsWakadArticle(h),
   ];
   let articles = [];
   for (const build of builders) {

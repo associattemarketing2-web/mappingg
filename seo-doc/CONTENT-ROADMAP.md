@@ -16,6 +16,7 @@ experts, ratings or statistics. One primary keyword per article, different from 
 | Legal / process guides | MahaRERA check, agreement clauses, OC vs CC, possession delay, documents, site visit, resale checklist, carpet vs built-up, ready vs under-construction, GST, stamp duty, capital gains, home-loan tax, EMI eligibility, payment plans, maintenance/sinking fund, NRI guide | Strong E-E-A-T topics. Each must link the official source (MahaRERA, IGR Maharashtra, Income Tax Dept, CBIC). Re-check yearly; stamp-duty guide first (competitors disagree on metro cess / LBT) |
 | Commercial | office space in Pune | Fine |
 | Unseeded | 2 Noida/Gurugram posts built 1 Nov, not yet seeded | Deploy covers, then `node --env-file=.env migration/seed-blogs.mjs --only=<slugs>` |
+| Built 13 Nov, not yet seeded | `kharadi-vs-mundhwa-pune`, `hinjewadi-vs-wakad-pune` (comparison tables computed live by `localityStats` / `versusTable`) | Deploy covers, then seed with `--only=kharadi-vs-mundhwa-pune,hinjewadi-vs-wakad-pune` |
 
 Author: every post is by “Mappingg Team” (Organization in BlogPosting schema) — accurate. Do not
 add person bylines unless a real, named team member writes and reviews the piece.
