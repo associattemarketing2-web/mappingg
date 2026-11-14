@@ -54,6 +54,8 @@ const PHOTOS = {
   'capital-gains-tax-on-sale-of-flat-india': 'Pride world city.jpg',
   'new-projects-in-noida-greater-noida-yamuna-expressway': 'Noida sector 78.jpg',
   'new-projects-in-gurugram': 'Gurgaon skyline.jpg',
+  'kharadi-vs-mundhwa-pune': 'Eon IT Park.jpg',
+  'hinjewadi-vs-wakad-pune': 'Mula River and construction around it as seen from a building in Hinjawadi.jpg',
 };
 
 const OUT = path.resolve('migration/blog-photos');
