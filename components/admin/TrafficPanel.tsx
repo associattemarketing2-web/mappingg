@@ -21,6 +21,7 @@ interface Report {
   topClicks: { label: string; href: string; clicks: number }[];
   sources: { source: string; visitors: number }[];
   sourcesDaily: { date: string; source: string; visitors: number }[];
+  sourcesAll: { source: string; visitors: number }[];
   devices: { device: string; visitors: number }[];
   countries: GeoCountry[];
   regions: GeoRegion[];
@@ -58,7 +59,7 @@ function normalize(x: Partial<Report>): Report {
     ...(x as Report),
     activeNow: x.activeNow || 0,
     activePages: list(x.activePages), daily: list(x.daily), topPages: list(x.topPages), topClicks: list(x.topClicks),
-    sources: list(x.sources), sourcesDaily: list(x.sourcesDaily), devices: list(x.devices), countries: list(x.countries), regions: list(x.regions), cities: list(x.cities),
+    sources: list(x.sources), sourcesDaily: list(x.sourcesDaily), sourcesAll: list(x.sourcesAll), devices: list(x.devices), countries: list(x.countries), regions: list(x.regions), cities: list(x.cities),
     searches: list(x.searches), totalSearches: x.totalSearches || 0,
     realtime: { visitors: rt.visitors || 0, perMinute: rt.perMinute?.length ? rt.perMinute : Array(30).fill(0), countries: list(rt.countries), regions: list(rt.regions), cities: list(rt.cities) },
   };
@@ -71,7 +72,7 @@ export default function TrafficPanel() {
   const r = raw ? normalize(raw) : null;
   const [err, setErr] = useState('');
   const [geo, setGeo] = useState<GeoLevel>('region');
-  // Day picked in "Where visitors come from": 'today' (default), a date, or '' for the whole range.
+  // Day picked in "Where visitors come from": 'today' (default), a date, '' for the whole range, or 'all' for all time.
   const [srcDay, setSrcDay] = useState('today');
 
   async function load(d = days) {
@@ -124,7 +125,9 @@ export default function TrafficPanel() {
   });
   // r.daily ends with today, so srcDays starts with it.
   const pickedDay = srcDay === 'today' ? srcDays[0] : srcDays.find((d) => d.date === srcDay);
-  const srcRows = pickedDay ? pickedDay.rows : r.sources;
+  const allTime = srcDay === 'all';
+  const srcRows = allTime ? r.sourcesAll : pickedDay ? pickedDay.rows : r.sources;
+  const sinceName = r.since ? new Date(r.since).toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', year: 'numeric' }) : '';
   const maxSrc = Math.max(...srcRows.map((s) => s.visitors), 1);
   const devTotal = r.devices.reduce((a, d) => a + d.visitors, 0);
   const clickName = (c: Report['topClicks'][number]) => c.label || c.href || '(no label)';
@@ -235,24 +238,25 @@ export default function TrafficPanel() {
       </div>
 
       <div className="viz-grid2">
-        <ChartCard title="Where visitors come from" subtitle={pickedDay ? `Visitors ${pickedDay === srcDays[0] ? 'today' : `on ${dayName(pickedDay.date)}`}, by source` : `Visitors ${rangeLabel}, by source`}
-          table={pickedDay
-            ? { head: ['Source', 'Visitors'], rows: pickedDay.rows.map((s) => [s.source, s.visitors]) }
+        <ChartCard title="Where visitors come from"
+          subtitle={allTime ? `All visitors so far${sinceName ? ` (since ${sinceName})` : ''}, by source`
+            : pickedDay ? `Visitors ${pickedDay === srcDays[0] ? 'today' : `on ${dayName(pickedDay.date)}`}, by source` : `Visitors ${rangeLabel}, by source`}
+          table={allTime || pickedDay
+            ? { head: ['Source', 'Visitors'], rows: srcRows.map((s) => [s.source, s.visitors]) }
             : { head: ['Day', 'Source', 'Visitors'], rows: srcDays.flatMap((d) => d.rows.map((s) => [dayName(d.date), s.source, s.visitors])) }}>
           {(show, hide) => (
             <>
-              {r.days > 1 && (
-                <div className="trf-geo-bar">
-                  <select className="trf-day-pick" aria-label="Day" value={pickedDay ? pickedDay.date : ''} onChange={(e) => setSrcDay(e.target.value)}>
-                    {srcDays.map((d, i) => <option key={d.date} value={d.date}>{i === 0 ? 'Today' : dayName(d.date)} — {fmt(d.total)} visitor{d.total === 1 ? '' : 's'}</option>)}
-                    <option value="">All {r.days} days</option>
-                  </select>
-                </div>
-              )}
+              <div className="trf-geo-bar">
+                <select className="trf-day-pick" aria-label="Day" value={allTime ? 'all' : pickedDay ? pickedDay.date : ''} onChange={(e) => setSrcDay(e.target.value)}>
+                  {srcDays.map((d, i) => <option key={d.date} value={d.date}>{i === 0 ? 'Today' : dayName(d.date)} — {fmt(d.total)} visitor{d.total === 1 ? '' : 's'}</option>)}
+                  {r.days > 1 && <option value="">All {r.days} days</option>}
+                  <option value="all">All time (so far)</option>
+                </select>
+              </div>
               {srcRows.length ? (
                 <HBars rows={srcRows.map((s) => ({ label: s.source, value: s.visitors }))} max={maxSrc} show={show} hide={hide}
                   valueText={fmt} tipLines={(row) => [`${fmt(row.value)} visitors`]} />
-              ) : <div className="adm-empty"><p>{pickedDay ? 'No visits on this day.' : 'No visits yet.'}</p></div>}
+              ) : <div className="adm-empty"><p>{pickedDay && !allTime ? 'No visits on this day.' : 'No visits yet.'}</p></div>}
             </>
           )}
         </ChartCard>
