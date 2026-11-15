@@ -948,6 +948,38 @@
   .mpg .hm-buyers .hm-near-map { min-height: 180px; }
 }
 .mpg .hm-buyers .hm-bvideo b { white-space: nowrap; }
+/* "Built for every home buyer": tighter again — less padding, a slimmer
+   place list, and the save card's features as one row of icon + label. */
+.mpg .hm-sec.hm-buyers { padding: 32px 0; }
+.mpg .hm-buyers .hm-head { margin-bottom: 16px; }
+.mpg .hm-buyers .hm-head h2 { font-size: clamp(24px, 2.4vw, 34px); }
+.mpg .hm-buyers .hm-head .hm-sub { margin-top: 2px; font-size: 15px; }
+.mpg .hm-buyers .hm-eyebrow { margin-bottom: 4px; padding: 4px 12px; }
+.mpg .hm-buyers .hm-bento { gap: 18px; }
+.mpg .hm-buyers .hm-t-near { gap: 10px; padding: 8px; border-radius: 22px; }
+.mpg .hm-buyers .hm-near-map { min-height: 170px; border-radius: 16px; }
+.mpg .hm-buyers .hm-near-side { gap: 6px; }
+.mpg .hm-buyers .hm-near-list { gap: 4px; }
+.mpg .hm-buyers .hm-near-list a { min-height: 32px; padding: 2px 10px 2px 4px; font-size: 13px; }
+.mpg .hm-buyers .hm-near-list .ic { width: 26px; height: 26px; font-size: 12px; }
+.mpg .hm-buyers .hm-near-btn { min-height: 36px; font-size: 13.5px; }
+.mpg .hm-buyers .hm-t-save { padding: 16px 24px; border-radius: 22px; }
+.mpg .hm-buyers .hm-t-save h3 { font-size: clamp(20px, 1.6vw, 25px); }
+.mpg .hm-buyers .hm-t-save p { font-size: 13.5px; line-height: 1.45; }
+.mpg .hm-buyers .hm-save-tx { gap: 6px; }
+.mpg .hm-buyers .hm-save-feats { margin-top: 2px; grid-template-columns: repeat(2, minmax(0, max-content)); gap: 6px 18px; }
+.mpg .hm-buyers .hm-save-feats li { flex-direction: row; gap: 8px; padding: 0; text-align: left; }
+.mpg .hm-buyers .hm-save-feats li + li { border-left: 0; }
+.mpg .hm-buyers .hm-save-feats i { width: 28px; height: 28px; border-radius: 8px; font-size: 13px; }
+.mpg .hm-buyers .hm-save-btns { margin-top: 4px; }
+.mpg .hm-buyers .hm-t-save .hm-btn-white { min-height: 40px; padding: 0 18px; font-size: 14px; }
+.mpg .hm-buyers .hm-t-save .hm-wa { width: 26px; height: 26px; font-size: 14px; }
+.mpg .hm-buyers .hm-bvideo .play { width: 36px; height: 36px; font-size: 13px; }
+.mpg .hm-buyers .hm-bvideo b { font-size: 14px; }
+@media (max-width: 720px) {
+  .mpg .hm-sec.hm-buyers { padding: 24px 0; }
+  .mpg .hm-buyers .hm-near-map { min-height: 160px; }
+}
 
 /* Tablets (721–1080 px): the same hero design as desktop, stacked — text, then the
    search card with tabs, then the live map as a rounded card below. */
