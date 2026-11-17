@@ -12,6 +12,7 @@ import { startTestDb } from './helpers/api-db';
 process.env.RAZORPAY_KEY_ID = 'rzp_test_FAKEKEY';
 process.env.RAZORPAY_KEY_SECRET = 'test_key_secret';
 process.env.RAZORPAY_WEBHOOK_SECRET = 'test_webhook_secret';
+process.env.SUBSCRIPTIONS_ENABLED = '1'; // master switch on: these tests cover the live system
 process.env.SUBSCRIPTION_ENFORCE = '1';
 
 const require = createRequire(import.meta.url);
@@ -243,4 +244,37 @@ test('admin subscription management: owner only, every change audited', async ()
   assert.equal((await call(A.POST as never, '/api/admin/subscriptions', { method: 'POST', user: CP1, body: { action: 'sub.activate', user: CP1.email, plan: 'cp_promax', reason: 'me' } })).status, 401);
   const audit = await pgq(`SELECT action, actor FROM sub_audit WHERE action = 'plan.update' ORDER BY at DESC LIMIT 1`);
   assert.equal(audit.rows[0].actor, OWNER.email);
+});
+
+test('master switch OFF: no pricing/plans, account APIs 404, no limits or metering — site works as before', async () => {
+  process.env.SUBSCRIPTIONS_ENABLED = '0';
+  try {
+    const PLANS = await import('../app/api/subscriptions/plans/route');
+    const plans = await call(PLANS.GET as never, '/api/subscriptions/plans');
+    assert.equal(plans.status, 200);
+    assert.equal(plans.body.data.enabled, false);
+    assert.deepEqual(plans.body.data.plans, []);
+
+    const CUR = await import('../app/api/subscriptions/current/route');
+    const cur = await call(CUR.GET as never, '/api/subscriptions/current', { user: BUY2 });
+    assert.equal(cur.status, 404);
+    assert.equal(cur.body.error.code, 'subscriptions_disabled');
+    const CHK = await import('../app/api/subscriptions/checkout/route');
+    assert.equal((await call(CHK.POST as never, '/api/subscriptions/checkout', { method: 'POST', user: BUY2, body: { plan: 'buyer_premium' } })).status, 404);
+
+    // A buyer on Free opens any number of projects: nothing blocked, nothing metered.
+    const before = (await pgq(`SELECT count(*)::int n FROM sub_usage WHERE user_id = $1`, [BUY2.id])).rows[0].n;
+    const { POST } = await import('../app/api/my/enquire/route');
+    for (const id of ['rp0', 'rp1', 'rp2', 'rp3', 'rp4', 'rp5', 'rm0']) {
+      const r = await call(POST as never, '/api/my/enquire', { method: 'POST', user: BUY2, body: { pin_id: id, consent: { enquiry: true } } });
+      assert.equal(r.status, 200, JSON.stringify(r.body));
+    }
+    assert.equal((await pgq(`SELECT count(*)::int n FROM sub_usage WHERE user_id = $1`, [BUY2.id])).rows[0].n, before);
+
+    // The session tells headers to hide Pricing / My plan.
+    const SES = await import('../app/api/auth/session/route');
+    assert.equal((await call(SES.GET as never, '/api/auth/session')).body.subscriptions, false);
+  } finally {
+    process.env.SUBSCRIPTIONS_ENABLED = '1';
+  }
 });

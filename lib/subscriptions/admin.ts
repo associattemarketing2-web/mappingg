@@ -2,7 +2,7 @@ import { getDb } from '../mongodb';
 import { ensureSchema, iso, sql } from './db';
 import { effectiveStatus, toSubscription } from './entitlements';
 import { getGateway } from './gateway';
-import { audit, getSettings, listPlans } from './store';
+import { audit, envEnabled, getSettings, listPlans } from './store';
 import { listMedia, listPriceOutlooks, listServiceRequests } from './features';
 import { publicPlan } from './summary';
 import { SubError } from './lifecycle';
@@ -46,6 +46,7 @@ export async function overview() {
   const settings = await getSettings();
   const gw = getGateway();
   const envEnforce = (process.env.SUBSCRIPTION_ENFORCE || '').trim();
+  const envOn = envEnabled();
   return {
     counts, mrr_paise: Math.round(mrr), expiring_7d: expiring7,
     revenue_30d: { paid_paise: Number(rev.paid), refunded_paise: Number(rev.refunded), payments: Number(rev.n) },
@@ -53,6 +54,7 @@ export async function overview() {
     gateway: { name: gw.name, configured: gw.configured(), webhook: gw.webhookConfigured(), mode: gw.mode() },
     cron: { configured: !!process.env.CRON_SECRET, last_run: lastCron ? iso(lastCron.at) : null, last: lastCron?.detail || null },
     last_webhook: lastHook ? { at: iso(lastHook.received_at), event: lastHook.event, outcome: lastHook.outcome } : null,
+    enabled: { setting: !!settings.enabled, env: envOn === null ? null : (process.env.SUBSCRIPTIONS_ENABLED || '').trim(), effective: envOn ?? !!settings.enabled },
     enforce: { setting: settings.enforce, env: envEnforce || null, effective: envEnforce ? ['1', 'true'].includes(envEnforce.toLowerCase()) : settings.enforce },
   };
 }

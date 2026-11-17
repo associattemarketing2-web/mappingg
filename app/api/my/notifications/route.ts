@@ -4,6 +4,7 @@ import { getDb } from '@/lib/mongodb';
 import { listActivity } from '@/lib/activity';
 import { ensureSchema, isAvailable } from '@/lib/subscriptions/db';
 import { listNotifications } from '@/lib/subscriptions/notifications';
+import { isSubscriptionsEnabled } from '@/lib/subscriptions/store';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -53,7 +54,7 @@ export async function GET() {
     if (e.type === 'project_delete_approved') items.push({ id: e.id, project_id: '', state: 'approved', detail: e.detail || 'A project was deleted, as you asked', at: e.at });
   }
   // Subscription notices (plan activated, renewal reminders, payment failed…).
-  if (isAvailable()) {
+  if (isAvailable() && (await isSubscriptionsEnabled())) {
     try {
       await ensureSchema();
       for (const n of await listNotifications(user.id, 20)) {

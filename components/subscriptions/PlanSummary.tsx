@@ -11,12 +11,20 @@ import type { MySubscription } from '@/lib/subscriptions/summary';
 const fmtDate = (d?: string | null) => (d ? new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '');
 
 export default function PlanSummary({ manageHref, onManage, links = [] }: { manageHref: string; onManage?: () => void; links?: { href: string; label: string; icon: string }[] }) {
-  const [me, setMe] = useState<MySubscription | null | false>(null);
+  const [me, setMe] = useState<MySubscription | null | false | 'off'>(null);
   useEffect(() => {
     fetch('/api/subscriptions/current', { credentials: 'same-origin' })
-      .then((r) => (r.ok ? r.json() : null)).then((b) => setMe(b?.data || false)).catch(() => setMe(false));
+      .then((r) => r.json().catch(() => null).then((b) => (r.ok ? setMe(b?.data || false) : setMe(b?.error?.code === 'subscriptions_disabled' ? 'off' : false))))
+      .catch(() => setMe(false));
   }, []);
   if (me === false) return null;
+  // Subscriptions switched off (Super admin → Subscriptions): no plan card, just
+  // the links that don't belong to the subscription system (e.g. Favourites).
+  if (me === 'off') {
+    const plain = links.filter((l) => !/^\/pricing|\/(crm|premium|subscription|invoices)(\/|$|\?|#)/.test(l.href));
+    if (!plain.length) return null;
+    return <div className="sub"><div className="sub-toolbar">{plain.map((l) => <a key={l.href} className="sub-btn sm ghost" href={l.href}><i className={`fas ${l.icon}`} /> {l.label}</a>)}</div></div>;
+  }
   if (me === null) return <div className="sub"><div className="sub-card"><p className="sub-muted"><i className="fas fa-spinner fa-spin" /> Loading your plan…</p></div></div>;
 
   const sub = me.subscription;

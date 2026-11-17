@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { isAvailable } from './db';
+import { isSubscriptionsEnabled } from './store';
 import { checkFeatureAccess, getEntitlements, hasFeature, limitOf, suggestUpgrade, validateProjectAccess, type AccessResult } from './entitlements';
 import { developerProjectCount, publicPin } from './projects';
 import { notifySub } from './notifications';
@@ -10,7 +10,9 @@ import { subscriptionPath } from './notifications';
 // enforces the plan on the server with a consistent 402 response
 // ({ error: { message, code, upgrade, usage, manage } }). Infrastructure
 // failures in the subscription store never take the core site down: metering
-// guards fail open (logged); they never grant a paid feature on error.
+// guards fail open (logged); they never grant a paid feature on error. While the
+// master switch is off (Super admin → Subscriptions) every guard is a no-op and
+// nothing is metered, so the site behaves exactly as before subscriptions.
 
 type User = { id: string; role: string };
 
@@ -26,7 +28,7 @@ function blocked(r: AccessResult, upgrade: { code: string; name: string } | null
  * panel, /api/subscriptions/access). Returns a 402 response when refused, else null.
  */
 export async function guardProjectAccess(user: User | null, pinId: string): Promise<NextResponse | null> {
-  if (!user || (user.role !== 'agent' && user.role !== 'buyer') || !isAvailable()) return null;
+  if (!user || (user.role !== 'agent' && user.role !== 'buyer') || !(await isSubscriptionsEnabled())) return null;
   try {
     const pin = await publicPin(pinId);
     if (!pin) return null; // the route itself answers 404
@@ -45,7 +47,7 @@ export async function guardProjectAccess(user: User | null, pinId: string): Prom
 
 /** A plan feature for the signed-in account (optionally for one of a developer's projects). */
 export async function guardFeature(user: User, feature: string, projectId?: string): Promise<NextResponse | null> {
-  if (!isAvailable()) return null;
+  if (!(await isSubscriptionsEnabled())) return null;
   try {
     const ent = await getEntitlements(user);
     const r = checkFeatureAccess(ent, feature, { projectId });
@@ -59,7 +61,7 @@ export async function guardFeature(user: User, feature: string, projectId?: stri
 
 /** Developer listing limit: may this developer add `adding` more projects? */
 export async function guardProjectLimit(user: User, adding: number): Promise<NextResponse | null> {
-  if (user.role !== 'developer' || !isAvailable()) return null;
+  if (user.role !== 'developer' || !(await isSubscriptionsEnabled())) return null;
   try {
     const ent = await getEntitlements(user);
     const lim = limitOf(ent, 'dev_max_projects');
@@ -81,7 +83,7 @@ export async function guardProjectLimit(user: User, adding: number): Promise<Nex
  * account) keep site-visit booking for everyone, as before.
  */
 export async function siteVisitAllowed(pinId: string): Promise<boolean> {
-  if (!isAvailable()) return true;
+  if (!(await isSubscriptionsEnabled())) return true;
   try {
     const pin = await publicPin(pinId);
     if (!pin?.owner) return true;
@@ -94,7 +96,7 @@ export async function siteVisitAllowed(pinId: string): Promise<boolean> {
 
 /** Plan flag for the current account without a response (for UI hints). */
 export async function canUse(user: User, feature: string, projectId?: string): Promise<boolean> {
-  if (!isAvailable()) return true;
+  if (!(await isSubscriptionsEnabled())) return true;
   try {
     const ent = await getEntitlements(user);
     return checkFeatureAccess(ent, feature, { projectId }).allowed;

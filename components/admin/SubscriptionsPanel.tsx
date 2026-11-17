@@ -642,12 +642,48 @@ function Logs() {
   );
 }
 
+// ---------------------------------------------------------------- master switch
+// Turns the WHOLE subscription system on or off for the public site. Off (the
+// default until a payment gateway is connected): /pricing, plan pages, header
+// "Pricing" / "My plan" links, the sign-up plan picker, checkout and every limit
+// disappear and the site works as it did before. Nothing is deleted — plans,
+// coupons, payments and settings stay here and come back when switched on.
+function MasterSwitch({ flash }: { flash: Flash }) {
+  const { data, err, reload } = useView<{ setting: boolean; env: string | null; effective: boolean }>('master');
+  const [busy, setBusy] = useState(false);
+  if (!data) return err ? <Loading err={err} /> : null;
+  const on = data.effective;
+  async function toggle() {
+    const next = !data!.setting;
+    if (!confirm(next
+      ? 'Turn subscriptions ON?\n\nThe Pricing page, header Pricing / My plan links, plan picker on sign-up, plan & billing pages, checkout and (if enforcement is on) plan limits will go live for every visitor. Do this only after the payment gateway keys are set and a test payment works.'
+      : 'Turn subscriptions OFF?\n\nAll pricing / plan pages, links and checkout will be hidden and no limits will apply — the site works like before. Plans, payments and settings are kept and come back when you turn it on again.')) return;
+    setBusy(true);
+    try { await post({ action: 'settings.update', settings: { enabled: next } }); flash(next ? 'Subscriptions are ON' : 'Subscriptions are OFF — pricing hidden from the site'); reload(); }
+    catch (e) { flash((e as Error).message, true); } finally { setBusy(false); }
+  }
+  return (
+    <div className="adm-panel" style={{ marginBottom: 16, borderColor: on ? '#cfe3c5' : '#e6c9c0', background: on ? '#f3f8f1' : '#fbf3f0' }}>
+      <div className="adm-panel-head" style={{ marginBottom: 6 }}>
+        <h3><i className={`fas ${on ? 'fa-toggle-on' : 'fa-toggle-off'}`} style={{ color: on ? '#24603a' : '#a9532d' }} /> Subscriptions are {on ? 'ON' : 'OFF'}</h3>
+        {data.env
+          ? <span className="adm-hint">Set by the SUBSCRIPTIONS_ENABLED env var ({data.env}) — change it in hosting settings.</span>
+          : <button className={`adm-btn ${on ? 'ghost' : 'primary'}`} disabled={busy} onClick={toggle}>{on ? 'Disable subscriptions' : 'Enable subscriptions'}</button>}
+      </div>
+      <p className="adm-hint" style={{ margin: 0 }}>{on
+        ? 'Pricing page, plan links, sign-up plan picker, plan & billing pages and checkout are live on the site.'
+        : 'Hidden from the site: Pricing page, header Pricing / My plan links, sign-up plan picker, plan & billing / CRM / premium pages, checkout and all plan limits. Everything below is kept — turn it back on once the payment gateway is ready. Changes reach every server within about a minute.'}</p>
+    </div>
+  );
+}
+
 export default function SubscriptionsPanel({ flash }: { flash: Flash }) {
   const [sec, setSec] = useState<Section>('overview');
   const [plans, setPlans] = useState<Any[]>([]);
   useEffect(() => { api<{ plans: Any[] }>('plans').then((d) => setPlans(d.plans)).catch(() => {}); }, [sec]);
   return (
     <div>
+      <MasterSwitch flash={flash} />
       <div className="adm-panel" style={{ padding: 10, marginBottom: 16 }}>
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }} role="tablist" aria-label="Subscriptions sections">
           {SECTIONS.map((s) => (

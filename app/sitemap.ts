@@ -9,6 +9,7 @@ import {
   type Pin,
 } from '@/lib/seo/entities';
 import { projectIndexing } from '@/lib/seo/indexing';
+import { isSubscriptionsEnabled } from '@/lib/subscriptions/store';
 
 // Regenerate at most once an hour so newly published blog posts and new
 // projects/localities appear without a redeploy (search engines re-fetch
@@ -34,7 +35,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/buyer-requirement`, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${SITE_URL}/careers`, changeFrequency: 'monthly', priority: 0.3 },
     { url: `${SITE_URL}/advertise`, changeFrequency: 'monthly', priority: 0.3 },
-    { url: `${SITE_URL}/pricing`, changeFrequency: 'monthly', priority: 0.5 },
+    // /pricing only exists while subscriptions are switched on (Super admin → Subscriptions).
+    ...((await isSubscriptionsEnabled()) ? [{ url: `${SITE_URL}/pricing`, changeFrequency: 'monthly' as const, priority: 0.5 }] : []),
     { url: `${SITE_URL}/privacy`, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${SITE_URL}/terms`, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${SITE_URL}/cookies`, changeFrequency: 'yearly', priority: 0.3 },

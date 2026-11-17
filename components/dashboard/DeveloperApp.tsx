@@ -22,8 +22,8 @@ const TABS = [
   { key: 'dashboard', label: 'Dashboard', icon: 'fa-gauge-high' },
   { key: 'map', label: 'Map Editor', icon: 'fa-map-location-dot' },
   { key: 'intake', label: 'Projects Intake', icon: 'fa-location-dot' },
-  { key: 'media', label: 'Project media', icon: 'fa-images' },
-  { key: 'subscription', label: 'Subscription', icon: 'fa-crown' },
+  { key: 'media', label: 'Project media', icon: 'fa-images', subs: true },
+  { key: 'subscription', label: 'Subscription', icon: 'fa-crown', subs: true },
 ] as const;
 
 // 'profile' lives in the top-right account menu, not the tab row (same as the
@@ -36,7 +36,7 @@ interface MyProject {
   lat: number | null; lng: number | null; review: 'pending' | 'rejected' | 'live'; created_at: string;
 }
 
-function DevDashboard({ onGo }: { onGo: (t: TabKey) => void }) {
+function DevDashboard({ onGo, subscriptions }: { onGo: (t: TabKey) => void; subscriptions: boolean }) {
   const [items, setItems] = useState<MyProject[] | null>(null);
   useEffect(() => {
     fetch('/api/my/projects', { credentials: 'same-origin' })
@@ -56,9 +56,11 @@ function DevDashboard({ onGo }: { onGo: (t: TabKey) => void }) {
   ];
   return (
     <>
-      <div style={{ marginBottom: 20 }}>
-        <PlanSummary manageHref="/dashboard/developer/subscription" onManage={() => onGo('subscription')} />
-      </div>
+      {subscriptions && (
+        <div style={{ marginBottom: 20 }}>
+          <PlanSummary manageHref="/dashboard/developer/subscription" onManage={() => onGo('subscription')} />
+        </div>
+      )}
       <div className="adm-cards">
         {stats.map((s) => (
           <div className="adm-stat" key={s.l}>
@@ -83,7 +85,9 @@ function DevDashboard({ onGo }: { onGo: (t: TabKey) => void }) {
   );
 }
 
-export default function DeveloperApp({ user }: { user: DevUser }) {
+export default function DeveloperApp({ user, subscriptions = false }: { user: DevUser; subscriptions?: boolean }) {
+  // Subscription-only tabs (media, plan) disappear while the master switch is off.
+  const tabs = TABS.filter((t) => !('subs' in t) || subscriptions);
   const router = useRouter();
   const [tab, setTab] = useState<TabKey>('dashboard');
   // The Map Editor is a whole app in an iframe; once opened it stays mounted so
@@ -149,7 +153,7 @@ export default function DeveloperApp({ user }: { user: DevUser }) {
       </header>
 
       <nav className="adm2-tabs">
-        {TABS.map((t) => (
+        {tabs.map((t) => (
           <button
             key={t.key}
             className={`adm2-tab${tab === t.key ? ' active' : ''}`}
@@ -163,7 +167,7 @@ export default function DeveloperApp({ user }: { user: DevUser }) {
 
       <main className="adm2-main">
         <div className="adm-content" style={fullBleed ? { maxWidth: 'none', padding: 0 } : undefined}>
-          {tab === 'dashboard' && <DevDashboard onGo={setTab} />}
+          {tab === 'dashboard' && <DevDashboard onGo={setTab} subscriptions={subscriptions} />}
           {warmMap && (
             <div hidden={tab !== 'map'}>
               <div className="adm-panel" style={{ padding: 0, overflow: 'hidden' }}>
@@ -172,8 +176,8 @@ export default function DeveloperApp({ user }: { user: DevUser }) {
             </div>
           )}
           {tab === 'intake' && <DeveloperProjects />}
-          {tab === 'media' && <DevMedia />}
-          {tab === 'subscription' && <SubscriptionCenter email={user.email} />}
+          {subscriptions && tab === 'media' && <DevMedia />}
+          {subscriptions && tab === 'subscription' && <SubscriptionCenter email={user.email} />}
           {tab === 'profile' && (
             <ProfileForm
               email={user.email}

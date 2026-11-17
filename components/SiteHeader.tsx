@@ -14,7 +14,8 @@ import { EMAIL, WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/lib/contact';
 const LINKS = [
   { href: '/map', label: 'Live Map', match: (p: string) => p === '/map' || p.startsWith('/map/') },
   { href: '/how-it-works', label: 'How it works', match: (p: string) => p === '/how-it-works' },
-  { href: '/pricing', label: 'Pricing', match: (p: string) => p === '/pricing' },
+  // Shown only while subscriptions are switched on (Super admin → Subscriptions).
+  { href: '/pricing', label: 'Pricing', match: (p: string) => p === '/pricing', subs: true },
   { href: '/blog', label: 'Blog', match: (p: string) => p.startsWith('/blog') },
   { href: '/about', label: 'About', match: (p: string) => p === '/about' },
 ];
@@ -33,7 +34,7 @@ const MORE_LINKS = [
 // The header re-renders on every client-side navigation; without this it asked
 // the server for the session (a DB lookup + cookie refresh) on every page
 // change. Sign-in and sign-out both do a full page load, which resets this.
-type SessionBody = { session?: { home?: string; user?: { role?: string } } | null } | null;
+type SessionBody = { session?: { home?: string; user?: { role?: string } } | null; subscriptions?: boolean } | null;
 const SESSION_TTL_MS = 60_000;
 let sessionCache: { at: number; p: Promise<SessionBody> } | null = null;
 function loadSession(): Promise<SessionBody> {
@@ -54,6 +55,9 @@ export default function SiteHeader() {
   // Where this account's "home" is: /s-admin (staff), /dashboard (developer/agent) or /map (buyer).
   const [home, setHome] = useState('/dashboard');
   const [role, setRole] = useState('');
+  // Subscription master switch from /api/auth/session; hidden until it says "on".
+  const [subs, setSubs] = useState(false);
+  const links = LINKS.filter((l) => !('subs' in l) || subs);
   // Map-home accounts (buyers, approved agents, view-only developers) get "Live map";
   // buyers and agents also "My profile".
   const isBuyer = home === '/map';
@@ -62,7 +66,7 @@ export default function SiteHeader() {
   // (their profile is in the map's Profile menu).
   const agentOnHome = role === 'agent' && pathname === '/';
   // Accounts that can hold a subscription get a "My plan" link (staff don't).
-  const planHref = ['developer', 'agent', 'buyer'].includes(role) ? `/dashboard/${role}/subscription` : '';
+  const planHref = subs && ['developer', 'agent', 'buyer'].includes(role) ? `/dashboard/${role}/subscription` : '';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -80,6 +84,7 @@ export default function SiteHeader() {
         setSignedIn(!!(b && b.session));
         if (b && b.session && b.session.home) setHome(b.session.home);
         setRole(String(b?.session?.user?.role || ''));
+        setSubs(!!b?.subscriptions);
       })
       .catch(() => { if (!cancelled) setSignedIn(false); });
     return () => { cancelled = true; };
@@ -117,7 +122,7 @@ export default function SiteHeader() {
           </Link>
 
           <nav className="shd-menu">
-            {LINKS.map((l) => (
+            {links.map((l) => (
               <Link key={l.href} href={l.href} className={l.match(pathname) ? 'active' : ''}>
                 {l.label}
               </Link>
@@ -168,7 +173,7 @@ export default function SiteHeader() {
           </div>
 
           <div className={`shd-mobile${open ? ' open' : ''}`}>
-            {LINKS.map((l) => (
+            {links.map((l) => (
               <Link key={l.href} href={l.href} prefetch={false} className={l.match(pathname) ? 'active' : ''} onClick={() => setOpen(false)}>
                 {l.label}
               </Link>

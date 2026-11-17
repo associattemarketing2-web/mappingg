@@ -1,13 +1,16 @@
-import { redirect } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { getCurrentUser, homePathFor, isStaffRole } from '../auth';
 import { getDb } from '../mongodb';
 import { verificationOf } from '../verification';
+import { isSubscriptionsEnabled } from './store';
 
 // Shared access check for the account pages under /dashboard/<role>/… that the
 // subscription system adds. Same rules as /dashboard/<role>: the URL role must
 // be the account's real role, staff go to the super-admin, and developers /
 // channel partners must be approved first.
 export async function requireAccountPage(urlRole: string, allowed: ('developer' | 'agent' | 'buyer')[]) {
+  // Master switch off (Super admin → Subscriptions): these pages don't exist.
+  if (!(await isSubscriptionsEnabled())) notFound();
   const session = await getCurrentUser();
   if (!session) redirect('/?signin=1');
   if (isStaffRole(session.role)) redirect('/dashboard/s-admin');

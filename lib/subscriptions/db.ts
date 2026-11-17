@@ -348,6 +348,13 @@ export const SCHEMA_SQL: string[] = [
 ];
 
 export const DEFAULT_SETTINGS = {
+  /**
+   * Master switch for the whole subscription system. Off = the site works as it
+   * did before subscriptions: no /pricing, no plan pages/links, no checkout, no
+   * limits. Plans, payments and history stay in the database untouched.
+   * Env SUBSCRIPTIONS_ENABLED=1/0 overrides.
+   */
+  enabled: false,
   /** Limits & paid-feature checks are enforced only when this is on (env SUBSCRIPTION_ENFORCE overrides). */
   enforce: false,
   grace_days: 3,

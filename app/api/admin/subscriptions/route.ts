@@ -2,7 +2,7 @@ import { NextRequest } from 'next/server';
 import { z } from 'zod';
 import * as A from '@/lib/subscriptions/admin';
 import { adminActivate, adminUpdateSubscription, refundPayment, runLifecycle, SubError } from '@/lib/subscriptions/lifecycle';
-import { createPlan, getSettings, saveSettings, updatePlan, audit } from '@/lib/subscriptions/store';
+import { createPlan, envEnabled, getSettings, saveSettings, updatePlan, audit } from '@/lib/subscriptions/store';
 import { reviewMedia, setPriceOutlook, updateServiceRequest } from '@/lib/subscriptions/features';
 import { forgetEntitlements } from '@/lib/subscriptions/entitlements';
 import { BILLING_PERIODS, BILLING_UNITS, CATEGORIES, FEATURE_BY_KEY, PERIOD_MONTHS, USAGE_PERIODS } from '@/lib/subscriptions/catalog';
@@ -38,6 +38,12 @@ export async function GET(req: NextRequest) {
       case 'ops': return ok(await A.servicesAndMedia());
       case 'outlook': return ok(await A.outlooks());
       case 'settings': return ok(await getSettings());
+      case 'master': {
+        // The master ON/OFF switch shown above every Subscriptions section.
+        const env = envEnabled();
+        const setting = !!(await getSettings()).enabled;
+        return ok({ setting, env: env === null ? null : (process.env.SUBSCRIPTIONS_ENABLED || '').trim(), effective: env ?? setting });
+      }
       case 'user': return ok(await A.userDetail(String(q.get('q') || '')));
       default: return fail('Unknown view');
     }
@@ -77,6 +83,7 @@ function cleanPlan(input: z.infer<typeof planSchema>) {
 }
 
 const settingsSchema = z.object({
+  enabled: z.boolean().optional(),
   enforce: z.boolean().optional(),
   grace_days: z.number().int().min(0).max(60).optional(),
   reminder_days: z.array(z.number().int().min(1).max(60)).max(5).optional(),
@@ -127,7 +134,7 @@ export async function POST(req: NextRequest) {
         if (s.tax?.registered && s.tax.gstin !== undefined && s.tax.gstin && !/^[0-9]{2}[A-Z0-9]{13}$/.test(s.tax.gstin)) throw new SubError('GSTIN must be 15 characters (e.g. 27ABCDE1234F1Z5).');
         const cur = await getSettings();
         const next = await saveSettings(s as never, actor);
-        if (cur.enforce !== next.enforce) forgetEntitlements();
+        if (cur.enforce !== next.enforce || cur.enabled !== next.enabled) forgetEntitlements();
         return ok(next);
       }
       case 'coupon.save': return ok({ code: await A.saveCoupon(b.coupon || {}, actor) });

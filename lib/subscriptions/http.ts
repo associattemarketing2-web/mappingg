@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getCurrentUser, getStaffUser, type SessionUser } from '../auth';
 import { isAvailable } from './db';
+import { isSubscriptionsEnabled } from './store';
 import { z } from 'zod';
 import { SubError, type CheckoutRequest } from './lifecycle';
 
@@ -16,9 +17,15 @@ export function unavailable() {
   return fail('Subscriptions are temporarily unavailable.', 503, 'unavailable');
 }
 
+/** Answer for every account-facing subscription API while the master switch is off. */
+export function disabled() {
+  return fail('Subscriptions are not available right now.', 404, 'subscriptions_disabled');
+}
+
 /** Signed-in public account (buyer / developer / agent) or a ready error response. */
 export async function requireAccount(): Promise<{ user: SessionUser } | { res: NextResponse }> {
   if (!isAvailable()) return { res: unavailable() };
+  if (!(await isSubscriptionsEnabled())) return { res: disabled() };
   const user = await getCurrentUser();
   if (!user) return { res: fail('Please sign in.', 401, 'unauthenticated') };
   if (!['buyer', 'developer', 'agent'].includes(user.role)) return { res: fail('Subscriptions are for buyer, channel partner and developer accounts.', 403, 'wrong_role') };

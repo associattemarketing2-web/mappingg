@@ -7,6 +7,7 @@ import AgentProfile, { type AgentAccount } from '@/components/dashboard/AgentPro
 import DeveloperApp from '@/components/dashboard/DeveloperApp';
 import BuyerProfile from '@/components/dashboard/BuyerProfile';
 import ReviewScreen from '@/components/dashboard/ReviewScreen';
+import { isSubscriptionsEnabled } from '@/lib/subscriptions/store';
 import { ADD_MOBILE_PATH, accessOf, needsMobile, verificationOf } from '@/lib/verification';
 
 export const dynamic = 'force-dynamic';
@@ -61,7 +62,8 @@ export default async function DashboardRolePage({ params }: { params: { role: st
   // Approved developers get the full s-admin-style control panel (Dashboard,
   // Map Editor, Projects Intake) — scoped to their own projects.
   if (role === 'developer') {
-    return <DeveloperApp user={{ email: String(doc.email || ''), name: String(doc.name || '') }} />;
+    // Subscription / Project media tabs only while subscriptions are switched on (Super admin → Subscriptions).
+    return <DeveloperApp user={{ email: String(doc.email || ''), name: String(doc.name || '') }} subscriptions={await isSubscriptionsEnabled()} />;
   }
 
   // Approved agents / channel partners: no dashboard — the live map is their

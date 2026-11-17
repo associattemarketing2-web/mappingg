@@ -329,10 +329,10 @@ export const LANDING_BODY = `
         </fieldset>
         <div class="field"><label for="su-pass">Password</label><div class="pass-wrap"><input type="password" id="su-pass" name="password" placeholder="At least 8 characters" autocomplete="new-password" minlength="8" required aria-describedby="su-pass-hint"><button type="button" class="pass-toggle" aria-label="Show password"><i class="fas fa-eye"></i></button></div><small class="loc-note" id="su-pass-hint">Forgot it later? Reset it with a code on your WhatsApp.</small></div>
         <div class="field su-plans" id="su-plans">
-          <label>Choose your plan <small>— start free, upgrade any time</small></label>
+          <label class="su-plan-part" hidden>Choose your plan <small>— start free, upgrade any time</small></label>
           <p class="su-acct" id="su-acct"><i class="fas fa-user-check"></i> You are creating a <b id="su-acct-role">Buyer / Investor</b> account</p>
-          <div class="plan-tiles" id="su-plan-tiles"><label class="plan-tile"><input type="radio" name="plan" value="" checked><span><b>Free</b><em>₹0</em></span></label></div>
-          <small class="loc-note" id="su-plan-note">Every account starts on Free. <a href="/pricing" target="_blank" rel="noopener">Compare all plans</a></small>
+          <div class="plan-tiles su-plan-part" id="su-plan-tiles" hidden><label class="plan-tile"><input type="radio" name="plan" value="" checked><span><b>Free</b><em>₹0</em></span></label></div>
+          <small class="loc-note su-plan-part" id="su-plan-note" hidden>Every account starts on Free. <a href="/pricing" target="_blank" rel="noopener">Compare all plans</a></small>
         </div>
         <p class="verify-note" id="verifyNote" hidden><i class="fas fa-shield-halved"></i><span>We verify your RERA number on the MahaRERA website before your account gets full access, usually within one working day.</span></p>
         <div class="opts"><label><input type="checkbox" id="su-terms" required> I agree to the <a href="/terms" target="_blank" rel="noopener">Terms</a> & <a href="/privacy" target="_blank" rel="noopener">Privacy</a> and to be contacted on WhatsApp.</label></div>
