@@ -11,7 +11,7 @@ import { trustedLogos } from '@/lib/developers';
 import { trustedDevelopersHtml } from '@/components/landing/trusted-developers';
 import HomeFinder from '@/components/landing/HomeFinder';
 import { getProjectCards } from '@/lib/home/cards';
-import { homeStats, statsStripHtml, statsBandHtml, mapPreviewHtml, heroProjectHtml, heroSkylinePinsHtml, buyersSectionHtml } from '@/components/landing/home-sections';
+import { homeStats, statsStripHtml, statsBandHtml, mapPreviewHtml, heroSkylinePinsHtml, buyersSectionHtml } from '@/components/landing/home-sections';
 
 import { SITE, SITE_URL } from '@/lib/seo/config';
 import { mobileTrustHtml, mobileCatsHtml, mobileDiscoverHtml, mobileInsightsHtml, type MobilePost } from '@/components/landing/mobile-sections';
@@ -51,18 +51,18 @@ export default async function HomePage() {
   const stats = homeStats(cards);
   const posts = await mobilePosts();
   const landingHtml = LANDING_BODY
-    .replace('<!--MAP_PREVIEW-->', () => mapPreviewHtml(cards, heroProjectHtml(cards)))
+    .replace('<!--MAP_PREVIEW-->', () => mapPreviewHtml(cards))
     .replace('<!--HERO_SKY_PINS-->', () => heroSkylinePinsHtml(cards))
-    .replace('<!--STATS_STRIP-->', () => statsStripHtml(stats, cards))
+    .replace('<!--STATS_STRIP-->', () => statsStripHtml())
     .replace('<!--STATS_BAND-->', () => statsBandHtml(stats))
-    .replace('<!--BUYER_JOURNEY-->', () => buyersSectionHtml(cards, stats))
+    .replace('<!--BUYER_JOURNEY-->', () => buyersSectionHtml(cards))
     // "Trusted by developers" logo row (nothing is shown until a few developers have logos).
     .replace('<!--DEV_LOGOS-->', () => trustedDevelopersHtml(logos))
     // Phone-only sections around the existing ones (hidden above 720 px).
     .replace('<!--M_TRUST-->', () => mobileTrustHtml(cards))
     .replace('<!--M_CATS-->', () => mobileCatsHtml(cards))
     .replace('<!--M_DISCOVER-->', () => mobileDiscoverHtml())
-    .replace('<!--M_INSIGHTS-->', () => mobileInsightsHtml(posts, stats));
+    .replace('<!--M_INSIGHTS-->', () => mobileInsightsHtml(posts));
   // WhatsApp codes paused (OTP_ENABLED off): mobile/email + password sign-in, no OTP buttons.
   const authHtml = otpEnabled() ? landingHtml.replace('id="authModal"', 'id="authModal" data-otp="on"') : withoutOtp(landingHtml);
   // "Projects near you" (React) sits between the hero (search + live map + stats) and the rest.

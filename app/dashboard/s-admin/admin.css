@@ -4124,3 +4124,6 @@ button.ck:hover { transform: translateY(-2px); }
   .pd-ser-grid { gap: 4px; }
   .pd-ser-cell { min-height: 28px; font-size: 10.5px; border-radius: 6px; }
 }
+
+/* Day picker on "Where visitors come from" */
+.trf-day-pick { font: inherit; font-size: 13px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: inherit; max-width: 100%; cursor: pointer; }

@@ -20,6 +20,8 @@ interface Report {
   topPages: { path: string; views: number; visitors: number }[];
   topClicks: { label: string; href: string; clicks: number }[];
   sources: { source: string; visitors: number }[];
+  sourcesDaily: { date: string; source: string; visitors: number }[];
+  sourcesAll: { source: string; visitors: number }[];
   devices: { device: string; visitors: number }[];
   countries: GeoCountry[];
   regions: GeoRegion[];
@@ -39,6 +41,8 @@ const DEVICE_COLORS: Record<string, string> = { Mobile: '#2f7a3c', Desktop: '#2d
 const fmt = (n: number) => n.toLocaleString('en-IN');
 const PAGE_NAMES: Record<string, string> = { '/': 'Home', '/map': 'Live map', '/blog': 'Blog', '/projects': 'All projects', '/contact': 'Contact' };
 const pageName = (p: string) => PAGE_NAMES[p] || p;
+/** "2026-11-15" -> "Sun, 15 Nov" (the date is already an India-time day). */
+const dayName = (d: string) => new Date(d + 'T00:00:00Z').toLocaleDateString('en-IN', { timeZone: 'UTC', weekday: 'short', day: 'numeric', month: 'short' });
 
 /** "+12% vs previous 7 days" — or nothing when there is no earlier data to compare. */
 function change(cur: number, prev: number, days: number) {
@@ -55,7 +59,7 @@ function normalize(x: Partial<Report>): Report {
     ...(x as Report),
     activeNow: x.activeNow || 0,
     activePages: list(x.activePages), daily: list(x.daily), topPages: list(x.topPages), topClicks: list(x.topClicks),
-    sources: list(x.sources), devices: list(x.devices), countries: list(x.countries), regions: list(x.regions), cities: list(x.cities),
+    sources: list(x.sources), sourcesDaily: list(x.sourcesDaily), sourcesAll: list(x.sourcesAll), devices: list(x.devices), countries: list(x.countries), regions: list(x.regions), cities: list(x.cities),
     searches: list(x.searches), totalSearches: x.totalSearches || 0,
     realtime: { visitors: rt.visitors || 0, perMinute: rt.perMinute?.length ? rt.perMinute : Array(30).fill(0), countries: list(rt.countries), regions: list(rt.regions), cities: list(rt.cities) },
   };
@@ -68,6 +72,8 @@ export default function TrafficPanel() {
   const r = raw ? normalize(raw) : null;
   const [err, setErr] = useState('');
   const [geo, setGeo] = useState<GeoLevel>('region');
+  // Day picked in "Where visitors come from": 'today' (default), a date, '' for the whole range, or 'all' for all time.
+  const [srcDay, setSrcDay] = useState('today');
 
   async function load(d = days) {
     try {
@@ -112,7 +118,17 @@ export default function TrafficPanel() {
   const empty = !r.since;
   const maxPage = Math.max(...r.topPages.map((p) => p.views), 1);
   const maxClick = Math.max(...r.topClicks.map((c) => c.clicks), 1);
-  const maxSrc = Math.max(...r.sources.map((s) => s.visitors), 1);
+  // "Where visitors come from", day by day: latest day first, each with its sources.
+  const srcDays = [...r.daily].reverse().map((d) => {
+    const rows = r.sourcesDaily.filter((x) => x.date === d.date).sort((a, b) => b.visitors - a.visitors);
+    return { date: d.date, rows, total: rows.reduce((a, x) => a + x.visitors, 0) };
+  });
+  // r.daily ends with today, so srcDays starts with it.
+  const pickedDay = srcDay === 'today' ? srcDays[0] : srcDays.find((d) => d.date === srcDay);
+  const allTime = srcDay === 'all';
+  const srcRows = allTime ? r.sourcesAll : pickedDay ? pickedDay.rows : r.sources;
+  const sinceName = r.since ? new Date(r.since).toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', year: 'numeric' }) : '';
+  const maxSrc = Math.max(...srcRows.map((s) => s.visitors), 1);
   const devTotal = r.devices.reduce((a, d) => a + d.visitors, 0);
   const clickName = (c: Report['topClicks'][number]) => c.label || c.href || '(no label)';
   // Location rows for the chosen level over the date range. India's states are the default view.
@@ -222,12 +238,27 @@ export default function TrafficPanel() {
       </div>
 
       <div className="viz-grid2">
-        <ChartCard title="Where visitors come from" subtitle="First page of each visit"
-          table={{ head: ['Source', 'Visitors'], rows: r.sources.map((s) => [s.source, s.visitors]) }}>
-          {(show, hide) => r.sources.length ? (
-            <HBars rows={r.sources.map((s) => ({ label: s.source, value: s.visitors }))} max={maxSrc} show={show} hide={hide}
-              valueText={fmt} tipLines={(row) => [`${fmt(row.value)} visitors`]} />
-          ) : <div className="adm-empty"><p>No visits yet.</p></div>}
+        <ChartCard title="Where visitors come from"
+          subtitle={allTime ? `All visitors so far${sinceName ? ` (since ${sinceName})` : ''}, by source`
+            : pickedDay ? `Visitors ${pickedDay === srcDays[0] ? 'today' : `on ${dayName(pickedDay.date)}`}, by source` : `Visitors ${rangeLabel}, by source`}
+          table={allTime || pickedDay
+            ? { head: ['Source', 'Visitors'], rows: srcRows.map((s) => [s.source, s.visitors]) }
+            : { head: ['Day', 'Source', 'Visitors'], rows: srcDays.flatMap((d) => d.rows.map((s) => [dayName(d.date), s.source, s.visitors])) }}>
+          {(show, hide) => (
+            <>
+              <div className="trf-geo-bar">
+                <select className="trf-day-pick" aria-label="Day" value={allTime ? 'all' : pickedDay ? pickedDay.date : ''} onChange={(e) => setSrcDay(e.target.value)}>
+                  {srcDays.map((d, i) => <option key={d.date} value={d.date}>{i === 0 ? 'Today' : dayName(d.date)} — {fmt(d.total)} visitor{d.total === 1 ? '' : 's'}</option>)}
+                  {r.days > 1 && <option value="">All {r.days} days</option>}
+                  <option value="all">All time (so far)</option>
+                </select>
+              </div>
+              {srcRows.length ? (
+                <HBars rows={srcRows.map((s) => ({ label: s.source, value: s.visitors }))} max={maxSrc} show={show} hide={hide}
+                  valueText={fmt} tipLines={(row) => [`${fmt(row.value)} visitors`]} />
+              ) : <div className="adm-empty"><p>{pickedDay && !allTime ? 'No visits on this day.' : 'No visits yet.'}</p></div>}
+            </>
+          )}
         </ChartCard>
         <ChartCard title="Devices" subtitle={`Visitors ${rangeLabel}`}
           table={{ head: ['Device', 'Visitors'], rows: r.devices.map((d) => [d.device, d.visitors]) }}>

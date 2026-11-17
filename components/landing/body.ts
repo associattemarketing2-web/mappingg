@@ -33,8 +33,14 @@ export const LANDING_BODY = `
   <div class="hm-wrap hm-hero-grid">
     <div class="hm-hero-copy">
       <span class="hm-kicker"><span class="dot"></span>India's real estate project map</span>
-      <h1><span class="hm-h1-d">Find your next home <span>by location.</span></span> <span class="hm-h1-m">Discover, Compare &amp; Find Your Next Home on an <em>Interactive Map</em></span></h1>
-      <p class="hm-lead"><span class="hm-h1-d">Explore verified residential projects with real locations, prices, RERA details, nearby infrastructure and amenities — all in one interactive map.</span><span class="hm-h1-m">Explore verified projects, real prices, RERA details, nearby infrastructure and more — all in one place.</span></p>
+      <h1><span class="hm-h1-d">Find Your Next Home <span>by Location</span></span> <span class="hm-h1-m">Discover, Compare &amp; Find Your Next Home on an <em>Interactive Map</em></span></h1>
+      <p class="hm-lead"><span class="hm-h1-d">Explore verified projects with real locations, prices, RERA details, nearby infrastructure and amenities — all on an interactive map.</span><span class="hm-h1-m">Explore verified projects, real prices, RERA details, nearby infrastructure and more — all in one place.</span></p>
+      <ul class="hm-hero-trust" aria-label="Why Mappingg">
+        <li><i class="fas fa-shield-halved" aria-hidden="true"></i><span>Verified Projects</span></li>
+        <li><i class="fas fa-layer-group" aria-hidden="true"></i><span>RERA Details</span></li>
+        <li><i class="fas fa-indian-rupee-sign" aria-hidden="true"></i><span>Real Prices</span></li>
+        <li><i class="fas fa-location-dot" aria-hidden="true"></i><span>Nearby Infra</span></li>
+      </ul>
       <!--M_TRUST-->
 
       <div class="hm-search">
@@ -42,6 +48,12 @@ export const LANDING_BODY = `
           <button type="button" class="on" data-mode="map" aria-pressed="true"><i class="far fa-map" aria-hidden="true"></i>Explore on Map</button>
           <button type="button" data-mode="list" aria-pressed="false"><i class="fas fa-list-ul" aria-hidden="true"></i>Search Projects</button>
         </div>
+        <nav class="hm-tabs" aria-label="Browse projects">
+          <span class="on" aria-current="page"><i class="fas fa-house" aria-hidden="true"></i>Buy</span>
+          <a href="/property/commercial"><i class="fas fa-building" aria-hidden="true"></i>Commercial</a>
+          <a href="/status/upcoming"><i class="fas fa-rocket" aria-hidden="true"></i>New Launches</a>
+          <a href="/map" class="trial-link"><i class="far fa-map" aria-hidden="true"></i>Projects on Map</a>
+        </nav>
         <form class="hm-form" id="heroAskForm" role="search" action="/map" method="get" aria-label="Search projects">
           <label class="hm-field hm-field-q"><i class="fas fa-location-dot" aria-hidden="true"></i><span class="sr-only">Locality, project or developer</span>
             <input id="heroAskInput" name="q" type="search" placeholder="Locality" autocomplete="off" enterkeyhint="search" maxlength="80"><button type="button" class="hm-mic" id="heroMic" aria-label="Search by voice" hidden><i class="fas fa-microphone" aria-hidden="true"></i></button></label>
@@ -90,50 +102,54 @@ export const LANDING_BODY = `
 <section class="hm-sec hm-around" id="features">
   <div class="hm-wrap hm-around-grid">
     <div class="hm-around-copy">
-      <h2>See what's around <span>every project.</span></h2>
-      <p class="hm-sub">Understand the real context — schools, hospitals, IT parks, metro, malls and more with actual distances.</p>
+      <span class="hm-around-kicker"><i class="fas fa-location-dot"></i>Location Intelligence</span>
+      <h2>See What's Around <span><u>Every</u> Project</span></h2>
+      <p class="hm-sub">Understand the real context — schools, hospitals, IT parks, metro, malls and more with actual distances from the project.</p>
       <ul class="hm-poi-list" id="hmPoiList">
         <li><button type="button" data-poi="school"><span class="ic c-school"><i class="fas fa-school"></i></span><span><b>Schools</b><small>Nearby schools around each project.</small></span></button></li>
-        <li><button type="button" data-poi="hospital"><span class="ic c-hospital"><i class="fas fa-hospital"></i></span><span><b>Hospitals</b><small>Multi-speciality and nearest hospitals.</small></span></button></li>
-        <li><button type="button" data-poi="metro"><span class="ic c-metro"><i class="fas fa-train-subway"></i></span><span><b>Metro &amp; transport</b><small>Metro stations, bus stops and highways.</small></span></button></li>
-        <li><button type="button" data-poi="it"><span class="ic c-it"><i class="fas fa-building"></i></span><span><b>IT parks &amp; offices</b><small>Major employment hubs with drive time.</small></span></button></li>
-        <li><button type="button" data-poi="mall"><span class="ic c-mall"><i class="fas fa-bag-shopping"></i></span><span><b>Malls &amp; shopping</b><small>Malls, restaurants and entertainment.</small></span></button></li>
+        <li><button type="button" data-poi="hospital"><span class="ic c-hospital"><i class="fas fa-square-plus"></i></span><span><b>Hospitals</b><small>Multi-speciality and nearest hospitals.</small></span></button></li>
+        <li><button type="button" data-poi="metro"><span class="ic c-metro"><i class="fas fa-train-subway"></i></span><span><b>Metro &amp; Transport</b><small>Metro stations, bus stops and highways.</small></span></button></li>
+        <li><button type="button" data-poi="it"><span class="ic c-it"><i class="fas fa-building"></i></span><span><b>IT Parks &amp; Offices</b><small>Major employment hubs with drive time.</small></span></button></li>
+        <li><button type="button" data-poi="mall"><span class="ic c-mall"><i class="fas fa-bag-shopping"></i></span><span><b>Malls &amp; Shopping</b><small>Malls, restaurants and entertainment.</small></span></button></li>
       </ul>
-      <a href="/map" class="hm-btn hm-btn-line trial-link">Explore location insights <i class="fas fa-arrow-right"></i></a>
+      <a href="/map" class="hm-btn hm-around-cta trial-link"><i class="far fa-map"></i>Explore Location Insights <i class="fas fa-arrow-right"></i></a>
     </div>
     <div class="hm-aerial" id="hmAerial" data-poi="all" data-view="satellite">
-      <div class="hm-aerial-tabs" role="tablist" aria-label="Map style">
-        <button type="button" role="tab" data-view="map" aria-selected="false">Map</button>
-        <button type="button" role="tab" data-view="satellite" aria-selected="true" class="on">Satellite</button>
-      </div>
+      <!-- The stage keeps the photo's aspect ratio and sizes everything on it in cqw,
+           so the tags sit exactly over the labels drawn into /img/around-aerial.webp. -->
       <div class="hm-aerial-stage">
-        <svg class="hm-aerial-map" viewBox="0 0 600 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect width="600" height="380" fill="#f3efe6"/>
-          <g fill="#e9e3d6"><rect x="18" y="18" width="150" height="96" rx="10"/><rect x="198" y="26" width="76" height="80" rx="10"/><rect x="440" y="18" width="142" height="104" rx="10"/><rect x="24" y="250" width="150" height="110" rx="10"/><rect x="410" y="262" width="172" height="100" rx="10"/><rect x="214" y="268" width="140" height="70" rx="10"/></g>
+        <svg class="hm-aerial-map" viewBox="0 0 600 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="600" height="360" fill="#f3efe6"/>
+          <g fill="#e9e3d6"><rect x="18" y="18" width="150" height="96" rx="10"/><rect x="198" y="26" width="76" height="80" rx="10"/><rect x="440" y="18" width="142" height="104" rx="10"/><rect x="24" y="250" width="150" height="100" rx="10"/><rect x="410" y="262" width="172" height="90" rx="10"/><rect x="214" y="268" width="140" height="70" rx="10"/></g>
           <rect x="300" y="24" width="112" height="84" rx="16" fill="#d6ebce"/>
           <path d="M-20 214 C 110 168 230 252 360 204 S 540 170 620 192" stroke="#a9d0ef" stroke-width="30" fill="none" stroke-linecap="round"/>
           <g stroke-linecap="round" fill="none">
-            <path d="M0 140H600M188 0V380M428 0V380" stroke="#e2dacb" stroke-width="14"/>
-            <path d="M0 140H600M188 0V380M428 0V380" stroke="#fff" stroke-width="9"/>
-            <path d="M0 352 C 210 328 380 372 600 338" stroke="#e8b45a" stroke-width="14"/>
-            <path d="M0 352 C 210 328 380 372 600 338" stroke="#f7d89a" stroke-width="9"/>
+            <path d="M0 140H600M188 0V360M428 0V360" stroke="#e2dacb" stroke-width="14"/>
+            <path d="M0 140H600M188 0V360M428 0V360" stroke="#fff" stroke-width="9"/>
+            <path d="M0 340 C 210 316 380 360 600 326" stroke="#e8b45a" stroke-width="14"/>
+            <path d="M0 340 C 210 316 380 360 600 326" stroke="#f7d89a" stroke-width="9"/>
           </g>
         </svg>
         <div class="hm-aerial-photo" aria-hidden="true"></div>
-        <div class="hm-aerial-center"><span class="hm-pulse"></span><b>Your project</b><small>Distances from here</small></div>
-        <div class="hm-chip c-it" data-poi="it" style="left:22%;top:16%"><span class="ic"><i class="fas fa-building"></i></span><span><b>IT park</b><small>12 min</small></span></div>
-        <div class="hm-chip c-mall" data-poi="mall" style="left:20%;top:44%"><span class="ic"><i class="fas fa-bag-shopping"></i></span><span><b>Mall</b><small>8 min</small></span></div>
-        <div class="hm-chip c-hospital" data-poi="hospital" style="left:18%;top:74%"><span class="ic"><i class="fas fa-hospital"></i></span><span><b>Hospital</b><small>6 min</small></span></div>
-        <div class="hm-chip c-school" data-poi="school" style="left:80%;top:20%"><span class="ic"><i class="fas fa-school"></i></span><span><b>School</b><small>1.2 km</small></span></div>
-        <div class="hm-chip c-metro" data-poi="metro" style="left:80%;top:70%"><span class="ic"><i class="fas fa-train-subway"></i></span><span><b>Metro station</b><small>5 min</small></span></div>
-        <p class="hm-aerial-note">Illustration — open any project on the live map for its real distances.</p>
+        <p class="hm-aerial-note"><i class="fas fa-circle-info"></i>Illustration — open a project on the map for its real distances.</p>
+        <div class="hm-aerial-tabs" role="tablist" aria-label="Map style">
+          <button type="button" role="tab" data-view="map" aria-selected="false">Map</button>
+          <button type="button" role="tab" data-view="satellite" aria-selected="true" class="on">Satellite</button>
+        </div>
+        <span class="hm-aerial-pin" aria-hidden="true"><i class="fas fa-building"></i></span>
+        <div class="hm-aerial-center"><b>Your Project</b><small>Mundhwa, Pune</small></div>
+        <div class="hm-chip c-it" data-poi="it" style="left:19.8%;top:17.8%;--w:14.6"><span class="ic"><i class="fas fa-building"></i></span><span><b>IT Park</b><small>4.5 km</small></span></div>
+        <div class="hm-chip c-school" data-poi="school" style="left:70.5%;top:26.5%;--w:14.3"><span class="ic"><i class="fas fa-graduation-cap"></i></span><span><b>School</b><small>1.2 km</small></span></div>
+        <div class="hm-chip c-mall" data-poi="mall" style="left:8%;top:41.4%;--w:13.7"><span class="ic"><i class="fas fa-bag-shopping"></i></span><span><b>Mall</b><small>2.8 km</small></span></div>
+        <div class="hm-chip c-metro" data-poi="metro" style="left:72.9%;top:58.1%;--w:20.1"><span class="ic"><i class="fas fa-train-subway"></i></span><span><b>Metro Station</b><small>3.1 km</small></span></div>
+        <div class="hm-chip c-hospital" data-poi="hospital" style="left:11.9%;top:69.1%;--w:15.4"><span class="ic"><i class="fas fa-square-plus"></i></span><span><b>Hospital</b><small>2.4 km</small></span></div>
       </div>
       <div class="hm-thumbs" id="hmThumbs">
-        <button type="button" data-poi="all" class="on"><i class="fas fa-map"></i>Overview</button>
-        <button type="button" data-poi="school"><i class="fas fa-school"></i>Schools</button>
-        <button type="button" data-poi="hospital"><i class="fas fa-hospital"></i>Hospitals</button>
-        <button type="button" data-poi="it"><i class="fas fa-building"></i>IT Parks</button>
+        <button type="button" data-poi="all" class="on"><i class="fas fa-building"></i>Overview</button>
+        <button type="button" data-poi="school"><i class="fas fa-graduation-cap"></i>Schools</button>
+        <button type="button" data-poi="hospital"><i class="fas fa-square-plus"></i>Hospitals</button>
         <button type="button" data-poi="metro"><i class="fas fa-train-subway"></i>Metro</button>
+        <button type="button" data-poi="it"><i class="fas fa-building"></i>IT Parks</button>
         <button type="button" data-poi="mall"><i class="fas fa-bag-shopping"></i>Malls</button>
       </div>
     </div>
@@ -143,61 +159,47 @@ export const LANDING_BODY = `
 <!--DEV_LOGOS-->
 
 <section class="hm-sec hm-how" id="how">
+  <img class="hm-how-sky l" src="/img/how-sky-left.webp" alt="" width="270" height="135" loading="lazy" decoding="async">
+  <img class="hm-how-sky r" src="/img/how-sky-right.webp" alt="" width="284" height="135" loading="lazy" decoding="async">
   <div class="hm-wrap">
-    <div class="hm-head hm-center">
-      <span class="hm-eyebrow">How it works</span>
-      <h2>Find the right project in <span class="accent">3 simple steps</span></h2>
-      <p class="hm-sub">See the facts on the map first, then enquire only about the projects you like.</p>
+    <div class="hm-how-head">
+      <span class="hm-how-kicker">How it works</span>
+      <h2>Find the Right Project in <span>3 Simple Steps</span></h2>
+      <p>Explore, verify and enquire — a faster, smarter way to find your next home.</p>
     </div>
     <ol class="hm-flow">
       <li class="hm-fstep">
-        <div class="hm-fvis hm-fvis-1" aria-hidden="true">
-          <div class="v-search"><i class="fas fa-location-dot"></i><span>Kharadi</span><b>2 BHK</b><b>₹1–2 Cr</b></div>
-          <span class="v-pin p1"><i class="fas fa-location-dot"></i></span>
-          <span class="v-pin p2"><i class="fas fa-location-dot"></i></span>
-          <span class="v-pin p3"><i class="fas fa-location-dot"></i></span>
-          <span class="v-road r1"></span><span class="v-road r2"></span><span class="v-river"></span>
-        </div>
+        <span class="hm-fnum">1</span>
+        <span class="hm-fvis"><img src="/img/how-search.webp" alt="" width="484" height="269" loading="lazy" decoding="async"></span>
         <div class="hm-ftext">
-          <span class="hm-fnum">1</span>
-          <h3>Search &amp; explore</h3>
-          <p>Pick a locality, BHK and budget — every matching project shows up as a pin on the map.</p>
+          <span class="ic"><i class="fas fa-location-dot"></i></span>
+          <div><h3>Search &amp; Explore</h3><p>Pick a location, BHK and budget — see matching projects on the map instantly.</p></div>
         </div>
       </li>
       <li class="hm-fstep">
-        <div class="hm-fvis hm-fvis-2" aria-hidden="true">
-          <div class="v-card">
-            <div class="v-row"><span><i class="fas fa-shield-halved"></i>RERA</span><b class="ok">Registered <i class="fas fa-circle-check"></i></b></div>
-            <div class="v-row"><span><i class="fas fa-indian-rupee-sign"></i>Price</span><b>₹1.25 Cr onwards</b></div>
-            <div class="v-row"><span><i class="fas fa-calendar-check"></i>Possession</span><b>Dec 2029</b></div>
-            <div class="v-row"><span><i class="fas fa-school"></i>Nearby</span><b>School · 1.2 km</b></div>
-          </div>
-        </div>
+        <span class="hm-fnum">2</span>
+        <span class="hm-fvis"><img src="/img/how-facts.webp" alt="" width="497" height="261" loading="lazy" decoding="async"></span>
         <div class="hm-ftext">
-          <span class="hm-fnum">2</span>
-          <h3>Check the real facts</h3>
-          <p>RERA number from the official registry, price, possession date and what's nearby — on one card.</p>
+          <span class="ic"><i class="fas fa-layer-group"></i></span>
+          <div><h3>Check the Real Facts</h3><p>Verify RERA, price, possession date and nearby infrastructure — all in one place.</p></div>
         </div>
       </li>
       <li class="hm-fstep">
-        <div class="hm-fvis hm-fvis-3" aria-hidden="true">
-          <div class="v-compare">
-            <div><small>Project A</small><b>₹1.25 Cr</b><em>Dec 2029</em></div>
-            <div class="vs">vs</div>
-            <div><small>Project B</small><b>₹1.10 Cr</b><em>Ready</em></div>
-          </div>
-          <span class="v-wa"><i class="fab fa-whatsapp"></i>Enquire on WhatsApp</span>
-        </div>
+        <span class="hm-fnum">3</span>
+        <span class="hm-fvis"><img src="/img/how-compare.webp" alt="" width="497" height="264" loading="lazy" decoding="async"></span>
         <div class="hm-ftext">
-          <span class="hm-fnum">3</span>
-          <h3>Compare &amp; enquire</h3>
-          <p>Shortlist, compare side by side and enquire directly with the developer in one tap.</p>
+          <span class="ic"><i class="fas fa-scale-balanced"></i></span>
+          <div><h3>Compare &amp; Enquire</h3><p>Shortlist, compare side-by-side and enquire directly with the developer.</p></div>
         </div>
       </li>
     </ol>
     <div class="hm-flow-cta">
-      <a href="/map" class="hm-btn hm-btn-solid trial-link"><i class="fas fa-map-location-dot"></i> Try the live map free</a>
-      <span>3 projects free · no sign-up needed</span>
+      <a href="/map" class="hm-btn trial-link"><i class="fas fa-map"></i>Try the Live Map Free <i class="fas fa-arrow-right"></i></a>
+      <ul>
+        <li><i class="fas fa-check"></i>Explore real projects</li>
+        <li><i class="fas fa-check"></i>Check verified details</li>
+        <li><i class="fas fa-check"></i>No sign-up needed</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -206,24 +208,24 @@ export const LANDING_BODY = `
 
 <!--M_INSIGHTS-->
 
-<section class="hm-band" aria-label="Mappingg in numbers">
-  <div class="hm-wrap"><!--STATS_BAND--></div>
-</section>
-
-<section class="hm-cta">
-  <div class="hm-wrap hm-cta-row">
-    <div>
-      <h2>Ready to find your next home?</h2>
-      <p>Create a free buyer account in under a minute — just your WhatsApp number.</p>
+<section class="hm-cta" aria-labelledby="hmCtaTitle">
+  <div class="hm-wrap">
+    <div class="hm-band" aria-label="Mappingg in numbers"><!--STATS_BAND--></div>
+    <div class="hm-cta-card">
+      <span class="hm-cta-art" aria-hidden="true"><img src="/img/cta-towers.webp" alt="" width="923" height="345" loading="lazy" decoding="async"></span>
+      <div class="hm-cta-tx">
+        <h2 id="hmCtaTitle">Ready to find your <span>next home?</span></h2>
+        <p>Create a free buyer account in under a minute — just your WhatsApp number.</p>
+      </div>
       <ul class="hm-cta-perks">
-        <li><i class="fas fa-check"></i>Open every project on the map</li>
-        <li><i class="fas fa-check"></i>Prices, BHK &amp; possession dates</li>
-        <li><i class="fas fa-check"></i>Compare projects &amp; enquire directly</li>
+        <li><span class="ic"><i class="far fa-map"></i></span>Open every project on the map</li>
+        <li><span class="ic"><i class="fas fa-layer-group"></i></span>Prices, BHK &amp; possession dates</li>
+        <li><span class="ic"><i class="fas fa-sliders"></i></span>Compare projects &amp; shortlist easily</li>
       </ul>
-    </div>
-    <div class="hm-cta-btns">
-      <a href="#" class="hm-btn hm-btn-white open-signup" data-role="buyer">Sign Up for Free <i class="fas fa-arrow-right"></i></a>
-      <a href="/map" class="hm-btn hm-btn-ghost trial-link">Explore Live Map</a>
+      <div class="hm-cta-btns">
+        <a href="#" class="hm-btn hm-btn-white open-signup" data-role="buyer"><i class="fab fa-whatsapp hm-cta-wa"></i>Sign Up for Free <i class="fas fa-arrow-right"></i></a>
+        <a href="/map" class="hm-btn hm-btn-ghost trial-link"><i class="far fa-map"></i>Explore Live Map</a>
+      </div>
     </div>
   </div>
 </section>

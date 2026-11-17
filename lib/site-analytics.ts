@@ -206,6 +206,10 @@ export interface TrafficReport {
   topPages: { path: string; views: number; visitors: number }[];
   topClicks: { label: string; href: string; clicks: number }[];
   sources: { source: string; visitors: number }[];
+  /** Traffic sources per India-time day of the range (unique visitors per source per day). */
+  sourcesDaily: { date: string; source: string; visitors: number }[];
+  /** Traffic sources over everything stored (since `since`, at most RETENTION_DAYS). */
+  sourcesAll: { source: string; visitors: number }[];
   devices: { device: string; visitors: number }[];
   countries: GeoCountry[];
   regions: GeoRegion[];
@@ -242,9 +246,21 @@ export async function trafficReport(days: number): Promise<TrafficReport> {
   const todayStart = new Date(Date.parse(todayIst + 'T00:00:00Z') - IST_OFFSET_MS);
 
   let rows: SiteEvent[] | null = null;
+  let mongoSourcesAll: TrafficReport['sourcesAll'] = [];
   if (usingMongo()) {
-    const docs = await (await getMongoDb()).collection('site_events').find({ at: { $gte: prevStart } }).toArray();
+    const col = (await getMongoDb()).collection('site_events');
+    const [docs, all] = await Promise.all([
+      col.find({ at: { $gte: prevStart } }).toArray(),
+      // All-time sources: unique visitors per source, counted in the database.
+      col.aggregate([
+        { $match: { kind: 'pv', source: { $nin: [null, ''] } } },
+        { $group: { _id: { s: '$source', v: '$vid' } } },
+        { $group: { _id: '$_id.s', n: { $sum: 1 } } },
+        { $sort: { n: -1 } }, { $limit: 10 },
+      ]).toArray(),
+    ]);
     rows = docs.map((d) => ({ ...(d as unknown as SiteEvent), at: new Date(d.at as Date).toISOString() }));
+    mongoSourcesAll = all.map((x) => ({ source: String(x._id), visitors: n(x.n) }));
   }
 
   // Small helper so each figure is one SQL query on Postgres, or JS over `rows` on Mongo.
@@ -288,6 +304,9 @@ export async function trafficReport(days: number): Promise<TrafficReport> {
       topPages: [...pages.entries()].map(([path, p]) => ({ path, views: p.views, visitors: p.v.size })).sort((a, b) => b.views - a.views).slice(0, 15),
       topClicks: [...clicks.values()].sort((a, b) => b.clicks - a.clicks).slice(0, 15),
       sources: group(cur.filter((e) => e.kind === 'pv'), (e) => e.source).map((x) => ({ source: x.k, visitors: x.v })).slice(0, 10),
+      sourcesDaily: group(cur.filter((e) => e.kind === 'pv' && e.source), (e) => `${istDate(new Date(e.at))}|${e.source}`)
+        .map((x) => { const i = x.k.indexOf('|'); return { date: x.k.slice(0, i), source: x.k.slice(i + 1), visitors: x.v }; }),
+      sourcesAll: mongoSourcesAll,
       devices: group(cur, (e) => e.device).map((x) => ({ device: x.k, visitors: x.v })),
       ...geoOf(cur),
       realtime: (() => {
@@ -317,7 +336,7 @@ export async function trafficReport(days: number): Promise<TrafficReport> {
     regions: rs.map((r) => region(String(r.country), String(r.region), n(r.v))),
     cities: ci.map((r) => city(String(r.country), String(r.region), String(r.city), r.lat == null ? undefined : Number(r.lat), r.lng == null ? undefined : Number(r.lng), n(r.v))),
   }));
-  const [totals, prev, today, active, daily, pages, clicks, sources, devices, first, geoRange, geoRt, rtTotal, rtMinutes, searches, nSearch] = await Promise.all([
+  const [totals, prev, today, active, daily, pages, clicks, sources, sourcesDaily, sourcesAll, devices, first, geoRange, geoRt, rtTotal, rtMinutes, searches, nSearch] = await Promise.all([
     q(`SELECT count(DISTINCT vid) v, count(*) FILTER (WHERE kind='pv') pv, count(*) FILTER (WHERE kind='click') c FROM site_events WHERE at >= $1`, [start]),
     q(`SELECT count(DISTINCT vid) v, count(*) FILTER (WHERE kind='pv') pv, count(*) FILTER (WHERE kind='click') c FROM site_events WHERE at >= $1 AND at < $2`, [prevStart, start]),
     q(`SELECT count(DISTINCT vid) v, count(*) FILTER (WHERE kind='pv') pv, count(*) FILTER (WHERE kind='click') c FROM site_events WHERE at >= $1`, [todayStart]),
@@ -326,6 +345,8 @@ export async function trafficReport(days: number): Promise<TrafficReport> {
     q(`SELECT path, count(*) views, count(DISTINCT vid) v FROM site_events WHERE kind='pv' AND at >= $1 GROUP BY path ORDER BY views DESC LIMIT 15`, [start]),
     q(`SELECT coalesce(label,'') label, coalesce(href,'') href, count(*) c FROM site_events WHERE kind='click' AND at >= $1 GROUP BY 1, 2 ORDER BY c DESC LIMIT 15`, [start]),
     q(`SELECT source, count(DISTINCT vid) v FROM site_events WHERE kind='pv' AND source IS NOT NULL AND source <> '' AND at >= $1 GROUP BY source ORDER BY v DESC LIMIT 10`, [start]),
+    q(`SELECT ${DAY} d, source, count(DISTINCT vid) v FROM site_events WHERE kind='pv' AND source IS NOT NULL AND source <> '' AND at >= $1 GROUP BY 1, 2 ORDER BY 1, v DESC`, [start]),
+    q(`SELECT source, count(DISTINCT vid) v FROM site_events WHERE kind='pv' AND source IS NOT NULL AND source <> '' GROUP BY source ORDER BY v DESC LIMIT 10`, []),
     q(`SELECT device, count(DISTINCT vid) v FROM site_events WHERE device IS NOT NULL AND at >= $1 GROUP BY device ORDER BY v DESC`, [start]),
     q(`SELECT min(at) f FROM site_events`, []),
     geoSql(start),
@@ -344,6 +365,8 @@ export async function trafficReport(days: number): Promise<TrafficReport> {
     topPages: pages.map((r) => ({ path: String(r.path), views: n(r.views), visitors: n(r.v) })),
     topClicks: clicks.map((r) => ({ label: String(r.label), href: String(r.href), clicks: n(r.c) })),
     sources: sources.map((r) => ({ source: String(r.source), visitors: n(r.v) })),
+    sourcesDaily: sourcesDaily.map((r) => ({ date: String(r.d), source: String(r.source), visitors: n(r.v) })),
+    sourcesAll: sourcesAll.map((r) => ({ source: String(r.source), visitors: n(r.v) })),
     devices: devices.map((r) => ({ device: String(r.device), visitors: n(r.v) })),
     ...geoRange,
     realtime: (() => {

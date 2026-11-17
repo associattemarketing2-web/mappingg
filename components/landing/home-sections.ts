@@ -1,7 +1,6 @@
 import { completeness, type ProjectCardData } from '@/lib/home/cards';
 import { isAdminArea } from '@/lib/home/nearby';
 import { slugify } from '@/lib/seo/slug';
-import { BHK_OPTIONS, BUDGET_OPTIONS } from '@/lib/home/finder';
 
 // Server-rendered bits of the home page that come from live data: the counts in
 // the hero stats bar and the dark numbers band, and the popular-locality chips
@@ -36,14 +35,12 @@ const fmt = (n: number) => (n >= 50 ? `${(Math.floor(n / 10) * 10).toLocaleStrin
 
 type Stat = { icon: string; value: string; label: string };
 
-function list(s: HomeStats, band: boolean): Stat[] {
+function list(s: HomeStats): Stat[] {
   const out: Stat[] = [
-    { icon: 'fa-shield-halved', value: fmt(s.projects), label: 'Verified Projects' },
-    { icon: 'fa-building', value: fmt(s.developers), label: 'Developers' },
+    { icon: 'fa-house', value: fmt(s.projects), label: 'Verified Projects' },
+    { icon: 'fa-building', value: fmt(s.developers), label: 'Top Developers' },
     { icon: 'fa-location-dot', value: fmt(s.localities), label: 'Key Locations' },
-    band
-      ? { icon: 'fa-city', value: fmt(s.cities), label: s.cities === 1 ? 'City' : 'Cities' }
-      : { icon: 'fa-house-circle-check', value: fmt(s.rera), label: 'RERA Registered' },
+    { icon: 'fa-shield-halved', value: fmt(s.rera), label: 'RERA Registered' },
   ];
   // With no data (database unreachable) the row is left out rather than showing zeros.
   return out.filter((x) => x.value !== '0');
@@ -52,52 +49,32 @@ function list(s: HomeStats, band: boolean): Stat[] {
 const item = (x: Stat) =>
   `<div class="hm-stat"><span class="ic"><i class="fas ${x.icon}"></i></span><div><b>${x.value}</b><small>${x.label}</small></div></div>`;
 
-/** The panel right under the hero: the cities covered, live counts (they count
- *  up when scrolled into view — landing.js) and three quick links to the live map
- *  (.trial-link: guests get the free-projects map, signed-in visitors /map). */
-export function statsStripHtml(s: HomeStats, cards: ProjectCardData[]): string {
-  // Counts as a number + "+" so landing.js can animate them; the final text is server-rendered.
-  const n = (v: number) => (v >= 50 ? Math.floor(v / 10) * 10 : v);
-  const stats = [
-    { icon: 'fa-house-circle-check', v: s.projects, label: 'Verified Projects' },
-    { icon: 'fa-building', v: s.developers, label: 'Top Developers' },
-    { icon: 'fa-location-dot', v: s.localities, label: 'Key Locations' },
-    { icon: 'fa-shield-halved', v: s.rera, label: 'RERA Registered' },
-  ].filter((x) => x.v > 0);
-
-  // Cities with the most projects, for the label on the skyline.
-  const byCity = new Map<string, number>();
-  for (const c of cards) if (c.city) byCity.set(c.city, (byCity.get(c.city) || 0) + 1);
-  const cities = [...byCity.entries()].sort((a, b) => b[1] - a[1]).map(([c]) => c);
-  const cityLine = cities.length > 3 ? `${cities.slice(0, 3).join(' · ')} & more` : cities.join(' · ');
-
-  const img = (id: string) => `https://images.unsplash.com/${id}?w=420&h=300&auto=format&fit=crop&q=70`;
+/** Right under the hero: three photo cards linking to the live map
+ *  (.trial-link: guests get the free-projects map, signed-in visitors /map).
+ *  Each card keeps the shape of its photo (public/img/strip-*.webp) and sizes
+ *  its text and arrow in cqw, so they sit where the design draws them. */
+export function statsStripHtml(): string {
   const links = [
-    { href: '/map', title: 'Modern Homes', sub: 'For every family', img: img('photo-1567684014761-b65e2e59b9eb') },
-    { href: '/map', title: 'Better Connectivity', sub: 'Live near what matters', img: img('photo-1565402170291-8491f14678db') },
-    { href: '/map', title: 'Growing Locations', sub: 'Higher future value', img: img('photo-1582407947304-fd86f028f716') },
+    { href: '/map', title: 'Modern Homes', sub: 'For every family', icon: 'fa-building', img: 'modern', w: 396 },
+    { href: '/map', title: 'Better Connectivity', sub: 'Live near what matters', icon: 'fa-train', img: 'connect', w: 304 },
+    { href: '/map', title: 'Growing Locations', sub: 'Higher future value', icon: 'fa-chart-line', img: 'growth', w: 353 },
   ];
 
   return `<section class="hm-strip" aria-label="Mappingg at a glance">
   <div class="hm-wrap">
-    <div class="hm-strip-panel">
-      <div class="hm-strip-city" aria-hidden="true"><span><i class="fas fa-location-dot"></i>${esc(cityLine)}</span></div>
-      ${stats.length ? `<div class="hm-strip-stats">${stats.map((x) => {
-        const v = n(x.v), plus = x.v >= 50 ? '+' : '';
-        return `<div><span class="ic"><i class="fas ${x.icon}"></i></span><span><b class="hm-count" data-count="${v}" data-suffix="${plus}">${v.toLocaleString('en-IN')}${plus}</b><small>${x.label}</small></span></div>`;
-      }).join('')}</div>` : ''}
-      <div class="hm-strip-cards">${links.map((c) => `<a class="hm-scard trial-link" href="${c.href}">
-          <span class="hm-scard-img" style="background-image:url('${c.img}')"></span>
-          <span class="hm-scard-tx"><b>${c.title}</b><small>${c.sub}</small></span>
-          <i class="fas fa-arrow-right hm-scard-go"></i>
-        </a>`).join('')}</div>
-    </div>
+    <div class="hm-strip-cards">${links.map((c) => `<a class="hm-scard trial-link" href="${c.href}">
+        <img class="hm-scard-img" src="/img/strip-${c.img}.webp" alt="" width="${c.w}" height="325" loading="lazy" decoding="async">
+        <span class="hm-scard-ic" aria-hidden="true"><i class="fas ${c.icon}"></i></span>
+        <span class="hm-scard-tx"><b>${c.title.replace(' ', '<br>')}</b><small>${c.sub}</small></span>
+        <span class="hm-scard-go" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+      </a>`).join('')}</div>
   </div>
 </section>`;
 }
 
+/** The white numbers card above the closing call to action. */
 export function statsBandHtml(s: HomeStats): string {
-  const items = list(s, true);
+  const items = list(s);
   return items.length ? `<div class="hm-bandrow">${items.map(item).join('')}</div>` : '';
 }
 
@@ -108,15 +85,8 @@ export function statsBandHtml(s: HomeStats): string {
 // this is a map of real estate projects. "Near me" (landing.js) swaps in the
 // projects around the visitor when they ask for it. OpenStreetMap tiles (same
 // as the live map), a 4×4 block (1024 px) chosen so the centre has at least
-// 384 px of map on every side. worldPx (fixed zoom) is used by the mini map
-// in "Built for every home buyer".
-const Z = 12;
+// 384 px of map on every side.
 const TILE = 256;
-const worldPx = (lat: number, lng: number) => {
-  const n = TILE * 2 ** Z;
-  const s = Math.sin((lat * Math.PI) / 180);
-  return { x: ((lng + 180) / 360) * n, y: (0.5 - Math.log((1 + s) / (1 - s)) / (4 * Math.PI)) * n };
-};
 
 export function mapPreviewHtml(cards: ProjectCardData[], card = '', locality = 'mundhwa'): string {
   // Every project in the locality, as a pin with its logo (the same pins the live map shows).
@@ -243,113 +213,72 @@ export function heroSkylinePinsHtml(cards: ProjectCardData[]): string {
 }
 
 // ---------- "Built for every home buyer" (bento grid) ----------
-// Six tiles, each one a real way in: a small real map of the busiest
-// localities, RERA count, compare, budget / BHK shortcuts (they open the
-// live map), what's nearby, and a free account + the 40-second
-// walkthrough video (landing.js opens it in #hmVideo).
+// Two tiles: what's nearby (an illustrated map with example distances + the
+// place types), and a free account with a phone showing a real featured
+// project + the 40-second walkthrough video (landing.js opens it in #hmVideo).
 
-/** Photo on the "What's nearby" tile — swap for your own (e.g. '/img/home/buyers.jpg'). */
-const BUYERS_PHOTO = 'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=900&auto=format&fit=crop&q=70';
+/** Place types on the "What's nearby" tile: icon, colour class, and where its
+ *  example tag sits on the illustrated map (% of the map box). */
+const NEAR_TYPES = [
+  { label: 'Schools', icon: 'fa-graduation-cap', tone: 'gr', km: '1.2', x: 26, y: 16 },
+  { label: 'Hospitals', icon: 'fa-square-plus', tone: 'rd', km: '2.4', x: 74, y: 22 },
+  { label: 'Metro & Transport', short: 'Metro', icon: 'fa-train-subway', tone: 'pu', km: '3.1', x: 18, y: 50 },
+  { label: 'IT Parks', icon: 'fa-building', tone: 'bl', km: '4.5', x: 80, y: 62 },
+  { label: 'Malls', icon: 'fa-bag-shopping', tone: 'or', km: '2.8', x: 28, y: 84 },
+];
 
-/** A 3×3-tile (768 px) real map around a city's busiest localities, with their project counts. */
-function miniMapHtml(cards: ProjectCardData[], city = 'Pune', max = 6): string {
-  const groups = new Map<string, { label: string; count: number; lat: number; lng: number }>();
-  for (const c of cards) {
-    if (c.city !== city || !c.residential || !c.locality || isAdminArea(c.locality) || c.lat == null || c.lng == null) continue;
-    const slug = slugify(c.locality);
-    const g = groups.get(slug) || { label: c.locality, count: 0, lat: 0, lng: 0 };
-    if (g.label === g.label.toUpperCase() && c.locality !== c.locality.toUpperCase()) g.label = c.locality;
-    g.count += 1; g.lat += c.lat; g.lng += c.lng;
-    groups.set(slug, g);
-  }
-  const top = [...groups.entries()]
-    .map(([slug, g]) => ({ slug, label: g.label, count: g.count, lat: g.lat / g.count, lng: g.lng / g.count }))
-    .filter((g) => g.count >= 3).sort((a, b) => b.count - a.count).slice(0, max);
-  if (top.length < 2) return '';
-  const total = top.reduce((s, g) => s + g.count, 0);
-  const centre = worldPx(top.reduce((s, g) => s + g.lat * g.count, 0) / total, top.reduce((s, g) => s + g.lng * g.count, 0) / total);
-  const tx = Math.floor(centre.x / TILE) - 1, ty = Math.floor(centre.y / TILE) - 1;
-  const ox = centre.x - tx * TILE, oy = centre.y - ty * TILE;
-  const tiles: string[] = [];
-  for (let j = 0; j < 3; j++) for (let i = 0; i < 3; i++) {
-    tiles.push(`<img src="https://tile.openstreetmap.org/${Z}/${tx + i}/${ty + j}.png" alt="" width="256" height="256" style="left:${i * TILE}px;top:${j * TILE}px" loading="lazy" decoding="async">`);
-  }
-  const placed: { dx: number; dy: number }[] = [];
-  const pins = top.map((g) => {
-    const p = worldPx(g.lat, g.lng);
-    const dx = Math.round(p.x - centre.x), dy = Math.round(p.y - centre.y);
-    if (Math.abs(dx) > 220 || Math.abs(dy) > 150) return '';
-    if (placed.some((q) => Math.abs(q.dx - dx) < 120 && Math.abs(q.dy - dy) < 40)) return '';
-    placed.push({ dx, dy });
-    const label = g.label === g.label.toUpperCase() ? g.label.toLowerCase().replace(/\b\w/g, (ch) => ch.toUpperCase()) : g.label;
-    return `<a class="hm-mpin trial-link" href="/map" style="left:${Math.round(ox + dx)}px;top:${Math.round(oy + dy)}px"><span>${g.count}</span>${esc(label)}</a>`;
-  }).join('');
-  return `<div class="hm-mini"><div class="hm-mini-tiles" style="left:calc(50% - ${Math.round(ox)}px);top:calc(50% - ${Math.round(oy)}px)">${tiles.join('')}${pins}</div><span class="hm-osm">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a></span></div>`;
-}
+/** The illustrated neighbourhood behind the "What's nearby" tags: parks, blocks, a river and roads. */
+const NEAR_MAP_SVG = `<svg viewBox="0 0 300 240" preserveAspectRatio="xMidYMid slice">
+  <rect width="300" height="240" fill="#e9efe2"/>
+  <g fill="#bcdba5"><rect x="6" y="8" width="70" height="46" rx="8"/><rect x="200" y="150" width="92" height="56" rx="8"/><rect x="118" y="8" width="54" height="34" rx="8"/><rect x="10" y="170" width="52" height="62" rx="8"/></g>
+  <g fill="#d9dfd2"><rect x="206" y="12" width="84" height="50" rx="6"/><rect x="84" y="150" width="58" height="40" rx="6"/><rect x="200" y="84" width="40" height="44" rx="6"/><rect x="20" y="96" width="44" height="50" rx="6"/></g>
+  <path d="M150 260 C 170 210 230 196 246 150 S 280 90 320 76" stroke="#8fc3ea" stroke-width="18" fill="none" stroke-linecap="round"/>
+  <g fill="none" stroke-linecap="round">
+    <path d="M-10 74 C 80 64 180 92 310 70M-10 140 C 90 132 200 150 310 128M96 -10 C 104 70 84 160 108 250M190 -10 C 180 80 206 160 196 250" stroke="#fff" stroke-width="10"/>
+    <path d="M-10 206 L 310 172M250 -10 C 236 60 262 110 250 140" stroke="#f3d27e" stroke-width="7"/>
+  </g>
+  <g fill="#7fae63"><circle cx="30" cy="30" r="7"/><circle cx="52" cy="40" r="6"/><circle cx="232" cy="176" r="7"/><circle cx="262" cy="188" r="8"/><circle cx="140" cy="24" r="6"/><circle cx="30" cy="196" r="7"/><circle cx="44" cy="214" r="6"/></g>
+</svg>`;
 
-export function buyersSectionHtml(cards: ProjectCardData[], s: HomeStats): string {
-  const budgets = BUDGET_OPTIONS.map((b) => `<a class="trial-link" href="/map">${esc(b.label)}</a>`).join('');
-  const bhks = BHK_OPTIONS.map((b) => `<a class="trial-link" href="/map">${esc(b.label)}</a>`).join('');
-  const go = (label: string) => `<span class="hm-tgo">${label} <i class="fas fa-arrow-right"></i></span>`;
-
+export function buyersSectionHtml(cards: ProjectCardData[]): string {
   return `<section class="hm-sec hm-buyers">
   <div class="hm-wrap">
     <div class="hm-head hm-center">
-      <span class="hm-eyebrow">For home buyers</span>
+      <span class="hm-eyebrow"><i class="fas fa-house" aria-hidden="true"></i>For home buyers</span>
       <h2>Built for every <span class="accent">home buyer</span></h2>
       <p class="hm-sub">Everything you need to find the right home — in one place, and free for buyers.</p>
     </div>
     <div class="hm-bento">
-      <div class="hm-tile hm-t-map">
-        <div class="hm-tile-head">
-          <span class="ic"><i class="fas fa-location-dot"></i></span>
-          <div><h3>Search by location</h3><p>Every project is a pin on the map — see what's being built in the area you want.</p></div>
+      <div class="hm-tile hm-t-near">
+        <h3 class="hm-vh">What's nearby</h3>
+        <div class="hm-near-map" aria-hidden="true">
+          ${NEAR_MAP_SVG}
+          <span class="hm-near-home"><i class="fas fa-house"></i></span>
+          ${NEAR_TYPES.map((t) => `<span class="hm-near-tag" style="left:${t.x}%;top:${t.y}%"><span class="ic ${t.tone}"><i class="fas ${t.icon}"></i></span><span><b>${t.short || t.label}</b><small>${t.km} km</small></span></span>`).join('')}
         </div>
-        ${miniMapHtml(cards)}
-        <a class="hm-tgo trial-link" href="/map">Explore the live map <i class="fas fa-arrow-right"></i></a>
-      </div>
-
-      <a class="hm-tile hm-t-rera trial-link" href="/map">
-        <span class="ic"><i class="fas fa-shield-halved"></i></span>
-        <h3>Verified &amp; trusted</h3>
-        ${s.rera ? `<p class="hm-big"><b>${fmt(s.rera)}</b> RERA-registered projects</p>` : ''}
-        <p>RERA numbers from official state registries, with the developer behind each project.</p>
-        ${go('Check on the map')}
-      </a>
-
-      <a class="hm-tile hm-t-cmp trial-link" href="/map">
-        <span class="ic"><i class="fas fa-code-compare"></i></span>
-        <h3>Compare projects</h3>
-        <div class="hm-cmp" aria-hidden="true"><span><small>Price</small><b>₹1.25 Cr</b><b>₹1.10 Cr</b></span><span><small>Possession</small><b>Dec 2029</b><b>Ready</b></span></div>
-        <p>Add projects from the map and see them side by side.</p>
-        ${go('Start comparing')}
-      </a>
-
-      <div class="hm-tile hm-t-budget">
-        <span class="ic"><i class="fas fa-indian-rupee-sign"></i></span>
-        <h3>Smart budget filters</h3>
-        <p>Filter projects by budget and BHK on the live map.</p>
-        <div class="hm-chiprow" aria-label="Budget">${budgets}</div>
-        <div class="hm-chiprow" aria-label="BHK">${bhks}</div>
-      </div>
-
-      <a class="hm-tile hm-t-near trial-link" href="/map">
-        <span class="hm-near-bg" style="background-image:url('${BUYERS_PHOTO}')" aria-hidden="true"></span>
-        <div class="hm-near-tx">
-          <h3>What's nearby</h3>
-          <p>See schools, hospitals, metro, IT parks and malls around each project before you visit.</p>
-          <div class="hm-near-chips" aria-hidden="true"><span><i class="fas fa-school"></i>Schools</span><span><i class="fas fa-hospital"></i>Hospitals</span><span><i class="fas fa-train-subway"></i>Metro</span><span><i class="fas fa-building"></i>IT parks</span><span><i class="fas fa-bag-shopping"></i>Malls</span></div>
-          ${go('See it on the map')}
+        <div class="hm-near-side">
+          <ul class="hm-near-list" aria-label="See what's nearby on the map">
+            ${NEAR_TYPES.map((t) => `<li><a class="trial-link" href="/map"><span class="ic ${t.tone}"><i class="fas ${t.icon}" aria-hidden="true"></i></span>${t.label}<i class="fas fa-chevron-right hm-near-chev" aria-hidden="true"></i></a></li>`).join('')}
+          </ul>
+          <a class="hm-near-btn trial-link" href="/map"><i class="far fa-map" aria-hidden="true"></i>Explore on Map<i class="fas fa-arrow-right" aria-hidden="true"></i></a>
         </div>
-      </a>
+      </div>
 
       <div class="hm-tile hm-t-save">
-        <span class="ic"><i class="fas fa-heart"></i></span>
-        <h3>Save &amp; shortlist — free</h3>
-        <p>Create a free buyer account with just your WhatsApp number to open every project, shortlist and compare.</p>
-        <div class="hm-save-btns">
-          <a href="#" class="hm-btn hm-btn-white open-signup" data-role="buyer">Sign up free <i class="fas fa-arrow-right"></i></a>
-          <button type="button" class="hm-bvideo" id="hmVideoBtn"><span class="play"><i class="fas fa-play"></i></span><span><b>See how it works</b><small>40 sec video</small></span></button>
+        <span class="hm-save-art" aria-hidden="true"></span>
+        <div class="hm-save-tx">
+          <h3>Save, Compare &amp; Track Projects <span>— Free</span></h3>
+          <p>Create a free buyer account with just your WhatsApp number and make a smarter, faster decision.</p>
+          <ul class="hm-save-feats">
+            <li><i class="far fa-bookmark" aria-hidden="true"></i>Shortlist Projects</li>
+            <li><i class="fas fa-scale-balanced" aria-hidden="true"></i>Compare Options</li>
+            <li><i class="far fa-folder-open" aria-hidden="true"></i>Open Every Project</li>
+            <li><i class="fab fa-whatsapp" aria-hidden="true"></i>Enquire Directly</li>
+          </ul>
+          <div class="hm-save-btns">
+            <a href="#" class="hm-btn hm-btn-white open-signup" data-role="buyer"><i class="fab fa-whatsapp hm-wa"></i>Sign Up Free <i class="fas fa-arrow-right"></i></a>
+            <button type="button" class="hm-bvideo" id="hmVideoBtn"><span class="play"><i class="fas fa-play"></i></span><span><b>See How It Works</b><small>40 sec video</small></span></button>
+          </div>
         </div>
       </div>
     </div>
