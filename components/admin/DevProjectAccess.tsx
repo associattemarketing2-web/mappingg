@@ -1,12 +1,13 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-// Super admin → Accounts → a developer → "Projects access".
+// Super admin → Accounts → a developer → "Assigned projects" tab.
 // Give a developer access to existing map projects (e.g. every Gera project for a
 // Gera employee) or take it away. Assigned projects appear in their dashboard,
 // Map Editor and Projects intake next to the ones they added themselves; the
 // projects themselves don't change (live stays live). API: /api/admin/dev-assign.
+// Search runs as you type: project name, pin number, developer or area.
 
 type Proj = {
   id: string; number: number | string | null; title: string; developer: string; location: string;
@@ -22,24 +23,39 @@ export default function DevProjectAccess({ devId, devName, flash, onChanged }: {
   const [mine, setMine] = useState<Proj[] | null>(null);
   const [q, setQ] = useState('');
   const [results, setResults] = useState<Proj[] | null>(null);
+  const [searching, setSearching] = useState(false);
   const [picked, setPicked] = useState<Set<string>>(new Set());
   const [busy, setBusy] = useState(false);
+  const seq = useRef(0);
 
-  const load = useCallback(async (text = '') => {
+  const fetchData = useCallback(async (text: string) => {
     const r = await fetch(`/api/admin/dev-assign?dev=${encodeURIComponent(devId)}${text ? `&q=${encodeURIComponent(text)}` : ''}`, { credentials: 'same-origin', cache: 'no-store' });
     const b = await r.json().catch(() => null);
-    if (!r.ok) { flash(b?.error?.message || 'Could not load projects', true); return; }
-    setMine(b.data.projects);
-    if (text) setResults(b.data.results);
-  }, [devId, flash]);
-  useEffect(() => { setMine(null); setResults(null); setQ(''); setPicked(new Set()); load(); }, [load]);
+    if (!r.ok) throw new Error(b?.error?.message || `Could not load projects (${r.status})`);
+    return b.data as { projects: Proj[]; results: Proj[] };
+  }, [devId]);
 
-  async function search(e?: React.FormEvent) {
-    e?.preventDefault();
-    if (q.trim().length < 2) { flash('Type at least 2 letters, e.g. a developer name like “Gera”', true); return; }
-    setResults(null); setPicked(new Set());
-    await load(q.trim());
-  }
+  const loadMine = useCallback(async () => {
+    try { setMine((await fetchData('')).projects); } catch (e) { flash((e as Error).message, true); setMine([]); }
+  }, [fetchData, flash]);
+  useEffect(() => { setMine(null); setResults(null); setQ(''); setPicked(new Set()); loadMine(); }, [loadMine]);
+
+  // Live search: 300 ms after typing stops; older answers are ignored.
+  useEffect(() => {
+    const text = q.trim();
+    if (text.length < 2 && !/^\d+$/.test(text)) { setResults(null); setSearching(false); return; }
+    setSearching(true);
+    const my = ++seq.current;
+    const t = setTimeout(async () => {
+      try {
+        const d = await fetchData(text);
+        if (my !== seq.current) return;
+        setResults(d.results); setMine(d.projects);
+      } catch (e) { if (my === seq.current) flash((e as Error).message, true); }
+      finally { if (my === seq.current) setSearching(false); }
+    }, 300);
+    return () => clearTimeout(t);
+  }, [q, fetchData, flash]);
 
   async function act(action: 'assign' | 'unassign', ids: string[]) {
     if (!ids.length) return;
@@ -54,79 +70,91 @@ export default function DevProjectAccess({ devId, devName, flash, onChanged }: {
       const n = b.data.changed;
       flash(action === 'assign' ? `${devName} now has access to ${n} more project${n === 1 ? '' : 's'}` : `Access removed from ${n} project${n === 1 ? '' : 's'}`);
       setPicked(new Set());
-      await load(results ? q.trim() : '');
+      const d = await fetchData(results ? q.trim() : '');
+      setMine(d.projects); if (results) setResults(d.results);
       onChanged?.();
     } catch (e) { flash((e as Error).message, true); } finally { setBusy(false); }
   }
 
-  const selectable = (results || []).filter((p) => p.owner?.id !== devId);
-  const toggle = (id: string) => setPicked((s) => { const n = new Set(s); if (n.has(id)) n.delete(id); else n.add(id); return n; });
-  const label = (p: Proj) => `${p.number != null ? `#${p.number} · ` : ''}${p.title || 'Untitled project'}`;
-  const pill = (s: Proj['state']) => <span className={`dp-state s-${s === 'live' ? 'approved' : s}`}>{STATE[s]}</span>;
-
   const given = (mine || []).filter((p) => p.assigned);
   const own = (mine || []).filter((p) => !p.assigned);
-  const item = (p: Proj, removable: boolean) => (
-    <li key={p.id} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 0' }}>
-      <span style={{ flex: 1, minWidth: 0 }}>{label(p)}<small style={{ display: 'block' }}>{p.developer || '—'} · {p.location || '—'}</small></span>
-      {pill(p.state)}
-      {removable && <button type="button" className="adm-btn ghost sm" disabled={busy} title="Remove access" aria-label={`Remove access to ${p.title}`} onClick={() => act('unassign', [p.id])}><i className="fas fa-xmark" /> Remove</button>}
-    </li>
+  const selectable = (results || []).filter((p) => p.owner?.id !== devId);
+  const toggle = (id: string) => setPicked((s) => { const n = new Set(s); if (n.has(id)) n.delete(id); else n.add(id); return n; });
+  const pill = (s: Proj['state']) => <span className={`dp-state s-${s === 'live' ? 'approved' : s}`}>{STATE[s]}</span>;
+  const info = (p: Proj) => (
+    <span className="dpa-info">
+      <b>{p.number != null && <em>#{p.number}</em>}{p.title || 'Untitled project'}</b>
+      <small>{p.developer || '—'} · {p.location || '—'}</small>
+    </span>
   );
 
   return (
-    <div className="acs-d-projects">
+    <div className="dpa">
       <p className="crm-meta" style={{ marginTop: 0 }}>Projects {devName} can see and edit in their dashboard. Their edits still need your approval.</p>
 
-      <div className="acs-d-projects-head"><h4><i className="fas fa-key" /> Assigned by admin {mine ? `(${given.length})` : ''}</h4></div>
+      <h4 className="dpa-h"><i className="fas fa-key" /> Assigned by admin {mine ? `(${given.length})` : ''}</h4>
       {mine === null ? <p className="crm-meta"><i className="fas fa-spinner fa-spin" /> Loading…</p>
-        : given.length === 0 ? <p className="crm-meta">No projects assigned yet — find them below and click Give access.</p>
-          : <ul>{given.map((p) => item(p, true))}</ul>}
+        : given.length === 0 ? <p className="dpa-empty">No projects assigned yet — search below and click <b>Assign</b>.</p>
+          : (
+            <ul className="dpa-list">
+              {given.map((p) => (
+                <li key={p.id}>
+                  {info(p)}{pill(p.state)}
+                  <button type="button" className="adm-btn ghost sm" disabled={busy} onClick={() => act('unassign', [p.id])}><i className="fas fa-xmark" /> Remove</button>
+                </li>
+              ))}
+            </ul>
+          )}
 
       {!!own.length && (
         <>
-          <div className="acs-d-projects-head" style={{ marginTop: 12 }}><h4><i className="fas fa-map-pin" /> Added by them ({own.length})</h4></div>
-          <ul>{own.map((p) => item(p, false))}</ul>
+          <h4 className="dpa-h"><i className="fas fa-map-pin" /> Added by them ({own.length})</h4>
+          <ul className="dpa-list">{own.map((p) => <li key={p.id}>{info(p)}{pill(p.state)}</li>)}</ul>
         </>
       )}
 
-      <div className="acs-d-projects-head" style={{ marginTop: 16 }}><h4><i className="fas fa-plus" /> Assign more projects</h4></div>
-      <form onSubmit={search} style={{ display: 'flex', gap: 8 }}>
-        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Find projects: developer, project name, area or pin #" style={{ flex: 1, minWidth: 0 }} aria-label="Find projects to give access to" />
-        <button className="adm-btn sm" type="submit" disabled={busy}><i className="fas fa-magnifying-glass" /> Find</button>
-      </form>
+      <h4 className="dpa-h"><i className="fas fa-plus" /> Assign more projects</h4>
+      <div className="dpa-search">
+        <i className="fas fa-magnifying-glass" aria-hidden="true" />
+        <input
+          type="search" value={q} onChange={(e) => setQ(e.target.value)} autoComplete="off"
+          placeholder="Type a project name, pin number, developer or area…" aria-label="Search projects to assign"
+        />
+        {searching && <i className="fas fa-spinner fa-spin" aria-hidden="true" />}
+      </div>
 
-      {results && (
-        <div style={{ marginTop: 10 }}>
-          {results.length === 0 ? <p className="crm-meta">No map projects match “{q}”.</p> : (
-            <>
-              <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap', marginBottom: 6 }}>
-                <span className="crm-meta">{results.length} found{results.length >= 300 ? ' (first 300)' : ''}</span>
-                {!!selectable.length && (
-                  <button type="button" className="link-btn" onClick={() => setPicked(picked.size === selectable.length ? new Set() : new Set(selectable.map((p) => p.id)))}>
-                    {picked.size === selectable.length ? 'Clear' : 'Select all'}
-                  </button>
-                )}
-                <span style={{ flex: 1 }} />
-                <button type="button" className="adm-btn primary sm" disabled={busy || !picked.size} onClick={() => act('assign', [...picked])}><i className="fas fa-plus" /> Give access ({picked.size})</button>
-              </div>
-              <ul style={{ maxHeight: 320, overflowY: 'auto' }}>
-                {results.map((p) => {
-                  const has = p.owner?.id === devId;
-                  return (
-                    <li key={p.id}>
-                      <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: has ? 'default' : 'pointer', padding: '4px 0' }}>
-                        <input type="checkbox" disabled={has || busy} checked={has || picked.has(p.id)} onChange={() => toggle(p.id)} />
-                        <span style={{ flex: 1, minWidth: 0 }}>{label(p)}<small style={{ display: 'block' }}>{p.developer || '—'} · {p.location || '—'}{has ? ' · already has access' : p.owner ? ` · now with ${p.owner.name || p.owner.email}` : ''}</small></span>
-                        {pill(p.state)}
-                      </label>
-                    </li>
-                  );
-                })}
-              </ul>
-            </>
-          )}
-        </div>
+      {results && !searching && results.length === 0 && (
+        <p className="dpa-empty">No project on the map matches “{q.trim()}”. Check the spelling, or add the project first (Map Editor / Projects intake) and then assign it here.</p>
+      )}
+
+      {results && results.length > 0 && (
+        <>
+          <div className="dpa-bar">
+            <span className="crm-meta">{results.length} found{results.length >= 300 ? ' (first 300 — type more to narrow)' : ''}</span>
+            {selectable.length > 1 && (
+              <button type="button" className="link-btn" onClick={() => setPicked(picked.size === selectable.length ? new Set() : new Set(selectable.map((p) => p.id)))}>
+                {picked.size === selectable.length ? 'Clear selection' : `Select all ${selectable.length}`}
+              </button>
+            )}
+            <span style={{ flex: 1 }} />
+            {picked.size > 0 && <button type="button" className="adm-btn primary sm" disabled={busy} onClick={() => act('assign', [...picked])}><i className="fas fa-plus" /> Assign selected ({picked.size})</button>}
+          </div>
+          <ul className="dpa-list dpa-results">
+            {results.map((p) => {
+              const has = p.owner?.id === devId;
+              return (
+                <li key={p.id} className={picked.has(p.id) ? 'on' : ''}>
+                  <input type="checkbox" disabled={has || busy} checked={has || picked.has(p.id)} onChange={() => toggle(p.id)} aria-label={`Select ${p.title}`} />
+                  {info(p)}
+                  {pill(p.state)}
+                  {has
+                    ? <span className="dpa-has"><i className="fas fa-check" /> Assigned</span>
+                    : <button type="button" className="adm-btn primary sm" disabled={busy} title={p.owner ? `Now with ${p.owner.name || p.owner.email}` : undefined} onClick={() => act('assign', [p.id])}>Assign</button>}
+                </li>
+              );
+            })}
+          </ul>
+        </>
       )}
     </div>
   );

@@ -65,6 +65,9 @@ test('search by developer name, assign, developer sees them, they stay live, una
   assert.deepEqual(found.body.data.results.map((p: any) => p.id).sort(), ['g1', 'g2', 'g3']);
   assert.equal(found.body.data.results.find((p: any) => p.id === 'g3').owner.id, OTHER.id);
   assert.equal(found.body.data.projects.length, 0);
+  // By pin number and by part of the project name.
+  assert.deepEqual((await call(R.GET as never, `/api/admin/dev-assign?dev=${DEV.id}&q=904`, { user: OWNER })).body.data.results.map((p: any) => p.id), ['x1']);
+  assert.deepEqual((await call(R.GET as never, `/api/admin/dev-assign?dev=${DEV.id}&q=island`, { user: OWNER })).body.data.results.map((p: any) => p.id), ['g2']);
 
   const done = await call(R.POST as never, '/api/admin/dev-assign', { method: 'POST', user: OWNER, body: { dev: DEV.id, action: 'assign', pin_ids: ['g1', 'g2'] } });
   assert.equal(done.status, 200);
