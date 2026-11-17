@@ -64,26 +64,34 @@ export default function DevProjectAccess({ devId, devName, flash, onChanged }: {
   const label = (p: Proj) => `${p.number != null ? `#${p.number} · ` : ''}${p.title || 'Untitled project'}`;
   const pill = (s: Proj['state']) => <span className={`dp-state s-${s === 'live' ? 'approved' : s}`}>{STATE[s]}</span>;
 
+  const given = (mine || []).filter((p) => p.assigned);
+  const own = (mine || []).filter((p) => !p.assigned);
+  const item = (p: Proj, removable: boolean) => (
+    <li key={p.id} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 0' }}>
+      <span style={{ flex: 1, minWidth: 0 }}>{label(p)}<small style={{ display: 'block' }}>{p.developer || '—'} · {p.location || '—'}</small></span>
+      {pill(p.state)}
+      {removable && <button type="button" className="adm-btn ghost sm" disabled={busy} title="Remove access" aria-label={`Remove access to ${p.title}`} onClick={() => act('unassign', [p.id])}><i className="fas fa-xmark" /> Remove</button>}
+    </li>
+  );
+
   return (
     <div className="acs-d-projects">
-      <div className="acs-d-projects-head"><h4><i className="fas fa-key" /> Projects access {mine ? `(${mine.length})` : ''}</h4></div>
-      <p className="crm-meta" style={{ marginTop: 0 }}>Projects this developer can see and edit in their dashboard — the ones they added plus any you give them here. Their edits still need your approval.</p>
+      <p className="crm-meta" style={{ marginTop: 0 }}>Projects {devName} can see and edit in their dashboard. Their edits still need your approval.</p>
 
+      <div className="acs-d-projects-head"><h4><i className="fas fa-key" /> Assigned by admin {mine ? `(${given.length})` : ''}</h4></div>
       {mine === null ? <p className="crm-meta"><i className="fas fa-spinner fa-spin" /> Loading…</p>
-        : mine.length === 0 ? <p className="crm-meta">No projects yet.</p>
-          : (
-            <ul>
-              {mine.map((p) => (
-                <li key={p.id} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '4px 0' }}>
-                  <span style={{ flex: 1, minWidth: 0 }}>{label(p)}<small style={{ display: 'block' }}>{p.developer || '—'} · {p.location || '—'} · {p.assigned ? 'given by admin' : 'added by them'}</small></span>
-                  {pill(p.state)}
-                  {p.assigned && <button type="button" className="link-btn" disabled={busy} title="Remove access" aria-label={`Remove access to ${p.title}`} onClick={() => act('unassign', [p.id])}><i className="fas fa-xmark" /></button>}
-                </li>
-              ))}
-            </ul>
-          )}
+        : given.length === 0 ? <p className="crm-meta">No projects assigned yet — find them below and click Give access.</p>
+          : <ul>{given.map((p) => item(p, true))}</ul>}
 
-      <form onSubmit={search} style={{ display: 'flex', gap: 8, marginTop: 12 }}>
+      {!!own.length && (
+        <>
+          <div className="acs-d-projects-head" style={{ marginTop: 12 }}><h4><i className="fas fa-map-pin" /> Added by them ({own.length})</h4></div>
+          <ul>{own.map((p) => item(p, false))}</ul>
+        </>
+      )}
+
+      <div className="acs-d-projects-head" style={{ marginTop: 16 }}><h4><i className="fas fa-plus" /> Assign more projects</h4></div>
+      <form onSubmit={search} style={{ display: 'flex', gap: 8 }}>
         <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Find projects: developer, project name, area or pin #" style={{ flex: 1, minWidth: 0 }} aria-label="Find projects to give access to" />
         <button className="adm-btn sm" type="submit" disabled={busy}><i className="fas fa-magnifying-glass" /> Find</button>
       </form>
