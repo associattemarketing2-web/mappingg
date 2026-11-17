@@ -5,6 +5,7 @@ import { getDb } from '@/lib/mongodb';
 import { logActivity } from '@/lib/activity';
 import { withMediaUrls } from '@/lib/pin-media';
 import { slugForProject } from '@/lib/seo/entities';
+import { guardFeature } from '@/lib/subscriptions/guards';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -82,6 +83,8 @@ export async function PUT(req: NextRequest) {
   const user = await buyer();
   if (!user) return unauthorized();
 
+  const gate = await guardFeature(user, 'buyer_compare');
+  if (gate) return gate;
   const parsed = putSchema.safeParse(await req.json().catch(() => null));
   if (!parsed.success) {
     return NextResponse.json({ error: { message: `Choose up to ${MAX_COMPARE} projects to compare.` } }, { status: 400 });

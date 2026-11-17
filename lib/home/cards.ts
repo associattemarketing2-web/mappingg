@@ -32,15 +32,17 @@ export interface ProjectCardData {
   rera: string;
   image: string;
   featured: boolean;
+  /** Paid developer promotion (lib/subscriptions): 2 = priority (Large Bulk), 1 = enhanced (Large), 0 = none. */
+  promoted?: 0 | 1 | 2;
   residential: boolean;
   lat: number | null;
   lng: number | null;
 }
 
-type CardPin = Pin & { highlighted?: boolean; image_meta?: unknown };
+type CardPin = Pin & { highlighted?: boolean; image_meta?: unknown; sub_promotion?: string | null };
 
 const COLUMNS =
-  'id,number,title,type,status,price,configuration,sqft,possession_timeline,developer,location,rera_number,field_visibility,lat,lng,highlighted,image,image_meta';
+  'id,number,title,type,status,price,configuration,sqft,possession_timeline,developer,location,rera_number,field_visibility,lat,lng,highlighted,sub_promotion,image,image_meta';
 
 const NON_RESIDENTIAL = /(commercial|office|retail|shop|warehouse|industrial|plot|land)/i;
 
@@ -67,6 +69,7 @@ export function toCard(p: CardPin): ProjectCardData {
     rera: reraNumber(p.rera_number),
     image: typeof p.image === 'string' && /^(\/api\/media\/|https:\/\/)/.test(p.image) ? p.image : '',
     featured: p.highlighted === true,
+    promoted: p.sub_promotion === 'priority' ? 2 : p.sub_promotion === 'enhanced' ? 1 : 0,
     residential: !NON_RESIDENTIAL.test(p.type || ''),
     lat: Number.isFinite(lat) ? lat : null,
     lng: Number.isFinite(lng) ? lng : null,

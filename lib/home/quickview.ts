@@ -61,7 +61,9 @@ export async function getQuickView(number: number): Promise<QuickView | null> {
   const pin = (await getPinsByNumber(number))[0];
   if (!pin) return null;
   const card = toCard(pin);
-  const raw = pin as typeof pin & { intake_project_id?: string; brochure_url?: string };
+  // floor_plan_urls / gallery_urls: media a developer submitted on a paid plan,
+  // applied to the pin after Mappingg approved it (lib/subscriptions/features.ts).
+  const raw = pin as typeof pin & { intake_project_id?: string; brochure_url?: string; floor_plan_urls?: unknown; gallery_urls?: unknown };
   const [logos, intake] = await Promise.all([
     readLogos().catch(() => ({} as Record<string, string>)),
     raw.intake_project_id ? readIntake(String(raw.intake_project_id)).catch(() => null) : Promise.resolve(null),
@@ -75,7 +77,7 @@ export async function getQuickView(number: number): Promise<QuickView | null> {
   if (coverIsLogo && !logo) logo = cover;
 
   // Real photos first (intake cover + gallery)…
-  const photos = [coverIsLogo ? '' : cover, ...list(intake?.gallery_urls).map(mediaUrl)].filter(Boolean);
+  const photos = [...new Set([coverIsLogo ? '' : cover, ...list(intake?.gallery_urls).map(mediaUrl), ...list(raw.gallery_urls).map(mediaUrl)])].filter(Boolean);
   // …and the pin picture, unless it IS the developer logo (same content hash).
   const ver = (u: string) => /[?&]v=([0-9a-f]+)/.exec(u)?.[1] || u;
   if (card.image && !photos.includes(card.image) && !(logo && ver(card.image) === ver(logo))) photos.push(card.image);
@@ -125,7 +127,7 @@ export async function getQuickView(number: number): Promise<QuickView | null> {
     photos: photos.slice(0, 10),
     video: ytOk(str(pin.youtube_video_url)) || ytOk(str(intake?.youtube_url)),
     brochure: mediaUrl(intake?.brochure_url) || mediaUrl(raw.brochure_url),
-    floorPlans: list(intake?.floor_plan_urls).map(mediaUrl).filter(Boolean).slice(0, 10),
+    floorPlans: [...new Set([...list(intake?.floor_plan_urls), ...list(raw.floor_plan_urls)].map(mediaUrl))].filter(Boolean).slice(0, 10),
     paymentPlan: mediaUrl(intake?.payment_plan_url),
     tour360: /^https:\/\//.test(str(intake?.tour_360_url)) ? str(intake?.tour_360_url) : '',
     facts,

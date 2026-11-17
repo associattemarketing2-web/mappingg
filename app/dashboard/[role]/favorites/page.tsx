@@ -36,9 +36,10 @@ export default async function FavoritesPage({ params }: { params: { role: string
   const db = await getDb();
   const doc = await db.collection('users').findOne({ id: session.id });
   if (!doc) redirect('/?signin=1');
-  // Only approved agents have favourites; everyone else goes to their own home.
-  if (doc.role !== 'agent' || params.role !== 'agent') redirect(homePathFor(String(doc.role || '')));
-  if (verificationOf(doc) !== 'approved') redirect('/dashboard/agent');
+  // Approved agents and buyers have favourites; everyone else goes to their own home.
+  const role = String(doc.role || '');
+  if (!['agent', 'buyer'].includes(role) || params.role !== role) redirect(homePathFor(role));
+  if (role === 'agent' && verificationOf(doc) !== 'approved') redirect('/dashboard/agent');
 
   const ids: string[] = Array.isArray(doc.favorite_pins) ? doc.favorite_pins.map(String) : [];
   const projection: Record<string, 1> = { id: 1, number: 1, title: 1, field_visibility: 1, image: 1, image_meta: 1, key_usp: 1 };
@@ -75,5 +76,5 @@ export default async function FavoritesPage({ params }: { params: { role: string
     };
   });
 
-  return <FavoriteCollection name={String(doc.name || '')} initial={cards} />;
+  return <FavoriteCollection name={String(doc.name || '')} initial={cards} role={role === 'buyer' ? 'buyer' : 'agent'} />;
 }

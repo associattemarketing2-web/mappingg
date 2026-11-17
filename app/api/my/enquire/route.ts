@@ -8,6 +8,7 @@ import { pageOf, pushToCrm, visitorIp } from '@/lib/crm';
 import { parseEnquireRequest } from '@/lib/enquire-request';
 import { optInSummary } from '@/lib/consent';
 import { siteVisitSlot } from '@/lib/site-visit';
+import { guardProjectAccess, siteVisitAllowed } from '@/lib/subscriptions/guards';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -28,7 +29,8 @@ export async function POST(req: NextRequest) {
   if (!user) return NextResponse.json({ error: { message: 'Please sign in' } }, { status: 401 });
   const parsed = parseEnquireRequest(await req.json().catch(() => null));
   if (!parsed.ok) return NextResponse.json({ error: { message: 'Invalid request' } }, { status: 400 });
-  const { pin_id, consent, site_visit, visit_date, visit_time } = parsed;
+  const { pin_id, consent, visit_date, visit_time } = parsed;
+  let { site_visit } = parsed;
 
   // Staff browsing the map just see the details — they aren't leads.
   if (isStaffRole(user.role)) return NextResponse.json({ data: { ok: true, lead: false } });
@@ -36,6 +38,14 @@ export async function POST(req: NextRequest) {
   const db = await getDb();
   const pin = await db.collection('pins').findOne({ id: pin_id, hidden: { $ne: true } }, { projection: { id: 1, title: 1, number: 1, developer: 1 } });
   if (!pin) return NextResponse.json({ error: { message: 'Project not found' } }, { status: 404 });
+
+  // Subscription plan: CPs / buyers open a limited number of projects (lib/subscriptions).
+  const gate = await guardProjectAccess(user, pin_id);
+  if (gate) return gate;
+  // Site-visit booking on a developer's own project needs that developer's plan
+  // to include it; the enquiry itself is still recorded (a lead is never lost).
+  let siteVisitUnavailable = false;
+  if (site_visit && !(await siteVisitAllowed(pin_id))) { site_visit = false; siteVisitUnavailable = true; }
 
   const me = await db.collection('users').findOne({ id: user.id }, { projection: { name: 1, email: 1, mobile: 1, role: 1 } });
   if (!me) return NextResponse.json({ error: { message: 'Account not found' } }, { status: 404 });
@@ -88,7 +98,7 @@ export async function POST(req: NextRequest) {
   }
   return NextResponse.json({
     data: {
-      ok: true, lead: true, already: site_visit ? false : !!existing, site_visit, name, whatsapp, email, role, project: String(pin.title || `#${pin.number ?? ''}`),
+      ok: true, lead: true, already: site_visit ? false : !!existing, site_visit, site_visit_unavailable: siteVisitUnavailable, name, whatsapp, email, role, project: String(pin.title || `#${pin.number ?? ''}`),
       consent: { enquiry: consent.enquiry, call: consent.call, whatsapp: consent.whatsapp },
     },
   }, { headers: { 'Cache-Control': 'private, no-store' } });

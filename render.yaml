@@ -47,6 +47,21 @@ services:
       # Sales CRM (B2BBricks) webhook new leads are posted to (see lib/crm.ts).
       - key: CRM_WEBHOOK_URL
         sync: false
+      # Subscriptions & payments (PAYMENT-GATEWAY-SETUP.md). Without keys, paid
+      # plans show "payments are being set up"; free plans keep working.
+      - key: PAYMENT_GATEWAY
+        value: razorpay
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: RAZORPAY_WEBHOOK_SECRET
+        sync: false
+      - key: NEXT_PUBLIC_RAZORPAY_KEY_ID
+        sync: false
+      # Bearer token for GET /api/subscriptions/cron (run it daily from an external scheduler on Render).
+      - key: CRON_SECRET
+        sync: false
       # Must match package.json "engines" (24.x) and .nvmrc.
       - key: NODE_VERSION
         value: "24"

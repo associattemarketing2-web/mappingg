@@ -13,6 +13,7 @@ import { pageOf, pushToCrm, visitorIp } from '@/lib/crm';
 import { autoLogo, pinImageDigest } from '@/lib/developers';
 import { mapLeadConsent, optInSummary, type ConsentRecord } from '@/lib/consent';
 import { siteVisitSlot } from '@/lib/site-visit';
+import { guardProjectLimit, siteVisitAllowed } from '@/lib/subscriptions/guards';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -85,9 +86,16 @@ async function handle(op: DbOp, devEditorView = false, ip = '', visitor = ip, pa
     }
     // "Book Site Visit" from the project panel: recorded by the server as a timestamp.
     const now = new Date().toISOString();
+    // A developer's own project offers site-visit booking only on plans that
+    // include it (lib/subscriptions); the enquiry is still saved either way.
+    const visitOk = new Map<string, boolean>();
+    for (const c of checked) {
+      const pid = String(c.values.pin_id || '');
+      if (c.values.site_visit === true && pid && !visitOk.has(pid)) visitOk.set(pid, await siteVisitAllowed(pid));
+    }
     const vals = checked.map(({ values: { site_visit, site_visit_requested_at, site_visit_date, site_visit_time, visit_date, visit_time, ...v } }) => {
       void site_visit_requested_at; void site_visit_date; void site_visit_time;
-      if (site_visit !== true) return v;
+      if (site_visit !== true || visitOk.get(String(v.pin_id || '')) === false) return v;
       const day = typeof visit_date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(visit_date) ? visit_date : null;
       const time = typeof visit_time === 'string' && visit_time.trim() ? visit_time.trim().slice(0, 40) : null;
       return { ...v, site_visit_requested_at: now, site_visit_date: day, site_visit_time: time };
@@ -105,6 +113,15 @@ async function handle(op: DbOp, devEditorView = false, ip = '', visitor = ip, pa
   const isEditorDev = current?.role === 'developer' && (await canEditProjects(current.id));
   const developerId = isEditorDev && (devEditorView || op.action !== 'select') ? current!.id : undefined;
   const scopedPins = !!developerId && op.table === 'pins';
+  // Developers adding pins in their Map Editor: the plan's project-listing limit applies.
+  if (scopedPins && (op.action === 'insert' || op.action === 'upsert') && current) {
+    const adding = Array.isArray(op.values) ? op.values.length : op.values ? 1 : 0;
+    const gate = op.action === 'insert' && adding ? await guardProjectLimit(current, adding) : null;
+    if (gate) {
+      const b = await gate.json();
+      return NextResponse.json({ data: null, error: b.error }, { status: 402 });
+    }
+  }
 
   // Developer name on a pin → that developer's logo from Super admin → Developers.
   if (op.table === 'pins' && (op.action === 'insert' || op.action === 'update') && op.values && !Array.isArray(op.values) && 'developer' in op.values) {

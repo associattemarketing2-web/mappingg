@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { getCurrentUser } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
 import { listActivity } from '@/lib/activity';
+import { ensureSchema, isAvailable } from '@/lib/subscriptions/db';
+import { listNotifications } from '@/lib/subscriptions/notifications';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -49,6 +51,17 @@ export async function GET() {
   }
   for (const e of log) {
     if (e.type === 'project_delete_approved') items.push({ id: e.id, project_id: '', state: 'approved', detail: e.detail || 'A project was deleted, as you asked', at: e.at });
+  }
+  // Subscription notices (plan activated, renewal reminders, payment failed…).
+  if (isAvailable()) {
+    try {
+      await ensureSchema();
+      for (const n of await listNotifications(user.id, 20)) {
+        // "Needs attention" notices use the red state so they count as unread.
+        const bad = ['payment_failed', 'expired', 'past_due', 'expiring', 'limit_reached'].includes(n.type);
+        items.push({ id: `sub-${n.id}`, project_id: '', state: bad ? 'rejected' : 'approved', detail: `${n.title} — ${n.body}`, at: n.created_at });
+      }
+    } catch { /* the bell still shows project updates */ }
   }
   const list = items
     .filter((i) => i.at)

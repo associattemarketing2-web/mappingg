@@ -14,6 +14,7 @@ import { EMAIL, WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/lib/contact';
 const LINKS = [
   { href: '/map', label: 'Live Map', match: (p: string) => p === '/map' || p.startsWith('/map/') },
   { href: '/how-it-works', label: 'How it works', match: (p: string) => p === '/how-it-works' },
+  { href: '/pricing', label: 'Pricing', match: (p: string) => p === '/pricing' },
   { href: '/blog', label: 'Blog', match: (p: string) => p.startsWith('/blog') },
   { href: '/about', label: 'About', match: (p: string) => p === '/about' },
 ];
@@ -60,6 +61,8 @@ export default function SiteHeader() {
   // On the home page, agents / channel partners see just a "Live map" button
   // (their profile is in the map's Profile menu).
   const agentOnHome = role === 'agent' && pathname === '/';
+  // Accounts that can hold a subscription get a "My plan" link (staff don't).
+  const planHref = ['developer', 'agent', 'buyer'].includes(role) ? `/dashboard/${role}/subscription` : '';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -184,6 +187,11 @@ export default function SiteHeader() {
               </div>
               <SocialLinks />
             </div>
+            {signedIn && planHref && (
+              <div className="shd-more">
+                <Link href={planHref} prefetch={false} onClick={() => setOpen(false)}>My plan &amp; billing</Link>
+              </div>
+            )}
             <div className="row">
               {signedIn && agentOnHome ? (
                 <Link href="/map" className="shd-btn primary" onClick={() => setOpen(false)}>Live map</Link>

@@ -5,6 +5,9 @@ import { useRouter } from 'next/navigation';
 import DeveloperProjects from './DeveloperProjects';
 import DevNotificationBell from './DevNotificationBell';
 import ProfileForm from '@/components/admin/ProfileForm';
+import PlanSummary from '@/components/subscriptions/PlanSummary';
+import SubscriptionCenter from '@/components/subscriptions/SubscriptionCenter';
+import DevMedia from '@/components/subscriptions/DevMedia';
 
 // Developer control panel — the SAME shell/design as the super-admin (reuses
 // admin.css: adm2 / adm2-top / adm2-tabs / adm-content), but with only the tabs
@@ -19,6 +22,8 @@ const TABS = [
   { key: 'dashboard', label: 'Dashboard', icon: 'fa-gauge-high' },
   { key: 'map', label: 'Map Editor', icon: 'fa-map-location-dot' },
   { key: 'intake', label: 'Projects Intake', icon: 'fa-location-dot' },
+  { key: 'media', label: 'Project media', icon: 'fa-images' },
+  { key: 'subscription', label: 'Subscription', icon: 'fa-crown' },
 ] as const;
 
 // 'profile' lives in the top-right account menu, not the tab row (same as the
@@ -51,6 +56,9 @@ function DevDashboard({ onGo }: { onGo: (t: TabKey) => void }) {
   ];
   return (
     <>
+      <div style={{ marginBottom: 20 }}>
+        <PlanSummary manageHref="/dashboard/developer/subscription" onManage={() => onGo('subscription')} />
+      </div>
       <div className="adm-cards">
         {stats.map((s) => (
           <div className="adm-stat" key={s.l}>
@@ -164,6 +172,8 @@ export default function DeveloperApp({ user }: { user: DevUser }) {
             </div>
           )}
           {tab === 'intake' && <DeveloperProjects />}
+          {tab === 'media' && <DevMedia />}
+          {tab === 'subscription' && <SubscriptionCenter email={user.email} />}
           {tab === 'profile' && (
             <ProfileForm
               email={user.email}

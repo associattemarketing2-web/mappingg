@@ -7,6 +7,7 @@ import { logActivity } from '@/lib/activity';
 import { snapshotPin, invalidateTable } from '@/lib/db-engine';
 import { canEditProjects } from '@/lib/verification';
 import { developerLogo } from '@/lib/developers';
+import { guardFeature, guardProjectLimit } from '@/lib/subscriptions/guards';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -132,6 +133,9 @@ export async function POST(req: NextRequest) {
     if (!parsed.success) {
       return NextResponse.json({ error: { message: 'Some rows are missing a project name or have invalid details. Please check the file and try again.' } }, { status: 400 });
     }
+    // Subscription plan: bulk upload is a Large Bulk feature, and the listing limit applies.
+    const bulkGate = (await guardFeature(user, 'dev_bulk_listing')) || (await guardProjectLimit(user, parsed.data.projects.length));
+    if (bulkGate) return bulkGate;
     const alloc = await nextNumberAllocator(db);
     const docs = parsed.data.projects.map((d) => buildPin(d, user.id, company, now, alloc()));
     const logo = await developerLogo(company);
@@ -147,6 +151,8 @@ export async function POST(req: NextRequest) {
   if (!parsed.success) {
     return NextResponse.json({ error: { message: 'Please fill in a project name and the details.' } }, { status: 400 });
   }
+  const limitGate = await guardProjectLimit(user, 1);
+  if (limitGate) return limitGate;
   const alloc = await nextNumberAllocator(db);
   const doc = buildPin(parsed.data, user.id, company, now, alloc());
   // No picture added → their company's logo from the developer directory.
@@ -172,6 +178,12 @@ export async function PATCH(req: NextRequest) {
   // Ownership is enforced in the filter: a developer can only edit their own pin.
   const existing = await db.collection<PinDoc>('pins').findOne({ id, owner_user_id: user.id });
   if (!existing) return NextResponse.json({ error: { message: 'Project not found' } }, { status: 404 });
+  // Editing a project that is already live is a paid-plan feature; projects
+  // still pending or not approved can always be corrected and resubmitted.
+  if (statusOf(existing) === 'live') {
+    const gate = await guardFeature(user, 'dev_project_editing', id);
+    if (gate) return gate;
+  }
 
   const stamp = new Date().toISOString();
   const patch: Record<string, unknown> = { ...fields, updated_at: stamp, submitted_at: stamp };

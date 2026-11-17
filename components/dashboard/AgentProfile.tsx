@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { statusLabel, type SeoProject } from '@/lib/seo-data';
 import SignOutButton from './SignOutButton';
+import PlanSummary from '@/components/subscriptions/PlanSummary';
 
 // Agents / channel partners have no dashboard: after signing in they use the
 // live map (like buyers). This is their only other page — "My profile": the
@@ -92,6 +93,15 @@ export default function AgentProfile({ account, projects }: { account: AgentAcco
           <span><b>Explore the live map</b><small>Every project with status, RERA, prices and what&apos;s nearby. Tap Enquire on any project for full details.</small></span>
           <i className="fas fa-arrow-right" />
         </a>
+
+        <PlanSummary
+          manageHref="/dashboard/agent/subscription"
+          links={[
+            { href: '/dashboard/agent/crm', label: 'Leads & CRM', icon: 'fa-address-book' },
+            { href: '/dashboard/agent/favorites', label: 'Favourites', icon: 'fa-heart' },
+            { href: '/pricing#cp', label: 'Compare plans', icon: 'fa-layer-group' },
+          ]}
+        />
 
         <section className="dsh-card" id="enquiries">
           <h2><i className="fas fa-envelope-open-text" /> Projects you enquired about {enquired.length ? <span className="dsh-count">{enquired.length}</span> : null}</h2>

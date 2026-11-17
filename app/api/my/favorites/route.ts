@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { getCurrentUser } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
 import { logActivity } from '@/lib/activity';
+import { guardFeature } from '@/lib/subscriptions/guards';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -16,10 +17,10 @@ const putSchema = z.object({
   pins: z.array(z.string().trim().min(1).max(100)).max(MAX_FAVORITES),
 });
 
-/** Only agent / channel-partner accounts have favourites. */
+/** Agent / channel-partner accounts, and buyers (a Buyer plan feature), have favourites. */
 async function agent() {
   const user = await getCurrentUser();
-  if (!user || user.role !== 'agent') return null;
+  if (!user || (user.role !== 'agent' && user.role !== 'buyer')) return null;
   return user;
 }
 
@@ -39,6 +40,10 @@ export async function PUT(req: NextRequest) {
   const user = await agent();
   if (!user) return unauthorized();
 
+  if (user.role === 'buyer') {
+    const gate = await guardFeature(user, 'buyer_favourites');
+    if (gate) return gate;
+  }
   const parsed = putSchema.safeParse(await req.json().catch(() => null));
   if (!parsed.success) {
     return NextResponse.json({ error: { message: `You can save up to ${MAX_FAVORITES} favourite projects.` } }, { status: 400 });

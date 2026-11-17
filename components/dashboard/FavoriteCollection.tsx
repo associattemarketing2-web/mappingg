@@ -19,7 +19,7 @@ const STATUS: Record<string, string> = {
 const nameOf = (c: FavCard) => c.title || `Project #${c.number ?? ''}`;
 const initialsOf = (n: string) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0].toUpperCase()).join('') || '?';
 
-export default function FavoriteCollection({ name, initial }: { name: string; initial: FavCard[] }) {
+export default function FavoriteCollection({ name, initial, role = 'agent' }: { name: string; initial: FavCard[]; role?: 'agent' | 'buyer' }) {
   const [cards, setCards] = useState(initial);
   const [q, setQ] = useState('');
   const [msg, setMsg] = useState<{ text: string; err?: boolean } | null>(null);
@@ -64,7 +64,7 @@ export default function FavoriteCollection({ name, initial }: { name: string; in
         <a className="bp-brand" href="/" aria-label="Mappingg.com home"><span className="mark" aria-hidden="true" /><b>Mappingg<em>.com</em></b></a>
         <div className="bp-top-actions">
           <a className="bp-btn primary" href="/map"><i className="fas fa-map-location-dot" /> <span className="bp-hide-sm">Back to live map</span></a>
-          <a className="bp-btn ghost" href="/dashboard/agent" title="My profile" aria-label="My profile"><span className="fav-av">{initialsOf(name)}</span> <span className="bp-hide-sm">Profile</span></a>
+          <a className="bp-btn ghost" href={`/dashboard/${role}`} title="My profile" aria-label="My profile"><span className="fav-av">{initialsOf(name)}</span> <span className="bp-hide-sm">Profile</span></a>
           <SignOutButton className="bp-btn ghost" />
         </div>
       </header>

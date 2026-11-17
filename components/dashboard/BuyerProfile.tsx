@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import PhoneInput from '@/components/PhoneInput';
 import BuyerCompare from './BuyerCompare';
+import PlanSummary from '@/components/subscriptions/PlanSummary';
 
 // Buyers have no dashboard: after signing in they use the live map. This is
 // their only other page — "My profile": the projects in their compare list,
@@ -81,6 +82,14 @@ export default function BuyerProfile() {
           <span><b>Explore the live map</b><small>Every project with status, RERA, prices and what&apos;s nearby. Tap Enquire on any project for full details.</small></span>
           <i className="fas fa-arrow-right" />
         </a>
+
+        <PlanSummary
+          manageHref="/dashboard/buyer/subscription"
+          links={[
+            { href: '/dashboard/buyer/premium', label: 'Premium tools', icon: 'fa-gem' },
+            { href: '/dashboard/buyer/favorites', label: 'Favourites', icon: 'fa-heart' },
+          ]}
+        />
 
         <BuyerCompare />
 

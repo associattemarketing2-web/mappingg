@@ -18,6 +18,7 @@ import BuyerLeadsPanel from './BuyerLeadsPanel';
 import DeveloperApiPanel from './DeveloperApiPanel';
 import WhatsAppPanel from './WhatsAppPanel';
 import PinsDataPanel from './PinsDataPanel';
+import SubscriptionsPanel from './SubscriptionsPanel';
 import ShareLinkButton from './ShareLinkButton';
 import { PageHead, StatCard } from './PageHead';
 import OverviewMap, { loadProjectIndex, matchProjects, type ProjectHit } from './OverviewMap';
@@ -58,6 +59,7 @@ const TAB_META: Record<string, { label: string; icon: string; desc: string }> = 
   blogs: { label: 'Blogs', icon: 'fa-newspaper', desc: 'Write & publish SEO articles' },
   employees: { label: 'Employees', icon: 'fa-users-gear', desc: 'Teammates & their access' },
   devapi: { label: 'Developer API', icon: 'fa-plug', desc: 'Partner websites & API keys' },
+  subscriptions: { label: 'Subscriptions', icon: 'fa-crown', desc: 'Plans, payments, refunds, coupons & reports' },
   seo: { label: 'SEO & Health', icon: 'fa-chart-line', desc: 'Search, traffic & site health' },
   settings: { label: 'Settings', icon: 'fa-gear', desc: 'Analytics & verification' },
   profile: { label: 'Profile', icon: 'fa-user', desc: 'Your name, photo & password' },
@@ -73,6 +75,7 @@ const NAV: { key: string; label: string; icon: string; tabs: string[] }[] = [
   { key: 'developers', label: 'Developers', icon: 'fa-building', tabs: ['developers'] },
   { key: 'content', label: 'Content & SEO', icon: 'fa-file-lines', tabs: ['blogs', 'seo'] },
   { key: 'comms', label: 'Communication', icon: 'fa-comment-dots', tabs: ['whatsapp'] },
+  { key: 'billing', label: 'Subscriptions', icon: 'fa-crown', tabs: ['subscriptions'] },
   { key: 'integrations', label: 'Integrations & API', icon: 'fa-plug', tabs: ['devapi'] },
   { key: 'team', label: 'Team & Administration', icon: 'fa-users-gear', tabs: ['employees'] },
 ];
@@ -3774,7 +3777,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
   const { flash, node: toastNode } = useToast();
 
   const visible = isOwner
-    ? ['dashboard', 'map', 'pinsdata', 'developers', 'projects', 'intake', 'leads', 'buyerleads', 'whatsapp', 'accounts', 'blogs', 'employees', 'backups', 'devapi', 'seo', 'settings', 'profile']
+    ? ['dashboard', 'map', 'pinsdata', 'developers', 'projects', 'intake', 'leads', 'buyerleads', 'whatsapp', 'accounts', 'blogs', 'employees', 'backups', 'devapi', 'subscriptions', 'seo', 'settings', 'profile']
     // Employees get no site-wide Dashboard overview — they open straight on their
     // leads (only the ones transferred to them), plus any other tab the super admin granted.
     : [...GRANTABLE.map((g) => g.key).filter((k) => user.permissions.includes(k)).sort((a, b) => Number(b === 'leads') - Number(a === 'leads')).flatMap((k) => (k === 'intake' ? ['projects', 'intake'] : k === 'map' ? ['map', 'pinsdata', 'developers'] : [k])), 'profile'];
@@ -4228,6 +4231,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
           {tab === 'blogs' && <BlogsPanel flash={flash} onGo={(t) => visible.includes(t) && setTab(t)} />}
           {tab === 'employees' && isOwner && <EmployeesPanel flash={flash} owner={{ name: displayName, email: user.email, avatar }} onProfile={() => setTab('profile')} />}
           {tab === 'devapi' && isOwner && <DeveloperApiPanel flash={flash} />}
+          {tab === 'subscriptions' && isOwner && <SubscriptionsPanel flash={flash} />}
           {tab === 'seo' && (
             <div className="pg-wrap">
               <PageHead icon="fa-chart-line" title="SEO & Analytics" sub="Website traffic, Google Search Console, site health and ranking checklist.">

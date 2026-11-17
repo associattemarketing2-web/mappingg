@@ -182,12 +182,12 @@ export function mapPreviewHtml(cards: ProjectCardData[], card = '', locality = '
 
 // ---------- Featured projects ----------
 /** Candidates for the hero's sample project card: highlighted by the
- *  super admin first, then the best documented; Pune when it has enough. A project
+ *  super admin first, then paid developer promotion (lib/subscriptions), then the best documented; Pune when it has enough. A project
  *  listed twice under the same name (separate pins) is shown once. */
 export function featuredPool(cards: ProjectCardData[], min = 4): { list: ProjectCardData[]; inPune: boolean } {
   const usable = cards.filter((c) => c.residential && c.image && c.status !== 'Sold');
   const rank = (a: ProjectCardData, b: ProjectCardData) =>
-    Number(b.featured) - Number(a.featured) || completeness(b) - completeness(a) || a.number - b.number;
+    Number(b.featured) - Number(a.featured) || (b.promoted || 0) - (a.promoted || 0) || completeness(b) - completeness(a) || a.number - b.number;
   const pune = usable.filter((c) => c.city === 'Pune');
   const inPune = pune.length >= min;
   const seen = new Set<string>();

@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { clientIp, rateLimit } from '@/lib/rate-limit';
 import { getQuickView } from '@/lib/home/quickview';
+import { SESSION_COOKIE, getCurrentUser } from '@/lib/auth';
+import { guardProjectAccess } from '@/lib/subscriptions/guards';
+import { publicPinByNumber } from '@/lib/subscriptions/projects';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -13,8 +16,20 @@ export async function GET(req: NextRequest) {
   if (limited) return limited;
   const n = Number(req.nextUrl.searchParams.get('n'));
   if (!Number.isInteger(n) || n <= 0 || n > 1_000_000) return NextResponse.json({ error: { message: 'Unknown project' } }, { status: 400 });
+  // Signed-in channel partners and buyers: opening a project's full details
+  // counts against their plan (lib/subscriptions). Visitors are unchanged.
+  const hasSession = !!req.cookies.get(SESSION_COOKIE)?.value;
+  const user = hasSession ? await getCurrentUser() : null;
+  const metered = !!user && (user.role === 'agent' || user.role === 'buyer');
+  if (metered) {
+    const pin = await publicPinByNumber(n).catch(() => null);
+    if (pin) {
+      const gate = await guardProjectAccess(user, pin.id);
+      if (gate) return gate;
+    }
+  }
   const data = await getQuickView(n).catch(() => undefined);
   if (data === undefined) return NextResponse.json({ error: { message: 'Could not load this project' } }, { status: 503 });
   if (!data) return NextResponse.json({ error: { message: 'Project not found' } }, { status: 404 });
-  return NextResponse.json(data, { headers: { 'Cache-Control': 'public, max-age=300, stale-while-revalidate=600' } });
+  return NextResponse.json(data, { headers: { 'Cache-Control': metered ? 'private, no-store' : 'public, max-age=300, stale-while-revalidate=600' } });
 }

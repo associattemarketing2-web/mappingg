@@ -644,6 +644,52 @@
     if (byId('su-pass-hint')) byId('su-pass-hint').textContent = 'You’ll sign in with your mobile number (or email) and this password.';
     if (byId('roleTiles')) renderSide();
   }
+  /* ---------- Plan picker on the sign-up form (plans come from /api/subscriptions/plans) ---------- */
+  const PLAN_CAT = { buyer: 'buyer', developer: 'developer', agent: 'cp' };
+  const PERIOD_SHORT = { month: '/month', quarter: '/quarter', half_year: '/6 months', year: '/year' };
+  let planCatalog = null, planLoading = null, wantPlan = '';
+  const escHtml = t => String(t == null ? '' : t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const inr = paise => '₹' + (Math.round(paise) / 100).toLocaleString('en-IN', { maximumFractionDigits: 2 });
+  function loadPlans() {
+    if (planCatalog || planLoading) return planLoading || Promise.resolve(planCatalog);
+    planLoading = fetch('/api/subscriptions/plans', { credentials: 'same-origin' })
+      .then(r => (r.ok ? r.json() : null)).then(b => { planCatalog = (b && b.data && b.data.plans) || []; })
+      .catch(() => { planCatalog = []; })
+      .then(() => { planLoading = null; if (byId('roleTiles')) renderPlans(); return planCatalog; });
+    return planLoading;
+  }
+  const chosenPlanCode = () => ((document.querySelector('#su-plan-tiles input:checked') || {}).value || '');
+  function chosenPlan() {
+    const code = chosenPlanCode();
+    return code && planCatalog ? planCatalog.find(p => p.code === code) || null : null;
+  }
+  function renderPlans() {
+    const box = byId('su-plan-tiles'); if (!box) return;
+    const role = currentRole(), cat = PLAN_CAT[role] || 'buyer';
+    if (byId('su-acct-role')) byId('su-acct-role').textContent = ROLE_LABEL[role];
+    const keep = wantPlan || chosenPlanCode();
+    const list = (planCatalog || []).filter(p => p.category === cat).sort((a, b) => a.sort - b.sort);
+    const free = list.find(p => p.is_free);
+    const tile = (value, name, price, sub, rec) => `<label class="plan-tile${rec ? ' rec' : ''}"><input type="radio" name="plan" value="${escHtml(value)}"><span><b>${escHtml(name)}${rec ? ' <i class="fas fa-star" title="Most popular"></i>' : ''}</b><em>${price}</em>${sub ? `<small>${escHtml(sub)}</small>` : ''}</span></label>`;
+    let html = tile('', free ? free.name : 'Free', '₹0', free ? free.tagline : 'Start free', false);
+    list.filter(p => !p.is_free).forEach(p => {
+      html += tile(p.code, p.name, inr(p.price_paise) + (p.billing_unit === 'project' ? '/project' : '') + (PERIOD_SHORT[p.billing_period] || ''), p.tagline, p.recommended);
+    });
+    box.innerHTML = html;
+    const pick = box.querySelector(`input[value="${window.CSS && CSS.escape ? CSS.escape(keep) : keep.replace(/[^a-z0-9_-]/gi, '')}"]`) || box.querySelector('input[value=""]');
+    if (pick) pick.checked = true;
+    if (planCatalog) wantPlan = ''; // keep a deep-linked plan until the catalog has loaded
+    planNote();
+  }
+  function planNote() {
+    const n = byId('su-plan-note'); if (!n) return;
+    const p = chosenPlan(), role = currentRole();
+    if (!p) n.innerHTML = (planCatalog && !planCatalog.length ? 'Plans could not be loaded — your account starts on Free. ' : 'Every account starts on Free. ') + '<a href="/pricing" target="_blank" rel="noopener">Compare all plans</a>';
+    else if (role === 'buyer') n.innerHTML = `After your account is created you go straight to secure payment for <b>${escHtml(p.name)}</b>. <a href="/pricing" target="_blank" rel="noopener">Compare plans</a>`;
+    else n.innerHTML = `Your account starts on Free. Once we verify your RERA number you can pay for <b>${escHtml(p.name)}</b> from <b>My plan</b>. <a href="/pricing" target="_blank" rel="noopener">Compare plans</a>`;
+  }
+  if (byId('su-plan-tiles')) byId('su-plan-tiles').addEventListener('change', planNote);
+
   let mode = 'signup';
   const currentRole = () => (document.querySelector('#roleTiles input:checked') || {}).value || 'buyer';
   if (!OTP_ON) applyOtpOff();
@@ -654,6 +700,7 @@
     byId('benefitsTitle').textContent = `${isIn ? 'Your' : 'What you get as a'} ${ROLE_LABEL[role]}${isIn ? ' access' : ''}`;
     byId('benefitsList').innerHTML = r.items.map((t, i) => `<li style="animation-delay:${i * 40}ms"><i class="fas fa-check"></i>${t}</li>`).join('');
     signupForm.querySelectorAll('.role-fields').forEach(fs => { const on = fs.dataset.for === role; fs.hidden = !on; fs.disabled = !on; });
+    if (!isIn) { renderPlans(); loadPlans(); }
     signupLabel();
     byId('signinBtn').textContent = `Sign in as ${ROLE_LABEL[role]}`;
     byId('verifyNote').hidden = role === 'buyer';
@@ -671,8 +718,9 @@
       : 'All fields are needed so we can verify your RERA details.';
   }
 
-  function openModal(which, role, reason) {
+  function openModal(which, role, reason, plan) {
     mode = which;
+    if (plan) wantPlan = String(plan).slice(0, 40);
     const pickRole = role || (which === 'signup' ? 'buyer' : null);
     if (pickRole) { const r = document.querySelector(`#roleTiles input[value="${pickRole}"]`); if (r) r.checked = true; }
     const isIn = which === 'signin';
@@ -865,7 +913,15 @@
       if (ok && b.user) {
         resetSignupCode();
         success({ name: b.user.name || 'there', email: b.user.email, role: b.user.role, verified: b.user.verified }, true);
-        setTimeout(() => { window.location.href = b.redirect || '/dashboard'; }, 900);
+        // A paid plan picked on the form: buyers go straight to its checkout; developers /
+        // channel partners are told to pay after RERA verification (their plan page opens then).
+        const paid = chosenPlan();
+        let next = b.redirect || '/dashboard';
+        if (paid && b.user.role === 'buyer') next = '/dashboard/buyer/subscription?plan=' + encodeURIComponent(paid.code);
+        else if (paid && b.user.role !== 'buyer' && byId('successSub')) {
+          byId('successSub').textContent = `You picked ${paid.name}. We’ll verify your RERA number shortly — then open My plan to activate it. Until then you’re on the Free plan.`;
+        }
+        setTimeout(() => { window.location.href = next; }, paid && b.user.role !== 'buyer' ? 2600 : 900);
       } else {
         toast((b.error && b.error.message) || 'Could not create your account', 'fa-triangle-exclamation');
       }
@@ -1025,39 +1081,39 @@
     if (!s) promptSignIn();
   }).catch(() => {});
 
-  // Guests on the home page (phone and desktop) get the Sign in / Sign up popup 1 s
-  // after it opens, then 10 s after each time they close it, until they sign in. The
-  // page itself works normally (links, search, map), so they can look around between
-  // prompts. Not inside an iframe (the home page's embedded map).
+  // Guests get the Sign in / Create account popup ONCE per visit (browser session):
+  // 1 s after they first land on the home page. Closing it never brings it back
+  // until a new visit; buttons like "Sign Up" or the map lock still open it on demand.
+  // This is the site's only automatic popup (the old per-page SignInPrompt was removed).
+  // Not inside an iframe (the home page's embedded map).
+  const PROMPTED_KEY = 'mg-signin-prompted';
   function promptSignIn() {
     try { if (window.self !== window.top) return; } catch (e) { return; }
-    const ask = () => {
-      try { sessionStorage.setItem('mg-signin-prompted', '1'); } catch (e) {}
+    try { if (sessionStorage.getItem(PROMPTED_KEY)) return; sessionStorage.setItem(PROMPTED_KEY, '1'); } catch (e) { /* private mode: still once per page load */ }
+    const t = setTimeout(function () {
+      if (!modal || !document.contains(modal) || getUser() || modal.classList.contains('is-open')) return;
       openModal('signin', null, 'Sign in, or create a free account, to explore every project on the live map.');
-    };
-    // First 1 s after the page opens, then 10 s after each time it's closed, until they
-    // sign in. Skips if the visitor left the home page (this markup is gone) or got in.
-    let lastSeen = Date.now() - 9000;
-    const tick = setInterval(function () {
-      if (!modal || !document.contains(modal) || getUser()) return;
-      if (modal.classList.contains('is-open')) { lastSeen = Date.now(); return; }
-      if (Date.now() - lastSeen >= 10000) { lastSeen = Date.now(); ask(); }
-    }, 500);
-    __cleanups.push(() => clearInterval(tick));
+    }, 1000);
+    __cleanups.push(() => clearTimeout(t));
   }
 
   // The shared <SiteHeader/> lives outside this markup; it asks us to open the
   // auth modal via a window event instead of a class handler.
   on(window, 'mpg:open-signin', function () { openModal('signin'); });
-  on(window, 'mpg:open-signup', function (e) { openModal('signup', e && e.detail && e.detail.role); });
+  on(window, 'mpg:open-signup', function (e) { openModal('signup', e && e.detail && e.detail.role, null, e && e.detail && e.detail.plan); });
 
   // Deep-links: /?admin=1 (redirected from the gated admin) or /?signin=1 (Sign in
   // from another page's header) open the sign-in modal on load.
   try {
     var q = new URLSearchParams(location.search);
+    if (q.get('signin') === '1' || q.get('signup') === '1' || q.get('admin') === '1') { try { sessionStorage.setItem(PROMPTED_KEY, '1'); } catch (e) {} }
     if (q.get('admin') === '1') openModal('signin', null, 'Sign in to open the admin dashboard.');
     else if (q.get('signin') === '1') openModal('signin');
-    else if (q.get('signup') === '1') openModal('signup');
+    else if (q.get('signup') === '1') {
+      // /?signup=1&role=developer|agent|buyer&plan=<code> — from the pricing page's plan buttons.
+      var qRole = q.get('role'); if (!ROLES[qRole]) qRole = null;
+      openModal('signup', qRole, null, q.get('plan'));
+    }
     // Surface a failed Google sign-in (redirected back here by the OAuth callback).
     var oauthErr = q.get('error');
     if (oauthErr) {

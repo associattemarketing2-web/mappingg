@@ -3,6 +3,7 @@ import { getCurrentUser, isStaffRole, type SessionUser } from '@/lib/auth';
 import { getDb } from '@/lib/mongodb';
 import { loadPartnersFile } from '@/lib/partners-media';
 import { verificationOf } from '@/lib/verification';
+import { guardFeature } from '@/lib/subscriptions/guards';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -57,6 +58,11 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
   const download = req.nextUrl.searchParams.get('download') === '1';
   if (download && !(await canDownloadBrochure(user))) {
     return NextResponse.json({ error: { message: 'Brochure download is only for channel partners.' } }, { status: 403 });
+  }
+  // Channel partners: brochure download is a plan feature (Pro and up).
+  if (download && user && user.role === 'agent') {
+    const gate = await guardFeature(user, 'cp_brochure_access');
+    if (gate) return gate;
   }
 
   const pin = await (await getDb()).collection('pins')

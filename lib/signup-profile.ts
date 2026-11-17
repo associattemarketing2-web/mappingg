@@ -7,19 +7,23 @@ import { z } from 'zod';
 // their company and MahaRERA number, which the super admin verifies.
 const req = (max = 120) => z.string().trim().min(1).max(max);
 const opt = (max = 120) => z.string().trim().max(max).optional().default('');
+// The plan picked on the sign-up form (a sub_plans code, e.g. "dev_large"). Kept on the
+// profile so staff see what the account wants; it never activates anything by itself —
+// paid plans start only after checkout on /dashboard/<role>/subscription.
+const plan = z.string().trim().max(40).regex(/^[a-z0-9_-]*$/).optional().default('');
 
 export const PROFILE_SCHEMAS = {
   buyer: z.object({
-    area: opt(), configuration: opt(), budget: opt(), timeline: opt(), purpose: opt(),
+    area: opt(), configuration: opt(), budget: opt(), timeline: opt(), purpose: opt(), plan,
   }).default({}),
   developer: z.object({
     company: req(160), designation: req(), activeProjects: req(),
     // Website is the one optional field (many developers don't have one).
-    reraProject: z.string().trim().min(4).max(40), website: z.string().trim().max(300).optional().default(''),
+    reraProject: z.string().trim().min(4).max(40), website: z.string().trim().max(300).optional().default(''), plan,
   }),
   agent: z.object({
     agency: req(160),
-    reraAgent: z.string().trim().min(4).max(40), areas: req(300),
+    reraAgent: z.string().trim().min(4).max(40), areas: req(300), plan,
   }),
 };
 

@@ -4,8 +4,12 @@ import { trimLogo } from '@/lib/media-cache';
 import { query } from '@/lib/pg';
 import { usingMongo } from '@/lib/mongodb';
 import { loadPartnersFile, partnersGridfs } from '@/lib/partners-media';
-import { getStaffUser } from '@/lib/auth';
+import { getCurrentUser, getStaffUser } from '@/lib/auth';
 import { tokenIsValid } from '@/lib/partners-engine';
+import { getDb } from '@/lib/mongodb';
+import { canEditProjects } from '@/lib/verification';
+import { guardFeature } from '@/lib/subscriptions/guards';
+import { MEDIA_KINDS } from '@/lib/subscriptions/features';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -24,6 +28,16 @@ const MAX_PARTS = Math.ceil(MAX_BYTES / (3 * 1024 * 1024)) + 1;
 const partKey = (uploadId: string, i: number) => `.parts/${uploadId}/${i}`;
 
 function key(bucket: string, path: string) { return `${bucket}/${path}`; }
+
+// Developer self-service uploads: only these types, checked by their first bytes.
+const DEV_TYPES = new Set(['application/pdf', 'image/jpeg', 'image/png', 'image/webp']);
+function magicMatches(buf: Buffer, type: string): boolean {
+  if (type === 'application/pdf') return buf.subarray(0, 5).toString('latin1') === '%PDF-';
+  if (type === 'image/png') return buf.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]));
+  if (type === 'image/jpeg') return buf[0] === 0xff && buf[1] === 0xd8 && buf[2] === 0xff;
+  if (type === 'image/webp') return buf.subarray(0, 4).toString('latin1') === 'RIFF' && buf.subarray(8, 12).toString('latin1') === 'WEBP';
+  return false;
+}
 
 const gridfs = partnersGridfs;
 const loadFile = loadPartnersFile;
@@ -92,10 +106,27 @@ export async function POST(req: NextRequest) {
   // under their own active link folder (submission-media/links/<token>/…).
   const user = await getStaffUser();
   let allowed = !!user;
+  let devUpload = false;
   if (!allowed) {
     const token = req.nextUrl.searchParams.get('t');
     if (token && bucketName === 'submission-media' && path.startsWith(`links/${token}/`)) {
       allowed = await tokenIsValid(token);
+    }
+  }
+  // A developer on a plan with media uploads: only under their own project's
+  // folder, project-media/dev/<their id>/<their pin>/<kind>/… (lib/subscriptions).
+  if (!allowed && bucketName === 'project-media' && path.startsWith('dev/')) {
+    const dev = await getCurrentUser();
+    const m = /^dev\/([^/]+)\/([^/]+)\/(brochure|floor_plan|gallery)\/[A-Za-z0-9._-]{1,120}$/.exec(path);
+    if (dev && dev.role === 'developer' && m && m[1] === dev.id && (await canEditProjects(dev.id))) {
+      const owns = await (await getDb()).collection('pins').findOne({ id: m[2], owner_user_id: dev.id }, { projection: { id: 1 } });
+      if (owns) {
+        const gate = await guardFeature(dev, MEDIA_KINDS[m[3] as keyof typeof MEDIA_KINDS], m[2]);
+        if (gate) return gate;
+        if (!DEV_TYPES.has(contentType)) return NextResponse.json({ data: null, error: { message: 'Upload a PDF, JPG, PNG or WebP file.' } }, { status: 415 });
+        allowed = true;
+        devUpload = true;
+      }
     }
   }
   if (!allowed) return NextResponse.json({ data: null, error: { message: 'Not authorized' } }, { status: 401 });
@@ -133,6 +164,11 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  // Developer files are served publicly from this site: the bytes must really be
+  // the PDF / image type they claim (no HTML/SVG/script disguised as an image).
+  if (devUpload && !magicMatches(buf, contentType)) {
+    return NextResponse.json({ data: null, error: { message: 'That file is not a valid PDF or image.' } }, { status: 415 });
+  }
   const filename = key(bucketName, path);
   await saveFile(filename, contentType, { bucket: bucketName, path }, buf);
 
@@ -181,7 +217,7 @@ export async function GET(req: NextRequest) {
       return new NextResponse(small, { headers: { 'Content-Type': 'image/webp', 'Content-Length': String(small.byteLength), 'Cache-Control': publicCache } });
     }
   }
-  const headers: Record<string, string> = { 'Content-Type': ct, 'Cache-Control': isPublic ? publicCache : 'private, no-store' };
+  const headers: Record<string, string> = { 'Content-Type': ct, 'Cache-Control': isPublic ? publicCache : 'private, no-store', 'X-Content-Type-Options': 'nosniff' };
   // Files over Vercel's 4.5 MB response limit (brochure PDFs) are streamed in pieces.
   if (body.byteLength > STREAM_OVER) {
     let at = 0;
