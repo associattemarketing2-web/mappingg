@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import { formatInr } from '@/lib/subscriptions/catalog';
 import type { PublicPlan } from '@/lib/subscriptions/summary';
 import { limitText, unitLabel } from './PlanGrid';
@@ -119,10 +119,10 @@ export function PricingCompare({ plans }: { plans: PublicPlan[] }) {
     <div className="pp-compare">
       <div className="pp-compare-head">
         <h2>Compare every feature</h2>
-        <p>Side by side, plan by plan — swipe the table sideways on a phone.</p>
+        <p>Side by side, plan by plan.</p>
       </div>
       <div className="pp-table-wrap">
-        <table className="pp-table">
+        <table className="pp-table" style={{ '--n': plans.length } as CSSProperties}>
           <thead>
             <tr>
               <th scope="col">Features</th>
