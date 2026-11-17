@@ -67,6 +67,8 @@ export interface MySubscription {
   projects?: (DevProject & { covered: boolean })[];
   project_count?: number;
   project_limit?: number | null;
+  /** CP: the city a one-city plan (e.g. Free) is limited to, once chosen. */
+  city: string | null;
   unread: number;
   tax: { registered: boolean; rate: number; inclusive: boolean };
   terms_url: string;
@@ -89,7 +91,7 @@ export async function mySubscription(user: { id: string; role: string }): Promis
     category: ent.category, enforced: ent.enforced, status: ent.status, plan: ent.plan ? publicPlan(ent.plan) : null, subscription: sub,
     days_left: sub ? daysLeft(sub.expires_at) : 0, next_plan: next ? { code: next.code, name: next.name } : null, usage,
     available: (await listPlans({ category: ent.category, activeOnly: true })).map(publicPlan),
-    payments: { configured: gw.configured(), mode: gw.mode() }, cities: CITY_OPTIONS, unread,
+    payments: { configured: gw.configured(), mode: gw.mode() }, cities: CITY_OPTIONS, city: ent.city, unread,
     tax: { registered: settings.tax.registered, rate: settings.tax.rate, inclusive: settings.tax.inclusive }, terms_url: settings.terms_url,
   };
   if (ent.category === 'developer') {

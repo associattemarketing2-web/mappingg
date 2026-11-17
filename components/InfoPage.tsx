@@ -50,17 +50,20 @@ export default function InfoPage({
   intro,
   meta,
   actions,
+  hero,
   children,
 }: {
   path: string;
   crumb: string;
-  eyebrow: string;
-  icon: string;
+  eyebrow?: string;
+  icon?: string;
   tone?: Tone;
-  title: React.ReactNode;
+  title?: React.ReactNode;
   intro?: string;
   meta?: React.ReactNode;
   actions?: React.ReactNode;
+  /** Replaces the standard hero (crumbs, icon, eyebrow, title) with a page's own. */
+  hero?: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
@@ -68,7 +71,7 @@ export default function InfoPage({
       <IconFont />
       <SiteHeader />
 
-      <header className={`ipg-hero tone-${tone}`}>
+      {hero ?? <header className={`ipg-hero tone-${tone}`}>
         <div className="container">
           <div className="inner">
             <nav className="ipg-crumbs" aria-label="Breadcrumb">
@@ -84,7 +87,7 @@ export default function InfoPage({
             {actions && <div className="actions">{actions}</div>}
           </div>
         </div>
-      </header>
+      </header>}
 
       <main>{children}</main>
 

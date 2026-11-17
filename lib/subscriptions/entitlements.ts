@@ -119,14 +119,16 @@ export async function getEntitlements(user: { id: string; role: string }): Promi
   if (!category || !isAvailable()) return empty;
   const hit = cache.get(user.id);
   if (hit && hit.exp > Date.now() && hit.v.role === user.role) return hit.v;
-  const [{ plan, subscription, status }, enforced, freePlan] = await Promise.all([
-    getActivePlan(user.id, category), isEnforced(), freePlanFor(category),
+  const [{ plan, subscription, status }, enforced, freePlan, ownCity] = await Promise.all([
+    getActivePlan(user.id, category), isEnforced(), freePlanFor(category), category === 'cp' ? getCpCity(user.id) : null,
   ]);
   const entitled = !!subscription && ENTITLED_STATUSES.includes(subscription.effective_status);
   const v: Entitlements = {
     userId: user.id, role: user.role, category, enforced, status, plan, freePlan, subscription,
     coveredProjects: entitled && plan?.billing_unit === 'project' ? subscription!.project_ids : [],
-    city: subscription?.city || null,
+    // A paid plan's own city wins; otherwise the city the CP picked on Free
+    // (or, failing that, the city of a plan that has since ended).
+    city: (entitled && subscription!.city) || ownCity || subscription?.city || null,
   };
   if (cache.size > 5000) cache.clear();
   cache.set(user.id, { v, exp: Date.now() + ENT_TTL });
@@ -253,13 +255,20 @@ export async function consumeUsage(ent: Entitlements, metric: string, subject: s
   });
 }
 
+/** The city a channel partner chose outside a paid plan (see cp_city), or null. */
+export async function getCpCity(userId: string): Promise<string | null> {
+  await ensureSchema();
+  const r = await sql(`SELECT city FROM cp_city WHERE user_id = $1`, [userId]);
+  return (r.rows[0]?.city as string) || null;
+}
+
 /** CP city restriction: plans with cp_max_cities = 1 only open projects in the chosen city. */
 export function validateCityAccess(ent: Entitlements, cityKey: string | null | undefined): AccessResult {
   if (ent.category !== 'cp') return ok();
   const max = limitOf(ent, 'cp_max_cities');
   if (max == null) return ok();
   if (!ent.city) return deny(ent, 'city_not_selected', 'Choose the city your plan covers in My subscription first.');
-  if (!cityKey || cityKey !== ent.city) return deny(ent, 'city_not_allowed', 'This project is outside the city your plan covers. Upgrade to Pro Max for every city.');
+  if (!cityKey || cityKey !== ent.city) return deny(ent, 'city_not_allowed', 'This project is outside the city your plan covers. Upgrade your plan to open projects in every city.');
   return ok();
 }
 

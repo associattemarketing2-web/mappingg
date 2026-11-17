@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import InfoPage, { CtaBand } from '@/components/InfoPage';
-import PlanGrid, { PlanCompare } from '@/components/subscriptions/PlanGrid';
+import { PricingCards, PricingCompare, PricingTrust } from '@/components/subscriptions/PricingPlans';
+import PricingTabs from '@/components/subscriptions/PricingTabs';
 import '@/components/subscriptions/subscriptions.css';
 import { getCurrentUser } from '@/lib/auth';
 import { CATEGORY_LABEL, categoryForRole, type Category } from '@/lib/subscriptions/catalog';
@@ -13,11 +14,11 @@ export const dynamic = 'force-dynamic';
 // /pricing — every active plan, read from the database (Super admin →
 // Subscriptions → Plans), in three sections. If the database can't be reached
 // the seeded default plans are shown instead, so the page is never empty.
-// Server-rendered: no client JS (the tabs are plain anchor links).
+// Server-rendered; only the account-type tabs (PricingTabs) run in the browser.
 const SECTIONS: { key: Category; title: string; intro: string; icon: string; tab: string }[] = [
-  { key: 'developer', tab: 'Developers', title: 'For developers', icon: 'fas fa-building', intro: 'List projects free, then add brochures, floor plans, galleries, site-visit booking and priority promotion per project.' },
-  { key: 'cp', tab: 'Channel partners', title: 'For channel partners', icon: 'fas fa-handshake', intro: 'Open project details, download brochures, manage your client leads and see future prices — pick the access you need.' },
-  { key: 'buyer', tab: 'Buyers', title: 'For home buyers', icon: 'fas fa-house-chimney', intro: 'Compare, save and share projects free. Premium adds vastu and legal guidance, expert help and a portfolio manager.' },
+  { key: 'developer', tab: 'Developers', title: 'For developers', icon: 'fas fa-city', intro: 'List projects free, then add brochures, floor plans, galleries, site-visit booking and priority promotion per project.' },
+  { key: 'cp', tab: 'Channel Partners', title: 'For channel partners', icon: 'fas fa-users', intro: 'Open project details, download brochures, manage your client leads and see future prices — pick the access you need.' },
+  { key: 'buyer', tab: 'Home Buyers', title: 'For home buyers', icon: 'fas fa-house', intro: 'Compare, save and share projects free. Premium adds vastu and legal guidance, expert help and a portfolio manager.' },
 ];
 
 const STEPS = [
@@ -44,42 +45,70 @@ export default async function PricingPage() {
   const mine = categoryForRole(user?.role);
 
   const cta = (category: Category) => function PlanCta(p: PublicPlan) {
+    const cls = `pp-btn${p.recommended ? ' gold' : ''}`;
+    const arrow = p.recommended ? <i className="fas fa-arrow-right" aria-hidden="true" /> : null;
     if (!user) {
       // Guests sign up straight into this account type with the plan pre-selected
       // (public/landing.js reads ?role=&plan=).
       const role = category === 'cp' ? 'agent' : category;
       const href = `/?signup=1&role=${role}${p.is_free ? '' : `&plan=${encodeURIComponent(p.code)}`}`;
-      return <Link className={`sub-btn ${p.recommended ? 'primary' : 'ghost'} block`} href={href}>{p.is_free ? `Create free ${CATEGORY_LABEL[category]} account` : `Sign up with ${p.name}`}</Link>;
+      return <Link className={cls} href={href}>{p.is_free ? `Create free ${CATEGORY_LABEL[category]} account` : `Sign up with ${p.name}`}{arrow}</Link>;
     }
-    if (mine !== category) return <span className="sub-btn ghost block" aria-disabled="true">For {CATEGORY_LABEL[category]} accounts</span>;
+    if (mine !== category) return <span className={`${cls} off`} aria-disabled="true">For {CATEGORY_LABEL[category]} accounts</span>;
     const href = `${subscriptionPath(category)}${p.is_free ? '' : `?plan=${encodeURIComponent(p.code)}`}`;
-    return <Link className={`sub-btn ${p.recommended ? 'primary' : 'ghost'} block`} href={href}>{p.is_free ? 'View my plan' : `Choose ${p.name}`}</Link>;
+    return <Link className={cls} href={href}>{p.is_free ? 'View my plan' : `Choose ${p.name}`}{arrow}</Link>;
   };
 
-  // Signed-in accounts see their own section first.
-  const sections = mine ? [...SECTIONS.filter((s) => s.key === mine), ...SECTIONS.filter((s) => s.key !== mine)] : SECTIONS;
+  // Signed-in accounts open on their own tab.
+  const initial = mine ?? 'developer';
 
   return (
     <InfoPage
       path="/pricing"
       crumb="Pricing"
-      eyebrow="Membership plans"
-      icon="fas fa-crown"
-      tone="park"
-      title={<>Plans for <span className="accent">every side of the deal</span></>}
-      intro="Start free. Upgrade only for what you use — prices are per month (per project for developers) and per quarter for buyers."
-      actions={
-        user && mine
-          ? <Link href={subscriptionPath(mine)} className="btn btn-primary">My plan &amp; billing</Link>
-          : <Link href="/?signin=1" className="btn btn-outline">Already have an account? Sign in</Link>
+      hero={
+        <header className="pp-hero">
+          <div className="container">
+            <span className="pp-eyebrow">Pricing plans</span>
+            <h1>Choose the right <span className="plum">plan for your</span> <span className="green">real estate goals</span></h1>
+            <p>Flexible, value-packed plans for Developers, Channel Partners and Home Buyers.</p>
+            {user && mine
+              ? <Link href={subscriptionPath(mine)} className="pp-hero-link">My plan &amp; billing <i className="fas fa-arrow-right" aria-hidden="true" /></Link>
+              : <Link href="/?signin=1" className="pp-hero-link">Already have an account? Sign in</Link>}
+          </div>
+        </header>
       }
     >
       <div className="sub sub-pricing">
-        <nav className="sub-tabs" aria-label="Plans by account type">
-          {sections.map((s) => (
-            <a key={s.key} href={`#${s.key}`}><i className={s.icon} aria-hidden="true" /> {s.tab}</a>
-          ))}
-        </nav>
+        <div className="pp-body">
+          <div className="container">
+            <PricingTabs
+              initial={initial}
+              tabs={SECTIONS.map((s) => {
+                const list = plans.filter((p) => p.category === s.key).sort((a, b) => a.sort - b.sort);
+                return {
+                  key: s.key,
+                  label: s.tab,
+                  icon: s.icon,
+                  panel: (
+                    <>
+                      <p className="pp-intro">{s.intro}{mine === s.key ? <b> · Your account</b> : null}</p>
+                      {list.length ? (
+                        <>
+                          <PricingCards plans={list} cta={cta(s.key)} />
+                          <PricingTrust />
+                          <PricingCompare plans={list} />
+                        </>
+                      ) : (
+                        <div className="sub-alert neutral"><i className="fas fa-circle-info" /><span>No plans are published for this account type yet.</span></div>
+                      )}
+                    </>
+                  ),
+                };
+              })}
+            />
+          </div>
+        </div>
 
         <section className="ipg-section sub-steps-wrap" aria-label="How plans work">
           <div className="container">
@@ -90,31 +119,6 @@ export default async function PricingPage() {
             </ol>
           </div>
         </section>
-
-        {sections.map((s, i) => {
-          const list = plans.filter((p) => p.category === s.key).sort((a, b) => a.sort - b.sort);
-          return (
-            <section key={s.key} id={s.key} className={`ipg-section sub-cat${i % 2 ? '' : ' alt'}`}>
-              <div className="container">
-                <div className="sub-wrap" style={{ padding: 0 }}>
-                  <div className="sub-hero">
-                    <span className="sub-eyebrow"><i className={s.icon} aria-hidden="true" /> {CATEGORY_LABEL[s.key]}{mine === s.key ? ' · your account' : ''}</span>
-                    <h2>{s.title}</h2>
-                    <p>{s.intro}</p>
-                  </div>
-                  {list.length ? (
-                    <>
-                      <PlanGrid plans={list} currentCode={null} cta={cta(s.key)} />
-                      <PlanCompare plans={list} open />
-                    </>
-                  ) : (
-                    <div className="sub-alert neutral"><i className="fas fa-circle-info" /><span>No plans are published for this account type yet.</span></div>
-                  )}
-                </div>
-              </div>
-            </section>
-          );
-        })}
 
         <section className="ipg-section">
           <div className="container">

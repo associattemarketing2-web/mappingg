@@ -514,10 +514,21 @@ export async function chooseCity(user: Actor, city: string): Promise<void> {
   if (user.role !== 'agent') throw new SubError('Only channel partners choose a city.', 403);
   if (!isCityKey(city)) throw new SubError('Unknown city.');
   const cur = await getUserSubscription(user.id, 'cp');
-  if (!cur || !ENTITLED_STATUSES.includes(cur.effective_status)) throw new SubError('You have no active plan.', 400);
-  if (cur.city && cur.city !== city) throw new SubError('Your plan city is already set. Contact Mappingg support to change it.', 409, 'city_locked');
-  await sql(`UPDATE subscriptions SET city = $2, updated_at = now() WHERE id = $1`, [cur.id, city]);
-  await history({ subscription_id: cur.id, user_id: user.id, category: 'cp', action: 'city_selected', detail: { city }, actor: user.email });
+  const entitled = !!cur && ENTITLED_STATUSES.includes(cur.effective_status);
+  const plan = entitled ? await getPlan(cur!.plan_id) : null;
+  if (entitled && plan && plan.limits.cp_max_cities != null) {
+    // A paid one-city plan keeps its city on the subscription.
+    if (cur!.city && cur!.city !== city) throw new SubError('Your plan city is already set. Contact Mappingg support to change it.', 409, 'city_locked');
+    await sql(`UPDATE subscriptions SET city = $2, updated_at = now() WHERE id = $1`, [cur!.id, city]);
+  } else {
+    // Free (or an every-city plan): the CP's own city, used whenever a one-city plan applies.
+    const r = await sql(`INSERT INTO cp_city (user_id, city) VALUES ($1, $2) ON CONFLICT (user_id) DO NOTHING RETURNING city`, [user.id, city]);
+    if (!r.rows.length) {
+      const set = (await sql(`SELECT city FROM cp_city WHERE user_id = $1`, [user.id])).rows[0]?.city;
+      if (set !== city) throw new SubError('Your city is already set. Contact Mappingg support to change it.', 409, 'city_locked');
+    }
+  }
+  await history({ subscription_id: entitled ? cur!.id : null, user_id: user.id, category: 'cp', action: 'city_selected', detail: { city }, actor: user.email });
   forgetEntitlements(user.id);
 }
 

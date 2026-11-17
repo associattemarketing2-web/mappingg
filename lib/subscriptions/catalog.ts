@@ -159,10 +159,10 @@ export const DEFAULT_PLANS: PlanSeed[] = [
   { category: 'developer', code: 'dev_bulk', name: 'Large Bulk', tagline: 'Bulk listing, videos & multi-state priority promotion', price_paise: 200_000, billing_period: 'month', billing_unit: 'project', sort: 4,
     features: on(...DEV_BULK), limits: { dev_max_projects: null, dev_max_states: null, dev_media_per_project: 100 } },
 
-  { category: 'cp', code: 'cp_free', name: 'Free', tagline: 'Browse projects — 3 project details a week', price_paise: 0, billing_period: 'none', billing_unit: 'account', sort: 1,
-    features: on(...CP_FREE), limits: { cp_weekly_project_access: 3, cp_max_cities: null, cp_max_leads: 0 } },
-  { category: 'cp', code: 'cp_pro', name: 'Pro', tagline: '10 projects a week in your city, brochures & leads', price_paise: 100_000, billing_period: 'month', billing_unit: 'account', recommended: true, sort: 2,
-    features: on(...CP_PRO), limits: { cp_weekly_project_access: 10, cp_max_cities: 1, cp_max_leads: 50 } },
+  { category: 'cp', code: 'cp_free', name: 'Free', tagline: 'Browse projects — 3 project details a week in your city', price_paise: 0, billing_period: 'none', billing_unit: 'account', sort: 1,
+    features: on(...CP_FREE), limits: { cp_weekly_project_access: 3, cp_max_cities: 1, cp_max_leads: 0 } },
+  { category: 'cp', code: 'cp_pro', name: 'Pro', tagline: '10 projects a week in every city, brochures & leads', price_paise: 100_000, billing_period: 'month', billing_unit: 'account', recommended: true, sort: 2,
+    features: on(...CP_PRO), limits: { cp_weekly_project_access: 10, cp_max_cities: null, cp_max_leads: 50 } },
   { category: 'cp', code: 'cp_promax', name: 'Pro Max', tagline: 'Unlimited access, future prices & full CRM', price_paise: 200_000, billing_period: 'month', billing_unit: 'account', sort: 3,
     features: on(...CP_PROMAX), limits: { cp_weekly_project_access: null, cp_max_cities: null, cp_max_leads: null } },
 

@@ -96,7 +96,8 @@ export default function SubscriptionCenter({ email, initialPlan, signupPlan }: {
   const usage = me.usage.filter((u) => u.limit !== 0);
   // The paid plan picked on the sign-up form, still not bought (shown until they buy any paid plan).
   const pickedAtSignup = !paidActive && signupPlan ? me.available.find((p) => p.code === signupPlan && !p.is_free) : undefined;
-  const cityNeeded = me.category === 'cp' && paidActive && plan?.limits.some((l) => l.key === 'cp_max_cities' && l.value !== null) && !sub?.city;
+  const oneCity = me.category === 'cp' && !!plan?.limits.some((l) => l.key === 'cp_max_cities' && l.value !== null);
+  const cityNeeded = oneCity && !me.city;
 
   return (
     <div className="sub">
@@ -124,7 +125,7 @@ export default function SubscriptionCenter({ email, initialPlan, signupPlan }: {
           <div className="sub-alert warn"><i className="fas fa-hourglass-end" /><span className="grow"><b>Your paid plan expired</b> on {fmtDate(lastExpired.at)}. You are on the Free plan — your data is safe. Upgrade any time to unlock paid features again.</span></div>
         )}
         {cityNeeded && (
-          <div className="sub-alert warn"><i className="fas fa-city" /><span className="grow"><b>Choose your plan&apos;s city</b> to start opening projects.</span>
+          <div className="sub-alert warn"><i className="fas fa-city" /><span className="grow"><b>Choose your city</b> to start opening projects — your plan covers one city, and it can<b>Choose your plan&apos;s city</b> to start opening projects.apos;t be changed later without Mappingg support.</span>
             <select value={city} onChange={(e) => setCity(e.target.value)} className="sub-btn sm ghost" aria-label="City">
               <option value="">Choose…</option>
               {me.cities.map((c) => <option key={c.key} value={c.key}>{c.label}</option>)}
@@ -146,7 +147,7 @@ export default function SubscriptionCenter({ email, initialPlan, signupPlan }: {
               <div><span>Expires</span><b>{paidActive ? fmtDate(sub!.expires_at) : 'Never (Free)'}</b></div>
               <div><span>Next renewal</span><b>{paidActive ? (sub!.cancel_at_period_end ? 'Not renewing' : fmtDate(sub!.renew_at || sub!.expires_at)) : '—'}</b></div>
               <div><span>Days remaining</span><b>{paidActive ? me.days_left : '—'}</b></div>
-              {paidActive && sub!.city && <div><span>City</span><b>{me.cities.find((c) => c.key === sub!.city)?.label || sub!.city}</b></div>}
+              {oneCity && me.city && <div><span>City</span><b>{me.cities.find((c) => c.key === me.city)?.label || me.city}</b></div>}
               {paidActive && sub!.billing_unit === 'project' && <div><span>Projects covered</span><b>{sub!.project_ids.length}</b></div>}
             </div>
           </div>

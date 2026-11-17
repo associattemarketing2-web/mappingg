@@ -80,6 +80,13 @@ test('subscription APIs require a signed-in public account; staff and visitors a
 test('CP free: the 4th project via "Enquire now" and via the details API is blocked (402)', async () => {
   const { POST } = await import('../app/api/my/enquire/route');
   const QV = await import('../app/api/project-quickview/route');
+  const CITY = await import('../app/api/subscriptions/city/route');
+  // Free is limited to one city, chosen first.
+  const noCity = await call(POST as never, '/api/my/enquire', { method: 'POST', user: CP1, body: { pin_id: 'rp0', consent: { enquiry: true } } });
+  assert.equal(noCity.status, 402);
+  assert.equal(noCity.body.error.code, 'city_not_selected');
+  assert.equal((await call(CITY.POST as never, '/api/subscriptions/city', { method: 'POST', user: CP1, body: { city: 'pune' } })).status, 200);
+  assert.equal((await call(CITY.POST as never, '/api/subscriptions/city', { method: 'POST', user: CP1, body: { city: 'mumbai' } })).status, 409);
   for (const id of ['rp0', 'rp1', 'rp2']) {
     const r = await call(POST as never, '/api/my/enquire', { method: 'POST', user: CP1, body: { pin_id: id, consent: { enquiry: true } } });
     assert.equal(r.status, 200, JSON.stringify(r.body));
@@ -107,7 +114,7 @@ test('CP brochure download needs Pro; CRM needs a plan; leads are private to eac
   assert.equal((await call(B.GET as never, '/api/brochure/rp0?download=1', { user: CP2, params: { id: 'rp0' } })).status, 402);
   assert.equal((await call(LEADS.POST as never, '/api/cp/leads', { method: 'POST', user: CP2, body: { name: 'Client A' } })).status, 402);
 
-  await L.adminActivate({ userId: CP1.id, plan: 'cp_pro', months: 1, city: 'pune', reason: 'route test', actor: OWNER.email });
+  await L.adminActivate({ userId: CP1.id, plan: 'cp_pro', months: 1, reason: 'route test', actor: OWNER.email });
   await L.adminActivate({ userId: CP2.id, plan: 'cp_promax', months: 1, reason: 'route test', actor: OWNER.email });
   const made = await call(LEADS.POST as never, '/api/cp/leads', { method: 'POST', user: CP1, body: { name: 'Private Client', phone: '9000000000', pin_id: 'rp0' } });
   assert.equal(made.status, 201);
@@ -122,11 +129,10 @@ test('CP brochure download needs Pro; CRM needs a plan; leads are private to eac
   assert.equal(csv.status, 200);
   // Buyers and developers have no CP lead book.
   assert.equal((await call(LEADS.GET as never, '/api/cp/leads', { user: BUY1 })).status, 403);
-  // Pro CP outside the chosen city.
+  // Pro covers every city, including ones outside the CP's Free city.
   const { POST } = await import('../app/api/my/enquire/route');
   const city = await call(POST as never, '/api/my/enquire', { method: 'POST', user: CP1, body: { pin_id: 'rm0', consent: { enquiry: true } } });
-  assert.equal(city.status, 402);
-  assert.equal(city.body.error.code, 'city_not_allowed');
+  assert.equal(city.status, 200, JSON.stringify(city.body));
 });
 
 test('buyers: premium tools are refused on Free; portfolios are private', async () => {

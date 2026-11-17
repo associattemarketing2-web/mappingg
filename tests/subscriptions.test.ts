@@ -68,6 +68,7 @@ const DEV = { id: 'u-dev', email: 'dev@example.test', role: 'developer' };
 const DEV2 = { id: 'u-dev2', email: 'dev2@example.test', role: 'developer' };
 const CP = { id: 'u-cp', email: 'cp@example.test', role: 'agent' };
 const CP2 = { id: 'u-cp2', email: 'cp2@example.test', role: 'agent' };
+const CP3 = { id: 'u-cp3', email: 'cp3@example.test', role: 'agent' };
 const BUYER = { id: 'u-buyer', email: 'buyer@example.test', role: 'buyer' };
 const BUYER2 = { id: 'u-buyer2', email: 'buyer2@example.test', role: 'buyer' };
 
@@ -84,7 +85,7 @@ before(async () => {
   const { pg, insert } = await startTestDb();
   pgq = (s, p) => pg.query(s, p as never[]) as never;
   await insert('pins', [...punePins, ...mumbaiPins, ...devPins]);
-  await insert('users', [DEV, DEV2, CP, CP2, BUYER, BUYER2].map((u) => ({ ...u, name: `Test ${u.role}`, mobile: '+91 9000000000' })));
+  await insert('users', [DEV, DEV2, CP, CP2, CP3, BUYER, BUYER2].map((u) => ({ ...u, name: `Test ${u.role}`, mobile: '+91 9000000000' })));
   P = await import('../lib/subscriptions/pricing');
   E = await import('../lib/subscriptions/entitlements');
   L = await import('../lib/subscriptions/lifecycle');
@@ -151,10 +152,26 @@ test('default plans are seeded with the configured prices and billing cycles', a
   assert.equal(by.buyer_premium.price_paise, 199_900);
   assert.equal(by.buyer_premium.period_months, 3);
   assert.equal(by.cp_free.limits.cp_weekly_project_access, 3);
+  assert.equal(by.cp_free.limits.cp_max_cities, 1);
+  assert.equal(by.cp_pro.limits.cp_max_cities, null);
   assert.equal(by.buyer_free.limits.buyer_listing_limit, 20);
 });
 
 // ---- channel partner ------------------------------------------------------------------
+
+test('CP free: one chosen city, locked once set', async () => {
+  let e = await ent(CP);
+  assert.equal(e.plan!.code, 'cp_free');
+  assert.equal((await E.validateProjectAccess(e, pin('pp0'))).code, 'city_not_selected');
+  await L.chooseCity(CP, 'pune');
+  await L.chooseCity(CP, 'pune'); // same city again is fine
+  await assert.rejects(L.chooseCity(CP, 'mumbai'), /already set/);
+  e = await ent(CP);
+  assert.equal(e.city, 'pune');
+  assert.equal((await E.validateProjectAccess(e, pin('mp0'))).code, 'city_not_allowed');
+  assert.equal((await E.checkUsageLimit(e, 'project_access')).used, 0); // refusals are not counted
+  await L.chooseCity(CP2, 'pune');
+});
 
 test('CP free: 3 unique projects a week; repeats are free; the 4th is blocked', async () => {
   const e = await ent(CP);
@@ -191,20 +208,19 @@ test('with enforcement off, nothing is blocked but usage is still recorded', asy
   assert.equal(E.checkFeatureAccess(e, 'cp_crm').wouldBlock, true);
 });
 
-test('CP Pro: 10 a week, only in the chosen city; Pro Max: unlimited, every city', async () => {
-  await L.adminActivate({ userId: CP2.id, plan: 'cp_pro', months: 1, city: 'pune', reason: 'test grant', actor: 'owner@test' });
+test('CP Pro: 10 a week in every city; Pro Max: unlimited', async () => {
+  await L.adminActivate({ userId: CP2.id, plan: 'cp_pro', months: 1, reason: 'test grant', actor: 'owner@test' });
   let e = await ent(CP2);
   assert.equal(e.plan!.code, 'cp_pro');
   assert.equal(E.checkFeatureAccess(e, 'cp_brochure_access').allowed, true);
   assert.equal(E.checkFeatureAccess(e, 'cp_crm').allowed, false);
-  const mumbai = await E.validateProjectAccess(e, pin('mp0'));
-  assert.equal(mumbai.allowed, false);
-  assert.equal(mumbai.code, 'city_not_allowed');
-  // 3 already used this week on Free count toward the week; 7 more allowed.
+  // Outside the Free city: allowed on Pro (counts toward the week).
+  assert.equal((await E.validateProjectAccess(e, pin('mp0'))).allowed, true);
+  // 3 already used this week on Free + 1 above count toward the week; 6 more allowed.
   const ids = punePins.map((p) => p.id).filter((id) => !['pp10', 'pp11', 'pp12'].includes(id));
   let allowed = 0;
   for (const id of ids.slice(0, 9)) if ((await E.validateProjectAccess(e, pin(id))).allowed) allowed++;
-  assert.equal(allowed, 7);
+  assert.equal(allowed, 6);
 
   await L.adminActivate({ userId: CP2.id, plan: 'cp_promax', months: 1, reason: 'test upgrade', actor: 'owner@test' });
   e = await ent(CP2);
@@ -215,14 +231,15 @@ test('CP Pro: 10 a week, only in the chosen city; Pro Max: unlimited, every city
   assert.equal(E.checkFeatureAccess(e, 'cp_future_price').allowed, true);
 });
 
-test('CP on a one-city plan must pick the city before opening projects', async () => {
-  const sub = await L.adminActivate({ userId: CP.id, plan: 'cp_pro', months: 1, reason: 'test', actor: 'owner@test' });
-  assert.equal(sub.city, null);
-  const r = await E.validateProjectAccess(await ent(CP), pin('pp20'));
-  assert.equal(r.code, 'city_not_selected');
-  await L.chooseCity(CP, 'mumbai');
-  await assert.rejects(L.chooseCity(CP, 'pune'), /already set/);
-  assert.equal((await E.validateProjectAccess(await ent(CP), pin('mp2'))).allowed, true);
+test('CP back on Free after Pro ends is limited to the Free city again', async () => {
+  await L.chooseCity(CP3, 'pune');
+  await L.adminActivate({ userId: CP3.id, plan: 'cp_pro', months: 1, reason: 'test', actor: 'owner@test' });
+  assert.equal((await E.validateProjectAccess(await ent(CP3), pin('mp2'))).allowed, true);
+  await expire(CP3.id);
+  const e = await ent(CP3);
+  assert.equal(e.plan!.code, 'cp_free');
+  assert.equal(e.city, 'pune');
+  assert.equal((await E.validateProjectAccess(e, pin('mp1'))).code, 'city_not_allowed');
 });
 
 // ---- buyer ------------------------------------------------------------------------------

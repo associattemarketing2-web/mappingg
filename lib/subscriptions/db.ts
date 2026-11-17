@@ -338,6 +338,13 @@ export const SCHEMA_SQL: string[] = [
   )`,
   `CREATE INDEX IF NOT EXISTS dev_media_submissions_pin ON dev_media_submissions (pin_id, created_at DESC)`,
   `CREATE INDEX IF NOT EXISTS dev_media_submissions_status ON dev_media_submissions (status, created_at DESC)`,
+  // A channel partner's own city, for plans limited to one city when there is no
+  // paid subscription row to hold it (the Free plan). Chosen once, like a plan city.
+  `CREATE TABLE IF NOT EXISTS cp_city (
+    user_id TEXT PRIMARY KEY,
+    city TEXT NOT NULL,
+    set_at TIMESTAMPTZ NOT NULL DEFAULT now()
+  )`,
 ];
 
 export const DEFAULT_SETTINGS = {
