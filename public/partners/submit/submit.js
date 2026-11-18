@@ -6,6 +6,8 @@ import { createClient, $, h, esc, toast, friendlyError, safeFileName, uid, getCo
 const cfg = getConfig();
 const app = $('#app');
 const token = new URLSearchParams(location.search).get('t') || location.hash.replace(/^#t=/, '');
+// ?s=<submission id>: open that project's form straight away (Developer panel → Edit all details).
+const openId = new URLSearchParams(location.search).get('s');
 let client, data, form, current = null, dirty = false, saving = false, autosaveTimer;
 
 {
@@ -26,7 +28,8 @@ async function init() {
   try {
     client = createClient();
     await load();
-    showList();
+    const direct = openId && (data.submissions || []).find((x) => x.id === openId);
+    if (direct) showForm(direct); else showList();
   } catch (e) {
     fatal(friendlyError(e));
   }

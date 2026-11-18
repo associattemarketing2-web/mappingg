@@ -211,7 +211,7 @@ export function completeness(sub) {
 // the form could not hold exactly under Additional details, e.g. "Price (as on the
 // map)". Publishing keeps them on the pin, so they satisfy the matching check.
 // Labels must match lib/pin-to-intake.ts.
-const keptOnPin = (sub, label) => sub.source === 'map_pin'
+const keptOnPin = (sub, label) => (sub.source === 'map_pin' || sub.source === 'developer')
   && (sub.additional_details || []).some(d => d && d.label === label && String(d.value || '').trim());
 
 export function publishBlockers(sub) {

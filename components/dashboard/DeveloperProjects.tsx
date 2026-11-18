@@ -202,7 +202,7 @@ const fmtWhen = (d?: string) => {
   return new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
 };
 
-export default function DeveloperProjects() {
+export default function DeveloperProjects({ onEditAll }: { onEditAll?: (pinId: string) => void } = {}) {
   const [items, setItems] = useState<MyProject[] | null>(null);
   const [view, setView] = useState<'list' | 'form' | 'bulk'>('list');
   const [editId, setEditId] = useState<string | null>(null);
@@ -525,6 +525,7 @@ export default function DeveloperProjects() {
                         <a className="adm-btn ghost sm" href={`/map?pin=${encodeURIComponent(p.id)}`} target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /></a>
                       )}
                       <button className="adm-btn ghost sm" onClick={() => startEdit(p)}><i className="fas fa-pen" /> Edit</button>
+                      {onEditAll && <button className="adm-btn primary sm" onClick={() => onEditAll(p.id)} title="Every field: price, configuration, RERA, media, amenities, sales contact…"><i className="fas fa-pen-to-square" /> Edit all details</button>}
                       {p.delete_requested
                         ? <button className="adm-btn ghost sm" disabled title="Waiting for the Mappingg team to approve the delete"><i className="fas fa-hourglass-half" /> Requested</button>
                         : <button className="adm-btn danger sm" onClick={() => remove(p)} title="Ask the Mappingg team to delete this project" aria-label={`Request delete of ${p.title}`}><i className="fas fa-trash" /> Request delete</button>}
