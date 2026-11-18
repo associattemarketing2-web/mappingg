@@ -7,7 +7,7 @@ import {
   withDisplayName, primaryLocality, cityOf, slugForProject, statusLabel, type Pin,
 } from '@/lib/seo/entities';
 import { CITY_SHORT } from '@/lib/seo/city';
-import { parsePriceLakh, parseAreaSqft, isCarpetArea, formatLakh, bhkSizes } from './finder';
+import { parsePriceLakh, parseAreaSqft, isCarpetArea, formatLakh, bhkSizes, configLabel } from './finder';
 
 // Project cards for the home page ("Featured", "Projects near you") and the
 // /api/nearby endpoint. One cached read of the public pins with their cover
@@ -25,6 +25,8 @@ export interface ProjectCardData {
   /** Shown only when the price text parsed cleanly (lib/home/finder.ts). */
   price: string;
   bhk: string;
+  /** "3, 4 BHK · Penthouse": BHK sizes plus other unit types (villa, office…). */
+  config: string;
   /** "796 – 1,072 sq ft" with "carpet" only when the source says carpet area. */
   area: string;
   status: string;
@@ -63,6 +65,7 @@ export function toCard(p: CardPin): ProjectCardData {
     developer: p.developer || '',
     price: price ? (price.min === price.max ? `${formatLakh(price.min)}${/onward|\+/i.test(p.price || '') ? ' onwards' : ''}` : `${formatLakh(price.min)} – ${formatLakh(price.max)}`) : '',
     bhk: sizes.length ? `${sizes.join(', ')} BHK` : '',
+    config: configLabel(p.configuration),
     area: area ? `${area.min === area.max ? sqftLabel(area.min) : `${sqftLabel(area.min)} – ${sqftLabel(area.max)}`} sq ft${isCarpetArea(p.sqft) ? ' carpet' : ''}` : '',
     status: statusLabel(p.status),
     possession: (p.possession_timeline || '').trim().slice(0, 40),

@@ -35,7 +35,7 @@ export default function HomeProjectCard({ card, distanceKm, photo }: { card: Pro
           {typeof distanceKm === 'number' && <span className="hf-dist"> · {distanceKm < 1 ? '<1 km' : `${distanceKm} km`}</span>}
         </p>
         <p className="hf-card-price">{card.price || 'Price on request'}</p>
-        <p className="hf-card-bhk">{card.bhk || card.area || ' '}</p>
+        <p className="hf-card-bhk">{card.config || card.area ||' '}</p>
         <div className="hf-card-tags">
           {card.rera && <span className="t-rera" title={`RERA ${card.rera}`}>RERA</span>}
           {card.possession && card.status !== 'Ready to Move' && <span className="t-pos">{card.possession}</span>}

@@ -4,6 +4,7 @@ import { logosByName, normDev } from '@/lib/developers';
 import { getPinsByNumber, slugForProject, typeLabel } from '@/lib/seo/entities';
 import { reraNumber } from '@/lib/seo/project-meta';
 import { toCard, type ProjectCardData } from './cards';
+import { unitKinds } from './finder';
 
 // Everything a project's details view shows: the "Enquire now" popup on the
 // home page and the details panel on the live map. It merges the public pin
@@ -107,7 +108,10 @@ export async function getQuickView(number: number): Promise<QuickView | null> {
 
   const configs = list(intake?.configurations).length
     ? list(intake?.configurations).map(str).filter(Boolean)
-    : (card.bhk ? card.bhk.replace(/ BHK$/, '').split(', ').map((b) => `${b} BHK`) : []);
+    : [
+      ...(card.bhk ? card.bhk.replace(/ BHK$/, '').split(', ').map((b) => `${b} BHK`) : []),
+      ...unitKinds(pin.configuration).map((k) => k.label), // Penthouse, Villa, Office…
+    ];
 
   // Unit-type table from the intake ("Unit types, carpet area & price"); values shown as entered.
   const unitRows: UnitRow[] = list(intake?.unit_mix)

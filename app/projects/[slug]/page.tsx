@@ -116,7 +116,7 @@ export default async function ProjectDetail({ params }: { params: { slug: string
   const card = toCard(pin);
   const keyFacts = [
     card.price && { k: 'Price', v: card.price },
-    card.bhk && { k: 'Configuration', v: card.bhk },
+    card.config && { k: 'Configuration', v: card.config },
     card.area && { k: 'Area', v: card.area },
     card.possession && { k: 'Possession', v: card.possession },
   ].filter(Boolean) as { k: string; v: string }[];

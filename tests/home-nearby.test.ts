@@ -4,7 +4,7 @@ import { nearbyFrom, nearbyLocality, localityOptions, isAdminArea } from '../lib
 import type { ProjectCardData } from '../lib/home/cards';
 
 const card = (number: number, locality: string, city: string, lat: number, lng: number, residential = true): ProjectCardData => ({
-  number, href: `/projects/p-${number}`, title: `P${number}`, locality, city, developer: '', price: '', bhk: '', area: '',
+  number, href: `/projects/p-${number}`, title: `P${number}`, locality, city, developer: '', price: '', bhk: '', config: '', area: '',
   status: '', possession: '', rera: '', image: '', featured: false, residential, lat, lng,
 });
 

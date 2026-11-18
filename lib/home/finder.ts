@@ -60,6 +60,80 @@ export function bhkSizes(configuration?: string | null): number[] {
   return [...out].sort((a, b) => a - b);
 }
 
+/**
+ * Unit types other than BHK flats that a configuration names: penthouses,
+ * villas, office spaces… (the Projects Intake options, plus common wording).
+ * `label` is the singular shown on cards; `plural` / `title` are for SEO text.
+ */
+export const UNIT_KINDS: readonly { label: string; plural: string; title: string; re: RegExp }[] = [
+  { label: 'Studio', plural: 'studio apartments', title: 'Studios', re: /\bstudios?\b|\b1\s*rk\b/i },
+  { label: 'Penthouse', plural: 'penthouses', title: 'Penthouses', re: /\bpent\s*-?\s*house(s)?\b/i },
+  { label: 'Duplex', plural: 'duplexes', title: 'Duplexes', re: /\bduplex(es)?\b/i },
+  { label: 'Villa', plural: 'villas', title: 'Villas', re: /\bvillas?\b|\bbungalows?\b/i },
+  { label: 'Row House', plural: 'row houses', title: 'Row Houses', re: /\brow\s*-?\s*houses?\b/i },
+  { label: 'Plot', plural: 'plots', title: 'Plots', re: /\bplots?\b|\bplotted\b/i },
+  { label: 'Office', plural: 'office spaces', title: 'Office Spaces', re: /\boffices?\b/i },
+  { label: 'Shop', plural: 'shops', title: 'Shops', re: /\bshops?\b|\bretail\b/i },
+  { label: 'Showroom', plural: 'showrooms', title: 'Showrooms', re: /\bshow\s*-?\s*rooms?\b/i },
+  { label: 'Co-working', plural: 'co-working spaces', title: 'Co-working Spaces', re: /\bco\s*-?\s*working\b/i },
+  { label: 'Warehouse', plural: 'warehouses', title: 'Warehouses', re: /\bware\s*-?\s*houses?\b|\bgodowns?\b/i },
+];
+
+export interface UnitKind { label: string; plural: string; title: string }
+
+// Words that only restate "flat" or describe a size/price — never a unit type of their own.
+const FILLER = /^(?:flats?|apartments?|homes?|units?|residences?|residential|commercial|spaces?|bhk|rk|bed(?:room)?s?|and|with|onwards?|available|types?|configurations?|new|luxury|premium|spacious|only|etc)$/i;
+const SIZE_OR_PRICE = /₹|\brs\.?\b|\binr\b|\bcr(?:ore)?s?\b|\blakhs?\b|\blacs?\b|\bsq\.?\s*(?:ft|m|yd)\b|\bsqft\b|\bacres?\b|\d{3,}|%/i;
+
+// Project status / phase notes that sometimes sit in the configuration text.
+const NOT_A_TYPE = /\b(?:launch(?:ed|ing)?|phase|tower|wing|block|ready|possession|sold|rera|booking|price|request|carpet|area|floor)\b/i;
+
+/** "jodi flats" → "Jodi Flats" (words already in capitals, like "EWS", stay as typed). */
+const titleCase = (s: string) => s.replace(/\b([a-z])([a-z]*)/g, (_m, a: string, b: string) => a.toUpperCase() + b);
+
+/**
+ * Every non-BHK unit type the configuration names. Known types (UNIT_KINDS) come
+ * first in their own wording; ANY other word the admin or developer typed — "Jodi",
+ * "Sky Villa", "Simplex", "Garden Flat" — is kept as typed, so every keyword that
+ * is entered reaches the card, the project title and its FAQ. Sizes, prices and
+ * filler ("2 BHK flats") are left out.
+ */
+export function unitKinds(configuration?: string | null): UnitKind[] {
+  const t = (configuration || '').replace(/\s+/g, ' ').trim();
+  if (!t) return [];
+  const known = UNIT_KINDS.filter((k) => k.re.test(t));
+  const out: UnitKind[] = known.map(({ label, plural, title }) => ({ label, plural, title }));
+  const seen = new Set(out.map((k) => k.label.toLowerCase()));
+  for (const raw of t.split(/\s*(?:[\/,&|+;\n•·]|\band\b|\bwith\b)\s*/i)) {
+    if (!raw || SIZE_OR_PRICE.test(raw) || NOT_A_TYPE.test(raw)) continue;
+    // Drop BHK sizes ("3 BHK Jodi" → "Jodi").
+    const rest = raw.replace(/\d(?:\.\d)?\s*\+?\s*(?:bhk|rk)\b/gi, ' ').replace(/\bbhk\b/gi, ' ');
+    const words = rest.replace(/[()[\]{}"'.:]+/g, ' ').split(' ').filter(Boolean);
+    // Only filler and an already-listed type left ("2 BHK flats", "Luxury Penthouse",
+    // "Office spaces") → nothing new. "Sky Villa" keeps its whole name.
+    let core = words.join(' ');
+    for (const k of known) core = core.replace(new RegExp(k.re.source, 'gi'), ' ');
+    if (!core.split(' ').some((w) => w && !FILLER.test(w) && /[a-z]/i.test(w))) continue;
+    // "Jodi Flats" keeps its "Flats"; filler at the ends ("and", "onwards") is trimmed.
+    while (words.length && FILLER.test(words[0]) && !/^flats?$|^apartments?$|^homes?$/i.test(words[0])) words.shift();
+    while (words.length && /^(?:and|with|onwards?|available|only|etc)$/i.test(words[words.length - 1])) words.pop();
+    const name = words.join(' ').trim();
+    if (name.length < 2 || name.length > 30 || /^\d/.test(name)) continue;
+    const k = name.toLowerCase();
+    if (seen.has(k)) continue;
+    seen.add(k);
+    const title = titleCase(name);
+    out.push({ label: title, plural: title, title });
+  }
+  return out.slice(0, 8);
+}
+
+/** "2, 3 BHK · Penthouse · Office" — BHK sizes and other unit types, for cards. */
+export function configLabel(configuration?: string | null): string {
+  const sizes = bhkSizes(configuration);
+  return [sizes.length ? `${sizes.join(', ')} BHK` : '', ...unitKinds(configuration).map((k) => k.label)].filter(Boolean).join(' · ');
+}
+
 /** Filter buckets: "1", "2", "3", "4" (4 and above). 2.5 BHK counts as 2. */
 export const BHK_OPTIONS = [
   { slug: '1', label: '1 BHK' },

@@ -38,6 +38,24 @@ const num = (v: unknown) => (v == null || v === '' ? null : Number(v));
 const validLatLng = (lat: number | null, lng: number | null) =>
   lat != null && lng != null && Number.isFinite(lat) && Number.isFinite(lng) && Math.abs(lat) <= 90 && Math.abs(lng) <= 180 && !(lat === 0 && lng === 0);
 
+/**
+ * "3 BHK / 4 BHK / Penthouse": the ticked configurations plus any unit type typed
+ * only in the "Unit types, carpet area & price" rows, so a penthouse, villa or
+ * office listed there also reaches the card, the project page title and its FAQ.
+ */
+export function configurationText(p: Doc): string {
+  const out: string[] = [];
+  const seen = new Set<string>();
+  const add = (v: unknown) => {
+    const t = String(v ?? '').replace(/\s+/g, ' ').trim().slice(0, 40);
+    const k = t.toLowerCase();
+    if (t && !seen.has(k)) { seen.add(k); out.push(t); }
+  };
+  for (const c of Array.isArray(p.configurations) ? p.configurations : []) add(c);
+  for (const r of Array.isArray(p.unit_mix) ? p.unit_mix : []) add(r && (r as Doc).config);
+  return out.join(' / ');
+}
+
 /** The pin fields that come from the intake project. */
 function pinFieldsFrom(p: Doc, lat: number, lng: number): Doc {
   const unit = String(p.area_unit || 'sq ft').replace(/\.$/, '');
@@ -52,7 +70,7 @@ function pinFieldsFrom(p: Doc, lat: number, lng: number): Doc {
     type: String(p.project_type || '').trim(),
     status: mapStatus(p),
     price: String(p.price_label || '').trim(),
-    configuration: (Array.isArray(p.configurations) ? p.configurations : []).map(String).filter(Boolean).join(' / '),
+    configuration: configurationText(p),
     sqft,
     possession_timeline: prettyMonth(p.possession_date_target || p.possession_date_rera),
     launch_date: prettyMonth(p.launch_date),
