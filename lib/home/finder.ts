@@ -82,11 +82,12 @@ export const UNIT_KINDS: readonly { label: string; plural: string; title: string
 export interface UnitKind { label: string; plural: string; title: string }
 
 // Words that only restate "flat" or describe a size/price — never a unit type of their own.
-const FILLER = /^(?:flats?|apartments?|homes?|units?|residences?|residential|commercial|spaces?|bhk|rk|bed(?:room)?s?|and|with|onwards?|available|types?|configurations?|new|luxury|premium|spacious|only|etc)$/i;
+const FILLER = /^(?:flats?|ap+art?ments?|appts?|apts?|homes?|bare\s*shell|bareshell|warm\s*shell|furnished|semi|units?|residences?|residential|commercial|spaces?|bhk|rk|bed(?:room)?s?|and|with|onwards?|available|types?|configurations?|new|luxury|premium|spacious|only|etc)$/i;
 const SIZE_OR_PRICE = /₹|\brs\.?\b|\binr\b|\bcr(?:ore)?s?\b|\blakhs?\b|\blacs?\b|\bsq\.?\s*(?:ft|m|yd)\b|\bsqft\b|\bacres?\b|\d{3,}|%/i;
 
 // Project status / phase notes that sometimes sit in the configuration text.
-const NOT_A_TYPE = /\b(?:launch(?:ed|ing)?|phase|tower|wing|block|ready|possession|sold|rera|booking|price|request|carpet|area|floor)\b/i;
+// Also extra rooms of a flat ("3 BHK + Study") and lease-only notes.
+const NOT_A_TYPE = /\b(?:launch(?:ed|ing)?|phase|tower|wing|block|ready|possession|sold|rera|booking|price|request|carpet|area|leas(?:e|ing)|rent(?:al)?|study|servant|utility|pooja|puja|store\s*room)\b/i;
 
 /** "jodi flats" → "Jodi Flats" (words already in capitals, like "EWS", stay as typed). */
 const titleCase = (s: string) => s.replace(/\b([a-z])([a-z]*)/g, (_m, a: string, b: string) => a.toUpperCase() + b);

@@ -26,6 +26,11 @@ test('sizes, prices, filler and status notes are not keywords', () => {
   assert.deepEqual(labels('Luxury Penthouse / Office spaces'), ['Penthouse', 'Office']);
   assert.deepEqual(labels('2 BHK - 1,050 sq ft / ₹ 1.2 Cr onwards'), []);
   assert.deepEqual(labels('3 BHK / New Launch / Phase 2 / Tower A'), []);
+  assert.deepEqual(labels('3 BHK / 3 BHK + Study'), []);
+  assert.deepEqual(labels('Only for Leasing'), []);
+  assert.deepEqual(labels('Studio Appartment'), ['Studio']);
+  assert.deepEqual(labels('Villas (Bareshell)'), ['Villa']);
+  assert.deepEqual(labels('4 BHK independent floors / NA Plots'), ['Plot', 'Independent Floors', 'NA Plots']);
 });
 
 test('BHK sizes are unchanged by the new unit types', () => {
