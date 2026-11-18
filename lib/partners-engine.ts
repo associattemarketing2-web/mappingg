@@ -3,6 +3,7 @@ import { getDb, type Db } from './mongodb';
 import { deleteProjectPin, hideProjectPin, syncProjectPin } from './intake-pins';
 import { pinToSubmission } from './pin-to-intake';
 import { moveToTrash } from './trash';
+import { bustTable } from './data-cache';
 import { PIN_OK, datasetInfo, enrichmentForProject, getScraped, importDataset, listEnriched, listScraped, markAdded, resetScraped, rowsForAdd, setDeleted, updateScraped } from './scraped';
 
 // =============================================================================
@@ -431,6 +432,9 @@ const RPCS: Record<string, RpcFn> = {
       published_at: (existingProject as any)?.published_at || nowTs, updated_at: nowTs,
     };
     await coll(db, 'projects').replaceOne({ _id: projectId }, projectDoc, { upsert: true });
+    // The details panel (lib/home/quickview.ts) caches live projects: drop that cache
+    // so new Configuration / Area / Price rows show the moment this is published.
+    bustTable('projects');
 
     await c.updateOne({ id: sub.id }, {
       $set: {
@@ -446,7 +450,8 @@ const RPCS: Record<string, RpcFn> = {
       // A submission opened from an existing pin (admin_open_for_pin) updates that pin,
       // and never blanks a pin value its form left empty.
       const r = await syncProjectPin(
-        { ...projectDoc, pin_id: (existingProject as any)?.pin_id || sub.source_pin_id },
+        // The pin it was opened from wins: that is the pin people click on the map.
+        { ...projectDoc, pin_id: sub.source_pin_id || (existingProject as any)?.pin_id },
         sub.google_maps_link || undefined,
         { keepPinValues: !!sub.source_pin_id },
       );
@@ -466,6 +471,7 @@ const RPCS: Record<string, RpcFn> = {
     const pid = (sub as any).published_project_id;
     if (pid) {
       await coll(db, 'projects').updateOne({ id: pid }, { $set: { is_live: false, updated_at: now() } });
+      bustTable('projects');
       await hideProjectPin(pid).catch(() => {}); // off the live map too
     }
     await c.updateOne({ id: p.p_id }, { $set: { updated_at: now() } });
@@ -503,6 +509,7 @@ const RPCS: Record<string, RpcFn> = {
       if (pid) {
         await deleteProjectPin(pid);
         await coll(db, 'projects').deleteOne({ id: pid });
+        bustTable('projects');
       }
       await c.deleteOne({ id: sub.id });
       await coll(db, 'submission_events').deleteMany({ submission_id: sub.id });
