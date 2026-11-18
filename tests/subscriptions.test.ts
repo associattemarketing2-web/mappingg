@@ -12,6 +12,7 @@ const WH_SECRET = 'test_webhook_secret';
 process.env.RAZORPAY_KEY_ID = 'rzp_test_FAKEKEY';
 process.env.RAZORPAY_KEY_SECRET = KEY_SECRET;
 process.env.RAZORPAY_WEBHOOK_SECRET = WH_SECRET;
+process.env.SUBSCRIPTIONS_ENABLED = '1'; // master switch on: these tests cover the live system
 process.env.SUBSCRIPTION_ENFORCE = '1';
 
 let P: typeof import('../lib/subscriptions/pricing');

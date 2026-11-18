@@ -4127,3 +4127,25 @@ button.ck:hover { transform: translateY(-2px); }
 
 /* Day picker on "Where visitors come from" */
 .trf-day-pick { font: inherit; font-size: 13px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: inherit; max-width: 100%; cursor: pointer; }
+
+/* Accounts → developer → "Assigned projects" tab (components/admin/DevProjectAccess.tsx) */
+.dpa { margin: 6px 0 4px; }
+.dpa-h { font-size: 14px; margin: 16px 0 8px; display: flex; align-items: center; gap: 8px; }
+.dpa-empty { font-size: 13px; color: var(--muted); background: var(--bg); border: 1px dashed var(--line); border-radius: 10px; padding: 10px 12px; margin: 0; }
+.dpa-list { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.dpa-list li { display: flex; align-items: center; gap: 10px; padding: 9px 12px; background: #fff; }
+.dpa-list li + li { border-top: 1px solid var(--line); }
+.dpa-list li.on { background: #f3f8f1; }
+.dpa-list input[type="checkbox"] { width: 16px; height: 16px; flex: none; }
+.dpa-info { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.dpa-info b { font-size: 13.5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dpa-info b em { font-style: normal; color: var(--muted); font-weight: 500; margin-right: 6px; }
+.dpa-info small { font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dpa-has { font-size: 12px; font-weight: 600; color: #24603a; white-space: nowrap; }
+.dpa-search { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 10px; padding: 0 12px; background: #fff; }
+.dpa-search:focus-within { border-color: #0f5c47; box-shadow: 0 0 0 3px rgba(15, 92, 71, .12); }
+.dpa-search i { color: var(--muted); font-size: 13px; }
+.dpa-search input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; font: inherit; font-size: 14px; padding: 10px 0; }
+.dpa-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 10px 0 6px; }
+.dpa-results { max-height: 380px; overflow-y: auto; }
+@media (max-width: 520px) { .dpa-list li { flex-wrap: wrap; } .dpa-info { flex-basis: calc(100% - 30px); } }

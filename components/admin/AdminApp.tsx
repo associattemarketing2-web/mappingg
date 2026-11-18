@@ -19,6 +19,7 @@ import DeveloperApiPanel from './DeveloperApiPanel';
 import WhatsAppPanel from './WhatsAppPanel';
 import PinsDataPanel from './PinsDataPanel';
 import SubscriptionsPanel from './SubscriptionsPanel';
+import DevProjectAccess from './DevProjectAccess';
 import ShareLinkButton from './ShareLinkButton';
 import { PageHead, StatCard } from './PageHead';
 import OverviewMap, { loadProjectIndex, matchProjects, type ProjectHit } from './OverviewMap';
@@ -2635,6 +2636,8 @@ const EVENT_META: Record<string, { icon: string; tone: string; label: string; gr
   deleted: { icon: 'fa-user-xmark', tone: 'red', label: 'Account deleted', group: 'admin' },
   access: { icon: 'fa-user-lock', tone: 'blue', label: 'Access changed', group: 'admin' },
   role_changed: { icon: 'fa-arrow-right-arrow-left', tone: 'blue', label: 'Type changed', group: 'admin' },
+  project_assigned: { icon: 'fa-key', tone: 'green', label: 'Projects access given', group: 'projects' },
+  project_unassigned: { icon: 'fa-key', tone: 'red', label: 'Projects access removed', group: 'projects' },
 };
 const FEED_FILTERS = [['all', 'All'], ['signin', 'Sign-ins'], ['signup', 'Sign-ups'], ['enquiry', 'Enquiries'], ['projects', 'Projects'], ['admin', 'Staff actions']] as const;
 const eventMeta = (t: string) => EVENT_META[t] || { icon: 'fa-circle', tone: 'grey', label: t, group: 'all' };
@@ -2744,7 +2747,7 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
     });
     if (ok) { setEditAcc(null); flash('Account details saved'); }
   }
-  const [drawerTab, setDrawerTab] = useState<'overview' | 'activity' | 'manage'>('overview');
+  const [drawerTab, setDrawerTab] = useState<'overview' | 'activity' | 'manage' | 'assigned'>('overview');
 
   async function loadFeed() {
     setFeedLoading(true);
@@ -2812,6 +2815,10 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
     setNewRole(''); setNewAccess('editor');
     loadTimeline(a.id);
     setDevProjects(null);
+    loadDevProjects(a);
+  }
+  // Projects a developer added or was given (owner_user_id), for the drawer.
+  function loadDevProjects(a: Account) {
     if (a.role === 'developer') {
       fetch('/api/admin/submissions', { credentials: 'same-origin' })
         .then((r) => (r.ok ? r.json() : null))
@@ -3159,7 +3166,9 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
             )}
 
             <div className="acs-d-tabs" role="tablist">
-              {([['overview', 'Overview'], ['activity', `Activity${timeline ? ` (${timeline.length})` : ''}`], ['manage', 'Manage']] as const).map(([k, lbl]) => (
+              {([['overview', 'Overview'], ['activity', `Activity${timeline ? ` (${timeline.length})` : ''}`], ['manage', 'Manage'],
+                // Developers: projects given to them from here (assign / remove).
+                ...(sel.role === 'developer' ? [['assigned', 'Assigned projects']] as const : [])] as const).map(([k, lbl]) => (
                 <button key={k} type="button" role="tab" aria-selected={drawerTab === k} className={drawerTab === k ? 'on' : ''} onClick={() => setDrawerTab(k)}>{lbl}</button>
               ))}
             </div>
@@ -3208,7 +3217,7 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
                 {sel.role === 'developer' && (
                   <div className="acs-d-projects">
                     <div className="acs-d-projects-head">
-                      <h4>Projects they added {devProjects ? `(${devProjects.length})` : ''}</h4>
+                      <h4>Their projects {devProjects ? `(${devProjects.length})` : ''}</h4>
                       {!!devProjects?.length && onOpenProjects && (
                         <button type="button" className="link-btn" onClick={() => { onOpenProjects({ ownerId: sel.id }); setSel(null); }}>Review all</button>
                       )}
@@ -3239,6 +3248,10 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
                   </p>
                 )}
               </>
+            )}
+
+            {drawerTab === 'assigned' && sel.role === 'developer' && (
+              <DevProjectAccess devId={sel.id} devName={sel.name || sel.email} flash={flash} onChanged={() => { loadDevProjects(sel); loadTimeline(sel.id); }} />
             )}
 
             {drawerTab === 'activity' && (

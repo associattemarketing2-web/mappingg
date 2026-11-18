@@ -647,13 +647,15 @@
   /* ---------- Plan picker on the sign-up form (plans come from /api/subscriptions/plans) ---------- */
   const PLAN_CAT = { buyer: 'buyer', developer: 'developer', agent: 'cp' };
   const PERIOD_SHORT = { month: '/month', quarter: '/quarter', half_year: '/6 months', year: '/year' };
-  let planCatalog = null, planLoading = null, wantPlan = '';
+  // plansOn: the Super admin subscription master switch. While it is off the
+  // plan picker stays hidden and every account is created exactly as before.
+  let planCatalog = null, planLoading = null, wantPlan = '', plansOn = false;
   const escHtml = t => String(t == null ? '' : t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const inr = paise => '₹' + (Math.round(paise) / 100).toLocaleString('en-IN', { maximumFractionDigits: 2 });
   function loadPlans() {
     if (planCatalog || planLoading) return planLoading || Promise.resolve(planCatalog);
     planLoading = fetch('/api/subscriptions/plans', { credentials: 'same-origin' })
-      .then(r => (r.ok ? r.json() : null)).then(b => { planCatalog = (b && b.data && b.data.plans) || []; })
+      .then(r => (r.ok ? r.json() : null)).then(b => { plansOn = !!(b && b.data && b.data.enabled); planCatalog = plansOn ? (b.data.plans || []) : []; })
       .catch(() => { planCatalog = []; })
       .then(() => { planLoading = null; if (byId('roleTiles')) renderPlans(); return planCatalog; });
     return planLoading;
@@ -661,10 +663,11 @@
   const chosenPlanCode = () => ((document.querySelector('#su-plan-tiles input:checked') || {}).value || '');
   function chosenPlan() {
     const code = chosenPlanCode();
-    return code && planCatalog ? planCatalog.find(p => p.code === code) || null : null;
+    return plansOn && code && planCatalog ? planCatalog.find(p => p.code === code) || null : null;
   }
   function renderPlans() {
     const box = byId('su-plan-tiles'); if (!box) return;
+    document.querySelectorAll('.su-plan-part').forEach(el => { el.hidden = !plansOn; });
     const role = currentRole(), cat = PLAN_CAT[role] || 'buyer';
     if (byId('su-acct-role')) byId('su-acct-role').textContent = ROLE_LABEL[role];
     const keep = wantPlan || chosenPlanCode();

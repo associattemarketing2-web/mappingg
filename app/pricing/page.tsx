@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import InfoPage, { CtaBand } from '@/components/InfoPage';
 import { PricingCards, PricingCompare, PricingTrust } from '@/components/subscriptions/PricingPlans';
 import PricingTabs from '@/components/subscriptions/PricingTabs';
@@ -8,6 +9,7 @@ import { CATEGORY_LABEL, categoryForRole, type Category } from '@/lib/subscripti
 import { isAvailable } from '@/lib/subscriptions/db';
 import { defaultPublicPlans, publicCatalog, type PublicPlan } from '@/lib/subscriptions/summary';
 import { subscriptionPath } from '@/lib/subscriptions/notifications';
+import { isSubscriptionsEnabled } from '@/lib/subscriptions/store';
 
 export const dynamic = 'force-dynamic';
 
@@ -41,6 +43,8 @@ async function load(): Promise<PublicPlan[]> {
 }
 
 export default async function PricingPage() {
+  // Master switch off (Super admin → Subscriptions): no pricing page at all.
+  if (!(await isSubscriptionsEnabled())) notFound();
   const [plans, user] = await Promise.all([load(), getCurrentUser().catch(() => null)]);
   const mine = categoryForRole(user?.role);
 

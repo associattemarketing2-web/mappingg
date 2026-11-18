@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { DEFAULT_SETTINGS, ensureSchema, iso, sql, type Row, type Sql, type SubSettings } from './db';
+import { DEFAULT_SETTINGS, ensureSchema, isAvailable, iso, sql, type Row, type Sql, type SubSettings } from './db';
 import { CATEGORIES, FREE_PLAN_CODE, type BillingPeriod, type BillingUnit, type Category, type UsagePeriod } from './catalog';
 
 // Read/write helpers for plans, settings, audit and history. Every function
@@ -65,8 +65,29 @@ export async function saveSettings(patch: Partial<SubSettings>, actor: string): 
   return next;
 }
 
-/** Whether limits and paid features are enforced (admin switch; env SUBSCRIPTION_ENFORCE=1/0 overrides). */
+/** Env override for the master switch: '1'/'true' → on, '0'/'false' → off, unset → admin setting. */
+export function envEnabled(): boolean | null {
+  const env = (process.env.SUBSCRIPTIONS_ENABLED || '').trim().toLowerCase();
+  if (env === '1' || env === 'true') return true;
+  if (env === '0' || env === 'false') return false;
+  return null;
+}
+
+/**
+ * Master switch (Super admin → Subscriptions). When off, every pricing page,
+ * plan link, checkout and limit disappears and the site behaves as before.
+ * Never throws: any database problem counts as "off".
+ */
+export async function isSubscriptionsEnabled(): Promise<boolean> {
+  const env = envEnabled();
+  if (env !== null) return env && isAvailable();
+  if (!isAvailable()) return false;
+  try { return !!(await getSettings()).enabled; } catch { return false; }
+}
+
+/** Whether limits and paid features are enforced (admin switch; env SUBSCRIPTION_ENFORCE=1/0 overrides). Always off while subscriptions are disabled. */
 export async function isEnforced(): Promise<boolean> {
+  if (!(await isSubscriptionsEnabled())) return false;
   const env = (process.env.SUBSCRIPTION_ENFORCE || '').trim();
   if (env === '1' || env.toLowerCase() === 'true') return true;
   if (env === '0' || env.toLowerCase() === 'false') return false;

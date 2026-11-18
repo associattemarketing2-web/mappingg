@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { timingSafeEqual } from 'node:crypto';
 import { isAvailable } from '@/lib/subscriptions/db';
 import { runLifecycle } from '@/lib/subscriptions/lifecycle';
+import { isSubscriptionsEnabled } from '@/lib/subscriptions/store';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -22,6 +23,8 @@ function authorized(req: NextRequest): boolean {
 export async function GET(req: NextRequest) {
   if (!authorized(req)) return NextResponse.json({ error: { message: 'Not authorized' } }, { status: 401 });
   if (!isAvailable()) return NextResponse.json({ error: { message: 'Unavailable' } }, { status: 503 });
+  // Master switch off: no reminders, expiries or payment reconciliation.
+  if (!(await isSubscriptionsEnabled())) return NextResponse.json({ data: { skipped: 'subscriptions disabled' } }, { headers: { 'Cache-Control': 'no-store' } });
   const summary = await runLifecycle();
   return NextResponse.json({ data: summary }, { headers: { 'Cache-Control': 'no-store' } });
 }

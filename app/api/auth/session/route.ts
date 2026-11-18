@@ -4,14 +4,16 @@ import { getDb } from '@/lib/mongodb';
 import { homeForAccount, needsMobile, verificationOf } from '@/lib/verification';
 import { isPlaceholderEmail } from '@/lib/phone-email';
 import { otpEnabled } from '@/lib/otp';
+import { isSubscriptionsEnabled } from '@/lib/subscriptions/store';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  const user = await getCurrentUser();
+  const [user, subscriptions] = await Promise.all([getCurrentUser(), isSubscriptionsEnabled()]);
+  // `subscriptions`: the Super admin master switch — headers hide Pricing / My plan links when off.
   // `otp`: whether WhatsApp codes are on (sign-in popups hide the OTP button when off).
-  if (!user) return NextResponse.json({ session: null, otp: otpEnabled() });
+  if (!user) return NextResponse.json({ session: null, otp: otpEnabled(), subscriptions });
 
   // Rolling session: every time we confirm a valid session, re-issue the cookie
   // with a fresh expiry. This endpoint is polled by the app, so an active user
@@ -32,5 +34,5 @@ export async function GET() {
 
   // Accounts made with just a WhatsApp code have a stand-in email (lib/phone-email.ts): never shown.
   const email = isPlaceholderEmail(user.email) ? '' : user.email;
-  return NextResponse.json({ session: { user: { ...user, email, name: name || (email ? '' : mobile), verified, mobile, needsMobile: missingMobile }, home } });
+  return NextResponse.json({ session: { user: { ...user, email, name: name || (email ? '' : mobile), verified, mobile, needsMobile: missingMobile }, home }, subscriptions });
 }
