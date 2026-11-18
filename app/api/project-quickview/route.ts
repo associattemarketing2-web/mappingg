@@ -31,5 +31,7 @@ export async function GET(req: NextRequest) {
   const data = await getQuickView(n).catch(() => undefined);
   if (data === undefined) return NextResponse.json({ error: { message: 'Could not load this project' } }, { status: 503 });
   if (!data) return NextResponse.json({ error: { message: 'Project not found' } }, { status: 404 });
-  return NextResponse.json(data, { headers: { 'Cache-Control': metered ? 'private, no-store' : 'public, max-age=300, stale-while-revalidate=600' } });
+  // No browser/CDN copy: an admin's "Publish update" (new unit-type rows, price…)
+  // must show on the next open. The server-side read is cached and cleared on publish.
+  return NextResponse.json(data, { headers: { 'Cache-Control': metered ? 'private, no-store' : 'public, max-age=0, must-revalidate' } });
 }
