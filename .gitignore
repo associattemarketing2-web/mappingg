@@ -30,3 +30,13 @@
 npm-debug.log*
 next-env.d.ts
 /migration/backup/mongo-before-merge/
+
+# Personal data: contact / prospect lists and account backups — never commit
+/users data/
+/users data.zip
+/output/
+/output.zip
+/data/pune-research/output/
+/migration/backup/users.json
+/migration/backup/contact_leads.json
+/migration/backup/**/leads.json

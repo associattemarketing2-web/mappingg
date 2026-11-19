@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { getPool, query } from '../pg';
 import { usingMongo } from '../mongodb';
 import { DEFAULT_PLANS, FEATURES, PERIOD_MONTHS } from './catalog';
@@ -386,14 +387,37 @@ export function isAvailable(): boolean {
 
 const ready = new WeakMap<Sql, Promise<void>>();
 
+// Fingerprint of the schema + default catalogue, kept as one extra sub_settings
+// row. When it matches, the ~100 setup statements are skipped: each new server
+// instance (every serverless cold start) then needs one query instead of ~10 s
+// of sequential DDL/inserts, which used to delay the session check and sitemap.
+const SCHEMA_KEY = '_schema_fingerprint';
+const SCHEMA_FINGERPRINT = createHash('sha256')
+  .update(JSON.stringify([SCHEMA_SQL, FEATURES, DEFAULT_PLANS, DEFAULT_SETTINGS]))
+  .digest('hex');
+
+async function schemaCurrent(q: Sql): Promise<boolean> {
+  try {
+    const r = await q(`SELECT value FROM sub_settings WHERE key = $1`, [SCHEMA_KEY]);
+    return r.rows[0]?.value === SCHEMA_FINGERPRINT;
+  } catch {
+    return false; // table not created yet
+  }
+}
+
 /** Create the tables (idempotent) and seed the default catalogue once. */
 export function ensureSchema(q: Sql = sql): Promise<void> {
   if (usingMongo()) return Promise.reject(new Error('Subscriptions require the PostgreSQL backend.'));
   let p = ready.get(q);
   if (!p) {
     p = (async () => {
+      if (await schemaCurrent(q)) return;
       for (const stmt of SCHEMA_SQL) await q(stmt);
       await seed(q);
+      await q(
+        `INSERT INTO sub_settings (key, value) VALUES ($1, $2::jsonb) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, updated_at = now()`,
+        [SCHEMA_KEY, JSON.stringify(SCHEMA_FINGERPRINT)],
+      );
     })();
     p.catch(() => ready.delete(q));
     ready.set(q, p);
