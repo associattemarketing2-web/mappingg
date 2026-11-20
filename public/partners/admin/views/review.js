@@ -155,6 +155,45 @@ export async function renderReview(page, id) {
   });
   side.appendChild(builderCard);
 
+  // Developer: picked from Super admin → Developers, so the name matches that list exactly
+  // and the published pin gets that developer's logo. Fills "Developer name" in the form.
+  const devCard = h(`<div class="card side-card"><h3>Developer</h3>
+    <div style="display:flex;align-items:center;gap:10px">
+      <img class="dev-logo" alt="" width="40" height="40" hidden style="flex:none;width:40px;height:40px;object-fit:contain;border:1px solid var(--line, #e5e5e5);border-radius:8px;background:#fff">
+      <select class="input" aria-label="Developer" disabled><option value="">Loading developers…</option></select>
+    </div>
+    <p class="muted" style="margin:8px 0 0;font-size:12.5px">Not in the list? Add it in Super admin → Developers, or type the name in the form.</p>
+  </div>`);
+  side.appendChild(devCard);
+  const devSelect = $('select', devCard);
+  const devLogo = $('.dev-logo', devCard);
+  let developers = [];
+  const devKey = s => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+  // Shows the developer the form currently names (or "not in the list").
+  function syncDevCard(name) {
+    if (!developers.length) return;
+    const hit = developers.find(d => devKey(d.name) === devKey(name));
+    devSelect.value = hit ? hit.id : '';
+    devSelect.options[0].textContent = name && !hit ? `“${name}” — not in the Developers list` : '— Choose a developer —';
+    devLogo.hidden = !(hit && hit.logo);
+    if (hit && hit.logo) devLogo.src = hit.logo;
+  }
+  fetch('/api/developers', { credentials: 'same-origin' })
+    .then(r => r.json())
+    .then(({ data }) => {
+      developers = (data || []).filter(d => d && d.name).sort((a, b) => a.name.localeCompare(b.name));
+      devSelect.innerHTML = '<option value=""></option>' + developers.map(d => `<option value="${esc(d.id)}">${esc(d.name)}</option>`).join('');
+      devSelect.disabled = false;
+      syncDevCard(current().developer_name);
+    })
+    .catch(() => { devSelect.options[0].textContent = 'Could not load developers'; });
+  devSelect.addEventListener('change', () => {
+    const d = developers.find(x => x.id === devSelect.value);
+    if (!d) return syncDevCard(current().developer_name);
+    form.setValue('developer_name', d.name);
+    toast('Developer set. Remember to save.');
+  });
+
   const reraCard = h(`<div class="card side-card"><h3>RERA check</h3><div class="rera-body"></div></div>`);
   side.appendChild(reraCard);
 
@@ -170,6 +209,7 @@ export async function renderReview(page, id) {
     const cur = current();
     const blockers = publishBlockers(cur);
     const comp = completeness(cur);
+    syncDevCard(cur.developer_name);
     const pubBtn = $('[data-act=publish]', actions);
     pubBtn.textContent = sub.published_project_id ? 'Publish update' : 'Approve & publish';
     pubBtn.disabled = blockers.length > 0;
