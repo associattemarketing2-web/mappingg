@@ -3860,6 +3860,10 @@ button.ck:hover { transform: translateY(-2px); }
 
 /* Toolbar */
 .pd-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 14px; }
+.pd-locbar { padding: 10px 12px; border: 1px solid #edebe4; border-radius: 14px; background: #fff; box-shadow: var(--card-shadow); }
+.pd-loclabel { font-weight: 600; font-size: 13px; color: #4b4a45; }
+.pd-loclabel i { color: #7c5cff; margin-right: 4px; }
+.pd-locnote { font-size: 12.5px; color: #77756d; }
 .pd-seg { display: inline-flex; padding: 3px; border: 1px solid #e6e4dc; border-radius: 10px; background: #faf9f5; }
 .pd-seg button { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border: 0; border-radius: 8px; background: none; font: 600 12.5px var(--font); color: #4e5a54; cursor: pointer; }
 .pd-seg button.on { background: #fff; color: var(--fg); box-shadow: 0 1px 3px rgba(0,0,0,.08); }

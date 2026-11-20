@@ -3,6 +3,8 @@ import { hasPermission } from '@/lib/staff';
 import { query } from '@/lib/pg';
 import { runDbOp } from '@/lib/db-engine';
 import { baseName } from '@/lib/pin-names';
+import { cityFrom, CITY_SHORT } from '@/lib/seo/city';
+import { localitiesOf } from '@/lib/locality';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -70,17 +72,22 @@ function summarise(r: Row) {
   const missing = FIELDS.filter(([k]) => !has[k]).map(([k]) => k);
   const n = Number(r.number);
   const lat = Number(r.lat), lng = Number(r.lng);
+  // A pin with no usable position cannot show on the map.
+  const located = Number.isFinite(lat) && Number.isFinite(lng) && !(lat === 0 && lng === 0);
   return {
     id: r.id,
     number: r.number != null && Number.isInteger(n) && n > 0 ? n : null,
     title: txt(r.title), developer: txt(r.developer), location: txt(r.location),
+    // For the location filter. A pin with neither a position nor a location has no city
+    // (cityFrom would otherwise fall back to Pune).
+    city: located || txt(r.location) ? CITY_SHORT[cityFrom(txt(r.location), lat, lng)] : '',
+    locality: localitiesOf(txt(r.location))[0] || '',
     type: txt(r.type), status: txt(r.status), price: txt(r.price), configuration: txt(r.configuration),
     sqft: txt(r.sqft), possession: txt(r.possession), rera: txt(r.rera), description: txt(r.description).slice(0, 300),
     key_usp: txt(r.key_usp).slice(0, 200),
     image: !!r.image, brochure: !!r.brochure, video: !!r.video,
     lat: Number.isFinite(lat) ? lat : null, lng: Number.isFinite(lng) ? lng : null,
-    // A pin with no usable position cannot show on the map.
-    located: Number.isFinite(lat) && Number.isFinite(lng) && !(lat === 0 && lng === 0),
+    located,
     hidden: !!r.hidden, pending: !!r.pending, rejected: !!r.rejected,
     origin: (r.intake || r.source === 'intake' ? 'intake' : r.owner ? 'developer' : 'map') as 'intake' | 'developer' | 'map',
     created_at: txt(r.created_at), updated_at: txt(r.updated_at),

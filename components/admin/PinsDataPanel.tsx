@@ -12,7 +12,8 @@ import { baseName } from '@/lib/pin-names';
 // which pin numbers are unused or repeated, series by series.
 
 type Pin = {
-  id: string; number: number | null; title: string; developer: string; location: string; type: string; status: string;
+  id: string; number: number | null; title: string; developer: string; location: string; city: string; locality: string;
+  type: string; status: string;
   price: string; configuration: string; sqft: string; possession: string; rera: string; description: string; key_usp: string;
   image: boolean; brochure: boolean; video: boolean; located: boolean;
   hidden: boolean; pending: boolean; rejected: boolean; origin: 'intake' | 'developer' | 'map';
@@ -110,6 +111,13 @@ function Pager({ p, noun }: { p: Paged; noun: string }) {
   );
 }
 
+/** [value, how many pins] for each distinct value, most pins first; the empty value ("No location") last. */
+function countBy(pins: Pin[], key: (p: Pin) => string): [string, number][] {
+  const m = new Map<string, number>();
+  for (const p of pins) { const k = key(p) || ''; m.set(k, (m.get(k) || 0) + 1); }
+  return [...m.entries()].sort((a, b) => (!a[0] ? 1 : !b[0] ? -1 : b[1] - a[1] || a[0].localeCompare(b[0])));
+}
+
 async function api<T>(url: string, init?: RequestInit): Promise<T> {
   const r = await fetch(url, { credentials: 'same-origin', ...init });
   const b = await r.json().catch(() => ({}));
@@ -125,6 +133,9 @@ export default function PinsDataPanel({ flash }: { flash: (m: string, err?: bool
   // A number picked in Series → "Use this number" opens Unused with it selected.
   const [unusedPick, setUnusedPick] = useState<number | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
+  // Location filter: narrows every pin list (and the counts) to one city, and optionally one locality in it.
+  const [city, setCity] = useState('');
+  const [locality, setLocality] = useState('');
 
   const load = () => {
     setLoading(true); setError('');
@@ -135,12 +146,35 @@ export default function PinsDataPanel({ flash }: { flash: (m: string, err?: bool
   };
   useEffect(load, []);
 
-  const pins = useMemo(() => data?.pins || [], [data]);
+  const cities = useMemo(() => countBy(data?.pins || [], (p) => p.city), [data]);
+  const localities = useMemo(() => countBy((data?.pins || []).filter((p) => !city || p.city === city), (p) => p.locality), [data, city]);
+  // Drop a locality that no longer exists in the picked city (or after a reload).
+  useEffect(() => { if (locality && data && !localities.some(([l]) => l === locality)) setLocality(''); }, [localities, locality, data]);
+
+  // The data narrowed to the picked location. Unused numbers and Series stay on the
+  // full data: a number is only free when no pin in any city uses it.
+  const scoped = useMemo<Data | null>(() => {
+    if (!data || (!city && !locality)) return data;
+    const inLoc = (p: Pin) => (!city || p.city === city) && (!locality || p.locality === locality);
+    const pins = data.pins.filter(inLoc);
+    const ids = new Set(pins.map((p) => p.id));
+    const perNumber = new Map<number, number>();
+    for (const p of pins) if (p.number != null) perNumber.set(p.number, (perNumber.get(p.number) || 0) + 1);
+    return {
+      ...data, pins,
+      deleted: data.deleted.filter(inLoc),
+      duplicates: data.duplicates.filter((g) => g.ids.filter((id) => ids.has(id)).length > 1),
+      repeated: data.repeated.filter((n) => (perNumber.get(n) || 0) > 1),
+    };
+  }, [data, city, locality]);
+  const filtered = scoped !== data;
+
+  const pins = useMemo(() => scoped?.pins || [], [scoped]);
   const fieldLabel = useMemo(() => Object.fromEntries((data?.fields || []).map((f) => [f.key, f.label])), [data]);
   const complete = pins.filter((p) => p.score === 100).length;
   const notLive = pins.filter((p) => !isLive(p)).length;
-  const dupPins = (data?.duplicates || []).reduce((a, g) => a + g.ids.length, 0);
-  const repeatedPins = pins.filter((p) => p.number != null && data?.repeated.includes(p.number)).length;
+  const dupPins = (scoped?.duplicates || []).reduce((a, g) => a + g.ids.length, 0);
+  const repeatedPins = pins.filter((p) => p.number != null && scoped?.repeated.includes(p.number)).length;
 
   const save: Save = async (p, values, done) => {
     setBusy(p.id);
@@ -191,9 +225,9 @@ export default function PinsDataPanel({ flash }: { flash: (m: string, err?: bool
     { key: 'missing', label: 'Missing data', icon: 'fa-triangle-exclamation', count: pins.length - complete, alert: true },
     { key: 'notlive', label: 'Not live', icon: 'fa-eye-slash', count: notLive, alert: true },
     { key: 'unused', label: 'Unused numbers', icon: 'fa-hashtag', count: data?.gaps.length || 0, alert: true },
-    { key: 'repeated', label: 'Repeated numbers', icon: 'fa-clone', count: data?.repeated.length || 0, alert: true },
-    { key: 'duplicates', label: 'Duplicates', icon: 'fa-object-group', count: data?.duplicates.length || 0, alert: true },
-    { key: 'deleted', label: 'Deleted', icon: 'fa-trash-can', count: data?.deleted.length || 0 },
+    { key: 'repeated', label: 'Repeated numbers', icon: 'fa-clone', count: scoped?.repeated.length || 0, alert: true },
+    { key: 'duplicates', label: 'Duplicates', icon: 'fa-object-group', count: scoped?.duplicates.length || 0, alert: true },
+    { key: 'deleted', label: 'Deleted', icon: 'fa-trash-can', count: scoped?.deleted.length || 0 },
     { key: 'series', label: 'Series', icon: 'fa-table-cells' },
   ];
 
@@ -206,17 +240,35 @@ export default function PinsDataPanel({ flash }: { flash: (m: string, err?: bool
 
       {error ? (
         <div className="pg-card adm-empty"><i className="fas fa-triangle-exclamation" /><p>{error}</p></div>
-      ) : !data ? (
+      ) : !data || !scoped ? (
         <div className="pg-card adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading pins…</p></div>
       ) : (
         <>
+          <div className="pd-toolbar pd-locbar">
+            <span className="pd-loclabel"><i className="fas fa-location-dot" /> Location</span>
+            <select className="ov-select" value={city} onChange={(e) => { setCity(e.target.value); setLocality(''); }} aria-label="City">
+              <option value="">All cities ({data.pins.length.toLocaleString('en-IN')})</option>
+              {cities.map(([c, n]) => <option key={c} value={c}>{c || 'No location'} ({n.toLocaleString('en-IN')})</option>)}
+            </select>
+            <select className="ov-select" value={locality} onChange={(e) => setLocality(e.target.value)} aria-label="Locality" disabled={!localities.length}>
+              <option value="">All localities{city ? ` in ${city}` : ''}</option>
+              {localities.filter(([l]) => l).map(([l, n]) => <option key={l} value={l}>{l} ({n.toLocaleString('en-IN')})</option>)}
+            </select>
+            {filtered && (
+              <>
+                <span className="pd-locnote">{pins.length.toLocaleString('en-IN')} of {data.pins.length.toLocaleString('en-IN')} pins{(view === 'unused' || view === 'series') && ' · this view always shows every city'}</span>
+                <button type="button" className="pg-btn ghost" onClick={() => { setCity(''); setLocality(''); }}><i className="fas fa-xmark" /> Clear</button>
+              </>
+            )}
+          </div>
+
           <div className="sc-row pd-stats">
             <StatCard icon="fa-location-dot" tone="violet" value={pins.length.toLocaleString('en-IN')} label="Total pins" on={view === 'all'} onClick={() => setView('all')} />
             <StatCard icon="fa-triangle-exclamation" tone="amber" value={(pins.length - complete).toLocaleString('en-IN')} label="Data missing" on={view === 'missing'} onClick={() => setView('missing')} title={`${complete} pins have every detail filled in`} />
             <StatCard icon="fa-eye-slash" tone="rose" value={notLive} label="Not live on map" on={view === 'notlive'} onClick={() => setView('notlive')} title="Hidden, pending review, rejected or not placed on the map" />
             <StatCard icon="fa-hashtag" tone="teal" value={data.gaps.length} label="Unused pin numbers" on={view === 'unused'} onClick={() => setView('unused')} title={`Numbers between 1 and ${data.maxNumber} with no pin`} />
-            <StatCard icon="fa-clone" tone="blue" value={data.repeated.length} label="Repeated numbers" on={view === 'repeated'} onClick={() => setView('repeated')} title={`${repeatedPins} pins share these numbers`} />
-            <StatCard icon="fa-object-group" tone="green" value={data.duplicates.length} label="Duplicate groups" on={view === 'duplicates'} onClick={() => setView('duplicates')} title={`${dupPins} pins that look like the same project`} />
+            <StatCard icon="fa-clone" tone="blue" value={scoped.repeated.length} label="Repeated numbers" on={view === 'repeated'} onClick={() => setView('repeated')} title={`${repeatedPins} pins share these numbers`} />
+            <StatCard icon="fa-object-group" tone="green" value={scoped.duplicates.length} label="Duplicate groups" on={view === 'duplicates'} onClick={() => setView('duplicates')} title={`${dupPins} pins that look like the same project`} />
           </div>
 
           <div className="pd-tabs" role="tablist" aria-label="Pins Data views">
@@ -229,14 +281,14 @@ export default function PinsDataPanel({ flash }: { flash: (m: string, err?: bool
           </div>
 
           <SaveCtx.Provider value={save}>
-            {view === 'all' && <AllPins data={data} fieldLabel={fieldLabel} />}
-            {view === 'complete' && <Complete data={data} fieldLabel={fieldLabel} />}
-            {view === 'missing' && <MissingData data={data} fieldLabel={fieldLabel} />}
-            {view === 'notlive' && <NotLive data={data} fieldLabel={fieldLabel} busy={busy} />}
+            {view === 'all' && <AllPins data={scoped} fieldLabel={fieldLabel} />}
+            {view === 'complete' && <Complete data={scoped} fieldLabel={fieldLabel} />}
+            {view === 'missing' && <MissingData data={scoped} fieldLabel={fieldLabel} />}
+            {view === 'notlive' && <NotLive data={scoped} fieldLabel={fieldLabel} busy={busy} />}
             {view === 'unused' && <Unused data={data} busy={busy} initialPick={unusedPick} />}
-            {view === 'repeated' && <Repeated data={data} busy={busy} />}
-            {view === 'duplicates' && <Duplicates data={data} busy={busy} onDelete={removePin} onMerge={mergePins} />}
-            {view === 'deleted' && <Deleted data={data} busy={busy} onRestore={restorePin} />}
+            {view === 'repeated' && <Repeated data={scoped} busy={busy} />}
+            {view === 'duplicates' && <Duplicates data={scoped} busy={busy} onDelete={removePin} onMerge={mergePins} />}
+            {view === 'deleted' && <Deleted data={scoped} busy={busy} onRestore={restorePin} />}
             {view === 'series' && <Series data={data} fieldLabel={fieldLabel} onUseNumber={(n) => { setUnusedPick(n); setView('unused'); }} />}
           </SaveCtx.Provider>
         </>
