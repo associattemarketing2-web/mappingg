@@ -7,6 +7,7 @@ import { PageHead, StatCard } from './PageHead';
 import { cityFrom, CITY_SHORT } from '@/lib/seo/city';
 import { companyKey, displayName } from '@/lib/developer-name';
 import ShareLinkButton from './ShareLinkButton';
+import { withSqft } from '@/lib/area';
 
 // Super admin → Developers: the developer directory, ONE logo per developer
 // (lib/developers.ts). In the Map Editor, typing a developer's name suggests it
@@ -393,7 +394,7 @@ function ProjectDetail({ p, dev, busy, onBack, onUseDevLogo, onUpload }: { p: De
     ['Status', p.status ? statusLabel(p.status) : ''],
     ['Property type', p.type],
     ['Configuration', p.configuration],
-    ['Size', d?.sqft ? `${d.sqft} sq.ft` : ''],
+    ['Size', withSqft(d?.sqft)],
     ['Price', p.price],
     ['Possession', p.possession],
     ['Launch', d?.launch || ''],

@@ -20,6 +20,7 @@ import { toCard } from '@/lib/home/cards';
 import { projectSchema, faqSchema, videoSchema, youtubeId, jsonLd } from '@/lib/seo/schema';
 import { projectFaqs, projectSummary, reraNumber, reraRegistry } from '@/lib/seo/project-meta';
 import TrackOnView from '@/components/TrackOnView';
+import { withSqft } from '@/lib/area';
 
 const fmtDate = (d?: string) =>
   d ? new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
@@ -38,7 +39,7 @@ const specRows = (pin: Pin): { k: string; v: string }[] =>
     { k: 'Status', v: pin.status ? statusLabel(pin.status) : '' },
     { k: 'Property type', v: pin.type || '' },
     { k: 'Configuration', v: pin.configuration || '' },
-    { k: 'Carpet / built-up', v: pin.sqft ? `${pin.sqft} sq.ft` : '' },
+    { k: 'Carpet / built-up', v: withSqft(pin.sqft) },
     { k: 'Price', v: pin.price || '' },
     { k: 'Possession', v: pin.possession_timeline || '' },
     { k: 'Launch', v: pin.launch_date || '' },
