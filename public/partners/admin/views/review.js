@@ -5,7 +5,7 @@ import { h, esc, $, toast, friendlyError, statusBadge, formatDateTime, timeAgo, 
   linkUrl, whatsappUrl, copyText, fileNameFromPath } from '../../shared/lib.js';
 import { ctx, setLeaveGuard, refreshCounts, previewUrl } from '../context.js';
 
-const SOURCE = { link: 'Builder link', excel: 'Excel upload', csv: 'CSV upload', admin: 'Added by team', scraped: 'Scraped data (RERA registry)', map_pin: 'Map pin (edit all details)' };
+const SOURCE = { link: 'Builder link', excel: 'Excel upload', csv: 'CSV upload', admin: 'Added by team', scraped: 'Scraped data (RERA registry)', map_pin: 'Map pin (edit all details)', developer: 'Developer account (edit all details)' };
 const SAVE_KEYS = [...FIELDS.filter(f => f.type !== 'pin').map(f => f.key), 'lat', 'lng'];
 
 export async function createManualSubmission(builderId) {
@@ -332,7 +332,6 @@ export async function renderReview(page, id) {
     const warnings = [];
     if (cur.country === 'India' && !(cur.rera_numbers || []).length) warnings.push('No RERA number — you ticked the compliance override.');
     if ((cur.rera_numbers || []).length && !cur.rera_verified_on) warnings.push('RERA number not marked as verified.');
-    if (!cur.cover_image_path) warnings.push('No cover image.');
     if (cur.price_min != null && cur.price_max != null && +cur.price_max < +cur.price_min) warnings.push('Highest price is lower than starting price — check the units.');
     if ((sub._dupes || []).length) warnings.push(`${sub._dupes.length} possible duplicate(s) found.`);
     if (Object.keys(form.getFlags()).length) warnings.push('Some fields are still flagged. Flags will be cleared.');
@@ -343,7 +342,7 @@ export async function renderReview(page, id) {
       confirmText: 'Publish'
     });
     if (!ok) return;
-    toast('Copying images…');
+    toast('Publishing…');
     const media = await copyMedia(cur);
     const { data: pub, error } = await ctx.client.rpc('admin_publish', { p_id: sub.id, p_media: media });
     if (error) throw error;

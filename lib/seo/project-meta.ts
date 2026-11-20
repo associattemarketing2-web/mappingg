@@ -10,6 +10,7 @@
 
 import { bhkOptions, formatBhk } from './locality-summary';
 import { displayDeveloperName } from './developer-name';
+import { unitKinds } from '../home/finder';
 
 /** Card field id (live map / admin) → pin column it controls. */
 export const FIELD_VISIBILITY_COLUMNS: Record<string, string> = {
@@ -94,6 +95,21 @@ export function bhkLabel(configuration?: string): string {
   return formatBhk(bhkOptions(configuration).sort((a, b) => a - b));
 }
 
+/** Other unit types for titles: "Penthouses, Villas" (BHK sizes come from bhkLabel). */
+export function unitKindsTitle(configuration?: string): string {
+  return unitKinds(configuration).map((k) => k.title).join(', ');
+}
+
+/**
+ * Everything the configuration offers, in plain words for FAQs and summaries:
+ * "2 and 3 BHK homes, penthouses and office spaces". '' when it names nothing known.
+ */
+export function offeringText(configuration?: string): string {
+  const bhk = bhkLabel(configuration);
+  const parts = [bhk ? `${bhk} homes` : '', ...unitKinds(configuration).map((k) => k.plural)].filter(Boolean);
+  return parts.length > 1 ? `${parts.slice(0, -1).join(', ')} and ${parts.at(-1)}` : parts[0] || '';
+}
+
 /** Cut at a word boundary so a description never ends mid-word. */
 export function clip(text: string, max: number): string {
   if (text.length <= max) return text;
@@ -117,6 +133,7 @@ export function projectTitle(p: ProjectFields, locality: string, city: string): 
   const facets = [
     realPrice(p.price) ? 'Price' : '',
     bhkLabel(p.configuration),
+    unitKindsTitle(p.configuration), // Penthouses, Villas, Office Spaces…
     reraNumber(p.rera_number) ? 'RERA' : '',
     clean(p.possession_timeline) ? 'Possession' : '',
   ].filter(Boolean);
@@ -250,7 +267,7 @@ export function projectFaqs(p: ProjectFields, locality: string, city: string): {
   const name = displayProjectName(p.title) || 'this project';
   const price = realPrice(p.price);
   const rera = reraNumber(p.rera_number);
-  const bhk = bhkLabel(p.configuration);
+  const offers = offeringText(p.configuration);
   const possession = clean(p.possession_timeline);
   const status = statusText(p.status);
   const dev = clean(p.developer) ? displayDeveloperName(p.developer) : '';
@@ -260,7 +277,7 @@ export function projectFaqs(p: ProjectFields, locality: string, city: string): {
       : null,
     dev ? { q: `Who is the developer of ${name}?`, a: `${name} is developed by ${dev}.` } : null,
     price ? { q: `What is the price of ${name}?`, a: `The listed price of ${name} is ${price}. Prices change often, so confirm the current price sheet with the developer before you decide.` } : null,
-    bhk ? { q: `What configurations are available in ${name}?`, a: `${name} lists ${bhk} homes (${clean(p.configuration)}).` } : null,
+    offers ? { q: `What configurations are available in ${name}?`, a: `${name} offers ${offers} (${clean(p.configuration)}).` } : null,
     rera
       ? (() => {
           const reg = reraRegistry(rera);

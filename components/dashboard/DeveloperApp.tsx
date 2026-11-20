@@ -28,7 +28,7 @@ const TABS = [
 
 // 'profile' lives in the top-right account menu, not the tab row (same as the
 // super-admin), so it isn't part of TABS.
-type TabKey = (typeof TABS)[number]['key'] | 'profile';
+type TabKey = (typeof TABS)[number]['key'] | 'profile' | 'fulledit';
 
 interface MyProject {
   id: string; title: string; location: string; status: string; type: string;
@@ -119,6 +119,40 @@ export default function DeveloperApp({ user, subscriptions = false }: { user: De
     router.push('/'); router.refresh();
   }
 
+  // "Edit all details" (Map Editor pin header or a Projects Intake row): opens the
+  // project in the full project form (every field), shown here in the panel.
+  // Saving there sends it to the Mappingg team for review, like any other edit.
+  const [fullEdit, setFullEdit] = useState<{ url: string; back: TabKey } | null>(null);
+  const [fullEditMsg, setFullEditMsg] = useState('');
+  const tabRef = useRef(tab);
+  tabRef.current = tab;
+  const openFullEdit = async (pinId: string) => {
+    setFullEditMsg('');
+    try {
+      const res = await fetch('/api/my/projects/full-edit', {
+        method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: pinId }),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok || !body?.data?.url) throw new Error(body?.error?.message || `Could not open the full form (${res.status})`);
+      setFullEdit({ url: body.data.url, back: tabRef.current === 'fulledit' ? 'intake' : tabRef.current });
+      setTab('fulledit');
+    } catch (e) {
+      setFullEditMsg(e instanceof Error ? e.message : 'Could not open the full form');
+    }
+  };
+  const openFullEditRef = useRef(openFullEdit);
+  openFullEditRef.current = openFullEdit;
+  useEffect(() => {
+    // The Map Editor runs in a same-origin iframe and posts { type: 'mg:edit-pin', pinId }.
+    const onMessage = (e: MessageEvent) => {
+      if (e.origin !== window.location.origin) return;
+      const d = e.data as { type?: string; pinId?: string } | null;
+      if (d && d.type === 'mg:edit-pin' && d.pinId) openFullEditRef.current(String(d.pinId));
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, []);
+
   const initials = (displayName || user.email || '?').slice(0, 2).toUpperCase();
   const fullBleed = tab === 'map';
 
@@ -167,6 +201,12 @@ export default function DeveloperApp({ user, subscriptions = false }: { user: De
 
       <main className="adm2-main">
         <div className="adm-content" style={fullBleed ? { maxWidth: 'none', padding: 0 } : undefined}>
+          {fullEditMsg && (
+            <div className="dsh-notice" role="alert" style={{ background: '#fdecec', color: '#b42318', margin: fullBleed ? 12 : '0 0 12px' }}>
+              <i className="fas fa-triangle-exclamation" /> <span>{fullEditMsg}</span>
+              <button type="button" className="adm-btn ghost sm" style={{ marginLeft: 'auto' }} onClick={() => setFullEditMsg('')} aria-label="Dismiss"><i className="fas fa-xmark" /></button>
+            </div>
+          )}
           {tab === 'dashboard' && <DevDashboard onGo={setTab} subscriptions={subscriptions} />}
           {warmMap && (
             <div hidden={tab !== 'map'}>
@@ -175,7 +215,19 @@ export default function DeveloperApp({ user, subscriptions = false }: { user: De
               </div>
             </div>
           )}
-          {tab === 'intake' && <DeveloperProjects />}
+          {tab === 'intake' && <DeveloperProjects onEditAll={openFullEdit} />}
+          {tab === 'fulledit' && fullEdit && (
+            <div className="adm-panel" style={{ padding: 0, overflow: 'hidden' }}>
+              <div className="adm-panel-head" style={{ padding: '12px 16px', margin: 0 }}>
+                <h3>Edit all details</h3>
+                <div className="adm-actions">
+                  <a className="adm-btn ghost sm" href={fullEdit.url} target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /> New tab</a>
+                  <button type="button" className="adm-btn ghost sm" onClick={() => setTab(fullEdit.back)}><i className="fas fa-arrow-left" /> Back</button>
+                </div>
+              </div>
+              <iframe title="Edit all details" src={fullEdit.url} className="adm-frame" />
+            </div>
+          )}
           {subscriptions && tab === 'media' && <DevMedia />}
           {subscriptions && tab === 'subscription' && <SubscriptionCenter email={user.email} />}
           {tab === 'profile' && (

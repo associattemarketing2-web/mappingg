@@ -3,6 +3,7 @@ import { getDb, type Db } from './mongodb';
 import { deleteProjectPin, hideProjectPin, syncProjectPin } from './intake-pins';
 import { pinToSubmission } from './pin-to-intake';
 import { moveToTrash } from './trash';
+import { bustTable } from './data-cache';
 import { PIN_OK, datasetInfo, enrichmentForProject, getScraped, importDataset, listEnriched, listScraped, markAdded, resetScraped, rowsForAdd, setDeleted, updateScraped } from './scraped';
 
 // =============================================================================
@@ -431,6 +432,9 @@ const RPCS: Record<string, RpcFn> = {
       published_at: (existingProject as any)?.published_at || nowTs, updated_at: nowTs,
     };
     await coll(db, 'projects').replaceOne({ _id: projectId }, projectDoc, { upsert: true });
+    // The details panel (lib/home/quickview.ts) caches live projects: drop that cache
+    // so new Configuration / Area / Price rows show the moment this is published.
+    bustTable('projects');
 
     await c.updateOne({ id: sub.id }, {
       $set: {
@@ -446,7 +450,8 @@ const RPCS: Record<string, RpcFn> = {
       // A submission opened from an existing pin (admin_open_for_pin) updates that pin,
       // and never blanks a pin value its form left empty.
       const r = await syncProjectPin(
-        { ...projectDoc, pin_id: (existingProject as any)?.pin_id || sub.source_pin_id },
+        // The pin it was opened from wins: that is the pin people click on the map.
+        { ...projectDoc, pin_id: sub.source_pin_id || (existingProject as any)?.pin_id },
         sub.google_maps_link || undefined,
         { keepPinValues: !!sub.source_pin_id },
       );
@@ -466,6 +471,7 @@ const RPCS: Record<string, RpcFn> = {
     const pid = (sub as any).published_project_id;
     if (pid) {
       await coll(db, 'projects').updateOne({ id: pid }, { $set: { is_live: false, updated_at: now() } });
+      bustTable('projects');
       await hideProjectPin(pid).catch(() => {}); // off the live map too
     }
     await c.updateOne({ id: p.p_id }, { $set: { updated_at: now() } });
@@ -503,6 +509,7 @@ const RPCS: Record<string, RpcFn> = {
       if (pid) {
         await deleteProjectPin(pid);
         await coll(db, 'projects').deleteOne({ id: pid });
+        bustTable('projects');
       }
       await c.deleteOne({ id: sub.id });
       await coll(db, 'submission_events').deleteMany({ submission_id: sub.id });
@@ -789,6 +796,74 @@ const RPCS: Record<string, RpcFn> = {
     return { data: true, error: null, status: 200 };
   },
 };
+
+// "Edit all details" for a developer's own pin (Developer panel). Developers have
+// no access to the admin intake, so they get the builder form (/submit) through a
+// private link of their own: one builder record + one link per developer account.
+// The submission is linked to the pin (source_pin_id), so when the super admin
+// publishes it, that same pin is updated — nothing goes live without review.
+// The caller must already have checked the developer owns `pin`.
+export async function openForDeveloperPin(
+  user: { id: string; email: string; name?: string | null },
+  pin: Record<string, any>,
+  company: string,
+): Promise<{ token: string; submission_id: string; created: boolean }> {
+  const db = await getDb();
+  const pinId = String(pin.id);
+
+  const builders = coll(db, 'builders');
+  let builder = (await builders.findOne({ owner_user_id: user.id })) as any;
+  if (!builder) {
+    builder = await prepareInsertDoc(db, 'builders', {
+      company_name: company || user.name || user.email, contact_name: user.name || null, email: user.email,
+      owner_user_id: user.id, notes: 'Developer account (created by "Edit all details" in the Developer panel)',
+    });
+    await builders.insertOne(builder);
+  }
+
+  const links = coll(db, 'submission_links');
+  let link = (await links.findOne({ builder_id: builder.id, owner_user_id: user.id })) as any;
+  if (!link) {
+    link = await prepareInsertDoc(db, 'submission_links', { builder_id: builder.id, owner_user_id: user.id, label: 'Developer panel', expires_at: null });
+    await links.insertOne(link);
+  } else if (!link.is_active || (link.expires_at && new Date(link.expires_at) < new Date())) {
+    await links.updateOne({ id: link.id }, { $set: { is_active: true, expires_at: null, updated_at: now() } });
+  }
+
+  const subs = coll(db, 'project_submissions');
+  let sub: any = null;
+  if (pin.intake_project_id) {
+    const project = (await coll(db, 'projects').findOne({ id: String(pin.intake_project_id) })) as any;
+    sub = (project?.submission_id && (await subs.findOne({ id: project.submission_id })))
+      || (await subs.findOne({ published_project_id: String(pin.intake_project_id) }));
+  }
+  if (!sub) sub = await subs.findOne({ source_pin_id: pinId });
+
+  if (sub) {
+    if (sub.builder_id && sub.builder_id !== builder.id) throw new Error('This project is managed by the Mappingg team. Please contact them to change it.');
+    const patch: Record<string, any> = {};
+    if (!sub.builder_id) { patch.builder_id = builder.id; patch.link_id = link.id; }
+    // Opened earlier by the super admin from the pin but never sent anywhere:
+    // hand it to the developer as a draft so they can edit it.
+    if (sub.source === 'map_pin' && sub.status === 'in_review' && !sub.published_project_id) patch.status = 'draft';
+    if (Object.keys(patch).length) await subs.updateOne({ id: sub.id }, { $set: { ...patch, updated_at: now() } });
+    return { token: link.token, submission_id: sub.id, created: false };
+  }
+
+  const { fields, kept } = pinToSubmission(pin);
+  const doc = await prepareInsertDoc(db, 'project_submissions', {
+    ...fields,
+    additional_details: kept,
+    status: 'draft',
+    source: 'developer',
+    source_pin_id: pinId,
+    builder_id: builder.id,
+    link_id: link.id,
+  });
+  await subs.insertOne(doc);
+  await logEvent(db, doc.id, 'created', 'builder', { source: 'developer', pin_id: pinId, pin_number: pin.number ?? null });
+  return { token: link.token, submission_id: doc.id, created: true };
+}
 
 export const ADMIN_RPCS = new Set([
   'is_admin', 'admin_counts', 'admin_set_status', 'admin_request_changes', 'admin_publish',

@@ -11,7 +11,7 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 // POST /api/auth/reset-password — "Forgot password?": the 6-digit code from
-// /api/auth/otp (purpose 'reset', sent on WhatsApp) + a new password.
+// /api/auth/otp (purpose 'reset', sent by email or WhatsApp) + a new password.
 // Send `email` or `mobile` — whichever the code was requested for. The user
 // then signs in with the new password as usual.
 const schema = z.object({
@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
   await users.updateOne({ email }, { $set: { password_hash: await bcrypt.hash(password, 12), updated_at: new Date().toISOString() } });
   await logActivity({
     user_id: String(user.id || user._id), email, name: user.name ? String(user.name) : undefined, role: String(user.role || 'buyer'),
-    type: 'password_reset', detail: 'Password reset with a WhatsApp code',
+    type: 'password_reset', detail: 'Password reset with a verification code',
   });
   return NextResponse.json({ data: { ok: true, email } });
 }

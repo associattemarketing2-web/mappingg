@@ -45,7 +45,7 @@ export function issueOtp(identity: string, purpose: OtpPurpose, bind = ''): { co
 /** Error message, or null when the code matches the ticket for this identity and purpose. */
 export function checkOtp(ticket: unknown, code: unknown, identity: string, purpose: OtpPurpose, bind = ''): string | null {
   const c = String(code ?? '').replace(/\D/g, '');
-  if (c.length !== 6) return 'Enter the 6-digit code we sent you on WhatsApp.';
+  if (c.length !== 6) return 'Enter the 6-digit code we sent you.';
   const [payload, mac] = String(ticket ?? '').split('.');
   if (!payload || !mac) return 'Please request a verification code first.';
   let data: { e?: string; p?: string; x?: number };

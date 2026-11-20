@@ -4,6 +4,7 @@ import { logosByName, normDev } from '@/lib/developers';
 import { getPinsByNumber, slugForProject, typeLabel } from '@/lib/seo/entities';
 import { reraNumber } from '@/lib/seo/project-meta';
 import { toCard, type ProjectCardData } from './cards';
+import { unitKinds } from './finder';
 
 // Everything a project's details view shows: the "Enquire now" popup on the
 // home page and the details panel on the live map. It merges the public pin
@@ -46,9 +47,20 @@ const pos = (v: unknown) => { const n = Number(v); return Number.isFinite(n) && 
 const list = (v: unknown) => (Array.isArray(v) ? v : []);
 
 const readLogos = cachedRead('quickview-dev-logos', ['developers', 'pins'], 600, async () => Object.fromEntries(await logosByName()));
-const readIntake = cachedRead('quickview-intake', ['projects'], 600, async (id: string): Promise<Doc | null> => {
+// The pin's live Projects Intake record: by the pin's intake_project_id, else the
+// project published onto this pin (projects.pin_id), else the submission opened
+// from this pin ("Edit all details" → source_pin_id). Without the fallbacks a pin
+// whose link was never written showed none of its unit rows, gallery or plans.
+const readIntake = cachedRead('quickview-intake', ['projects', 'pins'], 600, async (id: string, pinId: string): Promise<Doc | null> => {
   const db = await getDb();
-  const p = await db.collection<Doc>('projects').findOne({ id, is_live: true });
+  const projects = db.collection<Doc>('projects');
+  let p = id ? await projects.findOne({ id, is_live: true }) : null;
+  if (!p && pinId) p = await projects.findOne({ pin_id: pinId, is_live: true }, { sort: { updated_at: -1 } });
+  if (!p && pinId) {
+    const sub = await db.collection<Doc>('project_submissions').findOne(
+      { source_pin_id: pinId, published_project_id: { $nin: [null, ''] } }, { sort: { updated_at: -1 } });
+    if (sub) p = await projects.findOne({ id: String(sub.published_project_id), is_live: true });
+  }
   if (!p) return null;
   // Public fields only.
   const keep = ['towers', 'floors', 'total_units', 'land_area_acres', 'gallery_urls', 'cover_image_url', 'amenities',
@@ -66,7 +78,7 @@ export async function getQuickView(number: number): Promise<QuickView | null> {
   const raw = pin as typeof pin & { intake_project_id?: string; brochure_url?: string; floor_plan_urls?: unknown; gallery_urls?: unknown };
   const [logos, intake] = await Promise.all([
     readLogos().catch(() => ({} as Record<string, string>)),
-    raw.intake_project_id ? readIntake(String(raw.intake_project_id)).catch(() => null) : Promise.resolve(null),
+    readIntake(String(raw.intake_project_id || ''), String((pin as { id?: unknown }).id || '')).catch(() => null),
   ]);
   let logo = (card.developer && logos[normDev(card.developer)]) || '';
 
@@ -96,7 +108,10 @@ export async function getQuickView(number: number): Promise<QuickView | null> {
 
   const configs = list(intake?.configurations).length
     ? list(intake?.configurations).map(str).filter(Boolean)
-    : (card.bhk ? card.bhk.replace(/ BHK$/, '').split(', ').map((b) => `${b} BHK`) : []);
+    : [
+      ...(card.bhk ? card.bhk.replace(/ BHK$/, '').split(', ').map((b) => `${b} BHK`) : []),
+      ...unitKinds(pin.configuration).map((k) => k.label), // Penthouse, Villa, Office…
+    ];
 
   // Unit-type table from the intake ("Unit types, carpet area & price"); values shown as entered.
   const unitRows: UnitRow[] = list(intake?.unit_mix)
