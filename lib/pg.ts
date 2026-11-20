@@ -17,6 +17,47 @@ import { Pool, type QueryResult, type QueryResultRow } from 'pg';
 declare global {
   // eslint-disable-next-line no-var
   var _pgPool: Pool | undefined;
+  // eslint-disable-next-line no-var
+  var _pgDirectUntil: number | undefined;
+}
+
+// Prisma's connection pooler (pooled.db.prisma.io) sometimes fails every new
+// connection with "Failed to connect to upstream database" while the database
+// itself is fine and reachable on the direct host (db.prisma.io) — every save
+// then failed with "Database error". When that happens we switch this server
+// instance to the direct host for a while, then go back to the pooler.
+const POOLED_HOST = 'pooled.db.prisma.io';
+const DIRECT_HOST = 'db.prisma.io';
+const DIRECT_FOR_MS = 10 * 60_000;
+const POOLER_DOWN = /failed to connect to upstream database/i;
+
+/** DATABASE_URL, or its direct-host form while the pooler is down. */
+function databaseUrl(): string | undefined {
+  const url = process.env.DATABASE_URL;
+  if (!url || !global._pgDirectUntil || Date.now() > global._pgDirectUntil) return url;
+  try {
+    const u = new URL(url);
+    if (u.hostname === POOLED_HOST) { u.hostname = DIRECT_HOST; return u.toString(); }
+  } catch { /* not a URL — use it as is */ }
+  return url;
+}
+
+/** On a pooler outage, move to the direct host. True when the query is worth retrying there. */
+function switchToDirectHost(e: unknown): boolean {
+  if (!POOLER_DOWN.test(String((e as Error)?.message || ''))) return false;
+  try { if (new URL(process.env.DATABASE_URL || '').hostname !== POOLED_HOST) return false; } catch { return false; }
+  const wasDirect = !!global._pgDirectUntil && Date.now() <= global._pgDirectUntil;
+  global._pgDirectUntil = Date.now() + DIRECT_FOR_MS;
+  if (wasDirect) return false; // already on the direct host — this is a real failure
+  console.warn('[pg] connection pooler is down — using the direct database host for 10 minutes');
+  resetPool();
+  return true;
+}
+
+function resetPool() {
+  const old = global._pgPool;
+  global._pgPool = undefined;
+  old?.end().catch(() => { /* already closed */ });
 }
 
 /**
@@ -43,7 +84,7 @@ function tlsConfig(connectionString: string): { connectionString: string; ssl?: 
 }
 
 function makePool(): Pool {
-  const connectionString = process.env.DATABASE_URL;
+  const connectionString = databaseUrl();
   if (!connectionString) {
     throw new Error('DATABASE_URL is not set. Add it to .env.local (server-only).');
   }
@@ -62,6 +103,11 @@ function makePool(): Pool {
 }
 
 export function getPool(): Pool {
+  // The direct-host window has ended: back to the pooler on a fresh pool.
+  if (global._pgPool && global._pgDirectUntil && Date.now() > global._pgDirectUntil) {
+    global._pgDirectUntil = undefined;
+    resetPool();
+  }
   return (global._pgPool ??= makePool());
 }
 
@@ -84,6 +130,7 @@ export async function query<T extends QueryResultRow = QueryResultRow>(
     try {
       return await getPool().query<T>(text, params as never[]);
     } catch (e) {
+      if (switchToDirectHost(e)) continue;
       if (i >= attempts || !isTransient(e)) throw e;
       console.warn(`[pg] ${(e as Error).message} — retrying (${i}/${attempts - 1})`);
       await new Promise((r) => setTimeout(r, 150 * i));
