@@ -6,7 +6,7 @@
  * waiting after NAV_TIMEOUT_MS and serves the cached page instead of leaving a
  * blank screen (the "PWA pages sometimes don't load" symptom). The network copy
  * still updates the cache in the background when it eventually arrives. */
-const CACHE = 'mappingg-v5'; // v5: drops pages cached before the OTP-paused sign-in (v4: private pages)
+const CACHE = 'mappingg-v6'; // v6: private pages, API calls and other origins bypass the worker. v5: drops pages cached before the OTP-paused sign-in (v4: private pages)
 const NAV_TIMEOUT_MS = 3500;
 const APP_SHELL = ['/', '/map', '/mundhwa-map-3d', '/db-shim.js', '/landing.js', '/manifest.webmanifest'];
 
@@ -65,8 +65,12 @@ self.addEventListener('fetch', (event) => {
   // Navigations: race the network against a timeout so a slow/offline link
   // falls back to cache instead of a hanging blank page. The network request
   // keeps running and refreshes the cache if/when it completes.
-  // Private pages always go straight to the network (no cache read or write).
-  if (req.mode === 'navigate' && !isCacheable(url)) return;
+  // Private pages, API calls and other origins are never cached, so the service
+  // worker stays out of them entirely and the browser fetches them as usual. (It
+  // used to wrap them too: when one failed — e.g. the dashboard's background
+  // prefetches while the server was erroring — the console filled with
+  // "FetchEvent … network error" and "sw.js Failed to fetch" on top of the real error.)
+  if (!isCacheable(url)) return;
 
   if (req.mode === 'navigate') {
     event.respondWith(

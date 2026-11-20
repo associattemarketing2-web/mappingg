@@ -19,6 +19,8 @@ export async function generateMetadata(): Promise<Metadata> {
     ...(canInstall && {
       manifest: '/manifest.webmanifest',
       appleWebApp: { capable: true, title: 'Mappingg', statusBarStyle: 'default' },
+      // Chrome wants the standard tag next to Apple's (it warns that the Apple one alone is deprecated).
+      other: { 'mobile-web-app-capable': 'yes' },
     }),
   };
 }
