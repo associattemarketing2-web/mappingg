@@ -3530,7 +3530,7 @@ function noidaArticle(h) {
 
 <h2>Projects due first: possession by 2027</h2>
 <p>Most new launches in the Noida region are due between 2028 and 2031. These projects on our map have the earliest possession dates declared to UP RERA:</p>
-${h.table([623, 516, 872, 617, 1024, 570, 611], 'Noida-region projects due by 2027', UP)}
+${h.table([623, 516, 872, 617, 75, 570, 611], 'Noida-region projects due by 2027', UP)}
 <p>${h.link(611)} is a Central Government Employees Welfare Housing Organisation (CGEWHO) scheme, which is normally open only to eligible central government employees. Check eligibility before you plan around it.</p>
 
 <h2>Large homes: 4 BHK, 5 BHK and penthouses</h2>
@@ -3538,16 +3538,16 @@ ${h.table([623, 516, 872, 617, 1024, 570, 611], 'Noida-region projects due by 20
 ${h.table([617, 515, 529, 578, 590, 583], 'Noida-region projects with 4 BHK homes and larger', UP)}
 
 <h2>Projects by the big developers</h2>
-<p>Godrej Properties has five projects on our map here: ${h.link(581)} in Sector 146, ${h.link(615)} in Greater Noida Sector 12, ${h.link(580)} in Sigma III, ${h.link(616)} in Jhatta and the commercial ${h.link(579)} in Sector 44. Sobha has ${h.link(530)} in Sector 36 and ${h.link(531)} in Greater Noida. Eldeco has ${h.link(573)} in Omicron 1A, ${h.link(574)} and ${h.link(613)} on the Yamuna Expressway, and ${h.link(623)}. Gaurs has ${h.link(578)}, ${h.link(614)} and ${h.link(577)}. Also on the map are ${h.link(621)} by Larsen &amp; Toubro, ${h.link(575)} by Experion and ${h.link(1024)} by Prateek.</p>
+<p>Godrej Properties has five projects on our map here: ${h.link(581)} in Sector 146, ${h.link(615)} in Greater Noida Sector 12, ${h.link(580)} in Sigma III, ${h.link(616)} in Jhatta and the commercial ${h.link(579)} in Sector 44. Sobha has ${h.link(530)} in Sector 36 and ${h.link(531)} in Greater Noida. Eldeco has ${h.link(573)} in Omicron 1A, ${h.link(574)} and ${h.link(613)} on the Yamuna Expressway, and ${h.link(623)}. Gaurs has ${h.link(578)}, ${h.link(614)} and ${h.link(577)}. Also on the map are ${h.link(621)} by Larsen &amp; Toubro, ${h.link(575)} by Experion and ${h.link(75)} by Prateek.</p>
 ${h.table([581, 615, 580, 616, 530, 531, 573, 621, 575], 'Noida-region projects by large developers', UP)}
 
 <h2>Area by area</h2>
 <h3>Noida and the Noida–Greater Noida Expressway</h3>
 <p>Along the expressway, look at ${h.link(617)} (Sector 128), ${h.link(581)} (Sector 146), ${h.link(566)} (Sector 150) and ${h.link(529)} (Sector 151). Elsewhere in Noida, the map shows ${h.link(515)} in Sector 105, ${h.link(590)} in Sector 94, ${h.link(788)} in Sector 75, ${h.link(575)} in Sector 45 and ${h.link(530)} in Sector 36.</p>
 <h3>Greater Noida West (Noida Extension)</h3>
-<p>${h.link(571)} and ${h.link(615)} are in Sector 12, ${h.link(1023)} in Sector 16C, ${h.link(532)} in Sector 1 and ${h.link(872)} in Tech Zone IV (due December 2026). ${h.link(589)} and ${h.link(619)} are also nearby.</p>
+<p>${h.link(571)} and ${h.link(615)} are in Sector 12, ${h.link(532)} in Sector 1 and ${h.link(872)} in Tech Zone IV (due December 2026). ${h.link(589)} and ${h.link(619)} are also nearby.</p>
 <h3>Greater Noida</h3>
-<p>The Greek-letter sectors have ${h.link(858)} in Sector Pi, ${h.link(785)} in Sector Mu, ${h.link(580)} in Sigma III, ${h.link(520)} in Zeta I, ${h.link(521)} in Eta 2, ${h.link(573)} in Omicron 1A and ${h.link(612)} in Chi 5. Also here are ${h.link(567)} in Sector 2, ${h.link(578)} in Sector 20, ${h.link(865)} in Techzone 7, ${h.link(586)}, ${h.link(610)}, ${h.link(531)} and ${h.link(611)}. Around Momnathal, ${h.link(623)} and ${h.link(1024)} are among the earliest projects due on our map.</p>
+<p>The Greek-letter sectors have ${h.link(858)} in Sector Pi, ${h.link(785)} in Sector Mu, ${h.link(580)} in Sigma III, ${h.link(520)} in Zeta I, ${h.link(521)} in Eta 2, ${h.link(573)} in Omicron 1A and ${h.link(612)} in Chi 5. Also here are ${h.link(567)} in Sector 2, ${h.link(578)} in Sector 20, ${h.link(865)} in Techzone 7, ${h.link(586)}, ${h.link(610)}, ${h.link(531)} and ${h.link(611)}. Around Momnathal, ${h.link(623)} and ${h.link(75)} are among the earliest projects due on our map.</p>
 <h3>Yamuna Expressway (YEIDA)</h3>
 <p>Sector 22D has the most launches: ${h.link(574)}, ${h.link(613)}, ${h.link(614)}, ${h.link(577)}, ${h.link(568)} and ${h.link(522)}. In Sector 22A, ${h.link(585)} and ${h.link(542)} also offer 1 BHK and studio homes. ${h.link(618)} is in Sector 25 (Jaypee Greens Sports City), and ${h.link(519)} is in the YEIDA area too. Most of these are due between 2028 and 2031.</p>
 <h3>Dadri and Wave City</h3>
