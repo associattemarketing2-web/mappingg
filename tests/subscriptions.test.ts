@@ -505,3 +505,12 @@ test('roles never cross: buyer ≠ developer features, staff have no plan, wrong
   const audits = await pgq(`SELECT count(*)::int n FROM sub_audit WHERE action = 'subscription.manual_activate'`);
   assert.ok(audits.rows[0].n >= 4);
 });
+
+test('a new server instance skips the schema setup once it is in place', async () => {
+  const db = await import('../lib/subscriptions/db');
+  // A fresh query function stands in for a new serverless instance (its own ready-cache entry).
+  let calls = 0;
+  const counted: typeof db.sql = (text, params) => { calls++; return db.sql(text, params); };
+  await db.ensureSchema(counted);
+  assert.equal(calls, 1, 'only the fingerprint check runs');
+});

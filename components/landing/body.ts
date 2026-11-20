@@ -332,7 +332,7 @@ export const LANDING_BODY = `
           <label class="su-plan-part" hidden>Choose your plan <small>— start free, upgrade any time</small></label>
           <p class="su-acct" id="su-acct"><i class="fas fa-user-check"></i> You are creating a <b id="su-acct-role">Buyer / Investor</b> account</p>
           <div class="plan-tiles su-plan-part" id="su-plan-tiles" hidden><label class="plan-tile"><input type="radio" name="plan" value="" checked><span><b>Free</b><em>₹0</em></span></label></div>
-          <small class="loc-note su-plan-part" id="su-plan-note" hidden>Every account starts on Free. <a href="/pricing" target="_blank" rel="noopener">Compare all plans</a></small>
+          <small class="loc-note su-plan-part" id="su-plan-note" hidden>Every account starts on Free.</small>
         </div>
         <p class="verify-note" id="verifyNote" hidden><i class="fas fa-shield-halved"></i><span>We verify your RERA number on the MahaRERA website before your account gets full access, usually within one working day.</span></p>
         <div class="opts"><label><input type="checkbox" id="su-terms" required> I agree to the <a href="/terms" target="_blank" rel="noopener">Terms</a> & <a href="/privacy" target="_blank" rel="noopener">Privacy</a> and to be contacted on WhatsApp.</label></div>

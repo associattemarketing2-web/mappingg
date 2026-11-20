@@ -39,6 +39,16 @@ const nextConfig = {
   async headers() {
     return [
       {
+        // Baseline security headers on every response. Pages are only framed by
+        // our own pages (the home page embeds /map?embed=home), so SAMEORIGIN.
+        source: '/:path*',
+        headers: [
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+        ],
+      },
+      {
         // Never let search engines index the dashboards (super-admin now lives at
         // /dashboard/s-admin) or the old /s-admin path that redirects to it.
         source: '/:path(dashboard|dashboard/.*|s-admin|s-admin/.*)',
