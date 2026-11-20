@@ -863,7 +863,8 @@ function BlogsPanel({ flash, onGo }: { flash: (m: string, e?: boolean) => void; 
             </div>
           </div>
 
-          {loading ? (
+          {/* Spinner only before the first load: a refresh keeps the list in place (no jump, scroll kept). */}
+          {loading && !posts.length ? (
             <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>
           ) : posts.length === 0 ? (
             <div className="adm-empty"><i className="fas fa-newspaper" /><p>No posts yet. Create your first SEO article.</p></div>
@@ -1158,7 +1159,7 @@ function EmployeesPanel({ flash, owner, onProfile }: {
               </div>
             </div>
 
-            {loading ? (
+            {loading && !list.length ? (
               <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>
             ) : list.length === 0 && !owner ? (
               <div className="adm-empty"><i className="fas fa-users-gear" /><p>No employees yet. Add teammates and choose which tabs they can access.</p></div>
@@ -2360,7 +2361,7 @@ function LeadsPanel({ flash, isOwner, focusId, onFocusDone }: { flash: (m: strin
             </BulkBar>
           )}
 
-          {loading ? (
+          {loading && !list.length ? (
             <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>
           ) : list.length === 0 ? (
             <div className="adm-empty">
@@ -2486,7 +2487,7 @@ function LeadsPanel({ flash, isOwner, focusId, onFocusDone }: { flash: (m: strin
               </table>
             </div>
           )}
-          {!loading && list.length > 0 && (
+          {list.length > 0 && (
             <div className="crm3-foot">
               <span className="crm3-count">Showing {(firstRow + 1).toLocaleString('en-IN')}–{(firstRow + shown.length).toLocaleString('en-IN')} of {list.length.toLocaleString('en-IN')} leads</span>
               {pageCount > 1 && (
@@ -2505,7 +2506,7 @@ function LeadsPanel({ flash, isOwner, focusId, onFocusDone }: { flash: (m: strin
               </label>
             </div>
           )}
-          {!loading && truncated[source] != null && (
+          {truncated[source] != null && (
             <div className="adm-empty" style={{ padding: '12px 0' }}>
               <p>Only the newest {bySource[source].length} of {truncated[source]} leads are loaded here. Older leads are kept in the database.</p>
             </div>

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query } from '@/lib/pg';
 import { getMongoDb, usingMongo } from '@/lib/mongodb';
+import { liteColumn } from '@/lib/mongo-compat';
 import { localitiesOf } from '@/lib/locality';
 import { slugForProject, primaryLocality, STATUS_ROUTES, type Pin } from '@/lib/seo/entities';
 import { slugify } from '@/lib/seo/slug';
@@ -61,6 +62,8 @@ export async function GET(req: NextRequest) {
 
   const [minLat, maxLat, minLng, maxLng] = [Math.min(south, north), Math.max(south, north), Math.min(west, east), Math.max(west, east)];
   // Bounds in the database (index-backed in SQL). hidden pins stay staff-only / out of the public API.
+  // Light copy of each pin (no base64 to unpack) when migration/pg-doc-lite.sql is applied.
+  const col = usingMongo() ? 'doc' : await liteColumn('pins');
   const rows = usingMongo() ? await mongoRows(minLat, maxLat, minLng, maxLng, limit) : (await query<Row>(
     `SELECT id,
             doc->>'lat'       AS lat,
@@ -72,7 +75,7 @@ export async function GET(req: NextRequest) {
             doc->>'location'  AS location,
             doc->>'number'    AS number,
             doc->'image_meta'->>'thumbnailUrl' AS thumb
-     FROM pins
+     FROM (SELECT id, ${col} AS doc FROM pins) pins
      WHERE (doc->>'hidden') IS DISTINCT FROM 'true'
        AND (doc->>'lat')::double precision BETWEEN $1 AND $2
        AND (doc->>'lng')::double precision BETWEEN $3 AND $4

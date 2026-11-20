@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { hasPermission } from '@/lib/staff';
 import { query } from '@/lib/pg';
 import { runDbOp } from '@/lib/db-engine';
+import { liteColumn } from '@/lib/mongo-compat';
 import { baseName } from '@/lib/pin-names';
 
 export const runtime = 'nodejs';
@@ -162,8 +163,11 @@ export async function GET() {
     return NextResponse.json({ data: null, error: { message: 'Not authorized' } }, { status: 401 });
   }
 
+  // Images are only checked for "present", so the light copy (digests, ~1 KB/row) answers
+  // this without unpacking ~35 KB of base64 per pin — see liteColumn in lib/mongo-compat.ts.
+  const col = await liteColumn('pins');
   const [{ rows }, { rows: history }] = await Promise.all([
-    query<Row>(`SELECT id, ${PIN_COLUMNS} FROM pins`),
+    query<Row>(`SELECT id, ${PIN_COLUMNS} FROM (SELECT id, ${col} AS doc FROM pins) pins`),
     // Latest deletion of each pin (with the pin as it was), newest first.
     query<HistoryRow>(
       `SELECT * FROM (

@@ -19,6 +19,7 @@
     "sync:supabase": "node migration/sync-supabase-to-pg.mjs",
     "import:mongo": "node migration/import-mongodb.mjs",
     "db:indexes": "node migration/create-indexes.mjs",
+    "db:doc-lite": "node --env-file=.env migration/apply-doc-lite.mjs",
     "seed:admin": "node migration/seed-admin.mjs",
     "migrate:project-images": "node migration/migrate-project-images.mjs",
     "test": "node --experimental-transform-types --import ./tests/register.mjs --test \"tests/**/*.test.ts\"",

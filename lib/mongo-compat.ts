@@ -197,6 +197,94 @@ function orderExpr(sort: Record<string, 1 | -1> | undefined, p: Params): string 
   return parts.length ? ` ORDER BY ${parts.join(', ')}` : '';
 }
 
+// -----------------------------------------------------------------------------
+// Light reads (`doc_lite`).
+//
+// Pins and developers keep their logos/brochures inside `doc` as base64, so a row
+// is ~35 KB and Postgres has to fetch + decompress all of it for ANY read that
+// touches `doc` — even `doc->>'title'`. Reading every pin cost ~1.1 s in the
+// database (of which ~0.9 s was just unpacking the images) and the md5 digests
+// were recomputed over ~32 MB of base64 on every query.
+//
+// migration/pg-doc-lite.sql adds a STORED generated column `doc_lite`: the same
+// document with each inline image replaced by the digest list reads already
+// return (MEDIA_DIGEST_PREFIX + md5 of the data: URL). Postgres keeps it in sync
+// on every write, so nothing in the app writes it. Reads that don't need the raw
+// image bytes run against it instead (~1–2 KB/row); the output is identical
+// (same digests → same /api/media URLs). Until the column exists — fresh
+// databases, tests, or with DOC_LITE=off — everything reads `doc` as before.
+// -----------------------------------------------------------------------------
+
+/** Inline-image fields that `doc_lite` stores as digests, per table (keep in sync with migration/pg-doc-lite.sql). */
+export const LITE_MEDIA: Record<string, readonly string[]> = {
+  pins: ['image', 'brochure_image'],
+  developers: ['logo'],
+};
+
+const lg = globalThis as unknown as { __mgLiteTables?: { until: number; p: Promise<Set<string>> } };
+/** Tables that have a `doc_lite` column (looked up once per server process; a failed lookup retries after a minute). */
+export function liteTables(): Promise<Set<string>> {
+  if (process.env.DOC_LITE === 'off') return Promise.resolve(new Set());
+  const c = lg.__mgLiteTables;
+  if (c && Date.now() < c.until) return c.p;
+  const p = query<{ t: string }>(
+    `SELECT table_name AS t FROM information_schema.columns
+      WHERE table_schema = current_schema() AND column_name = 'doc_lite' AND table_name = ANY($1::text[])`,
+    [Object.keys(LITE_MEDIA)],
+  ).then((r) => new Set(r.rows.map((x) => x.t)))
+    .catch((e) => {
+      console.warn('[mongo-compat] doc_lite lookup failed, reading doc:', (e as Error).message);
+      const none = new Set<string>();
+      lg.__mgLiteTables = { until: Date.now() + 60_000, p: Promise.resolve(none) };
+      return none;
+    });
+  lg.__mgLiteTables = { until: Infinity, p };
+  return p;
+}
+
+/** Test hook: forget the cached column lookup. */
+export function resetLiteTables() { delete lg.__mgLiteTables; }
+
+/** The column raw-SQL readers should read non-image fields from: `doc_lite` when it exists, else `doc`. */
+export async function liteColumn(table: string): Promise<'doc' | 'doc_lite'> {
+  return LITE_MEDIA[table] && (await liteTables()).has(table) ? 'doc_lite' : 'doc';
+}
+
+/** True if a query (or sort spec) mentions any of `keys`, at any nesting depth of $or/$and. */
+function mentions(q: Query | undefined, keys: readonly string[]): boolean {
+  for (const [k, v] of Object.entries(q || {})) {
+    if (keys.includes(k)) return true;
+    if ((k === '$or' || k === '$and') && Array.isArray(v) && v.some((sub) => mentions(sub, keys))) return true;
+  }
+  return false;
+}
+
+/**
+ * Whether a read can run on `doc_lite`: the table has it, no filter/sort looks at an
+ * image field, and every image field the read returns is one the caller wants as a
+ * digest anyway. Reads that need the real base64 (media route, logo copy) use `doc`.
+ */
+async function canReadLite(table: string, q: Query, sort: Record<string, 1 | -1> | undefined, projection: Doc | undefined, digest?: MediaDigest): Promise<boolean> {
+  const fields = LITE_MEDIA[table];
+  if (!fields || mentions(q, fields) || mentions(sort, fields)) return false;
+  const entries = Object.entries(projection || {});
+  const include = entries.some(([, v]) => v === 1 || v === true);
+  const asDigest = new Set(digest?.fields || []);
+  for (const f of fields) {
+    const returned = include
+      ? entries.some(([k, v]) => k === f && (v === 1 || v === true))
+      : !entries.some(([k, v]) => k === f && (v === 0 || v === false));
+    if (returned && !asDigest.has(f)) return false;
+  }
+  return (await liteTables()).has(table);
+}
+
+/** FROM clause: the table itself, or its light column exposed as `doc` so every other SQL fragment is unchanged. */
+function fromClause(table: string, lite: boolean): string {
+  const t = assertTable(table);
+  return lite ? `(SELECT id, doc_lite AS doc FROM ${t}) AS ${t}` : t;
+}
+
 /** Row shape coming back from SELECTs: the (projected) doc plus the pk. */
 function reattachId(row: { d: Doc; id: string }): Doc {
   return { ...row.d, _id: row.id };
@@ -220,9 +308,14 @@ class Cursor<T extends Doc = Doc> {
   skip(n: number) { this._skip = n; return this; }
   async toArray(): Promise<T[]> {
     const p = new Params();
-    const sel = projectExpr(this.options.projection, p, this.options.mediaDigest);
+    const lite = await canReadLite(this.table, this.q, this._sort, this.options.projection, this.options.mediaDigest);
+    // On doc_lite the image fields already ARE digests — don't digest the digest.
+    const digest = lite && this.options.mediaDigest
+      ? { ...this.options.mediaDigest, fields: (this.options.mediaDigest.fields || []).filter((f) => !LITE_MEDIA[this.table].includes(f)) }
+      : this.options.mediaDigest;
+    const sel = projectExpr(this.options.projection, p, digest);
     const where = buildWhere(this.q, p, this.table);
-    let sql = `SELECT ${sel} AS d, id FROM ${assertTable(this.table)} WHERE ${where}`;
+    let sql = `SELECT ${sel} AS d, id FROM ${fromClause(this.table, lite)} WHERE ${where}`;
     sql += orderExpr(this._sort, p);
     if (this._limit != null) sql += ` LIMIT ${p.add(this._limit)}`;
     if (this._skip != null) sql += ` OFFSET ${p.add(this._skip)}`;
@@ -283,8 +376,9 @@ class Collection<T extends Doc = Doc> {
   async countDocuments(q: Query = {}): Promise<number> {
     const p = new Params();
     const where = buildWhere(q, p, this.table);
+    const lite = await canReadLite(this.table, q, undefined, { id: 1 }, undefined);
     const res = await query<{ n: string }>(
-      `SELECT count(*)::int AS n FROM ${assertTable(this.table)} WHERE ${where}`,
+      `SELECT count(*)::int AS n FROM ${fromClause(this.table, lite)} WHERE ${where}`,
       p.values,
     );
     return Number(res.rows[0]?.n || 0);

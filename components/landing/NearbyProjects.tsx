@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import HomeProjectCard from './HomeProjectCard';
 import Carousel from './Carousel';
 import type { NearbyResult } from '@/lib/home/nearby';
@@ -14,9 +14,12 @@ import type { LocalityOption } from '@/lib/home/nearby';
 // never stored; the only thing remembered on this device is a locality the
 // visitor picked by hand. Nothing here blocks the rest of the page.
 
+type Shown = { data: NearbyResult; picked?: string };
 type State =
   | { k: 'idle'; note?: string }
-  | { k: 'loading' }
+  // `keep`: the cards already on screen stay put (dimmed) while the next set loads,
+  // so switching locality never collapses the section into a skeleton and back.
+  | { k: 'loading'; keep?: Shown }
   | { k: 'ready'; data: NearbyResult; picked?: string }
   | { k: 'empty'; picked?: string }
   | { k: 'error'; retry: () => void };
@@ -30,18 +33,35 @@ export default function NearbyProjects({ localities }: { localities: LocalityOpt
   const [canLocate, setCanLocate] = useState(false);
   const [choice, setChoice] = useState('');
 
+  // Only the newest request may update the section: a newer pick (or location fix)
+  // aborts the one in flight, so a slow older answer can never overwrite it.
+  const seq = useRef(0);
+  const inflight = useRef<AbortController | null>(null);
+  const startLoading = useCallback(() => {
+    setState((s) => ({ k: 'loading', keep: s.k === 'ready' ? { data: s.data, picked: s.picked } : s.k === 'loading' ? s.keep : undefined }));
+    return ++seq.current;
+  }, []);
+
   const load = useCallback(async (query: string, picked?: string) => {
-    setState({ k: 'loading' });
+    const mine = startLoading();
+    inflight.current?.abort();
+    const ctrl = new AbortController();
+    inflight.current = ctrl;
     try {
-      const r = await fetch(`/api/nearby?${query}`, { credentials: 'omit' });
+      const r = await fetch(`/api/nearby?${query}`, { credentials: 'omit', signal: ctrl.signal });
+      if (mine !== seq.current) return;
       if (r.status === 404) { save(''); setState({ k: 'idle' }); return; }
       if (!r.ok) throw new Error(String(r.status));
       const data = (await r.json()) as NearbyResult;
+      if (mine !== seq.current) return;
       setState(data.projects.length ? { k: 'ready', data, picked } : { k: 'empty', picked });
     } catch {
+      if (mine !== seq.current || ctrl.signal.aborted) return;
       setState({ k: 'error', retry: () => load(query, picked) });
     }
-  }, []);
+  }, [startLoading]);
+
+  useEffect(() => () => inflight.current?.abort(), []);
 
   const pickLocality = useCallback((slug: string) => {
     setChoice(slug);
@@ -53,13 +73,14 @@ export default function NearbyProjects({ localities }: { localities: LocalityOpt
 
   const locate = useCallback(() => {
     if (!('geolocation' in navigator)) { setState({ k: 'idle', note: 'Your browser can’t share its location — pick a locality instead.' }); return; }
-    setState({ k: 'loading' });
+    const mine = startLoading();
     navigator.geolocation.getCurrentPosition(
       (pos) => {
+        if (mine !== seq.current) return; // a locality was picked meanwhile — that wins
         save(''); setChoice('');
         load(`lat=${pos.coords.latitude.toFixed(3)}&lng=${pos.coords.longitude.toFixed(3)}`);
       },
-      (err) => setState({
+      (err) => mine === seq.current && setState({
         k: 'idle',
         note: err.code === err.PERMISSION_DENIED
           ? 'Location access is turned off for this site. Pick a locality instead, or allow location in your browser settings.'
@@ -67,7 +88,7 @@ export default function NearbyProjects({ localities }: { localities: LocalityOpt
       }),
       { enableHighAccuracy: false, timeout: 10_000, maximumAge: 10 * 60_000 },
     );
-  }, [load]);
+  }, [load, startLoading]);
 
   // First visit: nothing happens until the visitor asks. Return visits: reuse the
   // locality they picked, or their location if they already allowed it here.
@@ -110,12 +131,16 @@ export default function NearbyProjects({ localities }: { localities: LocalityOpt
     </div>
   );
 
+  // What's on screen: the current results, or (while the next set loads) the previous ones.
+  const shown: Shown | undefined = state.k === 'ready' ? state : state.k === 'loading' ? state.keep : undefined;
+  const refreshing = state.k === 'loading' && !!shown;
+
   let title = 'Projects near you';
   let sub = 'Use your location or pick a locality. We don’t store your location.';
-  if (state.k === 'ready') {
-    const a = state.data.area;
-    if (state.picked) {
-      title = `Projects in and around ${state.picked}`;
+  if (shown) {
+    const a = shown.data.area;
+    if (shown.picked) {
+      title = `Projects in and around ${shown.picked}`;
       sub = 'Closest first.';
     } else if (a?.locality) {
       title = `Projects near ${a.locality}${a.city ? `, ${a.city}` : ''}`;
@@ -134,10 +159,11 @@ export default function NearbyProjects({ localities }: { localities: LocalityOpt
         </div>
       </div>
 
-      {(state.k === 'idle' || state.k === 'ready' || state.k === 'empty') && picker}
+      {/* Always mounted (only disabled while loading) so the section never jumps. */}
+      {picker}
       {state.k === 'idle' && state.note && <p className="hf-note" role="status">{state.note}</p>}
 
-      {state.k === 'loading' && (
+      {state.k === 'loading' && !shown && (
         <div className="hf-track" aria-busy="true" aria-label="Loading nearby projects">
           {[0, 1, 2, 3].map((i) => <div key={i} className="hf-slide"><div className="hf-card hf-skel" aria-hidden="true"><span /><span /><span /></div></div>)}
         </div>
@@ -156,12 +182,14 @@ export default function NearbyProjects({ localities }: { localities: LocalityOpt
         </div>
       )}
 
-      {state.k === 'ready' && (
-        <Carousel label={title}>
-          {state.data.projects.map((p) => (
-            <HomeProjectCard key={p.number} card={p} distanceKm={state.picked ? undefined : p.distanceKm} />
-          ))}
-        </Carousel>
+      {shown && (
+        <div className={refreshing ? 'hf-refreshing' : undefined} aria-busy={refreshing}>
+          <Carousel label={title}>
+            {shown.data.projects.map((p) => (
+              <HomeProjectCard key={p.number} card={p} distanceKm={shown.picked ? undefined : p.distanceKm} />
+            ))}
+          </Carousel>
+        </div>
       )}
     </section>
   );
