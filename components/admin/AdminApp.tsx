@@ -19,6 +19,7 @@ import DeveloperApiPanel from './DeveloperApiPanel';
 import WhatsAppPanel from './WhatsAppPanel';
 import PinsDataPanel from './PinsDataPanel';
 import SubscriptionsPanel from './SubscriptionsPanel';
+import EventRegistrationsPanel from './EventRegistrationsPanel';
 import DevProjectAccess from './DevProjectAccess';
 import ShareLinkButton from './ShareLinkButton';
 import { PageHead, StatCard } from './PageHead';
@@ -54,6 +55,7 @@ const TAB_META: Record<string, { label: string; icon: string; desc: string }> = 
   projects: { label: 'Developer projects', icon: 'fa-map-pin', desc: 'Approve & publish to the map' },
   leads: { label: 'Leads', icon: 'fa-address-book', desc: 'Enquiries & lead pipeline' },
   whatsapp: { label: 'WhatsApp', icon: 'fa-comments', desc: 'Chats, auto-replies & automations' },
+  events: { label: 'Event registrations', icon: 'fa-champagne-glasses', desc: 'App launch event sign-ups' },
   buyerleads: { label: 'Buyer leads', icon: 'fa-people-roof', desc: 'Buyer requirements & lead sources' },
   accounts: { label: 'Accounts', icon: 'fa-users', desc: 'Buyer, developer & partner sign-ups' },
   backups: { label: 'Backups', icon: 'fa-database', desc: 'Backups & recycle bin' },
@@ -72,7 +74,7 @@ const TAB_META: Record<string, { label: string; icon: string; desc: string }> = 
 const NAV: { key: string; label: string; icon: string; tabs: string[] }[] = [
   { key: 'overview', label: 'Overview', icon: 'fa-house', tabs: ['dashboard'] },
   { key: 'mapproj', label: 'Map & Projects', icon: 'fa-map', tabs: ['map', 'pinsdata', 'intake', 'projects'] },
-  { key: 'leads', label: 'CRM & Leads', icon: 'fa-user-group', tabs: ['leads', 'buyerleads', 'accounts'] },
+  { key: 'leads', label: 'CRM & Leads', icon: 'fa-user-group', tabs: ['leads', 'events', 'buyerleads', 'accounts'] },
   { key: 'developers', label: 'Developers', icon: 'fa-building', tabs: ['developers'] },
   { key: 'content', label: 'Content & SEO', icon: 'fa-file-lines', tabs: ['blogs', 'seo'] },
   { key: 'comms', label: 'Communication', icon: 'fa-comment-dots', tabs: ['whatsapp'] },
@@ -3791,10 +3793,10 @@ export default function AdminApp({ user }: { user: AdminUser }) {
   const { flash, node: toastNode } = useToast();
 
   const visible = isOwner
-    ? ['dashboard', 'map', 'pinsdata', 'developers', 'projects', 'intake', 'leads', 'buyerleads', 'whatsapp', 'accounts', 'blogs', 'employees', 'backups', 'devapi', 'subscriptions', 'seo', 'settings', 'profile']
+    ? ['dashboard', 'map', 'pinsdata', 'developers', 'projects', 'intake', 'leads', 'events', 'buyerleads', 'whatsapp', 'accounts', 'blogs', 'employees', 'backups', 'devapi', 'subscriptions', 'seo', 'settings', 'profile']
     // Employees get no site-wide Dashboard overview — they open straight on their
     // leads (only the ones transferred to them), plus any other tab the super admin granted.
-    : [...GRANTABLE.map((g) => g.key).filter((k) => user.permissions.includes(k)).sort((a, b) => Number(b === 'leads') - Number(a === 'leads')).flatMap((k) => (k === 'intake' ? ['projects', 'intake'] : k === 'map' ? ['map', 'pinsdata', 'developers'] : [k])), 'profile'];
+    : [...GRANTABLE.map((g) => g.key).filter((k) => user.permissions.includes(k)).sort((a, b) => Number(b === 'leads') - Number(a === 'leads')).flatMap((k) => (k === 'intake' ? ['projects', 'intake'] : k === 'leads' ? ['leads', 'events'] : k === 'map' ? ['map', 'pinsdata', 'developers'] : [k])), 'profile'];
 
   const navGroups = NAV.map((g) => ({ ...g, tabs: g.tabs.filter((k) => visible.includes(k)) })).filter((g) => g.tabs.length);
   const [tab, setTab] = useState(visible[0] || 'dashboard');
@@ -4223,6 +4225,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
               <WhatsAppPanel flash={flash} onOpenLead={visible.includes('leads') ? (id) => { setLeadFocus(id); setTab('leads'); } : undefined} />
             </div>
           )}
+          {tab === 'events' && <EventRegistrationsPanel flash={flash} onOpenLeads={() => setTab('leads')} />}
           {tab === 'buyerleads' && isOwner && <BuyerLeadsPanel flash={flash} onOpenLeads={() => setTab('leads')} />}
           {tab === 'projects' && (
             <div className="pg-wrap pg-projects">

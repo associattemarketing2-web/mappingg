@@ -122,73 +122,120 @@ export default async function ProjectDetail({ params }: { params: { slug: string
     card.possession && { k: 'Possession', v: card.possession },
   ].filter(Boolean) as { k: string; v: string }[];
   const enquireHref = `/contact?project=${encodeURIComponent(name)}&pin=${pin.number}`;
+  const mapHref = `/map?pin=${encodeURIComponent(pin.id)}`;
+  const status = (pin.status || '').toLowerCase();
+  const rera = reraNumber(pin.rera_number);
+  // "Tower | 1 BHK homes | Lobby" (or one per line) → a bulleted list.
+  const highlights = (pin.key_usp || '').split(/\s*(?:\||\n|•)\s*/).map((h) => h.trim()).filter(Boolean).slice(0, 8);
+  // Drop the empty "()" left in descriptions whose RERA id was never filled in.
+  const about = (pin.description || '').replace(/\s*\(\s*\)/g, '').trim();
 
   return (
     <SeoShell crumbs={crumbs}>
       <TrackOnView event="view_item" params={{ item_id: pin.number, item_name: name, locality: loc, city: cityKey }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(...schemas) }} />
 
-      <header className="seo-hero">
-        <div className="eyebrow">{[loc, city].filter(Boolean).join(' · ') || 'Project'}</div>
-        <h1>{name}</h1>
-        {pin.key_usp && <p className="lede">{pin.key_usp}</p>}
+      <header className="pd-hero">
+        <div className="pd-hero-top">
+          {hasCover && (
+            // The pin image is usually the developer's logo: shown whole on white, never cropped.
+            <div className="pd-logo">
+              {/* eslint-disable-next-line @next/next/no-img-element -- optimized WebP via /api/media; next/image disabled site-wide (images.unoptimized) */}
+              <img
+                src={pin.image!}
+                alt={`${name}${pin.developer ? ` by ${pin.developer}` : ''}${loc ? ` in ${loc}, ${city}` : ''}`}
+                width={160}
+                height={160}
+                decoding="async"
+                fetchPriority="high"
+              />
+            </div>
+          )}
+          <div className="pd-hero-copy">
+            <div className="pd-tags">
+              {pin.status && <span className={`pd-status st-${status}`}><i aria-hidden="true" />{statusLabel(pin.status)}</span>}
+              {pin.type && <span className="pd-tag">{typeLabel(pin.type)}</span>}
+              {rera && <span className="pd-tag pd-tag-rera"><i className="fas fa-circle-check" aria-hidden="true" /> RERA</span>}
+            </div>
+            <h1>{name}</h1>
+            <p className="pd-where">
+              <i className="fas fa-location-dot" aria-hidden="true" />
+              <span>
+                {[loc, city].filter(Boolean).join(', ') || 'Location on the live map'}
+                {pin.developer && <> · by <b>{pin.developer}</b></>}
+              </span>
+            </p>
+          </div>
+        </div>
+
         {keyFacts.length > 0 && (
-          <dl className="seo-keyfacts">
-            {keyFacts.map((f) => <div key={f.k}><dt>{f.k}</dt><dd>{f.v}</dd></div>)}
+          <dl className="pd-facts">
+            {keyFacts.map((f) => (
+              <div key={f.k} className={f.k === 'Price' ? 'price' : undefined}>
+                <dt>{f.k}</dt>
+                <dd>{f.v}</dd>
+              </div>
+            ))}
           </dl>
         )}
-        <div className="seo-cta">
-          <Link className="primary" href={enquireHref}>Enquire now</Link>
+
+        <div className="pd-cta">
+          <Link className="pd-btn pd-btn-solid" href={enquireHref}>
+            Enquire now <i className="fas fa-arrow-right" aria-hidden="true" />
+          </Link>
+          <Link className="pd-btn pd-btn-line" href={mapHref}>
+            <i className="fas fa-map-location-dot" aria-hidden="true" /> See on live map
+          </Link>
         </div>
         {pin.updated_at && (
-          <p style={{ fontSize: '0.82rem', color: '#646e7a', marginTop: 10 }}>
-            Last updated: {fmtDate(pin.updated_at)} · <Link href="/data-sources">How we source and check project data</Link>
+          <p className="pd-updated">
+            Last updated {fmtDate(pin.updated_at)} · <Link href="/data-sources">How we source and check project data</Link>
           </p>
         )}
       </header>
 
-      <div className="seo-detail-head">
-        <div>
-          {hasCover && (
-            // eslint-disable-next-line @next/next/no-img-element -- optimized WebP via /api/media; next/image disabled site-wide (images.unoptimized)
-            <img
-              className="cover"
-              src={pin.image!}
-              alt={`${name}${pin.developer ? ` by ${pin.developer}` : ''}${loc ? ` in ${loc}, ${city}` : ''}`}
-              width={720}
-              height={450}
-              decoding="async"
-              fetchPriority="high"
-            />
+      <div className="pd-body">
+        <div className="pd-main">
+          {highlights.length > 0 && (
+            <section className="pd-card">
+              <h2>Highlights</h2>
+              <ul className="pd-highlights">
+                {highlights.map((h) => (
+                  <li key={h}><i className="fas fa-check" aria-hidden="true" />{h}</li>
+                ))}
+              </ul>
+            </section>
           )}
-          <div className="seo-section seo-prose">
+          <section className="pd-card seo-prose">
             <h2>{name} overview</h2>
             <p>{overview.join(' ')}</p>
-          </div>
-          {pin.description && (
-            <div className="seo-section seo-prose">
+          </section>
+          {about && (
+            <section className="pd-card seo-prose">
               <h2>About {name}</h2>
-              <p>{pin.description}</p>
-            </div>
+              <p>{about}</p>
+            </section>
           )}
-          <div className="seo-cta">
-            <Link className="primary" href={enquireHref}>Enquire about this project</Link>
-            <Link className="ghost" href="/map">See on live map</Link>
-          </div>
         </div>
 
-        <div>
-          {specs.length > 0 && (
-            <ul className="seo-specs" aria-label="Project details">
-              {specs.map((r) => (
-                <li key={r.k}>
-                  <span className="k">{r.k}</span>
-                  <span className="v">{r.v}</span>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+        {specs.length > 0 && (
+          <aside className="pd-side">
+            <div className="pd-card pd-specs-card">
+              <h2>Project details</h2>
+              <ul className="pd-specs" aria-label="Project details">
+                {specs.map((r) => (
+                  <li key={r.k}>
+                    <span className="k">{r.k}</span>
+                    <span className="v">{r.v}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link className="pd-btn pd-btn-solid pd-btn-block" href={enquireHref}>
+                Enquire about this project
+              </Link>
+            </div>
+          </aside>
+        )}
       </div>
 
       {vid && (

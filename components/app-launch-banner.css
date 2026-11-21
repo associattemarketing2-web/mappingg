@@ -1,0 +1,29 @@
+/* "Mappingg app coming soon" floating card + confetti (components/AppLaunchBanner.tsx). */
+.alb-confetti { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 1200; }
+.alb {
+  position: fixed; left: 20px; bottom: 20px; z-index: 950; width: 340px; max-width: calc(100vw - 32px);
+  padding: 18px 18px 16px; border-radius: 20px; color: #fff; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: radial-gradient(120% 90% at 100% 0%, rgba(227,168,62,.35), transparent 55%), linear-gradient(145deg, #0f5c47, #0a4535 70%);
+  box-shadow: 0 24px 50px -20px rgba(10,69,53,.65), inset 0 0 0 1px rgba(255,255,255,.08);
+  animation: alb-in .55s cubic-bezier(.2,.9,.3,1.25) both;
+}
+@keyframes alb-in { from { opacity: 0; transform: translateY(24px) scale(.96); } to { opacity: 1; transform: none; } }
+.alb-x { position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; border: 0; border-radius: 50%; background: rgba(255,255,255,.12); color: #fff; cursor: pointer; font-size: 13px; }
+.alb-x:hover { background: rgba(255,255,255,.22); }
+.alb-top { display: flex; gap: 12px; align-items: center; padding-right: 26px; }
+.alb-phone { position: relative; flex: none; display: grid; place-items: center; width: 50px; height: 50px; border-radius: 14px; background: rgba(255,255,255,.12); font-size: 24px; color: #f3d48e; }
+.alb-phone b { position: absolute; right: -8px; top: -10px; font-size: 20px; animation: alb-pop 1.6s ease-in-out infinite; }
+@keyframes alb-pop { 0%, 100% { transform: rotate(-10deg) scale(1); } 50% { transform: rotate(12deg) scale(1.18); } }
+.alb-tag { display: inline-flex; gap: 6px; align-items: center; padding: 3px 9px; border-radius: 999px; background: #e3a83e; color: #2b1d02; font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.alb h3 { margin: 6px 0 0; font-size: 17px; line-height: 1.25; font-weight: 800; color: #fff; }
+.alb p { margin: 12px 0 0; font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,.85); }
+.alb-stores { display: flex; gap: 8px; margin-top: 12px; }
+.alb-stores span { display: inline-flex; gap: 6px; align-items: center; padding: 6px 10px; border-radius: 10px; background: rgba(0,0,0,.25); border: 1px solid rgba(255,255,255,.15); font-size: 12px; font-weight: 600; }
+.alb-cta { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 14px; padding: 11px 14px; border-radius: 12px; background: #fff; color: #0a4535; font-weight: 700; font-size: 14px; text-decoration: none; transition: transform .15s; }
+.alb-cta:hover { transform: translateY(-1px); }
+@media (max-width: 720px) {
+  /* Above the phone-only sticky action bar. */
+  .alb { left: 16px; right: 16px; width: auto; bottom: calc(84px + env(safe-area-inset-bottom)); padding: 14px; }
+  .alb p { font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) { .alb, .alb-phone b { animation: none; } }

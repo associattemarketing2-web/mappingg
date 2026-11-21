@@ -10,6 +10,7 @@ import IconFont from '@/components/IconFont';
 import { trustedLogos } from '@/lib/developers';
 import { trustedDevelopersHtml } from '@/components/landing/trusted-developers';
 import HomeFinder from '@/components/landing/HomeFinder';
+import AppLaunchBanner from '@/components/AppLaunchBanner';
 import { getProjectCards } from '@/lib/home/cards';
 import { homeStats, statsStripHtml, statsBandHtml, mapPreviewHtml, heroSkylinePinsHtml, buyersSectionHtml } from '@/components/landing/home-sections';
 
@@ -84,6 +85,8 @@ export default async function HomePage() {
       <HomeFinder cards={cards} />
       {restHtml && <div className="mpg" dangerouslySetInnerHTML={{ __html: restHtml }} />}
       <LandingClient />
+      {/* "Mappingg app coming soon" celebration card. */}
+      <AppLaunchBanner />
     </>
   );
 }
