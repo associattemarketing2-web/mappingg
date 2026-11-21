@@ -56,6 +56,8 @@ const PHOTOS = {
   'new-projects-in-gurugram': 'Gurgaon skyline.jpg',
   'kharadi-vs-mundhwa-pune': 'Eon IT Park.jpg',
   'hinjewadi-vs-wakad-pune': 'Mula River and construction around it as seen from a building in Hinjawadi.jpg',
+  'baner-vs-balewadi-pune': 'Baner hill Pune wonderful evening view.jpg',
+  'kalyan-vs-dombivli': 'Kala Talao 1.jpg',
 };
 
 const OUT = path.resolve('migration/blog-photos');

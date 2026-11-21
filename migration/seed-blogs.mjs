@@ -3665,8 +3665,8 @@ ${h.table([591, 595, 562, 594, 546, 555, 543, 592, 593, 776], 'Plotted projects 
 const homeSizes = (p) => bhkSizes(String(p.configuration || '').replace(/\bbeds?\b/gi, 'BHK'));
 
 /** Live numbers for one locality: its homes (residential, or mixed-use with BHK sizes), prices, sizes, possession years. */
-function localityStats(h, name) {
-  const inLoc = h.all.filter((p) => localitiesOf(p.location)[0] === name && !PRICE_SKIP.has(Number(p.number)));
+function localityStats(h, name, skip = []) {
+  const inLoc = h.all.filter((p) => localitiesOf(p.location)[0] === name && !PRICE_SKIP.has(Number(p.number)) && !skip.includes(Number(p.number)));
   const homes = inLoc
     .filter((p) => p.status !== 'sold')
     .filter((p) => /residential/i.test(p.type || '') || (/mixed/i.test(p.type || '') && homeSizes(p).length));
@@ -3879,6 +3879,162 @@ ${h.table([270, 271, 246, 117, 280, 320], 'New home projects in Wakad')}
   };
 }
 
+function banerVsBalewadiArticle(h) {
+  // #293 Rohan Leher II declares a December 2019 possession date, so it would skew
+  // the possession-year row; it is shown in the tables but left out of the numbers.
+  const b = localityStats(h, 'Baner', [293]);
+  const bw = localityStats(h, 'Balewadi');
+  const lowerMedian = cheaper(b, bw, (s) => s.med);
+  const lowerRate = cheaper(b, bw, (s) => s.rate);
+
+  return {
+    slug: 'baner-vs-balewadi-pune',
+    title: 'Baner vs Balewadi (2026): Flat Prices, BHK Options & Which to Choose',
+    seo_title: 'Baner vs Balewadi: Flat Prices & Projects Compared',
+    seo_description:
+      `Baner vs Balewadi compared from live data: ${b.homes.length} vs ${bw.homes.length} home projects, starting prices, 2, 3 & 4 BHK options, ₹/sq ft, possession years and who each area suits.`,
+    excerpt:
+      'Baner and Balewadi share a border, a high street and a buyer profile, but their new projects are not the same. We compared every home project on our map in both, on price, home sizes, possession and developers.',
+    tags: ['Baner', 'Balewadi', 'Pune', 'Locality Comparison', 'West Pune'],
+    cover: {
+      theme: 'dusk',
+      kicker: 'Locality comparison',
+      lines: ['Baner', 'vs Balewadi', 'Which to Buy In?'],
+      stats: [[`${b.homes.length} vs ${bw.homes.length}`, 'home projects'], [`${lakh(b.med)} / ${lakh(bw.med)}`, 'median start'], ['West Pune', 'side by side']],
+    },
+    content: `
+<p><strong>Baner or Balewadi?</strong> The two are next-door neighbours in West Pune, so close that many buyers treat them as one area. Both sit between Aundh and the Mumbai–Bengaluru highway, both are within the Pune Municipal Corporation, and both are a short drive from the Hinjewadi IT park. Baner is the older, busier of the two, built along Baner Road with Baner Hill behind it. Balewadi grew up around the Shree Shiv Chhatrapati Sports Complex and is now known for Balewadi High Street’s restaurants and offices.</p>
+<p>To compare them fairly, we took every home project we track in both on the <a href="/map">Mappingg live map</a>: ${b.homes.length} in ${h.loc('Baner')} and ${bw.homes.length} in ${h.loc('Balewadi')}. The figures below are worked out from those projects’ listed details.</p>
+
+<h2>Baner vs Balewadi at a glance</h2>
+${versusTable(b, bw, 'Baner vs Balewadi: new home projects on Mappingg')}
+<p>${lowerMedian ? `On median starting price, <strong>${lowerMedian}</strong> is the cheaper of the two today` : 'Median starting prices are close in the two localities'}${lowerRate ? `, and on the rough price per sq ft, <strong>${lowerRate}</strong> comes out lower` : ''}. Both are small markets for new homes because most of the land is already built on, so each new launch matters. Balewadi has more projects on our map right now, from compact 1 RK units to 4.5 BHK homes; Baner’s new projects are mostly 2 and 3 BHK, with one large 4 BHK project at the top.</p>
+
+<h2>New projects in Baner</h2>
+<p>${h.link(201)} and ${h.link(464)} are the entry points, with 2 and 3 BHK homes starting a little above ₹1 Cr. ${h.link(215)} is a premium project of 4 and 4.5 BHK homes over 2,000 sq ft. ${h.link(293)} is an older Rohan project whose declared completion date has passed, so ask the developer which towers still have homes and when they will be handed over.</p>
+${h.gallery([201, 215])}
+${h.table([201, 464, 215, 293], 'New home projects in Baner')}
+
+<h2>New projects in Balewadi</h2>
+<p>Balewadi has the wider spread. ${h.link(327)} by Krisala offers compact 1 RK and 1 BHK units, which mostly suit investors or single professionals. For families, ${h.link(230)}, ${h.link(200)} and ${h.link(217)} offer 2 BHK homes from about ₹1 Cr to ₹1.5 Cr, with larger homes in the same projects. ${h.link(216)} is 3 and 4 BHK, and ${h.link(162)} by Kundan Spaces offers 4 and 4.5 BHK homes due in 2031.</p>
+${h.gallery([200, 216, 217, 162])}
+${h.table([327, 230, 200, 217, 216, 162], 'New home projects in Balewadi')}
+<p>Also see <a href="/cities/pune/2-bhk-flats">all 2 BHK flats in Pune</a>, <a href="/cities/pune/3-bhk-flats">3 BHK flats in Pune</a> and our wider <a href="/blog/new-projects-in-hinjewadi-baner-balewadi-pune">Hinjewadi, Baner and Balewadi guide</a>.</p>
+
+<h2>Which one suits you?</h2>
+<div class="table-scroll"><table>
+<caption>Baner or Balewadi: a quick guide</caption>
+<thead><tr><th>If you…</th><th>Look first in</th></tr></thead>
+<tbody>
+<tr><td>Want the lowest entry price, or a small unit to rent out</td><td>Balewadi</td></tr>
+<tr><td>Want a 2 or 3 BHK from about ₹1 Cr – ₹1.8 Cr</td><td>Both: compare the two tables above</td></tr>
+<tr><td>Want a large 4 BHK</td><td>Both: Majestique Elements in Baner, or Kundan Arvaana and Majestique Twilight in Balewadi</td></tr>
+<tr><td>Commute towards Aundh, University Road or Shivajinagar</td><td>Baner</td></tr>
+<tr><td>Commute to Hinjewadi or use the Mumbai–Bengaluru highway daily</td><td>Balewadi, or Baner near the highway end</td></tr>
+<tr><td>Want an established market with schools and hospitals close by</td><td>Baner</td></tr>
+</tbody></table></div>
+<p>Baner Road and the roads around Balewadi Phata are slow at peak hours, so drive your commute at the time you would actually travel. Pune Metro Line 3 (Hinjewadi–Shivajinagar), being built by PMRDA, is planned to serve this corridor; check its current status on the PMRDA website rather than relying on a brochure.</p>
+
+<h2>Checks that apply in both</h2>
+<ol>
+  <li><strong>Verify the MahaRERA registration</strong> and the declared completion date for your tower. See <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>.</li>
+  <li><strong>Compare on carpet area.</strong> Our <a href="/blog/carpet-area-vs-built-up-vs-super-built-up-area">carpet vs built-up area guide</a> explains why brochure sizes can mislead.</li>
+  <li><strong>Add the extra costs:</strong> <a href="/blog/stamp-duty-registration-charges-pune">stamp duty and registration</a>, <a href="/blog/gst-on-flats-under-construction-ready-to-move">GST</a>, parking and maintenance deposits.</li>
+  <li><strong>For small investment units</strong>, ask what rent similar units nearby actually get, and what the maintenance charge will be. Our <a href="/blog/maintenance-charges-sinking-fund-society-handover-pune">maintenance charges guide</a> covers what to ask.</li>
+</ol>
+
+<h2>FAQs: Baner vs Balewadi</h2>
+<h3>Is Baner or Balewadi cheaper?</h3>
+<p>Among projects on our map, the lowest starting price is ${lakh(b.lo)} in Baner and ${lakh(bw.lo)} in Balewadi, and the median starting prices are ${lakh(b.med)} and ${lakh(bw.med)}. Balewadi’s lowest figure is for a compact 1 RK unit, so compare cost sheets for the same home size before you decide.</p>
+<h3>Are Baner and Balewadi the same area?</h3>
+<p>No. They are separate localities that share a border, and both fall under the Pune Municipal Corporation. Balewadi High Street is in Balewadi, close to the Baner side.</p>
+<h3>Where can I see them on a map?</h3>
+<p>Open the <a href="/map">live map</a> and zoom into West Pune, or browse the ${h.loc('Baner', 'Baner')} and ${h.loc('Balewadi', 'Balewadi')} pages. To compare more areas, see <a href="/blog/flat-prices-in-pune-by-locality-and-bhk">flat prices in Pune by locality</a> and <a href="/blog/hinjewadi-vs-wakad-pune">Hinjewadi vs Wakad</a>.</p>
+
+<blockquote>All figures are computed from the projects listed on Mappingg when this guide was updated (November 2026): developers’ listed starting prices, configurations and declared possession dates. They change often and are not an offer. Confirm the price, carpet area and dates with the developer and on MahaRERA before you book.</blockquote>
+`,
+  };
+}
+
+function kalyanVsDombivliArticle(h) {
+  const k = localityStats(h, 'Kalyan');
+  const d = localityStats(h, 'Dombivli');
+  const lowerMedian = cheaper(k, d, (s) => s.med);
+  const lowerRate = cheaper(k, d, (s) => s.rate);
+
+  return {
+    slug: 'kalyan-vs-dombivli',
+    title: 'Kalyan vs Dombivli (2026): Flat Prices, 1 & 2 BHK Options and Which to Choose',
+    seo_title: 'Kalyan vs Dombivli: Flat Prices & Projects Compared',
+    seo_description:
+      `Kalyan vs Dombivli compared from live data: ${k.homes.length} vs ${d.homes.length} home projects, starting prices from ${lakh(k.lo)} and ${lakh(d.lo)}, 1, 2 & 3 BHK options, ₹/sq ft and possession years.`,
+    excerpt:
+      'Kalyan and Dombivli are two of the most affordable places to buy a new flat within reach of Mumbai. We compared every home project on our map in both, on price, home sizes, possession and developers.',
+    tags: ['Kalyan', 'Dombivli', 'Mumbai', 'Thane', 'Locality Comparison'],
+    cover: {
+      theme: 'sky',
+      kicker: 'Locality comparison',
+      lines: ['Kalyan', 'vs Dombivli', 'Which to Buy In?'],
+      stats: [[`${k.homes.length} vs ${d.homes.length}`, 'home projects'], [`${lakh(k.lo)} / ${lakh(d.lo)}`, 'lowest start'], ['Central line', 'side by side']],
+      tagline: 'Pune & Mumbai’s live real-estate map',
+    },
+    content: `
+<p><strong>Kalyan or Dombivli?</strong> For many families who work in Mumbai or Thane, these two are where a 1 or 2 BHK becomes affordable. Both are on the Central Railway suburban line and both are run by the Kalyan-Dombivli Municipal Corporation (KDMC). Dombivli is a station closer to Mumbai and is known as a settled, largely residential town. Kalyan is the bigger rail junction, where the lines to Kasara and Karjat split, and has more large townships on its edges.</p>
+<p>To compare them, we took every home project we track in both on the <a href="/cities/mumbai">Mappingg map of Mumbai</a>: ${k.homes.length} in ${h.loc('Kalyan')} and ${d.homes.length} in ${h.loc('Dombivli')}. The figures below are worked out from those projects’ listed details.</p>
+
+<h2>Kalyan vs Dombivli at a glance</h2>
+${versusTable(k, d, 'Kalyan vs Dombivli: new home projects on Mappingg')}
+<p>${lowerMedian ? `On median starting price, <strong>${lowerMedian}</strong> is the cheaper of the two today` : 'Median starting prices are close in the two localities'}${lowerRate ? `, and on the rough price per sq ft, <strong>${lowerRate}</strong> comes out lower` : ''}. In both, most new projects start with a 1 BHK below ₹60 Lacs, which is rare this close to Mumbai. Kalyan has more projects and more large townships; Dombivli’s list is shorter but includes some of the lowest entry prices on our map.</p>
+
+<h2>New projects in Kalyan</h2>
+<p>Lodha is the biggest developer here, with ${h.link(123)} (1 and 2 BHK from about ₹42 Lacs), ${h.link(122)} and the 3 BHK ${h.link(121)}. ${h.link(120)} by Runwal is a large mixed-use township with homes from 1 to 4 BHK. Smaller developers’ projects such as ${h.link(154)}, ${h.link(223)}, ${h.link(124)} and ${h.link(222)} start between about ₹44 Lacs and ₹60 Lacs. ${h.link(697)} by Birla Estates has not published a price on our map yet.</p>
+${h.gallery([123, 120, 154, 223, 124, 121])}
+${h.table([123, 154, 223, 120, 124, 122, 222, 121, 697], 'New home projects in Kalyan')}
+<p>For offices and clinics, ${h.link(125)} and ${h.link(932)} by Lodha are on our map.</p>
+
+<h2>New projects in Dombivli</h2>
+<p>${h.link(153)} has the lowest starting price on our map in either town, with 1 and 2 BHK homes from ₹35 Lacs, though its declared completion is December 2031. ${h.link(192)} lists 2 BHK homes as ready for possession. ${h.link(152)} by Rustomjee and ${h.link(155)} offer 1, 2 and 3 BHK homes due in 2028, and Lodha has ${h.link(180)} and ${h.link(930)} for larger 2 and 3 BHK homes.</p>
+${h.gallery([153, 192, 152, 155, 180])}
+${h.table([153, 192, 152, 155, 180, 930], 'New home projects in Dombivli')}
+<p>Nearby, the ${h.loc('Palava', 'Palava')} township between the two towns is covered in our <a href="/blog/new-projects-in-kalyan-dombivli-palava-thane">Kalyan, Dombivli, Palava and Thane guide</a>.</p>
+
+<h2>Which one suits you?</h2>
+<div class="table-scroll"><table>
+<caption>Kalyan or Dombivli: a quick guide</caption>
+<thead><tr><th>If you…</th><th>Look first in</th></tr></thead>
+<tbody>
+<tr><td>Want the lowest possible entry price for a new 1 BHK</td><td>${cheaper(k, d, (s) => s.lo) || 'Either: compare the tables above'}</td></tr>
+<tr><td>Want a flat you can move into soon</td><td>Dombivli (check Kohinoor Highland’s possession status), or the ready phases of Kalyan townships</td></tr>
+<tr><td>Want a large township with its own amenities</td><td>Kalyan</td></tr>
+<tr><td>Commute daily to Thane or Mumbai by local train</td><td>Dombivli is one stop closer; both have fast trains</td></tr>
+<tr><td>Travel often towards Karjat, Kasara, Nashik or Pune</td><td>Kalyan, for the junction</td></tr>
+<tr><td>Want a 3 BHK</td><td>Both: Lodha Opulis in Kalyan, or Rustomjee Urban Woods and Lodha Casa Belvedere in Dombivli</td></tr>
+</tbody></table></div>
+<p>Distance from the station matters more than the town name: a project 15 minutes by road from the station adds that to every commute. Mumbai Metro Line 5 (Thane–Bhiwandi–Kalyan) is being built by MMRDA; check its current status on the MMRDA website rather than relying on a brochure’s promise.</p>
+
+<h2>Checks that apply in both</h2>
+<ol>
+  <li><strong>Verify the MahaRERA registration</strong> for your exact tower and phase. Large townships often have several registrations with different completion dates. See <a href="/blog/how-to-check-maharera-registration-number">how to check a MahaRERA number</a>.</li>
+  <li><strong>Compare on carpet area.</strong> At these budgets, a 1 BHK can be anywhere from about 320 to 520 sq ft. Our <a href="/blog/carpet-area-vs-built-up-vs-super-built-up-area">carpet vs built-up area guide</a> explains how to compare.</li>
+  <li><strong>Ask about water supply</strong> and how the project is served by KDMC today and after possession.</li>
+  <li><strong>Work out the full cost</strong>, including stamp duty, registration, <a href="/blog/gst-on-flats-under-construction-ready-to-move">GST</a> and parking, and check your <a href="/blog/home-loan-emi-eligibility-pune">home loan EMI and eligibility</a>.</li>
+</ol>
+
+<h2>FAQs: Kalyan vs Dombivli</h2>
+<h3>Is Kalyan or Dombivli cheaper?</h3>
+<p>Among projects on our map, the lowest starting price is ${lakh(k.lo)} in Kalyan and ${lakh(d.lo)} in Dombivli, and the median starting prices are ${lakh(k.med)} and ${lakh(d.med)}. Compare cost sheets for the same carpet area before you decide.</p>
+<h3>Which has more new projects?</h3>
+<p>${k.homes.length >= d.homes.length ? 'Kalyan' : 'Dombivli'}: ${k.homes.length} home projects on our map in Kalyan against ${d.homes.length} in Dombivli.</p>
+<h3>Are Kalyan and Dombivli in the same municipal corporation?</h3>
+<p>Yes. Both are part of the Kalyan-Dombivli Municipal Corporation in Thane district. Some projects just outside its limits, such as parts of the Kalyan–Shil Road belt, may be under a different planning authority, so ask the developer who approved the plans for your project.</p>
+<h3>Where can I see them on a map?</h3>
+<p>Open the <a href="/map">live map</a>, or browse the ${h.loc('Kalyan', 'Kalyan')} and ${h.loc('Dombivli', 'Dombivli')} pages. To compare across the region, see <a href="/blog/flats-in-mumbai-thane-navi-mumbai-by-bhk-and-budget">flats in Mumbai, Thane and Navi Mumbai by BHK and budget</a>.</p>
+
+<blockquote>All figures are computed from the projects listed on Mappingg when this guide was updated (November 2026): developers’ listed starting prices, configurations and declared possession dates. They change often and are not an offer. Confirm the price, carpet area and dates with the developer and on MahaRERA before you book.</blockquote>
+`,
+  };
+}
+
 const PHOTO_DIR = path.resolve('migration/blog-photos');
 const CREDITS = JSON.parse(await readFile(path.join(PHOTO_DIR, 'credits.json'), 'utf8'));
 
@@ -3894,6 +4050,8 @@ const PHOTO_POSITION = {
   'flats-in-mumbai-thane-navi-mumbai-by-bhk-and-budget': 'bottom',
   'gst-on-flats-under-construction-ready-to-move': 'top',
   'hinjewadi-vs-wakad-pune': 'bottom',
+  'baner-vs-balewadi-pune': 'bottom',
+  'kalyan-vs-dombivli': 'centre',
 };
 
 /** CC licences require attribution and a note that the photo was changed. */
@@ -3989,6 +4147,8 @@ async function main() {
     () => gurugramArticle(h),
     () => kharadiVsMundhwaArticle(h),
     () => hinjewadiVsWakadArticle(h),
+    () => banerVsBalewadiArticle(h),
+    () => kalyanVsDombivliArticle(h),
   ];
   let articles = [];
   for (const build of builders) {
