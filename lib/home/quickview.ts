@@ -1,4 +1,5 @@
 import { getDb } from '@/lib/mongodb';
+import { query } from '@/lib/pg';
 import { cachedRead } from '@/lib/data-cache';
 import { logosByName, normDev } from '@/lib/developers';
 import { getPinsByNumber, slugForProject, typeLabel } from '@/lib/seo/entities';
@@ -42,6 +43,11 @@ const mediaUrl = (v: unknown) => {
   if (/^https:\/\//.test(s)) return s;
   if (/^\/api\/partners\/storage\?bucket=project-media&[^"'<>\s]*public=1/.test(s)) return s;
   return '';
+};
+/** "IGBC certified · Gold rating" from the Projects Intake fields, or '' (none / not set). */
+const greenLabel = (cert: unknown, rating: unknown) => {
+  const c = str(cert), r = str(rating);
+  return c && !/^none$/i.test(c) ? [`${c} certified`, r && `${r} rating`].filter(Boolean).join(' · ') : '';
 };
 const pos = (v: unknown) => { const n = Number(v); return Number.isFinite(n) && n > 0 ? n : null; };
 const list = (v: unknown) => (Array.isArray(v) ? v : []);
@@ -130,7 +136,6 @@ export async function getQuickView(number: number): Promise<QuickView | null> {
   ].filter(Boolean).slice(0, 4) as string[];
 
   const ytOk = (u: string) => (/^https:\/\/(www\.)?(youtube\.com|youtu\.be)\//.test(u) ? u : '');
-  const greenCert = str(intake?.green_certification);
   return {
     ...card,
     rera,
@@ -149,6 +154,25 @@ export async function getQuickView(number: number): Promise<QuickView | null> {
     configs,
     units: unitRows,
     highlights,
-    green: greenCert && !/^none$/i.test(greenCert) ? [`${greenCert} certified`, str(intake?.green_rating) && `${str(intake?.green_rating)} rating`].filter(Boolean).join(' · ') : '',
+    green: greenLabel(intake?.green_certification, intake?.green_rating),
   };
 }
+
+/**
+ * Green certification per live pin number, from each pin's live Projects Intake
+ * record ({ 937: "IGBC certified · Gold rating" }). For the map's pin card, which
+ * shows it without opening the full details — unlike /api/project-quickview this
+ * is never counted against a buyer's or channel partner's plan.
+ */
+export const getGreenByNumber = cachedRead('map-green', ['projects', 'pins'], 600, async (): Promise<Record<string, string>> => {
+  const { rows } = await query<{ n: string; cert: string | null; rating: string | null }>(
+    `SELECT p.doc->>'number' AS n, pr.doc->>'green_certification' AS cert, pr.doc->>'green_rating' AS rating
+       FROM pins p
+       JOIN projects pr ON pr.id::text = p.doc->>'intake_project_id' OR pr.doc->>'pin_id' = p.id::text
+      WHERE COALESCE(p.doc->>'hidden', 'false') <> 'true' AND p.doc->>'number' IS NOT NULL
+        AND pr.doc->>'is_live' = 'true' AND COALESCE(pr.doc->>'green_certification', '') <> ''`,
+  );
+  const out: Record<string, string> = {};
+  for (const r of rows) { const g = greenLabel(r.cert, r.rating); if (g && !out[r.n]) out[r.n] = g; }
+  return out;
+});

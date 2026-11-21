@@ -52,6 +52,15 @@ export const CONSENT_FORMS = {
       whatsapp: 'Associatte PropTech (Mappingg) may also message me on WhatsApp or SMS about other projects and offers.',
     },
   },
+  event: {
+    version: 'event-registration-2026-11',
+    source: 'Mappingg Events registration form',
+    text: {
+      enquiry: 'I agree to the Event Terms & Conditions and Privacy Policy, and to be contacted about this event.',
+      call: 'Associatte PropTech (Mappingg) may call me about matching projects and offers.',
+      whatsapp: 'Associatte PropTech (Mappingg) may message me on WhatsApp or SMS about matching projects and offers.',
+    },
+  },
   enquireSignedIn: {
     version: 'signed-in-enquire-2026-10',
     source: 'Signed-in "Enquire now" on the live map',
