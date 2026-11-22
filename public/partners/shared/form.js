@@ -21,6 +21,7 @@ export function createForm(root, opts) {
   const state = {
     values: structuredClone(opts.values || {}),
     flags: structuredClone(opts.flags || {}),
+    notPublic: structuredClone((opts.values && opts.values.not_public) || {}),
     localPreviews: {},
     map: null,
     marker: null
@@ -54,16 +55,28 @@ export function createForm(root, opts) {
     const el = h(`<div class="field ${wide ? 'wide' : ''} ${flag ? 'flagged' : ''}" data-key="${f.key}">
       <div class="field-top">
         <label class="field-label" for="f_${f.key}">${esc(f.label)} ${req}</label>
-        ${opts.flaggable && f.audience === 'builder' ? `<button type="button" class="flag-btn" title="Flag this field for the builder" aria-pressed="${flag ? 'true' : 'false'}">⚑ ${flag ? 'Flagged' : 'Flag'}</button>` : ''}
+        <span class="field-btns">${opts.audience === 'admin' && !opts.readOnly && f.notPublic ? `<button type="button" class="flag-btn np-btn" title="Mark as not publicly available (counts as done in the score)" aria-pressed="${state.notPublic[f.key] ? 'true' : 'false'}">${state.notPublic[f.key] ? '✓ Not public' : 'Not public'}</button>` : ''}
+        ${opts.flaggable && f.audience === 'builder' ? `<button type="button" class="flag-btn" title="Flag this field for the builder" aria-pressed="${flag ? 'true' : 'false'}">⚑ ${flag ? 'Flagged' : 'Flag'}</button>` : ''}</span>
       </div>
       <div class="field-body"></div>
       ${f.help && !opts.readOnly ? `<p class="help">${esc(f.help)}</p>` : ''}
       <div class="flag-note-wrap"></div>
+      <p class="np-msg"${state.notPublic[f.key] ? '' : ' hidden'}>${esc(npText(state.notPublic[f.key]))}</p>
       ${prev && !flag ? `<p class="prev-flag">Flagged last round: “${esc(prev.note)}” — check the fix</p>` : ''}
     </div>`);
     $('.field-body', el).appendChild(inner);
     renderFlagNote(el, f);
-    const btn = $('.flag-btn', el);
+    const npBtn = $('.np-btn', el);
+    if (npBtn) npBtn.addEventListener('click', () => {
+      if (state.notPublic[f.key]) delete state.notPublic[f.key];
+      else state.notPublic[f.key] = { at: new Date().toISOString().slice(0, 10), note: 'Checked by the Mappingg team' };
+      const on = !!state.notPublic[f.key];
+      npBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      npBtn.textContent = on ? '✓ Not public' : 'Not public';
+      const msg = $('.np-msg', el); msg.hidden = !on; msg.textContent = npText(state.notPublic[f.key]);
+      changed();
+    });
+    const btn = $('.flag-btn:not(.np-btn)', el);
     if (btn) btn.addEventListener('click', () => {
       if (state.flags[f.key]) delete state.flags[f.key];
       else state.flags[f.key] = { note: '', at: new Date().toISOString() };
@@ -76,6 +89,8 @@ export function createForm(root, opts) {
     });
     return el;
   }
+
+  function npText(np) { return np ? `Not publicly available — ${np.note || 'checked'}${np.at ? ` (${np.at})` : ''}` : ''; }
 
   function renderFlagNote(el, f) {
     const box = $('.flag-note-wrap', el);
@@ -431,5 +446,7 @@ export function createForm(root, opts) {
     changed();
   }
 
-  return { getValues, getFlags, invalidNumbers, focusField, setValue, state };
+  function getNotPublic() { return structuredClone(state.notPublic); }
+
+  return { getValues, getFlags, getNotPublic, invalidNumbers, focusField, setValue, state };
 }

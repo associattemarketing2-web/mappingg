@@ -29,6 +29,7 @@ export const OPTIONS = {
 // required: needed before a builder can submit
 // publish: needed before an admin can publish (mirrors publish_blockers() in SQL)
 // score: counts toward the completeness score
+// notPublic: the Mappingg team can mark it "Not publicly available" (sub.not_public[key] = {at, note}); counts as done
 export const FIELDS = [
   // ----- Builder: Project basics -----
   { key: 'project_name', label: 'Project name', type: 'text', audience: 'builder', group: 'basics', required: true, publish: true, score: true,
@@ -37,7 +38,7 @@ export const FIELDS = [
     excel: 'Project Type', aliases: ['type', 'property type'] },
   { key: 'construction_status', label: 'Construction status', type: 'select', options: 'construction_status', audience: 'builder', group: 'basics', score: true,
     excel: 'Construction Status', aliases: ['status', 'project status'] },
-  { key: 'sales_status', label: 'Sales status', type: 'select', options: 'sales_status', audience: 'builder', group: 'basics', score: true,
+  { key: 'sales_status', label: 'Sales status', type: 'select', options: 'sales_status', audience: 'builder', group: 'basics', score: true, notPublic: true,
     excel: 'Sales Status', aliases: ['availability', 'inventory status'] },
   { key: 'developer_name', label: 'Developer name', type: 'text', audience: 'builder', group: 'basics', required: true, score: true,
     excel: 'Developer Name', aliases: ['developer', 'builder', 'builder name', 'developer / builder'] },
@@ -89,7 +90,7 @@ export const FIELDS = [
     help: 'Optional. One row per unit type. Leave the price empty or write "On request" if it is not public.' },
 
   // ----- Builder: Timeline & registration -----
-  { key: 'launch_date', label: 'Launch date', type: 'month', audience: 'builder', group: 'timeline', score: true,
+  { key: 'launch_date', label: 'Launch date', type: 'month', audience: 'builder', group: 'timeline', score: true, notPublic: true,
     excel: 'Launch Date (MMM-YYYY)', aliases: ['launch date', 'approximate launch date', 'launch'] },
   { key: 'possession_date_rera', label: 'Possession date as per RERA', type: 'month', audience: 'builder', group: 'timeline', score: true,
     excel: 'RERA Possession Date (MMM-YYYY)', aliases: ['rera possession', 'rera possession date', 'possession date'] },
@@ -108,14 +109,14 @@ export const FIELDS = [
   { key: 'cover_image_path', label: 'Cover image', type: 'file', accept: 'image/*', audience: 'builder', group: 'media', score: true,
     help: 'Best shown landscape, at least 1200 px wide. JPG, PNG or WebP.' },
   { key: 'gallery_paths', label: 'Gallery images (up to 10)', type: 'files', accept: 'image/*', max: 10, audience: 'builder', group: 'media', score: true },
-  { key: 'brochure_path', label: 'Brochure (PDF)', type: 'file', accept: 'application/pdf', audience: 'builder', group: 'media', score: true },
-  { key: 'floor_plan_paths', label: 'Floor plans (up to 10)', type: 'files', accept: 'image/*,application/pdf', max: 10, audience: 'builder', group: 'media', score: true,
+  { key: 'brochure_path', label: 'Brochure (PDF)', type: 'file', accept: 'application/pdf', audience: 'builder', group: 'media', score: true, notPublic: true },
+  { key: 'floor_plan_paths', label: 'Floor plans (up to 10)', type: 'files', accept: 'image/*,application/pdf', max: 10, audience: 'builder', group: 'media', score: true, notPublic: true,
     help: 'Images or PDFs of the unit plans.' },
   { key: 'payment_plan_path', label: 'Payment plan', type: 'file', accept: 'image/*,application/pdf', audience: 'builder', group: 'media',
     help: 'Optional. A PDF or image of the payment schedule.' },
   { key: 'tour_360_url', label: '360° virtual tour link', type: 'url', audience: 'builder', group: 'media',
     excel: '360 Tour Link', aliases: ['360 tour', 'virtual tour', '360'] },
-  { key: 'rera_qr_path', label: 'RERA QR code', type: 'file', accept: 'image/*', audience: 'builder', group: 'media', score: true },
+  { key: 'rera_qr_path', label: 'RERA QR code', type: 'file', accept: 'image/*', audience: 'builder', group: 'media', score: true, notPublic: true },
   { key: 'media_folder_link', label: 'Media folder link', type: 'url', audience: 'builder', group: 'media',
     help: 'Optional. A Google Drive or Dropbox folder with more images, floor plans or brochures.',
     excel: 'Media Folder Link (Drive / Dropbox)', aliases: ['media folder', 'drive link', 'project brochure image', 'brochure', 'images link'] },
@@ -140,7 +141,7 @@ export const FIELDS = [
 
   // ----- Admin: Amenities & green -----
   { key: 'amenities', label: 'Amenities', type: 'multiselect', options: 'amenities', audience: 'admin', group: 'amenities', score: true },
-  { key: 'green_certification', label: 'Green certification', type: 'select', options: 'green_certification', audience: 'admin', group: 'amenities', score: true },
+  { key: 'green_certification', label: 'Green certification', type: 'select', options: 'green_certification', audience: 'admin', group: 'amenities', score: true, notPublic: true },
   { key: 'green_rating', label: 'Green rating level', type: 'select', options: 'green_rating', audience: 'admin', group: 'amenities' },
 
   // ----- Admin: Sales contact -----
@@ -192,6 +193,7 @@ export const fieldByKey = Object.fromEntries(FIELDS.map(f => [f.key, f]));
 export const optionsFor = f => (typeof f.options === 'string' ? OPTIONS[f.options] : f.options) || [];
 
 function isFilled(sub, f) {
+  if (f.notPublic && sub.not_public && sub.not_public[f.key]) return true;
   if (f.type === 'pin') return sub.lat != null && sub.lng != null;
   const v = sub[f.key];
   if (Array.isArray(v)) return v.length > 0;

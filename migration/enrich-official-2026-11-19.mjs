@@ -34,6 +34,8 @@ const facts = readFileSync(FACTS, 'utf8').trim().split('\n').filter(Boolean).map
 for (const f of facts) {
   if (!f.id) throw new Error(`fact without pin id: ${f.title}`);
   for (const a of f.am || []) if (!AMENITIES.has(a)) throw new Error(`${f.title}: unknown amenity ${a}`);
+  if (f.possRera && !/^\d{4}-\d{2}$/.test(f.possRera)) throw new Error(`${f.title}: bad RERA possession ${f.possRera}`);
+  for (const r of f.rera || []) if (!/^(P\d{11}|P[RMCP]\d{13})$/.test(r)) throw new Error(`${f.title}: bad MahaRERA no ${r}`);
   if (f.poss && !/^\d{4}-\d{2}$/.test(f.poss)) throw new Error(`${f.title}: bad possession ${f.poss}`);
   if (f.price && !['Lakh', 'Crore'].includes(f.price.unit)) throw new Error(`${f.title}: bad price unit`);
   for (const p of f.photos || []) if (!existsSync(path.join(IMG_DIR, String(f.pkey), 'cand', `${p}.jpg`))) throw new Error(`${f.title}: missing photo ${p}`);
@@ -109,6 +111,9 @@ for (const f of facts) {
   }
   if (f.sqft && empty(pin.sqft)) pinSet.sqft = f.sqft.max && f.sqft.max !== f.sqft.min ? `${fmt(f.sqft.min)} – ${fmt(f.sqft.max)} sq ft${f.sqft.basis ? ' ' + f.sqft.basis : ''}` : `${fmt(f.sqft.min)} sq ft${f.sqft.basis ? ' ' + f.sqft.basis : ''}`;
   if (whole) { want('land_area_acres', f.acres); want('towers', f.towers); want('floors', f.floors); want('total_units', f.units); }
+  // RERA no(s). shown on the official page / Google result for this project; RERA possession date as stated
+  if (f.rera?.length) { want('rera_numbers', f.rera); if (empty(pin.rera_number)) pinSet.rera_number = f.rera.join(' '); }
+  if (f.possRera) want('possession_date_rera', f.possRera);
   if (f.poss && empty(pin.possession_timeline)) { want('possession_date_target', f.poss); pinSet.possession_timeline = monthLabel(f.poss); }
   // a price already shown on the pin wins; the project price is only filled alongside an empty pin price
   if (f.price && empty(pin.price) && empty(proj.price_min) && empty(proj.price_max) && !proj.price_on_request && (!sub || (empty(sub.price_min) && empty(sub.price_max) && !sub.price_on_request))) {
@@ -133,7 +138,7 @@ for (const f of facts) {
   }
   if (addDetails.length) projSet.additional_details = [...details, ...addDetails];
   if (!Object.keys(projSet).length && !Object.keys(pinSet).length && !photoPaths.length) { console.log(`#${pin.number} ${pin.title}: nothing empty to fill`); continue; }
-  plans.push({ pin, proj, sub, projSet, pinSet, photoPaths, f });
+  plans.push({ pin, proj, sub, projSet, pinSet, photoPaths, f, addDetails });
   for (const [k, v] of Object.entries(projSet)) if (k !== 'additional_details') log.push([pin.number, pin.title, 'project', k, v, f.page]);
   for (const [k, v] of Object.entries(pinSet)) if (k !== 'custom_fields') log.push([pin.number, pin.title, 'pin', k, v, f.page]);
   if (photoPaths.length) log.push([pin.number, pin.title, 'project', 'gallery', `${photoPaths.length} photos`, f.page]);
@@ -176,6 +181,8 @@ for (const p of plans) {
   if (Object.keys(projSet).length) {
     await q(`UPDATE projects SET doc = doc || $2::jsonb WHERE id = $1`, [p.proj.id, JSON.stringify({ ...projSet, updated_at: nowTs })]);
     const subSet = { ...p.projSet }; delete subSet.gallery_urls;
+    // the form keeps its own additional_details rows (they can differ from the project's): only append
+    if (subSet.additional_details) subSet.additional_details = [...((p.sub && p.sub.additional_details) || []), ...p.addDetails];
     if (p.sub && Object.keys(subSet).length) await q(`UPDATE project_submissions SET doc = doc || $2::jsonb WHERE id = $1`, [p.sub.id, JSON.stringify({ ...subSet, updated_at: nowTs })]);
   }
   if (Object.keys(p.pinSet).length) await q(`UPDATE pins SET doc = doc || $2::jsonb WHERE id = $1`, [p.pin.id, JSON.stringify({ ...p.pinSet, updated_at: nowTs })]);

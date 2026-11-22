@@ -203,7 +203,7 @@ export async function renderReview(page, id) {
   const tlCard = h('<div class="card side-card"><h3>History</h3><ul class="timeline"></ul></div>');
   side.appendChild(tlCard);
 
-  function current() { return { ...sub, ...form.getValues() }; }
+  function current() { return { ...sub, ...form.getValues(), not_public: form.getNotPublic() }; }
 
   function updateSide() {
     const cur = current();
@@ -265,6 +265,7 @@ export async function renderReview(page, id) {
     const payload = {};
     for (const k of SAVE_KEYS) payload[k] = vals[k] === undefined ? null : vals[k];
     payload.flags = form.getFlags();
+    payload.not_public = form.getNotPublic();
     const { data, error } = await ctx.client.from('project_submissions').update(payload).eq('id', sub.id).select('*').single();
     if (error) { toast(friendlyError(error), 'bad'); return false; }
     sub = { ...sub, ...data };
