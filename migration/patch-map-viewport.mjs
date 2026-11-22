@@ -53,7 +53,7 @@ const BLOCK = `  const pinMarkerMap = new Map();
   // in memory: filters/search still call map.addLayer/removeLayer/hasLayer on
   // project markers, which here read/write a "wanted" flag instead. ?vp=0 = off.
   const MG_VP_ON = (function(){ try { return new URLSearchParams(location.search).get('vp') !== '0'; } catch(_e){ return true; } })();
-  const MG_CLUSTER_BELOW_ZOOM = 13;   // cluster only when zoomed out further than this
+  const MG_CLUSTER_BELOW_ZOOM = 0;    // 0 = clustering off: always show individual pins, no numbered bubbles
   const MG_CLUSTER_MIN_VISIBLE = 40;  // ...and only when this many markers are in view
   const MG_CLUSTER_CELL_PX = 60;      // grid cell size on screen
   const mgAdd = map.addLayer.bind(map), mgRemove = map.removeLayer.bind(map), mgHas = map.hasLayer.bind(map);
@@ -100,7 +100,7 @@ const BLOCK = `  const pinMarkerMap = new Map();
       });
       bubble.on('click', ()=>{
         const b = L.latLngBounds(list.map(m => m.getLatLng()));
-        map.flyToBounds(b, { padding:[70,70], maxZoom: Math.max(map.getZoom() + 2, MG_CLUSTER_BELOW_ZOOM), duration: 0.6 });
+        map.flyToBounds(b, { padding:[70,70], maxZoom: Math.max(map.getZoom() + 2, 13), duration: 0.6 });
       });
       bubble.on('add', ()=>{ const el = bubble.getElement(); if(el) el.setAttribute('aria-label', n + ' projects here. Zoom in to see them'); });
       mgClusters.addLayer(bubble);
