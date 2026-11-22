@@ -745,8 +745,14 @@
     document.body.classList.add('mpg-auth-open');
     // "How to use Mappingg" video in the side panel: plays muted while the modal is open
     // (not with reduced motion — then it waits for a tap on its controls).
+    // The 4 MB file is fetched only when its panel is actually on screen (the
+    // phone layout hides it) and the visitor hasn't asked to save data.
     var vid = byId('authVideo');
-    if (vid) {
+    var saveData = false;
+    try { saveData = !!(navigator.connection && navigator.connection.saveData); } catch (e) {}
+    // Phones never autoplay it: they keep the poster and play on tap (controls).
+    var wide = window.matchMedia('(min-width: 721px)').matches;
+    if (vid && wide && vid.offsetParent !== null && vid.getClientRects().length && !saveData) {
       vid.preload = 'auto';
       try { if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { var p = vid.play(); if (p && p.catch) p.catch(function () {}); } } catch (e) {}
     }
@@ -1081,14 +1087,16 @@
     const s = b && b.session && b.session.user;
     if (b && b.otp === false && OTP_ON) applyOtpOff();
     setUser(s ? { name: s.name || s.email, email: s.email, role: s.role, verified: s.verified } : null);
-    if (!s) promptSignIn();
+    // No automatic sign-in popup any more (22 Nov 2026): a full-screen modal 1 s
+    // after landing hid the page from visitors arriving from Google (an intrusive
+    // interstitial) and, through the modal's video, downloaded 4 MB on every first
+    // visit. Guests are asked to sign in only when they act: the Sign in / Sign up
+    // buttons, opening more than the free projects on the map, or ?signin=1 links.
+    // promptSignIn() is kept (unused) so it can be switched back on deliberately.
   }).catch(() => {});
 
-  // Guests get the Sign in / Create account popup ONCE per visit (browser session):
-  // 1 s after they first land on the home page. Closing it never brings it back
-  // until a new visit; buttons like "Sign Up" or the map lock still open it on demand.
-  // This is the site's only automatic popup (the old per-page SignInPrompt was removed).
-  // Not inside an iframe (the home page's embedded map).
+  // (Previously: guests got the Sign in / Create account popup once per visit,
+  // 1 s after landing on the home page. Not inside an iframe.)
   const PROMPTED_KEY = 'mg-signin-prompted';
   function promptSignIn() {
     try { if (window.self !== window.top) return; } catch (e) { return; }

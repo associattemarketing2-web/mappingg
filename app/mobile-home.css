@@ -84,6 +84,12 @@
       linear-gradient(180deg, rgba(22, 28, 66, .62) 0%, rgba(40, 34, 70, .38) 30%, rgba(40, 30, 50, .12) 52%, rgba(12, 30, 20, .2) 68%, rgba(12, 30, 20, .5) 82%, rgba(12, 30, 20, 0) 92%) center bottom / 100% 600px no-repeat,
       url('/img/mobile-hero.jpg') 78% bottom / auto 600px no-repeat,
       linear-gradient(180deg, #4a5690 0, #8d9bd6 calc(100% - 600px));
+    /* Same layers with the WebP photo (166 KB vs 240 KB); browsers without image-set() keep the JPEG above. */
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0) calc(100% - 92px), rgba(255, 255, 255, .85) calc(100% - 34px), #fff 100%),
+      linear-gradient(180deg, rgba(22, 28, 66, .62) 0%, rgba(40, 34, 70, .38) 30%, rgba(40, 30, 50, .12) 52%, rgba(12, 30, 20, .2) 68%, rgba(12, 30, 20, .5) 82%, rgba(12, 30, 20, 0) 92%) center bottom / 100% 600px no-repeat,
+      image-set(url('/img/mobile-hero.webp') type('image/webp'), url('/img/mobile-hero.jpg') type('image/jpeg')) 78% bottom / auto 600px no-repeat,
+      linear-gradient(180deg, #4a5690 0, #8d9bd6 calc(100% - 600px));
   }
 
   /* ---------- Search card: mode tabs, search, City / BHK / Budget, then the button ---------- */
@@ -327,6 +333,10 @@
       linear-gradient(180deg, rgba(255, 255, 255, .96) 0%, rgba(255, 255, 255, .7) 34%, rgba(255, 255, 255, 0) 62%),
       linear-gradient(90deg, rgba(255, 255, 255, .85) 0%, rgba(255, 255, 255, .5) 45%, rgba(255, 255, 255, 0) 70%),
       url('/img/mobile-hero.jpg') 60% 78% / cover no-repeat #f3e7d8;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, .96) 0%, rgba(255, 255, 255, .7) 34%, rgba(255, 255, 255, 0) 62%),
+      linear-gradient(90deg, rgba(255, 255, 255, .85) 0%, rgba(255, 255, 255, .5) 45%, rgba(255, 255, 255, 0) 70%),
+      image-set(url('/img/mobile-hero.webp') type('image/webp'), url('/img/mobile-hero.jpg') type('image/jpeg')) 60% 78% / cover no-repeat #f3e7d8;
   }
   .mpg .modal-head h2 { font-size: 28px; line-height: 1.12; font-weight: 800; letter-spacing: -.025em; color: #13221c; }
   .mpg .modal-head p { margin-top: 8px; max-width: 290px; font-size: 14px; line-height: 1.45; color: #26342e; }

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getDb } from '@/lib/mongodb';
 import { OTP_PAUSED, issueOtp, otpEnabled } from '@/lib/otp';
-import { clientIp, rateLimit } from '@/lib/rate-limit';
+import { clientIp, rateLimit, rateLimitShared } from '@/lib/rate-limit';
 import { PHONE_ERROR, normalizePhone } from '@/lib/phone';
 import { maskPhone, whatsappConfigured, whatsappOtp } from '@/lib/whatsapp';
 import { findAccountByMobile, quickOtpBind } from '@/lib/mobile-account';
@@ -65,7 +65,8 @@ export async function POST(req: NextRequest) {
   if (!parsed.success) return fail('Enter a valid email address or mobile number.', 400);
   const { email, purpose } = parsed.data;
   const ip = clientIp(req);
-  const limited = rateLimit(`otp-ip:${ip}`, 20, 60 * 60_000) || rateLimit(`otp:${ip}:${email || parsed.data.mobile || ''}`, 5, 15 * 60_000);
+  // Codes cost money to send: per recipient across all IPs (shared), and per IP.
+  const limited = rateLimit(`otp-ip:${ip}`, 20, 60 * 60_000) || (await rateLimitShared(`otp:${email || parsed.data.mobile || ''}`, 5, 15 * 60_000));
   if (limited) return limited;
   if (purpose === 'reset') return sendResetCode(parsed.data);
   if (!otpEnabled()) return fail(OTP_PAUSED, 503);

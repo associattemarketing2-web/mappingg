@@ -5,7 +5,7 @@ import { getDb } from '@/lib/mongodb';
 import { PUBLIC_ROLES, createSessionToken, homePathFor, setSessionCookie } from '@/lib/auth';
 import { recordLogin } from '@/lib/activity';
 import { homeForAccount, verificationOf } from '@/lib/verification';
-import { clientIp, rateLimit } from '@/lib/rate-limit';
+import { clientIp, rateLimit, rateLimitShared } from '@/lib/rate-limit';
 import { roleOrDefault } from '@/lib/auth-role';
 import { findAccountByMobile } from '@/lib/mobile-account';
 
@@ -32,10 +32,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: { message: 'Enter a valid email or 10-digit mobile number.' } }, { status: 400 });
   }
 
-  // Brute-force brake: per account+IP, and a looser cap per IP across accounts.
+  // Brute-force brake: per account+IP, a cap per account across ALL IPs (shared
+  // between server instances), and a looser cap per IP across accounts.
   const ip = clientIp(req);
   const limited =
-    rateLimit(`login:${ip}:${login}`, 10, 15 * 60_000) ||
+    (await rateLimitShared(`login:${ip}:${login}`, 10, 15 * 60_000)) ||
+    (await rateLimitShared(`login-acct:${login.toLowerCase()}`, 30, 15 * 60_000)) ||
     rateLimit(`login-ip:${ip}`, 40, 15 * 60_000);
   if (limited) return limited;
 

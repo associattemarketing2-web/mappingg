@@ -3,8 +3,10 @@
 import { useEffect, useRef, useState } from 'react';
 
 // Login gate for the live map. The map page stays fully server-rendered and
-// crawlable (great for SEO), but a guest gets a sign-in prompt over a blurred
-// map — no preview of the map at all. Signed-in users never see it.
+// crawlable (great for SEO). Guests can explore the map and open a few project
+// cards for free (TRIAL_FREE, shared with the home page's map), then get a
+// sign-in prompt. Signed-in users never see it. (Until 22 Nov 2026 guests got the
+// sign-in prompt straight away, with no preview of the map at all.)
 //
 // It is intentionally client-only: search engines don't run this, so they keep
 // indexing the project list underneath.
@@ -112,7 +114,16 @@ export default function MapAuthGate() {
           // A share link from the super admin opens its one project for a few views.
           sharedProject().then((share) => {
             if (cancelled) return;
-            if (!share) { setGate('guest'); return; }
+            if (!share) {
+              // Any other guest on /map (22 Nov 2026): explore the whole map freely and
+              // open the same free projects as the home page trial (shared counter),
+              // then the sign-in prompt — instead of a sign-in wall on arrival.
+              const taps = readTrialTaps();
+              if (taps > TRIAL_FREE) { setGate('trial-limit'); return; }
+              setTrialLeft(Math.max(0, TRIAL_FREE - taps));
+              setGate('open');
+              return;
+            }
             let used = 0;
             try { used = Number(localStorage.getItem(shareViewsKey(share.pinId))) || 0; } catch {}
             setGate(used >= share.free ? 'share-limit' : 'open');

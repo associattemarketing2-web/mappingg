@@ -1,0 +1,19 @@
+[/map] initial (zoom 14.5, 390px): {"markers":136,"clusters":0,"clusterTotal":0,"dom":1394,"gate":false,"toast":"Tap any pin to explore — 3 free projects left"} errors: none
+[/map] zoomed out: {"markers":95,"clusters":6,"clusterTotal":837,"dom":1210,"gate":false,"toast":"Tap any pin to explore — 3 free projects left"}
+[/map] zoomed in: {"markers":0,"clusters":0,"clusterTotal":0,"dom":519,"gate":false,"toast":"Tap any pin to explore — 3 free projects left"}
+[/map?vp=0] initial (zoom 14.5, 390px): {"markers":932,"clusters":0,"clusterTotal":0,"dom":6227,"gate":false,"toast":"Tap any pin to explore — 3 free projects left"} errors: none
+[/map?vp=0] zoomed out: {"markers":932,"clusters":0,"clusterTotal":0,"dom":6239,"gate":false,"toast":"Tap any pin to explore — 3 free projects left"}
+[/map?vp=0] zoomed in: {"markers":932,"clusters":0,"clusterTotal":0,"dom":6204,"gate":false,"toast":"Tap any pin to explore — 3 free projects left"}
+[desktop] initial: {"markers":100,"clusters":0,"clusterTotal":0,"dom":1189,"gate":false,"toast":"Tap any pin to explore — 3 free projects left"}
+[desktop] marker click opens card: true
+[desktop] search suggestions for "Lodha": [
+  'Lodha OneProject',
+  'Lodha AzurProject',
+  'Lodha Casa PremierProject'
+]
+[desktop] after typing search: {"markers":39,"clusters":0,"clusterTotal":0,"dom":806,"gate":false,"toast":"Tap any pin to explore — 2 free projects left"}
+[desktop] cluster click: {"before":{"m":97,"c":4},"after":{"m":13,"c":43}}
+[desktop] page errors: none
+suggestions: [ 'MYTHRI STREETProject' ]
+after selecting suggestion: {"popupOpen":true,"popupText":"MYTHRI STREET\n\nMYTHRI BUILDERS\nBengaluru East, Bengaluru\nUnd","markers":1} errors: none
+deep link ?pin=: {"popupOpen":true,"markers":3}

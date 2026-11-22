@@ -12,15 +12,21 @@ import {
   statusRouteSlug,
   typeLabel,
   slugForProject,
+  getLocalityGroups,
+  getDeveloperGroups,
   CITY_LABELS,
   type Pin,
 } from '@/lib/seo/entities';
+import { developerIndexing, localityIndexing } from '@/lib/seo/indexing';
 import { slugify } from '@/lib/seo/slug';
 import { toCard } from '@/lib/home/cards';
+import { parsePriceLakh } from '@/lib/home/finder';
 import { projectSchema, faqSchema, videoSchema, youtubeId, jsonLd } from '@/lib/seo/schema';
 import { projectFaqs, projectSummary, reraNumber, reraRegistry } from '@/lib/seo/project-meta';
 import TrackOnView from '@/components/TrackOnView';
 import { withSqft } from '@/lib/area';
+import { getProjectPhotos, sized } from '@/lib/seo/project-media';
+import { publicImageUrl } from '@/lib/seo/public-media';
 
 const fmtDate = (d?: string) =>
   d ? new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
@@ -32,6 +38,12 @@ const fmtDate = (d?: string) =>
 // status. (The root loading.tsx streams every page, so a notFound() thrown only
 // in the page body would arrive after a 200 had already been sent.)
 export const revalidate = 3600;
+// Without this, Next 14 built this route as dynamic (ƒ): every project page view
+// and every Googlebot fetch was a fresh server render sent `private, no-store`
+// (crawl: p90 2.0 s, worst 7.7 s). The page reads no cookies/headers/searchParams
+// (verified with dynamic = 'error' on a production build), so it is rendered once
+// and refreshed by ISR; pin writes clear the shared data cache it reads from.
+export const dynamic = 'force-static';
 
 const specRows = (pin: Pin): { k: string; v: string }[] =>
   [
@@ -62,6 +74,11 @@ export default async function ProjectDetail({ params }: { params: { slug: string
   const city = CITY_LABELS[cityKey];
   const name = pin.title || `Project #${pin.number}`;
   const hasCover = pin.image && /^(https?:|\/api\/|data:)/.test(pin.image);
+  // Pin image = usually the developer's logo. Served from its crawlable /media/ address.
+  const logoSrc = hasCover ? publicImageUrl(pin.image) : undefined;
+  // Official project photos (collected from the developer's site), when we have them.
+  const photos = await getProjectPhotos(pin.intake_project_id);
+  const photoAlt = (i: number) => `${name}${loc ? `, ${loc}` : ''} — project photo ${i + 1}`;
 
   // Related: other projects in the same locality, then by the same developer.
   const all = await getPublicPins();
@@ -79,24 +96,40 @@ export default async function ProjectDetail({ params }: { params: { slug: string
     sameDeveloper: pin.developer ? all.filter((p) => p.number !== pin.number && p.developer === pin.developer).length : 0,
   });
 
+  // Locality / developer hubs this project belongs to — linked only when that hub is
+  // indexable itself (lib/seo/indexing.ts), so links never point at thin pages.
+  const [locGroups, devGroups] = await Promise.all([getLocalityGroups(), getDeveloperGroups()]);
+  const locHub = loc ? locGroups.find((g) => g.slug === slugify(loc)) : undefined;
+  const locHubOk = !!locHub && localityIndexing(locHub.slug, locHub.count).index;
+  const devHub = pin.developer ? devGroups.find((g) => g.slug === slugify(pin.developer!)) : undefined;
+  const devHubOk = !!devHub && developerIndexing(devHub.count).index;
+
   const crumbs = [
     { name: 'Home', path: '/' },
+    ...(locHubOk ? [{ name: loc, path: `/locations/${locHub!.slug}` }] : []),
     { name, path: `/projects/${slugForProject(pin)}` },
   ];
 
   // Every answer comes from a field shown on this page (lib/seo/project-meta.ts).
   const faqs = projectFaqs(pin, loc, city);
 
+  const listedPrice = parsePriceLakh(pin.price);
   const schema = projectSchema({
     name,
     description: (pin.description || pin.key_usp || '').toString(),
     url: `/projects/${slugForProject(pin)}`,
-    image: hasCover ? pin.image : undefined,
+    // Real photos first; the logo only when there are none.
+    image: photos.gallery.length ? photos.gallery.map((g) => sized(g, 1200)) : logoSrc,
     locality: loc,
     city,
     lat: pin.lat,
     lng: pin.lng,
     reraNumber: reraNumber(pin.rera_number),
+    // Same parser as the price shown on the page. Above ₹50 Cr is left out: those
+    // listings were flagged as likely Lakh/Crore mix-ups (seo-doc/PROJECT-DATA-AUDIT.md D-4).
+    priceInr: listedPrice && listedPrice.max <= 5000
+      ? { low: Math.round(listedPrice.min * 1e5), high: Math.round(listedPrice.max * 1e5) }
+      : undefined,
   });
 
   const vid = youtubeId(pin.youtube_video_url);
@@ -107,6 +140,8 @@ export default async function ProjectDetail({ params }: { params: { slug: string
   // Contextual internal links out to every related entity hub (not keyword spam).
   const statusSlug = statusRouteSlug(pin.status);
   const quickLinks: { label: string; path: string }[] = [
+    ...(locHubOk ? [{ label: `All projects in ${loc}`, path: `/locations/${locHub!.slug}` }] : []),
+    ...(devHubOk ? [{ label: `More by ${pin.developer}`, path: `/developers/${devHub!.slug}` }] : []),
     ...(statusSlug ? [{ label: `${statusLabel(pin.status)} projects`, path: `/status/${statusSlug}` }] : []),
     ...(pin.type ? [{ label: `${typeLabel(pin.type)} projects`, path: `/property/${slugify(pin.type)}` }] : []),
   ];
@@ -142,7 +177,7 @@ export default async function ProjectDetail({ params }: { params: { slug: string
             <div className="pd-logo">
               {/* eslint-disable-next-line @next/next/no-img-element -- optimized WebP via /api/media; next/image disabled site-wide (images.unoptimized) */}
               <img
-                src={pin.image!}
+                src={logoSrc!}
                 alt={`${name}${pin.developer ? ` by ${pin.developer}` : ''}${loc ? ` in ${loc}, ${city}` : ''}`}
                 width={160}
                 height={160}
@@ -237,6 +272,52 @@ export default async function ProjectDetail({ params }: { params: { slug: string
           </aside>
         )}
       </div>
+
+      {/* Official photos come after the overview: placed above it they competed with the
+          text and fonts of the first screen on slow mobile networks (Lighthouse: LCP +1 s). */}
+      {photos.cover && (
+        <section className="seo-section pd-gallery">
+          <h2>{name} photos</h2>
+          {/* Fixed-ratio boxes: no layout shift while the photos load. WebP sizes come from the storage handler (?w=). */}
+          {/* eslint-disable-next-line @next/next/no-img-element -- next/image is disabled site-wide (images.unoptimized); sized WebP via ?w= */}
+          <img
+            className="pd-gallery-cover"
+            src={sized(photos.cover, 960)}
+            srcSet={`${sized(photos.cover, 480)} 480w, ${sized(photos.cover, 720)} 720w, ${sized(photos.cover, 960)} 960w, ${sized(photos.cover, 1400)} 1400w`}
+            sizes="(max-width: 720px) 100vw, 860px"
+            alt={photoAlt(0)}
+            width={960}
+            height={540}
+            // Not high priority: the page's largest paint is its text, and an eager
+            // photo competed with the CSS/fonts that text needs (measured: LCP +1.1 s).
+            loading="lazy"
+            decoding="async"
+          />
+          {photos.gallery.length > 1 && (
+            <ul className="pd-gallery-strip">
+              {/* 4 thumbnails (≈10 KB each): a short page loads "lazy" images right away,
+                  and 8 larger ones slowed the first screen on mobile. All photos stay in the schema. */}
+              {photos.gallery.slice(1, 5).map((g, i) => (
+                <li key={g}>
+                  <a href={sized(g, 1400)} target="_blank" rel="noopener">
+                    {/* eslint-disable-next-line @next/next/no-img-element -- lazy WebP thumbnail via ?w= */}
+                    <img src={sized(g, 320)} alt={photoAlt(i + 1)} width={150} height={100} loading="lazy" decoding="async" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+          {photos.gallery.length > 5 && (
+            <p className="pd-gallery-more">
+              More photos:{' '}
+              {photos.gallery.slice(5).map((g, i) => (
+                <a key={g} href={sized(g, 1400)} target="_blank" rel="noopener" aria-label={`${photoAlt(i + 5)} (opens full size)`}>{i + 6}</a>
+              ))}
+            </p>
+          )}
+          <p className="pd-gallery-note">Photos: official project material published by the developer.</p>
+        </section>
+      )}
 
       {vid && (
         <section className="seo-section">

@@ -13,6 +13,7 @@ import { EMAIL, WHATSAPP_DISPLAY, WHATSAPP_URL } from '@/lib/contact';
 // event), or by routing home with ?signin=1 (also reachable directly at /signin).
 const LINKS = [
   { href: '/map', label: 'Live Map', match: (p: string) => p === '/map' || p.startsWith('/map/') },
+  { href: '/locations', label: 'Localities', match: (p: string) => p.startsWith('/locations') },
   { href: '/how-it-works', label: 'How it works', match: (p: string) => p === '/how-it-works' },
   // Shown only while subscriptions are switched on (Super admin → Subscriptions).
   { href: '/pricing', label: 'Pricing', match: (p: string) => p === '/pricing', subs: true },

@@ -8,7 +8,7 @@ import { createSessionToken, homePathFor, setSessionCookie } from '@/lib/auth';
 import { logActivity } from '@/lib/activity';
 import { addBuyerSignupLead } from '@/lib/signup-leads';
 import { whatsappBuyerWelcome } from '@/lib/whatsapp';
-import { clientIp, rateLimit } from '@/lib/rate-limit';
+import { clientIp, rateLimit, rateLimitShared } from '@/lib/rate-limit';
 import { checkOtp, otpEnabled } from '@/lib/otp';
 import { withRoleProfiles } from '@/lib/signup-profile';
 import { findAccountByMobile } from '@/lib/mobile-account';
@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
   }
   const email = parsed.data.email || placeholderEmail(mobile);
 
-  const limited = rateLimit(`signup:${clientIp(req)}`, 10, 60 * 60_000) || rateLimit(`signup-otp:${email}`, 8, 15 * 60_000);
+  const limited = rateLimit(`signup:${clientIp(req)}`, 10, 60 * 60_000) || (await rateLimitShared(`signup-otp:${email}`, 8, 15 * 60_000));
   if (limited) return limited;
 
   // The WhatsApp number must be verified with the code we sent to it; the

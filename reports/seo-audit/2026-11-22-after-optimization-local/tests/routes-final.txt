@@ -1,0 +1,40 @@
+/ | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com |  | New Flats &amp; Residential Projects in Pune &amp; Mumbai | Mappingg | 1h1
+/map | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/map |  | Live Project Map — Pune, Mumbai, Bengaluru &amp; Delhi NCR — Mappingg | 1h1
+/projects | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/projects |  | Real Estate Projects in Bengaluru, Pune, Mumbai &amp; more — Mappingg | 1h1
+/projects?page=2 | 200 | MISS | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/projects?page=2 |  | Real Estate Projects in Bengaluru, Pune, Mumbai &amp; more — Page 2 of 2 | 1h1
+/projects?page=99 | 404 | MISS | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/projects | noindex | Page not found — Mappingg | 0h1
+/projects?city=pune | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/projects |  | Real Estate Projects in Bengaluru, Pune, Mumbai &amp; more — Mappingg | 1h1
+/blog | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/blog |  | Real Estate Blog — Pune, Mumbai &amp; Bengaluru Buying Guides — Mappingg | 1h1
+/blog?page=2 | 200 | MISS | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/blog?page=2 |  | Blog — Page 2 — Mappingg | 1h1
+/status/upcoming | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/status/upcoming |  | Upcoming Projects in Pune, Mumbai, Hyderabad &amp; more — Mappingg | 1h1
+/status/under-construction?page=3 | 200 | MISS | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/status/under-construction?page=3 |  | Under Construction Projects in Bengaluru, Pune &amp; more — Page 3 of 18 | 1h1
+/property/residential | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/property/residential |  | Residential Projects in Pune, Mumbai, Delhi NCR &amp; more — Mappingg | 1h1
+/property/residential?page=2 | 200 | MISS | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/property/residential?page=2 |  | Residential Projects in Pune, Mumbai, Delhi NCR &amp; more — Page 2 of 7 | 1h1
+/property/villa-plot | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/property/villa-plot | noindex, follow | Villa / Plot Projects in Mumbai — Mappingg | 1h1
+/locations | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/locations |  | Real Estate by Locality in Bengaluru, Pune, Mumbai &amp; more — Mappingg | 1h1
+/locations/kharadi | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/locations/kharadi |  | Flats &amp; New Projects in Kharadi, Pune — Mappingg | 1h1
+/locations/mundhwa | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/locations/mundhwa |  | Flats &amp; New Projects in Mundhwa, Pune — Mappingg | 1h1
+/locations/wakad | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/locations/wakad |  | Flats &amp; New Projects in Wakad, Pune — Mappingg | 1h1
+/locations/hinjewadi | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/locations/hinjewadi |  | Flats &amp; New Projects in Hinjewadi, Pune — Mappingg | 1h1
+/locations/baner | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/locations/baner |  | Flats &amp; New Projects in Baner, Pune — Mappingg | 1h1
+/locations/balewadi | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/locations/balewadi |  | Flats &amp; New Projects in Balewadi, Pune — Mappingg | 1h1
+/locations/hadapsar | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/locations/hadapsar |  | Flats &amp; New Projects in Hadapsar, Pune — Mappingg | 1h1
+/locations/wagholi | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/locations/wagholi |  | Flats &amp; New Projects in Wagholi, Pune — Mappingg | 1h1
+/locations/viman-nagar | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/locations/viman-nagar |  | Flats &amp; New Projects in Viman Nagar, Pune — Mappingg | 1h1
+/locations/kharadi/2-bhk-flats | 308 | - |  | /locations/kharadi |  |  | 0h1
+/developers | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/developers |  | Real Estate Developers in Bengaluru, Pune, Mumbai &amp; more — Mappingg | 1h1
+/developers/lodha | 200 | HIT | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/developers/lodha |  | Lodha Projects in Mumbai, Pune &amp; Bengaluru — Mappingg | 1h1
+/cities/pune | 308 | - |  | /projects |  |  | 0h1
+/projects/1-residency-by-burgundy-mundhwa-2 | 200 | MISS | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/projects/1-residency-by-burgundy-mundhwa-2 |  | 1 Residency by Burgundy in Mundhwa, Pune | Price — Mappingg | 1h1
+/projects/mythri-street-bengaluru-east-415 | 200 | MISS | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/projects/mythri-street-bengaluru-east-415 |  | Mythri Street in Bengaluru East, Bengaluru | Price — Mappingg | 1h1
+/projects/wrong-2 | 308 | MISS | s-maxage=600, stale-while-revalidate |  |  |  | 0h1
+/projects/x-999999 | 404 | MISS | s-maxage=600, stale-while-revalidate |  | noindex |  | 0h1
+/blog/flat-prices-in-pune-by-locality-and-bhk | 200 | MISS | s-maxage=600, stale-while-revalidate | https://www.mappingg.com/blog/flat-prices-in-pune-by-locality-and-bhk |  | Flat Prices in Pune 2026: 2 &amp; 3 BHK Rates by Area — Mappingg | 1h1
+/delete-account | 200 | - | private, no-cache, no-store, max-age=0, must-revalidate | https://www.mappingg.com/delete-account | noindex, follow | Delete your Mappingg account — Mappingg | 1h1
+/developer-api/reference | 200 | HIT | s-maxage=3600, stale-while-revalidate | https://www.mappingg.com/developer-api/reference | noindex, follow | Developer API reference — Mappingg | 1h1
+/llms.txt | 200 | HIT |  |  |  |  | 0h1
+/sitemap.xml | 200 | HIT | public, max-age=0, must-revalidate |  |  |  | 0h1
+/robots.txt | 200 | HIT | public, max-age=0, must-revalidate |  |  |  | 0h1
+/media/project/13207bee-6f58-4909-883e-db4187211552/official-pin415-01.jpg?w=640 | 200 | - | public, max-age=86400, s-maxage=604800, stale-while-revalidate=2592000 |  |  |  | 0h1
+/media/project/x/brochure.pdf | 404 | - |  |  |  |  | 0h1
+/media/pins/861cf8b1-8a41-4e51-855a-913d34e611ee?f=image&v=8ad1e0cace5e&w=1000 | 200 | - | public, max-age=31536000, s-maxage=31536000, immutable |  |  |  | 0h1

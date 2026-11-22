@@ -1,0 +1,150 @@
+{
+ "total": 937,
+ "visible": 935,
+ "hidden": 2,
+ "pending_review": 0,
+ "rejected": 0,
+ "coords_outside_india": [
+  "#196 Oleander Residencies by Yoo (25.2935101609521,55.3116669871482)"
+ ],
+ "identical_coord_groups": 2,
+ "pins_sharing_exact_coords": 4,
+ "duplicate_numbers": [],
+ "same_title_groups": [
+  ": #936  | #920  | #921 ",
+  "trumpworldcenter: #24 Mundhwa / Old Passport Of | #86 Mundhwa, Pune"
+ ],
+ "shared_rera_groups": [
+  "PR1260002503013: #79 World Trade Center | #15 57 Avenue",
+  "P52100030909: #54 Horizon Highgroves | #71 108 SUITES",
+  "LAUNCHING-SOON: #180 Lodha Casa Premier | #7 Lodha Mundhwa | #541 Mantra Miora",
+  "P52100004202: #82 Eon Water Front | #91 EON Waterfront Phase 2",
+  "P52100035065: #40 Merlin New Project | #66 Merlin 18 East",
+  "PC1260002500325: #65 Ram India New Commerial | #3 Epitome by Ram India",
+  "PRM/KA/RERA/1251/309: #189 Blue Moon | #447 Century Astoria"
+ ],
+ "missing_on_visible": {
+  "title": 3,
+  "description": 8,
+  "location": 3,
+  "price": 362,
+  "configuration": 30,
+  "rera_number": 55,
+  "possession_timeline": 95,
+  "sqft": 171,
+  "developer": 6,
+  "launch_date": 865,
+  "key_usp": 561,
+  "youtube_video_url": 783,
+  "brochure_url": 928,
+  "status": 0,
+  "type": 68
+ },
+ "image_kinds": {
+  "data-uri(logo)": 886,
+  "none": 4,
+  "other": 45
+ },
+ "short_description_lt_80": 74,
+ "price_suspect": [
+  "#694 Birla Anayu: ₹57 Cr* Onwards* [4 BHK / 5 BHK Duplex]",
+  "#204 Everlyn: ₹ 82 Lacs – 1.35 Cr [2 / 3 BHK]",
+  "#736 Avalon - Tower B: ₹98.63 Cr* Onwards* [Ultra-large 5 BHK apartments and duplex units]",
+  "#102 Rohan Mithila Business Center: ₹ 83 Cr* Onwards* [Office Sale]",
+  "#13 Ravima Newtown: ₹ 98 Lacs - ₹ 1.35 Cr [2 / 2.5 / 3 BHK]",
+  "#257 Belmont Skydale: ₹ 103.96 – 111.2 Cr [3 BHK]",
+  "#73 Land for Sale: ₹ 82 Cr []",
+  "#397 io Tower by PCPL: ₹ 430 Cr* Onwards [1, 2, and 3 BHK apartments]"
+ ],
+ "price_placeholder": 16,
+ "status_values": {
+  "construction": 858,
+  "available": 37,
+  "sold": 12,
+  "upcoming": 28
+ },
+ "type_values": {
+  "Residential/Group Housing": 388,
+  "Residential": 318,
+  "(empty)": 68,
+  "Commercial": 52,
+  "Plotted Development": 40,
+  "Mixed-Use": 39,
+  "Mixed": 10,
+  "Mixed Development": 9,
+  "Residential & Commercial": 2,
+  "Land Parcel": 2,
+  "3 BED SUITES & RETAIL": 2,
+  "Villa / Plot": 2,
+  "Residential / Commercial": 2,
+  "Residential/ Commercial": 1
+ },
+ "all_caps_title": 429,
+ "rera_format_odd": 0,
+ "updated_before_2026_10": 0,
+ "projects_table_is_live": [
+  {
+   "live": "true",
+   "n": 1021
+  }
+ ],
+ "visible_pins_with_intake_link": 929,
+ "live_projects_gallery": [
+  {
+   "with_gallery": 0,
+   "total": 1021
+  }
+ ],
+ "submissions_by_status": [
+  {
+   "s": "published",
+   "n": 1021
+  },
+  {
+   "s": "in_review",
+   "n": 52
+  },
+  {
+   "s": "submitted",
+   "n": 8
+  },
+  {
+   "s": "rejected",
+   "n": 4
+  }
+ ],
+ "posts": [
+  {
+   "s": "published",
+   "n": 44
+  }
+ ],
+ "developers": [
+  {
+   "n": 960,
+   "with_logo": 930
+  }
+ ],
+ "users_by_role": [
+  {
+   "r": "buyer",
+   "n": 38
+  },
+  {
+   "r": "employee",
+   "n": 5
+  },
+  {
+   "r": "admin",
+   "n": 2
+  },
+  {
+   "r": "agent",
+   "n": 12
+  },
+  {
+   "r": "developer",
+   "n": 4
+  }
+ ]
+}

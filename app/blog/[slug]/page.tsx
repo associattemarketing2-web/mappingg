@@ -8,6 +8,12 @@ import { breadcrumbSchema } from '@/lib/seo/schema';
 import { resolveInternalLinks } from '@/lib/seo/resolve-links';
 
 export const revalidate = 3600;
+// Without this, Next 14 built this route as dynamic (ƒ): every visit and every
+// crawler hit was rendered on the server and sent `private, no-store`, so the
+// CDN never cached it. The page reads no cookies/headers/searchParams (verified
+// with dynamic = 'error' on a production build), so it is safe to render once
+// and refresh through ISR. Publishing or editing a post clears the posts cache.
+export const dynamic = 'force-static';
 
 function fmt(d?: string | null) {
   return d ? new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';

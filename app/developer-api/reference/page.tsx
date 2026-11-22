@@ -10,6 +10,10 @@ export const metadata: Metadata = buildMetadata({
   title: 'Developer API reference',
   description: 'Endpoints, parameters, response schemas and error codes of the Mappingg Developer API (OpenAPI 3.1).',
   path: '/developer-api/reference',
+  // The reference is rendered in the browser (0 words in the server HTML), so it is
+  // kept out of the index; /developer-api is the indexable overview page.
+  noIndex: true,
+  follow: true,
 });
 
 export default function ApiReferencePage() {

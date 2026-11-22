@@ -65,6 +65,42 @@ function withoutBrochureUrl(data: unknown): unknown {
   return Array.isArray(data) ? data.map(strip) : strip(data);
 }
 
+// Fields of a pin that only the team's workflow uses (review queue, intake link,
+// ownership, enrichment bookkeeping). The public map never reads them, so they are
+// not sent to visitors. Staff and a developer's own (dev-editor) reads keep them.
+const INTERNAL_PIN_FIELDS = [
+  'source', 'rejected', 'pending_review', 'intake_project_id', 'owner_user_id',
+  'assigned_at', 'assigned_by', 'reviewed_at', 'reviewed_by', 'review_note', 'submitted_at',
+  'enriched_at', 'enriched_batch', 'duplicate_of',
+];
+function withoutInternalPinFields(data: unknown): unknown {
+  const strip = (p: unknown) => {
+    if (!p || typeof p !== 'object') return p;
+    const out = { ...(p as Record<string, unknown>) };
+    for (const k of INTERNAL_PIN_FIELDS) delete out[k];
+    return out;
+  };
+  return Array.isArray(data) ? data.map(strip) : strip(data);
+}
+
+const SCALAR = (v: unknown) => v === null || ['string', 'number', 'boolean'].includes(typeof v);
+const COLUMN = /^[A-Za-z_][A-Za-z0-9_]{0,63}$/;
+/**
+ * Visitors (and non-staff accounts) may filter only on plain column names with
+ * plain values. Operator objects ({"$regex": …}, {"$ne": …}) were accepted before
+ * and passed straight to the query builder — parameterised, so no SQL injection,
+ * but anyone could run arbitrary regex scans on the public tables.
+ */
+function publicOpProblem(op: DbOp): string | null {
+  for (const f of op.filters || []) {
+    if (!COLUMN.test(f.col)) return `bad filter column`;
+    if (f.op === 'eq' && !SCALAR(f.val)) return `filter values must be plain values`;
+    if (f.op === 'in' && (!f.vals.every(SCALAR) || f.vals.length > 1000)) return `filter values must be plain values`;
+  }
+  if (op.order && !COLUMN.test(op.order.col)) return 'bad order column';
+  return null;
+}
+
 function invalid(details?: unknown) {
   return NextResponse.json({ data: null, error: { message: 'Invalid request', details } }, { status: 400 });
 }
@@ -72,6 +108,10 @@ function invalid(details?: unknown) {
 async function handle(op: DbOp, devEditorView = false, ip = '', visitor = ip, page = '') {
   const staff = await getStaffUser();
   const current = staff ? null : await getCurrentUser();
+  if (!staff) {
+    const problem = publicOpProblem(op);
+    if (problem) return invalid(problem);
+  }
   // The one write open to anonymous visitors is a map enquiry (leads insert) —
   // cap it per IP so it can't be used to flood the CRM.
   if (!staff && op.table === 'leads' && op.action === 'insert') {
@@ -186,6 +226,9 @@ async function handle(op: DbOp, devEditorView = false, ip = '', visitor = ip, pa
   // Only staff get a pin's brochure file URL; the live map gets a flag and opens
   // it through /api/brochure, which decides who may download it.
   if (op.table === 'pins' && op.action === 'select' && !staff && data) data = withoutBrochureUrl(data);
+  // Workflow-only fields stay with the team (a developer's own scoped reads keep them,
+  // so they can follow the review status of their projects).
+  if (op.table === 'pins' && op.action === 'select' && !staff && !scopedPins && data) data = withoutInternalPinFields(data);
   const res = NextResponse.json({ data, error: result.error }, { status: result.status });
 
   // Cache only shared, non-personalised reads of public tables. A developer's

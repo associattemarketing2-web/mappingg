@@ -88,13 +88,16 @@ export function projectSchema(opts: {
   name: string;
   description?: string;
   url: string;
-  image?: string;
+  /** One image, or the project's photo gallery (shown on the page). */
+  image?: string | string[];
   locality?: string;
   city?: string;
   lat?: number;
   lng?: number;
   /** RERA registration id, shown on the page; emitted as an identifier. */
   reraNumber?: string;
+  /** Listed price range in INR, only when the page shows a cleanly parsed price. */
+  priceInr?: { low: number; high: number };
 }) {
   const geo = opts.lat && opts.lng ? { '@type': 'GeoCoordinates', latitude: opts.lat, longitude: opts.lng } : undefined;
   return {
@@ -103,7 +106,21 @@ export function projectSchema(opts: {
     name: opts.name,
     description: opts.description || undefined,
     url: abs(opts.url),
-    image: opts.image ? abs(opts.image) : undefined,
+    image: Array.isArray(opts.image)
+      ? (opts.image.length ? opts.image.map((i) => abs(i)) : undefined)
+      : opts.image ? abs(opts.image) : undefined,
+    // The listed starting/maximum price shown on the page (never invented).
+    ...(opts.priceInr
+      ? {
+          offers: {
+            '@type': 'AggregateOffer',
+            priceCurrency: 'INR',
+            lowPrice: opts.priceInr.low,
+            highPrice: opts.priceInr.high,
+            url: abs(opts.url),
+          },
+        }
+      : {}),
     identifier: opts.reraNumber ? { '@type': 'PropertyValue', propertyID: 'RERA registration number', value: opts.reraNumber } : undefined,
     address: {
       '@type': 'PostalAddress',

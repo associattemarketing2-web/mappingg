@@ -3,20 +3,41 @@
 //  - /projects/<old-slug>: duplicate listings hidden by the clean-ups redirect to
 //    the kept project, and renamed projects redirect to their new slug. Linking
 //    the final URL directly saves crawlers a redirect hop on every such link.
-//  - /locations/…, /cities/… and /developers/… pages no longer exist: the link
-//    is dropped and its text kept.
+//  - /locations/<slug> and /developers/<slug> (hubs restored 22 Nov 2026): kept
+//    when that hub exists and is indexable (lib/seo/indexing.ts); otherwise the
+//    link is dropped and its text kept. Their retired sub-pages
+//    (/locations/<loc>/<facet>) and every /cities/… page: link dropped, text kept.
 // Uses the cached public-pin list (one shared read); only links to pins that are
 // no longer public need a duplicate lookup. Failures leave the HTML unchanged.
 
-import { duplicateRedirectSlug, getPublicPins, slugForProject } from './entities';
+import { duplicateRedirectSlug, getDeveloperGroups, getLocalityGroups, getPublicPins, slugForProject } from './entities';
+import { developerIndexing, localityIndexing } from './indexing';
 import { projectNumberFromSlug } from './slug';
 
 const HREF = /href="(?:https?:\/\/(?:www\.)?mappingg\.com)?\/projects\/([a-z0-9-]+)\/?"/g;
-const REMOVED_LINK = /<a\b[^>]*href="(?:https?:\/\/(?:www\.)?mappingg\.com)?\/(?:locations|cities|developers)(?:[/?#][^"]*)?"[^>]*>([\s\S]*?)<\/a>/g;
+const ORIGIN = '(?:https?:\\/\\/(?:www\\.)?mappingg\\.com)?';
+// Any link to a /cities page, or to a locality/developer sub-page (/locations/x/y).
+const RETIRED_LINK = new RegExp(`<a\\b[^>]*href="${ORIGIN}\\/(?:cities(?:[/?#][^"]*)?|(?:locations|developers)\\/[a-z0-9-]+\\/[^"]+)"[^>]*>([\\s\\S]*?)<\\/a>`, 'g');
+const HUB_LINK = new RegExp(`<a\\b[^>]*href="${ORIGIN}\\/(locations|developers)\\/([a-z0-9-]+)\\/?(?:[?#][^"]*)?"[^>]*>([\\s\\S]*?)<\\/a>`, 'g');
 
 export async function resolveInternalLinks(html: string): Promise<string> {
   if (!html || !html.includes('href=')) return html;
-  let out = html.replace(REMOVED_LINK, (_whole, text: string) => text);
+  let out = html.replace(RETIRED_LINK, (_whole, text: string) => text);
+
+  // Locality / developer hub links: keep the ones that lead to an indexable hub.
+  if (/\/(?:locations|developers)\//.test(out)) {
+    try {
+      const [locs, devs] = await Promise.all([getLocalityGroups(), getDeveloperGroups()]);
+      const okLoc = new Set(locs.filter((g) => localityIndexing(g.slug, g.count).index).map((g) => g.slug));
+      const okDev = new Set(devs.filter((g) => developerIndexing(g.count).index).map((g) => g.slug));
+      out = out.replace(HUB_LINK, (whole, kind: string, slug: string, text: string) =>
+        (kind === 'locations' ? okLoc : okDev).has(slug) ? whole : text,
+      );
+    } catch {
+      return out; // a DB hiccup must never break or blank an article
+    }
+  }
+
   const slugs = [...out.matchAll(HREF)].map((m) => m[1]);
   if (!slugs.length) return out;
 

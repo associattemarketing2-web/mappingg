@@ -18,6 +18,7 @@ import { SITE, SITE_URL } from '@/lib/seo/config';
 import { mobileTrustHtml, mobileCatsHtml, mobileDiscoverHtml, mobileInsightsHtml, type MobilePost } from '@/components/landing/mobile-sections';
 import { listPublished, readingTime } from '@/lib/blog';
 import { otpEnabled } from '@/lib/otp';
+import { blogThumb } from '@/lib/blog-thumb';
 
 // ISR: served static & fast, but re-renders periodically so admin-set SEO values
 // (Search Console verification, GTM) from the shared layout show up without a redeploy.
@@ -101,6 +102,7 @@ async function mobilePosts(): Promise<MobilePost[]> {
     tag: (p.tags || [])[0] || '',
     minutes: readingTime(p.content),
     // Only linkable images (an inline data: URL would bloat the page).
-    image: p.cover_image && /^(\/|https:\/\/)/.test(p.cover_image) ? p.cover_image : '',
+    // Card-sized WebP copy when there is one (lib/blog-thumb.ts).
+    image: p.cover_image && /^(\/|https:\/\/)/.test(p.cover_image) ? blogThumb(p.cover_image) : '',
   }));
 }

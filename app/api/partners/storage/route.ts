@@ -196,7 +196,9 @@ export async function GET(req: NextRequest) {
   const w = Math.min(Math.max(parseInt(req.nextUrl.searchParams.get('w') || '', 10) || 0, 0), 1600);
   // Public images rarely change: let browsers reuse them for a day and refresh
   // in the background for a week (was 1 hour, which Lighthouse flagged).
-  const publicCache = 'public, max-age=86400, stale-while-revalidate=604800';
+  // s-maxage lets the CDN keep a copy too: without it every view of a project
+  // photo re-read the image bytes from the database (partners_media).
+  const publicCache = 'public, max-age=86400, s-maxage=604800, stale-while-revalidate=2592000';
   const trim = w > 0 && req.nextUrl.searchParams.get('trim') === '1';
   const thumbKey = `${filename}@${w}${trim ? 't' : ''}`;
   const hit = publicMedia && w ? THUMBS.get(thumbKey) : undefined;
@@ -217,7 +219,9 @@ export async function GET(req: NextRequest) {
       return new NextResponse(small, { headers: { 'Content-Type': 'image/webp', 'Content-Length': String(small.byteLength), 'Cache-Control': publicCache } });
     }
   }
-  const headers: Record<string, string> = { 'Content-Type': ct, 'Cache-Control': isPublic ? publicCache : 'private, no-store', 'X-Content-Type-Options': 'nosniff' };
+  // Shared (CDN) caching only for the public project-media bucket. A staff-only
+  // file requested with public=1 must never land in a shared cache.
+  const headers: Record<string, string> = { 'Content-Type': ct, 'Cache-Control': publicMedia ? publicCache : 'private, no-store', 'X-Content-Type-Options': 'nosniff' };
   // Files over Vercel's 4.5 MB response limit (brochure PDFs) are streamed in pieces.
   if (body.byteLength > STREAM_OVER) {
     let at = 0;

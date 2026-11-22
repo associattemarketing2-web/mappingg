@@ -5,7 +5,7 @@ import { getDb } from '@/lib/mongodb';
 import { PUBLIC_ROLES, createSessionToken, homePathFor, setSessionCookie } from '@/lib/auth';
 import { logActivity, recordLogin } from '@/lib/activity';
 import { homeForAccount, verificationOf } from '@/lib/verification';
-import { clientIp, rateLimit } from '@/lib/rate-limit';
+import { clientIp, rateLimit, rateLimitShared } from '@/lib/rate-limit';
 import { roleOrDefault } from '@/lib/auth-role';
 import { checkOtp } from '@/lib/otp';
 import { PHONE_ERROR, normalizePhone } from '@/lib/phone';
@@ -32,7 +32,8 @@ export async function POST(req: NextRequest) {
   const parsed = schema.safeParse(await req.json().catch(() => null));
   if (!parsed.success) return NextResponse.json({ error: { message: 'Enter your mobile number and the 6-digit code.' } }, { status: 400 });
   const ip = clientIp(req);
-  const limited = rateLimit(`otp-quick:${ip}:${parsed.data.mobile}`, 8, 15 * 60_000) || rateLimit(`otp-quick-ip:${ip}`, 30, 15 * 60_000);
+  // 6-digit codes: tries per number are counted across all IPs and server instances.
+  const limited = (await rateLimitShared(`otp-quick:${parsed.data.mobile}`, 8, 15 * 60_000)) || rateLimit(`otp-quick-ip:${ip}`, 30, 15 * 60_000);
   if (limited) return limited;
 
   const found = await findAccountByMobile(parsed.data.mobile);

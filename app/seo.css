@@ -206,6 +206,17 @@
 .pd-specs .k { flex: none; max-width: 45%; font-size: 0.86rem; color: var(--seo-muted); }
 .pd-specs .v { min-width: 0; text-align: right; font-size: 0.95rem; font-weight: 700; color: var(--seo-ink); }
 
+/* Official project photos (cover + strip). Fixed ratios = no layout shift. */
+.pd-gallery { margin: 0 0 26px; }
+.pd-gallery-cover { display: block; width: 100%; max-width: 860px; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--seo-radius-lg); background: #eef1ee; }
+.pd-gallery-strip { display: flex; gap: 10px; margin: 10px 0 0; padding: 0 0 4px; list-style: none; overflow-x: auto; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
+.pd-gallery-strip li { flex: none; scroll-snap-align: start; }
+.pd-gallery-strip a { display: block; border-radius: 10px; overflow: hidden; }
+.pd-gallery-strip img { display: block; width: 150px; height: 100px; object-fit: cover; background: #eef1ee; }
+.pd-gallery-note { margin: 8px 0 0; font-size: 0.8rem; color: var(--seo-muted); }
+.pd-gallery-more { margin: 8px 0 0; font-size: 0.86rem; color: var(--seo-muted); }
+.pd-gallery-more a { display: inline-block; min-width: 32px; min-height: 32px; margin: 0 4px 4px 0; padding: 6px 8px; border: 1px solid var(--seo-line); border-radius: 8px; text-align: center; text-decoration: none; }
+
 @media (max-width: 860px) {
   .pd-body { grid-template-columns: 1fr; }
   .pd-side { position: static; }

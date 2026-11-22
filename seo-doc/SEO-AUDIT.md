@@ -1,124 +1,224 @@
-# Mappingg SEO audit — 4 Nov 2026
+# Mappingg — SEO audit (22 Nov 2026)
 
-Scope: the whole repository and the live site (https://www.mappingg.com). This audit builds on the
-crawls already in `reports/seo-audit/` (baseline 20 Oct, live re-crawl 3 Nov), a read-only database
-pass, and live Google result checks. Nothing in this file is estimated: every number comes from the
-crawler, the database or a named source.
+Audit only. Nothing in the code, the database or the deployment was changed. The previous audit (4 Nov) is kept as `SEO-AUDIT-2026-11-04.md`.
 
-## 1. Current architecture
+**Evidence folder:** `reports/seo-audit/2026-11-22-complete-audit/`
+- `PAGE-BY-PAGE-SEO.csv`: one row per crawled URL (1,068 rows)
+- `TECHNICAL-SEO-ISSUES.csv`: every crawler issue
+- `PROJECT-SEO-REPORT.csv`: project-wise SEO status, one row per public pin (935 rows)
+- `KEYWORD-URL-MAPPING.csv`: one target query per indexable URL
+- `lighthouse/*.json`: Lighthouse 12.8.2 lab runs
+- `responsive/*.png`: 360 px screenshots
 
-| Layer | What it is |
-| --- | --- |
-| Framework | Next.js 14.2 App Router, React 18, server components + ISR (`revalidate = 3600` on SEO pages) |
-| Data | Postgres (JSONB `doc` per row: `pins`, `posts`, …) read through `lib/db-ops` / `lib/pg`; Mongo code paths still exist; shared data cache in `lib/data-cache.ts` |
-| Hosting | Vercel (`vercel.json`), canonical host `https://www.mappingg.com` (`lib/seo/config.ts`) |
-| Map | `/map` interactive map (client), `/mundhwa-map-3d` |
-| Auth | Buyer sign-in (`/signin`, Google OAuth), developer dashboard (`/dashboard`), staff admin (`/s-admin`) — all disallowed in robots.txt |
-| Analytics | GTM / GA4 IDs from admin Settings, loaded after first interaction and gated by Consent Mode v2 (`app/layout.tsx`, `components/CookieConsent.tsx`) |
-| Search Console | Service-account client in `lib/search-console.ts`, used by the admin “SEO & Health” tab |
+**How the data was collected**
+- Live crawl of `https://www.mappingg.com` with `scripts/seo-audit/crawl.mjs`. It sends GET requests only, 4 at a time, and ran from 07:15 to 07:19 UTC on 22 Nov 2026.
+- A read-only database pass (`BEGIN READ ONLY`) with `scripts/seo-audit/projects.mts` and extra SQL.
+- Local Lighthouse runs on the installed Chrome.
+- Reading the source code.
 
-### Public URL families
+**Search data:** none is included. The Search Console API returns 403 because the API is disabled for GCP project 847257037149. Windsor.ai has no Search Console account connected (only Meta Ads and Google Ads). No rankings, impressions or search volumes are reported or estimated anywhere in this audit.
 
-| Route | Source | Count (3 Nov crawl) |
+---
+
+## 1. What was measured
+
+| Metric | Value | Source |
 | --- | --- | --- |
-| `/` | home | 1 |
-| `/projects`, `/projects?page=N` | all projects, 48 per page | 20 |
-| `/projects/<title>-<locality>-<number>` | one per public pin (`lib/seo/slug.ts`) | 963 |
-| `/locations`, `/locations/<slug>` | locality hubs from pin locations | 179 |
-| `/developers`, `/developers/<slug>` | developer hubs | 566 |
-| `/cities`, `/cities/<city>` | Pune, Mumbai & MMR, Bengaluru, Delhi NCR, Hyderabad (`HUB_CITIES`) | 22 incl. pages |
-| `/status/<status>` | upcoming / under-construction / ready-to-move | 20 incl. pages |
-| `/property`, `/property/<type>` | property-type hubs | 22 incl. pages |
-| `/blog`, `/blog/<slug>` | DB posts | 40 posts |
-| Static | about, contact, faq, features, how-it-works, legal pages, advertise, careers, developer-api | 16 |
-| **New (this pass)** | `/cities/<city>/<facet>`, `/locations/<locality>/<facet>`, `/data-sources` | 71 + 1 |
+| URLs crawled | 1,068 | crawl |
+| HTTP 200 / 404 / 5xx | 1,067 / 1 / 0 | crawl (the 404 is `/pricing`; subscriptions are switched off and the page is not linked) |
+| Indexable (200, no noindex, self-canonical) | 1,064 | crawl |
+| Sitemap URLs | 1,007; valid XML, 0 duplicates, 0 off-origin, 991 with `lastmod`, 0 future dates | crawl |
+| Broken internal links | 0 | crawl |
+| Redirects met while crawling | 0 | crawl |
+| Missing title / description / canonical | 0 / 0 / 0 | crawl |
+| Duplicate title groups | 1 (Trump World Center, pins #24 and #86) | crawl |
+| Duplicate description groups | 0 | crawl |
+| Pages without exactly one H1 | 0 | crawl |
+| Heading-level skips | 3 pages | crawl |
+| JSON-LD parse or required-property errors | 0 pages | crawl |
+| Images without `alt` | 0. A further 121 have `alt=""` (decorative) out of 1,432 | crawl |
+| Pages without `og:image` | 0 | crawl |
+| Titles longer than ~70 characters | 51 | crawl |
+| Thin indexable pages (<150 words) | 5 | crawl |
+| Orphan pages | 1 (`/buyer-requirement`) | crawl |
+| Crawler issues: high / medium / low | 2 / 8 / 56 (66 in total) | crawl |
 
-## 2. Existing SEO implementation (already working — kept)
+### Page families (live)
 
-- One metadata builder (`lib/seo/metadata.ts`): unique title, description, self-canonical, OG and Twitter card per page; root `%s — Mappingg` template.
-- `app/sitemap.ts`: only indexable URLs; `lastmod` from real `updated_at` values (never “now”); hourly ISR.
-- `app/robots.ts`: blocks `/s-admin`, `/dashboard`, `/intake`, `/submit`, `/signin`, `/partners/`, `/api/`, `/rest/`; points to the sitemap.
-- Indexing rules (`lib/seo/indexing.ts`): localities and developers need ≥ 3 projects (or a written area guide); empty placeholder projects are `noindex, follow` and out of the sitemap.
-- Pagination: `?page=N` with self-canonical and its own title (`lib/seo/paginate.ts`, `listing-meta.ts`).
-- Real 404 and 308 status codes from layouts before streaming starts; hidden duplicates 308 to the kept pin (`duplicateRedirectSlug`).
-- JSON-LD: Organization + WebSite (root), BreadcrumbList (every SEO page), ItemList + FAQPage (listings), project schema, BlogPosting, VideoObject. 0 schema errors in the 3 Nov crawl.
-- Project text from data only (`lib/seo/project-meta.ts`), respecting admin `field_visibility` (hidden prices never leak into titles, schema or lists).
-- Images: covers served as resized WebP via `/api/media`, explicit width/height, `fetchPriority="high"` on the LCP cover.
-- Consent-gated, interaction-delayed GTM to protect INP/LCP.
-- Audit tooling: `npm run seo:audit` (crawl + DB report + summary with before/after).
+| Family | Count | Schema on the page |
+| --- | --- | --- |
+| Home `/` | 1 | Organization, WebSite |
+| Project detail `/projects/<name>-<locality>-<n>` | 932 crawled, all indexable | Organization, WebSite, BreadcrumbList, Residence, FAQPage, plus VideoObject on 140 |
+| Projects listing `/projects`, `?page=2..20` | 20 | BreadcrumbList, ItemList (and FAQPage on page 1) |
+| Status hubs `/status/<s>` and their pages | 20 (3 hubs) | BreadcrumbList, ItemList, FAQPage |
+| Property-type hubs `/property/<t>` and their pages | 25, plus the `/property` index | BreadcrumbList, ItemList |
+| Blog `/blog`, its pages, and 44 posts | 5 + 44 | Blog; BlogPosting and BreadcrumbList on posts |
+| Static pages (about, faq, legal, etc.) | 18 | Organization, WebSite (+ FAQPage on `/faq`) |
+| Map `/map` | 1 | Organization, WebSite |
+| Removed on 4 Nov (commit `d6032e0`): `/cities/*`, `/locations/*`, `/developers/*` and their facet pages | 0. Each now 301s to `/projects` (`next.config.mjs` `redirects()`) | — |
 
-3 Nov live crawl versus the 20 Oct baseline: indexable pages 1,102 → 1,130; duplicate titles 8 → 0; duplicate descriptions 9 → 0; schema errors 1 → 0; thin indexable pages 640 → 26; issues high/medium/low 18/671/1,233 → 1/78/124.
+---
 
-## 3. Technical problems found (3 Nov crawl + code review)
+## 2. Findings
 
-| # | Severity | Issue | Status after this pass |
-| --- | --- | --- | --- |
-| T1 | high | `/locations/taloja` linked from `/blog/new-projects-in-navi-mumbai` returns 404 (Taloja has no public project now) | **Fixed** — blog HTML is post-processed at render (`lib/seo/resolve-links.ts`); links to localities that no longer exist become plain text |
-| T2 | low ×50 | Blog posts link to hidden duplicate / renamed project URLs, costing crawlers one 308 hop each | **Fixed** — same resolver rewrites to the final project URL using the cached public-pin list (no stored post edited) |
-| T3 | medium ×50 | Hidden duplicates canonicalise to the kept pin | Intended (31 Oct dedupe) — no change |
-| T4 | medium ×26 | Thin indexable pages (`/property` 38 words, `/cities` 96 words, 4 small developer pages, last listing pages) | **Improved** `/property` and `/cities` (data-driven copy + status and BHK/budget link sections). Small developer pages are real 3-project lists — left indexable |
-| T5 | low ×65 | Titles over ~70 characters (mostly long project names) | Open — names come from RERA records; truncation would hurt accuracy |
-| T6 | medium | 1 orphan page (`/buyer-requirement`) | **Fixed** — linked from every BHK/budget page. (`/delete-account` and `/developer-api/reference` are intentionally not in the sitemap) |
-| T7 | low | `/developer-api/reference` skips a heading level | Open (Swagger UI markup) |
-| T8 | — | Search Console API disabled on the Google Cloud project (403 on 4 Nov) | **Needs owner action** — see GSC-OPPORTUNITY-REPORT.md |
+Severity scale: **Critical** blocks indexing site-wide; **High** materially limits rankings or crawl; **Medium** weakens pages; **Low** is polish.
 
-## 4. Indexing problems
+### SEO-1 — High: there are no locality, city or developer landing pages
+- **Where:** `next.config.mjs` `redirects()`:
+  - `/:dir(developers|cities|locations)/:rest*` → `/projects` (permanent)
+  - `/cities/:city(pune|mumbai)/:rest*` → `/projects?city=:city`
+- **Evidence:**
+  - `app/cities`, `app/locations` and `app/developers` were deleted in commit `d6032e0` (4 Nov 2026).
+  - On 4 Nov these families made up 179 locality, 566 developer, 22 city and 71 BHK/budget facet URLs (`SEO-AUDIT-2026-11-04.md` §1). All of them now 301 to one generic page.
+  - `/projects?city=pune` is not a separate indexable page. Its canonical points to `/projects` (`app/projects/page.tsx` `dropFilters`).
+- **Impact:**
+  - Transactional queries such as "flats in Kharadi", "new projects in Wakad" and "Lodha projects in Pune" have no matching URL. The only locality-level pages are blog articles, which are informational.
+  - Every link and every index entry the old URLs had earned is folded into `/projects`. Google normally treats many-to-one 301s like this as soft-404s.
+  - This is the largest structural SEO gap on the site.
+- **Data available today for rebuilding them** (DB, public projects): Mundhwa 69, Kharadi 29, Andheri 15, Thane 13, Hinjewadi 12, Kalyan 11, Hadapsar 8, Wakad 6, Balewadi 6, Kothrud 6, Dombivli 6, Viman Nagar 5, Kharghar 5, Baner 4. There are 191 localities and 585 developer names in total.
 
-- No Google index data is available (Search Console API disabled), so “indexable” here means technically indexable, not indexed.
-- 29 placeholder projects are correctly `noindex`. 37 projects have a location the locality parser does not recognise — they still get pages but fall back to city-level links.
-- The brand query “mappingg.com” did not return the site in a live web search on 4 Nov. Treat brand visibility as low until GSC confirms otherwise.
+### SEO-2 — High: project, blog and listing pages are rendered on every request and never cached at the CDN
+- **Where:**
+  - `app/projects/[slug]/page.tsx`, `app/projects/page.tsx`, `app/blog/*`, `app/status/*` and `app/property/*` all declare `revalidate = 3600`.
+  - The live responses still send `Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate` and `X-Vercel-Cache: MISS`.
+  - The home page, `/faq` and `/map` are served `HIT`.
+- **Evidence:** `curl -I` on 22 Nov (see `INDEXING-AUDIT.md` §3). Crawler response times for project pages:
 
-## 5. Duplicate content risks
+  | Percentile | Response time |
+  | --- | --- |
+  | p50 | 563 ms |
+  | p90 | 2,031 ms |
+  | max | 7,690 ms |
 
-| Risk | Handling |
+  The home page took 7,594 ms on a cold hit.
+- **Cause:** not confirmed. Only a dev build exists locally (`.next` has no `prerender-manifest.json`). Something in the render path makes Next mark these routes dynamic (ƒ). Run `next build` and look at the route table to find it. Do not touch `.next` while dev is running.
+- **Impact:**
+  - Every Googlebot fetch costs a server render plus database reads, which hurts crawl rate.
+  - TTFB is slow for real users.
+  - Prisma operations scale with crawl volume (see the 25 Oct incident in `db-operations-caching`).
+
+### SEO-3 — High: a full-screen sign-in pop-up opens on the home page, and the map is gated
+- **Where:**
+  - `public/landing.js:1087-1100` `promptSignIn()` opens the sign-in modal 1 s after the first home-page view in each browser session.
+  - `components/MapAuthGate.tsx` blocks `/map` for guests after a short peek.
+- **Evidence:**
+  - The 360 px screenshot (`responsive/shot-_-360.png`) shows the sign-in modal covering the whole viewport.
+  - Lighthouse's LCP element on desktop sits under `body.mpg-auth-open`.
+  - The `/map` screenshot shows "Sign in to explore the live map".
+- **Impact:**
+  - Google's page-experience guidance treats interstitials that hide the main content right after arriving from search as intrusive.
+  - It also cuts engagement from brand searches (users who searched for the brand and land on the home page).
+  - Googlebot does not log in, so it never sees map content. The `sr-only` summary on `/map` is the only text it gets there.
+
+### SEO-4 — Medium (affects 928 pages): project images and `og:image` sit under a path `robots.txt` blocks
+- **Where:**
+  - `app/robots.ts` disallows `/api/`.
+  - Project images and `og:image` are `/api/media/pins/<id>?f=image…`, built in `lib/pin-media.ts` and `app/projects/[slug]/layout.tsx`.
+- **Evidence:** 928 of 932 project pages have an `og:image` under `/api/`. `robots.txt` was fetched live and includes `Disallow: /api/`.
+- **Impact:**
+  - Google Images cannot index any project image.
+  - Rendered pages lose their main image.
+  - Social crawlers (Facebook, LinkedIn, WhatsApp) do not read robots.txt, so share previews still work.
+
+### SEO-5 — Medium: project pages show the developer logo, not project photos
+- **Where:**
+  - `app/projects/[slug]/page.tsx` renders `pin.image`, a 160×160 image.
+  - For 886 of 935 public pins, `pin.image` is a `data:` developer logo (DB).
+  - The `projects` table holds official `gallery_urls` for 330 of the 929 linked projects and `cover_image_url` for 361. Neither is used on the SEO page; the only use is `lib/home/quickview.ts`.
+- **Impact:**
+  - Weak image-search presence.
+  - Logo share previews.
+  - No visual content to support "photos" or "gallery" queries.
+
+### SEO-6 — Medium: internal linking is shallow
+- **Breadcrumbs:** the trail is `Home › Project` only (`app/projects/[slug]/page.tsx`, `crumbs`). It has no city or locality level because those pages no longer exist (SEO-1).
+- **Inbound links per project page:** p50 = 4. 285 of 932 project pages have ≤3 internal links pointing to them. Most links come from paginated `/projects?page=N`, status and type lists.
+- **Related projects:** each page links up to 6 "related" projects (same locality first). That is good, but the locality itself is not a link target.
+
+### SEO-7 — Medium: `llms.txt` is out of date
+- **Where:** `public/llms.txt`.
+- **Evidence:** it says "As of September 2026: 184 projects mapped". It lists only Pune and MMR localities and says details "unlock after a visitor shares their name, WhatsApp number and email".
+- **Reality:** 932 property projects across Bengaluru 447, Pune 281, MMR 115, Delhi NCR 72, Hyderabad 15, Dubai 1 and Nashik 1. The site also has public project pages.
+- **Impact:** AI assistants and answer engines quote wrong coverage numbers.
+
+### SEO-8 — Medium: project structured data is minimal
+- **Where:** `lib/seo/schema.ts` `projectSchema()`.
+- **What is emitted:** `Residence` with name, description, url, image, address, geo and a RERA identifier.
+- **What is missing:** no `offers` or price (even though 570 projects show a price), no `numberOfRooms`, no `floorSize`, no `RealEstateListing` / `Accommodation` / `ApartmentComplex` modelling, and no developer link (`brand` / `provider`).
+- **FAQPage:** emitted on all 932 project pages. Since Aug 2023 FAQ rich results are limited to authoritative government and health sites, so this markup brings no SERP feature. It is harmless, but it is not a lever.
+
+### SEO-9 — Medium: duplicate project (title duplicate)
+- **Pages:** `/projects/trump-world-center-mundhwa-24` and `-86` share the title "Trump World Center in Mundhwa, Pune | Price, Office Spaces — Mappingg".
+- **Cause:** pins #24 and #86 are the same project, with different location text ("Mundhwa / Old Passport Of…" and "Mundhwa, Pune").
+
+### SEO-10 — Low: the property-type taxonomy is fragmented, which creates thin hubs
+- **Evidence:**
+  - The pin `type` field has 14 spellings for about 5 real types: "Residential/Group Housing" 388, "Residential" 318, "Mixed-Use" 39, "Mixed" 10, "Mixed Development" 9, "Residential / Commercial" 2, "Residential/ Commercial" 1, and others. 68 pins have no type.
+  - This produces 25 `/property/*` URLs, including thin ones: `/property/3-bed-suites-retail` (117 words), `/property/villa-plot` (133 words) and `/property/residentialgroup-housing?page=9` (92 words).
+
+### SEO-11 — Low: other crawler findings
+- **Long titles:** 51 are over ~70 characters (list in `TECHNICAL-SEO-ISSUES.csv`, code `title-long`).
+- **Pages missing from the sitemap:** two indexable pages are not listed: `/delete-account` and `/developer-api/reference`. The latter has 0 visible words (client-rendered), so it should probably be `noindex`.
+- **Weak pages in the sitemap:** `/mundhwa-map-3d` is listed but has 11 visible words. `/buyer-requirement` has no internal links pointing to it.
+- **Redirect chain:** `http://mappingg.com/` → `https://mappingg.com/` → `https://www.mappingg.com/` takes 2 hops. `http://www…` and `https://mappingg.com/*` each take 1 hop (308).
+- **Heading skips:** 3 pages. One title has an ALL-CAPS name.
+
+### What already works (keep it)
+- Every page has a unique title, description and self-canonical, built in one place (`lib/seo/metadata.ts`).
+- The sitemap lists indexable URLs only and uses real `lastmod` dates.
+- Placeholder projects get `noindex, follow` (`lib/seo/indexing.ts`).
+- Old slugs 308 to the canonical slug, and hidden duplicates 308 to the project that was kept.
+- The site has 0 broken internal links, 0 5xx responses and 0 JSON-LD errors.
+- Project pages are server-rendered with 416 visible words (median), real facts, an FAQ and related projects.
+- Lighthouse SEO scores 100 on the project, projects, blog and home pages.
+
+---
+
+## 3. Project-wise SEO status
+
+The full per-project table is `reports/seo-audit/2026-11-22-complete-audit/PROJECT-SEO-REPORT.csv`. Its columns are url, generated title and description, indexable, data gaps, keywords and live status.
+
+| Status | Count | Meaning |
+| --- | --- | --- |
+| SEO-ready (indexable, 200, unique title and description, no data gaps among the tracked fields) | **392** | Ready to rank on their facts |
+| Indexable but with data gaps (price, carpet area, possession, RERA or configuration missing) | **540** | Indexable, but the page is thinner and does not answer price or size queries |
+| Noindex placeholder (no title, location, price, configuration or description) | **3** (pins #920, #921, #936) | These pins are still visible on the public map with no title |
+| Not a project (an office marker and land parcels; no page) | 3 (#1, #73, #74) | Intended |
+| Duplicate title | 2 (#24, #86) | Same project twice |
+| Uses a logo as its image / image blocked by robots.txt | 886 / 928 | See SEO-4 and SEO-5 |
+
+How many projects have 0, 1, 2… tracked data gaps:
+
+| Data gaps | Projects |
 | --- | --- |
-| Duplicate pins (phases/towers) | Hidden + 308 to the kept pin (31 Oct); 5 open duplicate records listed in `reports/quality-audit/2026-10-20/DUPLICATE-RECORDS.csv`; pin number 116 shared by two projects |
-| Same query, two URL types (new) | `/blog/2-bhk-flats-in-pune` (price guide) vs `/cities/pune/2-bhk-flats` (live list). They now link to each other, the guide shows a “Live list” box, and titles differ (guide = “… 2026: New Projects & Prices”; list = “2 BHK Flats in Pune: N Projects”). Watch both in GSC — if they swap positions for the same query for 4+ weeks, consolidate |
-| Overlapping budget pages | “Under ₹1 Cr” is a subset of “Under ₹2 Cr” by design (separate searches). Each page exists only with ≥ 6 projects |
-| Locality aliases (e.g. Mulshi/Hinjewadi, Haveli) | Talukas and localities both come from the pins’ location text; both are real place names buyers use. Monitor |
-| `?page=N` | Self-canonical, unique title — correct for distinct lists |
+| 0 | 392 |
+| 1 | 368 |
+| 2 | 125 |
+| 3 | 29 |
+| 4 | 13 |
+| 5 | 5 |
+| 9 | 3 |
 
-## 6. Keyword targeting gaps (before this pass)
+---
 
-- **No BHK or budget landing pages.** The highest-intent clusters (“2 BHK flats in Pune”, “flats under 1 crore in Pune”, “3 BHK flats in Mundhwa”) were only served by blog posts, while Google ranks listing pages for these queries (Square Yards, Housing.com, Housiey, Homebazaar — see COMPETITOR-ANALYSIS.md). **Fixed:** 71 pages from real inventory (28 city-level, 43 locality-level).
-- No page for “RERA verified / data sources” trust queries — **fixed** with `/data-sources`.
-- Comparison queries (“Kharadi vs Mundhwa”, “Wakad vs Hinjewadi”) have no page. Ranking results are blogs (e.g. punerealityhub.pages.dev). Planned in CONTENT-ROADMAP.md.
-- Mumbai, Delhi NCR and Hyderabad coverage is thin per locality (most localities < 6 projects), so most locality-level BHK pages there do not qualify yet.
+## 4. Competitive opportunities (Pune and Mumbai)
 
-## 7. Content quality gaps
+These come from site data only. No search volumes or rankings were available.
 
-- Price is missing on 695 of 913 projects, configuration on 170, possession on 219, carpet area on 702, description on 693 (3 Nov DB report). Budget pages therefore cover only projects that publish a price; each page says how many are priced. Filling prices is the single biggest content lever.
-- Bengaluru (447 projects) has only 2 projects with a parsed price under ₹1 Cr — the registry imports carry no prices. Bengaluru budget pages mostly do not qualify.
-- Blog: 40 posts; 14 older posts linked to hidden duplicates (now rewritten at render). Posts are authored as “Mappingg Team” (Organization) — accurate; no individual author bios exist (see section 10 of the prompt — not invented).
+| Query family | Current best URL | Gap |
+| --- | --- | --- |
+| Flats / new projects in Mundhwa (69 projects) | `/blog/new-projects-in-mundhwa-pune`, `/mundhwa-map-3d` (11 words) | No transactional locality hub. The 3D map page has almost no text. |
+| Flats in Kharadi (29) | `/blog/new-projects-in-kharadi-pune`, `/blog/kharadi-vs-mundhwa-pune` | Same: no hub |
+| Flats in Hinjewadi (12) / Wakad (6) | `/blog/new-projects-in-hinjewadi-baner-balewadi-pune`, `/blog/hinjewadi-vs-wakad-pune` | No Wakad-specific page. No hubs. |
+| 1 BHK flats in Pune | none | Missing. `/blog/2-bhk-flats-in-pune` and `/blog/3-bhk-flats-in-pune` exist. |
+| 2 / 3 BHK by locality | none (the facet pages were removed on 4 Nov) | Missing |
+| Property prices by locality | `/blog/flat-prices-in-pune-by-locality-and-bhk` (one article) | No per-locality price pages. 362 projects have no price, which limits this. |
+| RERA-registered projects | none (874 projects carry a RERA number) | Missing a "RERA registered projects in Pune/Mumbai" listing |
+| Developer + city ("Lodha projects in Pune") | none (developer pages were removed) | Missing |
+| Mumbai localities: Powai, Chembur, Mira Road | none (0 projects in the DB) | This is a data-coverage gap, not a page gap |
 
-## 8. Performance
+**Cannibalisation risk:** with the hubs gone, the blog posts are now the only locality pages. The overlaps are:
+- `new-projects-in-mundhwa-pune` and `kharadi-vs-mundhwa-pune`
+- `new-projects-in-hinjewadi-baner-balewadi-pune` and `hinjewadi-vs-wakad-pune`
 
-- No field (CrUX) data was retrievable in this session; the PageSpeed Insights API quota without a key is regularly exhausted (noted 20 Oct). Lighthouse-only numbers are not reported as Core Web Vitals.
-- Code-level: GTM delayed until interaction or 10 s; cover images resized WebP with dimensions; listings paginated (the old `/projects` page was ~1.2 MB HTML). No regressions introduced: new pages reuse the same server-rendered listing template.
-
-## 9. Internal linking
-
-Before: city → localities/status/guides; locality → nearby localities/developers/guides; project → developer/status/type/locality/city.
-
-Added in this pass:
-- City page → its BHK and budget pages (first in “By BHK, budget & locality”).
-- Locality page → its BHK and budget pages.
-- City facet page → a locality breakdown, linking each locality’s matching facet page where it exists.
-- Facet page ↔ other facets in the same place, the same facet in other cities, the parent hub, and the matching blog guide.
-- Project page → up to 6 BHK/budget pages it appears on (e.g. “3 BHK Flats in Mundhwa”).
-- `/cities` and `/property` → every city facet page (“Browse by BHK and budget”).
-- Blog guide → its live list (“Live list” box).
-- Footer (legal) and project pages → `/data-sources`.
-
-## 10. Prioritised roadmap
-
-| Priority | Action | Owner | Status |
-| --- | --- | --- | --- |
-| P0 | Enable Search Console API on GCP project 847257037149 and add the service account to the GSC property | Site owner | Pending |
-| P0 | Deploy this change set; submit `sitemap.xml` in GSC; inspect 3 new URLs | Site owner | Pending |
-| P0 | Reduce Windsor.ai to 1 connected account (or upgrade) to unlock Google Ads search-term + Keyword Planner data | Site owner | Pending |
-| P1 | Fill prices on the most-viewed Pune/Mumbai projects (695 missing) — unlocks more budget pages | Data team | Open |
-| P1 | Rerun `npm run seo:audit -- --label=after-deploy --compare=reports/seo-audit/2026-11-03-live-nov02` | Dev | After deploy |
-| P2 | Comparison guides (Kharadi vs Mundhwa, Wakad vs Hinjewadi, Baner vs Balewadi) from live data | Content | Roadmap |
-| P2 | Resolve 5 duplicate records and the shared pin number 116 | Data team | Open |
-| P3 | GA4 key events for project view / enquiry / registration (see IMPLEMENTATION-REPORT.md) | Dev | Open |
+Rebuilt hubs would need clear intent splits: hub = listing, blog = guide. `KEYWORD-URL-MAPPING.csv` has a cannibalisation-risk column for each URL.

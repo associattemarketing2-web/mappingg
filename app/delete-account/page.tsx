@@ -16,6 +16,10 @@ export const metadata: Metadata = buildMetadata({
   title: 'Delete your Mappingg account',
   description: 'Delete your Mappingg account and personal data, from the website or the Mappingg app, with or without signing in.',
   path: '/delete-account',
+  // Must stay reachable (Google Play links it), but it is an account utility,
+  // not a search landing page.
+  noIndex: true,
+  follow: true,
 });
 
 async function accountState(): Promise<{ state: DeleteAccountState; email?: string; name?: string }> {

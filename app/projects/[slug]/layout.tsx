@@ -11,6 +11,8 @@ import {
 import { buildMetadata } from '@/lib/seo/metadata';
 import { projectIndexing } from '@/lib/seo/indexing';
 import { projectDescription, projectTitle } from '@/lib/seo/project-meta';
+import { getProjectPhotos, sized } from '@/lib/seo/project-media';
+import { publicImageUrl } from '@/lib/seo/public-media';
 
 // SEO metadata for /projects/<slug> lives here; page.tsx renders the project.
 // Not-found and redirect decisions are made here, before the response starts
@@ -29,12 +31,16 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   if (params.slug !== canonicalSlug) permanentRedirect(`/projects/${canonicalSlug}`);
   const loc = primaryLocality(pin);
   const city = CITY_LABELS[cityOf(pin)];
+  // Share image: the official cover photo when we have one, else the pin image
+  // (usually the developer logo) — always at its crawlable /media/ address.
+  const photos = await getProjectPhotos(pin.intake_project_id);
+  const logo = pin.image && /^(https?:|\/api\/)/.test(pin.image) ? publicImageUrl(pin.image) : undefined;
   // Title and description only name facts this page shows (lib/seo/project-meta.ts).
   return buildMetadata({
     title: projectTitle(pin, loc, city),
     description: projectDescription(pin, loc, city),
     path: `/projects/${canonicalSlug}`,
-    image: pin.image && /^(https?:|\/api\/)/.test(pin.image) ? pin.image : undefined,
+    image: photos.cover ? sized(photos.cover, 1200) : logo,
     type: 'article',
     // Empty placeholder projects (no location, price, configuration or description) aren't indexed yet.
     noIndex: !projectIndexing(pin).index,

@@ -1,0 +1,37 @@
+﻿severity,code,url,detail,fix,status
+high,title-duplicate,/projects/trump-world-center-mundhwa-24,"""Trump World Center in Mundhwa, Pune | Price, Office Spaces — Mappingg"" shared by 2 pages: /projects/trump-world-center-mundhwa-86",Make each title unique,open
+high,title-duplicate,/projects/trump-world-center-mundhwa-86,"""Trump World Center in Mundhwa, Pune | Price, Office Spaces — Mappingg"" shared by 2 pages: /projects/trump-world-center-mundhwa-24",Make each title unique,open
+medium,orphan,/buyer-requirement,No internal links point here (in crawled pages),Link from a relevant hub page,open
+medium,thin-content,/developers/amar-builders,112 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/krisala-hiranandani-township,144 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/kumar-corp,137 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/marvel-realtors,148 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/pranav-constructions,142 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/developers/ram-india-group,139 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/locations,102 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/mundhwa-map-3d,11 words of visible text,"Add useful, page-specific content or noindex",open
+medium,thin-content,/property/residentialgroup-housing?page=9,92 words of visible text,"Add useful, page-specific content or noindex",open
+low,heading-skip,/,1 skipped heading level(s),Use h2 → h3 in order,open
+low,heading-skip,/buyer-requirement,1 skipped heading level(s),Use h2 → h3 in order,open
+low,heading-skip,/developer-api/reference,1 skipped heading level(s),Use h2 → h3 in order,open
+low,img-no-dimensions,/,125 image(s) without width/height,Set width/height to avoid layout shift,open
+low,title-all-caps,/projects/life-republic-sector-r3131st-avenue-echoesphase-1-mulshi-729,LIFE REPUBLIC SECTOR R31/31st AVENUE – ECHOES/PHASE – 1 — Mappingg,Show imported ALL-CAPS names in title case,open
+low,title-long,/projects?page=10,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 10 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=11,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 11 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=12,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 12 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=13,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 13 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=14,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 14 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=15,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 15 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=16,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 16 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=17,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 17 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=18,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 18 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=19,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 19 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=2,"80 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 2 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=20,"81 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 20 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=3,"80 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 3 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=4,"80 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 4 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=5,"80 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 5 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=6,"80 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 6 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=7,"80 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 7 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=8,"80 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 8 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open
+low,title-long,/projects?page=9,"80 chars: Real Estate Projects in Bengaluru, Pune, Mumbai & more — Page 9 of 20 — Mappingg",Keep under ~60–65 chars so it is not truncated,open

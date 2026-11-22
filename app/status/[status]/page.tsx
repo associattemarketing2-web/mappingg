@@ -1,59 +1,17 @@
-import type { Metadata } from 'next';
-import { paginate, type PageParam } from '@/lib/seo/paginate';
-import { notFound } from 'next/navigation';
-import { pagedMetadata, statusMeta } from '@/lib/seo/listing-meta';
-import EntityListing from '@/components/seo/EntityListing';
-import { getStatusGroups, findGroup, STATUS_ROUTES, citiesPhrase } from '@/lib/seo/entities';
+import { STATUS_ROUTES } from '@/lib/seo/entities';
+import StatusListing from './listing';
 
+// Page 1 of /status/<status>. Pages 2+ (/status/<status>?page=N) are served by
+// ./p/[page] through a rewrite (next.config.mjs), so this route never reads
+// searchParams and is prerendered + cached.
 export const revalidate = 3600;
+export const dynamic = 'force-static';
 // Closed set (3 indexed statuses) → prerender + hard-404 on unknown slugs.
 export const dynamicParams = false;
 export async function generateStaticParams() {
   return STATUS_ROUTES.map((s) => ({ status: s.slug }));
 }
 
-type Props = { params: { status: string }; searchParams?: { page?: PageParam } };
-
-// Page 2+ (?page=N) gets its own title and self-canonical; page 1 uses the layout's.
-export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
-  const g = await findGroup(getStatusGroups, params.status);
-  const pg = g && paginate(g.pins, searchParams?.page);
-  return g && pg ? pagedMetadata(statusMeta(g), pg.page, pg.pages) : {};
-}
-
-export default async function StatusPage({ params, searchParams }: Props) {
-  const g = await findGroup(getStatusGroups, params.status);
-  if (!g) notFound();
-  const pg = paginate(g.pins, searchParams?.page);
-  if (!pg) notFound();
-
-  const where = citiesPhrase(g.pins);
-  const related = [
-    ...STATUS_ROUTES.filter((s) => s.slug !== g.slug).map((s) => ({ label: s.label, path: `/status/${s.slug}` })),
-  ];
-
-  return (
-    <EntityListing
-      crumbs={[
-        { name: 'Home', path: '/' },
-        { name: 'Projects', path: '/projects' },
-        { name: g.label, path: `/status/${g.slug}` },
-      ]}
-      eyebrow="By status"
-      title={`${g.label} Projects in ${where}`}
-      lede={`${g.label} real estate projects in ${where}, with developer, locality, configuration and pricing details.`}
-      stats={[{ b: g.count, span: `${g.label} projects` }]}
-      pins={pg.items}
-      pagination={{ ...pg, base: `/status/${g.slug}` }}
-      projectsHeading={`${g.label} projects (${g.count})`}
-      relatedTitle="Other statuses & localities"
-      related={related}
-      faqs={[
-        {
-          q: `How many ${g.label.toLowerCase()} projects are listed?`,
-          a: `Mappingg currently maps ${g.count} ${g.label.toLowerCase()} project${g.count === 1 ? '' : 's'} in ${citiesPhrase(g.pins, 5)}.`,
-        },
-      ]}
-    />
-  );
+export default function StatusPage({ params }: { params: { status: string } }) {
+  return <StatusListing status={params.status} page={undefined} />;
 }

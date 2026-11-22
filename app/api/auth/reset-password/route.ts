@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { getDb } from '@/lib/mongodb';
 import { checkOtp } from '@/lib/otp';
 import { logActivity } from '@/lib/activity';
-import { clientIp, rateLimit } from '@/lib/rate-limit';
+import { clientIp, rateLimit, rateLimitShared } from '@/lib/rate-limit';
 import { findAccountByMobile } from '@/lib/mobile-account';
 
 export const runtime = 'nodejs';
@@ -28,7 +28,8 @@ export async function POST(req: NextRequest) {
   const { otp, ticket, password } = parsed.data;
   if (!parsed.data.email && !parsed.data.mobile) return NextResponse.json({ error: { message: 'Enter your email or mobile number.' } }, { status: 400 });
 
-  const limited = rateLimit(`reset:${parsed.data.email || parsed.data.mobile}`, 8, 15 * 60_000) || rateLimit(`reset-ip:${clientIp(req)}`, 30, 15 * 60_000);
+  // Code guesses per account are counted across all IPs and server instances.
+  const limited = (await rateLimitShared(`reset:${parsed.data.email || parsed.data.mobile}`, 8, 15 * 60_000)) || rateLimit(`reset-ip:${clientIp(req)}`, 30, 15 * 60_000);
   if (limited) return limited;
 
   const users = (await getDb()).collection('users');

@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Don't advertise the framework (X-Powered-By: Next.js) on every response.
+  poweredByHeader: false,
   // The legacy map apps rely on data: URLs and remote tile/logo images that are
   // injected as raw <img> tags, so we keep the classic <img> behaviour rather
   // than forcing next/image on the ported markup.
@@ -14,14 +16,33 @@ const nextConfig = {
   //             also embedded as the "Projects Intake" tab inside /s-admin
   //   /submit → builder submission page (opened via a unique ?t=token link)
   async rewrites() {
-    return [
+    // Listing pages 2+ keep their public ?page=N URLs (canonicals, pager links and
+    // indexed URLs are unchanged), but are served by a path segment (…/p/N) so the
+    // route never reads searchParams. In Next 14 reading searchParams made every
+    // listing a per-request server render (`private, no-store`, never CDN-cached).
+    // beforeFiles: must run before the real /projects, /blog… routes match.
+    const PAGE = [{ type: 'query', key: 'page', value: '(?<page>[2-9]|[1-9]\\d+)' }];
+    const beforeFiles = [
+      { source: '/projects', has: PAGE, destination: '/projects/p/:page' },
+      { source: '/blog', has: PAGE, destination: '/blog/p/:page' },
+      { source: '/status/:status', has: PAGE, destination: '/status/:status/p/:page' },
+      { source: '/property/:type', has: PAGE, destination: '/property/:type/p/:page' },
+    ];
+    const afterFiles = [
       // Browsers ask for /favicon.ico on plain HTML pages (intake, submit) — serve the logo mark.
       { source: '/favicon.ico', destination: '/img/mappingg-icon-mark.png' },
       { source: '/intake', destination: '/partners/admin/index.html' },
       { source: '/intake/', destination: '/partners/admin/index.html' },
       { source: '/submit', destination: '/partners/submit/index.html' },
       { source: '/submit/', destination: '/partners/submit/index.html' },
+      // Crawlable address for PUBLIC pin images (robots.txt keeps /api/ blocked, so
+      // images served from /api/... could never be indexed by Google Images). Same
+      // handler and access rules: /api/media only serves whitelisted fields of pins
+      // shown on the public map (hidden pins are staff-only there).
+      // Official project photos have their own handler: app/media/project/[...path].
+      { source: '/media/pins/:id', destination: '/api/media/pins/:id' },
     ];
+    return { beforeFiles, afterFiles, fallback: [] };
   },
   async redirects() {
     return [
@@ -29,11 +50,14 @@ const nextConfig = {
       // page its redirect was prerendered without a Location header; a config
       // redirect is a real 307 that never renders anything.
       { source: '/signin', destination: '/?signin=1', permanent: false },
-      // The developer, city and locality directory pages were removed: old links
-      // and indexed URLs go to the projects list (city pages keep their filter).
-      { source: '/cities/:city(pune|mumbai)/:rest*', destination: '/projects?city=:city', permanent: true },
-      { source: '/:dir(developers|cities|locations)', destination: '/projects', permanent: true },
-      { source: '/:dir(developers|cities|locations)/:rest*', destination: '/projects', permanent: true },
+      // City pages were retired (4 Nov): old links and indexed URLs go to the
+      // projects list. (`?city=` is dropped there, so it is not passed on.)
+      { source: '/cities', destination: '/projects', permanent: true },
+      { source: '/cities/:rest*', destination: '/projects', permanent: true },
+      // Locality and developer hubs are live again (22 Nov). Their old BHK/budget
+      // sub-pages (/locations/<loc>/<facet>) were not restored: they go to the hub.
+      { source: '/locations/:slug/:facet+', destination: '/locations/:slug', permanent: true },
+      { source: '/developers/:slug/:rest+', destination: '/developers/:slug', permanent: true },
     ];
   },
   async headers() {
@@ -46,6 +70,10 @@ const nextConfig = {
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          // Browser features the site may use: location (map "near me", same-origin
+          // map iframe on the home page) and the microphone (voice search on the home
+          // page) — only for our own pages. Camera and USB are never used.
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(self), geolocation=(self), usb=(), interest-cohort=()' },
         ],
       },
       {

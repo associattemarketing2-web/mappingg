@@ -1,0 +1,8 @@
+{"page":"blog-mobile","perf":88,"a11y":100,"seo":100,"bp":100,"FCP":"1.6","LCP":"3.0","TBT":249,"CLS":"0.000","SI":"3.2","KB":240,"req":25,"dom":766}
+{"page":"home-desktop","perf":86,"a11y":94,"seo":100,"bp":100,"FCP":"0.8","LCP":"1.8","TBT":23,"CLS":"0.011","SI":"2.5","KB":5758,"req":121,"dom":1583}
+{"page":"home-mobile","perf":48,"a11y":92,"seo":100,"bp":100,"FCP":"3.5","LCP":"7.3","TBT":640,"CLS":"0.001","SI":"6.6","KB":6414,"req":118,"dom":1584}
+{"page":"map-desktop","perf":50,"a11y":95,"seo":92,"bp":100,"FCP":"0.9","LCP":"2.4","TBT":1429,"CLS":"0.000","SI":"2.6","KB":4627,"req":366,"dom":6210}
+{"page":"map-mobile","perf":29,"a11y":98,"seo":92,"bp":96,"FCP":"4.5","LCP":"19.3","TBT":7466,"CLS":"0.000","SI":"7.5","KB":2652,"req":315,"dom":6162}
+{"page":"project-mobile","perf":82,"a11y":100,"seo":100,"bp":100,"FCP":"3.0","LCP":"3.6","TBT":164,"CLS":"0.000","SI":"3.1","KB":405,"req":34,"dom":242}
+{"page":"projectgallery-mobile","perf":88,"a11y":100,"seo":100,"bp":100,"FCP":"2.8","LCP":"3.2","TBT":1,"CLS":"0.000","SI":"2.9","KB":388,"req":33,"dom":251}
+{"page":"projects-mobile","perf":87,"a11y":100,"seo":100,"bp":100,"FCP":"1.3","LCP":"2.8","TBT":373,"CLS":"0.000","SI":"2.0","KB":206,"req":28,"dom":481}

@@ -58,6 +58,8 @@ export interface Pin {
   brochure_image?: string;
   created_at?: string;
   updated_at?: string;
+  /** Published project record this pin came from (projects.id) — official photos live there. */
+  intake_project_id?: string;
 }
 
 // lat/lng are needed to tell which city a project is in (lib/seo/city.ts).

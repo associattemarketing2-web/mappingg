@@ -28,6 +28,14 @@ export function developerIndexing(projectCount: number): IndexDecision {
     : { index: false, reason: `only ${projectCount} project(s)` };
 }
 
+/** Property-type hub (/property/<type>): same bar as developers — a 1–2 project
+ *  list from a one-off type spelling ("3 BED SUITES & RETAIL") adds nothing. */
+export function typeIndexing(projectCount: number): IndexDecision {
+  return projectCount >= MIN_PROJECTS_TO_INDEX
+    ? { index: true, reason: `${projectCount} projects` }
+    : { index: false, reason: `only ${projectCount} project(s)` };
+}
+
 export interface ProjectContent {
   location?: string; price?: string; configuration?: string; description?: string; key_usp?: string;
 }
