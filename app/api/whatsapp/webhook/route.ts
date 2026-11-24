@@ -15,23 +15,32 @@ export const maxDuration = 60;
 // messages[] / contacts[] / statuses[]); GET answers the hub.challenge check.
 // Raw payloads are logged (first 1 KB) so the format can be checked in the server logs.
 
-function tokenOk(req: NextRequest, given: string | null): boolean {
+function matches(t: string): boolean {
   const secret = process.env.WHATSAPP_WEBHOOK_SECRET || '';
-  const t = given || req.nextUrl.searchParams.get('token') || req.headers.get('x-webhook-token') || '';
   if (!secret || !t) return false;
   const a = Buffer.from(secret), b = Buffer.from(t);
   return a.length === b.length && timingSafeEqual(a, b);
 }
 
+// The secret may come as ?token=…, an x-webhook-token header, or the last path segment
+// (/api/whatsapp/webhook/<secret>). Some providers append their own "?hub.mode=…" to a URL
+// that already has a query, so anything after a stray "?" in the token is dropped.
+function tokenOk(req: NextRequest, given: string | null): boolean {
+  const q = (req.nextUrl.searchParams.get('token') || '').split('?')[0];
+  const seg = req.nextUrl.pathname.split('/').filter(Boolean).pop() || '';
+  return [given || '', q, req.headers.get('x-webhook-token') || '', seg].some(matches);
+}
+
 export async function GET(req: NextRequest) {
-  const p = req.nextUrl.searchParams;
-  // Meta-style verification: echo hub.challenge. The provider (whatapi.in) may send its own
-  // verify_token, so the secret in the URL (?token=…) is accepted too.
-  const challenge = p.get('hub.challenge');
-  if (challenge !== null && (tokenOk(req, p.get('hub.verify_token')) || tokenOk(req, null))) {
-    return new NextResponse(challenge, { status: 200, headers: { 'Content-Type': 'text/plain' } });
+  // Verification handshake: echo hub.challenge (also when it arrives behind a stray "?").
+  // Echoing reveals nothing and the provider's verify_token may be its own value, so this
+  // is answered without the secret; POST (the actual messages) still requires it.
+  const challenge = req.nextUrl.searchParams.get('hub.challenge')
+    ?? /[?&]hub\.challenge=([^&]*)/.exec(req.url)?.[1] ?? null;
+  if (challenge !== null) {
+    return new NextResponse(decodeURIComponent(challenge), { status: 200, headers: { 'Content-Type': 'text/plain' } });
   }
-  return NextResponse.json({ ok: tokenOk(req, null) }, { status: tokenOk(req, null) ? 200 : 403 });
+  return NextResponse.json({ ok: tokenOk(req, null) }, { status: 200 });
 }
 
 type Obj = Record<string, any>;
