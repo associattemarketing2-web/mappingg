@@ -32,13 +32,14 @@ function tokenOk(req: NextRequest, given: string | null): boolean {
 }
 
 export async function GET(req: NextRequest) {
-  // Verification handshake: echo hub.challenge (also when it arrives behind a stray "?").
-  // Echoing reveals nothing and the provider's verify_token may be its own value, so this
-  // is answered without the secret; POST (the actual messages) still requires it.
-  const challenge = req.nextUrl.searchParams.get('hub.challenge')
-    ?? /[?&]hub\.challenge=([^&]*)/.exec(req.url)?.[1] ?? null;
+  // Verification handshake: echo the challenge (also when it arrives behind a stray "?").
+  // Meta sends hub.challenge; whatapi.in's panel sends "challange" (sic). Echoing reveals
+  // nothing, so this is answered without the secret; POST (the actual messages) still requires it.
+  const challenge = /[?&](?:hub\.challenge|challenge|challange)=([^&]*)/.exec(req.url)?.[1] ?? null;
   if (challenge !== null) {
-    return new NextResponse(decodeURIComponent(challenge), { status: 200, headers: { 'Content-Type': 'text/plain' } });
+    return new NextResponse(decodeURIComponent(challenge.replace(/\+/g, ' ')), {
+      status: 200, headers: { 'Content-Type': 'text/plain; charset=utf-8', 'X-Content-Type-Options': 'nosniff' },
+    });
   }
   return NextResponse.json({ ok: tokenOk(req, null) }, { status: 200 });
 }
