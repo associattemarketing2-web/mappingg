@@ -116,3 +116,8 @@ export async function POST(req: NextRequest) {
   }
   return NextResponse.json({ ok: true });
 }
+
+// Some providers send updates (and their "check webhook" test) with PUT/PATCH/DELETE.
+export const PUT = POST;
+export const PATCH = POST;
+export const DELETE = POST;
