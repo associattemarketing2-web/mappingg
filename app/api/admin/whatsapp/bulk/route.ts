@@ -2,8 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getCurrentUser } from '@/lib/auth';
 import { hasPermission } from '@/lib/staff';
-import { messages, prettyPhone, waDigits, type WaMessage } from '@/lib/wa-store';
-import { buyerWelcomeTemplate, whatsappBulkText, whatsappBulkWelcome, whatsappConfigured } from '@/lib/whatsapp';
+import { chats, messages, prettyPhone, waDigits, type WaMessage } from '@/lib/wa-store';
+import {
+  approvedTemplates, buyerWelcomeTemplate, whatsappBulkTemplate, whatsappBulkText, whatsappBulkWelcome, whatsappConfigured, whatsappProvider,
+  type WaTemplate,
+} from '@/lib/whatsapp';
 import { extractRecipients, MAX_BULK_BYTES } from '@/lib/wa-bulk';
 
 export const runtime = 'nodejs';
@@ -28,6 +31,13 @@ const sendSchema = z.object({
   campaign: z.string().regex(/^[\w-]{6,64}$/),
   mode: z.enum(['template', 'text']).default('template'),
   text: z.string().trim().max(4000).default(''),
+  // whatapi.in: the approved template picked in the panel; params are its {{1}}… values ({name} = recipient's name).
+  template: z.object({
+    name: z.string().min(1).max(512),
+    language: z.string().min(2).max(15),
+    params: z.array(z.string().max(1000)).max(20).default([]),
+    url_param: z.string().max(500).default(''),
+  }).optional(),
   recipients: z.array(z.object({ phone: z.string().min(8).max(20), name: z.string().max(80).default('') })).min(1).max(BATCH),
 });
 
@@ -54,18 +64,49 @@ export async function POST(req: NextRequest) {
 
   const parsed = sendSchema.safeParse(await req.json().catch(() => null));
   if (!parsed.success) return fail(parsed.error.issues[0]?.message || 'Invalid request');
-  if (!whatsappConfigured()) return fail('WhatsApp is not set up on the server (WHATSAPP_API_URL / WHATSAPP_API_KEY).', 503);
+  if (!whatsappConfigured()) return fail('WhatsApp is not set up on the server (WHATSAPP_META_TOKEN / WHATSAPP_PHONE_NUMBER_ID).', 503);
   const d = parsed.data;
   if (d.mode === 'text' && !d.text) return fail('Type the message to send');
+  // whatapi.in: only an approved template of the account, with every {{n}} filled in.
+  const tpl = d.mode === 'template' ? d.template : undefined;
+  if (d.mode === 'template' && whatsappProvider() === 'meta') {
+    if (!tpl) return fail('Pick a template');
+    let list: WaTemplate[];
+    try { list = await approvedTemplates(); } catch (e) { return fail((e as Error).message, 502); }
+    const t = list.find((x) => x.name === tpl.name && x.language === tpl.language);
+    if (!t) return fail(`Template "${tpl.name}" is not approved on this WhatsApp account`);
+    if (tpl.params.length !== t.vars || tpl.params.some((v) => !v.trim())) return fail(`Fill all ${t.vars} values of the template`);
+    if (t.urlVars && !tpl.url_param.trim()) return fail('Fill the button link value of the template');
+  }
   const me = await getCurrentUser();
 
   const queue = d.recipients.map((r) => ({ phone: waDigits(r.phone), name: r.name.trim() }));
   const results: { phone: string; ok: boolean; error?: string }[] = [];
+
+  // WhatsApp rule: a typed (free-text) message only reaches someone who messaged us in the last 24 hours.
+  // whatapi.in still answers "queued" for everyone else and WhatsApp silently drops it — so refuse those
+  // numbers here with the real reason instead of showing a fake "Sent".
+  if (d.mode === 'text' && whatsappProvider() === 'meta') {
+    const since = new Date(Date.now() - 24 * 3_600_000).toISOString();
+    const open = new Set(
+      (await (await chats()).find({ _id: { $in: queue.map((r) => r.phone) } }, { projection: { last_in_at: 1 } }).toArray())
+        .filter((c) => c.last_in_at && c.last_in_at >= since).map((c) => String(c._id)),
+    );
+    for (let i = queue.length - 1; i >= 0; i--) {
+      if (open.has(queue[i].phone)) continue;
+      results.push({ phone: queue[i].phone, ok: false, error: 'Not sent: this number has not messaged you in the last 24 hours, so WhatsApp drops typed messages. Use the Template tab.' });
+      queue.splice(i, 1);
+    }
+  }
   async function worker() {
     for (let r = queue.shift(); r; r = queue.shift()) {
+      const fill = (v: string) => v.replace(/\{name\}/gi, r!.name || 'there');
       const res = d.mode === 'text'
-        ? await whatsappBulkText(r.phone, r.name || undefined, d.text.replace(/\{name\}/gi, r.name || 'there'), d.campaign, me?.email)
-        : await whatsappBulkWelcome(r.phone, r.name || undefined, d.campaign, me?.email);
+        ? await whatsappBulkText(r.phone, r.name || undefined, fill(d.text), d.campaign, me?.email)
+        : tpl
+          ? await whatsappBulkTemplate(r.phone, r.name || undefined,
+            { name: tpl.name, language: tpl.language, params: tpl.params.map(fill), urlParam: fill(tpl.url_param) || undefined }, d.campaign, me?.email)
+          : await whatsappBulkWelcome(r.phone, r.name || undefined, d.campaign, me?.email);
       results.push({ phone: r.phone, ok: res.ok, ...(res.ok ? {} : { error: res.error || 'Not sent' }) });
     }
   }
@@ -97,5 +138,10 @@ export async function GET(req: NextRequest) {
     if (m.status === 'failed') c.failed++;
     else if (m.status === 'read') { c.read++; c.delivered++; } else if (m.status === 'delivered') c.delivered++;
   }
-  return NextResponse.json({ data: { template: buyerWelcomeTemplate(), campaigns: [...byId.values()].slice(0, 50) } });
+  let templates: WaTemplate[] = [];
+  let templatesError = '';
+  try { templates = await approvedTemplates(req.nextUrl.searchParams.get('fresh') === '1'); } catch (e) { templatesError = (e as Error).message; }
+  return NextResponse.json({
+    data: { template: buyerWelcomeTemplate(), provider: whatsappProvider(), templates, templates_error: templatesError, campaigns: [...byId.values()].slice(0, 50) },
+  });
 }

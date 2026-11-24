@@ -4,7 +4,8 @@ import { getDb } from '@/lib/mongodb';
 import { getCurrentUser } from '@/lib/auth';
 import { hasPermission } from '@/lib/staff';
 import { chatMessages, chats, getChat, messages, prettyPhone, waDigits, type WaChat, type WaMessage } from '@/lib/wa-store';
-import { whatsappConfigured, whatsappText } from '@/lib/whatsapp';
+import { buyerWelcomeTemplate, otpTemplate, whatsappConfigured, whatsappProvider, whatsappText } from '@/lib/whatsapp';
+import { otpEnabled } from '@/lib/otp';
 import { aiConfigured, draftReply } from '@/lib/wa-ai';
 import { backfillWhatsAppHistory } from '@/lib/wa-backfill';
 
@@ -96,7 +97,10 @@ export async function GET(req: NextRequest) {
         ai_replies: await col.countDocuments({ author: 'ai' }),
         leads: waLeads,
       },
-      config: { whatsapp: whatsappConfigured(), ai: aiConfigured(), webhook: Boolean(process.env.WHATSAPP_WEBHOOK_SECRET) },
+      config: {
+        whatsapp: whatsappConfigured(), ai: aiConfigured(), webhook: Boolean(process.env.WHATSAPP_WEBHOOK_SECRET),
+        provider: whatsappProvider(), otp: otpEnabled(), otp_template: otpTemplate(), welcome_template: buyerWelcomeTemplate(),
+      },
     },
   });
 }
@@ -118,7 +122,12 @@ export async function POST(req: NextRequest) {
 
   if (d.action === 'send') {
     const phone = waDigits(d.phone);
-    if (!(await getChat(phone))) return fail('Chat not found', 404);
+    const chat = await getChat(phone);
+    if (!chat) return fail('Chat not found', 404);
+    // whatapi.in "queues" a typed message even outside WhatsApp's 24-hour window, then WhatsApp drops it silently.
+    if (whatsappProvider() === 'meta' && (!chat.last_in_at || Date.now() - Date.parse(chat.last_in_at) > 24 * 3_600_000)) {
+      return fail('Not sent: this customer has not messaged you in the last 24 hours, so WhatsApp drops typed messages. Use Bulk send → Template to reach them.', 409);
+    }
     const r = await whatsappText(phone, d.text, 'staff', me?.email);
     if (!r.ok) return NextResponse.json({ error: { message: r.error || 'Could not send' }, data: { message: r.message } }, { status: 502 });
     return NextResponse.json({ data: { message: r.message } });

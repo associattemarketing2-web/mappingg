@@ -25,8 +25,11 @@ function tokenOk(req: NextRequest, given: string | null): boolean {
 
 export async function GET(req: NextRequest) {
   const p = req.nextUrl.searchParams;
-  if (p.get('hub.mode') === 'subscribe' && tokenOk(req, p.get('hub.verify_token'))) {
-    return new NextResponse(p.get('hub.challenge') || '', { status: 200 });
+  // Meta-style verification: echo hub.challenge. The provider (whatapi.in) may send its own
+  // verify_token, so the secret in the URL (?token=…) is accepted too.
+  const challenge = p.get('hub.challenge');
+  if (challenge !== null && (tokenOk(req, p.get('hub.verify_token')) || tokenOk(req, null))) {
+    return new NextResponse(challenge, { status: 200, headers: { 'Content-Type': 'text/plain' } });
   }
   return NextResponse.json({ ok: tokenOk(req, null) }, { status: tokenOk(req, null) ? 200 : 403 });
 }
