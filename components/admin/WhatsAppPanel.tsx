@@ -2,13 +2,15 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StatTile } from './SeoCharts';
+import { Composer, SchedulesView, type Outcome, type WaTpl } from './WaComposer';
 
 // s-admin → WhatsApp. Four views:
 //   Chats        WhatsApp-style inbox: every conversation, AI auto-reply switch
 //                per chat, manual replies, AI-drafted replies, edit / delete.
 //   OTP          every verification code sent (codes themselves are never stored).
 //   Automations  buyer welcome template, AI replies, and how each is doing.
-//   Bulk send    upload a file of numbers, pick an approved template, shoot it to all.
+//   Bulk send    upload a file of numbers; send text / photo / video / document / template, now or scheduled.
+//   Scheduled    every schedule and its sends (cancel what is still waiting).
 // Data: /api/admin/whatsapp. Polls while the tab is visible.
 
 type Author = 'customer' | 'ai' | 'staff' | 'system';
@@ -107,6 +109,11 @@ function ChatsView({ data, reload, flash, onOpenLead }: { data: Overview | null;
   const [text, setText] = useState('');
   const [editing, setEditing] = useState<Msg | null>(null);
   const [busy, setBusy] = useState<'' | 'send' | 'draft' | 'toggle'>('');
+  // "More": photo / video / document / template / schedule for this one chat (same composer as Bulk send).
+  const [more, setMore] = useState(false);
+  const tpls = useTemplates();
+  const loadTpls = tpls.load;
+  useEffect(() => { if (more) loadTpls(); }, [more, loadTpls]);
   const [menu, setMenu] = useState<string | null>(null);
   const bottom = useRef<HTMLDivElement>(null);
   const box = useRef<HTMLTextAreaElement>(null);
@@ -119,7 +126,7 @@ function ChatsView({ data, reload, flash, onOpenLead }: { data: Overview | null;
     } catch (e) { flash((e as Error).message, true); }
   }, [flash]);
   usePoll(() => { if (open) void loadThread(open); }, 5000, [open]);
-  useEffect(() => { setThread(null); setText(''); setEditing(null); lastCount.current = 0; }, [open]);
+  useEffect(() => { setThread(null); setText(''); setEditing(null); setMore(false); lastCount.current = 0; }, [open]);
   // Scroll to the newest message when the chat opens or a message arrives.
   useEffect(() => {
     const n = thread?.messages.length || 0;
@@ -142,8 +149,9 @@ function ChatsView({ data, reload, flash, onOpenLead }: { data: Overview | null;
 
   const chat = thread?.chat || data?.chats.find((c) => c.phone === open) || null;
   const canText = within24h(chat?.last_in_at || null);
-  // No ANTHROPIC_API_KEY: the AI never replies, so every chat is answered by hand and the AI controls are hidden.
+  // Auto reply runs whenever WhatsApp is set up: Claude with ANTHROPIC_API_KEY, else the free guided bot. AI drafts need the key.
   const ai = Boolean(data?.config.ai);
+  const auto = ai || Boolean(data?.config.whatsapp);
 
   async function toggleAuto() {
     if (!chat) return;
@@ -206,7 +214,7 @@ function ChatsView({ data, reload, flash, onOpenLead }: { data: Overview | null;
             <input type="search" placeholder="Search name, number or message" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search chats" />
           </label>
           <div className="wa-filters" role="tablist" aria-label="Filter chats">
-            {([['all', 'All'], ['conv', 'Conversations'], ['unread', 'Unread'], ['ai', 'AI on'], ['manual', 'Manual'], ['leads', 'Leads']] as const).filter(([k]) => ai || (k !== 'ai' && k !== 'manual')).map(([k, l]) => (
+            {([['all', 'All'], ['conv', 'Conversations'], ['unread', 'Unread'], ['ai', 'AI on'], ['manual', 'Manual'], ['leads', 'Leads']] as const).filter(([k]) => auto || (k !== 'ai' && k !== 'manual')).map(([k, l]) => (
               <button key={k} type="button" role="tab" aria-selected={filter === k} className={filter === k ? 'on' : ''} onClick={() => setFilter(k)}>{l}</button>
             ))}
           </div>
@@ -233,7 +241,7 @@ function ChatsView({ data, reload, flash, onOpenLead }: { data: Overview | null;
                       </span>
                       <span className="wa-item-tags">
                         {!c.has_chat ? <span className="wa-tag manual">OTP / automation only</span>
-                          : ai && <span className={`wa-tag ${c.auto_reply ? 'ai' : 'manual'}`}>{c.auto_reply ? 'AI on' : 'Manual'}</span>}
+                          : auto && <span className={`wa-tag ${c.auto_reply ? 'ai' : 'manual'}`}>{c.auto_reply ? 'AI on' : 'Manual'}</span>}
                         {c.lead && <span className="wa-tag lead">{LEAD_LABEL[c.lead.status] || 'Lead'}</span>}
                       </span>
                     </span>
@@ -248,7 +256,7 @@ function ChatsView({ data, reload, flash, onOpenLead }: { data: Overview | null;
           <div className="wa-placeholder">
             <i className="fab fa-whatsapp" />
             <h3>Mappingg WhatsApp</h3>
-            <p>Pick a chat to read the full conversation and reply.{ai && <> With <b>AI on</b>, the assistant answers project and real-estate questions by itself and saves the customer as a lead.</>}</p>
+            <p>Pick a chat to read the full conversation and reply.{auto && <> With <b>AI on</b>, the assistant answers project and real-estate questions by itself and saves the customer as a lead.</>}</p>
           </div>
         ) : (<>
           <header className="wa-chat-head">
@@ -268,8 +276,11 @@ function ChatsView({ data, reload, flash, onOpenLead }: { data: Overview | null;
                   <i className="fas fa-address-book" /> {LEAD_LABEL[chat.lead.status] || 'Lead'}
                 </button>
               )}
+              <button type="button" className={`adm-btn ${more ? 'primary' : 'ghost'} sm`} onClick={() => setMore((v) => !v)} title="Send a photo, video, document or template, or schedule a message">
+                <i className="fas fa-paperclip" /> <i className="fas fa-clock" />
+              </button>
               <a className="adm-btn ghost sm" href={`https://wa.me/${chat.phone}`} target="_blank" rel="noreferrer" title="Open in WhatsApp"><i className="fab fa-whatsapp" /></a>
-              {ai && <button
+              {auto && <button
                 type="button" role="switch" aria-checked={chat.auto_reply} disabled={busy === 'toggle'}
                 className={`wa-switch${chat.auto_reply ? ' on' : ''}`} onClick={toggleAuto}
                 title={chat.auto_reply ? 'The AI replies automatically. Click to switch off and reply by hand.' : 'Only the team replies. Click to let the AI reply automatically.'}
@@ -320,11 +331,17 @@ function ChatsView({ data, reload, flash, onOpenLead }: { data: Overview | null;
             <div ref={bottom} />
           </div>
 
+          {more && (
+            <div className="wa-chat-more">
+              <Composer recipients={[{ phone: chat.phone, name: chat.name || chat.wa_name || '' }]} templates={tpls.templates} meta={tpls.meta} configured
+                flash={flash} label={`to ${chat.name || chat.phone_display}`} onDone={() => { setMore(false); void loadThread(chat.phone); reload(); }} />
+            </div>
+          )}
           <footer className="wa-compose">
             {!canText && (
               <p className="wa-note warn"><i className="fas fa-clock" /> More than 24 hours since this customer last wrote. WhatsApp only delivers free-text replies within 24 hours — the reply may not reach them until they message again.</p>
             )}
-            {ai && chat.auto_reply && canText && !editing && (
+            {auto && chat.auto_reply && canText && !editing && (
               <p className="wa-note"><i className="fas fa-robot" /> AI is answering this chat automatically. Anything you send goes out as well — switch Auto reply off to take over.</p>
             )}
             {editing && (
@@ -463,9 +480,11 @@ function LogView({ kind, config }: { kind: 'otp' | 'auto'; config?: Overview['co
               <span className={`adm-badge ${config.whatsapp ? 'ok' : 'wa-bad'}`}>{config.whatsapp ? 'Active' : 'Not set up'}</span>
             </div>
             <div className="wa-auto">
-              <i className="fas fa-robot" /><div><b>AI auto-reply</b><span>Answers incoming messages from your project data, asks for name &amp; requirement, saves the lead in Leads → Contact form. Switch it off per chat.</span></div>
-              <span className={`adm-badge ${config.ai && config.webhook ? 'ok' : !config.ai ? 'muted' : 'wa-bad'}`} title={!config.ai ? 'Optional. Chats are answered by hand; add ANTHROPIC_API_KEY later to switch the AI on.' : undefined}>
-                {config.ai && config.webhook ? 'Active' : !config.ai ? 'Off (optional)' : 'Webhook not set up'}
+              <i className="fas fa-robot" /><div><b>Auto reply</b><span>{config.ai
+                ? 'Claude AI answers from your live project data, sends project cards (photo, price, BHK, RERA, link), asks name, area, BHK & budget and saves the lead in Leads → Contact form.'
+                : 'Guided bot (free): asks name → area & BHK → budget, sends matching project cards, handles call / site visit / brochure requests and saves the lead. Add ANTHROPIC_API_KEY to switch to the full AI.'} Switch it off per chat to reply by hand.</span></div>
+              <span className={`adm-badge ${config.whatsapp && config.webhook ? 'ok' : 'wa-bad'}`}>
+                {!config.whatsapp ? 'Not set up' : !config.webhook ? 'Webhook not set up' : config.ai ? 'Active · AI' : 'Active · Guided bot'}
               </span>
             </div>
           </div>
@@ -484,24 +503,26 @@ function LogView({ kind, config }: { kind: 'otp' | 'auto'; config?: Overview['co
 
 interface Recipient { phone: string; phone_display: string; name: string }
 interface Extracted { file_name: string; recipients: Recipient[]; duplicates: number; invalid: string[]; format: string }
-interface WaTpl { name: string; language: string; category: string; body: string; vars: number; urlVars: number }
 interface Campaign { id: string; template: string; text: string; by: string; started: string; total: number; failed: number; delivered: number; read: number }
 type SendState = { ok: boolean; error?: string };
 
 const BULK_API = `${API}/bulk`;
 const BATCH = 25;
 
-/** Shoots the buyer welcome template (the one sent when a buyer signs up), or a typed message, to every uploaded number. */
+/** Loads the approved templates (whatapi.in) once; shared by Bulk send and the chat view. */
+function useTemplates() {
+  const [state, setState] = useState<{ templates: WaTpl[]; meta: boolean; error: string; welcome: string; campaigns: Campaign[] | null }>({ templates: [], meta: false, error: '', welcome: '', campaigns: null });
+  const load = useCallback(() => {
+    api<{ template: string; provider?: 'meta' | 'gabs'; templates?: WaTpl[]; templates_error?: string; campaigns: Campaign[] }>(BULK_API).then((d) => {
+      setState({ templates: d.templates || [], meta: d.provider === 'meta', error: d.templates_error || '', welcome: d.template, campaigns: d.campaigns });
+    }, () => setState((s) => ({ ...s, campaigns: s.campaigns || [] })));
+  }, []);
+  return { ...state, load };
+}
+
+/** Upload a list of numbers, then send any message (text, photo, video, document, template) now or on a schedule. */
 function BulkView({ flash, configured }: { flash: Flash; configured: boolean }) {
-  const [template, setTemplate] = useState('');
-  const [templates, setTemplates] = useState<WaTpl[]>([]);
-  const [tplError, setTplError] = useState('');
-  const [provider, setProvider] = useState<'meta' | 'gabs'>('gabs');
-  const [tplKey, setTplKey] = useState('');
-  const [params, setParams] = useState<string[]>([]);
-  const [urlParam, setUrlParam] = useState('');
-  const [mode, setMode] = useState<'template' | 'text'>('template');
-  const [message, setMessage] = useState('');
+  const { templates, meta, error: tplError, campaigns, load: loadCampaigns } = useTemplates();
   const [list, setList] = useState<Recipient[]>([]);
   const [info, setInfo] = useState<{ files: string[]; duplicates: number; invalid: string[] }>({ files: [], duplicates: 0, invalid: [] });
   const [paste, setPaste] = useState('');
@@ -509,33 +530,12 @@ function BulkView({ flash, configured }: { flash: Flash; configured: boolean }) 
   const [drag, setDrag] = useState(false);
   const [q, setQ] = useState('');
   const [state, setState] = useState<Record<string, SendState>>({});
-  const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
-  const [campaigns, setCampaigns] = useState<Campaign[] | null>(null);
-  const stop = useRef(false);
+  const [refresh, setRefresh] = useState(0);
   const fileInput = useRef<HTMLInputElement>(null);
   const listRef = useRef(list);
   listRef.current = list;
-
-  const loadCampaigns = useCallback(() => {
-    api<{ template: string; provider?: 'meta' | 'gabs'; templates?: WaTpl[]; templates_error?: string; campaigns: Campaign[] }>(BULK_API).then((d) => {
-      setTemplate(d.template); setCampaigns(d.campaigns);
-      setProvider(d.provider || 'gabs'); setTemplates(d.templates || []); setTplError(d.templates_error || '');
-    }, () => setCampaigns([]));
-  }, []);
+  const sending = false;
   usePoll(loadCampaigns, 30_000, []);
-
-  // whatapi.in: Template mode shoots one approved template of the account (first one picked by default).
-  const meta = provider === 'meta';
-  const tpl = templates.find((t) => `${t.name}|${t.language}` === tplKey) || null;
-  useEffect(() => {
-    if (!templates.length || templates.some((t) => `${t.name}|${t.language}` === tplKey)) return;
-    setTplKey(`${templates[0].name}|${templates[0].language}`);
-  }, [templates, tplKey]);
-  useEffect(() => { setParams(Array.from({ length: tpl?.vars || 0 }, () => '')); setUrlParam(''); }, [tpl?.name, tpl?.language, tpl?.vars]);
-  const tplReady = !meta || (!!tpl && params.every((p) => p.trim()) && (!tpl.urlVars || !!urlParam.trim()));
-  const preview = tpl ? tpl.body.replace(/\{\{\s*(\d+)\s*\}\}/g, (m, n) => params[Number(n) - 1]?.trim() || m) : '';
-
-  const sending = progress !== null && progress.done < progress.total;
 
   /** Adds numbers read from a file or pasted text, skipping ones already in the list. */
   async function read(form: FormData, label: string) {
@@ -566,55 +566,11 @@ function BulkView({ flash, configured }: { flash: Flash; configured: boolean }) 
     void read(fd, 'Pasted list').then(() => setPaste(''));
   }
   function clearAll() {
-    if (sending) return;
-    setList([]); setInfo({ files: [], duplicates: 0, invalid: [] }); setState({}); setProgress(null);
+    setList([]); setInfo({ files: [], duplicates: 0, invalid: [] }); setState({});
   }
-
-  async function shoot(only?: Recipient[]) {
-    const targets = only || list;
-    if (!targets.length) { flash('Upload a file with numbers first', true); return; }
-    const text = message.trim();
-    if (mode === 'text' && !text) { flash('Type the message first', true); return; }
-    if (mode === 'template' && meta && !tpl) { flash('Pick a template first', true); return; }
-    if (mode === 'template' && !tplReady) { flash('Fill every value of the template first', true); return; }
-    const what = mode === 'text' ? `this message:\n\n"${text.slice(0, 300)}${text.length > 300 ? '…' : ''}"\n\n`
-      : `template "${meta ? tpl!.name : template || 'buyer welcome'}" `;
-    if (!window.confirm(`Send WhatsApp ${what}to ${targets.length.toLocaleString('en-IN')} number${targets.length === 1 ? '' : 's'} now?\n\nThis cannot be undone.`)) return;
-    const campaign = `bulk-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
-    stop.current = false;
-    setState((s) => { const n = { ...s }; targets.forEach((t) => delete n[t.phone]); return n; });
-    setProgress({ done: 0, total: targets.length });
-    let ok = 0, failed = 0;
-    for (let i = 0; i < targets.length && !stop.current; i += BATCH) {
-      const batch = targets.slice(i, i + BATCH);
-      try {
-        const r = await api<{ results: { phone: string; ok: boolean; error?: string }[] }>(BULK_API, {
-          action: 'send', campaign, mode, ...(mode === 'text' ? { text } : {}),
-          ...(mode === 'template' && meta && tpl ? { template: { name: tpl.name, language: tpl.language, params: params.map((p) => p.trim()), url_param: urlParam.trim() } } : {}),
-          recipients: batch.map(({ phone, name }) => ({ phone, name })),
-        });
-        setState((s) => { const n = { ...s }; r.results.forEach((x) => { n[x.phone] = { ok: x.ok, error: x.error }; }); return n; });
-        r.results.forEach((x) => (x.ok ? ok++ : failed++));
-        // Every number in the batch failed for the same reason (e.g. "Account Deactivated") — the rest would too.
-        const reasons = new Set(r.results.map((x) => (x.ok ? '' : x.error)));
-        if (r.results.length && !r.results.some((x) => x.ok) && reasons.size === 1) {
-          flash(`Stopped — ${[...reasons][0]}`, true);
-          stop.current = true;
-        }
-      } catch (e) {
-        // The whole batch was refused (e.g. WhatsApp not set up) — mark it and stop; the rest would fail the same way.
-        const error = (e as Error).message;
-        setState((s) => { const n = { ...s }; batch.forEach((x) => { n[x.phone] = { ok: false, error }; }); return n; });
-        failed += batch.length;
-        flash(error, true);
-        stop.current = true;
-      }
-      setProgress({ done: Math.min(targets.length, i + batch.length), total: targets.length });
-    }
-    setProgress((p) => (p ? { ...p, total: p.done } : p));
-    flash(`${stop.current && ok + failed < targets.length ? 'Stopped. ' : ''}${ok} ${meta ? 'queued' : 'sent'}${failed ? `, ${failed} failed` : ''}`, failed > 0 && !ok);
-    loadCampaigns();
-  }
+  const onResults = useCallback((r: Outcome[]) => {
+    setState((s) => { const n = { ...s }; r.forEach((x) => { n[x.phone] = { ok: x.ok, error: x.error }; }); return n; });
+  }, []);
 
   const shown = useMemo(() => {
     const term = q.trim().toLowerCase();
@@ -623,62 +579,11 @@ function BulkView({ flash, configured }: { flash: Flash; configured: boolean }) 
   }, [list, q]);
   const position = useMemo(() => new Map(list.map((r, i) => [r.phone, i + 1])), [list]);
   const sentCount = Object.values(state).filter((s) => s.ok).length;
-  const failedList = list.filter((r) => state[r.phone] && !state[r.phone].ok);
+  const failedCount = Object.values(state).filter((s) => !s.ok).length;
 
   return (
     <>
-      {!configured && <div className="wa-setup"><i className="fas fa-plug-circle-exclamation" /> <div><b>Sending is not set up</b><span>Add WHATSAPP_META_TOKEN and WHATSAPP_PHONE_NUMBER_ID (whatapi.in) on the server before shooting.</span></div></div>}
-
-      <div className="adm-panel">
-        <div className="adm-panel-head"><h3><i className="fas fa-message" /> What to send</h3></div>
-        <div className="wa-filters wa-bulk-mode" role="tablist" aria-label="What to send">
-          <button type="button" role="tab" aria-selected={mode === 'template'} className={mode === 'template' ? 'on' : ''} onClick={() => setMode('template')} disabled={sending}>
-            <i className="fas fa-user-check" /> Template
-          </button>
-          <button type="button" role="tab" aria-selected={mode === 'text'} className={mode === 'text' ? 'on' : ''} onClick={() => setMode('text')} disabled={sending}>
-            <i className="fas fa-keyboard" /> Type a message
-          </button>
-        </div>
-        {mode === 'template' && meta ? (
-          <div className="adm-field wa-bulk-msg">
-            <label>Approved template <small>— from your WhatsApp account (whatapi.in)</small></label>
-            {tplError && <p className="wa-note warn"><i className="fas fa-triangle-exclamation" /> {tplError}</p>}
-            {!templates.length && !tplError ? (
-              <p className="muted">No approved marketing / utility templates yet. Create one in the whatapi.in dashboard — it shows here once approved.</p>
-            ) : (
-              <select value={tplKey} onChange={(e) => setTplKey(e.target.value)} disabled={sending}>
-                {templates.map((t) => <option key={`${t.name}|${t.language}`} value={`${t.name}|${t.language}`}>{t.name} ({t.language}, {t.category.toLowerCase()})</option>)}
-              </select>
-            )}
-            {tpl && (
-              <>
-                {params.map((v, i) => (
-                  <div key={i} className="adm-field">
-                    <label>Value {`{{${i + 1}}}`} <small>— <code>{'{name}'}</code> = each person&apos;s name</small></label>
-                    <input value={v} maxLength={1000} disabled={sending} onChange={(e) => setParams((p) => p.map((x, j) => (j === i ? e.target.value : x)))} />
-                  </div>
-                ))}
-                {tpl.urlVars > 0 && (
-                  <div className="adm-field">
-                    <label>Button link value</label>
-                    <input value={urlParam} maxLength={500} disabled={sending} onChange={(e) => setUrlParam(e.target.value)} />
-                  </div>
-                )}
-                <p className="wa-bulk-desc" style={{ whiteSpace: 'pre-wrap' }}><b>Preview:</b> {preview}</p>
-              </>
-            )}
-          </div>
-        ) : mode === 'template' ? (
-          <p className="wa-bulk-desc"><b>Template: <code>{template || 'buyers_account_created'}</code></b> — the same congratulations message a buyer gets on sign-up.</p>
-        ) : (
-          <div className="adm-field wa-bulk-msg">
-            <label>Message <small>— type <code>{'{name}'}</code> to put each person&apos;s name</small></label>
-            <textarea value={message} onChange={(e) => setMessage(e.target.value)} maxLength={4000} placeholder={'Hi {name}, new projects are live on Mappingg…'} disabled={sending} />
-            <small className="muted">{message.length} / 4000</small>
-            <p className="wa-note warn"><i className="fas fa-clock" /> WhatsApp only delivers a typed message to people who messaged you in the last 24 hours — other numbers are skipped and marked Failed. To reach anyone else, use the Template tab.</p>
-          </div>
-        )}
-      </div>
+      {!configured && <div className="wa-setup"><i className="fas fa-plug-circle-exclamation" /> <div><b>Sending is not set up</b><span>Add WHATSAPP_META_TOKEN and WHATSAPP_PHONE_NUMBER_ID (whatapi.in) on the server before sending.</span></div></div>}
 
         <div className="adm-panel">
           <div className="adm-panel-head"><h3><i className="fas fa-upload" /> Numbers</h3>{list.length > 0 && <button type="button" className="adm-btn ghost sm" onClick={clearAll} disabled={sending}><i className="fas fa-trash" /> Clear</button>}</div>
@@ -706,26 +611,17 @@ function BulkView({ flash, configured }: { flash: Flash; configured: boolean }) 
         </div>
 
       <div className="adm-panel">
+        <div className="adm-panel-head"><h3><i className="fas fa-message" /> What to send &amp; when</h3><span className="muted">Text, photo, video, document or template — now, at set times, or on repeat.</span></div>
+        {tplError && <p className="wa-note warn"><i className="fas fa-triangle-exclamation" /> {tplError}</p>}
+        <Composer recipients={list} templates={templates} meta={meta} configured={configured} flash={flash} onResults={onResults}
+          onDone={() => { loadCampaigns(); setRefresh((n) => n + 1); }} />
+      </div>
+
+      <div className="adm-panel">
         <div className="wa-bulk-bar">
           <div>
             <b>{list.length.toLocaleString('en-IN')} number{list.length === 1 ? '' : 's'}</b>
-            {Object.keys(state).length > 0 && <span className="muted"> · {sentCount} {meta ? 'queued' : 'sent'}{failedList.length ? ` · ${failedList.length} failed` : ''}</span>}
-          </div>
-          {progress && (
-            <div className="wa-bulk-progress" role="progressbar" aria-valuemin={0} aria-valuemax={progress.total} aria-valuenow={progress.done}>
-              <span style={{ width: `${progress.total ? (progress.done / progress.total) * 100 : 0}%` }} />
-              <small>{progress.done} / {progress.total}</small>
-            </div>
-          )}
-          <div className="wa-bulk-actions">
-            {sending
-              ? <button type="button" className="adm-btn danger" onClick={() => { stop.current = true; }}><i className="fas fa-stop" /> Stop</button>
-              : <>
-                {failedList.length > 0 && <button type="button" className="adm-btn ghost" onClick={() => shoot(failedList)}><i className="fas fa-rotate-right" /> Retry {failedList.length} failed</button>}
-                <button type="button" className="adm-btn primary wa-shoot" onClick={() => shoot()} disabled={!list.length || !configured || (mode === 'text' && !message.trim()) || (mode === 'template' && !tplReady)}>
-                  <i className="fas fa-paper-plane" /> Shoot to {list.length.toLocaleString('en-IN')}
-                </button>
-              </>}
+            {Object.keys(state).length > 0 && <span className="muted"> · {sentCount} {meta ? 'queued' : 'sent'}{failedCount ? ` · ${failedCount} not sent` : ''}</span>}
           </div>
         </div>
         {list.length > 0 && (
@@ -742,7 +638,7 @@ function BulkView({ flash, configured }: { flash: Flash; configured: boolean }) 
                         <td className="muted">{position.get(r.phone)}</td>
                         <td className="mono">{r.phone_display}</td>
                         <td>{r.name || <span className="muted">—</span>}</td>
-                        <td>{!s ? <span className="adm-badge muted">Ready</span> : s.ok ? <span className="adm-badge ok" title={meta ? 'Accepted by whatapi.in. Delivered / read shows once the webhook is connected.' : undefined}>{meta ? 'Queued' : 'Sent'}</span> : <span className="adm-badge wa-bad" title={s.error}>Failed</span>}{s?.error && <small className="wa-bulk-err">{s.error}</small>}</td>
+                        <td>{!s ? <span className="adm-badge muted">Ready</span> : s.ok ? <span className="adm-badge ok" title={meta ? 'Accepted by whatapi.in. Delivered / read shows once the webhook is connected.' : undefined}>{meta ? 'Queued' : 'Sent'}</span> : <span className="adm-badge wa-bad" title={s.error}>{s.error?.startsWith('Skipped') ? 'Skipped' : 'Failed'}</span>}{s?.error && <small className="wa-bulk-err">{s.error}</small>}</td>
                         <td><button type="button" className="adm-btn ghost sm" onClick={() => setList((l) => l.filter((x) => x.phone !== r.phone))} disabled={sending} aria-label="Remove number"><i className="fas fa-xmark" /></button></td>
                       </tr>
                     );
@@ -754,6 +650,8 @@ function BulkView({ flash, configured }: { flash: Flash; configured: boolean }) 
           </>
         )}
       </div>
+
+      <SchedulesView flash={flash} refreshKey={refresh} />
 
       <div className="adm-panel">
         <div className="adm-panel-head"><h3>Past bulk sends</h3><span className="muted">Delivered / read update as WhatsApp reports them.</span></div>
@@ -781,7 +679,7 @@ function BulkView({ flash, configured }: { flash: Flash; configured: boolean }) 
 /* --------------------------------- Shell --------------------------------- */
 
 export default function WhatsAppPanel({ flash, onOpenLead }: { flash: Flash; onOpenLead?: (id: string) => void }) {
-  const [view, setView] = useState<'chats' | 'otp' | 'auto' | 'bulk'>('chats');
+  const [view, setView] = useState<'chats' | 'otp' | 'auto' | 'bulk' | 'sched'>('chats');
   const [data, setData] = useState<Overview | null>(null);
   const [err, setErr] = useState('');
   const load = useCallback(() => { api<Overview>(API).then((d) => { setData(d); setErr(''); }, (e) => setErr((e as Error).message)); }, []);
@@ -819,12 +717,16 @@ export default function WhatsAppPanel({ flash, onOpenLead }: { flash: Flash; onO
         <button role="tab" aria-selected={view === 'bulk'} className={view === 'bulk' ? 'on' : ''} onClick={() => setView('bulk')}>
           <i className="fas fa-paper-plane" /> Bulk send
         </button>
+        <button role="tab" aria-selected={view === 'sched'} className={view === 'sched' ? 'on' : ''} onClick={() => setView('sched')}>
+          <i className="fas fa-calendar-days" /> Scheduled
+        </button>
       </div>
 
       {view === 'chats' && <ChatsView data={data} reload={load} flash={flash} onOpenLead={onOpenLead} />}
       {view === 'otp' && <LogView kind="otp" />}
       {view === 'auto' && <LogView kind="auto" config={data?.config} />}
       {view === 'bulk' && <BulkView flash={flash} configured={data?.config.whatsapp ?? true} />}
+      {view === 'sched' && <SchedulesView flash={flash} />}
     </div>
   );
 }

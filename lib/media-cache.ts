@@ -86,7 +86,7 @@ export async function trimLogo(bytes: Buffer | Uint8Array): Promise<Buffer> {
 
 /** Decodes a data: URL and, for raster images with a width, resizes to a WebP thumbnail.
  *  `trim` first crops the empty border around the picture (logos uploaded with a lot of margin). */
-async function encode(dataUrl: string, width: number, trim = false): Promise<Encoded | null> {
+async function encode(dataUrl: string, width: number, trim = false, jpeg = false): Promise<Encoded | null> {
   const decoded = decodeDataUrl(dataUrl);
   if (!decoded) return null;
   let { bytes, mime } = decoded;
@@ -94,9 +94,10 @@ async function encode(dataUrl: string, width: number, trim = false): Promise<Enc
     try {
       // A picture that cannot be trimmed (e.g. one flat colour) is resized as it is.
       const src = trim ? await trimLogo(bytes).catch(() => bytes) : bytes;
-      bytes = await sharp(src).rotate().resize({ width, height: width, fit: 'inside', withoutEnlargement: true })
-        .webp({ quality: 80 }).toBuffer();
-      mime = 'image/webp';
+      const resized = sharp(src).rotate().resize({ width, height: width, fit: 'inside', withoutEnlargement: true });
+      // jpeg: for WhatsApp, which only takes JPEG/PNG photos.
+      bytes = jpeg ? await resized.flatten({ background: '#ffffff' }).jpeg({ quality: 82 }).toBuffer() : await resized.webp({ quality: 80 }).toBuffer();
+      mime = jpeg ? 'image/jpeg' : 'image/webp';
     } catch { /* not resizable — serve the original */ }
   }
   return { bytes: new Uint8Array(bytes), mime };
@@ -107,10 +108,10 @@ async function encode(dataUrl: string, width: number, trim = false): Promise<Enc
  * the same key. The result is cached only if `cacheable` (public image whose
  * real hash matches the version in the key).
  */
-export function encodeShared(key: string, dataUrl: string, width: number, cacheable: boolean, trim = false): Promise<Encoded | null> {
+export function encodeShared(key: string, dataUrl: string, width: number, cacheable: boolean, trim = false, jpeg = false): Promise<Encoded | null> {
   const running = store.inflight.get(key);
   if (running) return running;
-  const p = encode(dataUrl, width, trim)
+  const p = encode(dataUrl, width, trim, jpeg)
     .then((enc) => { if (enc && cacheable) cacheSet(key, enc); return enc; })
     .finally(() => store.inflight.delete(key));
   store.inflight.set(key, p);

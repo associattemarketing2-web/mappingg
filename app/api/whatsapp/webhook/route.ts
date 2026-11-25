@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { timingSafeEqual } from 'node:crypto';
 import { logMessage, messages, updateStatus, waDigits, type WaKind, type WaStatus } from '@/lib/wa-store';
 import { autoReply } from '@/lib/wa-ai';
+import { processDue } from '@/lib/wa-schedule';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -76,6 +77,8 @@ function textOf(m: Obj): { kind: WaKind; body: string } {
   }
 }
 
+let lastScheduleCheck = 0;
+
 const STATUS: Record<string, WaStatus> = { sent: 'sent', delivered: 'delivered', read: 'read', failed: 'failed', undelivered: 'failed' };
 
 export async function POST(req: NextRequest) {
@@ -114,6 +117,12 @@ export async function POST(req: NextRequest) {
 
   for (const phone of toAnswer) {
     try { await autoReply(phone); } catch (e) { console.error('[wa-webhook] auto-reply failed', (e as Error).message); }
+  }
+  // Webhook calls (messages, delivery updates) also send scheduled WhatsApp messages that have come due —
+  // at most every 30 s per server instance, so a burst of delivery updates doesn't hammer the database.
+  if (Date.now() - lastScheduleCheck > 30_000) {
+    lastScheduleCheck = Date.now();
+    await processDue({ budgetMs: 15_000 });
   }
   return NextResponse.json({ ok: true });
 }

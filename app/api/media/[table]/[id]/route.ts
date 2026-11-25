@@ -30,7 +30,9 @@ export async function GET(req: NextRequest, { params }: { params: { table: strin
   const v = req.nextUrl.searchParams.get('v') || '';
   // trim=1 (with w) crops the empty border around the picture before resizing.
   const trim = w > 0 && req.nextUrl.searchParams.get('trim') === '1';
-  const key = mediaKey(params.table, params.id, field, v, w) + (trim ? '/trim' : '');
+  // fmt=jpg (with w): JPEG instead of WebP — WhatsApp photos must be JPEG/PNG.
+  const jpeg = w > 0 && req.nextUrl.searchParams.get('fmt') === 'jpg';
+  const key = mediaKey(params.table, params.id, field, v, w) + (trim ? '/trim' : '') + (jpeg ? '/jpg' : '');
 
   // Only versioned (public, content-addressed) entries are ever cached.
   const cached = v ? cacheGet(key) : undefined;
@@ -50,7 +52,7 @@ export async function GET(req: NextRequest, { params }: { params: { table: strin
     return /^https?:\/\//.test(value) ? NextResponse.redirect(value, 302) : notFound();
   }
 
-  const encoded = await encodeShared(key, value, w, !isHiddenPin && versionMatches(value, v), trim);
+  const encoded = await encodeShared(key, value, w, !isHiddenPin && versionMatches(value, v), trim, jpeg);
   if (!encoded) return notFound();
   return imageResponse(encoded, isHiddenPin ? 'private, no-store' : CACHE_FOREVER);
 }

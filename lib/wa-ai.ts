@@ -8,8 +8,8 @@ import { pushToCrm } from './crm';
 import { esc, notifyAdmin } from './mailer';
 import { SITE_URL } from './seo/config';
 import { chatMessages, chats, getChat, prettyPhone } from './wa-store';
-import { whatsappText } from './whatsapp';
-import { priceLakh, toTurns } from './wa-text';
+import { whatsappImage, whatsappText } from './whatsapp';
+import { priceLakh, projectCaption, toTurns } from './wa-text';
 
 // Automatic WhatsApp replies. When someone writes to the Mappingg number and
 // their chat's auto-reply switch is on, Claude answers as the Mappingg property
@@ -39,7 +39,8 @@ How you write:
 
 Projects:
 - Facts about a specific project (price, configuration, possession, RERA, location, developer) must come from search_projects / get_project. Never guess or invent a project, price, discount or availability. If nothing matches, say so and offer similar options or a call from the team.
-- When you share a project, give the key facts and its page link from the tool result.
+- When the customer asks about a specific project, or you recommend projects, call send_project_card for each one (max 3 per reply): it sends a WhatsApp card with the photo, price, configuration, possession, RERA and page link. Don't repeat those facts in your text — just add a short line (why it fits, or a question).
+- For "what's available in <area> / under <budget> / <n> BHK" questions, search_projects first, then send cards for the best 2–3 matches.
 - Prices change; say the team will confirm the latest price and offers. RERA numbers are as listed by the developer — suggest checking them on MahaRERA.
 
 General questions: answer real-estate questions (buying process, RERA, home loans, stamp duty and registration, carpet vs built-up area, legal checks, investment basics) accurately and practically. For legal or tax specifics, give the general rule and suggest confirming with a professional.
@@ -72,6 +73,15 @@ const TOOLS: Anthropic.Beta.BetaTool[] = [
     },
   },
   {
+    name: 'send_project_card',
+    description: 'Sends the customer a WhatsApp card for one project right now: photo with name, developer, location, configuration, price, possession, RERA and page link. Use for each project you share (max 3 per reply).',
+    input_schema: {
+      type: 'object',
+      properties: { number: { type: 'integer', description: 'The project number (from search_projects).' } },
+      required: ['number'],
+    },
+  },
+  {
     name: 'save_lead',
     description: 'Create or update this customer\'s lead in the Mappingg CRM. Call once you know their name and at least one requirement or project of interest; call again to add details. Leave out anything you do not know.',
     input_schema: {
@@ -97,7 +107,7 @@ const TOOLS: Anthropic.Beta.BetaTool[] = [
 
 const words = (s: string) => s.toLowerCase().replace(/[^a-z0-9ऀ-ॿ]+/g, ' ').split(' ').filter((w) => w.length > 1);
 
-async function searchProjects(input: { query?: string; max_price_lakh?: number }) {
+export async function searchProjects(input: { query?: string; max_price_lakh?: number }) {
   const all = await loadProjects();
   const q = words(String(input.query || '')).filter((w) => !['bhk', 'flat', 'flats', 'project', 'projects', 'in', 'near', 'the'].includes(w) || /^\d/.test(w));
   const bhk = /(\d)\s*bhk/i.exec(String(input.query || ''))?.[1];
@@ -135,10 +145,29 @@ async function getProject(input: { number?: number }) {
   };
 }
 
-type LeadInput = Partial<Record<'name' | 'email' | 'city' | 'locality' | 'budget' | 'bhk' | 'timeline' | 'project' | 'request' | 'summary', string>>;
+/** Sends one project's card (photo + caption; text when there is no usable photo). */
+export async function sendProjectCard(phone: string, number: number, author: 'ai' | 'staff' = 'ai'): Promise<{ sent: boolean; name?: string; error?: string }> {
+  const p = (await loadProjects()).find((x) => Number(x.number) === Number(number));
+  if (!p) return { sent: false, error: 'No public project with that number.' };
+  const d = serializeProject(p);
+  const caption = projectCaption({
+    name: d.name, developer: d.developer?.name, locality: d.locality?.name, city: d.city.name, configuration: d.configuration,
+    sizes_sqft: d.area_sqft, price: d.price, possession: d.possession, status: d.status_label, rera_number: d.rera_number,
+    highlights: d.highlights, link: d.url,
+  });
+  // WhatsApp images must be JPEG/PNG; other formats go as a text card.
+  let img = d.image_url && /^https:\/\//i.test(d.image_url) && !/\.(webp|avif|svg|gif)(\?|$)/i.test(d.image_url) ? d.image_url : null;
+  // Our own /api/media/ photos: ask for a 1200px JPEG (the resized default is WebP).
+  if (img && /\/api\/media\//.test(img)) { const u = new URL(img); u.searchParams.set('w', '1200'); u.searchParams.set('fmt', 'jpg'); img = u.toString(); }
+  let r = img ? await whatsappImage(phone, img, caption, author) : null;
+  if (!r?.ok) r = await whatsappText(phone, caption, author);
+  return r.ok ? { sent: true, name: d.name || undefined } : { sent: false, error: r.error };
+}
+
+export type LeadInput = Partial<Record<'name' | 'email' | 'city' | 'locality' | 'budget' | 'bhk' | 'timeline' | 'project' | 'request' | 'summary', string>>;
 
 /** Creates the chat's CRM lead the first time, then keeps it up to date. */
-async function saveLead(phone: string, input: LeadInput) {
+export async function saveLead(phone: string, input: LeadInput) {
   const clean = (v?: string, max = 200) => String(v ?? '').trim().slice(0, max);
   const name = clean(input.name, 120) || 'WhatsApp contact';
   const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clean(input.email)) ? clean(input.email).toLowerCase() : '';
@@ -178,13 +207,14 @@ async function saveLead(phone: string, input: LeadInput) {
   return { saved: true, updated: Boolean(existing) };
 }
 
-async function runTool(phone: string, name: string, input: unknown): Promise<string> {
+async function runTool(phone: string, name: string, input: unknown, live: boolean): Promise<string> {
   try {
     const i = (input || {}) as Record<string, unknown>;
     const out = name === 'search_projects' ? await searchProjects(i as never)
       : name === 'get_project' ? await getProject(i as never)
-        : name === 'save_lead' ? await saveLead(phone, i as LeadInput)
-          : { error: `Unknown tool ${name}` };
+        : name === 'send_project_card' ? (live ? await sendProjectCard(phone, Number(i.number)) : { sent: false, note: 'Draft for staff review: cards are not sent from drafts. Put the project name, price and link in your text instead.' })
+          : name === 'save_lead' ? await saveLead(phone, i as LeadInput)
+            : { error: `Unknown tool ${name}` };
     return JSON.stringify(out);
   } catch (e) {
     console.error('[wa-ai] tool failed', name, (e as Error).message);
@@ -200,7 +230,7 @@ const client = () => new Anthropic();
  * Writes the AI reply for this chat (without sending it). Null when there is
  * nothing to answer (last message isn't from the customer) or the model declined.
  */
-export async function draftReply(phone: string): Promise<string | null> {
+export async function draftReply(phone: string, live = false): Promise<string | null> {
   const history = await chatMessages(phone, 40);
   const messages = toTurns(history);
   if (!messages.length || messages[messages.length - 1].role !== 'user') return null;
@@ -228,7 +258,7 @@ export async function draftReply(phone: string): Promise<string | null> {
     if (res.stop_reason === 'tool_use' && uses.length) {
       messages.push({ role: 'assistant', content: res.content });
       const results = await Promise.all(uses.map(async (u) => ({
-        type: 'tool_result' as const, tool_use_id: u.id, content: await runTool(phone, u.name, u.input),
+        type: 'tool_result' as const, tool_use_id: u.id, content: await runTool(phone, u.name, u.input, live),
       })));
       messages.push({ role: 'user', content: results });
       continue;
@@ -245,19 +275,24 @@ export async function draftReply(phone: string): Promise<string | null> {
  * call answers both) or staff already replied.
  */
 export async function autoReply(phone: string): Promise<void> {
-  if (!aiConfigured()) return;
   const chat = await getChat(phone);
   if (!chat || chat.auto_reply === false) return;
-  const before = chat.last_at;
+  // No ANTHROPIC_API_KEY: the free guided bot answers instead (name → area/BHK → budget → project cards → lead).
+  if (!aiConfigured()) { const { botReply } = await import('./wa-bot'); await botReply(phone); return; }
+  const before = chat.last_in_at;
   let text: string | null = null;
   try {
-    text = await draftReply(phone);
+    text = await draftReply(phone, true);
   } catch (e) {
-    console.error('[wa-ai] reply failed', e instanceof Anthropic.APIError ? `${e.status} ${e.message}` : (e as Error).message);
+    // Out of credit, key revoked, outage… the customer still gets the guided bot's answer.
+    console.error('[wa-ai] reply failed — using the guided bot', e instanceof Anthropic.APIError ? `${e.status} ${e.message}` : (e as Error).message);
+    const { botReply } = await import('./wa-bot');
+    await botReply(phone);
     return;
   }
   if (!text) return;
+  // Project cards sent while drafting are logged as 'ai', so only a newer customer message or a staff reply stops it.
   const now = await getChat(phone);
-  if (!now || now.auto_reply === false || now.last_at !== before) return;
+  if (!now || now.auto_reply === false || now.last_in_at !== before || now.last_author === 'staff') return;
   await whatsappText(phone, text, 'ai');
 }

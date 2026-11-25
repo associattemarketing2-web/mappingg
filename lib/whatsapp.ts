@@ -226,6 +226,12 @@ export function whatsappText(mobile: string, text: string, author: 'ai' | 'staff
   return post(textUrl(), mobile, undefined, { type: 'text', text: { preview_url: true, body } }, { author, by, kind: 'text', body });
 }
 
+/** Photo with a caption (project card). Same 24-hour rule as text. WhatsApp takes JPEG/PNG up to 5 MB. */
+export function whatsappImage(mobile: string, link: string, caption: string, author: 'ai' | 'staff', by?: string): Promise<SendResult> {
+  const body = caption.trim().slice(0, 1024);
+  return post(textUrl(), mobile, undefined, { type: 'image', image: { link, caption: body } }, { author, by, kind: 'media', body });
+}
+
 /** Bulk send: the buyer welcome template (no variables) to one number, logged under its batch. Resolves (never throws). */
 export function whatsappBulkWelcome(mobile: string, name: string | undefined, campaign: string, by?: string): Promise<SendResult> {
   const template = buyerWelcomeTemplate();
@@ -236,7 +242,11 @@ export function whatsappBulkWelcome(mobile: string, name: string | undefined, ca
 /* ------------------------- Approved templates (whatapi.in) ------------------------- */
 
 /** An approved template Bulk send can shoot. `vars` = {{n}} count in the body; `urlVars` = in the URL button. */
-export interface WaTemplate { name: string; language: string; category: string; body: string; vars: number; urlVars: number }
+export interface WaTemplate {
+  name: string; language: string; category: string; body: string; vars: number; urlVars: number;
+  /** Header type: NONE, TEXT (headerVars = its {{n}} count), or a media header that needs a file link. */
+  header: 'NONE' | 'TEXT' | 'IMAGE' | 'VIDEO' | 'DOCUMENT'; headerVars: number; headerText: string;
+}
 
 let tplCache: { at: number; list: WaTemplate[] } | null = null;
 const countVars = (t: unknown) => new Set(String(t || '').match(/\{\{\s*\d+\s*\}\}/g) || []).size;
@@ -257,13 +267,17 @@ export async function approvedTemplates(fresh = false): Promise<WaTemplate[]> {
     for (const t of json.data) {
       if (String(t.status).toUpperCase() !== 'APPROVED' || String(t.category).toUpperCase() === 'AUTHENTICATION') continue;
       const comps = (t.components || []) as any[];
-      // Media headers need a file and header variables need values — Bulk send skips those templates.
+      // Image / video / document headers take a file link when sending; location headers are not supported.
       const header = comps.find((c) => c.type === 'HEADER');
-      if (header && ((header.format && header.format !== 'TEXT') || countVars(header.text))) continue;
+      const hf = String(header?.format || (header ? 'TEXT' : 'NONE')).toUpperCase();
+      if (!['NONE', 'TEXT', 'IMAGE', 'VIDEO', 'DOCUMENT'].includes(hf)) continue;
       const body = String(comps.find((c) => c.type === 'BODY')?.text || '');
       const buttons = (comps.find((c) => c.type === 'BUTTONS')?.buttons || []) as any[];
       const urlVars = buttons.filter((b) => b.type === 'URL' && countVars(b.url)).length;
-      out.push({ name: String(t.name), language: String(t.language || 'en'), category: String(t.category || ''), body, vars: countVars(body), urlVars });
+      out.push({
+        name: String(t.name), language: String(t.language || 'en'), category: String(t.category || ''), body, vars: countVars(body), urlVars,
+        header: hf as WaTemplate['header'], headerVars: hf === 'TEXT' ? countVars(header?.text) : 0, headerText: hf === 'TEXT' ? String(header?.text || '') : '',
+      });
     }
     url = json.paging?.next || null;
   }
@@ -271,12 +285,22 @@ export async function approvedTemplates(fresh = false): Promise<WaTemplate[]> {
   return out;
 }
 
+/** Values for a template header: text variables, or the file of an image / video / document header. */
+export type TemplateHeader = { type: 'text'; params: string[] } | { type: 'image' | 'video' | 'document'; link: string; filename?: string };
+
+function headerComponents(h?: TemplateHeader): Record<string, unknown>[] {
+  if (!h) return [];
+  if (h.type === 'text') return h.params.length ? [{ type: 'header', parameters: h.params.map((text) => ({ type: 'text', text: text || '-' })) }] : [];
+  if (!h.link) return [];
+  return [{ type: 'header', parameters: [{ type: h.type, [h.type]: { link: h.link, ...(h.type === 'document' && h.filename ? { filename: h.filename } : {}) } }] }];
+}
+
 /** Bulk send: one approved template with its {{1}}… values to one number, logged under its batch. Resolves (never throws). */
 export function whatsappBulkTemplate(
-  mobile: string, name: string | undefined, tpl: { name: string; language: string; params: string[]; urlParam?: string },
+  mobile: string, name: string | undefined, tpl: { name: string; language: string; params: string[]; urlParam?: string; header?: TemplateHeader },
   campaign: string, by?: string,
 ): Promise<SendResult> {
-  const components: Record<string, unknown>[] = [];
+  const components: Record<string, unknown>[] = headerComponents(tpl.header);
   if (tpl.params.length) components.push({ type: 'body', parameters: tpl.params.map((text) => ({ type: 'text', text: text || '-' })) });
   if (tpl.urlParam) components.push({ type: 'button', sub_type: 'url', index: 0, parameters: [{ type: 'text', text: tpl.urlParam }] });
   return post(templateUrl(), mobile, name, {
@@ -292,4 +316,72 @@ export function whatsappBulkTemplate(
 export function whatsappBulkText(mobile: string, name: string | undefined, text: string, campaign: string, by?: string): Promise<SendResult> {
   const body = text.trim().slice(0, 4096);
   return post(textUrl(), mobile, name, { type: 'text', text: { preview_url: true, body } }, { author: 'staff', by, kind: 'text', purpose: 'bulk', campaign, body });
+}
+
+/* ------------------------- Any message (Send / Schedule) ------------------------- */
+
+export type MediaKind = 'image' | 'video' | 'document';
+
+/** One message of a send or schedule: typed text, a file (with caption), or an approved template. */
+export interface WaPayload {
+  kind: 'text' | MediaKind | 'template';
+  /** Text, or the caption of a file. */
+  text?: string;
+  media?: { url: string; filename?: string };
+  template?: { name: string; language: string; params: string[]; url_param?: string; header?: TemplateHeader };
+}
+
+const MEDIA_LABEL: Record<MediaKind, string> = { image: 'Photo', video: 'Video', document: 'Document' };
+
+/** Short text for logs, history and the chat view. */
+export function payloadSummary(p: WaPayload): string {
+  if (p.kind === 'text') return String(p.text || '');
+  if (p.kind === 'template') return `Template: ${p.template?.name || ''}${p.template?.params.length ? ` (${p.template.params.join(' | ').slice(0, 200)})` : ''}`;
+  return `[${MEDIA_LABEL[p.kind]}${p.media?.filename ? `: ${p.media.filename}` : ''}]${p.text ? ` ${p.text}` : ''}`;
+}
+
+/** {name} → the recipient's name, everywhere in a payload. */
+export function fillPayload(p: WaPayload, name?: string): WaPayload {
+  const fill = (v: string) => v.replace(/\{name\}/gi, name || 'there');
+  const t = p.template;
+  return {
+    ...p,
+    ...(p.text != null ? { text: fill(p.text) } : {}),
+    ...(t ? {
+      template: {
+        ...t, params: t.params.map(fill), ...(t.url_param ? { url_param: fill(t.url_param) } : {}),
+        ...(t.header?.type === 'text' ? { header: { type: 'text' as const, params: t.header.params.map(fill) } } : {}),
+      },
+    } : {}),
+  };
+}
+
+/**
+ * Sends one payload to one number and logs it. With a campaign it is logged as purpose 'bulk' so it shows under
+ * Bulk send history. {name} becomes the recipient's name. Resolves (never throws).
+ */
+export function whatsappSend(
+  mobile: string, name: string | undefined, payload: WaPayload,
+  log: { author: 'staff' | 'system'; by?: string; campaign?: string },
+): Promise<SendResult> {
+  const p = fillPayload(payload, name);
+  const purpose = log.campaign ? ('bulk' as const) : undefined;
+  const base = { author: log.author, by: log.by, purpose, campaign: log.campaign };
+  if (p.kind === 'template') {
+    const t = p.template!;
+    const components = headerComponents(t.header);
+    if (t.params.length) components.push({ type: 'body', parameters: t.params.map((x) => ({ type: 'text', text: x || '-' })) });
+    if (t.url_param) components.push({ type: 'button', sub_type: 'url', index: 0, parameters: [{ type: 'text', text: t.url_param }] });
+    return post(templateUrl(), mobile, name, { type: 'template', template: { name: t.name, language: { code: t.language }, ...(components.length ? { components } : {}) } },
+      { ...base, author: 'system', kind: 'template', template: t.name, body: payloadSummary(p) });
+  }
+  if (p.kind === 'text') {
+    const body = String(p.text || '').trim().slice(0, 4096);
+    return post(textUrl(), mobile, name, { type: 'text', text: { preview_url: true, body } }, { ...base, kind: 'text', body });
+  }
+  const caption = String(p.text || '').trim().slice(0, 1024);
+  const media: Record<string, unknown> = { link: p.media?.url || '' };
+  if (caption) media.caption = caption;
+  if (p.kind === 'document' && p.media?.filename) media.filename = p.media.filename;
+  return post(textUrl(), mobile, name, { type: p.kind, [p.kind]: media }, { ...base, kind: 'media', body: payloadSummary({ ...p, text: caption }) });
 }
