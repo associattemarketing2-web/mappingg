@@ -59,3 +59,18 @@ test('checkMedia applies WhatsApp limits; safeName makes URL-safe names', () => 
   assert.equal(safeName('My Brochure (Final).PDF'), 'my-brochure-final.pdf');
   assert.equal(safeName('..'), 'file');
 });
+
+test('fallbackPayload: 24-hour template carries the message text and the message file', async () => {
+  const { fallbackPayload, templateSafe } = await import('../lib/whatsapp');
+  assert.equal(templateSafe('Line 1\n\nLine 2\tend     x'), 'Line 1 · Line 2 end   x');
+  assert.equal(fallbackPayload({ kind: 'text', text: 'hi' }), null);
+  const fb = fallbackPayload({
+    kind: 'video', text: 'Site tour\nBaner', media: { url: 'https://x/v.mp4', filename: 'v.mp4' },
+    fallback: { name: 'promo_video', language: 'en', params: ['{name}', '{message}'], header: { type: 'video', link: '' } },
+  })!;
+  assert.equal(fb.kind, 'template');
+  assert.deepEqual(fb.template!.params, ['{name}', 'Site tour · Baner']);
+  assert.deepEqual(fb.template!.header, { type: 'video', link: 'https://x/v.mp4', filename: 'v.mp4' });
+  // {name} is filled per person later, and template values are kept on one line.
+  assert.deepEqual(fillPayload({ kind: 'template', template: fb.template }, 'Amit\nK').template!.params, ['Amit · K', 'Site tour · Baner']);
+});

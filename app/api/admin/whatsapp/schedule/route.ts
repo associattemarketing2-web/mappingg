@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getCurrentUser } from '@/lib/auth';
 import { hasPermission } from '@/lib/staff';
-import { approvedTemplates, whatsappConfigured, whatsappProvider, type WaPayload } from '@/lib/whatsapp';
+import { approvedTemplates, fallbackPayload, whatsappConfigured, whatsappProvider, type WaPayload } from '@/lib/whatsapp';
 import { cancelSchedule, createSchedule, processDue, scheduleRow, schedules, MAX_RECIPIENTS, type WaSchedule } from '@/lib/wa-schedule';
 
 export const runtime = 'nodejs';
@@ -19,16 +19,19 @@ const fail = (message: string, status = 400) => NextResponse.json({ error: { mes
 
 const header = z.union([
   z.object({ type: z.literal('text'), params: z.array(z.string().max(1000)).max(5) }),
-  z.object({ type: z.enum(['image', 'video', 'document']), link: z.string().url().max(1000), filename: z.string().max(200).optional() }),
+  // An empty link (fallback templates only) means "use this message's own file".
+  z.object({ type: z.enum(['image', 'video', 'document']), link: z.union([z.string().url().max(1000), z.literal('')]), filename: z.string().max(200).optional() }),
 ]);
+const templateRef = z.object({
+  name: z.string().min(1).max(512), language: z.string().min(2).max(15),
+  params: z.array(z.string().max(1000)).max(20).default([]), url_param: z.string().max(500).optional(), header: header.optional(),
+});
 const payload = z.object({
   kind: z.enum(['text', 'image', 'video', 'document', 'template']),
   text: z.string().max(4096).optional(),
   media: z.object({ url: z.string().url().max(1000), filename: z.string().max(200).optional() }).optional(),
-  template: z.object({
-    name: z.string().min(1).max(512), language: z.string().min(2).max(15),
-    params: z.array(z.string().max(1000)).max(20).default([]), url_param: z.string().max(500).optional(), header: header.optional(),
-  }).optional(),
+  template: templateRef.optional(),
+  fallback: templateRef.optional(),
 });
 const timing = z.discriminatedUnion('mode', [
   z.object({ mode: z.literal('now') }),
@@ -49,8 +52,15 @@ const schema = z.discriminatedUnion('action', [
 
 /** Checks one message is complete and, for templates, approved with every value filled in. */
 async function checkPayload(p: WaPayload): Promise<string> {
-  if (p.kind === 'text') return p.text?.trim() ? '' : 'Type the message';
-  if (p.kind !== 'template') return p.media?.url ? '' : `Upload the ${p.kind === 'image' ? 'photo' : p.kind} (or paste its link)`;
+  if (p.kind !== 'template') {
+    if (p.kind === 'text' && !p.text?.trim()) return 'Type the message';
+    if (p.kind !== 'text' && !p.media?.url) return `Upload the ${p.kind === 'image' ? 'photo' : p.kind} (or paste its link)`;
+    // The "not messaged in 24 h" template, as it will actually be sent.
+    const fb = fallbackPayload(p);
+    if (!fb) return '';
+    const err = await checkPayload(fb);
+    return err ? `24-hour template: ${err}` : '';
+  }
   const t = p.template;
   if (!t) return 'Pick a template';
   if (whatsappProvider() !== 'meta') return '';

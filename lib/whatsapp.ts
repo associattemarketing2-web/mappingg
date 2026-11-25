@@ -328,7 +328,30 @@ export interface WaPayload {
   /** Text, or the caption of a file. */
   text?: string;
   media?: { url: string; filename?: string };
-  template?: { name: string; language: string; params: string[]; url_param?: string; header?: TemplateHeader };
+  template?: TemplateRef;
+  /**
+   * Text / file only: the approved template sent instead to anyone who has not messaged in the last 24 hours
+   * (WhatsApp drops typed messages and files then). {message} in its values = this message's text / caption;
+   * a header with an empty link takes this message's file.
+   */
+  fallback?: TemplateRef;
+}
+
+export interface TemplateRef { name: string; language: string; params: string[]; url_param?: string; header?: TemplateHeader }
+
+/** Template values may not contain line breaks, tabs or 4+ spaces in a row (WhatsApp rule). */
+export const templateSafe = (v: string) => v.replace(/\s*[\r\n]+\s*/g, ' · ').replace(/\t/g, ' ').replace(/ {4,}/g, '   ').trim();
+
+/** The template version of a text / file message (see WaPayload.fallback), or null when there is none. */
+export function fallbackPayload(p: WaPayload): WaPayload | null {
+  if (p.kind === 'template' || !p.fallback) return null;
+  const msg = templateSafe(p.text || '').slice(0, 1000) || '-';
+  const fill = (v: string) => v.replace(/\{message\}/gi, msg);
+  const t = p.fallback;
+  let header = t.header;
+  if (header?.type === 'text') header = { type: 'text', params: header.params.map(fill) };
+  else if (header && !header.link && p.media?.url && header.type === p.kind) header = { ...header, link: p.media.url, ...(p.media.filename ? { filename: p.media.filename } : {}) };
+  return { kind: 'template', template: { ...t, params: t.params.map(fill), ...(t.url_param ? { url_param: fill(t.url_param) } : {}), ...(header ? { header } : {}) } };
 }
 
 const MEDIA_LABEL: Record<MediaKind, string> = { image: 'Photo', video: 'Video', document: 'Document' };
@@ -344,13 +367,15 @@ export function payloadSummary(p: WaPayload): string {
 export function fillPayload(p: WaPayload, name?: string): WaPayload {
   const fill = (v: string) => v.replace(/\{name\}/gi, name || 'there');
   const t = p.template;
+  // Template values must be one line (the name is too).
+  const tfill = (v: string) => templateSafe(fill(v));
   return {
     ...p,
     ...(p.text != null ? { text: fill(p.text) } : {}),
     ...(t ? {
       template: {
-        ...t, params: t.params.map(fill), ...(t.url_param ? { url_param: fill(t.url_param) } : {}),
-        ...(t.header?.type === 'text' ? { header: { type: 'text' as const, params: t.header.params.map(fill) } } : {}),
+        ...t, params: t.params.map(tfill), ...(t.url_param ? { url_param: fill(t.url_param) } : {}),
+        ...(t.header?.type === 'text' ? { header: { type: 'text' as const, params: t.header.params.map(tfill) } } : {}),
       },
     } : {}),
   };

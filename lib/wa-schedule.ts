@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto';
 import { getDb, usingMongo } from './mongodb';
 import { query } from './pg';
 import { chats, waDigits } from './wa-store';
-import { payloadSummary, whatsappProvider, whatsappSend, type WaPayload } from './whatsapp';
+import { fallbackPayload, payloadSummary, whatsappProvider, whatsappSend, type WaPayload } from './whatsapp';
 
 // Send & schedule (s-admin → WhatsApp). One schedule = a list of numbers + one
 // or more messages, each with its own timing:
@@ -169,20 +169,22 @@ async function sendSchedule(id: string, deadline: number, results: SendOutcome[]
       let skipped = 0;
       if (payload && batch.length) {
         // A typed message / file only reaches people who wrote in the last 24 hours (WhatsApp rule);
-        // whatapi.in would answer "queued" and WhatsApp drops it silently, so those are skipped here.
-        let queue = batch;
+        // whatapi.in would answer "queued" and WhatsApp drops it silently. Those numbers get the message's
+        // fallback template instead, or are skipped when it has none.
+        let queue: { phone: string; name: string; p: WaPayload }[] = batch.map((r) => ({ ...r, p: payload }));
         if (payload.kind !== 'template' && whatsappProvider() === 'meta') {
           const since = new Date(Date.now() - 24 * 3_600_000).toISOString();
           const open = new Set((await (await chats()).find({ _id: { $in: batch.map((r) => r.phone) } }, { projection: { last_in_at: 1 } }).toArray())
             .filter((c) => c.last_in_at && c.last_in_at >= since).map((c) => String(c._id)));
-          queue = batch.filter((r) => open.has(r.phone));
-          for (const r of batch) if (!open.has(r.phone)) outcomes.push({ phone: r.phone, ok: false, error: 'Skipped: no message from this number in the last 24 hours — WhatsApp only allows templates then' });
+          const fb = fallbackPayload(payload);
+          queue = batch.flatMap((r) => (open.has(r.phone) ? [{ ...r, p: payload }] : fb ? [{ ...r, p: fb }] : []));
+          for (const r of batch) if (!open.has(r.phone) && !fb) outcomes.push({ phone: r.phone, ok: false, error: 'Skipped: no message from this number in the last 24 hours — WhatsApp only allows templates then. Pick a template under "Not messaged in 24 h".' });
           skipped = batch.length - queue.length;
         }
         const work = [...queue];
         await Promise.all(Array.from({ length: PARALLEL }, async () => {
           for (let r = work.shift(); r; r = work.shift()) {
-            const res = await whatsappSend(r.phone, r.name || undefined, payload, { author: 'staff', by: s!.created_by, campaign: run.id });
+            const res = await whatsappSend(r.phone, r.name || undefined, r.p, { author: 'staff', by: s!.created_by, campaign: run.id });
             outcomes.push({ phone: r.phone, ok: res.ok, ...(res.ok ? {} : { error: res.error || 'Not sent' }) });
           }
         }));

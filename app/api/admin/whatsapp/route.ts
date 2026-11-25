@@ -126,7 +126,7 @@ export async function POST(req: NextRequest) {
     if (!chat) return fail('Chat not found', 404);
     // whatapi.in "queues" a typed message even outside WhatsApp's 24-hour window, then WhatsApp drops it silently.
     if (whatsappProvider() === 'meta' && (!chat.last_in_at || Date.now() - Date.parse(chat.last_in_at) > 24 * 3_600_000)) {
-      return fail('Not sent: this customer has not messaged you in the last 24 hours, so WhatsApp drops typed messages. Use Bulk send → Template to reach them.', 409);
+      return fail('Not sent: this customer has not messaged you in the last 24 hours, so WhatsApp drops typed messages. Use the 📎 button in this chat and pick a template (or a 24-hour template) instead.', 409);
     }
     const r = await whatsappText(phone, d.text, 'staff', me?.email);
     if (!r.ok) return NextResponse.json({ error: { message: r.error || 'Could not send' }, data: { message: r.message } }, { status: 502 });

@@ -48,15 +48,21 @@ const nextHour = () => { const d = new Date(); d.setMinutes(0, 0, 0); return loc
 const IST = { timeZone: 'Asia/Kolkata' } as const;
 export const whenText = (iso: string) => new Date(iso).toLocaleString('en-IN', { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit', ...IST });
 
+/** Values for one approved template (the message itself, or the 24-hour fallback). */
+interface TplState { tplKey: string; params: string[]; urlParam: string; headerParams: string[]; headerUrl: string; headerName: string; headerPct: number | null }
+const newTpl = (): TplState => ({ tplKey: '', params: [], urlParam: '', headerParams: [], headerUrl: '', headerName: '', headerPct: null });
+
 interface Draft {
   key: string; kind: Kind; text: string;
   mediaUrl: string; mediaName: string; pct: number | null;
-  tplKey: string; params: string[]; urlParam: string; headerParams: string[]; headerUrl: string; headerName: string; headerPct: number | null;
+  tpl: TplState;
+  /** Text / file: send this template to numbers outside WhatsApp's 24-hour window (else they are skipped). */
+  fbOn: boolean; fb: TplState;
   when: When; times: string[]; start: string; every: number; unit: 'minutes' | 'hours' | 'days'; count: number;
 }
 const newDraft = (): Draft => ({
   key: Math.random().toString(36).slice(2), kind: 'text', text: '', mediaUrl: '', mediaName: '', pct: null,
-  tplKey: '', params: [], urlParam: '', headerParams: [], headerUrl: '', headerName: '', headerPct: null,
+  tpl: newTpl(), fbOn: true, fb: newTpl(),
   when: 'now', times: [nextHour()], start: nextHour(), every: 1, unit: 'hours', count: 3,
 });
 
@@ -65,39 +71,123 @@ const KINDS: [Kind, string, string][] = [
 ];
 const ACCEPT: Record<'image' | 'video' | 'document', string> = { image: 'image/jpeg,image/png', video: 'video/mp4,video/3gpp', document: '*/*' };
 const LIMIT: Record<'image' | 'video' | 'document', string> = { image: 'JPG or PNG, up to 5 MB', video: 'MP4, up to 16 MB', document: 'PDF or any file, up to 16 MB' };
+const tplKeyOf = (t: WaTpl) => `${t.name}|${t.language}`;
+const headKindOf = (t: WaTpl | null) => (t?.header && ['IMAGE', 'VIDEO', 'DOCUMENT'].includes(t.header) ? (t.header.toLowerCase() as 'image' | 'video' | 'document') : null);
+
+/** Upload button + "or paste a link" for one file. */
+function FileField({ kind, url, name, pct, busy, onPick, onLink }: {
+  kind: 'image' | 'video' | 'document'; url: string; name: string; pct: number | null; busy: boolean;
+  onPick: (f: File) => void; onLink: (url: string) => void;
+}) {
+  const ref = useRef<HTMLInputElement>(null);
+  return (
+    <>
+      <div className="wa-file-row">
+        <input ref={ref} type="file" hidden accept={ACCEPT[kind]} onChange={(e) => { const f = e.target.files?.[0]; if (f) onPick(f); e.target.value = ''; }} />
+        <button type="button" className="adm-btn ghost sm" onClick={() => ref.current?.click()} disabled={busy || pct !== null}>
+          {pct !== null ? <><i className="fas fa-spinner fa-spin" /> Uploading {pct}%</> : <><i className="fas fa-upload" /> {url ? 'Change file' : 'Upload file'}</>}
+        </button>
+        {name && url && <span className="wa-file-ok"><i className="fas fa-check" /> {name}</span>}
+      </div>
+      <input type="url" placeholder="…or paste a public link (https://…)" value={name ? '' : url} disabled={busy || !!name} onChange={(e) => onLink(e.target.value.trim())} />
+    </>
+  );
+}
+
+/**
+ * Picker + values of an approved template. `ownFile` (fallback only): the message's own file kind — a template
+ * whose header takes that kind uses the message's file, no second upload. `hint` adds {message} help.
+ */
+function TplFields({ s, set, templates, busy, flash, ownFile, hint }: {
+  s: TplState; set: (p: Partial<TplState>) => void; templates: WaTpl[]; busy: boolean; flash: Flash;
+  ownFile?: Kind; hint?: boolean;
+}) {
+  const tpl = templates.find((t) => tplKeyOf(t) === s.tplKey) || null;
+  const headKind = headKindOf(tpl);
+  const usesOwn = !!headKind && headKind === ownFile;
+
+  useEffect(() => {
+    if (!templates.length || tpl) return;
+    // Fallback: prefer a template whose header matches the message's file, then one with values to fill.
+    const best = (ownFile && templates.find((t) => headKindOf(t) === ownFile)) || (hint && templates.find((t) => !headKindOf(t) && t.vars > 0)) || templates[0];
+    set({ tplKey: tplKeyOf(best) });
+  }, [templates, tpl, set, ownFile, hint]);
+  useEffect(() => {
+    // Fallback default: the last value carries the typed message, the first the name.
+    const n = tpl?.vars || 0;
+    const params = Array.from({ length: n }, (_, j) => (!hint ? '' : j === n - 1 ? '{message}' : j === 0 ? '{name}' : ''));
+    set({ params, headerParams: Array.from({ length: tpl?.headerVars || 0 }, () => ''), urlParam: '', headerUrl: '', headerName: '' });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tpl?.name, tpl?.language]);
+
+  async function pick(file: File) {
+    if (!headKind) return;
+    try {
+      set({ headerPct: 0, headerName: file.name });
+      const url = await uploadFile(file, headKind, (n) => set({ headerPct: n }));
+      set({ headerUrl: url, headerPct: null });
+    } catch (e) {
+      set({ headerPct: null, headerName: '' });
+      flash((e as Error).message, true);
+    }
+  }
+
+  if (!templates.length) return <p className="muted">No approved templates yet. Create one in the whatapi.in dashboard — it shows here once approved.</p>;
+  const preview = tpl ? tpl.body.replace(/\{\{\s*(\d+)\s*\}\}/g, (m, n) => s.params[Number(n) - 1]?.trim() || m) : '';
+  const tags = <small>— <code>{'{name}'}</code> = each person&apos;s name{hint && <>, <code>{'{message}'}</code> = your text / caption</>}</small>;
+  return (
+    <>
+      <select value={s.tplKey} onChange={(e) => set({ tplKey: e.target.value })} disabled={busy}>
+        {templates.map((t) => <option key={tplKeyOf(t)} value={tplKeyOf(t)}>{t.name} ({t.language}, {t.category.toLowerCase()}{headKindOf(t) ? `, ${headKindOf(t)} header` : ''})</option>)}
+      </select>
+      {headKind && (usesOwn
+        ? <p className="wa-bulk-desc"><i className="fas fa-check" /> Header {headKind}: this message&apos;s file is used.</p>
+        : (
+          <div className="adm-field">
+            <label>Header {headKind} <small>— {LIMIT[headKind]}</small></label>
+            <FileField kind={headKind} url={s.headerUrl} name={s.headerName} pct={s.headerPct} busy={busy} onPick={(f) => void pick(f)} onLink={(u) => set({ headerUrl: u })} />
+          </div>
+        ))}
+      {s.headerParams.map((v, j) => (
+        <div key={`h${j}`} className="adm-field">
+          <label>Header value {`{{${j + 1}}}`} {tags}</label>
+          <input value={v} maxLength={60} disabled={busy} onChange={(e) => set({ headerParams: s.headerParams.map((x, k) => (k === j ? e.target.value : x)) })} />
+        </div>
+      ))}
+      {s.params.map((v, j) => (
+        <div key={j} className="adm-field">
+          <label>Value {`{{${j + 1}}}`} {tags}</label>
+          <input value={v} maxLength={1000} disabled={busy} onChange={(e) => set({ params: s.params.map((x, k) => (k === j ? e.target.value : x)) })} />
+        </div>
+      ))}
+      {tpl && tpl.urlVars > 0 && (
+        <div className="adm-field"><label>Button link value</label><input value={s.urlParam} maxLength={500} disabled={busy} onChange={(e) => set({ urlParam: e.target.value })} /></div>
+      )}
+      {tpl && <p className="wa-bulk-desc" style={{ whiteSpace: 'pre-wrap' }}><b>Preview:</b> {tpl.headerText ? `${tpl.headerText}\n` : ''}{preview}</p>}
+    </>
+  );
+}
 
 function DraftCard({ d, i, total, set, remove, templates, meta, busy, flash }: {
   d: Draft; i: number; total: number; set: (p: Partial<Draft>) => void; remove: () => void;
   templates: WaTpl[]; meta: boolean; busy: boolean; flash: Flash;
 }) {
-  const tpl = templates.find((t) => `${t.name}|${t.language}` === d.tplKey) || null;
-  const fileRef = useRef<HTMLInputElement>(null);
-  const headRef = useRef<HTMLInputElement>(null);
-  const headKind = tpl?.header && ['IMAGE', 'VIDEO', 'DOCUMENT'].includes(tpl.header) ? (tpl.header.toLowerCase() as 'image' | 'video' | 'document') : null;
+  const media = d.kind === 'image' || d.kind === 'video' || d.kind === 'document' ? d.kind : null;
+  const dRef = useRef(d);
+  dRef.current = d;
+  const setTpl = useCallback((p: Partial<TplState>) => { dRef.current = { ...dRef.current, tpl: { ...dRef.current.tpl, ...p } }; set({ tpl: dRef.current.tpl }); }, [set]);
+  const setFb = useCallback((p: Partial<TplState>) => { dRef.current = { ...dRef.current, fb: { ...dRef.current.fb, ...p } }; set({ fb: dRef.current.fb }); }, [set]);
 
-  useEffect(() => {
-    if (d.kind !== 'template' || !templates.length || tpl) return;
-    set({ tplKey: `${templates[0].name}|${templates[0].language}` });
-  }, [d.kind, templates, tpl, set]);
-  useEffect(() => {
-    set({ params: Array.from({ length: tpl?.vars || 0 }, () => ''), headerParams: Array.from({ length: tpl?.headerVars || 0 }, () => ''), urlParam: '', headerUrl: '', headerName: '' });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tpl?.name, tpl?.language]);
-
-  async function pick(file: File | undefined, kind: 'image' | 'video' | 'document', header: boolean) {
-    if (!file) return;
+  async function pick(file: File, kind: 'image' | 'video' | 'document') {
     try {
-      set(header ? { headerPct: 0, headerName: file.name } : { pct: 0, mediaName: file.name });
-      const url = await uploadFile(file, kind, (n) => set(header ? { headerPct: n } : { pct: n }));
-      set(header ? { headerUrl: url, headerPct: null } : { mediaUrl: url, pct: null });
+      set({ pct: 0, mediaName: file.name });
+      const url = await uploadFile(file, kind, (n) => set({ pct: n }));
+      set({ mediaUrl: url, pct: null });
     } catch (e) {
-      set(header ? { headerPct: null, headerName: '' } : { pct: null, mediaName: '' });
+      set({ pct: null, mediaName: '' });
       flash((e as Error).message, true);
     }
   }
-
-  const preview = tpl ? tpl.body.replace(/\{\{\s*(\d+)\s*\}\}/g, (m, n) => d.params[Number(n) - 1]?.trim() || m) : '';
-  const media = d.kind === 'image' || d.kind === 'video' || d.kind === 'document' ? d.kind : null;
 
   return (
     <div className="wa-draft">
@@ -108,7 +198,7 @@ function DraftCard({ d, i, total, set, remove, templates, meta, busy, flash }: {
       <div className="wa-filters wa-bulk-mode" role="tablist" aria-label="Message type">
         {KINDS.map(([k, label, icon]) => (
           <button key={k} type="button" role="tab" aria-selected={d.kind === k} className={d.kind === k ? 'on' : ''} disabled={busy}
-            onClick={() => set({ kind: k, ...(k !== d.kind ? { mediaUrl: '', mediaName: '', pct: null } : {}) })}>
+            onClick={() => set({ kind: k, ...(k !== d.kind ? { mediaUrl: '', mediaName: '', pct: null, fb: newTpl() } : {}) })}>
             <i className={`fas ${icon}`} /> {label}
           </button>
         ))}
@@ -117,15 +207,7 @@ function DraftCard({ d, i, total, set, remove, templates, meta, busy, flash }: {
       {media && (
         <div className="adm-field">
           <label>{media === 'image' ? 'Photo' : media === 'video' ? 'Video' : 'Document'} <small>— {LIMIT[media]}</small></label>
-          <div className="wa-file-row">
-            <input ref={fileRef} type="file" hidden accept={ACCEPT[media]} onChange={(e) => { void pick(e.target.files?.[0], media, false); e.target.value = ''; }} />
-            <button type="button" className="adm-btn ghost sm" onClick={() => fileRef.current?.click()} disabled={busy || d.pct !== null}>
-              {d.pct !== null ? <><i className="fas fa-spinner fa-spin" /> Uploading {d.pct}%</> : <><i className="fas fa-upload" /> {d.mediaUrl ? 'Change file' : 'Upload file'}</>}
-            </button>
-            {d.mediaName && d.mediaUrl && <span className="wa-file-ok"><i className="fas fa-check" /> {d.mediaName}</span>}
-          </div>
-          <input type="url" placeholder="…or paste a public link (https://…)" value={d.mediaName ? '' : d.mediaUrl} disabled={busy || !!d.mediaName}
-            onChange={(e) => set({ mediaUrl: e.target.value.trim() })} />
+          <FileField kind={media} url={d.mediaUrl} name={d.mediaName} pct={d.pct} busy={busy} onPick={(f) => void pick(f, media)} onLink={(u) => set({ mediaUrl: u })} />
         </div>
       )}
 
@@ -137,43 +219,22 @@ function DraftCard({ d, i, total, set, remove, templates, meta, busy, flash }: {
         </div>
       ) : !meta ? (
         <p className="muted">Templates are picked from the whatapi.in account.</p>
-      ) : !templates.length ? (
-        <p className="muted">No approved templates yet. Create one in the whatapi.in dashboard — it shows here once approved.</p>
       ) : (
         <div className="adm-field wa-bulk-msg">
           <label>Approved template</label>
-          <select value={d.tplKey} onChange={(e) => set({ tplKey: e.target.value })} disabled={busy}>
-            {templates.map((t) => <option key={`${t.name}|${t.language}`} value={`${t.name}|${t.language}`}>{t.name} ({t.language}, {t.category.toLowerCase()}{t.header && t.header !== 'NONE' && t.header !== 'TEXT' ? `, ${t.header.toLowerCase()} header` : ''})</option>)}
-          </select>
-          {headKind && (
-            <div className="adm-field">
-              <label>Header {headKind} <small>— {LIMIT[headKind]}</small></label>
-              <div className="wa-file-row">
-                <input ref={headRef} type="file" hidden accept={ACCEPT[headKind]} onChange={(e) => { void pick(e.target.files?.[0], headKind, true); e.target.value = ''; }} />
-                <button type="button" className="adm-btn ghost sm" onClick={() => headRef.current?.click()} disabled={busy || d.headerPct !== null}>
-                  {d.headerPct !== null ? <><i className="fas fa-spinner fa-spin" /> Uploading {d.headerPct}%</> : <><i className="fas fa-upload" /> {d.headerUrl ? 'Change file' : 'Upload file'}</>}
-                </button>
-                {d.headerName && d.headerUrl && <span className="wa-file-ok"><i className="fas fa-check" /> {d.headerName}</span>}
-              </div>
-              <input type="url" placeholder="…or paste a public link (https://…)" value={d.headerName ? '' : d.headerUrl} disabled={busy || !!d.headerName} onChange={(e) => set({ headerUrl: e.target.value.trim() })} />
-            </div>
-          )}
-          {d.headerParams.map((v, j) => (
-            <div key={`h${j}`} className="adm-field">
-              <label>Header value {`{{${j + 1}}}`}</label>
-              <input value={v} maxLength={60} disabled={busy} onChange={(e) => set({ headerParams: d.headerParams.map((x, k) => (k === j ? e.target.value : x)) })} />
-            </div>
-          ))}
-          {d.params.map((v, j) => (
-            <div key={j} className="adm-field">
-              <label>Value {`{{${j + 1}}}`} <small>— <code>{'{name}'}</code> = each person&apos;s name</small></label>
-              <input value={v} maxLength={1000} disabled={busy} onChange={(e) => set({ params: d.params.map((x, k) => (k === j ? e.target.value : x)) })} />
-            </div>
-          ))}
-          {tpl && tpl.urlVars > 0 && (
-            <div className="adm-field"><label>Button link value</label><input value={d.urlParam} maxLength={500} disabled={busy} onChange={(e) => set({ urlParam: e.target.value })} /></div>
-          )}
-          {tpl && <p className="wa-bulk-desc" style={{ whiteSpace: 'pre-wrap' }}><b>Preview:</b> {tpl.headerText ? `${tpl.headerText}\n` : ''}{preview}</p>}
+          <TplFields s={d.tpl} set={setTpl} templates={templates} busy={busy} flash={flash} />
+        </div>
+      )}
+
+      {d.kind !== 'template' && meta && (
+        <div className="adm-field wa-fallback">
+          <label><i className="fas fa-clock" /> Not messaged you in the last 24 hours?</label>
+          <p className="wa-bulk-desc muted">WhatsApp only delivers a typed message, photo or video to people who wrote to you in the last 24 hours. Everyone else can only get an approved template.</p>
+          <div className="wa-filters" role="tablist" aria-label="24-hour rule">
+            <button type="button" role="tab" aria-selected={d.fbOn} className={d.fbOn ? 'on' : ''} disabled={busy} onClick={() => set({ fbOn: true })}><i className="fas fa-user-check" /> Send them a template instead</button>
+            <button type="button" role="tab" aria-selected={!d.fbOn} className={!d.fbOn ? 'on' : ''} disabled={busy} onClick={() => set({ fbOn: false })}><i className="fas fa-forward" /> Skip them</button>
+          </div>
+          {d.fbOn && <TplFields s={d.fb} set={setFb} templates={templates} busy={busy} flash={flash} ownFile={d.kind} hint />}
         </div>
       )}
 
@@ -213,39 +274,46 @@ function DraftCard({ d, i, total, set, remove, templates, meta, busy, flash }: {
             <span>times</span>
           </div>
         )}
-        {d.when !== 'now' && d.kind !== 'template' && (
-          <p className="wa-note warn"><i className="fas fa-clock" /> Typed messages, photos, videos and documents only reach people who messaged you in the 24 hours before each send. Others are skipped. Use a Template to reach everyone.</p>
-        )}
       </div>
     </div>
   );
+}
+
+/** A template's API value from its fields. `ownFile`: a matching header is left empty so the server uses the message's file. */
+function toTemplate(s: TplState, templates: WaTpl[], ownFile?: Kind) {
+  const tpl = templates.find((t) => tplKeyOf(t) === s.tplKey);
+  if (!tpl) throw new Error('Pick a template');
+  if (s.params.some((p) => !p.trim()) || s.headerParams.some((p) => !p.trim())) throw new Error(`Fill every value of template "${tpl.name}"`);
+  if (tpl.urlVars && !s.urlParam.trim()) throw new Error(`Fill the button link value of template "${tpl.name}"`);
+  const hk = headKindOf(tpl);
+  const own = !!hk && hk === ownFile;
+  if (hk && !own && !s.headerUrl) throw new Error(`Upload the header ${hk} of template "${tpl.name}"`);
+  return {
+    name: tpl.name, language: tpl.language, params: s.params.map((p) => p.trim()), ...(s.urlParam.trim() ? { url_param: s.urlParam.trim() } : {}),
+    ...(hk ? { header: { type: hk, link: own ? '' : s.headerUrl, ...(hk === 'document' && !own && s.headerName ? { filename: s.headerName } : {}) } }
+      : s.headerParams.length ? { header: { type: 'text', params: s.headerParams.map((p) => p.trim()) } } : {}),
+  };
 }
 
 /** Turns a draft into the API's {payload, timing}. Throws a readable error when something is missing. */
 function toMessage(d: Draft, templates: WaTpl[], meta: boolean) {
   const iso = (v: string) => { const ms = Date.parse(v); if (!Number.isFinite(ms)) throw new Error('Pick a valid date & time'); return new Date(ms).toISOString(); };
   let payload: Record<string, unknown>;
-  if (d.kind === 'text') {
-    if (!d.text.trim()) throw new Error('Type the message');
-    payload = { kind: 'text', text: d.text.trim() };
-  } else if (d.kind === 'template') {
-    const tpl = templates.find((t) => `${t.name}|${t.language}` === d.tplKey);
-    if (meta && !tpl) throw new Error('Pick a template');
-    if (!tpl) throw new Error('Templates are not available');
-    if (d.params.some((p) => !p.trim()) || d.headerParams.some((p) => !p.trim())) throw new Error(`Fill every value of template "${tpl.name}"`);
-    const hk = tpl.header && ['IMAGE', 'VIDEO', 'DOCUMENT'].includes(tpl.header) ? tpl.header.toLowerCase() : '';
-    if (hk && !d.headerUrl) throw new Error(`Upload the header ${hk} of template "${tpl.name}"`);
-    payload = {
-      kind: 'template',
-      template: {
-        name: tpl.name, language: tpl.language, params: d.params.map((p) => p.trim()), ...(d.urlParam.trim() ? { url_param: d.urlParam.trim() } : {}),
-        ...(hk ? { header: { type: hk, link: d.headerUrl, ...(hk === 'document' && d.headerName ? { filename: d.headerName } : {}) } }
-          : d.headerParams.length ? { header: { type: 'text', params: d.headerParams.map((p) => p.trim()) } } : {}),
-      },
-    };
+  if (d.kind === 'template') {
+    if (!meta) throw new Error('Templates are not available');
+    payload = { kind: 'template', template: toTemplate(d.tpl, templates) };
   } else {
-    if (!/^https?:\/\//i.test(d.mediaUrl)) throw new Error(`Upload the ${d.kind === 'image' ? 'photo' : d.kind} (or paste its link)`);
-    payload = { kind: d.kind, media: { url: d.mediaUrl, ...(d.mediaName ? { filename: d.mediaName } : {}) }, ...(d.text.trim() ? { text: d.text.trim() } : {}) };
+    if (d.kind === 'text' && !d.text.trim()) throw new Error('Type the message');
+    if (d.kind !== 'text' && !/^https?:\/\//i.test(d.mediaUrl)) throw new Error(`Upload the ${d.kind === 'image' ? 'photo' : d.kind} (or paste its link)`);
+    let fallback;
+    if (meta && d.fbOn && templates.length) {
+      try { fallback = toTemplate(d.fb, templates, d.kind); } catch (e) { throw new Error(`24-hour template: ${(e as Error).message}`); }
+    }
+    payload = {
+      kind: d.kind, ...(d.text.trim() ? { text: d.text.trim() } : {}),
+      ...(d.kind !== 'text' ? { media: { url: d.mediaUrl, ...(d.mediaName ? { filename: d.mediaName } : {}) } } : {}),
+      ...(fallback ? { fallback } : {}),
+    };
   }
   const timing = d.when === 'now' ? { mode: 'now' }
     : d.when === 'at' ? { mode: 'at', times: d.times.map(iso) }
@@ -275,7 +343,7 @@ export function Composer({ recipients, templates, meta, configured, flash, onRes
 
   const allNow = drafts.every((d) => d.when === 'now');
   const anyNow = drafts.some((d) => d.when === 'now');
-  const uploading = drafts.some((d) => d.pct !== null || d.headerPct !== null);
+  const uploading = drafts.some((d) => d.pct !== null || d.tpl.headerPct !== null || d.fb.headerPct !== null);
 
   async function submit() {
     if (!recipients.length) { flash('Add at least one number first', true); return; }
