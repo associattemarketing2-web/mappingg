@@ -4139,6 +4139,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
           {menuOpen && (
             <div className="adm2-menu">
               <button className={tab === 'profile' ? 'on' : ''} onClick={() => { setTab('profile'); setMenuOpen(false); }}><i className="fas fa-user" /> Profile</button>
+              <button onClick={() => { window.location.href = '/dashboard/hr'; }}><i className="fas fa-user-clock" /> {isOwner ? 'HR & Attendance' : 'My Attendance'}</button>
               {visible.includes('backups') && (
                 <button className={tab === 'backups' ? 'on' : ''} onClick={() => { setTab('backups'); setMenuOpen(false); }}><i className="fas fa-database" /> Backups</button>
               )}
@@ -4185,6 +4186,10 @@ export default function AdminApp({ user }: { user: AdminUser }) {
             </button>
           );
         })}
+        {/* HR & Attendance (employee-management module) — its own pages, so a plain link. */}
+        <a className="adm2-tab" href="/dashboard/hr" style={{ textDecoration: 'none' }} title={isOwner ? 'Attendance, tasks, leaves & salary of the team' : 'Check in / out, my tasks, leaves & payslip'}>
+          <i className="fas fa-user-clock" /> {isOwner ? 'HR & Attendance' : 'My Attendance'}
+        </a>
       </nav>
 
       {navOpen && (() => {

@@ -77,6 +77,15 @@ const nextConfig = {
         ],
       },
       {
+        // HR & Attendance: employees check in with a front-camera selfie, so the
+        // camera is allowed (own origin only) on these pages. Same key as above —
+        // the later matching header wins.
+        source: '/dashboard/hr/:path*',
+        headers: [
+          { key: 'Permissions-Policy', value: 'camera=(self), microphone=(self), geolocation=(self), usb=(), interest-cohort=()' },
+        ],
+      },
+      {
         // Never let search engines index the dashboards (super-admin now lives at
         // /dashboard/s-admin) or the old /s-admin path that redirects to it.
         source: '/:path(dashboard|dashboard/.*|s-admin|s-admin/.*)',

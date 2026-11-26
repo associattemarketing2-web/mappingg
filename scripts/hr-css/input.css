@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Scoped version of Tailwind's preflight: only inside the HR module. */
+.ems, .ems *, .ems ::before, .ems ::after { box-sizing: border-box; border-width: 0; border-style: solid; border-color: #e5e7eb; }
+.ems {
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  -webkit-tap-highlight-color: transparent;
+}
+.ems hr { height: 0; color: inherit; border-top-width: 1px; }
+.ems h1, .ems h2, .ems h3, .ems h4, .ems h5, .ems h6 { font-size: inherit; font-weight: inherit; margin: 0; }
+.ems a { color: inherit; text-decoration: inherit; }
+.ems b, .ems strong { font-weight: bolder; }
+.ems code, .ems kbd, .ems samp, .ems pre { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 1em; }
+.ems small { font-size: 80%; }
+.ems table { text-indent: 0; border-color: inherit; border-collapse: collapse; }
+.ems button, .ems input, .ems optgroup, .ems select, .ems textarea {
+  font-family: inherit; font-feature-settings: inherit; font-variation-settings: inherit; font-size: 100%;
+  font-weight: inherit; line-height: inherit; letter-spacing: inherit; color: inherit; margin: 0; padding: 0;
+}
+.ems button, .ems select { text-transform: none; }
+.ems button, .ems [type='button'], .ems [type='reset'], .ems [type='submit'] { -webkit-appearance: button; background-color: transparent; background-image: none; }
+.ems :-moz-focusring { outline: auto; }
+.ems progress { vertical-align: baseline; }
+.ems summary { display: list-item; }
+.ems blockquote, .ems dl, .ems dd, .ems figure, .ems p, .ems pre { margin: 0; }
+.ems fieldset { margin: 0; padding: 0; }
+.ems legend { padding: 0; }
+.ems ol, .ems ul, .ems menu { list-style: none; margin: 0; padding: 0; }
+.ems textarea { resize: vertical; }
+.ems input::placeholder, .ems textarea::placeholder { opacity: 1; color: #9ca3af; }
+.ems button, .ems [role='button'] { cursor: pointer; }
+.ems :disabled { cursor: default; }
+.ems img, .ems svg, .ems video, .ems canvas, .ems audio, .ems iframe, .ems embed, .ems object { display: block; vertical-align: middle; }
+.ems img, .ems video { max-width: 100%; height: auto; }
+.ems [hidden] { display: none; }
+
+@layer components {
+  .ems { @apply bg-slate-50 text-slate-800 antialiased; }
+  .card { @apply rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition active:scale-[.98] disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply btn bg-brand-600 text-white hover:bg-brand-700; }
+  .btn-success { @apply btn bg-emerald-600 text-white hover:bg-emerald-700; }
+  .btn-danger { @apply btn bg-rose-600 text-white hover:bg-rose-700; }
+  .btn-ghost { @apply btn border border-slate-200 bg-white text-slate-700 hover:bg-slate-50; }
+  .btn-sm { @apply px-3 py-1.5 text-xs; }
+  .input { @apply w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-100; }
+  .label { @apply mb-1 block text-xs font-semibold uppercase tracking-wide text-slate-500; }
+  .badge { @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold; }
+  .table { @apply w-full text-left text-sm; }
+  .table th { @apply whitespace-nowrap border-b border-slate-200 bg-slate-50 px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-500; }
+  .table td { @apply border-b border-slate-100 px-3 py-2.5 align-top; }
+  .page-title { @apply text-xl font-bold text-slate-900 sm:text-2xl; }
+}

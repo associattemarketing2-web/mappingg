@@ -17,6 +17,9 @@ services:
         sync: false
       - key: AUTH_SECRET
         sync: false
+      # HR & Attendance (/dashboard/hr): the employee-management Postgres database.
+      - key: HR_DATABASE_URL
+        sync: false
       # The app runs on Postgres only. MongoDB is used solely when
       # DB_PROVIDER=mongodb is set explicitly (see lib/mongodb.ts).
       - key: DB_PROVIDER
