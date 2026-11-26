@@ -16,3 +16,5 @@
 /render.yaml
 # The mobile app is a separate Expo project (built with EAS, not Vercel).
 /mapping_app
+# The WhatsApp gateway is a separate always-on Node service (Railway / VPS), not part of the Vercel site.
+/wa-gateway

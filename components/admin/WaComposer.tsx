@@ -28,7 +28,7 @@ async function call<T>(url: string, body?: unknown): Promise<T> {
 }
 
 /** Uploads a file in parts (Vercel caps a request at 4.5 MB) and resolves its public link. */
-async function uploadFile(file: File, kind: 'image' | 'video' | 'document', onPct: (n: number) => void): Promise<string> {
+export async function uploadFile(file: File, kind: 'image' | 'video' | 'document', onPct: (n: number) => void): Promise<string> {
   const start = await call<{ id: string; part_bytes: number; parts: number }>(MEDIA_API, { kind, name: file.name, mime: file.type, size: file.size });
   let url = '';
   for (let i = 0; i < start.parts; i++) {
