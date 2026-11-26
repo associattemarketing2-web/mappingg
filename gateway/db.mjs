@@ -42,7 +42,7 @@ function makePool() {
   if (Date.now() < directUntil) {
     try { const u = new URL(url); if (u.hostname === POOLED_HOST) { u.hostname = DIRECT_HOST; url = u.toString(); } } catch { /* as is */ }
   }
-  const p = new pg.Pool({ ...tlsConfig(url), max: 4, idleTimeoutMillis: 10_000, connectionTimeoutMillis: 15_000, keepAlive: true });
+  const p = new pg.Pool({ ...tlsConfig(url), max: Date.now() < directUntil ? 2 : 4, idleTimeoutMillis: 10_000, connectionTimeoutMillis: 15_000, keepAlive: true });
   p.on('error', (e) => console.error('[db] idle client error', e.message));
   return p;
 }

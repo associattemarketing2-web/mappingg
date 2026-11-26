@@ -26,6 +26,14 @@ declare global {
 // itself is fine and reachable on the direct host (db.prisma.io) — every save
 // then failed with "Database error". When that happens we switch this server
 // instance to the direct host for a while, then go back to the pooler.
+//
+// Not on Vercel: the direct host allows only a few connections per database
+// user, and every serverless instance (paused ones keep their sockets) opening
+// its own direct pool used them all up — which in turn made the pooler fail
+// with the same error for everyone. Serverless always stays on the pooler; a
+// long-running server falls back with a pool of 2.
+const DIRECT_FALLBACK = !process.env.VERCEL;
+const DIRECT_POOL_MAX = 2;
 const POOLED_HOST = 'pooled.db.prisma.io';
 const DIRECT_HOST = 'db.prisma.io';
 const DIRECT_FOR_MS = 10 * 60_000;
@@ -44,7 +52,7 @@ function databaseUrl(): string | undefined {
 
 /** On a pooler outage, move to the direct host. True when the query is worth retrying there. */
 function switchToDirectHost(e: unknown): boolean {
-  if (!POOLER_DOWN.test(String((e as Error)?.message || ''))) return false;
+  if (!DIRECT_FALLBACK || !POOLER_DOWN.test(String((e as Error)?.message || ''))) return false;
   try { if (new URL(process.env.DATABASE_URL || '').hostname !== POOLED_HOST) return false; } catch { return false; }
   const wasDirect = !!global._pgDirectUntil && Date.now() <= global._pgDirectUntil;
   global._pgDirectUntil = Date.now() + DIRECT_FOR_MS;
@@ -90,7 +98,7 @@ function makePool(): Pool {
   }
   const pool = new Pool({
     ...tlsConfig(connectionString),
-    max: 5,
+    max: connectionString === process.env.DATABASE_URL ? 5 : DIRECT_POOL_MAX,
     // The hosted database drops idle connections on its side; closing ours
     // sooner (and keeping live ones warm) avoids handing out a dead socket.
     idleTimeoutMillis: 10_000,
