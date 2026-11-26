@@ -1,6 +1,6 @@
 import crypto from 'node:crypto';
 import http from 'node:http';
-import { migrate, pool, q } from './db.mjs';
+import { closePool, migrate, q } from './db.mjs';
 import * as S from './sessions.mjs';
 
 // Mappingg WhatsApp gateway — linked-device (QR scan) WhatsApp for the
@@ -175,7 +175,7 @@ async function main() {
     server.close();
     await S.stopAll();
     await q('DELETE FROM wl_gateway_lease WHERE id = 1 AND holder = $1', [ME]).catch(() => undefined);
-    await pool.end().catch(() => undefined);
+    await closePool().catch(() => undefined);
     process.exit(0);
   };
   process.on('SIGTERM', bye);
