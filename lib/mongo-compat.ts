@@ -99,7 +99,27 @@ function buildWhere(q: Query, p: Params, table = ''): string {
       if (!parts.length) { clauses.push('TRUE'); continue; }
       clauses.push(`(${parts.join(key === '$or' ? ' OR ' : ' AND ')})`);
     } else if (key === '_id') {
-      clauses.push(`id = ${p.add(String(val))}`);
+      // _id is the row's primary key column. Besides plain equality, support {$in: [...]} and {$ne: x}
+      // (an operator object used to become id = '[object Object]' and silently match nothing).
+      if (hasOps(val)) {
+        for (const [op, ov] of Object.entries(val)) {
+          if (op === '$in') {
+            const arr = (ov as unknown[]).map(String);
+            clauses.push(arr.length ? `id = ANY(${p.add(arr)}::text[])` : 'FALSE');
+          } else if (op === '$nin') {
+            const arr = (ov as unknown[]).map(String);
+            if (arr.length) clauses.push(`NOT (id = ANY(${p.add(arr)}::text[]))`);
+          } else if (op === '$ne') {
+            clauses.push(`id IS DISTINCT FROM ${p.add(String(ov))}`);
+          } else if (op === '$exists') {
+            clauses.push(ov ? 'TRUE' : 'FALSE');
+          } else {
+            throw new Error(`mongo-compat: unsupported _id operator ${op}`);
+          }
+        }
+      } else {
+        clauses.push(`id = ${p.add(String(val))}`);
+      }
     } else if (hasOps(val)) {
       for (const [op, ov] of Object.entries(val)) {
         if (op === '$in') {

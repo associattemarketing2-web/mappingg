@@ -306,7 +306,9 @@ function toMessage(d: Draft, templates: WaTpl[], meta: boolean) {
     if (d.kind === 'text' && !d.text.trim()) throw new Error('Type the message');
     if (d.kind !== 'text' && !/^https?:\/\//i.test(d.mediaUrl)) throw new Error(`Upload the ${d.kind === 'image' ? 'photo' : d.kind} (or paste its link)`);
     let fallback;
-    if (meta && d.fbOn && templates.length) {
+    if (meta && d.fbOn) {
+      // Never drop the 24-hour template silently (e.g. the template list hadn't loaded yet).
+      if (!templates.length) throw new Error('24-hour template: no approved template loaded yet — wait a moment, or pick "Skip them"');
       try { fallback = toTemplate(d.fb, templates, d.kind); } catch (e) { throw new Error(`24-hour template: ${(e as Error).message}`); }
     }
     payload = {
