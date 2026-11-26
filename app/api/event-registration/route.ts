@@ -3,7 +3,6 @@ import { randomUUID } from 'crypto';
 import { getDb } from '@/lib/mongodb';
 import { clientIp, rateLimit } from '@/lib/rate-limit';
 import { esc, layout, notifyAdmin, queueMail } from '@/lib/mailer';
-import { pageOf, pushToCrm, visitorIp } from '@/lib/crm';
 import { optInSummary } from '@/lib/consent';
 import { EVENT_SOURCE, parseEventRegistration } from '@/lib/event-registration';
 
@@ -12,8 +11,9 @@ export const dynamic = 'force-dynamic';
 
 // Public registration form of the Mappingg Events landing page (/event, static
 // files in public/event, copied from the `mappinggevent` folder) → a lead in `contact_leads`
-// with source "Event registration". Shown in the s-admin CRM and in the
-// "Event registrations" tab. No auth and cross-origin (no cookies are sent);
+// with source "Event registration". Shown only in the admin's "Event
+// registrations" tab — not in the CRM leads list and not sent to the B2BBricks
+// CRM. No auth and cross-origin (no cookies are sent);
 // reads are admin-only (app/api/admin/event-registrations).
 //
 // EVENT_SITE_ORIGINS (comma-separated) limits which sites may post; unset = any.
@@ -71,10 +71,6 @@ export async function POST(req: NextRequest) {
 
   const channels = optInSummary(d.consent);
   const rows: [string, string][] = [['Name', d.name], ['Email', d.email], ['Phone', d.phone], ['Attendee type', d.attendee_type], ['City', d.city || '—'], ['Event', d.event], ['Opted in to', channels]];
-  pushToCrm({
-    name: d.name, mobile: d.phone, email: d.email, source: 'Event registration', page: pageOf(req),
-    extra: rows.slice(3), message: d.message, ip: visitorIp(req),
-  });
   notifyAdmin(`Event registration — ${d.name} (${d.attendee_type})`, {
     title: 'New event registration', body: [esc(d.message)], rows,
   }, d.email);

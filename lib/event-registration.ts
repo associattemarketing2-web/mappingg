@@ -4,9 +4,9 @@ import { buildConsent, type ConsentRecord } from './consent';
 
 // Validation for the public Mappingg Events registration form (the separate
 // mappinggevent landing site posts to app/api/event-registration). Free of I/O
-// so it can be unit-tested; the route does the saving, CRM push and emails.
-// Registrations are stored in `contact_leads` with source EVENT_SOURCE, so they
-// show up in the CRM and in the admin's "Event registrations" tab.
+// so it can be unit-tested; the route does the saving and emails.
+// Registrations are stored in `contact_leads` with source EVENT_SOURCE and show
+// only in the admin's "Event registrations" tab (left out of the CRM leads list).
 
 export const EVENT_SOURCE = 'Event registration';
 export const DEFAULT_EVENT = 'Mappingg App Launch — Pune';
