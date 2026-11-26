@@ -10,8 +10,8 @@ import { EVENT_SOURCE, parseEventRegistration } from '@/lib/event-registration';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-// Public registration form of the Mappingg Events landing site (the separate
-// `mappinggevent` folder, hosted on its own domain) → a lead in `contact_leads`
+// Public registration form of the Mappingg Events landing page (/event, static
+// files in public/event, copied from the `mappinggevent` folder) → a lead in `contact_leads`
 // with source "Event registration". Shown in the s-admin CRM and in the
 // "Event registrations" tab. No auth and cross-origin (no cookies are sent);
 // reads are admin-only (app/api/admin/event-registrations).

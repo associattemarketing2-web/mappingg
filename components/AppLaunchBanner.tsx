@@ -5,11 +5,11 @@ import './app-launch-banner.css';
 
 // "The Mappingg app is coming soon" celebration on the home page: a floating card
 // with a confetti burst and a link to the launch event's registration page
-// (NEXT_PUBLIC_EVENT_SITE_URL, the separate mappinggevent site). Shown every time
+// (/event on this site, or NEXT_PUBLIC_EVENT_SITE_URL to point elsewhere). Shown every time
 // the home page opens or reloads; closing it hides it until the next visit.
 // The app is Android-only for now (no App Store mention).
 
-const EVENT_URL = process.env.NEXT_PUBLIC_EVENT_SITE_URL || '';
+const EVENT_URL = process.env.NEXT_PUBLIC_EVENT_SITE_URL || '/event';
 const COLORS = ['#0f5c47', '#2f7a3c', '#e3a83e', '#7f6527', '#a9532d', '#ffffff'];
 
 function confetti(canvas: HTMLCanvasElement) {

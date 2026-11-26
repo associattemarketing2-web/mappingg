@@ -35,6 +35,10 @@ const nextConfig = {
       { source: '/intake/', destination: '/partners/admin/index.html' },
       { source: '/submit', destination: '/partners/submit/index.html' },
       { source: '/submit/', destination: '/partners/submit/index.html' },
+      // App launch event page (static, from the mappinggevent folder; assets under
+      // /public/event). Its form posts to /api/event-registration on this same site.
+      { source: '/event', destination: '/event/index.html' },
+      { source: '/event/', destination: '/event/index.html' },
       // Crawlable address for PUBLIC pin images (robots.txt keeps /api/ blocked, so
       // images served from /api/... could never be indexed by Google Images). Same
       // handler and access rules: /api/media only serves whitelisted fields of pins
