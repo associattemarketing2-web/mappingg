@@ -4,7 +4,8 @@
   "private": true,
   "description": "Mappingg interactive real-estate map — Next.js + MongoDB migration of the original HTML/Supabase site.",
   "scripts": {
-    "dev": "next dev",
+    "dev": "node scripts/dev.mjs",
+    "dev:site": "next dev",
     "prebuild": "node scripts/build-icon-css.mjs",
     "build": "next build",
     "start": "next start -H 0.0.0.0",

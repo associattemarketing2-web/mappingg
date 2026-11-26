@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   other: { 'mobile-web-app-capable': 'yes' },
 };
 
-export const viewport: Viewport = { themeColor: '#4f46e5', width: 'device-width', initialScale: 1, maximumScale: 1 };
+export const viewport: Viewport = { themeColor: '#0f5c47', width: 'device-width', initialScale: 1, maximumScale: 1 };
 
 export default function HrLayout({ children }: { children: React.ReactNode }) {
   return (

@@ -29,10 +29,17 @@ const hrTypes = {
   },
 };
 
+// With HR_DATABASE_URL the module uses that database (the standalone EMS app's
+// Prisma tables "User", "Attendance", …). Without it, the HR tables live in
+// Mappingg's own database (DATABASE_URL) as hr_user, hr_attendance, … — created
+// on first use, so the module works with no extra setup.
+const OWN_DB = () => Boolean(process.env.HR_DATABASE_URL);
+const tableName = (t: string) => (OWN_DB() ? t : `hr_${t.toLowerCase()}`);
+
 function pool(): Pool {
   if (global._hrPool) return global._hrPool;
-  const url = process.env.HR_DATABASE_URL;
-  if (!url) throw new Error('HR_DATABASE_URL is not set (HR / attendance database).');
+  const url = process.env.HR_DATABASE_URL || process.env.DATABASE_URL;
+  if (!url) throw new Error('HR_DATABASE_URL / DATABASE_URL is not set (HR / attendance database).');
   let connectionString = url;
   try {
     const u = new URL(url);
@@ -47,10 +54,69 @@ function pool(): Pool {
   return global._hrPool;
 }
 
+/** CREATE TABLE IF NOT EXISTS for every HR table (same columns as the EMS Prisma schema). */
+function schemaSql(): string {
+  const T = (t: string) => q(tableName(t));
+  const ts = 'timestamp(3)';
+  return `
+CREATE TABLE IF NOT EXISTS ${T('User')} (
+  "id" text PRIMARY KEY, "empCode" text NOT NULL UNIQUE, "name" text NOT NULL, "email" text NOT NULL UNIQUE,
+  "password" text NOT NULL, "role" text NOT NULL DEFAULT 'EMPLOYEE', "phone" text, "designation" text, "department" text,
+  "salaryType" text NOT NULL DEFAULT 'MONTHLY', "salary" double precision NOT NULL DEFAULT 0,
+  "joinDate" ${ts} NOT NULL DEFAULT CURRENT_TIMESTAMP, "active" boolean NOT NULL DEFAULT true,
+  "createdAt" ${ts} NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS ${T('Settings')} (
+  "id" integer PRIMARY KEY DEFAULT 1, "companyName" text NOT NULL DEFAULT 'My Company',
+  "officeStart" text NOT NULL DEFAULT '09:30', "officeEnd" text NOT NULL DEFAULT '18:30',
+  "graceMinutes" integer NOT NULL DEFAULT 15, "halfDayHours" double precision NOT NULL DEFAULT 4,
+  "workingDays" text NOT NULL DEFAULT '1,2,3,4,5,6', "officeLat" double precision, "officeLng" double precision,
+  "geofenceRadius" integer NOT NULL DEFAULT 200, "enforceGeofence" boolean NOT NULL DEFAULT false,
+  "requireSelfie" boolean NOT NULL DEFAULT true, "payrollMode" text NOT NULL DEFAULT 'HOURS',
+  "casualLeavePerYear" integer NOT NULL DEFAULT 12, "sickLeavePerYear" integer NOT NULL DEFAULT 6,
+  "paidLeavePerYear" integer NOT NULL DEFAULT 0
+);
+CREATE TABLE IF NOT EXISTS ${T('Attendance')} (
+  "id" text PRIMARY KEY, "userId" text NOT NULL REFERENCES ${T('User')}("id") ON DELETE CASCADE, "date" text NOT NULL,
+  "checkIn" ${ts} NOT NULL, "checkOut" ${ts}, "checkInSelfie" text, "checkOutSelfie" text,
+  "checkInLat" double precision, "checkInLng" double precision, "checkInAddress" text, "checkInDistance" double precision,
+  "checkOutLat" double precision, "checkOutLng" double precision, "checkOutAddress" text,
+  "isLate" boolean NOT NULL DEFAULT false, "lateMinutes" integer NOT NULL DEFAULT 0,
+  "todayPlan" text, "workSummary" text, "adminNote" text, "createdAt" ${ts} NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE ("userId", "date")
+);
+CREATE TABLE IF NOT EXISTS ${T('Task')} (
+  "id" text PRIMARY KEY, "title" text NOT NULL, "description" text, "priority" text NOT NULL DEFAULT 'MEDIUM',
+  "status" text NOT NULL DEFAULT 'PENDING', "dueDate" text, "date" text, "source" text NOT NULL DEFAULT 'ADMIN',
+  "employeeNote" text, "assignedToId" text NOT NULL REFERENCES ${T('User')}("id") ON DELETE CASCADE, "createdById" text,
+  "completedAt" ${ts}, "createdAt" ${ts} NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS ${T('Leave')} (
+  "id" text PRIMARY KEY, "userId" text NOT NULL REFERENCES ${T('User')}("id") ON DELETE CASCADE,
+  "fromDate" text NOT NULL, "toDate" text NOT NULL, "type" text NOT NULL DEFAULT 'CASUAL', "reason" text,
+  "status" text NOT NULL DEFAULT 'PENDING', "adminNote" text, "createdAt" ${ts} NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS ${T('Holiday')} ("id" text PRIMARY KEY, "date" text NOT NULL UNIQUE, "name" text NOT NULL);
+CREATE TABLE IF NOT EXISTS ${T('Announcement')} (
+  "id" text PRIMARY KEY, "title" text NOT NULL, "body" text NOT NULL DEFAULT '', "createdAt" ${ts} NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS ${T('Adjustment')} (
+  "id" text PRIMARY KEY, "userId" text NOT NULL REFERENCES ${T('User')}("id") ON DELETE CASCADE, "month" text NOT NULL,
+  "type" text NOT NULL, "amount" double precision NOT NULL, "note" text, "createdAt" ${ts} NOT NULL DEFAULT CURRENT_TIMESTAMP
+);`;
+}
+
+let schemaReady: Promise<void> | null = null;
+function ensureSchema(): Promise<void> {
+  schemaReady ??= pool().query(schemaSql()).then(() => undefined).catch((e) => { schemaReady = null; throw e; });
+  return schemaReady;
+}
+
 /** Dates are sent as UTC ISO strings: Postgres drops the "Z" for timestamp columns, keeping UTC. */
 const param = (v: unknown) => (v instanceof Date ? v.toISOString() : v);
 
 async function query(sql: string, params: unknown[] = []): Promise<Row[]> {
+  await ensureSchema();
   const r = await pool().query(sql, params.map(param));
   return r.rows;
 }
@@ -197,7 +263,7 @@ async function attach(m: Model, rows: Row[], sh: Shape): Promise<Row[]> {
     const target = MODELS[rel.model];
     const relCols = sel ? Object.keys(sel).filter((k) => sel[k]) : target.columns;
     const found = ids.length
-      ? await query(`SELECT ${[...new Set(['id', ...relCols])].map(q).join(', ')} FROM ${q(target.table)} WHERE "id" = ANY($1::text[])`, [ids])
+      ? await query(`SELECT ${[...new Set(['id', ...relCols])].map(q).join(', ')} FROM ${q(tableName(target.table))} WHERE "id" = ANY($1::text[])`, [ids])
       : [];
     const byId = new Map(found.map((f) => [f.id, f]));
     for (const r of rows) {
@@ -229,7 +295,7 @@ type Args = Shape & { where?: Row; orderBy?: Row | Row[]; take?: number; data?: 
 
 function delegate(name: string) {
   const m = MODELS[name];
-  const T = q(m.table);
+  const T = q(tableName(m.table));
 
   async function findMany(a: Args = {}): Promise<any[]> {
     const s = new Sql();

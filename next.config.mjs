@@ -79,8 +79,9 @@ const nextConfig = {
       {
         // HR & Attendance: employees check in with a front-camera selfie, so the
         // camera is allowed (own origin only) on these pages. Same key as above —
-        // the later matching header wins.
-        source: '/dashboard/hr/:path*',
+        // the later matching header wins. The super-admin shows the HR pages in a
+        // tab (same-origin iframe), so it must allow the camera too.
+        source: '/dashboard/:area(hr|s-admin)/:path*',
         headers: [
           { key: 'Permissions-Policy', value: 'camera=(self), microphone=(self), geolocation=(self), usb=(), interest-cohort=()' },
         ],
