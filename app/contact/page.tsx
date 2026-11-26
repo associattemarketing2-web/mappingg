@@ -68,7 +68,7 @@ export default function ContactPage() {
           <div className="ipg-office">
             <div className="details">
               <span className="eyebrow"><span className="dot" />Visit or write</span>
-              <h3>Associatte PropTech Pvt Ltd</h3>
+              <h3>Associatte Ai Technologies LLP</h3>
               <div className="row">
                 <i className="fas fa-location-dot" aria-hidden="true" />
                 <div>

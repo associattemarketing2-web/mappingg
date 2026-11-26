@@ -102,7 +102,7 @@ export default function DisclaimerPage() {
         path="/disclaimer"
         intro={
           <>
-            This Disclaimer applies to mappingg.com and all microsites and websites owned by Associatte PropTech Pvt Ltd.
+            This Disclaimer applies to mappingg.com and all microsites and websites owned by Associatte Ai Technologies LLP.
             By using or accessing this website you agree to this Disclaimer without any qualification or limitation.
           </>
         }

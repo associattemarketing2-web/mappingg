@@ -119,7 +119,7 @@ test('Buyer requirement form: consent must be a literal true; required fields en
   if (ok.kind === 'ok') {
     assert.equal(ok.lead.consent.enquiry, true);
     assert.equal(ok.lead.consent.call, false);
-    assert.equal(ok.lead.consent.version, 'buyer-requirement-2026-10');
+    assert.equal(ok.lead.consent.version, 'buyer-requirement-2026-11');
     assert.match(ok.lead.message, /Looking for: 3 BHK · Budget: ₹1 – 1.5 Cr · Preferred area: Kharadi, Pune · Planning to buy: 1–3 months/);
   }
   for (const consent of [undefined, false, 'true', 1, 'yes']) assert.equal(parseRequirement({ ...base, consent }, NOW).kind, 'invalid', String(consent));

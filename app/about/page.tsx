@@ -23,7 +23,7 @@ export default function AboutPage() {
       eyebrow="About Mappingg"
       icon="fas fa-map-location-dot"
       title={<>Every project, <span className="accent">mapped and verified</span></>}
-      intro="Mappingg is a live map of real estate projects, built by Associatte PropTech in Pune to make buying a home clearer."
+      intro="Mappingg is a live map of real estate projects, built by Associatte Ai Technologies LLP in Pune to make buying a home clearer."
       actions={
         <>
           <Link href="/map" className="btn btn-primary"><i className="fas fa-map" aria-hidden="true" /> Explore the live map</Link>
@@ -83,9 +83,9 @@ export default function AboutPage() {
         <div className="container">
           <div className="ipg-head">
             <span className="eyebrow"><span className="dot" />Who we are</span>
-            <h2>A product by <span className="accent">Associatte PropTech</span></h2>
+            <h2>A product by <span className="accent">Associatte Ai Technologies LLP</span></h2>
             <p>
-              Associatte PropTech Pvt Ltd is a real estate company based in Hadapsar, Pune. We work with developers and
+              Associatte Ai Technologies LLP is a real estate company based in Hadapsar, Pune. We work with developers and
               channel partners across Pune and the Mumbai Metropolitan Region to bring accurate, up-to-date project
               information to buyers and investors.
             </p>

@@ -99,7 +99,7 @@ export default function InfoPage({
                 <span className="mark" aria-hidden="true" />
                 <b>Mappingg<em>.com</em></b>
               </Link>
-              <p>Every property project, mapped and verified. A product by Associatte PropTech, Pune.</p>
+              <p>Every property project, mapped and verified. A product by Associatte Ai Technologies LLP, Pune.</p>
               <SocialLinks email className="ipg-foot-socials" />
             </div>
             <FootCol title="Explore" links={EXPLORE_LINKS} path={path} />
@@ -107,7 +107,7 @@ export default function InfoPage({
             <FootCol title="Legal" links={LEGAL_LINKS} path={path} />
           </div>
           <div className="bottom">
-            <span>© {new Date().getFullYear()} Associatte PropTech Pvt Ltd. All rights reserved.</span>
+            <span>© {new Date().getFullYear()} Associatte Ai Technologies LLP. All rights reserved.</span>
             <span>
               Questions? <a href={`mailto:${EMAIL}`}>{EMAIL}</a> · WhatsApp{' '}
               <a href={WHATSAPP_URL} target="_blank" rel="noopener">{WHATSAPP_DISPLAY}</a>
@@ -234,7 +234,7 @@ export function ContactBlock() {
     <div className="ipg-address">
       <i className="fas fa-building" aria-hidden="true" />
       <div>
-        <strong>Associatte PropTech Pvt Ltd</strong>
+        <strong>Associatte Ai Technologies LLP</strong>
         302 and 303, Naren Pearl, 3rd Floor, Magarpatta Road,<br />
         Above Axis and IndusInd Bank, Hadapsar, Pune - 411028<br />
         Email: <a href={`mailto:${EMAIL}`}>{EMAIL}</a><br />

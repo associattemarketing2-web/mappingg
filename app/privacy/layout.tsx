@@ -5,7 +5,7 @@ import { buildMetadata } from '@/lib/seo/metadata';
 export const metadata: Metadata = buildMetadata({
   title: 'Privacy Policy',
   description:
-    'How Mappingg and Associatte PropTech collect, use and protect your personal information, including how our OpenStreetMap-based maps work.',
+    'How Mappingg and Associatte Ai Technologies LLP collect, use and protect your personal information, including how our OpenStreetMap-based maps work.',
   path: '/privacy',
 });
 

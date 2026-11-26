@@ -26,48 +26,48 @@ export interface ConsentRecord {
 /** Wording shown to people, per form. Bump the version whenever the wording changes. */
 export const CONSENT_FORMS = {
   contact: {
-    version: 'contact-form-2026-10',
+    version: 'contact-form-2026-11',
     source: 'Contact form (/contact)',
     text: {
-      enquiry: 'I asked Associatte PropTech (Mappingg) to reply to this message.',
-      call: 'Associatte PropTech (Mappingg) may call me about matching projects.',
-      whatsapp: 'Associatte PropTech (Mappingg) may message me on WhatsApp about matching projects.',
+      enquiry: 'I asked Associatte Ai Technologies LLP (Mappingg) to reply to this message.',
+      call: 'Associatte Ai Technologies LLP (Mappingg) may call me about matching projects.',
+      whatsapp: 'Associatte Ai Technologies LLP (Mappingg) may message me on WhatsApp about matching projects.',
     },
   },
   map: {
-    version: 'map-enquiry-2026-10',
+    version: 'map-enquiry-2026-11',
     source: 'Live-map enquiry form',
     text: {
       enquiry: 'I agree to the Privacy Policy and Terms, and to be contacted about this project enquiry.',
-      call: 'Associatte PropTech (Mappingg) may call me about matching projects and offers.',
-      whatsapp: 'Associatte PropTech (Mappingg) may message me on WhatsApp or SMS about matching projects and offers.',
+      call: 'Associatte Ai Technologies LLP (Mappingg) may call me about matching projects and offers.',
+      whatsapp: 'Associatte Ai Technologies LLP (Mappingg) may message me on WhatsApp or SMS about matching projects and offers.',
     },
   },
   requirement: {
-    version: 'buyer-requirement-2026-10',
+    version: 'buyer-requirement-2026-11',
     source: 'Buyer requirement form (/buyer-requirement)',
     text: {
-      enquiry: 'I agree that Associatte PropTech (Mappingg) may contact me by phone, email or WhatsApp about homes that match this requirement, as described in the Privacy Policy.',
-      call: 'Associatte PropTech (Mappingg) may also call me about other projects and offers.',
-      whatsapp: 'Associatte PropTech (Mappingg) may also message me on WhatsApp or SMS about other projects and offers.',
+      enquiry: 'I agree that Associatte Ai Technologies LLP (Mappingg) may contact me by phone, email or WhatsApp about homes that match this requirement, as described in the Privacy Policy.',
+      call: 'Associatte Ai Technologies LLP (Mappingg) may also call me about other projects and offers.',
+      whatsapp: 'Associatte Ai Technologies LLP (Mappingg) may also message me on WhatsApp or SMS about other projects and offers.',
     },
   },
   event: {
-    version: 'event-registration-2026-11',
+    version: 'event-registration-2026-11b',
     source: 'Mappingg Events registration form',
     text: {
       enquiry: 'I agree to the Event Terms & Conditions and Privacy Policy, and to be contacted about this event.',
-      call: 'Associatte PropTech (Mappingg) may call me about matching projects and offers.',
-      whatsapp: 'Associatte PropTech (Mappingg) may message me on WhatsApp or SMS about matching projects and offers.',
+      call: 'Associatte Ai Technologies LLP (Mappingg) may call me about matching projects and offers.',
+      whatsapp: 'Associatte Ai Technologies LLP (Mappingg) may message me on WhatsApp or SMS about matching projects and offers.',
     },
   },
   enquireSignedIn: {
-    version: 'signed-in-enquire-2026-10',
+    version: 'signed-in-enquire-2026-11',
     source: 'Signed-in "Enquire now" on the live map',
     text: {
       enquiry: 'Tapped "Enquire now" on this project while signed in.',
-      call: 'Associatte PropTech (Mappingg) may call me about matching projects and offers.',
-      whatsapp: 'Associatte PropTech (Mappingg) may message me on WhatsApp or SMS about matching projects and offers.',
+      call: 'Associatte Ai Technologies LLP (Mappingg) may call me about matching projects and offers.',
+      whatsapp: 'Associatte Ai Technologies LLP (Mappingg) may message me on WhatsApp or SMS about matching projects and offers.',
     },
   },
 } as const satisfies Record<string, { version: string; source: string; text: Record<ConsentPurpose, string> }>;

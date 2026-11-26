@@ -184,7 +184,7 @@ const sections: LegalSection[] = [
     title: 'No endorsement',
     body: (
       <p>
-        Mappingg and Associatte PropTech Pvt Ltd are not affiliated with, sponsored by or endorsed by the OpenStreetMap
+        Mappingg and Associatte Ai Technologies LLP are not affiliated with, sponsored by or endorsed by the OpenStreetMap
         Foundation or Esri. &quot;OpenStreetMap&quot; and its logo are trademarks of the OpenStreetMap Foundation, used here
         only to identify the source of our map data, in line with the{' '}
         <a href="https://osmfoundation.org/wiki/Trademark_Policy" {...ext}>OSMF Trademark Policy</a>.
@@ -234,7 +234,7 @@ export default function MapDataPage() {
         ]}
         intro={
           <>
-            This policy explains how Associatte PropTech Pvt Ltd (&quot;we&quot;, &quot;us&quot;) uses OpenStreetMap and
+            This policy explains how Associatte Ai Technologies LLP (&quot;we&quot;, &quot;us&quot;) uses OpenStreetMap and
             other map providers on mappingg.com. It sits alongside our <Link href="/privacy">Privacy Policy</Link>,{' '}
             <Link href="/terms">Terms of use</Link> and <Link href="/disclaimer">Disclaimer</Link>.
           </>

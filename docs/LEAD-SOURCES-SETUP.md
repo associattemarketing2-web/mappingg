@@ -72,7 +72,7 @@ and **Run sync** picks the lead up later — it's idempotent, so nothing is dupl
 ## 4. CSV import (broker referrals, offline enquiries)
 
 Buyer leads → CSV import → **Import CSV**. You must give: who supplied the file, how the people
-agreed to be contacted by Associatte PropTech (Mappingg), and tick the confirmation.
+agreed to be contacted by Associatte Ai Technologies LLP (Mappingg), and tick the confirmation.
 If the file has a consent column, rows without a clear "yes" are skipped. People already in your
 leads, repeats inside the file, invalid phones/emails are skipped and listed. Always a dry run first.
 Imported leads go to your sales CRM webhook; no admin email per row.

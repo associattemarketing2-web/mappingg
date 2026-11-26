@@ -15,7 +15,7 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_CANONICAL_URL || process.env.NE
 export const SITE = {
   url: SITE_URL,
   name: 'Mappingg',
-  legalName: 'Associatte PropTech Pvt Ltd',
+  legalName: 'Associatte Ai Technologies LLP',
   tagline: 'Live Real Estate Project Map for Pune, Mumbai, Bengaluru & NCR',
   // Main markets by mapped projects (Oct 2026: Bengaluru, Pune, Mumbai & MMR, Delhi NCR, Hyderabad).
   description:

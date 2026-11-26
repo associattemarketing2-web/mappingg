@@ -5,7 +5,7 @@ import { buildMetadata } from '@/lib/seo/metadata';
 export const metadata: Metadata = buildMetadata({
   title: 'Terms of Use',
   description:
-    'The terms that apply when you use Mappingg.com, the live real estate project map by Associatte PropTech.',
+    'The terms that apply when you use Mappingg.com, the live real estate project map by Associatte Ai Technologies LLP.',
   path: '/terms',
 });
 

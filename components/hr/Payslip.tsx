@@ -31,7 +31,7 @@ export type SlipRow = {
 };
 
 const LETTERHEAD = {
-  company: "ASSOCIATTE PROPTECH PVT LTD",
+  company: "ASSOCIATTE AI TECHNOLOGIES LLP",
   contact: "(E) info@Associatte.com , (M) +91 88 8118 8181",
   address: "303, Naren Pearl, Magarpatta Road, Hadapsar, Pune - 411036",
 };

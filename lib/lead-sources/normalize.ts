@@ -108,7 +108,7 @@ export function googleAdsToLead(p: GoogleAdsPayload, receivedAt = new Date()): {
       consent: {
         // Submitting the lead form is the person's request for the advertiser to contact them.
         enquiry: true, call: false, whatsapp: false,
-        text: `Submitted a Google Ads lead form (form ${clip(p.form_id, 40) || 'unknown'}) asking Associatte PropTech (Mappingg) to contact them.`,
+        text: `Submitted a Google Ads lead form (form ${clip(p.form_id, 40) || 'unknown'}) asking Associatte Ai Technologies LLP (Mappingg) to contact them.`,
         version: `google-ads-lead-form:${clip(p.form_id, 40) || 'unknown'}`,
         captured_at: submitted || receivedAt.toISOString(),
         source: 'Google Ads lead form',
@@ -167,7 +167,7 @@ export function metaToLead(m: MetaLead, receivedAt = new Date()): IncomingLead {
       enquiry: true,
       call: checked(/call|phone/i),
       whatsapp: checked(/whatsapp|sms|message/i),
-      text: `Submitted a Meta lead form (form ${clip(m.form_id, 40) || 'unknown'}) asking Associatte PropTech (Mappingg) to contact them.`,
+      text: `Submitted a Meta lead form (form ${clip(m.form_id, 40) || 'unknown'}) asking Associatte Ai Technologies LLP (Mappingg) to contact them.`,
       version: `meta-lead-form:${clip(m.form_id, 40) || 'unknown'}`,
       captured_at: submitted || receivedAt.toISOString(),
       source: `Meta lead form${m.platform ? ` (${clip(m.platform, 20)})` : ''}`,

@@ -209,11 +209,11 @@ export default function ContactForm() {
       <div className="cf-consent">
         <label className="cf-check">
           <input type="checkbox" checked={f.consent_call} onChange={(e) => set('consent_call', e.target.checked)} />
-          <span>Associatte PropTech (Mappingg) may <b>call</b> me about matching projects.</span>
+          <span>Associatte Ai Technologies LLP (Mappingg) may <b>call</b> me about matching projects.</span>
         </label>
         <label className="cf-check">
           <input type="checkbox" checked={f.consent_whatsapp} onChange={(e) => set('consent_whatsapp', e.target.checked)} />
-          <span>Associatte PropTech (Mappingg) may message me on <b>WhatsApp</b> about matching projects.</span>
+          <span>Associatte Ai Technologies LLP (Mappingg) may message me on <b>WhatsApp</b> about matching projects.</span>
         </label>
         <p className="cf-fine">Both are optional. We&apos;ll reply to this enquiry either way, and you can opt out any time. See our <a href="/privacy">Privacy Policy</a>.</p>
       </div>

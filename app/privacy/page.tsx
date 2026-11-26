@@ -265,7 +265,7 @@ export default function PrivacyPage() {
         ]}
         intro={
           <>
-            This Privacy Policy explains how Associatte PropTech Pvt Ltd (&quot;we&quot;, &quot;us&quot;) collects, uses
+            This Privacy Policy explains how Associatte Ai Technologies LLP (&quot;we&quot;, &quot;us&quot;) collects, uses
             and protects the personal information you (&quot;you&quot;, &quot;User&quot;) provide on mappingg.com,
             associatte.com and their products and services (the &quot;Website&quot;). It does not apply to companies we do
             not own or control, or to people we do not employ or manage.

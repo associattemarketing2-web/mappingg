@@ -583,7 +583,7 @@ function CsvImport({ flash, onClose, onDone }: { flash: Flash; onClose: () => vo
     <div className="bl-modal" role="dialog" aria-modal="true" onClick={(e) => e.target === e.currentTarget && onClose()}>
       <div className="bl-modal-box">
         <div className="adm-panel-head"><h3><i className="fas fa-file-csv" /> Import buyer leads from CSV</h3><button className="adm-btn ghost sm" onClick={onClose}><i className="fas fa-xmark" /></button></div>
-        <p className="adm-note"><i className="fas fa-shield-halved" /><span>Only import people who <b>agreed to be contacted by Associatte PropTech (Mappingg)</b>, for example a broker&apos;s client who asked to be referred, or an enquiry taken at a site visit. Never import lists bought, scraped or copied from portals.</span></p>
+        <p className="adm-note"><i className="fas fa-shield-halved" /><span>Only import people who <b>agreed to be contacted by Associatte Ai Technologies LLP (Mappingg)</b>, for example a broker&apos;s client who asked to be referred, or an enquiry taken at a site visit. Never import lists bought, scraped or copied from portals.</span></p>
 
         <div className="adm-field"><label>CSV file <small>(max 5 MB, 5,000 rows; first row = column names)</small></label><input type="file" accept=".csv,text/csv" onChange={(e) => pick(e.target.files?.[0])} /></div>
 
@@ -612,7 +612,7 @@ function CsvImport({ flash, onClose, onDone }: { flash: Flash; onClose: () => vo
             </div>
             <div className="adm-field"><label>Consent basis <small>(how these people agreed to be contacted by Mappingg — stored with every lead)</small></label>
               <input value={prov.consent_basis} onChange={(e) => setProv({ ...prov, consent_basis: e.target.value })} placeholder="e.g. Each buyer asked the broker in writing to share their details with Mappingg for project shortlisting (Oct 2026)." /></div>
-            <label className="bl-check"><input type="checkbox" checked={prov.attest} onChange={(e) => setProv({ ...prov, attest: e.target.checked })} /> I confirm every person in this file agreed to be contacted by Associatte PropTech (Mappingg) as described above.</label>
+            <label className="bl-check"><input type="checkbox" checked={prov.attest} onChange={(e) => setProv({ ...prov, attest: e.target.checked })} /> I confirm every person in this file agreed to be contacted by Associatte Ai Technologies LLP (Mappingg) as described above.</label>
 
             <div className="adm-actions" style={{ marginTop: 12 }}>
               <button className="adm-btn ghost" disabled={busy || preview.too_many} onClick={() => run(true)}><i className="fas fa-magnifying-glass" /> Preview (dry run)</button>
