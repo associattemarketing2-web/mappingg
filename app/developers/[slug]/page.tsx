@@ -4,6 +4,7 @@ import { getDeveloperGroups, getLocalityGroups, findGroup, primaryLocality, citi
 import { slugify } from '@/lib/seo/slug';
 import { formatBhk, formatLakhs, summarizeLocality } from '@/lib/seo/locality-summary';
 import { developerIndexing, localityIndexing } from '@/lib/seo/indexing';
+import { staticParamsOr } from '@/lib/seo/static-params';
 
 // Developer hub: the developer's projects that are on the public map (restored
 // 22 Nov 2026; removed 4 Nov in 11c7dac). Every sentence is computed from those
@@ -14,9 +15,9 @@ export const revalidate = 3600;
 export const dynamic = 'force-static';
 export const dynamicParams = true;
 export async function generateStaticParams() {
-  return (await getDeveloperGroups())
+  return staticParamsOr('/developers/[slug]', async () => (await getDeveloperGroups())
     .filter((g) => developerIndexing(g.count).index)
-    .map((g) => ({ slug: g.slug }));
+    .map((g) => ({ slug: g.slug })));
 }
 
 export default async function DeveloperPage({ params }: { params: { slug: string } }) {

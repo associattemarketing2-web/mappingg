@@ -14,6 +14,7 @@ import { formatBhk, formatLakhs, summarizeLocality } from '@/lib/seo/locality-su
 import { guidesFor } from '@/lib/seo/blog-links';
 import { listPublished } from '@/lib/blog';
 import { developerIndexing, localityIndexing } from '@/lib/seo/indexing';
+import { staticParamsOr } from '@/lib/seo/static-params';
 
 // Locality hub: every public project in one micro-market (restored 22 Nov 2026;
 // removed 4 Nov in 11c7dac — see seo-doc/IMPLEMENTATION-PLAN.md).
@@ -27,9 +28,9 @@ export const dynamic = 'force-static';
 // request; unknown slugs get a real 404 from layout.tsx (generateMetadata).
 export const dynamicParams = true;
 export async function generateStaticParams() {
-  return (await getLocalityGroups())
+  return staticParamsOr('/locations/[slug]', async () => (await getLocalityGroups())
     .filter((g) => localityIndexing(g.slug, g.count).index)
-    .map((g) => ({ slug: g.slug }));
+    .map((g) => ({ slug: g.slug })));
 }
 
 export default async function LocationPage({ params }: { params: { slug: string } }) {

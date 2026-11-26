@@ -1,5 +1,6 @@
 import { getTypeGroups } from '@/lib/seo/entities';
 import PropertyTypeListing from './listing';
+import { staticParamsOr } from '@/lib/seo/static-params';
 
 // Page 1 of /property/<type>. Pages 2+ (/property/<type>?page=N) are served by
 // ./p/[page] through a rewrite (next.config.mjs), so this route never reads
@@ -12,7 +13,7 @@ export const dynamic = 'force-static';
 // runs before streaming starts.
 export const dynamicParams = true;
 export async function generateStaticParams() {
-  return (await getTypeGroups()).map((g) => ({ type: g.slug }));
+  return staticParamsOr('/property/[type]', async () => (await getTypeGroups()).map((g) => ({ type: g.slug })));
 }
 
 export default function PropertyTypePage({ params }: { params: { type: string } }) {
