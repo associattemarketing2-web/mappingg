@@ -1,5 +1,6 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
+import { useRef } from "react";
 import { Empty, Loading, useApi } from "./ui";
 
 // Salary slip in the company's own format (the Excel slip HR used before):
@@ -106,24 +107,58 @@ function LogoCrop({ box, height }: { box: [number, number, number, number]; heig
   );
 }
 
-const B = "1.5px solid #000";
-const THICK = "3px solid #000";
+/** Fits A4 portrait (190 mm printable) at 100 %. */
+const SLIP_WIDTH = 700;
+const B = "1px solid #000";
+const THICK = "2.5px solid #000";
 const serif = { fontFamily: '"Times New Roman", Times, serif' };
 const sans = { fontFamily: 'Calibri, Carlito, "Segoe UI", Arial, sans-serif' };
-const cell: React.CSSProperties = { border: B, padding: "2px 5px", lineHeight: 1.35, verticalAlign: "middle" };
+const cell: React.CSSProperties = { border: B, padding: "2px 4px", lineHeight: 1.35, verticalAlign: "middle" };
+
+/**
+ * Prints only the slip: its HTML goes into a hidden iframe with A4 portrait page
+ * settings, so the dashboard around it is not printed and "Save as PDF" gives a
+ * one-page PDF named after the employee and month.
+ */
+function printSlip(html: string, title: string) {
+  const frame = document.createElement("iframe");
+  frame.style.cssText = "position:fixed;right:0;bottom:0;width:0;height:0;border:0";
+  document.body.appendChild(frame);
+  const doc = frame.contentDocument!;
+  doc.open();
+  doc.write(
+    `<!doctype html><html><head><meta charset="utf-8"><title>${title.replace(/</g, "")}</title><base href="${location.origin}/">` +
+      `<style>@page{size:A4 portrait;margin:10mm}html,body{margin:0;background:#fff}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}</style>` +
+      `</head><body>${html}</body></html>`,
+  );
+  doc.close();
+  const pending = Array.from(doc.images)
+    .filter((i) => !i.complete)
+    .map((i) => new Promise((done) => (i.onload = i.onerror = done)));
+  Promise.all(pending).then(() => {
+    frame.contentWindow!.focus();
+    frame.contentWindow!.print();
+    setTimeout(() => frame.remove(), 1000);
+  });
+}
 
 export default function Payslip({ month, userId }: { month: string; userId?: string }) {
   const { data, loading, error } = useApi<{ rows: SlipRow[] }>(`/api/hr/payroll?month=${month}${userId ? `&userId=${userId}` : ""}`);
+  const slipRef = useRef<HTMLDivElement>(null);
   if (loading && !data) return <Loading />;
   if (error || !data?.rows[0]) return <Empty>{error || "No salary data for this month."}</Empty>;
+  const r = data.rows[0];
+  const print = () => slipRef.current && printSlip(slipRef.current.innerHTML, `Salary Slip - ${r.name} - ${month}`);
   return (
-    <div className="mx-auto max-w-[980px]">
+    <div style={{ maxWidth: SLIP_WIDTH, margin: "0 auto" }}>
       <div className="mb-4 flex justify-end gap-2 print:hidden">
-        <button className="btn-primary" onClick={() => window.print()}>
-          🖨 Print / Save PDF
+        <button className="btn-primary" onClick={print}>
+          🖨 Print / Download PDF
         </button>
       </div>
-      <SlipView r={data.rows[0]} month={month} />
+      <div ref={slipRef} style={{ overflowX: "auto", background: "#fff" }}>
+        <SlipView r={r} month={month} />
+      </div>
     </div>
   );
 }
@@ -173,116 +208,113 @@ export function SlipView({ r, month }: { r: SlipRow; month: string }) {
   ];
 
   return (
-    <div className="overflow-x-auto bg-white print:overflow-visible">
-      <style>{`@media print { @page { size: A4 landscape; margin: 10mm; } }`}</style>
-      <table
-        style={{
-          ...serif,
-          width: "100%",
-          minWidth: 820,
-          borderCollapse: "collapse",
-          border: THICK,
-          color: "#000",
-          fontSize: 19,
-          tableLayout: "fixed",
-          background: "#fff",
-        }}
-      >
-        <colgroup>
-          <col style={{ width: "24.3%" }} />
-          <col style={{ width: "23.5%" }} />
-          <col style={{ width: "22.1%" }} />
-          <col style={{ width: "30.1%" }} />
-        </colgroup>
-        <tbody>
-          {/* Letterhead */}
-          <tr>
-            <td colSpan={4} style={{ borderBottom: THICK, padding: 0, height: 128, position: "relative" }}>
-              <div style={{ ...sans, position: "absolute", left: 3, top: 4, fontSize: 15 }}>{LETTERHEAD.company}</div>
-              <div style={{ position: "absolute", left: 52, top: 8 }}>
-                <LogoCrop box={[463, 170, 1560, 1503]} height={116} />
+    <table
+      style={{
+        ...serif,
+        width: SLIP_WIDTH,
+        margin: "0 auto",
+        borderCollapse: "collapse",
+        border: THICK,
+        color: "#000",
+        fontSize: 14,
+        tableLayout: "fixed",
+        background: "#fff",
+      }}
+    >
+      <colgroup>
+        <col style={{ width: "24.3%" }} />
+        <col style={{ width: "23.5%" }} />
+        <col style={{ width: "22.1%" }} />
+        <col style={{ width: "30.1%" }} />
+      </colgroup>
+      <tbody>
+        {/* Letterhead */}
+        <tr>
+          <td colSpan={4} style={{ borderBottom: THICK, padding: 0, height: 96, position: "relative" }}>
+            <div style={{ ...sans, position: "absolute", left: 2, top: 3, fontSize: 11 }}>{LETTERHEAD.company}</div>
+            <div style={{ position: "absolute", left: 38, top: 6 }}>
+              <LogoCrop box={[463, 170, 1560, 1503]} height={86} />
+            </div>
+            <div style={{ textAlign: "center", paddingTop: 22, paddingLeft: 44 }}>
+              <div style={{ fontSize: 12 }}>{LETTERHEAD.contact}</div>
+              <div style={{ fontSize: 15.5, marginTop: 3 }}>{LETTERHEAD.address}</div>
+              <div style={{ fontSize: 14.5, fontWeight: 700, marginTop: 3 }}>
+                SALARY SLIP FOR {mon}-{y}
               </div>
-              <div style={{ textAlign: "center", paddingTop: 30, paddingLeft: 60 }}>
-                <div style={{ fontSize: 16 }}>{LETTERHEAD.contact}</div>
-                <div style={{ fontSize: 21, marginTop: 4 }}>{LETTERHEAD.address}</div>
-                <div style={{ fontSize: 20, fontWeight: 700, marginTop: 4 }}>
-                  SALARY SLIP FOR {mon}-{y}
-                </div>
-              </div>
-            </td>
+            </div>
+          </td>
+        </tr>
+        {/* Pay period */}
+        <tr>
+          <td colSpan={4} style={{ ...cell, position: "relative", fontSize: 14.5, textAlign: "center", height: 23 }}>
+            <div style={{ position: "absolute", left: 10, top: 2 }}>
+              <LogoCrop box={[41, 1548, 1979, 1845]} height={19} />
+            </div>
+            {dayOrd(1)} {mon} {y} TO {dayOrd(lastDay)} {mon} {y}
+          </td>
+        </tr>
+        {/* Employee + bank details */}
+        {info.map(([k1, v1, k2, v2]) => (
+          <tr key={k1}>
+            <td style={cell}>{k1}</td>
+            <td style={{ ...cell, ...sans, fontSize: 12.5 }}>{v1}</td>
+            <td style={cell}>{k2}</td>
+            <td style={{ ...cell, ...sans, fontSize: 12.5 }}>{v2}</td>
           </tr>
-          {/* Pay period */}
+        ))}
+        <tr>
+          <td colSpan={4} style={{ ...cell, height: 22 }} />
+        </tr>
+        {/* Earnings | Deductions */}
+        <tr>
+          <td colSpan={2} style={{ ...cell, textAlign: "center", fontWeight: 700 }}>
+            Earnings
+          </td>
+          <td colSpan={2} style={{ ...cell, textAlign: "center", fontWeight: 700 }}>
+            Deductions
+          </td>
+        </tr>
+        {parts.map(([k, v], i) => (
+          <tr key={k}>
+            <td style={cell}>{k}</td>
+            <td style={{ ...cell, textAlign: "right" }}>{inr2(v)}</td>
+            <td style={{ ...cell, ...(ded[i][2] ? { ...sans, fontSize: 12.5 } : {}) }}>{ded[i][0]}</td>
+            <td style={{ ...cell, textAlign: "right" }}>{inr0(ded[i][1])}</td>
+          </tr>
+        ))}
+        {extra && (
           <tr>
-            <td colSpan={4} style={{ ...cell, position: "relative", fontSize: 20, textAlign: "center", height: 30 }}>
-              <div style={{ position: "absolute", left: 14, top: 2 }}>
-                <LogoCrop box={[41, 1548, 1979, 1845]} height={26} />
-              </div>
-              {dayOrd(1)} {mon} {y} TO {dayOrd(lastDay)} {mon} {y}
-            </td>
+            <td style={cell}>{r.bonus > 0 ? "Bonus / Incentive" : ""}</td>
+            <td style={{ ...cell, textAlign: "right" }}>{r.bonus > 0 ? inr2(r.bonus) : ""}</td>
+            <td style={{ ...cell, ...sans, fontSize: 12.5 }}>{r.deductions > 0 ? "Other Deductions" : ""}</td>
+            <td style={{ ...cell, textAlign: "right" }}>{r.deductions > 0 ? inr0(r.deductions) : ""}</td>
           </tr>
-          {/* Employee + bank details */}
-          {info.map(([k1, v1, k2, v2]) => (
-            <tr key={k1}>
-              <td style={cell}>{k1}</td>
-              <td style={{ ...cell, ...sans, fontSize: 17 }}>{v1}</td>
-              <td style={cell}>{k2}</td>
-              <td style={{ ...cell, ...sans, fontSize: 17 }}>{v2}</td>
-            </tr>
-          ))}
-          <tr>
-            <td colSpan={4} style={{ ...cell, height: 30 }} />
-          </tr>
-          {/* Earnings | Deductions */}
-          <tr>
-            <td colSpan={2} style={{ ...cell, textAlign: "center", fontWeight: 700 }}>
-              Earnings
-            </td>
-            <td colSpan={2} style={{ ...cell, textAlign: "center", fontWeight: 700 }}>
-              Deductions
-            </td>
-          </tr>
-          {parts.map(([k, v], i) => (
-            <tr key={k}>
-              <td style={cell}>{k}</td>
-              <td style={{ ...cell, textAlign: "right" }}>{inr2(v)}</td>
-              <td style={{ ...cell, ...(ded[i][2] ? { ...sans, fontSize: 17 } : {}) }}>{ded[i][0]}</td>
-              <td style={{ ...cell, textAlign: "right" }}>{inr0(ded[i][1])}</td>
-            </tr>
-          ))}
-          {extra && (
-            <tr>
-              <td style={cell}>{r.bonus > 0 ? "Bonus / Incentive" : ""}</td>
-              <td style={{ ...cell, textAlign: "right" }}>{r.bonus > 0 ? inr2(r.bonus) : ""}</td>
-              <td style={{ ...cell, ...sans, fontSize: 17 }}>{r.deductions > 0 ? "Other Deductions" : ""}</td>
-              <td style={{ ...cell, textAlign: "right" }}>{r.deductions > 0 ? inr0(r.deductions) : ""}</td>
-            </tr>
-          )}
-          <tr>
-            <td style={cell}>Gross Salary</td>
-            <td style={{ ...cell, textAlign: "right" }}>{inr2(gross)}</td>
-            <td style={cell}>Total Deductions</td>
-            <td style={{ ...cell, textAlign: "right" }}>{inr0(totalDed)}</td>
-          </tr>
-          <tr>
-            <td colSpan={3} style={{ ...cell, borderBottom: THICK, textAlign: "center", fontWeight: 700 }}>
-              NET PAY
-            </td>
-            <td style={{ ...cell, borderBottom: THICK, textAlign: "right", fontWeight: 700 }}>₹ {r.netPay.toLocaleString("en-IN")}</td>
-          </tr>
-          {/* Amount in words */}
-          <tr>
-            <td colSpan={4} style={{ borderBottom: THICK, padding: "16px 0 16px 32px", fontWeight: 700, fontSize: 20 }}>
-              <span style={{ display: "inline-block", width: 237 }}>Amount in word:-</span>
-              Rupees {inWords(r.netPay)} Only
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={4} style={{ ...sans, height: 82, textAlign: "center", color: "#e00000", fontSize: 17 }}>
-              *This is a computer generated document, so does not require signatures.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+        )}
+        <tr>
+          <td style={cell}>Gross Salary</td>
+          <td style={{ ...cell, textAlign: "right" }}>{inr2(gross)}</td>
+          <td style={cell}>Total Deductions</td>
+          <td style={{ ...cell, textAlign: "right" }}>{inr0(totalDed)}</td>
+        </tr>
+        <tr>
+          <td colSpan={3} style={{ ...cell, borderBottom: THICK, textAlign: "center", fontWeight: 700 }}>
+            NET PAY
+          </td>
+          <td style={{ ...cell, borderBottom: THICK, textAlign: "right", fontWeight: 700 }}>₹ {r.netPay.toLocaleString("en-IN")}</td>
+        </tr>
+        {/* Amount in words */}
+        <tr>
+          <td colSpan={4} style={{ borderBottom: THICK, padding: "11px 0 11px 22px", fontWeight: 700, fontSize: 14.5 }}>
+            <span style={{ display: "inline-block", width: 170 }}>Amount in word:-</span>
+            Rupees {inWords(r.netPay)} Only
+          </td>
+        </tr>
+        <tr>
+          <td colSpan={4} style={{ ...sans, height: 58, textAlign: "center", color: "#e00000", fontSize: 12.5 }}>
+            *This is a computer generated document, so does not require signatures.
+          </td>
+        </tr>
+      </tbody>
+    </table>
   );
 }
