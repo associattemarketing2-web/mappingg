@@ -65,6 +65,44 @@ services:
       # Bearer token for GET /api/subscriptions/cron (run it daily from an external scheduler on Render).
       - key: CRON_SECRET
         sync: false
+      # WhatsApp Inbox (s-admin → Communication): reaches the wa-gateway private
+      # service below over Render's internal network (host:port, no public URL).
+      - key: WA_GATEWAY_URL
+        fromService:
+          type: pserv
+          name: wa-gateway
+          property: hostport
+      - key: WA_GATEWAY_SECRET
+        fromService:
+          type: pserv
+          name: wa-gateway
+          envVarKey: WA_GATEWAY_SECRET
       # Must match package.json "engines" (24.x) and .nvmrc.
       - key: NODE_VERSION
         value: "24"
+
+  # WhatsApp gateway (wa-gateway/README.md). Holds the linked-number sockets
+  # 24/7, so it must not sleep: a private service (internal only, never
+  # public) on a paid plan. Exactly ONE instance — the wl_gateway_lease row
+  # makes a second copy wait.
+  - type: pserv
+    name: wa-gateway
+    runtime: node
+    plan: starter
+    rootDir: wa-gateway
+    numInstances: 1
+    buildCommand: npm ci --omit=dev --no-audit --no-fund
+    startCommand: node --dns-result-order=ipv4first src/server.js
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # Same Postgres as the website.
+      - key: DATABASE_URL
+        sync: false
+      # Shared with the site (wired above via fromService).
+      - key: WA_GATEWAY_SECRET
+        generateValue: true
+      # Encrypts the WhatsApp logins. Paste the SAME value as in your .env —
+      # a different key logs every linked number out.
+      - key: WA_GATEWAY_KEY
+        sync: false

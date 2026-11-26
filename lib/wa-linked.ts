@@ -54,7 +54,9 @@ export async function gateway(path: string, init: { method?: string; body?: unkn
   if (!gatewayConfigured()) throw new GatewayError('The WhatsApp server is not set up yet (WA_GATEWAY_URL / WA_GATEWAY_SECRET).', 503);
   let res: Response;
   try {
-    res = await fetch(`${process.env.WA_GATEWAY_URL!.replace(/\/+$/, '')}${path}`, {
+    // Render's private-network link (render.yaml `hostport`) is a bare host:port.
+    const base = process.env.WA_GATEWAY_URL!.replace(/\/+$/, '');
+    res = await fetch(`${/^https?:\/\//.test(base) ? base : `http://${base}`}${path}`, {
       method: init.method || (init.body ? 'POST' : 'GET'),
       headers: { 'x-gateway-secret': process.env.WA_GATEWAY_SECRET!, ...(init.body ? { 'Content-Type': 'application/json' } : {}) },
       body: init.body ? JSON.stringify(init.body) : undefined,
