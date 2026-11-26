@@ -1,7 +1,7 @@
 import crypto from 'node:crypto';
 import http from 'node:http';
-import { migrate, pool, q } from './db.js';
-import * as S from './sessions.js';
+import { migrate, pool, q } from './db.mjs';
+import * as S from './sessions.mjs';
 
 // Mappingg WhatsApp gateway — linked-device (QR scan) WhatsApp for the
 // s-admin "WhatsApp Inbox". Only the website talks to it, with the shared
@@ -19,11 +19,13 @@ import * as S from './sessions.js';
 //   POST   /accounts/:id/older  {jid}         ask the phone for 50 older messages of a chat
 //   GET    /accounts/:id/media/:msgId        the file of a message
 //
-// Env: DATABASE_URL, WA_GATEWAY_SECRET, WA_GATEWAY_KEY, PORT (default 8080), WA_GATEWAY_TAKEOVER=1 (optional)
+// Env: DATABASE_URL, WA_GATEWAY_SECRET, WA_GATEWAY_KEY, WA_GATEWAY_PORT (default 8099),
+// WA_GATEWAY_HOST (default 127.0.0.1: only the site on the same server calls it), WA_GATEWAY_TAKEOVER=1 (optional)
 
 const SECRET = process.env.WA_GATEWAY_SECRET || '';
 if (SECRET.length < 24) throw new Error('WA_GATEWAY_SECRET is not set (use a long random string)');
-const PORT = Number(process.env.WA_GATEWAY_PORT || process.env.PORT || 8080); // WA_GATEWAY_PORT: local runs next to the site
+const PORT = Number(process.env.WA_GATEWAY_PORT || 8099); // PORT belongs to the website
+const HOST = process.env.WA_GATEWAY_HOST || '127.0.0.1';
 const MAX_BODY = 64 * 1024;
 
 const authorized = (req) => {
@@ -164,7 +166,7 @@ let waiting = false; // another gateway holds the lease
 
 async function main() {
   await migrate();
-  server.listen(PORT, () => console.log(`[gateway] listening on :${PORT}`));
+  server.listen(PORT, HOST, () => console.log(`[gateway] listening on ${HOST}:${PORT}`));
   await singleInstance();
   ready = true;
   await S.resumeAll();

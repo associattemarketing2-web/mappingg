@@ -40,4 +40,3 @@ next-env.d.ts
 /migration/backup/users.json
 /migration/backup/contact_leads.json
 /migration/backup/**/leads.json
-/wa-gateway/node_modules

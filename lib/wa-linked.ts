@@ -3,7 +3,8 @@ import { getCurrentUser } from './auth';
 import { hasPermission, listEmployees } from './staff';
 
 // s-admin → Communication → WhatsApp Inbox: WhatsApp numbers linked by QR scan
-// (linked device, like WhatsApp Web). The always-on gateway in /wa-gateway
+// (linked device, like WhatsApp Web). The gateway in /gateway (started next
+// to the site by `npm run start`)
 // holds the connections and writes chats/messages to these tables; this
 // website reads them and asks the gateway to send. The gateway secret never
 // reaches the browser.
@@ -12,7 +13,8 @@ import { hasPermission, listEmployees } from './staff';
 // WhatsApp permission sees the numbers they linked or were added to, plus any
 // chat assigned to them.
 //
-// Env (server-only): WA_GATEWAY_URL (e.g. https://wa-gateway.up.railway.app), WA_GATEWAY_SECRET.
+// Env (server-only): WA_GATEWAY_SECRET; WA_GATEWAY_URL is set by scripts/start.mjs
+// (http://127.0.0.1:8099) or points at a gateway hosted elsewhere.
 
 export const SCHEMA = `
 CREATE TABLE IF NOT EXISTS wl_accounts (

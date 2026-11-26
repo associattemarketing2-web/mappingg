@@ -5,9 +5,9 @@ import makeWASocket, {
 } from '@whiskeysockets/baileys';
 import pino from 'pino';
 import QRCode from 'qrcode';
-import { clearAuth, usePgAuthState } from './auth-state.js';
-import { decrypt, encrypt, q } from './db.js';
-import { ackStatus, laterStatus, MEDIA_KINDS, parseMessage, preview } from './parse.js';
+import { clearAuth, usePgAuthState } from './auth-state.mjs';
+import { decrypt, encrypt, q } from './db.mjs';
+import { ackStatus, laterStatus, MEDIA_KINDS, parseMessage, preview } from './parse.mjs';
 
 // One linked WhatsApp = one Session (a Baileys socket). The manager keeps
 // them connected, turns WhatsApp events into rows the website reads, and
