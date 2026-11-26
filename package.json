@@ -10,6 +10,7 @@
     "build": "next build",
     "start": "node scripts/start.mjs",
     "start:site": "next start -H 0.0.0.0",
+    "start:gateway": "node --dns-result-order=ipv4first gateway/server.mjs",
     "lint": "next lint",
     "export:mongo": "node migration/export-mongo.mjs",
     "export:pg": "node migration/export-postgres.mjs",

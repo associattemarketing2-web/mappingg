@@ -19,13 +19,16 @@ import * as S from './sessions.mjs';
 //   POST   /accounts/:id/older  {jid}         ask the phone for 50 older messages of a chat
 //   GET    /accounts/:id/media/:msgId        the file of a message
 //
-// Env: DATABASE_URL, WA_GATEWAY_SECRET, WA_GATEWAY_KEY, WA_GATEWAY_PORT (default 8099),
-// WA_GATEWAY_HOST (default 127.0.0.1: only the site on the same server calls it), WA_GATEWAY_TAKEOVER=1 (optional)
+// Env: DATABASE_URL, WA_GATEWAY_SECRET, WA_GATEWAY_KEY, WA_GATEWAY_TAKEOVER=1 (optional).
+// Next to the site (`npm run start` / `npm run dev`): WA_GATEWAY_PORT (default 8099) on
+// 127.0.0.1, only the site calls it. On its own (`npm run start:gateway`, e.g. a Railway
+// service for a site on Vercel): the host's $PORT on 0.0.0.0. WA_GATEWAY_HOST overrides.
 
 const SECRET = process.env.WA_GATEWAY_SECRET || '';
 if (SECRET.length < 24) throw new Error('WA_GATEWAY_SECRET is not set (use a long random string)');
-const PORT = Number(process.env.WA_GATEWAY_PORT || 8099); // PORT belongs to the website
-const HOST = process.env.WA_GATEWAY_HOST || '127.0.0.1';
+const STANDALONE = !process.env.WA_GATEWAY_PORT && !!process.env.PORT;
+const PORT = Number(process.env.WA_GATEWAY_PORT || process.env.PORT || 8099);
+const HOST = process.env.WA_GATEWAY_HOST || (STANDALONE ? '0.0.0.0' : '127.0.0.1');
 const MAX_BODY = 64 * 1024;
 
 const authorized = (req) => {

@@ -23,6 +23,23 @@ Render Starter plan or above, or any VPS running `npm run start` (e.g. under pm2
 Only **one** copy may run at a time (a lease row in `wl_gateway_lease` enforces
 it, so a redeploy waits for the old copy to stop instead of fighting over logins).
 
+## Site on Vercel → gateway on Railway
+
+Vercel can't keep the WhatsApp connections open, so the gateway runs as a
+separate always-on service built from this same repo (root directory `./`):
+
+1. railway.com → New Project → Deploy from GitHub repo → this repo (root `./`).
+2. Service → Settings → Deploy → **Custom Start Command**: `npm run start:gateway`.
+   Replicas: **1**.
+3. Service → Variables (only these — don't paste the whole `.env`, and **no `WA_GATEWAY_PORT`**):
+   `DATABASE_URL`, `WA_GATEWAY_SECRET`, `WA_GATEWAY_KEY` (same values as the site's `.env`).
+4. Settings → Networking → **Generate Domain**. Check `https://<domain>/health` → `{"ok":true,…}`.
+5. Vercel → the site → Settings → Environment Variables: `WA_GATEWAY_URL=https://<domain>`
+   and the same `WA_GATEWAY_SECRET`; remove `WA_GATEWAY_KEY` / `WA_GATEWAY_PORT` there. Redeploy.
+
+While this runs, `npm run dev` on a computer whose `.env` points `WA_GATEWAY_URL` at
+localhost takes the numbers over; the server gets them back when it stops.
+
 ## Deploy on Render
 
 `render.yaml` already has everything (plan `starter`, 1 instance). Add on the
