@@ -21,6 +21,8 @@ export const PUT = handler(async (req: Request, { params }: Ctx) => {
   if (!current) bad("Employee not found");
   const data: Record<string, unknown> = {};
   for (const k of ["name", "phone", "designation", "department"] as const) if (b[k] !== undefined) data[k] = b[k] || null;
+  if (b.bankName !== undefined) data.bankName = String(b.bankName || "").trim().slice(0, 100) || null;
+  if (b.bankAccount !== undefined) data.bankAccount = String(b.bankAccount || "").replace(/\s+/g, "").slice(0, 34) || null;
   if (b.name !== undefined && !String(b.name).trim()) bad("Name is required");
   if (b.email !== undefined) {
     const email = String(b.email).toLowerCase().trim();

@@ -66,6 +66,9 @@ CREATE TABLE IF NOT EXISTS ${T('User')} (
   "joinDate" ${ts} NOT NULL DEFAULT CURRENT_TIMESTAMP, "active" boolean NOT NULL DEFAULT true,
   "createdAt" ${ts} NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+-- Bank details printed on the salary slip (added after the EMS schema).
+ALTER TABLE ${T('User')} ADD COLUMN IF NOT EXISTS "bankName" text;
+ALTER TABLE ${T('User')} ADD COLUMN IF NOT EXISTS "bankAccount" text;
 CREATE TABLE IF NOT EXISTS ${T('Settings')} (
   "id" integer PRIMARY KEY DEFAULT 1, "companyName" text NOT NULL DEFAULT 'My Company',
   "officeStart" text NOT NULL DEFAULT '09:30', "officeEnd" text NOT NULL DEFAULT '18:30',
@@ -136,7 +139,7 @@ type Model = {
 const MODELS: Record<string, Model> = {
   user: {
     table: 'User',
-    columns: ['id', 'empCode', 'name', 'email', 'password', 'role', 'phone', 'designation', 'department', 'salaryType', 'salary', 'joinDate', 'active', 'createdAt'],
+    columns: ['id', 'empCode', 'name', 'email', 'password', 'role', 'phone', 'designation', 'department', 'salaryType', 'salary', 'joinDate', 'active', 'createdAt', 'bankName', 'bankAccount'],
     defaults: () => ({ id: cuid(), role: 'EMPLOYEE', salaryType: 'MONTHLY', salary: 0, joinDate: new Date(), active: true, createdAt: new Date() }),
   },
   settings: {
@@ -393,4 +396,5 @@ export async function getSettings(): Promise<Settings> {
 export const employeeSelect = {
   id: true, empCode: true, name: true, email: true, role: true, phone: true, designation: true,
   department: true, salaryType: true, salary: true, joinDate: true, active: true, createdAt: true,
+  bankName: true, bankAccount: true,
 } as const;

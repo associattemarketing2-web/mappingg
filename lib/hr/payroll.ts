@@ -13,8 +13,15 @@ export const shiftMinutes = (s: Settings) => Math.max(60, hm(s.officeEnd) - hm(s
 
 export type PayrollRow = ReturnType<typeof computePayroll>;
 
+/** Maharashtra Professional Tax on the month's gross: ₹200 (₹300 in February) above ₹10,000, ₹175 above ₹7,500. */
+export function professionalTax(gross: number, month: string) {
+  if (gross > 10_000) return month.endsWith("-02") ? 300 : 200;
+  if (gross > 7_500) return 175;
+  return 0;
+}
+
 export function computePayroll(
-  user: Pick<User, "id" | "name" | "empCode" | "salary" | "salaryType" | "joinDate" | "designation" | "department" | "email">,
+  user: Pick<User, "id" | "name" | "empCode" | "salary" | "salaryType" | "joinDate" | "designation" | "department" | "email"> & Partial<Pick<User, "bankName" | "bankAccount">>,
   month: string,
   attendance: Pick<Attendance, "checkIn" | "checkOut" | "date" | "isLate">[],
   leaves: Pick<Leave, "fromDate" | "toDate" | "type" | "status">[],
@@ -59,7 +66,7 @@ export function computePayroll(
   }
   const absent = elapsed.filter((d) => !presentDates.has(d) && !leaveDates.has(d)).length;
 
-  let hourlyRate = 0, payable = 0;
+  let hourlyRate = 0, payable = 0, paidDays = full + half * 0.5 + paidLeave;
   const expectedMinutes = eligible.length * shift;
   if (user.salaryType === "HOURLY") {
     hourlyRate = user.salary;
@@ -74,11 +81,16 @@ export function computePayroll(
       payable = ((payMinutes + paidLeave * shift) / 60) * hourlyRate;
     }
     payable = Math.min(payable, user.salary);
+    // Days the pay covers, at the full-month day rate (also right in hours mode).
+    paidDays = workingDates.length ? payable / (user.salary / workingDates.length || 1) : 0;
   }
+  paidDays = Math.min(eligible.length, Math.round(paidDays * 100) / 100);
 
   const bonus = adjustments.filter((a) => a.type === "BONUS").reduce((t, a) => t + a.amount, 0);
   const deductions = adjustments.filter((a) => a.type === "DEDUCTION").reduce((t, a) => t + a.amount, 0);
   const advance = adjustments.filter((a) => a.type === "ADVANCE").reduce((t, a) => t + a.amount, 0);
+  const fuel = adjustments.filter((a) => a.type === "FUEL").reduce((t, a) => t + a.amount, 0);
+  const pt = professionalTax(Math.round(payable + bonus), month);
 
   return {
     userId: user.id,
@@ -88,9 +100,13 @@ export function computePayroll(
     name: user.name,
     empCode: user.empCode,
     designation: user.designation,
+    bankName: user.bankName ?? null,
+    bankAccount: user.bankAccount ?? null,
     salaryType: user.salaryType,
     salary: user.salary,
     workingDays: eligible.length,
+    paidDays,
+    lopDays: Math.max(0, Math.round((eligible.length - paidDays) * 100) / 100),
     elapsedDays: elapsed.length,
     present: presentDates.size,
     fullDays: full,
@@ -107,6 +123,8 @@ export function computePayroll(
     bonus: Math.round(bonus),
     deductions: Math.round(deductions),
     advance: Math.round(advance),
-    netPay: Math.max(0, Math.round(payable + bonus - deductions - advance)),
+    fuel: Math.round(fuel),
+    professionalTax: pt,
+    netPay: Math.max(0, Math.round(payable + bonus - deductions - advance - fuel - pt)),
   };
 }

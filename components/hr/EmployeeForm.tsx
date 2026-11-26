@@ -5,6 +5,7 @@ import { act, api, Field, Modal, Spinner } from "./ui";
 export type Employee = {
   id: string; empCode: string; name: string; email: string; phone: string | null; designation: string | null; department: string | null;
   salaryType: "MONTHLY" | "HOURLY"; salary: number; joinDate: string; active: boolean;
+  bankName?: string | null; bankAccount?: string | null;
 };
 
 export default function EmployeeForm({ emp, onClose, onSaved }: { emp: Employee | null; onClose: () => void; onSaved: () => void }) {
@@ -19,6 +20,8 @@ export default function EmployeeForm({ emp, onClose, onSaved }: { emp: Employee 
     salaryType: emp?.salaryType || "MONTHLY",
     salary: emp ? String(emp.salary) : "",
     joinDate: (emp?.joinDate || new Date().toISOString()).slice(0, 10),
+    bankName: emp?.bankName || "",
+    bankAccount: emp?.bankAccount || "",
   });
   const [busy, setBusy] = useState(false);
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => setF({ ...f, [k]: e.target.value });
@@ -80,6 +83,12 @@ export default function EmployeeForm({ emp, onClose, onSaved }: { emp: Employee 
         </Field>
         <Field label={f.salaryType === "HOURLY" ? "Rate per hour (₹)" : "Monthly salary (₹)"}>
           <input type="number" min="0" className="input" value={f.salary} onChange={set("salary")} placeholder="0" />
+        </Field>
+        <Field label="Bank name (salary slip)">
+          <input className="input" value={f.bankName} onChange={set("bankName")} placeholder="e.g. AU Small Finance Bank" />
+        </Field>
+        <Field label="Bank A/c No (salary slip)">
+          <input className="input" inputMode="numeric" value={f.bankAccount} onChange={set("bankAccount")} />
         </Field>
         <div className="flex justify-end gap-2 pt-2 sm:col-span-2">
           <button type="button" className="btn-ghost" onClick={onClose}>

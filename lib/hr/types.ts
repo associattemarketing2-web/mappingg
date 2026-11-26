@@ -18,6 +18,8 @@ export interface User {
   joinDate: Date;
   active: boolean;
   createdAt: Date;
+  bankName: string | null;
+  bankAccount: string | null;
 }
 
 export interface Settings {

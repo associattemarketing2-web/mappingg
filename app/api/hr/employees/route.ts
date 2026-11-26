@@ -66,6 +66,8 @@ export const POST = handler(async (req: Request) => {
       phone: b.phone || null,
       designation: b.designation || null,
       department: b.department || null,
+      bankName: b.bankName ? String(b.bankName).trim().slice(0, 100) : null,
+      bankAccount: b.bankAccount ? String(b.bankAccount).replace(/\s+/g, "").slice(0, 34) : null,
       salaryType: b.salaryType === "HOURLY" ? "HOURLY" : "MONTHLY",
       salary: Number(b.salary) || 0,
       joinDate: b.joinDate ? new Date(`${b.joinDate}T00:00:00Z`) : new Date(),

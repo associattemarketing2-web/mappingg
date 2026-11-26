@@ -2,13 +2,13 @@ export const dynamic = "force-dynamic";
 import { prisma } from "@/lib/hr/db";
 import { handler, requireUser, ok, bad } from "@/lib/hr/auth";
 
-/** Bonus / deduction / salary advance entries for a month (admin only) */
+/** Bonus / deduction / salary advance / fuel pending entries for a month (admin only) */
 export const POST = handler(async (req: Request) => {
   await requireUser("ADMIN");
   const b = await req.json();
   if (!b.userId) bad("Select employee");
   if (!/^\d{4}-\d{2}$/.test(b.month || "")) bad("Select month");
-  if (!["BONUS", "DEDUCTION", "ADVANCE"].includes(b.type)) bad("Invalid type");
+  if (!["BONUS", "DEDUCTION", "ADVANCE", "FUEL"].includes(b.type)) bad("Invalid type");
   const amount = Number(b.amount);
   if (!Number.isFinite(amount) || amount <= 0) bad("Enter a valid amount");
   await prisma.adjustment.create({
