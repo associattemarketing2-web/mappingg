@@ -30,3 +30,12 @@ test('bad email, phone or attendee type is rejected', () => {
 test('honeypot submissions are flagged as spam', () => {
   assert.equal(parseEventRegistration({ ...valid, company: 'Bot Inc' }, NOW).kind, 'spam');
 });
+
+test('city is saved when given and optional for older forms', () => {
+  const r = parseEventRegistration({ ...valid, city: '  Pune ' }, NOW);
+  assert.equal(r.kind, 'ok');
+  if (r.kind === 'ok') assert.equal(r.registration.city, 'Pune');
+  const old = parseEventRegistration(valid, NOW);
+  assert.equal(old.kind, 'ok');
+  if (old.kind === 'ok') assert.equal(old.registration.city, '');
+});

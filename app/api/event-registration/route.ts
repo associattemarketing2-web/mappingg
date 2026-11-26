@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
   }
 
   const channels = optInSummary(d.consent);
-  const rows: [string, string][] = [['Name', d.name], ['Email', d.email], ['Phone', d.phone], ['Attendee type', d.attendee_type], ['Event', d.event], ['Opted in to', channels]];
+  const rows: [string, string][] = [['Name', d.name], ['Email', d.email], ['Phone', d.phone], ['Attendee type', d.attendee_type], ['City', d.city || '—'], ['Event', d.event], ['Opted in to', channels]];
   pushToCrm({
     name: d.name, mobile: d.phone, email: d.email, source: 'Event registration', page: pageOf(req),
     extra: rows.slice(3), message: d.message, ip: visitorIp(req),
