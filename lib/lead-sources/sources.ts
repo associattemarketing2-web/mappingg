@@ -172,7 +172,7 @@ export async function listSources(): Promise<SourceView[]> {
     records: ingested.get(CSV_SOURCE)?.n || 0, last_record_at: ingested.get(CSV_SOURCE)?.last || null,
     ...fromLog(c), credentials: [],
     setup: [
-      'Only import people who agreed to be contacted by Associatte PropTech (Mappingg) — say how in "Consent basis".',
+      'Only import people who agreed to be contacted by Associatte Ai Technologies LLP (Mappingg) — say how in "Consent basis".',
       'Include a consent column (yes/no) if the supplier recorded consent per person; rows without a clear "yes" are then skipped.',
       'Preview first. Nothing is saved until you click Import.',
     ],

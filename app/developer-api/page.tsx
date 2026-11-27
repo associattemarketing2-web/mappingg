@@ -186,7 +186,7 @@ const ENQUIRY_SECTION: LegalSection = {
         <li>Send the exact wording in <code>consent.text</code>, your label for that wording in <code>consent.textVersion</code> (change it whenever the wording changes), and when they submitted in <code>consent.capturedAt</code> (within the last {LIMITS.maxConsentAgeHours} hours).</li>
         <li><code>consent.enquiry</code> must be <code>true</code>. <code>call</code> and <code>whatsapp</code> are separate, optional opt-ins for other offers; send <code>true</code> only if the visitor ticked those boxes too.</li>
         <li>Mappingg can’t see your form, so it records this as consent <b>stated by you</b>, with your wording, version and time. Receiving <code>consent.enquiry: true</code> does not prove the visitor consented, so sending enquiries without real consent breaks our terms and gets the application revoked.</li>
-        <li>Tell visitors in your privacy notice that enquiries are shared with Mappingg (Associatte PropTech Pvt Ltd) to be followed up, and link to <Link href="/privacy">our privacy policy</Link>.</li>
+        <li>Tell visitors in your privacy notice that enquiries are shared with Mappingg (Associatte Ai Technologies LLP) to be followed up, and link to <Link href="/privacy">our privacy policy</Link>.</li>
       </ul>
       <h3>Responses, retries and duplicates</h3>
       <ul>

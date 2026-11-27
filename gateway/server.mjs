@@ -1,7 +1,7 @@
 import crypto from 'node:crypto';
 import http from 'node:http';
-import { migrate, pool, q } from './db.js';
-import * as S from './sessions.js';
+import { closePool, migrate, q } from './db.mjs';
+import * as S from './sessions.mjs';
 
 // Mappingg WhatsApp gateway — linked-device (QR scan) WhatsApp for the
 // s-admin "WhatsApp Inbox". Only the website talks to it, with the shared
@@ -19,11 +19,16 @@ import * as S from './sessions.js';
 //   POST   /accounts/:id/older  {jid}         ask the phone for 50 older messages of a chat
 //   GET    /accounts/:id/media/:msgId        the file of a message
 //
-// Env: DATABASE_URL, WA_GATEWAY_SECRET, WA_GATEWAY_KEY, PORT (default 8080)
+// Env: DATABASE_URL, WA_GATEWAY_SECRET, WA_GATEWAY_KEY, WA_GATEWAY_TAKEOVER=1 (optional).
+// Next to the site (`npm run start` / `npm run dev`): WA_GATEWAY_PORT (default 8099) on
+// 127.0.0.1, only the site calls it. On its own (`npm run start:gateway`, e.g. a Railway
+// service for a site on Vercel): the host's $PORT on 0.0.0.0. WA_GATEWAY_HOST overrides.
 
 const SECRET = process.env.WA_GATEWAY_SECRET || '';
 if (SECRET.length < 24) throw new Error('WA_GATEWAY_SECRET is not set (use a long random string)');
-const PORT = Number(process.env.WA_GATEWAY_PORT || process.env.PORT || 8080); // WA_GATEWAY_PORT: local runs next to the site
+const STANDALONE = !process.env.WA_GATEWAY_PORT && !!process.env.PORT;
+const PORT = Number(process.env.WA_GATEWAY_PORT || process.env.PORT || 8099);
+const HOST = process.env.WA_GATEWAY_HOST || (STANDALONE ? '0.0.0.0' : '127.0.0.1');
 const MAX_BODY = 64 * 1024;
 
 const authorized = (req) => {
@@ -60,7 +65,9 @@ async function route(req, res) {
   const parts = url.pathname.split('/').filter(Boolean);
   if (req.method === 'GET' && url.pathname === '/health') return json(res, 200, { ok: true, running: S.views().length });
   if (!authorized(req)) return json(res, 401, { error: 'unauthorized' });
-  if (!ready) return json(res, 503, { error: 'The WhatsApp server is starting — try again in a minute' });
+  if (!ready) return json(res, 503, { error: waiting
+    ? 'Another copy of the WhatsApp server (on another computer or server, same database) is running, so this one is waiting. Stop the other copy, or point WA_GATEWAY_URL to it.'
+    : 'The WhatsApp server is starting — try again in a minute' });
 
   if (parts[0] !== 'accounts') return json(res, 404, { error: 'not found' });
   const id = parts[1];
@@ -137,10 +144,19 @@ const takeLease = async () => (await q(
 
 async function singleInstance() {
   await q('CREATE TABLE IF NOT EXISTS wl_gateway_lease (id int PRIMARY KEY, holder text NOT NULL, until timestamptz NOT NULL)');
+  // WA_GATEWAY_TAKEOVER=1: take the lease right away; the copy holding it notices
+  // on its next renewal (≤ 20 s) and stops itself.
+  if (process.env.WA_GATEWAY_TAKEOVER === '1') {
+    await q(`INSERT INTO wl_gateway_lease (id, holder, until) VALUES (1, $1, now() + interval '60 seconds')
+             ON CONFLICT (id) DO UPDATE SET holder = $1, until = now() + interval '60 seconds'`, [ME]);
+    console.log('[gateway] took over from any other running copy');
+  }
   while (!(await takeLease())) {
+    waiting = true;
     console.log('[gateway] another gateway is running — waiting for it to stop…');
     await new Promise((r) => setTimeout(r, 10_000));
   }
+  waiting = false;
   setInterval(() => {
     takeLease().then((ok) => {
       if (!ok) { console.error('[gateway] another gateway took over — stopping'); process.exit(1); }
@@ -149,10 +165,11 @@ async function singleInstance() {
 }
 
 let ready = false;
+let waiting = false; // another gateway holds the lease
 
 async function main() {
   await migrate();
-  server.listen(PORT, () => console.log(`[gateway] listening on :${PORT}`));
+  server.listen(PORT, HOST, () => console.log(`[gateway] listening on ${HOST}:${PORT}`));
   await singleInstance();
   ready = true;
   await S.resumeAll();
@@ -161,7 +178,7 @@ async function main() {
     server.close();
     await S.stopAll();
     await q('DELETE FROM wl_gateway_lease WHERE id = 1 AND holder = $1', [ME]).catch(() => undefined);
-    await pool.end().catch(() => undefined);
+    await closePool().catch(() => undefined);
     process.exit(0);
   };
   process.on('SIGTERM', bye);

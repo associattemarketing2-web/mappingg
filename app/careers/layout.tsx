@@ -5,7 +5,7 @@ import { buildMetadata } from '@/lib/seo/metadata';
 export const metadata: Metadata = buildMetadata({
   title: 'Careers — PropTech Jobs in Pune',
   description:
-    'Work with the team behind Mappingg, the live real estate project map by Associatte PropTech in Pune.',
+    'Work with the team behind Mappingg, the live real estate project map by Associatte Ai Technologies LLP in Pune.',
   path: '/careers',
 });
 

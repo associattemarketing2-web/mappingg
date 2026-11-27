@@ -6,7 +6,7 @@ import { uploadFile } from './WaComposer';
 // s-admin → Communication → WhatsApp Inbox: WhatsApp numbers linked by
 // scanning a QR (linked device, like WhatsApp Web), all chats in one place.
 // Data: /api/admin/wa-linked (numbers + chats), /messages, /media.
-// The connections live on the separate always-on gateway (/wa-gateway).
+// The connections live in the WhatsApp gateway (/gateway), run by `npm run start`.
 
 type Flash = (m: string, e?: boolean) => void;
 const API = '/api/admin/wa-linked';
@@ -390,7 +390,7 @@ export default function WaLinkedPanel({ flash }: { flash: Flash }) {
   return (
     <div className="wl-wrap">
       {!gw.configured ? (
-        <div className="wa-setup"><i className="fas fa-server" /><div><b>The WhatsApp server is not set up yet</b><span>Deploy the gateway in <code>wa-gateway/</code> (see its README) and add <code>WA_GATEWAY_URL</code> and <code>WA_GATEWAY_SECRET</code> to the website&apos;s environment. Then numbers can be linked here.</span></div></div>
+        <div className="wa-setup"><i className="fas fa-server" /><div><b>The WhatsApp server is not set up yet</b><span>Add <code>WA_GATEWAY_SECRET</code> and <code>WA_GATEWAY_KEY</code> to the server&apos;s environment and redeploy: <code>npm run start</code> then runs the gateway with the site (it needs an always-on server, not Vercel — see <code>gateway/README.md</code>). Then numbers can be linked here.</span></div></div>
       ) : !gw.ok && (
         <div className="wa-setup"><i className="fas fa-plug-circle-xmark" /><div><b>The WhatsApp server is not answering</b><span>{gw.error} Chats already saved still show; sending and linking work again once it is back.</span></div></div>
       )}

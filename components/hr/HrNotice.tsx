@@ -10,7 +10,7 @@ export default function HrNotice({ kind }: { kind: 'no-profile' | 'disabled' }) 
             ? 'Your HR access is disabled. Please contact the admin.'
             : 'Your HR profile is not set up yet. Ask the admin to add you in HR → Employees with this same email.'}
         </p>
-        <a href="/dashboard/s-admin" className="btn-ghost w-full">
+        <a href="/dashboard/s-admin" target="_top" className="btn-ghost w-full">
           ← Back to Mappingg
         </a>
       </div>

@@ -35,6 +35,10 @@ const nextConfig = {
       { source: '/intake/', destination: '/partners/admin/index.html' },
       { source: '/submit', destination: '/partners/submit/index.html' },
       { source: '/submit/', destination: '/partners/submit/index.html' },
+      // App launch event page (static, from the mappinggevent folder; assets under
+      // /public/event). Its form posts to /api/event-registration on this same site.
+      { source: '/event', destination: '/event/index.html' },
+      { source: '/event/', destination: '/event/index.html' },
       // Crawlable address for PUBLIC pin images (robots.txt keeps /api/ blocked, so
       // images served from /api/... could never be indexed by Google Images). Same
       // handler and access rules: /api/media only serves whitelisted fields of pins
@@ -79,8 +83,9 @@ const nextConfig = {
       {
         // HR & Attendance: employees check in with a front-camera selfie, so the
         // camera is allowed (own origin only) on these pages. Same key as above —
-        // the later matching header wins.
-        source: '/dashboard/hr/:path*',
+        // the later matching header wins. The super-admin shows the HR pages in a
+        // tab (same-origin iframe), so it must allow the camera too.
+        source: '/dashboard/:area(hr|s-admin)/:path*',
         headers: [
           { key: 'Permissions-Policy', value: 'camera=(self), microphone=(self), geolocation=(self), usb=(), interest-cohort=()' },
         ],

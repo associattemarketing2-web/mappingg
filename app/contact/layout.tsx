@@ -5,7 +5,7 @@ import { buildMetadata } from '@/lib/seo/metadata';
 export const metadata: Metadata = buildMetadata({
   title: 'Contact Us — Project Enquiries & Listings',
   description:
-    'Get in touch with the Mappingg team at Associatte PropTech, Hadapsar, Pune.',
+    'Get in touch with the Mappingg team at Associatte Ai Technologies LLP, Hadapsar, Pune.',
   path: '/contact',
 });
 

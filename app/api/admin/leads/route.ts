@@ -9,6 +9,7 @@ import { idsParam, moveToTrash } from '@/lib/trash';
 import { addBuyerSignupLead, buyerLeadDoc, buyersWithoutLead, syncBuyerLeads } from '@/lib/signup-leads';
 import { listEmployees } from '@/lib/staff';
 import { siteVisitSlot } from '@/lib/site-visit';
+import { EVENT_SOURCE } from '@/lib/event-registration';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -22,6 +23,8 @@ export const maxDuration = 60;
 //                       (`leads`), from buyers/investors, agents and developers.
 //   signup            → buyers who created an account (also in `contact_leads`,
 //                       marked source "Buyer sign-up" — see lib/signup-leads.ts)
+// Event registrations (also `contact_leads`) are left out: they have their own
+// admin tab (app/api/admin/event-registrations).
 // Real-estate pipeline. 'won' is shown as "Booked". 'not_answered' and 'call_back'
 // are call outcomes that stay open for follow-up; 'spam' closes the lead like 'lost'.
 const STATUSES = ['new', 'contacted', 'not_answered', 'call_back', 'site_visit', 'negotiation', 'won', 'lost', 'spam'] as const;
@@ -30,7 +33,7 @@ type Source = keyof typeof SOURCES;
 const SIGNUP = 'Buyer sign-up';
 /** Which rows of the table belong to each source. */
 const SOURCE_FILTER: Record<Source, Record<string, unknown>> = {
-  contact: { source: { $ne: SIGNUP } },
+  contact: { source: { $nin: [SIGNUP, EVENT_SOURCE] } },
   map: {},
   signup: { source: SIGNUP },
 };
@@ -173,7 +176,7 @@ export async function GET(req: NextRequest) {
     const db = await getDb();
     const proj = { projection: { id: 1, name: 1, source: 1, activity: 1 } };
     const [contact, map] = await Promise.all([
-      db.collection('contact_leads').find({ last_activity_at: { $exists: true } }, proj).toArray() as Promise<Record<string, any>[]>,
+      db.collection('contact_leads').find({ last_activity_at: { $exists: true }, source: { $ne: EVENT_SOURCE } }, proj).toArray() as Promise<Record<string, any>[]>,
       db.collection('leads').find({ last_activity_at: { $exists: true } }, proj).toArray() as Promise<Record<string, any>[]>,
     ]);
     const tab = (l: Record<string, any>, isMap: boolean): Source => (isMap ? 'map' : l.source === SIGNUP ? 'signup' : 'contact');

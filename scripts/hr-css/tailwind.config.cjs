@@ -14,7 +14,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: { 50: '#eef2ff', 100: '#e0e7ff', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 900: '#312e81' },
+        // Mappingg's forest green (the super-admin's --forest / --forest-deep), so HR matches it.
+        brand: { 50: '#e8f2ec', 100: '#d4e9dc', 500: '#1f7a5c', 600: '#0f5c47', 700: '#0a4535', 900: '#06291f' },
       },
     },
   },

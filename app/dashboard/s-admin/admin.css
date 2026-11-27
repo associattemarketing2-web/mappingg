@@ -4247,3 +4247,13 @@ button.ck:hover { transform: translateY(-2px); }
 .wl-needs .wl-num-who small { white-space: normal; line-height: 1.45; }
 .wl-needs .wl-link { background: #fff; }
 @media (max-width: 640px) { .wl-needs .wl-num-head { flex-wrap: wrap; } .wl-needs .wl-num-head .adm-btn { width: 100%; justify-content: center; } }
+
+/* HR & Attendance tab: page head + pill sub-tabs, the HR page shown in place
+   (same background, no frame) so it reads as part of the super-admin. */
+.pg-hr .hr-seg { margin: -4px 0 14px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+.pg-hr .hr-seg::-webkit-scrollbar { display: none; }
+.pg-hr .hr-seg button { flex: none; }
+.pg-hr .hr-frame-wrap { position: relative; }
+.pg-hr .hr-frame { display: block; width: 100%; height: calc(100vh - 135px); height: calc(100dvh - 135px); min-height: 560px; border: 0; background: transparent; }
+.pg-hr .hr-frame-loading { position: absolute; inset: 40px 0 auto; text-align: center; color: var(--muted); font: 600 13.5px var(--font); }
+@media (max-width: 900px) { .pg-hr .hr-frame { height: calc(100dvh - 120px); } }

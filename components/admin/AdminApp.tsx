@@ -18,6 +18,7 @@ import BuyerLeadsPanel from './BuyerLeadsPanel';
 import DeveloperApiPanel from './DeveloperApiPanel';
 import WhatsAppPanel from './WhatsAppPanel';
 import WaLinkedPanel from './WaLinkedPanel';
+import HrPanel from './HrPanel';
 import PinsDataPanel from './PinsDataPanel';
 import SubscriptionsPanel from './SubscriptionsPanel';
 import EventRegistrationsPanel from './EventRegistrationsPanel';
@@ -57,6 +58,7 @@ const TAB_META: Record<string, { label: string; icon: string; desc: string }> = 
   leads: { label: 'Leads', icon: 'fa-address-book', desc: 'Enquiries & lead pipeline' },
   whatsapp: { label: 'WhatsApp', icon: 'fa-comments', desc: 'Chats, auto-replies & automations' },
   walinked: { label: 'WhatsApp Inbox', icon: 'fa-qrcode', desc: 'Numbers linked by QR scan — all chats in one place' },
+  hr: { label: 'HR & Attendance', icon: 'fa-user-clock', desc: 'Attendance, tasks, leaves & salary of the team' },
   events: { label: 'Event registrations', icon: 'fa-champagne-glasses', desc: 'App launch event sign-ups' },
   buyerleads: { label: 'Buyer leads', icon: 'fa-people-roof', desc: 'Buyer requirements & lead sources' },
   accounts: { label: 'Accounts', icon: 'fa-users', desc: 'Buyer, developer & partner sign-ups' },
@@ -82,7 +84,7 @@ const NAV: { key: string; label: string; icon: string; tabs: string[] }[] = [
   { key: 'comms', label: 'Communication', icon: 'fa-comment-dots', tabs: ['whatsapp', 'walinked'] },
   { key: 'billing', label: 'Subscriptions', icon: 'fa-crown', tabs: ['subscriptions'] },
   { key: 'integrations', label: 'Integrations & API', icon: 'fa-plug', tabs: ['devapi'] },
-  { key: 'team', label: 'Team & Administration', icon: 'fa-users-gear', tabs: ['employees'] },
+  { key: 'team', label: 'Team & Administration', icon: 'fa-users-gear', tabs: ['employees', 'hr'] },
 ];
 
 function useToast() {
@@ -3798,10 +3800,10 @@ export default function AdminApp({ user }: { user: AdminUser }) {
   const { flash, node: toastNode } = useToast();
 
   const visible = isOwner
-    ? ['dashboard', 'map', 'pinsdata', 'developers', 'projects', 'intake', 'leads', 'events', 'buyerleads', 'whatsapp', 'walinked', 'accounts', 'blogs', 'employees', 'backups', 'devapi', 'subscriptions', 'seo', 'settings', 'profile']
+    ? ['dashboard', 'map', 'pinsdata', 'developers', 'projects', 'intake', 'leads', 'events', 'buyerleads', 'whatsapp', 'walinked', 'accounts', 'blogs', 'employees', 'hr', 'backups', 'devapi', 'subscriptions', 'seo', 'settings', 'profile']
     // Employees get no site-wide Dashboard overview — they open straight on their
     // leads (only the ones transferred to them), plus any other tab the super admin granted.
-    : [...GRANTABLE.map((g) => g.key).filter((k) => user.permissions.includes(k)).sort((a, b) => Number(b === 'leads') - Number(a === 'leads')).flatMap((k) => (k === 'intake' ? ['projects', 'intake'] : k === 'leads' ? ['leads', 'events'] : k === 'map' ? ['map', 'pinsdata', 'developers'] : k === 'whatsapp' ? ['whatsapp', 'walinked'] : [k])), 'profile'];
+    : [...GRANTABLE.map((g) => g.key).filter((k) => user.permissions.includes(k)).sort((a, b) => Number(b === 'leads') - Number(a === 'leads')).flatMap((k) => (k === 'intake' ? ['projects', 'intake'] : k === 'leads' ? ['leads', 'events'] : k === 'map' ? ['map', 'pinsdata', 'developers'] : k === 'whatsapp' ? ['whatsapp', 'walinked'] : [k])), 'hr', 'profile'];
 
   const navGroups = NAV.map((g) => ({ ...g, tabs: g.tabs.filter((k) => visible.includes(k)) })).filter((g) => g.tabs.length);
   const [tab, setTab] = useState(visible[0] || 'dashboard');
@@ -4143,7 +4145,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
           {menuOpen && (
             <div className="adm2-menu">
               <button className={tab === 'profile' ? 'on' : ''} onClick={() => { setTab('profile'); setMenuOpen(false); }}><i className="fas fa-user" /> Profile</button>
-              <button onClick={() => { window.location.href = '/dashboard/hr'; }}><i className="fas fa-user-clock" /> {isOwner ? 'HR & Attendance' : 'My Attendance'}</button>
+              <button className={tab === 'hr' ? 'on' : ''} onClick={() => { setTab('hr'); setMenuOpen(false); }}><i className="fas fa-user-clock" /> {isOwner ? 'HR & Attendance' : 'My Attendance'}</button>
               {visible.includes('backups') && (
                 <button className={tab === 'backups' ? 'on' : ''} onClick={() => { setTab('backups'); setMenuOpen(false); }}><i className="fas fa-database" /> Backups</button>
               )}
@@ -4190,10 +4192,6 @@ export default function AdminApp({ user }: { user: AdminUser }) {
             </button>
           );
         })}
-        {/* HR & Attendance (employee-management module) — its own pages, so a plain link. */}
-        <a className="adm2-tab" href="/dashboard/hr" style={{ textDecoration: 'none' }} title={isOwner ? 'Attendance, tasks, leaves & salary of the team' : 'Check in / out, my tasks, leaves & payslip'}>
-          <i className="fas fa-user-clock" /> {isOwner ? 'HR & Attendance' : 'My Attendance'}
-        </a>
       </nav>
 
       {navOpen && (() => {
@@ -4236,6 +4234,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
               <WhatsAppPanel flash={flash} onOpenLead={visible.includes('leads') ? (id) => { setLeadFocus(id); setTab('leads'); } : undefined} />
             </div>
           )}
+          {tab === 'hr' && <HrPanel isOwner={isOwner} />}
           {tab === 'walinked' && (
             <div className="pg-wrap pg-wa">
               <PageHead icon="fa-qrcode" title="WhatsApp Inbox" sub="WhatsApp numbers linked by QR scan (like WhatsApp Web) — every number's chats in one place." />

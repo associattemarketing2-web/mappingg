@@ -1,5 +1,5 @@
 import { BufferJSON, initAuthCreds, proto } from '@whiskeysockets/baileys';
-import { decrypt, encrypt, q } from './db.js';
+import { decrypt, encrypt, q } from './db.mjs';
 
 // Login state of one linked WhatsApp, kept in Postgres (wl_auth) instead of
 // files, so a server restart / redeploy does not log anyone out. Every value

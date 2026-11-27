@@ -125,7 +125,7 @@ const sections: LegalSection[] = [
     title: 'Our commercial relationship with developers',
     body: (
       <p>
-        Mappingg is a product of Associatte PropTech Pvt Ltd, which works as an authorised channel partner for some
+        Mappingg is a product of Associatte Ai Technologies LLP, which works as an authorised channel partner for some
         developers and offers paid listing and marketing services. A project being on the map is not a recommendation.
         See the <Link href="/disclaimer">disclaimer</Link> and <Link href="/terms">terms</Link> for details.
       </p>

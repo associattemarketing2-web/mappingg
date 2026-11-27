@@ -131,6 +131,10 @@ function buildWhere(q: Query, p: Params, table = ''): string {
           } else {
             clauses.push(`doc->${p.key(key)} IN (${arr.map((x) => p.json(x)).join(', ')})`);
           }
+        } else if (op === '$nin') {
+          // Like MongoDB, a missing field is "not in" the list.
+          const arr = ov as unknown[];
+          if (arr.length) clauses.push(`(doc->${p.key(key)} IS NULL OR doc->${p.key(key)} NOT IN (${arr.map((x) => p.json(x)).join(', ')}))`);
         } else if (op === '$ne') {
           clauses.push(`doc->${p.key(key)} IS DISTINCT FROM ${p.json(ov)}`);
         } else if (op === '$exists') {

@@ -19,5 +19,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", "migration", "scripts", "mapping_app", "wa-gateway"]
+  "exclude": ["node_modules", "migration", "scripts", "mapping_app", "gateway"]
 }

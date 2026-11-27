@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { ackStatus, laterStatus, parseMessage, preview } from '../src/parse.js';
+import { ackStatus, laterStatus, parseMessage, preview } from '../parse.mjs';
 
 test('plain and extended text', () => {
   assert.deepEqual(parseMessage({ conversation: 'hi' }), { kind: 'text', body: 'hi' });

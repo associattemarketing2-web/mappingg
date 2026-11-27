@@ -10,7 +10,7 @@ import { PageHead, StatCard } from './PageHead';
 
 type Flash = (m: string, e?: boolean) => void;
 interface Row {
-  id: string; name: string; email: string; phone: string; attendee_type: string; event: string;
+  id: string; name: string; email: string; phone: string; attendee_type: string; city?: string; event: string;
   status: string; created_at: string; consent?: { call?: boolean; whatsapp?: boolean };
 }
 
@@ -40,7 +40,7 @@ export default function EventRegistrationsPanel({ flash, onOpenLeads }: { flash:
   const shown = useMemo(() => {
     const s = q.trim().toLowerCase();
     return (rows || []).filter((r) => (!type || r.attendee_type === type)
-      && (!s || [r.name, r.email, r.phone, r.event].some((v) => String(v || '').toLowerCase().includes(s))));
+      && (!s || [r.name, r.email, r.phone, r.city, r.event].some((v) => String(v || '').toLowerCase().includes(s))));
   }, [rows, q, type]);
 
   const today = new Date().toDateString();
@@ -49,8 +49,8 @@ export default function EventRegistrationsPanel({ flash, onOpenLeads }: { flash:
   function exportCsv() {
     if (!shown.length) return flash('Nothing to export', true);
     const cell = (v: unknown) => `"${String(v ?? '').replace(/"/g, '""')}"`;
-    const head = ['Registered at', 'Name', 'Email', 'Mobile', 'Attendee type', 'Event', 'Status', 'Call opt-in', 'WhatsApp opt-in'];
-    const lines = shown.map((r) => [fmt(r.created_at), r.name, r.email, r.phone, r.attendee_type, r.event, r.status, r.consent?.call ? 'Yes' : 'No', r.consent?.whatsapp ? 'Yes' : 'No'].map(cell).join(','));
+    const head = ['Registered at', 'Name', 'Email', 'Mobile', 'Attendee type', 'City', 'Event', 'Status', 'Call opt-in', 'WhatsApp opt-in'];
+    const lines = shown.map((r) => [fmt(r.created_at), r.name, r.email, r.phone, r.attendee_type, r.city, r.event, r.status, r.consent?.call ? 'Yes' : 'No', r.consent?.whatsapp ? 'Yes' : 'No'].map(cell).join(','));
     const blob = new Blob([[head.map(cell).join(','), ...lines].join('\n')], { type: 'text/csv' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
@@ -82,7 +82,7 @@ export default function EventRegistrationsPanel({ flash, onOpenLeads }: { flash:
 
           <div className="adm-panel">
             <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 12 }}>
-              <input className="crm-search" style={{ flex: '1 1 240px' }} placeholder="Search name, email, mobile…" value={q} onChange={(e) => setQ(e.target.value)} />
+              <input className="crm-search" style={{ flex: '1 1 240px' }} placeholder="Search name, email, mobile, city…" value={q} onChange={(e) => setQ(e.target.value)} />
               <select className="ov-select" value={type} onChange={(e) => setType(e.target.value)}>
                 <option value="">All attendee types</option>
                 {TYPES.map(([t]) => <option key={t} value={t}>{t} ({rows.filter((r) => r.attendee_type === t).length})</option>)}
@@ -91,7 +91,7 @@ export default function EventRegistrationsPanel({ flash, onOpenLeads }: { flash:
             {shown.length ? (
               <div style={{ overflowX: 'auto' }}>
                 <table className="adm-table">
-                  <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Mobile</th><th>Attendee type</th><th>Event</th><th>Status</th><th>Registered</th></tr></thead>
+                  <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Mobile</th><th>Attendee type</th><th>City</th><th>Event</th><th>Status</th><th>Registered</th></tr></thead>
                   <tbody>{shown.map((r, i) => (
                     <tr key={r.id}>
                       <td className="muted">{shown.length - i}</td>
@@ -99,6 +99,7 @@ export default function EventRegistrationsPanel({ flash, onOpenLeads }: { flash:
                       <td><a href={`mailto:${r.email}`}>{r.email}</a></td>
                       <td><a href={`tel:${r.phone.replace(/\s/g, '')}`}>{r.phone}</a></td>
                       <td><span className="adm-badge">{r.attendee_type}</span></td>
+                      <td>{r.city || <span className="muted">—</span>}</td>
                       <td>{r.event}</td>
                       <td><span className="adm-badge">{r.status === 'won' ? 'Booked' : r.status.replace(/_/g, ' ')}</span></td>
                       <td className="muted">{fmt(r.created_at)}</td>

@@ -25,10 +25,59 @@ function tlsConfig(connectionString) {
 }
 
 if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL is not set');
-export const pool = new pg.Pool({ ...tlsConfig(process.env.DATABASE_URL), max: 8, idleTimeoutMillis: 10_000, connectionTimeoutMillis: 15_000, keepAlive: true });
-pool.on('error', (e) => console.error('[db] idle client error', e.message));
 
-export const q = (text, params) => pool.query(text, params);
+// Same pooler fallback as lib/pg.ts: Prisma's pooler (pooled.db.prisma.io) at
+// times fails every connection with "Failed to connect to upstream database"
+// while the direct host (db.prisma.io) works. Then use the direct host for 10
+// minutes and go back. The direct host allows only a few connections per user,
+// so the pool stays small.
+const POOLED_HOST = 'pooled.db.prisma.io';
+const DIRECT_HOST = 'db.prisma.io';
+const DIRECT_FOR_MS = 10 * 60_000;
+const POOLER_DOWN = /failed to connect to upstream database/i;
+let directUntil = 0;
+
+function makePool() {
+  let url = process.env.DATABASE_URL;
+  if (Date.now() < directUntil) {
+    try { const u = new URL(url); if (u.hostname === POOLED_HOST) { u.hostname = DIRECT_HOST; url = u.toString(); } } catch { /* as is */ }
+  }
+  const p = new pg.Pool({ ...tlsConfig(url), max: Date.now() < directUntil ? 2 : 4, idleTimeoutMillis: 10_000, connectionTimeoutMillis: 15_000, keepAlive: true });
+  p.on('error', (e) => console.error('[db] idle client error', e.message));
+  return p;
+}
+let pool = makePool();
+
+/** On a pooler outage, move to the direct host. True when the query is worth retrying there. */
+function switchToDirectHost(e) {
+  if (!POOLER_DOWN.test(String(e?.message || ''))) return false;
+  try { if (new URL(process.env.DATABASE_URL).hostname !== POOLED_HOST) return false; } catch { return false; }
+  const wasDirect = Date.now() < directUntil;
+  directUntil = Date.now() + DIRECT_FOR_MS;
+  if (wasDirect) return false;
+  console.warn('[db] connection pooler is down — using the direct database host for 10 minutes');
+  const old = pool;
+  pool = makePool();
+  old.end().catch(() => undefined);
+  return true;
+}
+
+export async function q(text, params) {
+  if (directUntil && Date.now() > directUntil) { // the direct-host window has ended: back to the pooler
+    directUntil = 0;
+    const old = pool;
+    pool = makePool();
+    old.end().catch(() => undefined);
+  }
+  try {
+    return await pool.query(text, params);
+  } catch (e) {
+    if (switchToDirectHost(e)) return pool.query(text, params);
+    throw e;
+  }
+}
+
+export const closePool = () => pool.end();
 
 /** Tables (kept in step with lib/wa-linked.ts on the website). */
 export const SCHEMA = `

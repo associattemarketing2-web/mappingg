@@ -8,7 +8,7 @@ type Row = {
   userId: string; name: string; empCode: string; designation: string | null; salaryType: string; salary: number;
   workingDays: number; elapsedDays: number; present: number; fullDays: number; halfDays: number; lateDays: number; paidLeave: number; unpaidLeave: number; absent: number;
   workedMinutes: number; overtimeMinutes: number; expectedMinutes: number; hourlyRate: number; payable: number;
-  bonus: number; deductions: number; advance: number; netPay: number;
+  bonus: number; deductions: number; advance: number; fuel: number; professionalTax: number; netPay: number;
 };
 type Adj = { id: string; userId: string; type: string; amount: number; note: string | null };
 
@@ -22,8 +22,8 @@ export default function Payroll() {
 
   function exportCSV() {
     downloadCSV(`salary-${month}.csv`, [
-      ["Emp ID", "Name", "Designation", "Salary type", "Salary / rate", "Working days", "Present", "Full days", "Half days", "Late", "Paid leave", "Unpaid leave", "Absent", "Hours worked", "Overtime hours", "Rate per hour", "Attendance pay", "Bonus", "Deductions", "Advance", "Net pay"],
-      ...rows.map((r) => [r.empCode, r.name, r.designation, r.salaryType, r.salary, r.workingDays, r.present, r.fullDays, r.halfDays, r.lateDays, r.paidLeave, r.unpaidLeave, r.absent, (r.workedMinutes / 60).toFixed(2), (r.overtimeMinutes / 60).toFixed(2), r.hourlyRate, r.payable, r.bonus, r.deductions, r.advance, r.netPay]),
+      ["Emp ID", "Name", "Designation", "Salary type", "Salary / rate", "Working days", "Present", "Full days", "Half days", "Late", "Paid leave", "Unpaid leave", "Absent", "Hours worked", "Overtime hours", "Rate per hour", "Attendance pay", "Bonus", "Deductions", "Advance", "Fuel pending", "Professional tax", "Net pay"],
+      ...rows.map((r) => [r.empCode, r.name, r.designation, r.salaryType, r.salary, r.workingDays, r.present, r.fullDays, r.halfDays, r.lateDays, r.paidLeave, r.unpaidLeave, r.absent, (r.workedMinutes / 60).toFixed(2), (r.overtimeMinutes / 60).toFixed(2), r.hourlyRate, r.payable, r.bonus, r.deductions, r.advance, r.fuel, r.professionalTax, r.netPay]),
     ]);
   }
 
@@ -108,8 +108,9 @@ export default function Payroll() {
                   <td className="whitespace-nowrap">{money(r.payable)}</td>
                   <td className="whitespace-nowrap text-xs">
                     {r.bonus > 0 && <div className="text-emerald-600">+{money(r.bonus)}</div>}
-                    {r.deductions + r.advance > 0 && <div className="text-rose-600">−{money(r.deductions + r.advance)}</div>}
-                    {r.bonus === 0 && r.deductions + r.advance === 0 && <span className="text-slate-400">—</span>}
+                    {r.deductions + r.advance + r.fuel > 0 && <div className="text-rose-600">−{money(r.deductions + r.advance + r.fuel)}</div>}
+                    {r.professionalTax > 0 && <div className="text-rose-600">−{money(r.professionalTax)} PT</div>}
+                    {r.bonus === 0 && r.deductions + r.advance + r.fuel + r.professionalTax === 0 && <span className="text-slate-400">—</span>}
                   </td>
                   <td className="whitespace-nowrap text-right text-base font-bold text-emerald-700">{money(r.netPay)}</td>
                   <td className="whitespace-nowrap text-right">
@@ -139,7 +140,8 @@ export default function Payroll() {
             <b>By days:</b> attendance pay = (full days + ½ × half days + paid leave days) × (salary ÷ working days).
           </li>
           <li>Hourly employees: attendance pay = total hours × hourly rate.</li>
-          <li>Net pay = attendance pay + bonus − deductions − salary advance.</li>
+          <li>Net pay = attendance pay + bonus − deductions − salary advance − fuel pending − professional tax.</li>
+          <li>Professional tax (Maharashtra): ₹200 a month (₹300 in February) when the month&apos;s gross is above ₹10,000, ₹175 above ₹7,500.</li>
           <li>Forgotten check-outs are auto-closed at office end time.</li>
         </ul>
       </div>
@@ -178,6 +180,7 @@ function AdjustModal({ row, month, list, onClose, onChanged }: { row: Row; month
               <option value="BONUS">+ Bonus / incentive</option>
               <option value="DEDUCTION">− Deduction / penalty</option>
               <option value="ADVANCE">− Salary advance</option>
+              <option value="FUEL">− Fuel pending</option>
             </select>
           </Field>
           <Field label="Amount (₹)">
@@ -203,7 +206,7 @@ function AdjustModal({ row, month, list, onClose, onChanged }: { row: Row; month
                     {a.type === "BONUS" ? "+" : "−"}
                     {money(a.amount)}
                   </b>{" "}
-                  {a.type.toLowerCase()} {a.note && <span className="text-slate-500">· {a.note}</span>}
+                  {a.type === "FUEL" ? "fuel pending" : a.type.toLowerCase()} {a.note && <span className="text-slate-500">· {a.note}</span>}
                 </span>
                 <button className="text-xs font-semibold text-rose-600" onClick={() => del(a.id)}>
                   Remove

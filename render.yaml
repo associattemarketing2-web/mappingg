@@ -1,4 +1,8 @@
-# Render Blueprint for the Mappingg Next.js app.
+# Render Blueprint for the Mappingg Next.js app + WhatsApp gateway.
+# `npm run start` runs both in this one service: the website on $PORT and the
+# WhatsApp gateway (gateway/) on 127.0.0.1:8099, reachable only from the site.
+# The gateway keeps WhatsApp connected 24/7, so this needs a plan that never
+# sleeps (Starter or above) — the free plan sleeps and logs the numbers out.
 # IMPORTANT: this is a PRODUCTION Next.js server — it must run `next start`
 # (via `npm run start`), NOT `next dev`. Running dev mode on Render breaks CSS
 # handling and binds to localhost, causing a Bad Gateway.
@@ -6,7 +10,9 @@ services:
   - type: web
     name: mappingg
     runtime: node
-    plan: free
+    plan: starter
+    # Only ONE copy may hold the WhatsApp logins (wl_gateway_lease enforces it).
+    numInstances: 1
     buildCommand: npm install && npm run build
     startCommand: npm run start
     envVars:
@@ -64,6 +70,14 @@ services:
         sync: false
       # Bearer token for GET /api/subscriptions/cron (run it daily from an external scheduler on Render).
       - key: CRON_SECRET
+        sync: false
+      # WhatsApp gateway (s-admin → Communication → WhatsApp Inbox).
+      # WA_GATEWAY_URL is set automatically by `npm run start` — don't add it.
+      - key: WA_GATEWAY_SECRET
+        generateValue: true
+      # Encrypts the WhatsApp logins. Paste the SAME value as in your .env —
+      # a different key logs every linked number out.
+      - key: WA_GATEWAY_KEY
         sync: false
       # Must match package.json "engines" (24.x) and .nvmrc.
       - key: NODE_VERSION
