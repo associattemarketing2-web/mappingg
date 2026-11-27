@@ -3706,16 +3706,19 @@ function BackupsPanel({ flash }: { flash: (m: string, e?: boolean) => void }) {
 /** What the admin is told about, and this device's app preference. */
 function NotificationsSettings({ bell, locked, onToggleLock, onGo }: { bell: boolean; locked: boolean; onToggleLock: () => void; onGo: (t: string) => void }) {
   const rows: [string, string, string, string][] = [
-    ['fa-user-plus', 'New developer & channel-partner sign-ups', 'They wait for your approval in Accounts.', 'accounts'],
+    ['fa-user-plus', 'New sign-ups — buyers, developers & channel partners', 'Developers and partners wait for your approval in Accounts.', 'accounts'],
     ['fa-map-pin', 'Projects added or edited by developers', 'They go live only after you approve them in Project Management.', 'projects'],
-    ['fa-trash-can', 'Delete requests and deleted projects', 'Developers asking to remove a project, and projects they removed.', 'projects'],
+    ['fa-circle-check', 'Project approvals, rejections & deletions', 'Including delete requests developers send.', 'projects'],
+    ['fa-user-pen', 'Account changes', 'Verified / rejected accounts, profile, password and role changes, closed accounts.', 'accounts'],
+    ['fa-envelope', 'New leads & map enquiries', 'Contact-form messages and "Enquire" requests from project cards.', 'leads'],
+    ['fa-right-to-bracket', 'Routine activity', 'Sign-ins, favourites and compare list — listed under Activity, never counted as unread.', 'accounts'],
     ['fa-calendar-check', 'Lead follow-ups due', 'Not in the bell — shown in CRM & Leads → Follow-up due, overdue ones in red.', 'leads'],
   ];
   return (
     <>
       <section className="pg-card st-sec">
         <div className="st-sec-head"><div><h3>Notifications</h3><p>What you are alerted to, and where to act on it.</p></div></div>
-        {!bell && <p className="adm-note"><i className="fas fa-circle-info" /><span>The bell appears for team members who can open Accounts or Project Management.</span></p>}
+        {!bell && <p className="adm-note"><i className="fas fa-circle-info" /><span>The bell appears for team members who can open Accounts, Project Management or CRM &amp; Leads.</span></p>}
         <ul className="st-list">
           {rows.map(([icon, title, desc, tab]) => (
             <li key={title}>
@@ -4117,12 +4120,13 @@ export default function AdminApp({ user }: { user: AdminUser }) {
             <button type="button" className="pct" onClick={() => zoomBy(0)} title="Reset to 100%">{Math.round(zoomNow * 100)}%</button>
             <button type="button" onClick={() => zoomBy(1)} disabled={zoomNow >= Math.min(zoomMax, ZOOM_STEPS[ZOOM_STEPS.length - 1])} aria-label="Zoom in" title="Bigger"><i className="fas fa-plus" /></button>
           </div>
-          {(visible.includes('projects') || visible.includes('accounts')) && (
+          {(visible.includes('projects') || visible.includes('accounts') || visible.includes('leads')) && (
             <NotificationBell
               flash={(m) => flash(m)}
               onPending={setProjPending}
               onOpenProjects={(f) => (visible.includes('projects') ? openProjects(f) : undefined)}
               onOpenAccount={(id) => (visible.includes('accounts') ? openAccount(id) : undefined)}
+              onOpenLead={visible.includes('leads') ? (id) => { setLeadFocus(id); setTab('leads'); } : undefined}
             />
           )}
           <a className="adm2-pill adm2-viewsite" href="/map" target="_blank" rel="noopener" title="Open the live map"><i className="fas fa-arrow-up-right-from-square" /> <span className="adm-hide-sm">View site</span></a>
@@ -4303,7 +4307,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
                     {tab === 'settings' && current === 'seo' && <SettingsForm view="seo" cities={cities} />}
                     {tab === 'settings' && current === 'notifications' && (
                       <NotificationsSettings
-                        bell={visible.includes('projects') || visible.includes('accounts')}
+                        bell={visible.includes('projects') || visible.includes('accounts') || visible.includes('leads')}
                         locked={locked} onToggleLock={toggleLock}
                         onGo={(t) => visible.includes(t) && setTab(t)}
                       />

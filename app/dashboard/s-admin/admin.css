@@ -719,6 +719,16 @@ button.acs-act-row:hover { background: var(--bg); }
 .nb-ic.t-project_edited { background: #fbf1dc; color: var(--road); }
 .nb-ic.t-project_deleted { background: #f6e6dd; color: var(--earth); }
 .nb-ic.t-signup { background: var(--accent-50); color: var(--accent); }
+.nb-ic.c-lead { background: #e8f0fb; color: #2f6fc4; }
+.nb-ic.c-activity { background: var(--bg); color: var(--muted); }
+.nb-ic.t-project_approved, .nb-ic.t-approved { background: #e3f4ea; color: #1f8a4c; }
+.nb-ic.t-project_rejected, .nb-ic.t-rejected, .nb-ic.t-deleted { background: #fbe9e7; color: #c0392b; }
+.nb-head-acts { display: flex; align-items: center; gap: 12px; font-size: 12.5px; }
+.nb-tabs { display: flex; gap: 6px; padding: 8px 12px 4px; overflow-x: auto; scrollbar-width: none; }
+.nb-tabs::-webkit-scrollbar { display: none; }
+.nb-tabs button { flex-shrink: 0; display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; border: 1px solid var(--line); border-radius: 999px; background: #fff; font: inherit; font-size: 12.5px; font-weight: 600; color: var(--muted); cursor: pointer; }
+.nb-tabs button.on { background: var(--forest); border-color: var(--forest); color: #fff; }
+.nb-tabs button span { min-width: 17px; height: 17px; padding: 0 4px; border-radius: 999px; background: #d92d20; color: #fff; font-size: 10.5px; display: grid; place-items: center; }
 .nb-tx { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .nb-tx b { font-size: 13.5px; }
 .nb-tx span { font-size: 13px; color: var(--fg); opacity: .85; overflow-wrap: anywhere; }
