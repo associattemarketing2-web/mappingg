@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ data: { updated: await applyLogoToPins(id, pins) } }, { headers });
     }
     const b = await body(req);
-    await createDeveloper({ name: b.name, logo: b.logo });
+    await createDeveloper({ name: b.name, logo: b.logo, mandate_company: b.mandate_company });
     return NextResponse.json({ data: { ok: true } }, { status: 201, headers });
   } catch (e) { return fail(e); }
 }
@@ -71,7 +71,7 @@ export async function PATCH(req: NextRequest) {
   if (!id) return NextResponse.json({ error: { message: 'Missing id' } }, { status: 400, headers });
   try {
     const b = await body(req);
-    await updateDeveloper(id, { ...('name' in b ? { name: b.name } : {}), ...('logo' in b ? { logo: b.logo } : {}) });
+    await updateDeveloper(id, { ...('name' in b ? { name: b.name } : {}), ...('logo' in b ? { logo: b.logo } : {}), ...('mandate_company' in b ? { mandate_company: b.mandate_company } : {}) });
     return NextResponse.json({ data: { ok: true } }, { headers });
   } catch (e) { return fail(e); }
 }

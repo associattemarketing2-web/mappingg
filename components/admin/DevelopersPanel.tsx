@@ -22,6 +22,8 @@ interface ProjectInfo {
 const FIRST = 4; // project names listed on a developer card before "+ n more"
 interface Dev {
   id: string; name: string; logo: string | null; projects: number; logoInUse: number; updated_at: string;
+  /** Mandate (sales) company for this developer; '' when not set. */
+  mandate_company?: string;
   list?: ProjectInfo[];
 }
 const STATUS: Record<string, string> = { available: 'Ready to move', under_construction: 'Under construction', construction: 'Under construction', upcoming: 'Upcoming', sold: 'Sold out' };
@@ -280,6 +282,7 @@ Old project data stays in Backups.`)) return;
                       </span>
                       <span className="dvl2-id">
                         <b title={d.name}>{d.name}</b>
+                        {d.mandate_company && <small className="dvl2-mandate" title="Mandate company"><i className="fas fa-handshake" /> {d.mandate_company}</small>}
                         <small>{d.projects ? `${d.projects} Project${d.projects === 1 ? '' : 's'}` : 'No projects yet'}{cities.length ? ` • ${cities.slice(0, 2).join(', ')}${cities.length > 2 ? ` +${cities.length - 2}` : ''}` : ''}</small>
                         <span className={`dvl2-chip s-${st}`}><i className={`fas ${st === 'ok' ? 'fa-circle-check' : 'fa-circle-exclamation'}`} /> {chipText(d)}</span>
                       </span>
@@ -327,7 +330,7 @@ Old project data stays in Backups.`)) return;
                           <td className="muted">{d.updated_at ? new Date(d.updated_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '—'}</td>
                           <td>
                             <div className="bg-acts">
-                              <button type="button" onClick={() => setEditing(d.id)} title="Edit name / logo" aria-label={`Edit ${d.name}`}><i className="fas fa-pen" /></button>
+                              <button type="button" onClick={() => setEditing(d.id)} title="Edit name / logo / mandate company" aria-label={`Edit ${d.name}`}><i className="fas fa-pen" /></button>
                               <button type="button" onClick={() => openDevAt(d.id)} title="View projects & logos" aria-label={`Projects of ${d.name}`}><i className="fas fa-list" /></button>
                             </div>
                           </td>
@@ -498,8 +501,9 @@ function DeveloperDrawer({ dev, initialProject, flash, onClose, onChanged, onEdi
           </div>
           <div className="dvl-dev-id">
             <h3>{dev.name}</h3>
+            {dev.mandate_company && <span className="muted"><i className="fas fa-handshake" /> Mandate: <b>{dev.mandate_company}</b></span>}
             <span className="muted">{dev.projects} project{dev.projects === 1 ? '' : 's'} on the map</span>
-            <button type="button" className="adm-btn ghost sm" onClick={onEdit} disabled={busy}><i className="fas fa-pen" /> {dev.logo ? 'Edit name / logo' : 'Add logo'}</button>
+            <button type="button" className="adm-btn ghost sm" onClick={onEdit} disabled={busy}><i className="fas fa-pen" /> {dev.logo ? 'Edit details / logo' : 'Add logo / details'}</button>
           </div>
           <button type="button" className="dvl-close" onClick={onClose} aria-label="Close"><i className="fas fa-xmark" /></button>
         </div>
@@ -674,12 +678,14 @@ function EditDrawer({ dev, others, flash, onClose, onDone }: { dev: Dev; others:
     } catch (err) { flash(err instanceof Error ? err.message : 'Could not merge', true); setBusy(false); }
   }
   const [name, setName] = useState(dev.name);
+  const [mandate, setMandate] = useState(dev.mandate_company || '');
   // undefined = logo unchanged, null = remove it, string = new logo (data: URL)
   const [logo, setLogo] = useState<string | null | undefined>(undefined);
   const [busy, setBusy] = useState(false);
   const input = useRef<HTMLInputElement>(null);
   const preview = logo === undefined ? (dev.logo ? thumb(dev.logo) : null) : logo;
-  const changed = name.trim() !== dev.name || logo !== undefined;
+  const mandateChanged = mandate.trim() !== (dev.mandate_company || '');
+  const changed = name.trim() !== dev.name || logo !== undefined || mandateChanged;
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape' && !busy) onClose(); };
@@ -693,7 +699,7 @@ function EditDrawer({ dev, others, flash, onClose, onDone }: { dev: Dev; others:
     if (!changed) { onClose(); return; }
     setBusy(true);
     try {
-      await call('PATCH', `?id=${dev.id}`, { ...(name.trim() !== dev.name ? { name: name.trim() } : {}), ...(logo !== undefined ? { logo } : {}) });
+      await call('PATCH', `?id=${dev.id}`, { ...(name.trim() !== dev.name ? { name: name.trim() } : {}), ...(logo !== undefined ? { logo } : {}), ...(mandateChanged ? { mandate_company: mandate.trim() } : {}) });
       flash(`${name.trim()} saved`);
       onDone();
     } catch (err) { flash(err instanceof Error ? err.message : 'Could not save', true); setBusy(false); }
@@ -744,6 +750,10 @@ If it is a duplicate, use “Merge into another developer” above instead.`);
             <label htmlFor="dvl-edit-name">Developer name</label>
             <input id="dvl-edit-name" value={name} onChange={(e) => setName(e.target.value)} maxLength={120} />
           </div>
+          <div className="adm-field">
+            <label htmlFor="dvl-edit-mandate">Mandate company <span className="muted">(optional)</span></label>
+            <input id="dvl-edit-mandate" value={mandate} onChange={(e) => setMandate(e.target.value)} maxLength={160} placeholder="e.g. Anarock, JLL, Square Yards" />
+          </div>
           <p className="muted dvl-proj">{dev.projects ? `${dev.projects} project${dev.projects === 1 ? '' : 's'} on the map use this name.` : 'No projects on the map use this name yet.'}</p>
           <div className="dvl-form-actions">
             <button type="button" className="adm-btn ghost" onClick={onClose} disabled={busy}>Cancel</button>
@@ -774,6 +784,7 @@ If it is a duplicate, use “Merge into another developer” above instead.`);
 
 function AddCard({ onSaved, onCancel, flash }: { onSaved: () => void; onCancel: () => void; flash: Flash }) {
   const [name, setName] = useState('');
+  const [mandate, setMandate] = useState('');
   const [logo, setLogo] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const input = useRef<HTMLInputElement>(null);
@@ -781,7 +792,7 @@ function AddCard({ onSaved, onCancel, flash }: { onSaved: () => void; onCancel: 
     e.preventDefault();
     if (!name.trim()) return;
     setBusy(true);
-    try { await call('POST', '', { name: name.trim(), logo }); onSaved(); } catch (err) { flash(err instanceof Error ? err.message : 'Could not add', true); } finally { setBusy(false); }
+    try { await call('POST', '', { name: name.trim(), logo, mandate_company: mandate.trim() }); onSaved(); } catch (err) { flash(err instanceof Error ? err.message : 'Could not add', true); } finally { setBusy(false); }
   }
   return (
     <form className="adm-panel dvl-add" onSubmit={save}>
@@ -794,6 +805,10 @@ function AddCard({ onSaved, onCancel, flash }: { onSaved: () => void; onCancel: 
       <div className="adm-field dvl-add-name">
         <label htmlFor="dvl-new">Developer name</label>
         <input id="dvl-new" autoFocus value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Kolte Patil Developers" maxLength={120} />
+      </div>
+      <div className="adm-field dvl-add-name">
+        <label htmlFor="dvl-new-mandate">Mandate company <span className="muted">(optional)</span></label>
+        <input id="dvl-new-mandate" value={mandate} onChange={(e) => setMandate(e.target.value)} placeholder="e.g. Anarock, JLL, Square Yards" maxLength={160} />
       </div>
       <div className="dvl-add-actions">
         <button className="adm-btn ghost" type="button" onClick={onCancel}>Cancel</button>

@@ -24,11 +24,14 @@ export interface Developer {
   /** Other names of the same developer — the legal / project-company names used on RERA
    *  ("SOBHA LIMITED", "Provident White Oaks LLP") — that get this logo too. */
   aliases?: string[];
+  /** The mandate (sales / channel-partner) company that sells this developer's projects. */
+  mandate_company?: string;
   created_at: string;
   updated_at: string;
 }
 export interface DeveloperRow {
   id: string; name: string; logo: string | null; projects: number; logoInUse: number; updated_at: string;
+  mandate_company: string;
   /** Every map project of this developer, for the card and the project list. */
   list: ProjectInfo[];
 }
@@ -141,7 +144,7 @@ export async function listDevelopers(): Promise<DeveloperRow[]> {
   }
   return devs
     .map((d) => ({
-      id: d.id, name: d.name, logo: logoUrl(d), projects: projects.get(normDev(d.name)) || 0, logoInUse: sameLogo.get(normDev(d.name)) || 0, updated_at: d.updated_at,
+      id: d.id, name: d.name, logo: logoUrl(d), mandate_company: d.mandate_company || '', projects: projects.get(normDev(d.name)) || 0, logoInUse: sameLogo.get(normDev(d.name)) || 0, updated_at: d.updated_at,
       list: (lists.get(normDev(d.name)) || []).sort((a, b) => (a.number ?? 1e9) - (b.number ?? 1e9) || a.title.localeCompare(b.title)),
     }))
     .sort((a, b) => b.projects - a.projects || a.name.localeCompare(b.name));
@@ -196,6 +199,8 @@ export class DeveloperError extends Error {
 }
 
 const cleanName = (s: unknown) => String(s || '').replace(/\s+/g, ' ').trim().slice(0, 120);
+/** Mandate company name: optional, one line, up to 160 characters. */
+const cleanMandate = (s: unknown) => String(s ?? '').replace(/\s+/g, ' ').trim().slice(0, 160);
 const isLogo = (s: unknown): s is string => typeof s === 'string' && /^data:image\/(png|jpe?g|webp|gif|svg\+xml);base64,/.test(s) && s.length < 3_000_000;
 
 async function assertUniqueName(name: string, exceptId?: string) {
@@ -252,14 +257,14 @@ export async function pinImageDigest(id: string): Promise<string> {
   return fingerprint(p?.image);
 }
 
-export async function createDeveloper(input: { name: unknown; logo?: unknown }): Promise<void> {
+export async function createDeveloper(input: { name: unknown; logo?: unknown; mandate_company?: unknown }): Promise<void> {
   await ensureTable();
   const name = cleanName(input.name);
   if (!name) throw new DeveloperError('Enter the developer’s name');
   if (input.logo != null && !isLogo(input.logo)) throw new DeveloperError('Logo must be a PNG, JPG, WebP, GIF or SVG image under 2 MB');
   await assertUniqueName(name);
   const id = randomUUID(), now = new Date().toISOString();
-  await (await coll()).insertOne({ _id: id, id, name, logo: (input.logo as string) || null, created_at: now, updated_at: now });
+  await (await coll()).insertOne({ _id: id, id, name, logo: (input.logo as string) || null, mandate_company: cleanMandate(input.mandate_company), created_at: now, updated_at: now });
   logoIdx = null;
 }
 
@@ -273,7 +278,7 @@ async function renamePins(from: string, to: string): Promise<number> {
   return ids.length;
 }
 
-export async function updateDeveloper(id: string, input: { name?: unknown; logo?: unknown }): Promise<void> {
+export async function updateDeveloper(id: string, input: { name?: unknown; logo?: unknown; mandate_company?: unknown }): Promise<void> {
   await ensureTable();
   const set: Partial<Developer> = { updated_at: new Date().toISOString() };
   let renameFrom: string | null = null;
@@ -289,6 +294,7 @@ export async function updateDeveloper(id: string, input: { name?: unknown; logo?
     if (input.logo !== null && !isLogo(input.logo)) throw new DeveloperError('Logo must be a PNG, JPG, WebP, GIF or SVG image under 2 MB');
     set.logo = input.logo as string | null;
   }
+  if (input.mandate_company !== undefined) set.mandate_company = cleanMandate(input.mandate_company);
   const r = await (await coll()).updateOne({ id }, { $set: set });
   logoIdx = null;
   if (!r.matchedCount) throw new DeveloperError('Developer not found', 404);
@@ -326,7 +332,7 @@ export async function mergeDeveloper(fromId: string, intoId: string, allPins?: P
   // The duplicate's names become other names of the kept developer: RERA imports that
   // still use them get this logo and don't add the duplicate back (syncFromPins).
   const aliases = [...new Set([...(into.aliases || []), from.name, ...(from.aliases || [])])].filter((a) => a && normDev(a) !== normDev(into.name));
-  await c.updateOne({ id: intoId }, { $set: { aliases, ...(!into.logo && from.logo ? { logo: from.logo } : {}), updated_at: new Date().toISOString() } });
+  await c.updateOne({ id: intoId }, { $set: { aliases, ...(!into.logo && from.logo ? { logo: from.logo } : {}), ...(!into.mandate_company && from.mandate_company ? { mandate_company: from.mandate_company } : {}), updated_at: new Date().toISOString() } });
   await c.deleteOne({ id: fromId });
   logoIdx = null;
   return { moved: ids.length };

@@ -2109,6 +2109,8 @@ button.sc:disabled { cursor: default; opacity: .75; }
 .dvl2-id { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
 .dvl2-id b { font-size: 15.5px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .dvl2-id small { font-size: 12.5px; color: #6b746e; }
+.dvl2-id .dvl2-mandate { color: #3f6b52; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dvl2-id .dvl2-mandate i { margin-right: 3px; }
 .dvl2-chip { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
 .dvl2-chip.s-ok { background: #e6f4ea; color: #1f7a3f; }
 .dvl2-chip.s-some { background: #fdf1de; color: #a66a12; }
