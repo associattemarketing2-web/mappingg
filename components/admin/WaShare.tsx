@@ -16,7 +16,7 @@ type Flash = (m: string, e?: boolean) => void;
 export type ShareKind = 'photo' | 'brochure' | 'floor_plan' | 'payment_plan' | 'video' | 'file';
 interface Item { id: string; kind: ShareKind; url: string; name: string }
 interface Project { pin_id: string; title: string; location?: string; developer?: string; price?: string; configuration?: string; possession?: string; logo?: string }
-interface Choice { id: string; title: string; location: string; developer: string }
+interface Choice { id: string; number: string; title: string; location: string; developer: string }
 export interface Share {
   id: string; code: string; title: string; url: string; note: string; show_details: boolean; project: Project | null;
   items: Item[]; views: number; sent: number; opened: number; created_by?: string; created_at: string;
@@ -83,9 +83,14 @@ export function SharePicker({ share, onShare, flash }: { share: Share | null; on
   }, [openList]);
 
   const matches = useMemo(() => {
-    const t = q.trim().toLowerCase();
+    const t = q.trim().toLowerCase().replace(/^#\s*/, '');
     const list = choices || [];
-    return (t ? list.filter((c) => `${c.title} ${c.location} ${c.developer}`.toLowerCase().includes(t)) : list).slice(0, 40);
+    if (!t) return list.slice(0, 40);
+    // Pin number: "197" or "#197" → that pin first, then name / location / developer matches.
+    const exact = /^\d+$/.test(t) ? list.filter((c) => c.number === t) : [];
+    const words = t.split(/\s+/).filter(Boolean);
+    const rest = list.filter((c) => !exact.includes(c) && words.every((w) => `#${c.number} ${c.number} ${c.title} ${c.location} ${c.developer}`.toLowerCase().includes(w)));
+    return [...exact, ...rest].slice(0, 40);
   }, [choices, q]);
 
   async function choose(c: Choice) {
@@ -138,7 +143,16 @@ export function SharePicker({ share, onShare, flash }: { share: Share | null; on
   }
 
   async function create() {
-    const chosen = items.filter((i) => picked.has(i.id));
+    let chosen = items.filter((i) => picked.has(i.id));
+    // A link pasted but not yet added with "Add link" is included too, so it is never lost.
+    const pending = linkUrl.trim();
+    if (pending) {
+      if (!/^https?:\/\/\S+\.\S+/i.test(pending)) { flash('The pasted link is not a full link (https://…) — fix it or clear the box', true); return; }
+      if (!chosen.some((i) => i.url === pending)) {
+        chosen = [...chosen, { id: 'pending', kind: linkKind, url: pending, name: linkName.trim() || KIND_LABEL[linkKind] }];
+      }
+      setLinkUrl(''); setLinkName('');
+    }
     if (!chosen.length && !(project && details)) { flash('Pick at least one photo, brochure or file', true); return; }
     setBusy(true);
     try {
@@ -182,7 +196,7 @@ export function SharePicker({ share, onShare, flash }: { share: Share | null; on
         <div className="wsh-pick">
           <label className="acs-search">
             <i className="fas fa-magnifying-glass" />
-            <input type="search" placeholder={pin ? `${pin.title}${pin.location ? ` — ${pin.location}` : ''}` : 'Search project, area or developer'} value={q}
+            <input type="search" placeholder={pin ? `#${pin.number} ${pin.title}${pin.location ? ` — ${pin.location}` : ''}` : 'Search pin no. (e.g. 197), project name, location or developer'} value={q}
               onFocus={() => setOpenList(true)} onChange={(e) => { setQ(e.target.value); setOpenList(true); }} aria-label="Search project" />
           </label>
           {openList && (
@@ -192,7 +206,7 @@ export function SharePicker({ share, onShare, flash }: { share: Share | null; on
                   : matches.map((c) => (
                     <li key={c.id}>
                       <button type="button" role="option" aria-selected={pin?.id === c.id} onClick={() => void choose(c)}>
-                        <b>{c.title}</b><small>{[c.location, c.developer].filter(Boolean).join(' · ')}</small>
+                        <b>{c.number ? <span className="wsh-pin-no">#{c.number}</span> : null}{c.title}</b><small>{[c.location, c.developer].filter(Boolean).join(' · ')}</small>
                       </button>
                     </li>
                   ))}
@@ -293,9 +307,16 @@ export function SharePicker({ share, onShare, flash }: { share: Share | null; on
 }
 
 /** Every link created, and for each one: who it went to, who opened it, what they downloaded. */
-export function SharedLinks({ flash, refreshKey = 0, onUse }: { flash: Flash; refreshKey?: number; onUse?: (s: Share) => void }) {
+export function SharedLinks({ flash, refreshKey = 0, onUse, focusId }: { flash: Flash; refreshKey?: number; onUse?: (s: Share) => void; focusId?: string | null }) {
   const [rows, setRows] = useState<Share[] | null>(null);
   const [open, setOpen] = useState<string | null>(null);
+  const boxRef = useRef<HTMLDivElement>(null);
+  // Just sent with a link: open its "who opened" list and bring it into view.
+  useEffect(() => {
+    if (!focusId) return;
+    setOpen(focusId);
+    setTimeout(() => boxRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
+  }, [focusId, refreshKey]);
   const [people, setPeople] = useState<Recipient[] | null>(null);
   const [filter, setFilter] = useState<'all' | 'opened' | 'not'>('all');
 
@@ -326,7 +347,7 @@ export function SharedLinks({ flash, refreshKey = 0, onUse }: { flash: Flash; re
 
   const shown = (people || []).filter((p) => filter === 'all' || (filter === 'opened' ? !!p.first_open_at : !p.first_open_at));
   return (
-    <div className="adm-panel">
+    <div className="adm-panel" ref={boxRef}>
       <div className="adm-panel-head"><h3><i className="fas fa-link" /> Project links &amp; who opened them</h3><span className="muted">Updates every 30 s. WhatsApp link previews are not counted as opens.</span></div>
       <div className="wa-table-wrap">
         <table className="wa-table">

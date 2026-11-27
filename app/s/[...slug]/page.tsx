@@ -116,6 +116,7 @@ export default async function SharePage({ params }: Props) {
                   <img className="shr-doc-img" src={f.show.src} alt={f.name || LABEL[f.kind]} loading="lazy" referrerPolicy="no-referrer" />
                 )}
                 {f.show.type === 'video' && <video className="shr-video-file" src={f.show.src} controls preload="metadata" playsInline />}
+                <p className="shr-link">🔗 <a href={f.show.open.startsWith('/') ? `${site}${f.show.open}` : f.show.open} target="_blank" rel="noopener" data-track={f.id}>{f.show.open.startsWith('/') ? `${site}${f.show.open}` : f.show.open}</a></p>
                 <div className="shr-doc-acts">
                   <a href={f.show.open} target="_blank" rel="noopener" data-track={f.id}>⤢ Open full screen</a>
                   {f.show.download && <a href={f.show.download} target="_blank" rel="noopener" download data-track={f.id}>↓ Download</a>}

@@ -34,14 +34,17 @@ interface PushSub {
   last_ok_at?: string;
 }
 
-export const pushConfigured = () => Boolean(process.env.WEB_PUSH_PUBLIC_KEY && process.env.WEB_PUSH_PRIVATE_KEY);
-export const pushPublicKey = () => process.env.WEB_PUSH_PUBLIC_KEY || '';
+// NEXT_PUBLIC_VAPID_PUBLIC_KEY / VAPID_PRIVATE_KEY / VAPID_SUBJECT are accepted too (same key pair, older names).
+const PUB = () => process.env.WEB_PUSH_PUBLIC_KEY || process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || '';
+const PRIV = () => process.env.WEB_PUSH_PRIVATE_KEY || process.env.VAPID_PRIVATE_KEY || '';
+export const pushConfigured = () => Boolean(PUB() && PRIV());
+export const pushPublicKey = () => PUB();
 
 let vapidSet = false;
 function vapid(): boolean {
   if (!pushConfigured()) return false;
   if (!vapidSet) {
-    webpush.setVapidDetails(process.env.WEB_PUSH_SUBJECT || 'mailto:admin@mappingg.com', process.env.WEB_PUSH_PUBLIC_KEY!, process.env.WEB_PUSH_PRIVATE_KEY!);
+    webpush.setVapidDetails(process.env.WEB_PUSH_SUBJECT || process.env.VAPID_SUBJECT || 'mailto:admin@mappingg.com', PUB(), PRIV());
     vapidSet = true;
   }
   return true;

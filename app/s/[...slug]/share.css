@@ -61,3 +61,5 @@ body:has(.shr) { background: #f4f6fa; }
 .shr-vid + .shr-vid { margin-top: 12px; }
 .shr-vid .shr-doc-acts { padding: 8px 0 0; }
 .shr-video-file { display: block; width: 100%; border-radius: 12px; background: #000; max-height: 70vh; }
+.shr-link { margin: 0; padding: 8px 12px 0; font-size: 12.5px; color: var(--shr-mute); overflow-wrap: anywhere; }
+.shr-link a { color: var(--shr-acc); }

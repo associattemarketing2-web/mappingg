@@ -17,12 +17,12 @@ export async function POST(req: NextRequest) {
     const first = await recordEvent(code, tok, event, String(b.i || '').slice(0, 40), req.headers.get('user-agent') || '');
     if (first) {
       const share = await getShareByCode(code);
-      void import('@/lib/web-push').then(({ pushToAdmins }) => pushToAdmins({
+      void import('@/lib/push').then(({ pushToStaff }) => pushToStaff({
         title: `👀 ${first.name || prettyPhone(first.phone)} opened your link`,
         body: `${share?.title || 'Project link'} · ${prettyPhone(first.phone)}`,
         url: '/dashboard/s-admin?tab=whatsapp',
         tag: `share-${tok}`,
-      })).catch(() => {});
+      }, 'whatsapp')).catch(() => {});
     }
   } catch { /* never fail the page */ }
   return new NextResponse(null, { status: 204 });

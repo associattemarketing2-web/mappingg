@@ -4295,3 +4295,4 @@ button.ck:hover { transform: translateY(-2px); }
 .wa-note.wsh-attached { margin-bottom: 10px; background: var(--water-50); color: #23517a; }
 .wsh-link-row { display: grid; grid-template-columns: 140px minmax(0, 2fr) minmax(0, 1fr) auto; gap: 8px; align-items: center; }
 @media (max-width: 720px) { .wsh-link-row { grid-template-columns: 1fr; } }
+.wsh-pin-no { display: inline-block; margin-right: 6px; padding: 0 6px; border-radius: 6px; background: var(--accent-50); color: var(--forest); font-size: 12px; font-weight: 700; }

@@ -43,21 +43,26 @@ function urlB64ToUint8(b64: string): Uint8Array {
   const raw = atob((b64 + pad).replace(/-/g, '+').replace(/_/g, '/'));
   return Uint8Array.from(raw, (c) => c.charCodeAt(0));
 }
-/** Subscribes this browser to Web Push and stores it on the server. */
+/** Subscribes this browser to Web Push (the same /api/push + lib/push.ts as the user-menu PushToggle). */
 async function subscribePush(): Promise<boolean> {
-  const cfg = await fetch('/api/admin/push', { credentials: 'same-origin' }).then((r) => r.json()).catch(() => null);
-  const key = cfg?.data?.publicKey;
+  const cfg = await fetch('/api/push', { credentials: 'same-origin', cache: 'no-store' }).then((r) => r.json()).catch(() => null);
+  const key: string = cfg?.data?.key;
   if (!cfg?.data?.configured || !key) return false;
   const reg = (await navigator.serviceWorker.getRegistration('/')) || (await navigator.serviceWorker.register('/sw.js', { scope: '/' }));
   await navigator.serviceWorker.ready;
+  const want = urlB64ToUint8(key);
   let sub = await reg.pushManager.getSubscription();
-  if (!sub) sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlB64ToUint8(key) as BufferSource });
-  const r = await fetch('/api/admin/push', {
+  // A subscription made with another key can't receive these pushes: replace it.
+  const have = sub?.options.applicationServerKey ? new Uint8Array(sub.options.applicationServerKey) : null;
+  if (sub && (!have || have.length !== want.length || have.some((b, i) => b !== want[i]))) { await sub.unsubscribe().catch(() => {}); sub = null; }
+  if (!sub) sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: want as BufferSource });
+  const r = await fetch('/api/push', {
     method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ subscription: sub.toJSON() }),
+    body: JSON.stringify({ action: 'subscribe', subscription: sub.toJSON() }),
   });
   return r.ok;
 }
+const pushTestCall = () => fetch('/api/push', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'test' }) });
 
 export default function NotificationBell({ onOpenProjects, onOpenAccount, onOpenLead, onPending, flash }: {
   onOpenProjects: (focus?: { ownerId?: string; projectId?: string }) => void;
@@ -161,7 +166,7 @@ export default function NotificationBell({ onOpenProjects, onOpenAccount, onOpen
       const ok = await subscribePush();
       setPushOn(ok);
       if (ok) {
-        await fetch('/api/admin/push', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ test: true }) });
+        await pushTestCall();
         flash?.('Device notifications on — a test alert was sent.');
       } else flash?.('Could not turn on device notifications (push keys missing on the server?).');
     } catch (e) {
@@ -169,7 +174,7 @@ export default function NotificationBell({ onOpenProjects, onOpenAccount, onOpen
     } finally { setPushBusy(false); }
   }
   async function sendTest() {
-    const r = await fetch('/api/admin/push', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ test: true }) }).catch(() => null);
+    const r = await pushTestCall().catch(() => null);
     flash?.(r?.ok ? 'Test alert sent to your devices.' : 'Test failed.');
   }
   function toggle() {

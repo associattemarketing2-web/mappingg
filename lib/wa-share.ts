@@ -3,7 +3,7 @@ import { getDb, usingMongo } from './mongodb';
 import { query } from './pg';
 import { mediaUrl } from './pin-media';
 import { publicImageUrl } from './seo/public-media';
-import { getPublicPins, slugForProject, type Pin } from './seo/entities';
+import { slugForProject, type Pin } from './seo/entities';
 import { prettyPhone, waDigits } from './wa-store';
 
 // Project share links (s-admin → WhatsApp → Bulk send → "Share a project").
@@ -73,11 +73,20 @@ const fileName = (url: string, fallback: string) => {
 const urlOk = (u: string) => /^(https?:\/\/|\/)/.test(u) && !u.startsWith('data:');
 const ytId = (u: string) => /(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/.exec(u)?.[1] || '';
 
-/** Light list of the public projects for the picker. */
-export async function projectChoices(): Promise<{ id: string; title: string; location: string; developer: string }[]> {
-  const pins = await getPublicPins();
-  return pins.filter((p) => p.title).map((p) => ({ id: String(p.id), title: str(p.title), location: str(p.location), developer: str(p.developer) }))
-    .sort((a, b) => a.title.localeCompare(b.title));
+/** Every project pin for the picker (searchable by pin number, name, location, developer). */
+export async function projectChoices(): Promise<{ id: string; number: string; title: string; location: string; developer: string }[]> {
+  type Row = { id: string; number: string; title: string; location: string; developer: string };
+  let rows: Row[];
+  if (!usingMongo()) {
+    const r = await query<{ id: string; n: string | null; t: string | null; l: string | null; d: string | null }>(
+      `SELECT id, doc->>'number' n, doc->>'title' t, doc->>'location' l, doc->>'developer' d FROM pins WHERE coalesce(doc->>'title', '') <> ''`,
+    );
+    rows = r.rows.map((x) => ({ id: x.id, number: str(x.n), title: str(x.t), location: str(x.l), developer: str(x.d) }));
+  } else {
+    const list = await (await getDb()).collection('pins').find({}, { projection: { id: 1, number: 1, title: 1, location: 1, developer: 1 } }).toArray();
+    rows = list.filter((p) => p.title).map((p) => ({ id: String(p.id), number: str(p.number), title: str(p.title), location: str(p.location), developer: str(p.developer) }));
+  }
+  return rows.sort((a, b) => a.title.localeCompare(b.title) || Number(a.number) - Number(b.number));
 }
 
 async function loadPin(pinId: string): Promise<Record<string, unknown> | null> {
@@ -114,6 +123,7 @@ export async function projectMedia(pinId: string): Promise<{ project: ShareProje
     add('payment_plan', proj.payment_plan_url, fileName(str(proj.payment_plan_url), 'Payment plan'));
     add('video', proj.youtube_url, 'Project video');
     add('file', proj.media_folder_link, 'Photos & media folder');
+    add('file', proj.tour_360_url, '360° virtual tour');
   }
   add('brochure', pin.brochure_url, fileName(str(pin.brochure_url), 'Brochure'));
   const bi = str(pin.brochure_image);

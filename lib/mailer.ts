@@ -101,19 +101,6 @@ export function queueMail(m: Parameters<typeof sendMail>[0]): void {
 export function notifyAdmin(subject: string, o: Parameters<typeof layout>[0], replyTo?: string): void {
   const to = adminEmails();
   if (to.length) queueMail({ to, subject: `[Mappingg] ${subject}`, html: layout(o), replyTo });
-<<<<<<< Updated upstream
-  // Same alert as a device notification (laptop / phone) for admins who turned
-  // it on — works even when the site is closed. Loaded lazily; never throws.
-  void import('./web-push').then(({ pushToAdmins, plainText }) => {
-    const first = (o.body || []).map((b) => plainText(b)).find(Boolean);
-    const row = (o.rows || []).find(([k, v]) => /name|phone|mobile/i.test(k) && v)?.[1];
-    return pushToAdmins({
-      title: subject,
-      body: first || (row ? plainText(row) : o.title !== subject ? o.title : ''),
-      url: o.cta?.href || '/dashboard/s-admin',
-    });
-  }).catch(() => {});
-=======
   pushCopy(subject, o);
 }
 
@@ -133,5 +120,4 @@ function pushCopy(subject: string, o: Parameters<typeof layout>[0]): void {
     { title: subject.slice(0, 120), body, url: `/dashboard/s-admin?tab=${tab}`, tag: `${tab}-${Date.now()}` },
     (perm || undefined) as Parameters<typeof pushToStaff>[1],
   )).catch(() => {});
->>>>>>> Stashed changes
 }

@@ -535,6 +535,8 @@ function BulkView({ flash, configured }: { flash: Flash; configured: boolean }) 
   const [refresh, setRefresh] = useState(0);
   // Project link attached to this send (step 1). Each number gets its own link in place of {link}.
   const [share, setShare] = useState<Share | null>(null);
+  // After a send with a link: show that link's "who opened" list.
+  const [focusShare, setFocusShare] = useState<string | null>(null);
   const shareRef = useRef<HTMLDivElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
   const listRef = useRef(list);
@@ -625,7 +627,7 @@ function BulkView({ flash, configured }: { flash: Flash; configured: boolean }) 
         {tplError && <p className="wa-note warn"><i className="fas fa-triangle-exclamation" /> {tplError}</p>}
         <Composer recipients={list} templates={templates} meta={meta} configured={configured} flash={flash} onResults={onResults}
           share={share ? { id: share.id, title: share.title, location: share.project?.location } : null}
-          onDone={() => { loadCampaigns(); setRefresh((n) => n + 1); }} />
+          onDone={() => { loadCampaigns(); setRefresh((n) => n + 1); if (share) setFocusShare(share.id); }} />
       </div>
 
       <div className="adm-panel">
@@ -662,7 +664,7 @@ function BulkView({ flash, configured }: { flash: Flash; configured: boolean }) 
         )}
       </div>
 
-      <SharedLinks flash={flash} refreshKey={refresh}
+      <SharedLinks flash={flash} refreshKey={refresh} focusId={focusShare}
         onUse={(s) => { setShare(s); shareRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }); flash(`Link "${s.title}" attached — add numbers and send`); }} />
 
       <SchedulesView flash={flash} refreshKey={refresh} />
