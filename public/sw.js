@@ -6,7 +6,7 @@
  * waiting after NAV_TIMEOUT_MS and serves the cached page instead of leaving a
  * blank screen (the "PWA pages sometimes don't load" symptom). The network copy
  * still updates the cache in the background when it eventually arrives. */
-const CACHE = 'mappingg-v6'; // v6: private pages, API calls and other origins bypass the worker. v5: drops pages cached before the OTP-paused sign-in (v4: private pages)
+const CACHE = 'mappingg-v7'; // v7: push notifications. v6: private pages, API calls and other origins bypass the worker. v5: drops pages cached before the OTP-paused sign-in (v4: private pages)
 const NAV_TIMEOUT_MS = 3500;
 const APP_SHELL = ['/', '/map', '/mundhwa-map-3d', '/db-shim.js', '/landing.js', '/manifest.webmanifest'];
 
@@ -108,4 +108,32 @@ self.addEventListener('fetch', (event) => {
       }
     })(),
   );
+});
+
+/* ---------------------------------------------------------------------------
+ * Web Push — admin alerts on the laptop / phone, even when the site is closed.
+ * The server sends { title, body, url, tag }; clicking opens (or focuses) that page. */
+self.addEventListener('push', (event) => {
+  let d = {};
+  try { d = event.data ? event.data.json() : {}; } catch { d = { body: event.data ? event.data.text() : '' }; }
+  const title = d.title || 'Mappingg';
+  event.waitUntil(self.registration.showNotification(title, {
+    body: d.body || '',
+    icon: '/icons/icon-192.png',
+    badge: '/icons/icon-192.png',
+    tag: d.tag || undefined,
+    renotify: !!d.tag,
+    data: { url: d.url || '/dashboard/s-admin' },
+  }));
+});
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  const target = new URL((event.notification.data && event.notification.data.url) || '/dashboard/s-admin', self.location.origin).href;
+  event.waitUntil((async () => {
+    const all = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    const same = all.find((c) => c.url === target) || all.find((c) => new URL(c.url).pathname.startsWith('/dashboard'));
+    if (same) { await same.focus(); if (same.url !== target && 'navigate' in same) await same.navigate(target).catch(() => {}); return; }
+    await self.clients.openWindow(target);
+  })());
 });

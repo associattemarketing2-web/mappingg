@@ -37,6 +37,27 @@ const ago = (d: string) => {
   return `${Math.floor(s / 86400)} d ago`;
 };
 const canNotify = () => typeof window !== 'undefined' && 'Notification' in window;
+const canPush = () => canNotify() && 'serviceWorker' in navigator && 'PushManager' in window;
+function urlB64ToUint8(b64: string): Uint8Array {
+  const pad = '='.repeat((4 - (b64.length % 4)) % 4);
+  const raw = atob((b64 + pad).replace(/-/g, '+').replace(/_/g, '/'));
+  return Uint8Array.from(raw, (c) => c.charCodeAt(0));
+}
+/** Subscribes this browser to Web Push and stores it on the server. */
+async function subscribePush(): Promise<boolean> {
+  const cfg = await fetch('/api/admin/push', { credentials: 'same-origin' }).then((r) => r.json()).catch(() => null);
+  const key = cfg?.data?.publicKey;
+  if (!cfg?.data?.configured || !key) return false;
+  const reg = (await navigator.serviceWorker.getRegistration('/')) || (await navigator.serviceWorker.register('/sw.js', { scope: '/' }));
+  await navigator.serviceWorker.ready;
+  let sub = await reg.pushManager.getSubscription();
+  if (!sub) sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlB64ToUint8(key) as BufferSource });
+  const r = await fetch('/api/admin/push', {
+    method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ subscription: sub.toJSON() }),
+  });
+  return r.ok;
+}
 
 export default function NotificationBell({ onOpenProjects, onOpenAccount, onOpenLead, onPending, flash }: {
   onOpenProjects: (focus?: { ownerId?: string; projectId?: string }) => void;
@@ -49,6 +70,11 @@ export default function NotificationBell({ onOpenProjects, onOpenAccount, onOpen
   const [open, setOpen] = useState(false);
   const [tab, setTab] = useState<'all' | Category>('all');
   const [perm, setPerm] = useState<NotificationPermission | 'unsupported'>('unsupported');
+  // True once this browser gets real device notifications (Web Push), even with the site closed.
+  const [pushOn, setPushOn] = useState(false);
+  const [pushBusy, setPushBusy] = useState(false);
+  const pushRef = useRef(false); // read by the poll timer (state would be stale there)
+  useEffect(() => { pushRef.current = pushOn; }, [pushOn]);
   const ref = useRef<HTMLDivElement>(null);
   // Ids already shown, so a refresh only alerts about genuinely new items.
   const known = useRef<Set<string> | null>(null);
@@ -58,7 +84,8 @@ export default function NotificationBell({ onOpenProjects, onOpenAccount, onOpen
     const top = fresh[0];
     const text = fresh.length === 1 ? `${top.name}: ${top.detail}` : `${fresh.length} new — ${top.name}: ${top.detail}`;
     flash?.(`🔔 ${text}`);
-    if (!canNotify() || Notification.permission !== 'granted') return;
+    // With Web Push on, the server already sent a device notification for this.
+    if (pushRef.current || !canNotify() || Notification.permission !== 'granted') return;
     try {
       const n = new Notification(fresh.length === 1 ? 'Mappingg — new notification' : `Mappingg — ${fresh.length} new notifications`, {
         body: text, icon: '/icons/icon-192.png', tag: 'mappingg-admin',
@@ -84,6 +111,10 @@ export default function NotificationBell({ onOpenProjects, onOpenAccount, onOpen
   }
   useEffect(() => {
     if (canNotify()) setPerm(Notification.permission);
+    // Already allowed before? Make sure this browser is subscribed to push.
+    if (canPush() && Notification.permission === 'granted') {
+      subscribePush().then(setPushOn).catch(() => setPushOn(false));
+    }
     load();
     // Every 2 min while visible, and on focus at most once a minute (each check is a DB read).
     let last = Date.now();
@@ -120,8 +151,26 @@ export default function NotificationBell({ onOpenProjects, onOpenAccount, onOpen
     try { await fetch('/api/admin/notifications', { method: 'POST', credentials: 'same-origin' }); } catch { /* ignore */ }
   }
   async function enableDesktop() {
-    if (!canNotify()) return;
-    try { setPerm(await Notification.requestPermission()); } catch { /* ignore */ }
+    if (!canNotify()) { flash?.('This browser does not support notifications.'); return; }
+    setPushBusy(true);
+    try {
+      const p = await Notification.requestPermission();
+      setPerm(p);
+      if (p !== 'granted') { flash?.('Notifications are blocked — allow them from the 🔒 icon in the address bar.'); return; }
+      if (!canPush()) { flash?.('Alerts will show while the site is open (this browser has no push support).'); return; }
+      const ok = await subscribePush();
+      setPushOn(ok);
+      if (ok) {
+        await fetch('/api/admin/push', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ test: true }) });
+        flash?.('Device notifications on — a test alert was sent.');
+      } else flash?.('Could not turn on device notifications (push keys missing on the server?).');
+    } catch (e) {
+      flash?.(`Could not turn on notifications: ${e instanceof Error ? e.message : 'error'}`);
+    } finally { setPushBusy(false); }
+  }
+  async function sendTest() {
+    const r = await fetch('/api/admin/push', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ test: true }) }).catch(() => null);
+    flash?.(r?.ok ? 'Test alert sent to your devices.' : 'Test failed.');
   }
   function toggle() {
     const next = !open;
@@ -152,7 +201,13 @@ export default function NotificationBell({ onOpenProjects, onOpenAccount, onOpen
           <div className="nb-pop-head">
             <b>Notifications</b>
             <span className="nb-head-acts">
-              {perm === 'default' && <button type="button" className="link-btn" onClick={enableDesktop}><i className="fas fa-desktop" /> Desktop alerts</button>}
+              {perm !== 'unsupported' && perm !== 'denied' && !pushOn && (
+                <button type="button" className="link-btn" onClick={enableDesktop} disabled={pushBusy}>
+                  <i className="fas fa-desktop" /> {pushBusy ? 'Turning on…' : 'Turn on device alerts'}
+                </button>
+              )}
+              {pushOn && <button type="button" className="link-btn" onClick={sendTest} title="Alerts reach this device even when the site is closed"><i className="fas fa-bell" /> Alerts on · test</button>}
+              {perm === 'denied' && <span className="link-btn" title="Allow notifications from the lock icon in the address bar"><i className="fas fa-bell-slash" /> Blocked</span>}
               {data && data.items.some((i) => i.unread) && <button type="button" className="link-btn" onClick={markRead}>Mark all read</button>}
             </span>
           </div>
