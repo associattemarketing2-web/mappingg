@@ -112,3 +112,52 @@ export function parseIntent(text: string): { call: boolean; visit: boolean; broc
     human: /\b(human|agent|executive|person|advisor|real person|team)\b/.test(t),
   };
 }
+
+/* ---------------------- enquiry questions (WhatsApp flow) ---------------------- */
+
+/** Sent once the enquiry questions are answered and the matching projects are shared. */
+export const THANK_YOU = 'Thank you for enquiring at *mappingg.com* 🙏 We will connect with you shortly.';
+
+/** "1000 sqft", "800-1000 sq ft", "1,200 square feet" → { text, sqft } (the highest number); a bare 300–10,000 when `bare`. */
+export function parseSqft(text: string, bare = false): { text: string; sqft: number } | null {
+  const t = text.replace(/,/g, '');
+  const unit = /(\d{3,5})(?:\s*(?:-|–|to)\s*(\d{3,5}))?\s*(?:sq\.?\s*(?:ft|feet|foot)|sqft|sft|square\s*(?:ft|feet|foot))/i.exec(t);
+  const m = unit || (bare ? /^\s*(?:around|approx\.?|about|upto|up to)?\s*(\d{3,5})(?:\s*(?:-|–|to)\s*(\d{3,5}))?\s*$/i.exec(t) : null);
+  if (!m) return null;
+  const a = Number(m[1]), b = m[2] ? Number(m[2]) : null;
+  const sqft = Math.max(a, b ?? 0);
+  if (sqft < 150 || sqft > 50_000) return null;
+  return { sqft, text: b ? `${Math.min(a, b)}–${sqft} sq ft` : `${a} sq ft` };
+}
+
+/** "ready to move", "2027", "within 2 years", "under construction" → a short label, else null. */
+export function parsePossession(text: string): string | null {
+  const t = text.toLowerCase();
+  if (/\b(ready|rtm|immediate|turant|abhi)\b/.test(t)) return 'Ready to move';
+  if (/\bunder\s*construction\b|\buc\b/.test(t)) return 'Under construction';
+  if (/\b(new\s*launch|pre\s*launch|launch)\b/.test(t)) return 'New launch';
+  const yr = /\b(20[2-4]\d)\b/.exec(t)?.[1];
+  if (yr) return `By ${yr}`;
+  const n = /(\d{1,2})\s*(years?|yrs?|saal|varsh|months?|mahine|mahina)/.exec(t);
+  if (n) return `Within ${n[1]} ${/^(m|mah)/.test(n[2]) ? (n[1] === '1' ? 'month' : 'months') : (n[1] === '1' ? 'year' : 'years')}`;
+  return null;
+}
+
+/** The first email address in the text, lower-cased. */
+export function parseEmail(text: string): string | null {
+  return /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i.exec(text)?.[0].toLowerCase() ?? null;
+}
+
+/** A mobile number typed in the text (10–13 digits, spaces / dashes allowed), digits only with 91 for Indian numbers. */
+export function parsePhone(text: string): string | null {
+  const m = /(?:\+|\b)(\d[\d\s-]{8,15}\d)\b/.exec(text);
+  if (!m) return null;
+  const d = m[1].replace(/\D/g, '').replace(/^0+/, '');
+  if (d.length === 10 && /^[6-9]/.test(d)) return `91${d}`;
+  if (d.length >= 11 && d.length <= 13) return d;
+  return null;
+}
+
+/** "same", "yes", "this one", "haan" — keep the WhatsApp number / skip a question. */
+export const isSame = (text: string) => /^\s*(same|same number|this|this one|this number|yes|yeah|yup|ok|okay|ha+n?|haan ji|ji|same hai|yahi|isi par|isi pe|whatsapp)\s*[.!]?\s*$/i.test(text);
+export const isSkip = (text: string) => /^\s*(skip|no|nahi|nahin|na|don'?t have|dont have|not now|later|none|nil|-)\s*[.!]?\s*$/i.test(text);

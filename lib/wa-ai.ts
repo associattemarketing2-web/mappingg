@@ -45,10 +45,14 @@ Projects:
 
 General questions: answer real-estate questions (buying process, RERA, home loans, stamp duty and registration, carpet vs built-up area, legal checks, investment basics) accurately and practically. For legal or tax specifics, give the general rule and suggest confirming with a professional.
 
-Leads:
-- Early in the chat, naturally ask for their name, and learn what they want: city/area, budget, BHK/type, when they plan to buy. Ask one or two things at a time — never a form.
-- As soon as you know their name and at least one requirement (or a project they're interested in), call save_lead. Call it again whenever you learn more; it updates the same lead. Their WhatsApp number is already known — don't ask for it.
-- If they ask for a call, site visit, brochure or to talk to a person, save the lead with that request and tell them the Mappingg team will contact them shortly.`;
+Enquiry questions — ask them in this exact order, one question per message, skipping any already answered:
+  1. Name  2. Mobile number (they may reply "same" to use this WhatsApp number)  3. Email ID (they may skip it)
+  4. Configuration (1/2/3 BHK, villa, office…)  5. Location / area  6. Area in sq. ft  7. Project timeline / possession  8. Budget
+- The "Enquiry progress" note says what is already known and which question is next. If the customer asks something else first, answer it briefly, then ask the next question.
+- After every answer, call save_lead with everything known so far (phone: the number they gave, or "same"; email: the address, or "skip" if they won't share it). Its result names the next question. The CRM lead is created once name, number and email are in.
+- When save_lead says all questions are answered, do not search or send project cards in that reply — reply with one short line only (e.g. "Thanks! Here are the projects that match 👇"). The system then sends the matching projects and the closing thank-you message itself.
+- After that, carry on helping as usual (project questions, more options, cards).
+- If they ask for a call, site visit, brochure or to talk to a person, save the lead with that request and tell them the Mappingg team will contact them shortly — then continue with the next question.`;
 
 const TOOLS: Anthropic.Beta.BetaTool[] = [
   {
@@ -83,22 +87,25 @@ const TOOLS: Anthropic.Beta.BetaTool[] = [
   },
   {
     name: 'save_lead',
-    description: 'Create or update this customer\'s lead in the Mappingg CRM. Call once you know their name and at least one requirement or project of interest; call again to add details. Leave out anything you do not know.',
+    description: 'Save the customer\'s answers to the enquiry questions (and create / update their lead in the Mappingg CRM). Call after every answer with everything known so far; leave out anything you do not know. Returns the next question to ask, or that all are answered.',
     input_schema: {
       type: 'object',
       properties: {
         name: { type: 'string' },
-        email: { type: 'string' },
+        phone: { type: 'string', description: 'The mobile number they gave, or "same" for this WhatsApp number.' },
+        email: { type: 'string', description: 'Their email address, or "skip" if they will not share it.' },
         city: { type: 'string' },
-        locality: { type: 'string', description: 'Preferred area(s).' },
+        locality: { type: 'string', description: 'Preferred location / area(s).' },
         budget: { type: 'string', description: 'As they said it, e.g. "₹80 L – 1 Cr".' },
-        bhk: { type: 'string', description: 'e.g. "2 BHK", "3 BHK", "Office", "Plot".' },
+        bhk: { type: 'string', description: 'Configuration, e.g. "2 BHK", "3 BHK", "Office", "Plot".' },
+        sqft: { type: 'string', description: 'Area they need, e.g. "900–1100 sq ft".' },
+        possession: { type: 'string', description: 'Project timeline / possession they want, e.g. "Ready to move", "Within 2 years".' },
         timeline: { type: 'string', description: 'When they plan to buy, e.g. "Within 3 months".' },
         project: { type: 'string', description: 'Project(s) they are interested in.' },
         request: { type: 'string', description: 'Call back, site visit, brochure, etc., if they asked.' },
         summary: { type: 'string', description: 'One or two lines on what they are looking for.' },
       },
-      required: ['name', 'summary'],
+      required: ['summary'],
     },
   },
 ];
@@ -164,25 +171,31 @@ export async function sendProjectCard(phone: string, number: number, author: 'ai
   return r.ok ? { sent: true, name: d.name || undefined } : { sent: false, error: r.error };
 }
 
-export type LeadInput = Partial<Record<'name' | 'email' | 'city' | 'locality' | 'budget' | 'bhk' | 'timeline' | 'project' | 'request' | 'summary', string>>;
+export type LeadInput = Partial<Record<'name' | 'phone' | 'email' | 'city' | 'locality' | 'budget' | 'bhk' | 'sqft' | 'possession' | 'timeline' | 'project' | 'request' | 'summary', string>>;
 
 /** Creates the chat's CRM lead the first time, then keeps it up to date. */
 export async function saveLead(phone: string, input: LeadInput) {
   const clean = (v?: string, max = 200) => String(v ?? '').trim().slice(0, max);
   const name = clean(input.name, 120) || 'WhatsApp contact';
   const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clean(input.email)) ? clean(input.email).toLowerCase() : '';
-  const mobile = normalizePhone('+' + phone) || prettyPhone(phone);
+  const wa = normalizePhone('+' + phone) || prettyPhone(phone);
+  // A different number they asked to be called on; the WhatsApp number stays on the lead (whatsapp_chat) and in the message.
+  const alt = clean(input.phone).replace(/\D/g, '');
+  const altPhone = alt.length >= 10 && alt !== phone ? (normalizePhone('+' + (alt.length === 10 ? '91' + alt : alt)) || '+' + alt) : '';
+  const mobile = altPhone || wa;
   const needs = [
-    input.bhk && `Looking for: ${clean(input.bhk)}`, input.budget && `Budget: ${clean(input.budget)}`,
-    (input.locality || input.city) && `Preferred area: ${[clean(input.locality), clean(input.city)].filter(Boolean).join(', ')}`,
-    input.timeline && `Planning to buy: ${clean(input.timeline)}`, input.project && `Project: ${clean(input.project)}`,
+    input.bhk && `Configuration: ${clean(input.bhk)}`,
+    (input.locality || input.city) && `Location: ${[clean(input.locality), clean(input.city)].filter(Boolean).join(', ')}`,
+    input.sqft && `Area: ${clean(input.sqft)}`, input.possession && `Possession / timeline: ${clean(input.possession)}`,
+    input.budget && `Budget: ${clean(input.budget)}`,
+    input.timeline && `Planning to buy: ${clean(input.timeline)}`, altPhone && `WhatsApp: ${wa}`, input.project && `Project: ${clean(input.project)}`,
     input.request && `Request: ${clean(input.request)}`,
   ].filter(Boolean).join(' · ');
   const message = [needs, clean(input.summary, 1000)].filter(Boolean).join('\n\n');
   const now = new Date().toISOString();
   const fields = {
     name, ...(email ? { email } : {}), phone: mobile, subject: input.project ? `WhatsApp: ${clean(input.project, 80)}` : 'WhatsApp enquiry', message,
-    ...Object.fromEntries((['city', 'locality', 'budget', 'bhk', 'timeline'] as const).filter((k) => input[k]).map((k) => [k, clean(input[k], 120)])),
+    ...Object.fromEntries((['city', 'locality', 'budget', 'bhk', 'sqft', 'possession', 'timeline'] as const).filter((k) => input[k]).map((k) => [k, clean(input[k], 120)])),
     updated_at: now,
   };
 
@@ -207,13 +220,106 @@ export async function saveLead(phone: string, input: LeadInput) {
   return { saved: true, updated: Boolean(existing) };
 }
 
+/* ------------------------- enquiry questions (shared) ------------------------- */
+// The AI and the guided bot (lib/wa-bot.ts) keep one record of the questions
+// answered so far on the chat (wa_chats.bot), so a chat can switch between them.
+
+type Bot = typeof import('./wa-bot');
+const bot = (): Promise<Bot> => import('./wa-bot');
+const QUESTION_LABEL: Record<string, string> = {
+  name: 'name', phone: 'mobile number', email: 'email ID', config: 'configuration', location: 'location / area',
+  sqft: 'area in sq. ft', possession: 'project timeline / possession', budget: 'budget',
+};
+
+async function enquiryState(phone: string) {
+  const chat = await getChat(phone);
+  const st = { ...(((chat as { bot?: import('./wa-bot').BotState } | null)?.bot) || {}) };
+  // A chat that already had a lead before the questions flow carries on as before.
+  if (!st.v) { st.v = 2; if (st.searched || chat?.lead_id) st.done = true; }
+  return { chat, st };
+}
+
+/** Merges the AI's save_lead input into the chat's answers; creates / updates the CRM lead once the contact details are in. */
+async function saveAnswers(phone: string, input: LeadInput) {
+  const b = await bot();
+  const { parseBhk, parseBudget, parseEmail, parsePhone, parsePossession, parseSqft, isSame, isSkip } = await import('./wa-text');
+  const { chat, st } = await enquiryState(phone);
+  const ans = { ...(st.ans || {}) };
+  const c = (v?: string) => String(v ?? '').trim().slice(0, 80);
+  if (c(input.name)) { st.name = c(input.name); ans.name = st.name; }
+  if (c(input.phone)) {
+    const alt = parsePhone(c(input.phone));
+    if (alt) { st.alt_phone = alt; ans.phone = `+${alt}`; } else if (isSame(c(input.phone)) || /same|whatsapp/i.test(c(input.phone))) ans.phone = 'Same as WhatsApp';
+  }
+  if (c(input.email)) {
+    const e = parseEmail(c(input.email));
+    if (e) { st.email = e; ans.email = e; } else if (isSkip(c(input.email)) || /skip|not|no/i.test(c(input.email))) ans.email = 'Not shared';
+  }
+  if (c(input.bhk)) { ans.config = c(input.bhk); st.bhk = parseBhk(c(input.bhk)) || undefined; }
+  if (c(input.locality) || c(input.city)) {
+    ans.location = [c(input.locality), c(input.city)].filter(Boolean).join(', ');
+    st.area = b.findArea(ans.location, await loadProjects()) || c(input.locality) || c(input.city);
+  }
+  if (c(input.sqft)) { ans.sqft = c(input.sqft); st.sqft = parseSqft(c(input.sqft), true)?.sqft; }
+  if (c(input.possession)) { ans.possession = c(input.possession); st.possession = parsePossession(c(input.possession)) || undefined; }
+  if (c(input.budget)) { ans.budget = c(input.budget); const bu = parseBudget(c(input.budget)); st.budget = bu?.text || c(input.budget); st.budget_lakh = bu?.lakh; }
+  if (c(input.project)) st.projects = [...new Set([...(st.projects || []), c(input.project)])];
+  if (c(input.request)) st.request = c(input.request);
+  st.ans = ans;
+
+  let saved = false;
+  const named = !!st.name && st.name !== 'WhatsApp contact';
+  if (b.contactDone(st) || (named && st.request) || chat?.lead_id) {
+    const base = b.leadFromState(st, chat?.wa_name);
+    await saveLead(phone, { ...base, city: input.city, timeline: input.timeline, summary: input.summary || base.summary, project: input.project || base.project });
+    saved = true;
+  }
+  await (await chats()).updateOne({ _id: phone }, { $set: { bot: st, updated_at: new Date().toISOString() } } as never);
+  const next = st.done ? null : b.nextStep(st);
+  return {
+    saved, lead_created: saved,
+    next_question: st.done ? 'none — the enquiry is complete; help as usual' : next ? QUESTION_LABEL[next] : 'none — all questions answered: reply with one short line only; the system sends the matching projects and the thank-you message',
+  };
+}
+
+/** One line for the AI on what is known and which question comes next. */
+async function progressNote(phone: string): Promise<string> {
+  const b = await bot();
+  const { st } = await enquiryState(phone);
+  if (st.done) return 'Enquiry progress: all questions answered and matching projects already sent — help as usual.';
+  const known = Object.entries(st.ans || {}).map(([k, v]) => `${QUESTION_LABEL[k] || k}: ${v}`).join('; ');
+  const next = b.nextStep(st);
+  return `Enquiry progress: ${known ? `known — ${known}` : 'nothing yet'}. Next question to ask: ${next ? QUESTION_LABEL[next] : 'none (all answered)'}.`;
+}
+
+/** Once every question is answered: the matching project cards, then the thank-you (sent once). */
+async function finishEnquiry(phone: string): Promise<void> {
+  const b = await bot();
+  const { THANK_YOU } = await import('./wa-text');
+  const { st } = await enquiryState(phone);
+  if (st.done || b.nextStep(st)) return;
+  st.done = true;
+  st.shown = [...(st.shown || [])];
+  const fresh = b.matchProjects(await loadProjects(), st).filter((p) => !st.shown!.includes(Number(p.number))).slice(0, 3);
+  st.searched = [st.area, st.bhk, st.budget_lakh, st.sqft, st.possession].join('|');
+  for (const p of fresh) st.shown.push(Number(p.number));
+  await (await chats()).updateOne({ _id: phone }, { $set: { bot: st, updated_at: new Date().toISOString() } } as never);
+  if (fresh.length) {
+    for (const p of fresh) await sendProjectCard(phone, Number(p.number));
+    await whatsappText(phone, 'Reply with a *project name* for full details, *more* for more options, or *call* and our advisor will call you with the latest price & offers.', 'ai');
+  } else {
+    await whatsappText(phone, 'I couldn\'t find a listed project for all of these right now. Our advisor will share the best options with you shortly.', 'ai');
+  }
+  await whatsappText(phone, THANK_YOU, 'ai');
+}
+
 async function runTool(phone: string, name: string, input: unknown, live: boolean): Promise<string> {
   try {
     const i = (input || {}) as Record<string, unknown>;
     const out = name === 'search_projects' ? await searchProjects(i as never)
       : name === 'get_project' ? await getProject(i as never)
         : name === 'send_project_card' ? (live ? await sendProjectCard(phone, Number(i.number)) : { sent: false, note: 'Draft for staff review: cards are not sent from drafts. Put the project name, price and link in your text instead.' })
-          : name === 'save_lead' ? await saveLead(phone, i as LeadInput)
+          : name === 'save_lead' ? await saveAnswers(phone, i as LeadInput)
             : { error: `Unknown tool ${name}` };
     return JSON.stringify(out);
   } catch (e) {
@@ -235,7 +341,7 @@ export async function draftReply(phone: string, live = false): Promise<string | 
   const messages = toTurns(history);
   if (!messages.length || messages[messages.length - 1].role !== 'user') return null;
   const chat = await getChat(phone);
-  const context = `Customer's WhatsApp number: ${prettyPhone(phone)}${chat?.name ? `. Name: ${chat.name}` : chat?.wa_name ? `. WhatsApp profile name: ${chat.wa_name}` : ''}${chat?.lead_id ? '. A CRM lead already exists for them (save_lead updates it).' : ''}. Today: ${new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Kolkata' })}.`;
+  const context = `Customer's WhatsApp number: ${prettyPhone(phone)}${chat?.name ? `. Name: ${chat.name}` : chat?.wa_name ? `. WhatsApp profile name: ${chat.wa_name}` : ''}${chat?.lead_id ? '. A CRM lead already exists for them (save_lead updates it).' : ''}. Today: ${new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Kolkata' })}.\n${await progressNote(phone).catch(() => '')}`;
 
   for (let step = 0; step < 8; step++) {
     const res = await client().beta.messages.create({
@@ -277,7 +383,7 @@ export async function draftReply(phone: string, live = false): Promise<string | 
 export async function autoReply(phone: string): Promise<void> {
   const chat = await getChat(phone);
   if (!chat || chat.auto_reply === false) return;
-  // No ANTHROPIC_API_KEY: the free guided bot answers instead (name → area/BHK → budget → project cards → lead).
+  // No ANTHROPIC_API_KEY: the free guided bot answers instead (name → mobile → email → lead, then configuration → location → sq ft → possession → budget → project cards → thank-you).
   if (!aiConfigured()) { const { botReply } = await import('./wa-bot'); await botReply(phone); return; }
   const before = chat.last_in_at;
   let text: string | null = null;
@@ -295,4 +401,6 @@ export async function autoReply(phone: string): Promise<void> {
   const now = await getChat(phone);
   if (!now || now.auto_reply === false || now.last_in_at !== before || now.last_author === 'staff') return;
   await whatsappText(phone, text, 'ai');
+  // All questions answered in this turn: the matching projects and the thank-you.
+  try { await finishEnquiry(phone); } catch (e) { console.error('[wa-ai] sending the matches failed', (e as Error).message); }
 }

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import './admin.css';
 import InstallPrompt from '@/components/InstallPrompt';
+import { PushPrompt } from '@/components/PushToggle';
 import { getCurrentUser, homePathFor, isStaffRole } from '@/lib/auth';
 
 // The whole super-admin area is gated here: no valid session → the home page,
@@ -39,6 +40,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       />
       {children}
       {user.role === 'admin' && <InstallPrompt />}
+      <PushPrompt />
     </>
   );
 }

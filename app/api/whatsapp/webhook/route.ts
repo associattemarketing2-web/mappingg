@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { timingSafeEqual } from 'node:crypto';
-import { logMessage, messages, updateStatus, waDigits, type WaKind, type WaStatus } from '@/lib/wa-store';
+import { logMessage, messages, prettyPhone, updateStatus, waDigits, type WaKind, type WaStatus } from '@/lib/wa-store';
 import { autoReply } from '@/lib/wa-ai';
 import { processDue } from '@/lib/wa-schedule';
+import { pushToStaff } from '@/lib/push';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -111,7 +112,12 @@ export async function POST(req: NextRequest) {
         wa_id: m.id ? String(m.id) : undefined,
         created_at: ts > 1e9 && Math.abs(Date.now() - ts * 1000) < 3_600_000 ? new Date(ts * 1000).toISOString() : undefined,
       }, { name: names.get(phone) });
-      if (kind !== 'other') toAnswer.add(phone);
+      if (kind !== 'other') {
+        toAnswer.add(phone);
+        // On the team's phones; one notification per chat (a newer message replaces it).
+        const who = names.get(phone) || prettyPhone(phone);
+        pushToStaff({ title: `WhatsApp — ${who}`, body: text.slice(0, 200), url: '/dashboard/s-admin?tab=whatsapp', tag: `wa-${phone}` }, 'whatsapp');
+      }
     }
   }
 

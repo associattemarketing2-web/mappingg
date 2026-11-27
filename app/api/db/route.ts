@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getCurrentUser, getStaffUser } from '@/lib/auth';
+import { hasPermission, type Permission } from '@/lib/staff';
 import { runDbOp, type DbOp } from '@/lib/db-engine';
 import { withMediaUrls } from '@/lib/pin-media';
 import { logActivity } from '@/lib/activity';
@@ -101,6 +102,17 @@ function publicOpProblem(op: DbOp): string | null {
   return null;
 }
 
+/**
+ * The employee permission an op needs (the owner has them all). Reading the
+ * public map tables needs none — every visitor can; enquiries need "leads";
+ * changing the map or reading its history needs "map".
+ */
+function permissionFor(op: DbOp): Permission | null {
+  if (op.table === 'leads') return op.action === 'insert' ? null : 'leads';
+  if (op.table === 'pins_history') return 'map';
+  return op.action === 'select' ? null : 'map';
+}
+
 function invalid(details?: unknown) {
   return NextResponse.json({ data: null, error: { message: 'Invalid request', details } }, { status: 400 });
 }
@@ -111,6 +123,11 @@ async function handle(op: DbOp, devEditorView = false, ip = '', visitor = ip, pa
   if (!staff) {
     const problem = publicOpProblem(op);
     if (problem) return invalid(problem);
+  } else {
+    const need = permissionFor(op);
+    if (need && !(await hasPermission(need))) {
+      return NextResponse.json({ data: null, error: { message: 'You do not have access to this section.' } }, { status: 403 });
+    }
   }
   // The one write open to anonymous visitors is a map enquiry (leads insert) —
   // cap it per IP so it can't be used to flood the CRM.

@@ -30,6 +30,9 @@ export type BackupData = Record<string, Record<string, unknown>[]>;
 /** Tables included in a backup: every document table (not the blob tables). */
 const BACKUP_TABLES: string[] = [...DOC_TABLES].sort();
 
+// Some tables are created on first use (wa_schedules, push_subs); until then they read as empty.
+const missingTable = (e: unknown) => (e as { code?: string })?.code === '42P01';
+
 function sanitize(table: string, doc: AnyDoc): Record<string, unknown> {
   const { _id, ...out } = doc;
   if (table === 'users') delete (out as Record<string, unknown>).password_hash;
@@ -42,7 +45,7 @@ export async function collectAll(): Promise<{ data: BackupData; counts: Record<s
   const data: BackupData = {};
   const counts: Record<string, number> = {};
   for (const name of BACKUP_TABLES) {
-    const rows = (await db.collection(name).find({}).toArray()) as AnyDoc[];
+    const rows = (await db.collection(name).find({}).toArray().catch((e) => { if (missingTable(e)) return []; throw e; })) as AnyDoc[];
     data[name] = rows.map((r) => sanitize(name, r));
     counts[name] = rows.length;
   }
@@ -52,7 +55,7 @@ export async function collectAll(): Promise<{ data: BackupData; counts: Record<s
 export async function liveCounts(): Promise<Record<string, number>> {
   const db = await getDb();
   const counts: Record<string, number> = {};
-  for (const name of BACKUP_TABLES) counts[name] = await db.collection(name).countDocuments({});
+  for (const name of BACKUP_TABLES) counts[name] = await db.collection(name).countDocuments({}).catch((e) => { if (missingTable(e)) return 0; throw e; });
   return counts;
 }
 

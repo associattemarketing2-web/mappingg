@@ -483,8 +483,8 @@ function LogView({ kind, config }: { kind: 'otp' | 'auto'; config?: Overview['co
             </div>
             <div className="wa-auto">
               <i className="fas fa-robot" /><div><b>Auto reply</b><span>{config.ai
-                ? 'Claude AI answers from your live project data, sends project cards (photo, price, BHK, RERA, link), asks name, area, BHK & budget and saves the lead in Leads → Contact form.'
-                : 'Guided bot (free): asks name → area & BHK → budget, sends matching project cards, handles call / site visit / brochure requests and saves the lead. Add ANTHROPIC_API_KEY to switch to the full AI.'} Switch it off per chat to reply by hand.</span></div>
+                ? 'Claude AI answers from your live project data, sends project cards (photo, price, BHK, RERA, link), asks name → mobile → email (saves the lead in Leads), then configuration → location → sq. ft → possession → budget, then sends matching projects and a thank-you.'
+                : 'Guided bot (free): asks name → mobile → email (saves the lead), then configuration → location → sq. ft → possession → budget, sends matching project cards and a thank-you, and handles call / site visit / brochure requests. Add ANTHROPIC_API_KEY to switch to the full AI.'} Switch it off per chat to reply by hand.</span></div>
               <span className={`adm-badge ${config.whatsapp && config.webhook ? 'ok' : 'wa-bad'}`}>
                 {!config.whatsapp ? 'Not set up' : !config.webhook ? 'Webhook not set up' : config.ai ? 'Active · AI' : 'Active · Guided bot'}
               </span>

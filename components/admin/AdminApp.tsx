@@ -25,6 +25,7 @@ import SubscriptionsPanel from './SubscriptionsPanel';
 import EventRegistrationsPanel from './EventRegistrationsPanel';
 import DevProjectAccess from './DevProjectAccess';
 import ShareLinkButton from './ShareLinkButton';
+import { PushToggle } from '../PushToggle';
 import { PageHead, StatCard } from './PageHead';
 import OverviewMap, { loadProjectIndex, matchProjects, type ProjectHit } from './OverviewMap';
 import { FULL_EDIT_EVENT, requestFullEdit, submissionForPin } from './fullEdit';
@@ -4153,6 +4154,7 @@ export default function AdminApp({ user }: { user: AdminUser }) {
             <div className="adm2-menu">
               <button className={tab === 'profile' ? 'on' : ''} onClick={() => { setTab('profile'); setMenuOpen(false); }}><i className="fas fa-user" /> Profile</button>
               <button className={tab === 'hr' ? 'on' : ''} onClick={() => { setTab('hr'); setMenuOpen(false); }}><i className="fas fa-user-clock" /> {isOwner ? 'HR & Attendance' : 'My Attendance'}</button>
+              <PushToggle />
               {visible.includes('backups') && (
                 <button className={tab === 'backups' ? 'on' : ''} onClick={() => { setTab('backups'); setMenuOpen(false); }}><i className="fas fa-database" /> Backups</button>
               )}

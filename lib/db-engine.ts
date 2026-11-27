@@ -120,6 +120,9 @@ export function invalidateTable(table: string) {
   bustTable(table);
 }
 
+// Tables staff may read through runDbOp: the map tables, its enquiries and the pin history.
+const STAFF_READ = new Set([...PUBLIC_READ, 'leads', 'pins_history']);
+
 // Tables the client is never allowed to write to directly (history is captured
 // server-side, mirroring the original database trigger).
 const CLIENT_WRITABLE = new Set([
@@ -172,6 +175,10 @@ function authorize(op: DbOp, isAuthed: boolean, developerId?: string): DbResult 
     if (PUBLIC_READ.has(table)) return null;
     // leads + pins_history are private.
     if (!isAuthed) return err('Not authorized', 401);
+    // Staff read only the map tables through this generic API. Everything else
+    // (users with password hashes, payments, WhatsApp, HR…) has its own route
+    // that checks the employee's permission — reading it here would bypass that.
+    if (!STAFF_READ.has(table)) return err('Table is not readable', 403);
     return null;
   }
 

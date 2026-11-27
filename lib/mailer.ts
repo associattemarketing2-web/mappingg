@@ -101,6 +101,7 @@ export function queueMail(m: Parameters<typeof sendMail>[0]): void {
 export function notifyAdmin(subject: string, o: Parameters<typeof layout>[0], replyTo?: string): void {
   const to = adminEmails();
   if (to.length) queueMail({ to, subject: `[Mappingg] ${subject}`, html: layout(o), replyTo });
+<<<<<<< Updated upstream
   // Same alert as a device notification (laptop / phone) for admins who turned
   // it on — works even when the site is closed. Loaded lazily; never throws.
   void import('./web-push').then(({ pushToAdmins, plainText }) => {
@@ -112,4 +113,25 @@ export function notifyAdmin(subject: string, o: Parameters<typeof layout>[0], re
       url: o.cta?.href || '/dashboard/s-admin',
     });
   }).catch(() => {});
+=======
+  pushCopy(subject, o);
+}
+
+/** The same notification on the team's phones (lib/push.ts), opening the admin section it is about. */
+function pushCopy(subject: string, o: Parameters<typeof layout>[0]): void {
+  const plain = (h: unknown) => String(h ?? '').replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/\s+/g, ' ').trim();
+  const rows = (o.rows || []).filter((r) => r && plain(r[1])).slice(0, 3).map((r) => `${plain(r[0])}: ${plain(r[1])}`).join(' · ');
+  const body = rows || plain(o.body?.[0]);
+  const s = subject.toLowerCase();
+  const [tab, perm] = /event registration/.test(s) ? ['events', 'leads']
+    : /enquiry|site visit|lead|contact form|buyer requirement|buyer premium|whatsapp/.test(s) ? ['leads', 'leads']
+      : /project media|project/.test(s) ? ['projects', 'intake']
+        : /subscription/.test(s) ? ['subscriptions', '']
+          : /sign|account|mobile number|verif|partner|developer|buyer/.test(s) ? ['accounts', 'accounts']
+            : ['dashboard', ''];
+  void import('./push').then(({ pushToStaff }) => pushToStaff(
+    { title: subject.slice(0, 120), body, url: `/dashboard/s-admin?tab=${tab}`, tag: `${tab}-${Date.now()}` },
+    (perm || undefined) as Parameters<typeof pushToStaff>[1],
+  )).catch(() => {});
+>>>>>>> Stashed changes
 }
