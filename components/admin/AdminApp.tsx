@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { greetingFor, indiaHour } from '@/lib/greeting';
 import { useRouter } from 'next/navigation';
 import { usePersistedState } from './usePersistedState';
 import { cssZoom } from './zoom';
@@ -301,7 +302,13 @@ function DashboardPanel({ s, city, userName, onGo, can }: { s: any; city: string
   // A day picked on the "Projects created day by day" calendar (shows its projects).
   const [pickedDay, setPickedDay] = useState<string | null>(null);
   const [hour, setHour] = useState<number | null>(null);
-  useEffect(() => { setHour(new Date().getHours()); }, []);
+  // India time, re-checked every minute so the greeting changes while the tab stays open.
+  useEffect(() => {
+    const tick = () => setHour(indiaHour());
+    tick();
+    const t = setInterval(tick, 60_000);
+    return () => clearInterval(t);
+  }, []);
   if (!s) return <div className="adm-empty"><i className="fas fa-spinner fa-spin" /><p>Loading…</p></div>;
 
   const ch = s.charts || { byStatus: [], byType: [], newProjects: [], enquiries: [], addedThisMonth: 0, hiddenPins: 0 };
@@ -333,7 +340,7 @@ function DashboardPanel({ s, city, userName, onGo, can }: { s: any; city: string
     { ok: s.seo?.gtm ? 'ok' : 'warn', b: 'Google Tag Manager', v: s.seo?.gtm ? 'Set' : 'Not set' },
     { ok: s.seo?.ga ? 'ok' : 'warn', b: 'Google Analytics 4', v: s.seo?.ga ? 'Set' : 'Not set' },
   ];
-  const greeting = hour == null ? 'Welcome' : hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+  const greeting = hour == null ? 'Welcome' : greetingFor(hour);
   const leads30 = (ov.leadsDaily || []).reduce((a: number, d: { count: number }) => a + d.count, 0);
 
   const actions = [

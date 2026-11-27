@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { act, api, Badge, Empty, Loading, MapEmbed, Modal, Spinner, Stat, toast, useApi } from "@/components/hr/ui";
 import { SelfieCamera, useLiveLocation } from "@/components/hr/Capture";
 import { fmtMinutes, fmtTime, dateKey } from "@/lib/hr/time";
+import { greetingFor, indiaHour } from "@/lib/greeting";
 import { distanceMeters } from "@/lib/hr/geo";
 
 type Settings = {
@@ -39,8 +40,7 @@ export default function EmployeeHome() {
   const today = att.data?.[0];
   const liveMinutes = today ? ((today.checkOut ? new Date(today.checkOut) : now).getTime() - new Date(today.checkIn).getTime()) / 60000 : 0;
   const month = pay.data?.rows[0];
-  const hour = now.getHours();
-  const greet = hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
+  const greet = greetingFor(indiaHour(now)); // India time, updates with the clock below
 
   async function setStatus(t: Task, status: string) {
     await act(() => api(`/api/hr/tasks/${t.id}`, { method: "PUT", body: { status } }), status === "DONE" ? "Task completed 🎉" : "Updated");
@@ -59,7 +59,7 @@ export default function EmployeeHome() {
         <div className="bg-gradient-to-br from-brand-600 to-brand-800 p-5 text-white">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <div className="text-4xl font-bold tabular-nums">{now.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true })}</div>
+              <div className="text-4xl font-bold tabular-nums">{now.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true, timeZone: "Asia/Kolkata" })}</div>
               <div className="text-sm text-brand-100">{now.toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}</div>
             </div>
             {s && (
