@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { getCurrentUser } from '@/lib/auth';
 import { hasPermission } from '@/lib/staff';
 import { approvedTemplates, fallbackPayload, whatsappConfigured, whatsappProvider, type WaPayload } from '@/lib/whatsapp';
+import { assignLinks } from '@/lib/wa-share';
 import { cancelSchedule, createSchedule, processDue, scheduleRow, schedules, MAX_RECIPIENTS, type WaSchedule } from '@/lib/wa-schedule';
 
 export const runtime = 'nodejs';
@@ -44,6 +45,8 @@ const schema = z.discriminatedUnion('action', [
     title: z.string().max(120).default(''),
     recipients: z.array(z.object({ phone: z.string().min(8).max(20), name: z.string().max(80).optional() })).min(1).max(MAX_RECIPIENTS),
     messages: z.array(z.object({ payload, timing })).min(1).max(10),
+    /** Project share link: every number gets its own link in place of {link}. */
+    share_id: z.string().uuid().optional(),
   }),
   z.object({ action: z.literal('tick'), id: z.string().uuid() }),
   z.object({ action: z.literal('cancel'), id: z.string().uuid(), run_id: z.string().max(40).optional() }),
@@ -97,9 +100,17 @@ export async function POST(req: NextRequest) {
       try { err = await checkPayload(m.payload as WaPayload); } catch (e) { err = (e as Error).message; }
       if (err) return fail(d.messages.length > 1 ? `Message ${i + 1}: ${err}` : err);
     }
+    const usesLink = JSON.stringify(d.messages).toLowerCase().includes('{link}');
+    if (d.share_id && !usesLink) return fail('Put {link} in the message (or in a template value) so each person gets their project link');
+    if (!d.share_id && usesLink) return fail('The message has {link} but no project link is attached — create the link first, or remove {link}');
     try {
       const me = await getCurrentUser();
-      const s = await createSchedule({ title: d.title, recipients: d.recipients, messages: d.messages as WaSchedule['messages'], by: me?.email });
+      let recipients: { phone: string; name?: string; link?: string }[] = d.recipients;
+      if (d.share_id) {
+        const links = await assignLinks(d.share_id, d.recipients);
+        recipients = d.recipients.map((r) => ({ ...r, link: links.get(r.phone.replace(/\D/g, '')) }));
+      }
+      const s = await createSchedule({ title: d.title, recipients, messages: d.messages as WaSchedule['messages'], share_id: d.share_id, by: me?.email });
       return NextResponse.json({ data: { schedule: scheduleRow(s), due_now: s.runs.some((r) => Date.parse(r.at) <= Date.now()) } });
     } catch (e) {
       return fail((e as Error).message);

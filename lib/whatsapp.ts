@@ -363,9 +363,9 @@ export function payloadSummary(p: WaPayload): string {
   return `[${MEDIA_LABEL[p.kind]}${p.media?.filename ? `: ${p.media.filename}` : ''}]${p.text ? ` ${p.text}` : ''}`;
 }
 
-/** {name} → the recipient's name, everywhere in a payload. */
-export function fillPayload(p: WaPayload, name?: string): WaPayload {
-  const fill = (v: string) => v.replace(/\{name\}/gi, name || 'there');
+/** {name} → the recipient's name and {link} → their own share link, everywhere in a payload. */
+export function fillPayload(p: WaPayload, name?: string, vars: { link?: string } = {}): WaPayload {
+  const fill = (v: string) => v.replace(/\{name\}/gi, name || 'there').replace(/\{link\}/gi, vars.link || '');
   const t = p.template;
   // Template values must be one line (the name is too).
   const tfill = (v: string) => templateSafe(fill(v));
@@ -388,8 +388,9 @@ export function fillPayload(p: WaPayload, name?: string): WaPayload {
 export function whatsappSend(
   mobile: string, name: string | undefined, payload: WaPayload,
   log: { author: 'staff' | 'system'; by?: string; campaign?: string },
+  vars: { link?: string } = {},
 ): Promise<SendResult> {
-  const p = fillPayload(payload, name);
+  const p = fillPayload(payload, name, vars);
   const purpose = log.campaign ? ('bulk' as const) : undefined;
   const base = { author: log.author, by: log.by, purpose, campaign: log.campaign };
   if (p.kind === 'template') {

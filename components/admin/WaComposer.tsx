@@ -134,7 +134,7 @@ function TplFields({ s, set, templates, busy, flash, ownFile, hint }: {
 
   if (!templates.length) return <p className="muted">No approved templates yet. Create one in the whatapi.in dashboard — it shows here once approved.</p>;
   const preview = tpl ? tpl.body.replace(/\{\{\s*(\d+)\s*\}\}/g, (m, n) => s.params[Number(n) - 1]?.trim() || m) : '';
-  const tags = <small>— <code>{'{name}'}</code> = each person&apos;s name{hint && <>, <code>{'{message}'}</code> = your text / caption</>}</small>;
+  const tags = <small>— <code>{'{name}'}</code> = each person&apos;s name{hint && <>, <code>{'{message}'}</code> = your text / caption</>}, <code>{'{link}'}</code> = their project link</small>;
   return (
     <>
       <select value={s.tplKey} onChange={(e) => set({ tplKey: e.target.value })} disabled={busy}>
@@ -213,7 +213,7 @@ function DraftCard({ d, i, total, set, remove, templates, meta, busy, flash }: {
 
       {d.kind !== 'template' ? (
         <div className="adm-field wa-bulk-msg">
-          <label>{media ? 'Caption (optional)' : 'Message'} <small>— <code>{'{name}'}</code> = each person&apos;s name</small></label>
+          <label>{media ? 'Caption (optional)' : 'Message'} <small>— <code>{'{name}'}</code> = each person&apos;s name, <code>{'{link}'}</code> = their own project link</small></label>
           <textarea value={d.text} maxLength={media ? 1024 : 4096} disabled={busy} onChange={(e) => set({ text: e.target.value })}
             placeholder={media ? 'New launch in Baner — 2 & 3 BHK…' : 'Hi {name}, new projects are live on Mappingg…'} style={media ? { minHeight: 70 } : undefined} />
         </div>
@@ -327,11 +327,22 @@ function toMessage(d: Draft, templates: WaTpl[], meta: boolean) {
  * The composer. `recipients` = who gets it (one chat, or the uploaded list). Messages timed "Now" are sent at once
  * with progress; the rest are saved and go out automatically at their time.
  */
-export function Composer({ recipients, templates, meta, configured, flash, onResults, onDone, label }: {
+export function Composer({ recipients, templates, meta, configured, flash, onResults, onDone, label, share }: {
   recipients: { phone: string; name?: string }[]; templates: WaTpl[]; meta: boolean; configured: boolean; flash: Flash;
   onResults?: (r: Outcome[]) => void; onDone?: () => void; label?: string;
+  /** Attached project link: each number gets its own link wherever {link} is written. */
+  share?: { id: string; title: string; location?: string } | null;
 }) {
   const [drafts, setDrafts] = useState<Draft[]>([newDraft()]);
+  // Attaching a project link fills an empty first message with a ready text carrying {link}.
+  const shareText = share ? `Hi {name}, here are the details of *${share.title}*${share.location ? ` (${share.location})` : ''} — photos, brochure & more:
+{link}` : '';
+  useEffect(() => {
+    if (!share) return;
+    setDrafts((ds) => ds.map((d, i) => (i === 0 && d.kind !== 'template' && !/\{link\}/i.test(d.text) && (!d.text.trim() || d.text.startsWith('Hi {name}, here are the details of'))
+      ? { ...d, text: shareText } : d)));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [share?.id]);
   const [title, setTitle] = useState('');
   const [busy, setBusy] = useState(false);
   const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
@@ -349,6 +360,12 @@ export function Composer({ recipients, templates, meta, configured, flash, onRes
 
   async function submit() {
     if (!recipients.length) { flash('Add at least one number first', true); return; }
+    if (share && !drafts.some((d) => /\{link\}/i.test(JSON.stringify([d.text, d.tpl.params, d.tpl.urlParam, d.fb.params, d.fb.urlParam])))) {
+      flash('Write {link} in the message (or a template value) — that is where each person\'s project link goes', true); return;
+    }
+    if (!share && drafts.some((d) => /\{link\}/i.test(JSON.stringify([d.text, d.tpl.params, d.fb.params])))) {
+      flash('The message has {link} but no project link is attached — create the link above first', true); return;
+    }
     let messages;
     try { messages = drafts.map((d, i) => { try { return toMessage(d, templates, meta); } catch (e) { throw new Error(drafts.length > 1 ? `Message ${i + 1}: ${(e as Error).message}` : (e as Error).message); } }); } catch (e) { flash((e as Error).message, true); return; }
     const who = recipients.length === 1 ? (recipients[0].name || recipients[0].phone) : `${recipients.length.toLocaleString('en-IN')} numbers`;
@@ -357,7 +374,8 @@ export function Composer({ recipients, templates, meta, configured, flash, onRes
     stop.current = false;
     try {
       const r = await call<{ schedule: { id: string; runs: { at: string }[] }; due_now: boolean }>(SCHED_API, {
-        action: 'create', title: title.trim(), recipients: recipients.map((x) => ({ phone: x.phone, name: x.name || '' })), messages,
+        action: 'create', title: title.trim() || (share ? `Link: ${share.title}` : ''), recipients: recipients.map((x) => ({ phone: x.phone, name: x.name || '' })), messages,
+        ...(share ? { share_id: share.id } : {}),
       });
       if (r.due_now) {
         // Send-now part: keep calling until nothing due is left, showing progress.
@@ -378,7 +396,7 @@ export function Composer({ recipients, templates, meta, configured, flash, onRes
         const first = r.schedule.runs[0]?.at;
         flash(`Scheduled ✓ ${r.schedule.runs.length} send${r.schedule.runs.length === 1 ? '' : 's'}${first ? `, first at ${whenText(first)}` : ''}`);
       }
-      setDrafts([newDraft()]); setTitle('');
+      setDrafts([share ? { ...newDraft(), text: shareText } : newDraft()]); setTitle('');
       onDone?.();
     } catch (e) {
       flash((e as Error).message, true);
@@ -389,6 +407,9 @@ export function Composer({ recipients, templates, meta, configured, flash, onRes
 
   return (
     <div className="wa-composer">
+      {share && (
+        <p className="wa-note wsh-attached"><i className="fas fa-link" /> Project link <b>{share.title}</b> is attached — write <code>{'{link}'}</code> where it should go; each number gets its own link, so you can see who opened it.</p>
+      )}
       {drafts.map((d, i) => (
         <DraftCard key={d.key} d={d} i={i} total={drafts.length} set={setFor(d.key)} remove={() => setDrafts((ds) => ds.filter((x) => x.key !== d.key))}
           templates={templates} meta={meta} busy={busy} flash={flash} />

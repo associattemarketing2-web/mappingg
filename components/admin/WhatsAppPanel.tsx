@@ -3,13 +3,15 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StatTile } from './SeoCharts';
 import { Composer, SchedulesView, type Outcome, type WaTpl } from './WaComposer';
+import { SharePicker, SharedLinks, type Share } from './WaShare';
 
 // s-admin → WhatsApp. Four views:
 //   Chats        WhatsApp-style inbox: every conversation, AI auto-reply switch
 //                per chat, manual replies, AI-drafted replies, edit / delete.
 //   OTP          every verification code sent (codes themselves are never stored).
 //   Automations  buyer welcome template, AI replies, and how each is doing.
-//   Bulk send    upload a file of numbers; send text / photo / video / document / template, now or scheduled.
+//   Bulk send    share a project (pick photos / brochure → create link; each number gets its own tracked link),
+//                upload a file of numbers; send text / photo / video / document / template, now or scheduled.
 //   Scheduled    every schedule and its sends (cancel what is still waiting).
 // Data: /api/admin/whatsapp. Polls while the tab is visible.
 
@@ -531,6 +533,9 @@ function BulkView({ flash, configured }: { flash: Flash; configured: boolean }) 
   const [q, setQ] = useState('');
   const [state, setState] = useState<Record<string, SendState>>({});
   const [refresh, setRefresh] = useState(0);
+  // Project link attached to this send (step 1). Each number gets its own link in place of {link}.
+  const [share, setShare] = useState<Share | null>(null);
+  const shareRef = useRef<HTMLDivElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
   const listRef = useRef(list);
   listRef.current = list;
@@ -585,8 +590,13 @@ function BulkView({ flash, configured }: { flash: Flash; configured: boolean }) 
     <>
       {!configured && <div className="wa-setup"><i className="fas fa-plug-circle-exclamation" /> <div><b>Sending is not set up</b><span>Add WHATSAPP_META_TOKEN and WHATSAPP_PHONE_NUMBER_ID (whatapi.in) on the server before sending.</span></div></div>}
 
+      <div className="adm-panel" ref={shareRef}>
+        <div className="adm-panel-head"><h3><i className="fas fa-share-nodes" /> 1 · Share a project <small className="muted">(optional)</small></h3><span className="muted">Pick a project and what to share → Create link. Everyone you send to gets their own link, so you see who opened it.</span></div>
+        <SharePicker share={share} onShare={setShare} flash={flash} />
+      </div>
+
         <div className="adm-panel">
-          <div className="adm-panel-head"><h3><i className="fas fa-upload" /> Numbers</h3>{list.length > 0 && <button type="button" className="adm-btn ghost sm" onClick={clearAll} disabled={sending}><i className="fas fa-trash" /> Clear</button>}</div>
+          <div className="adm-panel-head"><h3><i className="fas fa-upload" /> {share ? '2 · ' : ''}Numbers</h3>{list.length > 0 && <button type="button" className="adm-btn ghost sm" onClick={clearAll} disabled={sending}><i className="fas fa-trash" /> Clear</button>}</div>
           <label
             className={`wa-drop${drag ? ' on' : ''}`}
             onDragOver={(e) => { e.preventDefault(); setDrag(true); }} onDragLeave={() => setDrag(false)}
@@ -611,9 +621,10 @@ function BulkView({ flash, configured }: { flash: Flash; configured: boolean }) 
         </div>
 
       <div className="adm-panel">
-        <div className="adm-panel-head"><h3><i className="fas fa-message" /> What to send &amp; when</h3><span className="muted">Text, photo, video, document or template — now, at set times, or on repeat.</span></div>
+        <div className="adm-panel-head"><h3><i className="fas fa-message" /> {share ? '3 · ' : ''}What to send &amp; when</h3><span className="muted">Text, photo, video, document or template — now, at set times, or on repeat.</span></div>
         {tplError && <p className="wa-note warn"><i className="fas fa-triangle-exclamation" /> {tplError}</p>}
         <Composer recipients={list} templates={templates} meta={meta} configured={configured} flash={flash} onResults={onResults}
+          share={share ? { id: share.id, title: share.title, location: share.project?.location } : null}
           onDone={() => { loadCampaigns(); setRefresh((n) => n + 1); }} />
       </div>
 
@@ -650,6 +661,9 @@ function BulkView({ flash, configured }: { flash: Flash; configured: boolean }) 
           </>
         )}
       </div>
+
+      <SharedLinks flash={flash} refreshKey={refresh}
+        onUse={(s) => { setShare(s); shareRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }); flash(`Link "${s.title}" attached — add numbers and send`); }} />
 
       <SchedulesView flash={flash} refreshKey={refresh} />
 

@@ -31,7 +31,9 @@ export interface WaRun {
 export interface WaSchedule {
   id: string; title: string;
   messages: { payload: WaPayload; timing: Timing }[];
-  recipients: { phone: string; name: string }[];
+  /** link: this number's own project share link ({link} in the message), when the send carries one. */
+  recipients: { phone: string; name: string; link?: string }[];
+  share_id?: string;
   runs: WaRun[];
   status: 'active' | 'done' | 'cancelled';
   lock: string; lock_until: string;
@@ -84,10 +86,10 @@ export async function schedules() {
   return (await getDb()).collection<WaSchedule & { _id: string }>('wa_schedules');
 }
 
-export async function createSchedule(input: { title: string; messages: WaSchedule['messages']; recipients: { phone: string; name?: string }[]; by?: string }): Promise<WaSchedule> {
+export async function createSchedule(input: { title: string; messages: WaSchedule['messages']; recipients: { phone: string; name?: string; link?: string }[]; share_id?: string; by?: string }): Promise<WaSchedule> {
   const seen = new Set<string>();
   const recipients = input.recipients
-    .map((r) => ({ phone: waDigits(r.phone), name: String(r.name || '').trim().slice(0, 80) }))
+    .map((r) => ({ phone: waDigits(r.phone), name: String(r.name || '').trim().slice(0, 80), ...(r.link ? { link: r.link } : {}) }))
     .filter((r) => r.phone.length >= 11 && !seen.has(r.phone) && seen.add(r.phone));
   if (!recipients.length) throw new Error('Add at least one valid number');
   if (recipients.length > MAX_RECIPIENTS) throw new Error(`At most ${MAX_RECIPIENTS.toLocaleString('en-IN')} numbers per schedule`);
@@ -95,7 +97,7 @@ export async function createSchedule(input: { title: string; messages: WaSchedul
   const now = new Date().toISOString();
   const s: WaSchedule = {
     id: randomUUID(), title: input.title.trim().slice(0, 120) || payloadSummary(input.messages[0].payload).slice(0, 80),
-    messages: input.messages, recipients, runs: buildRuns(input.messages), status: 'active',
+    messages: input.messages, recipients, ...(input.share_id ? { share_id: input.share_id } : {}), runs: buildRuns(input.messages), status: 'active',
     lock: '', lock_until: '', created_by: input.by, created_at: now, updated_at: now,
   };
   await (await schedules()).insertOne({ _id: s.id, ...s });
@@ -171,7 +173,7 @@ async function sendSchedule(id: string, deadline: number, results: SendOutcome[]
         // A typed message / file only reaches people who wrote in the last 24 hours (WhatsApp rule);
         // whatapi.in would answer "queued" and WhatsApp drops it silently. Those numbers get the message's
         // fallback template instead, or are skipped when it has none.
-        let queue: { phone: string; name: string; p: WaPayload }[] = batch.map((r) => ({ ...r, p: payload }));
+        let queue: { phone: string; name: string; link?: string; p: WaPayload }[] = batch.map((r) => ({ ...r, p: payload }));
         if (payload.kind !== 'template' && whatsappProvider() === 'meta') {
           const since = new Date(Date.now() - 24 * 3_600_000).toISOString();
           const open = new Set((await (await chats()).find({ _id: { $in: batch.map((r) => r.phone) } }, { projection: { last_in_at: 1 } }).toArray())
@@ -184,7 +186,7 @@ async function sendSchedule(id: string, deadline: number, results: SendOutcome[]
         const work = [...queue];
         await Promise.all(Array.from({ length: PARALLEL }, async () => {
           for (let r = work.shift(); r; r = work.shift()) {
-            const res = await whatsappSend(r.phone, r.name || undefined, r.p, { author: 'staff', by: s!.created_by, campaign: run.id });
+            const res = await whatsappSend(r.phone, r.name || undefined, r.p, { author: 'staff', by: s!.created_by, campaign: run.id }, { link: r.link });
             outcomes.push({ phone: r.phone, ok: res.ok, ...(res.ok ? {} : { error: res.error || 'Not sent' }) });
           }
         }));
