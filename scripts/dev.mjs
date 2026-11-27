@@ -24,6 +24,12 @@ if (local && missing) {
   stopGateway = startGateway({ port: Number(local.port || 80), takeover: true });
 }
 
+// Data safety check (migration/db-guard.mjs): compares the database with the last
+// good snapshot and prints a red ALERT when a table, column or many rows are gone.
+// Runs beside the dev server; it never changes data and never blocks start-up.
+spawn(process.execPath, [path.join(root, 'migration', 'db-guard.mjs'), 'check', '--quiet', '--soft'], { cwd: root, stdio: 'inherit' })
+  .on('error', () => undefined);
+
 const next = spawn(process.execPath, [path.join(root, 'node_modules', 'next', 'dist', 'bin', 'next'), 'dev', ...process.argv.slice(2)], { cwd: root, stdio: 'inherit' });
 
 let stopping = false;

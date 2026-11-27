@@ -1,6 +1,7 @@
 import { getCurrentUser } from '@/lib/auth';
 import { getStaffByEmail } from '@/lib/staff';
 import AdminApp, { type AdminUser } from '@/components/admin/AdminApp';
+import DbGuardBanner from '@/components/admin/DbGuardBanner';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,5 +19,10 @@ export default async function AdminHome() {
     avatar: staff?.avatar || '',
   };
 
-  return <AdminApp user={user} />;
+  return (
+    <>
+      {user.role === 'admin' && <DbGuardBanner />}
+      <AdminApp user={user} />
+    </>
+  );
 }

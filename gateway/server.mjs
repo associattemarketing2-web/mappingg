@@ -167,8 +167,19 @@ async function singleInstance() {
 let ready = false;
 let waiting = false; // another gateway holds the lease
 
+/** Create the tables, waiting out a busy / unreachable database instead of crashing in a restart loop. */
+async function migrateWithRetry() {
+  for (let i = 1; ; i++) {
+    try { return await migrate(); } catch (e) {
+      const wait = Math.min(60, 5 * i);
+      console.warn(`[gateway] database not ready (${e.message}) — retrying in ${wait} s`);
+      await new Promise((r) => setTimeout(r, wait * 1000));
+    }
+  }
+}
+
 async function main() {
-  await migrate();
+  await migrateWithRetry();
   server.listen(PORT, HOST, () => console.log(`[gateway] listening on ${HOST}:${PORT}`));
   await singleInstance();
   ready = true;

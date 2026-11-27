@@ -1,4 +1,5 @@
-import { Pool, type QueryResult, type QueryResultRow } from 'pg';
+import { Pool, type PoolClient, type QueryResult, type QueryResultRow } from 'pg';
+import { GUARD_LOG_SQL, DbGuardError, destructiveAllowed, riskOf } from './db-guard.mjs';
 
 // Pooled PostgreSQL connection for the whole app. Replaces the MongoDB client.
 //
@@ -38,6 +39,12 @@ const POOLED_HOST = 'pooled.db.prisma.io';
 const DIRECT_HOST = 'db.prisma.io';
 const DIRECT_FOR_MS = 10 * 60_000;
 const POOLER_DOWN = /failed to connect to upstream database/i;
+// The database role's connection limit is used up. On the direct host that
+// means it has no room either, so go straight back to the pooler (whose own
+// sessions are what fill the limit) instead of piling more attempts onto it.
+const ROLE_FULL = /too many connections|remaining connection slots/i;
+const isRoleFull = (e: unknown) => String((e as { code?: string })?.code) === '53300' || ROLE_FULL.test(String((e as Error)?.message || ''));
+const ON_VERCEL = !!process.env.VERCEL;
 
 /** DATABASE_URL, or its direct-host form while the pooler is down. */
 function databaseUrl(): string | undefined {
@@ -58,6 +65,15 @@ function switchToDirectHost(e: unknown): boolean {
   global._pgDirectUntil = Date.now() + DIRECT_FOR_MS;
   if (wasDirect) return false; // already on the direct host — this is a real failure
   console.warn('[pg] connection pooler is down — using the direct database host for 10 minutes');
+  resetPool();
+  return true;
+}
+
+/** The direct host is full too: leave it now rather than at the end of the 10-minute window. */
+function leaveFullDirectHost(e: unknown): boolean {
+  if (!isRoleFull(e) || !global._pgDirectUntil || Date.now() > global._pgDirectUntil) return false;
+  global._pgDirectUntil = undefined;
+  console.warn('[pg] direct database host is full — back to the connection pooler');
   resetPool();
   return true;
 }
@@ -98,16 +114,81 @@ function makePool(): Pool {
   }
   const pool = new Pool({
     ...tlsConfig(connectionString),
-    max: connectionString === process.env.DATABASE_URL ? 5 : DIRECT_POOL_MAX,
-    // The hosted database drops idle connections on its side; closing ours
-    // sooner (and keeping live ones warm) avoids handing out a dead socket.
-    idleTimeoutMillis: 10_000,
+    // Prisma's pooler keeps a database session pinned for every open client
+    // connection, idle or not, and all of them count against the role's
+    // connection limit. Paused serverless instances can't run idle timers, so
+    // their sockets stay open — keep each instance to very few connections and
+    // close idle ones fast so a traffic burst can't use the whole limit up.
+    max: connectionString !== process.env.DATABASE_URL ? DIRECT_POOL_MAX : ON_VERCEL ? 2 : 4,
+    idleTimeoutMillis: ON_VERCEL ? 2_000 : 5_000,
+    allowExitOnIdle: true,
     connectionTimeoutMillis: 10_000,
     keepAlive: true,
   });
   // An idle client being cut off must not crash the server — just drop it.
   pool.on('error', (e) => console.warn('[pg] idle client error:', e.message));
+  // Every connection (pool.query, transactions via pool.connect) goes through the guard.
+  pool.on('connect', guardClient);
   return pool;
+}
+
+/* ------------------------------ data guard ------------------------------ */
+// lib/db-guard.mjs: SQL that would drop / empty / rename existing tables or
+// columns is refused on every connection, and the attempt is recorded in
+// db_guard_log so s-admin shows an alert. Nothing is changed in that case.
+
+const guarded = new WeakSet<object>();
+type QueryFn = (...args: unknown[]) => unknown;
+
+function guardClient(client: PoolClient) {
+  if (guarded.has(client)) return;
+  guarded.add(client);
+  const original = client.query.bind(client) as QueryFn;
+  (client as unknown as { query: QueryFn }).query = (...args: unknown[]) => {
+    const cfg = args[0] as string | { text?: string } | undefined;
+    const text = typeof cfg === 'string' ? cfg : cfg?.text || '';
+    const reason = riskOf(text);
+    if (reason) {
+      const allowed = destructiveAllowed();
+      guardLog(allowed ? 'allowed' : 'blocked', reason);
+      if (!allowed) {
+        console.error(`
+[db-guard] ⛔ BLOCKED: ${reason}
+`);
+        const err = new DbGuardError(reason);
+        const cb = [...args].reverse().find((a) => typeof a === 'function') as ((e: Error) => void) | undefined;
+        if (cb) { process.nextTick(() => cb(err)); return undefined; }
+        return Promise.reject(err);
+      }
+      console.warn(`[db-guard] ALLOWED by DB_ALLOW_DESTRUCTIVE=1: ${reason}`);
+    }
+    return original(...args);
+  };
+}
+
+declare global {
+  // eslint-disable-next-line no-var
+  var _guardLogged: Map<string, number> | undefined;
+}
+
+/** Record a guard event (at most once per 10 minutes per message). Never throws. */
+export function guardLog(kind: string, detail: string, source = 'website') {
+  const seen = (global._guardLogged ??= new Map());
+  const key = `${kind}:${detail}`;
+  if ((seen.get(key) || 0) > Date.now()) return;
+  seen.set(key, Date.now() + 10 * 60_000);
+  void getPool().query(GUARD_LOG_SQL)
+    .then(() => getPool().query('INSERT INTO db_guard_log (source, kind, detail) VALUES ($1, $2, $3)', [source, kind, detail.slice(0, 2000)]))
+    .catch(() => { /* the alert is best effort */ });
+}
+
+/** The doc_lite column vanished while the server was running: forget it and read `doc` instead. */
+function liteColumnGone(e: unknown): boolean {
+  const err = e as { code?: string; message?: string };
+  if (err?.code !== '42703' || !/doc_lite/.test(String(err.message))) return false;
+  delete (globalThis as { __mgLiteTables?: unknown }).__mgLiteTables;
+  console.warn('[pg] doc_lite column is gone — reading the full doc column instead');
+  return true;
 }
 
 export function getPool(): Pool {
@@ -138,10 +219,15 @@ export async function query<T extends QueryResultRow = QueryResultRow>(
     try {
       return await getPool().query<T>(text, params as never[]);
     } catch (e) {
-      if (switchToDirectHost(e)) continue;
-      if (i >= attempts || !isTransient(e)) throw e;
+      if (switchToDirectHost(e) || leaveFullDirectHost(e)) continue;
+      if (liteColumnGone(e) && /doc_lite/.test(text)) { text = text.replace(/doc_lite/g, 'doc'); continue; }
+      // A table the app expects is missing: its data would silently not show — raise an alert.
+      if ((e as { code?: string })?.code === '42P01') guardLog('missing-table', (e as Error).message);
+      const full = isRoleFull(e);
+      if (i >= attempts || !(full || isTransient(e))) throw e;
       console.warn(`[pg] ${(e as Error).message} — retrying (${i}/${attempts - 1})`);
-      await new Promise((r) => setTimeout(r, 150 * i));
+      // A full connection limit needs a moment for other clients to let go.
+      await new Promise((r) => setTimeout(r, full ? 1_000 * i : 150 * i));
     }
   }
 }

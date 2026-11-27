@@ -1,5 +1,6 @@
 import crypto from 'node:crypto';
 import pg from 'pg';
+import { assertSafeSql } from '../lib/db-guard.mjs';
 
 // Database + encryption helpers for the gateway. Same Postgres database as the
 // website (DATABASE_URL); the website reads wl_accounts / wl_chats /
@@ -42,7 +43,7 @@ function makePool() {
   if (Date.now() < directUntil) {
     try { const u = new URL(url); if (u.hostname === POOLED_HOST) { u.hostname = DIRECT_HOST; url = u.toString(); } } catch { /* as is */ }
   }
-  const p = new pg.Pool({ ...tlsConfig(url), max: Date.now() < directUntil ? 2 : 4, idleTimeoutMillis: 10_000, connectionTimeoutMillis: 15_000, keepAlive: true });
+  const p = new pg.Pool({ ...tlsConfig(url), max: 2, idleTimeoutMillis: 5_000, connectionTimeoutMillis: 15_000, keepAlive: true });
   p.on('error', (e) => console.error('[db] idle client error', e.message));
   return p;
 }
@@ -63,6 +64,8 @@ function switchToDirectHost(e) {
 }
 
 export async function q(text, params) {
+  // Never drop / empty / rename existing tables or columns (lib/db-guard.mjs).
+  assertSafeSql(text);
   if (directUntil && Date.now() > directUntil) { // the direct-host window has ended: back to the pooler
     directUntil = 0;
     const old = pool;
@@ -73,6 +76,15 @@ export async function q(text, params) {
     return await pool.query(text, params);
   } catch (e) {
     if (switchToDirectHost(e)) return pool.query(text, params);
+    // The direct host has no free connections either: back to the pooler now.
+    if (directUntil && (e?.code === '53300' || /too many connections/i.test(String(e?.message)))) {
+      directUntil = 0;
+      console.warn('[db] direct database host is full — back to the connection pooler');
+      const old = pool;
+      pool = makePool();
+      old.end().catch(() => undefined);
+      return pool.query(text, params);
+    }
     throw e;
   }
 }
