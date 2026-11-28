@@ -3,6 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
   // Don't advertise the framework (X-Powered-By: Next.js) on every response.
   poweredByHeader: false,
+  // DB-backed pages (developer/locality hubs, projects) can be slow to render when
+  // the database is busy during a deploy; allow more than the 60s default.
+  staticPageGenerationTimeout: 180,
   // The legacy map apps rely on data: URLs and remote tile/logo images that are
   // injected as raw <img> tags, so we keep the classic <img> behaviour rather
   // than forcing next/image on the ported markup.
