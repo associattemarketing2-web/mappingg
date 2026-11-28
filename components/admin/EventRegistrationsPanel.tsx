@@ -12,11 +12,26 @@ type Flash = (m: string, e?: boolean) => void;
 interface Row {
   id: string; name: string; email: string; phone: string; attendee_type: string; city?: string; event: string;
   status: string; created_at: string; consent?: { call?: boolean; whatsapp?: boolean };
+  notified?: { email?: boolean; admin_email?: boolean; whatsapp?: boolean; whatsapp_error?: string };
 }
 
 const TYPES: [string, 'violet' | 'blue' | 'teal' | 'amber' | 'rose'][] = [
   ['Home buyer', 'blue'], ['Investor', 'teal'], ['Developer', 'violet'], ['Channel partner', 'amber'], ['Other', 'rose'],
 ];
+// Which confirmations went out (saved by app/api/event-registration). Older rows have none.
+function Sent({ n }: { n?: Row['notified'] }) {
+  if (!n) return <span className="muted">—</span>;
+  const tick = (ok: boolean | undefined, icon: string, label: string, why?: string) => (
+    <i className={`fas ${icon}`} title={`${label}: ${ok ? 'sent' : `not sent${why ? ` (${why})` : ''}`}`}
+      style={{ color: ok ? '#15803d' : '#b91c1c', marginRight: 8 }} />
+  );
+  return <span style={{ whiteSpace: 'nowrap' }}>
+    {tick(n.email, 'fa-envelope', 'Email to attendee')}
+    {tick(n.whatsapp, 'fa-comment-dots', 'WhatsApp to attendee', n.whatsapp_error)}
+    {tick(n.admin_email, 'fa-inbox', 'Email to team')}
+  </span>;
+}
+
 const fmt = (d: string) => (d ? new Date(d).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }) : '—');
 
 export default function EventRegistrationsPanel({ flash, onOpenLeads }: { flash: Flash; onOpenLeads: () => void }) {
@@ -49,8 +64,8 @@ export default function EventRegistrationsPanel({ flash, onOpenLeads }: { flash:
   function exportCsv() {
     if (!shown.length) return flash('Nothing to export', true);
     const cell = (v: unknown) => `"${String(v ?? '').replace(/"/g, '""')}"`;
-    const head = ['Registered at', 'Name', 'Email', 'Mobile', 'Attendee type', 'City', 'Event', 'Status', 'Call opt-in', 'WhatsApp opt-in'];
-    const lines = shown.map((r) => [fmt(r.created_at), r.name, r.email, r.phone, r.attendee_type, r.city, r.event, r.status, r.consent?.call ? 'Yes' : 'No', r.consent?.whatsapp ? 'Yes' : 'No'].map(cell).join(','));
+    const head = ['Registered at', 'Name', 'Email', 'Mobile', 'Attendee type', 'City', 'Event', 'Status', 'Call opt-in', 'WhatsApp opt-in', 'Email sent', 'WhatsApp sent', 'Team email sent'];
+    const lines = shown.map((r) => [fmt(r.created_at), r.name, r.email, r.phone, r.attendee_type, r.city, r.event, r.status, r.consent?.call ? 'Yes' : 'No', r.consent?.whatsapp ? 'Yes' : 'No', ...(['email', 'whatsapp', 'admin_email'] as const).map((k) => (!r.notified ? '' : r.notified[k] ? 'Yes' : 'No'))].map(cell).join(','));
     const blob = new Blob([[head.map(cell).join(','), ...lines].join('\n')], { type: 'text/csv' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
@@ -91,7 +106,7 @@ export default function EventRegistrationsPanel({ flash, onOpenLeads }: { flash:
             {shown.length ? (
               <div style={{ overflowX: 'auto' }}>
                 <table className="adm-table">
-                  <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Mobile</th><th>Attendee type</th><th>City</th><th>Event</th><th>Status</th><th>Registered</th></tr></thead>
+                  <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Mobile</th><th>Attendee type</th><th>City</th><th>Event</th><th>Status</th><th>Sent</th><th>Registered</th></tr></thead>
                   <tbody>{shown.map((r, i) => (
                     <tr key={r.id}>
                       <td className="muted">{shown.length - i}</td>
@@ -102,6 +117,7 @@ export default function EventRegistrationsPanel({ flash, onOpenLeads }: { flash:
                       <td>{r.city || <span className="muted">—</span>}</td>
                       <td>{r.event}</td>
                       <td><span className="adm-badge">{r.status === 'won' ? 'Booked' : r.status.replace(/_/g, ' ')}</span></td>
+                      <td><Sent n={r.notified} /></td>
                       <td className="muted">{fmt(r.created_at)}</td>
                     </tr>
                   ))}</tbody>

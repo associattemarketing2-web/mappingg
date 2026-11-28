@@ -10,6 +10,9 @@ import { buildConsent, type ConsentRecord } from './consent';
 
 export const EVENT_SOURCE = 'Event registration';
 export const DEFAULT_EVENT = 'Mappingg App Launch — Pune';
+// Shown in the confirmation email and WhatsApp (same details as public/event/config.js).
+export const EVENT_WHEN = 'Saturday, 12 December 2026, 12:00 PM – 1:00 PM IST';
+export const EVENT_WHERE = 'Live online on YouTube, Instagram, Facebook and LinkedIn';
 export const ATTENDEE_TYPES = ['Home buyer', 'Investor', 'Developer', 'Channel partner', 'Other'] as const;
 
 const schema = z.object({

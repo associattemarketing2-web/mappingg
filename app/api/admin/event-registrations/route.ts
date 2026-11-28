@@ -18,7 +18,7 @@ export async function GET() {
   const scope = me?.role === 'admin' ? {} : { assigned_to: me?.id || '__nobody' };
   const db = await getDb();
   const rows = await db.collection('contact_leads')
-    .find({ source: EVENT_SOURCE, ...scope }, { projection: { _id: 0, id: 1, name: 1, email: 1, phone: 1, attendee_type: 1, city: 1, event: 1, status: 1, consent: 1, created_at: 1 } })
+    .find({ source: EVENT_SOURCE, ...scope }, { projection: { _id: 0, id: 1, name: 1, email: 1, phone: 1, attendee_type: 1, city: 1, event: 1, status: 1, consent: 1, notified: 1, created_at: 1 } })
     .sort({ created_at: -1 })
     .limit(5000)
     .toArray();

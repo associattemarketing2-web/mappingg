@@ -98,10 +98,12 @@ export function queueMail(m: Parameters<typeof sendMail>[0]): void {
 }
 
 /** Copy of a notification to the Mappingg team inbox. */
-export function notifyAdmin(subject: string, o: Parameters<typeof layout>[0], replyTo?: string): void {
+// Resolves true once the email is sent. Most callers don't wait (fire-and-forget);
+// on serverless, routes that must deliver it should await it before replying.
+export function notifyAdmin(subject: string, o: Parameters<typeof layout>[0], replyTo?: string): Promise<boolean> {
   const to = adminEmails();
-  if (to.length) queueMail({ to, subject: `[Mappingg] ${subject}`, html: layout(o), replyTo });
   pushCopy(subject, o);
+  return to.length ? sendMail({ to, subject: `[Mappingg] ${subject}`, html: layout(o), replyTo }) : Promise.resolve(false);
 }
 
 /** The same notification on the team's phones (lib/push.ts), opening the admin section it is about. */

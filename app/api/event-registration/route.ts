@@ -2,12 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import { randomUUID } from 'crypto';
 import { getDb } from '@/lib/mongodb';
 import { clientIp, rateLimit } from '@/lib/rate-limit';
-import { esc, layout, notifyAdmin, queueMail } from '@/lib/mailer';
+import { esc, layout, notifyAdmin, sendMail } from '@/lib/mailer';
+import { whatsappConfigured, whatsappEventConfirmation } from '@/lib/whatsapp';
 import { optInSummary } from '@/lib/consent';
-import { EVENT_SOURCE, parseEventRegistration } from '@/lib/event-registration';
+import { EVENT_SOURCE, EVENT_WHEN, EVENT_WHERE, parseEventRegistration } from '@/lib/event-registration';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
+// Room for the email + WhatsApp sends that run before the reply.
+export const maxDuration = 30;
 
 // Public registration form of the Mappingg Events landing page (/event, static
 // files in public/event, copied from the `mappinggevent` folder) → a lead in `contact_leads`
@@ -53,38 +56,62 @@ export async function POST(req: NextRequest) {
 
   const d = result.registration;
   const now = d.consent.captured_at;
+  const id = randomUUID();
+  let leads;
   try {
     const db = await getDb();
-    const leads = db.collection<{ _id: string; [k: string]: any }>('contact_leads');
+    leads = db.collection<{ _id: string; [k: string]: any }>('contact_leads');
     // One seat per email per event — a second submit just confirms the first.
     const existing = await leads.findOne({ source: EVENT_SOURCE, email: d.email, event: d.event });
     if (existing) return reply(req, { data: { ok: true, already: true } }, 200);
-    const id = randomUUID();
+    // Saved first: the registration is never lost, whatever happens to the messages below.
     await leads.insertOne({
       _id: id, id, ...d,
       source: EVENT_SOURCE, status: 'new', notes: '',
       created_at: now, updated_at: now,
     });
-  } catch {
+  } catch (e) {
+    console.error('[event-registration] could not save', d.email, (e as Error)?.message);
     return reply(req, { error: { message: 'Something went wrong. Please try again.' } }, 500);
   }
 
+  // Confirmation email + WhatsApp to the attendee, and a copy to the team inbox.
+  // Awaited (not fire-and-forget): a serverless function is frozen as soon as it
+  // replies, which silently dropped emails that were still being sent.
   const channels = optInSummary(d.consent);
   const rows: [string, string][] = [['Name', d.name], ['Email', d.email], ['Phone', d.phone], ['Attendee type', d.attendee_type], ['City', d.city || '—'], ['Event', d.event], ['Opted in to', channels]];
-  notifyAdmin(`Event registration — ${d.name} (${d.attendee_type})`, {
-    title: 'New event registration', body: [esc(d.message)], rows,
-  }, d.email);
-  queueMail({
-    to: d.email,
-    subject: `You're registered — ${d.event}`,
-    html: layout({
-      title: 'Your seat is reserved 🎉',
-      body: [
-        `Hi ${esc(d.name.split(' ')[0])},`,
-        `Thanks for registering for <b>${esc(d.event)}</b>. We'll share the date, time and venue details with you soon.`,
-        'Also — the Mappingg app is launching soon. Stay tuned!',
-      ],
+  const first = d.name.split(' ')[0];
+  const sendWa = d.consent.whatsapp && whatsappConfigured();
+  const [userMail, adminMail, wa] = await Promise.all([
+    sendMail({
+      to: d.email,
+      subject: `You're registered — ${d.event}`,
+      html: layout({
+        title: 'Your seat is reserved 🎉',
+        body: [
+          `Hi ${esc(first)},`,
+          `Thanks for registering for <b>${esc(d.event)}</b>.`,
+          `<b>When:</b> ${esc(EVENT_WHEN)}<br><b>Where:</b> ${esc(EVENT_WHERE)}`,
+          'We will send you the livestream links before we go live. The Mappingg app is launching soon — stay tuned!',
+        ],
+      }),
     }),
-  });
+    notifyAdmin(`Event registration — ${d.name} (${d.attendee_type})`, {
+      title: 'New event registration', body: [esc(d.message)], rows,
+      cta: { label: 'Open Event registrations', href: '/dashboard/s-admin?tab=events' },
+    }, d.email),
+    sendWa
+      ? whatsappEventConfirmation(d.phone, d.name,
+        `you're registered for ${d.event}: ${EVENT_WHEN}, ${EVENT_WHERE.toLowerCase()}. We will send you the livestream links before we go live.`)
+        .then((r) => ({ ok: r.ok, error: r.error }))
+      : Promise.resolve({ ok: false, error: d.consent.whatsapp ? 'WhatsApp is not set up on the server' : 'Not opted in to WhatsApp' }),
+  ]);
+  const notified = {
+    email: userMail, admin_email: adminMail, whatsapp: wa.ok,
+    ...(wa.ok || !sendWa ? {} : { whatsapp_error: wa.error || 'failed' }),
+    at: new Date().toISOString(),
+  };
+  if (!userMail || !adminMail || (sendWa && !wa.ok)) console.warn('[event-registration] some notifications failed', d.email, notified);
+  await leads.updateOne({ _id: id }, { $set: { notified } }).catch(() => { /* the registration itself is saved */ });
   return reply(req, { data: { ok: true } }, 201);
 }

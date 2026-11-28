@@ -220,6 +220,22 @@ export async function whatsappBuyerWelcome(mobile: string, name?: string): Promi
   return r.ok;
 }
 
+/**
+ * Event registration confirmation. WhatsApp only lets a business start a chat with an
+ * approved template, so this uses one with two body variables — the approved
+ * "new_order__" ("Hello {{1}}, {{2}} Thank you for your enquiry.") unless
+ * WHATSAPP_EVENT_TEMPLATE names another. {{1}} = name, {{2}} = the event details.
+ */
+export async function whatsappEventConfirmation(mobile: string, name: string, details: string): Promise<SendResult> {
+  const template = process.env.WHATSAPP_EVENT_TEMPLATE || 'new_order__';
+  const language = process.env.WHATSAPP_EVENT_TEMPLATE_LANG || (whatsappProvider() === 'meta' ? 'en' : lang().code);
+  const params = [templateSafe(name).slice(0, 60) || 'there', templateSafe(details).slice(0, 900)];
+  return post(templateUrl(), mobile, name, {
+    type: 'template',
+    template: { name: template, language: { code: language }, components: [{ type: 'body', parameters: params.map((text) => ({ type: 'text', text })) }] },
+  }, { author: 'system', kind: 'template', template, purpose: 'event', body: `Event registration confirmation (${params[1].slice(0, 200)})` });
+}
+
 /** Free-text chat reply (AI or staff). Only delivered within 24 hours of the customer's last message. */
 export function whatsappText(mobile: string, text: string, author: 'ai' | 'staff', by?: string): Promise<SendResult> {
   const body = text.trim().slice(0, 4096);
