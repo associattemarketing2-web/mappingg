@@ -8,6 +8,7 @@ import ProfileForm from '@/components/admin/ProfileForm';
 import PlanSummary from '@/components/subscriptions/PlanSummary';
 import SubscriptionCenter from '@/components/subscriptions/SubscriptionCenter';
 import DevMedia from '@/components/subscriptions/DevMedia';
+import DeveloperLands from './DeveloperLands';
 
 // Developer control panel — the SAME shell/design as the super-admin (reuses
 // admin.css: adm2 / adm2-top / adm2-tabs / adm-content), but with only the tabs
@@ -22,6 +23,7 @@ const TABS = [
   { key: 'dashboard', label: 'Dashboard', icon: 'fa-gauge-high' },
   { key: 'map', label: 'Map Editor', icon: 'fa-map-location-dot' },
   { key: 'intake', label: 'Projects Intake', icon: 'fa-location-dot' },
+  { key: 'land', label: 'Land', icon: 'fa-mountain-sun' },
   { key: 'media', label: 'Project media', icon: 'fa-images', subs: true },
   { key: 'subscription', label: 'Subscription', icon: 'fa-crown', subs: true },
 ] as const;
@@ -75,6 +77,7 @@ function DevDashboard({ onGo, subscriptions }: { onGo: (t: TabKey) => void; subs
         <div className="dash-actions">
           <button onClick={() => onGo('map')}><i className="fas fa-map-location-dot" /><span><b>Map editor</b><small>Place &amp; edit your project pins</small></span></button>
           <button onClick={() => onGo('intake')}><i className="fas fa-location-dot" /><span><b>Projects intake</b><small>Add, bulk upload or update your projects</small></span></button>
+          <button onClick={() => onGo('land')}><i className="fas fa-mountain-sun" /><span><b>Land</b><small>Land parcels listed by channel partners</small></span></button>
           <a href="/map" target="_blank" rel="noopener"><i className="fas fa-arrow-up-right-from-square" /><span><b>Live map</b><small>See your projects as published</small></span></a>
         </div>
       </div>
@@ -216,6 +219,7 @@ export default function DeveloperApp({ user, subscriptions = false }: { user: De
             </div>
           )}
           {tab === 'intake' && <DeveloperProjects onEditAll={openFullEdit} />}
+          {tab === 'land' && <DeveloperLands />}
           {tab === 'fulledit' && fullEdit && (
             <div className="adm-panel" style={{ padding: 0, overflow: 'hidden' }}>
               <div className="adm-panel-head" style={{ padding: '12px 16px', margin: 0 }}>

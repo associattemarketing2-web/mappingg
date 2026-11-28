@@ -11,11 +11,11 @@ import { getDb, usingMongo } from './mongodb';
 // pins" in Backups). A pin deleted together with a project is stored here too,
 // so the whole project comes back in one click.
 
-export type TrashKind = 'account' | 'employee' | 'lead' | 'blog' | 'intake_project' | 'dev_project' | 'builder';
+export type TrashKind = 'account' | 'employee' | 'lead' | 'blog' | 'intake_project' | 'dev_project' | 'builder' | 'land';
 
 export const TRASH_KIND_LABEL: Record<TrashKind, string> = {
   account: 'Account', employee: 'Employee', lead: 'Lead', blog: 'Blog post',
-  intake_project: 'Intake project', dev_project: 'Developer project', builder: 'Builder',
+  intake_project: 'Intake project', dev_project: 'Developer project', builder: 'Builder', land: 'Land',
 };
 
 /** One stored document: the collection it came from and its full contents. */

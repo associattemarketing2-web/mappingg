@@ -27,6 +27,7 @@ import DevProjectAccess from './DevProjectAccess';
 import ShareLinkButton from './ShareLinkButton';
 import { PushToggle } from '../PushToggle';
 import { PageHead, StatCard } from './PageHead';
+import LandsPanel from './LandsPanel';
 import OverviewMap, { loadProjectIndex, matchProjects, type ProjectHit } from './OverviewMap';
 import { FULL_EDIT_EVENT, requestFullEdit, submissionForPin } from './fullEdit';
 import { ChartCard, DayHeatmap, Donut, HBars, STATUS_META, StatTile, StatusStack, TYPE_COLORS, WeekColumns, dayStats } from './SeoCharts';
@@ -64,6 +65,7 @@ const TAB_META: Record<string, { label: string; icon: string; desc: string }> = 
   events: { label: 'Event registrations', icon: 'fa-champagne-glasses', desc: 'App launch event sign-ups' },
   buyerleads: { label: 'Buyer leads', icon: 'fa-people-roof', desc: 'Buyer requirements & lead sources' },
   accounts: { label: 'Accounts', icon: 'fa-users', desc: 'Buyer, developer & partner sign-ups' },
+  lands: { label: 'Land', icon: 'fa-mountain-sun', desc: 'Land listed by channel partners — approve & partner access' },
   backups: { label: 'Backups', icon: 'fa-database', desc: 'Backups & recycle bin' },
   blogs: { label: 'Blogs', icon: 'fa-newspaper', desc: 'Write & publish SEO articles' },
   employees: { label: 'Employees', icon: 'fa-users-gear', desc: 'Teammates & their access' },
@@ -79,7 +81,7 @@ const TAB_META: Record<string, { label: string; icon: string; desc: string }> = 
 // permissions and "Edit all details" work as before.
 const NAV: { key: string; label: string; icon: string; tabs: string[] }[] = [
   { key: 'overview', label: 'Overview', icon: 'fa-house', tabs: ['dashboard'] },
-  { key: 'mapproj', label: 'Map & Projects', icon: 'fa-map', tabs: ['map', 'pinsdata', 'intake', 'projects'] },
+  { key: 'mapproj', label: 'Map & Projects', icon: 'fa-map', tabs: ['map', 'pinsdata', 'intake', 'projects', 'lands'] },
   { key: 'leads', label: 'CRM & Leads', icon: 'fa-user-group', tabs: ['leads', 'events', 'buyerleads', 'accounts'] },
   { key: 'developers', label: 'Developers', icon: 'fa-building', tabs: ['developers'] },
   { key: 'content', label: 'Content & SEO', icon: 'fa-file-lines', tabs: ['blogs', 'seo'] },
@@ -2614,6 +2616,8 @@ interface Account {
   verification?: 'pending' | 'approved' | 'rejected'; verification_note?: string; verified_at?: string | null; verified_by?: string | null;
   /** Developers: 'viewer' = live map only, 'editor' (default) = can add projects. */
   access?: 'viewer' | 'editor';
+  /** Channel partners: the super admin lets them add land listings. */
+  can_add_land?: boolean;
   profile?: Record<string, string>; created_at?: string; updated_at?: string;
   // Buyer: preferred areas · agent: areas they work in · developer: where their projects are.
   locations?: string[];
@@ -2653,6 +2657,12 @@ const EVENT_META: Record<string, { icon: string; tone: string; label: string; gr
   role_changed: { icon: 'fa-arrow-right-arrow-left', tone: 'blue', label: 'Type changed', group: 'admin' },
   project_assigned: { icon: 'fa-key', tone: 'green', label: 'Projects access given', group: 'projects' },
   project_unassigned: { icon: 'fa-key', tone: 'red', label: 'Projects access removed', group: 'projects' },
+  land_added: { icon: 'fa-mountain-sun', tone: 'green', label: 'Land added', group: 'projects' },
+  land_edited: { icon: 'fa-mountain-sun', tone: 'blue', label: 'Land edited', group: 'projects' },
+  land_deleted: { icon: 'fa-mountain-sun', tone: 'red', label: 'Land deleted', group: 'projects' },
+  land_approved: { icon: 'fa-circle-check', tone: 'green', label: 'Land approved', group: 'projects' },
+  land_rejected: { icon: 'fa-circle-xmark', tone: 'red', label: 'Land not approved', group: 'projects' },
+  land_access: { icon: 'fa-key', tone: 'blue', label: 'Land access changed', group: 'admin' },
 };
 const FEED_FILTERS = [['all', 'All'], ['signin', 'Sign-ins'], ['signup', 'Sign-ups'], ['enquiry', 'Enquiries'], ['projects', 'Projects'], ['admin', 'Staff actions']] as const;
 const eventMeta = (t: string) => EVENT_META[t] || { icon: 'fa-circle', tone: 'grey', label: t, group: 'all' };
@@ -3295,6 +3305,28 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
                   <button className="adm-btn primary sm" disabled={busy || notes === (sel.notes || '')} onClick={async () => { if (await patch(sel.id, { notes })) flash('Notes saved'); }}>Save notes</button>
                 </div>
 
+                {sel.role === 'agent' && (
+                  <div className="acs-box">
+                    <h4>Land</h4>
+                    <p className="crm-meta">Let this partner add land parcels. They see only their own; developers see each listing after you approve it (Map &amp; Projects → Land).</p>
+                    <div className="acs-access">
+                      {([[true, 'fa-mountain-sun', 'Can add land', 'Gets a “My land” page to list land for developers.'],
+                        [false, 'fa-ban', 'Off', 'Cannot add land (existing listings stay).']] as const).map(([on, ic, lbl, desc]) => {
+                        const cur = sel.can_add_land === true;
+                        return (
+                          <button key={lbl} type="button" className={cur === on ? 'on' : ''} aria-pressed={cur === on}
+                            disabled={busy || !isOwner} onClick={async () => { if (cur !== on && await patch(sel.id, { can_add_land: on })) flash(on ? `${sel.name || sel.email} can now add land` : `${sel.name || sel.email} can no longer add land`); }}>
+                            <i className={`fas ${ic}`} />
+                            <span><b>{lbl}{cur === on ? ' (current)' : ''}</b><small>{desc}</small></span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                    {statusOf(sel) !== 'approved' && <p className="crm-meta"><i className="fas fa-circle-info" /> They can use it once their account is verified.</p>}
+                    {!isOwner && <p className="crm-meta"><i className="fas fa-lock" /> Only the super admin can change this.</p>}
+                  </div>
+                )}
+
                 {sel.role === 'developer' && statusOf(sel) === 'approved' && (
                   <div className="acs-box">
                     <h4>Dashboard access</h4>
@@ -3413,7 +3445,7 @@ interface TrashEntry { id: string; kind: string; label: string; sub?: string; de
 const TRASH_KINDS: Record<string, { label: string; icon: string }> = {
   account: { label: 'Account', icon: 'fa-user' }, employee: { label: 'Employee', icon: 'fa-user-tie' },
   lead: { label: 'Lead', icon: 'fa-address-book' }, blog: { label: 'Blog post', icon: 'fa-newspaper' },
-  intake_project: { label: 'Intake project', icon: 'fa-file-arrow-up' }, dev_project: { label: 'Developer project', icon: 'fa-map-pin' },
+  intake_project: { label: 'Intake project', icon: 'fa-file-arrow-up' }, dev_project: { label: 'Developer project', icon: 'fa-map-pin' }, land: { label: 'Land', icon: 'fa-mountain-sun' },
   builder: { label: 'Builder', icon: 'fa-building' },
 };
 
@@ -3838,10 +3870,10 @@ export default function AdminApp({ user }: { user: AdminUser }) {
   const { flash, node: toastNode } = useToast();
 
   const visible = isOwner
-    ? ['dashboard', 'map', 'pinsdata', 'developers', 'projects', 'intake', 'leads', 'events', 'buyerleads', 'whatsapp', 'walinked', 'accounts', 'blogs', 'employees', 'hr', 'backups', 'devapi', 'subscriptions', 'seo', 'settings', 'profile']
+    ? ['dashboard', 'map', 'pinsdata', 'developers', 'projects', 'intake', 'leads', 'events', 'buyerleads', 'whatsapp', 'walinked', 'accounts', 'lands', 'blogs', 'employees', 'hr', 'backups', 'devapi', 'subscriptions', 'seo', 'settings', 'profile']
     // Employees get no site-wide Dashboard overview — they open straight on their
     // leads (only the ones transferred to them), plus any other tab the super admin granted.
-    : [...GRANTABLE.map((g) => g.key).filter((k) => user.permissions.includes(k)).sort((a, b) => Number(b === 'leads') - Number(a === 'leads')).flatMap((k) => (k === 'intake' ? ['projects', 'intake'] : k === 'leads' ? ['leads', 'events'] : k === 'map' ? ['map', 'pinsdata', 'developers'] : k === 'whatsapp' ? ['whatsapp', 'walinked'] : [k])), 'hr', 'profile'];
+    : [...GRANTABLE.map((g) => g.key).filter((k) => user.permissions.includes(k)).sort((a, b) => Number(b === 'leads') - Number(a === 'leads')).flatMap((k) => (k === 'intake' ? ['projects', 'intake'] : k === 'leads' ? ['leads', 'events'] : k === 'map' ? ['map', 'pinsdata', 'developers'] : k === 'whatsapp' ? ['whatsapp', 'walinked'] : k === 'accounts' ? ['accounts', 'lands'] : [k])), 'hr', 'profile'];
 
   const navGroups = NAV.map((g) => ({ ...g, tabs: g.tabs.filter((k) => visible.includes(k)) })).filter((g) => g.tabs.length);
   const [tab, setTab] = useState(visible[0] || 'dashboard');
@@ -4288,6 +4320,12 @@ export default function AdminApp({ user }: { user: AdminUser }) {
                 {visible.includes('intake') && <button type="button" className="pg-btn" onClick={() => setTab('intake')}><i className="fas fa-plus" /> Add Project</button>}
               </PageHead>
               <DevProjectsPanel flash={flash} isOwner={isOwner} onPendingChange={setProjPending} focus={projFocus} onFocusDone={() => setProjFocus(null)} />
+            </div>
+          )}
+          {tab === 'lands' && (
+            <div className="pg-wrap">
+              <PageHead icon="fa-mountain-sun" title="Land" sub="Land parcels channel partners add. Approve a listing to show it to developers; choose which partners may add land." />
+              <LandsPanel flash={flash} isOwner={isOwner} />
             </div>
           )}
           {tab === 'accounts' && (

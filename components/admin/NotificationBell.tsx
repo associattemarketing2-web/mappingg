@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import FloatingPop from './FloatingPop';
 
 // Bell in the admin top bar: everything people do on the site — new sign-ups,
 // projects added / edited / approved / deleted, account decisions and profile
@@ -19,6 +20,7 @@ const ICON: Record<string, string> = {
   project_added: 'fa-map-pin', project_edited: 'fa-pen', project_deleted: 'fa-trash', project_delete_requested: 'fa-trash-can',
   project_approved: 'fa-circle-check', project_rejected: 'fa-circle-xmark', project_delete_approved: 'fa-trash',
   project_delete_rejected: 'fa-rotate-left', project_admin_edit: 'fa-pen-to-square', project_assigned: 'fa-user-tag', project_unassigned: 'fa-user-minus',
+  land_added: 'fa-mountain-sun', land_edited: 'fa-mountain-sun', land_deleted: 'fa-trash', land_approved: 'fa-circle-check', land_rejected: 'fa-circle-xmark', land_access: 'fa-key',
   signup: 'fa-user-plus', approved: 'fa-user-check', rejected: 'fa-user-xmark', reset: 'fa-hourglass-half', access: 'fa-key',
   role_changed: 'fa-id-badge', profile_edited: 'fa-user-pen', password_reset: 'fa-lock', deleted: 'fa-user-slash',
   contact: 'fa-envelope', enquiry: 'fa-comment-dots',
@@ -81,6 +83,8 @@ export default function NotificationBell({ onOpenProjects, onOpenAccount, onOpen
   const pushRef = useRef(false); // read by the poll timer (state would be stale there)
   useEffect(() => { pushRef.current = pushOn; }, [pushOn]);
   const ref = useRef<HTMLDivElement>(null);
+  // The open panel (drawn in its own top layer, see FloatingPop).
+  const popRef = useRef<HTMLDivElement>(null);
   // Ids already shown, so a refresh only alerts about genuinely new items.
   const known = useRef<Set<string> | null>(null);
 
@@ -143,7 +147,7 @@ export default function NotificationBell({ onOpenProjects, onOpenAccount, onOpen
 
   useEffect(() => {
     if (!open) return;
-    const onDown = (e: PointerEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false); };
+    const onDown = (e: PointerEvent) => { const t = e.target as Node; if (ref.current && !ref.current.contains(t) && !popRef.current?.contains(t)) setOpen(false); };
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
     document.addEventListener('pointerdown', onDown);
     document.addEventListener('keydown', onKey);
@@ -202,7 +206,7 @@ export default function NotificationBell({ onOpenProjects, onOpenAccount, onOpen
         {count > 0 && <span className="nb-count">{count > 99 ? '99+' : count}</span>}
       </button>
       {open && (
-        <div className="nb-pop" role="dialog" aria-label="Notifications">
+        <FloatingPop anchor={ref} popRef={popRef} className="nb-pop" label="Notifications">
           <div className="nb-pop-head">
             <b>Notifications</b>
             <span className="nb-head-acts">
@@ -254,7 +258,7 @@ export default function NotificationBell({ onOpenProjects, onOpenAccount, onOpen
               ))}
             </ul>
           )}
-        </div>
+        </FloatingPop>
       )}
     </div>
   );

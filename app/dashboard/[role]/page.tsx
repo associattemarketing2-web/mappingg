@@ -85,6 +85,7 @@ export default async function DashboardRolePage({ params }: { params: { role: st
     })).filter((e) => e.pin_id),
     last_login_at: String(doc.last_login_at || ''),
     login_count: Number(doc.login_count || 0),
+    can_add_land: doc.can_add_land === true,
   };
 
   const projects = await getSeoProjects();

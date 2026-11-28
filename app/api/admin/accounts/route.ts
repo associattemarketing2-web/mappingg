@@ -78,6 +78,8 @@ const patchSchema = z.object({
   // `permissions` are the super-admin tabs they may open.
   role: z.enum([...PUBLIC_ROLES, 'employee']).optional(),
   permissions: z.array(z.enum(GRANTABLE_PERMISSIONS)).max(10).optional(),
+  // Channel partners only (super admin): may they add land listings?
+  can_add_land: z.boolean().optional(),
 });
 
 export async function PATCH(req: NextRequest) {
@@ -86,7 +88,7 @@ export async function PATCH(req: NextRequest) {
   if (!parsed.success) {
     return NextResponse.json({ error: { message: 'Invalid request (passwords need at least 8 characters).' } }, { status: 400 });
   }
-  const { id, decision, reason, notes, password, access, name, email, mobile, profile, role, permissions } = parsed.data;
+  const { id, decision, reason, notes, password, access, name, email, mobile, profile, role, permissions, can_add_land } = parsed.data;
   const editingDetails = name !== undefined || email !== undefined || mobile !== undefined || profile !== undefined;
   const now = new Date().toISOString();
   const patch: Record<string, unknown> = { updated_at: now };
@@ -144,6 +146,17 @@ export async function PATCH(req: NextRequest) {
     }
     patch.access = access;
   }
+  if (can_add_land !== undefined) {
+    const me = await getCurrentUser();
+    if (!me || me.role !== 'admin') {
+      return NextResponse.json({ error: { message: 'Only the super admin can change land access.' } }, { status: 403 });
+    }
+    const target = await users.findOne({ id, ...ROLE_FILTER }, { projection: { role: 1 } });
+    if (!target || target.role !== 'agent') {
+      return NextResponse.json({ error: { message: 'Land access applies to channel partners only.' } }, { status: 400 });
+    }
+    patch.can_add_land = can_add_land;
+  }
   if (decision) {
     const me = await getCurrentUser();
     if (!me || me.role !== 'admin') {
@@ -180,6 +193,7 @@ export async function PATCH(req: NextRequest) {
     if (decision === 'reset') await logActivity({ ...who, type: 'reset', detail: 'Moved back to pending verification' });
     if (password) await logActivity({ ...who, type: 'password_reset', detail: 'Password reset by staff' });
     if (typeof notes === 'string') await logActivity({ ...who, type: 'notes', detail: 'Internal notes updated' });
+    if (can_add_land !== undefined) await logActivity({ ...who, type: 'land_access', detail: can_add_land ? 'You can now add land listings' : 'Adding land was switched off for your account' });
     if (roleChange?.to === 'buyer') {
       await addBuyerSignupLead({
         id, name: row.name as string | undefined, email: String(row.email), mobile: row.mobile as string | undefined,

@@ -35,6 +35,11 @@ const USER: Record<string, (e: Event) => Msg> = {
   password_reset: () => ({ subject: 'Your Mappingg password was changed', title: 'Password changed', intro: 'If this wasn’t you, reply to this email right away.' }),
   profile_edited: () => ({ subject: 'Your Mappingg account details were updated', title: 'Account details updated', cta: dash }),
   deleted: () => ({ subject: 'Your Mappingg account was closed', title: 'Account deleted' }),
+  land_added: () => ({ subject: 'Land received — waiting for review', title: 'We received your land listing', intro: 'Developers see it once the Mappingg team approves it.', cta: { label: 'Open My land', href: '/dashboard/agent/land' } }),
+  land_edited: () => ({ subject: 'Land changes received — waiting for review', title: 'We received your changes', intro: 'Developers see the updated listing once the Mappingg team approves it.', cta: { label: 'Open My land', href: '/dashboard/agent/land' } }),
+  land_approved: () => ({ subject: 'Your land is now visible to developers', title: 'Land approved', cta: { label: 'Open My land', href: '/dashboard/agent/land' } }),
+  land_rejected: () => ({ subject: 'Your land listing needs changes', title: 'Land not approved', intro: 'Edit the listing and send it again.', cta: { label: 'Open My land', href: '/dashboard/agent/land' } }),
+  land_access: () => ({ subject: 'Your Mappingg land access changed', title: 'Land access updated', cta: { label: 'Open My land', href: '/dashboard/agent/land' } }),
 };
 
 /** Admin subject line, per event type. Missing = no admin copy. */
@@ -56,6 +61,9 @@ const ADMIN: Record<string, (e: Event, who: string) => string> = {
   password_reset: (_, who) => `Password changed: ${who}`,
   profile_edited: (_, who) => `Account details edited: ${who}`,
   deleted: (_, who) => `Account deleted: ${who}`,
+  land_added: (_, who) => `Land added by ${who} — review needed`,
+  land_edited: (_, who) => `Land edited by ${who} — review needed`,
+  land_deleted: (_, who) => `Land deleted by ${who}`,
 };
 
 const PROFILE_LABEL: Record<string, string> = {

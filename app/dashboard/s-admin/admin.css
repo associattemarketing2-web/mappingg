@@ -4296,3 +4296,47 @@ button.ck:hover { transform: translateY(-2px); }
 .wsh-link-row { display: grid; grid-template-columns: 140px minmax(0, 2fr) minmax(0, 1fr) auto; gap: 8px; align-items: center; }
 @media (max-width: 720px) { .wsh-link-row { grid-template-columns: 1fr; } }
 .wsh-pin-no { display: inline-block; margin-right: 6px; padding: 0 6px; border-radius: 6px; background: var(--accent-50); color: var(--forest); font-size: 12px; font-weight: 700; }
+
+/* ---- Land (channel partner listings: s-admin Land tab, developer Land tab, /dashboard/agent/land) ---- */
+.land-form textarea { min-height: 110px; font-family: inherit; font-size: 14px; }
+.land-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.land-head h2 { margin: 0; }
+.land-tools { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 0 0 12px; }
+.land-tools .crm-search { flex: 1 1 220px; min-width: 0; }
+.land-chips, .land-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.land-tabs { margin: 0 0 12px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+.land-chips button, .land-tabs button { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 6px 12px; font: 600 13px var(--font); color: var(--fg); cursor: pointer; display: inline-flex; gap: 6px; align-items: center; }
+.land-chips button.on, .land-tabs button.on { background: var(--forest); border-color: var(--forest); color: #fff; }
+.land-chips .n, .land-tabs .n { font-size: 11.5px; opacity: .75; }
+.land-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.land-item { border: 1px solid var(--line); border-radius: 12px; background: #fff; overflow: hidden; }
+.land-item.s-pending { border-left: 3px solid var(--water); }
+.land-item.s-approved { border-left: 3px solid var(--accent); }
+.land-item.s-rejected { border-left: 3px solid var(--earth); }
+.land-sum { width: 100%; display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: none; border: 0; text-align: left; font: inherit; color: inherit; cursor: pointer; }
+.land-t { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.land-t b { overflow-wrap: anywhere; }
+.land-t small { color: var(--muted); font-size: 12.5px; overflow-wrap: anywhere; }
+.land-when { color: var(--muted); font-size: 12px; white-space: nowrap; }
+.land-reject { margin: 0; padding: 0 14px 10px; color: var(--earth); font-size: 13px; }
+.land-body { padding: 0 14px 14px; border-top: 1px dashed var(--line); padding-top: 12px; }
+.land-details dl { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px 16px; margin: 0 0 8px; }
+.land-details dt { font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; }
+.land-details dd { margin: 2px 0 0; font-weight: 600; overflow-wrap: anywhere; }
+.land-desc { white-space: pre-wrap; margin: 4px 0 10px; font-size: 14px; }
+.land-switch { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; white-space: nowrap; cursor: pointer; }
+.land-switch input { width: 18px; height: 18px; accent-color: var(--forest); }
+@media (max-width: 560px) { .land-sum { flex-wrap: wrap; } .land-when { order: 3; } }
+
+/* ---- Top bar dropdowns (notifications, account menu, search) above page content ----
+   The overview map's controls/legend use z-index 500, which painted over the
+   notification panel (the top bar is only z-index 40). Keep each map's layers
+   inside the map box, and lift the top bar + tab row above ordinary content
+   (still below drawers/modals, which start at z-index 200). */
+.ov-map-canvas { isolation: isolate; }
+.adm2-top { z-index: 160; }
+.adm2-tabs { z-index: 150; }
+.adm2-top .nb-pop { z-index: 170; }
+/* Notification panels are portalled (components/admin/FloatingPop.tsx): fixed, top layer. */
+.nb-pop.nb-float { position: fixed; z-index: 1500; }
+@media (max-width: 560px) { .nb-pop.nb-float { width: auto; } }

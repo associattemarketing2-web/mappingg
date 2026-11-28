@@ -19,6 +19,8 @@ export interface AgentAccount {
   enquiries: { pin_id: string; at: string; times: number }[];
   last_login_at: string;
   login_count: number;
+  /** The super admin lets this partner add land listings for developers. */
+  can_add_land?: boolean;
 }
 
 const norm = (s?: string) => (s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
@@ -93,6 +95,14 @@ export default function AgentProfile({ account, projects }: { account: AgentAcco
           <span><b>Explore the live map</b><small>Every project with status, RERA, prices and what&apos;s nearby. Tap Enquire on any project for full details.</small></span>
           <i className="fas fa-arrow-right" />
         </a>
+
+        {account.can_add_land && (
+          <a className="bp-map-cta" href="/dashboard/agent/land">
+            <span className="ic"><i className="fas fa-mountain-sun" /></span>
+            <span><b>My land</b><small>Add land parcels for developers. Approved listings are shown to developers with your name and number.</small></span>
+            <i className="fas fa-arrow-right" />
+          </a>
+        )}
 
         <PlanSummary
           manageHref="/dashboard/agent/subscription"

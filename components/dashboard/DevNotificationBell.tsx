@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import FloatingPop from '@/components/admin/FloatingPop';
 
 // Bell in the developer dashboard: the review status of the developer's own
 // projects — waiting for approval, approved (live on the map) or not approved.
@@ -22,6 +23,8 @@ export default function DevNotificationBell({ onOpenProjects }: { onOpenProjects
   const [data, setData] = useState<Payload | null>(null);
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  // The open panel (drawn in its own top layer, see FloatingPop).
+  const popRef = useRef<HTMLDivElement>(null);
 
   async function load() {
     try {
@@ -50,7 +53,7 @@ export default function DevNotificationBell({ onOpenProjects }: { onOpenProjects
 
   useEffect(() => {
     if (!open) return;
-    const onDown = (e: PointerEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false); };
+    const onDown = (e: PointerEvent) => { const t = e.target as Node; if (ref.current && !ref.current.contains(t) && !popRef.current?.contains(t)) setOpen(false); };
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
     document.addEventListener('pointerdown', onDown);
     document.addEventListener('keydown', onKey);
@@ -77,7 +80,7 @@ export default function DevNotificationBell({ onOpenProjects }: { onOpenProjects
         {count > 0 && <span className="nb-count">{count > 99 ? '99+' : count}</span>}
       </button>
       {open && (
-        <div className="nb-pop" role="dialog" aria-label="Project updates">
+        <FloatingPop anchor={ref} popRef={popRef} className="nb-pop" label="Project updates">
           <div className="nb-pop-head">
             <b>Project updates</b>
             {data && data.items.some((i) => i.unread) && <button type="button" className="link-btn" onClick={markRead}>Mark all read</button>}
@@ -110,7 +113,7 @@ export default function DevNotificationBell({ onOpenProjects }: { onOpenProjects
               ))}
             </ul>
           )}
-        </div>
+        </FloatingPop>
       )}
     </div>
   );
