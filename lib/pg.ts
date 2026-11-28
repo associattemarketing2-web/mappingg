@@ -124,6 +124,9 @@ function makePool(): Pool {
     allowExitOnIdle: true,
     connectionTimeoutMillis: 10_000,
     keepAlive: true,
+    // During `next build` a query that never answers would stall page-data
+    // collection until Next kills the build; fail it instead (callers fall back).
+    ...(process.env.NEXT_PHASE === 'phase-production-build' ? { query_timeout: 20_000 } : {}),
   });
   // An idle client being cut off must not crash the server — just drop it.
   pool.on('error', (e) => console.warn('[pg] idle client error:', e.message));
