@@ -72,11 +72,22 @@ export async function getStaffByEmail(email: string): Promise<StaffMember | null
   }
 }
 
-/** Employees only (never the owner/admin) — for the Employees tab. */
+/** Roles managed from the Employees tab: 'admin' = super admin (full access,
+ *  same dashboard as the owner), 'employee' = only the granted tabs. */
+export const STAFF_ROLES_MANAGED = ['employee', 'admin'] as const;
+export type StaffRole = (typeof STAFF_ROLES_MANAGED)[number];
+
+/** Employees plus every other super admin — for the Employees tab. */
 export async function listEmployees(): Promise<StaffMember[]> {
   const db = await getDb();
-  const rows = await db.collection<AnyDoc>('users').find({ role: 'employee' }).sort({ created_at: -1 }).toArray();
+  const rows = await db.collection<AnyDoc>('users').find({ role: { $in: [...STAFF_ROLES_MANAGED] } }).sort({ created_at: -1 }).toArray();
   return rows.map((r) => clean(r as Record<string, unknown>) as StaffMember);
+}
+
+/** How many super admins exist (never let this drop to zero). */
+export async function countAdmins(): Promise<number> {
+  const db = await getDb();
+  return (await db.collection<AnyDoc>('users').find({ role: 'admin' }).toArray()).length;
 }
 
 function sanitizePerms(perms?: string[]): string[] {
@@ -85,7 +96,7 @@ function sanitizePerms(perms?: string[]): string[] {
 }
 
 export async function createEmployee(input: {
-  email: string; name?: string; password: string; permissions?: string[]; mobile?: string;
+  email: string; name?: string; password: string; permissions?: string[]; mobile?: string; role?: StaffRole;
 }): Promise<{ ok: true; staff: StaffMember } | { ok: false; error: string }> {
   const db = await getDb();
   const users = db.collection<AnyDoc>('users');
@@ -97,8 +108,8 @@ export async function createEmployee(input: {
     _id: id, id, email,
     name: (input.name || '').trim(),
     password_hash: await bcrypt.hash(input.password, 12),
-    role: 'employee',
-    permissions: sanitizePerms(input.permissions),
+    role: input.role === 'admin' ? 'admin' : 'employee',
+    permissions: input.role === 'admin' ? [...GRANTABLE_PERMISSIONS] : sanitizePerms(input.permissions),
     mobile: input.mobile || '',
     created_at: now, updated_at: now,
   };
@@ -107,23 +118,26 @@ export async function createEmployee(input: {
 }
 
 export async function updateEmployee(id: string, input: {
-  name?: string; password?: string; permissions?: string[]; mobile?: string;
+  name?: string; password?: string; permissions?: string[]; mobile?: string; role?: StaffRole;
 }): Promise<StaffMember | null> {
   const db = await getDb();
   const users = db.collection<AnyDoc>('users');
-  const existing = await users.findOne({ id, role: 'employee' });
+  const existing = await users.findOne({ id, role: { $in: [...STAFF_ROLES_MANAGED] } });
   if (!existing) return null;
   const patch: Record<string, unknown> = { updated_at: new Date().toISOString() };
   if (typeof input.name === 'string') patch.name = input.name.trim();
   if (Array.isArray(input.permissions)) patch.permissions = sanitizePerms(input.permissions);
+  if (input.role === 'admin' || input.role === 'employee') patch.role = input.role;
+  // A super admin always has every tab (kept so a later switch back to employee starts from full).
+  if ((patch.role || existing.role) === 'admin') patch.permissions = [...GRANTABLE_PERMISSIONS];
   if (typeof input.mobile === 'string') patch.mobile = input.mobile;
   if (input.password) patch.password_hash = await bcrypt.hash(input.password, 12);
-  await users.updateOne({ id, role: 'employee' }, { $set: patch });
+  await users.updateOne({ id }, { $set: patch });
   return clean(await users.findOne({ id }));
 }
 
 export async function deleteEmployee(id: string): Promise<boolean> {
   const db = await getDb();
-  const res = await db.collection<AnyDoc>('users').deleteOne({ id, role: 'employee' });
+  const res = await db.collection<AnyDoc>('users').deleteOne({ id, role: { $in: [...STAFF_ROLES_MANAGED] } });
   return res.deletedCount > 0;
 }

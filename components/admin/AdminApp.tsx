@@ -997,7 +997,7 @@ function BlogsPanel({ flash, onGo }: { flash: (m: string, e?: boolean) => void; 
 }
 
 /* ------------------------------ Employees -------------------------------- */
-interface Emp { id: string; email: string; name?: string; permissions: string[]; mobile?: string; avatar?: string; created_at?: string; last_login_at?: string; login_count?: number; }
+interface Emp { id: string; email: string; name?: string; role?: string; permissions: string[]; mobile?: string; avatar?: string; created_at?: string; last_login_at?: string; login_count?: number; }
 
 function EmployeesPanel({ flash, owner, onProfile }: {
   flash: (m: string, e?: boolean) => void;
@@ -1031,6 +1031,7 @@ function EmployeesPanel({ flash, owner, onProfile }: {
   const [password, setPassword] = useState('');
   const [perms, setPerms] = useState<string[]>([]);
   const [mobile, setMobile] = useState('');
+  const [role, setRole] = useState<'employee' | 'admin'>('employee');
   const [saving, setSaving] = useState(false);
 
   async function load() {
@@ -1043,15 +1044,15 @@ function EmployeesPanel({ flash, owner, onProfile }: {
   }
   useEffect(() => { load(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  function openNew() { setEditId(null); setName(''); setEmail(''); setPassword(''); setPerms([]); setMobile(''); setView('form'); }
-  function openEdit(e: Emp) { setEditId(e.id); setName(e.name || ''); setEmail(e.email); setPassword(''); setPerms(e.permissions || []); setMobile(e.mobile || ''); setView('form'); }
+  function openNew(asAdmin = false) { setEditId(null); setName(''); setEmail(''); setPassword(''); setPerms([]); setMobile(''); setRole(asAdmin ? 'admin' : 'employee'); setView('form'); }
+  function openEdit(e: Emp) { setEditId(e.id); setName(e.name || ''); setEmail(e.email); setPassword(''); setPerms(e.permissions || []); setMobile(e.mobile || ''); setRole(e.role === 'admin' ? 'admin' : 'employee'); setView('form'); }
   function togglePerm(k: string) { setPerms((p) => (p.includes(k) ? p.filter((x) => x !== k) : [...p, k])); }
 
   async function save() {
     if (!editId && (!email.trim() || password.length < 8)) return flash('Email and a password (8+ chars) are required', true);
     setSaving(true);
     try {
-      const payload: any = { name, permissions: perms, mobile };
+      const payload: any = { name, permissions: perms, mobile, role };
       let r;
       if (editId) {
         payload.id = editId; if (password) payload.password = password;
@@ -1062,7 +1063,7 @@ function EmployeesPanel({ flash, owner, onProfile }: {
       }
       const b = await r.json();
       if (!r.ok) throw new Error(b?.error?.message || 'Failed');
-      flash(editId ? 'Employee updated' : 'Employee added'); setView('list'); load();
+      flash(role === 'admin' ? (editId ? 'Super admin updated' : 'Super admin added — full access, same dashboard as you') : editId ? 'Employee updated' : 'Employee added'); setView('list'); load();
     } catch (e) { flash(e instanceof Error ? e.message : 'Save failed', true); } finally { setSaving(false); }
   }
   const sel = useSelection();
@@ -1073,9 +1074,11 @@ function EmployeesPanel({ flash, owner, onProfile }: {
   async function removeMany(ids: string[]) {
     try {
       const r = await fetch(`/api/admin/employees?ids=${ids.map(encodeURIComponent).join(',')}`, { method: 'DELETE', credentials: 'same-origin' });
+      const b = await r.json().catch(() => null);
       if (!r.ok) throw new Error();
-      setList((l) => l.filter((x) => !ids.includes(x.id))); sel.clear();
-      flash(`${ids.length === 1 ? 'Employee' : `${ids.length} employees`} removed — kept in the recycle bin`);
+      const n = Number(b?.data?.deleted) || ids.length;
+      sel.clear(); load();
+      flash(`${n === 1 ? 'Team member' : `${n} team members`} removed — kept in the recycle bin${n < ids.length ? ' (at least one super admin is always kept)' : ''}`);
     } catch { flash('Delete failed', true); }
   }
 
@@ -1083,7 +1086,7 @@ function EmployeesPanel({ flash, owner, onProfile }: {
     return (
       <div className="adm-panel">
         <div className="adm-panel-head">
-          <h3>{editId ? 'Edit employee' : 'Add employee'}</h3>
+          <h3>{editId ? (role === 'admin' ? 'Edit super admin' : 'Edit employee') : role === 'admin' ? 'Add super admin' : 'Add employee'}</h3>
           <button className="adm-btn ghost sm" onClick={() => setView('list')}><i className="fas fa-arrow-left" /> Back</button>
         </div>
         <div className="adm-grid2">
@@ -1098,19 +1101,42 @@ function EmployeesPanel({ flash, owner, onProfile }: {
           <label>{editId ? 'Reset password ' : 'Password '}<small>{editId ? '(leave blank to keep current)' : '(min 8 characters)'}</small></label>
           <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={editId ? '••••••••' : 'Set a password they will use to log in'} />
         </div>
-        <div className="adm-field"><label>Access — which tabs can they use?</label></div>
+        <div className="adm-field"><label>Access type</label></div>
         <div className="adm-perms">
-          {GRANTABLE.map((g) => (
-            <button type="button" key={g.key} className={`adm-perm${perms.includes(g.key) ? ' on' : ''}`} onClick={() => togglePerm(g.key)}>
-              <span className="ic"><i className={`fas ${g.icon}`} /></span>
-              <span className="t"><b>{g.label}</b><small>{g.desc}</small></span>
-              <i className={`fas ${perms.includes(g.key) ? 'fa-circle-check' : 'fa-circle'} chk`} />
-            </button>
-          ))}
+          <button type="button" className={`adm-perm${role === 'admin' ? ' on' : ''}`} onClick={() => setRole('admin')}>
+            <span className="ic"><i className="fas fa-crown" /></span>
+            <span className="t"><b>Super admin</b><small>Full access — the same dashboard as you: every section, Employees, Backups, Developer API, Subscriptions.</small></span>
+            <i className={`fas ${role === 'admin' ? 'fa-circle-check' : 'fa-circle'} chk`} />
+          </button>
+          <button type="button" className={`adm-perm${role === 'employee' ? ' on' : ''}`} onClick={() => setRole('employee')}>
+            <span className="ic"><i className="fas fa-user-tie" /></span>
+            <span className="t"><b>Employee</b><small>Only the tabs you tick below.</small></span>
+            <i className={`fas ${role === 'employee' ? 'fa-circle-check' : 'fa-circle'} chk`} />
+          </button>
         </div>
+        {role === 'employee' && (
+          <>
+            <div className="adm-field" style={{ marginTop: 12 }}>
+              <label>Access — which tabs can they use?{' '}
+                <button type="button" className="adm-btn ghost sm" onClick={() => setPerms(perms.length === GRANTABLE.length ? [] : GRANTABLE.map((g) => g.key))}>
+                  {perms.length === GRANTABLE.length ? 'Clear all' : 'Select all'}
+                </button>
+              </label>
+            </div>
+            <div className="adm-perms">
+              {GRANTABLE.map((g) => (
+                <button type="button" key={g.key} className={`adm-perm${perms.includes(g.key) ? ' on' : ''}`} onClick={() => togglePerm(g.key)}>
+                  <span className="ic"><i className={`fas ${g.icon}`} /></span>
+                  <span className="t"><b>{g.label}</b><small>{g.desc}</small></span>
+                  <i className={`fas ${perms.includes(g.key) ? 'fa-circle-check' : 'fa-circle'} chk`} />
+                </button>
+              ))}
+            </div>
+          </>
+        )}
         <p className="adm-note" style={{ marginTop: 4 }}><i className="fas fa-circle-info" /><span>Everyone can see the Dashboard and their own Profile. They sign in from the website’s Sign-in with the email &amp; password you set here.</span></p>
         <div className="adm-actions" style={{ marginTop: 16 }}>
-          <button className="adm-btn primary" disabled={saving} onClick={save}><i className="fas fa-floppy-disk" /> {saving ? 'Saving…' : editId ? 'Save changes' : 'Add employee'}</button>
+          <button className="adm-btn primary" disabled={saving} onClick={save}><i className="fas fa-floppy-disk" /> {saving ? 'Saving…' : editId ? 'Save changes' : role === 'admin' ? 'Add super admin' : 'Add employee'}</button>
         </div>
       </div>
     );
@@ -1119,11 +1145,12 @@ function EmployeesPanel({ flash, owner, onProfile }: {
   // ---- list view
   const ACTIVE_DAYS = 30;
   const isActive = (e: { last_login_at?: string }) => !!e.last_login_at && Date.now() - new Date(e.last_login_at).getTime() < ACTIVE_DAYS * 86_400_000;
-  const fullAccess = (e: Emp) => GRANTABLE.every((g) => e.permissions.includes(g.key));
+  const isAdmin = (e: Emp) => e.role === 'admin';
+  const fullAccess = (e: Emp) => isAdmin(e) || GRANTABLE.every((g) => e.permissions.includes(g.key));
   const activeN = list.filter(isActive).length;
   const t = q.trim().toLowerCase();
   const shown = list.filter((e) =>
-    (!t || [e.name, e.email, e.mobile, ...e.permissions.map((p) => TAB_META[p]?.label)].some((v) => v && v.toLowerCase().includes(t)))
+    (!t || [e.name, e.email, e.mobile, isAdmin(e) ? 'super admin' : '', ...e.permissions.map((p) => TAB_META[p]?.label)].some((v) => v && v.toLowerCase().includes(t)))
     && (!perm || (perm === '__full' ? fullAccess(e) : perm === '__none' ? !e.permissions.length : e.permissions.includes(perm)))
     && (!status || (status === 'active' ? isActive(e) : !isActive(e))));
   const ownerShown = !!owner && (!t || [owner.name, owner.email, 'super admin'].some((v) => v && v.toLowerCase().includes(t))) && (!perm || perm === '__full') && status !== 'inactive';
@@ -1136,7 +1163,8 @@ function EmployeesPanel({ flash, owner, onProfile }: {
   return (
     <div className="tm">
       <PageHead icon="fa-users-gear" title="Team & Administration" sub="Manage team members, their access to each section and what they do on leads.">
-        <button type="button" className="pg-btn" onClick={openNew}><i className="fas fa-plus" /> Add Employee</button>
+        <button type="button" className="pg-btn" onClick={() => openNew(true)}><i className="fas fa-crown" /> Add Super Admin</button>
+        <button type="button" className="pg-btn" onClick={() => openNew()}><i className="fas fa-plus" /> Add Employee</button>
       </PageHead>
 
       <div className="pg-tabs" role="tablist">
@@ -1148,10 +1176,10 @@ function EmployeesPanel({ flash, owner, onProfile }: {
       {pane === 'employees' && (
         <>
           <div className="sc-row four">
-            <StatCard icon="fa-users" tone="violet" value={list.length} label="Total Employees" on={!status && !perm} onClick={() => { setStatus(''); setPerm(''); }} />
+            <StatCard icon="fa-users" tone="violet" value={list.length} label="Team Members" on={!status && !perm} onClick={() => { setStatus(''); setPerm(''); }} />
             <StatCard icon="fa-user-check" tone="green" value={activeN} label="Active" on={status === 'active'} onClick={() => setStatus(status === 'active' ? '' : 'active')} title={`Signed in during the last ${ACTIVE_DAYS} days`} />
             <StatCard icon="fa-user-clock" tone="rose" value={list.length - activeN} label="Inactive" on={status === 'inactive'} onClick={() => setStatus(status === 'inactive' ? '' : 'inactive')} title={`No sign-in in the last ${ACTIVE_DAYS} days`} />
-            <StatCard icon="fa-user-shield" tone="blue" value={list.filter(fullAccess).length + (owner ? 1 : 0)} label="Admin Users" on={perm === '__full'} onClick={() => setPerm(perm === '__full' ? '' : '__full')} title="The super admin plus employees with access to every section" />
+            <StatCard icon="fa-user-shield" tone="blue" value={list.filter(fullAccess).length + (owner ? 1 : 0)} label="Admin Users" on={perm === '__full'} onClick={() => setPerm(perm === '__full' ? '' : '__full')} title="Super admins (you included) plus employees with access to every section" />
           </div>
 
           <section className="pg-card">
@@ -1215,7 +1243,8 @@ function EmployeesPanel({ flash, owner, onProfile }: {
                           <td className="muted">{e.email}</td>
                           <td className="muted">{e.mobile || '—'}</td>
                           <td>
-                            {fullAccess(e) ? <span className="tm-role admin">Full access</span>
+                            {isAdmin(e) ? <span className="tm-role admin">Super Admin</span>
+                              : fullAccess(e) ? <span className="tm-role admin">Full access</span>
                               : e.permissions.length
                                 ? <span className="tm-roles">{e.permissions.map((p) => <span key={p} className={`tm-role p-${p}`}>{TAB_META[p]?.label || p}</span>)}</span>
                                 : <span className="tm-role">Overview only</span>}
@@ -1259,10 +1288,10 @@ function EmployeesPanel({ flash, owner, onProfile }: {
             <div className="tm-rcard admin">
               <span className="ic"><i className="fas fa-crown" /></span>
               <div><b>Super Admin</b><small>Every section, plus Employees, Backups and Developer API.</small></div>
-              <span className="tm-who">{owner ? (owner.name || owner.email) : '—'}</span>
+              <span className="tm-who">{[owner ? (owner.name || owner.email) : '', ...list.filter(isAdmin).map((e) => e.name || e.email)].filter(Boolean).join(', ') || '—'}</span>
             </div>
             {GRANTABLE.map((g) => {
-              const who = list.filter((e) => e.permissions.includes(g.key));
+              const who = list.filter((e) => !isAdmin(e) && e.permissions.includes(g.key));
               return (
                 <div className="tm-rcard" key={g.key}>
                   <span className="ic"><i className={`fas ${g.icon}`} /></span>
@@ -2870,11 +2899,20 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
     if (await patch(a.id, { access })) flash(access === 'viewer' ? `${a.name || a.email} can now only view the live map` : `${a.name || a.email} can now add and edit projects`);
   }
   // Super admin moving an account to another type (e.g. channel partner → developer).
-  const [newRole, setNewRole] = useState<Account['role'] | 'employee' | ''>('');
+  const [newRole, setNewRole] = useState<Account['role'] | 'employee' | 'admin' | ''>('');
   const [newAccess, setNewAccess] = useState<'viewer' | 'editor'>('editor');
   const [newPerms, setNewPerms] = useState<string[]>([]);
   async function changeRole(a: Account) {
     if (!newRole || newRole === a.role) return;
+    if (newRole === 'admin') {
+      if (!confirm(`Make ${a.name || a.email} a SUPER ADMIN? They get full access — the same dashboard as you (every section, Employees, Backups, Developer API) — with their current login. They move from Accounts to Employees.`)) return;
+      if (await patch(a.id, { role: 'admin' })) {
+        setNewRole(''); setSel(null);
+        setRows((l) => l.filter((x) => x.id !== a.id));
+        flash(`${a.name || a.email} is now a super admin — see them under Employees`);
+      }
+      return;
+    }
     if (newRole === 'employee') {
       const tabs = newPerms.map((k) => GRANTABLE.find((g) => g.key === k)?.label || k).join(', ') || 'only the Dashboard and their Profile';
       if (!confirm(`Make ${a.name || a.email} an employee? They will sign in to the super admin with their current login and can open: ${tabs}. They move from Accounts to Employees.`)) return;
@@ -3351,10 +3389,11 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
                   {isOwner ? (
                     <>
                       <div className="acs-inline">
-                        <select className="crm-select" value={newRole} disabled={busy} onChange={(e) => setNewRole(e.target.value as Account['role'] | '')} aria-label="New account type">
+                        <select className="crm-select" value={newRole} disabled={busy} onChange={(e) => setNewRole(e.target.value as Account['role'] | 'employee' | 'admin' | '')} aria-label="New account type">
                           <option value="">Choose new type…</option>
                           {(['buyer', 'developer', 'agent'] as const).filter((r) => r !== sel.role).map((r) => <option key={r} value={r}>{typeLabel(r)}</option>)}
                           <option value="employee">Employee (staff login)</option>
+                          <option value="admin">Super admin (full access)</option>
                         </select>
                         <button className="adm-btn primary sm" disabled={busy || !newRole} onClick={() => changeRole(sel)}><i className="fas fa-arrow-right-arrow-left" /> Change type</button>
                       </div>

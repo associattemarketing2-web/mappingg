@@ -202,8 +202,9 @@ export function getPool(): Pool {
 
 // Network blips (a pooled connection reset by the database, a dropped TLS
 // socket) are retried on a fresh connection instead of failing the request.
-const TRANSIENT = /ECONNRESET|EPIPE|ETIMEDOUT|ECONNREFUSED|Connection terminated|connection error|server closed the connection|socket hang up|timeout exceeded when trying to connect/i;
-const TRANSIENT_CODES = new Set(['ECONNRESET', 'EPIPE', 'ETIMEDOUT', 'ECONNREFUSED', '57P01', '57P02', '57P03', '08000', '08003', '08006']);
+// 57P05 = the database closed a session that sat idle past idle_session_timeout.
+const TRANSIENT = /ECONNRESET|EPIPE|ETIMEDOUT|ECONNREFUSED|Connection terminated|connection error|server closed the connection|socket hang up|timeout exceeded when trying to connect|idle-session timeout/i;
+const TRANSIENT_CODES = new Set(['ECONNRESET', 'EPIPE', 'ETIMEDOUT', 'ECONNREFUSED', '57P01', '57P02', '57P03', '57P05', '08000', '08003', '08006']);
 function isTransient(e: unknown): boolean {
   const err = e as { code?: string; message?: string };
   return !!err && (TRANSIENT_CODES.has(String(err.code)) || TRANSIENT.test(String(err.message || '')));

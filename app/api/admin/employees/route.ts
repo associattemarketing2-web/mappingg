@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getCurrentUser, forgetAccount } from '@/lib/auth';
-import { listEmployees, createEmployee, updateEmployee, deleteEmployee, GRANTABLE_PERMISSIONS } from '@/lib/staff';
+import { listEmployees, createEmployee, updateEmployee, deleteEmployee, countAdmins, GRANTABLE_PERMISSIONS, STAFF_ROLES_MANAGED } from '@/lib/staff';
 import { getDb } from '@/lib/mongodb';
 import { idsParam, moveToTrash } from '@/lib/trash';
 import { PHONE_ERROR, normalizePhone } from '@/lib/phone';
@@ -9,13 +9,15 @@ import { PHONE_ERROR, normalizePhone } from '@/lib/phone';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-// Only the owner (role 'admin') can manage staff accounts.
+// Only a super admin (role 'admin') can manage staff accounts. There can be
+// several super admins; each one gets the same dashboard and full access.
 async function requireOwner() {
   const user = await getCurrentUser();
   return user && user.role === 'admin' ? user : null;
 }
 
 const permsSchema = z.array(z.enum(GRANTABLE_PERMISSIONS)).max(10).optional();
+const roleSchema = z.enum(STAFF_ROLES_MANAGED).optional();
 
 const createSchema = z.object({
   email: z.string().email(),
@@ -23,6 +25,7 @@ const createSchema = z.object({
   password: z.string().min(8).max(200),
   permissions: permsSchema,
   mobile: z.string().max(30).optional(),
+  role: roleSchema,
 });
 
 const updateSchema = z.object({
@@ -31,6 +34,7 @@ const updateSchema = z.object({
   password: z.string().min(8).max(200).optional().or(z.literal('')),
   permissions: permsSchema,
   mobile: z.string().max(30).optional(),
+  role: roleSchema,
 });
 
 /** '' stays '' (no number); anything else must be a valid number. null = invalid. */
@@ -44,8 +48,10 @@ function invalid(details?: unknown) {
 }
 
 export async function GET() {
-  if (!(await requireOwner())) return forbidden();
-  return NextResponse.json({ data: await listEmployees() });
+  const me = await requireOwner();
+  if (!me) return forbidden();
+  // The signed-in super admin is shown separately as "You".
+  return NextResponse.json({ data: (await listEmployees()).filter((e) => e.id !== me.id) });
 }
 
 export async function POST(req: NextRequest) {
@@ -60,14 +66,19 @@ export async function POST(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest) {
-  if (!(await requireOwner())) return forbidden();
+  const me = await requireOwner();
+  if (!me) return forbidden();
   const parsed = updateSchema.safeParse(await req.json().catch(() => null));
   if (!parsed.success) return invalid(parsed.error.flatten());
   const { id, password, mobile: rawMobile, ...rest } = parsed.data;
+  if (rest.role === 'employee') {
+    if (id === me.id) return NextResponse.json({ error: { message: 'You cannot remove your own super admin access.' } }, { status: 400 });
+  }
   const mobile = cleanMobile(rawMobile);
   if (mobile === null) return NextResponse.json({ error: { message: PHONE_ERROR } }, { status: 400 });
   const staff = await updateEmployee(id, { ...rest, password: password || undefined, ...(mobile !== undefined ? { mobile } : {}) });
   if (!staff) return NextResponse.json({ error: { message: 'Employee not found' } }, { status: 404 });
+  if (rest.role) forgetAccount(id); // new role applies on their next request
   return NextResponse.json({ data: staff });
 }
 
@@ -78,9 +89,15 @@ export async function DELETE(req: NextRequest) {
   if (!ids.length) return invalid('missing id');
   const db = await getDb();
   let deleted = 0;
+  let admins = await countAdmins();
   for (const id of ids) {
-    const emp = await db.collection('users').findOne({ id, role: 'employee' });
+    if (id === me.id) continue; // never remove yourself
+    const emp = await db.collection('users').findOne({ id, role: { $in: [...STAFF_ROLES_MANAGED] } });
     if (!emp) continue;
+    if (emp.role === 'admin') {
+      if (admins <= 1) continue; // always keep at least one super admin
+      admins--;
+    }
     // Kept in Backups → Recycle bin so it can be restored.
     await moveToTrash({ kind: 'employee', label: String(emp.name || emp.email), sub: String(emp.email), docs: [{ collection: 'users', doc: emp }], deletedBy: me.email });
     if (await deleteEmployee(id)) deleted++;

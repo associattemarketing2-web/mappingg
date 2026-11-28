@@ -76,7 +76,8 @@ const patchSchema = z.object({
   // partner who is really a developer. Staff moving someone counts as verifying them.
   // 'employee' turns the account into a staff login (it then lives under Employees);
   // `permissions` are the super-admin tabs they may open.
-  role: z.enum([...PUBLIC_ROLES, 'employee']).optional(),
+  // 'admin' makes them a super admin (full access, same dashboard as the owner).
+  role: z.enum([...PUBLIC_ROLES, 'employee', 'admin']).optional(),
   permissions: z.array(z.enum(GRANTABLE_PERMISSIONS)).max(10).optional(),
   // Channel partners only (super admin): may they add land listings?
   can_add_land: z.boolean().optional(),
@@ -133,6 +134,7 @@ export async function PATCH(req: NextRequest) {
       Object.assign(patch, { verification: 'approved', verified: true, verification_note: '', verified_at: now, verified_by: me.email });
       if (role === 'developer') patch.access = access || 'editor';
       if (role === 'employee') patch.permissions = [...new Set(permissions || [])];
+      if (role === 'admin') patch.permissions = [...GRANTABLE_PERMISSIONS];
     }
   }
   if (access && !roleChange) {
