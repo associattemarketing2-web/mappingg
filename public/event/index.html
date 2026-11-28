@@ -66,7 +66,7 @@
   <header class="hd">
     <div class="wrap hd-in">
       <button class="icon-btn menu" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="nav"><svg class="ic"><use href="#i-menu"/></svg></button>
-      <a class="brand" href="#register" aria-label="Mappingg — register for the launch"><img src="/event/assets/mappingg-logo.png" alt="Mappingg.com" width="200" height="70"></a>
+      <a class="brand" href="/" aria-label="Mappingg.com — home page"><img src="/event/assets/mappingg-logo.png" alt="Mappingg.com" width="200" height="70"></a>
       <nav class="hd-nav" id="nav" aria-label="Main">
         <a href="#register">Discover Properties <svg class="ic xs"><use href="#i-down"/></svg></a>
         <a href="#register">Developers <svg class="ic xs"><use href="#i-down"/></svg></a>
@@ -117,8 +117,8 @@
               </div>
               <!-- Honeypot: hidden from people, bots fill it in. -->
               <input class="hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
-              <label class="agree"><input type="checkbox" name="agree" required><span>I agree to the <a href="https://mappingg.com/terms" target="_blank" rel="noopener">Event Terms &amp; Conditions</a> and the <a href="https://mappingg.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</span></label>
-              <label class="agree opt"><input type="checkbox" name="consent_whatsapp"><span>Send me launch updates on WhatsApp.</span></label>
+              <label class="agree"><input type="checkbox" name="agree" required checked><span>I agree to the <a href="https://mappingg.com/terms" target="_blank" rel="noopener">Event Terms &amp; Conditions</a> and the <a href="https://mappingg.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</span></label>
+              <label class="agree opt"><input type="checkbox" name="consent_whatsapp" checked><span>Send me launch updates on WhatsApp.</span></label>
               <p class="err" id="err" role="alert" hidden></p>
               <button class="btn gold-deep lg block" type="submit" id="submit">Save The Date <svg class="ic"><use href="#i-arrow"/></svg></button>
               <p class="safe"><svg class="ic sm"><use href="#i-lock"/></svg>Free registration · We never share your details</p>
@@ -215,74 +215,86 @@
         <div class="ros-head">
           <p class="ros-eyebrow"><span><svg class="ic"><use href="#i-live"/></svg>Join us online</span></p>
           <h2 class="l-h2">Watch the Launch <em>Live</em></h2>
-          <p class="ros-sub">The livestream destinations will be added here as soon as the event links are confirmed.</p>
+          <p class="ros-sub">Follow Mappingg on these channels — the launch streams live here, and the links go to every registered attendee.</p>
         </div>
         <ul class="lv-grid">
-        <li class="lv"><span class="lv-ic"><svg viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="5" fill="#ff0000"/><path d="M11 5.5v9l8-4.5z" fill="#fff"/></svg></span><h3>YouTube Live</h3><p class="lv-st"><svg class="ic"><use href="#i-clock"/></svg>Link coming soon</p></li>
-        <li class="lv"><span class="lv-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="igg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".35" stop-color="#fa7e1e"/><stop offset=".6" stop-color="#d62976"/><stop offset=".85" stop-color="#962fbf"/><stop offset="1" stop-color="#4f5bd5"/></linearGradient></defs><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="url(#igg)" stroke-width="2.4"/><circle cx="12" cy="12" r="4.3" fill="none" stroke="url(#igg)" stroke-width="2.4"/><circle cx="17.4" cy="6.6" r="1.4" fill="#d62976"/></svg></span><h3>Instagram Live</h3><p class="lv-st"><svg class="ic"><use href="#i-clock"/></svg>Link coming soon</p></li>
-        <li class="lv"><span class="lv-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#1877f2"/><path d="M13.3 23v-8.2h2.8l.4-3.3h-3.2V9.4c0-.9.3-1.6 1.6-1.6h1.7V4.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.5H7.2v3.3H10V23z" fill="#fff"/></svg></span><h3>Facebook Live</h3><p class="lv-st"><svg class="ic"><use href="#i-clock"/></svg>Link coming soon</p></li>
-        <li class="lv"><span class="lv-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="21" rx="3.5" fill="#0a66c2"/><path d="M6.3 9.6h2.6v8.3H6.3zM7.6 5.6a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM10.5 9.6H13v1.1c.4-.7 1.3-1.4 2.6-1.4 2.8 0 3.3 1.8 3.3 4.2v4.4h-2.6v-3.9c0-.9 0-2.1-1.3-2.1s-1.5 1-1.5 2v4h-2.6z" fill="#fff"/></svg></span><h3>LinkedIn Live</h3><p class="lv-st"><svg class="ic"><use href="#i-clock"/></svg>Link coming soon</p></li>
+        <li><a class="lv" href="https://www.youtube.com/@mappingg-official" target="_blank" rel="noopener"><span class="lv-ic"><svg viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="5" fill="#ff0000"/><path d="M11 5.5v9l8-4.5z" fill="#fff"/></svg></span><h3>YouTube Live</h3><p class="lv-st"><span>Follow<span class="wide-only"> on YouTube</span></span><svg class="ic"><use href="#i-ext"/></svg></p></a></li>
+        <li><a class="lv" href="https://www.instagram.com/mappingg.associatte/" target="_blank" rel="noopener"><span class="lv-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="igg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".35" stop-color="#fa7e1e"/><stop offset=".6" stop-color="#d62976"/><stop offset=".85" stop-color="#962fbf"/><stop offset="1" stop-color="#4f5bd5"/></linearGradient></defs><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="url(#igg)" stroke-width="2.4"/><circle cx="12" cy="12" r="4.3" fill="none" stroke="url(#igg)" stroke-width="2.4"/><circle cx="17.4" cy="6.6" r="1.4" fill="#d62976"/></svg></span><h3>Instagram Live</h3><p class="lv-st"><span>Follow<span class="wide-only"> on Instagram</span></span><svg class="ic"><use href="#i-ext"/></svg></p></a></li>
+        <li><a class="lv" href="https://www.facebook.com/share/1CH5PwZUsM/?mibextid=wwXIfr" target="_blank" rel="noopener"><span class="lv-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#1877f2"/><path d="M13.3 23v-8.2h2.8l.4-3.3h-3.2V9.4c0-.9.3-1.6 1.6-1.6h1.7V4.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.5H7.2v3.3H10V23z" fill="#fff"/></svg></span><h3>Facebook Live</h3><p class="lv-st"><span>Follow<span class="wide-only"> on Facebook</span></span><svg class="ic"><use href="#i-ext"/></svg></p></a></li>
+        <li><a class="lv" href="https://www.linkedin.com/company/mappingg-com/" target="_blank" rel="noopener"><span class="lv-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="21" rx="3.5" fill="#0a66c2"/><path d="M6.3 9.6h2.6v8.3H6.3zM7.6 5.6a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM10.5 9.6H13v1.1c.4-.7 1.3-1.4 2.6-1.4 2.8 0 3.3 1.8 3.3 4.2v4.4h-2.6v-3.9c0-.9 0-2.1-1.3-2.1s-1.5 1-1.5 2v4h-2.6z" fill="#fff"/></svg></span><h3>LinkedIn Live</h3><p class="lv-st"><span>Follow<span class="wide-only"> on LinkedIn</span></span><svg class="ic"><use href="#i-ext"/></svg></p></a></li>
         </ul>
         <p class="lv-foot"><span>One launch. Four ways to watch.</span></p>
-      </div>
-    </section>
-
-    <!-- Launch: register band -->
-    <section class="l-join-band">
-      <div class="wrap l-join">
-        <div>
-          <p class="eyebrow gold">Free registration</p>
-          <h2>Be Part of the <em>Grand Launch</em></h2>
-          <p>Register to receive event reminders, livestream links and Mappingg launch updates.</p>
-          <p class="small">No payment required. Livestream links will be shared with registered attendees.</p>
-        </div>
-        <form class="quick" id="quickForm" novalidate>
-          <input name="name" autocomplete="name" placeholder="Full name *" aria-label="Full name" required maxlength="120">
-          <input name="email" type="email" autocomplete="email" placeholder="Email address *" aria-label="Email address" required maxlength="200">
-          <input name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="Mobile number *" aria-label="Mobile number" required maxlength="10">
-          <input name="city" autocomplete="address-level2" placeholder="City *" aria-label="City" required maxlength="80">
-          <label class="sel"><select name="attendee_type" aria-label="I am a" required>
-            <option value="" selected disabled>I am a… *</option>
-            <option>Home buyer</option><option>Investor</option><option>Developer</option><option>Channel partner</option><option>Other</option>
-          </select><svg class="ic sm" aria-hidden="true"><use href="#i-down"/></svg></label>
-          <button class="btn gold block" type="submit">Save The Date <svg class="ic"><use href="#i-arrow"/></svg></button>
-          <p class="fine">By registering, you agree to the <a href="https://mappingg.com/terms" target="_blank" rel="noopener">Event Terms &amp; Conditions</a> and the <a href="https://mappingg.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>, and to receive information about this event.</p>
-        </form>
       </div>
     </section>
 
     <!-- Video hub -->
     <section class="videos-band" id="videos">
       <div class="wrap">
-        <div class="vh-head">
-          <svg class="vh-logo" aria-hidden="true"><use href="#i-yt"/></svg>
-          <div><h2 class="h2">Mappingg Video Hub</h2><p>Watch property walkthroughs, expert talks, market insights and event highlights on our YouTube channel.</p></div>
-          <a class="btn outline sm pill-btn" href="https://www.youtube.com/@mappingg-official" target="_blank" rel="noopener"><span>View All Videos<span class="wide-only"> on YouTube</span></span> <svg class="ic sm"><use href="#i-ext"/></svg></a>
+        <div class="ros-head vh-head">
+          <p class="ros-eyebrow"><span><svg class="ic yt" aria-hidden="true"><use href="#i-yt"/></svg>Watch on YouTube</span></p>
+          <h2 class="l-h2">Mappingg <em>Video Hub</em></h2>
+          <p class="ros-sub">See Mappingg in action — then <b>register free</b> for the grand launch.</p>
         </div>
-        <div class="carousel">
-          <button class="car-btn prev" type="button" aria-label="Previous videos" data-dir="-1"><svg class="ic"><use href="#i-left"/></svg></button>
-          <div class="vids track" id="vids">
-            <a class="vid" href="https://www.youtube.com/@mappingg-official" target="_blank" rel="noopener"><span class="thumb"><img src="/event/assets/img/v1.webp" alt="" loading="lazy"></span><h3>Luxury 3 BHK at Mundhwa, Pune | Project Walkthrough</h3><p>Mappingg.com <i>•</i> 12K views</p></a>
-            <a class="vid" href="https://www.youtube.com/@mappingg-official" target="_blank" rel="noopener"><span class="thumb"><img src="/event/assets/img/v2.webp" alt="" loading="lazy"></span><h3>Pune Real Estate Market Outlook 2026 | Expert Discussion</h3><p>Mappingg.com <i>•</i> 18K views</p></a>
-            <a class="vid" href="https://www.youtube.com/@mappingg-official" target="_blank" rel="noopener"><span class="thumb"><img src="/event/assets/img/v3.webp" alt="" loading="lazy"></span><h3>Mappingg Real Estate Connect 2025 | Event Highlights</h3><p>Mappingg.com <i>•</i> 9.4K views</p></a>
-            <a class="vid" href="https://www.youtube.com/@mappingg-official" target="_blank" rel="noopener"><span class="thumb"><img src="/event/assets/img/v4.webp" alt="" loading="lazy"></span><h3>Top Investment Corridors in Pune | High Growth Locations</h3><p>Mappingg.com <i>•</i> 21K views</p></a>
+        <div class="vh-body">
+          <div class="vh-short">
+            <iframe src="https://www.youtube.com/embed/hLvYSneWoQM" title="Mappingg on YouTube" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
-          <button class="car-btn next" type="button" aria-label="Next videos" data-dir="1"><svg class="ic"><use href="#i-right"/></svg></button>
+          <div class="l-join">
+            <div>
+              <p class="eyebrow gold">Free registration</p>
+              <h2>Be Part of the <em>Grand Launch</em></h2>
+              <p>Register to receive event reminders, livestream links and Mappingg launch updates.</p>
+              <p class="small">No payment required. Livestream links will be shared with registered attendees.</p>
+            </div>
+            <form class="quick" id="quickForm" novalidate>
+              <input name="name" autocomplete="name" placeholder="Full name *" aria-label="Full name" required maxlength="120">
+              <input name="email" type="email" autocomplete="email" placeholder="Email address *" aria-label="Email address" required maxlength="200">
+              <input name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="Mobile number *" aria-label="Mobile number" required maxlength="10">
+              <input name="city" autocomplete="address-level2" placeholder="City *" aria-label="City" required maxlength="80">
+              <label class="sel"><select name="attendee_type" aria-label="I am a" required>
+                <option value="" selected disabled>I am a… *</option>
+                <option>Home buyer</option><option>Investor</option><option>Developer</option><option>Channel partner</option><option>Other</option>
+              </select><svg class="ic sm" aria-hidden="true"><use href="#i-down"/></svg></label>
+              <label class="q-opt"><input type="checkbox" name="consent_whatsapp" checked><span>Send me launch updates on WhatsApp.</span></label>
+              <button class="btn gold block" type="submit">Save The Date <svg class="ic"><use href="#i-arrow"/></svg></button>
+              <p class="fine">By registering, you agree to the <a href="https://mappingg.com/terms" target="_blank" rel="noopener">Event Terms &amp; Conditions</a> and the <a href="https://mappingg.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>, and to receive information about this event.</p>
+            </form>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Developers -->
     <section class="devs-band">
-      <div class="wrap devs">
-        <div class="devs-intro"><h2 class="h2 sm">Participating Developers</h2><p>Meet leading developers showcasing their latest projects.</p></div>
+      <div class="wrap ros-head">
+        <p class="ros-eyebrow"><span>Our developer network</span></p>
+        <h2 class="l-h2">Trusted by <em>Developers</em></h2>
+      </div>
+      <!-- Logo rows (script.js fills them with the home page's developer logos): the top one moves
+           left to right, the second right to left. Each list is repeated (aria-hidden) so it never runs out. -->
+      <div class="logos-rows">
+        <div class="logos-mq">
         <ul class="logos">
-          <li><img src="/event/assets/img/d1.png" alt="Pristine" loading="lazy"></li>
-          <li><img src="/event/assets/img/d2.png" alt="Lodha" loading="lazy"></li>
-          <li><img src="/event/assets/img/d3.png" alt="Mantra" loading="lazy"></li>
-          <li><img src="/event/assets/img/d4.png" alt="Gera" loading="lazy"></li>
-          <li><img src="/event/assets/img/d5.png" alt="Godrej Properties" loading="lazy"></li>
+          <li><img src="/event/assets/img/d1.png" alt="Pristine"></li>
+          <li><img src="/event/assets/img/d2.png" alt="Lodha"></li>
+          <li><img src="/event/assets/img/d3.png" alt="Mantra"></li>
+          <li><img src="/event/assets/img/d4.png" alt="Gera"></li>
+          <li><img src="/event/assets/img/d5.png" alt="Godrej Properties"></li>
+          <li aria-hidden="true"><img src="/event/assets/img/d1.png" alt=""></li>
+          <li aria-hidden="true"><img src="/event/assets/img/d2.png" alt=""></li>
+          <li aria-hidden="true"><img src="/event/assets/img/d3.png" alt=""></li>
+          <li aria-hidden="true"><img src="/event/assets/img/d4.png" alt=""></li>
+          <li aria-hidden="true"><img src="/event/assets/img/d5.png" alt=""></li>
+          <li aria-hidden="true"><img src="/event/assets/img/d1.png" alt=""></li>
+          <li aria-hidden="true"><img src="/event/assets/img/d2.png" alt=""></li>
+          <li aria-hidden="true"><img src="/event/assets/img/d3.png" alt=""></li>
+          <li aria-hidden="true"><img src="/event/assets/img/d4.png" alt=""></li>
+          <li aria-hidden="true"><img src="/event/assets/img/d5.png" alt=""></li>
         </ul>
+        </div>
+        <div class="logos-mq" hidden>
+        <ul class="logos rev"></ul>
+        </div>
       </div>
     </section>
 
@@ -343,6 +355,7 @@
         <a class="yt" href="https://www.youtube.com/@mappingg-official" aria-label="YouTube" target="_blank" rel="noopener"><svg class="ic"><use href="#i-yt"/></svg></a>
         <a href="https://www.linkedin.com/company/mappingg-com/" aria-label="LinkedIn" target="_blank" rel="noopener"><svg class="ic"><use href="#i-in"/></svg></a>
         <a href="https://www.instagram.com/mappingg.associatte/" aria-label="Instagram" target="_blank" rel="noopener"><svg class="ic"><use href="#i-ig"/></svg></a>
+        <a href="https://www.facebook.com/share/1CH5PwZUsM/?mibextid=wwXIfr" aria-label="Facebook" target="_blank" rel="noopener"><svg class="ic"><use href="#i-fb"/></svg></a>
       </div>
     </div>
     <p class="ft-copy">© <span id="yr"></span> Associatte Ai Technologies LLP · Mappingg</p>

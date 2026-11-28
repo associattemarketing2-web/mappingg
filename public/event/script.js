@@ -109,7 +109,7 @@
 
     // Reveal sections as they scroll into view.
     if (!reduced) {
-      var items = document.querySelectorAll('.l-why-art, .l-why > div, .spk, .ros-meta, .ros-i, .ros-bar, .lv, .l-join, .vh-head, .vid, .devs-intro, .logos li, .pbs-top, .pb, .pbs-end');
+      var items = document.querySelectorAll('.l-why-art, .l-why > div, .spk, .ros-meta, .ros-i, .ros-bar, .lv-grid > li, .l-join, .vh-head, .vid, .devs-band .ros-head, .logos-rows, .pbs-top, .pb, .pbs-end');
       var io = new IntersectionObserver(function (es) {
         es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
       }, { rootMargin: '0px 0px -8% 0px' });
@@ -121,6 +121,40 @@
       });
     }
   }
+
+  // "Trusted by Developers": the home page's developer logos (Super admin → Developers,
+  // /api/developers?trusted=1), in two rows once there are enough of them (alternating, so
+  // both rows mix the biggest names). The five logos in the HTML stay if these can't be loaded.
+  (function () {
+    var lists = document.querySelectorAll('.logos');
+    if (!lists.length || !window.fetch) return;
+    function fill(list, devs) {
+      // One copy is at least ten logos long (wider than the screen); the CSS loops three copies.
+      var per = Math.max(devs.length, 10);
+      var frag = document.createDocumentFragment();
+      for (var c = 0; c < 3; c++) {
+        for (var i = 0; i < per; i++) {
+          var d = devs[i % devs.length], hidden = c > 0 || i >= devs.length;
+          var li = document.createElement('li'), img = document.createElement('img');
+          if (hidden) li.setAttribute('aria-hidden', 'true');
+          img.src = d.logo; img.alt = hidden ? '' : d.name; img.title = d.name; img.decoding = 'async';
+          li.appendChild(img); frag.appendChild(li);
+        }
+      }
+      list.replaceChildren(frag);
+      list.style.animationDuration = Math.round(per * 3.2) + 's';
+    }
+    fetch('/api/developers?trusted=1').then(function (r) { return r.ok ? r.json() : null; }).then(function (b) {
+      var devs = ((b && b.data) || []).filter(function (d) { return d && d.logo && d.name; });
+      if (devs.length < 4) return;
+      var two = devs.length >= 12 && lists.length > 1;
+      fill(lists[0], two ? devs.filter(function (_, i) { return i % 2 === 0; }) : devs);
+      if (two) {
+        fill(lists[1], devs.filter(function (_, i) { return i % 2 === 1; }));
+        lists[1].parentNode.hidden = false;
+      }
+    }).catch(function () {});
+  })();
 
   // Carousels (speakers, Video Hub): arrows scroll by one card; hidden when everything fits.
   document.querySelectorAll('.carousel').forEach(function (car) {
@@ -399,6 +433,7 @@
     });
     f.code.value = '+91';
     f.agree.checked = true;
+    f.consent_whatsapp.checked = q.consent_whatsapp.checked;
     openPop(false);
     if (validate()) form.requestSubmit(btn);
   });
