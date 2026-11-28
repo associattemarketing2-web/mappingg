@@ -5,7 +5,7 @@ import { PHONE_ERROR, normalizePhone } from '@/lib/phone';
 import { getDb } from '@/lib/mongodb';
 import { PUBLIC_ROLES, getCurrentUser, forgetAccount } from '@/lib/auth';
 import { needsVerification, verificationOf } from '@/lib/verification';
-import { hasPermission } from '@/lib/staff';
+import { hasPermission, GRANTABLE_PERMISSIONS } from '@/lib/staff';
 import { localitiesOf, localitiesOfAll } from '@/lib/locality';
 import { logActivity } from '@/lib/activity';
 import { accountStats, type AccountLite } from '@/lib/account-insights';
@@ -74,7 +74,10 @@ const patchSchema = z.object({
   profile: z.record(z.string().max(80), z.string().trim().max(1000)).optional(),
   // Move the account to another type (super admin only), e.g. a buyer or channel
   // partner who is really a developer. Staff moving someone counts as verifying them.
-  role: z.enum(PUBLIC_ROLES).optional(),
+  // 'employee' turns the account into a staff login (it then lives under Employees);
+  // `permissions` are the super-admin tabs they may open.
+  role: z.enum([...PUBLIC_ROLES, 'employee']).optional(),
+  permissions: z.array(z.enum(GRANTABLE_PERMISSIONS)).max(10).optional(),
 });
 
 export async function PATCH(req: NextRequest) {
@@ -83,7 +86,7 @@ export async function PATCH(req: NextRequest) {
   if (!parsed.success) {
     return NextResponse.json({ error: { message: 'Invalid request (passwords need at least 8 characters).' } }, { status: 400 });
   }
-  const { id, decision, reason, notes, password, access, name, email, mobile, profile, role } = parsed.data;
+  const { id, decision, reason, notes, password, access, name, email, mobile, profile, role, permissions } = parsed.data;
   const editingDetails = name !== undefined || email !== undefined || mobile !== undefined || profile !== undefined;
   const now = new Date().toISOString();
   const patch: Record<string, unknown> = { updated_at: now };
@@ -127,6 +130,7 @@ export async function PATCH(req: NextRequest) {
       // Approved straight away — the super admin chose this type for them.
       Object.assign(patch, { verification: 'approved', verified: true, verification_note: '', verified_at: now, verified_by: me.email });
       if (role === 'developer') patch.access = access || 'editor';
+      if (role === 'employee') patch.permissions = [...new Set(permissions || [])];
     }
   }
   if (access && !roleChange) {
@@ -183,7 +187,7 @@ export async function PATCH(req: NextRequest) {
       });
     }
     if (roleChange) {
-      const label = (r: string) => ({ buyer: 'Buyer', developer: 'Developer', agent: 'Channel partner' } as Record<string, string>)[r] || r;
+      const label = (r: string) => ({ buyer: 'Buyer', developer: 'Developer', agent: 'Channel partner', employee: 'Employee' } as Record<string, string>)[r] || r;
       await logActivity({ ...who, type: 'role_changed', detail: `Account type changed from ${label(roleChange.from)} to ${label(roleChange.to)}${level ? ` (${level})` : ''}` });
     }
     if (editingDetails) await logActivity({ ...who, type: 'profile_edited', detail: `Account details updated by staff${email ? ' (login email changed)' : ''}` });

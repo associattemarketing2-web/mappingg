@@ -2860,10 +2860,21 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
     if (await patch(a.id, { access })) flash(access === 'viewer' ? `${a.name || a.email} can now only view the live map` : `${a.name || a.email} can now add and edit projects`);
   }
   // Super admin moving an account to another type (e.g. channel partner → developer).
-  const [newRole, setNewRole] = useState<Account['role'] | ''>('');
+  const [newRole, setNewRole] = useState<Account['role'] | 'employee' | ''>('');
   const [newAccess, setNewAccess] = useState<'viewer' | 'editor'>('editor');
+  const [newPerms, setNewPerms] = useState<string[]>([]);
   async function changeRole(a: Account) {
     if (!newRole || newRole === a.role) return;
+    if (newRole === 'employee') {
+      const tabs = newPerms.map((k) => GRANTABLE.find((g) => g.key === k)?.label || k).join(', ') || 'only the Dashboard and their Profile';
+      if (!confirm(`Make ${a.name || a.email} an employee? They will sign in to the super admin with their current login and can open: ${tabs}. They move from Accounts to Employees.`)) return;
+      if (await patch(a.id, { role: 'employee', permissions: newPerms })) {
+        setNewRole(''); setNewPerms([]); setSel(null);
+        setRows((l) => l.filter((x) => x.id !== a.id));
+        flash(`${a.name || a.email} is now an employee — manage their access under Employees`);
+      }
+      return;
+    }
     if (!confirm(`Move ${a.name || a.email} from ${typeLabel(a.role)} to ${typeLabel(newRole)}? They get the ${typeLabel(newRole)} dashboard from their next page load, already verified.`)) return;
     if (await patch(a.id, { role: newRole, ...(newRole === 'developer' ? { access: newAccess } : {}) })) {
       setNewRole('');
@@ -3311,6 +3322,7 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
                         <select className="crm-select" value={newRole} disabled={busy} onChange={(e) => setNewRole(e.target.value as Account['role'] | '')} aria-label="New account type">
                           <option value="">Choose new type…</option>
                           {(['buyer', 'developer', 'agent'] as const).filter((r) => r !== sel.role).map((r) => <option key={r} value={r}>{typeLabel(r)}</option>)}
+                          <option value="employee">Employee (staff login)</option>
                         </select>
                         <button className="adm-btn primary sm" disabled={busy || !newRole} onClick={() => changeRole(sel)}><i className="fas fa-arrow-right-arrow-left" /> Change type</button>
                       </div>
@@ -3324,6 +3336,24 @@ function AccountsPanel({ flash, isOwner, onPendingChange, focusId, onFocusDone, 
                             </button>
                           ))}
                         </div>
+                      )}
+                      {newRole === 'employee' && (
+                        <>
+                          <p className="crm-meta" style={{ marginTop: 10 }}>Which tabs can they use? (Dashboard and their own Profile are always on.)</p>
+                          <div className="adm-perms">
+                            {GRANTABLE.map((g) => {
+                              const on = newPerms.includes(g.key);
+                              return (
+                                <button type="button" key={g.key} className={`adm-perm${on ? ' on' : ''}`} disabled={busy}
+                                  onClick={() => setNewPerms((p) => (on ? p.filter((x) => x !== g.key) : [...p, g.key]))}>
+                                  <span className="ic"><i className={`fas ${g.icon}`} /></span>
+                                  <span className="t"><b>{g.label}</b><small>{g.desc}</small></span>
+                                  <i className={`fas ${on ? 'fa-circle-check' : 'fa-circle'} chk`} />
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </>
                       )}
                     </>
                   ) : <p className="crm-meta"><i className="fas fa-lock" /> Only the super admin can change the account type.</p>}
