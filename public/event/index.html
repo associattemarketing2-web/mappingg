@@ -103,7 +103,7 @@
                   <select name="code" aria-label="Country code"><option>+91</option><option>+971</option><option>+1</option><option>+44</option><option>+65</option></select>
                   <svg class="ic xs caret" aria-hidden="true"><use href="#i-down"/></svg>
                 </label>
-                <label class="field"><input name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="Mobile number" required maxlength="10"></label>
+                <label class="field"><input name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="Mobile number" required maxlength="16"></label>
               </div>
               <div class="pair">
               <label class="field"><svg class="ic"><use href="#i-pin"/></svg><input name="city" autocomplete="address-level2" placeholder="City" required maxlength="80"></label>
@@ -116,7 +116,7 @@
               </label>
               </div>
               <!-- Honeypot: hidden from people, bots fill it in. -->
-              <input class="hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <input class="hp" name="hp_check" tabindex="-1" autocomplete="new-password" aria-hidden="true">
               <label class="agree"><input type="checkbox" name="agree" required checked><span>I agree to the <a href="https://mappingg.com/terms" target="_blank" rel="noopener">Event Terms &amp; Conditions</a> and the <a href="https://mappingg.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</span></label>
               <label class="agree opt"><input type="checkbox" name="consent_whatsapp" checked><span>Send me launch updates on WhatsApp.</span></label>
               <p class="err" id="err" role="alert" hidden></p>
@@ -249,7 +249,7 @@
             <form class="quick" id="quickForm" novalidate>
               <input name="name" autocomplete="name" placeholder="Full name *" aria-label="Full name" required maxlength="120">
               <input name="email" type="email" autocomplete="email" placeholder="Email address *" aria-label="Email address" required maxlength="200">
-              <input name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="Mobile number *" aria-label="Mobile number" required maxlength="10">
+              <input name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="Mobile number *" aria-label="Mobile number" required maxlength="16">
               <input name="city" autocomplete="address-level2" placeholder="City *" aria-label="City" required maxlength="80">
               <label class="sel"><select name="attendee_type" aria-label="I am a" required>
                 <option value="" selected disabled>I am a… *</option>

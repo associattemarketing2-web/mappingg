@@ -22,7 +22,8 @@ const schema = z.object({
   agree: z.literal(true),
   consent_call: z.boolean().optional().default(false),
   consent_whatsapp: z.boolean().optional().default(false),
-  company: z.string().optional(), // honeypot, checked before parsing
+  company: z.string().optional(), // old honeypot name, ignored
+  hp_check: z.string().optional(), // honeypot, checked before parsing
 });
 
 export interface EventRegistration {
@@ -36,7 +37,11 @@ export type EventResult =
   | { kind: 'ok'; registration: EventRegistration };
 
 export function parseEventRegistration(raw: unknown, now: Date = new Date()): EventResult {
-  const hp = raw && typeof raw === 'object' ? (raw as Record<string, unknown>).company : undefined;
+  // Honeypot. It used to be called `company`, but browsers autofill a saved
+  // company name into that field even when it is hidden, so real channel
+  // partners were silently treated as bots and never saved. `company` is now
+  // ignored (older cached copies of the form still send it).
+  const hp = raw && typeof raw === 'object' ? (raw as Record<string, unknown>).hp_check : undefined;
   if (hp != null && String(hp).trim() !== '') return { kind: 'spam' };
 
   const parsed = schema.safeParse(raw);

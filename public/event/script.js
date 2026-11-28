@@ -181,7 +181,13 @@
   });
 
   // Digits only in the mobile number.
-  f.phone.addEventListener('input', function () { this.value = this.value.replace(/\D/g, '').slice(0, 10); });
+  // Autofill often gives "+91 98220 28753" or "098220 28753": keep the 10-digit number.
+  function tenDigits(v) {
+    var d = String(v).replace(/\D/g, '');
+    if (d.length > 10) d = d.replace(/^(91|0)/, '');
+    return d.slice(-10);
+  }
+  f.phone.addEventListener('input', function () { this.value = tenDigits(this.value); });
 
   // Live field feedback: green border once valid, error cleared as soon as it's fixed.
   var checks = {
@@ -390,7 +396,7 @@
       event: cfg.eventName || '',
       agree: f.agree.checked,
       consent_whatsapp: f.consent_whatsapp.checked,
-      company: f.company.value,
+      hp_check: f.hp_check.value,
     };
 
     fetch((cfg.apiBase || '').replace(/\/$/, '') + '/api/event-registration', {
@@ -423,7 +429,7 @@
   // so both share one validation, API call and success screen. Its fine print covers the agreement.
   var quick = document.getElementById('quickForm');
   var q = quick.elements;
-  q.phone.addEventListener('input', function () { this.value = this.value.replace(/\D/g, '').slice(0, 10); });
+  q.phone.addEventListener('input', function () { this.value = tenDigits(this.value); });
   quick.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!document.getElementById('done').hidden) { openPop(false); return; }

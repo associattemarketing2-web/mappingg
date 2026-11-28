@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { DEFAULT_EVENT, parseEventRegistration } from '../lib/event-registration';
 
 const NOW = new Date('2026-11-21T10:00:00.000Z');
-const valid = { name: 'Asha Patil', email: 'Asha@Example.com', phone: '+91 9876543210', attendee_type: 'Investor', agree: true, company: '' };
+const valid = { name: 'Asha Patil', email: 'Asha@Example.com', phone: '+91 9876543210', attendee_type: 'Investor', agree: true, hp_check: '' };
 
 test('valid registration is accepted and normalised', () => {
   const r = parseEventRegistration(valid, NOW);
@@ -28,7 +28,9 @@ test('bad email, phone or attendee type is rejected', () => {
 });
 
 test('honeypot submissions are flagged as spam', () => {
-  assert.equal(parseEventRegistration({ ...valid, company: 'Bot Inc' }, NOW).kind, 'spam');
+  assert.equal(parseEventRegistration({ ...valid, hp_check: 'http://spam' }, NOW).kind, 'spam');
+  // Browser autofill puts a company name into a field called `company` — never spam.
+  assert.equal(parseEventRegistration({ ...valid, company: 'Crystal Consultancy' }, NOW).kind, 'ok');
 });
 
 test('city is saved when given and optional for older forms', () => {

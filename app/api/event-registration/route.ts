@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
   // Bots that trip the honeypot get the normal answer, but nothing is saved.
   if (result.kind === 'spam') return reply(req, { data: { ok: true } }, 201);
 
-  const limited = rateLimit(`event:${clientIp(req)}`, 6, 10 * 60_000);
+  const limited = rateLimit(`event:${clientIp(req)}`, 20, 10 * 60_000);
   if (limited) return reply(req, { error: { message: 'Too many attempts. Please try again in a few minutes.' } }, 429);
   if (result.kind === 'invalid') return reply(req, { error: { message: result.message } }, 400);
 
